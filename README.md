@@ -1,15 +1,5 @@
 # GeometricWeather
 
-## pic
-
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-23-181.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-23-281.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-25-001.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-20-18-581.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-23-22-041.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-371.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-491.png)
-
 ## 给自己
 
 ### 近期任务
@@ -68,3 +58,14 @@
 * 代码中存在方法冗余，我会在后期进行修改。
 * 目前代码存在内存泄漏的问题，切换fragment时会出现内存泄漏，希望有人发现问题在哪的话能告诉作者。
 * 作者学习android开发没多久，水平渣渣...
+
+
+## pic
+
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-23-181.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-23-281.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-25-001.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-20-18-581.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-23-22-041.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-371.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-491.png)
