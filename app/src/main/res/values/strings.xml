@@ -4,7 +4,7 @@
     <string name="app_name">Geometric weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
 
-    <string name="version_code">版本号\n1.0.2</string>
+    <string name="version_code">版本号\n1.0.3</string>
     <string name="note">代码注释\n优化：优化了桌面widget的刷新提示\n添加：点击桌面widget时钟进入系统自带闹钟app</string>
 
     <string name="introduce_text_1">欢迎您使用 Geometric Weather\n请先浏览一下简单的使用说明吧</string>
