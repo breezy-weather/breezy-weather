@@ -47,7 +47,7 @@
 
 ### 联系作者
 
-* 酷安Geometric Weather页面
+* 在酷安Geometric Weather页面留言
 * wangdayeeeeee@gmail.com
 
 ## 给开发者
