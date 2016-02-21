@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <wangdaye.com.geometricweather.Widget.RippleCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="2dp"
+        android:clickable="true"
+        android:stateListAnimator="@anim/touch_raise"
+        android:foreground="?attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:padding="@dimen/card_margin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_title_height">
+
+            <ImageView
+                android:id="@+id/dialog_search_icon"
+                android:src="@drawable/ic_search_grey"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/material_icon_size"
+                android:layout_height="@dimen/material_icon_size" />
+
+            <FrameLayout
+                android:id="@+id/dialog_search_space"
+                android:layout_toRightOf="@id/dialog_search_icon"
+                android:layout_width="@dimen/card_margin"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/dialog_search_editText"
+                android:hint="@string/dialog_title"
+                android:textSize="@dimen/normal_word_size"
+                android:layout_toRightOf="@id/dialog_search_space"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@android:color/darker_gray"
+                android:singleLine="true"
+                android:inputType="text"
+                android:imeOptions="actionSearch" />
+
+        </RelativeLayout>
+
+    </wangdaye.com.geometricweather.Widget.RippleCardView>
+    
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_location_height">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dialog_location_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/introduce_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/introduce_viewPager"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="156dp">
+
+            <wangdaye.com.geometricweather.Widget.CircleIndicator
+                android:id="@+id/introduce_indicator"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="156dp" />
+
+            <Button
+                android:id="@+id/introduce_button"
+                android:textSize="@dimen/normal_title_size"
+                android:textColor="@color/colorTextLight"
+                android:background="@android:color/transparent"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

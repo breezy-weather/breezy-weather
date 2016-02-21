@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/create_widget_day"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" >
+
+        <ImageView
+            android:id="@+id/create_widget_day_wall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:elevation="2dp"
+            android:fitsSystemWindows="true" />
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:elevation="4dp"
+            android:orientation="vertical" >
+
+            <include layout="@layout/widget_day" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/choose_location"
+                android:textColor="@color/colorTextDark"
+                android:textSize="@dimen/normal_word_size" />
+
+            <Spinner
+                android:id="@+id/create_widget_day_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:dropDownWidth="150dp"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/show_widget_card"
+                android:textColor="@color/colorTextDark"
+                android:textSize="@dimen/normal_word_size" />
+
+            <Switch
+                android:id="@+id/create_widget_day_switch_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:backgroundTint="?attr/colorAccent" />
+
+        </RelativeLayout>
+<!--
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/dark_widget_card"
+                android:textSize="16dp" />
+
+            <Switch
+                android:id="@+id/create_widget_day_card_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:backgroundTint="?attr/colorAccent" />
+
+        </RelativeLayout>
+-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/card_margin" >
+
+            <Button
+                android:id="@+id/create_widget_day_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/done"
+                android:textSize="@dimen/normal_word_size"
+                android:textColor="?attr/colorAccent"
+                android:background="@android:color/transparent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

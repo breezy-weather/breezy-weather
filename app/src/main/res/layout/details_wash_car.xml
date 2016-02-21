@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/detail_wash_car"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_vertical_margin" >
+
+
+    <ImageView
+        android:id="@+id/detail_wash_car_image"
+        android:layout_width="@dimen/material_icon_size"
+        android:layout_height="@dimen/material_icon_size"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_wash_car_grey" />
+
+    <LinearLayout
+        android:id="@+id/detail_wash_car_space"
+        android:layout_width="@dimen/material_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/detail_wash_car_image"
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@+id/detail_wash_car_kind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/detail_wash_car_space"
+        android:textSize="@dimen/normal_word_size" />
+
+    <TextView
+        android:id="@+id/detail_wash_car_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/detail_wash_car_space"
+        android:layout_below="@id/detail_wash_car_kind"
+        android:textSize="@dimen/normal_word_size" />
+</RelativeLayout>

@@ -1,0 +1,236 @@
+<resources>
+    <!-- app -->
+    <string name="launcher_name">Weather</string>
+    <string name="app_name">Geometric weather</string>
+    <string name="package_name">wangdaye.com.geometricweather</string>
+
+    <string name="version_code">版本号\n1.0.2</string>
+    <string name="note">代码注释\n优化：优化了桌面widget的刷新提示\n添加：点击桌面widget时钟进入系统自带闹钟app</string>
+
+    <string name="introduce_text_1">欢迎您使用 Geometric Weather\n请先浏览一下简单的使用说明吧</string>
+    <string name="introduce_text_2">点击地址名按钮快速进入地址管理界面\n点击图形按钮快速进行收藏或删除操作</string>
+    <string name="introduce_text_3">排在首位的位置将被作为默认位置\n你可以上下拖动或者左右滑动标签</string>
+    <string name="introduce_text_4">可以在设置中开启或隐藏一些动画效果\n每一种天气图标都拥有独特的反馈动画</string>
+
+    <!-- keyword -->
+    <string name="local">本地</string>
+    <string name="live">实时</string>
+    <string name="refresh_at">更新于</string>
+    <string name="week_weather">一周概览</string>
+    <string name="life_details">生活信息</string>
+    <string name="pm_25">pm 2.5</string>
+    <string name="pm_10">pm 10</string>
+    <string name="pm_level">颗粒物等级</string>
+    <string name="humidity">湿度</string>
+    <string name="uv">紫外线</string>
+    <string name="dressing_index">穿衣指数</string>
+    <string name="cold_index">感冒指数</string>
+    <string name="air_index">污染指数</string>
+    <string name="wash_car_index">洗车指数</string>
+    <string name="exercise_index">运动指数</string>
+    <string name="maxi_temp">高温</string>
+    <string name="mini_temp">低温</string>
+    <string name="powered">powered by Juhe.cn</string>
+    <string name="settings">设置</string>
+    <string name="about">关于</string>
+    <string name="next">下一步</string>
+
+    <string name="dialog_title">请选择地址或在这里搜索点什么吧</string>
+    <string name="default_location">默认位置</string>
+
+    <string name="lab">实验室</string>
+    <string name="widget">小部件</string>
+    <string name="notification">通知</string>
+
+    <string name="choose_location">选择位置</string>
+    <string name="show_widget_card">卡片背景</string>
+    <string name="dark_widget_card">暗色卡片</string>
+    <string name="done">完成</string>
+
+    <string name="introduce">介绍\n点击查看介绍</string>
+    <string name="tech">技术</string>
+    <string name="tech_location">定位支持\ndeveloper.baidu.com</string>
+    <string name="tech_weather">天气支持\nJuhe.cn</string>
+    <string name="tech_json">json解析\ngithub.com/google/gson</string>
+    <string name="thanks">感谢</string>
+    <string name="thanks_info">感谢\n舍友高老巴子带我入坑</string>
+    <string name="author">作者</string>
+    <string name="email">email\nwangdayeeeeee@gmail.com</string>
+    <string name="author_message">欢迎向作者反应bug\n欢迎提供更好的免费（或低价）天气api</string>
+
+    <!-- week -->
+    <string name="yesterday">昨日</string>
+    <string name="today">今日</string>
+    <string name="week">周</string>
+    <string name="week_1">周一</string>
+    <string name="week_2">周二</string>
+    <string name="week_3">周三</string>
+    <string name="week_4">周四</string>
+    <string name="week_5">周五</string>
+    <string name="week_6">周六</string>
+    <string name="week_7">周日</string>
+
+    <!-- option -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- menu -->
+    <string name="action_settings">@string/settings</string>
+    <string name="action_manage">管理地址</string>
+    <string name="action_about">@string/about</string>
+    <string name="action_collect">收藏该地址</string>
+
+    <string name="nav_manage">@string/action_manage</string>
+    <string name="nav_settings">@string/action_settings</string>
+    <string name="nav_about">@string/about</string>
+
+    <!-- feedback -->
+    <string name="request_competence_succeed">获取位置权限成功</string>
+    <string name="request_competence_failed">获取位置权限失败，无法进行定位</string>
+    <string name="get_location_failed">定位失败，请检查权限和网络连接</string>
+    <string name="refresh_data_failed">刷新数据失败</string>
+    <string name="send_notification_error">发送天气通知失败，请检查网络环境</string>
+    <string name="refresh_widget_error">刷新小部件失败，请检查网络环境</string>
+    <string name="null_widget_id">无效的widget id</string>
+    <string name="first_refresh_widget">小部件第一次刷新数据可能会有些慢</string>
+
+    <string name="collect_failed">地址已存在</string>
+    <string name="collect_succeed">收藏成功</string>
+    <string name="delete_succeed">删除成功</string>
+    <string name="search_null">地址为空</string>
+
+    <string name="refresh_notification_after_back">返回主页后刷新通知</string>
+    <string name="refresh_notification_now">立即刷新通知</string>
+    <string name="please_restart">重启后生效</string>
+
+    <!-- widget -->
+    <string name="widget_day">今日</string>
+    <string name="widget_week">一周</string>
+    <string name="widget_day_week">今日+一周</string>
+    <string name="widget_clock_day">时钟+今日</string>
+    <string name="widget_clock_day_center">时钟+今日(轴对称)</string>
+    <string name="widget_clock_day_week">时钟+今日+一周</string>
+    <string name="wait_refresh">等待更新</string>
+    <string name="ellipsis">...</string>
+
+    <!-- settings -->
+    <string name="more_animator_switch">开启更多动画</string>
+    <string name="more_animator_switch_on">目前状态将消耗更多资源</string>
+    <string name="more_animator_switch_off">目前状态可减少卡顿</string>
+    <string name="hide_star">隐藏星空</string>
+    <string name="hide_star_summary_on">目前状态可减少卡顿</string>
+    <string name="hide_star_summary_off">目前状态将消耗更多资源</string>
+    <string name="navigation_bar_color_switch">导航栏着色(5.0+)</string>
+    <string name="navigation_bar_color_switch_on">导航栏显示主题颜色</string>
+    <string name="navigation_bar_color_switch_off">导航栏显示黑色</string>
+
+    <string name="widget_time_title">小部件刷新频率</string>
+    <string name="widget_time_summary">设置小部件的刷新频率</string>
+    <string-array
+        name="widget_time_list">
+        <item>1小时</item>
+        <item>2小时</item>
+        <item>3小时</item>
+        <item>4小时</item>
+    </string-array>
+    <string-array
+        name="widget_time_key">
+        <item>1hour</item>
+        <item>2hours</item>
+        <item>3hours</item>
+        <item>4hours</item>
+    </string-array>
+    <string name="widget_time_default">2hours</string>
+    <string name="refresh_widget">强制刷新小部件</string>
+
+    <string name="notification_switch">开启天气通知</string>
+    <string name="notification_text_color">天气通知字体颜色</string>
+    <string name="notification_text_color_summary">选择天气通知的字体颜色</string>
+    <string-array
+        name="notification_text_color_list">
+        <item>深色</item>
+        <item>灰色</item>
+        <item>亮色</item>
+    </string-array>
+    <string-array
+        name="notification_text_color_key">
+        <item>dark</item>
+        <item>grey</item>
+        <item>light</item>
+    </string-array>
+    <string name="notification_text_color_default">grey</string>
+    <string name="notification_can_clear_switch">天气通知可被清除</string>
+    <string name="notification_can_clear_on">天气通知可被清除</string>
+    <string name="notification_can_clear_off">天气通知常驻通知栏</string>
+    <string name="hide_notification_in_lockScreen">隐藏锁屏通知(5.0+)</string>
+    <string name="hide_notification_in_lockScreen_summary_on">在锁屏界面隐藏通知</string>
+    <string name="hide_notification_in_lockScreen_summary_off">在锁屏界面显示通知</string>
+    <string name="notification_auto_refresh_switch">自动更新通知</string>
+    <string name="notification_auto_refresh_on">将自动更新通知</string>
+    <string name="notification_auto_refresh_off">只在开启app后刷新通知数据</string>
+    <string name="notification_refresh_time">天气通知刷新频率</string>
+    <string name="notification_refresh_time_summary">选择天气通知刷新的频率</string>
+    <string-array
+        name="notification_refresh_time_list">
+        <item>1小时</item>
+        <item>2小时</item>
+        <item>3小时</item>
+        <item>4小时</item>
+    </string-array>
+    <string-array
+        name="notification_refresh_time_key">
+        <item>1hour</item>
+        <item>2hours</item>
+        <item>3hours</item>
+        <item>4hours</item>
+    </string-array>
+    <string name="notification_refresh_time_default">2hours</string>
+    <string name="notification_refresh_sound_switch">声音提醒</string>
+    <string name="notification_refresh_shock_switch">震动提醒</string>
+    <string name="switch_on">开启</string>
+    <string name="switch_off">关闭</string>
+
+    <!--share preference-->
+    <string name="sp_widget_day_setting">widget_day_setting</string>
+    <string name="sp_widget_week_setting">widget_week_setting</string>
+    <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
+    <string name="sp_widget_clock_day_setting">widget_clock_day_setting</string>
+    <string name="sp_widget_clock_day_center_setting">widget_clock_day_center_setting</string>
+    <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
+    <string name="key_enable">enable</string>
+    <string name="key_location">location</string>
+    <string name="key_show_card">showCard</string>
+    <string name="key_isDay">isDay</string>
+    <string name="key_saved_data">saved_data</string>
+    <string name="key_weather_kind_today">weather_kind_today</string>
+    <string name="key_weather_today">weather_today</string>
+    <string name="key_temperature_today">temperature_today</string>
+    <string name="key_city_time">city_time</string>
+    <string name="key_week_2">week_2</string>
+    <string name="key_week_3">week_3</string>
+    <string name="key_week_4">week_4</string>
+    <string name="key_week_5">week_5</string>
+    <string name="key_weather_2">weather_2</string>
+    <string name="key_weather_3">weather_3</string>
+    <string name="key_weather_4">weather_4</string>
+    <string name="key_weather_5">weather_5</string>
+    <string name="key_temperature_2">temperature_2</string>
+    <string name="key_temperature_3">temperature_3</string>
+    <string name="key_temperature_4">temperature_4</string>
+    <string name="key_temperature_5">temperature_5</string>
+
+    <string name="key_watched_introduce">watched_introduce</string>
+    <string name="key_more_animator_switch">more_animator_switch</string>
+    <string name="key_hide_star">hide_star</string>
+    <string name="key_navigation_bar_color_switch">navigation_bar_color_switch</string>
+    <string name="key_widget_time">widget_time</string>
+    <string name="key_notification_switch">notification_switch</string>
+    <string name="key_notification_text_color">notification_text_color</string>
+    <string name="key_notification_auto_refresh_switch">notification_auto_refresh_switch</string>
+    <string name="key_notification_can_clear_switch">notification_can_clear_switch</string>
+    <string name="key_hide_notification_in_lockScreen">hide_notification_in_lockScreen</string>
+    <string name="key_notification_time">notification_time</string>
+    <string name="key_notification_sound_switch">notification_sound_switch</string>
+    <string name="key_notification_shock_switch">notification_shock_switch</string>
+
+</resources>

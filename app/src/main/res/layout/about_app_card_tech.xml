@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0dp"
+    android:layout_marginLeft="@dimen/card_margin"
+    android:layout_marginRight="@dimen/card_margin"
+    android:layout_marginBottom="@dimen/card_margin"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="2dp"
+    card_view:contentPadding="0dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardPreventCornerOverlap="true"
+    android:clickable="true"
+    android:stateListAnimator="@anim/touch_raise"
+    android:foreground="?attr/selectableItemBackground" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/app_info_tech_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/tech"
+                android:textColor="?attr/colorAccent"
+                android:textSize="14dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/about_app_ic_tech_location"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_location_grey" />
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/about_app_ic_tech_location_space"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/about_app_ic_tech_location"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/about_app_ic_tech_location_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/about_app_ic_tech_location_space"
+                android:layout_centerVertical="true"
+                android:text="@string/tech_location"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/about_app_ic_tech_weather"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_weather_grey" />
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/about_app_ic_tech_weather_space"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/about_app_ic_tech_weather"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/about_app_ic_tech_weather_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/about_app_ic_tech_weather_space"
+                android:layout_centerVertical="true"
+                android:text="@string/tech_weather"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/about_app_ic_tech_json"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_json_grey" />
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/about_app_ic_tech_json_space"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/about_app_ic_tech_json"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/about_app_ic_tech_json_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/about_app_ic_tech_json_space"
+                android:layout_centerVertical="true"
+                android:text="@string/tech_json"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

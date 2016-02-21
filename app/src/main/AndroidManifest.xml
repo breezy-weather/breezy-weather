@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="wangdaye.com.geometricweather" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/launcher_name"
+        android:supportsRtl="true"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme" >
+
+        <!-- Baidu location service -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="8Ag8g9warGQeUVFbqx4LRrXU" />
+        <service android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <!-- activity -->
+        <activity
+            android:name=".Activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".Activity.SettingsActivity"
+            android:label="@string/settings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".Activity.MainActivity" />
+
+        <activity
+            android:name=".Activity.AboutAppActivity"
+            android:label="@string/about"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".Activity.IntroduceActivity"
+            android:label="@string/introduce"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+
+        <!-- create widget activity -->
+        <activity
+            android:name=".Activity.CreateWidgetDayActivity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".Activity.CreateWidgetWeekActivity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".Activity.CreateWidgetDayWeekActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".Activity.CreateWidgetClockDayActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".Activity.CreateWidgetClockDayCenterActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".Activity.CreateWidgetClockDayWeekActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- notification service -->
+        <service android:name=".Service.NotificationService" />
+
+        <!-- widget service -->
+        <service android:name=".Service.WidgetService" />
+        <service android:name=".Service.RefreshWidgetDay" />
+        <service android:name=".Service.RefreshWidgetWeek" />
+        <service android:name=".Service.RefreshWidgetDayWeek" />
+        <service android:name=".Service.RefreshWidgetClockDay" />
+        <service android:name=".Service.RefreshWidgetClockDayCenter" />
+        <service android:name=".Service.RefreshWidgetClockDayWeek" />
+
+        <!-- receiver -->
+        <receiver android:name=".Receiver.WidgetReceiver" />
+        <receiver android:name=".Receiver.NotificationReceiver" />
+
+        <receiver
+            android:name=".Receiver.MyReceiver" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+            </intent-filter>
+
+        </receiver>
+
+        <!-- widget -->
+        <receiver
+            android:name=".Receiver.WidgetProviderDay"
+            android:label="@string/widget_day" >
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_day" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.geometricweather.receiver.REFRESH_WIDGET" />
+            </intent-filter>
+
+        </receiver>
+
+        <receiver
+            android:name=".Receiver.WidgetProviderWeek"
+            android:label="@string/widget_week" >
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_week" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.geometricweather.receiver.REFRESH_WIDGET" />
+            </intent-filter>
+
+        </receiver>
+
+        <receiver
+            android:name=".Receiver.WidgetProviderDayWeek"
+            android:label="@string/widget_day_week" >
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_day_week" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.geometricweather.receiver.REFRESH_WIDGET" />
+            </intent-filter>
+
+        </receiver>
+
+        <receiver
+            android:name=".Receiver.WidgetProviderClockDay"
+            android:label="@string/widget_clock_day" >
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_clock_day" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.geometricweather.receiver.REFRESH_WIDGET" />
+            </intent-filter>
+
+        </receiver>
+
+        <receiver
+            android:name=".Receiver.WidgetProviderClockDayCenter"
+            android:label="@string/widget_clock_day_center" >
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_clock_day_center" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.geometricweather.receiver.REFRESH_WIDGET" />
+            </intent-filter>
+
+        </receiver>
+
+        <receiver
+            android:name=".Receiver.WidgetProviderClockDayWeek"
+            android:label="@string/widget_clock_day_week" >
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_clock_day_week" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.geometricweather.receiver.REFRESH_WIDGET" />
+            </intent-filter>
+
+        </receiver>
+
+    </application>
+
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 开机自启 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 访问时钟 -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
+</manifest>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings" >
+
+    <PreferenceCategory
+        android:title="@string/lab"
+        android:layout="@layout/preference_category" >
+
+        <CheckBoxPreference
+            android:title="@string/more_animator_switch"
+            android:key="@string/key_more_animator_switch"
+            android:summaryOn="@string/more_animator_switch_on"
+            android:summaryOff="@string/more_animator_switch_off" />
+
+        <CheckBoxPreference
+            android:title="@string/hide_star"
+            android:key="@string/key_hide_star"
+            android:summaryOn="@string/hide_star_summary_on"
+            android:summaryOff="@string/hide_star_summary_off" />
+
+        <CheckBoxPreference
+            android:title="@string/navigation_bar_color_switch"
+            android:key="@string/key_navigation_bar_color_switch"
+            android:summaryOn="@string/navigation_bar_color_switch_on"
+            android:summaryOff="@string/navigation_bar_color_switch_off" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/widget"
+        android:layout="@layout/preference_category" >
+
+        <ListPreference
+            android:key="@string/key_widget_time"
+            android:title="@string/widget_time_title"
+            android:summary="@string/widget_time_summary"
+            android:entries="@array/widget_time_list"
+            android:entryValues="@array/widget_time_key"
+            android:dialogTitle="@string/widget_time_title"
+            android:defaultValue="@string/widget_time_default" />
+
+        <Preference
+            android:key="@string/refresh_widget"
+            android:title="@string/refresh_widget" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/notification"
+        android:layout="@layout/preference_category" >
+
+        <CheckBoxPreference
+            android:key="@string/key_notification_switch"
+            android:title="@string/notification_switch"
+            android:summaryOn="@string/switch_on"
+            android:summaryOff="@string/switch_off" />
+
+        <ListPreference
+            android:key="@string/key_notification_text_color"
+            android:title="@string/notification_text_color"
+            android:summary="@string/notification_text_color_summary"
+            android:entries="@array/notification_text_color_list"
+            android:entryValues="@array/notification_text_color_key"
+            android:dialogTitle="@string/notification_text_color"
+            android:defaultValue="@string/notification_text_color_default" />
+
+        <CheckBoxPreference
+            android:key="@string/key_notification_can_clear_switch"
+            android:title="@string/notification_can_clear_switch"
+            android:summaryOn="@string/notification_can_clear_on"
+            android:summaryOff="@string/notification_can_clear_off" />
+
+        <CheckBoxPreference
+            android:key="@string/key_hide_notification_in_lockScreen"
+            android:title="@string/hide_notification_in_lockScreen"
+            android:summaryOn="@string/hide_notification_in_lockScreen_summary_on"
+            android:summaryOff="@string/hide_notification_in_lockScreen_summary_off" />
+
+        <CheckBoxPreference
+            android:key="@string/key_notification_auto_refresh_switch"
+            android:title="@string/notification_auto_refresh_switch"
+            android:summaryOn="@string/notification_auto_refresh_on"
+            android:summaryOff="@string/notification_auto_refresh_off" />
+
+        <ListPreference
+            android:key="@string/key_notification_time"
+            android:title="@string/notification_refresh_time"
+            android:summary="@string/notification_refresh_time_summary"
+            android:entries="@array/notification_refresh_time_list"
+            android:entryValues="@array/notification_refresh_time_key"
+            android:dialogTitle="@string/notification_refresh_time"
+            android:defaultValue="@string/notification_refresh_time_default" />
+
+        <CheckBoxPreference
+            android:key="@string/key_notification_sound_switch"
+            android:title="@string/notification_refresh_sound_switch"
+            android:summaryOn="@string/switch_on"
+            android:summaryOff="@string/switch_off" />
+
+        <CheckBoxPreference
+            android:key="@string/key_notification_shock_switch"
+            android:title="@string/notification_refresh_shock_switch"
+            android:summaryOn="@string/switch_on"
+            android:summaryOff="@string/switch_off" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
