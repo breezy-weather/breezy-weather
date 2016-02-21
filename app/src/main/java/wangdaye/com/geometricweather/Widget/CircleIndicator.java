@@ -85,9 +85,9 @@ public class CircleIndicator extends View {
 
         float startWidth;
         if (odd) {
-            startWidth = centerWidth - halfNum * SPACE_WIDTH - (2 * halfNum) * UNIT_WIDTH;
+            startWidth = centerWidth - halfNum * SPACE_WIDTH - (2 * halfNum + 1) * UNIT_WIDTH;
         } else {
-            startWidth = centerWidth - halfNum * SPACE_WIDTH - (2 * halfNum - 1) * UNIT_WIDTH;
+            startWidth = (float) (centerWidth - halfNum * (SPACE_WIDTH - 0.5) - (2 * halfNum) * UNIT_WIDTH);
         }
 
         for (int i = 0; i < pageNum; i ++) {
@@ -98,7 +98,7 @@ public class CircleIndicator extends View {
                 paint.setColor(ContextCompat.getColor(context, R.color.colorTextLight));
                 canvas.drawCircle(startWidth, centerHeight, TARGET_WIDTH, paint);
             } else {
-                paint.setColor(ContextCompat.getColor(context, R.color.colorTextLight));
+                paint.setColor(ContextCompat.getColor(context, R.color.colorTextLight2nd));
                 canvas.drawCircle(startWidth, centerHeight, UNIT_WIDTH, paint);
             }
             startWidth += 2 * UNIT_WIDTH + SPACE_WIDTH;

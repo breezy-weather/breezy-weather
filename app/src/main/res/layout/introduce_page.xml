@@ -4,9 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <TextView
+            android:id="@+id/introduce_page_title"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorTextLight"
+            android:textSize="@dimen/big_title_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp">
+        android:layout_height="300dp">
 
         <ImageView
             android:id="@+id/introduce_page_image"

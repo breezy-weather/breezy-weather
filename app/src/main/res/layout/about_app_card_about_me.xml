@@ -41,39 +41,39 @@
                 android:textSize="14dp"/>
 
         </RelativeLayout>
-<!--
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginLeft="10dp">
 
             <ImageView
-                android:id="@+id/about_app_ic_me"
+                android:id="@+id/about_app_ic_github"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_open_source" />
+                android:src="@drawable/ic_github_grey" />
 
             <LinearLayout
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:id="@+id/about_app_ic_me_space"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/about_app_ic_me"
+                android:layout_toRightOf="@id/about_app_ic_github"
                 android:orientation="vertical" />
 
             <TextView
-                android:id="@+id/about_app_ic_me_label"
+                android:id="@+id/about_app_ic_github_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/about_app_ic_me_space"
                 android:layout_centerVertical="true"
-                android:text="开源\n改代码补注释中.../"
+                android:text="@string/github"
                 android:textSize="14dp" />
 
         </RelativeLayout>
--->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"

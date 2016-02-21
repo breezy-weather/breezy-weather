@@ -24,7 +24,7 @@
                 android:id="@+id/introduce_indicator"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="156dp" />
+                android:layout_height="200dp" />
 
             <Button
                 android:id="@+id/introduce_button"

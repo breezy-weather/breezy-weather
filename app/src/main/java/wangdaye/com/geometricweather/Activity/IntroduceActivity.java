@@ -104,24 +104,32 @@ public class IntroduceActivity extends Activity {
         view1 = layoutInflater.inflate(R.layout.introduce_page, null);
         ImageView image1 = (ImageView) view1.findViewById(R.id.introduce_page_image);
         image1.setImageBitmap(MainActivity.readBitMap(this, R.drawable.introduction_1));
+        TextView title1 = (TextView) view1.findViewById(R.id.introduce_page_title);
+        title1.setText(getString(R.string.introduce_title_1));
         TextView text1 = (TextView) view1.findViewById(R.id.introduce_page_text);
         text1.setText(getString(R.string.introduce_text_1));
 
         view2 = layoutInflater.inflate(R.layout.introduce_page, null);
         ImageView image2 = (ImageView) view2.findViewById(R.id.introduce_page_image);
         image2.setImageBitmap(MainActivity.readBitMap(this, R.drawable.introduction_2));
+        TextView title2 = (TextView) view2.findViewById(R.id.introduce_page_title);
+        title2.setText(getString(R.string.introduce_title_2));
         TextView text2 = (TextView) view2.findViewById(R.id.introduce_page_text);
         text2.setText(getString(R.string.introduce_text_2));
 
         view3 = layoutInflater.inflate(R.layout.introduce_page, null);
         ImageView image3 = (ImageView) view3.findViewById(R.id.introduce_page_image);
         image3.setImageBitmap(MainActivity.readBitMap(this, R.drawable.introduction_3));
+        TextView title3 = (TextView) view3.findViewById(R.id.introduce_page_title);
+        title3.setText(getString(R.string.introduce_title_3));
         TextView text3 = (TextView) view3.findViewById(R.id.introduce_page_text);
         text3.setText(getString(R.string.introduce_text_3));
 
         view4 = layoutInflater.inflate(R.layout.introduce_page, null);
         ImageView image4 = (ImageView) view4.findViewById(R.id.introduce_page_image);
         image4.setImageBitmap(MainActivity.readBitMap(this, R.drawable.introduction_4));
+        TextView title4 = (TextView) view4.findViewById(R.id.introduce_page_title);
+        title4.setText(getString(R.string.introduce_title_4));
         TextView text4 = (TextView) view4.findViewById(R.id.introduce_page_text);
         text4.setText(getString(R.string.introduce_text_4));
 
