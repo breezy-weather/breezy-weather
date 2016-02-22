@@ -56,6 +56,13 @@
 * 请勿使用代码中的apiKey,代码里所有的api都是免费的。
 * 作者学习android开发没多久，水平渣渣...
 
+### 相关链接
+
+* 百度定位：http://lbsyun.baidu.com/index.php?title=android-locsdk
+* 聚合数据：https://www.juhe.cn/docs/api/id/73
+* 和风天气：http://apistore.baidu.com/apiworks/servicedetail/478.html
+* google gson：https://github.com/google/gson
+
 ## 给自己
 
 ### 近期任务
