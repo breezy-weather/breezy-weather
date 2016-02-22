@@ -34,4 +34,5 @@ dependencies {
     compile files('libs/gson-2.5.jar')
     compile files('libs/locSDK_6.22.jar')
     compile 'com.android.support:cardview-v7:23.1.1'
+    compile files('libs/pinyin4j-2.5.0.jar')
 }

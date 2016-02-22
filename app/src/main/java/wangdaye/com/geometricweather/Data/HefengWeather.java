@@ -4,6 +4,13 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,7 +34,8 @@ public class HefengWeather {
         BufferedReader reader = null;
         String result;
         StringBuffer sbf = new StringBuffer();
-        String requestCode = httpUrl + "?" + httpArg + location;
+        String locationPinyin = charToPinyin(location);
+        String requestCode = httpUrl + "?" + httpArg + locationPinyin.replaceAll(" ", "");
         HefengResult hefengResult = null;
         try {
             URL url = new URL(requestCode);
@@ -53,5 +61,29 @@ public class HefengWeather {
             e.printStackTrace();
         }
         return hefengResult;
+    }
+
+    public static String charToPinyin(String location) {
+        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+        format.setCaseType(HanyuPinyinCaseType.LOWERCASE); // 小写
+        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE); // 不带声调
+        format.setVCharType(HanyuPinyinVCharType.WITH_V); // v
+
+        char[] input = location.trim().toCharArray();
+        StringBuffer output = new StringBuffer("");
+
+        try {
+            for (int i = 0; i < input.length; i++) {
+                if (Character.toString(input[i]).matches("[\u4E00-\u9FA5]+")) {
+                    String[] temp = PinyinHelper.toHanyuPinyinStringArray(input[i], format);
+                    output.append(temp[0]);
+                    output.append(" ");
+                } else
+                    output.append(Character.toString(input[i]));
+            }
+        } catch (BadHanyuPinyinOutputFormatCombination e) {
+            e.printStackTrace();
+        }
+        return output.toString();
     }
 }

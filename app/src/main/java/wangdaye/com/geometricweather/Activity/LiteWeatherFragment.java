@@ -453,10 +453,12 @@ public class LiteWeatherFragment extends Fragment
         {
             @Override
             public void run()
-            { // TODO Auto-generated method stub
+            {
                 location.juheResult = JuheWeather.getRequest(searchLocation);
                 Message message = new Message();
-                if (location.juheResult == null || ! location.juheResult.error_code.equals("0")) {
+                if (location.juheResult == null) {
+                    message.what = REFRESH_DATA_FAILED;
+                } else if (! location.juheResult.error_code.equals("0")) {
                     message.what = REFRESH_DATA_FAILED;
                 } else {
                     message.what = REFRESH_JUHE_DATA_SUCCEED;
@@ -476,7 +478,9 @@ public class LiteWeatherFragment extends Fragment
                     message.what = REFRESH_DATA_FAILED;
                 } else {
                     location.hefengResult = HefengWeather.request(location.juheResult.result.data.realtime.city_name);
-                    if (location.hefengResult == null || ! location.hefengResult.heWeather.get(0).status.equals("ok")) {
+                    if (location.hefengResult == null) {
+                        message.what = REFRESH_DATA_FAILED;
+                    } else if (! location.hefengResult.heWeather.get(0).status.equals("ok")) {
                         message.what = REFRESH_DATA_FAILED;
                     } else {
                         message.what = REFRESH_HEFENG_DATA_SUCCEED;
