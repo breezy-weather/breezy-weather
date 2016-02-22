@@ -31,6 +31,7 @@
 
 * 定位支持：developer.baidu.com
 * 天气源：juhe.cn
+* 天气源：heWeather.com
 * json解析:github.com/google/gson
 
 ### 上架情况
