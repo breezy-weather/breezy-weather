@@ -9,8 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.StrictMode;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -28,7 +26,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import wangdaye.com.geometricweather.Activity.MainActivity;
-import wangdaye.com.geometricweather.Data.GsonResult;
+import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Receiver.WidgetProviderDay;
@@ -43,7 +41,7 @@ public class RefreshWidgetDay extends Service
         implements HandlerContainer {
     // data
     private boolean showCard;
-    private GsonResult gsonResult;
+    private JuheResult juheResult;
 
     private final int REFRESH_DATA_SUCCEED = 1;
     private final int REFRESH_DATA_FAILED = 0;
@@ -105,9 +103,9 @@ public class RefreshWidgetDay extends Service
             @Override
             public void run()
             { // TODO Auto-generated method stub
-                gsonResult = JuheWeather.getRequest(searchLocation);
+                juheResult = JuheWeather.getRequest(searchLocation);
                 Message message=new Message();
-                if (gsonResult == null) {
+                if (juheResult == null) {
                     message.what = REFRESH_DATA_FAILED;
                 } else {
                     message.what = REFRESH_DATA_SUCCEED;
@@ -138,7 +136,7 @@ public class RefreshWidgetDay extends Service
     }
 
     private void refreshUI() {
-        if(this.gsonResult != null) {
+        if(this.juheResult != null) {
             this.refreshUIFromInternet();
         } else {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
@@ -155,7 +153,7 @@ public class RefreshWidgetDay extends Service
         }
         RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_day);
 
-        GsonResult.WeatherNow weatherNow = this.gsonResult.result.data.realtime.weatherNow;
+        JuheResult.WeatherNow weatherNow = this.juheResult.result.data.realtime.weatherNow;
         String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         int[] imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
         views.setImageViewResource(R.id.widget_day_image, imageId[3]);
@@ -164,15 +162,15 @@ public class RefreshWidgetDay extends Service
                 + weatherNow.temperature
                 + "℃";
         views.setTextViewText(R.id.widget_day_weather, weatherTextNow);
-        GsonResult.Weather weatherToday = this.gsonResult.result.data.weather.get(0);
+        JuheResult.Weather weatherToday = this.juheResult.result.data.weather.get(0);
         String weatherTextTemp = weatherToday.info.day.get(2)
                 + "°"
                 + "\n"
                 + weatherToday.info.night.get(2)
                 + "°";
         views.setTextViewText(R.id.widget_day_temp, weatherTextTemp);
-        String[] timeText = this.gsonResult.result.data.realtime.time.split(":");
-        String refreshText = this.gsonResult.result.data.realtime.city_name
+        String[] timeText = this.juheResult.result.data.realtime.time.split(":");
+        String refreshText = this.juheResult.result.data.realtime.city_name
                 + "."
                 + timeText[0]
                 + ":"

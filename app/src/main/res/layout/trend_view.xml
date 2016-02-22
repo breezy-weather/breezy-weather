@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/trend_view_height"
+    android:id="@+id/trend_view_container">
+
+    <wangdaye.com.geometricweather.Widget.TrendView
+        android:id="@+id/weather_trend_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trend_view_height" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:text="@string/powered_by_juhe"
+                android:textSize="@dimen/mini_word_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/chart_background_day"
+                    android:layout_width="@dimen/mini_word_size"
+                    android:layout_height="@dimen/mini_word_size" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:text="@string/maxi_temp"
+                android:paddingLeft="@dimen/card_margin"
+                android:paddingRight="@dimen/card_margin"
+                android:textSize="@dimen/normal_word_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/chart_background_night"
+                    android:layout_width="@dimen/mini_word_size"
+                    android:layout_height="@dimen/mini_word_size" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:text="@string/mini_temp"
+                android:paddingLeft="@dimen/card_margin"
+                android:textSize="@dimen/normal_word_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

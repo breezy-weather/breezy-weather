@@ -47,7 +47,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import wangdaye.com.geometricweather.Data.GsonResult;
+import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
@@ -471,12 +471,12 @@ public class MainActivity extends AppCompatActivity
                 return;
             }
 
-            if (location.gsonResult == null || ! location.gsonResult.error_code.equals("0")) {
+            if (location.juheResult == null || ! location.juheResult.error_code.equals("0")) {
                 return;
             }
 
-            GsonResult.WeatherNow weatherNow = location.gsonResult.result.data.realtime.weatherNow;
-            List<GsonResult.Weather> weathers = location.gsonResult.result.data.weather;
+            JuheResult.WeatherNow weatherNow = location.juheResult.result.data.realtime.weatherNow;
+            List<JuheResult.Weather> weathers = location.juheResult.result.data.weather;
 
             String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
             NotificationManager notificationManager
@@ -506,8 +506,8 @@ public class MainActivity extends AppCompatActivity
                             + "/"
                             + weathers.get(0).info.day.get(2)
                             + "°");
-            String[] time = location.gsonResult.result.data.realtime.time.split(":");
-            String text = location.gsonResult.result.data.realtime.city_name
+            String[] time = location.juheResult.result.data.realtime.time.split(":");
+            String text = location.juheResult.result.data.realtime.city_name
                     + "."
                     + time[0]
                     + ":"
@@ -735,7 +735,7 @@ public class MainActivity extends AppCompatActivity
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day);
 
-        GsonResult.WeatherNow weatherNow = location.gsonResult.result.data.realtime.weatherNow;
+        JuheResult.WeatherNow weatherNow = location.juheResult.result.data.realtime.weatherNow;
         String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         int[] imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
         views.setImageViewResource(R.id.widget_day_image, imageId[3]);
@@ -744,15 +744,15 @@ public class MainActivity extends AppCompatActivity
                 + weatherNow.temperature
                 + "℃";
         views.setTextViewText(R.id.widget_day_weather, weatherTextNow);
-        GsonResult.Weather weatherToday = location.gsonResult.result.data.weather.get(0);
+        JuheResult.Weather weatherToday = location.juheResult.result.data.weather.get(0);
         String weatherTextTemp = weatherToday.info.day.get(2)
                 + "°"
                 + "\n"
                 + weatherToday.info.night.get(2)
                 + "°";
         views.setTextViewText(R.id.widget_day_temp, weatherTextTemp);
-        String[] timeText = location.gsonResult.result.data.realtime.time.split(":");
-        String refreshText = location.gsonResult.result.data.realtime.city_name
+        String[] timeText = location.juheResult.result.data.realtime.time.split(":");
+        String refreshText = location.juheResult.result.data.realtime.city_name
                 + "."
                 + timeText[0]
                 + ":"
@@ -800,7 +800,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_week);
-        List<GsonResult.Weather> weather = location.gsonResult.result.data.weather;
+        List<JuheResult.Weather> weather = location.juheResult.result.data.weather;
         // set icon
         int[] imageId;
         if (isDay) {
@@ -861,7 +861,7 @@ public class MainActivity extends AppCompatActivity
         // week
         String week;
         // 1
-        week = location.gsonResult.result.data.realtime.city_name;
+        week = location.juheResult.result.data.realtime.city_name;
         views.setTextViewText(R.id.widget_week_week_1, week);
         // 2
         week = context.getString(R.string.week) + weather.get(1).week;
@@ -933,7 +933,7 @@ public class MainActivity extends AppCompatActivity
             editor.putString(context.getString(R.string.key_weather_5), JuheWeather.getWeatherKind(weather.get(4).info.night.get(1)));
         }
         // week
-        editor.putString(context.getString(R.string.key_city_time), location.gsonResult.result.data.realtime.city_name);
+        editor.putString(context.getString(R.string.key_city_time), location.juheResult.result.data.realtime.city_name);
         editor.putString(context.getString(R.string.key_week_2), context.getString(R.string.week) + weather.get(1).week);
         editor.putString(context.getString(R.string.key_week_3), context.getString(R.string.week) + weather.get(2).week);
         editor.putString(context.getString(R.string.key_week_4), context.getString(R.string.week) + weather.get(3).week);
@@ -965,7 +965,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week);
-        GsonResult.WeatherNow weatherNow = location.gsonResult.result.data.realtime.weatherNow;
+        JuheResult.WeatherNow weatherNow = location.juheResult.result.data.realtime.weatherNow;
 
         String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         int imageId[] = JuheWeather.getWeatherIcon(weatherKind, isDay);
@@ -974,7 +974,7 @@ public class MainActivity extends AppCompatActivity
         String weatherTextNow = weatherNow.weatherInfo + "\n" + weatherNow.temperature + "℃";
         views.setTextViewText(R.id.widget_day_weather, weatherTextNow);
 
-        GsonResult.Weather weatherToday = location.gsonResult.result.data.weather.get(0);
+        JuheResult.Weather weatherToday = location.juheResult.result.data.weather.get(0);
         String weatherTextTemp = weatherToday.info.day.get(2)
                 + "°"
                 + "\n"
@@ -982,15 +982,15 @@ public class MainActivity extends AppCompatActivity
                 + "°";
         views.setTextViewText(R.id.widget_day_temp, weatherTextTemp);
 
-        String[] timeText = location.gsonResult.result.data.realtime.time.split(":");
-        String refreshText = location.gsonResult.result.data.realtime.city_name
+        String[] timeText = location.juheResult.result.data.realtime.time.split(":");
+        String refreshText = location.juheResult.result.data.realtime.city_name
                 + "."
                 + timeText[0]
                 + ":"
                 + timeText[1];
         views.setTextViewText(R.id.widget_day_time, refreshText);
 
-        List<GsonResult.Weather> weather = location.gsonResult.result.data.weather;
+        List<JuheResult.Weather> weather = location.juheResult.result.data.weather;
         // icon
         // 1
         if (isDay) {
@@ -1153,17 +1153,17 @@ public class MainActivity extends AppCompatActivity
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day);
 
-        GsonResult.WeatherNow weatherNow = location.gsonResult.result.data.realtime.weatherNow;
+        JuheResult.WeatherNow weatherNow = location.juheResult.result.data.realtime.weatherNow;
         String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         int[] imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
         views.setImageViewResource(R.id.widget_clock_day_image, imageId[3]);
-        String[] solar = location.gsonResult.result.data.realtime.date.split("-");
+        String[] solar = location.juheResult.result.data.realtime.date.split("-");
         String dateText = solar[1] + "-" + solar[2]
-                + " " + context.getString(R.string.week) + location.gsonResult.result.data.weather.get(0).week
+                + " " + context.getString(R.string.week) + location.juheResult.result.data.weather.get(0).week
                 + " / "
-                + location.gsonResult.result.data.realtime.moon;
+                + location.juheResult.result.data.realtime.moon;
         views.setTextViewText(R.id.widget_clock_day_date, dateText);
-        String weatherText = location.gsonResult.result.data.realtime.city_name
+        String weatherText = location.juheResult.result.data.realtime.city_name
                 + " / "
                 + weatherNow.weatherInfo + " " + weatherNow.temperature + "℃";
         views.setTextViewText(R.id.widget_clock_day_weather, weatherText);
@@ -1214,30 +1214,30 @@ public class MainActivity extends AppCompatActivity
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_center);
 
-        GsonResult.WeatherNow weatherNow = location.gsonResult.result.data.realtime.weatherNow;
+        JuheResult.WeatherNow weatherNow = location.juheResult.result.data.realtime.weatherNow;
         String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         int[] imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
         views.setImageViewResource(R.id.widget_clock_day_center_image, imageId[3]);
-        String[] solar = location.gsonResult.result.data.realtime.date.split("-");
+        String[] solar = location.juheResult.result.data.realtime.date.split("-");
         String dateText = solar[1] + "-" + solar[2]
-                + " " + context.getString(R.string.week) + location.gsonResult.result.data.weather.get(0).week
+                + " " + context.getString(R.string.week) + location.juheResult.result.data.weather.get(0).week
                 + " / "
-                + location.gsonResult.result.data.realtime.moon;
+                + location.juheResult.result.data.realtime.moon;
         views.setTextViewText(R.id.widget_clock_day_center_date, dateText);
         String weatherTextNow = weatherNow.weatherInfo
                 + "\n"
                 + weatherNow.temperature
                 + "℃";
         views.setTextViewText(R.id.widget_clock_day_center_weather, weatherTextNow);
-        GsonResult.Weather weatherToday = location.gsonResult.result.data.weather.get(0);
+        JuheResult.Weather weatherToday = location.juheResult.result.data.weather.get(0);
         String weatherTextTemp = weatherToday.info.day.get(2)
                 + "°"
                 + "\n"
                 + weatherToday.info.night.get(2)
                 + "°";
         views.setTextViewText(R.id.widget_clock_day_center_temp, weatherTextTemp);
-        String[] timeText = location.gsonResult.result.data.realtime.time.split(":");
-        String refreshText = location.gsonResult.result.data.realtime.city_name
+        String[] timeText = location.juheResult.result.data.realtime.time.split(":");
+        String refreshText = location.juheResult.result.data.realtime.city_name
                 + "."
                 + timeText[0]
                 + ":"
@@ -1293,22 +1293,22 @@ public class MainActivity extends AppCompatActivity
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_week);
 
-        GsonResult.WeatherNow weatherNow = location.gsonResult.result.data.realtime.weatherNow;
+        JuheResult.WeatherNow weatherNow = location.juheResult.result.data.realtime.weatherNow;
         String weatherKindToday = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         int[] imageId = JuheWeather.getWeatherIcon(weatherKindToday, isDay);
         views.setImageViewResource(R.id.widget_clock_day_week_image, imageId[3]);
-        String[] solar = location.gsonResult.result.data.realtime.date.split("-");
+        String[] solar = location.juheResult.result.data.realtime.date.split("-");
         String dateText = solar[1] + "-" + solar[2]
-                + " " + context.getString(R.string.week) + location.gsonResult.result.data.weather.get(0).week
+                + " " + context.getString(R.string.week) + location.juheResult.result.data.weather.get(0).week
                 + " / "
-                + location.gsonResult.result.data.realtime.moon;
+                + location.juheResult.result.data.realtime.moon;
         views.setTextViewText(R.id.widget_clock_day_week_date, dateText);
-        String weatherText = location.gsonResult.result.data.realtime.city_name
+        String weatherText = location.juheResult.result.data.realtime.city_name
                 + " / "
                 + weatherNow.weatherInfo + " " + weatherNow.temperature + "℃";
         views.setTextViewText(R.id.widget_clock_day_week_weather, weatherText);
 
-        List<GsonResult.Weather> weather = location.gsonResult.result.data.weather;
+        List<JuheResult.Weather> weather = location.juheResult.result.data.weather;
         // icon
         if (isDay) {
             imageId = JuheWeather.getWeatherIcon(JuheWeather.getWeatherKind(weather.get(1).info.day.get(1)), true);

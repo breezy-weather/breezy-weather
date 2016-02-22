@@ -37,7 +37,7 @@ public class IntroduceActivity extends Activity {
 
     // data
     private int pageNow;
-    private final int PAGE_NUM = 4;
+    private final int PAGE_NUM = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +99,7 @@ public class IntroduceActivity extends Activity {
     @SuppressLint("InflateParams")
     private void initViewPager() {
         LayoutInflater layoutInflater = LayoutInflater.from(this);
-        View view1, view2, view3, view4;
+        View view1, view2, view3, view4, view5;
 
         view1 = layoutInflater.inflate(R.layout.introduce_page, null);
         ImageView image1 = (ImageView) view1.findViewById(R.id.introduce_page_image);
@@ -133,11 +133,20 @@ public class IntroduceActivity extends Activity {
         TextView text4 = (TextView) view4.findViewById(R.id.introduce_page_text);
         text4.setText(getString(R.string.introduce_text_4));
 
+        view5 = layoutInflater.inflate(R.layout.introduce_page, null);
+        ImageView image5 = (ImageView) view5.findViewById(R.id.introduce_page_image);
+        image5.setImageBitmap(MainActivity.readBitMap(this, R.drawable.introduction_5));
+        TextView title5 = (TextView) view5.findViewById(R.id.introduce_page_title);
+        title5.setText(getString(R.string.introduce_title_5));
+        TextView text5 = (TextView) view5.findViewById(R.id.introduce_page_text);
+        text5.setText(getString(R.string.introduce_text_5));
+
         List<View> views = new ArrayList<>();
         views.add(view1);
         views.add(view2);
         views.add(view3);
         views.add(view4);
+        views.add(view5);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(views);
         viewPager.setAdapter(viewPagerAdapter);

@@ -6,7 +6,7 @@ import java.util.List;
  * Created by WangDaYe on 2016/2/5.
  */
 
-public class GsonResult {
+public class JuheResult {
 
     public String reason;
     public Result result;

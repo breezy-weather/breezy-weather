@@ -12,7 +12,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Message;
-import android.os.StrictMode;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -39,12 +38,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import wangdaye.com.geometricweather.Data.GsonResult;
+import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.Receiver.WidgetProviderDay;
 import wangdaye.com.geometricweather.Receiver.WidgetProviderWeek;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
@@ -66,7 +64,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
 
     private MyDatabaseHelper databaseHelper;
 
-    private GsonResult gsonResult;
+    private JuheResult juheResult;
 
     private final int REFRESH_DATA_SUCCEED = 1;
     private final int REFRESH_DATA_FAILED = 0;
@@ -239,9 +237,9 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
             @Override
             public void run()
             { // TODO Auto-generated method stub
-                gsonResult = JuheWeather.getRequest(searchLocation);
+                juheResult = JuheWeather.getRequest(searchLocation);
                 Message message=new Message();
-                if (gsonResult == null) {
+                if (juheResult == null) {
                     message.what = REFRESH_DATA_FAILED;
                 } else {
                     message.what = REFRESH_DATA_SUCCEED;
@@ -272,7 +270,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
     }
 
     private void refreshUI() {
-        if(this.gsonResult != null) {
+        if(this.juheResult != null) {
             this.refreshUIFromInternet();
         } else {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
@@ -289,7 +287,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
         }
 
         RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_week);
-        List<GsonResult.Weather> weather = this.gsonResult.result.data.weather;
+        List<JuheResult.Weather> weather = this.juheResult.result.data.weather;
         // set icon
         int[] imageId;
         if (isDay) {
@@ -350,7 +348,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
         // week
         String week;
         // 1
-        week = this.gsonResult.result.data.realtime.city_name;
+        week = this.juheResult.result.data.realtime.city_name;
         views.setTextViewText(R.id.widget_week_week_1, week);
         // 2
         week = getString(R.string.week) + weather.get(1).week;
@@ -422,7 +420,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
             editor.putString(getString(R.string.key_weather_5), JuheWeather.getWeatherKind(weather.get(4).info.night.get(1)));
         }
         // week
-        editor.putString(getString(R.string.key_city_time), this.gsonResult.result.data.realtime.city_name);
+        editor.putString(getString(R.string.key_city_time), this.juheResult.result.data.realtime.city_name);
         editor.putString(getString(R.string.key_week_2), getString(R.string.week) + weather.get(1).week);
         editor.putString(getString(R.string.key_week_3), getString(R.string.week) + weather.get(2).week);
         editor.putString(getString(R.string.key_week_4), getString(R.string.week) + weather.get(3).week);
@@ -571,7 +569,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
                 sb.append("\ndescribe : ");
                 sb.append("gps定位成功");
                 locationName = location.getCity();
-                gsonResult = JuheWeather.getRequest(locationName);
+                juheResult = JuheWeather.getRequest(locationName);
                 refreshUI();
             } else if (location.getLocType() == BDLocation.TypeNetWorkLocation){// 网络定位结果
                 sb.append("\naddr : ");
@@ -579,28 +577,28 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
                 sb.append("\ndescribe : ");
                 sb.append("网络定位成功");
                 locationName = location.getCity();
-                gsonResult = JuheWeather.getRequest(locationName);
+                juheResult = JuheWeather.getRequest(locationName);
                 refreshUI();
             } else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
                 sb.append("\ndescribe : ");
                 sb.append("离线定位成功，离线定位结果也是有效的");
                 locationName = location.getCity();
-                gsonResult = JuheWeather.getRequest(locationName);
+                juheResult = JuheWeather.getRequest(locationName);
                 refreshUI();
             } else if (location.getLocType() == BDLocation.TypeServerError) {
                 sb.append("\ndescribe : ");
                 sb.append("服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因");
-                gsonResult = null;
+                juheResult = null;
                 refreshUI();
             } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
                 sb.append("\ndescribe : ");
                 sb.append("网络不同导致定位失败，请检查网络是否通畅");
-                gsonResult = null;
+                juheResult = null;
                 refreshUI();
             } else if (location.getLocType() == BDLocation.TypeCriteriaException) {
                 sb.append("\ndescribe : ");
                 sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
-                gsonResult = null;
+                juheResult = null;
                 refreshUI();
             }
             sb.append("\nlocationdescribe : ");

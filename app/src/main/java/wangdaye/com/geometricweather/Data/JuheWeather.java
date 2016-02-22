@@ -13,11 +13,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import wangdaye.com.geometricweather.Activity.MainActivity;
 import wangdaye.com.geometricweather.R;
 
 /**
@@ -32,14 +30,14 @@ public class JuheWeather {
 
     public static final String APPKEY ="5bf9785af8c13ea44ab55442d63bc0ad";
 
-    public static GsonResult getRequest(String city) {
+    public static JuheResult getRequest(String city) {
         String result = null;
         String url = "http://op.juhe.cn/onebox/weather/query";//请求接口地址
         Map<String, Object> params = new HashMap<String, Object>();//请求参数
         params.put("cityname", city);//要查询的城市，如：温州、上海、北京
         params.put("key", APPKEY);//应用APPKEY(应用详细页查询)
         params.put("dtype", "");//返回数据的格式,xml或json，默认json
-        GsonResult gsonResult = null; // 用于接收结果的泛型类
+        JuheResult juheResult = null; // 用于接收结果的泛型类
         try {
             result = net(url, params, "GET");
             String resultExchange = result.replaceFirst("weather", "weatherNow");
@@ -47,16 +45,16 @@ public class JuheWeather {
             resultExchange = result.replaceFirst("info", "lifeInfo");
             result = resultExchange.replaceFirst("pm25", "air");
             Gson gson = new Gson();
-            gsonResult = gson.fromJson(result, GsonResult.class);
-            if (gsonResult.error_code.equals("0")) {
+            juheResult = gson.fromJson(result, JuheResult.class);
+            if (juheResult.error_code.equals("0")) {
                 Log.i("JuheWeather", "聚合天气" + city + " ：成功");
             } else {
-                Log.i("JuheWeather", "聚合天气 ：" + gsonResult.error_code + gsonResult.reason);
+                Log.i("JuheWeather", "聚合天气 ：" + juheResult.error_code + juheResult.reason);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return gsonResult;
+        return juheResult;
     }
 
 // weather

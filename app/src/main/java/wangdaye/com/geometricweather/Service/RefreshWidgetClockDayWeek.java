@@ -27,7 +27,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import wangdaye.com.geometricweather.Activity.MainActivity;
-import wangdaye.com.geometricweather.Data.GsonResult;
+import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Receiver.WidgetProviderClockDayWeek;
@@ -42,7 +42,7 @@ public class RefreshWidgetClockDayWeek extends Service
         implements HandlerContainer {
     // data
     private boolean showCard;
-    private GsonResult gsonResult;
+    private JuheResult juheResult;
 
     private final int REFRESH_DATA_SUCCEED = 1;
     private final int REFRESH_DATA_FAILED = 0;
@@ -103,9 +103,9 @@ public class RefreshWidgetClockDayWeek extends Service
             @Override
             public void run()
             { // TODO Auto-generated method stub
-                gsonResult = JuheWeather.getRequest(searchLocation);
+                juheResult = JuheWeather.getRequest(searchLocation);
                 Message message=new Message();
-                if (gsonResult == null) {
+                if (juheResult == null) {
                     message.what = REFRESH_DATA_FAILED;
                 } else {
                     message.what = REFRESH_DATA_SUCCEED;
@@ -136,7 +136,7 @@ public class RefreshWidgetClockDayWeek extends Service
     }
 
     private void refreshUI() {
-        if(this.gsonResult != null) {
+        if(this.juheResult != null) {
             this.refreshUIFromInternet();
         } else {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
@@ -153,22 +153,22 @@ public class RefreshWidgetClockDayWeek extends Service
         }
         RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_clock_day_week);
 
-        GsonResult.WeatherNow weatherNow = this.gsonResult.result.data.realtime.weatherNow;
+        JuheResult.WeatherNow weatherNow = this.juheResult.result.data.realtime.weatherNow;
         String weatherKindToday = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         int[] imageId = JuheWeather.getWeatherIcon(weatherKindToday, isDay);
         views.setImageViewResource(R.id.widget_clock_day_week_image, imageId[3]);
-        String[] solar = this.gsonResult.result.data.realtime.date.split("-");
+        String[] solar = this.juheResult.result.data.realtime.date.split("-");
         String dateText = solar[1] + "-" + solar[2]
-                + " " + getString(R.string.week) + this.gsonResult.result.data.weather.get(0).week
+                + " " + getString(R.string.week) + this.juheResult.result.data.weather.get(0).week
                 + " / "
-                + this.gsonResult.result.data.realtime.moon;
+                + this.juheResult.result.data.realtime.moon;
         views.setTextViewText(R.id.widget_clock_day_week_date, dateText);
-        String weatherText = this.gsonResult.result.data.realtime.city_name
+        String weatherText = this.juheResult.result.data.realtime.city_name
                 + " / "
                 + weatherNow.weatherInfo + " " + weatherNow.temperature + "℃";
         views.setTextViewText(R.id.widget_clock_day_week_weather, weatherText);
 
-        List<GsonResult.Weather> weather = gsonResult.result.data.weather;
+        List<JuheResult.Weather> weather = juheResult.result.data.weather;
         // icon
         if (isDay) {
             imageId = JuheWeather.getWeatherIcon(JuheWeather.getWeatherKind(weather.get(1).info.day.get(1)), true);

@@ -32,7 +32,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import wangdaye.com.geometricweather.Activity.MainActivity;
-import wangdaye.com.geometricweather.Data.GsonResult;
+import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
 import wangdaye.com.geometricweather.R;
@@ -48,7 +48,7 @@ public class NotificationService extends Service implements HandlerContainer{
     // data
     private MyDatabaseHelper databaseHelper;
 
-    private GsonResult gsonResult;
+    private JuheResult juheResult;
 
     private final int REFRESH_DATA_SUCCEED = 1;
     private final int REFRESH_DATA_FAILED = 0;
@@ -146,9 +146,9 @@ public class NotificationService extends Service implements HandlerContainer{
             @Override
             public void run()
             { // TODO Auto-generated method stub
-                gsonResult = JuheWeather.getRequest(searchLocation);
+                juheResult = JuheWeather.getRequest(searchLocation);
                 Message message=new Message();
-                if (gsonResult == null) {
+                if (juheResult == null) {
                     message.what = REFRESH_DATA_FAILED;
                 } else {
                     message.what = REFRESH_DATA_SUCCEED;
@@ -161,7 +161,7 @@ public class NotificationService extends Service implements HandlerContainer{
 
     private void refreshUI() {
         // refresh the notification UI
-        if(gsonResult == null) {
+        if(juheResult == null) {
             Toast.makeText(this,
                     getString(R.string.send_notification_error),
                     Toast.LENGTH_SHORT).show();
@@ -176,8 +176,8 @@ public class NotificationService extends Service implements HandlerContainer{
             isDay = false;
         }
 
-        GsonResult.WeatherNow weatherNow = gsonResult.result.data.realtime.weatherNow;
-        List<GsonResult.Weather> weathers = gsonResult.result.data.weather;
+        JuheResult.WeatherNow weatherNow = juheResult.result.data.realtime.weatherNow;
+        List<JuheResult.Weather> weathers = juheResult.result.data.weather;
 
         String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -207,8 +207,8 @@ public class NotificationService extends Service implements HandlerContainer{
                         + "/"
                         + weathers.get(0).info.day.get(2)
                         + "°");
-        String[] time = gsonResult.result.data.realtime.time.split(":");
-        String text = gsonResult.result.data.realtime.city_name
+        String[] time = juheResult.result.data.realtime.time.split(":");
+        String text = juheResult.result.data.realtime.city_name
                 + "."
                 + time[0]
                 + ":"

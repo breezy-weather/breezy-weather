@@ -8,23 +8,27 @@ public class Location {
     // data
     public String location;
     public boolean update;
-    public GsonResult gsonResult;
+    public JuheResult juheResult;
+    public HefengResult hefengResult;
 
     public Location(String location) {
         this.location = location;
         this.update = false;
-        gsonResult = null;
+        juheResult = null;
+        hefengResult = null;
     }
 
     public Location(String location, boolean update) {
         this.location = location;
         this.update = update;
-        gsonResult = null;
+        juheResult = null;
+        hefengResult = null;
     }
 
-    public Location(String location, boolean update, GsonResult gsonResult) {
+    public Location(String location, boolean update, JuheResult juheResult, HefengResult hefengResult) {
         this.location = location;
         this.update = update;
-        this.gsonResult = gsonResult;
+        this.juheResult = juheResult;
+        this.hefengResult = hefengResult;
     }
 }

@@ -80,7 +80,7 @@
             android:layout_marginLeft="10dp">
 
             <ImageView
-                android:id="@+id/about_app_ic_tech_weather"
+                android:id="@+id/about_app_ic_tech_Juheweather"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentLeft="true"
@@ -90,18 +90,50 @@
             <LinearLayout
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:id="@+id/about_app_ic_tech_weather_space"
+                android:id="@+id/about_app_ic_tech_Juheweather_space"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/about_app_ic_tech_weather"
+                android:layout_toRightOf="@id/about_app_ic_tech_Juheweather"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/about_app_ic_tech_Juheweather_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/about_app_ic_tech_Juheweather_space"
+                android:layout_centerVertical="true"
+                android:text="@string/tech_JuheWeather"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/about_app_ic_tech_Hefengweather"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_weather_grey" />
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/about_app_ic_tech_Hefengweather_space"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/about_app_ic_tech_Hefengweather"
                 android:orientation="vertical" />
 
             <TextView
                 android:id="@+id/about_app_ic_tech_weather_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/about_app_ic_tech_weather_space"
+                android:layout_toRightOf="@id/about_app_ic_tech_Hefengweather_space"
                 android:layout_centerVertical="true"
-                android:text="@string/tech_weather"
+                android:text="@string/tech_HefengWeather"
                 android:textSize="14dp" />
 
         </RelativeLayout>
