@@ -7,7 +7,6 @@
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-25-001.png)
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-20-18-581.png)
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-23-22-041.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-371.png)
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-491.png)
 
 ## 给用户
