@@ -1,18 +1,14 @@
 # GeometricWeather
 
-## 给自己
+## 概览
 
-### 近期任务
-
-* 换天气源
-* 继续进行优化处理器占用
-* 修复fc问题
-* 优化桌面widget更新逻辑
-* 优化天气通知更新逻辑
-* 继续调整UI
-* 整理drawer标签项。
-* 整理menu标签项。
-* 优化app结构。
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-23-181.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-23-281.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-25-001.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-20-18-581.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-23-22-041.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-371.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-491.png)
 
 ## 给用户
 
@@ -57,15 +53,19 @@
 * 代码中fragment的使用是不符合规范的，我会在之后的版本里做出修改，望不要学习。
 * 代码中存在方法冗余，我会在后期进行修改。
 * 目前代码存在内存泄漏的问题，切换fragment时会出现内存泄漏，希望有人发现问题在哪的话能告诉作者。
+* 请勿使用代码中的apiKey,代码里所有的api都是免费的。
 * 作者学习android开发没多久，水平渣渣...
 
+## 给自己
 
-## pic
+### 近期任务
 
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-23-181.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-23-281.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-09-08-25-001.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-20-18-581.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-18-23-22-041.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-371.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/raw/master/preview/enframe_2016-02-20-21-06-491.png)
+* 换天气源
+* 继续进行优化处理器占用
+* 修复fc问题
+* 优化桌面widget更新逻辑
+* 优化天气通知更新逻辑
+* 继续调整UI
+* 整理drawer标签项。
+* 整理menu标签项。
+* 优化app结构。
