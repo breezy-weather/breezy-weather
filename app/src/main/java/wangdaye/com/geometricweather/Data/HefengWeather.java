@@ -29,7 +29,8 @@ public class HefengWeather {
     public static HefengResult request(String location) {
         final String httpUrl = "http://apis.baidu.com/heweather/weather/free";
         final String httpArg = "city=";
-        final String APP_KEY = "9c66dd2f8347b7b7b69d4521051a5eb5";
+        final String APP_KEY_1 = "9c66dd2f8347b7b7b69d4521051a5eb5";
+//        final String APP_KEY_2 = "f8f22c028b3ad53163da5a7a0ca854b3";
 
         BufferedReader reader = null;
         String result;
@@ -42,7 +43,7 @@ public class HefengWeather {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             // 填入apikey到HTTP header
-            connection.setRequestProperty("apikey",  APP_KEY);
+            connection.setRequestProperty("apikey",  APP_KEY_1);
             connection.setConnectTimeout(DEF_CONN_TIMEOUT);
             connection.setReadTimeout(DEF_READ_TIMEOUT);
             connection.connect();

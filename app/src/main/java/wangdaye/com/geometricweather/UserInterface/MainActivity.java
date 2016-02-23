@@ -1,5 +1,6 @@
-package wangdaye.com.geometricweather.Activity;
+package wangdaye.com.geometricweather.UserInterface;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -41,8 +42,10 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -51,6 +54,7 @@ import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
+import wangdaye.com.geometricweather.Data.Weather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Receiver.WidgetProviderClockDay;
 import wangdaye.com.geometricweather.Receiver.WidgetProviderClockDayCenter;
@@ -449,6 +453,124 @@ public class MainActivity extends AppCompatActivity
         database.insert(MyDatabaseHelper.TABLE_LOCATION, null, values);
         values.clear();
         database.close();
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static void writeTodayWeather(Context context, Location location) {
+        // get yesterday date.
+        Calendar cal=Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        Date date = cal.getTime();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String yesterdayDate = simpleDateFormat.format(date);
+
+        Weather yesterdayWeather = null;
+        boolean haveYesterdayData = false;
+
+        // init database.
+        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
+                MyDatabaseHelper.DATABASE_NAME,
+                null,
+                1);
+        SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+        // read yesterday weather.
+        Cursor cursor = database.query(MyDatabaseHelper.TABLE_WEATHER,
+                null,
+                MyDatabaseHelper.COLUMN_LOCATION + " = '" + location.juheResult.result.data.realtime.city_name
+                        + "' AND "
+                        + MyDatabaseHelper.COLUMN_TIME + " = '" + yesterdayDate + "'",
+                null,
+                null,
+                null,
+                null);
+        if(cursor.moveToFirst()) {
+            do {
+                String locationText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_LOCATION));
+                String weatherText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER));
+                String tempText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TEMP));
+                String timeText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TIME));
+                yesterdayWeather = new Weather(locationText, weatherText, tempText, timeText);
+                haveYesterdayData = true;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        // delete all weather data from param location.
+        database.delete(MyDatabaseHelper.TABLE_WEATHER,
+                MyDatabaseHelper.COLUMN_LOCATION + " = ?",
+                new String[]{location.juheResult.result.data.realtime.city_name});
+
+        // write weather data from today and yesterday.
+        ContentValues values = new ContentValues();
+        values.put(MyDatabaseHelper.COLUMN_LOCATION, location.juheResult.result.data.realtime.city_name);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER, location.juheResult.result.data.realtime.weatherNow.weatherInfo);
+        values.put(MyDatabaseHelper.COLUMN_TEMP,
+                location.juheResult.result.data.weather.get(0).info.night.get(2)
+                        + "/"
+                        + location.juheResult.result.data.weather.get(0).info.day.get(2));
+        values.put(MyDatabaseHelper.COLUMN_TIME, location.juheResult.result.data.realtime.date);
+        database.insert(MyDatabaseHelper.TABLE_WEATHER, null, values);
+        values.clear();
+        if (haveYesterdayData) {
+            values.put(MyDatabaseHelper.COLUMN_LOCATION, yesterdayWeather.location);
+            values.put(MyDatabaseHelper.COLUMN_WEATHER, yesterdayWeather.weather);
+            values.put(MyDatabaseHelper.COLUMN_TEMP, yesterdayWeather.temp);
+            values.put(MyDatabaseHelper.COLUMN_TIME, yesterdayWeather.time);
+            database.insert(MyDatabaseHelper.TABLE_WEATHER, null, values);
+            values.clear();
+        }
+        database.close();
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static int[] readYesterdayWeather(Context context, Location location) {
+        // get yesterday date.
+        Calendar cal=Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        Date date = cal.getTime();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String yesterdayDate = simpleDateFormat.format(date);
+
+        Weather yesterdayWeather = null;
+        boolean haveYesterdayData = false;
+
+        // init database.
+        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
+                MyDatabaseHelper.DATABASE_NAME,
+                null,
+                1);
+        SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+        // read yesterday weather.
+        Cursor cursor = database.query(MyDatabaseHelper.TABLE_WEATHER,
+                null,
+                MyDatabaseHelper.COLUMN_LOCATION + " = '" + location.juheResult.result.data.realtime.city_name
+                        + "' AND "
+                        + MyDatabaseHelper.COLUMN_TIME + " = '" + yesterdayDate + "'",
+                null,
+                null,
+                null,
+                null);
+        if(cursor.moveToFirst()) {
+            do {
+                String locationText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_LOCATION));
+                String weatherText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER));
+                String tempText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TEMP));
+                String timeText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TIME));
+                yesterdayWeather = new Weather(locationText, weatherText, tempText, timeText);
+                haveYesterdayData = true;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+
+        if (haveYesterdayData) {
+            String[] yesterdayTemp = yesterdayWeather.temp.split("/");
+            return new int[] {Integer.parseInt(yesterdayTemp[0]), Integer.parseInt(yesterdayTemp[1])};
+        } else {
+            return null;
+        }
     }
 
 // bitmap

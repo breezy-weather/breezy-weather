@@ -14,6 +14,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.R;
 
 /**
@@ -68,6 +69,14 @@ public class HourlyView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (this.temp == null || this.pop == null) {
+            drawNoData(canvas);
+            return;
+        } else if (this.temp.length == 0 || this.pop.length == 0) {
+            drawNoData(canvas);
+            return;
+        }
+
         float width = getMeasuredWidth();
         float height = getMeasuredHeight() - 5 * MARGIN;
 
@@ -87,11 +96,12 @@ public class HourlyView extends View {
         float unitHeight;
         float unitWidth;
         if (lowestTemp != highestTemp) {
-            unitWidth = width / 16;
+            unitWidth = width / (2 * temp.length);
             unitHeight = height / (highestTemp - lowestTemp);
         } else {
-            unitWidth = width / 16;
-            unitHeight = height / 16;
+            unitWidth = width / (2 * temp.length);
+            unitHeight = height / (2 * temp.length);
+            highestTemp += temp.length;
         }
 
         float[][] tempCoordinate = new float[temp.length][2]; // x, y
@@ -106,26 +116,20 @@ public class HourlyView extends View {
             popCoordinate[i][1] = (100 - pop[i]) / 100 * height  + 2 * MARGIN; // y
         }
 
-        float[] levelCoordinate = new float[temp.length];
-        int temp = 30;
-        for (int i = 0; i < levelCoordinate.length; i ++) {
-            levelCoordinate[i] = (highestTemp - temp) * unitHeight + 2 * MARGIN;
-            temp -= 10;
-        }
-
         this.drawTimeLine(canvas, tempCoordinate);
-        this.drawTempLine(canvas, levelCoordinate, highestTemp, lowestTemp);
         this.drawPopLine(canvas, popCoordinate);
         this.drawTemp(canvas, tempCoordinate);
     }
 
     private void drawTimeLine(Canvas canvas, float[][] coordinate) {
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(4);
-        paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
-        for (int i = 0; i < coordinate.length; i ++) {
+        for (int i = coordinate.length - 1; i > -1; i --) {
+            paint.reset();
+            paint.setAntiAlias(true);
+            paint.setStyle(Paint.Style.FILL);
+            paint.setStrokeWidth(4);
+            paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
             canvas.drawLine(coordinate[i][0], 2 * MARGIN, coordinate[i][0], getMeasuredHeight() - 3 * MARGIN, paint);
+
             paint.reset();
             paint.setAntiAlias(true);
             paint.setStrokeWidth(2);
@@ -133,17 +137,204 @@ public class HourlyView extends View {
             paint.setStyle(Paint.Style.FILL);
             paint.setTextAlign(Paint.Align.RIGHT);
             paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
-            canvas.drawText(hour[i], coordinate[i][0] - 10, getMeasuredHeight() - 3 * MARGIN - 10, paint);
-
-            paint.reset();
-            paint.setAntiAlias(true);
-            paint.setStyle(Paint.Style.FILL);
-            paint.setStrokeWidth(4);
-            paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
+            canvas.drawText(hour[hour.length - coordinate.length + i], coordinate[i][0] - 10, getMeasuredHeight() - 3 * MARGIN - 10, paint);
         }
         paint.reset();
     }
 
+    private void drawPopLine(Canvas canvas, float[][] coordinate) {
+        if (coordinate.length == 1) {
+            Shader linearGradientLeft = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] - 5 * MARGIN, coordinate[0][1],
+                    Color.argb(225, 75, 80, 115), Color.argb(0, 75, 80, 115), Shader.TileMode.CLAMP);
+            paint.setShader(linearGradientLeft);
+            paint.setAntiAlias(true);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(5);
+            paint.setAlpha(100);
+            paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
+            paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+            Path path = new Path();
+            path.reset();
+            path.moveTo(coordinate[0][0], coordinate[0][1]);
+            path.lineTo(coordinate[0][0] - 5 * MARGIN, coordinate[0][1]);
+            canvas.drawPath(path, paint);
+            paint.reset();
+            path.reset();
+/*
+            Shader linearGradientRight = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] + 4 * MARGIN, coordinate[0][1],
+                    Color.argb(225, 75, 80, 115), Color.argb(0, 75, 80, 115), Shader.TileMode.CLAMP);
+            paint.setShader(linearGradientRight);
+            paint.setAntiAlias(true);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(5);
+            paint.setAlpha(100);
+            paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
+            paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+            path.reset();
+            path.moveTo(coordinate[0][0], coordinate[0][1]);
+            path.lineTo(coordinate[0][0] + 4 * MARGIN, coordinate[0][1]);
+            canvas.drawPath(path, paint);
+            paint.reset();
+            path.reset();*/
+        }
+
+        for (float aPop : pop) {
+            if (aPop > 50) {
+                float startPosition = coordinate[0][1];
+                for (int i = 1; i < coordinate.length; i ++) {
+                    if (coordinate[i][1] < startPosition) {
+                        startPosition = coordinate[i][1];
+                    }
+                }
+                Shader linearGradient = new LinearGradient(0, startPosition, 0, startPosition + 5 * MARGIN,
+                        Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
+                paint.setShader(linearGradient);
+                paint.setAntiAlias(true);
+                paint.setStyle(Paint.Style.FILL);
+                paint.setStrokeWidth(5);
+                Path pathShadow = new Path();
+                pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
+                for (int i = 1; i < coordinate.length; i ++) {
+                    pathShadow.lineTo(coordinate[i][0], coordinate[i][1]);
+                }
+                pathShadow.lineTo(coordinate[coordinate.length - 1][0], getMeasuredHeight());
+                pathShadow.lineTo(coordinate[0][0], getMeasuredHeight());
+                pathShadow.close();
+                canvas.drawPath(pathShadow, paint);
+                paint.reset();
+                pathShadow.reset();
+                break;
+            }
+        }
+
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(5);
+        paint.setAlpha(100);
+        paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
+        paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+        Path path = new Path();
+        path.moveTo(coordinate[0][0], coordinate[0][1]);
+        for (int i = 1; i < coordinate.length; i ++) {
+            path.lineTo(coordinate[i][0], coordinate[i][1]);
+        }
+        canvas.drawPath(path, paint);
+        canvas.drawCircle(coordinate[0][0], coordinate[0][1], 1, paint);
+        canvas.drawCircle(coordinate[coordinate.length - 1][0], coordinate[coordinate.length - 1][1], 1, paint);
+        path.reset();
+        paint.reset();
+
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(2);
+        paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+        paint.setTextSize(40);
+        for (int i = 0; i < coordinate.length; i ++) {
+            canvas.drawText(Float.toString(pop[i]) + "%", coordinate[i][0], coordinate[i][1] + 60, paint);
+        }
+        paint.reset();
+    }
+
+    private void drawTemp(Canvas canvas, float[][] coordinate) {
+        if (coordinate.length == 1) {
+            Shader linearGradientLeft = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] - 5 * MARGIN, coordinate[0][1],
+                    ContextCompat.getColor(context, R.color.lightPrimary_3), Color.argb(0, 150, 214, 219), Shader.TileMode.CLAMP);
+            paint.setShader(linearGradientLeft);
+            paint.setAntiAlias(true);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(5);
+            paint.setAlpha(100);
+            paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
+            paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+            Path path = new Path();
+            path.reset();
+            path.moveTo(coordinate[0][0], coordinate[0][1]);
+            path.lineTo(coordinate[0][0] - 5 * MARGIN, coordinate[0][1]);
+            canvas.drawPath(path, paint);
+            paint.reset();
+            path.reset();
+/*
+            Shader linearGradientRight = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] + 4 * MARGIN, coordinate[0][1],
+                    ContextCompat.getColor(context, R.color.lightPrimary_3), Color.argb(0, 150, 214, 219), Shader.TileMode.CLAMP);
+            paint.setShader(linearGradientRight);
+            paint.setAntiAlias(true);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(5);
+            paint.setAlpha(100);
+            paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
+            paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+            path.reset();
+            path.moveTo(coordinate[0][0], coordinate[0][1]);
+            path.lineTo(coordinate[0][0] + 4 * MARGIN, coordinate[0][1]);
+            canvas.drawPath(path, paint);
+            paint.reset();
+            path.reset();*/
+        }
+
+        Shader linearGradient = new LinearGradient(0, 2 * MARGIN, 0, 7 * MARGIN,
+                Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
+        paint.setShader(linearGradient);
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setStrokeWidth(5);
+        Path pathShadow = new Path();
+        pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
+        for (int i = 1; i < coordinate.length; i ++) {
+            pathShadow.lineTo(coordinate[i][0], coordinate[i][1]);
+        }
+        pathShadow.lineTo(coordinate[coordinate.length - 1][0], getMeasuredHeight());
+        pathShadow.lineTo(coordinate[0][0], getMeasuredHeight());
+        pathShadow.close();
+        canvas.drawPath(pathShadow, paint);
+        paint.reset();
+        pathShadow.reset();
+
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(5);
+        paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
+        paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+        Path pathLine = new Path();
+        pathLine.moveTo(coordinate[0][0], coordinate[0][1]);
+        for (int i = 1; i < coordinate.length; i ++) {
+            pathLine.lineTo(coordinate[i][0], coordinate[i][1]);
+        }
+        canvas.drawPath(pathLine, paint);
+        canvas.drawCircle(coordinate[0][0], coordinate[0][1], 1, paint);
+        canvas.drawCircle(coordinate[coordinate.length - 1][0], coordinate[coordinate.length - 1][1], 1, paint);
+        paint.reset();
+        pathLine.reset();
+
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(2);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
+        paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTextSize(40);
+        for (int i = 0; i < coordinate.length; i ++) {
+            canvas.drawText(Integer.toString(temp[i]) + "°", coordinate[i][0], coordinate[i][1] - 20, paint);
+        }
+        paint.reset();
+    }
+
+    private void drawNoData(Canvas canvas) {
+        paint.reset();
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(2);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTextSize(40);
+        canvas.drawText(context.getString(R.string.no_data),
+                getMeasuredWidth() / 2,
+                (getMeasuredHeight() - 5 * MARGIN) / 2 + 2 * MARGIN,
+                paint);
+        paint.reset();
+    }
+/*
     private void drawTempLine(Canvas canvas, float[] levelCoordinate, int highestTemp, int lowestTemp) {
         int temp = 30;
         paint.reset();
@@ -173,108 +364,5 @@ public class HourlyView extends View {
         }
         paint.reset();
     }
-
-    private void drawPopLine(Canvas canvas, float[][] coordinate) {
-        float startPosition = coordinate[0][1];
-        for (int i = 1; i < coordinate.length; i ++) {
-            if (coordinate[i][1] < startPosition) {
-                startPosition = coordinate[i][1];
-            }
-        }
-        Shader linearGradient = new LinearGradient(0, startPosition, 0, startPosition + 5 * MARGIN,
-                Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
-        paint.setShader(linearGradient);
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(5);
-        Path pathShadow = new Path();
-        pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
-        for (int i = 1; i < coordinate.length; i ++) {
-            pathShadow.lineTo(coordinate[i][0], coordinate[i][1]);
-        }
-        pathShadow.lineTo(coordinate[7][0], getMeasuredHeight());
-        pathShadow.lineTo(coordinate[0][0], getMeasuredHeight());
-        pathShadow.close();
-        canvas.drawPath(pathShadow, paint);
-        paint.reset();
-        pathShadow.reset();
-
-        Path path = new Path();
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
-        paint.setAlpha(100);
-        paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
-        paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
-
-        path.moveTo(coordinate[0][0], coordinate[0][1]);
-        for (int i = 1; i < coordinate.length; i ++) {
-            path.lineTo(coordinate[i][0], coordinate[i][1]);
-        }
-        canvas.drawPath(path, paint);
-        canvas.drawCircle(coordinate[0][0], coordinate[0][1], 1, paint);
-        canvas.drawCircle(coordinate[6][0], coordinate[6][1], 1, paint);
-        path.reset();
-        paint.reset();
-
-        paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
-        paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
-        paint.setTextSize(40);
-        for (int i = 0; i < coordinate.length; i ++) {
-            canvas.drawText(Float.toString(pop[i]) + "%", coordinate[i][0], coordinate[i][1] + 60, paint);
-        }
-        paint.reset();
-    }
-
-    private void drawTemp(Canvas canvas, float[][] coordinate) {
-        Shader linearGradient = new LinearGradient(0, 2 * MARGIN, 0, 7 * MARGIN,
-                Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
-        paint.setShader(linearGradient);
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(5);
-        Path pathShadow = new Path();
-        pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
-        for (int i = 1; i < coordinate.length; i ++) {
-            pathShadow.lineTo(coordinate[i][0], coordinate[i][1]);
-        }
-        pathShadow.lineTo(coordinate[7][0], getMeasuredHeight());
-        pathShadow.lineTo(coordinate[0][0], getMeasuredHeight());
-        pathShadow.close();
-        canvas.drawPath(pathShadow, paint);
-        paint.reset();
-        pathShadow.reset();
-
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
-        paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
-        paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
-        Path pathLine = new Path();
-        pathLine.moveTo(coordinate[0][0], coordinate[0][1]);
-        for (int i = 1; i < coordinate.length; i ++) {
-            pathLine.lineTo(coordinate[i][0], coordinate[i][1]);
-        }
-        canvas.drawPath(pathLine, paint);
-        canvas.drawCircle(coordinate[0][0], coordinate[0][1], 1, paint);
-        canvas.drawCircle(coordinate[6][0], coordinate[6][1], 1, paint);
-        paint.reset();
-        pathLine.reset();
-
-        paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
-        paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(40);
-        for (int i = 0; i < coordinate.length; i ++) {
-            canvas.drawText(Integer.toString(temp[i]) + "°", coordinate[i][0], coordinate[i][1] - 20, paint);
-        }
-        paint.reset();
-    }
+*/
 }

@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
-import wangdaye.com.geometricweather.Activity.MainActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.NotificationService;
 

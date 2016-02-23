@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.Activity;
+package wangdaye.com.geometricweather.UserInterface;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

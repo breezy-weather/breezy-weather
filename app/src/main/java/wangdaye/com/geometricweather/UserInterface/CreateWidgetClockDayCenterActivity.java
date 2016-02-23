@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.Activity;
+package wangdaye.com.geometricweather.UserInterface;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Message;
+import android.provider.AlarmClock;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,19 +45,23 @@ import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.Receiver.WidgetProviderDay;
+import wangdaye.com.geometricweather.Receiver.WidgetProviderClockDayCenter;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
 /**
- * Created by WangDaYe on 2016/2/8.
+ * Created by WangDaYe on 2016/2/16.
  */
-
-public class CreateWidgetDayActivity extends Activity implements HandlerContainer{
+public class CreateWidgetClockDayCenterActivity extends Activity
+        implements HandlerContainer {
     // widget
     private ImageView imageViewCard;
-    private TextView textViewWeatherNow;
-    private TextView textViewTempNow;
+
+    private TextClock clock;
+    private TextView dateText;
+    private TextView weatherText;
+    private TextView tempText;
+    private TextView refreshTime;
 
     //data
     private List<Location> locationList;
@@ -74,7 +80,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
     public BDLocationListener myListener = new MyLocationListener();
 
     // handler
-    private SafeHandler<CreateWidgetDayActivity> safeHandler;
+    private SafeHandler<CreateWidgetClockDayCenterActivity> safeHandler;
 
     //TAG
 //    private final String TAG = "CreateWidgetDayActivity";
@@ -83,7 +89,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        setContentView(R.layout.activity_create_widget_day);
+        setContentView(R.layout.activity_create_widget_clock_day_center);
     }
 
     @Override
@@ -94,14 +100,17 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
 
         this.locationName = getString(R.string.local);
 
-        ImageView imageViewWall = (ImageView) this.findViewById(R.id.create_widget_day_wall);
-        imageViewWall.setImageDrawable(WallpaperManager.getInstance(CreateWidgetDayActivity.this).getDrawable());
+        ImageView imageViewWall = (ImageView) this.findViewById(R.id.create_widget_clock_day_center_wall);
+        imageViewWall.setImageDrawable(WallpaperManager.getInstance(CreateWidgetClockDayCenterActivity.this).getDrawable());
 
-        RelativeLayout relativeLayoutWidgetContainer = (RelativeLayout) this.findViewById(R.id.widget_day) ;
-        this.imageViewCard = (ImageView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_card);
+        RelativeLayout relativeLayoutWidgetContainer = (RelativeLayout) this.findViewById(R.id.widget_clock_day_center) ;
+        this.imageViewCard = (ImageView) relativeLayoutWidgetContainer.findViewById(R.id.widget_clock_day_center_card);
 
-        this.textViewWeatherNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_weather);
-        this.textViewTempNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_temp);
+        this.clock = (TextClock) findViewById(R.id.widget_clock_day_center_clock);
+        this.dateText = (TextView) findViewById(R.id.widget_clock_day_center_date);
+        this.weatherText = (TextView) findViewById(R.id.widget_clock_day_center_weather);
+        this.tempText = (TextView) findViewById(R.id.widget_clock_day_center_temp);
+        this.refreshTime = (TextView) findViewById(R.id.widget_clock_day_center_time);
 
         this.initDatabaseHelper();
         this.readLocation();
@@ -114,7 +123,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         }
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, R.layout.spinner_text, items);
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_text);
-        Spinner spinnerCity = (Spinner) this.findViewById(R.id.create_widget_day_spinner);
+        Spinner spinnerCity = (Spinner) this.findViewById(R.id.create_widget_clock_day_center_spinner);
         spinnerCity.setAdapter(spinnerAdapter);
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -127,30 +136,36 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
             }
         });
 
-        Switch switchCard = (Switch) this.findViewById(R.id.create_widget_day_switch_card);
+        Switch switchCard = (Switch) this.findViewById(R.id.create_widget_clock_day_center_switch_card);
         switchCard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     imageViewCard.setVisibility(View.VISIBLE);
                     showCard = true;
-                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                    tempText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                    refreshTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
-                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                    tempText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                    refreshTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
                 }
             }
         });
 
-        final Button buttonDone = (Button) this.findViewById(R.id.create_widget_day_done);
+        final Button buttonDone = (Button) this.findViewById(R.id.create_widget_clock_day_center_done);
         buttonDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = getSharedPreferences(
-                        getString(R.string.sp_widget_day_setting),
+                        getString(R.string.sp_widget_clock_day_center_setting),
                         MODE_PRIVATE
                 ).edit();
                 editor.putString(getString(R.string.key_location), locationName);
@@ -180,7 +195,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
     }
 
     private void initDatabaseHelper() {
-        this.databaseHelper = new MyDatabaseHelper(CreateWidgetDayActivity.this,
+        this.databaseHelper = new MyDatabaseHelper(this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
                 1);
@@ -267,54 +282,67 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         } else {
             isDay = false;
         }
-        RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_day);
+        RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_clock_day_center);
 
         JuheResult.WeatherNow weatherNow = this.juheResult.result.data.realtime.weatherNow;
         String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         int[] imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
-        views.setImageViewResource(R.id.widget_day_image, imageId[3]);
+        views.setImageViewResource(R.id.widget_clock_day_center_image, imageId[3]);
+        String[] solar = this.juheResult.result.data.realtime.date.split("-");
+        String dateText = solar[1] + "-" + solar[2]
+                + " " + getString(R.string.week) + this.juheResult.result.data.weather.get(0).week
+                + " / "
+                + this.juheResult.result.data.realtime.moon;
+        views.setTextViewText(R.id.widget_clock_day_center_date, dateText);
         String weatherTextNow = weatherNow.weatherInfo
                 + "\n"
                 + weatherNow.temperature
                 + "℃";
-        views.setTextViewText(R.id.widget_day_weather, weatherTextNow);
+        views.setTextViewText(R.id.widget_clock_day_center_weather, weatherTextNow);
         JuheResult.Weather weatherToday = this.juheResult.result.data.weather.get(0);
         String weatherTextTemp = weatherToday.info.day.get(2)
                 + "°"
                 + "\n"
                 + weatherToday.info.night.get(2)
                 + "°";
-        views.setTextViewText(R.id.widget_day_temp, weatherTextTemp);
+        views.setTextViewText(R.id.widget_clock_day_center_temp, weatherTextTemp);
         String[] timeText = this.juheResult.result.data.realtime.time.split(":");
         String refreshText = this.juheResult.result.data.realtime.city_name
                 + "."
                 + timeText[0]
                 + ":"
                 + timeText[1];
-        views.setTextViewText(R.id.widget_day_time, refreshText);
+        views.setTextViewText(R.id.widget_clock_day_center_time, refreshText);
 
         if(this.showCard) { // show card
-            views.setViewVisibility(R.id.widget_day_card, View.VISIBLE);
-            views.setTextColor(R.id.widget_day_weather, ContextCompat.getColor(this, R.color.colorTextDark));
-            views.setTextColor(R.id.widget_day_temp, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setViewVisibility(R.id.widget_clock_day_center_card, View.VISIBLE);
+            views.setTextColor(R.id.widget_clock_day_center_clock, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_center_date, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_center_weather, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_center_temp, ContextCompat.getColor(this, R.color.colorTextDark));
         } else { // do not show card
-            views.setViewVisibility(R.id.widget_day_card, View.GONE);
-            views.setTextColor(R.id.widget_day_weather, ContextCompat.getColor(this, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_day_temp, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
+            views.setTextColor(R.id.widget_clock_day_center_clock, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_center_date, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_center_weather, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_center_temp, ContextCompat.getColor(this, R.color.colorTextLight));
         }
 
-        //Intent intent = new Intent("com.geometricweather.receiver.CLICK_WIDGET");
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        views.setOnClickPendingIntent(R.id.widget_day_button, pendingIntent);
+        Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+        PendingIntent pendingIntentClock = PendingIntent.getActivity(this, 0, intentClock, 0);
+        views.setOnClickPendingIntent(R.id.widget_clock_day_center_clock_button, pendingIntentClock);
+
+        Intent intentWeather = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntentWeather = PendingIntent.getActivity(this, 0, intentWeather, 0);
+        views.setOnClickPendingIntent(R.id.widget_clock_day_center_weather_button, pendingIntentWeather);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        appWidgetManager.updateAppWidget(new ComponentName(this, WidgetProviderDay.class), views);
+        appWidgetManager.updateAppWidget(new ComponentName(this, WidgetProviderClockDayCenter.class), views);
 
         SharedPreferences.Editor editor = getSharedPreferences(
-                getString(R.string.sp_widget_day_setting), Context.MODE_PRIVATE).edit();
+                getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE).edit();
         editor.putBoolean(getString(R.string.key_saved_data), true);
-        editor.putString(getString(R.string.key_weather_kind_today), weatherKind);
+        editor.putString(getString(R.string.key_week_2), dateText);
         editor.putString(getString(R.string.key_weather_today), weatherTextNow);
         editor.putString(getString(R.string.key_temperature_today), weatherTextTemp);
         editor.putString(getString(R.string.key_city_time), refreshText);
@@ -323,13 +351,14 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
 
     private void refreshUIFromLocalData() {
         SharedPreferences sharedPreferences = this.getSharedPreferences(
-                getString(R.string.sp_widget_day_setting), Context.MODE_PRIVATE);
+                getString(R.string.sp_widget_clock_day_center_setting), Context.MODE_PRIVATE);
         if (! sharedPreferences.getBoolean(getString(R.string.key_saved_data), false)) {
             return;
         }
-        String weatherKindToday = sharedPreferences.getString(getString(R.string.key_weather_kind_today), "阴");
-        String weatherToday = sharedPreferences.getString(getString(R.string.key_weather_today), getString(R.string.ellipsis));
-        String temperatureToday = sharedPreferences.getString(getString(R.string.key_temperature_today), getString(R.string.ellipsis));
+        String weatherKind = sharedPreferences.getString(getString(R.string.key_weather_kind_today), "阴");
+        String dateText = sharedPreferences.getString(getString(R.string.key_week_2), getString(R.string.wait_refresh));
+        String weatherText = sharedPreferences.getString(getString(R.string.key_weather_today), getString(R.string.ellipsis));
+        String temperatureText = sharedPreferences.getString(getString(R.string.key_temperature_today), getString(R.string.ellipsis));
         String cityTime = sharedPreferences.getString(getString(R.string.key_city_time), getString(R.string.wait_refresh));
 
         boolean isDay;
@@ -340,30 +369,38 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
             isDay = false;
         }
 
-        RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_day);
-        int[] imageId = JuheWeather.getWeatherIcon(weatherKindToday, isDay);
-        views.setImageViewResource(R.id.widget_day_image, imageId[3]);
-        views.setTextViewText(R.id.widget_day_weather, weatherToday);
-        views.setTextViewText(R.id.widget_day_temp, temperatureToday);
-        views.setTextViewText(R.id.widget_day_time, cityTime);
+        RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_clock_day_center);
+        int[] imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
+        views.setImageViewResource(R.id.widget_clock_day_center_image, imageId[3]);
+        views.setTextViewText(R.id.widget_clock_day_center_date, dateText);
+        views.setTextViewText(R.id.widget_clock_day_center_weather, weatherText);
+        views.setTextViewText(R.id.widget_clock_day_center_temp, temperatureText);
+        views.setTextViewText(R.id.widget_clock_day_center_time, cityTime);
 
         if(this.showCard) { // show card
-            views.setViewVisibility(R.id.widget_day_card, View.VISIBLE);
-            views.setTextColor(R.id.widget_day_weather, ContextCompat.getColor(this, R.color.colorTextDark));
-            views.setTextColor(R.id.widget_day_temp, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setViewVisibility(R.id.widget_clock_day_center_card, View.VISIBLE);
+            views.setTextColor(R.id.widget_clock_day_center_clock, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_center_date, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_center_weather, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_center_temp, ContextCompat.getColor(this, R.color.colorTextDark));
         } else { // do not show card
-            views.setViewVisibility(R.id.widget_day_card, View.GONE);
-            views.setTextColor(R.id.widget_day_weather, ContextCompat.getColor(this, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_day_temp, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
+            views.setTextColor(R.id.widget_clock_day_center_clock, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_center_date, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_center_weather, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_center_temp, ContextCompat.getColor(this, R.color.colorTextLight));
         }
 
-        //Intent intent = new Intent("com.geometricweather.receiver.CLICK_WIDGET");
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        views.setOnClickPendingIntent(R.id.widget_day_button, pendingIntent);
+        Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+        PendingIntent pendingIntentClock = PendingIntent.getActivity(this, 0, intentClock, 0);
+        views.setOnClickPendingIntent(R.id.widget_clock_day_center_clock_button, pendingIntentClock);
+
+        Intent intentWeather = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntentWeather = PendingIntent.getActivity(this, 0, intentWeather, 0);
+        views.setOnClickPendingIntent(R.id.widget_clock_day_center_weather_button, pendingIntentWeather);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        appWidgetManager.updateAppWidget(new ComponentName(this, WidgetProviderDay.class), views);
+        appWidgetManager.updateAppWidget(new ComponentName(this, WidgetProviderClockDayCenter.class), views);
     }
 
     // inner class

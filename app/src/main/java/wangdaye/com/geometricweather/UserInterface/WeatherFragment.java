@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.Activity;
+package wangdaye.com.geometricweather.UserInterface;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -27,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -50,10 +49,10 @@ import wangdaye.com.geometricweather.Widget.SafeHandler;
 import wangdaye.com.geometricweather.Widget.TrendView;
 
 /**
- * Created by WangDaYe on 2016/2/10.
+ * Created by WangDaYe on 2016/2/3.
  */
 
-public class LiteWeatherFragment extends Fragment
+public class WeatherFragment extends Fragment
         implements BDLocationListener, HandlerContainer {
     // widget
     private boolean iconRise;
@@ -62,7 +61,7 @@ public class LiteWeatherFragment extends Fragment
     private ImageView[] start;
     private ImageView[] weatherIcon;
 
-    private ImageView[] weekIcon;
+    private ImageView[][] weekIcon;
 
     private TextView weatherTextLive;
     private TextView timeTextLive;
@@ -105,6 +104,8 @@ public class LiteWeatherFragment extends Fragment
 
     //animator
     public AnimatorSet[] animatorSetsShow;
+    public AnimatorSet[] animatorSetsTouch;
+    public AnimatorSet[] animatorSetsAnimal;
     public AnimatorSet[] animatorSetsIcon;
 
     // data
@@ -132,16 +133,16 @@ public class LiteWeatherFragment extends Fragment
     public BDLocationListener myListener;
 
     // handler
-    private SafeHandler<LiteWeatherFragment> safeHandler;
+    private SafeHandler<WeatherFragment> safeHandler;
 
     // TAG
-//    private final String TAG = "LiteWeatherFragment";
+//    private final String TAG = "WeatherFragment";
 
 // life cycle
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.lite_weather_fragment, container, false);
+        View mainView = inflater.inflate(R.layout.weather_fragment, container, false);
 
         this.safeHandler = new SafeHandler<>(this);
         initDatabaseHelper();
@@ -153,7 +154,6 @@ public class LiteWeatherFragment extends Fragment
         this.initWeatherView(mainView);
         this.setWindowTopColor();
         this.initInformationContainer(mainView);
-
 
         if (location.juheResult == null || ! location.juheResult.error_code.equals("0")) {
             this.swipeRefreshLayout.post(new Runnable() {
@@ -178,20 +178,20 @@ public class LiteWeatherFragment extends Fragment
         this.showStar = ! sharedPreferences.getBoolean(getString(R.string.key_hide_star), false);
 
         this.circles = new ImageView[5];
-        circles[0] = (ImageView) view.findViewById(R.id.circle_1_lite);
-        circles[1] = (ImageView) view.findViewById(R.id.circle_2_lite);
-        circles[2] = (ImageView) view.findViewById(R.id.circle_3_lite);
-        circles[3] = (ImageView) view.findViewById(R.id.circle_4_lite);
-        circles[4] = (ImageView) view.findViewById(R.id.circle_5_lite);
+        circles[0] = (ImageView) view.findViewById(R.id.circle_1);
+        circles[1] = (ImageView) view.findViewById(R.id.circle_2);
+        circles[2] = (ImageView) view.findViewById(R.id.circle_3);
+        circles[3] = (ImageView) view.findViewById(R.id.circle_4);
+        circles[4] = (ImageView) view.findViewById(R.id.circle_5);
 
         this.start = new ImageView[2];
-        start[0] = (ImageView) view.findViewById(R.id.start_1_lite);
-        start[1] = (ImageView) view.findViewById(R.id.start_2_lite);
+        start[0] = (ImageView) view.findViewById(R.id.start_1);
+        start[1] = (ImageView) view.findViewById(R.id.start_2);
 
         this.weatherIcon = new ImageView[3];
-        weatherIcon[0] = (ImageView) view.findViewById(R.id.weather_icon_1_lite);
-        weatherIcon[1] = (ImageView) view.findViewById(R.id.weather_icon_2_lite);
-        weatherIcon[2] = (ImageView) view.findViewById(R.id.weather_icon_3_lite);
+        weatherIcon[0] = (ImageView) view.findViewById(R.id.weather_icon_1);
+        weatherIcon[1] = (ImageView) view.findViewById(R.id.weather_icon_2);
+        weatherIcon[2] = (ImageView) view.findViewById(R.id.weather_icon_3);
 
         this.animatorSetsShow = new AnimatorSet[5];
         animatorSetsShow[0] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_1);
@@ -203,13 +203,32 @@ public class LiteWeatherFragment extends Fragment
             animatorSetsShow[i].setTarget(circles[i]);
         }
 
+        if (MainActivity.isDay) {
+            this.animatorSetsTouch = new AnimatorSet[4];
+            animatorSetsTouch[0] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_day_1);
+            animatorSetsTouch[1] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_day_2);
+            animatorSetsTouch[2] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_day_3);
+            animatorSetsTouch[3] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_day_4);
+        } else {
+            this.animatorSetsTouch = new AnimatorSet[4];
+            animatorSetsTouch[0] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_night_1);
+            animatorSetsTouch[1] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_night_2);
+            animatorSetsTouch[2] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_night_3);
+            animatorSetsTouch[3] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_night_4);
+        }
+
+        this.animatorSetsAnimal = new AnimatorSet[2];
+        animatorSetsAnimal[0] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.start_shine_1);
+        animatorSetsAnimal[1] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.start_shine_2);
+
         this.setModel();
 
         this.showCircles();
+        this.showAnimals();
 
-        this.weatherTextLive = (TextView) view.findViewById(R.id.weather_text_live_lite);
+        this.weatherTextLive = (TextView) view.findViewById(R.id.weather_text_live);
 
-        RelativeLayout touchLayout = (RelativeLayout) view.findViewById(R.id.touch_layout_lite);
+        RelativeLayout touchLayout = (RelativeLayout) view.findViewById(R.id.touch_layout);
         touchLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,14 +238,14 @@ public class LiteWeatherFragment extends Fragment
     }
 
     private void initInformationContainer(View view) {
-        weatherCard = (RippleCardView) view.findViewById(R.id.base_info_card_lite);
+        weatherCard = (RippleCardView) view.findViewById(R.id.base_info_card);
         weatherCard.setVisibility(View.GONE);
 
-        lifeCard = (RippleCardView) view.findViewById(R.id.life_info_card_lite);
+        lifeCard = (RippleCardView) view.findViewById(R.id.life_info_card);
         lifeCard.setVisibility(View.GONE);
 
-        this.timeTextLive = (TextView) view.findViewById(R.id.time_text_live_lite);
-        this.locationTextLive = (TextView) view.findViewById(R.id.location_text_live_lite);
+        this.timeTextLive = (TextView) view.findViewById(R.id.time_text_live);
+        this.locationTextLive = (TextView) view.findViewById(R.id.location_text_live);
         this.locationTextLive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,7 +254,7 @@ public class LiteWeatherFragment extends Fragment
             }
         });
 
-        locationCollect = (ImageView) view.findViewById(R.id.location_collect_icon_lite);
+        locationCollect = (ImageView) view.findViewById(R.id.location_collect_icon);
         isCollected = false;
         for (int i = 0; i < MainActivity.locationList.size(); i ++) {
             if (MainActivity.locationList.get(i).location.equals(location.location)) {
@@ -275,8 +294,8 @@ public class LiteWeatherFragment extends Fragment
             }
         });
 
-        this.weekWeatherTitle = (TextView) view.findViewById(R.id.week_weather_title_lite);
-        this.lifeInfoTitle = (TextView) view.findViewById(R.id.life_info_title_lite);
+        this.weekWeatherTitle = (TextView) view.findViewById(R.id.week_weather_title);
+        this.lifeInfoTitle = (TextView) view.findViewById(R.id.life_info_title);
         if (MainActivity.isDay) {
             weekWeatherTitle.setTextColor(ContextCompat.getColor(getActivity(), R.color.lightPrimary_3));
             lifeInfoTitle.setTextColor(ContextCompat.getColor(getActivity(), R.color.lightPrimary_3));
@@ -296,14 +315,28 @@ public class LiteWeatherFragment extends Fragment
         weekText[5] = (TextView) view.findViewById(R.id.week_text_6);
         weekText[6] = (TextView) view.findViewById(R.id.week_text_7);
 
-        this.weekIcon = new ImageView[7];
-        weekIcon[0] = (ImageView) view.findViewById(R.id.icon_image_1);
-        weekIcon[1] = (ImageView) view.findViewById(R.id.icon_image_2);
-        weekIcon[2] = (ImageView) view.findViewById(R.id.icon_image_3);
-        weekIcon[3] = (ImageView) view.findViewById(R.id.icon_image_4);
-        weekIcon[4] = (ImageView) view.findViewById(R.id.icon_image_5);
-        weekIcon[5] = (ImageView) view.findViewById(R.id.icon_image_6);
-        weekIcon[6] = (ImageView) view.findViewById(R.id.icon_image_7);
+        this.weekIcon = new ImageView[7][3];
+        weekIcon[0][0] = (ImageView) view.findViewById(R.id.icon_image_1_1);
+        weekIcon[0][1] = (ImageView) view.findViewById(R.id.icon_image_1_2);
+        weekIcon[0][2] = (ImageView) view.findViewById(R.id.icon_image_1_3);
+        weekIcon[1][0] = (ImageView) view.findViewById(R.id.icon_image_2_1);
+        weekIcon[1][1] = (ImageView) view.findViewById(R.id.icon_image_2_2);
+        weekIcon[1][2] = (ImageView) view.findViewById(R.id.icon_image_2_3);
+        weekIcon[2][0] = (ImageView) view.findViewById(R.id.icon_image_3_1);
+        weekIcon[2][1] = (ImageView) view.findViewById(R.id.icon_image_3_2);
+        weekIcon[2][2] = (ImageView) view.findViewById(R.id.icon_image_3_3);
+        weekIcon[3][0] = (ImageView) view.findViewById(R.id.icon_image_4_1);
+        weekIcon[3][1] = (ImageView) view.findViewById(R.id.icon_image_4_2);
+        weekIcon[3][2] = (ImageView) view.findViewById(R.id.icon_image_4_3);
+        weekIcon[4][0] = (ImageView) view.findViewById(R.id.icon_image_5_1);
+        weekIcon[4][1] = (ImageView) view.findViewById(R.id.icon_image_5_2);
+        weekIcon[4][2] = (ImageView) view.findViewById(R.id.icon_image_5_3);
+        weekIcon[5][0] = (ImageView) view.findViewById(R.id.icon_image_6_1);
+        weekIcon[5][1] = (ImageView) view.findViewById(R.id.icon_image_6_2);
+        weekIcon[5][2] = (ImageView) view.findViewById(R.id.icon_image_6_3);
+        weekIcon[6][0] = (ImageView) view.findViewById(R.id.icon_image_7_1);
+        weekIcon[6][1] = (ImageView) view.findViewById(R.id.icon_image_7_2);
+        weekIcon[6][2] = (ImageView) view.findViewById(R.id.icon_image_7_3);
 
         this.trendContainer = (FrameLayout) view.findViewById(R.id.trend_view_container);
         this.weatherTrendView = (TrendView) view.findViewById(R.id.weather_trend_view);
@@ -372,7 +405,7 @@ public class LiteWeatherFragment extends Fragment
         sportKind = (TextView) view.findViewById(R.id.detail_sport_kind);
         sportInfo = (TextView) view.findViewById(R.id.detail_sport_info);
 
-        this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_lite);
+        this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         this.swipeRefreshLayout.setColorSchemeColors(R.color.lightPrimary_3, R.color.darkPrimary_1);
         this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -398,6 +431,11 @@ public class LiteWeatherFragment extends Fragment
         this.refreshData();
     }
 
+    public void setLocation(Location location) {
+    this.location = location;
+    MainActivity.lastLocation = location;
+}
+
     private void refreshData() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         this.showStar = ! sharedPreferences.getBoolean(getString(R.string.key_hide_star), false);
@@ -407,44 +445,6 @@ public class LiteWeatherFragment extends Fragment
             this.initBaiduLocation();
         } else {
             this.getJuheWeather(location.location);
-        }
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-        MainActivity.lastLocation = location;
-    }
-
-    private void setModel() {
-        // set model of this vies: day or night.
-        if (MainActivity.isDay) {
-            // day
-            circles[0].setImageResource(R.drawable.circle_day_1);
-            circles[1].setImageResource(R.drawable.circle_day_2);
-            circles[2].setImageResource(R.drawable.circle_day_3);
-            circles[3].setImageResource(R.drawable.circle_day_4);
-            circles[4].setImageResource(R.drawable.rec_day);
-
-            for (int i = 0; i < 2; i ++) {
-                start[i].setVisibility(View.GONE);
-            }
-        } else {
-            // night
-            circles[0].setImageResource(R.drawable.circle_night_1);
-            circles[1].setImageResource(R.drawable.circle_night_2);
-            circles[2].setImageResource(R.drawable.circle_night_3);
-            circles[3].setImageResource(R.drawable.circle_night_4);
-            circles[4].setImageResource(R.drawable.rec_night);
-
-            if (showStar) {
-                for (int i = 0; i < 2; i ++) {
-                    start[i].setVisibility(View.VISIBLE);
-                }
-            } else {
-                for (int i = 0; i < 2; i ++) {
-                    start[i].setVisibility(View.GONE);
-                }
-            }
         }
     }
 
@@ -538,6 +538,8 @@ public class LiteWeatherFragment extends Fragment
             locationCollect.setImageResource(R.drawable.ic_collect_no);
         }
 
+        final AnimatorSet[][] animatorSetsWeekIcon = new AnimatorSet[7][3];
+
         for (int i = 0; i < 7; i ++) {
             if (i == 0) {
                 this.weekText[i].setText(getString(R.string.today));
@@ -552,11 +554,30 @@ public class LiteWeatherFragment extends Fragment
                 weatherKind = JuheWeather.getWeatherKind(location.juheResult.result.data.weather.get(i).info.night.get(1));
             }
             int[] imageId= JuheWeather.getWeatherIcon(weatherKind, MainActivity.isDay);
+            final int[] animatorId = JuheWeather.getAnimatorId(weatherKind, MainActivity.isDay);
 
-            weekIcon[i].setImageResource(imageId[3]);
-
+            for (int j = 0; j < 3; j ++) {
+                if (imageId[j] != 0) {
+                    weekIcon[i][j].setImageResource(imageId[j]);
+                    weekIcon[i][j].setVisibility(View.VISIBLE);
+                    animatorSetsWeekIcon[i][j] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), animatorId[j]);
+                    animatorSetsWeekIcon[i][j].setTarget(weekIcon[i][j]);
+                } else {
+                    weekIcon[i][j].setVisibility(View.GONE);
+                }
+            }
             final int position = i;
-            weekIcon[i].setOnLongClickListener(new View.OnLongClickListener() {
+            weekIcon[i][0].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (int i = 0; i < 3; i ++) {
+                        if (animatorId[i] != 0) {
+                            animatorSetsWeekIcon[position][i].start();
+                        }
+                    }
+                }
+            });
+            weekIcon[i][0].setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     if (MainActivity.isDay) {
@@ -580,7 +601,8 @@ public class LiteWeatherFragment extends Fragment
         this.trendContainer.setAlpha(1);
         this.trendContainer.setVisibility(View.VISIBLE);
         this.hourlyContainer.setVisibility(View.GONE);
-        this.weatherTrendView.setData(maxiTemp, miniTemp);
+        int[] yesterdayTemp = MainActivity.readYesterdayWeather(getActivity(), location);
+        this.weatherTrendView.setData(maxiTemp, miniTemp, yesterdayTemp);
         this.weatherTrendView.invalidate();
 
         this.initWindPower(location.juheResult.result.data.realtime.wind, location.juheResult.result.data.weather.get(0));
@@ -642,170 +664,45 @@ public class LiteWeatherFragment extends Fragment
         animatorSetShowView[0].start();
     }
 
-    public void showCirclesView() {
-        this.showCircles();
-        this.showWeatherIcon();
-    }
-
-    private void setWeatherIcon(JuheResult juheResult) {
-        String weatherKind = JuheWeather.getWeatherKind(juheResult.result.data.realtime.weatherNow.weatherInfo);
-        int[] imageId = JuheWeather.getWeatherIcon(weatherKind, MainActivity.isDay);
-        int[] animatorId = JuheWeather.getAnimatorId(weatherKind, MainActivity.isDay);
-        this.animatorSetsIcon = new AnimatorSet[3];
-
-        this.showIcon = new boolean[3];
-
-        for (int i = 0; i < 3; i ++) {
-            if (imageId[i] != 0) {
-                showIcon[i] = true;
-                weatherIcon[i].setImageResource(imageId[i]);
-                weatherIcon[i].setVisibility(View.VISIBLE);
-                this.animatorSetsIcon[i] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), animatorId[i]);
-                animatorSetsIcon[i].setTarget(weatherIcon[i]);
-                animatorSetsIcon[i].start();
-            } else {
-                showIcon[i] = false;
-                weatherIcon[i].setVisibility(View.GONE);
-            }
-        }
-    }
-
-    private void changeTime() {
-        AnimatorSet[] animatorSetsGone = new AnimatorSet[5];
-        animatorSetsGone[0] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_1);
-        animatorSetsGone[1] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_2);
-        animatorSetsGone[2] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_3);
-        animatorSetsGone[3] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_4);
-        animatorSetsGone[4] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_5);
-
+    private void setModel() {
+        // set model of this vies: day or night.
         if (MainActivity.isDay) {
-            for (int i = 0; i < 2 ; i ++) {
+            // day
+            circles[0].setImageResource(R.drawable.circle_day_1);
+            circles[1].setImageResource(R.drawable.circle_day_2);
+            circles[2].setImageResource(R.drawable.circle_day_3);
+            circles[3].setImageResource(R.drawable.circle_day_4);
+            circles[4].setImageResource(R.drawable.rec_day);
+
+            for (int i = 0; i < 4; i ++) {
+                this.animatorSetsTouch[i].setTarget(circles[i]);
+            } for (int i = 0; i < 2; i ++) {
                 start[i].setVisibility(View.GONE);
             }
         } else {
+            // night
+            circles[0].setImageResource(R.drawable.circle_night_1);
+            circles[1].setImageResource(R.drawable.circle_night_2);
+            circles[2].setImageResource(R.drawable.circle_night_3);
+            circles[3].setImageResource(R.drawable.circle_night_4);
+            circles[4].setImageResource(R.drawable.rec_night);
+
+            for (int i = 0; i < 4; i ++) {
+                this.animatorSetsTouch[i].setTarget(circles[i]);
+            }
             if (showStar) {
-                for (int i = 0; i < 2 ; i ++) {
+                for (int i = 0; i < 2; i ++) {
                     start[i].setVisibility(View.VISIBLE);
                 }
             } else {
-                for (int i = 0; i < 2 ; i ++) {
+                for (int i = 0; i < 2; i ++) {
                     start[i].setVisibility(View.GONE);
                 }
             }
         }
 
-        for (int i = 0; i < 5; i ++) {
-            final int position = i;
-            animatorSetsGone[i].setTarget(circles[i]);
-            animatorSetsGone[i].addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    if (MainActivity.isDay) {
-                        switch (position) {
-                            case 0:
-                                circles[position].setImageResource(R.drawable.circle_day_1);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_1);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-
-                            case 1:
-                                circles[position].setImageResource(R.drawable.circle_day_2);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_2);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-
-                            case 2:
-                                circles[position].setImageResource(R.drawable.circle_day_3);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_3);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-
-                            case 3:
-                                circles[position].setImageResource(R.drawable.circle_day_4);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_4);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-                            case 4:
-                                circles[position].setImageResource(R.drawable.rec_day);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_5);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-                        }
-                    } else {
-                        switch (position) {
-                            case 0:
-                                circles[position].setImageResource(R.drawable.circle_night_1);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_1);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-
-                            case 1:
-                                circles[position].setImageResource(R.drawable.circle_night_2);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_2);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-                            case 2:
-                                circles[position].setImageResource(R.drawable.circle_night_3);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_3);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-                            case 3:
-                                circles[position].setImageResource(R.drawable.circle_night_4);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_4);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-                            case 4:
-                                circles[position].setImageResource(R.drawable.rec_night);
-
-                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_5);
-                                animatorSetsShow[position].setTarget(circles[position]);
-                                animatorSetsShow[position].start();
-                                break;
-                        }
-                    }
-                }
-            });
-        } for (int i = 0; i < 5; i ++) {
-            animatorSetsGone[i].start();
-        }
-    }
-
-    private void setWindowTopColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ActivityManager.TaskDescription taskDescription;
-            Bitmap topIcon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-            if (MainActivity.isDay) {
-                taskDescription = new ActivityManager.TaskDescription(
-                        getString(R.string.app_name),
-                        topIcon,
-                        ContextCompat.getColor(getActivity(), R.color.lightPrimary_5));
-            } else {
-                taskDescription = new ActivityManager.TaskDescription(
-                        getString(R.string.app_name),
-                        topIcon,
-                        ContextCompat.getColor(getActivity(), R.color.darkPrimary_5));
-            }
-            getActivity().setTaskDescription(taskDescription);
-            topIcon.recycle();
+        for (int i = 0; i < 2; i ++) {
+            this.animatorSetsAnimal[i].setTarget(start[i]);
         }
     }
 
@@ -818,12 +715,43 @@ public class LiteWeatherFragment extends Fragment
 
     public void touchCircles() {
         // feedback user's touch
-        if (location.juheResult != null) {
-            for (int i = 0; i < 3; i ++) {
-                if (showIcon[i]) {
-                    animatorSetsIcon[i].start();
+        this.animatorSetsTouch[3].addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                if (location.juheResult != null) {
+                    for (int i = 0; i < 3; i ++) {
+                        if (showIcon[i]) {
+                            animatorSetsIcon[i].start();
+                        }
+                    }
                 }
             }
+        });
+        for (int i = 0; i < 4; i ++) {
+            this.animatorSetsTouch[i].start();
+        }
+    }
+
+    public void showAnimals() {
+        // show animals
+        this.animatorSetsAnimal[0].addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                animatorSetsAnimal[0].start();
+            }
+        });
+        this.animatorSetsAnimal[1].addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                animatorSetsAnimal[1].start();
+            }
+        });
+
+        for (int i = 0; i < 2; i ++) {
+            this.animatorSetsAnimal[i].start();
         }
     }
 
@@ -875,6 +803,197 @@ public class LiteWeatherFragment extends Fragment
                 }
             }
         }
+    }
+
+    private void changeTime() {
+        AnimatorSet[] animatorSetsGone = new AnimatorSet[5];
+        animatorSetsGone[0] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_1);
+        animatorSetsGone[1] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_2);
+        animatorSetsGone[2] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_3);
+        animatorSetsGone[3] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_4);
+        animatorSetsGone[4] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_gone_5);
+
+        if (MainActivity.isDay) {
+            for (int i = 0; i < 2 ; i ++) {
+                start[i].setVisibility(View.GONE);
+            }
+        } else {
+            if (showStar) {
+                for (int i = 0; i < 2 ; i ++) {
+                    start[i].setVisibility(View.VISIBLE);
+                }
+            } else {
+                for (int i = 0; i < 2 ; i ++) {
+                    start[i].setVisibility(View.GONE);
+                }
+            }
+        }
+
+        for (int i = 0; i < 5; i ++) {
+            final int position = i;
+            animatorSetsGone[i].setTarget(circles[i]);
+            animatorSetsGone[i].addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    if (MainActivity.isDay) {
+                        switch (position) {
+                            case 0:
+                                circles[position].setImageResource(R.drawable.circle_day_1);
+
+                                animatorSetsTouch[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_day_1);
+                                animatorSetsTouch[position].setTarget(circles[position]);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_1);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+
+                            case 1:
+                                circles[position].setImageResource(R.drawable.circle_day_2);
+
+                                animatorSetsTouch[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_day_2);
+                                animatorSetsTouch[position].setTarget(circles[position]);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_2);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+
+                            case 2:
+                                circles[position].setImageResource(R.drawable.circle_day_3);
+
+                                animatorSetsTouch[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_day_3);
+                                animatorSetsTouch[position].setTarget(circles[position]);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_3);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+
+                            case 3:
+                                circles[position].setImageResource(R.drawable.circle_day_4);
+
+                                animatorSetsTouch[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_day_4);
+                                animatorSetsTouch[position].setTarget(circles[position]);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_4);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+                            case 4:
+                                circles[position].setImageResource(R.drawable.rec_day);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_5);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+                        }
+                    } else {
+                        switch (position) {
+                            case 0:
+                                circles[position].setImageResource(R.drawable.circle_night_1);
+
+                                animatorSetsTouch[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_night_1);
+                                animatorSetsTouch[position].setTarget(circles[position]);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_1);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+
+                            case 1:
+                                circles[position].setImageResource(R.drawable.circle_night_2);
+
+                                animatorSetsTouch[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_night_2);
+                                animatorSetsTouch[position].setTarget(circles[position]);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_2);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+                            case 2:
+                                circles[position].setImageResource(R.drawable.circle_night_3);
+
+                                animatorSetsTouch[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_night_3);
+                                animatorSetsTouch[position].setTarget(circles[position]);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_3);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+                            case 3:
+                                circles[position].setImageResource(R.drawable.circle_night_4);
+
+                                animatorSetsTouch[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_touch_night_4);
+                                animatorSetsTouch[position].setTarget(circles[position]);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_4);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+                            case 4:
+                                circles[position].setImageResource(R.drawable.rec_night);
+
+                                animatorSetsShow[position] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.circle_show_5);
+                                animatorSetsShow[position].setTarget(circles[position]);
+                                animatorSetsShow[position].start();
+                                break;
+                        }
+                    }
+                }
+            });
+        } for (int i = 0; i < 5; i ++) {
+            animatorSetsGone[i].start();
+        }
+    }
+
+    private void setWindowTopColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ActivityManager.TaskDescription taskDescription;
+            Bitmap topIcon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+            if (MainActivity.isDay) {
+                taskDescription = new ActivityManager.TaskDescription(
+                        getString(R.string.app_name),
+                        topIcon,
+                        ContextCompat.getColor(getActivity(), R.color.lightPrimary_5));
+            } else {
+                taskDescription = new ActivityManager.TaskDescription(
+                        getString(R.string.app_name),
+                        topIcon,
+                        ContextCompat.getColor(getActivity(), R.color.darkPrimary_5));
+            }
+            getActivity().setTaskDescription(taskDescription);
+            topIcon.recycle();
+        }
+    }
+
+    private void setWeatherIcon(JuheResult juheResult) {
+        String weatherKind = JuheWeather.getWeatherKind(juheResult.result.data.realtime.weatherNow.weatherInfo);
+        int[] imageId = JuheWeather.getWeatherIcon(weatherKind, MainActivity.isDay);
+        int[] animatorId = JuheWeather.getAnimatorId(weatherKind, MainActivity.isDay);
+        this.animatorSetsIcon = new AnimatorSet[3];
+
+        this.showIcon = new boolean[3];
+
+        for (int i = 0; i < 3; i ++) {
+            if (imageId[i] != 0) {
+                showIcon[i] = true;
+                weatherIcon[i].setImageResource(imageId[i]);
+                weatherIcon[i].setVisibility(View.VISIBLE);
+                this.animatorSetsIcon[i] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), animatorId[i]);
+                animatorSetsIcon[i].setTarget(weatherIcon[i]);
+                animatorSetsIcon[i].start();
+            } else {
+                showIcon[i] = false;
+                weatherIcon[i].setVisibility(View.GONE);
+            }
+        }
+    }
+
+    public void showCirclesView() {
+        this.showCircles();
+        this.showWeatherIcon();
     }
 
     @SuppressLint("SetTextI18n")
@@ -1055,9 +1174,9 @@ public class LiteWeatherFragment extends Fragment
         switch(message.what)
         {
             case REFRESH_JUHE_DATA_SUCCEED:
-                freshData = true;
-                swipeRefreshLayout.setRefreshing(false);
-                refreshUI();
+                this.freshData = true;
+
+                MainActivity.writeTodayWeather(getActivity(), location);
                 MainActivity.sendNotification(location, getActivity());
                 MainActivity.refreshWidgetDay(location, getActivity());
                 MainActivity.refreshWidgetWeek(location, getActivity());
@@ -1082,29 +1201,33 @@ public class LiteWeatherFragment extends Fragment
                         break;
                     }
                 }
+
+                swipeRefreshLayout.setRefreshing(false);
+                refreshUI();
                 break;
             case REFRESH_HEFENG_DATA_SUCCEED:
                 freshData = false;
-                int[] temp = new int[8];
-                float[] pop = new float[8];
-                int j = location.hefengResult.heWeather.get(0).hourly_forecast.size() - 1;
-                for (int i = temp.length - 1; i > -1; i --) {
-                    if (j > -1) {
-                        temp[i] = Integer.parseInt(location.hefengResult.heWeather.get(0).hourly_forecast.get(j).tmp);
-                        pop[i] = Float.parseFloat(location.hefengResult.heWeather.get(0).hourly_forecast.get(j).pop);
+                if (location.hefengResult.heWeather.get(0).hourly_forecast == null) {
+                    weatherHourlyView.setData(null, null);
+                    weatherHourlyView.invalidate();
+                } else if (location.hefengResult.heWeather.get(0).hourly_forecast.size() == 0) {
+                    weatherHourlyView.setData(null, null);
+                    weatherHourlyView.invalidate();
+                } else {
+                    int[] temp = new int[location.hefengResult.heWeather.get(0).hourly_forecast.size()];
+                    float[] pop = new float[temp.length];
+                    for (int i = 0; i <temp.length; i ++) {
+                        temp[i] = Integer.parseInt(location.hefengResult.heWeather.get(0).hourly_forecast.get(i).tmp);
+                        pop[i] = Float.parseFloat(location.hefengResult.heWeather.get(0).hourly_forecast.get(i).pop);
                         if (temp[i] > maxiTemp[0]) {
                             temp[i] = maxiTemp[0];
                         } else if (temp[i] < miniTemp[0]) {
                             temp[i] = miniTemp[0];
                         }
-                    } else {
-                        temp[i] = 0;
-                        pop[i] = 0;
                     }
-                    j --;
+                    weatherHourlyView.setData(temp, pop);
+                    weatherHourlyView.invalidate();
                 }
-                weatherHourlyView.setData(temp, pop);
-                weatherHourlyView.invalidate();
                 break;
             default:
                 swipeRefreshLayout.setRefreshing(false);

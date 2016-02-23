@@ -20,7 +20,7 @@
 
         <!-- activity -->
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".UserInterface.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize">
@@ -33,26 +33,26 @@
         </activity>
 
         <activity
-            android:name=".Activity.SettingsActivity"
+            android:name=".UserInterface.SettingsActivity"
             android:label="@string/settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
-            android:parentActivityName=".Activity.MainActivity" />
+            android:parentActivityName=".UserInterface.MainActivity" />
 
         <activity
-            android:name=".Activity.AboutAppActivity"
+            android:name=".UserInterface.AboutAppActivity"
             android:label="@string/about"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".Activity.IntroduceActivity"
+        <activity android:name=".UserInterface.IntroduceActivity"
             android:label="@string/introduce"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
 
         <!-- create widget activity -->
         <activity
-            android:name=".Activity.CreateWidgetDayActivity"
+            android:name=".UserInterface.CreateWidgetDayActivity"
             android:screenOrientation="portrait">
 
             <intent-filter>
@@ -62,7 +62,7 @@
         </activity>
 
         <activity
-            android:name=".Activity.CreateWidgetWeekActivity"
+            android:name=".UserInterface.CreateWidgetWeekActivity"
             android:screenOrientation="portrait">
 
             <intent-filter>
@@ -72,7 +72,7 @@
         </activity>
 
         <activity
-            android:name=".Activity.CreateWidgetDayWeekActivity"
+            android:name=".UserInterface.CreateWidgetDayWeekActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -81,7 +81,7 @@
         </activity>
 
         <activity
-            android:name=".Activity.CreateWidgetClockDayActivity"
+            android:name=".UserInterface.CreateWidgetClockDayActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -90,7 +90,7 @@
         </activity>
 
         <activity
-            android:name=".Activity.CreateWidgetClockDayCenterActivity"
+            android:name=".UserInterface.CreateWidgetClockDayCenterActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -99,7 +99,7 @@
         </activity>
 
         <activity
-            android:name=".Activity.CreateWidgetClockDayWeekActivity"
+            android:name=".UserInterface.CreateWidgetClockDayWeekActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />

@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.Activity;
+package wangdaye.com.geometricweather.UserInterface;
 
 import android.os.Build;
 import android.os.Bundle;

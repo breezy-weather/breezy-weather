@@ -28,6 +28,10 @@ public class TrendView extends View {
     private int[] maxiTemp;
     private int[] miniTemp;
 
+    private int yesterdayMaxiTemp;
+    private int yesterdayMiniTemp;
+    private boolean haveYesterdayData;
+
     private final int MARGIN = 60;
 
     // TAG
@@ -60,11 +64,24 @@ public class TrendView extends View {
 
         this.maxiTemp = new int[] {7, 7, 7, 7, 7, 7, 7};
         this.miniTemp = new int[] {0, 0, 0, 0, 0, 0, 0};
+
+        this.yesterdayMaxiTemp = 7;
+        this.yesterdayMiniTemp = 0;
+        this.haveYesterdayData = false;
     }
 
-    public void setData(int[] maxiTemp, int[] miniTemp) {
+    public void setData(int[] maxiTemp, int[] miniTemp, int[] yesterdayTemp) {
         this.maxiTemp = maxiTemp;
         this.miniTemp = miniTemp;
+        if (yesterdayTemp == null) {
+            this.yesterdayMaxiTemp = 7;
+            this.yesterdayMiniTemp = 0;
+            this.haveYesterdayData = false;
+        } else {
+            this.yesterdayMiniTemp = yesterdayTemp[0];
+            this.yesterdayMaxiTemp = yesterdayTemp[1];
+            this.haveYesterdayData = true;
+        }
     }
 
     @Override
@@ -72,16 +89,23 @@ public class TrendView extends View {
         float width = getMeasuredWidth();
         float height = getMeasuredHeight() - 5 * MARGIN;
 
-        int highestTemp = this.maxiTemp[0];
-        for (int i = 1; i < maxiTemp.length; i ++) {
-            if (maxiTemp[i] > highestTemp) {
-                highestTemp = maxiTemp[i];
+        int highestTemp;
+        int lowestTemp;
+        if (haveYesterdayData) {
+            highestTemp = this.yesterdayMaxiTemp;
+            lowestTemp = this.yesterdayMiniTemp;
+        } else {
+            highestTemp = this.maxiTemp[0];
+            lowestTemp = this.miniTemp[0];
+        }
+        for (int aMaxiTemp : maxiTemp) {
+            if (aMaxiTemp > highestTemp) {
+                highestTemp = aMaxiTemp;
             }
         }
-        int lowestTemp = this.miniTemp[0];
-        for (int i = 1; i < miniTemp.length; i ++) {
-            if (miniTemp[i] < lowestTemp) {
-                lowestTemp = miniTemp[i];
+        for (int aMiniTemp : miniTemp) {
+            if (aMiniTemp < lowestTemp) {
+                lowestTemp = aMiniTemp;
             }
         }
 
@@ -93,6 +117,7 @@ public class TrendView extends View {
         } else {
             unitWidth = width / 14;
             unitHeight = height / 14;
+            highestTemp += 7;
         }
 
         float[][] highestCoordinate = new float[7][2]; // x, y
@@ -107,15 +132,12 @@ public class TrendView extends View {
             lowestCoordinate[i][1] = (highestTemp - miniTemp[i]) * unitHeight + 2 * MARGIN; // y
         }
 
-        float[] levelCoordinate = new float[7];
-        int temp = 30;
-        for (int i = 0; i < levelCoordinate.length; i ++) {
-            levelCoordinate[i] = (highestTemp - temp) * unitHeight + 2 * MARGIN;
-            temp -= 10;
-        }
+        float[] yesterdayCoordinate = new float[2];
+        yesterdayCoordinate[0] = (highestTemp - yesterdayMaxiTemp) * unitHeight + 2 * MARGIN;
+        yesterdayCoordinate[1] = (highestTemp - yesterdayMiniTemp) * unitHeight + 2 * MARGIN;
 
         this.drawTimeLine(canvas, highestCoordinate);
-        this.drawTempLine(canvas, levelCoordinate, highestTemp, lowestTemp);
+        this.drawYesterdayLine(canvas, yesterdayCoordinate);
         this.drawMaxiTemp(canvas, highestCoordinate);
         this.drawMiniTemp(canvas, lowestCoordinate);
     }
@@ -131,33 +153,39 @@ public class TrendView extends View {
         paint.reset();
     }
 
-    private void drawTempLine(Canvas canvas, float[] levelCoordinate, int highestTemp, int lowestTemp) {
-        int temp = 30;
+    private void drawYesterdayLine(Canvas canvas, float[] yesterdayCoordinate) {
+        if (! haveYesterdayData) {
+            return;
+        }
+
         paint.reset();
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(2);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
-        for (float aLevelCoordinate : levelCoordinate) {
-            if (lowestTemp < temp && temp < highestTemp) {
-                canvas.drawLine(0, aLevelCoordinate, getMeasuredWidth(), aLevelCoordinate, paint);
-                paint.reset();
-                paint.setAntiAlias(true);
-                paint.setStrokeWidth(2);
-                paint.setTextSize(30);
-                paint.setStyle(Paint.Style.FILL);
-                paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
-                paint.setTextAlign(Paint.Align.LEFT);
-                canvas.drawText(Integer.toString(temp) + "°", 10, aLevelCoordinate - 10, paint);
+        canvas.drawLine(0, yesterdayCoordinate[0], getMeasuredWidth(), yesterdayCoordinate[0], paint);
+        canvas.drawLine(0, yesterdayCoordinate[1], getMeasuredWidth(), yesterdayCoordinate[1], paint);
 
-                paint.reset();
-                paint.setAntiAlias(true);
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeWidth(2);
-                paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
-            }
-            temp -= 10;
-        }
+        paint.reset();
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(2);
+        paint.setTextSize(30);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
+        paint.setTextAlign(Paint.Align.LEFT);
+        canvas.drawText(Integer.toString(yesterdayMaxiTemp) + "°", 10, yesterdayCoordinate[0] - 10, paint);
+        canvas.drawText(Integer.toString(yesterdayMiniTemp) + "°", 10, yesterdayCoordinate[1] - 10, paint);
+
+        paint.reset();
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(2);
+        paint.setTextSize(30);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
+        paint.setTextAlign(Paint.Align.RIGHT);
+        canvas.drawText(context.getString(R.string.yesterday), getMeasuredWidth() - 10, yesterdayCoordinate[0] - 10, paint);
+        canvas.drawText(context.getString(R.string.yesterday), getMeasuredWidth() - 10, yesterdayCoordinate[1] - 10, paint);
+
         paint.reset();
     }
 

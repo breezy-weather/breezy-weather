@@ -1,19 +1,15 @@
 package wangdaye.com.geometricweather.Widget;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import wangdaye.com.geometricweather.Activity.MainActivity;
 import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.R;
 

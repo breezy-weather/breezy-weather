@@ -25,7 +25,7 @@ import com.baidu.location.Poi;
 import java.util.Calendar;
 import java.util.List;
 
-import wangdaye.com.geometricweather.Activity.MainActivity;
+import wangdaye.com.geometricweather.UserInterface.MainActivity;
 import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.R;

@@ -4,8 +4,8 @@
     <string name="app_name">Geometric weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
 
-    <string name="version_code">版本号\n1.0.7</string>
-    <string name="note">代码注释\n修改：修改了主界面的卡片标题\n修复：修复了部分机型无法加载小时数据的bug\n修改：修改了天气趋势图的转场动画</string>
+    <string name="version_code">版本号\n1.1.1</string>
+    <string name="note">代码注释\n修改：修改了主界面的卡片标题\n修复：修复了部分机型无法加载小时数据的bug\n添加：添加了昨日气温数据(使用一天后出现)\n修改：修改了小时折现的展示方式</string>
 
     <string name="introduce_title_1">Geometric Weather</string>
     <string name="introduce_title_2">快捷入口</string>
@@ -39,10 +39,11 @@
     <string name="temp">温度</string>
     <string name="pop">降水概率</string>
     <string name="powered_by_juhe">powered by Juhe.cn</string>
-    <string name="powered_by_hefeng">powered by hefeng.com</string>
+    <string name="powered_by_hefeng">powered by heweather.com</string>
     <string name="settings">设置</string>
     <string name="about">关于</string>
     <string name="next">下一步</string>
+    <string name="no_data">暂无数据</string>
 
     <string name="dialog_title">请选择地址或在这里搜索点什么吧</string>
     <string name="default_location">默认位置</string>
