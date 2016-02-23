@@ -122,7 +122,8 @@ public class WeatherFragment extends Fragment
 
     private final int REFRESH_JUHE_DATA_SUCCEED = 1;
     private final int REFRESH_HEFENG_DATA_SUCCEED = 2;
-    private final int REFRESH_DATA_FAILED = 0;
+    private final int REFRESH_JUHE_DATA_FAILED = -1;
+    private final int REFRESH_HEFENG_DATA_FAILED = -2;
 
     public static boolean isCollected;
 
@@ -457,9 +458,9 @@ public class WeatherFragment extends Fragment
                 location.juheResult = JuheWeather.getRequest(searchLocation);
                 Message message = new Message();
                 if (location.juheResult == null) {
-                    message.what = REFRESH_DATA_FAILED;
+                    message.what = REFRESH_JUHE_DATA_FAILED;
                 } else if (! location.juheResult.error_code.equals("0")) {
-                    message.what = REFRESH_DATA_FAILED;
+                    message.what = REFRESH_JUHE_DATA_FAILED;
                 } else {
                     message.what = REFRESH_JUHE_DATA_SUCCEED;
                 }
@@ -475,13 +476,15 @@ public class WeatherFragment extends Fragment
             public void run() {
                 Message message = new Message();
                 if (location.juheResult == null || ! location.juheResult.error_code.equals("0")) {
-                    message.what = REFRESH_DATA_FAILED;
+                    message.what = REFRESH_HEFENG_DATA_FAILED;
                 } else {
-                    location.hefengResult = HefengWeather.request(location.juheResult.result.data.realtime.city_name);
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    boolean useEnglish = sharedPreferences.getBoolean(getString(R.string.key_get_hourly_data_by_eng), false);
+                    location.hefengResult = HefengWeather.request(location.juheResult.result.data.realtime.city_name, useEnglish);
                     if (location.hefengResult == null) {
-                        message.what = REFRESH_DATA_FAILED;
+                        message.what = REFRESH_HEFENG_DATA_FAILED;
                     } else if (! location.hefengResult.heWeather.get(0).status.equals("ok")) {
-                        message.what = REFRESH_DATA_FAILED;
+                        message.what = REFRESH_HEFENG_DATA_FAILED;
                     } else {
                         message.what = REFRESH_HEFENG_DATA_SUCCEED;
                     }
@@ -1229,12 +1232,18 @@ public class WeatherFragment extends Fragment
                     weatherHourlyView.invalidate();
                 }
                 break;
-            default:
+            case REFRESH_JUHE_DATA_FAILED:
                 swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(
                         getActivity(),
                         getString(R.string.refresh_data_failed),
                         Toast.LENGTH_SHORT).show();
+                break;
+            case REFRESH_HEFENG_DATA_FAILED:
+                Toast.makeText(
+                        getActivity(),
+                        getString(R.string.try_set_eng_location),
+                        Toast.LENGTH_LONG).show();
                 break;
         }
     }

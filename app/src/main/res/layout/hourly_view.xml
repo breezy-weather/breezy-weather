@@ -14,6 +14,36 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/card_margin">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/chart_background_other"
+                    android:layout_width="@dimen/mini_word_size"
+                    android:layout_height="@dimen/mini_word_size" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_marginLeft="@dimen/card_margin"
+                android:layout_marginRight="@dimen/card_margin"
+                android:text="@string/time"
+                android:textSize="@dimen/mini_word_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"

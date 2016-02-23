@@ -133,10 +133,10 @@ public class HourlyView extends View {
             paint.reset();
             paint.setAntiAlias(true);
             paint.setStrokeWidth(2);
-            paint.setTextSize(30);
+            paint.setTextSize(35);
             paint.setStyle(Paint.Style.FILL);
             paint.setTextAlign(Paint.Align.RIGHT);
-            paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
+            paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
             canvas.drawText(hour[hour.length - coordinate.length + i], coordinate[i][0] - 10, getMeasuredHeight() - 3 * MARGIN - 10, paint);
         }
         paint.reset();

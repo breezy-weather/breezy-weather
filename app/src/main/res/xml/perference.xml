@@ -24,6 +24,11 @@
             android:summaryOn="@string/navigation_bar_color_switch_on"
             android:summaryOff="@string/navigation_bar_color_switch_off" />
 
+        <CheckBoxPreference
+            android:title="@string/get_hourly_data_by_eng"
+            android:key="@string/key_get_hourly_data_by_eng"
+            android:summary="@string/get_hourly_data_by_eng_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

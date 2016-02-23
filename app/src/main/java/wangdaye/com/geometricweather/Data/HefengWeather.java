@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.Data;
 
-import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -26,7 +26,7 @@ public class HefengWeather {
     public static final int DEF_CONN_TIMEOUT = 30000;
     public static final int DEF_READ_TIMEOUT = 30000;
 
-    public static HefengResult request(String location) {
+    public static HefengResult request(String location, boolean useEnglish) {
         final String httpUrl = "http://apis.baidu.com/heweather/weather/free";
         final String httpArg = "city=";
         final String APP_KEY_1 = "9c66dd2f8347b7b7b69d4521051a5eb5";
@@ -34,9 +34,45 @@ public class HefengWeather {
 
         BufferedReader reader = null;
         String result;
+        String requestCode;
         StringBuffer sbf = new StringBuffer();
-        String locationPinyin = charToPinyin(location);
-        String requestCode = httpUrl + "?" + httpArg + locationPinyin.replaceAll(" ", "");
+
+        if (useEnglish) {
+            String locationEng;
+            switch (location) {
+                case "厦门":
+                    locationEng = "xiamen";
+                    break;
+                case "蚌埠":
+                    locationEng = "bengbu";
+                    break;
+                case "浚县":
+                    locationEng = "xunxian";
+                    break;
+                case "泌阳":
+                    locationEng = "biyang";
+                    break;
+                case "洪洞":
+                    locationEng = "hongtong";
+                    break;
+                case "六安":
+                    locationEng = "luan";
+                    break;
+                case "黄陂":
+                    locationEng = "huangbi";
+                    break;
+                case "番禺":
+                    locationEng = "panyu";
+                    break;
+                default:
+                    locationEng = charToPinyin(location);
+                    break;
+            }
+            requestCode = httpUrl + "?" + httpArg + locationEng.replaceAll(" ", "");
+        } else {
+            requestCode = httpUrl + "?" + httpArg + location;
+        }
+
         HefengResult hefengResult = null;
         try {
             URL url = new URL(requestCode);
