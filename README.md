@@ -33,6 +33,7 @@
 * 天气源：juhe.cn
 * 天气源：heWeather.com
 * json解析:github.com/google/gson
+* 汉字拼音转换：pinyin4j.sourceforge.net
 
 ### 上架情况
 
@@ -62,6 +63,7 @@
 * 聚合数据：https://www.juhe.cn/docs/api/id/73
 * 和风天气：http://apistore.baidu.com/apiworks/servicedetail/478.html
 * google gson：https://github.com/google/gson
+* pinyin4j：https://sourceforge.net/projects/pinyin4j/files/
 
 ## 给自己
 
@@ -70,8 +72,6 @@
 * 找新天气源。
 * 继续优化处理器占用。
 * 修复fc问题。
-* 优化桌面widget更新逻辑。
-* 优化天气通知更新逻辑。
 * 继续调整UI。
 * 整理drawer标签项。
 * 整理menu标签项。
