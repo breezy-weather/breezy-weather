@@ -42,6 +42,11 @@
 * google play： 暂未上线
 * 其他市场暂未有上线计划。
 
+### 感谢
+
+* 感谢少数派进行的推荐
+* 感谢github用户 GavinHua 提交的bug和代码
+
 ### 联系作者
 
 * 在酷安Geometric Weather页面留言
@@ -64,6 +69,7 @@
 * 和风天气：http://apistore.baidu.com/apiworks/servicedetail/478.html
 * google gson：https://github.com/google/gson
 * pinyin4j：https://sourceforge.net/projects/pinyin4j/files/
+* 少数派撰稿：http://sspai.com/33020
 
 ## 给自己
 
