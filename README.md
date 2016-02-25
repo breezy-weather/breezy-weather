@@ -45,7 +45,7 @@
 ### 感谢
 
 * 感谢少数派进行的推荐
-* 感谢github用户 GavinHua 提交的bug和代码
+* 感谢github用户 @GavinHua 提交的bug和代码
 
 ### 联系作者
 
