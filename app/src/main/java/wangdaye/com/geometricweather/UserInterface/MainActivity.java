@@ -104,11 +104,6 @@ public class MainActivity extends AppCompatActivity
         boolean watchedIntroduce = sharedPreferences.getBoolean(getString(R.string.key_watched_introduce), false);
         if (! watchedIntroduce) {
             this.requestPermission();
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(getString(R.string.key_watched_introduce), true);
-            editor.apply();
-            Intent intent = new Intent(this, IntroduceActivity.class);
-            startActivity(intent);
         } else {
             createApp();
         }
@@ -130,9 +125,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onStop() {
-        if (animatorSwitch) {
+        if (started && animatorSwitch) {
             this.weatherFragment.animatorCancel();
-        } else {
+        } else if (started) {
             this.liteWeatherFragment.animatorCancel();
         }
         super.onStop();
@@ -271,6 +266,12 @@ public class MainActivity extends AppCompatActivity
                         LOCATION_PERMISSIONS_REQUEST_CODE);
             }
         } else {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(getString(R.string.key_watched_introduce), true);
+            editor.apply();
+            Intent intent = new Intent(this, IntroduceActivity.class);
+            startActivity(intent);
             this.createApp();
         }
     }
@@ -279,6 +280,12 @@ public class MainActivity extends AppCompatActivity
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permission, @NonNull int[] grantResult) {
         switch (requestCode) {
             case LOCATION_PERMISSIONS_REQUEST_CODE:
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(getString(R.string.key_watched_introduce), true);
+                editor.apply();
+                Intent intent = new Intent(this, IntroduceActivity.class);
+                startActivity(intent);
                 this.createApp();
                 break;
             default:

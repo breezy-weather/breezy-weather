@@ -886,15 +886,20 @@ public class LiteWeatherFragment extends Fragment
     }
 
     public void animatorCancel() {
-        for (AnimatorSet anAnimatorSetsShow : animatorSetsShow) {
-            if (anAnimatorSetsShow != null) {
-                anAnimatorSetsShow.pause();
-                anAnimatorSetsShow.cancel();
+        if (animatorSetsShow != null) {
+            for (AnimatorSet anAnimatorSetsShow : animatorSetsShow) {
+                if (anAnimatorSetsShow != null) {
+                    anAnimatorSetsShow.pause();
+                    anAnimatorSetsShow.cancel();
+                }
             }
-        } for (AnimatorSet anAnimatorSetsIcon : animatorSetsIcon) {
-            if (anAnimatorSetsIcon != null) {
-                anAnimatorSetsIcon.pause();
-                anAnimatorSetsIcon.cancel();
+        }
+        if (animatorSetsIcon != null) {
+            for (AnimatorSet anAnimatorSetsIcon : animatorSetsIcon) {
+                if (anAnimatorSetsIcon != null) {
+                    anAnimatorSetsIcon.pause();
+                    anAnimatorSetsIcon.cancel();
+                }
             }
         }
     }

@@ -161,7 +161,7 @@ public class NotificationService extends Service implements HandlerContainer{
 
     private void refreshUI() {
         // refresh the notification UI
-        if(juheResult == null) {
+        if(this.juheResult == null) {
             Toast.makeText(this,
                     getString(R.string.send_notification_error),
                     Toast.LENGTH_SHORT).show();
@@ -176,8 +176,8 @@ public class NotificationService extends Service implements HandlerContainer{
             isDay = false;
         }
 
-        JuheResult.WeatherNow weatherNow = juheResult.result.data.realtime.weatherNow;
-        List<JuheResult.Weather> weathers = juheResult.result.data.weather;
+        JuheResult.WeatherNow weatherNow = this.juheResult.result.data.realtime.weatherNow;
+        List<JuheResult.Weather> weathers = this.juheResult.result.data.weather;
 
         String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -207,8 +207,8 @@ public class NotificationService extends Service implements HandlerContainer{
                         + "/"
                         + weathers.get(0).info.day.get(2)
                         + "°");
-        String[] time = juheResult.result.data.realtime.time.split(":");
-        String text = juheResult.result.data.realtime.city_name
+        String[] time = this.juheResult.result.data.realtime.time.split(":");
+        String text = this.juheResult.result.data.realtime.city_name
                 + "."
                 + time[0]
                 + ":"
@@ -216,8 +216,8 @@ public class NotificationService extends Service implements HandlerContainer{
         view.setTextViewText(R.id.notification_base_text_remark, text);
         builder.setContent(view);
 
-        Intent intent = new Intent(NotificationService.this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(NotificationService.this, 0, intent, 0);
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         builder.setContentIntent(pendingIntent);
         // text color
         String textColor = sharedPreferences.getString(getString(R.string.key_notification_text_color),

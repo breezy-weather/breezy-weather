@@ -819,25 +819,36 @@ public class WeatherFragment extends Fragment
     }
 
     public void animatorCancel() {
-        for (AnimatorSet anAnimatorSetsShow : animatorSetsShow) {
-            if (anAnimatorSetsShow != null) {
-                anAnimatorSetsShow.pause();
-                anAnimatorSetsShow.cancel();
+        if (animatorSetsShow != null) {
+            for (AnimatorSet anAnimatorSetsShow : animatorSetsShow) {
+                if (anAnimatorSetsShow != null) {
+                    anAnimatorSetsShow.pause();
+                    anAnimatorSetsShow.cancel();
+                }
             }
-        } for (AnimatorSet anAnimatorSetsIcon : animatorSetsIcon) {
-            if (anAnimatorSetsIcon != null) {
-                anAnimatorSetsIcon.pause();
-                anAnimatorSetsIcon.cancel();
+        }
+        if (animatorSetsIcon != null) {
+            for (AnimatorSet anAnimatorSetsIcon : animatorSetsIcon) {
+                if (anAnimatorSetsIcon != null) {
+                    anAnimatorSetsIcon.pause();
+                    anAnimatorSetsIcon.cancel();
+                }
             }
-        } for (AnimatorSet anAnimatorSetsAnimal : animatorSetsAnimal) {
-            if (anAnimatorSetsAnimal != null) {
-                anAnimatorSetsAnimal.pause();
-                anAnimatorSetsAnimal.cancel();
+        }
+        if (animatorSetsAnimal != null) {
+            for (AnimatorSet anAnimatorSetsAnimal : animatorSetsAnimal) {
+                if (anAnimatorSetsAnimal != null) {
+                    anAnimatorSetsAnimal.pause();
+                    anAnimatorSetsAnimal.cancel();
+                }
             }
-        } for (AnimatorSet anAnimatorSetsTouch : animatorSetsTouch) {
-            if (anAnimatorSetsTouch != null) {
-                anAnimatorSetsTouch.pause();
-                anAnimatorSetsTouch.cancel();
+        }
+        if (animatorSetsTouch != null) {
+            for (AnimatorSet anAnimatorSetsTouch : animatorSetsTouch) {
+                if (anAnimatorSetsTouch != null) {
+                    anAnimatorSetsTouch.pause();
+                    anAnimatorSetsTouch.cancel();
+                }
             }
         }
     }

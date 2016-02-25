@@ -4,8 +4,8 @@
     <string name="app_name">Geometric weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
 
-    <string name="version_code">版本号\n1.1.6</string>
-    <string name="note">代码注释\n修复：修复了初次启动应用时fc的bug\n修复：修复了删除城市后刷新fc的bug\n修复：修复了重复申请权限的bug\n优化：优化了退出程序时的动画机制</string>
+    <string name="version_code">版本号\n1.1.8</string>
+    <string name="note">代码注释\n优化：优化了app介绍的启动逻辑</string>
 
     <string name="introduce_title_1">Geometric Weather</string>
     <string name="introduce_title_2">快捷入口</string>
