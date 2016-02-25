@@ -264,6 +264,10 @@ public class LiteWeatherFragment extends Fragment
                     Toast.makeText(getActivity(),
                             getString(R.string.delete_succeed),
                             Toast.LENGTH_SHORT).show();
+                } else if (isCollected) {
+                    Toast.makeText(getActivity(),
+                            getString(R.string.location_list_cannot_be_null),
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     MainActivity.locationList.add(location);
                     writeLocation();
@@ -877,6 +881,20 @@ public class LiteWeatherFragment extends Fragment
                     animatorSetsRise[i].setTarget(weatherIcon[i]);
                     animatorSetsRise[i].start();
                 }
+            }
+        }
+    }
+
+    public void animatorCancel() {
+        for (AnimatorSet anAnimatorSetsShow : animatorSetsShow) {
+            if (anAnimatorSetsShow != null) {
+                anAnimatorSetsShow.pause();
+                anAnimatorSetsShow.cancel();
+            }
+        } for (AnimatorSet anAnimatorSetsIcon : animatorSetsIcon) {
+            if (anAnimatorSetsIcon != null) {
+                anAnimatorSetsIcon.pause();
+                anAnimatorSetsIcon.cancel();
             }
         }
     }

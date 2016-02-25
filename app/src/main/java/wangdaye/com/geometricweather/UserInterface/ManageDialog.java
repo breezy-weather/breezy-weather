@@ -150,6 +150,15 @@ public class ManageDialog extends DialogFragment
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
 
+            if (MainActivity.locationList.size() < 2) {
+                locationItemAdapter.removeData(position);
+                locationItemAdapter.insertData(new LocationItem(MainActivity.locationList.get(position).location), position);
+                Toast.makeText(getActivity(),
+                        getString(R.string.location_list_cannot_be_null),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             String location = MainActivity.locationList.get(position).location;
             initDatabaseHelper();
             deleteLocation(location);
@@ -168,15 +177,13 @@ public class ManageDialog extends DialogFragment
         }
 
         @Override
-        public void onChildDraw(
-                Canvas c,
-                RecyclerView recyclerView,
-                RecyclerView.ViewHolder viewHolder,
-                float dX,
-                float dY,
-                int actionState,
-                boolean isCurrentlyActive
-        ) {
+        public void onChildDraw(Canvas c,
+                                RecyclerView recyclerView,
+                                RecyclerView.ViewHolder viewHolder,
+                                float dX,
+                                float dY,
+                                int actionState,
+                                boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             if(actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
                 final float alpha = 1 - Math.abs(dX) / (float) viewHolder.itemView.getWidth();

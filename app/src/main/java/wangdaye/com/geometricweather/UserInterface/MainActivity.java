@@ -99,16 +99,18 @@ public class MainActivity extends AppCompatActivity
         this.initDatabaseHelper();
         this.initData();
         MainActivity.initNavigationBar(this, getWindow());
-        this.requestPermission();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean watchedIntroduce = sharedPreferences.getBoolean(getString(R.string.key_watched_introduce), false);
         if (! watchedIntroduce) {
+            this.requestPermission();
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(getString(R.string.key_watched_introduce), true);
             editor.apply();
             Intent intent = new Intent(this, IntroduceActivity.class);
             startActivity(intent);
+        } else {
+            createApp();
         }
     }
 
@@ -120,7 +122,20 @@ public class MainActivity extends AppCompatActivity
         } else if (started) {
             this.liteWeatherFragment.showCirclesView();
         }
-        started = true;
+
+        if (weatherFragment != null || liteWeatherFragment != null) {
+            started = true;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        if (animatorSwitch) {
+            this.weatherFragment.animatorCancel();
+        } else {
+            this.liteWeatherFragment.animatorCancel();
+        }
+        super.onStop();
     }
 
     @Override
@@ -249,11 +264,10 @@ public class MainActivity extends AppCompatActivity
 
     private void requestPermission() {
         // request competence
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.INSTALL_LOCATION_PROVIDER)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.INSTALL_LOCATION_PROVIDER)
                     != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(
-                        new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
+                requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
                         LOCATION_PERMISSIONS_REQUEST_CODE);
             }
         } else {
@@ -301,8 +315,6 @@ public class MainActivity extends AppCompatActivity
             liteWeatherFragment.setLocation(locationList.get(0));
             changeFragment(liteWeatherFragment);
         }
-
-
 
         setNavHead();
     }

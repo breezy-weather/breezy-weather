@@ -50,6 +50,11 @@ public class LocationItemAdapter extends RecyclerView.Adapter<LocationItemAdapte
         this.mItemClickListener = listener;
     }
 
+    public void insertData(LocationItem item, int adapterPosition) {
+        this.list.add(adapterPosition, item);
+        this.notifyItemInserted(adapterPosition);
+    }
+
     public void removeData(int adapterPosition) {
         this.list.remove(adapterPosition);
         this.notifyItemRemoved(adapterPosition);

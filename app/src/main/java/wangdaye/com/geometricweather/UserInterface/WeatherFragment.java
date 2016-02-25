@@ -270,7 +270,7 @@ public class WeatherFragment extends Fragment
         locationCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isCollected) {
+                if (isCollected && MainActivity.locationList.size() > 1) {
                     for (int i = 0; i < MainActivity.locationList.size(); i ++) {
                         if (location.location.equals(MainActivity.locationList.get(i).location)) {
                             MainActivity.locationList.remove(i);
@@ -282,6 +282,10 @@ public class WeatherFragment extends Fragment
                     isCollected = false;
                     Toast.makeText(getActivity(),
                             getString(R.string.delete_succeed),
+                            Toast.LENGTH_SHORT).show();
+                } else if (isCollected) {
+                    Toast.makeText(getActivity(),
+                            getString(R.string.location_list_cannot_be_null),
                             Toast.LENGTH_SHORT).show();
                 } else {
                     MainActivity.locationList.add(location);
@@ -667,6 +671,12 @@ public class WeatherFragment extends Fragment
         animatorSetShowView[0].start();
     }
 
+    public void showCirclesView() {
+        this.showAnimals();
+        this.showCircles();
+        this.showWeatherIcon();
+    }
+
     private void setModel() {
         // set model of this vies: day or night.
         if (MainActivity.isDay) {
@@ -804,6 +814,30 @@ public class WeatherFragment extends Fragment
                     animatorSetsRise[i].setTarget(weatherIcon[i]);
                     animatorSetsRise[i].start();
                 }
+            }
+        }
+    }
+
+    public void animatorCancel() {
+        for (AnimatorSet anAnimatorSetsShow : animatorSetsShow) {
+            if (anAnimatorSetsShow != null) {
+                anAnimatorSetsShow.pause();
+                anAnimatorSetsShow.cancel();
+            }
+        } for (AnimatorSet anAnimatorSetsIcon : animatorSetsIcon) {
+            if (anAnimatorSetsIcon != null) {
+                anAnimatorSetsIcon.pause();
+                anAnimatorSetsIcon.cancel();
+            }
+        } for (AnimatorSet anAnimatorSetsAnimal : animatorSetsAnimal) {
+            if (anAnimatorSetsAnimal != null) {
+                anAnimatorSetsAnimal.pause();
+                anAnimatorSetsAnimal.cancel();
+            }
+        } for (AnimatorSet anAnimatorSetsTouch : animatorSetsTouch) {
+            if (anAnimatorSetsTouch != null) {
+                anAnimatorSetsTouch.pause();
+                anAnimatorSetsTouch.cancel();
             }
         }
     }
@@ -992,11 +1026,6 @@ public class WeatherFragment extends Fragment
                 weatherIcon[i].setVisibility(View.GONE);
             }
         }
-    }
-
-    public void showCirclesView() {
-        this.showCircles();
-        this.showWeatherIcon();
     }
 
     @SuppressLint("SetTextI18n")
