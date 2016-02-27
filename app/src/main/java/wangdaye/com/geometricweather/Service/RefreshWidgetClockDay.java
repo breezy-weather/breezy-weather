@@ -26,6 +26,9 @@ import com.baidu.location.Poi;
 import java.util.Calendar;
 import java.util.List;
 
+import wangdaye.com.geometricweather.Data.HefengResult;
+import wangdaye.com.geometricweather.Data.HefengWeather;
+import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.UserInterface.MainActivity;
 import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
@@ -34,14 +37,14 @@ import wangdaye.com.geometricweather.Receiver.WidgetProviderClockDay;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
-/**
- * Created by WangDaYe on 2016/2/15.
- */
 public class RefreshWidgetClockDay extends Service
         implements HandlerContainer {
     // data
-    private boolean showCard;
+    private String locationName;
     private JuheResult juheResult;
+    private HefengResult hefengResult;
+    private boolean showCard;
+    private boolean isDay;
 
     private final int REFRESH_DATA_SUCCEED = 1;
     private final int REFRESH_DATA_FAILED = 0;
@@ -72,7 +75,19 @@ public class RefreshWidgetClockDay extends Service
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.safeHandler = new SafeHandler<>(this);
 
-        this.refreshUIFromLocalData();
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        if (5 < hour && hour < 19) {
+            isDay = true;
+        } else {
+            isDay = false;
+        }
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences(
+                getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE);
+        this.showCard = sharedPreferences.getBoolean(getString(R.string.key_show_card), false);
+        this.locationName = sharedPreferences.getString(getString(R.string.key_location), getString(R.string.local));
+
+        RefreshWidgetClockDay.refreshUIFromLocalData(this, isDay, showCard);
         this.refreshWidget();
 
         this.stopSelf(startId);
@@ -80,13 +95,6 @@ public class RefreshWidgetClockDay extends Service
     }
 
     private void refreshWidget() {
-        SharedPreferences sharedPreferences = this.getSharedPreferences(
-                getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE);
-
-        this.showCard = sharedPreferences.getBoolean(getString(R.string.key_show_card), false);
-        String locationName = sharedPreferences.getString(
-                getString(R.string.key_location),
-                getString(R.string.local));
         if(locationName.equals(getString(R.string.local))) {
             mLocationClient = new LocationClient(this); // 声明LocationClient类
             mLocationClient.registerLocationListener( myListener ); // 注册监听函数
@@ -103,9 +111,20 @@ public class RefreshWidgetClockDay extends Service
             @Override
             public void run()
             { // TODO Auto-generated method stub
-                juheResult = JuheWeather.getRequest(searchLocation);
+                if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                    hefengResult = HefengWeather.requestInternationalData(searchLocation);
+                } else {
+                    juheResult = JuheWeather.getRequest(searchLocation);
+                }
+
                 Message message=new Message();
-                if (juheResult == null) {
+                if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+") && hefengResult == null) {
+                    message.what = REFRESH_DATA_FAILED;
+                } else if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+") && ! hefengResult.heWeather.get(0).status.equals("ok")) {
+                    message.what = REFRESH_DATA_FAILED;
+                } else if (! searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+") && juheResult == null) {
+                    message.what = REFRESH_DATA_FAILED;
+                } else if (! searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+") && ! juheResult.error_code.equals("0")) {
                     message.what = REFRESH_DATA_FAILED;
                 } else {
                     message.what = REFRESH_DATA_SUCCEED;
@@ -136,116 +155,112 @@ public class RefreshWidgetClockDay extends Service
     }
 
     private void refreshUI() {
-        if(this.juheResult != null) {
-            this.refreshUIFromInternet();
+        WeatherInfoToShow info = null;
+        if (locationName.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+            if (hefengResult != null) {
+                if (hefengResult.heWeather.get(0).status.equals("ok")) {
+                    info = HefengWeather.getWeatherInfoToShow(this, hefengResult, isDay);
+                }
+            }
         } else {
+            if (juheResult != null) {
+                if (juheResult.error_code.equals("0")) {
+                    info = JuheWeather.getWeatherInfoToShow(this, juheResult, isDay);
+                }
+            }
+        }
+        if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
+        } else {
+            RefreshWidgetClockDay.refreshUIFromInternet(this, info, isDay, showCard);
         }
     }
 
-    private void refreshUIFromInternet() {
-        boolean isDay;
-        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (5 < hour && hour < 19) {
-            isDay = true;
-        } else {
-            isDay = false;
+    public static void refreshUIFromInternet(Context context, WeatherInfoToShow info, boolean isDay, boolean showCard) {
+        if (info == null) {
+            return;
         }
-        RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_clock_day);
 
-        JuheResult.WeatherNow weatherNow = this.juheResult.result.data.realtime.weatherNow;
-        String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
-        int[] imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day);
+
+        int[] imageId = JuheWeather.getWeatherIcon(info.weatherKindNow, isDay);
         views.setImageViewResource(R.id.widget_clock_day_image, imageId[3]);
-        String[] solar = this.juheResult.result.data.realtime.date.split("-");
-        String dateText = solar[1] + "-" + solar[2]
-                + " " + getString(R.string.week) + this.juheResult.result.data.weather.get(0).week
-                + " / "
-                + this.juheResult.result.data.realtime.moon;
+        String[] solar = info.date.split("-");
+        String dateText = solar[1] + "-" + solar[2] + " " + info.week[0] + info.moon;
         views.setTextViewText(R.id.widget_clock_day_date, dateText);
-        String weatherText = this.juheResult.result.data.realtime.city_name
-                + " / "
-                + weatherNow.weatherInfo + " " + weatherNow.temperature + "℃";
+        String weatherText = info.location + " / " + info.weatherNow + " " + info.tempNow + "℃";
         views.setTextViewText(R.id.widget_clock_day_weather, weatherText);
 
-        if(this.showCard) { // show card
+        if(showCard) { // show card
             views.setViewVisibility(R.id.widget_clock_day_card, View.VISIBLE);
-            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(this, R.color.colorTextDark));
-            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(this, R.color.colorTextDark));
-            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextDark));
         } else { // do not show card
             views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
-            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(this, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(this, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextLight));
         }
 
         Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
-        PendingIntent pendingIntentClock = PendingIntent.getActivity(this, 0, intentClock, 0);
+        PendingIntent pendingIntentClock = PendingIntent.getActivity(context, 0, intentClock, 0);
         views.setOnClickPendingIntent(R.id.widget_clock_day_clock_button, pendingIntentClock);
 
-        Intent intentWeather = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntentWeather = PendingIntent.getActivity(this, 0, intentWeather, 0);
+        Intent intentWeather = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntentWeather = PendingIntent.getActivity(context, 0, intentWeather, 0);
         views.setOnClickPendingIntent(R.id.widget_clock_day_weather_button, pendingIntentWeather);
 
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        appWidgetManager.updateAppWidget(new ComponentName(this, WidgetProviderClockDay.class), views);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        appWidgetManager.updateAppWidget(new ComponentName(context, WidgetProviderClockDay.class), views);
 
-        SharedPreferences.Editor editor = getSharedPreferences(
-                getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE).edit();
-        editor.putBoolean(getString(R.string.key_saved_data), true);
-        editor.putString(getString(R.string.key_weather_kind_today), weatherKind);
-        editor.putString(getString(R.string.key_weather_today), weatherText);
-        editor.putString(getString(R.string.key_city_time), dateText);
+        SharedPreferences.Editor editor = context.getSharedPreferences(
+                context.getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE).edit();
+        editor.putBoolean(context.getString(R.string.key_saved_data), true);
+        editor.putString(context.getString(R.string.key_weather_kind_today), info.weatherKindNow);
+        editor.putString(context.getString(R.string.key_weather_today), weatherText);
+        editor.putString(context.getString(R.string.key_city_time), dateText);
         editor.apply();
     }
 
-    private void refreshUIFromLocalData() {
-        SharedPreferences sharedPreferences = this.getSharedPreferences(
-                getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE);
-        if (! sharedPreferences.getBoolean(getString(R.string.key_saved_data), false)) {
+    public static void refreshUIFromLocalData(Context context, boolean isDay, boolean showCard) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                context.getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE);
+        if (! sharedPreferences.getBoolean(context.getString(R.string.key_saved_data), false)) {
             return;
         }
-        String weatherKindToday = sharedPreferences.getString(getString(R.string.key_weather_kind_today), "阴");
-        String weatherText = sharedPreferences.getString(getString(R.string.key_weather_today), getString(R.string.ellipsis));
-        String dateText = sharedPreferences.getString(getString(R.string.key_city_time), getString(R.string.wait_refresh));
+        String weatherKindToday = sharedPreferences.getString(context.getString(R.string.key_weather_kind_today), "阴");
+        String weatherText = sharedPreferences.getString(context.getString(R.string.key_weather_today), context.getString(R.string.ellipsis));
+        String dateText = sharedPreferences.getString(context.getString(R.string.key_city_time), context.getString(R.string.wait_refresh));
 
-        boolean isDay;
-        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (5 < hour && hour < 19) {
-            isDay = true;
-        } else {
-            isDay = false;
-        }
-
-        RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget_clock_day);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day);
         int[] imageId = JuheWeather.getWeatherIcon(weatherKindToday, isDay);
         views.setImageViewResource(R.id.widget_clock_day_image, imageId[3]);
         views.setTextViewText(R.id.widget_clock_day_date, dateText);
         views.setTextViewText(R.id.widget_clock_day_weather, weatherText);
 
-        if(this.showCard) { // show card
+        if(showCard) { // show card
             views.setViewVisibility(R.id.widget_clock_day_card, View.VISIBLE);
-            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(this, R.color.colorTextDark));
-            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(this, R.color.colorTextDark));
-            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(this, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextDark));
         } else { // do not show card
             views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
-            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(this, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(this, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(this, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextLight));
         }
 
         Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
-        PendingIntent pendingIntentClock = PendingIntent.getActivity(this, 0, intentClock, 0);
+        PendingIntent pendingIntentClock = PendingIntent.getActivity(context, 0, intentClock, 0);
         views.setOnClickPendingIntent(R.id.widget_clock_day_clock_button, pendingIntentClock);
 
-        Intent intentWeather = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntentWeather = PendingIntent.getActivity(this, 0, intentWeather, 0);
+        Intent intentWeather = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntentWeather = PendingIntent.getActivity(context, 0, intentWeather, 0);
         views.setOnClickPendingIntent(R.id.widget_clock_day_weather_button, pendingIntentWeather);
 
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        appWidgetManager.updateAppWidget(new ComponentName(this, WidgetProviderClockDay.class), views);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        appWidgetManager.updateAppWidget(new ComponentName(context, WidgetProviderClockDay.class), views);
     }
 
     // inner class

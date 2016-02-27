@@ -22,11 +22,8 @@ public class MyReceiver extends BroadcastReceiver {
         switch (action) {
             case "android.intent.action.BOOT_COMPLETED":
                 // power on the phone
-                SharedPreferences sharedPreferences
-                        = PreferenceManager.getDefaultSharedPreferences(context);
-                if(sharedPreferences.getBoolean(
-                        context.getString(R.string.key_notification_switch),
-                        false)) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                if(sharedPreferences.getBoolean(context.getString(R.string.key_notification_switch), false)) {
                     Intent intentNotification = new Intent(context, NotificationService.class);
                     context.startService(intentNotification);
                 }

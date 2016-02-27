@@ -38,11 +38,12 @@ import java.util.Calendar;
 import java.util.List;
 
 import wangdaye.com.geometricweather.Data.HefengWeather;
-import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
+import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.Service.NotificationService;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.HourlyView;
 import wangdaye.com.geometricweather.Widget.RippleCardView;
@@ -75,6 +76,7 @@ public class LiteWeatherFragment extends Fragment
     private TextView[] weekText;
 
     private TrendView weatherTrendView;
+    private TextView poweredText;
     private FrameLayout trendContainer;
 
     private HourlyView weatherHourlyView;
@@ -110,6 +112,8 @@ public class LiteWeatherFragment extends Fragment
     // data
     private boolean freshData;
 
+    private WeatherInfoToShow info;
+
     private int[] maxiTemp;
     private int[] miniTemp;
 
@@ -119,10 +123,10 @@ public class LiteWeatherFragment extends Fragment
 
     private boolean[] showIcon;
 
-    private final int REFRESH_JUHE_DATA_SUCCEED = 1;
-    private final int REFRESH_HEFENG_DATA_SUCCEED = 2;
-    private final int REFRESH_JUHE_DATA_FAILED = -1;
-    private final int REFRESH_HEFENG_DATA_FAILED = -2;
+    private final int REFRESH_TOTAL_DATA_SUCCEED = 1;
+    private final int REFRESH_HOURLY_DATA_SUCCEED = 2;
+    private final int REFRESH_TOTAL_DATA_FAILED = -1;
+    private final int REFRESH_HOURLY_DATA_FAILED = -2;
 
     public static boolean isCollected;
 
@@ -171,7 +175,6 @@ public class LiteWeatherFragment extends Fragment
 
 // initialize widget
 
-    @SuppressLint("SetTextI18n")
     private void initWeatherView(View view) {
         this.iconRise = false;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -310,13 +313,14 @@ public class LiteWeatherFragment extends Fragment
         weekIcon[5] = (ImageView) view.findViewById(R.id.icon_image_6);
         weekIcon[6] = (ImageView) view.findViewById(R.id.icon_image_7);
 
+        this.poweredText = (TextView) view.findViewById(R.id.weather_trend_view_powered_text);
         this.trendContainer = (FrameLayout) view.findViewById(R.id.trend_view_container);
         this.weatherTrendView = (TrendView) view.findViewById(R.id.weather_trend_view);
         this.weatherTrendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (location.hefengResult == null || ! location.hefengResult.heWeather.get(0).status.equals("ok") || freshData) {
-                    getHefengWeather();
+                    getHourlyData();
                 }
                 final AnimatorSet animatorSetShow = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.opaque);
                 animatorSetShow.setTarget(hourlyContainer);
@@ -411,7 +415,7 @@ public class LiteWeatherFragment extends Fragment
             // get location
             this.initBaiduLocation();
         } else {
-            this.getJuheWeather(location.location);
+            this.getTotalData(location.location);
         }
     }
 
@@ -453,44 +457,65 @@ public class LiteWeatherFragment extends Fragment
         }
     }
 
-    private void getJuheWeather(final String searchLocation) {
+    private void getTotalData(final String searchLocation) {
         Thread thread=new Thread(new Runnable()
         {
             @Override
             public void run()
             {
-                location.juheResult = JuheWeather.getRequest(searchLocation);
-                Message message = new Message();
-                if (location.juheResult == null) {
-                    message.what = REFRESH_JUHE_DATA_FAILED;
-                } else if (! location.juheResult.error_code.equals("0")) {
-                    message.what = REFRESH_JUHE_DATA_FAILED;
+                if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                    location.hefengResult = HefengWeather.requestInternationalData(searchLocation);
+                    Message message = new Message();
+                    if (location.hefengResult == null) {
+                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    } else if (! location.hefengResult.heWeather.get(0).status.equals("ok")) {
+                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    } else {
+                        message.what = REFRESH_TOTAL_DATA_SUCCEED;
+                    }
+                    safeHandler.sendMessage(message);
                 } else {
-                    message.what = REFRESH_JUHE_DATA_SUCCEED;
+                    location.juheResult = JuheWeather.getRequest(searchLocation);
+                    Message message = new Message();
+                    if (location.juheResult == null) {
+                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    } else if (! location.juheResult.error_code.equals("0")) {
+                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    } else {
+                        message.what = REFRESH_TOTAL_DATA_SUCCEED;
+                    }
+                    safeHandler.sendMessage(message);
                 }
-                safeHandler.sendMessage(message);
             }
         });
         thread.start();
     }
 
-    private void getHefengWeather() {
+    private void getHourlyData() {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 Message message = new Message();
-                if (location.juheResult == null || ! location.juheResult.error_code.equals("0")) {
-                    message.what = REFRESH_HEFENG_DATA_FAILED;
+                if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.hefengResult == null) {
+                    message.what = REFRESH_HOURLY_DATA_FAILED;
+                } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.hefengResult.heWeather.get(0).status.equals("ok")) {
+                    message.what = REFRESH_HOURLY_DATA_FAILED;
+                } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                    message.what = REFRESH_HOURLY_DATA_SUCCEED;
+                } else if (location.juheResult == null) {
+                    message.what = REFRESH_HOURLY_DATA_FAILED;
+                } else if (! location.juheResult.error_code.equals("0")) {
+                    message.what = REFRESH_HOURLY_DATA_FAILED;
                 } else {
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     boolean useEnglish = sharedPreferences.getBoolean(getString(R.string.key_get_hourly_data_by_eng), false);
-                    location.hefengResult = HefengWeather.request(location.juheResult.result.data.realtime.city_name, useEnglish);
+                    location.hefengResult = HefengWeather.requestHourlyData(location.juheResult.result.data.realtime.city_name, useEnglish);
                     if (location.hefengResult == null) {
-                        message.what = REFRESH_HEFENG_DATA_FAILED;
+                        message.what = REFRESH_HOURLY_DATA_FAILED;
                     } else if (! location.hefengResult.heWeather.get(0).status.equals("ok")) {
-                        message.what = REFRESH_HEFENG_DATA_FAILED;
+                        message.what = REFRESH_HOURLY_DATA_FAILED;
                     } else {
-                        message.what = REFRESH_HEFENG_DATA_SUCCEED;
+                        message.what = REFRESH_HOURLY_DATA_SUCCEED;
                     }
                 }
                 safeHandler.sendMessage(message);
@@ -503,8 +528,18 @@ public class LiteWeatherFragment extends Fragment
 
     @SuppressLint("SetTextI18n")
     public void refreshUI() {
-        if (location.juheResult == null || ! location.juheResult.error_code.equals("0")) {
+        if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.hefengResult == null) {
             return;
+        } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.hefengResult.heWeather.get(0).status.equals("ok")) {
+            return;
+        } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+            info = HefengWeather.getWeatherInfoToShow(getActivity(), location.hefengResult, MainActivity.isDay);
+        } else if (location.juheResult == null) {
+            return;
+        } else if (! location.juheResult.error_code.equals("0")) {
+            return;
+        } else {
+            info = JuheWeather.getWeatherInfoToShow(getActivity(), location.juheResult, MainActivity.isDay);
         }
 
         if (MainActivity.needChangeTime()) {
@@ -515,13 +550,9 @@ public class LiteWeatherFragment extends Fragment
             this.setWindowTopColor();
         }
 
-        this.weatherTextLive.setText(location.juheResult.result.data.realtime.weatherNow.weatherInfo
-                + " "
-                + location.juheResult.result.data.realtime.weatherNow.temperature
-                + "℃");
-        String[] time = location.juheResult.result.data.realtime.time.split(":");
-        this.timeTextLive.setText(time[0] + ":" + time[1]);
-        this.locationTextLive.setText(location.juheResult.result.data.realtime.city_name);
+        this.weatherTextLive.setText(info.weatherNow + " " + info.tempNow + "℃");
+        this.timeTextLive.setText(info.refreshTime);
+        this.locationTextLive.setText(info.location);
 
         if (MainActivity.isDay) {
             this.weekWeatherTitle.setTextColor(ContextCompat.getColor(getActivity(), R.color.lightPrimary_3));
@@ -549,58 +580,42 @@ public class LiteWeatherFragment extends Fragment
             if (i == 0) {
                 this.weekText[i].setText(getString(R.string.today));
             } else {
-                this.weekText[i].setText(getString(R.string.week) + location.juheResult.result.data.weather.get(i).week);
+                this.weekText[i].setText(info.week[i]);
             }
 
-            String weatherKind;
-            if (MainActivity.isDay) {
-                weatherKind = JuheWeather.getWeatherKind(location.juheResult.result.data.weather.get(i).info.day.get(1));
-            } else {
-                weatherKind = JuheWeather.getWeatherKind(location.juheResult.result.data.weather.get(i).info.night.get(1));
-            }
-            int[] imageId= JuheWeather.getWeatherIcon(weatherKind, MainActivity.isDay);
+            int[] imageId= JuheWeather.getWeatherIcon(info.weatherKind[i], MainActivity.isDay);
 
             weekIcon[i].setImageResource(imageId[3]);
 
-            final int position = i;
+            final int finalI = i;
             weekIcon[i].setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    if (MainActivity.isDay) {
-                        Toast.makeText(getActivity(),
-                                location.juheResult.result.data.weather.get(position).info.day.get(1),
-                                Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getActivity(),
-                                location.juheResult.result.data.weather.get(position).info.night.get(1),
-                                Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getActivity(),
+                            info.weather[finalI],
+                            Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });
         }
 
         for (int i = 0; i < 7; i ++) {
-            maxiTemp[i] = Integer.parseInt(location.juheResult.result.data.weather.get(i).info.day.get(2));
-            miniTemp[i] = Integer.parseInt(location.juheResult.result.data.weather.get(i).info.night.get(2));
+            maxiTemp[i] = Integer.parseInt(info.maxiTemp[i]);
+            miniTemp[i] = Integer.parseInt(info.miniTemp[i]);
         }
         this.trendContainer.setAlpha(1);
         this.trendContainer.setVisibility(View.VISIBLE);
         this.hourlyContainer.setVisibility(View.GONE);
-        int[] yesterdayTemp = MainActivity.readYesterdayWeather(getActivity(), location);
+        int[] yesterdayTemp = MainActivity.readYesterdayWeather(getActivity(), info);
         this.weatherTrendView.setData(maxiTemp, miniTemp, yesterdayTemp);
         this.weatherTrendView.invalidate();
 
-        this.initWindPower(location.juheResult.result.data.realtime.wind, location.juheResult.result.data.weather.get(0));
-        this.initPm(location.juheResult.result.data.air.pm25);
-        this.initWater(location.juheResult.result.data.realtime.weatherNow);
-        JuheResult.LifeInfo lifeInfo = location.juheResult.result.data.life.lifeInfo;
-        this.initSun(lifeInfo);
-        this.initWear(lifeInfo);
-        this.initIll(lifeInfo);
-        this.initAir(lifeInfo);
-        this.initWashCar(lifeInfo);
-        this.initSport(lifeInfo);
+        if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+            poweredText.setText(getString(R.string.powered_by_hefeng));
+        } else {
+            poweredText.setText(getString(R.string.powered_by_juhe));
+        }
+        this.initLifeInfo(info);
 
         if (MainActivity.isDay) {
             this.windKind.setTextColor(ContextCompat.getColor(getActivity(), R.color.lightPrimary_5));
@@ -653,29 +668,6 @@ public class LiteWeatherFragment extends Fragment
     public void showCirclesView() {
         this.showCircles();
         this.showWeatherIcon();
-    }
-
-    private void setWeatherIcon(JuheResult juheResult) {
-        String weatherKind = JuheWeather.getWeatherKind(juheResult.result.data.realtime.weatherNow.weatherInfo);
-        int[] imageId = JuheWeather.getWeatherIcon(weatherKind, MainActivity.isDay);
-        int[] animatorId = JuheWeather.getAnimatorId(weatherKind, MainActivity.isDay);
-        this.animatorSetsIcon = new AnimatorSet[3];
-
-        this.showIcon = new boolean[3];
-
-        for (int i = 0; i < 3; i ++) {
-            if (imageId[i] != 0) {
-                showIcon[i] = true;
-                weatherIcon[i].setImageResource(imageId[i]);
-                weatherIcon[i].setVisibility(View.VISIBLE);
-                this.animatorSetsIcon[i] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), animatorId[i]);
-                animatorSetsIcon[i].setTarget(weatherIcon[i]);
-                animatorSetsIcon[i].start();
-            } else {
-                showIcon[i] = false;
-                weatherIcon[i].setVisibility(View.GONE);
-            }
-        }
     }
 
     private void changeTime() {
@@ -836,7 +828,13 @@ public class LiteWeatherFragment extends Fragment
     }
 
     public void showWeatherIcon() {
-        if (location.juheResult == null || ! location.juheResult.error_code.equals("0")) {
+        if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.hefengResult == null) {
+            return;
+        } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.hefengResult.heWeather.get(0).status.equals("ok")) {
+            return;
+        } else if (! location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.juheResult == null) {
+            return;
+        } else if (! location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.juheResult.error_code.equals("0")) {
             return;
         }
 
@@ -856,7 +854,7 @@ public class LiteWeatherFragment extends Fragment
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    setWeatherIcon(location.juheResult);
+                    setWeatherIcon();
 
                     for (int i = 0; i < 3; i ++) {
                         if (showIcon[i]) {
@@ -874,7 +872,7 @@ public class LiteWeatherFragment extends Fragment
         } else {
             // just show weather.
             this.iconRise = true;
-            this.setWeatherIcon(location.juheResult);
+            this.setWeatherIcon();
 
             for (int i = 0; i < 3; i ++) {
                 if (showIcon[i]) {
@@ -904,67 +902,55 @@ public class LiteWeatherFragment extends Fragment
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private void initWindPower(JuheResult.Wind windInfo, JuheResult.Weather weatherInfo) {
-        // wind power
-        windKind.setText(weatherInfo.info.day.get(3) + "（" + getString(R.string.live) + windInfo.direct + "）");
-        this.windInfo.setText(weatherInfo.info.day.get(4) + "（" + getString(R.string.live) + windInfo.power + "）");
+    private void setWeatherIcon() {
+        int[] imageId = JuheWeather.getWeatherIcon(info.weatherKindNow, MainActivity.isDay);
+        int[] animatorId = JuheWeather.getAnimatorId(info.weatherKindNow, MainActivity.isDay);
+        this.animatorSetsIcon = new AnimatorSet[3];
+
+        this.showIcon = new boolean[3];
+
+        for (int i = 0; i < 3; i ++) {
+            if (imageId[i] != 0) {
+                showIcon[i] = true;
+                weatherIcon[i].setImageResource(imageId[i]);
+                weatherIcon[i].setVisibility(View.VISIBLE);
+                this.animatorSetsIcon[i] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), animatorId[i]);
+                animatorSetsIcon[i].setTarget(weatherIcon[i]);
+                animatorSetsIcon[i].start();
+            } else {
+                showIcon[i] = false;
+                weatherIcon[i].setVisibility(View.GONE);
+            }
+        }
     }
 
-    @SuppressLint("SetTextI18n")
-    private void initPm(JuheResult.Pm25 pmInfo) {
-        // pm2.5 & pm10
-        pmKind.setText(getString(R.string.pm_25) + " : " + pmInfo.pm25 + " , " + getString(R.string.pm_10) + " : " + pmInfo.pm10);
-        this.pmInfo.setText(getString(R.string.pm_level) + ":" +  pmInfo.quality);
-    }
+    private void initLifeInfo(WeatherInfoToShow info) {
+        windKind.setText(info.windTitle);
+        windInfo.setText(info.windInfo);
 
-    @SuppressLint("SetTextI18n")
-    private void initWater(JuheResult.WeatherNow weatherNowInfo) {
-        // humidity
-        waterKind.setText(getString(R.string.humidity));
-        waterInfo.setText(weatherNowInfo.humidity);
-    }
+        pmKind.setText(info.pmTitle);
+        pmInfo.setText(info.pmInfo);
 
-    @SuppressLint("SetTextI18n")
-    private void initSun(JuheResult.LifeInfo lifeInfo) {
-        // uv
-        sunKind.setText(getString(R.string.uv) + "-" + lifeInfo.ziwaixian.get(0));
-        sunInfo.setText(lifeInfo.ziwaixian.get(1));
-    }
+        waterKind.setText(info.humTitle);
+        waterInfo.setText(info.humInfo);
 
-    @SuppressLint("SetTextI18n")
-    private void initWear(JuheResult.LifeInfo lifeInfo) {
-        // dressing index
-        wearKind.setText(getString(R.string.dressing_index) + "-" + lifeInfo.chuanyi.get(0));
-        wearInfo.setText(lifeInfo.chuanyi.get(1));
-    }
+        sunKind.setText(info.uvTitle);
+        sunInfo.setText(info.uvInfo);
 
-    @SuppressLint("SetTextI18n")
-    private void initIll(JuheResult.LifeInfo lifeInfo) {
-        // cold index
-        illKind.setText(getString(R.string.cold_index) + "-" + lifeInfo.chuanyi.get(0));
-        illInfo.setText(lifeInfo.ganmao.get(1));
-    }
+        wearKind.setText(info.dressTitle);
+        wearInfo.setText(info.dressInfo);
 
-    @SuppressLint("SetTextI18n")
-    private void initAir(JuheResult.LifeInfo lifeInfo) {
-        // air index
-        airKind.setText(getString(R.string.air_index) + "-" + lifeInfo.wuran.get(0));
-        airInfo.setText(lifeInfo.wuran.get(1));
-    }
+        illKind.setText(info.coldTitle);
+        illInfo.setText(info.coldInfo);
 
-    @SuppressLint("SetTextI18n")
-    private void initWashCar(JuheResult.LifeInfo lifeInfo) {
-        // wash car index
-        washCarKind.setText(getString(R.string.wash_car_index) + "-" + lifeInfo.xiche.get(0));
-        washCarInfo.setText(lifeInfo.xiche.get(1));
-    }
+        airKind.setText(info.airTitle);
+        airInfo.setText(info.airInfo);
 
-    @SuppressLint("SetTextI18n")
-    private void initSport(JuheResult.LifeInfo lifeInfo) {
-        // exercise index
-        sportKind.setText(getString(R.string.exercise_index) + "-" + lifeInfo.yundong.get(0));
-        sportInfo.setText(lifeInfo.yundong.get(1));
+        washCarKind.setText(info.washCarTitle);
+        washCarInfo.setText(info.washCarInfo);
+
+        sportKind.setText(info.exerciseTitle);
+        sportInfo.setText(info.exerciseInfo);
     }
 
 // database
@@ -1058,7 +1044,7 @@ public class LiteWeatherFragment extends Fragment
                     getString(R.string.get_location_failed),
                     Toast.LENGTH_SHORT).show();
         }
-        this.getJuheWeather(location);
+        this.getTotalData(location);
 
         sb.append("\nlocationdescribe : ");
         sb.append(bdLocation.getLocationDescribe());// 位置语义化信息
@@ -1081,17 +1067,8 @@ public class LiteWeatherFragment extends Fragment
     public void handleMessage(Message message) {
         switch(message.what)
         {
-            case REFRESH_JUHE_DATA_SUCCEED:
+            case REFRESH_TOTAL_DATA_SUCCEED:
                 freshData = true;
-
-                MainActivity.writeTodayWeather(getActivity(), location);
-                MainActivity.sendNotification(location, getActivity());
-                MainActivity.refreshWidgetDay(location, getActivity());
-                MainActivity.refreshWidgetWeek(location, getActivity());
-                MainActivity.refreshWidgetDayWeek(location, getActivity());
-                MainActivity.refreshWidgetClockDay(location, getActivity());
-                MainActivity.refreshWidgetClockDayCenter(location, getActivity());
-                MainActivity.refreshWidgetClockDayWeek(location, getActivity());
 
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
                 int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -1112,8 +1089,12 @@ public class LiteWeatherFragment extends Fragment
 
                 swipeRefreshLayout.setRefreshing(false);
                 refreshUI();
+
+                MainActivity.writeTodayWeather(getActivity(), info);
+                MainActivity.sendNotification(getActivity(), location);
+                MainActivity.refreshWidget(getActivity(), location, info, MainActivity.isDay);
                 break;
-            case REFRESH_HEFENG_DATA_SUCCEED:
+            case REFRESH_HOURLY_DATA_SUCCEED:
                 freshData = false;
                 if (location.hefengResult.heWeather.get(0).hourly_forecast == null) {
                     weatherHourlyView.setData(null, null);
@@ -1137,14 +1118,14 @@ public class LiteWeatherFragment extends Fragment
                     weatherHourlyView.invalidate();
                 }
                 break;
-            case REFRESH_JUHE_DATA_FAILED:
+            case REFRESH_TOTAL_DATA_FAILED:
                 swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(
                         getActivity(),
                         getString(R.string.refresh_data_failed),
                         Toast.LENGTH_SHORT).show();
                 break;
-            case REFRESH_HEFENG_DATA_FAILED:
+            case REFRESH_HOURLY_DATA_FAILED:
                 Toast.makeText(
                         getActivity(),
                         getString(R.string.try_set_eng_location),

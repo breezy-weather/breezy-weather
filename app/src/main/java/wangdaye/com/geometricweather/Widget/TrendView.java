@@ -32,7 +32,7 @@ public class TrendView extends View {
     private int yesterdayMiniTemp;
     private boolean haveYesterdayData;
 
-    private final int MARGIN = 60;
+    private final int MARGIN = 50;
 
     // TAG
 //    private final String TAG = "TrendView";
@@ -87,7 +87,7 @@ public class TrendView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         float width = getMeasuredWidth();
-        float height = getMeasuredHeight() - 5 * MARGIN;
+        float height = getMeasuredHeight() - 7 * MARGIN;
 
         int highestTemp;
         int lowestTemp;
@@ -123,18 +123,18 @@ public class TrendView extends View {
         float[][] highestCoordinate = new float[7][2]; // x, y
         for (int i = 0; i < highestCoordinate.length; i ++) {
             highestCoordinate[i][0] = (2 * i + 1) * unitWidth; // x
-            highestCoordinate[i][1] = (highestTemp - maxiTemp[i]) * unitHeight + 2 * MARGIN; // y
+            highestCoordinate[i][1] = (highestTemp - maxiTemp[i]) * unitHeight + 3 * MARGIN; // y
         }
 
         float[][] lowestCoordinate = new float[7][2]; // x, y
         for (int i = 0; i < lowestCoordinate.length; i ++) {
             lowestCoordinate[i][0] = (2 * i + 1) * unitWidth; // x
-            lowestCoordinate[i][1] = (highestTemp - miniTemp[i]) * unitHeight + 2 * MARGIN; // y
+            lowestCoordinate[i][1] = (highestTemp - miniTemp[i]) * unitHeight + 3 * MARGIN; // y
         }
 
         float[] yesterdayCoordinate = new float[2];
-        yesterdayCoordinate[0] = (highestTemp - yesterdayMaxiTemp) * unitHeight + 2 * MARGIN;
-        yesterdayCoordinate[1] = (highestTemp - yesterdayMiniTemp) * unitHeight + 2 * MARGIN;
+        yesterdayCoordinate[0] = (highestTemp - yesterdayMaxiTemp) * unitHeight + 3 * MARGIN;
+        yesterdayCoordinate[1] = (highestTemp - yesterdayMiniTemp) * unitHeight + 3 * MARGIN;
 
         this.drawTimeLine(canvas, highestCoordinate);
         this.drawYesterdayLine(canvas, yesterdayCoordinate);
@@ -148,7 +148,7 @@ public class TrendView extends View {
         paint.setStrokeWidth(4);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
         for (float[] aCoordinate : coordinate) {
-            canvas.drawLine(aCoordinate[0], 2 * MARGIN, aCoordinate[0], getMeasuredHeight() - 3 * MARGIN, paint);
+            canvas.drawLine(aCoordinate[0], 3 * MARGIN, aCoordinate[0], getMeasuredHeight() - 4 * MARGIN, paint);
         }
         paint.reset();
     }
@@ -190,7 +190,7 @@ public class TrendView extends View {
     }
 
     private void drawMaxiTemp(Canvas canvas, float[][] coordinate) {
-        Shader linearGradient = new LinearGradient(0, 2 * MARGIN, 0, 7 * MARGIN,
+        Shader linearGradient = new LinearGradient(0, 3 * MARGIN, 0, 8 * MARGIN,
                 Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
         paint.setShader(linearGradient);
         paint.setAntiAlias(true);

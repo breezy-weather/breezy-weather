@@ -31,6 +31,10 @@ import com.baidu.location.Poi;
 import java.util.Calendar;
 import java.util.List;
 
+import wangdaye.com.geometricweather.Data.HefengResult;
+import wangdaye.com.geometricweather.Data.HefengWeather;
+import wangdaye.com.geometricweather.Data.Location;
+import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.UserInterface.MainActivity;
 import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
@@ -48,7 +52,9 @@ public class NotificationService extends Service implements HandlerContainer{
     // data
     private MyDatabaseHelper databaseHelper;
 
+    private String location;
     private JuheResult juheResult;
+    private HefengResult hefengResult;
 
     private final int REFRESH_DATA_SUCCEED = 1;
     private final int REFRESH_DATA_FAILED = 0;
@@ -129,7 +135,7 @@ public class NotificationService extends Service implements HandlerContainer{
 
     private void sendNotification() {
         this.initDatabaseHelper();
-        String location = this.readLocation();
+        location = this.readLocation();
         if(location.equals(getString(R.string.local))) {
             mLocationClient = new LocationClient(getApplicationContext()); // 声明LocationClient类
             mLocationClient.registerLocationListener( myListener ); // 注册监听函数
@@ -146,9 +152,20 @@ public class NotificationService extends Service implements HandlerContainer{
             @Override
             public void run()
             { // TODO Auto-generated method stub
-                juheResult = JuheWeather.getRequest(searchLocation);
+                if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                    hefengResult = HefengWeather.requestInternationalData(searchLocation);
+                } else {
+                    juheResult = JuheWeather.getRequest(searchLocation);
+                }
+
                 Message message=new Message();
-                if (juheResult == null) {
+                if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+") && hefengResult == null) {
+                    message.what = REFRESH_DATA_FAILED;
+                } else if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+") && ! hefengResult.heWeather.get(0).status.equals("ok")) {
+                    message.what = REFRESH_DATA_FAILED;
+                } else if (! searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+") && juheResult == null) {
+                    message.what = REFRESH_DATA_FAILED;
+                } else if (! searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+") && ! juheResult.error_code.equals("0")) {
                     message.what = REFRESH_DATA_FAILED;
                 } else {
                     message.what = REFRESH_DATA_SUCCEED;
@@ -159,15 +176,8 @@ public class NotificationService extends Service implements HandlerContainer{
         thread.start();
     }
 
-    private void refreshUI() {
+    public static void refreshNotification(Context context, WeatherInfoToShow info, boolean isService) {
         // refresh the notification UI
-        if(this.juheResult == null) {
-            Toast.makeText(this,
-                    getString(R.string.send_notification_error),
-                    Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         boolean isDay;
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         if (5 < hour && hour < 19) {
@@ -176,17 +186,13 @@ public class NotificationService extends Service implements HandlerContainer{
             isDay = false;
         }
 
-        JuheResult.WeatherNow weatherNow = this.juheResult.result.data.realtime.weatherNow;
-        List<JuheResult.Weather> weathers = this.juheResult.result.data.weather;
-
-        String weatherKind = JuheWeather.getWeatherKind(weatherNow.weatherInfo);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
         // set level
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (sharedPreferences.getBoolean(getString(R.string.key_hide_notification_in_lockScreen), false)) {
+            if (sharedPreferences.getBoolean(context.getString(R.string.key_hide_notification_in_lockScreen), false)) {
                 builder.setVisibility(Notification.VISIBILITY_SECRET);
             } else {
                 builder.setVisibility(Notification.VISIBILITY_PUBLIC);
@@ -194,226 +200,177 @@ public class NotificationService extends Service implements HandlerContainer{
         }
 
         // small view
-        builder.setSmallIcon(JuheWeather.getMiniWeatherIcon(weatherKind, isDay));
-        RemoteViews view = new RemoteViews(getPackageName(), R.layout.notification_base);
-        int[] imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
+        builder.setSmallIcon(JuheWeather.getMiniWeatherIcon(info.weatherKindNow, isDay));
+        RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.notification_base);
+        int[] imageId = JuheWeather.getWeatherIcon(info.weatherKindNow, isDay);
         view.setImageViewResource(R.id.notification_base_image_today, imageId[3]);
-        view.setTextViewText(R.id.notification_base_text_title,
-                weatherNow.weatherInfo
-                        + " "
-                        + weatherNow.temperature + "℃");
-        view.setTextViewText(R.id.notification_base_text_details,
-                weathers.get(0).info.night.get(2)
-                        + "/"
-                        + weathers.get(0).info.day.get(2)
-                        + "°");
-        String[] time = this.juheResult.result.data.realtime.time.split(":");
-        String text = this.juheResult.result.data.realtime.city_name
-                + "."
-                + time[0]
-                + ":"
-                + time[1];
-        view.setTextViewText(R.id.notification_base_text_remark, text);
+        view.setTextViewText(R.id.notification_base_text_title, info.weatherNow + " " + info.tempNow + "℃");
+        view.setTextViewText(R.id.notification_base_text_details, info.miniTemp[0] + "/" + info.maxiTemp[0] + "°");
+        view.setTextViewText(R.id.notification_base_text_remark, info.location + "." + info.refreshTime);
         builder.setContent(view);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         builder.setContentIntent(pendingIntent);
         // text color
-        String textColor = sharedPreferences.getString(getString(R.string.key_notification_text_color),
-                getString(R.string.notification_text_color_default));
+        String textColor = sharedPreferences.getString(context.getString(R.string.key_notification_text_color),
+                context.getString(R.string.notification_text_color_default));
         switch (textColor) {
             case "dark":
                 int dark = R.color.colorTextDark;
-                view.setTextColor(R.id.notification_base_text_title, ContextCompat.getColor(this, dark));
+                view.setTextColor(R.id.notification_base_text_title, ContextCompat.getColor(context, dark));
                 dark = R.color.colorTextDark2nd;
-                view.setTextColor(R.id.notification_base_text_details, ContextCompat.getColor(this, dark));
-                view.setTextColor(R.id.notification_base_text_remark, ContextCompat.getColor(this, dark));
+                view.setTextColor(R.id.notification_base_text_details, ContextCompat.getColor(context, dark));
+                view.setTextColor(R.id.notification_base_text_remark, ContextCompat.getColor(context, dark));
                 break;
             case "grey":
                 int grey = R.color.colorTextGrey;
-                view.setTextColor(R.id.notification_base_text_title, ContextCompat.getColor(this, grey));
+                view.setTextColor(R.id.notification_base_text_title, ContextCompat.getColor(context, grey));
                 grey = R.color.colorTextGrey2nd;
-                view.setTextColor(R.id.notification_base_text_details, ContextCompat.getColor(this, grey));
-                view.setTextColor(R.id.notification_base_text_remark, ContextCompat.getColor(this, grey));
+                view.setTextColor(R.id.notification_base_text_details, ContextCompat.getColor(context, grey));
+                view.setTextColor(R.id.notification_base_text_remark, ContextCompat.getColor(context, grey));
                 break;
             case "light":
                 int light = R.color.colorTextLight;
-                view.setTextColor(R.id.notification_base_text_title, ContextCompat.getColor(this, light));
+                view.setTextColor(R.id.notification_base_text_title, ContextCompat.getColor(context, light));
                 light = R.color.colorTextLight2nd;
-                view.setTextColor(R.id.notification_base_text_details, ContextCompat.getColor(this, light));
-                view.setTextColor(R.id.notification_base_text_remark, ContextCompat.getColor(this, light));
+                view.setTextColor(R.id.notification_base_text_details, ContextCompat.getColor(context, light));
+                view.setTextColor(R.id.notification_base_text_remark, ContextCompat.getColor(context, light));
                 break;
             default:
                 int defaultColor = R.color.colorTextGrey;
-                view.setTextColor(R.id.notification_base_text_title, ContextCompat.getColor(this, defaultColor));
-                view.setTextColor(R.id.notification_base_text_details, ContextCompat.getColor(this, defaultColor));
-                view.setTextColor(R.id.notification_base_text_remark, ContextCompat.getColor(this, defaultColor));
+                view.setTextColor(R.id.notification_base_text_title, ContextCompat.getColor(context, defaultColor));
+                view.setTextColor(R.id.notification_base_text_details, ContextCompat.getColor(context, defaultColor));
+                view.setTextColor(R.id.notification_base_text_remark, ContextCompat.getColor(context, defaultColor));
                 break;
         }
 
         // big view
-        RemoteViews viewBig = new RemoteViews(getPackageName(), R.layout.notification_big);
+        RemoteViews viewBig = new RemoteViews(context.getPackageName(), R.layout.notification_big);
         // today
-        imageId = JuheWeather.getWeatherIcon(weatherKind, isDay);
+        imageId = JuheWeather.getWeatherIcon(info.weatherKindNow, isDay);
         viewBig.setImageViewResource(R.id.notification_big_image_today, imageId[3]);
-        viewBig.setTextViewText(R.id.notification_big_text_title,
-                weatherNow.weatherInfo
-                        + " "
-                        + weatherNow.temperature + "℃");
-        viewBig.setTextViewText(R.id.notification_big_text_details,
-                weathers.get(0).info.night.get(2)
-                        + "/"
-                        + weathers.get(0).info.day.get(2)
-                        + "°");
-        viewBig.setTextViewText(R.id.notification_big_text_remark, text);
+        viewBig.setTextViewText(R.id.notification_big_text_title, info.weatherNow + " " + info.tempNow + "℃");
+        viewBig.setTextViewText(R.id.notification_big_text_details, info.miniTemp[0] + "/" + info.maxiTemp[0] + "°");
+        viewBig.setTextViewText(R.id.notification_big_text_remark, info.location + "." + info.refreshTime);
         // 1
-        viewBig.setTextViewText(R.id.notification_big_text_week_1,
-                getString(R.string.today));
-        viewBig.setTextViewText(R.id.notification_big_text_temp_1,
-                weathers.get(0).info.night.get(2)
-                + "/"
-                + weathers.get(0).info.day.get(2)
-                + "°");
-        imageId = JuheWeather.getWeatherIcon(JuheWeather.getWeatherKind(weathers.get(0).info.day.get(1)), isDay);
+        viewBig.setTextViewText(R.id.notification_big_text_week_1, context.getString(R.string.today));
+        viewBig.setTextViewText(R.id.notification_big_text_temp_1, info.miniTemp[0] + "/" + info.maxiTemp[0] + "°");
+        imageId = JuheWeather.getWeatherIcon(info.weatherKind[0], isDay);
         viewBig.setImageViewResource(R.id.notification_big_image_1, imageId[3]);
         // 2
-        viewBig.setTextViewText(R.id.notification_big_text_week_2,
-                getString(R.string.week) + weathers.get(1).week);
-        viewBig.setTextViewText(R.id.notification_big_text_temp_2,
-                weathers.get(1).info.night.get(2)
-                        + "/"
-                        + weathers.get(1).info.day.get(2)
-                        + "°");
-        imageId = JuheWeather.getWeatherIcon(JuheWeather.getWeatherKind(weathers.get(1).info.day.get(1)), isDay);
+        viewBig.setTextViewText(R.id.notification_big_text_week_2, info.week[1]);
+        viewBig.setTextViewText(R.id.notification_big_text_temp_2, info.miniTemp[1] + "/" + info.maxiTemp[1] + "°");
+        imageId = JuheWeather.getWeatherIcon(info.weatherKind[1], isDay);
         viewBig.setImageViewResource(R.id.notification_big_image_2, imageId[3]);
         // 3
-        viewBig.setTextViewText(
-                R.id.notification_big_text_week_3,
-                getString(R.string.week) + weathers.get(2).week);
-        viewBig.setTextViewText(
-                R.id.notification_big_text_temp_3,
-                weathers.get(2).info.night.get(2)
-                        + "/"
-                        + weathers.get(2).info.day.get(2)
-                        + "°");
-        imageId = JuheWeather.getWeatherIcon(JuheWeather.getWeatherKind(weathers.get(2).info.day.get(1)), isDay);
+        viewBig.setTextViewText(R.id.notification_big_text_week_3, info.week[2]);
+        viewBig.setTextViewText(R.id.notification_big_text_temp_3, info.miniTemp[2] + "/" + info.maxiTemp[2] + "°");
+        imageId = JuheWeather.getWeatherIcon(info.weatherKind[2], isDay);
         viewBig.setImageViewResource(R.id.notification_big_image_3, imageId[3]);
         // 4
-        viewBig.setTextViewText(
-                R.id.notification_big_text_week_4,
-                getString(R.string.week) + weathers.get(3).week);
-        viewBig.setTextViewText(
-                R.id.notification_big_text_temp_4,
-                weathers.get(3).info.night.get(2)
-                        + "/"
-                        + weathers.get(3).info.day.get(2)
-                        + "°");
-        imageId = JuheWeather.getWeatherIcon(JuheWeather.getWeatherKind(weathers.get(3).info.day.get(1)), isDay);
+        viewBig.setTextViewText(R.id.notification_big_text_week_4, info.week[3]);
+        viewBig.setTextViewText(R.id.notification_big_text_temp_4, info.miniTemp[3] + "/" + info.maxiTemp[3] + "°");
+        imageId = JuheWeather.getWeatherIcon(info.weatherKind[3], isDay);
         viewBig.setImageViewResource(R.id.notification_big_image_4, imageId[3]);
         // 5
-        viewBig.setTextViewText(
-                R.id.notification_big_text_week_5,
-                getString(R.string.week) + weathers.get(4).week);
-        viewBig.setTextViewText(
-                R.id.notification_big_text_temp_5,
-                weathers.get(4).info.night.get(2)
-                        + "/"
-                        + weathers.get(4).info.day.get(2)
-                        + "°");
-        imageId = JuheWeather.getWeatherIcon(JuheWeather.getWeatherKind(weathers.get(4).info.day.get(1)), isDay);
+        viewBig.setTextViewText(R.id.notification_big_text_week_5, info.week[4]);
+        viewBig.setTextViewText(R.id.notification_big_text_temp_5, info.miniTemp[4] + "/" + info.maxiTemp[4] + "°");
+        imageId = JuheWeather.getWeatherIcon(info.weatherKind[4], isDay);
         viewBig.setImageViewResource(R.id.notification_big_image_5, imageId[3]);
         // text color
         switch (textColor) {
             case "dark":
                 int dark = R.color.colorTextDark;
-                viewBig.setTextColor(R.id.notification_big_text_title, ContextCompat.getColor(this, dark));
+                viewBig.setTextColor(R.id.notification_big_text_title, ContextCompat.getColor(context, dark));
                 dark = R.color.colorTextDark2nd;
-                viewBig.setTextColor(R.id.notification_big_text_details, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_remark, ContextCompat.getColor(this, dark));
+                viewBig.setTextColor(R.id.notification_big_text_details, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_remark, ContextCompat.getColor(context, dark));
 
-                viewBig.setTextColor(R.id.notification_big_text_week_1, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_week_2, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_week_3, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_week_4, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_week_5, ContextCompat.getColor(this, dark));
+                viewBig.setTextColor(R.id.notification_big_text_week_1, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_week_2, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_week_3, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_week_4, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_week_5, ContextCompat.getColor(context, dark));
 
-                viewBig.setTextColor(R.id.notification_big_text_temp_1, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_temp_2, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_temp_3, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_temp_4, ContextCompat.getColor(this, dark));
-                viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(this, dark));
+                viewBig.setTextColor(R.id.notification_big_text_temp_1, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_temp_2, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_temp_3, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_temp_4, ContextCompat.getColor(context, dark));
+                viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(context, dark));
                 break;
             case "grey":
                 int grey = R.color.colorTextGrey;
-                viewBig.setTextColor(R.id.notification_big_text_title, ContextCompat.getColor(this, grey));
+                viewBig.setTextColor(R.id.notification_big_text_title, ContextCompat.getColor(context, grey));
                 grey = R.color.colorTextGrey2nd;
-                viewBig.setTextColor(R.id.notification_big_text_details, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_remark, ContextCompat.getColor(this, grey));
+                viewBig.setTextColor(R.id.notification_big_text_details, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_remark, ContextCompat.getColor(context, grey));
 
-                viewBig.setTextColor(R.id.notification_big_text_week_1, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_week_2, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_week_3, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_week_4, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_week_5, ContextCompat.getColor(this, grey));
+                viewBig.setTextColor(R.id.notification_big_text_week_1, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_week_2, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_week_3, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_week_4, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_week_5, ContextCompat.getColor(context, grey));
 
-                viewBig.setTextColor(R.id.notification_big_text_temp_1, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_temp_2, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_temp_3, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_temp_4, ContextCompat.getColor(this, grey));
-                viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(this, grey));
+                viewBig.setTextColor(R.id.notification_big_text_temp_1, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_temp_2, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_temp_3, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_temp_4, ContextCompat.getColor(context, grey));
+                viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(context, grey));
                 break;
             case "light":
                 int light = R.color.colorTextLight;
-                viewBig.setTextColor(R.id.notification_big_text_title, ContextCompat.getColor(this, light));
+                viewBig.setTextColor(R.id.notification_big_text_title, ContextCompat.getColor(context, light));
                 light = R.color.colorTextLight2nd;
-                viewBig.setTextColor(R.id.notification_big_text_details, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_remark, ContextCompat.getColor(this, light));
+                viewBig.setTextColor(R.id.notification_big_text_details, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_remark, ContextCompat.getColor(context, light));
 
-                viewBig.setTextColor(R.id.notification_big_text_week_1, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_week_2, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_week_3, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_week_4, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_week_5, ContextCompat.getColor(this, light));
+                viewBig.setTextColor(R.id.notification_big_text_week_1, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_week_2, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_week_3, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_week_4, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_week_5, ContextCompat.getColor(context, light));
 
-                viewBig.setTextColor(R.id.notification_big_text_temp_1, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_temp_2, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_temp_3, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_temp_4, ContextCompat.getColor(this, light));
-                viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(this, light));
+                viewBig.setTextColor(R.id.notification_big_text_temp_1, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_temp_2, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_temp_3, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_temp_4, ContextCompat.getColor(context, light));
+                viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(context, light));
                 break;
             default:
                 int defaultColor = R.color.colorTextGrey;
-                viewBig.setTextColor(R.id.notification_big_text_title, ContextCompat.getColor(this, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_title, ContextCompat.getColor(context, defaultColor));
                 defaultColor = R.color.colorTextGrey2nd;
-                viewBig.setTextColor(R.id.notification_big_text_details, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_remark, ContextCompat.getColor(this, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_details, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_remark, ContextCompat.getColor(context, defaultColor));
 
-                viewBig.setTextColor(R.id.notification_big_text_week_1, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_week_2, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_week_3, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_week_4, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_week_5, ContextCompat.getColor(this, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_week_1, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_week_2, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_week_3, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_week_4, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_week_5, ContextCompat.getColor(context, defaultColor));
 
-                viewBig.setTextColor(R.id.notification_big_text_temp_1, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_temp_2, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_temp_3, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_temp_4, ContextCompat.getColor(this, defaultColor));
-                viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(this, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_temp_1, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_temp_2, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_temp_3, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_temp_4, ContextCompat.getColor(context, defaultColor));
+                viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(context, defaultColor));
                 break;
         }
         // loading big view
         Notification notification = builder.build();
         notification.bigContentView = viewBig;
         // sound and shock
-        if(sharedPreferences.getBoolean(getString(R.string.key_notification_sound_switch), false)) {
-            notification.defaults |= Notification.DEFAULT_SOUND;
-        }
-        if(sharedPreferences.getBoolean(getString(R.string.key_notification_shock_switch), false)) {
-            notification.defaults |= Notification.DEFAULT_VIBRATE;
+        if (isService) {
+            if(sharedPreferences.getBoolean(context.getString(R.string.key_notification_sound_switch), false)) {
+                notification.defaults |= Notification.DEFAULT_SOUND;
+            }
+            if(sharedPreferences.getBoolean(context.getString(R.string.key_notification_shock_switch), false)) {
+                notification.defaults |= Notification.DEFAULT_VIBRATE;
+            }
         }
         // set clear flag
-        if(sharedPreferences.getBoolean(getString(R.string.key_notification_can_clear_switch), false)) {
+        if(sharedPreferences.getBoolean(context.getString(R.string.key_notification_can_clear_switch), false)) {
             // the notification can be cleared
             notification.flags = Notification.FLAG_AUTO_CANCEL;
         } else {
@@ -531,7 +488,23 @@ public class NotificationService extends Service implements HandlerContainer{
         switch(message.what)
         {
             case REFRESH_DATA_SUCCEED:
-                refreshUI();
+                boolean isDay;
+                int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+                if (5 < hour && hour < 19) {
+                    isDay = true;
+                } else {
+                    isDay = false;
+                }
+
+                if (location != null) {
+                    if (location.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                        WeatherInfoToShow info = HefengWeather.getWeatherInfoToShow(NotificationService.this, hefengResult, isDay);
+                        refreshNotification(NotificationService.this, info, true);
+                    } else {
+                        WeatherInfoToShow info = JuheWeather.getWeatherInfoToShow(NotificationService.this, juheResult, isDay);
+                        refreshNotification(NotificationService.this, info, true);
+                    }
+                }
                 break;
             default:
                 Toast.makeText(this,

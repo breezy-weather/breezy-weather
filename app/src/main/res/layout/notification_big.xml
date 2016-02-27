@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/notification_big_image_today"
                 android:scaleType="fitCenter"
-                android:src="@drawable/weather_sun_day"
+                android:src="@drawable/weather_cloudy"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
 
@@ -44,7 +44,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7℃"
+                    android:text="@string/wait_refresh"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
                     android:textSize="14dp" />
 
@@ -62,7 +62,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="晴，-1/7°"
+                    android:text="@string/ellipsis"
                     android:textSize="14dp"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
                 <TextView
@@ -72,7 +72,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="青岛.17:00"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Time"
                     android:textSize="11dp" />
 
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="星期一"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
             </RelativeLayout>
 
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/weather_sun_day" />
+                    android:src="@drawable/weather_cloudy" />
 
             </RelativeLayout>
 
@@ -134,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="-1/7°"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
             </RelativeLayout>
 
@@ -157,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="星期一"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
             </RelativeLayout>
 
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/weather_sun_day" />
+                    android:src="@drawable/weather_cloudy" />
 
             </RelativeLayout>
 
@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="-1/7°"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
             </RelativeLayout>
 
@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="星期一"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
 
             </RelativeLayout>
@@ -224,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/weather_sun_day" />
+                    android:src="@drawable/weather_cloudy" />
 
             </RelativeLayout>
 
@@ -239,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="-1/7°"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
 
             </RelativeLayout>
@@ -263,7 +263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="星期一"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
 
             </RelativeLayout>
@@ -278,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/weather_sun_day" />
+                    android:src="@drawable/weather_cloudy" />
 
             </RelativeLayout>
 
@@ -293,7 +293,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="-1/7°"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
 
             </RelativeLayout>
@@ -317,7 +317,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="星期一"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent" />
 
             </RelativeLayout>
@@ -332,7 +332,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/weather_sun_day" />
+                    android:src="@drawable/weather_cloudy" />
 
             </RelativeLayout>
 
@@ -347,7 +347,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textSize="14dp"
-                    android:text="-1/7°"
+                    android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent" />
 
             </RelativeLayout>

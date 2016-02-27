@@ -22,6 +22,7 @@
             android:padding="@dimen/activity_vertical_margin">
 
             <TextView
+                android:id="@+id/weather_trend_view_powered_text"
                 android:text="@string/powered_by_juhe"
                 android:textSize="@dimen/mini_word_size"
                 android:layout_width="wrap_content"

@@ -31,7 +31,7 @@ public class HourlyView extends View {
 
     private final String[] hour = new String[] {"01", "04", "07", "10", "13", "16", "19", "22"};
 
-    private final int MARGIN = 60;
+    private final int MARGIN = 50;
 
     public HourlyView(Context context) {
         super(context);
@@ -78,7 +78,7 @@ public class HourlyView extends View {
         }
 
         float width = getMeasuredWidth();
-        float height = getMeasuredHeight() - 5 * MARGIN;
+        float height = getMeasuredHeight() - 7 * MARGIN;
 
         int highestTemp = this.temp[0];
         for (int i = 1; i < temp.length; i ++) {
@@ -107,13 +107,13 @@ public class HourlyView extends View {
         float[][] tempCoordinate = new float[temp.length][2]; // x, y
         for (int i = 0; i < tempCoordinate.length; i ++) {
             tempCoordinate[i][0] = (2 * i + 1) * unitWidth; // x
-            tempCoordinate[i][1] = (highestTemp - temp[i]) * unitHeight + 2 * MARGIN; // y
+            tempCoordinate[i][1] = (highestTemp - temp[i]) * unitHeight + 3 * MARGIN; // y
         }
 
         float[][] popCoordinate = new float[temp.length][2]; // x, y
         for (int i = 0; i < popCoordinate.length; i ++) {
             popCoordinate[i][0] = (2 * i + 1) * unitWidth; // x
-            popCoordinate[i][1] = (100 - pop[i]) / 100 * height  + 2 * MARGIN; // y
+            popCoordinate[i][1] = (100 - pop[i]) / 100 * height  + 3 * MARGIN; // y
         }
 
         this.drawTimeLine(canvas, tempCoordinate);
@@ -128,7 +128,7 @@ public class HourlyView extends View {
             paint.setStyle(Paint.Style.FILL);
             paint.setStrokeWidth(4);
             paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
-            canvas.drawLine(coordinate[i][0], 2 * MARGIN, coordinate[i][0], getMeasuredHeight() - 3 * MARGIN, paint);
+            canvas.drawLine(coordinate[i][0], 3 * MARGIN, coordinate[i][0], getMeasuredHeight() - 4 * MARGIN, paint);
 
             paint.reset();
             paint.setAntiAlias(true);
@@ -137,14 +137,14 @@ public class HourlyView extends View {
             paint.setStyle(Paint.Style.FILL);
             paint.setTextAlign(Paint.Align.RIGHT);
             paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
-            canvas.drawText(hour[hour.length - coordinate.length + i], coordinate[i][0] - 10, getMeasuredHeight() - 3 * MARGIN - 10, paint);
+            canvas.drawText(hour[hour.length - coordinate.length + i], coordinate[i][0] - 10, getMeasuredHeight() - 4 * MARGIN - 10, paint);
         }
         paint.reset();
     }
 
     private void drawPopLine(Canvas canvas, float[][] coordinate) {
         if (coordinate.length == 1) {
-            Shader linearGradientLeft = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] - 5 * MARGIN, coordinate[0][1],
+            Shader linearGradientLeft = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] - 7 * MARGIN, coordinate[0][1],
                     Color.argb(225, 75, 80, 115), Color.argb(0, 75, 80, 115), Shader.TileMode.CLAMP);
             paint.setShader(linearGradientLeft);
             paint.setAntiAlias(true);
@@ -156,7 +156,7 @@ public class HourlyView extends View {
             Path path = new Path();
             path.reset();
             path.moveTo(coordinate[0][0], coordinate[0][1]);
-            path.lineTo(coordinate[0][0] - 5 * MARGIN, coordinate[0][1]);
+            path.lineTo(coordinate[0][0] - 7 * MARGIN, coordinate[0][1]);
             canvas.drawPath(path, paint);
             paint.reset();
             path.reset();
@@ -239,7 +239,7 @@ public class HourlyView extends View {
 
     private void drawTemp(Canvas canvas, float[][] coordinate) {
         if (coordinate.length == 1) {
-            Shader linearGradientLeft = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] - 5 * MARGIN, coordinate[0][1],
+            Shader linearGradientLeft = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] - 7 * MARGIN, coordinate[0][1],
                     ContextCompat.getColor(context, R.color.lightPrimary_3), Color.argb(0, 150, 214, 219), Shader.TileMode.CLAMP);
             paint.setShader(linearGradientLeft);
             paint.setAntiAlias(true);
@@ -251,7 +251,7 @@ public class HourlyView extends View {
             Path path = new Path();
             path.reset();
             path.moveTo(coordinate[0][0], coordinate[0][1]);
-            path.lineTo(coordinate[0][0] - 5 * MARGIN, coordinate[0][1]);
+            path.lineTo(coordinate[0][0] - 7 * MARGIN, coordinate[0][1]);
             canvas.drawPath(path, paint);
             paint.reset();
             path.reset();
@@ -273,7 +273,7 @@ public class HourlyView extends View {
             path.reset();*/
         }
 
-        Shader linearGradient = new LinearGradient(0, 2 * MARGIN, 0, 7 * MARGIN,
+        Shader linearGradient = new LinearGradient(0, 3 * MARGIN, 0, 8 * MARGIN,
                 Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
         paint.setShader(linearGradient);
         paint.setAntiAlias(true);
@@ -330,7 +330,7 @@ public class HourlyView extends View {
         paint.setTextSize(40);
         canvas.drawText(context.getString(R.string.no_data),
                 getMeasuredWidth() / 2,
-                (getMeasuredHeight() - 5 * MARGIN) / 2 + 2 * MARGIN,
+                (getMeasuredHeight() - 7 * MARGIN) / 2 + 3 * MARGIN,
                 paint);
         paint.reset();
     }

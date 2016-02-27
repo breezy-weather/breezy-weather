@@ -89,6 +89,7 @@ public class HefengResult {
     }
 
     public static class Now {
+        public CondNow condNow;
         public String fl;
         public String hum;
         public String pcpn;
@@ -96,5 +97,10 @@ public class HefengResult {
         public String tmp;
         public String vis;
         public Wind wind;
+    }
+
+    public static class CondNow {
+        public String code;
+        public String txt;
     }
 }

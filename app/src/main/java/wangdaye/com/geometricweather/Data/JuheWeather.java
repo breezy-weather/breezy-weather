@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.Data;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -431,5 +432,110 @@ public class JuheWeather {
                 break;
         }
         return imageId;
+    }
+
+    public static WeatherInfoToShow getWeatherInfoToShow(Context context, JuheResult juheResult, boolean isDay) {
+        if (juheResult == null) {
+            return null;
+        } else if (! juheResult.error_code.equals("0")) {
+            return null;
+        }
+
+        WeatherInfoToShow info = new WeatherInfoToShow();
+
+        info.date = juheResult.result.data.realtime.date;
+        info.moon = " / " + juheResult.result.data.realtime.moon;
+
+        String[] time = juheResult.result.data.realtime.time.split(":");
+        info.refreshTime = time[0] + ":" + time[1];
+
+        info.location = juheResult.result.data.realtime.city_name;
+
+        info.weatherNow = juheResult.result.data.realtime.weatherNow.weatherInfo;
+        info.weatherKindNow = JuheWeather.getWeatherKind(info.weatherNow);
+        info.tempNow = juheResult.result.data.realtime.weatherNow.temperature;
+
+        info.week = new String[] {
+                context.getString(R.string.week) + juheResult.result.data.weather.get(0).week,
+                context.getString(R.string.week) + juheResult.result.data.weather.get(1).week,
+                context.getString(R.string.week) + juheResult.result.data.weather.get(2).week,
+                context.getString(R.string.week) + juheResult.result.data.weather.get(3).week,
+                context.getString(R.string.week) + juheResult.result.data.weather.get(4).week,
+                context.getString(R.string.week) + juheResult.result.data.weather.get(5).week,
+                context.getString(R.string.week) + juheResult.result.data.weather.get(6).week
+        };
+        if (isDay) {
+            info.weather = new String[] {
+                    juheResult.result.data.weather.get(0).info.day.get(1),
+                    juheResult.result.data.weather.get(1).info.day.get(1),
+                    juheResult.result.data.weather.get(2).info.day.get(1),
+                    juheResult.result.data.weather.get(3).info.day.get(1),
+                    juheResult.result.data.weather.get(4).info.day.get(1),
+                    juheResult.result.data.weather.get(5).info.day.get(1),
+                    juheResult.result.data.weather.get(6).info.day.get(1)
+            };
+        } else {
+            info.weather = new String[] {
+                    juheResult.result.data.weather.get(0).info.night.get(1),
+                    juheResult.result.data.weather.get(1).info.night.get(1),
+                    juheResult.result.data.weather.get(2).info.night.get(1),
+                    juheResult.result.data.weather.get(3).info.night.get(1),
+                    juheResult.result.data.weather.get(4).info.night.get(1),
+                    juheResult.result.data.weather.get(5).info.night.get(1),
+                    juheResult.result.data.weather.get(6).info.night.get(1)
+            };
+        }
+        info.weatherKind = new String[] {
+                JuheWeather.getWeatherKind(info.weather[0]),
+                JuheWeather.getWeatherKind(info.weather[1]),
+                JuheWeather.getWeatherKind(info.weather[2]),
+                JuheWeather.getWeatherKind(info.weather[3]),
+                JuheWeather.getWeatherKind(info.weather[4]),
+                JuheWeather.getWeatherKind(info.weather[5]),
+                JuheWeather.getWeatherKind(info.weather[6])
+        };
+
+        info.maxiTemp = new String[] {
+                juheResult.result.data.weather.get(0).info.day.get(2),
+                juheResult.result.data.weather.get(1).info.day.get(2),
+                juheResult.result.data.weather.get(2).info.day.get(2),
+                juheResult.result.data.weather.get(3).info.day.get(2),
+                juheResult.result.data.weather.get(4).info.day.get(2),
+                juheResult.result.data.weather.get(5).info.day.get(2),
+                juheResult.result.data.weather.get(6).info.day.get(2)
+        };
+        info.miniTemp = new String[] {
+                juheResult.result.data.weather.get(0).info.night.get(2),
+                juheResult.result.data.weather.get(1).info.night.get(2),
+                juheResult.result.data.weather.get(2).info.night.get(2),
+                juheResult.result.data.weather.get(3).info.night.get(2),
+                juheResult.result.data.weather.get(4).info.night.get(2),
+                juheResult.result.data.weather.get(5).info.night.get(2),
+                juheResult.result.data.weather.get(6).info.night.get(2)
+        };
+
+        info.windTitle = juheResult.result.data.weather.get(0).info.day.get(3)
+                + "(" + context.getString(R.string.live) + juheResult.result.data.realtime.wind.direct + ")";
+        info.windInfo = juheResult.result.data.weather.get(0).info.day.get(4)
+                + "(" + context.getString(R.string.live) + juheResult.result.data.realtime.wind.power + ")";
+        info.pmTitle = context.getString(R.string.pm_25) + " : " + juheResult.result.data.air.pm25.pm25
+                + " , " + context.getString(R.string.pm_10) + " : " + juheResult.result.data.air.pm25.pm10;
+        info.pmInfo = context.getString(R.string.pm_level) + ":" +  juheResult.result.data.air.pm25.quality;
+        info.humTitle = context.getString(R.string.humidity);
+        info.humInfo = juheResult.result.data.realtime.weatherNow.humidity;
+        info.uvTitle = context.getString(R.string.uv) + "-" + juheResult.result.data.life.lifeInfo.ziwaixian.get(0);
+        info.uvInfo = juheResult.result.data.life.lifeInfo.ziwaixian.get(1);
+        info.dressTitle = context.getString(R.string.dressing_index) + "-" + juheResult.result.data.life.lifeInfo.chuanyi.get(0);
+        info.dressInfo = juheResult.result.data.life.lifeInfo.chuanyi.get(1);
+        info.coldTitle = context.getString(R.string.cold_index) + "-" + juheResult.result.data.life.lifeInfo.chuanyi.get(0);
+        info.coldInfo = juheResult.result.data.life.lifeInfo.ganmao.get(1);
+        info.airTitle = context.getString(R.string.air_index) + "-" + juheResult.result.data.life.lifeInfo.wuran.get(0);
+        info.airInfo = juheResult.result.data.life.lifeInfo.wuran.get(1);
+        info.washCarTitle = context.getString(R.string.wash_car_index) + "-" + juheResult.result.data.life.lifeInfo.xiche.get(0);
+        info.washCarInfo = juheResult.result.data.life.lifeInfo.xiche.get(1);
+        info.exerciseTitle = context.getString(R.string.exercise_index) + "-" + juheResult.result.data.life.lifeInfo.yundong.get(0);
+        info.exerciseInfo = juheResult.result.data.life.lifeInfo.yundong.get(1);
+
+        return info;
     }
 }
