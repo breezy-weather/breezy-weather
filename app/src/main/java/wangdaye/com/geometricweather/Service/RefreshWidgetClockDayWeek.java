@@ -171,7 +171,7 @@ public class RefreshWidgetClockDayWeek extends Service
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetClockDay.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetClockDayWeek.refreshUIFromInternet(this, info, isDay, showCard);
         }
     }
 
