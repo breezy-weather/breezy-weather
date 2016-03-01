@@ -12,8 +12,9 @@ import android.view.View;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Created by WangDaYe on 2016/2/17.
- */
+ * The indicator in introduce activity.
+ * */
+
 public class CircleIndicator extends View {
     // widget
     private Context context;

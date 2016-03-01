@@ -3,8 +3,9 @@ package wangdaye.com.geometricweather.Data;
 import java.util.List;
 
 /**
- * Created by WangDaYe on 2016/2/21.
- */
+ * The google gson's result from heweather.com.
+ * */
+
 public class HefengResult {
     public List<HeWeather> heWeather;
 

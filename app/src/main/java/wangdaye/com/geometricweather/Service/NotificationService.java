@@ -33,7 +33,6 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.Data.HefengResult;
 import wangdaye.com.geometricweather.Data.HefengWeather;
-import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.UserInterface.MainActivity;
 import wangdaye.com.geometricweather.Data.JuheResult;
@@ -45,8 +44,8 @@ import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * Send notification.
+ * */
 
 public class NotificationService extends Service implements HandlerContainer{
     // data

@@ -10,8 +10,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.NotificationService;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * My receiver.
+ * */
 
 public class MyReceiver extends BroadcastReceiver {
     // TAG

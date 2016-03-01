@@ -14,8 +14,8 @@ import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * Recycler view adapter in manage adapter.
+ * */
 
 public class LocationItemAdapter extends RecyclerView.Adapter<LocationItemAdapter.ViewHolder> {
     // widget

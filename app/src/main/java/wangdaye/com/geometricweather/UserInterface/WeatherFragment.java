@@ -49,8 +49,8 @@ import wangdaye.com.geometricweather.Widget.SafeHandler;
 import wangdaye.com.geometricweather.Widget.TrendView;
 
 /**
- * Created by WangDaYe on 2016/2/3.
- */
+ * A fragment to show weather information.
+ * */
 
 public class WeatherFragment extends Fragment
         implements BDLocationListener, HandlerContainer {
@@ -1179,8 +1179,9 @@ public class WeatherFragment extends Fragment
             Toast.makeText(getActivity(),
                     getString(R.string.get_location_failed),
                     Toast.LENGTH_SHORT).show();
+        } else {
+            this.getTotalData(location);
         }
-        this.getTotalData(location);
 
         sb.append("\nlocationdescribe : ");
         sb.append(bdLocation.getLocationDescribe());// 位置语义化信息

@@ -3,8 +3,9 @@ package wangdaye.com.geometricweather.Widget;
 import android.os.Message;
 
 /**
- * Created by WangDaYe on 2016/2/6.
- */
+ * Handler container interface.
+ * */
+
 public interface HandlerContainer {
     void handleMessage(Message message);
 }

@@ -57,6 +57,10 @@ import wangdaye.com.geometricweather.Service.RefreshWidgetDay;
 import wangdaye.com.geometricweather.Service.RefreshWidgetDayWeek;
 import wangdaye.com.geometricweather.Service.RefreshWidgetWeek;
 
+/**
+ * Main activity.
+ * */
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ManageDialog.SetLocationListener {
     // widget

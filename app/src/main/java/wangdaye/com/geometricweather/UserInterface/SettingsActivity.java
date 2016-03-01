@@ -9,8 +9,8 @@ import android.view.WindowManager;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * Settings activity.
+ * */
 
 public class SettingsActivity extends AppCompatActivity {
     // TAG

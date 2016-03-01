@@ -15,11 +15,10 @@ import android.widget.Toast;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.NotificationService;
-import wangdaye.com.geometricweather.Service.WidgetService;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * A fragment to show settings.
+ * */
 
 public class SettingsFragment extends PreferenceFragment {
 
@@ -47,9 +46,7 @@ public class SettingsFragment extends PreferenceFragment {
                     Toast.LENGTH_SHORT).show();
         } else if (preference.getKey().equals(getString(R.string.key_navigation_bar_color_switch))) {
             MainActivity.initNavigationBar(getActivity(), getActivity().getWindow());
-        } else if (preference.getKey().equals(getString(R.string.refresh_widget))) {
-            refreshWidget();
-        } else if (preference.getKey().equals(getString(R.string.key_notification_switch))) {
+        }  else if (preference.getKey().equals(getString(R.string.key_notification_switch))) {
             initNotificationPart();
             SharedPreferences sharedPreferences
                     = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -148,15 +145,6 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
 // option feedback
-
-    private void refreshWidget() {
-        Intent intent = new Intent(getActivity(), WidgetService.class);
-        getActivity().startService(intent);
-        Toast.makeText(
-                getActivity(),
-                getString(R.string.refresh_widget),
-                Toast.LENGTH_SHORT).show();
-    }
 
     private void startNotificationService() {
         Intent intent = new Intent(getActivity(), NotificationService.class);

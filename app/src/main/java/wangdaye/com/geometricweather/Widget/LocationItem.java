@@ -1,8 +1,9 @@
 package wangdaye.com.geometricweather.Widget;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * Recycler view item in manage dialog.
+ * */
+
 public class LocationItem {
     // data
     public String locationName;

@@ -15,8 +15,9 @@ import wangdaye.com.geometricweather.Service.RefreshWidgetClockDayCenter;
 import wangdaye.com.geometricweather.Service.RefreshWidgetDay;
 
 /**
- * Created by WangDaYe on 2016/2/16.
- */
+ * Widget provider of the widget [clock + day (center)].
+ * */
+
 public class WidgetProviderClockDayCenter extends AppWidgetProvider {
     // widget
     private PendingIntent pendingIntent = null;

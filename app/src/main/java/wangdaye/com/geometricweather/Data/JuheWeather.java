@@ -20,8 +20,9 @@ import java.util.Map;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Created by WangDaYe on 2016/2/4.
- */
+ * juhe.cn
+ * */
+
 public class JuheWeather {
     // data
     public static final String DEF_CHATSET = "UTF-8";

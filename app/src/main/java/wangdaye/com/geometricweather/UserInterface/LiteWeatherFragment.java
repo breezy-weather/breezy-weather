@@ -43,7 +43,6 @@ import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.Service.NotificationService;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.HourlyView;
 import wangdaye.com.geometricweather.Widget.RippleCardView;
@@ -51,8 +50,8 @@ import wangdaye.com.geometricweather.Widget.SafeHandler;
 import wangdaye.com.geometricweather.Widget.TrendView;
 
 /**
- * Created by WangDaYe on 2016/2/10.
- */
+ * A simple fragment to show weather information.
+ * */
 
 public class LiteWeatherFragment extends Fragment
         implements BDLocationListener, HandlerContainer {
@@ -1043,8 +1042,9 @@ public class LiteWeatherFragment extends Fragment
             Toast.makeText(getActivity(),
                     getString(R.string.get_location_failed),
                     Toast.LENGTH_SHORT).show();
+        } else {
+            this.getTotalData(location);
         }
-        this.getTotalData(location);
 
         sb.append("\nlocationdescribe : ");
         sb.append(bdLocation.getLocationDescribe());// 位置语义化信息

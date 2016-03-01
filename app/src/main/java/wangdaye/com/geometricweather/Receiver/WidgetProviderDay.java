@@ -14,8 +14,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.RefreshWidgetDay;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * Widget provider of the widget [day].
+ * */
 
 public class WidgetProviderDay extends AppWidgetProvider {
     // widget

@@ -1,8 +1,9 @@
 package wangdaye.com.geometricweather.Data;
 
 /**
- * Created by WangDaYe on 2016/2/26.
- */
+ * A class to save weather information from internet and show them in UI.
+ * */
+
 public class WeatherInfoToShow {
     public String date;
     public String moon;

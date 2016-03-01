@@ -11,15 +11,14 @@ import android.graphics.Shader;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
-import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Created by WangDaYe on 2016/2/21.
- */
+ * Show the trend of the hourly data.
+ * */
+
 public class HourlyView extends View {
     // widget
     private Paint paint;

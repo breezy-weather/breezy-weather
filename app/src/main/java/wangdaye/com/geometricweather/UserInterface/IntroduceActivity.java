@@ -22,8 +22,8 @@ import wangdaye.com.geometricweather.Widget.CircleIndicator;
 import wangdaye.com.geometricweather.Widget.ViewPagerAdapter;
 
 /**
- * Created by WangDaYe on 2016/2/18.
- */
+ * Show the introduction about the application.
+ * */
 
 public class IntroduceActivity extends Activity {
     // widget

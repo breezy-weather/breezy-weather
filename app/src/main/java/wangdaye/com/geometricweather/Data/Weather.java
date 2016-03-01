@@ -1,8 +1,9 @@
 package wangdaye.com.geometricweather.Data;
 
 /**
- * Created by WangDaYe on 2016/2/23.
- */
+ * A class to save weather information from database.
+ * */
+
 public class Weather {
     // data
     public String location;

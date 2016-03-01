@@ -37,6 +37,11 @@ import wangdaye.com.geometricweather.Receiver.WidgetProviderClockDayWeek;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
+/**
+ * A service to refresh widget [clock + day + week].
+ * */
+
+
 public class RefreshWidgetClockDayWeek extends Service
         implements HandlerContainer {
     // data

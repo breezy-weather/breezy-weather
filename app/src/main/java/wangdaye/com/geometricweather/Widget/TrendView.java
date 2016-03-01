@@ -16,8 +16,8 @@ import android.view.View;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Created by WangDaYe on 2016/2/6.
- */
+ * Show trend of daily data.
+ * */
 
 public class TrendView extends View {
     // widget

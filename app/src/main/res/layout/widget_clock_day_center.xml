@@ -22,71 +22,53 @@
         android:layout_centerInParent="true"
         android:elevation="5dp"
         android:layout_width="156dp"
-        android:layout_height="156dp">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_centerVertical="true"
-                android:elevation="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp">
-
-                    <TextClock
-                        android:id="@+id/widget_clock_day_center_clock"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:format24Hour="HH:mm"
-                        android:format12Hour="hh:mm"
-                        android:textStyle="normal"
-                        android:textSize="50sp"
-                        android:fontFamily="sans-serif-light"
-                        android:textColor="@color/colorTextLight"
-                        android:shadowColor="@color/colorTextGrey"
-                        android:shadowDx="1"
-                        android:shadowDy="1"
-                        android:shadowRadius="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/normal_title_size">
-
-                    <TextView
-                        android:id="@+id/widget_clock_day_center_date"
-                        android:text="@string/wait_refresh"
-                        android:textSize="@dimen/mini_word_size"
-                        android:textColor="@color/colorTextLight"
-                        android:shadowColor="@color/colorTextGrey"
-                        android:shadowDx="1"
-                        android:shadowDy="1"
-                        android:shadowRadius="1"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
+            <TextClock
+                android:id="@+id/widget_clock_day_center_clock"
+                android:layout_centerHorizontal="true"
+                android:format24Hour="HH:mm"
+                android:format12Hour="hh:mm"
+                android:textStyle="normal"
+                android:textSize="50sp"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/colorTextLight"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="11">
+            android:layout_height="@dimen/normal_title_size">
+
+            <TextView
+                android:id="@+id/widget_clock_day_center_date"
+                android:text="@string/wait_refresh"
+                android:textSize="@dimen/mini_word_size"
+                android:textColor="@color/colorTextLight"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dp">
 
             <RelativeLayout
                 android:layout_width="156dp"

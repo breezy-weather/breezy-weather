@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.UserInterface;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -28,8 +29,8 @@ import wangdaye.com.geometricweather.Widget.LocationItemAdapter;
 import wangdaye.com.geometricweather.Widget.MyItemClickListener;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * A dialog to show and manage locations.
+ * */
 
 public class ManageDialog extends DialogFragment
         implements MyItemClickListener {
@@ -53,6 +54,7 @@ public class ManageDialog extends DialogFragment
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+        @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.manage_dialog, null);
         builder.setView(view);
 

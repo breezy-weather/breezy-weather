@@ -47,6 +47,10 @@ import wangdaye.com.geometricweather.Service.RefreshWidgetClockDay;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
+/**
+ * Create the widget [clock + day] on the launcher.
+ * */
+
 public class CreateWidgetClockDayActivity extends Activity
         implements HandlerContainer{
     // widget
@@ -333,7 +337,13 @@ public class CreateWidgetClockDayActivity extends Activity
                 sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
             }
 
-            getWeather(locationName);
+            if (locationName == null) {
+                Toast.makeText(CreateWidgetClockDayActivity.this,
+                        getString(R.string.get_location_failed),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                getWeather(locationName);
+            }
 
             sb.append("\nlocationdescribe : ");
             sb.append(location.getLocationDescribe());// 位置语义化信息

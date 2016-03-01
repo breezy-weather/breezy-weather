@@ -2,14 +2,13 @@ package wangdaye.com.geometricweather.Widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 
 /**
- * Created by WangDaYe on 2016/2/5.
- */
+ * Card view.
+ * */
+
 public class RippleCardView extends CardView {
     // widget
 //    private Paint paint;

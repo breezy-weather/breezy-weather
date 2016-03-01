@@ -44,10 +44,6 @@
             android:dialogTitle="@string/widget_time_title"
             android:defaultValue="@string/widget_time_default" />
 
-        <Preference
-            android:key="@string/refresh_widget"
-            android:title="@string/refresh_widget" />
-
     </PreferenceCategory>
 
     <PreferenceCategory

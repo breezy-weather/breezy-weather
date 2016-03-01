@@ -111,7 +111,6 @@
         <service android:name=".Service.NotificationService" />
 
         <!-- widget service -->
-        <service android:name=".Service.WidgetService" />
         <service android:name=".Service.RefreshWidgetDay" />
         <service android:name=".Service.RefreshWidgetWeek" />
         <service android:name=".Service.RefreshWidgetDayWeek" />
@@ -120,7 +119,6 @@
         <service android:name=".Service.RefreshWidgetClockDayWeek" />
 
         <!-- receiver -->
-        <receiver android:name=".Receiver.WidgetReceiver" />
         <receiver android:name=".Receiver.NotificationReceiver" />
 
         <receiver

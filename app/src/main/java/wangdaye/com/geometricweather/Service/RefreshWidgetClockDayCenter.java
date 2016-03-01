@@ -37,6 +37,11 @@ import wangdaye.com.geometricweather.Receiver.WidgetProviderClockDayCenter;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
+/**
+ * A service to refresh widget [clock + day (center)].
+ * */
+
+
 public class RefreshWidgetClockDayCenter extends Service
         implements HandlerContainer {
     // data

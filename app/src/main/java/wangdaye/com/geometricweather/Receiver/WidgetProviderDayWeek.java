@@ -4,22 +4,18 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.RefreshWidgetDayWeek;
-import wangdaye.com.geometricweather.Service.RefreshWidgetWeek;
-import wangdaye.com.geometricweather.Service.WidgetService;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * Widget provider of the widget [day + week].
+ * */
 
 public class WidgetProviderDayWeek extends AppWidgetProvider {
     // widget

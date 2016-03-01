@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.Receiver;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -13,11 +12,11 @@ import android.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.RefreshWidgetClockDay;
-import wangdaye.com.geometricweather.Service.RefreshWidgetDay;
 
 /**
- * Created by WangDaYe on 2016/2/15.
- */
+ * Widget provider of the widget [clock + day].
+ * */
+
 public class WidgetProviderClockDay extends AppWidgetProvider {
     // widget
     private PendingIntent pendingIntent = null;

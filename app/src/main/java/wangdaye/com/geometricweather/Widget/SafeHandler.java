@@ -5,8 +5,9 @@ import android.os.Handler;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by WangDaYe on 2016/2/6.
- */
+ * Safe handler.
+ * */
+
 public class SafeHandler<T extends HandlerContainer> extends Handler {
     protected WeakReference<T> mRef;
 

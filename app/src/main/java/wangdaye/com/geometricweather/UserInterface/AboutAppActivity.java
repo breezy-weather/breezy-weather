@@ -17,8 +17,8 @@ import android.widget.TextView;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * Show application's details.
+ * */
 
 public class AboutAppActivity extends AppCompatActivity {
     // TAG

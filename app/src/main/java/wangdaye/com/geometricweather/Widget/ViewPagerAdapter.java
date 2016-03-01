@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+/**
+ * View pager adapter in introduce activity.
+ * */
 
 public class ViewPagerAdapter extends PagerAdapter {
     // widget

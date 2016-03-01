@@ -2,8 +2,6 @@ package wangdaye.com.geometricweather.Data;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -26,8 +24,8 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Created by WangDaYe on 2016/2/21.
- */
+ * heweather.com
+ * */
 
 public class HefengWeather {
     // data

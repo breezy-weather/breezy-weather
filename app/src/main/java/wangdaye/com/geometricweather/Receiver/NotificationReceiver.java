@@ -7,8 +7,8 @@ import android.content.Intent;
 import wangdaye.com.geometricweather.Service.NotificationService;
 
 /**
- * Created by WangDaYe on 2016/2/8.
- */
+ * Start the notification service after it wake this receiver up.
+ * */
 
 public class NotificationReceiver extends BroadcastReceiver {
     // TAG

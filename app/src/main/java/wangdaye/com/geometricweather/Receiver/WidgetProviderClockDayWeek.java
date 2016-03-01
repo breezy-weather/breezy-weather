@@ -11,12 +11,12 @@ import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.Service.RefreshWidgetClockDay;
 import wangdaye.com.geometricweather.Service.RefreshWidgetClockDayWeek;
 
 /**
- * Created by WangDaYe on 2016/2/16.
- */
+ * Widget provider of the widget [clock + day + week].
+ * */
+
 public class WidgetProviderClockDayWeek extends AppWidgetProvider {
     // widget
     private PendingIntent pendingIntent = null;
