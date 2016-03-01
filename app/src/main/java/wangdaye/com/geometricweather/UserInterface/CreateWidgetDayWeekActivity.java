@@ -56,6 +56,7 @@ public class CreateWidgetDayWeekActivity extends Activity
     private ImageView imageViewCard;
     private TextView textViewWeatherNow;
     private TextView textViewTempNow;
+    private TextView refreshTime;
     private TextView[] textViewWeek;
     private TextView[] textViewTemp;
 
@@ -66,6 +67,8 @@ public class CreateWidgetDayWeekActivity extends Activity
     private JuheResult juheResult;
     private HefengResult hefengResult;
     private boolean showCard = false;
+    private boolean hideRefreshTime = false;
+    private boolean blackText = false;
     private boolean isDay;
 
     private MyDatabaseHelper databaseHelper;
@@ -113,6 +116,7 @@ public class CreateWidgetDayWeekActivity extends Activity
 
         this.textViewWeatherNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_weather);
         this.textViewTempNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_temp);
+        this.refreshTime = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_time);
 
         this.textViewWeek = new TextView[4];
         this.textViewWeek[0] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_1);
@@ -167,11 +171,53 @@ public class CreateWidgetDayWeekActivity extends Activity
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
-                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                    if (! blackText) {
+                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        for(int i = 0; i < 4; i ++) {
+                            textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                            textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        }
+                    }
+                }
+            }
+        });
+
+        Switch switchTime = (Switch) this.findViewById(R.id.create_widget_day_switch_time);
+        switchTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    refreshTime.setVisibility(View.GONE);
+                    hideRefreshTime = true;
+                } else {
+                    refreshTime.setVisibility(View.VISIBLE);
+                    hideRefreshTime = false;
+                }
+            }
+        });
+
+        Switch switchText = (Switch) this.findViewById(R.id.create_widget_day_switch_text);
+        switchText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    blackText = true;
+                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
                     for(int i = 0; i < 4; i ++) {
-                        textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                        textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    }
+                } else {
+                    blackText = false;
+                    if (! showCard) {
+                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        for(int i = 0; i < 4; i ++) {
+                            textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                            textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        }
                     }
                 }
             }
@@ -186,6 +232,8 @@ public class CreateWidgetDayWeekActivity extends Activity
                         MODE_PRIVATE).edit();
                 editor.putString(getString(R.string.key_location), locationName);
                 editor.putBoolean(getString(R.string.key_show_card), showCard);
+                editor.putBoolean(getString(R.string.key_hide_refresh_time), hideRefreshTime);
+                editor.putBoolean(getString(R.string.key_black_text), blackText);
                 editor.apply();
 
                 Intent intent = getIntent();
@@ -199,7 +247,7 @@ public class CreateWidgetDayWeekActivity extends Activity
                 buttonDone.setText(getString(R.string.first_refresh_widget));
                 buttonDone.setEnabled(true);
 
-                RefreshWidgetDayWeek.refreshUIFromLocalData(CreateWidgetDayWeekActivity.this, isDay, showCard);
+                RefreshWidgetDayWeek.refreshUIFromLocalData(CreateWidgetDayWeekActivity.this, isDay);
                 refreshWidget();
 
                 Intent resultValue = new Intent();
@@ -311,7 +359,7 @@ public class CreateWidgetDayWeekActivity extends Activity
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetDayWeek.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetDayWeek.refreshUIFromInternet(this, info, isDay);
         }
     }
 

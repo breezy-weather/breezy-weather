@@ -47,7 +47,6 @@ public class RefreshWidgetClockDay extends Service
     private String locationName;
     private JuheResult juheResult;
     private HefengResult hefengResult;
-    private boolean showCard;
     private boolean isDay;
 
     private final int REFRESH_DATA_SUCCEED = 1;
@@ -88,10 +87,9 @@ public class RefreshWidgetClockDay extends Service
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(
                 getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE);
-        this.showCard = sharedPreferences.getBoolean(getString(R.string.key_show_card), false);
         this.locationName = sharedPreferences.getString(getString(R.string.key_location), getString(R.string.local));
 
-        RefreshWidgetClockDay.refreshUIFromLocalData(this, isDay, showCard);
+        RefreshWidgetClockDay.refreshUIFromLocalData(this, isDay);
         this.refreshWidget();
 
         this.stopSelf(startId);
@@ -176,11 +174,11 @@ public class RefreshWidgetClockDay extends Service
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetClockDay.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetClockDay.refreshUIFromInternet(this, info, isDay);
         }
     }
 
-    public static void refreshUIFromInternet(Context context, WeatherInfoToShow info, boolean isDay, boolean showCard) {
+    public static void refreshUIFromInternet(Context context, WeatherInfoToShow info, boolean isDay) {
         if (info == null) {
             return;
         }
@@ -195,16 +193,26 @@ public class RefreshWidgetClockDay extends Service
         String weatherText = info.location + " / " + info.weatherNow + " " + info.tempNow + "℃";
         views.setTextViewText(R.id.widget_clock_day_weather, weatherText);
 
-        if(showCard) { // show card
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                context.getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE);
+        boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
+        boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
+        if(blackText) {
+            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextDark));
+        } else {
+            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextLight));
+        }
+        if(showCard) {
             views.setViewVisibility(R.id.widget_clock_day_card, View.VISIBLE);
             views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextDark));
             views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextDark));
             views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextDark));
-        } else { // do not show card
+        } else {
             views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
-            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextLight));
         }
 
         Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
@@ -227,7 +235,7 @@ public class RefreshWidgetClockDay extends Service
         editor.apply();
     }
 
-    public static void refreshUIFromLocalData(Context context, boolean isDay, boolean showCard) {
+    public static void refreshUIFromLocalData(Context context, boolean isDay) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE);
         if (! sharedPreferences.getBoolean(context.getString(R.string.key_saved_data), false)) {
@@ -243,16 +251,24 @@ public class RefreshWidgetClockDay extends Service
         views.setTextViewText(R.id.widget_clock_day_date, dateText);
         views.setTextViewText(R.id.widget_clock_day_weather, weatherText);
 
-        if(showCard) { // show card
+        boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
+        boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
+        if(blackText) {
+            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextDark));
+        } else {
+            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextLight));
+        }
+        if(showCard) {
             views.setViewVisibility(R.id.widget_clock_day_card, View.VISIBLE);
             views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextDark));
             views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextDark));
             views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextDark));
-        } else { // do not show card
+        } else {
             views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
-            views.setTextColor(R.id.widget_clock_day_clock, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_clock_day_date, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_clock_day_weather, ContextCompat.getColor(context, R.color.colorTextLight));
         }
 
         Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);

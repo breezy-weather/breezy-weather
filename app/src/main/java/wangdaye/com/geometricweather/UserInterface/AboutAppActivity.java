@@ -1,6 +1,9 @@
 package wangdaye.com.geometricweather.UserInterface;
 
+import android.app.ActivityManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,6 +37,8 @@ public class AboutAppActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_info_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
+        setWindowTopColor();
 
         ImageView titleImage = (ImageView) findViewById(R.id.app_info_title);
         if (MainActivity.isDay) {
@@ -78,6 +83,26 @@ public class AboutAppActivity extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    private void setWindowTopColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ActivityManager.TaskDescription taskDescription;
+            Bitmap topIcon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+            if (MainActivity.isDay) {
+                taskDescription = new ActivityManager.TaskDescription(
+                        getString(R.string.app_name),
+                        topIcon,
+                        ContextCompat.getColor(this, R.color.lightPrimary_5));
+            } else {
+                taskDescription = new ActivityManager.TaskDescription(
+                        getString(R.string.app_name),
+                        topIcon,
+                        ContextCompat.getColor(this, R.color.darkPrimary_5));
+            }
+            setTaskDescription(taskDescription);
+            topIcon.recycle();
         }
     }
 }

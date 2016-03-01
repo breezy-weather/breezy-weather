@@ -158,17 +158,15 @@ public class LiteWeatherFragment extends Fragment
         this.setWindowTopColor();
         this.initInformationContainer(mainView);
 
-
-        if (location.juheResult == null || ! location.juheResult.error_code.equals("0")) {
-            this.swipeRefreshLayout.post(new Runnable() {
-                @Override
-                public void run() {
-                    swipeRefreshLayout.setRefreshing(true);
-                }
-            });
-            this.refreshData();
+        if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+")
+                && location.hefengResult != null
+                && location.hefengResult.heWeather.get(0).status.equals("ok")) {
+            return mainView;
+        } else if (location.juheResult != null && location.juheResult.error_code.equals("0")) {
+            return mainView;
         }
 
+        this.refreshAll();
         return mainView;
     }
 
@@ -389,7 +387,9 @@ public class LiteWeatherFragment extends Fragment
             }
         });
 
-        if (location.juheResult != null) {
+        if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.hefengResult != null) {
+            this.refreshUI();
+        } else if (location.juheResult != null) {
             this.refreshUI();
         }
     }
@@ -546,6 +546,7 @@ public class LiteWeatherFragment extends Fragment
             this.changeTime();
             MainActivity.setNavHead();
             MainActivity.initNavigationBar(getActivity(), getActivity().getWindow());
+            MainActivity.setBackgroundPlateColor(getActivity(), false);
             this.setWindowTopColor();
         }
 

@@ -28,12 +28,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -67,7 +70,9 @@ public class MainActivity extends AppCompatActivity
     public static FragmentManager fragmentManager;
     private WeatherFragment weatherFragment;
     private LiteWeatherFragment liteWeatherFragment;
+
     private static FrameLayout navHead;
+    private static FrameLayout backgroundPlate;
 
     // data
     private boolean animatorSwitch;
@@ -367,6 +372,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View navHeader = navigationView.getHeaderView(0);
         MainActivity.navHead = (FrameLayout) navHeader.findViewById(R.id.nav_header);
+
+        backgroundPlate = (FrameLayout) findViewById(R.id.background_plate);
+        setBackgroundPlateColor(this, true);
     }
 
     private void initData() {
@@ -385,6 +393,35 @@ public class MainActivity extends AppCompatActivity
             navHead.setBackgroundResource(R.drawable.nav_head_day);
         } else {
             navHead.setBackgroundResource(R.drawable.nav_head_night);
+        }
+    }
+
+    public static void setBackgroundPlateColor(Context context, boolean isInit) {
+        if (isInit) {
+            Class<?> c;
+            Object obj;
+            Field field;
+            int x, statusBarHeight = 0;
+            try {
+                c = Class.forName("com.android.internal.R$dimen");
+                obj = c.newInstance();
+                field = c.getField("status_bar_height");
+                x = Integer.parseInt(field.get(obj).toString());
+                statusBarHeight = context.getResources().getDimensionPixelSize(x);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            backgroundPlate.setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            statusBarHeight
+                    )
+            );
+        }
+        if (isDay) {
+            backgroundPlate.setBackgroundColor(ContextCompat.getColor(context, R.color.lightPrimary_5));
+        } else {
+            backgroundPlate.setBackgroundColor(ContextCompat.getColor(context, R.color.darkPrimary_5));
         }
     }
 
@@ -613,61 +650,54 @@ public class MainActivity extends AppCompatActivity
 
     public static void refreshWidget(Context context, Location location, WeatherInfoToShow info, boolean isDay) {
         SharedPreferences sharedPreferences;
-        boolean showCard;
         String locationName;
 
         // day
         sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_day_setting), Context.MODE_PRIVATE);
-        showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         locationName = sharedPreferences.getString(context.getString(R.string.key_location), context.getString(R.string.local));
         if (location.location.equals(locationName)) {
-            RefreshWidgetDay.refreshUIFromInternet(context, info, isDay, showCard);
+            RefreshWidgetDay.refreshUIFromInternet(context, info, isDay);
         }
 
         // week
         sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_week_setting), Context.MODE_PRIVATE);
-        showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         locationName = sharedPreferences.getString(context.getString(R.string.key_location), context.getString(R.string.local));
         if (location.location.equals(locationName)) {
-            RefreshWidgetWeek.refreshUIFromInternet(context, info, isDay, showCard);
+            RefreshWidgetWeek.refreshUIFromInternet(context, info, isDay);
         }
 
         // day + week
         sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_day_week_setting), Context.MODE_PRIVATE);
-        showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         locationName = sharedPreferences.getString(context.getString(R.string.key_location), context.getString(R.string.local));
         if (location.location.equals(locationName)) {
-            RefreshWidgetDayWeek.refreshUIFromInternet(context, info, isDay, showCard);
+            RefreshWidgetDayWeek.refreshUIFromInternet(context, info, isDay);
         }
 
         // clock + day
         sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_clock_day_setting), Context.MODE_PRIVATE);
-        showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         locationName = sharedPreferences.getString(context.getString(R.string.key_location), context.getString(R.string.local));
         if (location.location.equals(locationName)) {
-            RefreshWidgetClockDay.refreshUIFromInternet(context, info, isDay, showCard);
+            RefreshWidgetClockDay.refreshUIFromInternet(context, info, isDay);
         }
 
         // clock + day (center)
         sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_clock_day_center_setting), Context.MODE_PRIVATE);
-        showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         locationName = sharedPreferences.getString(context.getString(R.string.key_location), context.getString(R.string.local));
         if (location.location.equals(locationName)) {
-            RefreshWidgetClockDayCenter.refreshUIFromInternet(context, info, isDay, showCard);
+            RefreshWidgetClockDayCenter.refreshUIFromInternet(context, info, isDay);
         }
 
         // clock + day + week
         sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_clock_day_week_setting), Context.MODE_PRIVATE);
-        showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         locationName = sharedPreferences.getString(context.getString(R.string.key_location), context.getString(R.string.local));
         if (location.location.equals(locationName)) {
-            RefreshWidgetClockDayWeek.refreshUIFromInternet(context, info, isDay, showCard);
+            RefreshWidgetClockDayWeek.refreshUIFromInternet(context, info, isDay);
         }
     }
 }

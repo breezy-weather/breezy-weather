@@ -69,6 +69,8 @@ public class CreateWidgetClockDayCenterActivity extends Activity
     private JuheResult juheResult;
     private HefengResult hefengResult;
     private boolean showCard = false;
+    private boolean hideRefreshTime = false;
+    private boolean blackText = false;
     private boolean isDay;
 
     private MyDatabaseHelper databaseHelper;
@@ -159,11 +161,49 @@ public class CreateWidgetClockDayCenterActivity extends Activity
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
-                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
-                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
-                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
-                    tempText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
-                    refreshTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                    if (! blackText) {
+                        clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                        dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                        weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                        tempText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                        refreshTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                    }
+                }
+            }
+        });
+
+        Switch switchTime = (Switch) this.findViewById(R.id.create_widget_clock_day_center_switch_time);
+        switchTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    hideRefreshTime = true;
+                    refreshTime.setVisibility(View.GONE);
+                } else {
+                    hideRefreshTime = false;
+                    refreshTime.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        Switch switchText = (Switch) this.findViewById(R.id.create_widget_clock_day_center_switch_text);
+        switchText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                    tempText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                    refreshTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextDark));
+                } else {
+                    if (! showCard) {
+                        clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                        dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                        weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                        tempText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                        refreshTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayCenterActivity.this, R.color.colorTextLight));
+                    }
                 }
             }
         });
@@ -178,6 +218,8 @@ public class CreateWidgetClockDayCenterActivity extends Activity
                 ).edit();
                 editor.putString(getString(R.string.key_location), locationName);
                 editor.putBoolean(getString(R.string.key_show_card), showCard);
+                editor.putBoolean(getString(R.string.key_hide_refresh_time), hideRefreshTime);
+                editor.putBoolean(getString(R.string.key_black_text), blackText);
                 editor.apply();
 
                 Intent intent = getIntent();
@@ -191,7 +233,7 @@ public class CreateWidgetClockDayCenterActivity extends Activity
                 buttonDone.setText(getString(R.string.first_refresh_widget));
                 buttonDone.setEnabled(true);
 
-                RefreshWidgetClockDayCenter.refreshUIFromLocalData(CreateWidgetClockDayCenterActivity.this, isDay, showCard);
+                RefreshWidgetClockDayCenter.refreshUIFromLocalData(CreateWidgetClockDayCenterActivity.this, isDay);
                 refreshWidget();
 
                 Intent resultValue = new Intent();
@@ -303,7 +345,7 @@ public class CreateWidgetClockDayCenterActivity extends Activity
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetClockDayCenter.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetClockDayCenter.refreshUIFromInternet(this, info, isDay);
         }
     }
 

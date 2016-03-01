@@ -69,6 +69,7 @@ public class CreateWidgetClockDayWeekActivity extends Activity
     private JuheResult juheResult;
     private HefengResult hefengResult;
     private boolean showCard = false;
+    private boolean blackText = false;
     private boolean isDay;
 
     private MyDatabaseHelper databaseHelper;
@@ -171,12 +172,42 @@ public class CreateWidgetClockDayWeekActivity extends Activity
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
-                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
-                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
-                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                    if (! blackText) {
+                        clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        for (int i = 0; i < 4; i ++) {
+                            week[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                            temp[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        }
+                    }
+                }
+            }
+        });
+
+        Switch switchText = (Switch) this.findViewById(R.id.create_widget_clock_day_week_switch_text);
+        switchText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    blackText = true;
+                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
                     for (int i = 0; i < 4; i ++) {
-                        week[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
-                        temp[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        week[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                        temp[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    }
+                } else {
+                    blackText = false;
+                    if (! showCard) {
+                        clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        for (int i = 0; i < 4; i ++) {
+                            week[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                            temp[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        }
                     }
                 }
             }
@@ -192,6 +223,7 @@ public class CreateWidgetClockDayWeekActivity extends Activity
                 ).edit();
                 editor.putString(getString(R.string.key_location), locationName);
                 editor.putBoolean(getString(R.string.key_show_card), showCard);
+                editor.putBoolean(getString(R.string.key_black_text), blackText);
                 editor.apply();
 
                 Intent intent = getIntent();
@@ -205,7 +237,7 @@ public class CreateWidgetClockDayWeekActivity extends Activity
                 buttonDone.setText(getString(R.string.first_refresh_widget));
                 buttonDone.setEnabled(true);
 
-                RefreshWidgetClockDayWeek.refreshUIFromLocalData(CreateWidgetClockDayWeekActivity.this, isDay, showCard);
+                RefreshWidgetClockDayWeek.refreshUIFromLocalData(CreateWidgetClockDayWeekActivity.this, isDay);
                 refreshWidget();
 
                 Intent resultValue = new Intent();
@@ -317,7 +349,7 @@ public class CreateWidgetClockDayWeekActivity extends Activity
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetClockDayWeek.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetClockDayWeek.refreshUIFromInternet(this, info, isDay);
         }
     }
 

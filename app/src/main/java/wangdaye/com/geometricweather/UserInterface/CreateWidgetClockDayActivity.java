@@ -68,6 +68,7 @@ public class CreateWidgetClockDayActivity extends Activity
     private HefengResult hefengResult;
     private boolean isDay;
     private boolean showCard = false;
+    private boolean blackText = false;
 
     private MyDatabaseHelper databaseHelper;
 
@@ -153,9 +154,31 @@ public class CreateWidgetClockDayActivity extends Activity
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
-                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
-                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
-                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                    if (! blackText) {
+                        clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                        dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                        weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                    }
+                }
+            }
+        });
+
+        Switch switchText = (Switch) this.findViewById(R.id.create_widget_clock_day_switch_text);
+        switchText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    blackText = true;
+                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
+                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
+                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
+                } else {
+                    blackText = false;
+                    if (! showCard) {
+                        clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                        dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                        weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                    }
                 }
             }
         });
@@ -170,6 +193,7 @@ public class CreateWidgetClockDayActivity extends Activity
                 ).edit();
                 editor.putString(getString(R.string.key_location), locationName);
                 editor.putBoolean(getString(R.string.key_show_card), showCard);
+                editor.putBoolean(getString(R.string.key_black_text), blackText);
                 editor.apply();
 
                 Intent intent = getIntent();
@@ -183,7 +207,7 @@ public class CreateWidgetClockDayActivity extends Activity
                 buttonDone.setText(getString(R.string.first_refresh_widget));
                 buttonDone.setEnabled(true);
 
-                RefreshWidgetClockDay.refreshUIFromLocalData(CreateWidgetClockDayActivity.this, isDay, showCard);
+                RefreshWidgetClockDay.refreshUIFromLocalData(CreateWidgetClockDayActivity.this, isDay);
                 refreshWidget();
 
                 Intent resultValue = new Intent();
@@ -295,7 +319,7 @@ public class CreateWidgetClockDayActivity extends Activity
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetClockDay.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetClockDay.refreshUIFromInternet(this, info, isDay);
         }
     }
 

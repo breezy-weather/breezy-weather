@@ -46,7 +46,6 @@ public class RefreshWidgetWeek extends Service
     private String locationName;
     private JuheResult juheResult;
     private HefengResult hefengResult;
-    private boolean showCard;
     private boolean isDay;
 
     private final int REFRESH_DATA_SUCCEED = 1;
@@ -87,10 +86,9 @@ public class RefreshWidgetWeek extends Service
         SharedPreferences sharedPreferences = this.getSharedPreferences(
                 getString(R.string.sp_widget_week_setting),
                 Context.MODE_PRIVATE);
-        this.showCard = sharedPreferences.getBoolean(getString(R.string.key_show_card), false);
         this.locationName = sharedPreferences.getString(getString(R.string.key_location), getString(R.string.local));
 
-        RefreshWidgetWeek.refreshUIFromLocalData(this, isDay, showCard);
+        RefreshWidgetWeek.refreshUIFromLocalData(this, isDay);
         this.refreshWidget();
 
         this.stopSelf(startId);
@@ -175,11 +173,11 @@ public class RefreshWidgetWeek extends Service
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetWeek.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetWeek.refreshUIFromInternet(this, info, isDay);
         }
     }
 
-    public static void refreshUIFromInternet(Context context, WeatherInfoToShow info, boolean isDay, boolean showCard) {
+    public static void refreshUIFromInternet(Context context, WeatherInfoToShow info, boolean isDay) {
         if (info == null) {
             return;
         }
@@ -213,8 +211,39 @@ public class RefreshWidgetWeek extends Service
         views.setTextViewText(R.id.widget_week_week_4, info.week[3]);
         views.setTextViewText(R.id.widget_week_week_5, info.week[4]);
 
-        // set card and text color
-        if (showCard) { // show card
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                context.getString(R.string.sp_widget_week_setting),
+                Context.MODE_PRIVATE);
+        boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
+        boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
+        if (blackText) {
+            // week text
+            views.setTextColor(R.id.widget_week_week_1, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_week_2, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_week_3, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_week_4, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_week_5, ContextCompat.getColor(context, R.color.colorTextDark));
+            // temperature text
+            views.setTextColor(R.id.widget_week_temp_1, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_temp_2, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_temp_3, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_temp_4, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_temp_5, ContextCompat.getColor(context, R.color.colorTextDark));
+        } else {
+            // week text
+            views.setTextColor(R.id.widget_week_week_1, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_week_2, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_week_3, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_week_4, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_week_5, ContextCompat.getColor(context, R.color.colorTextLight));
+            // temperature text
+            views.setTextColor(R.id.widget_week_temp_1, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_temp_2, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_temp_3, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_temp_4, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_temp_5, ContextCompat.getColor(context, R.color.colorTextLight));
+        }
+        if (showCard) {
             views.setViewVisibility(R.id.widget_week_card, View.VISIBLE);
             // week text
             views.setTextColor(R.id.widget_week_week_1, ContextCompat.getColor(context, R.color.colorTextDark));
@@ -228,20 +257,8 @@ public class RefreshWidgetWeek extends Service
             views.setTextColor(R.id.widget_week_temp_3, ContextCompat.getColor(context, R.color.colorTextDark));
             views.setTextColor(R.id.widget_week_temp_4, ContextCompat.getColor(context, R.color.colorTextDark));
             views.setTextColor(R.id.widget_week_temp_5, ContextCompat.getColor(context, R.color.colorTextDark));
-        } else { // do not show card
+        } else {
             views.setViewVisibility(R.id.widget_week_card, View.GONE);
-            // week text
-            views.setTextColor(R.id.widget_week_week_1, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_week_2, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_week_3, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_week_4, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_week_5, ContextCompat.getColor(context, R.color.colorTextLight));
-            // temperature text
-            views.setTextColor(R.id.widget_week_temp_1, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_temp_2, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_temp_3, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_temp_4, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_temp_5, ContextCompat.getColor(context, R.color.colorTextLight));
         }
 
         //Intent intent = new Intent("com.geometricweather.receiver.CLICK_WIDGET");
@@ -278,7 +295,7 @@ public class RefreshWidgetWeek extends Service
         editor.apply();
     }
 
-    public static void refreshUIFromLocalData(Context context, boolean isDay, boolean showCard) {
+    public static void refreshUIFromLocalData(Context context, boolean isDay) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_week_setting), Context.MODE_PRIVATE);
         if (! sharedPreferences.getBoolean(context.getString(R.string.key_saved_data), false)) {
@@ -344,8 +361,37 @@ public class RefreshWidgetWeek extends Service
         views.setTextViewText(R.id.widget_week_week_3, weekText[2]);
         views.setTextViewText(R.id.widget_week_week_4, weekText[3]);
         views.setTextViewText(R.id.widget_week_week_5, weekText[4]);
-        // set card and text color
-        if (showCard) { // show card
+
+        boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
+        boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
+        if (blackText) {
+            // week text
+            views.setTextColor(R.id.widget_week_week_1, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_week_2, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_week_3, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_week_4, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_week_5, ContextCompat.getColor(context, R.color.colorTextDark));
+            // temperature text
+            views.setTextColor(R.id.widget_week_temp_1, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_temp_2, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_temp_3, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_temp_4, ContextCompat.getColor(context, R.color.colorTextDark));
+            views.setTextColor(R.id.widget_week_temp_5, ContextCompat.getColor(context, R.color.colorTextDark));
+        } else {
+            // week text
+            views.setTextColor(R.id.widget_week_week_1, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_week_2, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_week_3, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_week_4, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_week_5, ContextCompat.getColor(context, R.color.colorTextLight));
+            // temperature text
+            views.setTextColor(R.id.widget_week_temp_1, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_temp_2, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_temp_3, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_temp_4, ContextCompat.getColor(context, R.color.colorTextLight));
+            views.setTextColor(R.id.widget_week_temp_5, ContextCompat.getColor(context, R.color.colorTextLight));
+        }
+        if (showCard) {
             views.setViewVisibility(R.id.widget_week_card, View.VISIBLE);
             // week text
             views.setTextColor(R.id.widget_week_week_1, ContextCompat.getColor(context, R.color.colorTextDark));
@@ -359,20 +405,8 @@ public class RefreshWidgetWeek extends Service
             views.setTextColor(R.id.widget_week_temp_3, ContextCompat.getColor(context, R.color.colorTextDark));
             views.setTextColor(R.id.widget_week_temp_4, ContextCompat.getColor(context, R.color.colorTextDark));
             views.setTextColor(R.id.widget_week_temp_5, ContextCompat.getColor(context, R.color.colorTextDark));
-        } else { // do not show card
+        } else {
             views.setViewVisibility(R.id.widget_week_card, View.GONE);
-            // week text
-            views.setTextColor(R.id.widget_week_week_1, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_week_2, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_week_3, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_week_4, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_week_5, ContextCompat.getColor(context, R.color.colorTextLight));
-            // temperature text
-            views.setTextColor(R.id.widget_week_temp_1, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_temp_2, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_temp_3, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_temp_4, ContextCompat.getColor(context, R.color.colorTextLight));
-            views.setTextColor(R.id.widget_week_temp_5, ContextCompat.getColor(context, R.color.colorTextLight));
         }
 
         //Intent intent = new Intent("com.geometricweather.receiver.CLICK_WIDGET");

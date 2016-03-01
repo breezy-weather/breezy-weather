@@ -63,6 +63,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
     private JuheResult juheResult;
     private HefengResult hefengResult;
     private boolean showCard = false;
+    private boolean blackText = false;
     private boolean isDay;
 
     private MyDatabaseHelper databaseHelper;
@@ -165,9 +166,33 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
+                    if (! blackText) {
+                        for(int i = 0; i < 5; i ++) {
+                            textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetWeekActivity.this, R.color.colorTextLight));
+                            textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetWeekActivity.this, R.color.colorTextLight));
+                        }
+                    }
+                }
+            }
+        });
+
+        Switch switchText = (Switch) this.findViewById(R.id.create_widget_day_switch_text);
+        switchText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    blackText = true;
                     for(int i = 0; i < 5; i ++) {
-                        textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetWeekActivity.this, R.color.colorTextLight));
-                        textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetWeekActivity.this, R.color.colorTextLight));
+                        textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetWeekActivity.this, R.color.colorTextDark));
+                        textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetWeekActivity.this, R.color.colorTextDark));
+                    }
+                } else {
+                    blackText = false;
+                    if (! showCard) {
+                        for(int i = 0; i < 5; i ++) {
+                            textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetWeekActivity.this, R.color.colorTextLight));
+                            textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetWeekActivity.this, R.color.colorTextLight));
+                        }
                     }
                 }
             }
@@ -182,6 +207,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
                         MODE_PRIVATE).edit();
                 editor.putString(getString(R.string.key_location), locationName);
                 editor.putBoolean(getString(R.string.key_show_card), showCard);
+                editor.putBoolean(getString(R.string.key_black_text), blackText);
                 editor.apply();
 
                 Intent intent = getIntent();
@@ -195,7 +221,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
                 buttonDone.setText(getString(R.string.first_refresh_widget));
                 buttonDone.setEnabled(true);
 
-                RefreshWidgetWeek.refreshUIFromLocalData(CreateWidgetWeekActivity.this, isDay, showCard);
+                RefreshWidgetWeek.refreshUIFromLocalData(CreateWidgetWeekActivity.this, isDay);
                 refreshWidget();
 
                 Intent resultValue = new Intent();
@@ -307,7 +333,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetWeek.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetWeek.refreshUIFromInternet(this, info, isDay);
         }
     }
 

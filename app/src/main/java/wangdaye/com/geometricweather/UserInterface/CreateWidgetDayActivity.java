@@ -55,6 +55,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
     private ImageView imageViewCard;
     private TextView textViewWeatherNow;
     private TextView textViewTempNow;
+    private TextView refreshTime;
 
     //data
     private List<Location> locationList;
@@ -63,6 +64,8 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
     private JuheResult juheResult;
     private HefengResult hefengResult;
     private boolean showCard = false;
+    private boolean hideRefreshTime = false;
+    private boolean blackText = false;
     private boolean isDay;
 
     private MyDatabaseHelper databaseHelper;
@@ -110,6 +113,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
 
         this.textViewWeatherNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_weather);
         this.textViewTempNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_temp);
+        this.refreshTime = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_time);
 
         this.initDatabaseHelper();
         this.readLocation();
@@ -147,8 +151,42 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
-                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                    if (! blackText) {
+                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                    }
+                }
+            }
+        });
+
+        Switch switchTime = (Switch) this.findViewById(R.id.create_widget_day_switch_time);
+        switchTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    refreshTime.setVisibility(View.GONE);
+                    hideRefreshTime = true;
+                } else {
+                    refreshTime.setVisibility(View.VISIBLE);
+                    hideRefreshTime = false;
+                }
+            }
+        });
+
+        Switch switchText = (Switch) this.findViewById(R.id.create_widget_day_switch_text);
+        switchText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    blackText = true;
+                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                } else {
+                    blackText = false;
+                    if (! showCard) {
+                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                    }
                 }
             }
         });
@@ -163,6 +201,8 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
                 ).edit();
                 editor.putString(getString(R.string.key_location), locationName);
                 editor.putBoolean(getString(R.string.key_show_card), showCard);
+                editor.putBoolean(getString(R.string.key_hide_refresh_time), hideRefreshTime);
+                editor.putBoolean(getString(R.string.key_black_text), blackText);
                 editor.apply();
 
                 Intent intent = getIntent();
@@ -176,7 +216,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
                 buttonDone.setText(getString(R.string.first_refresh_widget));
                 buttonDone.setEnabled(true);
 
-                RefreshWidgetDay.refreshUIFromLocalData(CreateWidgetDayActivity.this, isDay, showCard);
+                RefreshWidgetDay.refreshUIFromLocalData(CreateWidgetDayActivity.this, isDay);
                 refreshWidget();
 
                 Intent resultValue = new Intent();
@@ -288,7 +328,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetDay.refreshUIFromInternet(this, info, isDay, showCard);
+            RefreshWidgetDay.refreshUIFromInternet(this, info, isDay);
         }
     }
 

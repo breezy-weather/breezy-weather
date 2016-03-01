@@ -7,11 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".UserInterface.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:background="@android:color/background_light"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/background_plate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:background="@android:color/background_light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
