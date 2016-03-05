@@ -384,7 +384,7 @@ public class NotificationService extends Service implements HandlerContainer {
         this.databaseHelper = new MyDatabaseHelper(this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private String readLocation() {

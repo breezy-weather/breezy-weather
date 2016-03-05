@@ -231,7 +231,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         this.databaseHelper = new MyDatabaseHelper(CreateWidgetDayActivity.this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private void readLocation() {

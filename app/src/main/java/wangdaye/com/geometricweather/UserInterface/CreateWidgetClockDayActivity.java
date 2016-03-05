@@ -222,7 +222,7 @@ public class CreateWidgetClockDayActivity extends Activity
         this.databaseHelper = new MyDatabaseHelper(CreateWidgetClockDayActivity.this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private void readLocation() {

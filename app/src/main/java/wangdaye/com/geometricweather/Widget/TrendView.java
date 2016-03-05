@@ -93,12 +93,14 @@ public class TrendView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         float dpiLevel = getResources().getDisplayMetrics().density;
-        MARGIN = (float) (50 * (dpiLevel / 2.625));
-        YESTERDAY_TEXT_SIZE = (float) (30 * (dpiLevel / 2.625));
-        WEATHER_TEXT_SIZE = (float) (40 * (dpiLevel / 2.625));
-        NUM_TEXT_SIZE = (float) (2 * (dpiLevel / 2.625));
-        TREND_LINE_SIZE = (float) (5 * (dpiLevel / 2.625));
-        TIME_LINE_SIZE = (float) (4 * (dpiLevel / 2.625));
+        if (dpiLevel < 2.625) {
+            MARGIN = (float) (50 * (dpiLevel / 2.625));
+            YESTERDAY_TEXT_SIZE = (float) (30 * (dpiLevel / 2.625));
+            WEATHER_TEXT_SIZE = (float) (40 * (dpiLevel / 2.625));
+            NUM_TEXT_SIZE = (float) (2 * (dpiLevel / 2.625));
+            TREND_LINE_SIZE = (float) (5 * (dpiLevel / 2.625));
+            TIME_LINE_SIZE = (float) (4 * (dpiLevel / 2.625));
+        }
 
         float width = getMeasuredWidth();
         float height = getMeasuredHeight() - 7 * MARGIN;

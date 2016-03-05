@@ -14,6 +14,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -489,7 +491,7 @@ public class MainActivity extends AppCompatActivity
         this.databaseHelper = new MyDatabaseHelper(MainActivity.this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private void readLocation() {
@@ -533,7 +535,7 @@ public class MainActivity extends AppCompatActivity
         MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
         // read yesterday weather.
@@ -598,7 +600,7 @@ public class MainActivity extends AppCompatActivity
         MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
         // read yesterday weather.
@@ -630,6 +632,185 @@ public class MainActivity extends AppCompatActivity
         } else {
             return null;
         }
+    }
+
+    public static void writeWeatherInfo(Context context, String location, WeatherInfoToShow info) {
+        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
+                MyDatabaseHelper.DATABASE_NAME,
+                null,
+                2);
+        SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+        database.delete(MyDatabaseHelper.TABLE_INFO,
+                MyDatabaseHelper.COLUMN_REAL_LOCATION + " = ?",
+                new String[]{location});
+
+        ContentValues values = new ContentValues();
+        values.put(MyDatabaseHelper.COLUMN_REAL_LOCATION, location);
+        values.put(MyDatabaseHelper.COLUMN_DATE, info.date);
+        values.put(MyDatabaseHelper.COLUMN_MOON, info.moon);
+        values.put(MyDatabaseHelper.COLUMN_REFRESH_TIME, info.refreshTime);
+        values.put(MyDatabaseHelper.COLUMN_LOCATION, info.location);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_NOW, info.weatherNow);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_NOW, info.weatherKindNow);
+        values.put(MyDatabaseHelper.COLUMN_TEMP_NOW, info.tempNow);
+        values.put(MyDatabaseHelper.COLUMN_WEEK_1, info.week[0]);
+        values.put(MyDatabaseHelper.COLUMN_WEEK_2, info.week[1]);
+        values.put(MyDatabaseHelper.COLUMN_WEEK_3, info.week[2]);
+        values.put(MyDatabaseHelper.COLUMN_WEEK_4, info.week[3]);
+        values.put(MyDatabaseHelper.COLUMN_WEEK_5, info.week[4]);
+        values.put(MyDatabaseHelper.COLUMN_WEEK_6, info.week[5]);
+        values.put(MyDatabaseHelper.COLUMN_WEEK_7, info.week[6]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_1, info.weather[0]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_2, info.weather[1]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_3, info.weather[2]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_4, info.weather[3]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_5, info.weather[4]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_6, info.weather[5]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_7, info.weather[6]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_1, info.weatherKind[0]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_2, info.weatherKind[1]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_3, info.weatherKind[2]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_4, info.weatherKind[3]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_5, info.weatherKind[4]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_6, info.weatherKind[5]);
+        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_7, info.weatherKind[6]);
+        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_1, info.maxiTemp[0]);
+        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_2, info.maxiTemp[1]);
+        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_3, info.maxiTemp[2]);
+        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_4, info.maxiTemp[3]);
+        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_5, info.maxiTemp[4]);
+        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_6, info.maxiTemp[5]);
+        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_7, info.maxiTemp[6]);
+        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_1, info.miniTemp[0]);
+        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_2, info.miniTemp[1]);
+        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_3, info.miniTemp[2]);
+        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_4, info.miniTemp[3]);
+        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_5, info.miniTemp[4]);
+        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_6, info.miniTemp[5]);
+        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_7, info.miniTemp[6]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_TITLE, info.windTitle);
+        values.put(MyDatabaseHelper.COLUMN_WIND_INFO, info.windInfo);
+        values.put(MyDatabaseHelper.COLUMN_PM_TITLE, info.pmTitle);
+        values.put(MyDatabaseHelper.COLUMN_PM_INFO, info.pmInfo);
+        values.put(MyDatabaseHelper.COLUMN_HUM_TITLE, info.humTitle);
+        values.put(MyDatabaseHelper.COLUMN_HUM_INFO, info.humInfo);
+        values.put(MyDatabaseHelper.COLUMN_UV_TITLE, info.uvTitle);
+        values.put(MyDatabaseHelper.COLUMN_UV_INFO, info.uvInfo);
+        values.put(MyDatabaseHelper.COLUMN_DRESS_TITLE, info.dressTitle);
+        values.put(MyDatabaseHelper.COLUMN_DRESS_INFO, info.dressInfo);
+        values.put(MyDatabaseHelper.COLUMN_COLD_TITLE, info.coldTitle);
+        values.put(MyDatabaseHelper.COLUMN_COLD_INFO, info.coldInfo);
+        values.put(MyDatabaseHelper.COLUMN_AIR_TITLE, info.airTitle);
+        values.put(MyDatabaseHelper.COLUMN_AIR_INFO, info.airInfo);
+        values.put(MyDatabaseHelper.COLUMN_WASH_CAR_TITLE, info.washCarTitle);
+        values.put(MyDatabaseHelper.COLUMN_WASH_CAR_INFO, info.washCarInfo);
+        values.put(MyDatabaseHelper.COLUMN_EXERCISE_TITLE, info.exerciseTitle);
+        values.put(MyDatabaseHelper.COLUMN_EXERCISE_INFO, info.exerciseInfo);
+        database.insert(MyDatabaseHelper.TABLE_INFO, null, values);
+        values.clear();
+        database.close();
+    }
+
+    public static WeatherInfoToShow readWeatherInfo(Context context, String location) {
+        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
+                MyDatabaseHelper.DATABASE_NAME,
+                null,
+                2);
+        SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+        WeatherInfoToShow info = new WeatherInfoToShow();
+        Cursor cursor = database.query(MyDatabaseHelper.TABLE_INFO,
+                null,
+                MyDatabaseHelper.COLUMN_REAL_LOCATION + " = '" + location + "'",
+                null,
+                null,
+                null,
+                null);
+        if(cursor.moveToFirst()) {
+            do {
+                info.date = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_DATE));
+                info.moon = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MOON));
+                info.refreshTime = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_REFRESH_TIME));
+                info.location = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_LOCATION));
+                info.weatherNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_NOW));
+                info.weatherKindNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_NOW));
+                info.tempNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TEMP_NOW));
+                info.week = new String[7];
+                info.week[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_1));
+                info.week[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_2));
+                info.week[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_3));
+                info.week[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_4));
+                info.week[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_5));
+                info.week[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_6));
+                info.week[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_7));
+                info.weather = new String[7];
+                info.weather[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_1));
+                info.weather[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_2));
+                info.weather[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_3));
+                info.weather[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_4));
+                info.weather[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_5));
+                info.weather[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_6));
+                info.weather[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_7));
+                info.weatherKind = new String[7];
+                info.weatherKind[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_1));
+                info.weatherKind[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_2));
+                info.weatherKind[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_3));
+                info.weatherKind[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_4));
+                info.weatherKind[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_5));
+                info.weatherKind[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_6));
+                info.weatherKind[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_7));
+                info.maxiTemp = new String[7];
+                info.maxiTemp[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_1));
+                info.maxiTemp[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_2));
+                info.maxiTemp[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_3));
+                info.maxiTemp[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_4));
+                info.maxiTemp[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_5));
+                info.maxiTemp[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_6));
+                info.maxiTemp[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_7));
+                info.miniTemp = new String[7];
+                info.miniTemp[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_1));
+                info.miniTemp[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_2));
+                info.miniTemp[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_3));
+                info.miniTemp[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_4));
+                info.miniTemp[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_5));
+                info.miniTemp[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_6));
+                info.miniTemp[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_7));
+                info.windTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_TITLE));
+                info.windInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_INFO));
+                info.pmTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_PM_TITLE));
+                info.pmInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_PM_INFO));
+                info.humTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_HUM_TITLE));
+                info.humInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_HUM_INFO));
+                info.uvTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_UV_TITLE));
+                info.uvInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_UV_INFO));
+                info.dressTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_DRESS_TITLE));
+                info.dressInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_DRESS_INFO));
+                info.coldTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_COLD_TITLE));
+                info.coldInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_COLD_INFO));
+                info.airTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_AIR_TITLE));
+                info.airInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_AIR_INFO));
+                info.washCarTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WASH_CAR_TITLE));
+                info.washCarInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WASH_CAR_INFO));
+                info.exerciseTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_EXERCISE_TITLE));
+                info.exerciseInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_EXERCISE_INFO));
+            } while (cursor.moveToNext());
+        } else {
+            return null;
+        }
+        cursor.close();
+        database.close();
+
+        return info;
+    }
+
+// check internet
+
+    public static boolean isNetConnected(Context context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return mNetworkInfo != null && mNetworkInfo.isAvailable();
     }
 
 // bitmap

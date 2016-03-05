@@ -262,7 +262,7 @@ public class CreateWidgetDayWeekActivity extends Activity
         this.databaseHelper = new MyDatabaseHelper(CreateWidgetDayWeekActivity.this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private void readLocation() {

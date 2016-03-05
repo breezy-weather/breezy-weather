@@ -203,7 +203,7 @@ public class ManageDialog extends DialogFragment
         this.databaseHelper = new MyDatabaseHelper(getActivity(),
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private void deleteLocation(String location) {

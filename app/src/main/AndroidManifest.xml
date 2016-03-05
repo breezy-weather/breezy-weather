@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/launcher_name"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme" >

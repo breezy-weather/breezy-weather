@@ -1,11 +1,10 @@
 <resources>
     <!-- app -->
-    <string name="launcher_name">Weather</string>
     <string name="app_name">Geometric weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
 
-    <string name="version_code">版本号\n2.0.7</string>
-    <string name="note">代码注释\n修复：修复了3×2桌面小部件字体颜色的bug\n添加：添加了天气预报功能\n优化：天气趋势图适配不同的屏幕dpi</string>
+    <string name="version_code">版本号\n2.0.9</string>
+    <string name="note">代码注释\n添加：添加了缓存功能\n优化：对多尺寸屏幕的显示效果做出优化</string>
 
     <string name="introduce_title_1">Geometric Weather</string>
     <string name="introduce_title_2">快捷入口</string>

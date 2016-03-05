@@ -109,6 +109,7 @@ public class LiteWeatherFragment extends Fragment
     public AnimatorSet[] animatorSetsIcon;
 
     // data
+    private boolean refreshSucceed;
     private boolean freshData;
 
     private WeatherInfoToShow info;
@@ -150,6 +151,7 @@ public class LiteWeatherFragment extends Fragment
         this.safeHandler = new SafeHandler<>(this);
         initDatabaseHelper();
 
+        this.refreshSucceed = false;
         this.freshData = false;
         this.maxiTemp = new int[7];
         this.miniTemp = new int[7];
@@ -464,28 +466,34 @@ public class LiteWeatherFragment extends Fragment
             @Override
             public void run()
             {
-                if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+")) {
-                    location.hefengResult = HefengWeather.requestInternationalData(searchLocation);
+                if (! MainActivity.isNetConnected(getActivity())) {
                     Message message = new Message();
-                    if (location.hefengResult == null) {
-                        message.what = REFRESH_TOTAL_DATA_FAILED;
-                    } else if (! location.hefengResult.heWeather.get(0).status.equals("ok")) {
-                        message.what = REFRESH_TOTAL_DATA_FAILED;
-                    } else {
-                        message.what = REFRESH_TOTAL_DATA_SUCCEED;
-                    }
+                    message.what = REFRESH_TOTAL_DATA_FAILED;
                     safeHandler.sendMessage(message);
                 } else {
-                    location.juheResult = JuheWeather.getRequest(searchLocation);
-                    Message message = new Message();
-                    if (location.juheResult == null) {
-                        message.what = REFRESH_TOTAL_DATA_FAILED;
-                    } else if (! location.juheResult.error_code.equals("0")) {
-                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                        location.hefengResult = HefengWeather.requestInternationalData(searchLocation);
+                        Message message = new Message();
+                        if (location.hefengResult == null) {
+                            message.what = REFRESH_TOTAL_DATA_FAILED;
+                        } else if (! location.hefengResult.heWeather.get(0).status.equals("ok")) {
+                            message.what = REFRESH_TOTAL_DATA_FAILED;
+                        } else {
+                            message.what = REFRESH_TOTAL_DATA_SUCCEED;
+                        }
+                        safeHandler.sendMessage(message);
                     } else {
-                        message.what = REFRESH_TOTAL_DATA_SUCCEED;
+                        location.juheResult = JuheWeather.getRequest(searchLocation);
+                        Message message = new Message();
+                        if (location.juheResult == null) {
+                            message.what = REFRESH_TOTAL_DATA_FAILED;
+                        } else if (! location.juheResult.error_code.equals("0")) {
+                            message.what = REFRESH_TOTAL_DATA_FAILED;
+                        } else {
+                            message.what = REFRESH_TOTAL_DATA_SUCCEED;
+                        }
+                        safeHandler.sendMessage(message);
                     }
-                    safeHandler.sendMessage(message);
                 }
             }
         });
@@ -529,18 +537,24 @@ public class LiteWeatherFragment extends Fragment
 
     @SuppressLint("SetTextI18n")
     public void refreshUI() {
-        if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.hefengResult == null) {
+        if (refreshSucceed) {
+            if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.hefengResult == null) {
+                return;
+            } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.hefengResult.heWeather.get(0).status.equals("ok")) {
+                return;
+            } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                info = HefengWeather.getWeatherInfoToShow(getActivity(), location.hefengResult, MainActivity.isDay);
+            } else if (location.juheResult == null) {
+                return;
+            } else if (! location.juheResult.error_code.equals("0")) {
+                return;
+            } else {
+                info = JuheWeather.getWeatherInfoToShow(getActivity(), location.juheResult, MainActivity.isDay);
+            }
+        }
+
+        if (info == null) {
             return;
-        } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.hefengResult.heWeather.get(0).status.equals("ok")) {
-            return;
-        } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+")) {
-            info = HefengWeather.getWeatherInfoToShow(getActivity(), location.hefengResult, MainActivity.isDay);
-        } else if (location.juheResult == null) {
-            return;
-        } else if (! location.juheResult.error_code.equals("0")) {
-            return;
-        } else {
-            info = JuheWeather.getWeatherInfoToShow(getActivity(), location.juheResult, MainActivity.isDay);
         }
 
         if (MainActivity.needChangeTime()) {
@@ -830,14 +844,16 @@ public class LiteWeatherFragment extends Fragment
     }
 
     public void showWeatherIcon() {
-        if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.hefengResult == null) {
-            return;
-        } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.hefengResult.heWeather.get(0).status.equals("ok")) {
-            return;
-        } else if (! location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.juheResult == null) {
-            return;
-        } else if (! location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.juheResult.error_code.equals("0")) {
-            return;
+        if (refreshSucceed) {
+            if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.hefengResult == null) {
+                return;
+            } else if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.hefengResult.heWeather.get(0).status.equals("ok")) {
+                return;
+            } else if (! location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && location.juheResult == null) {
+                return;
+            } else if (! location.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! location.juheResult.error_code.equals("0")) {
+                return;
+            }
         }
 
         final AnimatorSet[] animatorSetsRise = new AnimatorSet[3];
@@ -961,7 +977,7 @@ public class LiteWeatherFragment extends Fragment
         this.databaseHelper = new MyDatabaseHelper(getActivity(),
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private void writeLocation() {
@@ -1045,6 +1061,16 @@ public class LiteWeatherFragment extends Fragment
             Toast.makeText(getActivity(),
                     getString(R.string.get_location_failed),
                     Toast.LENGTH_SHORT).show();
+
+            Thread thread=new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Message message = new Message();
+                    message.what = REFRESH_TOTAL_DATA_FAILED;
+                    safeHandler.sendMessage(message);
+                }
+            });
+            thread.start();
         } else {
             this.getTotalData(location);
         }
@@ -1071,6 +1097,7 @@ public class LiteWeatherFragment extends Fragment
         switch(message.what)
         {
             case REFRESH_TOTAL_DATA_SUCCEED:
+                refreshSucceed = true;
                 freshData = true;
 
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
@@ -1093,6 +1120,7 @@ public class LiteWeatherFragment extends Fragment
                 swipeRefreshLayout.setRefreshing(false);
                 refreshUI();
 
+                MainActivity.writeWeatherInfo(getActivity(), location.location, info);
                 MainActivity.writeTodayWeather(getActivity(), info);
                 MainActivity.sendNotification(getActivity(), location);
                 MainActivity.refreshWidget(getActivity(), location, info, MainActivity.isDay);
@@ -1122,11 +1150,35 @@ public class LiteWeatherFragment extends Fragment
                 }
                 break;
             case REFRESH_TOTAL_DATA_FAILED:
+                refreshSucceed = false;
                 swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(
                         getActivity(),
                         getString(R.string.refresh_data_failed),
                         Toast.LENGTH_SHORT).show();
+
+                info = MainActivity.readWeatherInfo(getActivity(), location.location);
+                if (info != null) {
+                    SharedPreferences.Editor editor1 = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+                    int hour1 = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+                    if (5 < hour1 && hour1 < 19) {
+                        editor1.putBoolean(getString(R.string.key_isDay), true);
+                    } else {
+                        editor1.putBoolean(getString(R.string.key_isDay), false);
+                    } editor1.apply();
+
+                    for (int i = 0; i < MainActivity.locationList.size(); i ++) {
+                        if (MainActivity.locationList.get(i).location.equals(location.location)) {
+                            MainActivity.locationList.remove(i);
+                            MainActivity.locationList.add(i, location);
+                            MainActivity.lastLocation = location;
+                            break;
+                        }
+                    }
+
+                    refreshUI();
+                }
+
                 break;
             case REFRESH_HOURLY_DATA_FAILED:
                 Toast.makeText(

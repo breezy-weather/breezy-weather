@@ -236,7 +236,7 @@ public class CreateWidgetWeekActivity extends Activity implements HandlerContain
         this.databaseHelper = new MyDatabaseHelper(CreateWidgetWeekActivity.this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private void readLocation() {

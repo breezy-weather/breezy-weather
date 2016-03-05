@@ -250,7 +250,7 @@ public class CreateWidgetClockDayCenterActivity extends Activity
         this.databaseHelper = new MyDatabaseHelper(this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                1);
+                2);
     }
 
     private void readLocation() {

@@ -12,7 +12,7 @@ import wangdaye.com.geometricweather.Service.NotificationService;
 
 public class NotificationReceiver extends BroadcastReceiver {
     // TAG
-    private final static String TAG = "NotificationReceiver";
+//    private final static String TAG = "NotificationReceiver";
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent intentNotification = new Intent(context, NotificationService.class);
