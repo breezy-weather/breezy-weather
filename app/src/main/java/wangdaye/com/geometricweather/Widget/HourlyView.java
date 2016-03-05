@@ -30,7 +30,12 @@ public class HourlyView extends View {
 
     private final String[] hour = new String[] {"01", "04", "07", "10", "13", "16", "19", "22"};
 
-    private final int MARGIN = 50;
+    private float MARGIN = 50;
+    private float WEATHER_TEXT_SIZE = 40;
+    private float TIME_TEXT_SIZE = 35;
+    private float NUM_TEXT_SIZE = 2;
+    private float TREND_LINE_SIZE = 5;
+    private float TIME_LINE_SIZE = 4;
 
     public HourlyView(Context context) {
         super(context);
@@ -68,6 +73,14 @@ public class HourlyView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        float dpiLevel = getResources().getDisplayMetrics().density;
+        MARGIN = (float) (50 * (dpiLevel / 2.625));
+        TIME_TEXT_SIZE = (float) (35 * (dpiLevel / 2.625));
+        WEATHER_TEXT_SIZE = (float) (40 * (dpiLevel / 2.625));
+        NUM_TEXT_SIZE = (float) (2 * (dpiLevel / 2.625));
+        TREND_LINE_SIZE = (float) (5 * (dpiLevel / 2.625));
+        TIME_LINE_SIZE = (float) (4 * (dpiLevel / 2.625));
+
         if (this.temp == null || this.pop == null) {
             drawNoData(canvas);
             return;
@@ -125,14 +138,14 @@ public class HourlyView extends View {
             paint.reset();
             paint.setAntiAlias(true);
             paint.setStyle(Paint.Style.FILL);
-            paint.setStrokeWidth(4);
+            paint.setStrokeWidth(TIME_LINE_SIZE);
             paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
             canvas.drawLine(coordinate[i][0], 3 * MARGIN, coordinate[i][0], getMeasuredHeight() - 4 * MARGIN, paint);
 
             paint.reset();
             paint.setAntiAlias(true);
-            paint.setStrokeWidth(2);
-            paint.setTextSize(35);
+            paint.setStrokeWidth(NUM_TEXT_SIZE);
+            paint.setTextSize(TIME_TEXT_SIZE);
             paint.setStyle(Paint.Style.FILL);
             paint.setTextAlign(Paint.Align.RIGHT);
             paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
@@ -148,7 +161,7 @@ public class HourlyView extends View {
             paint.setShader(linearGradientLeft);
             paint.setAntiAlias(true);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(5);
+            paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setAlpha(100);
             paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
             paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
@@ -190,7 +203,7 @@ public class HourlyView extends View {
                 paint.setShader(linearGradient);
                 paint.setAntiAlias(true);
                 paint.setStyle(Paint.Style.FILL);
-                paint.setStrokeWidth(5);
+                paint.setStrokeWidth(TREND_LINE_SIZE);
                 Path pathShadow = new Path();
                 pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
                 for (int i = 1; i < coordinate.length; i ++) {
@@ -208,7 +221,7 @@ public class HourlyView extends View {
 
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(TREND_LINE_SIZE);
         paint.setAlpha(100);
         paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
@@ -224,12 +237,12 @@ public class HourlyView extends View {
         paint.reset();
 
         paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(NUM_TEXT_SIZE);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
-        paint.setTextSize(40);
+        paint.setTextSize(WEATHER_TEXT_SIZE);
         for (int i = 0; i < coordinate.length; i ++) {
             canvas.drawText(Float.toString(pop[i]) + "%", coordinate[i][0], coordinate[i][1] + 60, paint);
         }
@@ -243,7 +256,7 @@ public class HourlyView extends View {
             paint.setShader(linearGradientLeft);
             paint.setAntiAlias(true);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(5);
+            paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setAlpha(100);
             paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
             paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
@@ -277,7 +290,7 @@ public class HourlyView extends View {
         paint.setShader(linearGradient);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(TREND_LINE_SIZE);
         Path pathShadow = new Path();
         pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
         for (int i = 1; i < coordinate.length; i ++) {
@@ -292,7 +305,7 @@ public class HourlyView extends View {
 
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(TREND_LINE_SIZE);
         paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
         Path pathLine = new Path();
@@ -307,12 +320,12 @@ public class HourlyView extends View {
         pathLine.reset();
 
         paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(NUM_TEXT_SIZE);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(40);
+        paint.setTextSize(WEATHER_TEXT_SIZE);
         for (int i = 0; i < coordinate.length; i ++) {
             canvas.drawText(Integer.toString(temp[i]) + "°", coordinate[i][0], coordinate[i][1] - 20, paint);
         }
@@ -322,11 +335,11 @@ public class HourlyView extends View {
     private void drawNoData(Canvas canvas) {
         paint.reset();
         paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(NUM_TEXT_SIZE);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(40);
+        paint.setTextSize(WEATHER_TEXT_SIZE);
         canvas.drawText(context.getString(R.string.no_data),
                 getMeasuredWidth() / 2,
                 (getMeasuredHeight() - 7 * MARGIN) / 2 + 3 * MARGIN,

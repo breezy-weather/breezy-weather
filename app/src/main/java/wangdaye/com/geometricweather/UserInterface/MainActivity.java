@@ -59,6 +59,7 @@ import wangdaye.com.geometricweather.Service.RefreshWidgetClockDayWeek;
 import wangdaye.com.geometricweather.Service.RefreshWidgetDay;
 import wangdaye.com.geometricweather.Service.RefreshWidgetDayWeek;
 import wangdaye.com.geometricweather.Service.RefreshWidgetWeek;
+import wangdaye.com.geometricweather.Service.TimeService;
 
 /**
  * Main activity.
@@ -104,6 +105,13 @@ public class MainActivity extends AppCompatActivity
         MainActivity.initNavigationBar(this, getWindow());
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (sharedPreferences.getBoolean(getString(R.string.key_timing_forecast_switch_today), false)
+                || sharedPreferences.getBoolean(getString(R.string.key_timing_forecast_switch_tomorrow), false)) {
+            Intent intent = new Intent(this, TimeService.class);
+            startService(intent);
+        }
+
         boolean watchedIntroduce = sharedPreferences.getBoolean(getString(R.string.key_watched_introduce), false);
         if (! watchedIntroduce) {
             this.requestPermission();
@@ -207,9 +215,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivityForResult(intent, SETTINGS_ACTIVITY);
+            return true;
         } else if (id == R.id.action_about) {
             Intent intent = new Intent(MainActivity.this, AboutAppActivity.class);
             startActivity(intent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

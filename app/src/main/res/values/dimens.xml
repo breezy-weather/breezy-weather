@@ -16,11 +16,6 @@
     <dimen name="weather_image_main">600dp</dimen>
     <dimen name="weather_image_main_half">300dp</dimen>
     <dimen name="bird_container_height">400dp</dimen>
-    <dimen name="big_title_size">20sp</dimen>
-    <dimen name="mini_word_size">12sp</dimen>
-    <dimen name="normal_title_size">16sp</dimen>
-    <dimen name="normal_word_size">14sp</dimen>
-    <dimen name="widget_time_size">10sp</dimen>
     <dimen name="material_icon_size">24dp</dimen>
     <dimen name="trend_view_height">240dp</dimen>
     <dimen name="touch_layout_height">256dp</dimen>
@@ -31,6 +26,12 @@
     <dimen name="dialog_height">480dp</dimen>
     <dimen name="spinner_drop_width">150dp</dimen>
     <dimen name="weather_icon_margin">20dp</dimen>
+
+    <dimen name="big_title_size">20sp</dimen>
+    <dimen name="normal_title_size">16sp</dimen>
+    <dimen name="normal_word_size">14sp</dimen>
+    <dimen name="mini_word_size">12sp</dimen>
+    <dimen name="widget_time_size">10sp</dimen>
 
     <dimen name="widget_grid_1">40dp</dimen>
     <dimen name="widget_grid_2">80dp</dimen>

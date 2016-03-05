@@ -55,7 +55,7 @@ public class ManageDialog extends DialogFragment
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         @SuppressLint("InflateParams")
-        View view = inflater.inflate(R.layout.manage_dialog, null);
+        View view = inflater.inflate(R.layout.dialog_manage, null);
         builder.setView(view);
 
         this.initData();

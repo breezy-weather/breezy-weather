@@ -11,6 +11,7 @@ import android.graphics.Shader;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
@@ -32,7 +33,12 @@ public class TrendView extends View {
     private int yesterdayMiniTemp;
     private boolean haveYesterdayData;
 
-    private final int MARGIN = 50;
+    private float MARGIN = 50;
+    private float YESTERDAY_TEXT_SIZE = 30;
+    private float WEATHER_TEXT_SIZE = 40;
+    private float NUM_TEXT_SIZE = 2;
+    private float TREND_LINE_SIZE = 5;
+    private float TIME_LINE_SIZE = 4;
 
     // TAG
 //    private final String TAG = "TrendView";
@@ -86,6 +92,14 @@ public class TrendView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        float dpiLevel = getResources().getDisplayMetrics().density;
+        MARGIN = (float) (50 * (dpiLevel / 2.625));
+        YESTERDAY_TEXT_SIZE = (float) (30 * (dpiLevel / 2.625));
+        WEATHER_TEXT_SIZE = (float) (40 * (dpiLevel / 2.625));
+        NUM_TEXT_SIZE = (float) (2 * (dpiLevel / 2.625));
+        TREND_LINE_SIZE = (float) (5 * (dpiLevel / 2.625));
+        TIME_LINE_SIZE = (float) (4 * (dpiLevel / 2.625));
+
         float width = getMeasuredWidth();
         float height = getMeasuredHeight() - 7 * MARGIN;
 
@@ -145,7 +159,7 @@ public class TrendView extends View {
     private void drawTimeLine(Canvas canvas, float[][] coordinate) {
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(4);
+        paint.setStrokeWidth(TIME_LINE_SIZE);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_time));
         for (float[] aCoordinate : coordinate) {
             canvas.drawLine(aCoordinate[0], 3 * MARGIN, aCoordinate[0], getMeasuredHeight() - 4 * MARGIN, paint);
@@ -161,15 +175,15 @@ public class TrendView extends View {
         paint.reset();
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(NUM_TEXT_SIZE);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
         canvas.drawLine(0, yesterdayCoordinate[0], getMeasuredWidth(), yesterdayCoordinate[0], paint);
         canvas.drawLine(0, yesterdayCoordinate[1], getMeasuredWidth(), yesterdayCoordinate[1], paint);
 
         paint.reset();
         paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
-        paint.setTextSize(30);
+        paint.setStrokeWidth(NUM_TEXT_SIZE);
+        paint.setTextSize(YESTERDAY_TEXT_SIZE);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
         paint.setTextAlign(Paint.Align.LEFT);
@@ -178,8 +192,8 @@ public class TrendView extends View {
 
         paint.reset();
         paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
-        paint.setTextSize(30);
+        paint.setStrokeWidth(NUM_TEXT_SIZE);
+        paint.setTextSize(YESTERDAY_TEXT_SIZE);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
         paint.setTextAlign(Paint.Align.RIGHT);
@@ -195,7 +209,7 @@ public class TrendView extends View {
         paint.setShader(linearGradient);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(TREND_LINE_SIZE);
         Path pathShadow = new Path();
         pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
         for (int i = 1; i < coordinate.length; i ++) {
@@ -210,7 +224,7 @@ public class TrendView extends View {
 
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(TREND_LINE_SIZE);
         paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
         Path pathLine = new Path();
@@ -225,12 +239,12 @@ public class TrendView extends View {
         pathLine.reset();
 
         paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(NUM_TEXT_SIZE);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(40);
+        paint.setTextSize(WEATHER_TEXT_SIZE);
         for (int i = 0; i < coordinate.length; i ++) {
             canvas.drawText(Integer.toString(maxiTemp[i]) + "°", coordinate[i][0], coordinate[i][1] - 20, paint);
         }
@@ -249,7 +263,7 @@ public class TrendView extends View {
         paint.setShader(linearGradient);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(TREND_LINE_SIZE);
         Path pathShadow = new Path();
         pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
         for (int i = 1; i < coordinate.length; i ++) {
@@ -265,7 +279,7 @@ public class TrendView extends View {
         Path path = new Path();
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(TREND_LINE_SIZE);
         paint.setAlpha(100);
         paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
@@ -281,12 +295,12 @@ public class TrendView extends View {
         paint.reset();
 
         paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(NUM_TEXT_SIZE);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_number));
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
-        paint.setTextSize(40);
+        paint.setTextSize(WEATHER_TEXT_SIZE);
         for (int i = 0; i < coordinate.length; i ++) {
             canvas.drawText(Integer.toString(miniTemp[i]) + "°", coordinate[i][0], coordinate[i][1] + 60, paint);
         }

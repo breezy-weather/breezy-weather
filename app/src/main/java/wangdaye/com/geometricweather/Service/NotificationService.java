@@ -47,7 +47,7 @@ import wangdaye.com.geometricweather.Widget.SafeHandler;
  * Send notification.
  * */
 
-public class NotificationService extends Service implements HandlerContainer{
+public class NotificationService extends Service implements HandlerContainer {
     // data
     private MyDatabaseHelper databaseHelper;
 

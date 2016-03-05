@@ -32,6 +32,49 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:title="@string/forecast"
+        android:layout="@layout/preference_category" >
+
+        <CheckBoxPreference
+            android:title="@string/timing_forecast_switch_today"
+            android:key="@string/key_timing_forecast_switch_today"
+            android:summaryOn="@string/switch_on"
+            android:summaryOff="@string/switch_off" />
+
+        <Preference
+            android:title="@string/set_forecast_time_today"
+            android:key="@string/set_forecast_time_today"
+            android:summary="@string/set_forecast_time_summary_today" />
+
+        <ListPreference
+            android:key="@string/key_forecast_type_today"
+            android:title="@string/set_forecast_type_today"
+            android:entries="@array/forecast_type_list"
+            android:entryValues="@array/forecast_type_key"
+            android:dialogTitle="@string/set_forecast_type_today"
+            android:defaultValue="@string/forecast_type_default" />
+
+        <CheckBoxPreference
+            android:title="@string/timing_forecast_switch_tomorrow"
+            android:key="@string/key_timing_forecast_switch_tomorrow"
+            android:summaryOn="@string/switch_on"
+            android:summaryOff="@string/switch_off" />
+
+        <Preference
+            android:title="@string/set_forecast_time_tomorrow"
+            android:key="@string/set_forecast_time_tomorrow" />
+
+        <ListPreference
+            android:key="@string/key_forecast_type_tomorrow"
+            android:title="@string/set_forecast_type_tomorrow"
+            android:entries="@array/forecast_type_list"
+            android:entryValues="@array/forecast_type_key"
+            android:dialogTitle="@string/set_forecast_type_tomorrow"
+            android:defaultValue="@string/forecast_type_default" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/widget"
         android:layout="@layout/preference_category" >
 

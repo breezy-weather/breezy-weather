@@ -239,6 +239,8 @@ public class LiteWeatherFragment extends Fragment
         locationCollect = (ImageView) view.findViewById(R.id.location_collect_icon_lite);
         isCollected = false;
         for (int i = 0; i < MainActivity.locationList.size(); i ++) {
+            Log.d("LiteWeatherFragment", "locationList size : " + String.valueOf(MainActivity.locationList.size()));
+            Log.d("LiteWeatherFragment", "location : " + location.location);
             if (MainActivity.locationList.get(i).location.equals(location.location)) {
                 locationCollect.setImageResource(R.drawable.ic_collect_yes);
                 isCollected = true;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TimePicker
+        android:id="@+id/dialog_time_setter_time_picker"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_location_height" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_title_height">
+
+        <Button
+            android:id="@+id/dialog_time_setter_done"
+            android:text="@string/done"
+            android:textSize="@dimen/normal_word_size"
+            android:textColor="@color/colorAccent"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/dialog_time_setter_cancel"
+            android:text="@string/cancel"
+            android:textSize="@dimen/normal_word_size"
+            android:textColor="@color/colorAccent"
+            android:background="@android:color/transparent"
+            android:layout_toLeftOf="@id/dialog_time_setter_done"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</LinearLayout>

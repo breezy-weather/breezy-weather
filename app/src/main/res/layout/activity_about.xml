@@ -5,34 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/app_info_title"
-        android:scaleType="centerCrop"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/weather_image_main_half" />
+        android:layout_height="wrap_content">
 
-    <ScrollView
-        android:scrollbars="none"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="vertical"
+        <FrameLayout
+            android:id="@+id/activity_about_status_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" />
 
-            <FrameLayout
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/app_info_title"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/touch_layout_height" />
+                android:layout_height="@dimen/weather_image_main_half" />
 
-            <include layout="@layout/about_app_card_app" />
-            <include layout="@layout/about_app_card_tech" />
-            <include layout="@layout/about_app_card_thank" />
-            <include layout="@layout/about_app_card_about_me" />
+            <ScrollView
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </ScrollView>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/touch_layout_height" />
+
+                    <include layout="@layout/about_app_card_app" />
+                    <include layout="@layout/about_app_card_tech" />
+                    <include layout="@layout/about_app_card_thank" />
+                    <include layout="@layout/about_app_card_about_me" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </FrameLayout>
+
+    </LinearLayout>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/app_info_toolbar"

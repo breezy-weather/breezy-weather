@@ -118,6 +118,10 @@
         <service android:name=".Service.RefreshWidgetClockDayCenter" />
         <service android:name=".Service.RefreshWidgetClockDayWeek" />
 
+        <service android:name=".Service.TimeService" />
+        <service android:name=".Service.TodayForecastService" />
+        <service android:name=".Service.TomorrowForecastService" />
+
         <!-- receiver -->
         <receiver android:name=".Receiver.NotificationReceiver" />
 
@@ -126,7 +130,7 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
 
         </receiver>

@@ -13,8 +13,11 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.widget.Toast;
 
+import java.sql.Time;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.NotificationService;
+import wangdaye.com.geometricweather.Service.TimeService;
 
 /**
  * A fragment to show settings.
@@ -29,6 +32,7 @@ public class SettingsFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.perference);
         this.initNotificationPart();
+        this.initForecastPart();
     }
 
 // touch interface
@@ -46,7 +50,19 @@ public class SettingsFragment extends PreferenceFragment {
                     Toast.LENGTH_SHORT).show();
         } else if (preference.getKey().equals(getString(R.string.key_navigation_bar_color_switch))) {
             MainActivity.initNavigationBar(getActivity(), getActivity().getWindow());
-        }  else if (preference.getKey().equals(getString(R.string.key_notification_switch))) {
+        } else if (preference.getKey().equals(getString(R.string.key_timing_forecast_switch_today))) {
+            initForecastPart();
+        } else if (preference.getKey().equals(getString(R.string.set_forecast_time_today))) {
+            TimeSetterDialog dialog = new TimeSetterDialog();
+            dialog.setModel(this, true);
+            dialog.show(getFragmentManager(), "TimeSetterDialog");
+        } else if (preference.getKey().equals(getString(R.string.key_timing_forecast_switch_tomorrow))) {
+            initForecastPart();
+        } else if (preference.getKey().equals(getString(R.string.set_forecast_time_tomorrow))) {
+            TimeSetterDialog dialog = new TimeSetterDialog();
+            dialog.setModel(this, false);
+            dialog.show(getFragmentManager(), "TimeSetterDialog");
+        } else if (preference.getKey().equals(getString(R.string.key_notification_switch))) {
             initNotificationPart();
             SharedPreferences sharedPreferences
                     = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -104,6 +120,56 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
 // initialize
+
+    private void initForecastPart() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        Preference preferenceSetForecastTimeToday = findPreference(getString(R.string.set_forecast_time_today));
+        String summaryToday = sharedPreferences.getString(getString(R.string.key_forecast_time_today), "07:00");
+        preferenceSetForecastTimeToday.setSummary(summaryToday);
+        ListPreference listPreferenceForecastTypeToday = (ListPreference) findPreference(getString(R.string.key_forecast_type_today));
+        Preference preferenceSetForecastTimeTomorrow = findPreference(getString(R.string.set_forecast_time_tomorrow));
+        String summaryTomorrow = sharedPreferences.getString(getString(R.string.key_forecast_time_tomorrow), "21:00");
+        preferenceSetForecastTimeTomorrow.setSummary(summaryTomorrow);
+        ListPreference listPreferenceForecastTypeTomorrow = (ListPreference) findPreference(getString(R.string.key_forecast_type_tomorrow));
+
+        if (sharedPreferences.getBoolean(getString(R.string.key_timing_forecast_switch_today), false)) {
+            Intent intent = new Intent(getActivity(), TimeService.class);
+            getActivity().startService(intent);
+            listPreferenceForecastTypeToday.setEnabled(true);
+            preferenceSetForecastTimeToday.setEnabled(true);
+        } else {
+            listPreferenceForecastTypeToday.setEnabled(false);
+            preferenceSetForecastTimeToday.setEnabled(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.key_timing_forecast_switch_tomorrow), false)) {
+            Intent intent = new Intent(getActivity(), TimeService.class);
+            getActivity().startService(intent);
+            preferenceSetForecastTimeTomorrow.setEnabled(true);
+            listPreferenceForecastTypeTomorrow.setEnabled(true);
+        } else {
+            preferenceSetForecastTimeTomorrow.setEnabled(false);
+            listPreferenceForecastTypeTomorrow.setEnabled(false);
+        }
+
+        if (! sharedPreferences.getBoolean(getString(R.string.key_timing_forecast_switch_today), false)
+                && ! sharedPreferences.getBoolean(getString(R.string.key_timing_forecast_switch_tomorrow), false)) {
+            Intent intent = new Intent(getActivity(), TimeService.class);
+            getActivity().stopService(intent);
+        }
+    }
+
+    public void setForecastSummary() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        Preference preferenceSetForecastTimeToday = findPreference(getString(R.string.set_forecast_time_today));
+        String summaryToday = sharedPreferences.getString(getString(R.string.key_forecast_time_today), "07:00");
+        preferenceSetForecastTimeToday.setSummary(summaryToday);
+
+        Preference preferenceSetForecastTimeTomorrow = findPreference(getString(R.string.set_forecast_time_tomorrow));
+        String summaryTomorrow = sharedPreferences.getString(getString(R.string.key_forecast_time_tomorrow), "21:00");
+        preferenceSetForecastTimeTomorrow.setSummary(summaryTomorrow);
+    }
 
     private void initNotificationPart() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
