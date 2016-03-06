@@ -167,6 +167,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_LOCATION);
         db.execSQL(CREATE_TABLE_WEATHER);
+        db.execSQL(CREATE_TABLE_INFO);
     }
 
     @Override

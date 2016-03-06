@@ -150,8 +150,8 @@ public class WeatherFragment extends Fragment
         View mainView = inflater.inflate(R.layout.weather_fragment, container, false);
 
         this.safeHandler = new SafeHandler<>(this);
-        initDatabaseHelper();
-
+        this.initDatabaseHelper();
+        this.setLocation();
         this.refreshSucceed = false;
         this.freshData = false;
         this.maxiTemp = new int[7];
@@ -442,10 +442,9 @@ public class WeatherFragment extends Fragment
         this.refreshData();
     }
 
-    public void setLocation(Location location) {
-    this.location = location;
-    MainActivity.lastLocation = location;
-}
+    public void setLocation() {
+        this.location = MainActivity.lastLocation;
+    }
 
     private void refreshData() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());

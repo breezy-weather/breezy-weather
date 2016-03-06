@@ -329,12 +329,12 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (animatorSwitch) {
+            lastLocation = locationList.get(0);
             weatherFragment = new WeatherFragment();
-            weatherFragment.setLocation(locationList.get(0));
             changeFragment(weatherFragment);
         } else {
+            lastLocation = locationList.get(0);
             liteWeatherFragment = new LiteWeatherFragment();
-            liteWeatherFragment.setLocation(locationList.get(0));
             changeFragment(liteWeatherFragment);
         }
 
@@ -460,16 +460,19 @@ public class MainActivity extends AppCompatActivity
         }
         if (isSearch) {
             if (animatorSwitch) {
-                this.weatherFragment.setLocation(new Location(location));
+                lastLocation = new Location(location);
+                this.weatherFragment.setLocation();
                 this.weatherFragment.refreshAll();
             } else {
-                this.liteWeatherFragment.setLocation(new Location(location));
+                lastLocation = new Location(location);
+                this.liteWeatherFragment.setLocation();
                 this.liteWeatherFragment.refreshAll();
             }
         } else if (animatorSwitch) {
             for (int i = 0; i < locationList.size(); i ++) {
                 if (locationList.get(i).location.equals(location)) {
-                    this.weatherFragment.setLocation(locationList.get(i));
+                    lastLocation = locationList.get(i);
+                    this.weatherFragment.setLocation();
                     this.weatherFragment.refreshAll();
                     return;
                 }
@@ -477,7 +480,8 @@ public class MainActivity extends AppCompatActivity
         } else {
             for (int i = 0; i < locationList.size(); i ++) {
                 if (locationList.get(i).location.equals(location)) {
-                    this.liteWeatherFragment.setLocation(locationList.get(i));
+                    lastLocation = locationList.get(i);
+                    this.liteWeatherFragment.setLocation();
                     this.liteWeatherFragment.refreshAll();
                     return;
                 }
