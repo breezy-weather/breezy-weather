@@ -39,8 +39,8 @@
 
 * 酷安： http://www.coolapk.com/apk/wangdaye.com.geometricweather
 * 小米应用商店： http://app.mi.com/detail/245625?ref=search
-* 豌豆荚： 暂未上线
-* google play： 暂未上线
+* 豌豆荚： http://www.wandoujia.com/apps/wangdaye.com.geometricweather
+* google play： 筹备中...
 * 其他市场暂未有上线计划。
 
 ### 感谢
