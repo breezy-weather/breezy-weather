@@ -114,12 +114,12 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <wangdaye.com.geometricweather.Widget.MySwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <wangdaye.com.geometricweather.Widget.MyScrollView
             android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -129,6 +129,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/interface_container"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -297,8 +298,8 @@
                 
             </FrameLayout>
 
-        </ScrollView>
+        </wangdaye.com.geometricweather.Widget.MyScrollView>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </wangdaye.com.geometricweather.Widget.MySwipeRefreshLayout>
 
 </android.support.design.widget.CoordinatorLayout>

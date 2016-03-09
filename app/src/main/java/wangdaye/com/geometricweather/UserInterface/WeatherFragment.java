@@ -19,11 +19,14 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +47,7 @@ import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.HourlyView;
+import wangdaye.com.geometricweather.Widget.MySwipeRefreshLayout;
 import wangdaye.com.geometricweather.Widget.RippleCardView;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 import wangdaye.com.geometricweather.Widget.TrendView;
@@ -55,8 +59,6 @@ import wangdaye.com.geometricweather.Widget.TrendView;
 public class WeatherFragment extends Fragment
         implements BDLocationListener, HandlerContainer {
     // widget
-    private boolean iconRise;
-
     private ImageView[] circles;
     private ImageView[] start;
     private ImageView[] weatherIcon;
@@ -99,9 +101,13 @@ public class WeatherFragment extends Fragment
     private TextView sportKind;
     private TextView sportInfo;
 
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private MySwipeRefreshLayout swipeRefreshLayout;
     private RippleCardView weatherCard;
     private RippleCardView lifeCard;
+
+    private GestureDetector gestureDetectorPage;
+    private GestureDetector gestureDetectorTrendView;
+    private GestureDetector gestureDetectorHourlyView;
 
     //animator
     public AnimatorSet[] animatorSetsShow;
@@ -112,17 +118,17 @@ public class WeatherFragment extends Fragment
     // data
     private boolean refreshSucceed;
     private boolean freshData;
+    private boolean iconRise;
 
     private WeatherInfoToShow info;
 
     private int[] maxiTemp;
     private int[] miniTemp;
 
+    private boolean[] showIcon;
     private boolean showStar;
 
     public Location location;
-
-    private boolean[] showIcon;
 
     private final int REFRESH_TOTAL_DATA_SUCCEED = 1;
     private final int REFRESH_HOURLY_DATA_SUCCEED = 2;
@@ -150,6 +156,9 @@ public class WeatherFragment extends Fragment
         View mainView = inflater.inflate(R.layout.weather_fragment, container, false);
 
         this.safeHandler = new SafeHandler<>(this);
+        this.gestureDetectorPage = new GestureDetector(getActivity(), new PageOnGestureListener());
+        this.gestureDetectorTrendView = new GestureDetector(getActivity(), new TrendViewOnGestureListener());
+        this.gestureDetectorHourlyView = new GestureDetector(getActivity(), new HourlyViewOnGestureListener());
         this.initDatabaseHelper();
         this.setLocation();
         this.refreshSucceed = false;
@@ -157,8 +166,8 @@ public class WeatherFragment extends Fragment
         this.maxiTemp = new int[7];
         this.miniTemp = new int[7];
 
-        this.initWeatherView(mainView);
         this.setWindowTopColor();
+        this.initWeatherView(mainView);
         this.initInformationContainer(mainView);
 
         if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+")
@@ -243,9 +252,27 @@ public class WeatherFragment extends Fragment
 
     private void initInformationContainer(View view) {
         weatherCard = (RippleCardView) view.findViewById(R.id.base_info_card);
+        weatherCard.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetectorPage.onTouchEvent(event);
+            }
+        });
+        LinearLayout.LayoutParams weatherCardLayoutParams = (LinearLayout.LayoutParams) weatherCard.getLayoutParams();
+        weatherCard.viewStartX = weatherCard.getX() + weatherCardLayoutParams.leftMargin;
+        weatherCard.viewStartY = weatherCard.getY();
         weatherCard.setVisibility(View.GONE);
 
         lifeCard = (RippleCardView) view.findViewById(R.id.life_info_card);
+        lifeCard.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetectorPage.onTouchEvent(event);
+            }
+        });
+        LinearLayout.LayoutParams liferCardLayoutParams = (LinearLayout.LayoutParams) lifeCard.getLayoutParams();
+        lifeCard.viewStartX = lifeCard.getX() + liferCardLayoutParams.leftMargin;
+        lifeCard.viewStartY = lifeCard.getY();
         lifeCard.setVisibility(View.GONE);
 
         this.timeTextLive = (TextView) view.findViewById(R.id.time_text_live);
@@ -349,48 +376,19 @@ public class WeatherFragment extends Fragment
         this.poweredText = (TextView) view.findViewById(R.id.weather_trend_view_powered_text);
         this.trendContainer = (FrameLayout) view.findViewById(R.id.trend_view_container);
         this.weatherTrendView = (TrendView) view.findViewById(R.id.weather_trend_view);
-        this.weatherTrendView.setOnClickListener(new View.OnClickListener() {
+        this.weatherTrendView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                if (location.hefengResult == null || ! location.hefengResult.heWeather.get(0).status.equals("ok") || freshData) {
-                    getHourlyData();
-                }
-                final AnimatorSet animatorSetShow = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.opaque);
-                animatorSetShow.setTarget(hourlyContainer);
-                final AnimatorSet animatorSetHide = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.trans);
-                animatorSetHide.setTarget(trendContainer);
-                animatorSetHide.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        trendContainer.setVisibility(View.GONE);
-                        hourlyContainer.setVisibility(View.VISIBLE);
-                        animatorSetShow.start();
-                    }
-                });
-                animatorSetHide.start();
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetectorTrendView.onTouchEvent(event);
             }
         });
 
         this.hourlyContainer = (FrameLayout) view.findViewById(R.id.hourly_view_container);
         this.weatherHourlyView = (HourlyView) view.findViewById(R.id.weather_hourly_view);
-        this.weatherHourlyView.setOnClickListener(new View.OnClickListener() {
+        this.weatherHourlyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                final AnimatorSet animatorSetShow = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.opaque);
-                animatorSetShow.setTarget(trendContainer);
-                AnimatorSet animatorSetHide = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.trans);
-                animatorSetHide.setTarget(hourlyContainer);
-                animatorSetHide.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        hourlyContainer.setVisibility(View.GONE);
-                        trendContainer.setVisibility(View.VISIBLE);
-                        animatorSetShow.start();
-                    }
-                });
-                animatorSetHide.start();
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetectorHourlyView.onTouchEvent(event);
             }
         });
         hourlyContainer.setVisibility(View.GONE);
@@ -414,7 +412,7 @@ public class WeatherFragment extends Fragment
         sportKind = (TextView) view.findViewById(R.id.detail_sport_kind);
         sportInfo = (TextView) view.findViewById(R.id.detail_sport_info);
 
-        this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+        this.swipeRefreshLayout = (MySwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         this.swipeRefreshLayout.setColorSchemeColors(R.color.lightPrimary_3, R.color.darkPrimary_1);
         this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -566,6 +564,7 @@ public class WeatherFragment extends Fragment
         }
 
         this.weatherTextLive.setText(info.weatherNow + " " + info.tempNow + "℃");
+        weatherTextLive.setVisibility(View.VISIBLE);
         this.timeTextLive.setText(info.refreshTime);
         this.locationTextLive.setText(info.location);
 
@@ -620,18 +619,11 @@ public class WeatherFragment extends Fragment
                     for (int i = 0; i < 3; i ++) {
                         if (animatorId[i] != 0) {
                             animatorSetsWeekIcon[position][i].start();
+                            Toast.makeText(getActivity(),
+                                    info.weather[position],
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
-                }
-            });
-            final int finalI = i;
-            weekIcon[i][0].setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Toast.makeText(getActivity(),
-                            info.weather[finalI],
-                            Toast.LENGTH_SHORT).show();
-                    return true;
                 }
             });
         }
@@ -1056,11 +1048,18 @@ public class WeatherFragment extends Fragment
     }
 
     private void setWeatherIcon() {
+        this.showIcon = new boolean[3];
+
+        if (info == null) {
+            for (int i = 0; i < showIcon.length; i ++) {
+                showIcon[i] = false;
+            }
+            return;
+        }
+
         int[] imageId = JuheWeather.getWeatherIcon(info.weatherKindNow, MainActivity.isDay);
         int[] animatorId = JuheWeather.getAnimatorId(info.weatherKindNow, MainActivity.isDay);
         this.animatorSetsIcon = new AnimatorSet[3];
-
-        this.showIcon = new boolean[3];
 
         for (int i = 0; i < 3; i ++) {
             if (imageId[i] != 0) {
@@ -1225,6 +1224,209 @@ public class WeatherFragment extends Fragment
         mLocationClient.stop();
     }
 
+    private class PageOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            if (Math.abs(e2.getX() - e1.getX()) < Math.abs(e2.getY() - e1.getY())) {
+                return false;
+            }
+            weatherCard.getParent().requestDisallowInterceptTouchEvent(true);
+            lifeCard.getParent().requestDisallowInterceptTouchEvent(true);
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (Math.abs(e2.getX() - e1.getX()) < Math.abs(e2.getY() - e1.getY())) {
+                return false;
+            }
+            weatherCard.getParent().requestDisallowInterceptTouchEvent(true);
+            lifeCard.getParent().requestDisallowInterceptTouchEvent(true);
+            weatherCard.setX(weatherCard.viewStartX + (e2.getX() - e1.getX()));
+            lifeCard.setX(lifeCard.viewStartX + (e2.getX() - e1.getX()));
+            weatherCard.setVisibility(View.GONE);
+            weatherCard.setX(weatherCard.viewStartX);
+            weatherCard.setY(weatherCard.viewStartY);
+            lifeCard.setVisibility(View.GONE);
+            lifeCard.setX(weatherCard.viewStartX);
+            lifeCard.setY(weatherCard.viewStartY);
+
+            for (int i = 0; i < MainActivity.locationList.size(); i ++) {
+                if (location.location.equals(MainActivity.locationList.get(i).location)) {
+                    if (e2.getX() < e1.getX()) {
+                        i ++;
+                        if (i >= MainActivity.locationList.size()) {
+                            i = 0;
+                        }
+                    } else {
+                        i --;
+                        if (i < 0) {
+                            i = MainActivity.locationList.size() - 1;
+                        }
+                    }
+                    location = MainActivity.locationList.get(i);
+                    break;
+                }
+            }
+            refreshAll();
+            return true;
+        }
+    }
+
+    private class TrendViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            if (Math.abs(e2.getX() - e1.getX()) < Math.abs(e2.getY() - e1.getY())) {
+                return false;
+            }
+            weatherCard.getParent().requestDisallowInterceptTouchEvent(true);
+            lifeCard.getParent().requestDisallowInterceptTouchEvent(true);
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (Math.abs(e2.getX() - e1.getX()) < Math.abs(e2.getY() - e1.getY())) {
+                return false;
+            }
+            weatherCard.getParent().requestDisallowInterceptTouchEvent(true);
+            lifeCard.getParent().requestDisallowInterceptTouchEvent(true);
+            weatherCard.setX(weatherCard.viewStartX + (e2.getX() - e1.getX()));
+            lifeCard.setX(lifeCard.viewStartX + (e2.getX() - e1.getX()));
+            weatherCard.setVisibility(View.GONE);
+            weatherCard.setX(weatherCard.viewStartX);
+            weatherCard.setY(weatherCard.viewStartY);
+            lifeCard.setVisibility(View.GONE);
+            lifeCard.setX(weatherCard.viewStartX);
+            lifeCard.setY(weatherCard.viewStartY);
+
+            for (int i = 0; i < MainActivity.locationList.size(); i ++) {
+                if (location.location.equals(MainActivity.locationList.get(i).location)) {
+                    if (e2.getX() < e1.getX()) {
+                        i ++;
+                        if (i >= MainActivity.locationList.size()) {
+                            i = 0;
+                        }
+                    } else {
+                        i --;
+                        if (i < 0) {
+                            i = MainActivity.locationList.size() - 1;
+                        }
+                    }
+                    location = MainActivity.locationList.get(i);
+                    break;
+                }
+            }
+            refreshAll();
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent event) {
+            if (location.hefengResult == null || ! location.hefengResult.heWeather.get(0).status.equals("ok") || freshData) {
+                getHourlyData();
+            }
+            final AnimatorSet animatorSetShow = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.opaque);
+            animatorSetShow.setTarget(hourlyContainer);
+            final AnimatorSet animatorSetHide = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.trans);
+            animatorSetHide.setTarget(trendContainer);
+            animatorSetHide.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    trendContainer.setVisibility(View.GONE);
+                    hourlyContainer.setVisibility(View.VISIBLE);
+                    animatorSetShow.start();
+                }
+            });
+            animatorSetHide.start();
+            return true;
+        }
+    }
+
+    private class HourlyViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            if (Math.abs(e2.getX() - e1.getX()) < Math.abs(e2.getY() - e1.getY())) {
+                return false;
+            }
+            weatherCard.getParent().requestDisallowInterceptTouchEvent(true);
+            lifeCard.getParent().requestDisallowInterceptTouchEvent(true);
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (Math.abs(e2.getX() - e1.getX()) < Math.abs(e2.getY() - e1.getY())) {
+                return false;
+            }
+            weatherCard.getParent().requestDisallowInterceptTouchEvent(true);
+            lifeCard.getParent().requestDisallowInterceptTouchEvent(true);
+            weatherCard.setX(weatherCard.viewStartX + (e2.getX() - e1.getX()));
+            lifeCard.setX(lifeCard.viewStartX + (e2.getX() - e1.getX()));
+            weatherCard.setVisibility(View.GONE);
+            weatherCard.setX(weatherCard.viewStartX);
+            weatherCard.setY(weatherCard.viewStartY);
+            lifeCard.setVisibility(View.GONE);
+            lifeCard.setX(weatherCard.viewStartX);
+            lifeCard.setY(weatherCard.viewStartY);
+
+            for (int i = 0; i < MainActivity.locationList.size(); i ++) {
+                if (location.location.equals(MainActivity.locationList.get(i).location)) {
+                    if (e2.getX() < e1.getX()) {
+                        i ++;
+                        if (i >= MainActivity.locationList.size()) {
+                            i = 0;
+                        }
+                    } else {
+                        i --;
+                        if (i < 0) {
+                            i = MainActivity.locationList.size() - 1;
+                        }
+                    }
+                    location = MainActivity.locationList.get(i);
+                    break;
+                }
+            }
+            refreshAll();
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent event) {
+            final AnimatorSet animatorSetShow = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.opaque);
+            animatorSetShow.setTarget(trendContainer);
+            AnimatorSet animatorSetHide = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.trans);
+            animatorSetHide.setTarget(hourlyContainer);
+            animatorSetHide.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    hourlyContainer.setVisibility(View.GONE);
+                    trendContainer.setVisibility(View.VISIBLE);
+                    animatorSetShow.start();
+                }
+            });
+            animatorSetHide.start();
+            return true;
+        }
+    }
+
 // handler
 
     @Override
@@ -1255,10 +1457,13 @@ public class WeatherFragment extends Fragment
                 swipeRefreshLayout.setRefreshing(false);
                 refreshUI();
 
-                MainActivity.writeWeatherInfo(getActivity(), location.location, info);
-                MainActivity.writeTodayWeather(getActivity(), info);
-                MainActivity.sendNotification(getActivity(), location);
-                MainActivity.refreshWidget(getActivity(), location, info, MainActivity.isDay);
+                if (info != null) {
+                    MainActivity.writeWeatherInfo(getActivity(), location.location, info);
+                    MainActivity.writeTodayWeather(getActivity(), info);
+                    MainActivity.sendNotification(getActivity(), location);
+                    MainActivity.refreshWidget(getActivity(), location, info, MainActivity.isDay);
+                }
+
                 break;
             case REFRESH_HOURLY_DATA_SUCCEED:
                 freshData = false;
