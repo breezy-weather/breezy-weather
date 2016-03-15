@@ -35,7 +35,7 @@ import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.UserInterface.MainActivity;
+import wangdaye.com.geometricweather.UI.MainActivity;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
@@ -244,7 +244,7 @@ public class TodayForecastService extends Service implements HandlerContainer {
         this.databaseHelper = new MyDatabaseHelper(this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
     }
 
     private String readLocation() {

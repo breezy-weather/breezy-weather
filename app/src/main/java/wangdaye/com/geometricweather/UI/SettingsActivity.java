@@ -1,6 +1,5 @@
-package wangdaye.com.geometricweather.UserInterface;
+package wangdaye.com.geometricweather.UI;
 
-import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;

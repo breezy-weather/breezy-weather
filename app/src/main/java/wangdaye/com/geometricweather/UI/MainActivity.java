@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.UserInterface;
+package wangdaye.com.geometricweather.UI;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -14,10 +14,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -62,34 +61,47 @@ import wangdaye.com.geometricweather.Service.RefreshWidgetDay;
 import wangdaye.com.geometricweather.Service.RefreshWidgetDayWeek;
 import wangdaye.com.geometricweather.Service.RefreshWidgetWeek;
 import wangdaye.com.geometricweather.Service.TimeService;
+import wangdaye.com.geometricweather.Widget.HandlerContainer;
+import wangdaye.com.geometricweather.Widget.SafeHandler;
 
 /**
  * Main activity.
  * */
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ManageDialog.SetLocationListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        ManageDialog.SetLocationListener,
+        HandlerContainer {
     // widget
+    public static SafeHandler<MainActivity> safeHandler;
+
     public static FragmentManager fragmentManager;
     private WeatherFragment weatherFragment;
-    private LiteWeatherFragment liteWeatherFragment;
 
     private static FrameLayout navHead;
     private static FrameLayout backgroundPlate;
+    public static Toolbar toolbar;
 
     // data
-    private boolean animatorSwitch;
-
-    private MyDatabaseHelper databaseHelper;
-
     public static boolean isDay;
     public static List<Location> locationList;
     public static Location lastLocation;
     private boolean started;
 
+    public static boolean activityVisibility;
+
+    private MyDatabaseHelper databaseHelper;
+
     private final static int LOCATION_PERMISSIONS_REQUEST_CODE = 1;
+
     private final static int SETTINGS_ACTIVITY = 1;
+
     public static final int NOTIFICATION_ID = 7;
+
+    private static final int REFRESH_TOTAL_DATA_SUCCEED = 1;
+    private static final int REFRESH_HOURLY_DATA_SUCCEED = 2;
+    private static final int REFRESH_TOTAL_DATA_FAILED = -1;
+    private static final int REFRESH_HOURLY_DATA_FAILED = -2;
 
     // TAG
 //    private static final String TAG = "MainActivity";
@@ -99,21 +111,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MainActivity.activityVisibility = true;
+
         this.setStatusBarTransParent();
         setContentView(R.layout.activity_main);
 
+        safeHandler = new SafeHandler<>(this);
         this.initDatabaseHelper();
         this.initData();
         MainActivity.initNavigationBar(this, getWindow());
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         if (sharedPreferences.getBoolean(getString(R.string.key_timing_forecast_switch_today), false)
                 || sharedPreferences.getBoolean(getString(R.string.key_timing_forecast_switch_tomorrow), false)) {
             Intent intent = new Intent(this, TimeService.class);
             startService(intent);
         }
-
         boolean watchedIntroduce = sharedPreferences.getBoolean(getString(R.string.key_watched_introduce), false);
         if (! watchedIntroduce) {
             this.requestPermission();
@@ -125,24 +138,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        if (started && animatorSwitch) {
-            this.weatherFragment.showCirclesView();
-        } else if (started) {
-            this.liteWeatherFragment.showCirclesView();
-        }
+        MainActivity.activityVisibility = true;
 
-        if (weatherFragment != null || liteWeatherFragment != null) {
+        if (started) {
+            this.weatherFragment.showCirclesView();
+        }
+        if (weatherFragment != null) {
             started = true;
         }
     }
 
     @Override
     protected void onStop() {
-        if (started && animatorSwitch) {
-            this.weatherFragment.animatorCancel();
-        } else if (started) {
-            this.liteWeatherFragment.animatorCancel();
-        }
+        MainActivity.activityVisibility = false;
         super.onStop();
     }
 
@@ -151,12 +159,8 @@ public class MainActivity extends AppCompatActivity
         switch (requestCode) {
             case SETTINGS_ACTIVITY:
                 initNavigationBar(this, getWindow());
-
-                if (animatorSwitch) {
-                    MainActivity.sendNotification(this, weatherFragment.location);
-                } else {
-                    MainActivity.sendNotification(this, liteWeatherFragment.location);
-                } break;
+                MainActivity.sendNotification(this, weatherFragment.location);
+                break;
         }
     }
 
@@ -199,13 +203,8 @@ public class MainActivity extends AppCompatActivity
             }
             MainActivity.locationList.add(lastLocation);
             this.writeLocation();
-            if (animatorSwitch) {
-                WeatherFragment.isCollected = true;
-                WeatherFragment.locationCollect.setImageResource(R.drawable.ic_collect_yes);
-            } else {
-                LiteWeatherFragment.isCollected = true;
-                LiteWeatherFragment.locationCollect.setImageResource(R.drawable.ic_collect_yes);
-            }
+            WeatherFragment.isCollected = true;
+            WeatherFragment.locationCollect.setImageResource(R.drawable.ic_collect_yes);
             Toast.makeText(this,
                     getString(R.string.collect_succeed),
                     Toast.LENGTH_SHORT).show();
@@ -321,23 +320,15 @@ public class MainActivity extends AppCompatActivity
 
     protected void createApp() {
         this.initWidget();
-
         fragmentManager = getFragmentManager();
 
         if (locationList.size() < 1) {
             locationList.add(new Location(getString(R.string.local)));
         }
 
-        if (animatorSwitch) {
-            lastLocation = locationList.get(0);
-            weatherFragment = new WeatherFragment();
-            changeFragment(weatherFragment);
-        } else {
-            lastLocation = locationList.get(0);
-            liteWeatherFragment = new LiteWeatherFragment();
-            changeFragment(liteWeatherFragment);
-        }
-
+        lastLocation = locationList.get(0);
+        weatherFragment = new WeatherFragment();
+        changeFragment(weatherFragment);
         setNavHead();
     }
 
@@ -370,7 +361,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initWidget() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
@@ -394,7 +385,6 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         MainActivity.isDay = sharedPreferences.getBoolean(getString(R.string.key_isDay), true);
-        this.animatorSwitch = sharedPreferences.getBoolean(getString(R.string.key_more_animator_switch), false);
 
         started = false;
         lastLocation = null;
@@ -439,6 +429,76 @@ public class MainActivity extends AppCompatActivity
 
 // refresh data
 
+    public static void getTotalData(final String searchLocation, final boolean isLocation) {
+        Thread thread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (isLocation) {
+                    lastLocation = new Location("本地");
+                } else {
+                    lastLocation = new Location(searchLocation);
+                }
+                if (searchLocation.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                    lastLocation.hefengResult = HefengWeather.requestInternationalData(searchLocation);
+                    Message message = new Message();
+                    if (lastLocation.hefengResult == null) {
+                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    } else if (! lastLocation.hefengResult.heWeather.get(0).status.equals("ok")) {
+                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    } else {
+                        message.what = REFRESH_TOTAL_DATA_SUCCEED;
+                    }
+                    safeHandler.sendMessage(message);
+                } else {
+                    lastLocation.juheResult = JuheWeather.getRequest(searchLocation);
+                    Message message = new Message();
+                    if (lastLocation.juheResult == null) {
+                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    } else if (! lastLocation.juheResult.error_code.equals("0")) {
+                        message.what = REFRESH_TOTAL_DATA_FAILED;
+                    } else {
+                        message.what = REFRESH_TOTAL_DATA_SUCCEED;
+                    }
+                    safeHandler.sendMessage(message);
+                }
+            }
+        });
+        thread.start();
+    }
+
+    public static void getHourlyData(final Context context) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                if (lastLocation.location.replaceAll(" ", "").matches("[a-zA-Z]+") && lastLocation.hefengResult == null) {
+                    message.what = REFRESH_HOURLY_DATA_FAILED;
+                } else if (lastLocation.location.replaceAll(" ", "").matches("[a-zA-Z]+") && ! lastLocation.hefengResult.heWeather.get(0).status.equals("ok")) {
+                    message.what = REFRESH_HOURLY_DATA_FAILED;
+                } else if (lastLocation.location.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                    message.what = REFRESH_HOURLY_DATA_SUCCEED;
+                } else if (lastLocation.juheResult == null) {
+                    message.what = REFRESH_HOURLY_DATA_FAILED;
+                } else if (! lastLocation.juheResult.error_code.equals("0")) {
+                    message.what = REFRESH_HOURLY_DATA_FAILED;
+                } else {
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                    boolean useEnglish = sharedPreferences.getBoolean(context.getString(R.string.key_get_hourly_data_by_eng), false);
+                    lastLocation.hefengResult = HefengWeather.requestHourlyData(lastLocation.juheResult.result.data.realtime.city_name, useEnglish);
+                    if (lastLocation.hefengResult == null) {
+                        message.what = REFRESH_HOURLY_DATA_FAILED;
+                    } else if (! lastLocation.hefengResult.heWeather.get(0).status.equals("ok")) {
+                        message.what = REFRESH_HOURLY_DATA_FAILED;
+                    } else {
+                        message.what = REFRESH_HOURLY_DATA_SUCCEED;
+                    }
+                }
+                safeHandler.sendMessage(message);
+            }
+        });
+        thread.start();
+    }
+
     public static boolean needChangeTime() {
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         if (5 < hour && hour < 19 && ! MainActivity.isDay) {
@@ -459,30 +519,15 @@ public class MainActivity extends AppCompatActivity
             return;
         }
         if (isSearch) {
-            if (animatorSwitch) {
-                lastLocation = new Location(location);
-                this.weatherFragment.setLocation();
-                this.weatherFragment.refreshAll();
-            } else {
-                lastLocation = new Location(location);
-                this.liteWeatherFragment.setLocation();
-                this.liteWeatherFragment.refreshAll();
-            }
-        } else if (animatorSwitch) {
+            lastLocation = new Location(location);
+            this.weatherFragment.setLocation();
+            this.weatherFragment.refreshAll();
+        } else {
             for (int i = 0; i < locationList.size(); i ++) {
                 if (locationList.get(i).location.equals(location)) {
                     lastLocation = locationList.get(i);
                     this.weatherFragment.setLocation();
                     this.weatherFragment.refreshAll();
-                    return;
-                }
-            }
-        } else {
-            for (int i = 0; i < locationList.size(); i ++) {
-                if (locationList.get(i).location.equals(location)) {
-                    lastLocation = locationList.get(i);
-                    this.liteWeatherFragment.setLocation();
-                    this.liteWeatherFragment.refreshAll();
                     return;
                 }
             }
@@ -495,7 +540,7 @@ public class MainActivity extends AppCompatActivity
         this.databaseHelper = new MyDatabaseHelper(MainActivity.this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
     }
 
     private void readLocation() {
@@ -539,7 +584,7 @@ public class MainActivity extends AppCompatActivity
         MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
         // read yesterday weather.
@@ -604,7 +649,7 @@ public class MainActivity extends AppCompatActivity
         MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
         // read yesterday weather.
@@ -642,7 +687,7 @@ public class MainActivity extends AppCompatActivity
         MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
         database.delete(MyDatabaseHelper.TABLE_INFO,
@@ -679,6 +724,20 @@ public class MainActivity extends AppCompatActivity
         values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_5, info.weatherKind[4]);
         values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_6, info.weatherKind[5]);
         values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_7, info.weatherKind[6]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_1, info.windDir[0]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_2, info.windDir[1]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_3, info.windDir[2]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_4, info.windDir[3]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_5, info.windDir[4]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_6, info.windDir[5]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_7, info.windDir[6]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_1, info.windLevel[0]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_2, info.windLevel[1]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_3, info.windLevel[2]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_4, info.windLevel[3]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_5, info.windLevel[4]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_6, info.windLevel[5]);
+        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_7, info.windLevel[6]);
         values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_1, info.maxiTemp[0]);
         values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_2, info.maxiTemp[1]);
         values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_3, info.maxiTemp[2]);
@@ -720,7 +779,7 @@ public class MainActivity extends AppCompatActivity
         MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
         WeatherInfoToShow info = new WeatherInfoToShow();
@@ -764,6 +823,22 @@ public class MainActivity extends AppCompatActivity
                 info.weatherKind[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_5));
                 info.weatherKind[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_6));
                 info.weatherKind[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_7));
+                info.windDir = new String[7];
+                info.windDir[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_1));
+                info.windDir[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_2));
+                info.windDir[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_3));
+                info.windDir[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_4));
+                info.windDir[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_5));
+                info.windDir[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_6));
+                info.windDir[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_7));
+                info.windLevel = new String[7];
+                info.windLevel[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_1));
+                info.windLevel[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_2));
+                info.windLevel[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_3));
+                info.windLevel[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_4));
+                info.windLevel[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_5));
+                info.windLevel[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_6));
+                info.windLevel[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_7));
                 info.maxiTemp = new String[7];
                 info.maxiTemp[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_1));
                 info.maxiTemp[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_2));
@@ -806,15 +881,6 @@ public class MainActivity extends AppCompatActivity
         database.close();
 
         return info;
-    }
-
-// check internet
-
-    public static boolean isNetConnected(Context context) {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo mNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return mNetworkInfo != null && mNetworkInfo.isAvailable();
     }
 
 // bitmap
@@ -893,6 +959,28 @@ public class MainActivity extends AppCompatActivity
         locationName = sharedPreferences.getString(context.getString(R.string.key_location), context.getString(R.string.local));
         if (location.location.equals(locationName)) {
             RefreshWidgetClockDayWeek.refreshUIFromInternet(context, info, isDay);
+        }
+    }
+
+    @Override
+    public void handleMessage(Message message) {
+        switch (message.what) {
+            case REFRESH_TOTAL_DATA_SUCCEED:
+                weatherFragment.setLocation();
+                weatherFragment.refreshTotalDataSucceed();
+                break;
+            case REFRESH_TOTAL_DATA_FAILED:
+                weatherFragment.setLocation();
+                weatherFragment.refreshTotalDataFailed();
+                break;
+            case REFRESH_HOURLY_DATA_SUCCEED:
+                weatherFragment.setLocation();
+                weatherFragment.refreshHourlyDataSucceed();
+                break;
+            case REFRESH_HOURLY_DATA_FAILED:
+                weatherFragment.setLocation();
+                weatherFragment.refreshHourlyDataFailed();
+                break;
         }
     }
 }

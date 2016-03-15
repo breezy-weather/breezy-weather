@@ -1,7 +1,6 @@
-package wangdaye.com.geometricweather.UserInterface;
+package wangdaye.com.geometricweather.UI;
 
 import android.app.ActivityManager;
-import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

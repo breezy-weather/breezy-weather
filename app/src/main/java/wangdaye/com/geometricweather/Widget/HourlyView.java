@@ -174,22 +174,6 @@ public class HourlyView extends View {
             canvas.drawPath(path, paint);
             paint.reset();
             path.reset();
-/*
-            Shader linearGradientRight = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] + 4 * MARGIN, coordinate[0][1],
-                    Color.argb(225, 75, 80, 115), Color.argb(0, 75, 80, 115), Shader.TileMode.CLAMP);
-            paint.setShader(linearGradientRight);
-            paint.setAntiAlias(true);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(5);
-            paint.setAlpha(100);
-            paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
-            paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
-            path.reset();
-            path.moveTo(coordinate[0][0], coordinate[0][1]);
-            path.lineTo(coordinate[0][0] + 4 * MARGIN, coordinate[0][1]);
-            canvas.drawPath(path, paint);
-            paint.reset();
-            path.reset();*/
         }
 
         for (float aPop : pop) {
@@ -246,7 +230,7 @@ public class HourlyView extends View {
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
         paint.setTextSize(WEATHER_TEXT_SIZE);
         for (int i = 0; i < coordinate.length; i ++) {
-            canvas.drawText(Float.toString(pop[i]) + "%", coordinate[i][0], coordinate[i][1] + 60, paint);
+            canvas.drawText(Float.toString(pop[i]) + "%", coordinate[i][0], getMeasuredHeight() - 4 * MARGIN + WEATHER_TEXT_SIZE, paint);
         }
         paint.reset();
     }
@@ -269,22 +253,6 @@ public class HourlyView extends View {
             canvas.drawPath(path, paint);
             paint.reset();
             path.reset();
-/*
-            Shader linearGradientRight = new LinearGradient(coordinate[0][0], coordinate[0][1], coordinate[0][0] + 4 * MARGIN, coordinate[0][1],
-                    ContextCompat.getColor(context, R.color.lightPrimary_3), Color.argb(0, 150, 214, 219), Shader.TileMode.CLAMP);
-            paint.setShader(linearGradientRight);
-            paint.setAntiAlias(true);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(5);
-            paint.setAlpha(100);
-            paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
-            paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
-            path.reset();
-            path.moveTo(coordinate[0][0], coordinate[0][1]);
-            path.lineTo(coordinate[0][0] + 4 * MARGIN, coordinate[0][1]);
-            canvas.drawPath(path, paint);
-            paint.reset();
-            path.reset();*/
         }
 
         Shader linearGradient = new LinearGradient(0, 3 * MARGIN, 0, 8 * MARGIN,
@@ -348,35 +316,4 @@ public class HourlyView extends View {
                 paint);
         paint.reset();
     }
-/*
-    private void drawTempLine(Canvas canvas, float[] levelCoordinate, int highestTemp, int lowestTemp) {
-        int temp = 30;
-        paint.reset();
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(2);
-        paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
-        for (float aLevelCoordinate : levelCoordinate) {
-            if (lowestTemp < temp && temp < highestTemp) {
-                canvas.drawLine(0, aLevelCoordinate, getMeasuredWidth(), aLevelCoordinate, paint);
-                paint.reset();
-                paint.setAntiAlias(true);
-                paint.setStrokeWidth(2);
-                paint.setTextSize(30);
-                paint.setStyle(Paint.Style.FILL);
-                paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
-                paint.setTextAlign(Paint.Align.LEFT);
-                canvas.drawText(Integer.toString(temp) + "°", 10, aLevelCoordinate - 10, paint);
-
-                paint.reset();
-                paint.setAntiAlias(true);
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeWidth(2);
-                paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
-            }
-            temp -= 10;
-        }
-        paint.reset();
-    }
-*/
 }

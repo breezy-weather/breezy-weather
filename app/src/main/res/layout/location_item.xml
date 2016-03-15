@@ -5,7 +5,7 @@
     android:layout_height="@dimen/dialog_item_height"
     android:clickable="true">
 
-    <wangdaye.com.geometricweather.Widget.RippleCardView
+    <wangdaye.com.geometricweather.Widget.MyCardView
         android:id="@+id/location_item_card"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
 
         </RelativeLayout>
 
-    </wangdaye.com.geometricweather.Widget.RippleCardView>
+    </wangdaye.com.geometricweather.Widget.MyCardView>
 
 </RelativeLayout>
 

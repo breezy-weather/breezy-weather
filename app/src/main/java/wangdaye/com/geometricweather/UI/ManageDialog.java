@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.UserInterface;
+package wangdaye.com.geometricweather.UI;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -203,7 +203,7 @@ public class ManageDialog extends DialogFragment
         this.databaseHelper = new MyDatabaseHelper(getActivity(),
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
     }
 
     private void deleteLocation(String location) {

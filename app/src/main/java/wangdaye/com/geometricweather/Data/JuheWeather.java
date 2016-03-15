@@ -496,6 +496,26 @@ public class JuheWeather {
                 JuheWeather.getWeatherKind(info.weather[6])
         };
 
+        if (isDay) {
+            info.windDir = new String[7];
+            for (int i = 0; i < 7; i ++) {
+                info.windDir[i] = juheResult.result.data.weather.get(i).info.day.get(3);
+            }
+            info.windLevel = new String[7];
+            for (int i = 0; i < 7; i ++) {
+                info.windLevel[i] = juheResult.result.data.weather.get(i).info.day.get(4);
+            }
+        } else {
+            info.windDir = new String[7];
+            for (int i = 0; i < 7; i ++) {
+                info.windDir[i] = juheResult.result.data.weather.get(i).info.night.get(3);
+            }
+            info.windLevel = new String[7];
+            for (int i = 0; i < 7; i ++) {
+                info.windLevel[i] = juheResult.result.data.weather.get(i).info.night.get(4);
+            }
+        }
+
         info.maxiTemp = new String[] {
                 juheResult.result.data.weather.get(0).info.day.get(2),
                 juheResult.result.data.weather.get(1).info.day.get(2),

@@ -3,8 +3,8 @@
     <string name="app_name">Geometric weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
 
-    <string name="version_code">版本号\n2.1.1</string>
-    <string name="note">代码注释\n修复：修复多项导致fc的空指针bug\n添加：滑动切换城市\n修改：轻触天气icon弹出天气信息</string>
+    <string name="version_code">版本号\n2.1.3</string>
+    <string name="note">代码注释\n优化：大幅优化性能\n优化：向上滚动界面时将隐藏toolbar\n修复：修复刷新时退出fc的bug\n修复：修复气温和降水数值重叠的问题\n添加：天气通知背景色选项\n修改：删除了精简动画模式\n添加：添加了每日天气信息弹窗</string>
 
     <string name="introduce_title_1">Geometric Weather</string>
     <string name="introduce_title_2">快捷入口</string>
@@ -138,9 +138,6 @@
     <string name="ellipsis">…</string>
 
     <!-- settings -->
-    <string name="more_animator_switch">开启更多动画</string>
-    <string name="more_animator_switch_on">目前状态将消耗更多资源</string>
-    <string name="more_animator_switch_off">目前状态可减少卡顿</string>
     <string name="hide_star">隐藏星空</string>
     <string name="hide_star_summary_on">目前状态可减少卡顿</string>
     <string name="hide_star_summary_off">目前状态将消耗更多资源</string>
@@ -203,6 +200,9 @@
         <item>light</item>
     </string-array>
     <string name="notification_text_color_default">grey</string>
+    <string name="notification_background_color_switch">天气通知背景着色</string>
+    <string name="notification_background_color_switch_on">aosp快捷设置面板风格</string>
+    <string name="notification_background_color_switch_off">跟随系统默认</string>
     <string name="notification_can_clear_switch">天气通知可被清除</string>
     <string name="notification_can_clear_on">天气通知可被清除</string>
     <string name="notification_can_clear_off">天气通知常驻通知栏</string>
@@ -266,7 +266,6 @@
     <string name="key_temperature_5">temperature_5</string>
 
     <string name="key_watched_introduce">watched_introduce</string>
-    <string name="key_more_animator_switch">more_animator_switch</string>
     <string name="key_hide_star">hide_star</string>
     <string name="key_navigation_bar_color_switch">navigation_bar_color_switch</string>
     <string name="key_get_hourly_data_by_eng">get_hourly_data_by_eng</string>
@@ -279,6 +278,7 @@
     <string name="key_widget_time">widget_time</string>
     <string name="key_notification_switch">notification_switch</string>
     <string name="key_notification_text_color">notification_text_color</string>
+    <string name="key_notification_background_color_switch">notification_background_color_switch</string>
     <string name="key_notification_auto_refresh_switch">notification_auto_refresh_switch</string>
     <string name="key_notification_can_clear_switch">notification_can_clear_switch</string>
     <string name="key_hide_notification_in_lockScreen">hide_notification_in_lockScreen</string>

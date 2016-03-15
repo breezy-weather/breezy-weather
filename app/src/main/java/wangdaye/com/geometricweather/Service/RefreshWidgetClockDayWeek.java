@@ -29,7 +29,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.Data.HefengResult;
 import wangdaye.com.geometricweather.Data.HefengWeather;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
-import wangdaye.com.geometricweather.UserInterface.MainActivity;
+import wangdaye.com.geometricweather.UI.MainActivity;
 import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.R;

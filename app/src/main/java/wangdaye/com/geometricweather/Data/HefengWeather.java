@@ -329,6 +329,14 @@ public class HefengWeather {
                     HefengWeather.getWeatherKind(hefengResult.heWeather.get(position).daily_forecast.get(6).cond.code_n)
             };
         }
+        info.windDir = new String[7];
+        for (int i = 0; i < 7; i ++) {
+            info.windDir[i] = hefengResult.heWeather.get(position).daily_forecast.get(i).wind.dir;
+        }
+        info.windLevel = new String[7];
+        for (int i = 0; i < 7; i ++) {
+            info.windLevel[i] = hefengResult.heWeather.get(position).daily_forecast.get(0).wind.sc + "级";
+        }
         info.maxiTemp = new String[] {
                 hefengResult.heWeather.get(position).daily_forecast.get(0).tmp.max,
                 hefengResult.heWeather.get(position).daily_forecast.get(1).tmp.max,

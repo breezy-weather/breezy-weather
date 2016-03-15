@@ -12,6 +12,9 @@ import android.widget.ScrollView;
  * */
 
 public class MyScrollView extends ScrollView {
+    // widget
+    private OnScrollViewListener onScrollViewListener = null;
+
     // data
     private float startX;
     private float startY;
@@ -48,5 +51,21 @@ public class MyScrollView extends ScrollView {
                 }
         }
         return super.onInterceptTouchEvent(event);
+    }
+
+    public void setOnScrollViewListener(OnScrollViewListener scrollViewListener) {
+        this.onScrollViewListener = scrollViewListener;
+    }
+
+    @Override
+    protected void onScrollChanged(int x, int y, int oldx, int oldy) {
+        super.onScrollChanged(x, y, oldx, oldy);
+        if (onScrollViewListener != null) {
+            onScrollViewListener.onScrollChanged(this, x, y, oldx, oldy);
+        }
+    }
+
+    public interface OnScrollViewListener {
+        void onScrollChanged(MyScrollView scrollView, int x, int y, int oldx, int oldy);
     }
 }

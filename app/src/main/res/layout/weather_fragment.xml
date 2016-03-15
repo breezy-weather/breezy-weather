@@ -5,7 +5,7 @@
     android:id="@+id/container_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserInterface.MainActivity">
+    tools:context=".UI.MainActivity">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -14,12 +14,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/circle_5"
-                android:layout_centerInParent="true"
+            
+            <wangdaye.com.geometricweather.Widget.SkyView
+                android:id="@+id/sky_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="@dimen/weather_image_main"
+                android:layout_centerInParent="true" />
 
             <ImageView
                 android:layout_alignParentTop="true"
@@ -35,30 +35,6 @@
                 android:id="@+id/start_1"
                 android:src="@drawable/start_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/circle_4"
-                android:layout_centerInParent="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/circle_3"
-                android:layout_centerInParent="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/circle_2"
-                android:layout_centerInParent="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/circle_1"
-                android:layout_centerInParent="true"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <RelativeLayout
@@ -120,6 +96,7 @@
         android:layout_height="match_parent">
 
         <wangdaye.com.geometricweather.Widget.MyScrollView
+            android:id="@+id/scroll_view"
             android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -158,7 +135,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <wangdaye.com.geometricweather.Widget.RippleCardView
+                        <wangdaye.com.geometricweather.Widget.MyCardView
                             android:id="@+id/base_info_card"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -248,13 +225,13 @@
 
                             </LinearLayout>
 
-                        </wangdaye.com.geometricweather.Widget.RippleCardView>
+                        </wangdaye.com.geometricweather.Widget.MyCardView>
 
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/card_margin" />
 
-                        <wangdaye.com.geometricweather.Widget.RippleCardView
+                        <wangdaye.com.geometricweather.Widget.MyCardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/life_info_card"
@@ -286,7 +263,7 @@
 
                             </LinearLayout>
 
-                        </wangdaye.com.geometricweather.Widget.RippleCardView>
+                        </wangdaye.com.geometricweather.Widget.MyCardView>
 
                         <FrameLayout
                             android:layout_width="match_parent"

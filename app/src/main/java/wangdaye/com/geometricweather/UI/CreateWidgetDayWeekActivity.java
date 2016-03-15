@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.UserInterface;
+package wangdaye.com.geometricweather.UI;
 
 import android.app.Activity;
 import android.app.WallpaperManager;
@@ -42,20 +42,23 @@ import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.Service.RefreshWidgetDay;
+import wangdaye.com.geometricweather.Service.RefreshWidgetDayWeek;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
 /**
- * Create the widget [day] on the launcher.
+ * Create the widget [day + week] on the launcher.
  * */
 
-public class CreateWidgetDayActivity extends Activity implements HandlerContainer{
+public class CreateWidgetDayWeekActivity extends Activity
+        implements HandlerContainer{
     // widget
     private ImageView imageViewCard;
     private TextView textViewWeatherNow;
     private TextView textViewTempNow;
     private TextView refreshTime;
+    private TextView[] textViewWeek;
+    private TextView[] textViewTemp;
 
     //data
     private List<Location> locationList;
@@ -78,16 +81,16 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
     public BDLocationListener myListener = new MyLocationListener();
 
     // handler
-    private SafeHandler<CreateWidgetDayActivity> safeHandler;
+    private SafeHandler<CreateWidgetDayWeekActivity> safeHandler;
 
-    //TAG
-//    private final String TAG = "CreateWidgetDayActivity";
+    // TAG
+//    private static final String TAG = "CreateWidgetDayWeekActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        setContentView(R.layout.activity_create_widget_day);
+        setContentView(R.layout.activity_create_widget_day_week);
     }
 
     @Override
@@ -105,15 +108,26 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
 
         this.locationName = getString(R.string.local);
 
-        ImageView imageViewWall = (ImageView) this.findViewById(R.id.create_widget_day_wall);
-        imageViewWall.setImageDrawable(WallpaperManager.getInstance(CreateWidgetDayActivity.this).getDrawable());
+        ImageView imageViewWall = (ImageView) this.findViewById(R.id.create_widget_day_week_wall);
+        imageViewWall.setImageDrawable(WallpaperManager.getInstance(CreateWidgetDayWeekActivity.this).getDrawable());
 
-        RelativeLayout relativeLayoutWidgetContainer = (RelativeLayout) this.findViewById(R.id.widget_day) ;
-        this.imageViewCard = (ImageView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_card);
+        RelativeLayout relativeLayoutWidgetContainer = (RelativeLayout) this.findViewById(R.id.widget_day_week);
+        this.imageViewCard = (ImageView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_week_card);
 
         this.textViewWeatherNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_weather);
         this.textViewTempNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_temp);
         this.refreshTime = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_time);
+
+        this.textViewWeek = new TextView[4];
+        this.textViewWeek[0] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_1);
+        this.textViewWeek[1] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_2);
+        this.textViewWeek[2] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_3);
+        this.textViewWeek[3] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_4);
+        this.textViewTemp = new TextView[4];
+        this.textViewTemp[0] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_temp_1);
+        this.textViewTemp[1] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_temp_2);
+        this.textViewTemp[2] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_temp_3);
+        this.textViewTemp[3] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_temp_4);
 
         this.initDatabaseHelper();
         this.readLocation();
@@ -121,10 +135,12 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
             locationList.add(new Location(getString(R.string.local)));
         }
         String[] items = new String[locationList.size()];
-        for (int i = 0; i < locationList.size(); i ++) {
+        for(int i = 0; i < locationList.size(); i ++) {
             items[i] = this.locationList.get(i).location;
         }
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, R.layout.spinner_text, items);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
+                R.layout.spinner_text,
+                items);
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_text);
         Spinner spinnerCity = (Spinner) this.findViewById(R.id.create_widget_day_spinner);
         spinnerCity.setAdapter(spinnerAdapter);
@@ -143,17 +159,25 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         switchCard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+                if(isChecked) {
                     imageViewCard.setVisibility(View.VISIBLE);
                     showCard = true;
-                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    for(int i = 0; i < 4; i ++) {
+                        textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                        textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    }
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
                     if (! blackText) {
-                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        for(int i = 0; i < 4; i ++) {
+                            textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                            textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        }
                     }
                 }
             }
@@ -163,7 +187,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         switchTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+                if(isChecked) {
                     refreshTime.setVisibility(View.GONE);
                     hideRefreshTime = true;
                 } else {
@@ -177,15 +201,23 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         switchText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+                if(isChecked) {
                     blackText = true;
-                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    for(int i = 0; i < 4; i ++) {
+                        textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                        textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    }
                 } else {
                     blackText = false;
                     if (! showCard) {
-                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        for(int i = 0; i < 4; i ++) {
+                            textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                            textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        }
                     }
                 }
             }
@@ -196,9 +228,8 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = getSharedPreferences(
-                        getString(R.string.sp_widget_day_setting),
-                        MODE_PRIVATE
-                ).edit();
+                        getString(R.string.sp_widget_day_week_setting),
+                        MODE_PRIVATE).edit();
                 editor.putString(getString(R.string.key_location), locationName);
                 editor.putBoolean(getString(R.string.key_show_card), showCard);
                 editor.putBoolean(getString(R.string.key_hide_refresh_time), hideRefreshTime);
@@ -216,7 +247,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
                 buttonDone.setText(getString(R.string.first_refresh_widget));
                 buttonDone.setEnabled(true);
 
-                RefreshWidgetDay.refreshUIFromLocalData(CreateWidgetDayActivity.this, isDay);
+                RefreshWidgetDayWeek.refreshUIFromLocalData(CreateWidgetDayWeekActivity.this, isDay);
                 refreshWidget();
 
                 Intent resultValue = new Intent();
@@ -228,10 +259,10 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
     }
 
     private void initDatabaseHelper() {
-        this.databaseHelper = new MyDatabaseHelper(CreateWidgetDayActivity.this,
+        this.databaseHelper = new MyDatabaseHelper(CreateWidgetDayWeekActivity.this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
     }
 
     private void readLocation() {
@@ -328,7 +359,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetDay.refreshUIFromInternet(this, info, isDay);
+            RefreshWidgetDayWeek.refreshUIFromInternet(this, info, isDay);
         }
     }
 
@@ -339,7 +370,6 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
         public void onReceiveLocation(BDLocation location) {
             //Receive Location
             String locationName = null;
-
             StringBuffer sb = new StringBuffer(256);
             sb.append("time : ");
             sb.append(location.getTime());
@@ -371,7 +401,7 @@ public class CreateWidgetDayActivity extends Activity implements HandlerContaine
             }
 
             if (locationName == null) {
-                Toast.makeText(CreateWidgetDayActivity.this,
+                Toast.makeText(CreateWidgetDayWeekActivity.this,
                         getString(R.string.get_location_failed),
                         Toast.LENGTH_SHORT).show();
             } else {

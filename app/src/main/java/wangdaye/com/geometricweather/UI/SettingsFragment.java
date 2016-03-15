@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.UserInterface;
+package wangdaye.com.geometricweather.UI;
 
 import android.app.NotificationManager;
 import android.content.Context;
@@ -12,8 +12,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.widget.Toast;
-
-import java.sql.Time;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.NotificationService;
@@ -39,12 +37,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-
-        if (preference.getKey().equals(getString(R.string.key_more_animator_switch))) {
-            Toast.makeText(getActivity(),
-                    getString(R.string.please_restart),
-                    Toast.LENGTH_SHORT).show();
-        } else if (preference.getKey().equals(getString(R.string.key_hide_star))) {
+        if (preference.getKey().equals(getString(R.string.key_hide_star))) {
             Toast.makeText(getActivity(),
                     getString(R.string.please_restart),
                     Toast.LENGTH_SHORT).show();
@@ -89,6 +82,11 @@ public class SettingsFragment extends PreferenceFragment {
                 notificationManager.cancel(MainActivity.NOTIFICATION_ID);
             }
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
+            Toast.makeText(
+                    getActivity(),
+                    getString(R.string.refresh_notification_after_back),
+                    Toast.LENGTH_SHORT).show();
+        } else if (preference.getKey().equals(getString(R.string.key_notification_background_color_switch))) {
             Toast.makeText(
                     getActivity(),
                     getString(R.string.refresh_notification_after_back),
@@ -175,6 +173,7 @@ public class SettingsFragment extends PreferenceFragment {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         ListPreference listPreferenceNotificationTextColor = (ListPreference) findPreference(getString(R.string.key_notification_text_color));
+        CheckBoxPreference checkBoxPreferenceBackground = (CheckBoxPreference) findPreference(getString(R.string.key_notification_background_color_switch));
         CheckBoxPreference checkBoxPreferenceClear = (CheckBoxPreference) findPreference(getString(R.string.key_notification_can_clear_switch));
         CheckBoxPreference checkBoxPreferenceHide = (CheckBoxPreference) findPreference(getString(R.string.key_hide_notification_in_lockScreen));
         CheckBoxPreference checkBoxPreferenceAuto = (CheckBoxPreference) findPreference(getString(R.string.key_notification_auto_refresh_switch));
@@ -185,6 +184,7 @@ public class SettingsFragment extends PreferenceFragment {
         if(sharedPreferences.getBoolean(getString(R.string.key_notification_switch), false)) {
             // set the notification switch on
             listPreferenceNotificationTextColor.setEnabled(true);
+            checkBoxPreferenceBackground.setEnabled(true);
             checkBoxPreferenceClear.setEnabled(true);
             checkBoxPreferenceHide.setEnabled(true);
             checkBoxPreferenceAuto.setEnabled(true);
@@ -201,6 +201,7 @@ public class SettingsFragment extends PreferenceFragment {
         } else {
             // set the notification switch off
             listPreferenceNotificationTextColor.setEnabled(false);
+            checkBoxPreferenceBackground.setEnabled(false);
             checkBoxPreferenceClear.setEnabled(false);
             checkBoxPreferenceHide.setEnabled(false);
             checkBoxPreferenceAuto.setEnabled(false);

@@ -1,79 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/notification_base"
     android:orientation="horizontal" 
     android:layout_width="match_parent"
     android:layout_height="64dp" >
-    
-    <RelativeLayout
-        android:layout_width="72dp"
-        android:layout_height="match_parent"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp" >
-        
-        <ImageView
-            android:id="@+id/notification_base_image_today"
-            android:scaleType="fitCenter"
-            android:src="@drawable/weather_cloudy"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        
-    </RelativeLayout>
 
+    <FrameLayout
+        android:id="@+id/notification_background_base"
+        android:background="@color/notification_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="1dp" >
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" >
 
-            <TextView
-                android:id="@+id/notification_base_text_title"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
+            <ImageView
+                android:id="@+id/notification_base_image_today"
+                android:scaleType="fitCenter"
+                android:src="@drawable/weather_cloudy"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/wait_refresh"
-                android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
-                android:textSize="14dp" />
+                android:layout_height="match_parent" />
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="1dp" >
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/notification_base_text_details"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ellipsis"
-                android:textSize="14dp"
-                android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="1dp" >
 
-            <TextView
-                android:id="@+id/notification_base_text_remark"
-                android:padding="8dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ellipsis"
-                android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Time"
-                android:textSize="11dp" />
+                <TextView
+                    android:id="@+id/notification_base_text_title"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wait_refresh"
+                    android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
+                    android:textSize="14dp" />
 
-        </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="1dp" >
+
+                <TextView
+                    android:id="@+id/notification_base_text_details"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ellipsis"
+                    android:textSize="14dp"
+                    android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+
+                <TextView
+                    android:id="@+id/notification_base_text_remark"
+                    android:padding="8dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ellipsis"
+                    android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Time"
+                    android:textSize="11dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

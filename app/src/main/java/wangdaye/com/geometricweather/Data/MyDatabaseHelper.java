@@ -11,6 +11,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     // data
+    public static final int VERSION_CODE = 3;
+
     public static final String DATABASE_NAME = "MyDatabase.db";
 
     public static final String TABLE_LOCATION = "Location";
@@ -50,6 +52,20 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_WEATHER_KIND_5 = "weatherKind5";
     public static final String COLUMN_WEATHER_KIND_6 = "weatherKind6";
     public static final String COLUMN_WEATHER_KIND_7 = "weatherKind7";
+    public static final String COLUMN_WIND_DIR_1 = "windDir1";
+    public static final String COLUMN_WIND_DIR_2 = "windDir2";
+    public static final String COLUMN_WIND_DIR_3 = "windDir3";
+    public static final String COLUMN_WIND_DIR_4 = "windDir4";
+    public static final String COLUMN_WIND_DIR_5 = "windDir5";
+    public static final String COLUMN_WIND_DIR_6 = "windDir6";
+    public static final String COLUMN_WIND_DIR_7 = "windDir7";
+    public static final String COLUMN_WIND_LEVEL_1 = "windLevel1";
+    public static final String COLUMN_WIND_LEVEL_2 = "windLevel2";
+    public static final String COLUMN_WIND_LEVEL_3 = "windLevel3";
+    public static final String COLUMN_WIND_LEVEL_4 = "windLevel4";
+    public static final String COLUMN_WIND_LEVEL_5 = "windLevel5";
+    public static final String COLUMN_WIND_LEVEL_6 = "windLevel6";
+    public static final String COLUMN_WIND_LEVEL_7 = "windLevel7";
     public static final String COLUMN_MAXI_TEMP_1 = "maxiTemp1";
     public static final String COLUMN_MAXI_TEMP_2 = "maxiTemp2";
     public static final String COLUMN_MAXI_TEMP_3 = "maxiTemp3";
@@ -122,6 +138,20 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             + "weatherKind5     text,"
             + "weatherKind6     text,"
             + "weatherKind7     text,"
+            + "windDir1         text,"
+            + "windDir2         text,"
+            + "windDir3         text,"
+            + "windDir4         text,"
+            + "windDir5         text,"
+            + "windDir6         text,"
+            + "windDir7         text,"
+            + "windLevel1       text,"
+            + "windLevel2       text,"
+            + "windLevel3       text,"
+            + "windLevel4       text,"
+            + "windLevel5       text,"
+            + "windLevel6       text,"
+            + "windLevel7       text,"
             + "maxiTemp1        text,"
             + "maxiTemp2        text,"
             + "maxiTemp3        text,"
@@ -172,6 +202,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("drop table if exists Info");
         db.execSQL(CREATE_TABLE_INFO);
     }
 }

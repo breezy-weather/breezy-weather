@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.opengl.Visibility;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Message;
@@ -19,6 +20,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -34,7 +36,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.Data.HefengResult;
 import wangdaye.com.geometricweather.Data.HefengWeather;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
-import wangdaye.com.geometricweather.UserInterface.MainActivity;
+import wangdaye.com.geometricweather.UI.MainActivity;
 import wangdaye.com.geometricweather.Data.JuheResult;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
@@ -197,6 +199,7 @@ public class NotificationService extends Service implements HandlerContainer {
                 builder.setVisibility(Notification.VISIBILITY_PUBLIC);
             }
         }
+        boolean backgroundColor = sharedPreferences.getBoolean(context.getString(R.string.key_notification_background_color_switch), false);
 
         // small view
         builder.setSmallIcon(JuheWeather.getMiniWeatherIcon(info.weatherKindNow, isDay));
@@ -206,6 +209,11 @@ public class NotificationService extends Service implements HandlerContainer {
         view.setTextViewText(R.id.notification_base_text_title, info.weatherNow + " " + info.tempNow + "℃");
         view.setTextViewText(R.id.notification_base_text_details, info.miniTemp[0] + "/" + info.maxiTemp[0] + "°");
         view.setTextViewText(R.id.notification_base_text_remark, info.location + "." + info.refreshTime);
+        if (backgroundColor) {
+            view.setViewVisibility(R.id.notification_background_base, View.VISIBLE);
+        } else {
+            view.setViewVisibility(R.id.notification_background_base, View.GONE);
+        }
         builder.setContent(view);
 
         Intent intent = new Intent(context, MainActivity.class);
@@ -356,6 +364,11 @@ public class NotificationService extends Service implements HandlerContainer {
                 viewBig.setTextColor(R.id.notification_big_text_temp_5, ContextCompat.getColor(context, defaultColor));
                 break;
         }
+        if (backgroundColor) {
+            viewBig.setViewVisibility(R.id.notification_background_big, View.VISIBLE);
+        } else {
+            viewBig.setViewVisibility(R.id.notification_background_big, View.GONE);
+        }
         // loading big view
         Notification notification = builder.build();
         notification.bigContentView = viewBig;
@@ -384,7 +397,7 @@ public class NotificationService extends Service implements HandlerContainer {
         this.databaseHelper = new MyDatabaseHelper(this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
     }
 
     private String readLocation() {

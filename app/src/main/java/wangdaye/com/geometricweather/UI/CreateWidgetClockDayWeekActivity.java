@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.UserInterface;
+package wangdaye.com.geometricweather.UI;
 
 import android.app.Activity;
 import android.app.WallpaperManager;
@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,23 +43,24 @@ import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.Service.RefreshWidgetDayWeek;
+import wangdaye.com.geometricweather.Service.RefreshWidgetClockDayWeek;
 import wangdaye.com.geometricweather.Widget.HandlerContainer;
 import wangdaye.com.geometricweather.Widget.SafeHandler;
 
 /**
- * Create the widget [day + week] on the launcher.
+ * Create the widget [clock + day + week] on the launcher.
  * */
 
-public class CreateWidgetDayWeekActivity extends Activity
-        implements HandlerContainer{
+public class CreateWidgetClockDayWeekActivity extends Activity
+        implements HandlerContainer {
     // widget
     private ImageView imageViewCard;
-    private TextView textViewWeatherNow;
-    private TextView textViewTempNow;
-    private TextView refreshTime;
-    private TextView[] textViewWeek;
-    private TextView[] textViewTemp;
+
+    private TextClock clock;
+    private TextView dateText;
+    private TextView weatherText;
+    private TextView[] week;
+    private TextView[] temp;
 
     //data
     private List<Location> locationList;
@@ -67,7 +69,6 @@ public class CreateWidgetDayWeekActivity extends Activity
     private JuheResult juheResult;
     private HefengResult hefengResult;
     private boolean showCard = false;
-    private boolean hideRefreshTime = false;
     private boolean blackText = false;
     private boolean isDay;
 
@@ -81,16 +82,16 @@ public class CreateWidgetDayWeekActivity extends Activity
     public BDLocationListener myListener = new MyLocationListener();
 
     // handler
-    private SafeHandler<CreateWidgetDayWeekActivity> safeHandler;
+    private SafeHandler<CreateWidgetClockDayWeekActivity> safeHandler;
 
-    // TAG
-//    private static final String TAG = "CreateWidgetDayWeekActivity";
+    //TAG
+//    private final String TAG = "CreateWidgetClockDayWeekActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        setContentView(R.layout.activity_create_widget_day_week);
+        setContentView(R.layout.activity_create_widget_clock_day_week);
     }
 
     @Override
@@ -108,26 +109,27 @@ public class CreateWidgetDayWeekActivity extends Activity
 
         this.locationName = getString(R.string.local);
 
-        ImageView imageViewWall = (ImageView) this.findViewById(R.id.create_widget_day_week_wall);
-        imageViewWall.setImageDrawable(WallpaperManager.getInstance(CreateWidgetDayWeekActivity.this).getDrawable());
+        ImageView imageViewWall = (ImageView) this.findViewById(R.id.create_widget_clock_day_week_wall);
+        imageViewWall.setImageDrawable(WallpaperManager.getInstance(CreateWidgetClockDayWeekActivity.this).getDrawable());
 
-        RelativeLayout relativeLayoutWidgetContainer = (RelativeLayout) this.findViewById(R.id.widget_day_week);
-        this.imageViewCard = (ImageView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_week_card);
+        RelativeLayout relativeLayoutWidgetContainer = (RelativeLayout) this.findViewById(R.id.widget_clock_day_week) ;
+        this.imageViewCard = (ImageView) relativeLayoutWidgetContainer.findViewById(R.id.widget_clock_day_week_card);
 
-        this.textViewWeatherNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_weather);
-        this.textViewTempNow = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_temp);
-        this.refreshTime = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_day_time);
+        this.clock = (TextClock) findViewById(R.id.widget_clock_day_week_clock);
+        this.dateText = (TextView) findViewById(R.id.widget_clock_day_week_date);
+        this.weatherText = (TextView) findViewById(R.id.widget_clock_day_week_weather);
 
-        this.textViewWeek = new TextView[4];
-        this.textViewWeek[0] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_1);
-        this.textViewWeek[1] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_2);
-        this.textViewWeek[2] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_3);
-        this.textViewWeek[3] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_week_4);
-        this.textViewTemp = new TextView[4];
-        this.textViewTemp[0] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_temp_1);
-        this.textViewTemp[1] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_temp_2);
-        this.textViewTemp[2] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_temp_3);
-        this.textViewTemp[3] = (TextView) relativeLayoutWidgetContainer.findViewById(R.id.widget_4_day_temp_4);
+        week = new TextView[4];
+        week[0] = (TextView) findViewById(R.id.widget_clock_day_week_week_1);
+        week[1] = (TextView) findViewById(R.id.widget_clock_day_week_week_2);
+        week[2] = (TextView) findViewById(R.id.widget_clock_day_week_week_3);
+        week[3] = (TextView) findViewById(R.id.widget_clock_day_week_week_4);
+
+        temp = new TextView[4];
+        temp[0] = (TextView) findViewById(R.id.widget_clock_day_week_temp_1);
+        temp[1] = (TextView) findViewById(R.id.widget_clock_day_week_temp_2);
+        temp[2] = (TextView) findViewById(R.id.widget_clock_day_week_temp_3);
+        temp[3] = (TextView) findViewById(R.id.widget_clock_day_week_temp_4);
 
         this.initDatabaseHelper();
         this.readLocation();
@@ -135,14 +137,12 @@ public class CreateWidgetDayWeekActivity extends Activity
             locationList.add(new Location(getString(R.string.local)));
         }
         String[] items = new String[locationList.size()];
-        for(int i = 0; i < locationList.size(); i ++) {
+        for (int i = 0; i < locationList.size(); i ++) {
             items[i] = this.locationList.get(i).location;
         }
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
-                R.layout.spinner_text,
-                items);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, R.layout.spinner_text, items);
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_text);
-        Spinner spinnerCity = (Spinner) this.findViewById(R.id.create_widget_day_spinner);
+        Spinner spinnerCity = (Spinner) this.findViewById(R.id.create_widget_clock_day_week_spinner);
         spinnerCity.setAdapter(spinnerAdapter);
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -155,84 +155,74 @@ public class CreateWidgetDayWeekActivity extends Activity
             }
         });
 
-        Switch switchCard = (Switch) this.findViewById(R.id.create_widget_day_switch_card);
+        Switch switchCard = (Switch) this.findViewById(R.id.create_widget_clock_day_week_switch_card);
         switchCard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     imageViewCard.setVisibility(View.VISIBLE);
                     showCard = true;
-                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    for(int i = 0; i < 4; i ++) {
-                        textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                        textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    for (int i = 0; i < 4; i ++) {
+                        week[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                        temp[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
                     }
                 } else {
                     imageViewCard.setVisibility(View.GONE);
                     showCard = false;
                     if (! blackText) {
-                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        for(int i = 0; i < 4; i ++) {
-                            textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                            textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        for (int i = 0; i < 4; i ++) {
+                            week[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                            temp[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
                         }
                     }
                 }
             }
         });
 
-        Switch switchTime = (Switch) this.findViewById(R.id.create_widget_day_switch_time);
-        switchTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    refreshTime.setVisibility(View.GONE);
-                    hideRefreshTime = true;
-                } else {
-                    refreshTime.setVisibility(View.VISIBLE);
-                    hideRefreshTime = false;
-                }
-            }
-        });
-
-        Switch switchText = (Switch) this.findViewById(R.id.create_widget_day_switch_text);
+        Switch switchText = (Switch) this.findViewById(R.id.create_widget_clock_day_week_switch_text);
         switchText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     blackText = true;
-                    textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    for(int i = 0; i < 4; i ++) {
-                        textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                        textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                    clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                    for (int i = 0; i < 4; i ++) {
+                        week[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                        temp[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
                     }
                 } else {
                     blackText = false;
                     if (! showCard) {
-                        textViewWeatherNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        textViewTempNow.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        for(int i = 0; i < 4; i ++) {
-                            textViewTemp[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                            textViewWeek[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                        clock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        dateText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        weatherText.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                        for (int i = 0; i < 4; i ++) {
+                            week[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                            temp[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
                         }
                     }
                 }
             }
         });
 
-        final Button buttonDone = (Button) this.findViewById(R.id.create_widget_day_done);
+        final Button buttonDone = (Button) this.findViewById(R.id.create_widget_clock_day_week_done);
         buttonDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = getSharedPreferences(
-                        getString(R.string.sp_widget_day_week_setting),
-                        MODE_PRIVATE).edit();
+                        getString(R.string.sp_widget_clock_day_week_setting),
+                        MODE_PRIVATE
+                ).edit();
                 editor.putString(getString(R.string.key_location), locationName);
                 editor.putBoolean(getString(R.string.key_show_card), showCard);
-                editor.putBoolean(getString(R.string.key_hide_refresh_time), hideRefreshTime);
                 editor.putBoolean(getString(R.string.key_black_text), blackText);
                 editor.apply();
 
@@ -247,7 +237,7 @@ public class CreateWidgetDayWeekActivity extends Activity
                 buttonDone.setText(getString(R.string.first_refresh_widget));
                 buttonDone.setEnabled(true);
 
-                RefreshWidgetDayWeek.refreshUIFromLocalData(CreateWidgetDayWeekActivity.this, isDay);
+                RefreshWidgetClockDayWeek.refreshUIFromLocalData(CreateWidgetClockDayWeekActivity.this, isDay);
                 refreshWidget();
 
                 Intent resultValue = new Intent();
@@ -259,10 +249,10 @@ public class CreateWidgetDayWeekActivity extends Activity
     }
 
     private void initDatabaseHelper() {
-        this.databaseHelper = new MyDatabaseHelper(CreateWidgetDayWeekActivity.this,
+        this.databaseHelper = new MyDatabaseHelper(this,
                 MyDatabaseHelper.DATABASE_NAME,
                 null,
-                2);
+                MyDatabaseHelper.VERSION_CODE);
     }
 
     private void readLocation() {
@@ -359,7 +349,7 @@ public class CreateWidgetDayWeekActivity extends Activity
         if(this.juheResult == null && this.hefengResult == null) {
             Toast.makeText(this, getString(R.string.refresh_widget_error), Toast.LENGTH_SHORT).show();
         } else {
-            RefreshWidgetDayWeek.refreshUIFromInternet(this, info, isDay);
+            RefreshWidgetClockDayWeek.refreshUIFromInternet(this, info, isDay);
         }
     }
 
@@ -370,6 +360,7 @@ public class CreateWidgetDayWeekActivity extends Activity
         public void onReceiveLocation(BDLocation location) {
             //Receive Location
             String locationName = null;
+
             StringBuffer sb = new StringBuffer(256);
             sb.append("time : ");
             sb.append(location.getTime());
@@ -401,7 +392,7 @@ public class CreateWidgetDayWeekActivity extends Activity
             }
 
             if (locationName == null) {
-                Toast.makeText(CreateWidgetDayWeekActivity.this,
+                Toast.makeText(CreateWidgetClockDayWeekActivity.this,
                         getString(R.string.get_location_failed),
                         Toast.LENGTH_SHORT).show();
             } else {

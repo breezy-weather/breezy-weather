@@ -18,6 +18,8 @@ public class WeatherInfoToShow {
     public String[] week;
     public String[] weather;
     public String[] weatherKind;
+    public String[] windDir;
+    public String[] windLevel;
 
     public String[] maxiTemp;
     public String[] miniTemp;

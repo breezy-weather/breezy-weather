@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <wangdaye.com.geometricweather.Widget.RippleCardView
+    <wangdaye.com.geometricweather.Widget.MyCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardElevation="2dp"
@@ -46,7 +46,7 @@
 
         </RelativeLayout>
 
-    </wangdaye.com.geometricweather.Widget.RippleCardView>
+    </wangdaye.com.geometricweather.Widget.MyCardView>
     
     <FrameLayout
         android:layout_width="match_parent"

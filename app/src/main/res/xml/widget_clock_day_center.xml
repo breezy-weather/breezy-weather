@@ -6,7 +6,7 @@
     android:initialLayout="@layout/widget_clock_day_center"
     android:previewImage="@drawable/widget_clock_day_center"
     android:resizeMode="horizontal|vertical"
-    android:configure="wangdaye.com.geometricweather.UserInterface.CreateWidgetClockDayCenterActivity"
+    android:configure="wangdaye.com.geometricweather.UI.CreateWidgetClockDayCenterActivity"
     android:widgetCategory="home_screen" >
 
 </appwidget-provider>

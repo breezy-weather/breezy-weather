@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/dialog_weather_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="2dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/dialog_weather_icon_container"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/dialog_weather_icon_3"
+                    android:layout_width="@dimen/dialog_title_height"
+                    android:layout_height="@dimen/dialog_title_height" />
+
+                <ImageView
+                    android:id="@+id/dialog_weather_icon_2"
+                    android:layout_width="@dimen/dialog_title_height"
+                    android:layout_height="@dimen/dialog_title_height" />
+
+                <ImageView
+                    android:id="@+id/dialog_weather_icon_1"
+                    android:layout_width="@dimen/dialog_title_height"
+                    android:layout_height="@dimen/dialog_title_height" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/dialog_weather_text"
+                android:layout_toRightOf="@id/dialog_weather_icon_container"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/normal_word_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="2dp"
+        android:clickable="true"
+        android:stateListAnimator="@anim/touch_raise"
+        android:foreground="?attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/dialog_weather_button"
+                android:text="@string/done"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/normal_word_size"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

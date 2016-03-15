@@ -10,20 +10,20 @@ import android.view.View;
  * Card view.
  * */
 
-public class RippleCardView extends CardView {
+public class MyCardView extends CardView {
     // data
     public float viewStartX;
     public float viewStartY;
 
-    public RippleCardView(Context context) {
+    public MyCardView(Context context) {
         super(context);
     }
 
-    public RippleCardView(Context context, AttributeSet attrs) {
+    public MyCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public RippleCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MyCardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 }
