@@ -380,10 +380,21 @@ public class WeatherFragment extends Fragment
         scrollView.setOnScrollViewListener(new MyScrollView.OnScrollViewListener() {
             @Override
             public void onScrollChanged(MyScrollView scrollView, int x, int y, int oldX, int oldY) {
-                if (y > oldY && Math.abs(y - oldY) > 10) {
-                    MainActivity.toolbar.setVisibility(View.GONE);
-                } else if (Math.abs(y - oldY) > 10) {
-                    MainActivity.toolbar.setVisibility(View.VISIBLE);
+                float dpi = getResources().getDisplayMetrics().density;
+                if (y > oldY) {
+                    float oldAlpha = MainActivity.toolbar.getAlpha();
+                    float newAlpha = (float) (oldAlpha - Math.abs(y - oldY) / (400 / 2.625 * dpi));
+                    if (newAlpha < 0) {
+                        newAlpha = 0;
+                    }
+                    MainActivity.toolbar.setAlpha(newAlpha);
+                } else {
+                    float oldAlpha = MainActivity.toolbar.getAlpha();
+                    float newAlpha = (float) (oldAlpha + Math.abs(y - oldY) / (400 / 2.625 * dpi));
+                    if (newAlpha > 1) {
+                        newAlpha = 1;
+                    }
+                    MainActivity.toolbar.setAlpha(newAlpha);
                 }
             }
         });
@@ -544,7 +555,7 @@ public class WeatherFragment extends Fragment
 
         if (MainActivity.needChangeTime()) {
             MainActivity.isDay = ! MainActivity.isDay;
-            MainActivity.setBackgroundPlateColor(getActivity(), false);
+            MainActivity.setStatusBarColor(getActivity(), false);
             MainActivity.setNavHead();
             MainActivity.initNavigationBar(getActivity(), getActivity().getWindow());
             this.skyView.showCircle(false);

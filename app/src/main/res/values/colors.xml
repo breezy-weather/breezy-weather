@@ -18,6 +18,7 @@
     <color name="darkPrimary_5">#1a1b22</color>
 
     <color name="notification_background">#384248</color>
+    <color name="design_background">#2e2e2e</color>
     
     <color name="plate_line">#e0e0e0</color>
     <color name="chart_background_line_temp">#cfd8dc</color>

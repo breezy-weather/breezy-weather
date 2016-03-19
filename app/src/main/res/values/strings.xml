@@ -4,7 +4,7 @@
     <string name="package_name">wangdaye.com.geometricweather</string>
 
     <string name="version_code">版本号\n2.1.6</string>
-    <string name="note">代码注释\n优化：星空显示设置刷新生效\n添加：新特性介绍\n添加：全新的介绍页面\n修复：修复预报背景不变色的bug\n添加：天气分享功能\n优化：整理了抽屉和菜单的可选项</string>
+    <string name="note">代码注释\n优化：星空显示设置刷新生效\n添加：新特性介绍\n添加：全新的介绍页面\n修复：修复预报背景不变色的bug\n添加：天气分享功能\n优化：整理了抽屉和菜单的可选项\n优化：对UI细节做出优化</string>
 
     <string name="introduce_title_1">Geometric Weather</string>
     <string name="introduce_title_2">快捷操作</string>

@@ -11,9 +11,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,21 +24,47 @@ import java.lang.reflect.Field;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Widget.BitmapHelper;
+import wangdaye.com.geometricweather.Widget.MyScrollView;
 
 /**
  * Show application's details.
  * */
 
 public class AboutAppActivity extends AppCompatActivity {
-    // TAG
-//    private final String TAG = "AboutAppActivity";
+    // widget
+    private FrameLayout statusBar;
+    private MyScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setStatusBarTransParent();
-
+        this.setStatusBarTransparent();
         setContentView(R.layout.activity_about);
+
+        this.initStatusBar();
+
+        scrollView = (MyScrollView) findViewById(R.id.activity_about_scrollView);
+        scrollView.setOnScrollViewListener(new MyScrollView.OnScrollViewListener() {
+            @Override
+            public void onScrollChanged(MyScrollView scrollView, int x, int y, int oldX, int oldY) {
+                float dpi = getResources().getDisplayMetrics().density;
+                if (y < oldY) {
+                    float oldAlpha = statusBar.getAlpha();
+                    float newAlpha = (float) (oldAlpha - Math.abs(y - oldY) / (400 / 2.625 * dpi));
+                    if (newAlpha < 0) {
+                        newAlpha = 0;
+                    }
+                    statusBar.setAlpha(newAlpha);
+                } else {
+                    float oldAlpha = statusBar.getAlpha();
+                    float newAlpha = (float) (oldAlpha + Math.abs(y - oldY) / (400 / 2.625 * dpi));
+                    if (newAlpha > 1) {
+                        newAlpha = 1;
+                    }
+                    statusBar.setAlpha(newAlpha);
+                }
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_info_toolbar);
         toolbar.setTitle("");
@@ -75,7 +104,7 @@ public class AboutAppActivity extends AppCompatActivity {
         });
     }
 
-    private void setStatusBarTransParent() {
+    private void setStatusBarTransparent() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -86,21 +115,39 @@ public class AboutAppActivity extends AppCompatActivity {
         }
     }
 
+    private void initStatusBar() {
+        Class<?> c;
+        Object obj;
+        Field field;
+        int x, statusBarHeight = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            statusBarHeight = getResources().getDimensionPixelSize(x);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+
+        statusBar = (FrameLayout) findViewById(R.id.activity_about_statusBar);
+        statusBar.setLayoutParams(
+                new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        statusBarHeight
+                )
+        );
+        statusBar.setBackgroundColor(ContextCompat.getColor(this, R.color.design_background));
+        statusBar.setAlpha(0);
+    }
+
     private void setWindowTopColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityManager.TaskDescription taskDescription;
             Bitmap topIcon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-            if (MainActivity.isDay) {
-                taskDescription = new ActivityManager.TaskDescription(
-                        getString(R.string.app_name),
-                        topIcon,
-                        ContextCompat.getColor(this, R.color.lightPrimary_5));
-            } else {
-                taskDescription = new ActivityManager.TaskDescription(
-                        getString(R.string.app_name),
-                        topIcon,
-                        ContextCompat.getColor(this, R.color.darkPrimary_5));
-            }
+            taskDescription = new ActivityManager.TaskDescription(getString(R.string.app_name),
+                    topIcon,
+                    ContextCompat.getColor(this, R.color.design_background));
             setTaskDescription(taskDescription);
             topIcon.recycle();
         }

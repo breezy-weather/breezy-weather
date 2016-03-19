@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
     private WeatherFragment weatherFragment;
 
     private static FrameLayout navHead;
-    private static FrameLayout backgroundPlate;
+    private static FrameLayout statusBar;
     public static Toolbar toolbar;
 
     // data
@@ -401,8 +401,8 @@ public class MainActivity extends AppCompatActivity
         View navHeader = navigationView.getHeaderView(0);
         MainActivity.navHead = (FrameLayout) navHeader.findViewById(R.id.nav_header);
 
-        backgroundPlate = (FrameLayout) findViewById(R.id.background_plate);
-        setBackgroundPlateColor(this, true);
+        statusBar = (FrameLayout) findViewById(R.id.background_plate);
+        setStatusBarColor(this, true);
     }
 
     private void initData() {
@@ -423,7 +423,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public static void setBackgroundPlateColor(Context context, boolean isInit) {
+    public static void setStatusBarColor(Context context, boolean isInit) {
         if (isInit) {
             Class<?> c;
             Object obj;
@@ -438,7 +438,7 @@ public class MainActivity extends AppCompatActivity
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            backgroundPlate.setLayoutParams(
+            statusBar.setLayoutParams(
                     new LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
                             statusBarHeight
@@ -446,9 +446,9 @@ public class MainActivity extends AppCompatActivity
             );
         }
         if (isDay) {
-            backgroundPlate.setBackgroundColor(ContextCompat.getColor(context, R.color.lightPrimary_5));
+            statusBar.setBackgroundColor(ContextCompat.getColor(context, R.color.lightPrimary_5));
         } else {
-            backgroundPlate.setBackgroundColor(ContextCompat.getColor(context, R.color.darkPrimary_5));
+            statusBar.setBackgroundColor(ContextCompat.getColor(context, R.color.darkPrimary_5));
         }
     }
 
