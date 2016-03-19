@@ -121,11 +121,7 @@ public class TodayForecastService extends Service implements HandlerContainer {
     private void sendSimpleForecast(WeatherInfoToShow info) {
         boolean isDay;
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (5 < hour && hour < 19) {
-            isDay = true;
-        } else {
-            isDay = false;
-        }
+        isDay = 5 < hour && hour < 19;
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
@@ -298,7 +294,7 @@ public class TodayForecastService extends Service implements HandlerContainer {
             //Receive Location
             String locationName = null;
 
-            StringBuffer sb = new StringBuffer(256);
+            StringBuilder sb = new StringBuilder(256);
             sb.append("time : ");
             sb.append(location.getTime());
             if (location.getLocType() == BDLocation.TypeGpsLocation){// GPS定位结果
@@ -341,7 +337,11 @@ public class TodayForecastService extends Service implements HandlerContainer {
                 sb.append(list.size());
                 for (Poi p : list) {
                     sb.append("\npoi= : ");
-                    sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
+                    sb.append(p.getId()).
+                            append(" ").
+                            append(p.getName()).
+                            append(" ").
+                            append(p.getRank());
                 }
             }
             Log.i("BaiduLocationApiDem", sb.toString());
@@ -356,11 +356,7 @@ public class TodayForecastService extends Service implements HandlerContainer {
             case REFRESH_DATA_SUCCEED:
                 boolean isDay;
                 int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-                if (5 < hour && hour < 19) {
-                    isDay = true;
-                } else {
-                    isDay = false;
-                }
+                isDay = 5 < hour && hour < 19;
 
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                 String type = sharedPreferences.getString(getString(R.string.key_forecast_type_today), "simple_forecast");

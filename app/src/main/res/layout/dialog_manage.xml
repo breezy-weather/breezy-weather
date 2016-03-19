@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/cardview_light_background"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -11,7 +13,8 @@
         card_view:cardElevation="2dp"
         android:clickable="true"
         android:stateListAnimator="@anim/touch_raise"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        tools:targetApi="lollipop">
 
         <RelativeLayout
             android:padding="@dimen/card_margin"
@@ -23,7 +26,8 @@
                 android:src="@drawable/ic_search_grey"
                 android:layout_centerVertical="true"
                 android:layout_width="@dimen/material_icon_size"
-                android:layout_height="@dimen/material_icon_size" />
+                android:layout_height="@dimen/material_icon_size"
+                tools:ignore="ContentDescription" />
 
             <FrameLayout
                 android:id="@+id/dialog_search_space"

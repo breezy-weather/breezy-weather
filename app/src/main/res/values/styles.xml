@@ -1,6 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
+    <!-- app theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -14,11 +14,256 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+
+    <!-- toolbar -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <!-- card -->
+    <style name="material_card" parent="CardView">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginLeft">@dimen/card_margin</item>
+        <item name="android:layout_marginRight">@dimen/card_margin</item>
+        <item name="android:layout_marginBottom">@dimen/card_margin</item>
+        <item name="cardCornerRadius">2dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">0dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- image -->
+    <style name="info_icon">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    
+    <style name="wall_paper">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:elevation" tools:targetApi="lollipop">2dp</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="notification_big_view_week_icon">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:src">@drawable/weather_cloudy</item>
+    </style>
+    
+    <style name="share_life_info_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+        <item name="android:textColor">@color/colorTextLight2nd</item>
+    </style>
+
+    <style name="weather_fragment_start">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:scaleType">fitStart</item>
+    </style>
+
+    <style name="weather_fragment_weather_icon">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_margin">@dimen/weather_icon_margin</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="weather_info_week_icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/card_margin</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="widget_background_card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:src">@drawable/widget_card</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:elevation" tools:targetApi="lollipop">2dp</item>
+    </style>
+
+    <style name="widget_week_icon">
+        <item name="android:layout_width">38dp</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:src">@drawable/weather_cloudy</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <!-- spinner -->
+    <style name="spinner">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:spinnerMode">dropdown</item>
+        <item name="android:dropDownWidth">150dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <!-- switch -->
+    <style name="my_switch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">?attr/colorAccent</item>
+    </style>
+
+    <!-- button -->
+    <style name="material_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="activity_create_widget_done_button" parent="material_button">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:text">@string/done</item>
+        <item name="android:textColor">?attr/colorAccent</item>
+    </style>
+
+    <style name="widget_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:elevation" tools:targetApi="lollipop">20dp</item>
+    </style>
+
+    <!-- text -->
+    <style name="activity_about_mini_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+    </style>
+
+    <style name="activity_about_info_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+    </style>
+
+    <style name="activity_create_widget_info_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+    </style>
+
+    <style name="notification_big_view_week_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textAppearance">@style/TextAppearance.StatusBar.EventContent.Info</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+        <item name="android:text">@string/ellipsis</item>
+    </style>
+
+    <style name="share_week_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextLight2nd</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+    </style>
+
+    <style name="weather_info_week_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+    </style>
+
+    <style name="widget_week_week_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:text">@string/ellipsis</item>
+        <item name="android:textColor">@color/colorTextLight</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+        <item name="android:shadowColor">@color/colorTextGrey</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <style name="widget_week_temp_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:text">@string/ellipsis</item>
+        <item name="android:textColor">@color/colorTextLight</item>
+        <item name="android:textSize">@dimen/normal_word_size</item>
+        <item name="android:shadowColor">@color/colorTextGrey</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <!-- clock -->
+    <style name="widget_text_clock">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:format24Hour">HH:mm</item>
+        <item name="android:format12Hour">hh:mm</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/colorTextLight</item>
+        <item name="android:shadowColor">@color/colorTextGrey</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    
+    <!-- view group -->
+    <style name="simple_equal_width_linearLayout">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="simple_equal_height_linearLayout">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="weather_info_equal_width_linearLayout">
+        <item name="android:orientation">vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 
 </resources>

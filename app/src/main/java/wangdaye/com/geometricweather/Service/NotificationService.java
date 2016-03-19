@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.opengl.Visibility;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Message;
@@ -181,11 +180,7 @@ public class NotificationService extends Service implements HandlerContainer {
         // refresh the notification UI
         boolean isDay;
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (5 < hour && hour < 19) {
-            isDay = true;
-        } else {
-            isDay = false;
-        }
+        isDay = 5 < hour && hour < 19;
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
@@ -444,7 +439,7 @@ public class NotificationService extends Service implements HandlerContainer {
             //Receive Location
             String locationName = null;
 
-            StringBuffer sb = new StringBuffer(256);
+            StringBuilder sb = new StringBuilder(256);
             sb.append("time : ");
             sb.append(location.getTime());
             if (location.getLocType() == BDLocation.TypeGpsLocation){// GPS定位结果
@@ -487,7 +482,11 @@ public class NotificationService extends Service implements HandlerContainer {
                 sb.append(list.size());
                 for (Poi p : list) {
                     sb.append("\npoi= : ");
-                    sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
+                    sb.append(p.getId()).
+                            append(" ").
+                            append(p.getName()).
+                            append(" ").
+                            append(p.getRank());
                 }
             }
             Log.i("BaiduLocationApiDem", sb.toString());
@@ -502,11 +501,7 @@ public class NotificationService extends Service implements HandlerContainer {
             case REFRESH_DATA_SUCCEED:
                 boolean isDay;
                 int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-                if (5 < hour && hour < 19) {
-                    isDay = true;
-                } else {
-                    isDay = false;
-                }
+                isDay = 5 < hour && hour < 19;
 
                 if (location != null) {
                     if (location.replaceAll(" ", "").matches("[a-zA-Z]+")) {

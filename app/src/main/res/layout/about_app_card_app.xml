@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="0dp"
-    android:layout_marginLeft="@dimen/card_margin"
-    android:layout_marginRight="@dimen/card_margin"
-    android:layout_marginBottom="@dimen/card_margin"
-    card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="2dp"
-    card_view:contentPadding="0dp"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardPreventCornerOverlap="true"
-    android:clickable="true"
-    android:stateListAnimator="@anim/touch_raise"
-    android:foreground="?attr/selectableItemBackground" >
+    style="@style/material_card">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,18 +12,20 @@
         android:paddingBottom="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:paddingTop="16dp" >
+        android:paddingTop="16dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp" >
+            android:layout_height="40dp">
 
             <ImageView
                 android:id="@+id/about_app_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
+                tools:src="@drawable/ic_launcher" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -52,7 +43,7 @@
                 android:layout_centerVertical="true"
                 android:text="@string/app_name"
                 android:textColor="?attr/colorPrimary"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
 
         </RelativeLayout>
 
@@ -65,9 +56,9 @@
                 android:id="@+id/about_app_ic_app_code"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_code_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_code_grey"
+                android:contentDescription="@string/version_code" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -79,12 +70,9 @@
 
             <TextView
                 android:id="@+id/about_app_app_code_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_app_code_space"
-                android:layout_centerVertical="true"
-                android:text="@string/version_code"
-                android:textSize="14dp" />
+                android:text="@string/version_code" />
 
         </RelativeLayout>
 
@@ -98,9 +86,9 @@
                 android:id="@+id/about_app_ic_app_introduce"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_introduce_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_introduce_grey"
+                android:contentDescription="@string/introduce" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -112,12 +100,9 @@
 
             <TextView
                 android:id="@+id/about_app_ic_app_introduce_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_app_introduce_space"
-                android:layout_centerVertical="true"
-                android:text="@string/introduce"
-                android:textSize="14dp" />
+                android:text="@string/introduce" />
 
         </RelativeLayout>
 
@@ -130,9 +115,9 @@
                 android:id="@+id/about_app_ic_app_log"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_remark_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_remark_grey"
+                android:contentDescription="@string/note" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -144,12 +129,9 @@
 
             <TextView
                 android:id="@+id/about_app_app_log_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_app_log_space"
-                android:layout_centerVertical="true"
-                android:text="@string/note"
-                android:textSize="14dp" />
+                android:text="@string/note" />
 
         </RelativeLayout>
 

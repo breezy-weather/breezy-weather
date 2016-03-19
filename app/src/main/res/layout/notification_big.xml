@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/notification_big"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -34,7 +35,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/weather_cloudy"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
 
@@ -57,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/wait_refresh"
                         android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
-                        android:textSize="14dp" />
+                        android:textSize="@dimen/normal_word_size" />
 
                 </RelativeLayout>
 
@@ -74,8 +76,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/ellipsis"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/normal_word_size"
                         android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+
                     <TextView
                         android:id="@+id/notification_big_text_remark"
                         android:padding="8dp"
@@ -85,7 +88,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/ellipsis"
                         android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Time"
-                        android:textSize="11dp" />
+                        android:textSize="11sp"
+                        tools:ignore="SmallSp" />
 
                 </RelativeLayout>
 
@@ -97,7 +101,8 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp" >
+            android:padding="2dp"
+            tools:ignore="DisableBaselineAlignment">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -112,12 +117,8 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_week_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+                        style="@style/notification_big_view_week_text" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -126,11 +127,8 @@
 
                     <ImageView
                         android:id="@+id/notification_big_image_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/weather_cloudy" />
+                        style="@style/notification_big_view_week_icon"
+                        tools:ignore="ContentDescription" />
 
                 </RelativeLayout>
 
@@ -141,12 +139,8 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_temp_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+                        style="@style/notification_big_view_week_text" />
+
                 </RelativeLayout>
 
             </LinearLayout>
@@ -164,12 +158,8 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_week_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+                        style="@style/notification_big_view_week_text" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -178,11 +168,8 @@
 
                     <ImageView
                         android:id="@+id/notification_big_image_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/weather_cloudy" />
+                        style="@style/notification_big_view_week_icon"
+                        tools:ignore="ContentDescription" />
 
                 </RelativeLayout>
 
@@ -193,12 +180,8 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_temp_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+                        style="@style/notification_big_view_week_text" />
+
                 </RelativeLayout>
 
             </LinearLayout>
@@ -216,12 +199,7 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_week_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+                        style="@style/notification_big_view_week_text" />
 
                 </RelativeLayout>
 
@@ -231,11 +209,8 @@
 
                     <ImageView
                         android:id="@+id/notification_big_image_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/weather_cloudy" />
+                        style="@style/notification_big_view_week_icon"
+                        tools:ignore="ContentDescription" />
 
                 </RelativeLayout>
 
@@ -246,12 +221,7 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_temp_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+                        style="@style/notification_big_view_week_text"/>
 
                 </RelativeLayout>
 
@@ -270,12 +240,7 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_week_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+                        style="@style/notification_big_view_week_text" />
 
                 </RelativeLayout>
 
@@ -285,11 +250,8 @@
 
                     <ImageView
                         android:id="@+id/notification_big_image_4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/weather_cloudy" />
+                        style="@style/notification_big_view_week_icon"
+                        tools:ignore="ContentDescription" />
 
                 </RelativeLayout>
 
@@ -300,12 +262,7 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_temp_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
+                        style="@style/notification_big_view_week_text" />
 
                 </RelativeLayout>
 
@@ -324,12 +281,7 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_week_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent" />
+                        style="@style/notification_big_view_week_icon" />
 
                 </RelativeLayout>
 
@@ -339,11 +291,8 @@
 
                     <ImageView
                         android:id="@+id/notification_big_image_5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/weather_cloudy" />
+                        style="@style/notification_big_view_week_icon"
+                        tools:ignore="ContentDescription" />
 
                 </RelativeLayout>
 
@@ -354,12 +303,7 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_temp_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14dp"
-                        android:text="@string/ellipsis"
-                        android:textAppearance="@style/TextAppearance.StatusBar.EventContent" />
+                        style="@style/notification_big_view_week_text" />
 
                 </RelativeLayout>
 

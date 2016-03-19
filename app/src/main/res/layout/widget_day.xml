@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_day"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:clickable="true"
-    android:paddingTop="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingBottom="0dp" >
+    android:clickable="true" >
 
     <ImageView
         android:id="@+id/widget_day_card"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/widget_card"
-        android:visibility="gone"
-        android:elevation="2dp" />
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
         android:layout_width="156dp"
         android:layout_height="96dp"
         android:elevation="5dp"
         android:paddingBottom="8dp"
-        android:layout_centerInParent="true" >
+        android:layout_centerInParent="true"
+        tools:targetApi="lollipop">
 
         <RelativeLayout
             android:layout_width="156dp"
@@ -62,7 +57,8 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/weather_cloudy" />
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
 
@@ -104,9 +100,7 @@
 
     <ImageButton
         android:id="@+id/widget_day_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00000000"
-        android:elevation="20dp" />
+        style="@style/widget_button"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

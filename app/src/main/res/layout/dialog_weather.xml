@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/cardview_light_background"
     android:layout_width="match_parent"
@@ -29,17 +30,20 @@
                 <ImageView
                     android:id="@+id/dialog_weather_icon_3"
                     android:layout_width="@dimen/dialog_title_height"
-                    android:layout_height="@dimen/dialog_title_height" />
+                    android:layout_height="@dimen/dialog_title_height"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/dialog_weather_icon_2"
                     android:layout_width="@dimen/dialog_title_height"
-                    android:layout_height="@dimen/dialog_title_height" />
+                    android:layout_height="@dimen/dialog_title_height"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/dialog_weather_icon_1"
                     android:layout_width="@dimen/dialog_title_height"
-                    android:layout_height="@dimen/dialog_title_height" />
+                    android:layout_height="@dimen/dialog_title_height"
+                    tools:ignore="ContentDescription" />
 
             </FrameLayout>
 
@@ -61,7 +65,8 @@
         card_view:cardElevation="2dp"
         android:clickable="true"
         android:stateListAnimator="@anim/touch_raise"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        tools:targetApi="lollipop">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -69,12 +74,9 @@
 
             <Button
                 android:id="@+id/dialog_weather_button"
+                style="@style/material_button"
                 android:text="@string/done"
-                android:background="@android:color/transparent"
-                android:textSize="@dimen/normal_word_size"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 

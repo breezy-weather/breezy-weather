@@ -40,7 +40,7 @@ public class HefengWeather {
         BufferedReader reader;
         String result;
         String requestCode;
-        StringBuffer sbf = new StringBuffer();
+        StringBuilder sbf = new StringBuilder();
 
         if (useEnglish) {
             String locationEng;
@@ -125,7 +125,7 @@ public class HefengWeather {
         BufferedReader reader;
         String result;
         String requestCode;
-        StringBuffer sbf = new StringBuffer();
+        StringBuilder sbf = new StringBuilder();
 
         requestCode = httpUrl + "?" + httpArg + location.replaceAll(" ", "+");
         HefengResult hefengResult = null;
@@ -165,16 +165,16 @@ public class HefengWeather {
         format.setVCharType(HanyuPinyinVCharType.WITH_V); // v
 
         char[] input = location.trim().toCharArray();
-        StringBuffer output = new StringBuffer("");
+        StringBuilder output = new StringBuilder("");
 
         try {
-            for (int i = 0; i < input.length; i++) {
-                if (Character.toString(input[i]).matches("[\u4E00-\u9FA5]+")) {
-                    String[] temp = PinyinHelper.toHanyuPinyinStringArray(input[i], format);
+            for (char anInput : input) {
+                if (Character.toString(anInput).matches("[\u4E00-\u9FA5]+")) {
+                    String[] temp = PinyinHelper.toHanyuPinyinStringArray(anInput, format);
                     output.append(temp[0]);
                     output.append(" ");
                 } else
-                    output.append(Character.toString(input[i]));
+                    output.append(Character.toString(anInput));
             }
         } catch (BadHanyuPinyinOutputFormatCombination e) {
             e.printStackTrace();

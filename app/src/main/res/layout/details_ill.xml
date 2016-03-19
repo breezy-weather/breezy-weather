@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detail_ill"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/activity_vertical_margin" >
-
+    android:padding="@dimen/activity_vertical_margin">
 
     <ImageView
         android:id="@+id/detail_ill_image"
         android:layout_width="@dimen/material_icon_size"
         android:layout_height="@dimen/material_icon_size"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/ic_ill_grey" />
+        style="info_icon"
+        android:src="@drawable/ic_ill_grey"
+        tools:ignore="contentDescription" />
 
     <LinearLayout
         android:id="@+id/detail_ill_space"
@@ -26,7 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/detail_ill_space"
-        android:textSize="@dimen/normal_word_size" />
+        android:textSize="@dimen/normal_word_size"
+        tools:text="感冒指数-较易发"/>
 
     <TextView
         android:id="@+id/detail_ill_info"
@@ -34,5 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/detail_ill_space"
         android:layout_below="@id/detail_ill_kind"
-        android:textSize="@dimen/normal_word_size" />
+        android:textSize="@dimen/normal_word_size"
+        tools:text="昼夜温差较大，较易发生感冒，请适当增减衣服。体质较弱的朋友请注意防护。" />
+
 </RelativeLayout>

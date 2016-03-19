@@ -44,6 +44,7 @@ import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.Widget.BitmapHelper;
 import wangdaye.com.geometricweather.Widget.HourlyView;
 import wangdaye.com.geometricweather.Widget.MyScrollView;
 import wangdaye.com.geometricweather.Widget.MySwipeRefreshLayout;
@@ -182,8 +183,12 @@ public class WeatherFragment extends Fragment
         this.skyView = (SkyView) view.findViewById(R.id.sky_view);
 
         this.start = new ImageView[2];
+        int widthPixels = getResources().getDisplayMetrics().widthPixels;
+        int[] starSize = SkyView.getStarSize(widthPixels);
         start[0] = (ImageView) view.findViewById(R.id.start_1);
+        start[0].setImageBitmap(BitmapHelper.readBitMap(getActivity(), R.drawable.start_1, starSize[0], starSize[1]));
         start[1] = (ImageView) view.findViewById(R.id.start_2);
+        start[1].setImageBitmap(BitmapHelper.readBitMap(getActivity(), R.drawable.start_2, starSize[0], starSize[1]));
 
         this.weatherIcon = new ImageView[3];
         weatherIcon[0] = (ImageView) view.findViewById(R.id.weather_icon_1);
@@ -954,7 +959,7 @@ public class WeatherFragment extends Fragment
         //Receive Location
         String location = null;
 
-        StringBuffer sb = new StringBuffer(256);
+        StringBuilder sb = new StringBuilder(256);
         sb.append("time : ");
         sb.append(bdLocation.getTime());
         sb.append("\nerror code : ");
@@ -1001,7 +1006,11 @@ public class WeatherFragment extends Fragment
             sb.append(list.size());
             for (Poi p : list) {
                 sb.append("\npoi= : ");
-                sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
+                sb.append(p.getId()).
+                        append(" ").
+                        append(p.getName()).
+                        append(" ").
+                        append(p.getRank());
             }
         }
         Log.i("BaiduLocationApiDem", sb.toString());

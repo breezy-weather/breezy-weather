@@ -12,7 +12,6 @@ import android.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.RefreshWidgetClockDayCenter;
-import wangdaye.com.geometricweather.Service.RefreshWidgetDay;
 
 /**
  * Widget provider of the widget [clock + day (center)].

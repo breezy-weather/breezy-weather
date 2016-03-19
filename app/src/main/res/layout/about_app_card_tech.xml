@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="0dp"
-    android:layout_marginLeft="@dimen/card_margin"
-    android:layout_marginRight="@dimen/card_margin"
-    android:layout_marginBottom="@dimen/card_margin"
-    card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="2dp"
-    card_view:contentPadding="0dp"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardPreventCornerOverlap="true"
-    android:clickable="true"
-    android:stateListAnimator="@anim/touch_raise"
-    android:foreground="?attr/selectableItemBackground" >
+    style="@style/material_card">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,13 +20,8 @@
 
             <TextView
                 android:id="@+id/app_info_tech_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 android:text="@string/tech"
-                android:textColor="?attr/colorAccent"
-                android:textSize="14dp"/>
+                style="@style/activity_about_mini_title" />
 
         </RelativeLayout>
 
@@ -51,9 +34,9 @@
                 android:id="@+id/about_app_ic_tech_location"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_location_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_location_grey"
+                android:contentDescription="@string/tech_location" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -65,12 +48,9 @@
 
             <TextView
                 android:id="@+id/about_app_ic_tech_location_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_tech_location_space"
-                android:layout_centerVertical="true"
-                android:text="@string/tech_location"
-                android:textSize="14dp" />
+                android:text="@string/tech_location" />
 
         </RelativeLayout>
 
@@ -83,9 +63,9 @@
                 android:id="@+id/about_app_ic_tech_Juheweather"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_weather_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_weather_grey"
+                android:contentDescription="@string/tech_weatherAPI" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -97,12 +77,9 @@
 
             <TextView
                 android:id="@+id/about_app_ic_tech_Juheweather_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_tech_Juheweather_space"
-                android:layout_centerVertical="true"
-                android:text="@string/tech_weatherAPI"
-                android:textSize="14dp" />
+                android:text="@string/tech_weatherAPI" />
 
         </RelativeLayout>
 
@@ -115,9 +92,9 @@
                 android:id="@+id/about_app_ic_tech_json"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_json_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_json_grey"
+                android:contentDescription="@string/tech_json" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -129,12 +106,9 @@
 
             <TextView
                 android:id="@+id/about_app_ic_tech_json_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_tech_json_space"
-                android:layout_centerVertical="true"
-                android:text="@string/tech_json"
-                android:textSize="14dp" />
+                android:text="@string/tech_json" />
 
         </RelativeLayout>
 
@@ -147,9 +121,9 @@
                 android:id="@+id/about_app_ic_tech_charToPinyin"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_trans_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_trans_grey"
+                android:contentDescription="@string/tech_charToPinyin" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -161,12 +135,9 @@
 
             <TextView
                 android:id="@+id/about_app_ic_tech_charToPinyin_space_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_tech_charToPinyin_space"
-                android:layout_centerVertical="true"
-                android:text="@string/tech_charToPinyin"
-                android:textSize="14dp" />
+                android:text="@string/tech_charToPinyin" />
 
         </RelativeLayout>
 

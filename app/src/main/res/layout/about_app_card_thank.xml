@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="0dp"
-    android:layout_marginLeft="@dimen/card_margin"
-    android:layout_marginRight="@dimen/card_margin"
-    android:layout_marginBottom="@dimen/card_margin"
-    card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="2dp"
-    card_view:contentPadding="0dp"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardPreventCornerOverlap="true"
-    android:clickable="true"
-    android:stateListAnimator="@anim/touch_raise"
-    android:foreground="?attr/selectableItemBackground" >
+    style="@style/material_card">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,13 +20,8 @@
 
             <TextView
                 android:id="@+id/app_info_thank_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 android:text="@string/thanks"
-                android:textColor="?attr/colorAccent"
-                android:textSize="14dp"/>
+                style="@style/activity_about_mini_title" />
 
         </RelativeLayout>
 
@@ -51,9 +34,9 @@
                 android:id="@+id/about_app_ic_thank_roommate"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_thank_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_thank_grey"
+                android:contentDescription="@string/thanks_info_roommate" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -65,12 +48,9 @@
 
             <TextView
                 android:id="@+id/about_app_ic_thank_label_roommate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_thank_space_roommate"
-                android:layout_centerVertical="true"
-                android:text="@string/thanks_info_roommate"
-                android:textSize="14dp" />
+                android:text="@string/thanks_info_roommate" />
 
         </RelativeLayout>
 
@@ -83,9 +63,9 @@
                 android:id="@+id/about_app_ic_thank_ssp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_ssp_grey" />
+                style="@style/info_icon"
+                android:src="@drawable/ic_ssp_grey"
+                android:contentDescription="@string/thanks_info_ssp" />
 
             <LinearLayout
                 android:layout_width="20dp"
@@ -97,12 +77,38 @@
 
             <TextView
                 android:id="@+id/about_app_ic_thank_label_ssp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/activity_about_info_text"
                 android:layout_toRightOf="@id/about_app_ic_thank_space_ssp"
+                android:text="@string/thanks_info_ssp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/about_app_ic_thank_mi"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                style="@style/info_icon"
+                android:src="@drawable/ic_mi_grey"
+                android:contentDescription="@string/thanks_info_ssp" />
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/about_app_ic_thank_space_mi"
                 android:layout_centerVertical="true"
-                android:text="@string/thanks_info_ssp"
-                android:textSize="14dp" />
+                android:layout_toRightOf="@id/about_app_ic_thank_mi"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/about_app_ic_thank_label_mi"
+                style="@style/activity_about_info_text"
+                android:layout_toRightOf="@id/about_app_ic_thank_space_mi"
+                android:text="@string/thanks_info_mi" />
 
         </RelativeLayout>
 

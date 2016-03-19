@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dialog_item_height"
     android:clickable="true">
@@ -13,12 +14,13 @@
         card_view:cardElevation="2dp"
         android:clickable="true"
         android:stateListAnimator="@anim/touch_raise"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        tools:targetApi="lollipop">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/background_light">
+            android:background="@color/cardview_light_background">
 
             <RelativeLayout
                 android:id="@+id/location_item_num_container"
@@ -29,25 +31,25 @@
 
                 <TextView
                     android:id="@+id/location_item_num"
-                    android:text="1"
                     android:textSize="@dimen/normal_title_size"
                     android:layout_centerInParent="true"
                     android:layout_margin="@dimen/activity_vertical_margin"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    tools:text="1" />
 
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/location_item_name"
-                android:text="青岛"
                 android:textSize="@dimen/normal_title_size"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/location_item_num_container"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:text="青岛" />
 
             <LinearLayout
                 android:layout_alignParentBottom="true"

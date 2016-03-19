@@ -77,11 +77,7 @@ public class RefreshWidgetWeek extends Service
         this.safeHandler = new SafeHandler<>(this);
 
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (5 < hour && hour < 19) {
-            isDay = true;
-        } else {
-            isDay = false;
-        }
+        isDay = 5 < hour && hour < 19;
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(
                 getString(R.string.sp_widget_week_setting),
@@ -427,7 +423,7 @@ public class RefreshWidgetWeek extends Service
             String locationName = null;
 
             //Receive Location
-            StringBuffer sb = new StringBuffer(256);
+            StringBuilder sb = new StringBuilder(256);
             sb.append("time : ");
             sb.append(location.getTime());
             if (location.getLocType() == BDLocation.TypeGpsLocation){// GPS定位结果
@@ -467,7 +463,11 @@ public class RefreshWidgetWeek extends Service
                 sb.append(list.size());
                 for (Poi p : list) {
                     sb.append("\npoi= : ");
-                    sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
+                    sb.append(p.getId()).
+                            append(" ").
+                            append(p.getName()).
+                            append(" ").
+                            append(p.getRank());
                 }
             }
             Log.i("BaiduLocationApiDem", sb.toString());

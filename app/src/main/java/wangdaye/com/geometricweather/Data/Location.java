@@ -1,8 +1,8 @@
 package wangdaye.com.geometricweather.Data;
 
 /**
- * Created by WangDaYe on 2016/2/4.
- */
+ * Location class.
+ * */
 
 public class Location {
     // data

@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_clock_day"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:clickable="true"
-    android:paddingTop="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingBottom="0dp" >
+    android:clickable="true">
 
     <ImageView
         android:id="@+id/widget_clock_day_card"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/widget_card"
-        android:visibility="gone"
-        android:elevation="2dp" />
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_centerInParent="true"
         android:elevation="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:targetApi="lollipop">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -45,19 +40,7 @@
 
                 <TextClock
                     android:id="@+id/widget_clock_day_clock"
-                    android:layout_centerHorizontal="true"
-                    android:format24Hour="HH:mm"
-                    android:format12Hour="hh:mm"
-                    android:textStyle="normal"
-                    android:textSize="50sp"
-                    android:fontFamily="sans-serif-light"
-                    android:textColor="@color/colorTextLight"
-                    android:shadowColor="@color/colorTextGrey"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    style="@style/widget_text_clock" />
 
             </RelativeLayout>
 
@@ -74,7 +57,8 @@
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/weather_cloudy"
                     android:layout_width="@dimen/fab_size"
-                    android:layout_height="@dimen/fab_size" />
+                    android:layout_height="@dimen/fab_size"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
 
@@ -142,22 +126,19 @@
         android:layout_centerInParent="true"
         android:elevation="1dp"
         android:layout_width="1dp"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        tools:targetApi="lollipop" />
 
     <ImageButton
         android:id="@+id/widget_clock_day_clock_button"
         android:layout_toLeftOf="@id/widget_clock_day_line"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00000000"
-        android:elevation="20dp" />
+        style="@style/widget_button"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:id="@+id/widget_clock_day_weather_button"
         android:layout_toRightOf="@id/widget_clock_day_line"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00000000"
-        android:elevation="20dp" />
+        style="@style/widget_button"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

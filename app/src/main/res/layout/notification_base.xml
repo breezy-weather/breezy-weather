@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/notification_base"
     android:orientation="horizontal" 
     android:layout_width="match_parent"
@@ -29,7 +30,8 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/weather_cloudy"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 
@@ -52,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/wait_refresh"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/normal_word_size" />
 
             </RelativeLayout>
 
@@ -69,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ellipsis"
-                    android:textSize="14dp"
+                    android:textSize="@dimen/normal_word_size"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Info" />
 
                 <TextView
@@ -81,7 +83,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ellipsis"
                     android:textAppearance="@style/TextAppearance.StatusBar.EventContent.Time"
-                    android:textSize="11dp" />
+                    android:textSize="11sp"
+                    tools:ignore="SmallSp" />
 
             </RelativeLayout>
 

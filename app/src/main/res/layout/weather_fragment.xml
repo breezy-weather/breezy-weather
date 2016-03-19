@@ -13,7 +13,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
             
             <wangdaye.com.geometricweather.Widget.SkyView
                 android:id="@+id/sky_view"
@@ -22,20 +23,16 @@
                 android:layout_centerInParent="true" />
 
             <ImageView
-                android:layout_alignParentTop="true"
-                android:scaleType="fitStart"
                 android:id="@+id/start_2"
-                android:src="@drawable/start_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_fragment_start"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/start_2" />
 
             <ImageView
-                android:layout_alignParentTop="true"
-                android:scaleType="fitStart"
                 android:id="@+id/start_1"
-                android:src="@drawable/start_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_fragment_start"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/start_1" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -43,30 +40,18 @@
 
                 <ImageView
                     android:id="@+id/weather_icon_3"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="@dimen/weather_icon_margin"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentTop="true"
-                    android:scaleType="fitCenter" />
+                    style="@style/weather_fragment_weather_icon"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/weather_icon_2"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="@dimen/weather_icon_margin"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentTop="true"
-                    android:scaleType="fitCenter" />
+                    style="@style/weather_fragment_weather_icon"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/weather_icon_1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="@dimen/weather_icon_margin"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentTop="true"
-                    android:scaleType="fitCenter" />
+                    style="@style/weather_fragment_weather_icon"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
 
@@ -109,7 +94,8 @@
                     android:id="@+id/interface_container"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
 
                     <RelativeLayout
                         android:id="@+id/touch_layout"
@@ -139,16 +125,7 @@
                             android:id="@+id/base_info_card"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/card_margin"
-                            android:layout_marginRight="@dimen/card_margin"
-                            card_view:cardCornerRadius="2dp"
-                            card_view:cardElevation="2dp"
-                            card_view:contentPadding="0dp"
-                            card_view:cardUseCompatPadding="true"
-                            card_view:cardPreventCornerOverlap="true"
-                            android:clickable="true"
-                            android:stateListAnimator="@anim/touch_raise"
-                            android:foreground="?attr/selectableItemBackground">
+                            style="@style/material_card">
 
                             <LinearLayout
                                 android:orientation="vertical"
@@ -167,7 +144,8 @@
                                         android:layout_alignParentLeft="true"
                                         android:src="@drawable/ic_time_grey"
                                         android:layout_width="@dimen/material_icon_size"
-                                        android:layout_height="@dimen/material_icon_size" />
+                                        android:layout_height="@dimen/material_icon_size"
+                                        tools:ignore="ContentDescription,TooDeepLayout" />
 
                                     <TextView
                                         android:id="@+id/time_text_live"
@@ -178,14 +156,16 @@
                                         android:layout_centerVertical="true"
                                         android:textSize="@dimen/normal_word_size"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
+                                        android:layout_height="wrap_content"
+                                        tools:ignore="RtlSymmetry" />
 
                                     <ImageView
                                         android:id="@+id/location_collect_icon"
                                         android:layout_centerVertical="true"
                                         android:layout_alignParentRight="true"
                                         android:layout_width="@dimen/material_icon_size"
-                                        android:layout_height="@dimen/material_icon_size" />
+                                        android:layout_height="@dimen/material_icon_size"
+                                        tools:ignore="ContentDescription" />
 
                                     <TextView
                                         android:id="@+id/location_text_live"
@@ -195,7 +175,8 @@
                                         android:layout_toLeftOf="@id/location_collect_icon"
                                         android:textSize="@dimen/normal_word_size"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
+                                        android:layout_height="wrap_content"
+                                        tools:ignore="RelativeOverlap,RtlSymmetry" />
 
                                 </RelativeLayout>
 
@@ -232,19 +213,10 @@
                             android:layout_height="@dimen/card_margin" />
 
                         <wangdaye.com.geometricweather.Widget.MyCardView
+                            android:id="@+id/life_info_card"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/life_info_card"
-                            android:layout_marginLeft="@dimen/card_margin"
-                            android:layout_marginRight="@dimen/card_margin"
-                            card_view:cardCornerRadius="2dp"
-                            card_view:cardElevation="2dp"
-                            card_view:contentPadding="0dp"
-                            card_view:cardUseCompatPadding="true"
-                            card_view:cardPreventCornerOverlap="true"
-                            android:clickable="true"
-                            android:stateListAnimator="@anim/touch_raise"
-                            android:foreground="?attr/selectableItemBackground">
+                            style="@style/material_card">
 
                             <LinearLayout
                                 android:orientation="vertical"

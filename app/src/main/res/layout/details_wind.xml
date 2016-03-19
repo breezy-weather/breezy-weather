@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detail_wind"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/activity_vertical_margin" >
+    android:padding="@dimen/activity_vertical_margin">
 
 
     <ImageView
         android:id="@+id/detail_wind_image"
         android:layout_width="@dimen/material_icon_size"
         android:layout_height="@dimen/material_icon_size"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/ic_wind_grey" />
+        style="info_icon"
+        android:src="@drawable/ic_wind_grey"
+        tools:ignore="contentDescription" />
 
     <LinearLayout
         android:id="@+id/detail_wind_space"
@@ -26,7 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/detail_wind_space"
-        android:textSize="@dimen/normal_word_size" />
+        android:textSize="@dimen/normal_word_size"
+        tools:text="北风(实时南风)" />
 
     <TextView
         android:id="@+id/detail_wind_info"
@@ -34,5 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/detail_wind_space"
         android:layout_below="@id/detail_wind_kind"
-        android:textSize="@dimen/normal_word_size" />
+        android:textSize="@dimen/normal_word_size"
+        tools:text="3-4 级(实时3级)" />
+
 </RelativeLayout>

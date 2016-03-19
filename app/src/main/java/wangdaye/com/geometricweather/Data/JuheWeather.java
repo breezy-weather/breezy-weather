@@ -33,9 +33,9 @@ public class JuheWeather {
     public static final String APPKEY ="5bf9785af8c13ea44ab55442d63bc0ad";
 
     public static JuheResult getRequest(String city) {
-        String result = null;
+        String result;
         String url = "http://op.juhe.cn/onebox/weather/query";//请求接口地址
-        Map<String, Object> params = new HashMap<String, Object>();//请求参数
+        Map<String, Object> params = new HashMap<>();//请求参数
         params.put("cityname", city);//要查询的城市，如：温州、上海、北京
         params.put("key", APPKEY);//应用APPKEY(应用详细页查询)
         params.put("dtype", "");//返回数据的格式,xml或json，默认json
@@ -74,7 +74,7 @@ public class JuheWeather {
         BufferedReader reader = null;
         String rs = null;
         try {
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             if(method==null || method.equals("GET")){
                 strUrl = strUrl+"?"+urlencode(params);
             }
@@ -99,7 +99,7 @@ public class JuheWeather {
             }
             InputStream is = conn.getInputStream();
             reader = new BufferedReader(new InputStreamReader(is, DEF_CHATSET));
-            String strRead = null;
+            String strRead;
             while ((strRead = reader.readLine()) != null) {
                 sb.append(strRead);
             }

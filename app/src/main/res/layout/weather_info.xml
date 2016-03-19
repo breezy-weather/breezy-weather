@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,15 +9,12 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="DisableBaselineAlignment,UselessParent">
 
         <LinearLayout
             android:id="@+id/week_info_1"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1">
+            style="@style/weather_info_equal_width_linearLayout">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -24,29 +22,22 @@
 
                 <TextView
                     android:id="@+id/week_text_1"
-                    android:textSize="@dimen/normal_word_size"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    style="@style/weather_info_week_text"
+                    tools:text="周三" />
 
             </RelativeLayout>
 
             <ImageView
                 android:id="@+id/icon_image_1"
-                android:scaleType="fitCenter"
-                android:padding="@dimen/card_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_info_week_icon"
+                tools:src="@drawable/weather_sun_night"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/week_info_2"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1">
+            style="@style/weather_info_equal_width_linearLayout">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -54,29 +45,22 @@
 
                 <TextView
                     android:id="@+id/week_text_2"
-                    android:textSize="@dimen/normal_word_size"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    style="@style/weather_info_week_text"
+                    tools:text="周四"  />
 
             </RelativeLayout>
 
             <ImageView
                 android:id="@+id/icon_image_2"
-                android:scaleType="fitCenter"
-                android:padding="@dimen/card_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_info_week_icon"
+                tools:src="@drawable/weather_sun_night"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/week_info_3"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1">
+            style="@style/weather_info_equal_width_linearLayout">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -84,29 +68,22 @@
 
                 <TextView
                     android:id="@+id/week_text_3"
-                    android:textSize="@dimen/normal_word_size"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    style="@style/weather_info_week_text"
+                    tools:text="周五"  />
 
             </RelativeLayout>
 
             <ImageView
                 android:id="@+id/icon_image_3"
-                android:scaleType="fitCenter"
-                android:padding="@dimen/card_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_info_week_icon"
+                tools:src="@drawable/weather_cloud_night"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/week_info_4"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1">
+            style="@style/weather_info_equal_width_linearLayout">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -114,29 +91,22 @@
 
                 <TextView
                     android:id="@+id/week_text_4"
-                    android:textSize="@dimen/normal_word_size"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    style="@style/weather_info_week_text"
+                    tools:text="周六"  />
 
             </RelativeLayout>
 
             <ImageView
                 android:id="@+id/icon_image_4"
-                android:scaleType="fitCenter"
-                android:padding="@dimen/card_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_info_week_icon"
+                tools:src="@drawable/weather_sun_night"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/week_info_5"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1">
+            style="@style/weather_info_equal_width_linearLayout">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -144,29 +114,22 @@
 
                 <TextView
                     android:id="@+id/week_text_5"
-                    android:textSize="@dimen/normal_word_size"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    style="@style/weather_info_week_text"
+                    tools:text="周日"  />
 
             </RelativeLayout>
 
             <ImageView
                 android:id="@+id/icon_image_5"
-                android:scaleType="fitCenter"
-                android:padding="@dimen/card_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_info_week_icon"
+                tools:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/week_info_6"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1">
+            style="@style/weather_info_equal_width_linearLayout">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -174,28 +137,22 @@
 
                 <TextView
                     android:id="@+id/week_text_6"
-                    android:textSize="@dimen/normal_word_size"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    style="@style/weather_info_week_text"
+                    tools:text="周一"  />
 
             </RelativeLayout>
 
             <ImageView
                 android:id="@+id/icon_image_6"
-                android:scaleType="fitCenter"
-                android:padding="@dimen/card_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_info_week_icon"
+                tools:src="@drawable/weather_sun_night"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/week_info_7"
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1">
+            style="@style/weather_info_equal_width_linearLayout">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -203,19 +160,16 @@
 
                 <TextView
                     android:id="@+id/week_text_7"
-                    android:textSize="@dimen/normal_word_size"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    style="@style/weather_info_week_text"
+                    tools:text="周二"  />
 
             </RelativeLayout>
 
             <ImageView
                 android:id="@+id/icon_image_7"
-                android:scaleType="fitCenter"
-                android:padding="@dimen/card_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/weather_info_week_icon"
+                tools:src="@drawable/weather_cloud_night"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 

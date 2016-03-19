@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/create_widget_day"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2" >
+        android:layout_weight="2">
 
         <ImageView
             android:id="@+id/create_widget_day_wall"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:elevation="2dp"
-            android:fitsSystemWindows="true" />
+            style="@style/wall_paper"
+            tools:ignore="contentDescription" />
 
         <LinearLayout
             android:layout_width="180dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:elevation="4dp"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            tools:targetApi="lollipop">
 
             <include layout="@layout/widget_day" />
 
@@ -31,149 +30,98 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:paddingTop="@dimen/activity_vertical_margin" >
+        android:layout_weight="3">
 
-        <RelativeLayout
+        <ScrollView
+            android:scrollbars="none"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_vertical_margin" >
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="@string/choose_location"
-                android:textColor="@color/colorTextDark"
-                android:textSize="@dimen/normal_word_size" />
+                android:paddingTop="@dimen/activity_vertical_margin">
 
-            <Spinner
-                android:id="@+id/create_widget_day_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                android:dropDownWidth="150dp"
-                android:layout_alignParentRight="true" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_vertical_margin">
 
-        </RelativeLayout>
+                    <TextView
+                        style="@style/activity_create_widget_info_text"
+                        android:text="@string/choose_location" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_vertical_margin" >
+                    <Spinner
+                        android:id="@+id/create_widget_day_spinner"
+                        style="@style/spinner" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="@string/show_widget_card"
-                android:textColor="@color/colorTextDark"
-                android:textSize="@dimen/normal_word_size" />
+                </RelativeLayout>
 
-            <Switch
-                android:id="@+id/create_widget_day_switch_card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:backgroundTint="?attr/colorAccent" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_vertical_margin">
 
-        </RelativeLayout>
+                    <TextView
+                        style="@style/activity_create_widget_info_text"
+                        android:text="@string/show_widget_card" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_vertical_margin" >
+                    <Switch
+                        android:id="@+id/create_widget_day_switch_card"
+                        style="@style/my_switch" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="@string/hide_refresh_time"
-                android:textColor="@color/colorTextDark"
-                android:textSize="@dimen/normal_word_size" />
+                </RelativeLayout>
 
-            <Switch
-                android:id="@+id/create_widget_day_switch_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:backgroundTint="?attr/colorAccent" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_vertical_margin">
 
-        </RelativeLayout>
+                    <TextView
+                        style="@style/activity_create_widget_info_text"
+                        android:text="@string/hide_refresh_time" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_vertical_margin" >
+                    <Switch
+                        android:id="@+id/create_widget_day_switch_time"
+                        style="@style/my_switch" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="@string/black_text"
-                android:textColor="@color/colorTextDark"
-                android:textSize="@dimen/normal_word_size" />
+                </RelativeLayout>
 
-            <Switch
-                android:id="@+id/create_widget_day_switch_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:backgroundTint="?attr/colorAccent" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_vertical_margin">
 
-        </RelativeLayout>
-<!--
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp" >
+                    <TextView
+                        style="@style/activity_create_widget_info_text"
+                        android:text="@string/black_text" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="@string/dark_widget_card"
-                android:textSize="16dp" />
+                    <Switch
+                        android:id="@+id/create_widget_day_switch_text"
+                        style="@style/my_switch" />
 
-            <Switch
-                android:id="@+id/create_widget_day_card_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:backgroundTint="?attr/colorAccent" />
+                </RelativeLayout>
 
-        </RelativeLayout>
--->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/card_margin" >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/card_margin" >
 
-            <Button
-                android:id="@+id/create_widget_day_done"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="@string/done"
-                android:textSize="@dimen/normal_word_size"
-                android:textColor="?attr/colorAccent"
-                android:background="@android:color/transparent"/>
+                    <Button
+                        android:id="@+id/create_widget_day_done"
+                        style="@style/activity_create_widget_done_button" />
 
-        </RelativeLayout>
+                </RelativeLayout>
 
-    </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
 
 </LinearLayout>

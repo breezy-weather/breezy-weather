@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_day_week"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,18 +9,16 @@
 
     <ImageView
         android:id="@+id/widget_day_week_card"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/widget_card"
-        android:visibility="gone"
-        android:elevation="2dp" />
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="5dp"
         android:padding="8dp"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        tools:targetApi="lollipop">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,7 +28,8 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" >
+                android:layout_centerInParent="true"
+                tools:ignore="UselessParent">
 
                 <RelativeLayout
                     android:id="@+id/widget_day"
@@ -47,7 +47,8 @@
                         android:layout_height="match_parent"
                         android:src="@drawable/widget_card"
                         android:visibility="gone"
-                        android:elevation="2dp" />
+                        android:elevation="2dp"
+                        tools:ignore="ContentDescription" />
 
                     <RelativeLayout
                         android:layout_width="156dp"
@@ -93,7 +94,8 @@
                                     android:layout_width="60dp"
                                     android:layout_height="60dp"
                                     android:layout_centerInParent="true"
-                                    android:src="@drawable/weather_cloudy" />
+                                    android:src="@drawable/weather_cloudy"
+                                    tools:ignore="ContentDescription" />
 
                             </RelativeLayout>
 
@@ -147,13 +149,15 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" >
+                android:layout_centerInParent="true"
+                tools:ignore="UselessParent">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/widget_4_day"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <RelativeLayout
                         android:layout_height="match_parent"
@@ -195,7 +199,8 @@
                                     android:layout_width="38dp"
                                     android:layout_height="38dp"
                                     android:layout_centerHorizontal="true"
-                                    android:src="@drawable/weather_cloudy" />
+                                    android:src="@drawable/weather_cloudy"
+                                    tools:ignore="ContentDescription" />
 
                             </RelativeLayout>
 
@@ -264,7 +269,8 @@
                                     android:layout_width="38dp"
                                     android:layout_height="38dp"
                                     android:layout_centerHorizontal="true"
-                                    android:src="@drawable/weather_cloudy" />
+                                    android:src="@drawable/weather_cloudy"
+                                    tools:ignore="ContentDescription" />
 
                             </RelativeLayout>
 
@@ -333,7 +339,8 @@
                                     android:layout_width="38dp"
                                     android:layout_height="38dp"
                                     android:layout_centerHorizontal="true"
-                                    android:src="@drawable/weather_cloudy" />
+                                    android:src="@drawable/weather_cloudy"
+                                    tools:ignore="ContentDescription" />
 
                             </RelativeLayout>
 
@@ -402,7 +409,8 @@
                                     android:layout_width="38dp"
                                     android:layout_height="38dp"
                                     android:layout_centerHorizontal="true"
-                                    android:src="@drawable/weather_cloudy" />
+                                    android:src="@drawable/weather_cloudy"
+                                    tools:ignore="ContentDescription" />
 
                             </RelativeLayout>
 
@@ -441,9 +449,7 @@
 
     <ImageButton
         android:id="@+id/widget_day_week_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00000000"
-        android:elevation="20dp" />
+        style="@style/widget_button"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

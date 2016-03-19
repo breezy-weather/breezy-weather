@@ -526,13 +526,7 @@ public class MainActivity extends AppCompatActivity
 
     public static boolean needChangeTime() {
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (5 < hour && hour < 19 && ! MainActivity.isDay) {
-            return true;
-        } else if ((hour < 6 || hour > 18) && MainActivity.isDay) {
-            return true;
-        } else {
-            return false;
-        }
+        return 5 < hour && hour < 19 && !MainActivity.isDay || (hour < 6 || hour > 18) && MainActivity.isDay;
     }
 
     @Override
@@ -726,7 +720,7 @@ public class MainActivity extends AppCompatActivity
         temp.setText(text);
         text = weatherFragment.info.windDir[0] + weatherFragment.info.windLevel[0];
         wind.setText(text);
-        text = "污染: " + weatherFragment.info.pmInfo;
+        text = weatherFragment.info.pmInfo;
         air.setText(text);
         for (int i = 0; i < 3; i ++) {
             weekWeek[i].setText(weatherFragment.info.week[i + 1]);

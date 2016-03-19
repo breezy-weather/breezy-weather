@@ -8,9 +8,7 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.UI.MainActivity;
@@ -655,6 +653,18 @@ public class SkyView extends View {
         } else {
             drawTime ++;
             invalidate();
+        }
+    }
+
+    public static int[] getStarSize(int widthPixels) {
+        if (widthPixels < 720) {
+            return new int[] {200, 100};
+        } else if (widthPixels < 1080) {
+            return new int[] {300, 200};
+        } else if (widthPixels == 1080) {
+            return new int[] {400, 200};
+        } else {
+            return new int[] {600, 300};
         }
     }
 }

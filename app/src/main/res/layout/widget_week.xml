@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_week"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,17 +10,15 @@
 
     <ImageView
         android:id="@+id/widget_week_card"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/widget_card"
-        android:visibility="gone"
-        android:elevation="2dp" />
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:elevation="5dp"
-        android:layout_height="80dp" >
+        android:layout_height="80dp"
+        tools:targetApi="lollipop">
 
         <LinearLayout
             android:layout_alignParentTop="true"
@@ -27,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_centerInParent="true"
-            android:padding="4dp" >
+            android:padding="4dp"
+            tools:ignore="DisableBaselineAlignment,UselessParent">
 
             <RelativeLayout
                 android:layout_height="match_parent"
@@ -46,17 +46,8 @@
 
                         <TextView
                             android:id="@+id/widget_week_week_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingBottom="0dp"
-                            android:text="@string/wait_refresh"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_week_text"
+                            android:text="@string/wait_refresh"/>
 
                     </RelativeLayout>
 
@@ -66,10 +57,8 @@
 
                         <ImageView
                             android:id="@+id/widget_week_image_1"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/weather_cloudy" />
+                            style="@style/widget_week_icon"
+                            tools:ignore="ContentDescription" />
 
                     </RelativeLayout>
 
@@ -79,18 +68,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_temp_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingTop="0dp"
-                            android:paddingBottom="20dp"
-                            android:text="@string/ellipsis"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_temp_text" />
 
                     </RelativeLayout>
 
@@ -115,17 +93,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_week_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingBottom="0dp"
-                            android:text="@string/ellipsis"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_week_text" />
 
                     </RelativeLayout>
 
@@ -135,10 +103,8 @@
 
                         <ImageView
                             android:id="@+id/widget_week_image_2"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/weather_cloudy" />
+                            style="@style/widget_week_icon"
+                            tools:ignore="ContentDescription" />
 
                     </RelativeLayout>
 
@@ -148,18 +114,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_temp_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingTop="0dp"
-                            android:paddingBottom="20dp"
-                            android:text="@string/ellipsis"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_temp_text" />
 
                     </RelativeLayout>
 
@@ -184,17 +139,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_week_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingBottom="0dp"
-                            android:text="@string/ellipsis"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_week_text" />
 
                     </RelativeLayout>
 
@@ -204,10 +149,8 @@
 
                         <ImageView
                             android:id="@+id/widget_week_image_3"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/weather_cloudy" />
+                            style="@style/widget_week_icon"
+                            tools:ignore="ContentDescription" />
 
                     </RelativeLayout>
 
@@ -217,18 +160,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_temp_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingTop="0dp"
-                            android:paddingBottom="20dp"
-                            android:text="@string/ellipsis"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_temp_text" />
 
                     </RelativeLayout>
 
@@ -253,17 +185,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_week_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingBottom="0dp"
-                            android:text="@string/ellipsis"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_week_text" />
 
                     </RelativeLayout>
 
@@ -273,10 +195,8 @@
 
                         <ImageView
                             android:id="@+id/widget_week_image_4"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/weather_cloudy" />
+                            style="@style/widget_week_icon"
+                            tools:ignore="ContentDescription" />
 
                     </RelativeLayout>
 
@@ -286,18 +206,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_temp_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingTop="0dp"
-                            android:paddingBottom="20dp"
-                            android:text="@string/ellipsis"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_temp_text" />
 
                     </RelativeLayout>
 
@@ -322,17 +231,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_week_5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingBottom="0dp"
-                            android:text="@string/ellipsis"
-                            android:textColor="@color/colorTextLight"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_week_text" />
 
                     </RelativeLayout>
 
@@ -342,10 +241,8 @@
 
                         <ImageView
                             android:id="@+id/widget_week_image_5"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/weather_cloudy" />
+                            style="@style/widget_week_icon"
+                            tools:ignore="ContentDescription" />
 
                     </RelativeLayout>
 
@@ -355,18 +252,7 @@
 
                         <TextView
                             android:id="@+id/widget_week_temp_5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:paddingTop="0dp"
-                            android:paddingBottom="20dp"
-                            android:textColor="@color/colorTextLight"
-                            android:text="@string/ellipsis"
-                            android:textSize="@dimen/normal_word_size"
-                            android:shadowColor="@color/colorTextGrey"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="1" />
+                            style="@style/widget_week_temp_text" />
 
                     </RelativeLayout>
 
@@ -380,9 +266,7 @@
 
     <ImageButton
         android:id="@+id/widget_week_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00000000"
-        android:elevation="20dp" />
+        style="@style/widget_button"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

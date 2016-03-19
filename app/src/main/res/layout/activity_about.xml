@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +13,9 @@
             android:id="@+id/app_info_title"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/weather_image_main_half" />
+            android:layout_height="@dimen/weather_image_main_half"
+            android:contentDescription="@string/app_name"
+            tools:src="@drawable/design_background" />
 
         <wangdaye.com.geometricweather.Widget.MyScrollView
             android:id="@+id/activity_about_scrollView"
