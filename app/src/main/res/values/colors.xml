@@ -2,7 +2,7 @@
 <resources>
 
     <color name="colorPrimary">@color/lightPrimary_5</color>
-    <color name="colorPrimaryDark">@color/lightPrimary_4</color>
+    <color name="colorPrimaryDark">@color/lightPrimary_5</color>
     <color name="colorAccent">@color/lightPrimary_3</color>
     
     <color name="lightPrimary_1">#cfebf0</color>
@@ -17,7 +17,6 @@
     <color name="darkPrimary_4">#20222f</color>
     <color name="darkPrimary_5">#1a1b22</color>
 
-    <color name="introduce_background">#607d8b</color>
     <color name="notification_background">#384248</color>
     
     <color name="plate_line">#e0e0e0</color>

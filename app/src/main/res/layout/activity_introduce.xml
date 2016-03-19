@@ -1,42 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/introduce_background"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/cardview_light_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/introduce_viewPager"
-            android:layout_alignParentTop="true"
+        <FrameLayout
+            android:id="@+id/activity_introduce_statusBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
         <RelativeLayout
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="156dp">
+            android:layout_height="match_parent">
 
-            <wangdaye.com.geometricweather.Widget.CircleIndicator
-                android:id="@+id/introduce_indicator"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/introduce_viewPager"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="@dimen/dialog_title_height">
 
-            <Button
-                android:id="@+id/introduce_button"
-                android:textSize="@dimen/normal_title_size"
-                android:textColor="@color/colorTextLight"
-                android:background="@android:color/transparent"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                <wangdaye.com.geometricweather.Widget.CircleIndicator
+                    android:id="@+id/introduce_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dialog_title_height" />
+
+                <Button
+                    android:id="@+id/introduce_button"
+                    android:textSize="@dimen/normal_title_size"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -4,15 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_title_height" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="80dp">
 
         <TextView
             android:id="@+id/introduce_page_title"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:textColor="@color/colorTextLight"
+            android:textColor="@color/notification_background"
+            android:layout_centerInParent="true"
             android:textSize="@dimen/big_title_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -21,7 +24,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="260dp">
 
         <ImageView
             android:id="@+id/introduce_page_image"
@@ -33,14 +36,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_head_icon">
+        android:layout_height="120dp">
 
         <TextView
             android:id="@+id/introduce_page_text"
-            android:textColor="@color/colorTextLight"
             android:textSize="@dimen/normal_title_size"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

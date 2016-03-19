@@ -39,7 +39,7 @@ public class SettingsFragment extends PreferenceFragment {
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference.getKey().equals(getString(R.string.key_hide_star))) {
             Toast.makeText(getActivity(),
-                    getString(R.string.please_restart),
+                    getString(R.string.please_refresh),
                     Toast.LENGTH_SHORT).show();
         } else if (preference.getKey().equals(getString(R.string.key_navigation_bar_color_switch))) {
             MainActivity.initNavigationBar(getActivity(), getActivity().getWindow());

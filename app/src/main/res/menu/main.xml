@@ -7,18 +7,8 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
 
-    <item android:id="@+id/action_manage"
-        android:title="@string/action_manage"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-
-    <item android:id="@+id/action_about"
-        android:title="@string/action_about"
+    <item android:id="@+id/action_share"
+        android:title="@string/action_share"
         android:orderInCategory="100"
         app:showAsAction="never" />
 

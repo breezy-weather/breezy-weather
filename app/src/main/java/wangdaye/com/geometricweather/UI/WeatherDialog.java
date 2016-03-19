@@ -19,6 +19,10 @@ import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
 
+/**
+ * A dialog to show weather information in one day.
+ * */
+
 public class WeatherDialog extends DialogFragment {
     // widget
     private CardView weatherCard;

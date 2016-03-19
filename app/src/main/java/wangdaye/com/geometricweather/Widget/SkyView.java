@@ -8,7 +8,9 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.UI.MainActivity;

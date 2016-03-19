@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.UI;
 
-import android.annotation.SuppressLint;
+import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -12,12 +12,13 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -33,15 +34,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,7 +50,6 @@ import wangdaye.com.geometricweather.Data.HefengWeather;
 import wangdaye.com.geometricweather.Data.JuheWeather;
 import wangdaye.com.geometricweather.Data.Location;
 import wangdaye.com.geometricweather.Data.MyDatabaseHelper;
-import wangdaye.com.geometricweather.Data.Weather;
 import wangdaye.com.geometricweather.Data.WeatherInfoToShow;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.Service.NotificationService;
@@ -92,9 +91,13 @@ public class MainActivity extends AppCompatActivity
 
     private MyDatabaseHelper databaseHelper;
 
-    private final static int LOCATION_PERMISSIONS_REQUEST_CODE = 1;
+    private final int INTRODUCE_VERSION_CODE_NOW = 1;
+
+    private final int LOCATION_PERMISSIONS_REQUEST_CODE = 1;
+    private final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 2;
 
     private final static int SETTINGS_ACTIVITY = 1;
+    private final static int SHARE_ACTIVITY = 2;
 
     public static final int NOTIFICATION_ID = 7;
 
@@ -127,10 +130,19 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, TimeService.class);
             startService(intent);
         }
+
         boolean watchedIntroduce = sharedPreferences.getBoolean(getString(R.string.key_watched_introduce), false);
         if (! watchedIntroduce) {
-            this.requestPermission();
+            this.requestPermission(LOCATION_PERMISSIONS_REQUEST_CODE);
         } else {
+            int introduceVersionCode = sharedPreferences.getInt(getString(R.string.key_introduce_version_code), 0);
+            if (introduceVersionCode < INTRODUCE_VERSION_CODE_NOW) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt(getString(R.string.key_introduce_version_code), INTRODUCE_VERSION_CODE_NOW);
+                editor.apply();
+                Intent intent = new Intent(this, IntroduceActivity.class);
+                startActivity(intent);
+            }
             createApp();
         }
     }
@@ -160,6 +172,13 @@ public class MainActivity extends AppCompatActivity
             case SETTINGS_ACTIVITY:
                 initNavigationBar(this, getWindow());
                 MainActivity.sendNotification(this, weatherFragment.location);
+                break;
+            case SHARE_ACTIVITY:
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                String oldUri = sharedPreferences.getString(getString(R.string.key_share_uri), "null");
+                if (! oldUri.equals("null")) {
+                    this.deleteSharePicture(Uri.parse(oldUri));
+                }
                 break;
         }
     }
@@ -209,18 +228,8 @@ public class MainActivity extends AppCompatActivity
                     getString(R.string.collect_succeed),
                     Toast.LENGTH_SHORT).show();
             return true;
-        } else if (id == R.id.action_manage) {
-            ManageDialog dialog = new ManageDialog();
-            dialog.show(getFragmentManager(), "ManageDialog");
-            return true;
-        } else if (id == R.id.action_settings) {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivityForResult(intent, SETTINGS_ACTIVITY);
-            return true;
-        } else if (id == R.id.action_about) {
-            Intent intent = new Intent(MainActivity.this, AboutAppActivity.class);
-            startActivity(intent);
-            return true;
+        } else if (id == R.id.action_share) {
+            this.shareWeather();
         }
 
         return super.onOptionsItemSelected(item);
@@ -271,22 +280,32 @@ public class MainActivity extends AppCompatActivity
 
 // request permission
 
-    private void requestPermission() {
-        // request competence
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.INSTALL_LOCATION_PROVIDER)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
-                        LOCATION_PERMISSIONS_REQUEST_CODE);
+    private void requestPermission(int permissionCode) {
+        if (permissionCode == LOCATION_PERMISSIONS_REQUEST_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.INSTALL_LOCATION_PROVIDER)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
+                            LOCATION_PERMISSIONS_REQUEST_CODE);
+                }
+            } else {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(getString(R.string.key_watched_introduce), true);
+                editor.putInt(getString(R.string.key_introduce_version_code), INTRODUCE_VERSION_CODE_NOW);
+                editor.apply();
+                Intent intent = new Intent(this, IntroduceActivity.class);
+                startActivity(intent);
+                this.createApp();
             }
-        } else {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(getString(R.string.key_watched_introduce), true);
-            editor.apply();
-            Intent intent = new Intent(this, IntroduceActivity.class);
-            startActivity(intent);
-            this.createApp();
+        } else if (permissionCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+                }
+            }
         }
     }
 
@@ -297,10 +316,16 @@ public class MainActivity extends AppCompatActivity
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(getString(R.string.key_watched_introduce), true);
+                editor.putInt(getString(R.string.key_introduce_version_code), INTRODUCE_VERSION_CODE_NOW);
                 editor.apply();
                 Intent intent = new Intent(this, IntroduceActivity.class);
                 startActivity(intent);
                 this.createApp();
+                break;
+            case WRITE_EXTERNAL_STORAGE_REQUEST_CODE:
+                Toast.makeText(this,
+                        getString(R.string.request_competence_succeed),
+                        Toast.LENGTH_SHORT).show();
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permission, grantResult);
@@ -568,332 +593,6 @@ public class MainActivity extends AppCompatActivity
         database.close();
     }
 
-    @SuppressLint("SimpleDateFormat")
-    public static void writeTodayWeather(Context context, WeatherInfoToShow info) {
-        // get yesterday date.
-        Calendar cal=Calendar.getInstance();
-        cal.add(Calendar.DATE, -1);
-        Date date = cal.getTime();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        String yesterdayDate = simpleDateFormat.format(date);
-
-        Weather yesterdayWeather = null;
-        boolean haveYesterdayData = false;
-
-        // init database.
-        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
-                MyDatabaseHelper.DATABASE_NAME,
-                null,
-                MyDatabaseHelper.VERSION_CODE);
-        SQLiteDatabase database = databaseHelper.getWritableDatabase();
-
-        // read yesterday weather.
-        Cursor cursor = database.query(MyDatabaseHelper.TABLE_WEATHER,
-                null,
-                MyDatabaseHelper.COLUMN_LOCATION + " = '" + info.location
-                        + "' AND "
-                        + MyDatabaseHelper.COLUMN_TIME + " = '" + yesterdayDate + "'",
-                null,
-                null,
-                null,
-                null);
-        if(cursor.moveToFirst()) {
-            do {
-                String locationText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_LOCATION));
-                String weatherText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER));
-                String tempText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TEMP));
-                String timeText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TIME));
-                yesterdayWeather = new Weather(locationText, weatherText, tempText, timeText);
-                haveYesterdayData = true;
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
-        // delete all weather data from param location.
-        database.delete(MyDatabaseHelper.TABLE_WEATHER,
-                MyDatabaseHelper.COLUMN_LOCATION + " = ?",
-                new String[]{info.location});
-
-        // write weather data from today and yesterday.
-        ContentValues values = new ContentValues();
-        values.put(MyDatabaseHelper.COLUMN_LOCATION, info.location);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER, info.weatherNow);
-        values.put(MyDatabaseHelper.COLUMN_TEMP, info.miniTemp[0] + "/" + info.maxiTemp[0]);
-        values.put(MyDatabaseHelper.COLUMN_TIME, info.date);
-        database.insert(MyDatabaseHelper.TABLE_WEATHER, null, values);
-        values.clear();
-        if (haveYesterdayData) {
-            values.put(MyDatabaseHelper.COLUMN_LOCATION, yesterdayWeather.location);
-            values.put(MyDatabaseHelper.COLUMN_WEATHER, yesterdayWeather.weather);
-            values.put(MyDatabaseHelper.COLUMN_TEMP, yesterdayWeather.temp);
-            values.put(MyDatabaseHelper.COLUMN_TIME, yesterdayWeather.time);
-            database.insert(MyDatabaseHelper.TABLE_WEATHER, null, values);
-            values.clear();
-        }
-        database.close();
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    public static int[] readYesterdayWeather(Context context, WeatherInfoToShow info) {
-        // get yesterday date.
-        Calendar cal=Calendar.getInstance();
-        cal.add(Calendar.DATE, -1);
-        Date date = cal.getTime();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        String yesterdayDate = simpleDateFormat.format(date);
-
-        Weather yesterdayWeather = null;
-        boolean haveYesterdayData = false;
-
-        // init database.
-        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
-                MyDatabaseHelper.DATABASE_NAME,
-                null,
-                MyDatabaseHelper.VERSION_CODE);
-        SQLiteDatabase database = databaseHelper.getWritableDatabase();
-
-        // read yesterday weather.
-        Cursor cursor = database.query(MyDatabaseHelper.TABLE_WEATHER,
-                null,
-                MyDatabaseHelper.COLUMN_LOCATION + " = '" + info.location
-                        + "' AND "
-                        + MyDatabaseHelper.COLUMN_TIME + " = '" + yesterdayDate + "'",
-                null,
-                null,
-                null,
-                null);
-        if(cursor.moveToFirst()) {
-            do {
-                String locationText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_LOCATION));
-                String weatherText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER));
-                String tempText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TEMP));
-                String timeText = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TIME));
-                yesterdayWeather = new Weather(locationText, weatherText, tempText, timeText);
-                haveYesterdayData = true;
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        database.close();
-
-        if (haveYesterdayData) {
-            String[] yesterdayTemp = yesterdayWeather.temp.split("/");
-            return new int[] {Integer.parseInt(yesterdayTemp[0]), Integer.parseInt(yesterdayTemp[1])};
-        } else {
-            return null;
-        }
-    }
-
-    public static void writeWeatherInfo(Context context, String location, WeatherInfoToShow info) {
-        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
-                MyDatabaseHelper.DATABASE_NAME,
-                null,
-                MyDatabaseHelper.VERSION_CODE);
-        SQLiteDatabase database = databaseHelper.getWritableDatabase();
-
-        database.delete(MyDatabaseHelper.TABLE_INFO,
-                MyDatabaseHelper.COLUMN_REAL_LOCATION + " = ?",
-                new String[]{location});
-
-        ContentValues values = new ContentValues();
-        values.put(MyDatabaseHelper.COLUMN_REAL_LOCATION, location);
-        values.put(MyDatabaseHelper.COLUMN_DATE, info.date);
-        values.put(MyDatabaseHelper.COLUMN_MOON, info.moon);
-        values.put(MyDatabaseHelper.COLUMN_REFRESH_TIME, info.refreshTime);
-        values.put(MyDatabaseHelper.COLUMN_LOCATION, info.location);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_NOW, info.weatherNow);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_NOW, info.weatherKindNow);
-        values.put(MyDatabaseHelper.COLUMN_TEMP_NOW, info.tempNow);
-        values.put(MyDatabaseHelper.COLUMN_WEEK_1, info.week[0]);
-        values.put(MyDatabaseHelper.COLUMN_WEEK_2, info.week[1]);
-        values.put(MyDatabaseHelper.COLUMN_WEEK_3, info.week[2]);
-        values.put(MyDatabaseHelper.COLUMN_WEEK_4, info.week[3]);
-        values.put(MyDatabaseHelper.COLUMN_WEEK_5, info.week[4]);
-        values.put(MyDatabaseHelper.COLUMN_WEEK_6, info.week[5]);
-        values.put(MyDatabaseHelper.COLUMN_WEEK_7, info.week[6]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_1, info.weather[0]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_2, info.weather[1]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_3, info.weather[2]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_4, info.weather[3]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_5, info.weather[4]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_6, info.weather[5]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_7, info.weather[6]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_1, info.weatherKind[0]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_2, info.weatherKind[1]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_3, info.weatherKind[2]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_4, info.weatherKind[3]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_5, info.weatherKind[4]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_6, info.weatherKind[5]);
-        values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_7, info.weatherKind[6]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_1, info.windDir[0]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_2, info.windDir[1]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_3, info.windDir[2]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_4, info.windDir[3]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_5, info.windDir[4]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_6, info.windDir[5]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_DIR_7, info.windDir[6]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_1, info.windLevel[0]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_2, info.windLevel[1]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_3, info.windLevel[2]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_4, info.windLevel[3]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_5, info.windLevel[4]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_6, info.windLevel[5]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_LEVEL_7, info.windLevel[6]);
-        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_1, info.maxiTemp[0]);
-        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_2, info.maxiTemp[1]);
-        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_3, info.maxiTemp[2]);
-        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_4, info.maxiTemp[3]);
-        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_5, info.maxiTemp[4]);
-        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_6, info.maxiTemp[5]);
-        values.put(MyDatabaseHelper.COLUMN_MAXI_TEMP_7, info.maxiTemp[6]);
-        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_1, info.miniTemp[0]);
-        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_2, info.miniTemp[1]);
-        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_3, info.miniTemp[2]);
-        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_4, info.miniTemp[3]);
-        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_5, info.miniTemp[4]);
-        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_6, info.miniTemp[5]);
-        values.put(MyDatabaseHelper.COLUMN_MINI_TEMP_7, info.miniTemp[6]);
-        values.put(MyDatabaseHelper.COLUMN_WIND_TITLE, info.windTitle);
-        values.put(MyDatabaseHelper.COLUMN_WIND_INFO, info.windInfo);
-        values.put(MyDatabaseHelper.COLUMN_PM_TITLE, info.pmTitle);
-        values.put(MyDatabaseHelper.COLUMN_PM_INFO, info.pmInfo);
-        values.put(MyDatabaseHelper.COLUMN_HUM_TITLE, info.humTitle);
-        values.put(MyDatabaseHelper.COLUMN_HUM_INFO, info.humInfo);
-        values.put(MyDatabaseHelper.COLUMN_UV_TITLE, info.uvTitle);
-        values.put(MyDatabaseHelper.COLUMN_UV_INFO, info.uvInfo);
-        values.put(MyDatabaseHelper.COLUMN_DRESS_TITLE, info.dressTitle);
-        values.put(MyDatabaseHelper.COLUMN_DRESS_INFO, info.dressInfo);
-        values.put(MyDatabaseHelper.COLUMN_COLD_TITLE, info.coldTitle);
-        values.put(MyDatabaseHelper.COLUMN_COLD_INFO, info.coldInfo);
-        values.put(MyDatabaseHelper.COLUMN_AIR_TITLE, info.airTitle);
-        values.put(MyDatabaseHelper.COLUMN_AIR_INFO, info.airInfo);
-        values.put(MyDatabaseHelper.COLUMN_WASH_CAR_TITLE, info.washCarTitle);
-        values.put(MyDatabaseHelper.COLUMN_WASH_CAR_INFO, info.washCarInfo);
-        values.put(MyDatabaseHelper.COLUMN_EXERCISE_TITLE, info.exerciseTitle);
-        values.put(MyDatabaseHelper.COLUMN_EXERCISE_INFO, info.exerciseInfo);
-        database.insert(MyDatabaseHelper.TABLE_INFO, null, values);
-        values.clear();
-        database.close();
-    }
-
-    public static WeatherInfoToShow readWeatherInfo(Context context, String location) {
-        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(context,
-                MyDatabaseHelper.DATABASE_NAME,
-                null,
-                MyDatabaseHelper.VERSION_CODE);
-        SQLiteDatabase database = databaseHelper.getWritableDatabase();
-
-        WeatherInfoToShow info = new WeatherInfoToShow();
-        Cursor cursor = database.query(MyDatabaseHelper.TABLE_INFO,
-                null,
-                MyDatabaseHelper.COLUMN_REAL_LOCATION + " = '" + location + "'",
-                null,
-                null,
-                null,
-                null);
-        if(cursor.moveToFirst()) {
-            do {
-                info.date = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_DATE));
-                info.moon = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MOON));
-                info.refreshTime = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_REFRESH_TIME));
-                info.location = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_LOCATION));
-                info.weatherNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_NOW));
-                info.weatherKindNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_NOW));
-                info.tempNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TEMP_NOW));
-                info.week = new String[7];
-                info.week[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_1));
-                info.week[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_2));
-                info.week[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_3));
-                info.week[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_4));
-                info.week[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_5));
-                info.week[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_6));
-                info.week[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_7));
-                info.weather = new String[7];
-                info.weather[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_1));
-                info.weather[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_2));
-                info.weather[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_3));
-                info.weather[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_4));
-                info.weather[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_5));
-                info.weather[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_6));
-                info.weather[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_7));
-                info.weatherKind = new String[7];
-                info.weatherKind[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_1));
-                info.weatherKind[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_2));
-                info.weatherKind[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_3));
-                info.weatherKind[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_4));
-                info.weatherKind[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_5));
-                info.weatherKind[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_6));
-                info.weatherKind[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_7));
-                info.windDir = new String[7];
-                info.windDir[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_1));
-                info.windDir[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_2));
-                info.windDir[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_3));
-                info.windDir[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_4));
-                info.windDir[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_5));
-                info.windDir[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_6));
-                info.windDir[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_DIR_7));
-                info.windLevel = new String[7];
-                info.windLevel[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_1));
-                info.windLevel[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_2));
-                info.windLevel[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_3));
-                info.windLevel[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_4));
-                info.windLevel[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_5));
-                info.windLevel[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_6));
-                info.windLevel[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_LEVEL_7));
-                info.maxiTemp = new String[7];
-                info.maxiTemp[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_1));
-                info.maxiTemp[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_2));
-                info.maxiTemp[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_3));
-                info.maxiTemp[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_4));
-                info.maxiTemp[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_5));
-                info.maxiTemp[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_6));
-                info.maxiTemp[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MAXI_TEMP_7));
-                info.miniTemp = new String[7];
-                info.miniTemp[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_1));
-                info.miniTemp[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_2));
-                info.miniTemp[2] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_3));
-                info.miniTemp[3] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_4));
-                info.miniTemp[4] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_5));
-                info.miniTemp[5] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_6));
-                info.miniTemp[6] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_MINI_TEMP_7));
-                info.windTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_TITLE));
-                info.windInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WIND_INFO));
-                info.pmTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_PM_TITLE));
-                info.pmInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_PM_INFO));
-                info.humTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_HUM_TITLE));
-                info.humInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_HUM_INFO));
-                info.uvTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_UV_TITLE));
-                info.uvInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_UV_INFO));
-                info.dressTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_DRESS_TITLE));
-                info.dressInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_DRESS_INFO));
-                info.coldTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_COLD_TITLE));
-                info.coldInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_COLD_INFO));
-                info.airTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_AIR_TITLE));
-                info.airInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_AIR_INFO));
-                info.washCarTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WASH_CAR_TITLE));
-                info.washCarInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WASH_CAR_INFO));
-                info.exerciseTitle = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_EXERCISE_TITLE));
-                info.exerciseInfo = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_EXERCISE_INFO));
-            } while (cursor.moveToNext());
-        } else {
-            return null;
-        }
-        cursor.close();
-        database.close();
-
-        return info;
-    }
-
-// bitmap
-
-    public static Bitmap readBitMap(Context context, int resId){
-        BitmapFactory.Options opt = new BitmapFactory.Options();
-        opt.inPreferredConfig = Bitmap.Config.RGB_565;
-        opt.inPurgeable = true;
-        opt.inInputShareable = true;
-        InputStream is = context.getResources().openRawResource(resId);
-        return BitmapFactory.decodeStream(is,null,opt);
-    }
-
 // notification
 
     public static void sendNotification(Context context, Location location) {
@@ -961,6 +660,118 @@ public class MainActivity extends AppCompatActivity
             RefreshWidgetClockDayWeek.refreshUIFromInternet(context, info, isDay);
         }
     }
+
+// share
+
+    private void shareWeather() {
+        if (weatherFragment.info == null) {
+            Toast.makeText(this,
+                    getString(R.string.share_error),
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        View view = getLayoutInflater().inflate(R.layout.share_image, null);
+
+        ImageView background = (ImageView) view.findViewById(R.id.share_image_pic);
+        ImageView icon = (ImageView) view.findViewById(R.id.share_image_icon);
+        TextView location = (TextView) view.findViewById(R.id.share_image_location);
+        TextView weather = (TextView) view.findViewById(R.id.share_image_weather);
+        TextView temp = (TextView) view.findViewById(R.id.share_image_temp);
+        TextView wind = (TextView) view.findViewById(R.id.share_image_wind);
+        TextView air = (TextView) view.findViewById(R.id.share_image_air);
+        TextView[] weekWeek = new TextView[] {
+                (TextView) view.findViewById(R.id.share_image_week_1),
+                (TextView) view.findViewById(R.id.share_image_week_2),
+                (TextView) view.findViewById(R.id.share_image_week_3)
+        };
+        ImageView[] iconWeek = new ImageView[] {
+                (ImageView) view.findViewById(R.id.share_image_weather_1),
+                (ImageView) view.findViewById(R.id.share_image_weather_2),
+                (ImageView) view.findViewById(R.id.share_image_weather_3)
+        };
+        TextView[] tempWeek = new TextView[] {
+                (TextView) view.findViewById(R.id.share_image_temp_1),
+                (TextView) view.findViewById(R.id.share_image_temp_2),
+                (TextView) view.findViewById(R.id.share_image_temp_3)
+        };
+
+        if (isDay) {
+            background.setImageResource(R.drawable.share_background_day);
+        } else {
+            background.setImageResource(R.drawable.share_background_night );
+        }
+
+        int[][] imageId = new int[][] {
+                JuheWeather.getWeatherIcon(weatherFragment.info.weatherKindNow, isDay),
+                JuheWeather.getWeatherIcon(weatherFragment.info.weatherKind[0], isDay),
+                JuheWeather.getWeatherIcon(weatherFragment.info.weatherKind[1], isDay),
+                JuheWeather.getWeatherIcon(weatherFragment.info.weatherKind[2], isDay)
+        };
+        for (int i = 0; i < 4; i ++) {
+            if (imageId[i][3] != 0) {
+                if (i == 0) {
+                    icon.setImageResource(imageId[i][3]);
+                } else {
+                    iconWeek[i - 1].setImageResource(imageId[i][3]);
+                }
+            }
+        }
+
+        String text;
+        location.setText(weatherFragment.info.location);
+        text = weatherFragment.info.weatherNow + " " + weatherFragment.info.tempNow + "℃";
+        weather.setText(text);
+        text = "气温: " +  weatherFragment.info.miniTemp[0] + "/" + weatherFragment.info.maxiTemp[0] + "°";
+        temp.setText(text);
+        text = weatherFragment.info.windDir[0] + weatherFragment.info.windLevel[0];
+        wind.setText(text);
+        text = "污染: " + weatherFragment.info.pmInfo;
+        air.setText(text);
+        for (int i = 0; i < 3; i ++) {
+            weekWeek[i].setText(weatherFragment.info.week[i + 1]);
+            text = weatherFragment.info.miniTemp[i + 1] + "/" + weatherFragment.info.maxiTemp[i + 1] + "°";
+            tempWeek[i].setText(text);
+        }
+
+        view.setDrawingCacheEnabled(true);
+        view.measure(View.MeasureSpec.makeMeasureSpec(256, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(256, View.MeasureSpec.UNSPECIFIED));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view.buildDrawingCache();
+        Bitmap bitmap = view.getDrawingCache();
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String oldUri = sharedPreferences.getString(getString(R.string.key_share_uri), "null");
+        if (! oldUri.equals("null")) {
+            this.deleteSharePicture(Uri.parse(oldUri));
+        }
+
+        boolean shared = sharedPreferences.getBoolean(getString(R.string.key_shared), false);
+        if (! shared && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(getString(R.string.key_shared), true);
+            editor.apply();
+            this.requestPermission(WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+        } else {
+            Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(getString(R.string.key_share_uri), uri.toString());
+            editor.apply();
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            shareIntent.setType("image/*");
+            startActivityForResult(Intent.createChooser(shareIntent, getResources().getText(R.string.action_share)), SHARE_ACTIVITY);
+        }
+    }
+
+    private void deleteSharePicture(Uri uri) {
+        if (uri != null) {
+            getContentResolver().delete(uri, null, null);
+        }
+    }
+
+// handler
 
     @Override
     public void handleMessage(Message message) {

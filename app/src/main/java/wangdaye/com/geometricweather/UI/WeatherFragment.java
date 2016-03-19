@@ -118,7 +118,7 @@ public class WeatherFragment extends Fragment
     private boolean freshData;
     private boolean iconRise;
 
-    private WeatherInfoToShow info;
+    public WeatherInfoToShow info;
 
     private int[] maxiTemp;
     private int[] miniTemp;
@@ -450,8 +450,8 @@ public class WeatherFragment extends Fragment
         refreshUI();
 
         if (info != null) {
-            MainActivity.writeWeatherInfo(getActivity(), location.location, info);
-            MainActivity.writeTodayWeather(getActivity(), info);
+            MyDatabaseHelper.writeWeatherInfo(getActivity(), location.location, info);
+            MyDatabaseHelper.writeTodayWeather(getActivity(), info);
             MainActivity.sendNotification(getActivity(), location);
             MainActivity.refreshWidget(getActivity(), location, info, MainActivity.isDay);
         }
@@ -490,7 +490,7 @@ public class WeatherFragment extends Fragment
                 getString(R.string.refresh_data_failed),
                 Toast.LENGTH_SHORT).show();
 
-        info = MainActivity.readWeatherInfo(getActivity(), location.location);
+        info = MyDatabaseHelper.readWeatherInfo(getActivity(), location.location);
         if (info != null) {
             SharedPreferences.Editor editor1 = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
             int hour1 = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -544,10 +544,10 @@ public class WeatherFragment extends Fragment
 
         if (MainActivity.needChangeTime()) {
             MainActivity.isDay = ! MainActivity.isDay;
-            this.changeTime();
             MainActivity.setBackgroundPlateColor(getActivity(), false);
             MainActivity.setNavHead();
             MainActivity.initNavigationBar(getActivity(), getActivity().getWindow());
+            this.skyView.showCircle(false);
             this.setWindowTopColor();
         }
 
@@ -610,7 +610,7 @@ public class WeatherFragment extends Fragment
         this.trendContainer.setAlpha(1);
         this.trendContainer.setVisibility(View.VISIBLE);
         this.hourlyContainer.setVisibility(View.GONE);
-        int[] yesterdayTemp = MainActivity.readYesterdayWeather(getActivity(), info);
+        int[] yesterdayTemp = MyDatabaseHelper.readYesterdayWeather(getActivity(), info);
         this.weatherTrendView.setData(maxiTemp, miniTemp, yesterdayTemp);
         this.weatherTrendView.invalidate();
 
@@ -669,6 +669,22 @@ public class WeatherFragment extends Fragment
 
         weatherCard.setVisibility(View.VISIBLE);
         animatorSetShowView[0].start();
+
+        if (MainActivity.isDay) {
+            for (int i = 0; i < 2 ; i ++) {
+                start[i].setVisibility(View.GONE);
+            }
+        } else {
+            if (showStar) {
+                for (int i = 0; i < 2 ; i ++) {
+                    start[i].setVisibility(View.VISIBLE);
+                }
+            } else {
+                for (int i = 0; i < 2 ; i ++) {
+                    start[i].setVisibility(View.GONE);
+                }
+            }
+        }
     }
 
     public void showCirclesView() {
@@ -791,26 +807,6 @@ public class WeatherFragment extends Fragment
                 }
             }
         }
-    }
-
-    private void changeTime() {
-        if (MainActivity.isDay) {
-            for (int i = 0; i < 2 ; i ++) {
-                start[i].setVisibility(View.GONE);
-            }
-        } else {
-            if (showStar) {
-                for (int i = 0; i < 2 ; i ++) {
-                    start[i].setVisibility(View.VISIBLE);
-                }
-            } else {
-                for (int i = 0; i < 2 ; i ++) {
-                    start[i].setVisibility(View.GONE);
-                }
-            }
-        }
-
-        skyView.showCircle(false);
     }
 
     private void setWindowTopColor() {
@@ -1000,6 +996,8 @@ public class WeatherFragment extends Fragment
         Log.i("BaiduLocationApiDem", sb.toString());
         mLocationClient.stop();
     }
+
+// touch
 
     private class PageOnGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override

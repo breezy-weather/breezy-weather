@@ -16,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -138,6 +139,7 @@ public class TodayForecastService extends Service implements HandlerContainer {
                 builder.setVisibility(Notification.VISIBILITY_PUBLIC);
             }
         }
+        boolean backgroundColor = sharedPreferences.getBoolean(getString(R.string.key_notification_background_color_switch), false);
 
         // set view
         builder.setSmallIcon(JuheWeather.getMiniWeatherIcon(info.weatherKindNow, isDay));
@@ -190,6 +192,11 @@ public class TodayForecastService extends Service implements HandlerContainer {
         }
         view.setTextViewText(R.id.notification_base_text_details, text2);
         view.setTextViewText(R.id.notification_base_text_remark, info.location + "." + info.refreshTime);
+        if (backgroundColor) {
+            view.setViewVisibility(R.id.notification_background_base, View.VISIBLE);
+        } else {
+            view.setViewVisibility(R.id.notification_background_base, View.GONE);
+        }
         builder.setContent(view);
 
         Intent intent = new Intent(this, MainActivity.class);

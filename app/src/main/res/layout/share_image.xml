@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/share_image_pic"
+            android:src="@drawable/nav_head_night"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/card_margin"
+                android:layout_marginRight="@dimen/card_margin"
+                android:layout_marginTop="@dimen/card_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/share_image_icon"
+                    android:layout_width="@dimen/nav_head_icon"
+                    android:layout_height="@dimen/nav_head_icon" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/share_image_location"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/card_margin"
+                            android:textColor="@color/colorTextLight"
+                            android:textSize="@dimen/big_title_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/share_image_weather"
+                            android:layout_alignParentRight="true"
+                            android:layout_margin="@dimen/card_margin"
+                            android:textColor="@color/colorTextLight"
+                            android:textSize="@dimen/normal_title_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/share_image_temp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/card_margin"
+                        android:textSize="@dimen/normal_word_size"
+                        android:textColor="@color/colorTextLight2nd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/share_image_wind"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/card_margin"
+                        android:textSize="@dimen/normal_word_size"
+                        android:textColor="@color/colorTextLight2nd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/share_image_air"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/card_margin"
+                        android:textSize="@dimen/normal_word_size"
+                        android:textColor="@color/colorTextLight2nd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/share_image_week_1"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/card_margin"
+                            android:textSize="@dimen/normal_word_size"
+                            android:textColor="@color/colorTextLight2nd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/share_image_weather_1"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="@dimen/widget_grid_1"
+                            android:layout_height="@dimen/widget_grid_1" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/share_image_temp_1"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/card_margin"
+                            android:textSize="@dimen/normal_word_size"
+                            android:textColor="@color/colorTextLight2nd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/share_image_week_2"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/card_margin"
+                            android:textSize="@dimen/normal_word_size"
+                            android:textColor="@color/colorTextLight2nd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/share_image_weather_2"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="@dimen/widget_grid_1"
+                            android:layout_height="@dimen/widget_grid_1" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/share_image_temp_2"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/card_margin"
+                            android:textSize="@dimen/normal_word_size"
+                            android:textColor="@color/colorTextLight2nd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/share_image_week_3"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/card_margin"
+                            android:textSize="@dimen/normal_word_size"
+                            android:textColor="@color/colorTextLight2nd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/share_image_weather_3"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="@dimen/widget_grid_1"
+                            android:layout_height="@dimen/widget_grid_1" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/share_image_temp_3"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/card_margin"
+                            android:textSize="@dimen/normal_word_size"
+                            android:textColor="@color/colorTextLight2nd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/share_image_info"
+                    android:text="@string/share_info"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/card_margin"
+                    android:textSize="@dimen/mini_word_size"
+                    android:textColor="@color/colorTextGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>
