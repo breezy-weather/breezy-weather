@@ -4,9 +4,11 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.CornerPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -37,6 +39,14 @@ public class HourlyView extends View {
     private float TREND_LINE_SIZE = 5;
     private float TIME_LINE_SIZE = 4;
 
+    private final int DRAW_LOADING_VIEW_CYCLE_TIME = 90;
+    private final int MAX_SWEEP_ANGLE = 300;
+    private final int MIN_SWEEP_ANGLE = 30;
+
+    private int startAngle;
+    private int sweepAngle;
+    private int drawLoadingViewTime;
+
     public HourlyView(Context context) {
         super(context);
         this.initialize(context);
@@ -62,8 +72,12 @@ public class HourlyView extends View {
         this.context = context;
         this.paint = new Paint();
 
-        this.temp = new int[] {0, 0, 0, 0, 0, 0, 0, 0};
+        this.temp = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
         this.pop = new float[] {0, 0, 0, 0, 0, 0, 0, 0};
+
+        this.startAngle = 0;
+        this.sweepAngle = MIN_SWEEP_ANGLE;
+        this.drawLoadingViewTime = 1;
     }
 
     public void setData(int[] temp, float[] pop) {
@@ -85,54 +99,120 @@ public class HourlyView extends View {
 
         if (this.temp == null || this.pop == null) {
             drawNoData(canvas);
-            return;
         } else if (this.temp.length == 0 || this.pop.length == 0) {
             drawNoData(canvas);
-            return;
-        }
-
-        float width = getMeasuredWidth();
-        float height = getMeasuredHeight() - 7 * MARGIN;
-
-        int highestTemp = this.temp[0];
-        for (int i = 1; i < temp.length; i ++) {
-            if (temp[i] > highestTemp) {
-                highestTemp = temp[i];
+        } else if (this.temp.length == 8) {
+            boolean refresh = true;
+            for (int aTemp : temp) {
+                if (aTemp != 100) {
+                    refresh = false;
+                    break;
+                }
             }
-        }
-        int lowestTemp = this.temp[0];
-        for (int i = 1; i < temp.length; i ++) {
-            if (temp[i] < lowestTemp) {
-                lowestTemp = temp[i];
+            if (refresh) {
+                drawLoadingView(canvas);
             }
-        }
-
-        float unitHeight;
-        float unitWidth;
-        if (lowestTemp != highestTemp) {
-            unitWidth = width / (2 * temp.length);
-            unitHeight = height / (highestTemp - lowestTemp);
         } else {
-            unitWidth = width / (2 * temp.length);
-            unitHeight = height / (2 * temp.length);
-            highestTemp += temp.length;
-        }
+            float width = getMeasuredWidth();
+            float height = getMeasuredHeight() - 7 * MARGIN;
 
-        float[][] tempCoordinate = new float[temp.length][2]; // x, y
-        for (int i = 0; i < tempCoordinate.length; i ++) {
-            tempCoordinate[i][0] = (2 * i + 1) * unitWidth; // x
-            tempCoordinate[i][1] = (highestTemp - temp[i]) * unitHeight + 3 * MARGIN; // y
-        }
+            int highestTemp = this.temp[0];
+            for (int i = 1; i < temp.length; i ++) {
+                if (temp[i] > highestTemp) {
+                    highestTemp = temp[i];
+                }
+            }
+            int lowestTemp = this.temp[0];
+            for (int i = 1; i < temp.length; i ++) {
+                if (temp[i] < lowestTemp) {
+                    lowestTemp = temp[i];
+                }
+            }
 
-        float[][] popCoordinate = new float[temp.length][2]; // x, y
-        for (int i = 0; i < popCoordinate.length; i ++) {
-            popCoordinate[i][0] = (2 * i + 1) * unitWidth; // x
-            popCoordinate[i][1] = (100 - pop[i]) / 100 * height  + 3 * MARGIN; // y
-        }
+            float unitHeight;
+            float unitWidth;
+            if (lowestTemp != highestTemp) {
+                unitWidth = width / (2 * temp.length);
+                unitHeight = height / (highestTemp - lowestTemp);
+            } else {
+                unitWidth = width / (2 * temp.length);
+                unitHeight = height / (2 * temp.length);
+                highestTemp += temp.length;
+            }
 
-        this.drawTimeLine(canvas, tempCoordinate);
-        this.drawPopLine(canvas, popCoordinate);
-        this.drawTemp(canvas, tempCoordinate);
+            float[][] tempCoordinate = new float[temp.length][2]; // x, y
+            for (int i = 0; i < tempCoordinate.length; i ++) {
+                tempCoordinate[i][0] = (2 * i + 1) * unitWidth; // x
+                tempCoordinate[i][1] = (highestTemp - temp[i]) * unitHeight + 3 * MARGIN; // y
+            }
+
+            float[][] popCoordinate = new float[temp.length][2]; // x, y
+            for (int i = 0; i < popCoordinate.length; i ++) {
+                popCoordinate[i][0] = (2 * i + 1) * unitWidth; // x
+                popCoordinate[i][1] = (100 - pop[i]) / 100 * height  + 3 * MARGIN; // y
+            }
+
+            this.drawTimeLine(canvas, tempCoordinate);
+            this.drawPopLine(canvas, popCoordinate);
+            this.drawTemp(canvas, tempCoordinate);
+        }
+    }
+
+    private void drawLoadingView(Canvas canvas) {
+        if (drawLoadingViewTime < DRAW_LOADING_VIEW_CYCLE_TIME / 2 + 1) {
+            this.growUp(canvas);
+        } else {
+            this.aging(canvas);
+        }
+    }
+
+    private void growUp(Canvas canvas) {
+        RectF rectf = new RectF();
+        rectf.left = (int) (getMeasuredWidth() / 2.0 - getMeasuredHeight() / 8.0);
+        rectf.right = (int) (getMeasuredWidth() / 2.0 + getMeasuredHeight() / 8.0);
+        rectf.top = (int) (getMeasuredHeight() / 2.0 - getMeasuredHeight() / 8.0);
+        rectf.bottom = (int) (getMeasuredHeight() / 2.0 + getMeasuredHeight() / 8.0);
+
+        paint.reset();
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(10);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.SQUARE);
+        paint.setColor(ContextCompat.getColor(context, R.color.notification_background));
+
+        startAngle = startAngle + 360 / DRAW_LOADING_VIEW_CYCLE_TIME;
+        sweepAngle = sweepAngle + (MAX_SWEEP_ANGLE - MIN_SWEEP_ANGLE) / (DRAW_LOADING_VIEW_CYCLE_TIME / 2);
+        canvas.drawArc(rectf, startAngle, sweepAngle, false, paint);
+
+        paint.reset();
+        drawLoadingViewTime ++;
+        invalidate();
+    }
+
+    private void aging(Canvas canvas) {
+        RectF rectf = new RectF();
+        rectf.left = (int) (getMeasuredWidth() / 2.0 - getMeasuredHeight() / 8.0);
+        rectf.right = (int) (getMeasuredWidth() / 2.0 + getMeasuredHeight() / 8.0);
+        rectf.top = (int) (getMeasuredHeight() / 2.0 - getMeasuredHeight() / 8.0);
+        rectf.bottom = (int) (getMeasuredHeight() / 2.0 + getMeasuredHeight() / 8.0);
+
+        paint.reset();
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(10);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.SQUARE);
+        paint.setColor(ContextCompat.getColor(context, R.color.notification_background));
+
+        startAngle = startAngle + 360 / DRAW_LOADING_VIEW_CYCLE_TIME  + (MAX_SWEEP_ANGLE - MIN_SWEEP_ANGLE) / (DRAW_LOADING_VIEW_CYCLE_TIME / 2);
+        sweepAngle = sweepAngle - (MAX_SWEEP_ANGLE - MIN_SWEEP_ANGLE) / (DRAW_LOADING_VIEW_CYCLE_TIME / 2);
+        canvas.drawArc(rectf, startAngle, sweepAngle, false, paint);
+
+        paint.reset();
+        drawLoadingViewTime ++;
+        if (drawLoadingViewTime == DRAW_LOADING_VIEW_CYCLE_TIME + 1) {
+            drawLoadingViewTime = 1;
+        }
+        invalidate();
     }
 
     private void drawTimeLine(Canvas canvas, float[][] coordinate) {
@@ -165,6 +245,7 @@ public class HourlyView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setAlpha(100);
+            paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
             paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
             Path path = new Path();
@@ -174,51 +255,48 @@ public class HourlyView extends View {
             canvas.drawPath(path, paint);
             paint.reset();
             path.reset();
-        }
-
-        for (float aPop : pop) {
-            if (aPop > 50) {
-                float startPosition = coordinate[0][1];
-                for (int i = 1; i < coordinate.length; i ++) {
-                    if (coordinate[i][1] < startPosition) {
-                        startPosition = coordinate[i][1];
-                    }
+        } else {
+            float startPosition = coordinate[0][1];
+            for (int i = 1; i < coordinate.length; i ++) {
+                if (coordinate[i][1] < startPosition) {
+                    startPosition = coordinate[i][1];
                 }
-                Shader linearGradient = new LinearGradient(0, startPosition, 0, startPosition + 5 * MARGIN,
-                        Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
-                paint.setShader(linearGradient);
-                paint.setAntiAlias(true);
-                paint.setStyle(Paint.Style.FILL);
-                paint.setStrokeWidth(TREND_LINE_SIZE);
-                Path pathShadow = new Path();
-                pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
-                for (int i = 1; i < coordinate.length; i ++) {
-                    pathShadow.lineTo(coordinate[i][0], coordinate[i][1]);
-                }
-                pathShadow.lineTo(coordinate[coordinate.length - 1][0], getMeasuredHeight());
-                pathShadow.lineTo(coordinate[0][0], getMeasuredHeight());
-                pathShadow.close();
-                canvas.drawPath(pathShadow, paint);
-                paint.reset();
-                pathShadow.reset();
-                break;
             }
+            Shader linearGradient = new LinearGradient(0, 3 * MARGIN, 0, getMeasuredHeight() - 4 * MARGIN,
+                    Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
+            paint.setShader(linearGradient);
+            paint.setAntiAlias(true);
+            paint.setStyle(Paint.Style.FILL);
+            paint.setStrokeWidth(TREND_LINE_SIZE);
+            paint.setPathEffect(new CornerPathEffect(getMeasuredWidth() / (coordinate.length)));
+            Path pathShadow = new Path();
+            pathShadow.moveTo(coordinate[0][0], coordinate[0][1]);
+            for (int i = 1; i < coordinate.length; i ++) {
+                pathShadow.lineTo(coordinate[i][0], coordinate[i][1]);
+            }
+            paint.setPathEffect(null);
+            pathShadow.lineTo(coordinate[coordinate.length - 1][0], getMeasuredHeight());
+            pathShadow.lineTo(coordinate[0][0], getMeasuredHeight());
+            pathShadow.close();
+            canvas.drawPath(pathShadow, paint);
+            paint.reset();
+            pathShadow.reset();
         }
 
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(TREND_LINE_SIZE);
         paint.setAlpha(100);
+        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
+        paint.setPathEffect(new CornerPathEffect(getMeasuredWidth() / (coordinate.length)));
         Path path = new Path();
         path.moveTo(coordinate[0][0], coordinate[0][1]);
         for (int i = 1; i < coordinate.length; i ++) {
             path.lineTo(coordinate[i][0], coordinate[i][1]);
         }
         canvas.drawPath(path, paint);
-        canvas.drawCircle(coordinate[0][0], coordinate[0][1], 1, paint);
-        canvas.drawCircle(coordinate[coordinate.length - 1][0], coordinate[coordinate.length - 1][1], 1, paint);
         path.reset();
         paint.reset();
 
@@ -244,6 +322,7 @@ public class HourlyView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setAlpha(100);
+            paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
             paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
             Path path = new Path();
@@ -255,7 +334,7 @@ public class HourlyView extends View {
             path.reset();
         }
 
-        Shader linearGradient = new LinearGradient(0, 3 * MARGIN, 0, 8 * MARGIN,
+        Shader linearGradient = new LinearGradient(0, 3 * MARGIN, 0, getMeasuredHeight() - 4 * MARGIN,
                 Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
         paint.setShader(linearGradient);
         paint.setAntiAlias(true);
@@ -277,6 +356,7 @@ public class HourlyView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(TREND_LINE_SIZE);
         paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
+        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
         Path pathLine = new Path();
         pathLine.moveTo(coordinate[0][0], coordinate[0][1]);
@@ -284,8 +364,6 @@ public class HourlyView extends View {
             pathLine.lineTo(coordinate[i][0], coordinate[i][1]);
         }
         canvas.drawPath(pathLine, paint);
-        canvas.drawCircle(coordinate[0][0], coordinate[0][1], 1, paint);
-        canvas.drawCircle(coordinate[coordinate.length - 1][0], coordinate[coordinate.length - 1][1], 1, paint);
         paint.reset();
         pathLine.reset();
 

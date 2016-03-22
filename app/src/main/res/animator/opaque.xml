@@ -3,7 +3,7 @@
 
     <objectAnimator
         android:propertyName="alpha"
-        android:duration="400"
+        android:duration="150"
         android:valueFrom="0.0"
         android:valueTo="1.0" />
 

@@ -28,6 +28,7 @@
                 android:id="@+id/share_image_icon"
                 android:layout_width="@dimen/nav_head_icon"
                 android:layout_height="@dimen/nav_head_icon"
+                tools:src="@drawable/weather_sun_night"
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
@@ -50,7 +51,8 @@
                         android:textColor="@color/colorTextLight"
                         android:textSize="@dimen/big_title_size"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:text="青岛" />
 
                 </RelativeLayout>
 
@@ -65,7 +67,8 @@
                         android:textColor="@color/colorTextLight"
                         android:textSize="@dimen/normal_title_size"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:text="晴 6℃"/>
 
                 </RelativeLayout>
 
@@ -86,7 +89,8 @@
 
                 <TextView
                     android:id="@+id/share_image_temp"
-                    style="@style/share_life_info_text" />
+                    style="@style/share_life_info_text"
+                    tools:text="气温：3/10°"/>
 
             </RelativeLayout>
 
@@ -97,7 +101,8 @@
 
                 <TextView
                     android:id="@+id/share_image_wind"
-                    style="@style/share_life_info_text" />
+                    style="@style/share_life_info_text"
+                    tools:text="东北风3-4级"/>
 
             </RelativeLayout>
 
@@ -108,7 +113,8 @@
 
                 <TextView
                     android:id="@+id/share_image_air"
-                    style="@style/share_life_info_text" />
+                    style="@style/share_life_info_text"
+                    tools:text="颗粒物等级：良"/>
 
             </RelativeLayout>
 

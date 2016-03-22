@@ -50,7 +50,7 @@ import wangdaye.com.geometricweather.Widget.MyScrollView;
 import wangdaye.com.geometricweather.Widget.MySwipeRefreshLayout;
 import wangdaye.com.geometricweather.Widget.MyCardView;
 import wangdaye.com.geometricweather.Widget.SkyView;
-import wangdaye.com.geometricweather.Widget.TrendView;
+import wangdaye.com.geometricweather.Widget.DailyView;
 
 /**
  * A fragment to show weather information.
@@ -75,7 +75,7 @@ public class WeatherFragment extends Fragment
     private ImageView[] weekIcon;
     private TextView[] weekText;
 
-    private TrendView weatherTrendView;
+    private DailyView weatherDailyView;
     private TextView poweredText;
     private FrameLayout trendContainer;
 
@@ -133,6 +133,8 @@ public class WeatherFragment extends Fragment
 
     private MyDatabaseHelper databaseHelper;
 
+    private int widthPixels;
+
     // baidu location
     public LocationClient mLocationClient;
     public BDLocationListener myListener;
@@ -183,8 +185,8 @@ public class WeatherFragment extends Fragment
         this.skyView = (SkyView) view.findViewById(R.id.sky_view);
 
         this.start = new ImageView[2];
-        int widthPixels = getResources().getDisplayMetrics().widthPixels;
-        int[] starSize = SkyView.getStarSize(widthPixels);
+        this.widthPixels = getResources().getDisplayMetrics().widthPixels;
+        int[] starSize = BitmapHelper.getStarSize(widthPixels);
         start[0] = (ImageView) view.findViewById(R.id.start_1);
         start[0].setImageBitmap(BitmapHelper.readBitMap(getActivity(), R.drawable.start_1, starSize[0], starSize[1]));
         start[1] = (ImageView) view.findViewById(R.id.start_2);
@@ -335,8 +337,8 @@ public class WeatherFragment extends Fragment
 
         this.poweredText = (TextView) view.findViewById(R.id.weather_trend_view_powered_text);
         this.trendContainer = (FrameLayout) view.findViewById(R.id.trend_view_container);
-        this.weatherTrendView = (TrendView) view.findViewById(R.id.weather_trend_view);
-        this.weatherTrendView.setOnTouchListener(new View.OnTouchListener() {
+        this.weatherDailyView = (DailyView) view.findViewById(R.id.weather_trend_view);
+        this.weatherDailyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return gestureDetectorTrendView.onTouchEvent(event);
@@ -530,6 +532,8 @@ public class WeatherFragment extends Fragment
     }
 
     public void refreshHourlyDataFailed() {
+        weatherHourlyView.setData(null, null);
+        weatherHourlyView.invalidate();
         Toast.makeText(
                 getActivity(),
                 getString(R.string.try_set_eng_location),
@@ -603,7 +607,8 @@ public class WeatherFragment extends Fragment
 
             int[] imageId= JuheWeather.getWeatherIcon(info.weatherKind[i], MainActivity.isDay);
             if (imageId[3] != 0) {
-                weekIcon[i].setImageResource(imageId[3]);
+                int size = BitmapHelper.getWeekIconSize(widthPixels);
+                weekIcon[i].setImageBitmap(BitmapHelper.readBitMap(getActivity(), imageId[3], size, size));
                 weekIcon[i].setVisibility(View.VISIBLE);
             } else {
                 weekIcon[i].setVisibility(View.GONE);
@@ -627,8 +632,8 @@ public class WeatherFragment extends Fragment
         this.trendContainer.setVisibility(View.VISIBLE);
         this.hourlyContainer.setVisibility(View.GONE);
         int[] yesterdayTemp = MyDatabaseHelper.readYesterdayWeather(getActivity(), info);
-        this.weatherTrendView.setData(maxiTemp, miniTemp, yesterdayTemp);
-        this.weatherTrendView.invalidate();
+        this.weatherDailyView.setData(maxiTemp, miniTemp, yesterdayTemp);
+        this.weatherDailyView.invalidate();
 
         if (location.location.replaceAll(" ", "").matches("[a-zA-Z]+")) {
             poweredText.setText(getString(R.string.powered_by_hefeng));
@@ -1068,6 +1073,9 @@ public class WeatherFragment extends Fragment
                     break;
                 }
             }
+            int[] temp = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
+            float[] pop = new float[] {0, 0, 0, 0, 0, 0, 0, 0};
+            weatherHourlyView.setData(temp, pop);
             refreshAll();
             return true;
         }
@@ -1122,6 +1130,9 @@ public class WeatherFragment extends Fragment
                     break;
                 }
             }
+            int[] temp = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
+            float[] pop = new float[] {0, 0, 0, 0, 0, 0, 0, 0};
+            weatherHourlyView.setData(temp, pop);
             refreshAll();
             return true;
         }
@@ -1141,6 +1152,7 @@ public class WeatherFragment extends Fragment
                     super.onAnimationEnd(animation);
                     trendContainer.setVisibility(View.GONE);
                     hourlyContainer.setVisibility(View.VISIBLE);
+                    weatherHourlyView.invalidate();
                     animatorSetShow.start();
                 }
             });
@@ -1198,6 +1210,9 @@ public class WeatherFragment extends Fragment
                     break;
                 }
             }
+            int[] temp = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
+            float[] pop = new float[] {0, 0, 0, 0, 0, 0, 0, 0};
+            weatherHourlyView.setData(temp, pop);
             refreshAll();
             return true;
         }

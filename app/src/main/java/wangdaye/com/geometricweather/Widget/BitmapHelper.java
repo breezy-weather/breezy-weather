@@ -33,4 +33,40 @@ public class BitmapHelper {
         }
         return inSampleSize;
     }
+
+    public static int[] getStarSize(int widthPixels) {
+        if (widthPixels < 720) {
+            return new int[] {200, 100};
+        } else if (widthPixels < 1080) {
+            return new int[] {300, 200};
+        } else if (widthPixels == 1080) {
+            return new int[] {400, 200};
+        } else {
+            return new int[] {600, 300};
+        }
+    }
+
+    public static int getWeekIconSize(int widthPixels) {
+        if (widthPixels < 720) {
+            return 50;
+        } else if (widthPixels < 1080) {
+            return 65;
+        } else if (widthPixels == 1080) {
+            return 75;
+        } else {
+            return 100;
+        }
+    }
+
+    public static int getTodayIconSize(int widthPixels) {
+        if (widthPixels < 720) {
+            return 70;
+        } else if (widthPixels < 1080) {
+            return 85;
+        } else if (widthPixels == 1080) {
+            return 100;
+        } else {
+            return 140;
+        }
+    }
 }

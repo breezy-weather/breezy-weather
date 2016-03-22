@@ -200,7 +200,7 @@
                                     android:layout_height="@dimen/trend_view_height">
 
                                     <include layout="@layout/hourly_view" />
-                                    <include layout="@layout/trend_view" />
+                                    <include layout="@layout/daily_view" />
 
                                 </FrameLayout>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="wangdaye.com.geometricweather" >
 
     <application
@@ -8,7 +9,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <!-- Baidu location service -->
         <meta-data
@@ -23,7 +25,8 @@
             android:name=".UI.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|screenSize">
+            android:configChanges="orientation|screenSize"
+            tools:ignore="InnerclassSeparator">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,23 +44,27 @@
             android:label="@string/settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
-            android:parentActivityName=".UI.MainActivity" />
+            android:parentActivityName=".UI.MainActivity"
+            tools:ignore="InnerclassSeparator" />
 
         <activity
             android:name=".UI.AboutAppActivity"
             android:label="@string/about"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
 
         <activity android:name=".UI.IntroduceActivity"
             android:label="@string/introduce"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
 
         <!-- create widget activity -->
         <activity
             android:name=".UI.CreateWidgetDayActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator">
 
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -67,7 +74,8 @@
 
         <activity
             android:name=".UI.CreateWidgetWeekActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator">
 
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -77,7 +85,8 @@
 
         <activity
             android:name=".UI.CreateWidgetDayWeekActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -86,7 +95,8 @@
 
         <activity
             android:name=".UI.CreateWidgetClockDayActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -95,7 +105,8 @@
 
         <activity
             android:name=".UI.CreateWidgetClockDayCenterActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -104,7 +115,8 @@
 
         <activity
             android:name=".UI.CreateWidgetClockDayWeekActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -112,25 +124,37 @@
         </activity>
 
         <!-- notification service -->
-        <service android:name=".Service.NotificationService" />
+        <service android:name=".Service.NotificationService"
+            tools:ignore="InnerclassSeparator" />
 
         <!-- widget service -->
-        <service android:name=".Service.RefreshWidgetDay" />
-        <service android:name=".Service.RefreshWidgetWeek" />
-        <service android:name=".Service.RefreshWidgetDayWeek" />
-        <service android:name=".Service.RefreshWidgetClockDay" />
-        <service android:name=".Service.RefreshWidgetClockDayCenter" />
-        <service android:name=".Service.RefreshWidgetClockDayWeek" />
+        <service android:name=".Service.RefreshWidgetDay"
+            tools:ignore="InnerclassSeparator" />
+        <service android:name=".Service.RefreshWidgetWeek"
+            tools:ignore="InnerclassSeparator" />
+        <service android:name=".Service.RefreshWidgetDayWeek"
+            tools:ignore="InnerclassSeparator" />
+        <service android:name=".Service.RefreshWidgetClockDay"
+            tools:ignore="InnerclassSeparator" />
+        <service android:name=".Service.RefreshWidgetClockDayCenter"
+            tools:ignore="InnerclassSeparator" />
+        <service android:name=".Service.RefreshWidgetClockDayWeek"
+            tools:ignore="InnerclassSeparator" />
 
-        <service android:name=".Service.TimeService" />
-        <service android:name=".Service.TodayForecastService" />
-        <service android:name=".Service.TomorrowForecastService" />
+        <service android:name=".Service.TimeService"
+            tools:ignore="InnerclassSeparator" />
+        <service android:name=".Service.TodayForecastService"
+            tools:ignore="InnerclassSeparator" />
+        <service android:name=".Service.TomorrowForecastService"
+            tools:ignore="InnerclassSeparator" />
 
         <!-- receiver -->
-        <receiver android:name=".Receiver.NotificationReceiver" />
+        <receiver android:name=".Receiver.NotificationReceiver"
+            tools:ignore="InnerclassSeparator" />
 
         <receiver
-            android:name=".Receiver.MyReceiver" >
+            android:name=".Receiver.MyReceiver"
+            tools:ignore="InnerclassSeparator">
 
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -142,7 +166,8 @@
         <!-- widget -->
         <receiver
             android:name=".Receiver.WidgetProviderDay"
-            android:label="@string/widget_day" >
+            android:label="@string/widget_day"
+            tools:ignore="InnerclassSeparator">
 
             <meta-data
                 android:name="android.appwidget.provider"
@@ -157,7 +182,8 @@
 
         <receiver
             android:name=".Receiver.WidgetProviderWeek"
-            android:label="@string/widget_week" >
+            android:label="@string/widget_week"
+            tools:ignore="InnerclassSeparator">
 
             <meta-data
                 android:name="android.appwidget.provider"
@@ -172,7 +198,8 @@
 
         <receiver
             android:name=".Receiver.WidgetProviderDayWeek"
-            android:label="@string/widget_day_week" >
+            android:label="@string/widget_day_week"
+            tools:ignore="InnerclassSeparator">
 
             <meta-data
                 android:name="android.appwidget.provider"
@@ -187,7 +214,8 @@
 
         <receiver
             android:name=".Receiver.WidgetProviderClockDay"
-            android:label="@string/widget_clock_day" >
+            android:label="@string/widget_clock_day"
+            tools:ignore="InnerclassSeparator">
 
             <meta-data
                 android:name="android.appwidget.provider"
@@ -202,7 +230,8 @@
 
         <receiver
             android:name=".Receiver.WidgetProviderClockDayCenter"
-            android:label="@string/widget_clock_day_center" >
+            android:label="@string/widget_clock_day_center"
+            tools:ignore="InnerclassSeparator">
 
             <meta-data
                 android:name="android.appwidget.provider"
@@ -217,7 +246,8 @@
 
         <receiver
             android:name=".Receiver.WidgetProviderClockDayWeek"
-            android:label="@string/widget_clock_day_week" >
+            android:label="@string/widget_clock_day_week"
+            tools:ignore="InnerclassSeparator">
 
             <meta-data
                 android:name="android.appwidget.provider"
@@ -233,7 +263,8 @@
     </application>
 
     <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"
+        tools:ignore="ManifestOrder" />
     <!-- 这个权限用于访问GPS定位-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->

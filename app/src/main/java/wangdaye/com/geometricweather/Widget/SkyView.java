@@ -28,9 +28,9 @@ public class SkyView extends View {
     private boolean isTouch;
     private boolean isDay;
 
-    private final int SHOW_FIRST_FLOOR_TIME = 18;
-    private final int SHOW_OTHERS_FLOOR_TIME = 25;
-    private final int SHOW_BACKGROUND_TIME = 93;
+    private final int SHOW_FIRST_FLOOR_TIME = 15;
+    private final int SHOW_OTHERS_FLOOR_TIME = 22;
+    private final int SHOW_BACKGROUND_TIME = SHOW_FIRST_FLOOR_TIME + 3 * SHOW_OTHERS_FLOOR_TIME;
 
     private final int HIDE_FIRST_FLOOR_TIME = 6;
     private final int HIDE_SECOND_FLOOR_TIME = 15;
@@ -40,6 +40,8 @@ public class SkyView extends View {
 
     private final int TOUCH_DAY_UNIT_TIME = 6;
     private final int TOUCH_NIGHT_UNIT_TIME = 12;
+
+    public boolean done;
 
     public SkyView(Context context) {
         super(context);
@@ -68,6 +70,8 @@ public class SkyView extends View {
 
         this.isDay = MainActivity.isDay;
         this.readyToShow(true);
+
+        this.done = false;
     }
 
     public void readyToShow(boolean simpleShow) {
@@ -77,11 +81,13 @@ public class SkyView extends View {
     }
 
     public void showCircle(boolean simpleShow) {
+        this.done = false;
         readyToShow(simpleShow);
         invalidate();
     }
 
     public void touchCircle() {
+        this.done = false;
         this.isTouch = true;
         invalidate();
     }
@@ -121,17 +127,13 @@ public class SkyView extends View {
         float radiusNow = deltaRadius * drawTime;
         float backgroundAlpha = deltaBackground * drawTime;
 
-        paint.reset();
         if (isDay) {
-            paint.setColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
         } else {
-            paint.setColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
         }
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
-        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
-        paint.reset();
 
+        paint.reset();
         if (isDay) {
             paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_1));
         } else {
@@ -157,17 +159,13 @@ public class SkyView extends View {
         float radiusNow = deltaRadius * drawTime;
         float backgroundAlpha = deltaBackground * drawTime;
 
-        paint.reset();
         if (isDay) {
-            paint.setColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
         } else {
-            paint.setColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
         }
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
-        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
-        paint.reset();
 
+        paint.reset();
         if (isDay) {
             paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_2));
         } else {
@@ -203,17 +201,13 @@ public class SkyView extends View {
         float radiusNow = deltaRadius * drawTime;
         float backgroundAlpha = deltaBackground * drawTime;
 
-        paint.reset();
         if (isDay) {
-            paint.setColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
         } else {
-            paint.setColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
         }
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
-        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
-        paint.reset();
 
+        paint.reset();
         if (isDay) {
             paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
         } else {
@@ -259,17 +253,13 @@ public class SkyView extends View {
         float radiusNow = deltaRadius * drawTime;
         float backgroundAlpha = deltaBackground * drawTime;
 
-        paint.reset();
         if (isDay) {
-            paint.setColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
         } else {
-            paint.setColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
         }
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
-        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
-        paint.reset();
 
+        paint.reset();
         if (isDay) {
             paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_4));
         } else {
@@ -315,10 +305,12 @@ public class SkyView extends View {
             invalidate();
         } else {
             this.readyToShow(true);
+            this.done = true;
         }
     }
 
     private void hideCircles(Canvas canvas) {
+        this.done = false;
         float centerX = (float) (getMeasuredWidth() / 2.0);
         float centerY = (float) (getMeasuredHeight() / 2.0);
 
@@ -330,17 +322,13 @@ public class SkyView extends View {
         float deltaRadius;
         float radiusNow;
 
-        paint.reset();
         if (isDay) {
-            paint.setColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 117, 190, 203));
         } else {
-            paint.setColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
+            canvas.drawColor(Color.argb((int) backgroundAlpha, 26, 27, 34));
         }
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
-        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
-        paint.reset();
 
+        paint.reset();
         if (isDay) {
             paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_4));
         } else {
@@ -653,18 +641,6 @@ public class SkyView extends View {
         } else {
             drawTime ++;
             invalidate();
-        }
-    }
-
-    public static int[] getStarSize(int widthPixels) {
-        if (widthPixels < 720) {
-            return new int[] {200, 100};
-        } else if (widthPixels < 1080) {
-            return new int[] {300, 200};
-        } else if (widthPixels == 1080) {
-            return new int[] {400, 200};
-        } else {
-            return new int[] {600, 300};
         }
     }
 }

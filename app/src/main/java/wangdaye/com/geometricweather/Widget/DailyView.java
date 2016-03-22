@@ -19,7 +19,7 @@ import wangdaye.com.geometricweather.R;
  * Show trend of daily data.
  * */
 
-public class TrendView extends View {
+public class DailyView extends View {
     // widget
     private Context context;
     private Paint paint;
@@ -42,23 +42,23 @@ public class TrendView extends View {
     // TAG
 //    private final String TAG = "TrendView";
 
-    public TrendView(Context context) {
+    public DailyView(Context context) {
         super(context);
         this.initialize(context);
     }
 
-    public TrendView(Context context, AttributeSet attrs) {
+    public DailyView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.initialize(context);
     }
 
-    public TrendView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DailyView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initialize(context);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public TrendView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public DailyView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         this.initialize(context);
     }
@@ -177,6 +177,7 @@ public class TrendView extends View {
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(NUM_TEXT_SIZE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setColor(ContextCompat.getColor(context, R.color.chart_background_line_temp));
         canvas.drawLine(0, yesterdayCoordinate[0], getMeasuredWidth(), yesterdayCoordinate[0], paint);
         canvas.drawLine(0, yesterdayCoordinate[1], getMeasuredWidth(), yesterdayCoordinate[1], paint);
@@ -205,7 +206,7 @@ public class TrendView extends View {
     }
 
     private void drawMaxiTemp(Canvas canvas, float[][] coordinate) {
-        Shader linearGradient = new LinearGradient(0, 3 * MARGIN, 0, 8 * MARGIN,
+        Shader linearGradient = new LinearGradient(0, 3 * MARGIN, 0, getMeasuredHeight() - 4 * MARGIN,
                 Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
         paint.setShader(linearGradient);
         paint.setAntiAlias(true);
@@ -227,6 +228,7 @@ public class TrendView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(TREND_LINE_SIZE);
         paint.setColor(ContextCompat.getColor(context, R.color.lightPrimary_3));
+        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
         Path pathLine = new Path();
         pathLine.moveTo(coordinate[0][0], coordinate[0][1]);
@@ -234,8 +236,6 @@ public class TrendView extends View {
             pathLine.lineTo(coordinate[i][0], coordinate[i][1]);
         }
         canvas.drawPath(pathLine, paint);
-        canvas.drawCircle(coordinate[0][0], coordinate[0][1], 1, paint);
-        canvas.drawCircle(coordinate[6][0], coordinate[6][1], 1, paint);
         paint.reset();
         pathLine.reset();
 
@@ -259,7 +259,7 @@ public class TrendView extends View {
                 startPosition = coordinate[i][1];
             }
         }
-        Shader linearGradient = new LinearGradient(0, startPosition, 0, startPosition + 5 * MARGIN,
+        Shader linearGradient = new LinearGradient(0, startPosition, 0, getMeasuredHeight() - 4 * MARGIN,
                 Color.argb(50, 176, 176, 176), Color.argb(0, 176, 176, 176), Shader.TileMode.CLAMP);
         paint.setShader(linearGradient);
         paint.setAntiAlias(true);
@@ -281,6 +281,7 @@ public class TrendView extends View {
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(TREND_LINE_SIZE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setAlpha(100);
         paint.setColor(ContextCompat.getColor(context, R.color.darkPrimary_1));
         paint.setShadowLayer(2, 0, 2, Color.argb(200, 176, 176, 176));
@@ -290,8 +291,6 @@ public class TrendView extends View {
             path.lineTo(coordinate[i][0], coordinate[i][1]);
         }
         canvas.drawPath(path, paint);
-        canvas.drawCircle(coordinate[0][0], coordinate[0][1], 1, paint);
-        canvas.drawCircle(coordinate[6][0], coordinate[6][1], 1, paint);
         path.reset();
         paint.reset();
 
