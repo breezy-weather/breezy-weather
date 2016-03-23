@@ -281,7 +281,7 @@
 
                     <TextView
                         android:id="@+id/notification_big_text_week_5"
-                        style="@style/notification_big_view_week_icon" />
+                        style="@style/notification_big_view_week_text" />
 
                 </RelativeLayout>
 

@@ -249,6 +249,7 @@ public class HefengWeather {
         info.weatherNow = hefengResult.heWeather.get(position).now.condNow.txt;
         info.weatherKindNow = HefengWeather.getWeatherKind(hefengResult.heWeather.get(position).now.condNow.code);
         info.tempNow = hefengResult.heWeather.get(position).now.tmp;
+        info.aqiLevel = " ";
 
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

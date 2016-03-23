@@ -63,6 +63,7 @@ public class WeatherFragment extends Fragment
     private ImageView[] start;
     private ImageView[] weatherIcon;
 
+    private TextView aqiTextLive;
     private TextView weatherTextLive;
     private TextView timeTextLive;
     private TextView locationTextLive;
@@ -207,6 +208,9 @@ public class WeatherFragment extends Fragment
         this.showAnimals();
 
         this.weatherTextLive = (TextView) view.findViewById(R.id.weather_text_live);
+        weatherTextLive.setVisibility(View.GONE);
+        this.aqiTextLive = (TextView) view.findViewById(R.id.aqi_text_live);
+        aqiTextLive.setVisibility(View.GONE);
 
         RelativeLayout touchLayout = (RelativeLayout) view.findViewById(R.id.touch_layout);
         touchLayout.setOnClickListener(new View.OnClickListener() {
@@ -573,6 +577,8 @@ public class WeatherFragment extends Fragment
 
         this.weatherTextLive.setText(info.weatherNow + " " + info.tempNow + "℃");
         weatherTextLive.setVisibility(View.VISIBLE);
+        this.aqiTextLive.setText(info.aqiLevel);
+        aqiTextLive.setVisibility(View.VISIBLE);
         this.timeTextLive.setText(info.refreshTime);
         this.locationTextLive.setText(info.location);
 
@@ -669,7 +675,6 @@ public class WeatherFragment extends Fragment
         animatorSetShowView[1] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.show_view);
         animatorSetShowView[0].setTarget(this.weatherCard);
         animatorSetShowView[1].setTarget(this.lifeCard);
-
         animatorSetShowView[0].addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -1076,6 +1081,8 @@ public class WeatherFragment extends Fragment
             int[] temp = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
             float[] pop = new float[] {0, 0, 0, 0, 0, 0, 0, 0};
             weatherHourlyView.setData(temp, pop);
+            weatherTextLive.setVisibility(View.GONE);
+            aqiTextLive.setVisibility(View.GONE);
             refreshAll();
             return true;
         }
@@ -1133,6 +1140,8 @@ public class WeatherFragment extends Fragment
             int[] temp = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
             float[] pop = new float[] {0, 0, 0, 0, 0, 0, 0, 0};
             weatherHourlyView.setData(temp, pop);
+            weatherTextLive.setVisibility(View.GONE);
+            aqiTextLive.setVisibility(View.GONE);
             refreshAll();
             return true;
         }
@@ -1213,6 +1222,8 @@ public class WeatherFragment extends Fragment
             int[] temp = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
             float[] pop = new float[] {0, 0, 0, 0, 0, 0, 0, 0};
             weatherHourlyView.setData(temp, pop);
+            weatherTextLive.setVisibility(View.GONE);
+            aqiTextLive.setVisibility(View.GONE);
             refreshAll();
             return true;
         }

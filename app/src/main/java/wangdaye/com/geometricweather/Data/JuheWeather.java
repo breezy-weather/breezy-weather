@@ -455,6 +455,7 @@ public class JuheWeather {
         info.weatherNow = juheResult.result.data.realtime.weatherNow.weatherInfo;
         info.weatherKindNow = JuheWeather.getWeatherKind(info.weatherNow);
         info.tempNow = juheResult.result.data.realtime.weatherNow.temperature;
+        info.aqiLevel = "空气质量 " + juheResult.result.data.air.pm25.quality;
 
         info.week = new String[] {
                 context.getString(R.string.week) + juheResult.result.data.weather.get(0).week,
@@ -539,9 +540,9 @@ public class JuheWeather {
                 + "(" + context.getString(R.string.live) + juheResult.result.data.realtime.wind.direct + ")";
         info.windInfo = juheResult.result.data.weather.get(0).info.day.get(4)
                 + "(" + context.getString(R.string.live) + juheResult.result.data.realtime.wind.power + ")";
-        info.pmTitle = context.getString(R.string.pm_25) + " : " + juheResult.result.data.air.pm25.pm25
-                + " , " + context.getString(R.string.pm_10) + " : " + juheResult.result.data.air.pm25.pm10;
-        info.pmInfo = context.getString(R.string.pm_level) + ":" +  juheResult.result.data.air.pm25.quality;
+        info.pmTitle = context.getString(R.string.pm_25) + "：" + juheResult.result.data.air.pm25.pm25
+                + " / " + context.getString(R.string.pm_10) + "：" + juheResult.result.data.air.pm25.pm10;
+        info.pmInfo = juheResult.result.data.air.pm25.des;
         info.humTitle = context.getString(R.string.humidity);
         info.humInfo = juheResult.result.data.realtime.weatherNow.humidity;
         info.uvTitle = context.getString(R.string.uv) + "-" + juheResult.result.data.life.lifeInfo.ziwaixian.get(0);

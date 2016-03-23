@@ -716,11 +716,11 @@ public class MainActivity extends AppCompatActivity
         location.setText(weatherFragment.info.location);
         text = weatherFragment.info.weatherNow + " " + weatherFragment.info.tempNow + "℃";
         weather.setText(text);
-        text = "气温: " +  weatherFragment.info.miniTemp[0] + "/" + weatherFragment.info.maxiTemp[0] + "°";
+        text = "气温 " +  weatherFragment.info.miniTemp[0] + "/" + weatherFragment.info.maxiTemp[0] + "°";
         temp.setText(text);
         text = weatherFragment.info.windDir[0] + weatherFragment.info.windLevel[0];
         wind.setText(text);
-        text = weatherFragment.info.pmInfo;
+        text = weatherFragment.info.aqiLevel;
         air.setText(text);
         for (int i = 0; i < 3; i ++) {
             weekWeek[i].setText(weatherFragment.info.week[i + 1]);

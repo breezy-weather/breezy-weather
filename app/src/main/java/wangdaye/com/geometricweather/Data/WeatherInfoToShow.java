@@ -14,6 +14,7 @@ public class WeatherInfoToShow {
     public String weatherNow;
     public String weatherKindNow;
     public String tempNow;
+    public String aqiLevel;
 
     public String[] week;
     public String[] weather;

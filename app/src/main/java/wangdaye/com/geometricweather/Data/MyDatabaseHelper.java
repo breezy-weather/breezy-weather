@@ -18,7 +18,7 @@ import java.util.Date;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     // data
-    public static final int VERSION_CODE = 3;
+    public static final int VERSION_CODE = 4;
 
     public static final String DATABASE_NAME = "MyDatabase.db";
 
@@ -38,6 +38,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_WEATHER_NOW = "weatherNow";
     public static final String COLUMN_WEATHER_KIND_NOW = "weatherKindNow";
     public static final String COLUMN_TEMP_NOW = "tempNow";
+    public static final String COLUMN_AQI_LEVEL = "aqiLevel";
     public static final String COLUMN_WEEK_1 =  "week1";
     public static final String COLUMN_WEEK_2 =  "week2";
     public static final String COLUMN_WEEK_3 =  "week3";
@@ -124,6 +125,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             + "weatherNow       text,"
             + "weatherKindNow   text,"
             + "tempNow          text,"
+            + "aqiLevel         text,"
             + "week1            text,"
             + "week2            text,"
             + "week3            text,"
@@ -348,6 +350,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         values.put(MyDatabaseHelper.COLUMN_WEATHER_NOW, info.weatherNow);
         values.put(MyDatabaseHelper.COLUMN_WEATHER_KIND_NOW, info.weatherKindNow);
         values.put(MyDatabaseHelper.COLUMN_TEMP_NOW, info.tempNow);
+        values.put(MyDatabaseHelper.COLUMN_AQI_LEVEL, info.aqiLevel);
         values.put(MyDatabaseHelper.COLUMN_WEEK_1, info.week[0]);
         values.put(MyDatabaseHelper.COLUMN_WEEK_2, info.week[1]);
         values.put(MyDatabaseHelper.COLUMN_WEEK_3, info.week[2]);
@@ -444,6 +447,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 info.weatherNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_NOW));
                 info.weatherKindNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEATHER_KIND_NOW));
                 info.tempNow = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_TEMP_NOW));
+                info.aqiLevel = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_AQI_LEVEL));
                 info.week = new String[7];
                 info.week[0] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_1));
                 info.week[1] = cursor.getString(cursor.getColumnIndex(MyDatabaseHelper.COLUMN_WEEK_2));

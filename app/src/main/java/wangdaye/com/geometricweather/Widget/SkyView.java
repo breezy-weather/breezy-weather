@@ -28,6 +28,8 @@ public class SkyView extends View {
     private boolean isTouch;
     private boolean isDay;
 
+    private final double proportion = 6.8;
+
     private final int SHOW_FIRST_FLOOR_TIME = 15;
     private final int SHOW_OTHERS_FLOOR_TIME = 22;
     private final int SHOW_BACKGROUND_TIME = SHOW_FIRST_FLOOR_TIME + 3 * SHOW_OTHERS_FLOOR_TIME;
@@ -41,7 +43,9 @@ public class SkyView extends View {
     private final int TOUCH_DAY_UNIT_TIME = 6;
     private final int TOUCH_NIGHT_UNIT_TIME = 12;
 
-    public boolean done;
+    private boolean done;
+
+    private int breathCycle;
 
     public SkyView(Context context) {
         super(context);
@@ -71,7 +75,7 @@ public class SkyView extends View {
         this.isDay = MainActivity.isDay;
         this.readyToShow(true);
 
-        this.done = false;
+        this.setBreathData(0);
     }
 
     public void readyToShow(boolean simpleShow) {
@@ -81,15 +85,17 @@ public class SkyView extends View {
     }
 
     public void showCircle(boolean simpleShow) {
-        this.done = false;
         readyToShow(simpleShow);
         invalidate();
     }
 
     public void touchCircle() {
-        this.done = false;
         this.isTouch = true;
         invalidate();
+    }
+
+    public void setBreathData(int temp) {
+        breathCycle = 600 - 30 * (temp + 30) / 5;
     }
 
     @Override
@@ -120,7 +126,7 @@ public class SkyView extends View {
         float centerX = (float) (getMeasuredWidth() / 2.0);
         float centerY = (float) (getMeasuredHeight() / 2.0);
 
-        float unitCircleSize = (float) (getMeasuredWidth() / 6.8);
+        float unitCircleSize = (float) (getMeasuredWidth() / proportion);
         float radius = 1 * unitCircleSize;
         float deltaRadius = radius / SHOW_FIRST_FLOOR_TIME;
         float deltaBackground = (float) (255.0 / SHOW_BACKGROUND_TIME);
@@ -152,7 +158,7 @@ public class SkyView extends View {
         float centerX = (float) (getMeasuredWidth() / 2.0);
         float centerY = (float) (getMeasuredHeight() / 2.0);
 
-        float unitCircleSize = (float) (getMeasuredWidth() / 6.8);
+        float unitCircleSize = (float) (getMeasuredWidth() / proportion);
         float radius = 2 * unitCircleSize;
         float deltaRadius = radius / (SHOW_FIRST_FLOOR_TIME + SHOW_OTHERS_FLOOR_TIME);
         float deltaBackground = (float) (255.0 / SHOW_BACKGROUND_TIME);
@@ -194,7 +200,7 @@ public class SkyView extends View {
         float centerX = (float) (getMeasuredWidth() / 2.0);
         float centerY = (float) (getMeasuredHeight() / 2.0);
 
-        float unitCircleSize = (float) (getMeasuredWidth() / 6.8);
+        float unitCircleSize = (float) (getMeasuredWidth() / proportion);
         float radius = 3 * unitCircleSize;
         float deltaRadius = radius / (SHOW_FIRST_FLOOR_TIME + 2 * SHOW_OTHERS_FLOOR_TIME);
         float deltaBackground = (float) (255.0 / SHOW_BACKGROUND_TIME);
@@ -246,7 +252,7 @@ public class SkyView extends View {
         float centerX = (float) (getMeasuredWidth() / 2.0);
         float centerY = (float) (getMeasuredHeight() / 2.0);
 
-        float unitCircleSize = (float) (getMeasuredWidth() / 6.8);
+        float unitCircleSize = (float) (getMeasuredWidth() / proportion);
         float radius = 4 * unitCircleSize;
         float deltaRadius = radius / (SHOW_FIRST_FLOOR_TIME + 3 * SHOW_OTHERS_FLOOR_TIME);
         float deltaBackground = (float) (255.0 / SHOW_BACKGROUND_TIME);
@@ -305,16 +311,14 @@ public class SkyView extends View {
             invalidate();
         } else {
             this.readyToShow(true);
-            this.done = true;
         }
     }
 
     private void hideCircles(Canvas canvas) {
-        this.done = false;
         float centerX = (float) (getMeasuredWidth() / 2.0);
         float centerY = (float) (getMeasuredHeight() / 2.0);
 
-        float unitCircleSize = (float) (getMeasuredWidth() / 6.8);
+        float unitCircleSize = (float) (getMeasuredWidth() / proportion);
         float deltaBackground = (float) (255.0 / HIDE_BACKGROUND_TIME);
         float backgroundAlpha = 255 - deltaBackground * drawTime;
 
@@ -406,7 +410,7 @@ public class SkyView extends View {
         float centerX = (float) (getMeasuredWidth() / 2.0);
         float centerY = (float) (getMeasuredHeight() / 2.0);
 
-        float unitCircleSize = (float) (getMeasuredWidth() / 6.8);
+        float unitCircleSize = (float) (getMeasuredWidth() / proportion);
 
         float radius;
         float deltaRadius;
@@ -527,7 +531,7 @@ public class SkyView extends View {
         float centerX = (float) (getMeasuredWidth() / 2.0);
         float centerY = (float) (getMeasuredHeight() / 2.0);
 
-        float unitCircleSize = (float) (getMeasuredWidth() / 6.8);
+        float unitCircleSize = (float) (getMeasuredWidth() / proportion);
 
         float radius;
         float deltaRadius;

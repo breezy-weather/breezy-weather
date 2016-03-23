@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -65,6 +64,7 @@
         android:layout_height="match_parent">
 
         <FrameLayout
+            tools:background="@color/cardview_dark_background"
             android:layout_width="match_parent"
             android:layout_height="@dimen/weather_image_main_half" />
 
@@ -104,6 +104,17 @@
                         android:layout_height="@dimen/touch_layout_height" >
 
                         <TextView
+                            android:id="@+id/aqi_text_live"
+                            android:textColor="@android:color/background_light"
+                            android:textSize="@dimen/big_title_size"
+                            android:padding="@dimen/activity_vertical_margin"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="空气质量 良" />
+
+                        <TextView
                             android:id="@+id/weather_text_live"
                             android:textColor="@android:color/background_light"
                             android:textSize="@dimen/big_title_size"
@@ -111,7 +122,9 @@
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            tools:text="晴 3℃"
+                            tools:ignore="RelativeOverlap" />
 
                     </RelativeLayout>
 
