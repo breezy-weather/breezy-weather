@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="@string/thanks"
+        android:layout_margin="@dimen/normal_margin"
+        style="@style/content_text" />
+
+    <RelativeLayout
+        android:id="@+id/container_about_thx_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/container_about_thx_locationIcon"
+            android:src="@drawable/ic_location"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:text="@string/baidu_location"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/container_about_thx_locationIcon"
+            android:layout_centerVertical="true"
+            style="@style/content_text"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_about_thx_juhe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/container_about_thx_juheIcon"
+            android:src="@drawable/ic_weather"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:text="@string/juhe_weather"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/container_about_thx_juheIcon"
+            android:layout_centerVertical="true"
+            style="@style/content_text"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_about_thx_hefeng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/container_about_thx_hefengIcon"
+            android:src="@drawable/ic_weather"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:text="@string/hefeng_weather"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/container_about_thx_hefengIcon"
+            android:layout_centerVertical="true"
+            style="@style/content_text"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/container_about_thx_retrofit"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <TextView
+            android:text="@string/retrofit"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="2dp"
+            style="@style/content_text" />
+
+        <TextView
+            android:text="@string/about_retrofit"
+            android:textSize="@dimen/content_text_size"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            style="@style/subtitle_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_about_thx_glide"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <TextView
+            android:text="@string/glide"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="2dp"
+            style="@style/content_text" />
+
+        <TextView
+            android:text="@string/about_glide"
+            android:textSize="@dimen/content_text_size"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            style="@style/subtitle_text" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wangdaye.com.geometricweather.view.widget.weatherView.WeatherIconControlView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_sky_view_controller"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <wangdaye.com.geometricweather.view.widget.weatherView.CircularSkyView
+        android:id="@+id/container_sky_view_circularSkyView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/container_sky_view_starContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/container_sky_view_star_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/star_2" />
+
+        <ImageView
+            android:id="@+id/container_sky_view_star_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/star_1" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/container_sky_view_iconContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/container_sky_view_icon_3"
+            style="@style/live_weather_icon"
+            tools:src="@drawable/weather_cloudy"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/container_sky_view_icon_2"
+            style="@style/live_weather_icon"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/container_sky_view_icon_1"
+            style="@style/live_weather_icon"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+
+</wangdaye.com.geometricweather.view.widget.weatherView.WeatherIconControlView>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notification_base"
+    android:orientation="horizontal" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="86dp">
+
+    <FrameLayout
+        android:id="@+id/notification_base_background"
+        android:background="@color/colorNotificationBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/notification_base_icon"
+        android:scaleType="fitCenter"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/normal_margin"
+        tools:src="@drawable/weather_cloudy"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/notification_base_icon"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/normal_margin"
+        tools:ignore="RtlHardcoded">
+
+        <TextView
+            android:id="@+id/notification_base_title"
+            android:text="@string/wait_refresh"
+            android:textSize="@dimen/title_text_size"
+            style="@style/large_title_text"
+            tools:text="阴 15℃"
+            tools:textColor="@color/colorTextLight" />
+
+        <TextView
+            android:id="@+id/notification_base_content"
+            android:text="@string/ellipsis"
+            android:textSize="@dimen/content_text_size"
+            style="@style/large_title_text"
+            tools:text="10/15°"
+            tools:textColor="@color/colorTextLight2nd" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/notification_base_time"
+        android:padding="@dimen/little_margin"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ellipsis"
+        android:textSize="@dimen/widget_time_text_size"
+        android:textColor="@color/colorTextGrey"
+        tools:text="青岛.10:00"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+</RelativeLayout>

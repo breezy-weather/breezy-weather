@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_weather"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/container_weather_touchLayout"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        tools:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/container_weather_aqi_text_live"
+            android:layout_margin="@dimen/normal_margin"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            style="@style/large_title_text"
+            tools:text="空气 良"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/container_weather_weather_text_live"
+            android:layout_margin="@dimen/normal_margin"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            style="@style/large_title_text"
+            tools:text="晴 3℃"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/container_weather_weatherCard"
+        style="@style/material_card">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/container_weather_locationContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/container_weather_time_icon"
+                    android:src="@drawable/ic_time"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    style="@style/material_icon"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/container_weather_time_text_live"
+                    android:layout_toRightOf="@id/container_weather_time_icon"
+                    android:layout_centerVertical="true"
+                    style="@style/content_text"
+                    tools:text="09:00"
+                    tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
+
+                <ImageButton
+                    android:id="@+id/container_weather_location_collect_icon"
+                    android:src="@drawable/ic_collected"
+                    android:layout_width="@dimen/flag_icon_size"
+                    android:layout_height="@dimen/flag_icon_size"
+                    android:background="@android:color/transparent"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/container_weather_location_text_live"
+                    android:layout_toLeftOf="@id/container_weather_location_collect_icon"
+                    android:layout_centerVertical="true"
+                    style="@style/content_text"
+                    tools:text="青岛"
+                    tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/container_weather_overviewTitle"
+                android:text="@string/week_weather"
+                android:layout_margin="@dimen/normal_margin"
+                android:textSize="@dimen/title_text_size"
+                style="@style/content_text" />
+
+            <wangdaye.com.geometricweather.view.widget.weatherView.WeekWeatherView
+                android:id="@+id/container_weather_weekWeatherView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorLine" />
+
+            <wangdaye.com.geometricweather.view.widget.weatherView.TrendView
+                android:id="@+id/container_weather_trendView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trend_view_height" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        style="@style/material_card">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/container_weather_lifeInfoTitle"
+                android:text="@string/life_details"
+                android:layout_margin="@dimen/normal_margin"
+                android:textSize="@dimen/title_text_size"
+                style="@style/content_text" />
+
+            <wangdaye.com.geometricweather.view.widget.weatherView.LifeInfoView
+                android:id="@+id/container_weather_lifeInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

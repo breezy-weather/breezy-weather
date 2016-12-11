@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_temperature_daily"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/trend_view_height">
+
+    <wangdaye.com.geometricweather.view.widget.weatherView.DailyView
+        android:id="@+id/container_temperature_daily_trendView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trend_view_height" />
+
+    <RelativeLayout
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normal_margin"
+        tools:ignore="RelativeOverlap,RtlHardcoded">
+
+        <TextView
+            android:id="@+id/container_temperature_daily_darkTabTxt"
+            android:text="@string/mini_temp"
+            android:layout_marginRight="@dimen/little_margin"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/content_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/container_temperature_daily_darkTabIcon"
+            android:src="@drawable/ic_chart_dark_tab"
+            android:layout_toLeftOf="@id/container_temperature_daily_darkTabTxt"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginRight="@dimen/little_margin"
+            android:layout_centerVertical="true"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/container_temperature_daily_lightTabTxt"
+            android:text="@string/maxi_temp"
+            android:layout_toLeftOf="@id/container_temperature_daily_darkTabIcon"
+            android:layout_marginRight="@dimen/little_margin"
+            android:textSize="@dimen/content_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/container_temperature_daily_lightTabIcon"
+            android:layout_toLeftOf="@id/container_temperature_daily_lightTabTxt"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_chart_light_tab"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginRight="@dimen/little_margin"
+            tools:ignore="ContentDescription" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

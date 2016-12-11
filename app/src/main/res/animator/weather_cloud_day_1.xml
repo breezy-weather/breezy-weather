@@ -1,0 +1,17 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="sequentially" >
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="900"
+        android:valueFrom="0"
+        android:valueTo="-20" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:interpolator="@android:anim/overshoot_interpolator"
+        android:duration="900"
+        android:valueFrom="-20"
+        android:valueTo="0" />
+
+</set>

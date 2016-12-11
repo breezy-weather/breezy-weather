@@ -1,0 +1,147 @@
+<resources>
+    <!-- app. -->
+    <string name="app_name">天气</string>
+    <string name="geometric_weather">Geometric Weather</string>
+    <string name="package_name">wangdaye.com.geometricweather</string>
+    <string name="version_code">v4.6.8</string>
+
+    <!-- keyword. -->
+    <string name="local">本地</string>
+    <string name="default_location">默认位置</string>
+    <string name="live">实时</string>
+    <string name="refresh_at">更新于</string>
+    <string name="pm_25">PM2.5</string>
+    <string name="pm_10">PM10</string>
+    <string name="pm_level">颗粒物等级</string>
+    <string name="humidity">湿度</string>
+    <string name="uv">紫外线</string>
+    <string name="dressing_index">穿衣指数</string>
+    <string name="cold_index">感冒指数</string>
+    <string name="aqi">空气质量</string>
+    <string name="wash_car_index">洗车指数</string>
+    <string name="exercise_index">运动指数</string>
+    <string name="visibility">能见度</string>
+    <string name="sun_rise">日出</string>
+    <string name="sun_fall">日落</string>
+    <string name="apparent_temp">体感温度</string>
+    <string name="maxi_temp">高温</string>
+    <string name="mini_temp">低温</string>
+    <string name="temp">温度</string>
+    <string name="pops">降水概率</string>
+    <string name="yesterday_data">昨日气温</string>
+    <string name="time">时间</string>
+    <string name="level">级</string>
+    <string name="air">空气</string>
+    <string name="day">白天</string>
+    <string name="night">夜间</string>
+
+    <string name="yesterday">昨日</string>
+    <string name="today">今日</string>
+    <string name="tomorrow">明日</string>
+    <string name="week">周</string>
+    <string name="week_1">周一</string>
+    <string name="week_2">周二</string>
+    <string name="week_3">周三</string>
+    <string name="week_4">周四</string>
+    <string name="week_5">周五</string>
+    <string name="week_6">周六</string>
+    <string name="week_7">周日</string>
+
+    <string name="week_weather">天气概览</string>
+    <string name="life_details">生活信息</string>
+
+    <string name="next">下一步</string>
+    <string name="done">完成</string>
+    <string name="cancel">取消</string>
+    <string name="on">开启</string>
+    <string name="off">关闭</string>
+
+    <string name="about_app">概览</string>
+    <string name="introduce">介绍</string>
+    <string name="email">E-mail</string>
+    <string name="gitHub">GitHub</string>
+    <string name="thanks">鸣谢</string>
+
+    <!-- about. -->
+    <string name="baidu_location">Baidu Location</string>
+    <string name="juhe_weather">Juhe.cn</string>
+    <string name="hefeng_weather">HeWeather.com</string>
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">授权</string>
+    <string name="feedback_request_location_permission_success">获取位置权限成功</string>
+    <string name="feedback_request_location_permission_failed">获取位置权限失败</string>
+
+    <string name="feedback__location_failed">定位失败，请检查权限和网络连接</string>
+    <string name="feedback_get_weather_failed">获取天气数据失败</string>
+
+    <string name="feedback_first_refresh_widget">小部件第一次刷新数据可能会有些慢</string>
+    <string name="feedback_use_local_as_example">以默认位置天气为例，以实际所选地址为准</string>
+    <string name="feedback_choose_location">选择位置</string>
+    <string name="feedback_show_widget_card">卡片背景</string>
+    <string name="feedback_dark_widget_card">暗色卡片</string>
+    <string name="feedback_hide_refresh_time">隐藏刷新时间</string>
+    <string name="feedback_black_text">暗色字体</string>
+
+    <string name="feedback_no_data">暂无数据</string>
+
+    <string name="feedback_collect_failed">地址已存在</string>
+    <string name="feedback_collect_succeed">收藏成功</string>
+    <string name="feedback_delete_succeed">删除成功</string>
+    <string name="feedback_location_list_cannot_be_null">收藏地址不能为空</string>
+
+    <string name="feedback_search_location">搜索城市（市级）</string>
+    <string name="feedback_search_null">地址为空</string>
+
+    <string name="feedback_refresh_notification_after_back">返回主页后刷新通知</string>
+    <string name="feedback_refresh_notification_now">立即刷新通知</string>
+    <string name="feedback_refresh_ui_after_refresh">下次刷新后生效</string>
+    <string name="feedback_restart">重启后生效</string>
+
+    <!-- action -->
+    <string name="action_manage">地址管理</string>
+    <string name="action_settings">设置</string>
+    <string name="action_about">关于</string>
+
+    <!-- widget -->
+    <string name="widget_day">@string/today</string>
+    <string name="widget_week">一周</string>
+    <string name="widget_day_week">今日+一周</string>
+    <string name="widget_clock_day">时钟+今日</string>
+    <string name="widget_clock_day_center">时钟+今日(轴对称)</string>
+    <string name="widget_clock_day_week">时钟+今日+一周</string>
+    <string name="wait_refresh">等待更新</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_ui">界面</string>
+    <string name="settings_title_navigationBar_color">导航栏着色</string>
+    <string name="settings_navigationBar_color_on">导航栏显示主题颜色</string>
+    <string name="settings_navigationBar_color_off">导航栏显示黑色</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_category_forecast">预报</string>
+    <string name="settings_title_forecast_today">定时预报(今日天气)</string>
+    <string name="settings_title_forecast_today_time">设定预报时间(今日天气)</string>
+    <string name="settings_title_forecast_tomorrow">定时预报(明日天气)</string>
+    <string name="settings_title_forecast_tomorrow_time">设定预报时间(明日天气)</string>
+    <string name="settings_category_notification">通知</string>
+    <string name="settings_title_notification">开启天气通知</string>
+    <string name="settings_title_notification_text_color">天气通知字体颜色</string>
+    <string name="settings_title_notification_background">天气通知背景着色</string>
+    <string name="settings_notification_background_on">与原生ROM下拉菜单同色</string>
+    <string name="settings_notification_background_off">跟随系统默认</string>
+    <string name="settings_title_notification_can_be_cleared">天气通知可被清除</string>
+    <string name="settings_notification_can_be_cleared_on">可被清除</string>
+    <string name="settings_notification_can_be_cleared_off">常驻通知栏</string>
+    <string name="settings_title_notification_hide_icon">隐藏通知图标</string>
+    <string name="settings_notification_hide_icon_on">隐藏通知图标</string>
+    <string name="settings_notification_hide_icon_off">显示通知图标</string>
+    <string name="settings_title_notification_hide_in_lockScreen">隐藏锁屏通知(5.0+)</string>
+    <string name="settings_notification_hide_in_lockScreen_on">在锁屏界面隐藏(需在系统设置中隐藏敏感通知)</string>
+    <string name="settings_notification_hide_in_lockScreen_off">在锁屏界面显示通知</string>
+
+</resources>

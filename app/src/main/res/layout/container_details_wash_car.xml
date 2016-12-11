@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_details_wash_car"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/container_details_wash_car_icon"
+        android:src="@drawable/ic_wash_car"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        style="@style/material_icon"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/container_details_wash_car_title"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/container_details_wash_car_icon"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginRight="@dimen/normal_margin"
+        android:textSize="@dimen/title_text_size"
+        style="@style/content_text"
+        tools:text="洗车指数-较适宜"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/container_details_wash_car_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/container_details_wash_car_icon"
+        android:layout_below="@id/container_details_wash_car_title"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="@dimen/normal_margin"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:textColor="@color/colorTextGrey"
+        style="@style/content_text"
+        tools:text="较适宜洗车，未来一天无雨，风力较小，擦洗一新的汽车至少能保持一天。"
+        tools:ignore="RtlHardcoded" />
+
+</RelativeLayout>

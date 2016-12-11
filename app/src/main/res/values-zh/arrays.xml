@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- language. -->
+    <string-array name="languages">
+        <item>跟随系统</item>
+        <item>中文</item>
+        <item>English</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>深色</item>
+        <item>灰色</item>
+        <item>亮色</item>
+    </string-array>
+
+</resources>

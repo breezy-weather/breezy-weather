@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_week"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/cardview_dark_background">
+
+    <ImageView
+        android:id="@+id/widget_week_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="DisableBaselineAlignment">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_week_week_1"
+                android:text="@string/wait_refresh"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="青岛市" />
+
+            <ImageView
+                android:id="@+id/widget_week_icon_1"
+                android:layout_width="@dimen/widget_week_icon_size"
+                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_below="@id/widget_week_week_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/widget_week_temp_1"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_below="@id/widget_week_icon_1"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="4/9°" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_week_week_2"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="周三" />
+
+            <ImageView
+                android:id="@+id/widget_week_icon_2"
+                android:layout_width="@dimen/widget_week_icon_size"
+                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_below="@id/widget_week_week_2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/widget_week_temp_2"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_below="@id/widget_week_icon_2"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="4/9°" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_week_week_3"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="周四" />
+
+            <ImageView
+                android:id="@+id/widget_week_icon_3"
+                android:layout_width="@dimen/widget_week_icon_size"
+                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_below="@id/widget_week_week_3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/widget_week_temp_3"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_below="@id/widget_week_icon_3"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="4/9°" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_week_week_4"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="周五" />
+
+            <ImageView
+                android:id="@+id/widget_week_icon_4"
+                android:layout_width="@dimen/widget_week_icon_size"
+                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_below="@id/widget_week_week_4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/widget_week_temp_4"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_below="@id/widget_week_icon_4"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="4/9°" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_week_week_5"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="周六" />
+
+            <ImageView
+                android:id="@+id/widget_week_icon_5"
+                android:layout_width="@dimen/widget_week_icon_size"
+                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_below="@id/widget_week_week_5"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:src="@drawable/weather_cloudy"
+                tools:src="@drawable/weather_sun_day"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/widget_week_temp_5"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:layout_below="@id/widget_week_icon_5"
+                android:layout_centerHorizontal="true"
+                style="@style/content_text"
+                tools:text="4/9°" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/widget_week_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

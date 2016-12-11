@@ -1,0 +1,174 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <!-- app. -->
+    <string name="app_name">Weather</string>
+    <string name="geometric_weather">Geometric Weather</string>
+    <string name="package_name">wangdaye.com.geometricweather</string>
+    <string name="version_code">v4.6.9</string>
+
+    <!-- keyword. -->
+    <string name="local">local</string>
+    <string name="default_location">default location</string>
+    <string name="live">live</string>
+    <string name="refresh_at">refresh at</string>
+    <string name="pm_25">PM2.5</string>
+    <string name="pm_10">PM10</string>
+    <string name="pm_level">quality</string>
+    <string name="humidity">humidity</string>
+    <string name="uv">uv</string>
+    <string name="dressing_index">dressing index</string>
+    <string name="cold_index">cold index</string>
+    <string name="aqi">AQI</string>
+    <string name="wash_car_index">carwash index</string>
+    <string name="exercise_index">exercise index</string>
+    <string name="visibility">visibility</string>
+    <string name="sun_rise">sunrise</string>
+    <string name="sun_fall">sunset</string>
+    <string name="apparent_temp">apparent temperature</string>
+    <string name="maxi_temp">daytime</string>
+    <string name="mini_temp">nighttime</string>
+    <string name="temp">temperature</string>
+    <string name="pops">precipitation</string>
+    <string name="yesterday_data">temperature of yesterday</string>
+    <string name="time">time</string>
+    <string name="level"> </string>
+    <string name="air">air</string>
+    <string name="day">daytime</string>
+    <string name="night">nighttime</string>
+
+    <string name="yesterday">yday</string>
+    <string name="today">today</string>
+    <string name="tomorrow">twm</string>
+    <string name="week">week</string>
+    <string name="week_1">MON</string>
+    <string name="week_2">TUE</string>
+    <string name="week_3">WED</string>
+    <string name="week_4">THU</string>
+    <string name="week_5">FRI</string>
+    <string name="week_6">SAT</string>
+    <string name="week_7">SUN</string>
+
+    <string name="week_weather">overview</string>
+    <string name="life_details">details</string>
+
+    <string name="next">NEST</string>
+    <string name="done">DONE</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+
+    <string name="about_app">ABOUT APP</string>
+    <string name="introduce">introduce</string>
+    <string name="email">E-mail</string>
+    <string name="gitHub">GitHub</string>
+    <string name="thanks">THX</string>
+
+    <!-- about. -->
+    <string name="baidu_location">Baidu Location</string>
+    <string name="juhe_weather">Juhe.cn</string>
+    <string name="hefeng_weather">HeWeather.com</string>
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">Permissions</string>
+    <string name="feedback_request_location_permission_success">Request location permission success.</string>
+    <string name="feedback_request_location_permission_failed">Request location permission failed.</string>
+
+    <string name="feedback__location_failed">Location failed.</string>
+    <string name="feedback_get_weather_failed">Request weather data failed.</string>
+
+    <string name="feedback_first_refresh_widget">For the first time to refresh widget might be a bit slow.</string>
+    <string name="feedback_use_local_as_example">The local weather information is a sample.</string>
+    <string name="feedback_choose_location">Choose a location.</string>
+    <string name="feedback_show_widget_card">Card background.</string>
+    <string name="feedback_dark_widget_card">Dark card.</string>
+    <string name="feedback_hide_refresh_time">Hide refresh time.</string>
+    <string name="feedback_black_text">Dark text.</string>
+
+    <string name="feedback_no_data">NO DATA</string>
+
+    <string name="feedback_collect_failed">This location already exists.</string>
+    <string name="feedback_collect_succeed">Add location success.</string>
+    <string name="feedback_delete_succeed">Delete location success.</string>
+    <string name="feedback_location_list_cannot_be_null">The collections can not be null.</string>
+
+    <string name="feedback_search_location">Search a location…</string>
+    <string name="feedback_search_null">Location is null.</string>
+
+    <string name="feedback_refresh_notification_after_back">Take effect when back to home page.</string>
+    <string name="feedback_refresh_notification_now">Refresh now.</string>
+    <string name="feedback_refresh_ui_after_refresh">Take effect when refresh data.</string>
+    <string name="feedback_restart">Take effect when restart.</string>
+
+    <!-- action -->
+    <string name="action_manage">Management</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_about">About</string>
+
+    <!-- widget -->
+    <string name="widget_day">@string/today</string>
+    <string name="widget_week">Week</string>
+    <string name="widget_day_week">Daily+Week</string>
+    <string name="widget_clock_day">Clock+Daily</string>
+    <string name="widget_clock_day_center">Clock+Daily2</string>
+    <string name="widget_clock_day_week">Clock+Daily2+Week</string>
+    <string name="wait_refresh">waiting</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_ui">UI</string>
+    <string name="settings_title_navigationBar_color">Navigation bar color.</string>
+    <string name="settings_navigationBar_color_on">Show theme color.</string>
+    <string name="settings_navigationBar_color_off">Dark.</string>
+    <string name="settings_language">Language.</string>
+    <string name="settings_category_forecast">Forecast</string>
+    <string name="settings_title_forecast_today">Forecast for today.</string>
+    <string name="settings_title_forecast_today_time">Forecast time for today.</string>
+    <string name="settings_title_forecast_tomorrow">Forecast for tomorrow.</string>
+    <string name="settings_title_forecast_tomorrow_time">Forecast time for tomorrow.</string>
+    <string name="settings_category_widget">Widget</string>
+    <string name="settings_category_notification">Notification</string>
+    <string name="settings_title_notification">Send notification.</string>
+    <string name="settings_title_notification_text_color">Text color.</string>
+    <string name="settings_title_notification_background">Background color.</string>
+    <string name="settings_notification_background_on">Same as control center in AOSP.</string>
+    <string name="settings_notification_background_off">Follow system.</string>
+    <string name="settings_title_notification_can_be_cleared">Can clear.</string>
+    <string name="settings_notification_can_be_cleared_on">Can clear.</string>
+    <string name="settings_notification_can_be_cleared_off">Can not clear.</string>
+    <string name="settings_title_notification_hide_icon">Hide notification icon.</string>
+    <string name="settings_notification_hide_icon_on">Hide.</string>
+    <string name="settings_notification_hide_icon_off">Show.</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Hide in lock screen. (5.0+)</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Hide (need to open in the system settings).</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Show.</string>
+
+    <!--share preference-->
+    <string name="sp_widget_day_setting">widget_day_setting</string>
+    <string name="sp_widget_week_setting">widget_week_setting</string>
+    <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
+    <string name="sp_widget_clock_day_setting">widget_clock_day_setting</string>
+    <string name="sp_widget_clock_day_center_setting">widget_clock_day_center_setting</string>
+    <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
+    <string name="key_location">name</string>
+    <string name="key_show_card">showCard</string>
+    <string name="key_hide_refresh_time">show_refresh_time</string>
+    <string name="key_black_text">black_text</string>
+    <string name="key_share_uri">share_uri</string>
+    <string name="key_navigationBar_color">navigation_bar_color_switch</string>
+    <string name="key_language">language</string>
+    <string name="key_forecast_today">timing_forecast_switch_today</string>
+    <string name="key_forecast_today_time">forecast_time_today</string>
+    <string name="key_forecast_tomorrow">timing_forecast_switch_tomorrow</string>
+    <string name="key_forecast_tomorrow_time">forecast_time_tomorrow</string>
+    <string name="key_notification">notification_switch</string>
+    <string name="key_notification_text_color">notification_text_color</string>
+    <string name="key_notification_background">notification_background_color_switch</string>
+    <string name="key_notification_can_be_cleared">notification_can_clear_switch</string>
+    <string name="key_notification_hide_icon">hide_notification_icon</string>
+    <string name="key_notification_hide_in_lockScreen">hide_notification_in_lockScreen</string>
+
+</resources>

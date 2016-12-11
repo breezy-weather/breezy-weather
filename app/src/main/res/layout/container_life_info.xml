@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/container_details_wind" />
+    <include layout="@layout/container_details_pm" />
+    <include layout="@layout/container_details_humidity" />
+    <include layout="@layout/container_details_uv" />
+    <include layout="@layout/container_details_dress" />
+    <include layout="@layout/container_details_cold" />
+    <include layout="@layout/container_details_aqi" />
+    <include layout="@layout/container_details_wash_car" />
+    <include layout="@layout/container_details_exercise" />
+
+</LinearLayout>

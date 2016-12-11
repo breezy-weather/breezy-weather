@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <!-- language. -->
+    <string-array name="languages">
+        <item>Follow system</item>
+        <item>中文</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="language_values">
+        <item>follow_system</item>
+        <item>chinese</item>
+        <item>english</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Dark</item>
+        <item>Grey</item>
+        <item>Light</item>
+    </string-array>
+    <string-array name="notification_text_color_values">
+        <item>dark</item>
+        <item>grey</item>
+        <item>light</item>
+    </string-array>
+
+</resources>

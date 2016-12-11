@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notification_big"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <include layout="@layout/notification_base" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="92dp">
+
+        <FrameLayout
+            android:id="@+id/notification_big_background"
+            android:background="@color/colorNotificationBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="DisableBaselineAlignment">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/notification_big_week_1"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="周二" />
+
+                <TextView
+                    android:id="@+id/notification_big_temp_1"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="3/9°" />
+
+                <ImageView
+                    android:id="@+id/notification_big_icon_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/notification_big_week_1"
+                    android:layout_above="@id/notification_big_temp_1"
+                    tools:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/notification_big_week_2"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="周二" />
+
+                <TextView
+                    android:id="@+id/notification_big_temp_2"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="3/9°" />
+
+                <ImageView
+                    android:id="@+id/notification_big_icon_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/notification_big_week_2"
+                    android:layout_above="@id/notification_big_temp_2"
+                    tools:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/notification_big_week_3"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="周二" />
+
+                <TextView
+                    android:id="@+id/notification_big_temp_3"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="3/9°" />
+
+                <ImageView
+                    android:id="@+id/notification_big_icon_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/notification_big_week_3"
+                    android:layout_above="@id/notification_big_temp_3"
+                    tools:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/notification_big_week_4"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="周二" />
+
+                <TextView
+                    android:id="@+id/notification_big_temp_4"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="3/9°" />
+
+                <ImageView
+                    android:id="@+id/notification_big_icon_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/notification_big_week_4"
+                    android:layout_above="@id/notification_big_temp_4"
+                    tools:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/notification_big_week_5"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="周二" />
+
+                <TextView
+                    android:id="@+id/notification_big_temp_5"
+                    android:textSize="@dimen/content_text_size"
+                    android:textColor="@color/colorTextLight2nd"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="@dimen/little_margin"
+                    style="@style/content_text"
+                    tools:text="3/9°" />
+
+                <ImageView
+                    android:id="@+id/notification_big_icon_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/notification_big_week_5"
+                    android:layout_above="@id/notification_big_temp_5"
+                    tools:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

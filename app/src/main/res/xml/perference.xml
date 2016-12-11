@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/action_settings" >
+
+    <PreferenceCategory
+        android:title="@string/settings_category_ui"
+        android:layout="@layout/preference_category" >
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_navigationBar_color"
+            android:key="@string/key_navigationBar_color"
+            android:summaryOn="@string/settings_navigationBar_color_on"
+            android:summaryOff="@string/settings_navigationBar_color_off" />
+
+        <ListPreference
+            android:title="@string/settings_language"
+            android:key="@string/key_language"
+            android:entries="@array/languages"
+            android:entryValues="@array/language_values"
+            android:dialogTitle="@string/settings_language"
+            android:defaultValue="follow_system" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_category_forecast"
+        android:layout="@layout/preference_category" >
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_forecast_today"
+            android:key="@string/key_forecast_today"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
+        <Preference
+            android:title="@string/settings_title_forecast_today_time"
+            android:key="@string/key_forecast_today_time" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_forecast_tomorrow"
+            android:key="@string/key_forecast_tomorrow"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
+        <Preference
+            android:title="@string/settings_title_forecast_tomorrow_time"
+            android:key="@string/key_forecast_tomorrow_time" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_category_notification"
+        android:layout="@layout/preference_category" >
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_notification"
+            android:key="@string/key_notification"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
+        <ListPreference
+            android:title="@string/settings_title_notification_text_color"
+            android:key="@string/key_notification_text_color"
+            android:entries="@array/notification_text_colors"
+            android:entryValues="@array/notification_text_color_values"
+            android:dialogTitle="@string/settings_title_notification_text_color"
+            android:defaultValue="grey" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_notification_background"
+            android:key="@string/key_notification_background"
+            android:summaryOn="@string/settings_notification_background_on"
+            android:summaryOff="@string/settings_notification_background_off" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_notification_can_be_cleared"
+            android:key="@string/key_notification_can_be_cleared"
+            android:summaryOn="@string/settings_notification_can_be_cleared_on"
+            android:summaryOff="@string/settings_notification_can_be_cleared_off" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_notification_hide_icon"
+            android:key="@string/key_notification_hide_icon"
+            android:summaryOn="@string/settings_notification_hide_icon_on"
+            android:summaryOff="@string/settings_notification_hide_icon_off" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_notification_hide_in_lockScreen"
+            android:key="@string/key_notification_hide_in_lockScreen"
+            android:summaryOn="@string/settings_notification_hide_in_lockScreen_on"
+            android:summaryOff="@string/settings_notification_hide_in_lockScreen_off" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

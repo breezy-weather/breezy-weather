@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="sequentially" >
+
+    <objectAnimator
+        android:propertyName="translationY"
+        android:duration="900"
+        android:valueFrom="-50"
+        android:valueTo="-50" />
+
+    <objectAnimator
+        android:propertyName="translationY"
+        android:interpolator="@android:anim/bounce_interpolator"
+        android:duration="500"
+        android:valueFrom="-50"
+        android:valueTo="0" />
+
+</set>

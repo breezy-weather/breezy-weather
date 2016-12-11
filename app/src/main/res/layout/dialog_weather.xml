@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_weather_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/dialog_weather_container_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:id="@+id/dialog_weather_icon_day_3"
+                android:layout_width="@dimen/flag_icon_size"
+                android:layout_height="@dimen/flag_icon_size"
+                android:layout_margin="@dimen/normal_margin"
+                tools:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/dialog_weather_icon_day_2"
+                android:layout_width="@dimen/flag_icon_size"
+                android:layout_height="@dimen/flag_icon_size"
+                android:layout_margin="@dimen/normal_margin"
+                tools:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/dialog_weather_icon_day_1"
+                android:layout_width="@dimen/flag_icon_size"
+                android:layout_height="@dimen/flag_icon_size"
+                android:layout_margin="@dimen/normal_margin"
+                tools:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/dialog_weather_text_day"
+                android:layout_toRightOf="@id/dialog_weather_icon_day_1"
+                android:layout_centerVertical="true"
+                style="@style/content_text"
+                tools:text="阴 19℃\n东北风3-4级"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dialog_weather_container_night"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:id="@+id/dialog_weather_icon_night_3"
+                android:layout_width="@dimen/flag_icon_size"
+                android:layout_height="@dimen/flag_icon_size"
+                android:layout_margin="@dimen/normal_margin"
+                tools:src="@drawable/weather_sun_night"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/dialog_weather_icon_night_2"
+                android:layout_width="@dimen/flag_icon_size"
+                android:layout_height="@dimen/flag_icon_size"
+                android:layout_margin="@dimen/normal_margin"
+                tools:src="@drawable/weather_sun_night"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/dialog_weather_icon_night_1"
+                android:layout_width="@dimen/flag_icon_size"
+                android:layout_height="@dimen/flag_icon_size"
+                android:layout_margin="@dimen/normal_margin"
+                tools:src="@drawable/weather_sun_night"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/dialog_weather_text_night"
+                android:layout_toRightOf="@id/dialog_weather_icon_night_1"
+                android:layout_centerVertical="true"
+                style="@style/content_text"
+                tools:text="晴 9℃\n东北风3-4级"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/dialog_weather_sunriseContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/normal_margin"
+                android:layout_centerVertical="true"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView
+                    android:id="@+id/dialog_weather_sunriseIcon"
+                    android:src="@drawable/ic_sunrise"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="0dp"
+                    style="@style/material_icon"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/dialog_weather_sunrise"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/dialog_weather_sunriseIcon"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/little_margin"
+                    style="@style/subtitle_text"
+                    tools:text="05:45"
+                    tools:ignore="RtlHardcoded" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/dialog_weather_sunriseContainer"
+                android:layout_margin="@dimen/normal_margin"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView
+                    android:id="@+id/dialog_weather_sunset_icon"
+                    android:src="@drawable/ic_sunset"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="0dp"
+                    style="@style/material_icon"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/dialog_weather_sunset"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/dialog_weather_sunset_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/little_margin"
+                    style="@style/subtitle_text"
+                    tools:text="17:45"
+                    tools:ignore="RtlHardcoded" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/dialog_weather_button"
+                android:text="@string/done"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorAccent"
+                style="@style/material_button"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

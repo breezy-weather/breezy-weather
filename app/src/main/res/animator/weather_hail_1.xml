@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="sequentially" >
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="225"
+        android:valueFrom="0"
+        android:valueTo="10" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="225"
+        android:valueFrom="10"
+        android:valueTo="-10" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="110"
+        android:valueFrom="-10"
+        android:valueTo="20" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="115"
+        android:valueFrom="20"
+        android:valueTo="-20" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="110"
+        android:valueFrom="-10"
+        android:valueTo="20" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="115"
+        android:valueFrom="20"
+        android:valueTo="-20" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="110"
+        android:valueFrom="-10"
+        android:valueTo="20" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="115"
+        android:valueFrom="20"
+        android:valueTo="-20" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="110"
+        android:valueFrom="-20"
+        android:valueTo="20" />
+
+    <objectAnimator
+        android:propertyName="translationX"
+        android:duration="115"
+        android:valueFrom="20"
+        android:valueTo="0" />
+
+</set>

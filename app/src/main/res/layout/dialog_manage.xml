@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_manage_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="0dp"
+            app:cardCornerRadius="0dp"
+            style="@style/material_card">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="2dp"
+                tools:ignore="UnusedAttribute">
+
+                <ImageView
+                    android:id="@+id/dialog_manage_search_icon"
+                    android:src="@drawable/ic_search"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    style="@style/material_icon"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <EditText
+                    android:id="@+id/dialog_manage_search_text"
+                    android:hint="@string/feedback_search_location"
+                    android:textSize="@dimen/content_text_size"
+                    android:layout_toRightOf="@id/dialog_manage_search_icon"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    tools:ignore="RtlHardcoded" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dialog_manage_recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="420dp" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_location"
+    android:layout_margin="0dp"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    style="@style/material_card">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_location_num"
+            android:textSize="@dimen/title_text_size"
+            android:textColor="@color/colorTextGrey"
+            android:layout_margin="@dimen/normal_margin"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            style="@style/content_text"
+            tools:text="1"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/item_location_text"
+            android:layout_toRightOf="@id/item_location_num"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:maxLines="1"
+            style="@style/content_text"
+            tools:text="青岛"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+
+
