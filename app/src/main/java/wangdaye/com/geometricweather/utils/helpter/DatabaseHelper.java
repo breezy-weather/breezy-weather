@@ -19,6 +19,7 @@ import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
+import wangdaye.com.geometricweather.utils.SafeHandler;
 
 /**
  * Database helper
@@ -91,8 +92,8 @@ public class DatabaseHelper {
 
     // city.
 
-    public void writeCityList(CityListResult result) {
-        CityEntity.insertCityList(getDatabase(), result);
+    public void writeCityList(SafeHandler handler, CityListResult result) {
+        CityEntity.insertCityList(getDatabase(), handler, result);
     }
 
     public boolean isNeedWriteCityList() {
@@ -137,8 +138,8 @@ public class DatabaseHelper {
 
     // oversea city.
 
-    public void writeOverseaCityList(OverseaCityListResult result) {
-        OverseaCityEntity.insertOverseaCityList(getDatabase(), result);
+    public void writeOverseaCityList(SafeHandler handler, OverseaCityListResult result) {
+        OverseaCityEntity.insertOverseaCityList(getDatabase(), handler, result);
     }
 
     public boolean isNeedWriteOverseaCityList() {

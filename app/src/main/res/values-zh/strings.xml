@@ -1,9 +1,6 @@
 <resources>
     <!-- app. -->
     <string name="app_name">天气</string>
-    <string name="geometric_weather">Geometric Weather</string>
-    <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v4.6.8</string>
 
     <!-- keyword. -->
     <string name="local">本地</string>

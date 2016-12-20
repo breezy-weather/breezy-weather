@@ -11,6 +11,9 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.result.OverseaCityListResult;
+import wangdaye.com.geometricweather.utils.SafeHandler;
+import wangdaye.com.geometricweather.view.activity.MainActivity;
+
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -69,7 +72,7 @@ public class OverseaCityEntity {
 
     // insert.
 
-    public static void insertOverseaCityList(SQLiteDatabase database, OverseaCityListResult result) {
+    public static void insertOverseaCityList(SQLiteDatabase database, SafeHandler handler, OverseaCityListResult result) {
         if (result == null) {
             return;
         }
@@ -80,6 +83,9 @@ public class OverseaCityEntity {
                 .getOverseaCityEntityDao();
         for (int i = 0; i < result.city_info.size(); i ++) {
             dao.insert(buildOverseaCityEntity(result.city_info.get(i)));
+            if (i % 100 == 0) {
+                handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 55 + i / 100).sendToTarget();
+            }
         }
     }
 

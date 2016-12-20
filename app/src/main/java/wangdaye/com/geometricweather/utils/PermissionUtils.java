@@ -15,7 +15,6 @@ public class PermissionUtils {
     public static void requestLocationPermission(Activity a, int code) {
         a.requestPermissions(
                 new String[] {
-                        Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION},
                 code);

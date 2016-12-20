@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import wangdaye.com.geometricweather.data.entity.result.CityListResult;
 import wangdaye.com.geometricweather.data.entity.result.OverseaCityListResult;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
+import wangdaye.com.geometricweather.view.activity.MainActivity;
 
 /**
  * File utils.
@@ -21,16 +22,20 @@ public class FileUtils {
 
     /** <br> city list. */
 
-    public static void writeCityList(Context context) {
+    public static void writeCityList(Context context, SafeHandler handler) {
         String stringResult = readAssetFileToString(context, "cityList.txt");
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 5).sendToTarget();
         CityListResult result = new Gson().fromJson(stringResult, CityListResult.class);
-        DatabaseHelper.getInstance(context).writeCityList(result);
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 10).sendToTarget();
+        DatabaseHelper.getInstance(context).writeCityList(handler, result);
     }
 
-    public static void writeOverseaCityList(Context context) {
+    public static void writeOverseaCityList(Context context, SafeHandler handler) {
         String stringResult = readAssetFileToString(context, "overseaCityList.txt");
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 45).sendToTarget();
         OverseaCityListResult result = new Gson().fromJson(stringResult, OverseaCityListResult.class);
-        DatabaseHelper.getInstance(context).writeOverseaCityList(result);
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 55).sendToTarget();
+        DatabaseHelper.getInstance(context).writeOverseaCityList(handler, result);
     }
 
     private static String readAssetFileToString(Context context, String fileName) {

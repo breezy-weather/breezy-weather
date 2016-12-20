@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
@@ -18,6 +19,10 @@ import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 public class InitializingDialog extends GeoDialogFragment {
     // widget
     private CoordinatorLayout container;
+    private TextView textView;
+
+    // data
+    private String initTxt;
 
     /** <br> life cycle. */
 
@@ -26,7 +31,9 @@ public class InitializingDialog extends GeoDialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_initializing, null, false);
 
+        initTxt = getString(R.string.feedback_initializing);
         container = (CoordinatorLayout) view.findViewById(R.id.dialog_initializing_container);
+        textView = (TextView) view.findViewById(R.id.dialog_initializing_txt);
         setCancelable(false);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -37,5 +44,11 @@ public class InitializingDialog extends GeoDialogFragment {
     @Override
     public View getSnackbarContainer() {
         return container;
+    }
+
+    /** <br> UI. */
+
+    public void setProcess(int process) {
+        textView.setText(initTxt + " " + process + "%");
     }
 }

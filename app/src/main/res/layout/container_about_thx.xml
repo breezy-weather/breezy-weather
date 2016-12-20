@@ -10,27 +10,32 @@
         android:layout_margin="@dimen/normal_margin"
         style="@style/content_text" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/container_about_thx_location"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground">
 
-        <ImageView
-            android:id="@+id/container_about_thx_locationIcon"
-            android:src="@drawable/ic_location"
-            style="@style/material_icon"
-            tools:ignore="ContentDescription" />
-
         <TextView
             android:text="@string/baidu_location"
             android:textStyle="bold"
-            android:layout_toRightOf="@id/container_about_thx_locationIcon"
-            android:layout_centerVertical="true"
-            style="@style/content_text"
-            tools:ignore="RtlHardcoded" />
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="2dp"
+            style="@style/content_text" />
 
-    </RelativeLayout>
+        <TextView
+            android:text="http://lbsyun.baidu.com/index.php?title=android-locsdk"
+            android:textSize="@dimen/content_text_size"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            style="@style/subtitle_text"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/container_about_thx_retrofit"
@@ -76,6 +81,58 @@
 
         <TextView
             android:text="@string/about_glide"
+            android:textSize="@dimen/content_text_size"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            style="@style/subtitle_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_about_thx_gson"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <TextView
+            android:text="@string/gson"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="2dp"
+            style="@style/content_text" />
+
+        <TextView
+            android:text="@string/about_gson"
+            android:textSize="@dimen/content_text_size"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            style="@style/subtitle_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_about_thx_greenDAO"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <TextView
+            android:text="@string/greenDAO"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginBottom="2dp"
+            style="@style/content_text" />
+
+        <TextView
+            android:text="@string/about_greenDAO"
             android:textSize="@dimen/content_text_size"
             android:layout_marginLeft="@dimen/normal_margin"
             android:layout_marginRight="@dimen/normal_margin"

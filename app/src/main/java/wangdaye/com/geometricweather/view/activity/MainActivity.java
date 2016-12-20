@@ -24,6 +24,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
@@ -101,6 +103,10 @@ public class MainActivity extends GeoActivity
 
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int MANAGE_ACTIVITY = 2;
+
+    public static final int MESSAGE_WHAT_WRITING_CITY = 1;
+    public static final int MESSAGE_WHAT_WRITE_CITY_DONE = 2;
+    public static final int MESSAGE_WHAT_STARTUP_SEARVICE = 3;
 
     public static final String KEY_MAIN_ACTIVITY_LOCATION = "MAIN_ACTIVITY_LOCATION";
 
@@ -383,9 +389,9 @@ public class MainActivity extends GeoActivity
                     if (Build.VERSION.SDK_INT >= 25) {
                         ShortcutsManager.refreshShortcuts(MainActivity.this, locationList);
                     }
-                    FileUtils.writeCityList(MainActivity.this);
-                    FileUtils.writeOverseaCityList(MainActivity.this);
-                    handler.obtainMessage(1).sendToTarget();
+                    FileUtils.writeCityList(MainActivity.this, handler);
+                    FileUtils.writeOverseaCityList(MainActivity.this, handler);
+                    handler.obtainMessage(MESSAGE_WHAT_WRITE_CITY_DONE).sendToTarget();
                 }
             }).start();
         }
@@ -405,6 +411,15 @@ public class MainActivity extends GeoActivity
                 return;
             }
         }
+    }
+
+    private void startupService() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.obtainMessage(MESSAGE_WHAT_STARTUP_SEARVICE, locationNow).sendToTarget();
+            }
+        }, 500);
     }
 
     /** <br> permission. */
@@ -588,10 +603,7 @@ public class MainActivity extends GeoActivity
                 setRefreshing(false);
                 buildUI();
 
-                WidgetUtils.startupAllOfWidgetService(this, locationNow);
-                if (locationList.get(0).equals(locationNow)) {
-                    NotificationUtils.startupAllOfNotificationService(this);
-                }
+                startupService();
             } else {
                 setRefreshing(false);
             }
@@ -613,10 +625,7 @@ public class MainActivity extends GeoActivity
                 setRefreshing(false);
                 buildUI();
 
-                WidgetUtils.startupAllOfWidgetService(this, locationNow);
-                if (locationList.get(0).equals(locationNow)) {
-                    NotificationUtils.startupAllOfNotificationService(this);
-                }
+                startupService();
             } else {
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_get_weather_failed));
                 setRefreshing(false);
@@ -628,9 +637,27 @@ public class MainActivity extends GeoActivity
 
     @Override
     public void handleMessage(Message message) {
-        if (dialog != null) {
-            dialog.dismiss();
-            reset();
+        switch (message.what) {
+            case MESSAGE_WHAT_WRITING_CITY:
+                if (dialog != null) {
+                    dialog.setProcess((Integer) message.obj);
+                }
+                break;
+
+            case MESSAGE_WHAT_WRITE_CITY_DONE:
+                if (dialog != null) {
+                    dialog.dismiss();
+                    reset();
+                }
+                break;
+
+            case MESSAGE_WHAT_STARTUP_SEARVICE:
+                Location location = (Location) message.obj;
+                WidgetUtils.startupAllOfWidgetService(this, location);
+                if (locationList.get(0).equals(location)) {
+                    NotificationUtils.startupAllOfNotificationService(this);
+                }
+                break;
         }
     }
 }

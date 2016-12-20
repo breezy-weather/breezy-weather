@@ -14,8 +14,8 @@
 
         <com.github.rahatarmanahmed.cpv.CircularProgressView
             android:id="@+id/dialog_initializing_progress"
-            android:layout_width="@dimen/flag_icon_size"
-            android:layout_height="@dimen/flag_icon_size"
+            android:layout_width="@dimen/little_flag_icon_size"
+            android:layout_height="@dimen/little_flag_icon_size"
             android:layout_centerVertical="true"
             android:layout_margin="24dp"
             app:cpv_animAutostart="true"

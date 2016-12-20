@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -65,6 +66,30 @@ public abstract class GeoJobService extends JobService
     protected abstract void doRefresh(Location location);
 
     public void requestData(Location location) {
+        Weather weather = DatabaseHelper.getInstance(this).readWeather(location);
+        if (weather != null) {
+
+            Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+            String[] weatherDates = weather.base.date.split("-");
+            String[] weatherTimes = weather.base.time.split(":");
+
+            if (weatherDates[0].equals(String.valueOf(year))
+                    && weatherDates[1].equals(String.valueOf(month))
+                    && weatherDates[2].equals(String.valueOf(day))) {
+
+                if ((hour - Integer.parseInt(weatherTimes[0]) > 1)
+                        || (hour - Integer.parseInt(weatherTimes[0]) > 0 && minute > 5)) {
+                    requestWeatherSuccess(weather, location);
+                    return;
+                }
+            }
+        }
+
         initWeatherHelper();
         if(location.isLocal()) {
             if (location.isUsable()) {

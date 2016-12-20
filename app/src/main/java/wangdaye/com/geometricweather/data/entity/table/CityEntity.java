@@ -8,6 +8,8 @@ import org.greenrobot.greendao.annotation.Id;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.result.CityListResult;
+import wangdaye.com.geometricweather.utils.SafeHandler;
+import wangdaye.com.geometricweather.view.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +71,7 @@ public class CityEntity {
 
     // insert.
 
-    public static void insertCityList(SQLiteDatabase database, CityListResult result) {
+    public static void insertCityList(SQLiteDatabase database, SafeHandler handler, CityListResult result) {
         if (result == null) {
             return;
         }
@@ -78,8 +80,13 @@ public class CityEntity {
         CityEntityDao dao = new DaoMaster(database)
                 .newSession()
                 .getCityEntityDao();
+
         for (int i = 0; i < result.city_info.size(); i ++) {
             dao.insert(buildCityEntity(result.city_info.get(i)));
+
+            if (i % 100 == 0) {
+                handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 10 + i / 100).sendToTarget();
+            }
         }
     }
 

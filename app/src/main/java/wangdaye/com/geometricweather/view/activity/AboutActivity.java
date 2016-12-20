@@ -55,7 +55,6 @@ public class AboutActivity extends GeoActivity
         toolbar.setTitle(R.string.action_about);
         toolbar.setNavigationOnClickListener(this);
 
-
         ImageView appIcon = (ImageView) findViewById(R.id.container_about_app_appIcon);
         Glide.with(this)
                 .load(R.drawable.ic_launcher)
@@ -67,6 +66,8 @@ public class AboutActivity extends GeoActivity
         findViewById(R.id.container_about_thx_location).setOnClickListener(this);
         findViewById(R.id.container_about_thx_retrofit).setOnClickListener(this);
         findViewById(R.id.container_about_thx_glide).setOnClickListener(this);
+        findViewById(R.id.container_about_thx_gson).setOnClickListener(this);
+        findViewById(R.id.container_about_thx_greenDAO).setOnClickListener(this);
     }
 
     /** <br> interface. */
@@ -113,6 +114,20 @@ public class AboutActivity extends GeoActivity
                         new Intent(
                                 Intent.ACTION_VIEW,
                                 Uri.parse("https://github.com/bumptech/glide")));
+                break;
+
+            case R.id.container_about_thx_gson:
+                startActivity(
+                        new Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://github.com/google/gson")));
+                break;
+
+            case R.id.container_about_thx_greenDAO:
+                startActivity(
+                        new Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://github.com/greenrobot/greenDAO")));
                 break;
         }
     }
