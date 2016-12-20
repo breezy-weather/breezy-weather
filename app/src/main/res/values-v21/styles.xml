@@ -8,4 +8,14 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowEnterTransition">@transition/search_activity_enter</item>
+        <item name="android:windowReturnTransition">@transition/search_activity_return</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/search_activity_shared_enter</item>
+        <item name="android:windowSharedElementReturnTransition">@transition/search_activity_shared_return</item>
+    </style>
+
 </resources>

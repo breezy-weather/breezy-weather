@@ -8,19 +8,17 @@
     <!-- image. -->
     <dimen name="live_weather_icon_size">80dp</dimen>
     <dimen name="flag_icon_size">56dp</dimen>
-    <dimen name="share_week_icon_size">42dp</dimen>
+    <dimen name="little_flag_icon_size">42dp</dimen>
     <dimen name="widget_week_icon_size">36dp</dimen>
     <dimen name="material_icon_size">24dp</dimen>
 
     <!-- view. -->
-    <dimen name="nav_header_height">160dp</dimen>
-    <dimen name="week_view_height">100dp</dimen>
-    <dimen name="trend_view_height">240dp</dimen>
     <dimen name="spinner_drop_width">150dp</dimen>
     <dimen name="share_view_height">260dp</dimen>
     <dimen name="progress_view_size">36dp</dimen>
 
     <!-- text. -->
+    <dimen name="design_title_text_size">36sp</dimen>
     <dimen name="large_title_text_size">20sp</dimen>
     <dimen name="title_text_size">16sp</dimen>
     <dimen name="subtitle_text_size">12sp</dimen>

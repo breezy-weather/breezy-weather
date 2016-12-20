@@ -10,15 +10,14 @@ import java.util.List;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 
 /**
- * Geometric weather.
+ * Geometric realTimeWeather.
  * */
 
 public class GeometricWeather extends Application {
     // data
+    private List<GeoActivity> activityList;
     private boolean colorNavigationBar;
     private String language;
-
-    private List<GeoActivity> activityList;
 
     /** <br> life cycle. */
 

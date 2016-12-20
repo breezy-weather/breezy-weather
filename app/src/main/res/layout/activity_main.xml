@@ -18,17 +18,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.view.widget.weatherView.SkyView
+        <wangdaye.com.geometricweather.view.widget.weatherView.sky.SkyView
             android:id="@+id/activity_main_skyView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <android.support.v4.widget.SwipeRefreshLayout
+        <wangdaye.com.geometricweather.view.widget.VerticalSwipeRefreshView
             android:id="@+id/activity_main_refreshView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v4.widget.NestedScrollView
+            <wangdaye.com.geometricweather.view.widget.VerticalNestedScrollView
                 android:id="@+id/activity_main_scrollView"
                 android:scrollbars="none"
                 android:layout_width="match_parent"
@@ -36,9 +36,9 @@
 
                 <include layout="@layout/container_weather" />
 
-            </android.support.v4.widget.NestedScrollView>
+            </wangdaye.com.geometricweather.view.widget.VerticalNestedScrollView>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </wangdaye.com.geometricweather.view.widget.VerticalSwipeRefreshView>
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/activity_main_toolbar"

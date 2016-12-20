@@ -27,7 +27,12 @@ public class TodayForecastJobService extends GeoJobService {
     /** <br> life cycle. */
 
     @Override
-    public Location readSettings() {
+    protected String readSettings() {
+        return null;
+    }
+
+    @Override
+    protected Location readLocation(String locationName) {
         return DatabaseHelper.getInstance(this).readLocationList().get(0);
     }
 
@@ -37,15 +42,15 @@ public class TodayForecastJobService extends GeoJobService {
     }
 
     @Override
-    protected void updateView(Context context, Weather weather) {
+    public void updateView(Context context, Location location, Weather weather) {
         NotificationUtils.buildForecastAndSendIt(context, weather, true);
     }
 
     /** <br> interface. */
 
     @Override
-    public void requestWeatherSuccess(Weather weather, String locationName) {
-        super.requestWeatherSuccess(weather, locationName);
+    public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+        super.requestWeatherSuccess(weather, requestLocation);
         ((JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancel(SCHEDULE_CODE);
         ((JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE)).schedule(
                 new JobInfo.Builder(SCHEDULE_CODE, new ComponentName(getPackageName(), getClass().getName()))
@@ -54,12 +59,12 @@ public class TodayForecastJobService extends GeoJobService {
     }
 
     @Override
-    public void requestWeatherFailed(String locationName) {
+    public void requestWeatherFailed(Location requestLocation) {
         Toast.makeText(
                 this,
                 getString(R.string.feedback_get_weather_failed),
                 Toast.LENGTH_SHORT).show();
-        jobFinished(getJobParameters(), true);
+        jobFinished(getJobParameters(), false);
         ((JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancel(SCHEDULE_CODE);
         ((JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE)).schedule(
                 new JobInfo.Builder(SCHEDULE_CODE, new ComponentName(getPackageName(), getClass().getName()))

@@ -27,7 +27,12 @@ public class NotificationAlarmService extends GeoAlarmService {
     }
 
     @Override
-    protected Location readSettings() {
+    protected String readSettings() {
+        return null;
+    }
+
+    @Override
+    protected Location readLocation(String locationName) {
         return DatabaseHelper.getInstance(this).readLocationList().get(0);
     }
 
@@ -38,7 +43,7 @@ public class NotificationAlarmService extends GeoAlarmService {
     }
 
     @Override
-    public void updateView(Context context, Weather weather) {
+    public void updateView(Context context, Location location, Weather weather) {
         NotificationUtils.buildNotificationAndSendIt(context, weather);
     }
 }

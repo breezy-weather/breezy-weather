@@ -9,9 +9,8 @@
     <include layout="@layout/container_details_humidity" />
     <include layout="@layout/container_details_uv" />
     <include layout="@layout/container_details_dress" />
-    <include layout="@layout/container_details_cold" />
-    <include layout="@layout/container_details_aqi" />
-    <include layout="@layout/container_details_wash_car" />
     <include layout="@layout/container_details_exercise" />
+    <include layout="@layout/container_details_wash_car" />
+    <include layout="@layout/container_details_cold" />
 
 </LinearLayout>

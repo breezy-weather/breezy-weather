@@ -29,6 +29,7 @@ public class MainReceiver extends BroadcastReceiver {
                 if (sharedPreferences.getBoolean(context.getString(R.string.key_forecast_today), false)) {
                     NotificationUtils.startTomorrowForecastService(context);
                 }
+                
                 break;
         }
     }

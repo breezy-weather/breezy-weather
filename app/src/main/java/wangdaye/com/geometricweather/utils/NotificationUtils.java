@@ -24,8 +24,8 @@ import wangdaye.com.geometricweather.service.notification.alarm.TomorrowForecast
 import wangdaye.com.geometricweather.service.notification.job.NotificationJobService;
 import wangdaye.com.geometricweather.service.notification.job.TodayForecastJobService;
 import wangdaye.com.geometricweather.service.notification.job.TomorrowForecastJobService;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
-import wangdaye.com.geometricweather.view.activity.MainActivity;
 
 /**
  * Notification utils.
@@ -43,7 +43,7 @@ public class NotificationUtils {
             @Override
             public void run() {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
-                if(sharedPreferences.getBoolean(c.getString(R.string.key_notification), false)) {
+                if (sharedPreferences.getBoolean(c.getString(R.string.key_notification), false)) {
                     buildNotificationAndSendIt(c, location.weather);
                 }
             }
@@ -65,12 +65,12 @@ public class NotificationUtils {
                     NotificationUtils.startTomorrowForecastService(c);
                 }
             }
-        });
+        }).start();
     }
 
     public static void startNotificationService(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            JobSchedulerUtils.schedule(
+            JobScheduleUtils.schedule(
                     context,
                     NotificationJobService.class,
                     NotificationJobService.SCHEDULE_CODE);
@@ -81,7 +81,7 @@ public class NotificationUtils {
 
     public static void stopNotificationService(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            JobSchedulerUtils.cancel(context, NotificationJobService.SCHEDULE_CODE);
+            JobScheduleUtils.cancel(context, NotificationJobService.SCHEDULE_CODE);
         } else {
             NotificationAlarmService.cancelAlarmIntent(
                     context,
@@ -93,7 +93,7 @@ public class NotificationUtils {
     public static void startTodayForecastService(Context context) {
         stopTodayForecastService(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            JobSchedulerUtils.scheduleForecastMission(
+            JobScheduleUtils.scheduleForecastMission(
                     context,
                     TodayForecastJobService.class,
                     TodayForecastJobService.SCHEDULE_CODE,
@@ -105,7 +105,7 @@ public class NotificationUtils {
 
     public static void stopTodayForecastService(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            JobSchedulerUtils.cancel(context, TodayForecastJobService.SCHEDULE_CODE);
+            JobScheduleUtils.cancel(context, TodayForecastJobService.SCHEDULE_CODE);
         } else {
             NotificationAlarmService.cancelAlarmIntent(
                     context,
@@ -117,7 +117,7 @@ public class NotificationUtils {
     public static void startTomorrowForecastService(Context context) {
         stopTomorrowForecastService(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            JobSchedulerUtils.scheduleForecastMission(
+            JobScheduleUtils.scheduleForecastMission(
                     context,
                     TomorrowForecastJobService.class,
                     TomorrowForecastJobService.SCHEDULE_CODE,
@@ -129,7 +129,7 @@ public class NotificationUtils {
 
     public static void stopTomorrowForecastService(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            JobSchedulerUtils.cancel(context, TomorrowForecastJobService.SCHEDULE_CODE);
+            JobScheduleUtils.cancel(context, TomorrowForecastJobService.SCHEDULE_CODE);
         } else {
             NotificationAlarmService.cancelAlarmIntent(
                     context,
@@ -157,14 +157,14 @@ public class NotificationUtils {
         }
 
         long duration = 0;
-        if (NotificationUtils.isForecastTime(context, true)) {
+        if (NotificationUtils.isForecastTime(context, today)) {
             if (doNow) {
                 duration = 0;
             } else {
-                duration = 24 * 60 * 60 * 1000 + (settingsTime - realTime) * 60 * 1000;
+                duration = 24 * 60 * 60 * 1000 + (settingsTime - realTime);
             }
         } else if (realTime < settingsTime) {
-            duration = (settingsTime - realTime) * 60 * 1000;
+            duration = settingsTime - realTime;
         } else if (realTime > settingsTime) {
             duration = 24 * 60 * 60 * 1000 + (settingsTime - realTime);
         }
@@ -175,20 +175,15 @@ public class NotificationUtils {
     public static boolean isForecastTime(Context context, boolean today) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         Calendar calendar = Calendar.getInstance();
-        int realTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 *60 * 1000
-                + calendar.get(Calendar.MINUTE) * 60 * 1000
-                + calendar.get(Calendar.SECOND) * 1000;
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int min = calendar.get(Calendar.MINUTE);
 
         if (today) {
             String[] times = sharedPreferences.getString(context.getString(R.string.key_forecast_today_time), "07:00").split(":");
-            int settingsTime = Integer.parseInt(times[0]) * 60 * 60 * 1000
-                    + Integer.parseInt(times[1]) * 60 * 1000;
-            return Math.abs(realTime - settingsTime) <= 60 * 1000;
+            return Integer.parseInt(times[0]) == hour && Integer.parseInt(times[1]) == min;
         } else {
             String[] times = sharedPreferences.getString(context.getString(R.string.key_forecast_tomorrow_time), "21:00").split(":");
-            int settingsTime = Integer.parseInt(times[0]) * 60 * 60 * 1000
-                    + Integer.parseInt(times[1]) * 60 * 1000;
-            return Math.abs(realTime - settingsTime) <= 60 * 1000;
+            return Integer.parseInt(times[0]) == hour && Integer.parseInt(times[1]) == min;
         }
     }
 
@@ -199,7 +194,7 @@ public class NotificationUtils {
             return;
         }
 
-        // get sp & weather.
+        // get sp & realTimeWeather.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // get time & background color.
@@ -252,22 +247,22 @@ public class NotificationUtils {
 
         // set small icon.
         builder.setSmallIcon(
-                WeatherHelper.getMiniWeatherIcon(weather.live.weatherKind, isDay));
+                WeatherHelper.getMiniWeatherIcon(weather.realTime.weatherKind, isDay));
 
-        // build base view.
+        // buildWeather base view.
         RemoteViews base = new RemoteViews(context.getPackageName(), R.layout.notification_base);
-        int[] imageId = WeatherHelper.getWeatherIcon(weather.live.weatherKind, isDay);
+        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
         base.setImageViewResource( // set icon.
                 R.id.notification_base_icon,
                 imageId[3]);
         base.setTextViewText( // set title.
                 R.id.notification_base_title,
-                weather.live.weather + " " + weather.live.temp + "℃");
+                weather.realTime.weather + " " + weather.realTime.temp + "℃");
         base.setTextViewText( // set content.
                 R.id.notification_base_content,
                 weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
         base.setTextViewText( // set time.
-                R.id.notification_base_time, weather.base.location + "." + weather.base.refreshTime);
+                R.id.notification_base_time, weather.base.city + "." + weather.base.time);
         if (backgroundColor) { // set background.
             base.setViewVisibility(R.id.notification_base_background, View.VISIBLE);
         } else {
@@ -278,26 +273,26 @@ public class NotificationUtils {
         base.setTextColor(R.id.notification_base_content, subColor);
         base.setTextColor(R.id.notification_base_time, subColor);
         builder.setContent(base); // commit.
-        // set click intent.
-        Intent intent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        // set intent.
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                context, 0, IntentHelper.buildMainActivityIntent(context, null), 0);
         builder.setContentIntent(pendingIntent);
 
-        // build big view.
+        // buildWeather big view.
         RemoteViews big = new RemoteViews(context.getPackageName(), R.layout.notification_big);
         // today
-        imageId = WeatherHelper.getWeatherIcon(weather.live.weatherKind, isDay);
+        imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
         big.setImageViewResource( // set icon.
                 R.id.notification_base_icon,
                 imageId[3]);
         big.setTextViewText( // set title.
                 R.id.notification_base_title,
-                weather.live.weather + " " + weather.live.temp + "℃");
+                weather.realTime.weather + " " + weather.realTime.temp + "℃");
         big.setTextViewText( // set content.
                 R.id.notification_base_content,
                 weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
         big.setTextViewText( // set time.
-                R.id.notification_base_time, weather.base.location + "." + weather.base.refreshTime);
+                R.id.notification_base_time, weather.base.city + "." + weather.base.time);
         big.setViewVisibility(R.id.notification_base_background, View.GONE);
         // 1
         big.setTextViewText( // set week 1.
@@ -408,7 +403,7 @@ public class NotificationUtils {
     }
 
     public static void buildForecastAndSendIt(Context context, Weather weather, boolean today) {
-        // get sp & weather.
+        // get sp & realTimeWeather.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // get time & background color.
@@ -485,17 +480,11 @@ public class NotificationUtils {
         // set title.
         String[] titles = new String[2];
         if (today) {
-            titles[0] = context.getString(R.string.day)
-                    + " - " + weather.dailyList.get(0).weathers[0] + " " + weather.dailyList.get(0).temps[1] + "℃";
-            titles[1] = context.getString(R.string.night)
-                    + " - " + weather.dailyList.get(0).weathers[1] + " " + weather.dailyList.get(0).temps[0] + "℃";
+            titles[0] = context.getString(R.string.day) + " " + weather.dailyList.get(0).weathers[0];
+            titles[1] = context.getString(R.string.night) + " " + weather.dailyList.get(0).weathers[1];
         } else {
-            titles[0] = context.getString(R.string.today)
-                    + " - " + weather.dailyList.get(0).weathers[0]
-                    + " " + weather.dailyList.get(0).temps[0] + "/" + weather.dailyList.get(0).temps[1] + "°";
-            titles[1] = context.getString(R.string.tomorrow)
-                    + " - " + weather.dailyList.get(1).weathers[0]
-                    + " " + weather.dailyList.get(0).temps[0] + "/" + weather.dailyList.get(0).temps[1] + "°";
+            titles[0] = context.getString(R.string.today) + " " + weather.dailyList.get(0).weathers[0];
+            titles[1] = context.getString(R.string.tomorrow) + " " + weather.dailyList.get(1).weathers[0];
         }
         view.setTextViewText(
                 R.id.notification_forecast_title_1, titles[0]);
@@ -504,15 +493,11 @@ public class NotificationUtils {
         // set content.
         String[] contents = new String[2];
         if (today) {
-            contents[0] = weather.dailyList.get(0).windDirs[0]
-                    + " " + weather.dailyList.get(0).windLevels[0];
-            contents[1] = weather.dailyList.get(0).windDirs[1]
-                    + " " + weather.dailyList.get(0).windLevels[1];
+            contents[0] = weather.dailyList.get(0).temps[0] + "℃";
+            contents[1] = weather.dailyList.get(0).temps[1] + "℃";
         } else {
-            contents[0] = weather.dailyList.get(0).windDirs[0]
-                    + " " + weather.dailyList.get(0).windLevels[0];
-            contents[1] = weather.dailyList.get(1).windDirs[0]
-                    + " " + weather.dailyList.get(1).windLevels[0];
+            contents[0] = weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°";
+            contents[1] = weather.dailyList.get(1).temps[1] + "/" + weather.dailyList.get(1).temps[0] + "°";
         }
         view.setTextViewText(
                 R.id.notification_forecast_content_1,
@@ -523,7 +508,7 @@ public class NotificationUtils {
         // set time.
         view.setTextViewText(
                 R.id.notification_forecast_time,
-                weather.base.location + "." + weather.base.refreshTime);
+                weather.base.city + "." + weather.base.time);
         // set background.
         if (backgroundColor) {
             view.setViewVisibility(R.id.notification_forecast_background, View.VISIBLE);
@@ -537,9 +522,9 @@ public class NotificationUtils {
         view.setTextColor(R.id.notification_forecast_content_2, subColor);
         view.setTextColor(R.id.notification_forecast_time, subColor);
         builder.setContent(view);
-        // set click intent.
-        Intent intent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        // set intent.
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                context, 0, IntentHelper.buildMainActivityIntent(context, null), 0);
         builder.setContentIntent(pendingIntent);
 
         // set sound & vibrate.

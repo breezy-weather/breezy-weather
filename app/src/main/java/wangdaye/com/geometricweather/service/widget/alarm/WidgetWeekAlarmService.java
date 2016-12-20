@@ -4,7 +4,6 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -15,8 +14,7 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.basic.GeoAlarmService;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.Weather;
-import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
-import wangdaye.com.geometricweather.view.activity.MainActivity;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.receiver.widget.WidgetWeekProvider;
 import wangdaye.com.geometricweather.utils.TimeUtils;
@@ -42,12 +40,9 @@ public class WidgetWeekAlarmService extends GeoAlarmService {
     }
 
     @Override
-    public Location readSettings() {
-        SharedPreferences sharedPreferences = this.getSharedPreferences(
-                getString(R.string.sp_widget_week_setting), Context.MODE_PRIVATE);
-        String locationName = sharedPreferences.getString(
-                getString(R.string.key_location), getString(R.string.local));
-        return DatabaseHelper.getInstance(this).searchLocation(locationName);
+    public String readSettings() {
+        return getSharedPreferences(getString(R.string.sp_widget_week_setting), MODE_PRIVATE).
+                getString(getString(R.string.key_location), getString(R.string.local));
     }
 
     @Override
@@ -61,13 +56,13 @@ public class WidgetWeekAlarmService extends GeoAlarmService {
     }
 
     @Override
-    public void updateView(Context context, Weather weather) {
-        refreshWidgetView(context, weather);
+    public void updateView(Context context, Location location, Weather weather) {
+        refreshWidgetView(context, location, weather);
     }
 
     /** <br> widget. */
 
-    public static void refreshWidgetView(Context context, Weather weather) {
+    public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
             return;
         }
@@ -76,8 +71,6 @@ public class WidgetWeekAlarmService extends GeoAlarmService {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_week_setting),
                 Context.MODE_PRIVATE);
-        String locationName = sharedPreferences.getString(
-                context.getString(R.string.key_location), context.getString(R.string.local));
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean isDay = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
@@ -93,7 +86,7 @@ public class WidgetWeekAlarmService extends GeoAlarmService {
         // get remote views.
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_week);
 
-        // build view.
+        // buildWeather view.
         // set icons.
         views.setImageViewResource(
                 R.id.widget_week_icon_1,
@@ -120,7 +113,7 @@ public class WidgetWeekAlarmService extends GeoAlarmService {
                 WeatherHelper.getWeatherIcon(
                         isDay ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
                         isDay)[3]);
-        // build week texts.
+        // buildWeather week texts.
         String secondWeekDay;
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -141,7 +134,7 @@ public class WidgetWeekAlarmService extends GeoAlarmService {
         // set week texts.
         views.setTextViewText(
                 R.id.widget_week_week_1,
-                weather.base.location);
+                weather.base.city);
         views.setTextViewText(
                 R.id.widget_week_week_2,
                 secondWeekDay);
@@ -183,11 +176,12 @@ public class WidgetWeekAlarmService extends GeoAlarmService {
         views.setTextColor(R.id.widget_week_temp_5, textColor);
         // set card visibility.
         views.setViewVisibility(R.id.widget_week_card, showCard ? View.VISIBLE : View.GONE);
-        // set clock intent.
-        Intent intent = new Intent("com.wangdaye.geometricweather.Main")
-                .putExtra(MainActivity.KEY_CITY, locationName);
+        // set intent.
         PendingIntent pendingIntent = PendingIntent.getActivity(
-                context, PENDING_INTENT_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                context,
+                PENDING_INTENT_CODE,
+                IntentHelper.buildMainActivityIntent(context, location),
+                PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_week_button, pendingIntent);
 
         // commit.

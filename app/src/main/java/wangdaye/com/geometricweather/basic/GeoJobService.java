@@ -7,11 +7,12 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
+import java.util.List;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.Weather;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
@@ -20,8 +21,11 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public abstract class GeoJobService extends JobService
-        implements LocationHelper.OnRequestLocationListener, WeatherHelper.OnRequestWeatherListener {
+        implements WeatherHelper.OnRequestWeatherListener {
     // widget.
+    private WeatherHelper weatherHelper;
+
+    // data.
     private JobParameters jobParameters;
 
     /** <br> life cycle. */
@@ -29,34 +33,65 @@ public abstract class GeoJobService extends JobService
     @Override
     public boolean onStartJob(JobParameters params) {
         jobParameters = params;
-        Location location = readSettings();
-        if (location == null) {
-            location = new Location(getString(R.string.local), null);
-        }
-        doRefresh(location);
+        doRefresh(
+                readLocation(
+                        readSettings()));
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        return true;
+        if (weatherHelper != null) {
+            weatherHelper.cancel();
+        }
+        return false;
     }
 
-    protected abstract Location readSettings();
+    protected abstract String readSettings();
+
+    protected Location readLocation(String locationName) {
+        List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
+        for (int i = 0; i < locationList.size(); i ++) {
+            if (locationName.equals(getString(R.string.local)) && locationList.get(i).isLocal()) {
+                return locationList.get(i);
+            } else if (!locationName.equals(getString(R.string.local))
+                    && locationList.get(i).city.equals(locationName)) {
+                return locationList.get(i);
+            }
+        }
+        return locationList.get(0);
+    }
 
     protected abstract void doRefresh(Location location);
 
     public void requestData(Location location) {
-        if(location.name.equals(getString(R.string.local))) {
-            new LocationHelper(this).requestLocation(this, this);
+        initWeatherHelper();
+        if(location.isLocal()) {
+            if (location.isUsable()) {
+                weatherHelper.requestWeather(this, location, this);
+            } else {
+                weatherHelper.requestWeather(this, Location.buildDefaultLocation(), this);
+                Toast.makeText(
+                        this,
+                        getString(R.string.feedback_not_yet_location),
+                        Toast.LENGTH_SHORT).show();
+            }
         } else {
-            location.realName = location.name;
-            DatabaseHelper.getInstance(this).insertLocation(location);
-            new WeatherHelper().requestWeather(this, location, this);
+            weatherHelper.requestWeather(this, location, this);
         }
     }
 
-    protected abstract void updateView(Context context, Weather weather);
+    protected abstract void updateView(Context context, Location location, Weather weather);
+
+    /** <br> widget. */
+
+    private void initWeatherHelper() {
+        if (weatherHelper == null) {
+            weatherHelper = new WeatherHelper();
+        } else {
+            weatherHelper.cancel();
+        }
+    }
 
     /** <br> data. */
 
@@ -66,43 +101,24 @@ public abstract class GeoJobService extends JobService
 
     /** <br> interface. */
 
-    // request name.
-
-    @Override
-    public void requestLocationSuccess(String locationName) {
-        Location location = new Location(getString(R.string.local), locationName);
-        DatabaseHelper.getInstance(this).insertLocation(location);
-        new WeatherHelper().requestWeather(this, location, this);
-    }
-
-    @Override
-    public void requestLocationFailed() {
-        Location location = DatabaseHelper.getInstance(this).searchLocation(getString(R.string.local));
-        new WeatherHelper().requestWeather(this, location, this);
-        Toast.makeText(
-                this,
-                getString(R.string.feedback__location_failed),
-                Toast.LENGTH_SHORT).show();
-    }
-
     // request weather.
 
     @Override
-    public void requestWeatherSuccess(Weather weather, String locationName) {
-        DatabaseHelper.getInstance(this).insertWeather(weather);
-        DatabaseHelper.getInstance(this).insertHistory(weather);
-        updateView(this, weather);
+    public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+        DatabaseHelper.getInstance(this).writeWeather(requestLocation, weather);
+        DatabaseHelper.getInstance(this).writeHistory(weather);
+        updateView(this, requestLocation, weather);
         jobFinished(jobParameters, false);
     }
 
     @Override
-    public void requestWeatherFailed(String locationName) {
+    public void requestWeatherFailed(Location requestLocation) {
+        Weather weather = DatabaseHelper.getInstance(this).readWeather(requestLocation);
+        updateView(this, requestLocation, weather);
         Toast.makeText(
                 this,
                 getString(R.string.feedback_get_weather_failed),
                 Toast.LENGTH_SHORT).show();
-        Weather weather = DatabaseHelper.getInstance(this).searchWeather(locationName);
-        updateView(this, weather);
-        jobFinished(jobParameters, true);
+        jobFinished(jobParameters, false);
     }
 }

@@ -65,8 +65,6 @@ public class AboutActivity extends GeoActivity
         findViewById(R.id.container_about_app_github).setOnClickListener(this);
         findViewById(R.id.container_about_app_email).setOnClickListener(this);
         findViewById(R.id.container_about_thx_location).setOnClickListener(this);
-        findViewById(R.id.container_about_thx_juhe).setOnClickListener(this);
-        findViewById(R.id.container_about_thx_hefeng).setOnClickListener(this);
         findViewById(R.id.container_about_thx_retrofit).setOnClickListener(this);
         findViewById(R.id.container_about_thx_glide).setOnClickListener(this);
     }
@@ -101,20 +99,6 @@ public class AboutActivity extends GeoActivity
                         new Intent(
                                 Intent.ACTION_VIEW,
                                 Uri.parse("http://lbsyun.baidu.com/index.php?title=android-locsdk")));
-                break;
-
-            case R.id.container_about_thx_juhe:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://www.juhe.cn/docs/api/id/73")));
-                break;
-
-            case R.id.container_about_thx_hefeng:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("http://apistore.baidu.com/apiworks/servicedetail/478.html")));
                 break;
 
             case R.id.container_about_thx_retrofit:

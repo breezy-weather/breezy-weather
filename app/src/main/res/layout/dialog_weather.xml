@@ -12,78 +12,38 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/dialog_weather_container_day"
+            android:id="@+id/dialog_weather_weatherContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:foreground="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
-                android:id="@+id/dialog_weather_icon_day_3"
+                android:id="@+id/dialog_weather_icon_3"
                 android:layout_width="@dimen/flag_icon_size"
                 android:layout_height="@dimen/flag_icon_size"
                 android:layout_margin="@dimen/normal_margin"
-                tools:src="@drawable/weather_cloudy"
+                tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:id="@+id/dialog_weather_icon_day_2"
+                android:id="@+id/dialog_weather_icon_2"
                 android:layout_width="@dimen/flag_icon_size"
                 android:layout_height="@dimen/flag_icon_size"
                 android:layout_margin="@dimen/normal_margin"
-                tools:src="@drawable/weather_cloudy"
+                tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:id="@+id/dialog_weather_icon_day_1"
+                android:id="@+id/dialog_weather_icon_1"
                 android:layout_width="@dimen/flag_icon_size"
                 android:layout_height="@dimen/flag_icon_size"
                 android:layout_margin="@dimen/normal_margin"
-                tools:src="@drawable/weather_cloudy"
+                tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/dialog_weather_text_day"
-                android:layout_toRightOf="@id/dialog_weather_icon_day_1"
-                android:layout_centerVertical="true"
-                style="@style/content_text"
-                tools:text="阴 19℃\n东北风3-4级"
-                tools:ignore="RtlHardcoded" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/dialog_weather_container_night"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackgroundBorderless">
-
-            <ImageView
-                android:id="@+id/dialog_weather_icon_night_3"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
-                android:layout_margin="@dimen/normal_margin"
-                tools:src="@drawable/weather_sun_night"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/dialog_weather_icon_night_2"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
-                android:layout_margin="@dimen/normal_margin"
-                tools:src="@drawable/weather_sun_night"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/dialog_weather_icon_night_1"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
-                android:layout_margin="@dimen/normal_margin"
-                tools:src="@drawable/weather_sun_night"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/dialog_weather_text_night"
-                android:layout_toRightOf="@id/dialog_weather_icon_night_1"
+                android:id="@+id/dialog_weather_text"
+                android:layout_toRightOf="@id/dialog_weather_icon_1"
                 android:layout_centerVertical="true"
                 style="@style/content_text"
                 tools:text="晴 9℃\n东北风3-4级"
@@ -96,7 +56,7 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/dialog_weather_sunriseContainer"
+                android:id="@+id/dialog_weather_astroContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/normal_margin"
@@ -127,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/dialog_weather_sunriseContainer"
+                android:layout_toRightOf="@id/dialog_weather_astroContainer"
                 android:layout_margin="@dimen/normal_margin"
                 tools:ignore="RtlHardcoded">
 

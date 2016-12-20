@@ -8,7 +8,8 @@ import android.os.Build;
 
 import wangdaye.com.geometricweather.service.widget.alarm.WidgetClockDayAlarmService;
 import wangdaye.com.geometricweather.service.widget.job.WidgetClockDayJobService;
-import wangdaye.com.geometricweather.utils.JobSchedulerUtils;
+import wangdaye.com.geometricweather.utils.JobScheduleUtils;
+import wangdaye.com.geometricweather.utils.WidgetUtils;
 
 /**
  * Widget clock day provider.
@@ -19,26 +20,12 @@ public class WidgetClockDayProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            JobSchedulerUtils.schedule(
-                    context,
-                    WidgetClockDayJobService.class,
-                    WidgetClockDayJobService.SCHEDULE_CODE);
-        } else {
-            context.startService(new Intent(context, WidgetClockDayAlarmService.class));
-        }
+        WidgetUtils.startClockDayWidgetService(context);
     }
 
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            JobSchedulerUtils.cancel(context, WidgetClockDayJobService.SCHEDULE_CODE);
-        } else {
-            WidgetClockDayAlarmService.cancelAlarmIntent(
-                    context,
-                    WidgetClockDayAlarmService.class,
-                    WidgetClockDayAlarmService.ALARM_CODE);
-        }
+        WidgetUtils.stopClockDayWidgetService(context);
     }
 }

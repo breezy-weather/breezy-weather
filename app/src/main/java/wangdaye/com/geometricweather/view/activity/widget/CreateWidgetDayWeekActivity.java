@@ -18,29 +18,21 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
-import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Weather;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
-import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
-import wangdaye.com.geometricweather.service.widget.alarm.WidgetDayWeekAlarmService;
-import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 
 /**
  * Create widget day week activity.
  * */
 
-public class CreateWidgetDayWeekActivity extends GeoActivity
-        implements View.OnClickListener, AdapterView.OnItemSelectedListener,
-        WeatherHelper.OnRequestWeatherListener, LocationHelper.OnRequestLocationListener {
+public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
+        implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     // widget
     private ImageView widgetCard;
     private ImageView widgetIcon;
@@ -57,13 +49,6 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
     private Switch hideRefreshTimeSwitch;
     private Switch blackTextSwitch;
 
-    // data
-    private Location location;
-    private List<String> nameList;
-
-    private WeatherHelper weatherHelper;
-    private LocationHelper locationHelper;
-
     /** <br> life cycle. */
 
     @Override
@@ -73,40 +58,7 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        if (!isStarted()) {
-            setStarted();
-            initData();
-            initWidget();
-
-            if (location.name.equals(getString(R.string.local))) {
-                locationHelper.requestLocation(this, this);
-            } else {
-                if (location.name.equals(getString(R.string.local))) {
-                    location.realName = location.name;
-                    DatabaseHelper.getInstance(this).insertLocation(location);
-                }
-                weatherHelper.requestWeather(this, location, this);
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        weatherHelper.cancel();
-        locationHelper.cancel();
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
-    }
-
-    /** <br> UI. */
-
-    private void initWidget() {
+    public void initWidget() {
         this.widgetCard = (ImageView) findViewById(R.id.widget_day_week_card);
         widgetCard.setVisibility(View.GONE);
 
@@ -139,7 +91,7 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
 
         this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_day_week_container);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_text, nameList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_text, getNameList());
         adapter.setDropDownViewResource(R.layout.spinner_text);
         Spinner locationSpinner = (Spinner) findViewById(R.id.activity_create_widget_day_week_spinner);
         locationSpinner.setAdapter(adapter);
@@ -159,23 +111,23 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
     }
 
     @SuppressLint("SetTextI18n")
-    private void refreshWidgetView() {
-        if (location.weather == null) {
+    @Override
+    public void refreshWidgetView(Weather weather) {
+        if (weather == null) {
             return;
         }
 
-        Weather weather = location.weather;
-        boolean isDay = TimeUtils.getInstance(this).getDayTime(this, location.weather, false).isDayTime();
+        boolean dayTime = TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime();
 
         int[] imageId = WeatherHelper.getWeatherIcon(
-                weather.live.weather,
-                TimeUtils.getInstance(this).getDayTime(this, location.weather, false).isDayTime());
+                weather.realTime.weatherKind,
+                dayTime);
         widgetIcon.setImageResource(imageId[3]);
 
         String[] texts = WidgetUtils.buildWidgetDayStyleText(weather);
         widgetWeather.setText(texts[0]);
         widgetTemp.setText(texts[1]);
-        widgetRefreshTime.setText(weather.base.location + "." + weather.base.refreshTime);
+        widgetRefreshTime.setText(weather.base.city + "." + weather.base.time);
 
         String firstWeekDay;
         String secondWeekDay;
@@ -208,25 +160,16 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
                 widgetWeeks[i].setText(weather.dailyList.get(i).week);
             }
             int[] imageIds = WeatherHelper.getWeatherIcon(
-                    isDay ? weather.dailyList.get(1).weathers[0] : weather.dailyList.get(1).weathers[1],
-                    isDay);
+                    dayTime ? weather.dailyList.get(i).weatherKinds[0] : weather.dailyList.get(i).weatherKinds[1],
+                    dayTime);
             widgetIcons[i].setImageResource(imageIds[3]);
             widgetTemps[i].setText(weather.dailyList.get(i).temps[1] + "/" + weather.dailyList.get(i).temps[0] + "°");
         }
     }
 
-    /** <br> data. */
-
-    private void initData() {
-        this.nameList = new ArrayList<>();
-        List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
-        for (Location l : locationList) {
-            nameList.add(l.name);
-        }
-        this.location = new Location(nameList.get(0), null);
-
-        this.weatherHelper = new WeatherHelper();
-        this.locationHelper = new LocationHelper(this);
+    @Override
+    public View getSnackbarContainer() {
+        return container;
     }
 
     /** <br> interface. */
@@ -241,7 +184,9 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
                         getString(R.string.sp_widget_day_week_setting),
                         MODE_PRIVATE)
                         .edit();
-                editor.putString(getString(R.string.key_location), location.name);
+                editor.putString(
+                        getString(R.string.key_location),
+                        getLocationNow().isLocal() ? getString(R.string.local) : getLocationNow().city);
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_hide_refresh_time), hideRefreshTimeSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
@@ -259,8 +204,7 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                Intent service = new Intent(this, WidgetDayWeekAlarmService.class);
-                startService(service);
+                WidgetUtils.startDayWeekWidgetService(this);
                 finish();
                 break;
         }
@@ -270,12 +214,12 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        location = new Location(parent.getItemAtPosition(position).toString(), null);
+        setLocationNow(getLocationList().get(position));
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        location = new Location(parent.getItemAtPosition(0).toString(), null);
+        // do nothing.
     }
 
     // on check changed listener(switch).
@@ -336,36 +280,5 @@ public class CreateWidgetDayWeekActivity extends GeoActivity
                 }
             }
         }
-    }
-
-    // on request name listener.
-
-    @Override
-    public void requestLocationSuccess(String locationName) {
-        location.realName = locationName;
-        weatherHelper.requestWeather(this, location, this);
-        DatabaseHelper.getInstance(this).insertLocation(location);
-    }
-
-    @Override
-    public void requestLocationFailed() {
-        SnackbarUtils.showSnackbar(getString(R.string.feedback__location_failed));
-    }
-
-    // on request weather listener.
-
-    @Override
-    public void requestWeatherSuccess(Weather weather, String locationName) {
-        location.weather = weather;
-        refreshWidgetView();
-        DatabaseHelper.getInstance(this).insertWeather(weather);
-        DatabaseHelper.getInstance(this).insertHistory(weather);
-    }
-
-    @Override
-    public void requestWeatherFailed(String location) {
-        this.location.weather = DatabaseHelper.getInstance(this).searchWeather(this.location.realName);
-        refreshWidgetView();
-        SnackbarUtils.showSnackbar(getString(R.string.feedback_get_weather_failed));
     }
 }

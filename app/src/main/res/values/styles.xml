@@ -10,6 +10,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
     <style name="GeometricWeatherTheme.AppbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="GeometricWeatherTheme.AppbarPopupTheme" parent="ThemeOverlay.AppCompat.Light" />
     
@@ -62,7 +66,7 @@
 
     <style name="week_weather_icon">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/live_weather_icon_size</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginLeft">@dimen/little_margin</item>
         <item name="android:layout_marginRight">@dimen/little_margin</item>
     </style>

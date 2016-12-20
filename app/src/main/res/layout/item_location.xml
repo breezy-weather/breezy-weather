@@ -1,40 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_location"
-    android:layout_margin="0dp"
-    app:cardCornerRadius="0dp"
-    app:cardElevation="0dp"
-    style="@style/material_card">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorRoot"
+    android:stateListAnimator="@animator/touch_raise"
+    tools:targetApi="lollipop">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/item_location_title"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginLeft="@dimen/normal_margin"
+        android:layout_marginBottom="2dp"
+        android:maxLines="1"
+        android:textColor="@color/colorTextContent"
+        style="@style/title_text"
+        tools:text="本地"
+        tools:ignore="RtlHardcoded" />
 
-        <TextView
-            android:id="@+id/item_location_num"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="@color/colorTextGrey"
-            android:layout_margin="@dimen/normal_margin"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            style="@style/content_text"
-            tools:text="1"
-            tools:ignore="RtlHardcoded" />
+    <TextView
+        android:id="@+id/item_location_subtitle"
+        android:layout_below="@id/item_location_title"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:layout_marginLeft="@dimen/normal_margin"
+        android:maxLines="1"
+        style="@style/subtitle_text"
+        tools:text="中国 山东 青岛 CN101120201"
+        tools:ignore="RtlHardcoded" />
 
-        <TextView
-            android:id="@+id/item_location_text"
-            android:layout_toRightOf="@id/item_location_num"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/normal_margin"
-            android:maxLines="1"
-            style="@style/content_text"
-            tools:text="青岛"
-            tools:ignore="RtlHardcoded" />
-
-    </RelativeLayout>
-
-</android.support.v7.widget.CardView>
+</RelativeLayout>
 
 

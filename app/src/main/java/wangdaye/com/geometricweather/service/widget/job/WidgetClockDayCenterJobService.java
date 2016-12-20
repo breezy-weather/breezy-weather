@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.service.widget.job;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
@@ -13,7 +12,6 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayCenterProvider;
 import wangdaye.com.geometricweather.service.widget.alarm.WidgetClockDayCenterAlarmService;
-import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 
 /**
  * Widget clock day center job service.
@@ -27,12 +25,9 @@ public class WidgetClockDayCenterJobService extends GeoJobService {
     /** <br> life cycle. */
 
     @Override
-    public Location readSettings() {
-        SharedPreferences sharedPreferences = this.getSharedPreferences(
-                getString(R.string.sp_widget_clock_day_center_setting), Context.MODE_PRIVATE);
-        String locationName = sharedPreferences.getString(
-                getString(R.string.key_location), getString(R.string.local));
-        return DatabaseHelper.getInstance(this).searchLocation(locationName);
+    public String readSettings() {
+        return getSharedPreferences(getString(R.string.sp_widget_clock_day_center_setting), MODE_PRIVATE)
+                .getString(getString(R.string.key_location), getString(R.string.local));
     }
 
     @Override
@@ -45,13 +40,13 @@ public class WidgetClockDayCenterJobService extends GeoJobService {
     }
 
     @Override
-    protected void updateView(Context context, Weather weather) {
-        refreshWidgetView(context, weather);
+    protected void updateView(Context context, Location location, Weather weather) {
+        refreshWidgetView(context, location, weather);
     }
 
     /** <br> widget. */
 
-    public static void refreshWidgetView(Context context, Weather weather) {
-        WidgetClockDayCenterAlarmService.refreshWidgetView(context, weather);
+    public static void refreshWidgetView(Context context, Location location, Weather weather) {
+        WidgetClockDayCenterAlarmService.refreshWidgetView(context, location, weather);
     }
 }

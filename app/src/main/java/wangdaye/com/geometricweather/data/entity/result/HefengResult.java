@@ -11,7 +11,7 @@ import java.util.List;
 public class HefengResult {
 
     /**
-     * aqi : {"city":{"aqi":"196","co":"0","no2":"14","o3":"45","pm10":"116","pm25":"196","qlty":"优","so2":"2"}}
+     * aqiAqi : {"city":{"aqiAqi":"196","co":"0","no2":"14","o3":"45","pm10":"116","aqiPm25":"196","qlty":"优","so2":"2"}}
      * basic : {"city":"北京","cnty":"中国","id":"CN101010100","lat":"39.904000","lon":"116.391000","update":{"loc":"2016-10-01 08:51","utc":"2016-10-01 00:51"}}
      * daily_forecast : [{"astro":{"sr":"06:10","ss":"17:57"},"cond":{"code_d":"502","code_n":"502","txt_d":"霾","txt_n":"霾"},"date":"2016-10-01","hum":"28","pcpn":"0.1","pop":"0","pres":"1013","tmp":{"max":"25","min":"15"},"vis":"10","wind":{"deg":"182","dir":"无持续风向","sc":"微风","spd":"8"}},{"astro":{"sr":"06:11","ss":"17:55"},"cond":{"code_d":"502","code_n":"502","txt_d":"霾","txt_n":"霾"},"date":"2016-10-02","hum":"27","pcpn":"0.0","pop":"4","pres":"1011","tmp":{"max":"27","min":"16"},"vis":"10","wind":{"deg":"193","dir":"无持续风向","sc":"微风","spd":"8"}},{"astro":{"sr":"06:12","ss":"17:53"},"cond":{"code_d":"502","code_n":"502","txt_d":"霾","txt_n":"霾"},"date":"2016-10-03","hum":"29","pcpn":"0.0","pop":"0","pres":"1009","tmp":{"max":"27","min":"19"},"vis":"10","wind":{"deg":"89","dir":"无持续风向","sc":"微风","spd":"2"}},{"astro":{"sr":"06:13","ss":"17:52"},"cond":{"code_d":"300","code_n":"100","txt_d":"阵雨","txt_n":"晴"},"date":"2016-10-04","hum":"83","pcpn":"5.9","pop":"99","pres":"1009","tmp":{"max":"24","min":"16"},"vis":"9","wind":{"deg":"350","dir":"北风","sc":"3-4","spd":"16"}},{"astro":{"sr":"06:14","ss":"17:50"},"cond":{"code_d":"100","code_n":"101","txt_d":"晴","txt_n":"多云"},"date":"2016-10-05","hum":"21","pcpn":"0.0","pop":"0","pres":"1017","tmp":{"max":"23","min":"14"},"vis":"10","wind":{"deg":"284","dir":"无持续风向","sc":"微风","spd":"10"}},{"astro":{"sr":"06:15","ss":"17:49"},"cond":{"code_d":"101","code_n":"104","txt_d":"多云","txt_n":"阴"},"date":"2016-10-06","hum":"20","pcpn":"0.0","pop":"17","pres":"1026","tmp":{"max":"20","min":"13"},"vis":"10","wind":{"deg":"38","dir":"无持续风向","sc":"微风","spd":"3"}},{"astro":{"sr":"06:16","ss":"17:47"},"cond":{"code_d":"104","code_n":"305","txt_d":"阴","txt_n":"小雨"},"date":"2016-10-07","hum":"81","pcpn":"9.2","pop":"81","pres":"1027","tmp":{"max":"19","min":"12"},"vis":"2","wind":{"deg":"39","dir":"无持续风向","sc":"微风","spd":"5"}}]
      * hourly_forecast : [{"date":"2016-10-01 10:00","hum":"35","pop":"0","pres":"1015","tmp":"24","wind":{"deg":"146","dir":"东南风","sc":"微风","spd":"6"}},{"date":"2016-10-01 13:00","hum":"50","pop":"0","pres":"1025","tmp":"13","wind":{"deg":"70","dir":"东北风","sc":"微风","spd":"6"}},{"date":"2016-10-01 16:00","hum":"50","pop":"0","pres":"1025","tmp":"13","wind":{"deg":"70","dir":"东北风","sc":"微风","spd":"6"}},{"date":"2016-10-01 19:00","hum":"52","pop":"0","pres":"1027","tmp":"13","wind":{"deg":"100","dir":"东风","sc":"微风","spd":"5"}},{"date":"2016-10-01 22:00","hum":"83","pop":"10","pres":"1026","tmp":"14","wind":{"deg":"95","dir":"东风","sc":"微风","spd":"8"}}]
@@ -25,7 +25,7 @@ public class HefengResult {
 
     public static class HeWeather {
         /**
-         * city : {"aqi":"196","co":"0","no2":"14","o3":"45","pm10":"116","pm25":"196","qlty":"优","so2":"2"}
+         * city : {"aqiAqi":"196","co":"0","no2":"14","o3":"45","pm10":"116","aqiPm25":"196","qlty":"优","so2":"2"}
          */
 
         public Aqi aqi;
@@ -90,12 +90,12 @@ public class HefengResult {
 
         public static class Aqi {
             /**
-             * aqi : 196
+             * aqiAqi : 196
              * co : 0
              * no2 : 14
              * o3 : 45
              * pm10 : 116
-             * pm25 : 196
+             * aqiPm25 : 196
              * qlty : 优
              * so2 : 2
              */

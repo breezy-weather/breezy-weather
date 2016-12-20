@@ -22,7 +22,12 @@ public class NotificationJobService extends GeoJobService {
     /** <br> life cycle. */
 
     @Override
-    public Location readSettings() {
+    protected String readSettings() {
+        return null;
+    }
+
+    @Override
+    protected Location readLocation(String locationName) {
         return DatabaseHelper.getInstance(this).readLocationList().get(0);
     }
 
@@ -32,7 +37,7 @@ public class NotificationJobService extends GeoJobService {
     }
 
     @Override
-    protected void updateView(Context context, Weather weather) {
+    public void updateView(Context context, Location location, Weather weather) {
         NotificationUtils.buildNotificationAndSendIt(context, weather);
     }
 }

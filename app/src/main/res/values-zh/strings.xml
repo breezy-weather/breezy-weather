@@ -10,28 +10,8 @@
     <string name="default_location">默认位置</string>
     <string name="live">实时</string>
     <string name="refresh_at">更新于</string>
-    <string name="pm_25">PM2.5</string>
-    <string name="pm_10">PM10</string>
-    <string name="pm_level">颗粒物等级</string>
-    <string name="humidity">湿度</string>
-    <string name="uv">紫外线</string>
-    <string name="dressing_index">穿衣指数</string>
-    <string name="cold_index">感冒指数</string>
-    <string name="aqi">空气质量</string>
-    <string name="wash_car_index">洗车指数</string>
-    <string name="exercise_index">运动指数</string>
-    <string name="visibility">能见度</string>
-    <string name="sun_rise">日出</string>
-    <string name="sun_fall">日落</string>
-    <string name="apparent_temp">体感温度</string>
-    <string name="maxi_temp">高温</string>
-    <string name="mini_temp">低温</string>
-    <string name="temp">温度</string>
-    <string name="pops">降水概率</string>
-    <string name="yesterday_data">昨日气温</string>
+    <string name="precipitation">降水强度</string>
     <string name="time">时间</string>
-    <string name="level">级</string>
-    <string name="air">空气</string>
     <string name="day">白天</string>
     <string name="night">夜间</string>
 
@@ -76,7 +56,7 @@
     <string name="feedback_request_location_permission_success">获取位置权限成功</string>
     <string name="feedback_request_location_permission_failed">获取位置权限失败</string>
 
-    <string name="feedback__location_failed">定位失败，请检查权限和网络连接</string>
+    <string name="feedback_location_failed">定位失败，请检查权限和网络连接</string>
     <string name="feedback_get_weather_failed">获取天气数据失败</string>
 
     <string name="feedback_first_refresh_widget">小部件第一次刷新数据可能会有些慢</string>
@@ -87,6 +67,7 @@
     <string name="feedback_hide_refresh_time">隐藏刷新时间</string>
     <string name="feedback_black_text">暗色字体</string>
 
+    <string name="feedback_click_toggle">-点击趋势图可切换数据</string>
     <string name="feedback_no_data">暂无数据</string>
 
     <string name="feedback_collect_failed">地址已存在</string>
@@ -94,8 +75,9 @@
     <string name="feedback_delete_succeed">删除成功</string>
     <string name="feedback_location_list_cannot_be_null">收藏地址不能为空</string>
 
-    <string name="feedback_search_location">搜索城市（市级）</string>
-    <string name="feedback_search_null">地址为空</string>
+    <string name="feedback_search_location">搜索城市或输入\"本地\"…</string>
+    <string name="feedback_not_yet_location">尚未进行定位…</string>
+    <string name="feedback_initializing">初始化中…</string>
 
     <string name="feedback_refresh_notification_after_back">返回主页后刷新通知</string>
     <string name="feedback_refresh_notification_now">立即刷新通知</string>
@@ -103,7 +85,9 @@
     <string name="feedback_restart">重启后生效</string>
 
     <!-- action -->
+    <string name="action_alert">预警</string>
     <string name="action_manage">地址管理</string>
+    <string name="action_search">搜索</string>
     <string name="action_settings">设置</string>
     <string name="action_about">关于</string>
 

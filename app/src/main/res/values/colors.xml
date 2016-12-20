@@ -19,7 +19,7 @@
 
     <color name="colorNotificationBackground">#263238</color>
     
-    <color name="colorLine">#e0e0e0</color>
+    <color name="colorLine">#f1f1f1</color>
     <color name="colorRoot">#fafafa</color>
     <color name="colorTextTitle">@color/colorTextDark</color>
     <color name="colorTextContent">@color/colorTextDark2nd</color>

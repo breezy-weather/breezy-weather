@@ -12,25 +12,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
-        tools:layout_height="80dp">
+        tools:layout_height="256dp"
+        tools:background="@android:color/black">
 
         <TextView
-            android:id="@+id/container_weather_aqi_text_live"
-            android:layout_margin="@dimen/normal_margin"
+            android:id="@+id/container_weather_realtime_tempTxt"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginBottom="10dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
+            android:textSize="@dimen/design_title_text_size"
             style="@style/large_title_text"
-            tools:text="空气 良"
-            tools:ignore="RtlHardcoded" />
+            tools:text="3°"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
 
         <TextView
-            android:id="@+id/container_weather_weather_text_live"
+            android:id="@+id/container_weather_realtime_weatherTxt"
+            android:layout_marginLeft="@dimen/little_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/container_weather_realtime_tempTxt"
+            style="@style/large_title_text"
+            tools:text="晴"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/container_weather_realtime_aqiTxt"
             android:layout_margin="@dimen/normal_margin"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:textSize="@dimen/title_text_size"
             style="@style/large_title_text"
-            tools:text="晴 3℃"
-            tools:ignore="RelativeOverlap,RtlHardcoded" />
+            tools:text="轻度污染"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/container_weather_realtime_alarmBtn"
+            android:src="@drawable/ic_alert"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            style="@style/material_image_button"
+            tools:ignore="ContentDescription" />
 
     </RelativeLayout>
 
@@ -65,20 +87,17 @@
                     tools:text="09:00"
                     tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
 
-                <ImageButton
-                    android:id="@+id/container_weather_location_collect_icon"
-                    android:src="@drawable/ic_collected"
-                    android:layout_width="@dimen/flag_icon_size"
-                    android:layout_height="@dimen/flag_icon_size"
-                    android:background="@android:color/transparent"
+                <ImageView
+                    android:id="@+id/container_weather_location_icon"
+                    android:src="@drawable/ic_location"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    style="@style/material_icon"
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/container_weather_location_text_live"
-                    android:layout_toLeftOf="@id/container_weather_location_collect_icon"
+                    android:layout_toLeftOf="@id/container_weather_location_icon"
                     android:layout_centerVertical="true"
                     style="@style/content_text"
                     tools:text="青岛"
@@ -89,24 +108,17 @@
             <TextView
                 android:id="@+id/container_weather_overviewTitle"
                 android:text="@string/week_weather"
-                android:layout_margin="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginLeft="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/little_margin"
                 android:textSize="@dimen/title_text_size"
-                style="@style/content_text" />
+                style="@style/content_text"
+                tools:ignore="RtlHardcoded" />
 
-            <wangdaye.com.geometricweather.view.widget.weatherView.WeekWeatherView
-                android:id="@+id/container_weather_weekWeatherView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorLine" />
-
-            <wangdaye.com.geometricweather.view.widget.weatherView.TrendView
+            <wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendView
                 android:id="@+id/container_weather_trendView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/trend_view_height" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -127,7 +139,7 @@
                 android:textSize="@dimen/title_text_size"
                 style="@style/content_text" />
 
-            <wangdaye.com.geometricweather.view.widget.weatherView.LifeInfoView
+            <wangdaye.com.geometricweather.view.widget.weatherView.details.LifeInfoView
                 android:id="@+id/container_weather_lifeInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

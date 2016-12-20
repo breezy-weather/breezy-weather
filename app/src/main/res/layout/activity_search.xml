@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <wangdaye.com.geometricweather.view.widget.StatusBarView
+        android:id="@+id/activity_search_statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimaryDark" />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/activity_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorRoot">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/activity_search_searchBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/cardview_light_background"
+                android:transitionName="@string/transition_activity_search_bar"
+                tools:targetApi="lollipop">
+
+                <RelativeLayout
+                    android:id="@+id/activity_search_searchContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0">
+
+                    <ImageButton
+                        android:id="@+id/activity_search_backBtn"
+                        android:src="@drawable/ic_back"
+                        android:layout_centerVertical="true"
+                        style="@style/material_image_button"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageButton
+                        android:id="@+id/activity_search_clearBtn"
+                        android:src="@drawable/ic_close"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        style="@style/material_image_button"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
+
+                    <EditText
+                        android:id="@+id/activity_search_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/feedback_search_location"
+                        android:textSize="@dimen/title_text_size"
+                        android:textColor="@color/colorTextContent"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:inputType="text"
+                        android:imeOptions="actionSearch"
+                        android:background="@android:color/transparent"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/activity_search_backBtn"
+                        android:layout_toLeftOf="@id/activity_search_clearBtn"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_search_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>

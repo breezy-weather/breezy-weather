@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/container_details_humidity_icon"
-        android:src="@drawable/ic_humidity"
+        android:src="@drawable/ic_leaf"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         style="@style/material_icon"

@@ -1,14 +1,17 @@
 package wangdaye.com.geometricweather.data.entity.model;
 
-import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.table.WeatherEntity;
+import wangdaye.com.geometricweather.data.entity.result.FWResult;
 import wangdaye.com.geometricweather.data.entity.result.HefengResult;
-import wangdaye.com.geometricweather.data.entity.result.JuheResult;
+import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 import wangdaye.com.geometricweather.data.service.HefengWeather;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -18,32 +21,39 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 public class Weather {
     // data
-    public static final int DAILY_LENGTH = 5;
-    public static final int HOURLY_LENGTH = 8;
-
     public Base base;
-    public Live live;
+    public RealTime realTime;
+    public Aqi aqi;
     public List<Daily> dailyList;
     public List<Hourly> hourlyList;
     public Life life;
+    public List<Alarm> alarmList;
+
+    /** <br> inner class. */
 
     public static class Base {
-        public String location;
-        public String refreshTime;
-
+        public String cityId;
+        public String city;
         public String date;
-        public String moon;
-        public String week;
+        public String time;
     }
 
-    public static class Live {
+    public static class RealTime {
         public String weather;
         public String weatherKind;
         public int temp;
-        public String air;
-
+        public int sendibleTemp;
         public String windDir;
         public String windLevel;
+    }
+
+    public static class Aqi {
+        public String aqi;
+        public String rank;
+        public String pm25;
+        public String pm10;
+        public String quality;
+        public String description;
     }
 
     public static class Daily {
@@ -52,388 +62,220 @@ public class Weather {
         public String[] weathers;
         public String[] weatherKinds;
         public int[] temps;
-        public String[] windDirs;
-        public String[] windLevels;
+        public String windDir;
+        public String windLevel;
         public String[] astros;
+
+        public Daily() {
+            this.weathers = new String[] {"", ""};
+            this.weatherKinds = new String[] {"", ""};
+            this.temps = new int[] {0, 0};
+            this.astros = new String[] {"", ""};
+        }
     }
 
     public static class Hourly {
-        public String hour;
+        public String time;
+        public String weather;
+        public String weatherKind;
         public int temp;
-        public float pop;
+        public int precipitation;
     }
 
     public static class Life {
         public String[] winds;
-        public String[] pms;
-        public String[] hums;
+        public String[] aqis;
+        public String[] humidities;
         public String[] uvs;
         public String[] dresses;
-        public String[] colds;
-        public String[] airs;
+        public String[] exercises;
         public String[] washCars;
-        public String[] sports;
+        public String[] colds;
+
+        public Life() {
+            this.winds = new String[] {"", ""};
+            this.aqis = new String[] {"", ""};
+            this.humidities = new String[] {"", ""};
+            this.uvs = new String[] {"", ""};
+            this.dresses = new String[] {"", ""};
+            this.exercises = new String[] {"", ""};
+            this.washCars = new String[] {"", ""};
+            this.colds = new String[] {"", ""};
+        }
+    }
+
+    public static class Alarm implements Parcelable {
+        public String content;
+        public String description;
+        public String name;
+        public String level;
+        public String color;
+        public String typeCode;
+        public String typeDescription;
+        public String precaution;
+        public String publishTime;
+
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.content);
+            dest.writeString(this.description);
+            dest.writeString(this.name);
+            dest.writeString(this.level);
+            dest.writeString(this.color);
+            dest.writeString(this.typeCode);
+            dest.writeString(this.typeDescription);
+            dest.writeString(this.precaution);
+            dest.writeString(this.publishTime);
+        }
+
+        public Alarm() {
+        }
+
+        protected Alarm(Parcel in) {
+            this.content = in.readString();
+            this.description = in.readString();
+            this.name = in.readString();
+            this.level = in.readString();
+            this.color = in.readString();
+            this.typeCode = in.readString();
+            this.typeDescription = in.readString();
+            this.precaution = in.readString();
+            this.publishTime = in.readString();
+        }
+
+        public static final Parcelable.Creator<Alarm> CREATOR = new Parcelable.Creator<Alarm>() {
+            @Override
+            public Alarm createFromParcel(Parcel source) {
+                return new Alarm(source);
+            }
+
+            @Override
+            public Alarm[] newArray(int size) {
+                return new Alarm[size];
+            }
+        };
     }
 
     /** <br> life cycle. */
 
-    public static Weather build(WeatherEntity entity) {
-        Weather w = new Weather();
-
-        w.base = new Base();
-        w.base.location = entity.location;
-        w.base.refreshTime = entity.refreshTime;
-        w.base.date = entity.date;
-        w.base.moon = entity.moon;
-        w.base.week = entity.week;
-
-        w.live = new Live();
-        w.live.weather = entity.weatherNow;
-        w.live.weatherKind = entity.weatherKindNow;
-        w.live.temp = entity.tempNow;
-        w.live.air = entity.airNow;
-        w.live.windDir = entity.windDirNow;
-        w.live.windLevel = entity.windLevelNow;
-
-        w.dailyList = new ArrayList<>();
-
-        Daily dailies_1 = new Daily();
-        dailies_1.date = entity.dates_1;
-        dailies_1.week = entity.weeks_1;
-        dailies_1.weathers = new String[] {
-                entity.dayWeathers_1,
-                entity.nightWeathers_1};
-        dailies_1.temps = new int[] {
-                entity.dayTemps_1,
-                entity.nightTemps_1};
-        dailies_1.windDirs = new String[] {
-                entity.dayWindDirs_1,
-                entity.nightWindDirs_1};
-        dailies_1.windLevels = new String[] {
-                entity.dayWindLevels_1,
-                entity.nightWindLevels_1};
-        dailies_1.astros = new String[] {
-                entity.sunriseTimes_1,
-                entity.sunsetTimes_1};
-        w.dailyList.add(dailies_1);
-
-        Daily dailies_2 = new Daily();
-        dailies_2.date = entity.dates_2;
-        dailies_2.week = entity.weeks_2;
-        dailies_2.weathers = new String[] {
-                entity.dayWeathers_2,
-                entity.nightWeathers_2};
-        dailies_2.temps = new int[] {
-                entity.dayTemps_2,
-                entity.nightTemps_2};
-        dailies_2.windDirs = new String[] {
-                entity.dayWindDirs_2,
-                entity.nightWindDirs_2};
-        dailies_2.windLevels = new String[] {
-                entity.dayWindLevels_2,
-                entity.nightWindLevels_2};
-        dailies_2.astros = new String[] {
-                entity.sunriseTimes_2,
-                entity.sunsetTimes_2};
-        w.dailyList.add(dailies_2);
-
-        Daily dailies_3 = new Daily();
-        dailies_3.date = entity.dates_3;
-        dailies_3.week = entity.weeks_3;
-        dailies_3.weathers = new String[] {
-                entity.dayWeathers_3,
-                entity.nightWeathers_3};
-        dailies_3.temps = new int[] {
-                entity.dayTemps_3,
-                entity.nightTemps_3};
-        dailies_3.windDirs = new String[] {
-                entity.dayWindDirs_3,
-                entity.nightWindDirs_3};
-        dailies_3.windLevels = new String[] {
-                entity.dayWindLevels_3,
-                entity.nightWindLevels_3};
-        dailies_3.astros = new String[] {
-                entity.sunriseTimes_3,
-                entity.sunsetTimes_3};
-        w.dailyList.add(dailies_3);
-
-        Daily dailies_4 = new Daily();
-        dailies_4.date = entity.dates_4;
-        dailies_4.week = entity.weeks_4;
-        dailies_4.weathers = new String[] {
-                entity.dayWeathers_4,
-                entity.nightWeathers_4};
-        dailies_4.temps = new int[] {
-                entity.dayTemps_4,
-                entity.nightTemps_4};
-        dailies_4.windDirs = new String[] {
-                entity.dayWindDirs_4,
-                entity.nightWindDirs_4};
-        dailies_4.windLevels = new String[] {
-                entity.dayWindLevels_4,
-                entity.nightWindLevels_4};
-        dailies_4.astros = new String[] {
-                entity.sunriseTimes_4,
-                entity.sunsetTimes_4};
-        w.dailyList.add(dailies_4);
-
-        Daily dailies_5 = new Daily();
-        dailies_5.date = entity.dates_5;
-        dailies_5.week = entity.weeks_5;
-        dailies_5.weathers = new String[] {
-                entity.dayWeathers_5,
-                entity.nightWeathers_5};
-        dailies_5.temps = new int[] {
-                entity.dayTemps_5,
-                entity.nightTemps_5};
-        dailies_5.windDirs = new String[] {
-                entity.dayWindDirs_5,
-                entity.nightWindDirs_5};
-        dailies_5.windLevels = new String[] {
-                entity.dayWindLevels_5,
-                entity.nightWindLevels_5};
-        dailies_5.astros = new String[] {
-                entity.sunriseTimes_5,
-                entity.sunsetTimes_5};
-        w.dailyList.add(dailies_5);
-
-        w.hourlyList = new ArrayList<>();
-
-        Hourly hourlies_1 = new Hourly();
-        hourlies_1.hour = entity.hours_1;
-        hourlies_1.temp = entity.hourlyTemps_1;
-        hourlies_1.pop = entity.hourlyPops_1;
-        w.hourlyList.add(hourlies_1);
-
-        Hourly hourlies_2 = new Hourly();
-        hourlies_2.hour = entity.hours_2;
-        hourlies_2.temp = entity.hourlyTemps_2;
-        hourlies_2.pop = entity.hourlyPops_2;
-        w.hourlyList.add(hourlies_2);
-
-        Hourly hourlies_3 = new Hourly();
-        hourlies_3.hour = entity.hours_3;
-        hourlies_3.temp = entity.hourlyTemps_3;
-        hourlies_3.pop = entity.hourlyPops_3;
-        w.hourlyList.add(hourlies_3);
-
-        Hourly hourlies_4 = new Hourly();
-        hourlies_4.hour = entity.hours_4;
-        hourlies_4.temp = entity.hourlyTemps_4;
-        hourlies_4.pop = entity.hourlyPops_4;
-        w.hourlyList.add(hourlies_4);
-
-        Hourly hourlies_5 = new Hourly();
-        hourlies_5.hour = entity.hours_5;
-        hourlies_5.temp = entity.hourlyTemps_5;
-        hourlies_5.pop = entity.hourlyPops_5;
-        w.hourlyList.add(hourlies_5);
-
-        Hourly hourlies_6 = new Hourly();
-        hourlies_6.hour = entity.hours_6;
-        hourlies_6.temp = entity.hourlyTemps_6;
-        hourlies_6.pop = entity.hourlyPops_6;
-        w.hourlyList.add(hourlies_6);
-
-        Hourly hourlies_7 = new Hourly();
-        hourlies_7.hour = entity.hours_7;
-        hourlies_7.temp = entity.hourlyTemps_7;
-        hourlies_7.pop = entity.hourlyPops_7;
-        w.hourlyList.add(hourlies_7);
-
-        Hourly hourlies_8 = new Hourly();
-        hourlies_8.hour = entity.hours_8;
-        hourlies_8.temp = entity.hourlyTemps_8;
-        hourlies_8.pop = entity.hourlyPops_8;
-        w.hourlyList.add(hourlies_8);
-
-        w.life = new Life();
-        w.life.winds = new String[] {entity.winds_1, entity.winds_2};
-        w.life.pms = new String[] {entity.pms_1, entity.pms_2};
-        w.life.hums = new String[] {entity.hums_1, entity.hums_2};
-        w.life.uvs = new String[] {entity.uvs_1, entity.uvs_2};
-        w.life.dresses = new String[] {entity.dresses_1, entity.dresses_2};
-        w.life.colds = new String[] {entity.colds_1, entity.colds_2};
-        w.life.airs = new String[] {entity.airs_1, entity.airs_2};
-        w.life.washCars = new String[] {entity.washCars_1, entity.washCars_2};
-        w.life.sports = new String[] {entity.sports_1, entity.sports_2};
-
-        return w;
+    private Weather() {
+        this.base = new Base();
+        this.realTime = new RealTime();
+        this.aqi = new Aqi();
+        this.dailyList = new ArrayList<>();
+        this.hourlyList = new ArrayList<>();
+        this.life = new Life();
+        this.alarmList = new ArrayList<>();
     }
 
-    public static Weather build(Context c, JuheResult result) {
-        if (result.result == null || result.error_code != 0) {
+    public static Weather buildWeather(FWResult result) {
+        if (result == null) {
             return null;
         }
 
-        try {
-            Weather w = new Weather();
+        Weather weather = new Weather();
 
-            w.base = new Base();
-            w.base.location = result.result.data.realtime.city_name;
-            w.base.refreshTime = result.result.data.realtime.time.split(":")[0]
-                    + ":" + result.result.data.realtime.time.split(":")[1];
-            w.base.date = result.result.data.realtime.date;
-            w.base.moon = result.result.data.realtime.moon;
-            w.base.week = c.getString(R.string.week) + result.result.data.weather.get(0).week;
+        weather.base.cityId = "CN" + result.cityid;
+        weather.base.city = result.city;
+        weather.base.date = result.realtime.time.split(" ")[0];
+        weather.base.time = result.realtime.time.split(" ")[1].split(":")[0]
+                + ":" + result.realtime.time.split(" ")[1].split(":")[1];
 
-            w.live = new Live();
-            w.live.weather = result.result.data.realtime.weather.info;
-            w.live.weatherKind = WeatherHelper.getJuheWeatherKind(result.result.data.realtime.weather.img);
-            w.live.temp = Integer.parseInt(result.result.data.realtime.weather.temperature);
-            if (result.result.data.aqi != null) {
-                w.live.air = c.getString(R.string.air) + " " + result.result.data.aqi.pm25.quality;
-            } else {
-                w.live.air = "";
-            }
-            w.live.windDir = result.result.data.realtime.wind.direct;
-            w.live.windLevel = result.result.data.realtime.wind.power;
+        weather.realTime.weather = result.realtime.weather;
+        weather.realTime.weatherKind = WeatherHelper.getFWeatherKind(weather.realTime.weather);
+        weather.realTime.temp = Integer.parseInt(result.realtime.temp.replace("°", ""));
+        weather.realTime.sendibleTemp = Integer.parseInt(result.realtime.sendibleTemp.replace("°", ""));
+        weather.realTime.windDir = result.realtime.wD;
+        weather.realTime.windLevel = result.realtime.wS;
 
-            w.dailyList = new ArrayList<>();
-            for (int i = 0; i < DAILY_LENGTH; i ++) {
-                if (i < result.result.data.weather.size()) {
-                    Daily daily = new Daily();
-                    daily.date = result.result.data.weather.get(i).date;
-                    daily.week = c.getString(R.string.week) + result.result.data.weather.get(i).week;
-                    daily.weathers = new String[] {
-                            result.result.data.weather.get(i).info.day.get(1),
-                            result.result.data.weather.get(i).info.night.get(1)};
-                    daily.weatherKinds = new String[] {
-                            WeatherHelper.getJuheWeatherKind(result.result.data.weather.get(i).info.day.get(0)),
-                            WeatherHelper.getJuheWeatherKind(result.result.data.weather.get(i).info.night.get(0))
-                    };
-                    daily.temps = new int[] {
-                            Integer.parseInt(result.result.data.weather.get(i).info.day.get(2)),
-                            Integer.parseInt(result.result.data.weather.get(i).info.night.get(2))};
-                    daily.windDirs = new String[] {
-                            result.result.data.weather.get(i).info.day.get(3),
-                            result.result.data.weather.get(i).info.night.get(3)};
-                    daily.windLevels = new String[] {
-                            result.result.data.weather.get(i).info.day.get(4),
-                            result.result.data.weather.get(i).info.night.get(4)};
-                    daily.astros = new String[] {
-                            result.result.data.weather.get(i).info.day.get(5),
-                            result.result.data.weather.get(i).info.night.get(5)};
+        weather.aqi.aqi = result.pm25.aqi;
+        weather.aqi.rank = (int) (100.0 * result.pm25.cityrank / result.pm25.citycount) + "%";
+        weather.aqi.pm25 = result.pm25.pm25;
+        weather.aqi.pm10 = result.pm25.pm10;
+        weather.aqi.quality = result.pm25.quality;
+        weather.aqi.description = result.pm25.advice;
 
-                    w.dailyList.add(daily);
-                } else {
-                    Daily daily = new Daily();
-                    daily.date = "null";
-                    daily.week = "null";
-                    daily.weathers = new String[] {"null", "null"};
-                    daily.temps = new int[] {0, 0};
-                    daily.windDirs = new String[] {"null", "null"};
-                    daily.windLevels = new String[] {"null", "null"};
-                    daily.astros = new String[] {"null", "null"};
-
-                    w.dailyList.add(daily);
-                }
-            }
-
-            w.hourlyList = new ArrayList<>();
-            for (int i = 0; i < HOURLY_LENGTH; i ++) {
-                if (i < result.result.data.f3h.temperature.size()) {
-                    Hourly hourly = new Hourly();
-                    hourly.hour = result.result.data.f3h.temperature.get(i).jg.substring(8, 10);
-                    hourly.temp = Integer.parseInt(result.result.data.f3h.temperature.get(i).jb);
-                    hourly.pop = (int) (Math.min(
-                            100 * Float.parseFloat(result.result.data.f3h.precipitation.get(i).jf),
-                            100));
-
-                    w.hourlyList.add(hourly);
-                } else {
-                    Hourly hourly = new Hourly();
-                    hourly.hour = "null";
-                    hourly.temp = 0;
-                    hourly.pop = 0;
-
-                    w.hourlyList.add(hourly);
-                }
-            }
-
-            w.life = new Life();
-            // wind.
-            w.life.winds = new String[] {
-                    c.getString(R.string.live) + " - " + w.live.windDir + w.live.windLevel,
-                    c.getString(R.string.today)
-                            + c.getString(R.string.day)
-                            + result.result.data.weather.get(0).info.day.get(3)
-                            + result.result.data.weather.get(0).info.day.get(4)
-                            + ", "
-                            + c.getString(R.string.night)
-                            + result.result.data.weather.get(0).info.night.get(3)
-                            + result.result.data.weather.get(0).info.night.get(4)
-                            + "。"};
-            // pm 2.5 & pm 10.
-            if (result.result.data.aqi != null) {
-                w.life.pms = new String[] {
-                        c.getString(R.string.pm_25) + " - " + result.result.data.aqi.pm25.pm25
-                                + " / "
-                                + c.getString(R.string.pm_10) + " - " + result.result.data.aqi.pm25.pm10,
-                        result.result.data.aqi.pm25.des};
-            } else {
-                w.life.pms = new String[] {"", ""};
-            }
-            // humidity.
-            w.life.hums = new String[] {
-                    c.getString(R.string.humidity),
-                    result.result.data.realtime.weather.humidity};
-            // uv.
-            if (result.result.data.life.info.ziwaixian != null) {
-                w.life.uvs = new String[] {
-                        c.getString(R.string.uv) + " - " + result.result.data.life.info.ziwaixian.get(0),
-                        result.result.data.life.info.ziwaixian.get(1)};
-            } else {
-                w.life.uvs = new String[] {"", ""};
-            }
-            // dress index.
-            if (result.result.data.life.info.chuanyi != null) {
-                w.life.dresses = new String[] {
-                        c.getString(R.string.dressing_index) + " - " + result.result.data.life.info.chuanyi.get(0),
-                        result.result.data.life.info.chuanyi.get(1)};
-            } else {
-                w.life.dresses = new String[] {"", ""};
-            }
-            // cold index.
-            if (result.result.data.life.info.ganmao != null) {
-                w.life.colds = new String[] {
-                        c.getString(R.string.cold_index) + " - " + result.result.data.life.info.ganmao.get(0),
-                        result.result.data.life.info.ganmao.get(1)};
-            } else {
-                w.life.colds = new String[] {"", ""};
-            }
-            // air index.
-            if (result.result.data.aqi != null) {
-                w.life.airs = new String[] {
-                        c.getString(R.string.aqi) + " - " + result.result.data.aqi.pm25.level + c.getString(R.string.level),
-                        result.result.data.aqi.pm25.des};
-            } else {
-                w.life.airs = new String[] {"", ""};
-            }
-            // wash car index.
-            if (result.result.data.life.info.xiche != null) {
-                w.life.washCars = new String[] {
-                        c.getString(R.string.wash_car_index) + " - " + result.result.data.life.info.xiche.get(0),
-                        result.result.data.life.info.xiche.get(1)};
-            } else {
-                w.life.washCars = new String[] {"", ""};
-            }
-            // exercise index.
-            if (result.result.data.life.info.yundong != null) {
-                w.life.sports = new String[] {
-                        c.getString(R.string.exercise_index) + " - " + result.result.data.life.info.yundong.get(0),
-                        result.result.data.life.info.yundong.get(1)};
-            } else {
-                w.life.sports = new String[] {"", ""};
-            }
-
-            return w;
-        } catch (NullPointerException e) {
-            return null;
+        for (int i = 0; i < result.weathers.size(); i ++) {
+            Daily daily = new Daily();
+            daily.date = result.weathers.get(i).date;
+            daily.week = result.weathers.get(i).week.replace("星期", "周");
+            daily.weathers = new String[] {
+                    result.weathers.get(i).weather, result.weathers.get(i).weather};
+            daily.weatherKinds = new String[] {
+                    WeatherHelper.getFWeatherKind(daily.weathers[0]),
+                    WeatherHelper.getFWeatherKind(daily.weathers[1])};
+            daily.temps = new int[] {
+                    Integer.parseInt(result.weathers.get(i).temp_day_c),
+                    Integer.parseInt(result.weathers.get(i).temp_night_c)};
+            daily.windDir = result.weathers.get(i).wd;
+            daily.windLevel = result.weathers.get(i).ws;
+            daily.astros = new String[] {
+                    result.weathers.get(i).sun_rise_time,
+                    result.weathers.get(i).sun_down_time};
+            weather.dailyList.add(daily);
         }
+
+        for (int i = 0; i < result.weatherDetailsInfo.weather24HoursDetailsInfos.size(); i ++) {
+            Hourly hourly = new Hourly();
+            hourly.time = result.weatherDetailsInfo.weather24HoursDetailsInfos.get(i)
+                    .startTime.split(" ")[1].split(":")[0] + "时";
+            hourly.weather = result.weatherDetailsInfo.weather24HoursDetailsInfos.get(i).weather;
+            hourly.weatherKind = WeatherHelper.getFWeatherKind(hourly.weather);
+            hourly.temp = Integer.parseInt(result.weatherDetailsInfo.weather24HoursDetailsInfos.get(i).highestTemperature);
+            hourly.precipitation = Integer.parseInt(result.weatherDetailsInfo.weather24HoursDetailsInfos.get(i).precipitation);
+            weather.hourlyList.add(hourly);
+        }
+
+        weather.life.winds = new String[] {
+                "实时 - " + weather.realTime.windDir + " " + weather.realTime.windLevel,
+                "今日 - " + weather.dailyList.get(0).windDir + " " + weather.dailyList.get(0).windLevel};
+        weather.life.aqis = new String[] {
+                "空气 - " + weather.aqi.quality + " (" + weather.aqi.aqi + ")",
+                "PM2.5 - " + weather.aqi.pm25 + " / " + "PM10 - " + weather.aqi.pm10
+                        + "\n" + result.indexes.get(10).content};
+        weather.life.humidities = new String[] {
+                "体感温度",
+                weather.realTime.sendibleTemp +  "℃"};
+        weather.life.uvs = new String[] {
+                result.indexes.get(7).name + " - " + result.indexes.get(7).level,
+                result.indexes.get(7).content};
+        weather.life.dresses = new String[] {
+                result.indexes.get(23).name + " - " + result.indexes.get(23).level,
+                result.indexes.get(23).content};
+        weather.life.exercises = new String[] {
+                result.indexes.get(3).name + " - " + result.indexes.get(3).level,
+                result.indexes.get(3).content};
+        weather.life.washCars = new String[] {
+                result.indexes.get(5).name + " - " + result.indexes.get(5).level,
+                result.indexes.get(5).content};
+        weather.life.colds = new String[] {
+                result.indexes.get(19).name + " - " + result.indexes.get(19).level,
+                result.indexes.get(19).content};
+
+        for (int i = 0; i < result.alarms.size(); i ++) {
+            Alarm alarm = new Alarm();
+            alarm.content = result.alarms.get(i).alarmContent;
+            alarm.description = result.alarms.get(i).alarmDesc;
+            alarm.name = result.alarms.get(i).alarmId;
+            alarm.level = result.alarms.get(i).alarmLevelNo;
+            alarm.color = result.alarms.get(i).alarmLevelNoDesc;
+            alarm.typeCode = result.alarms.get(i).alarmType;
+            alarm.typeDescription = result.alarms.get(i).alarmTypeDesc;
+            alarm.precaution = result.alarms.get(i).precaution;
+            alarm.publishTime = result.alarms.get(i).publishTime;
+            weather.alarmList.add(alarm);
+        }
+
+        return weather;
     }
 
-    public static Weather build(Context c, HefengResult result) {
+    public static Weather buildWeather(HefengResult result) {
         int p = HefengWeather.getLatestDataPosition(result);
         if (result == null
                 || result.heWeather == null || result.heWeather.size() == 0
@@ -442,160 +284,177 @@ public class Weather {
         }
 
         try {
-            Weather w = new Weather();
+            Weather weather = new Weather();
 
-            w.base = new Base();
-            w.base.location = result.heWeather.get(p).basic.city;
-            w.base.refreshTime = result.heWeather.get(p).basic.update.loc.split(" ")[1];
-            w.base.date = result.heWeather.get(p).basic.update.loc.split(" ")[0];
-            w.base.moon = "";
-            w.base.week = HefengWeather.getWeek(c, result.heWeather.get(p).basic.update.loc.split(" ")[0]);
+            weather.base.cityId = result.heWeather.get(p).basic.id;
+            weather.base.city = result.heWeather.get(p).basic.city;
+            weather.base.time = result.heWeather.get(p).basic.update.loc.split(" ")[1];
+            weather.base.date = result.heWeather.get(p).basic.update.loc.split(" ")[0];
 
-            w.live = new Live();
-            w.live.weather = result.heWeather.get(p).now.cond.txt;
-            w.live.weatherKind = WeatherHelper.getHefengWeatherKind(result.heWeather.get(p).now.cond.code);
-            w.live.temp = Integer.parseInt(result.heWeather.get(p).now.tmp);
-            if (result.heWeather.get(p).aqi != null) {
-                w.live.air = c.getString(R.string.air) + " " + result.heWeather.get(p).aqi.city.qlty;
-            } else {
-                w.live.air = "";
-            }
-            w.live.windDir = result.heWeather.get(p).now.wind.dir;
-            w.live.windLevel = result.heWeather.get(p).now.wind.sc + c.getString(R.string.level);
+            weather.realTime.weather = result.heWeather.get(p).now.cond.txt;
+            weather.realTime.weatherKind = WeatherHelper.getHefengWeatherKind(result.heWeather.get(p).now.cond.code);
+            weather.realTime.temp = Integer.parseInt(result.heWeather.get(p).now.tmp);
+            weather.realTime.sendibleTemp = Integer.parseInt(result.heWeather.get(p).now.fl);
+            weather.realTime.windDir = result.heWeather.get(p).now.wind.dir;
+            weather.realTime.windLevel = result.heWeather.get(p).now.wind.sc;
 
-            w.dailyList = new ArrayList<>();
-            for (int i = 0; i < DAILY_LENGTH; i ++) {
-                if (i < result.heWeather.get(p).daily_forecast.size()) {
-                    Daily daily = new Daily();
-                    daily.date = result.heWeather.get(p).daily_forecast.get(i).date;
-                    daily.week = HefengWeather.getWeek(c, result.heWeather.get(p).daily_forecast.get(i).date);
-                    daily.weathers = new String[] {
-                            result.heWeather.get(p).daily_forecast.get(i).cond.txt_d,
-                            result.heWeather.get(p).daily_forecast.get(i).cond.txt_n};
-                    daily.weatherKinds = new String[] {
-                            WeatherHelper.getHefengWeatherKind(result.heWeather.get(p).daily_forecast.get(i).cond.code_d),
-                            WeatherHelper.getHefengWeatherKind(result.heWeather.get(p).daily_forecast.get(i).cond.code_n)};
-                    daily.temps = new int[] {
-                            Integer.parseInt(result.heWeather.get(p).daily_forecast.get(i).tmp.max),
-                            Integer.parseInt(result.heWeather.get(p).daily_forecast.get(i).tmp.min)};
-                    daily.windDirs = new String[] {
-                            result.heWeather.get(p).daily_forecast.get(i).wind.dir,
-                            result.heWeather.get(p).daily_forecast.get(i).wind.dir};
-                    daily.windLevels = new String[] {
-                            result.heWeather.get(p).daily_forecast.get(i).wind.sc,
-                            result.heWeather.get(p).daily_forecast.get(i).wind.sc};
-                    daily.astros = new String[] {
-                            result.heWeather.get(p).daily_forecast.get(i).astro.sr,
-                            result.heWeather.get(p).daily_forecast.get(i).astro.ss};
-
-                    w.dailyList.add(daily);
-                } else {
-                    Daily daily = new Daily();
-                    daily.date = "null";
-                    daily.week = "null";
-                    daily.weathers = new String[] {"null", "null"};
-                    daily.temps = new int[] {0, 0};
-                    daily.windDirs = new String[] {"null", "null"};
-                    daily.windLevels = new String[] {"null", "null"};
-                    daily.astros = new String[] {"null", "null"};
-
-                    w.dailyList.add(daily);
-                }
+            for (int i = 0; i < result.heWeather.get(p).daily_forecast.size(); i ++) {
+                Daily daily = new Daily();
+                daily.date = result.heWeather.get(p).daily_forecast.get(i).date;
+                daily.week = HefengWeather.getWeek(result.heWeather.get(p).daily_forecast.get(i).date);
+                daily.weathers = new String[] {
+                        result.heWeather.get(p).daily_forecast.get(i).cond.txt_d,
+                        result.heWeather.get(p).daily_forecast.get(i).cond.txt_n};
+                daily.weatherKinds = new String[] {
+                        WeatherHelper.getHefengWeatherKind(result.heWeather.get(p).daily_forecast.get(i).cond.code_d),
+                        WeatherHelper.getHefengWeatherKind(result.heWeather.get(p).daily_forecast.get(i).cond.code_n)};
+                daily.temps = new int[] {
+                        Integer.parseInt(result.heWeather.get(p).daily_forecast.get(i).tmp.max),
+                        Integer.parseInt(result.heWeather.get(p).daily_forecast.get(i).tmp.min)};
+                daily.windDir = result.heWeather.get(p).daily_forecast.get(i).wind.dir;
+                daily.windLevel = result.heWeather.get(p).daily_forecast.get(i).wind.sc;
+                daily.astros = new String[] {
+                        result.heWeather.get(p).daily_forecast.get(i).astro.sr,
+                        result.heWeather.get(p).daily_forecast.get(i).astro.ss};
+                weather.dailyList.add(daily);
             }
 
-            w.hourlyList = new ArrayList<>();
-            for (int i = 0; i < DAILY_LENGTH; i ++) {
-                if (i < result.heWeather.get(p).hourly_forecast.size()) {
-                    Hourly hourly = new Hourly();
-                    hourly.hour = result.heWeather.get(p).hourly_forecast.get(i).date.split(" ")[1].split(":")[0];
-                    hourly.temp = Integer.parseInt(result.heWeather.get(p).hourly_forecast.get(i).tmp);
-                    hourly.pop = Integer.parseInt(result.heWeather.get(p).hourly_forecast.get(i).pop);
-
-                    w.hourlyList.add(hourly);
-                } else {
-                    Hourly hourly = new Hourly();
-                    hourly.hour = "null";
-                    hourly.temp = 0;
-                    hourly.pop = 0;
-
-                    w.hourlyList.add(hourly);
-                }
+            for (int i = 0; i < result.heWeather.get(p).hourly_forecast.size(); i ++) {
+                Hourly hourly = new Hourly();
+                hourly.weather = "null";
+                hourly.weatherKind = "null";
+                hourly.time = result.heWeather.get(p).hourly_forecast.get(i).date.split(" ")[1].split(":")[0];
+                hourly.temp = Integer.parseInt(result.heWeather.get(p).hourly_forecast.get(i).tmp);
+                hourly.precipitation = Integer.parseInt(result.heWeather.get(p).hourly_forecast.get(i).pop);
+                weather.hourlyList.add(hourly);
             }
 
-            w.life = new Life();
-            if (result.heWeather.get(p).suggestion == null) {
-                w.life.winds = new String[] {
-                        c.getString(R.string.live) + " - " + w.live.windDir + w.live.windLevel,
-                        c.getString(R.string.today)
-                                + result.heWeather.get(p).daily_forecast.get(0).wind.dir
-                                + result.heWeather.get(p).daily_forecast.get(0).wind.sc
-                                + "。"};
-                w.life.pms = new String[] {
-                        c.getString(R.string.visibility),
-                        result.heWeather.get(p).now.vis + "km",};
-                w.life.hums = new String[] {
-                        c.getString(R.string.humidity),
-                        result.heWeather.get(p).now.hum};
-                w.life.uvs = new String[] {
-                        c.getString(R.string.sun_rise) + "-" + result.heWeather.get(p).daily_forecast.get(0).astro.sr,
-                        c.getString(R.string.sun_fall) + "-" + result.heWeather.get(p).daily_forecast.get(0).astro.ss};
-                w.life.dresses = new String[] {
-                        c.getString(R.string.apparent_temp),
-                        result.heWeather.get(p).now.fl + "℃"};
-                w.life.colds = new String[] {"", ""};
-                w.life.airs = new String[] {"", ""};
-                w.life.washCars = new String[] {"", ""};
-                w.life.sports = new String[] {"", ""};
-            } else {
-                // wind.
-                w.life.winds = new String[] {
-                        c.getString(R.string.live) + " - " + w.live.windDir + w.live.windLevel,
-                        c.getString(R.string.today)
-                                + result.heWeather.get(p).daily_forecast.get(0).wind.dir
-                                + result.heWeather.get(p).daily_forecast.get(0).wind.sc
-                                + c.getString(R.string.level)
-                                + "。"};
-                // pm 2.5 & pm 10.
-                if (result.heWeather.get(p).aqi != null) {
-                    w.life.pms = new String[] {
-                            c.getString(R.string.pm_25) + " - " + result.heWeather.get(p).aqi.city.pm25
-                                    + " / "
-                                    + c.getString(R.string.pm_10) + " - " + result.heWeather.get(p).aqi.city.pm10,
-                            result.heWeather.get(p).aqi.city.qlty};
-                } else {
-                    w.life.pms = new String[] {"", ""};
-                }
-                // humidity.
-                w.life.hums = new String[] {
-                        c.getString(R.string.humidity),
-                        result.heWeather.get(p).now.hum};
-                // uv.
-                w.life.uvs = new String[] {
-                        c.getString(R.string.uv) + " - " + result.heWeather.get(p).suggestion.uv.brf,
-                        result.heWeather.get(p).suggestion.uv.txt};
-                // dress index.
-                w.life.dresses = new String[] {
-                        c.getString(R.string.dressing_index) + " - " + result.heWeather.get(p).suggestion.drsg.brf,
-                        result.heWeather.get(p).suggestion.drsg.txt};
-                // cold index.
-                w.life.colds = new String[] {
-                        c.getString(R.string.cold_index) + " - " + result.heWeather.get(p).suggestion.flu.brf,
-                        result.heWeather.get(p).suggestion.flu.txt};
-                // air index.
-                w.life.airs = new String[] {"", ""};
-                // wash car index.
-                w.life.washCars = new String[] {
-                        c.getString(R.string.wash_car_index) + " - " + result.heWeather.get(p).suggestion.cw.brf,
-                        result.heWeather.get(p).suggestion.cw.txt};
-                // exercise index.
-                w.life.sports = new String[] {
-                        c.getString(R.string.exercise_index) + " - " + result.heWeather.get(p).suggestion.sport.brf,
-                        result.heWeather.get(p).suggestion.sport.txt};
-            }
+            weather.life.winds = new String[] {
+                    "Live - " + weather.realTime.windDir + weather.realTime.windLevel,
+                    "Today - "
+                            + result.heWeather.get(p).daily_forecast.get(0).wind.dir
+                            + result.heWeather.get(p).daily_forecast.get(0).wind.sc
+                            + "。"};
+            weather.life.aqis = new String[] {
+                    "Visibility",
+                    result.heWeather.get(p).now.vis + "km",};
+            weather.life.humidities = new String[] {
+                    "Humidity",
+                    result.heWeather.get(p).now.hum};
+            weather.life.uvs = new String[] {
+                    "Sunrise - " + result.heWeather.get(p).daily_forecast.get(0).astro.sr,
+                    "Sunset - " + result.heWeather.get(p).daily_forecast.get(0).astro.ss};
+            weather.life.dresses = new String[] {
+                    "Apparent temperature",
+                    result.heWeather.get(p).now.fl + "℃"};
 
-            return w;
+            return weather;
         } catch (NullPointerException e) {
             return null;
         }
+    }
+
+    public static Weather buildWeatherPrimaryData(WeatherEntity entity) {
+        Weather weather = new Weather();
+
+        // base.
+        weather.base.cityId = entity.cityId;
+        weather.base.city = entity.city;
+        weather.base.date = entity.date;
+        weather.base.time = entity.time;
+
+        // realtime.
+        weather.realTime.weather = entity.realTimeWeather;
+        weather.realTime.weatherKind = entity.realTimeWeatherKind;
+        weather.realTime.temp = entity.realTimeTemp;
+        weather.realTime.sendibleTemp = entity.realTimeSendibleTemp;
+        weather.realTime.windDir = entity.realTimeWindDir;
+        weather.realTime.windLevel = entity.realTimeWindLevel;
+
+        // aqi.
+        weather.aqi.aqi = entity.aqiAqi;
+        weather.aqi.rank = entity.aqiRank;
+        weather.aqi.pm25 = entity.aqiPm25;
+        weather.aqi.pm10 = entity.aqiPm10;
+        weather.aqi.quality = entity.aqiQuality;
+        weather.aqi.description = entity.aqiDescription;
+
+        // life.
+        assert weather.life.winds != null;
+        weather.life.winds[0] = entity.lifeWindTitle;
+        weather.life.winds[1] = entity.lifeWindContent;
+        weather.life.aqis[0] = entity.lifeAqiTitle;
+        weather.life.aqis[1] = entity.lifeAqiContent;
+        weather.life.humidities[0] = entity.lifeHumidityTitle;
+        weather.life.humidities[1] = entity.lifeHumidityContent;
+        weather.life.uvs[0] = entity.lifeUvTitle;
+        weather.life.uvs[1] = entity.lifeUvContent;
+        weather.life.dresses[0] = entity.lifeDressesTitle;
+        weather.life.dresses[1] = entity.lifeDressesContent;
+        weather.life.exercises[0] = entity.lifeExerciseTitle;
+        weather.life.exercises[1] = entity.lifeExerciseContent;
+        weather.life.washCars[0] = entity.lifeWashCarTitle;
+        weather.life.washCars[1] = entity.lifeWashCarContent;
+        weather.life.colds[0] = entity.lifeColdTitle;
+        weather.life.colds[1] = entity.lifeColdContent;
+
+        return weather;
+    }
+
+    public Weather buildWeatherDailyList(List<DailyEntity> list) {
+        dailyList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i ++) {
+            Daily daily = new Daily();
+            daily.date = list.get(i).date;
+            daily.week = list.get(i).week;
+            daily.weathers = new String[] {
+                    list.get(i).daytimeWeather,
+                    list.get(i).nighttimeWeather};
+            daily.weatherKinds = new String[] {
+                    list.get(i).daytimeWeatherKind,
+                    list.get(i).nighttimeWeatherKind};
+            daily.temps = new int[] {
+                    list.get(i).maxiTemp,
+                    list.get(i).miniTemp};
+            daily.windDir = list.get(i).windDir;
+            daily.windLevel = list.get(i).windLevel;
+            daily.astros = new String[] {
+                    list.get(i).sunrise,
+                    list.get(i).sunset};
+            dailyList.add(daily);
+        }
+        return this;
+    }
+
+    public Weather buildWeatherHourlyList(List<HourlyEntity> list) {
+        hourlyList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i ++) {
+            Hourly hourly = new Hourly();
+            hourly.time = list.get(i).time;
+            hourly.weather = list.get(i).weather;
+            hourly.weatherKind = list.get(i).weatherKind;
+            hourly.temp = list.get(i).temp;
+            hourly.precipitation = list.get(i).precipitation;
+            hourlyList.add(hourly);
+        }
+        return this;
+    }
+
+    public Weather buildWeatherAlarmList(List<AlarmEntity> list) {
+        alarmList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i ++) {
+            Alarm alarm = new Alarm();
+            alarm.content = list.get(i).content;
+            alarm.description = list.get(i).description;
+            alarm.name = list.get(i).name;
+            alarm.level = list.get(i).level;
+            alarm.color = list.get(i).color;
+            alarm.typeCode = list.get(i).typeCode;
+            alarm.typeDescription = list.get(i).typeDescription;
+            alarm.precaution = list.get(i).precaution;
+            alarm.publishTime = list.get(i).publishTime;
+            alarmList.add(alarm);
+        }
+        return this;
     }
 }

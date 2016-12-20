@@ -1,47 +1,186 @@
 package wangdaye.com.geometricweather.data.entity.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.regex.Pattern;
+
+import wangdaye.com.geometricweather.data.entity.table.CityEntity;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
+import wangdaye.com.geometricweather.data.entity.table.OverseaCityEntity;
 
 /**
  * Location.
  * */
 
-public class Location {
+public class Location
+        implements Parcelable {
     // data
-    public String name;
-    public String realName;
+    public String cityId;
+    public String city;
+    public String cnty;
+    public String lat;
+    public String lon;
+    public String prov;
 
     public Weather weather;
     public History history;
 
+    public boolean local;
+    public static final String NULL_ID = "NULL_ID";
+
     /** <br> life cycle. */
 
     private Location() {
-        this(null, null, null, null);
+        this.cityId = NULL_ID;
+        this.city = "";
+        this.cnty = "";
+        this.lat = "";
+        this.lon = "";
+        this.prov = "";
+        this.weather = null;
+        this.history = null;
+        this.local = false;
     }
 
-    public Location(String name, String realName) {
-        this(name, realName, null, null);
+    public static Location buildLocal() {
+        Location location = new Location();
+        location.local = true;
+        return location;
     }
 
-    public Location(String name, String realName, Weather weather, History history) {
-        this.name = name;
-        this.realName = realName;
-        this.weather = weather;
-        this.history = history;
+    public static Location buildDefaultLocation() {
+        Location location = new Location();
+        location.cityId = "CN101010100";
+        location.city = "北京";
+        location.cnty = "中国";
+        location.lat = "39.904000";
+        location.lon = "116.391000";
+        location.prov = "直辖市";
+        location.local = false;
+        return location;
     }
 
-    public static Location build(LocationEntity entity) {
-        Location l = new Location();
-        l.name = entity.location;
-        l.realName = entity.realLocation;
-        return l;
+    public static Location buildLocation(LocationEntity entity) {
+        Location location = new Location();
+        location.cityId = entity.cityId;
+        location.city = entity.city;
+        location.cnty = entity.cnty;
+        location.lat = entity.lat;
+        location.lon = entity.lon;
+        location.prov = entity.prov;
+        location.local = entity.local;
+        return location;
+    }
+
+    public static Location buildLocation(CityEntity entity) {
+        Location location = new Location();
+        location.cityId = entity.cityId;
+        location.city = entity.city;
+        location.cnty = entity.cnty;
+        location.lat = entity.lat;
+        location.lon = entity.lon;
+        location.prov = entity.prov;
+        return location;
+    }
+
+    public static Location buildLocation(OverseaCityEntity entity) {
+        Location location = new Location();
+        location.cityId = entity.cityId;
+        location.city = entity.cityEn;
+        location.cnty = entity.countryEn;
+        location.lat = entity.lat;
+        location.lon = entity.lon;
+        location.prov = "";
+        return location;
     }
 
     /** <br> data. */
 
-    public boolean isEngLocation() {
-        String n = realName.replaceAll("，", ",");
-        return n.getBytes().length == n.length();
+    public boolean equals(Location location) {
+        if (location.isLocal()) {
+            return isLocal();
+        } else {
+            return cityId.equals(location.cityId);
+        }
     }
+
+    public boolean isLocal() {
+        return local;
+    }
+
+    public boolean isEngLocation() {
+        return !cityId.substring(0, 2).equals("CN");
+    }
+
+    public static boolean checkEveryCharIsEnglish(String txt) {
+        for (int i = 0; i < txt.length(); i = i + 1) {
+            if (Pattern.compile("[\u4e00-\u9fa5]")
+                    .matcher(
+                            String.valueOf(txt.charAt(i))).find()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isUsable() {
+        return !cityId.equals(NULL_ID);
+    }
+
+    public long getCityId() {
+        String realId = cityId
+                .replace("A", "").replace("B", "").replace("C", "").replace("D", "").replace("E", "")
+                .replace("F", "").replace("G", "").replace("H", "").replace("I", "").replace("J", "")
+                .replace("K", "").replace("L", "").replace("M", "").replace("N", "").replace("O", "")
+                .replace("P", "").replace("Q", "").replace("R", "").replace("S", "").replace("T", "")
+                .replace("U", "").replace("V", "").replace("W", "").replace("X", "").replace("Y", "")
+                .replace("Z", "").replace("a", "").replace("b", "").replace("c", "").replace("d", "")
+                .replace("e", "").replace("f", "").replace("g", "").replace("h", "").replace("i", "")
+                .replace("j", "").replace("k", "").replace("l", "").replace("m", "").replace("n", "")
+                .replace("o", "").replace("p", "").replace("q", "").replace("r", "").replace("s", "")
+                .replace("t", "").replace("u", "").replace("v", "").replace("w", "").replace("x", "")
+                .replace("y", "").replace("z", "");
+        return Long.parseLong(realId);
+    }
+
+    /** <br> parcelable. */
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.cityId);
+        dest.writeString(this.city);
+        dest.writeString(this.cnty);
+        dest.writeString(this.lat);
+        dest.writeString(this.lon);
+        dest.writeString(this.prov);
+        dest.writeByte(this.local ? (byte) 1 : (byte) 0);
+    }
+
+    protected Location(Parcel in) {
+        this.cityId = in.readString();
+        this.city = in.readString();
+        this.cnty = in.readString();
+        this.lat = in.readString();
+        this.lon = in.readString();
+        this.prov = in.readString();
+        this.local = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<Location> CREATOR = new Parcelable.Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel source) {
+            return new Location(source);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
 }

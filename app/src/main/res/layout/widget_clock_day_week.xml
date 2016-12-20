@@ -30,7 +30,7 @@
 
                 <TextClock
                     android:id="@+id/widget_clock_day_week_clock"
-                    android:textSize="@dimen/share_week_icon_size"
+                    android:textSize="@dimen/little_flag_icon_size"
                     style="@style/widget_text_clock"
                     tools:ignore="SpUsage" />
 
@@ -43,8 +43,8 @@
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon"
-                    android:layout_width="@dimen/share_week_icon_size"
-                    android:layout_height="@dimen/share_week_icon_size"
+                    android:layout_width="@dimen/flag_icon_size"
+                    android:layout_height="@dimen/flag_icon_size"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="@dimen/little_margin"
                     android:layout_marginRight="@dimen/little_margin"

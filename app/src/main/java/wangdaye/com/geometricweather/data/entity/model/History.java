@@ -8,7 +8,8 @@ import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
 
 public class History {
     // data
-    public String location;
+    public String cityId;
+    public String city;
     public String date;
 
     public int maxiTemp;
@@ -16,9 +17,10 @@ public class History {
 
     /** <br> life cycle. */
 
-    public static History build(Weather weather) {
+    public static History buildHistory(Weather weather) {
         History history = new History();
-        history.location = weather.base.location;
+        history.cityId = weather.base.cityId;
+        history.city = weather.base.city;
         history.date = weather.base.date;
         history.maxiTemp = weather.dailyList.get(0).temps[0];
         history.miniTemp = weather.dailyList.get(0).temps[1];
@@ -26,9 +28,10 @@ public class History {
         return history;
     }
 
-    public static History build(HistoryEntity entity) {
+    public static History buildHistory(HistoryEntity entity) {
         History history = new History();
-        history.location = entity.location;
+        history.cityId = entity.cityId;
+        history.city = entity.city;
         history.date = entity.date;
         history.maxiTemp = entity.maxiTemp;
         history.miniTemp = entity.miniTemp;

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <wangdaye.com.geometricweather.view.widget.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimaryDark" />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/activity_manage_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorRoot">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/activity_manage_searchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/little_margin"
+                    style="@style/material_card">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/activity_manage_searchIcon"
+                            android:src="@drawable/ic_search"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginLeft="@dimen/little_margin"
+                            android:layout_marginRight="@dimen/little_margin"
+                            android:layout_marginBottom="0dp"
+                            style="@style/material_icon"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/feedback_search_location"
+                            android:textSize="@dimen/content_text_size"
+                            android:textColor="@color/colorTextSubtitle"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@id/activity_manage_searchIcon"
+                            tools:ignore="RtlHardcoded" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_manage_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>

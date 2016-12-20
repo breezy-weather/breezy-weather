@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fade xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:interpolator="@android:interpolator/fast_out_slow_in"
+    android:duration="350"
+    tools:ignore="NewApi">
+    <targets>
+        <target android:targetId="@android:id/navigationBarBackground" />
+        <target android:targetId="@android:id/statusBarBackground" />
+        <target android:targetId="@id/activity_search_container" />
+    </targets>
+</fade>

@@ -33,7 +33,12 @@ public class TodayForecastAlarmService extends GeoAlarmService {
     }
 
     @Override
-    protected Location readSettings() {
+    protected String readSettings() {
+        return null;
+    }
+
+    @Override
+    protected Location readLocation(String locationName) {
         return DatabaseHelper.getInstance(this).readLocationList().get(0);
     }
 
@@ -46,7 +51,7 @@ public class TodayForecastAlarmService extends GeoAlarmService {
     }
 
     @Override
-    public void updateView(Context context, Weather weather) {
+    public void updateView(Context context, Location location, Weather weather) {
         NotificationUtils.buildForecastAndSendIt(context, weather, true);
     }
 
@@ -69,7 +74,7 @@ public class TodayForecastAlarmService extends GeoAlarmService {
     /** <br> interface. */
 
     @Override
-    public void requestWeatherFailed(String locationName) {
+    public void requestWeatherFailed(Location requestLocation) {
         Toast.makeText(
                 this,
                 getString(R.string.feedback_get_weather_failed),

@@ -1,29 +1,24 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import org.greenrobot.greendao.query.QueryBuilder;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.result.CityListResult;
+import wangdaye.com.geometricweather.data.entity.result.OverseaCityListResult;
+import wangdaye.com.geometricweather.data.entity.table.CityEntity;
 import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
-import wangdaye.com.geometricweather.data.entity.table.HistoryEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
-import wangdaye.com.geometricweather.data.entity.table.LocationEntityDao;
-import wangdaye.com.geometricweather.data.entity.table.WeatherEntity;
-import wangdaye.com.geometricweather.data.entity.table.WeatherEntityDao;
+import wangdaye.com.geometricweather.data.entity.table.OverseaCityEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 
 /**
  * Database helper
@@ -33,275 +28,140 @@ public class DatabaseHelper {
     // data
     private DaoMaster.DevOpenHelper helper;
     private final static String DATABASE_NAME = "Geometric_Weather_db";
-    private final String LOCAL;
 
     /** <br> life cycle. */
 
     private DatabaseHelper(Context c) {
         helper = new DaoMaster.DevOpenHelper(c, DATABASE_NAME);
-        LOCAL = c.getString(R.string.local);
     }
 
-    /** <br> database. */
+    /** <br> data. */
 
     private SQLiteDatabase getDatabase() {
         return helper.getWritableDatabase();
     }
 
-    /** <br> locationNow. */
+    // location.
 
-    // insert.
-
-    public void insertLocation(Location l) {
-        if (l == null) {
-            return;
-        }
-
-        LocationEntity entity = searchLocationEntity(l.name);
-        if (entity == null) {
-            new DaoMaster(getDatabase())
-                    .newSession()
-                    .getLocationEntityDao()
-                    .insert(LocationEntity.build(l));
-        } else {
-            entity.location = l.name;
-            entity.realLocation = l.realName;
-            updateLocation(entity);
-        }
+    public void writeLocation(Location location) {
+        LocationEntity.insertLocation(getDatabase(), location);
     }
 
     public void writeLocationList(List<Location> list) {
-        if (list == null || list.size() == 0) {
-            return;
-        }
-
-        clearLocation();
-        List<LocationEntity> entityList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i ++) {
-            entityList.add(LocationEntity.build(list.get(i)));
-        }
-        new DaoMaster(getDatabase())
-                .newSession()
-                .getLocationEntityDao()
-                .insertInTx(entityList);
+        LocationEntity.writeLocationList(getDatabase(), list);
     }
 
-    // delete.
-
-    public void deleteLocation(Location l) {
-        if (l == null) {
-            return;
-        }
-
-        LocationEntity entity = searchLocationEntity(l.name);
-        if (entity != null) {
-            new DaoMaster(getDatabase())
-                    .newSession()
-                    .getLocationEntityDao()
-                    .delete(entity);
-        }
-    }
-
-    public void clearLocation() {
-        new DaoMaster(getDatabase())
-                .newSession()
-                .getLocationEntityDao()
-                .deleteAll();
-    }
-
-    // update
-
-    private void updateLocation(LocationEntity entity) {
-        new DaoMaster(getDatabase())
-                .newSession()
-                .getLocationEntityDao()
-                .update(entity);
-    }
-
-    // search.
-
-    public Location searchLocation(String name) {
-        LocationEntity entity = searchLocationEntity(name);
-        if (entity == null) {
-            return null;
-        } else {
-            return Location.build(entity);
-        }
-    }
-
-    private LocationEntity searchLocationEntity(String name) {
-        LocationEntityDao dao = new DaoMaster(getDatabase())
-                .newSession()
-                .getLocationEntityDao();
-
-        QueryBuilder<LocationEntity> builder = dao.queryBuilder();
-        builder.where(LocationEntityDao.Properties.Location.eq(name));
-
-        List<LocationEntity> entityList = builder.list();
-        if (entityList == null || entityList.size() <= 0) {
-            return null;
-        } else {
-            return entityList.get(0);
-        }
+    public void deleteLocation(Location location) {
+        LocationEntity.deleteLocation(getDatabase(), location);
     }
 
     public List<Location> readLocationList() {
-        List<LocationEntity> entityList = new DaoMaster(getDatabase())
-                .newSession()
-                .getLocationEntityDao()
-                .queryBuilder()
-                .list();
-        List<Location> locationList = new ArrayList<>();
-        for (int i = 0; i < entityList.size(); i ++) {
-            locationList.add(
-                    new Location(
-                            entityList.get(i).location,
-                            entityList.get(i).realLocation));
-        }
-        if (locationList.size() <= 0) {
-            locationList.add(new Location(LOCAL, null));
-        }
-        return locationList;
+        return LocationEntity.readLocationList(getDatabase());
     }
 
-    /** <br> weather. */
+    // history.
 
-    // insert.
-
-    public void insertWeather(Weather w) {
-        if (w == null) {
-            return;
-        }
-
-        WeatherEntity entity = searchWeatherEntity(w.base.location);
-        WeatherEntity newEntity = WeatherEntity.build(w);
-        if (entity != null) {
-            deleteWeather(entity);
-        }
-        new DaoMaster(getDatabase())
-                .newSession()
-                .getWeatherEntityDao()
-                .insert(newEntity);
+    public void writeHistory(Weather weather) {
+        HistoryEntity.insertHistory(getDatabase(), weather);
     }
 
-    // delete.
-
-    private void deleteWeather(WeatherEntity entity) {
-        new DaoMaster(getDatabase())
-                .newSession()
-                .getWeatherEntityDao()
-                .delete(entity);
+    public History readHistory(Weather weather) {
+        return HistoryEntity.searchYesterdayHistory(getDatabase(), weather);
     }
 
-    // search.
+    // weather.
 
-    public Weather searchWeather(String realName) {
-        WeatherEntity entity = searchWeatherEntity(realName);
-        if (entity == null) {
-            return null;
-        } else {
-            return Weather.build(entity);
-        }
+    public void writeWeather(Location location, Weather weather) {
+        WeatherEntity.insertWeather(getDatabase(), location, weather);
+        DailyEntity.insertDailyList(getDatabase(), location, weather);
+        HourlyEntity.insertDailyList(getDatabase(), location, weather);
+        AlarmEntity.insertAlarmList(getDatabase(), location, weather);
     }
 
-    private WeatherEntity searchWeatherEntity(String realName) {
-        WeatherEntityDao dao = new DaoMaster(getDatabase())
-                .newSession()
-                .getWeatherEntityDao();
-
-        List<WeatherEntity> entityList = dao
-                .queryBuilder()
-                .where(WeatherEntityDao.Properties.Location.eq(realName))
-                .list();
-        if (entityList == null || entityList.size() <= 0) {
-            return null;
-        } else {
-            return entityList.get(0);
+    public Weather readWeather(Location location) {
+        Weather weather = WeatherEntity.searchWeather(getDatabase(), location);
+        if (weather != null) {
+            weather
+                    .buildWeatherDailyList(DailyEntity.searchLocationDailyEntity(getDatabase(), location))
+                    .buildWeatherHourlyList(HourlyEntity.searchLocationHourlyEntity(getDatabase(), location))
+                    .buildWeatherAlarmList(AlarmEntity.searchLocationAlarmEntity(getDatabase(), location));
         }
+        return weather;
     }
 
-    /** <br> history. */
+    // city.
 
-    // insert.
-
-    public void insertHistory(Weather w) {
-        if (w == null) {
-            return;
-        }
-
-        History yesterday = searchYesterdayHistory(w);
-        clearLocationHistory(w);
-
-        HistoryEntityDao dao = new DaoMaster(getDatabase())
-                .newSession()
-                .getHistoryEntityDao();
-        if (yesterday != null) {
-            dao.insert(HistoryEntity.build(yesterday));
-        }
-        dao.insert(HistoryEntity.build(History.build(w)));
+    public void writeCityList(CityListResult result) {
+        CityEntity.insertCityList(getDatabase(), result);
     }
 
-    // delete.
-
-    private void clearLocationHistory(Weather w) {
-        if (w == null) {
-            return;
-        }
-
-        List<HistoryEntity> entityList = searchHistoryEntity(w);
-        HistoryEntityDao dao = new DaoMaster(getDatabase())
-                .newSession()
-                .getHistoryEntityDao();
-        for (int i = 0; i < entityList.size(); i ++) {
-            dao.delete(entityList.get(i));
-        }
+    public boolean isNeedWriteCityList() {
+        return CityEntity.isNeedWriteData(getDatabase());
     }
 
-    @SuppressLint("SimpleDateFormat")
-    public History searchYesterdayHistory(Weather w) {
-        if (w == null) {
-            return null;
-        }
+    public List<Location> readCityList() {
+        return CityEntity.readCityLocation(getDatabase());
+    }
 
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = format.parse(w.base.date);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.DATE, -1);
-
-            HistoryEntityDao dao = new DaoMaster(getDatabase())
-                    .newSession()
-                    .getHistoryEntityDao();
-
-            QueryBuilder<HistoryEntity> builder = dao.queryBuilder();
-            builder.where(
-                    HistoryEntityDao.Properties.Location.eq(w.base.location),
-                    HistoryEntityDao.Properties.Date.eq(format.format(calendar.getTime())));
-
-            List<HistoryEntity> entityList = builder.list();
-            if (entityList == null || entityList.size() <= 0) {
-                return null;
+    String[] searchCityId(String district, String city, String province) {
+        List<Location> locationList = CityEntity.accurateSearchCity(getDatabase(), district);
+        if (locationList.size() == 1) {
+            return new String[] {
+                    locationList.get(0).cityId,
+                    district};
+        } else if (locationList.size() == 0) {
+            locationList = CityEntity.accurateSearchCity(getDatabase(), city);
+            if (locationList.size() == 0) {
+                return new String[] {Location.NULL_ID, ""};
             } else {
-                return History.build(entityList.get(0));
+                return new String[] {
+                        locationList.get(0).cityId,
+                        city};
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
+        } else {
+            for (int i = 0; i < locationList.size(); i ++) {
+                if (locationList.get(i).prov.equals(province.replace("省", ""))) {
+                    return new String[] {
+                            locationList.get(i).cityId,
+                            city
+                    };
+                }
+            }
+            return new String[] {Location.NULL_ID, ""};
         }
     }
 
-    private List<HistoryEntity> searchHistoryEntity(Weather w) {
-        if (w == null) {
-            return new ArrayList<>();
-        }
+    public List<Location> fuzzySearchCityList(String txt) {
+        return CityEntity.fuzzySearchCity(getDatabase(), txt);
+    }
 
-        return new DaoMaster(getDatabase())
-                .newSession()
-                .getHistoryEntityDao()
-                .queryBuilder()
-                .where(HistoryEntityDao.Properties.Location.eq(w.base.location))
-                .list();
+    // oversea city.
+
+    public void writeOverseaCityList(OverseaCityListResult result) {
+        OverseaCityEntity.insertOverseaCityList(getDatabase(), result);
+    }
+
+    public boolean isNeedWriteOverseaCityList() {
+        return OverseaCityEntity.isNeedWriteData(getDatabase());
+    }
+
+    public List<Location> readOverseaCityList() {
+        return OverseaCityEntity.readOverseaCityLocation(getDatabase());
+    }
+
+    String[] searchOverseaCityId(String city) {
+        List<Location> locationList = OverseaCityEntity.accurateSearchOverseaCity(getDatabase(), city);
+        if (locationList.size() > 0) {
+            return new String[] {
+                    locationList.get(0).cityId,
+                    city};
+        } else {
+            return new String[] {Location.NULL_ID, ""};
+        }
+    }
+
+    public List<Location> fuzzySearchOverseaCityList(String txt) {
+        return OverseaCityEntity.fuzzySearchOverseaCity(getDatabase(), txt);
     }
 
     /** <br> singleton. */

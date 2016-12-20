@@ -10,10 +10,10 @@ import wangdaye.com.geometricweather.data.entity.result.HefengResult;
  * */
 
 public interface HefengApi {
-
+    // data
     String BASE_URL = "http://apis.baidu.com/heweather/weather/";
     String APP_KEY= "f8f22c028b3ad53163da5a7a0ca854b3";
 
     @GET("free")
-    Call<HefengResult> getHefengWeather(@Query("city") String location);
+    Call<HefengResult> getHefengWeather(@Query("city") String city);
 }
