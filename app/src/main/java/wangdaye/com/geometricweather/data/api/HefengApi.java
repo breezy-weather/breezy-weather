@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.data.api;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import wangdaye.com.geometricweather.data.entity.result.HefengResult;
+import wangdaye.com.geometricweather.data.entity.result.old.HefengResult;
 
 /**
  * Hefeng api.

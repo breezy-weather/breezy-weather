@@ -7,19 +7,14 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
-import wangdaye.com.geometricweather.data.entity.result.CityListResult;
-import wangdaye.com.geometricweather.data.entity.result.OverseaCityListResult;
-import wangdaye.com.geometricweather.data.entity.table.CityEntity;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
-import wangdaye.com.geometricweather.data.entity.table.OverseaCityEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
-import wangdaye.com.geometricweather.utils.SafeHandler;
 
 /**
  * Database helper
@@ -89,11 +84,11 @@ public class DatabaseHelper {
         }
         return weather;
     }
-
+/*
     // city.
 
-    public void writeCityList(SafeHandler handler, CityListResult result) {
-        CityEntity.insertCityList(getDatabase(), handler, result);
+    public void writeCityList(CityListResult result) {
+        CityEntity.insertCityList(getDatabase(), result);
     }
 
     public boolean isNeedWriteCityList() {
@@ -138,8 +133,8 @@ public class DatabaseHelper {
 
     // oversea city.
 
-    public void writeOverseaCityList(SafeHandler handler, OverseaCityListResult result) {
-        OverseaCityEntity.insertOverseaCityList(getDatabase(), handler, result);
+    public void writeOverseaCityList(OverseaCityListResult result) {
+        OverseaCityEntity.insertOverseaCityList(getDatabase(), result);
     }
 
     public boolean isNeedWriteOverseaCityList() {
@@ -164,7 +159,7 @@ public class DatabaseHelper {
     public List<Location> fuzzySearchOverseaCityList(String txt) {
         return OverseaCityEntity.fuzzySearchOverseaCity(getDatabase(), txt);
     }
-
+*/
     /** <br> singleton. */
 
     private static DatabaseHelper instance;

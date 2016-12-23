@@ -1,5 +1,5 @@
-package wangdaye.com.geometricweather.data.entity.table;
-
+package wangdaye.com.geometricweather.basic.deprecated;
+/*
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
@@ -10,16 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.result.OverseaCityListResult;
-import wangdaye.com.geometricweather.utils.SafeHandler;
-import wangdaye.com.geometricweather.view.activity.MainActivity;
+import wangdaye.com.geometricweather.data.entity.result.cityList.OverseaCityListResult;
 
 import org.greenrobot.greendao.annotation.Generated;
-
+*/
 /**
  * Oversea city entity.
  * */
-
+/*
 @Entity
 public class OverseaCityEntity {
     // data
@@ -52,41 +50,21 @@ public class OverseaCityEntity {
     @Generated(hash = 2094011740)
     public OverseaCityEntity() {
     }
-
-    /** <br> life cycle. */
-
-    private static OverseaCityEntity buildOverseaCityEntity(OverseaCityListResult.CityInfo info) {
-        OverseaCityEntity entity = new OverseaCityEntity();
-        entity.cityId = info.id;
-        entity.cityEn = info.cityEn;
-        entity.cityZh = info.cityZh;
-        entity.continent = info.continent;
-        entity.countryCode = info.countryCode;
-        entity.countryEn = info.countryEn;
-        entity.lat = info.lat;
-        entity.lon = info.lon;
-        return entity;
-    }
-
+*/
     /** <br> database. */
-
+/*
     // insert.
 
-    public static void insertOverseaCityList(SQLiteDatabase database, SafeHandler handler, OverseaCityListResult result) {
+    public static void insertOverseaCityList(SQLiteDatabase database, OverseaCityListResult result) {
         if (result == null) {
             return;
         }
 
         clearOverseaCityEntity(database);
-        OverseaCityEntityDao dao = new DaoMaster(database)
+        new DaoMaster(database)
                 .newSession()
-                .getOverseaCityEntityDao();
-        for (int i = 0; i < result.city_info.size(); i ++) {
-            dao.insert(buildOverseaCityEntity(result.city_info.get(i)));
-            if (i % 100 == 0) {
-                handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 55 + i / 100).sendToTarget();
-            }
-        }
+                .getOverseaCityEntityDao()
+                .insertInTx(result.city_info);
     }
 
     public static boolean isNeedWriteData(SQLiteDatabase database) {
@@ -245,3 +223,4 @@ public class OverseaCityEntity {
         this.lon = lon;
     }
 }
+*/

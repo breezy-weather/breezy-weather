@@ -4,22 +4,32 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v5.0.1</string>
+    <string name="version_code">v5.0.4</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
     <string name="default_location">default location</string>
-    <string name="live">live</string>
+    <string name="live">Live</string>
+    <string name="today">Today</string>
     <string name="refresh_at">refresh at</string>
-    <string name="precipitation">precipitation</string>
+    <string name="precipitation">Precipitation</string>
     <string name="maxi_temp">daytime</string>
     <string name="mini_temp">nighttime</string>
     <string name="time">time</string>
     <string name="day">daytime</string>
     <string name="night">nighttime</string>
+    <string name="wind">Wind</string>
+    <string name="sensible_temp">Sensible temp</string>
+    <string name="humidity">Humidity</string>
+    <string name="uv_index">Uv index</string>
+    <string name="forecast">Forecast</string>
+    <string name="briefings">Briefings</string>
+    <string name="daytime">Daytime</string>
+    <string name="nighttime">Nighttime</string>
+    <string name="publish_at">Publish at</string>
 
+    <string name="of_clock">:00</string>
     <string name="yesterday">yday</string>
-    <string name="today">today</string>
     <string name="tomorrow">twm</string>
     <string name="week">week</string>
     <string name="week_1">MON</string>
@@ -30,10 +40,31 @@
     <string name="week_6">SAT</string>
     <string name="week_7">SUN</string>
 
+    <string name="wind_0">Calm</string>
+    <string name="wind_1">Light air</string>
+    <string name="wind_2">Light breeze</string>
+    <string name="wind_3">Gentle breeze</string>
+    <string name="wind_4">Moderate breeze</string>
+    <string name="wind_5">Fresh breeze</string>
+    <string name="wind_6">Strong breeze</string>
+    <string name="wind_7">Near breeze</string>
+    <string name="wind_8">Gale</string>
+    <string name="wind_9">Strong gale</string>
+    <string name="wind_10">Storm</string>
+    <string name="wind_11">Violent storm</string>
+    <string name="wind_12">Hurricane/Typhoon</string>
+
+    <string name="aqi_1">Fresh air</string>
+    <string name="aqi_2">Clear air</string>
+    <string name="aqi_3">S-polluted</string>
+    <string name="aqi_4">M-pollution</string>
+    <string name="aqi_5">H-pollution</string>
+    <string name="aqi_6">Dangerous</string>
+
     <string name="week_weather">overview</string>
     <string name="life_details">details</string>
 
-    <string name="next">NEST</string>
+    <string name="next">NEXT</string>
     <string name="done">DONE</string>
     <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="on">ON</string>
@@ -82,8 +113,9 @@
     <string name="feedback_delete_succeed">Delete location success.</string>
     <string name="feedback_location_list_cannot_be_null">The location list can not be null.</string>
 
-    <string name="feedback_search_location">Search a location or input \"local\"…</string>
+    <string name="feedback_search_location">Search a location or \"local\"…</string>
     <string name="feedback_not_yet_location">Not yet location…</string>
+    <string name="feedback_search_nothing">Search nothing…</string>
     <string name="feedback_initializing">Initializing…</string>
 
     <string name="feedback_refresh_notification_after_back">Take effect when back to home page.</string>

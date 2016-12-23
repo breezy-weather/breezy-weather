@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import org.greenrobot.greendao.annotation.Generated;
 
@@ -26,18 +26,20 @@ public class HourlyEntity {
     public String city;
     
     public String time;
+    public boolean dayTime;
     public String weather;
     public String weatherKind;
     public int temp;
     public int precipitation;
 
-    @Generated(hash = 809229607)
-    public HourlyEntity(Long id, String cityId, String city, String time, String weather, String weatherKind, int temp,
-            int precipitation) {
+    @Generated(hash = 88370744)
+    public HourlyEntity(Long id, String cityId, String city, String time, boolean dayTime, String weather, String weatherKind,
+            int temp, int precipitation) {
         this.id = id;
         this.cityId = cityId;
         this.city = city;
         this.time = time;
+        this.dayTime = dayTime;
         this.weather = weather;
         this.weatherKind = weatherKind;
         this.temp = temp;
@@ -57,6 +59,7 @@ public class HourlyEntity {
             entity.cityId = weather.base.cityId;
             entity.city = weather.base.city;
             entity.time = weather.hourlyList.get(i).time;
+            entity.dayTime = weather.hourlyList.get(i).dayTime;
             entity.weather = weather.hourlyList.get(i).weather;
             entity.weatherKind = weather.hourlyList.get(i).weatherKind;
             entity.temp = weather.hourlyList.get(i).temp;
@@ -80,23 +83,19 @@ public class HourlyEntity {
                 searchLocationHourlyEntity(database, location));
 
         List<HourlyEntity> entityList = buildHourlyEntityList(weather);
-        HourlyEntityDao dao = new DaoMaster(database)
+        new DaoMaster(database)
                 .newSession()
-                .getHourlyEntityDao();
-        for (int i = 0; i < entityList.size(); i ++) {
-            dao.insert(entityList.get(i));
-        }
+                .getHourlyEntityDao()
+                .insertInTx(entityList);
     }
 
     // delete.
 
     private static void deleteHourlyEntityList(SQLiteDatabase database, List<HourlyEntity> list) {
-        for (int i = 0; i < list.size(); i ++) {
-            new DaoMaster(database)
-                    .newSession()
-                    .getHourlyEntityDao()
-                    .delete(list.get(i));
-        }
+        new DaoMaster(database)
+                .newSession()
+                .getHourlyEntityDao()
+                .deleteInTx(list);
     }
 
     // search.
@@ -106,8 +105,7 @@ public class HourlyEntity {
                 .newSession()
                 .getHourlyEntityDao()
                 .queryBuilder()
-                .where(location.isEngLocation() ?
-                        HourlyEntityDao.Properties.City.eq(location.city) : HourlyEntityDao.Properties.CityId.eq(location.cityId))
+                .where(HourlyEntityDao.Properties.CityId.eq(location.cityId))
                 .list();
     }
 
@@ -141,6 +139,14 @@ public class HourlyEntity {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public boolean getDayTime() {
+        return this.dayTime;
+    }
+
+    public void setDayTime(boolean dayTime) {
+        this.dayTime = dayTime;
     }
 
     public String getWeather() {

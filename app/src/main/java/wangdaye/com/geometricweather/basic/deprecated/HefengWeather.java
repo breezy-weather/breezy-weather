@@ -1,5 +1,5 @@
-package wangdaye.com.geometricweather.data.service;
-
+package wangdaye.com.geometricweather.basic.deprecated;
+/*
 import android.annotation.SuppressLint;
 
 import java.io.IOException;
@@ -16,22 +16,23 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.data.api.HefengApi;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
-import wangdaye.com.geometricweather.data.entity.result.HefengResult;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.data.entity.result.old.HefengResult;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
-
+*/
 /**
  * Hefeng realTimeWeather.
  * */
-
+/*
 public class HefengWeather {
     // widget
     private Call call;
-
+*/
     /** <br> data. */
-
-    public HefengWeather requestHefengWeather(final Location location,
+/*
+    public HefengWeather requestHefengWeather(final Weather oldResult,
+                                              final Location location,
                                               final WeatherHelper.OnRequestWeatherListener l) {
         Call<HefengResult> getHefengWeather = buildApi().getHefengWeather(location.city);
         getHefengWeather.enqueue(new Callback<HefengResult>() {
@@ -39,7 +40,7 @@ public class HefengWeather {
             public void onResponse(Call<HefengResult> call, Response<HefengResult> response) {
                 if (l != null) {
                     if (response.isSuccessful() && response.body() != null) {
-                        l.requestWeatherSuccess(Weather.buildWeather(response.body()), location);
+                        l.requestWeatherSuccess(Weather.buildWeather(oldResult, response.body()), location);
                     } else {
                         l.requestWeatherFailed(location);
                     }
@@ -90,9 +91,9 @@ public class HefengWeather {
                 })
                 .build();
     }
-
+*/
     /** <br> utils. */
-
+/*
     public static int getLatestDataPosition(HefengResult result) {
         if (result == null
                 || result.heWeather == null || result.heWeather.size() == 0
@@ -111,7 +112,7 @@ public class HefengWeather {
     }
 
     @SuppressLint("SimpleDateFormat")
-    public static String getWeek(String dateTxt) {
+    public static String getWeek(String dateTxt, boolean eng) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         try {
@@ -122,19 +123,19 @@ public class HefengWeather {
 
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         if (day == 1){
-            return "SUN";
+            return eng ? "SUN" : "周日";
         } else if (day == 2) {
-            return "MON";
+            return eng ? "MON" : "周一";
         } else if (day == 3) {
-            return "TUE";
+            return eng ? "TUE" : "周二";
         } else if (day == 4) {
-            return "WED";
+            return eng ? "WED" : "周三";
         } else if (day == 5) {
-            return "THU";
+            return eng ? "THU" : "周四";
         } else if (day == 6) {
-            return "FRI";
+            return eng ? "FRI" : "周五";
         } else {
-            return "SAT";
+            return eng ? "SAT" : "周六";
         }
     }
-}
+}*/

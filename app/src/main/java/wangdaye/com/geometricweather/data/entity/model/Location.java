@@ -3,11 +3,12 @@ package wangdaye.com.geometricweather.data.entity.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
-import wangdaye.com.geometricweather.data.entity.table.CityEntity;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.data.entity.result.neww.NewLocationResult;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
-import wangdaye.com.geometricweather.data.entity.table.OverseaCityEntity;
 
 /**
  * Location.
@@ -27,7 +28,7 @@ public class Location
     public History history;
 
     public boolean local;
-    public static final String NULL_ID = "NULL_ID";
+    private static final String NULL_ID = "NULL_ID";
 
     /** <br> life cycle. */
 
@@ -51,7 +52,7 @@ public class Location
 
     public static Location buildDefaultLocation() {
         Location location = new Location();
-        location.cityId = "CN101010100";
+        location.cityId = "101924";
         location.city = "北京";
         location.cnty = "中国";
         location.lat = "39.904000";
@@ -72,7 +73,7 @@ public class Location
         location.local = entity.local;
         return location;
     }
-
+/*
     public static Location buildLocation(CityEntity entity) {
         Location location = new Location();
         location.cityId = entity.cityId;
@@ -94,6 +95,21 @@ public class Location
         location.prov = "";
         return location;
     }
+*/
+    public static List<Location> buildLocationList(List<NewLocationResult> resultList) {
+        List<Location> locationList = new ArrayList<>(resultList.size());
+        for (int i = 0; i < resultList.size(); i ++) {
+            Location location = new Location();
+            location.cityId = resultList.get(i).Key;
+            location.city = resultList.get(i).LocalizedName;
+            location.cnty = resultList.get(i).Country.LocalizedName;
+            location.prov = resultList.get(i).AdministrativeArea.LocalizedName;
+            location.lat = String.valueOf(resultList.get(i).GeoPosition.Latitude);
+            location.lon = String.valueOf(resultList.get(i).GeoPosition.Longitude);
+            locationList.add(location);
+        }
+        return locationList;
+    }
 
     /** <br> data. */
 
@@ -101,6 +117,7 @@ public class Location
         if (location.isLocal()) {
             return isLocal();
         } else {
+
             return cityId.equals(location.cityId);
         }
     }
@@ -108,9 +125,9 @@ public class Location
     public boolean isLocal() {
         return local;
     }
-
+/*
     public boolean isEngLocation() {
-        return !cityId.substring(0, 2).equals("CN");
+        return checkEveryCharIsEnglish(city);
     }
 
     public static boolean checkEveryCharIsEnglish(String txt) {
@@ -123,12 +140,12 @@ public class Location
         }
         return true;
     }
-
+*/
     public boolean isUsable() {
         return !cityId.equals(NULL_ID);
     }
 
-    public long getCityId() {
+    public String getCityId() {/*
         String realId = cityId
                 .replace("A", "").replace("B", "").replace("C", "").replace("D", "").replace("E", "")
                 .replace("F", "").replace("G", "").replace("H", "").replace("I", "").replace("J", "")
@@ -140,8 +157,13 @@ public class Location
                 .replace("j", "").replace("k", "").replace("l", "").replace("m", "").replace("n", "")
                 .replace("o", "").replace("p", "").replace("q", "").replace("r", "").replace("s", "")
                 .replace("t", "").replace("u", "").replace("v", "").replace("w", "").replace("x", "")
-                .replace("y", "").replace("z", "");
-        return Long.parseLong(realId);
+                .replace("y", "").replace("z", "");*/
+        return cityId;
+    }
+
+    public Location setLocal() {
+        local = true;
+        return this;
     }
 
     /** <br> parcelable. */

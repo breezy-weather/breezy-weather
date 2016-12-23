@@ -8,8 +8,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 501
-        versionName "5.0.1"
+        versionCode 504
+        versionName "5.0.4"
     }
     buildTypes {
         release {
@@ -19,6 +19,9 @@ android {
     }
     buildTypes.each {
         it.buildConfigField 'String', 'FW_BASE_URL', FW_BASE_URL
+        it.buildConfigField 'String', 'NEW_WEATHER_BASE_URL', NEW_WEATHER_BASE_URL
+        it.buildConfigField 'String', 'NEW_WEATHER_KEY', NEW_WEATHER_KEY
+        it.buildConfigField 'String', 'NEW_AQI_KEY', NEW_AQI_KEY
     }
 
     sourceSets {
@@ -39,7 +42,7 @@ buildscript {
 
 apply plugin: 'org.greenrobot.greendao'
 greendao {
-    schemaVersion 16
+    schemaVersion 20
     generateTests false
 }
 

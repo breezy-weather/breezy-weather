@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 import wangdaye.com.geometricweather.view.adapter.LocationAdapter;
+import wangdaye.com.geometricweather.view.decotarion.ListDecoration;
 
 /**
  * Manage activity.
@@ -97,7 +98,7 @@ public class ManageActivity extends GeoActivity
 
         this.recyclerView = (RecyclerView) findViewById(R.id.activity_manage_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.addItemDecoration(new LocationAdapter.ListDecoration(this));
+        recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(adapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(

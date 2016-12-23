@@ -1,5 +1,5 @@
-package wangdaye.com.geometricweather.utils;
-
+package wangdaye.com.geometricweather.basic.deprecated;
+/*
 import android.content.Context;
 
 import com.google.gson.Gson;
@@ -9,33 +9,35 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import wangdaye.com.geometricweather.data.entity.result.CityListResult;
-import wangdaye.com.geometricweather.data.entity.result.OverseaCityListResult;
+import wangdaye.com.geometricweather.data.entity.result.cityList.CityListResult;
+import wangdaye.com.geometricweather.data.entity.result.cityList.OverseaCityListResult;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.view.activity.MainActivity;
-
+*/
 /**
  * File utils.
  * */
-
+/*
 public class FileUtils {
-
+*/
     /** <br> city list. */
-
+/*
     public static void writeCityList(Context context, SafeHandler handler) {
         String stringResult = readAssetFileToString(context, "cityList.txt");
-        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 5).sendToTarget();
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 1).sendToTarget();
         CityListResult result = new Gson().fromJson(stringResult, CityListResult.class);
-        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 10).sendToTarget();
-        DatabaseHelper.getInstance(context).writeCityList(handler, result);
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 2).sendToTarget();
+        DatabaseHelper.getInstance(context).writeCityList(result);
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 3).sendToTarget();
     }
 
     public static void writeOverseaCityList(Context context, SafeHandler handler) {
         String stringResult = readAssetFileToString(context, "overseaCityList.txt");
-        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 45).sendToTarget();
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 4).sendToTarget();
         OverseaCityListResult result = new Gson().fromJson(stringResult, OverseaCityListResult.class);
-        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 55).sendToTarget();
-        DatabaseHelper.getInstance(context).writeOverseaCityList(handler, result);
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 5).sendToTarget();
+        DatabaseHelper.getInstance(context).writeOverseaCityList(result);
+        handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 6).sendToTarget();
     }
 
     private static String readAssetFileToString(Context context, String fileName) {
@@ -69,3 +71,4 @@ public class FileUtils {
         }
     }
 }
+*/

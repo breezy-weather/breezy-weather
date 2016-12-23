@@ -6,7 +6,7 @@ import android.support.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.basic.GeoJobService;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 

@@ -1,10 +1,6 @@
 package wangdaye.com.geometricweather.view.adapter;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +12,6 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Location adapter.
@@ -53,24 +48,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             if (itemList.get(position).isUsable()) {
                 holder.subtitle.setText(itemList.get(position).cnty
                         + " " + itemList.get(position).prov
-                        + " " + itemList.get(position).city
-                        + " " + itemList.get(position).cityId);
+                        + " " + itemList.get(position).city);
             } else {
                 holder.subtitle.setText(context.getString(R.string.feedback_not_yet_location));
             }
         } else {
-            if (itemList.get(position).isEngLocation()) {
-                holder.title.setText(itemList.get(position).city);
-                holder.subtitle.setText(itemList.get(position).cnty
-                        + " " + itemList.get(position).city
-                        + " " + itemList.get(position).cityId);
-            } else {
-                holder.title.setText(itemList.get(position).city);
-                holder.subtitle.setText(itemList.get(position).cnty
-                        + " " + itemList.get(position).prov
-                        + " " + itemList.get(position).city
-                        + " " + itemList.get(position).cityId);
-            }
+            holder.title.setText(itemList.get(position).city);
+            holder.subtitle.setText(itemList.get(position).cnty
+                    + " " + itemList.get(position).prov
+                    + " " + itemList.get(position).city);
         }
     }
 
@@ -135,34 +121,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         @Override
         public void onClick(View v) {
             listener.onItemClick(v,getAdapterPosition());
-        }
-    }
-
-    public static class ListDecoration extends RecyclerView.ItemDecoration {
-        // widget
-        private Paint paint;
-
-        // data
-        private int decorationHeight;
-
-        public ListDecoration(Context context) {
-            this.decorationHeight = (int) DisplayUtils.dpToPx(context, 2);
-
-            this.paint = new Paint();
-            paint.setColor(ContextCompat.getColor(context, R.color.colorLine));
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(decorationHeight);
-        }
-
-        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-            for (int i = 0; i < parent.getChildCount(); i++){
-                View child = parent.getChildAt(i);
-                c.drawLine(child.getLeft(), child.getBottom(), child.getRight(), child.getBottom(), paint);
-            }
-        }
-
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            outRect.set(0, 0, 0, decorationHeight);
         }
     }
 }

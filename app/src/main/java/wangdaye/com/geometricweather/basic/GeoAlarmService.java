@@ -13,7 +13,8 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -73,8 +74,8 @@ public abstract class GeoAlarmService extends IntentService
                     && weatherDates[1].equals(String.valueOf(month))
                     && weatherDates[2].equals(String.valueOf(day))) {
 
-                if ((hour - Integer.parseInt(weatherTimes[0]) > 1)
-                        || (hour - Integer.parseInt(weatherTimes[0]) > 0 && minute > 5)) {
+                if (Math.abs((hour * 60 + minute)
+                        - (Integer.parseInt(weatherTimes[0]) * 60 + Integer.parseInt(weatherTimes[1]))) > 60) {
                     requestWeatherSuccess(weather, location);
                     return;
                 }
@@ -150,8 +151,10 @@ public abstract class GeoAlarmService extends IntentService
 
     @Override
     public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+        Weather oldResult = DatabaseHelper.getInstance(this).readWeather(requestLocation);
         DatabaseHelper.getInstance(this).writeWeather(requestLocation, weather);
         DatabaseHelper.getInstance(this).writeHistory(weather);
+        NotificationUtils.checkAndSendAlert(this, weather, oldResult);
         updateView(this, requestLocation, weather);
     }
 

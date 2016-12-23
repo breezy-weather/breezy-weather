@@ -1,37 +1,36 @@
-package wangdaye.com.geometricweather.data.entity.table;
-
+package wangdaye.com.geometricweather.basic.deprecated;
+/*
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
-
-import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.result.CityListResult;
-import wangdaye.com.geometricweather.utils.SafeHandler;
-import wangdaye.com.geometricweather.view.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.greenrobot.greendao.annotation.Generated;
 
+import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.data.entity.result.cityList.CityListResult;
+*/
 /**
  * City entity.
  * */
-
+/*
 @Entity
 public class CityEntity {
     @Id
     public Long id;
-
+*/
     /**
      * city : 南子岛
      * cnty : 中国
-     * id : 101310230
+     * id : CN101310230
      * lat : 11.26
      * lon : 114.20
      * prov : 海南
      */
+/*
     public String cityId;
     public String city;
     public String cnty;
@@ -53,41 +52,21 @@ public class CityEntity {
     @Generated(hash = 2001321047)
     public CityEntity() {
     }
-
-    /** <br> life cycle. */
-
-    private static CityEntity buildCityEntity(CityListResult.CityInfo info) {
-        CityEntity entity = new CityEntity();
-        entity.cityId = info.id;
-        entity.city = info.city;
-        entity.cnty = info.cnty;
-        entity.lat = info.lat;
-        entity.lon = info.lon;
-        entity.prov = info.prov;
-        return entity;
-    }
-
+*/
     /** <br> database. */
 
     // insert.
-
-    public static void insertCityList(SQLiteDatabase database, SafeHandler handler, CityListResult result) {
+/*
+    public static void insertCityList(SQLiteDatabase database, CityListResult result) {
         if (result == null) {
             return;
         }
 
         clearCityEntity(database);
-        CityEntityDao dao = new DaoMaster(database)
+        new DaoMaster(database)
                 .newSession()
-                .getCityEntityDao();
-
-        for (int i = 0; i < result.city_info.size(); i ++) {
-            dao.insert(buildCityEntity(result.city_info.get(i)));
-
-            if (i % 100 == 0) {
-                handler.obtainMessage(MainActivity.MESSAGE_WHAT_WRITING_CITY, 10 + i / 100).sendToTarget();
-            }
-        }
+                .getCityEntityDao()
+                .insertInTx(result.city_info);
     }
 
     public static boolean isNeedWriteData(SQLiteDatabase database) {
@@ -234,3 +213,4 @@ public class CityEntity {
         this.prov = prov;
     }
 }
+*/

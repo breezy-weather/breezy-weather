@@ -14,7 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.History;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 import wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendItemView;
@@ -61,7 +61,11 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
             holder.trendItemView.setData(weather, state, position, highest, lowest);
             switch (state) {
                 case TrendItemView.DATA_TYPE_DAILY:
-                    holder.textView.setText(weather.dailyList.get(position).week);
+                    if (position == 0) {
+                        holder.textView.setText(context.getString(R.string.today));
+                    } else {
+                        holder.textView.setText(weather.dailyList.get(position).week);
+                    }
                     Glide.with(context)
                             .load(WeatherHelper.getWeatherIcon(
                                     weather.dailyList.get(position).weatherKinds[dayTime ? 0 : 1],
@@ -75,7 +79,7 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
                     Glide.with(context)
                             .load(WeatherHelper.getWeatherIcon(
                                     weather.hourlyList.get(position).weatherKind,
-                                    dayTime)[3])
+                                    weather.hourlyList.get(position).dayTime)[3])
                             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                             .into(holder.imageView);
                     break;

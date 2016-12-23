@@ -13,14 +13,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 
 /**
  * Life info view.
  * */
 
-public class LifeInfoView extends FrameLayout {
+public class IndexListView extends FrameLayout {
     // widget
+    private RelativeLayout forecast;
+    private TextView forecastTitle;
+    private TextView forecastContent;
+
+    private RelativeLayout briefing;
+    private TextView briefingTitle;
+    private TextView briefingContent;
+    
     private RelativeLayout wind;
     private TextView windTitle;
     private TextView windContent;
@@ -37,50 +45,54 @@ public class LifeInfoView extends FrameLayout {
     private TextView uvTitle;
     private TextView uvContent;
 
-    private RelativeLayout dress;
-    private TextView dressTitle;
-    private TextView dressContent;
-
     private RelativeLayout exercise;
     private TextView exerciseTitle;
     private TextView exerciseContent;
-
-    private RelativeLayout washCar;
-    private TextView washCarTitle;
-    private TextView washCarContent;
 
     private RelativeLayout cold;
     private TextView coldTitle;
     private TextView coldContent;
 
+    private RelativeLayout washCar;
+    private TextView washCarTitle;
+    private TextView washCarContent;
+
     /** <br> life cycle. */
 
-    public LifeInfoView(Context context) {
+    public IndexListView(Context context) {
         super(context);
         this.initialize();
     }
 
-    public LifeInfoView(Context context, AttributeSet attrs) {
+    public IndexListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.initialize();
     }
 
-    public LifeInfoView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public IndexListView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initialize();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public LifeInfoView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public IndexListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         this.initialize();
     }
 
     @SuppressLint("InflateParams")
     private void initialize() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.container_life_info, null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.container_index, null);
         addView(view);
 
+        forecast = (RelativeLayout) findViewById(R.id.container_details_forecast);
+        forecastTitle = (TextView) findViewById(R.id.container_details_forecast_title);
+        forecastContent = (TextView) findViewById(R.id.container_details_forecast_content);
+
+        briefing = (RelativeLayout) findViewById(R.id.container_details_briefing);
+        briefingTitle = (TextView) findViewById(R.id.container_details_briefing_title);
+        briefingContent = (TextView) findViewById(R.id.container_details_briefing_content);
+        
         wind = (RelativeLayout) findViewById(R.id.container_details_wind);
         windTitle = (TextView) findViewById(R.id.container_details_wind_title);
         windContent = (TextView) findViewById(R.id.container_details_wind_content);
@@ -96,10 +108,6 @@ public class LifeInfoView extends FrameLayout {
         uv = (RelativeLayout) findViewById(R.id.container_details_uv);
         uvTitle = (TextView) findViewById(R.id.container_details_uv_title);
         uvContent = (TextView) findViewById(R.id.container_details_uv_content);
-
-        dress = (RelativeLayout) findViewById(R.id.container_details_dress);
-        dressTitle = (TextView) findViewById(R.id.container_details_dress_title);
-        dressContent = (TextView) findViewById(R.id.container_details_dress_content);
 
         exercise = (RelativeLayout) findViewById(R.id.container_details_exercise);
         exerciseTitle = (TextView) findViewById(R.id.container_details_exercise_title);
@@ -117,68 +125,76 @@ public class LifeInfoView extends FrameLayout {
     /** <br> data. */
 
     public void setData(Weather weather) {
-        if (TextUtils.isEmpty(weather.life.winds[1])) {
+        if (TextUtils.isEmpty(weather.index.simpleForecasts[1])) {
+            forecast.setVisibility(GONE);
+        } else {
+            forecast.setVisibility(VISIBLE);
+            forecastTitle.setText(weather.index.simpleForecasts[0]);
+            forecastContent.setText(weather.index.simpleForecasts[1]);
+        }
+
+        if (TextUtils.isEmpty(weather.index.briefings[1])) {
+            briefing.setVisibility(GONE);
+        } else {
+            briefing.setVisibility(VISIBLE);
+            briefingTitle.setText(weather.index.briefings[0]);
+            briefingContent.setText(weather.index.briefings[1]);
+        }
+
+        if (TextUtils.isEmpty(weather.index.winds[1])) {
             wind.setVisibility(GONE);
         } else {
             wind.setVisibility(VISIBLE);
-            windTitle.setText(weather.life.winds[0]);
-            windContent.setText(weather.life.winds[1]);
+            windTitle.setText(weather.index.winds[0]);
+            windContent.setText(weather.index.winds[1]);
         }
 
-        if (TextUtils.isEmpty(weather.life.aqis[1])) {
+        if (TextUtils.isEmpty(weather.index.aqis[1])) {
             pm.setVisibility(GONE);
         } else {
             pm.setVisibility(VISIBLE);
-            pmTitle.setText(weather.life.aqis[0]);
-            pmContent.setText(weather.life.aqis[1]);
+            pmTitle.setText(weather.index.aqis[0]);
+            pmContent.setText(weather.index.aqis[1]);
         }
 
-        if (TextUtils.isEmpty(weather.life.humidities[1])) {
+        if (TextUtils.isEmpty(weather.index.humidities[1])) {
             humidity.setVisibility(GONE);
         } else {
             humidity.setVisibility(VISIBLE);
-            humidityTitle.setText(weather.life.humidities[0]);
-            humidityContent.setText(weather.life.humidities[1]);
+            humidityTitle.setText(weather.index.humidities[0]);
+            humidityContent.setText(weather.index.humidities[1]);
         }
 
-        if (TextUtils.isEmpty(weather.life.uvs[1])) {
+        if (TextUtils.isEmpty(weather.index.uvs[1])) {
             uv.setVisibility(GONE);
         } else {
             uv.setVisibility(VISIBLE);
-            uvTitle.setText(weather.life.uvs[0]);
-            uvContent.setText(weather.life.uvs[1]);
+            uvTitle.setText(weather.index.uvs[0]);
+            uvContent.setText(weather.index.uvs[1]);
         }
 
-        if (TextUtils.isEmpty(weather.life.dresses[1])) {
-            dress.setVisibility(GONE);
-        } else {
-            dress.setVisibility(VISIBLE);
-            dressTitle.setText(weather.life.dresses[0]);
-            dressContent.setText(weather.life.dresses[1]);
-        }
-
-        if (TextUtils.isEmpty(weather.life.exercises[1])) {
+        if (TextUtils.isEmpty(weather.index.exercises[1])) {
             exercise.setVisibility(GONE);
         } else {
             exercise.setVisibility(VISIBLE);
-            exerciseTitle.setText(weather.life.exercises[0]);
-            exerciseContent.setText(weather.life.exercises[1]);
+            exerciseTitle.setText(weather.index.exercises[0]);
+            exerciseContent.setText(weather.index.exercises[1]);
         }
 
-        if (TextUtils.isEmpty(weather.life.washCars[1])) {
-            washCar.setVisibility(GONE);
-        } else {
-            washCar.setVisibility(VISIBLE);
-            washCarTitle.setText(weather.life.washCars[0]);
-            washCarContent.setText(weather.life.washCars[1]);
-        }
-
-        if (TextUtils.isEmpty(weather.life.colds[1])) {
+        if (TextUtils.isEmpty(weather.index.colds[1])) {
             cold.setVisibility(GONE);
         } else {
             cold.setVisibility(VISIBLE);
-            coldTitle.setText(weather.life.colds[0]);
-            coldContent.setText(weather.life.colds[1]);
+            coldTitle.setText(weather.index.colds[0]);
+            coldContent.setText(weather.index.colds[1]);
+        }
+
+        if (TextUtils.isEmpty(weather.index.carWashes[1])) {
+            washCar.setVisibility(GONE);
+        } else {
+            washCar.setVisibility(VISIBLE);
+            washCarTitle.setText(weather.index.carWashes[0]);
+            washCarContent.setText(weather.index.carWashes[1]);
         }
     }
 }

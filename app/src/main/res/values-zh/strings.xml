@@ -6,14 +6,24 @@
     <string name="local">本地</string>
     <string name="default_location">默认位置</string>
     <string name="live">实时</string>
+    <string name="today">今日</string>
     <string name="refresh_at">更新于</string>
-    <string name="precipitation">降水强度</string>
+    <string name="precipitation">降水概率</string>
     <string name="time">时间</string>
     <string name="day">白天</string>
     <string name="night">夜间</string>
+    <string name="wind">风力</string>
+    <string name="sensible_temp">体感温度</string>
+    <string name="humidity">相对湿度</string>
+    <string name="uv_index">紫外线指数</string>
+    <string name="forecast">预报</string>
+    <string name="briefings">简报</string>
+    <string name="daytime">白天</string>
+    <string name="nighttime">夜间</string>
+    <string name="publish_at">发布于</string>
 
+    <string name="of_clock">时</string>
     <string name="yesterday">昨日</string>
-    <string name="today">今日</string>
     <string name="tomorrow">明日</string>
     <string name="week">周</string>
     <string name="week_1">周一</string>
@@ -24,8 +34,29 @@
     <string name="week_6">周六</string>
     <string name="week_7">周日</string>
 
+    <string name="wind_0">无风</string>
+    <string name="wind_1">一级</string>
+    <string name="wind_2">二级</string>
+    <string name="wind_3">三级</string>
+    <string name="wind_4">四级</string>
+    <string name="wind_5">五级</string>
+    <string name="wind_6">六级</string>
+    <string name="wind_7">七级</string>
+    <string name="wind_8">八级</string>
+    <string name="wind_9">九级</string>
+    <string name="wind_10">十级</string>
+    <string name="wind_11">十一级</string>
+    <string name="wind_12">灾害级</string>
+
+    <string name="aqi_1">空气 优</string>
+    <string name="aqi_2">空气 良</string>
+    <string name="aqi_3">轻度污染</string>
+    <string name="aqi_4">中度污染</string>
+    <string name="aqi_5">重度污染</string>
+    <string name="aqi_6">严重污染</string>
+
     <string name="week_weather">天气概览</string>
-    <string name="life_details">生活信息</string>
+    <string name="life_details">详情数据</string>
 
     <string name="next">下一步</string>
     <string name="done">完成</string>
@@ -72,8 +103,9 @@
     <string name="feedback_delete_succeed">删除成功</string>
     <string name="feedback_location_list_cannot_be_null">收藏地址不能为空</string>
 
-    <string name="feedback_search_location">搜索城市或输入\"本地\"…</string>
+    <string name="feedback_search_location">搜索一个地址或搜索\"本地\"…</string>
     <string name="feedback_not_yet_location">尚未进行定位…</string>
+    <string name="feedback_search_nothing">搜索结果为空…</string>
     <string name="feedback_initializing">初始化中…</string>
 
     <string name="feedback_refresh_notification_after_back">返回主页后刷新通知</string>

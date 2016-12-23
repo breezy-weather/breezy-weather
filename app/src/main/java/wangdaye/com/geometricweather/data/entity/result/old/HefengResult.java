@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.data.entity.result;
+package wangdaye.com.geometricweather.data.entity.result.old;
 
 import com.google.gson.annotations.SerializedName;
 

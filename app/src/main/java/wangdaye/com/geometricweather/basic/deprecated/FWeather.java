@@ -1,5 +1,5 @@
-package wangdaye.com.geometricweather.data.service;
-
+package wangdaye.com.geometricweather.basic.deprecated;
+/*
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -8,20 +8,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.data.api.FWApi;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
-import wangdaye.com.geometricweather.data.entity.result.FWResult;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.data.entity.result.old.FWResult;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
-
+*/
 /**
  * Flyme weather.
  * */
-
+/*
 public class FWeather {
     // widget
     private Call call;
-
+*/
     /** <br> data. */
-
+/*
     public FWeather requestFWeather(final Location location,
                                     final WeatherHelper.OnRequestWeatherListener l) {
         Call<FWResult> getFWeather = buildApi().getFWeather(location.getCityId());
@@ -66,3 +66,4 @@ public class FWeather {
                 .create((FWApi.class));
     }
 }
+*/

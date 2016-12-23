@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.greenrobot.greendao.annotation.Entity;
 
 import wangdaye.com.geometricweather.data.entity.model.History;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -142,7 +142,7 @@ public class HistoryEntity {
                 .newSession()
                 .getHistoryEntityDao()
                 .queryBuilder()
-                .where(HistoryEntityDao.Properties.City.eq(weather.base.city))
+                .where(HistoryEntityDao.Properties.CityId.eq(weather.base.cityId))
                 .list();
     }
 

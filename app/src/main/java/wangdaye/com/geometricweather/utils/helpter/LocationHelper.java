@@ -8,7 +8,10 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 
+import java.util.List;
+
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.data.service.NewWeather;
 import wangdaye.com.geometricweather.data.service.BaiduLocation;
 
 /**
@@ -18,11 +21,13 @@ import wangdaye.com.geometricweather.data.service.BaiduLocation;
 public class LocationHelper {
     // data
     private LocationClient client;
+    private NewWeather weather;
 
     /** <br> life cycle. */
 
     public LocationHelper(Context c) {
         client = new LocationClient(c);
+        weather = new NewWeather();
     }
 
     /** <br> data. */
@@ -37,9 +42,16 @@ public class LocationHelper {
         }
     }
 
+    public void requestWeatherLocation(Context c, String query, OnRequestWeatherLocationListener l) {
+        weather = NewWeather.getService().requestNewLocation(c, query, l);
+    }
+
     public void cancel() {
         if (client != null) {
             client.stop();
+        }
+        if (weather != null) {
+            weather.cancel();
         }
     }
 
@@ -50,14 +62,19 @@ public class LocationHelper {
         void requestLocationFailed(Location requestLocation);
     }
 
-    private static class SimpleLocationListener implements BDLocationListener {
+    public interface OnRequestWeatherLocationListener {
+        void requestWeatherLocationSuccess(String query, List<Location> locationList);
+        void requestWeatherLocationFailed(String query);
+    }
+
+    private class SimpleLocationListener implements BDLocationListener {
         // data
-        private Context context;
+        private Context c;
         private Location location;
         private OnRequestLocationListener listener;
 
         SimpleLocationListener(Context c, Location location, OnRequestLocationListener l) {
-            this.context = c;
+            this.c = c;
             this.location = location;
             this.listener = l;
         }
@@ -70,23 +87,15 @@ public class LocationHelper {
                 case BDLocation.TypeOffLineLocation: // 离线定位
                     if (listener != null) {
                         location.local = true;
+                        String oldCity = bdLocation.getDistrict();
+                        location.city = bdLocation.getDistrict();
                         location.cnty = bdLocation.getCountry();
                         location.lat = String.valueOf(bdLocation.getLatitude());
                         location.lon = String.valueOf(bdLocation.getLongitude());
                         location.prov = bdLocation.getProvince().split("省")[0];
-
-                        String[] searchResults;
-                        if (bdLocation.getCountryCode().equals("0")) {
-                            searchResults = DatabaseHelper.getInstance(context).searchCityId(
-                                    bdLocation.getDistrict(), bdLocation.getCity(), bdLocation.getProvince());
+                        if (!location.isUsable() || !location.city.equals(oldCity)) {
+                            requestWeatherLocation(c, location.city, new SimpleWeatherLocationListener(location, listener));
                         } else {
-                            searchResults = DatabaseHelper.getInstance(context).searchOverseaCityId(bdLocation.getCity());
-                        }
-                        if (searchResults[0].equals(Location.NULL_ID)) {
-                            listener.requestLocationFailed(location);
-                        } else {
-                            location.cityId = searchResults[0];
-                            location.city = searchResults[1];
                             listener.requestLocationSuccess(location);
                         }
                     }
@@ -98,6 +107,31 @@ public class LocationHelper {
                     }
                     break;
             }
+        }
+    }
+
+    private class SimpleWeatherLocationListener implements OnRequestWeatherLocationListener {
+        // data
+        private Location location;
+        private OnRequestLocationListener listener;
+
+        SimpleWeatherLocationListener(Location location, OnRequestLocationListener l) {
+            this.location = location;
+            this.listener = l;
+        }
+
+        @Override
+        public void requestWeatherLocationSuccess(String query, List<Location> locationList) {
+            if (locationList.size() > 0) {
+                listener.requestLocationSuccess(locationList.get(0).setLocal());
+            } else {
+                listener.requestLocationFailed(location);
+            }
+        }
+
+        @Override
+        public void requestWeatherLocationFailed(String query) {
+            listener.requestLocationFailed(location);
         }
     }
 }

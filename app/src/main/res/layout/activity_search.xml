@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -71,10 +72,33 @@
 
             </android.support.design.widget.AppBarLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/activity_search_recyclerView"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+                
+                <TextView
+                    android:id="@+id/activity_search_feedbackTxt"
+                    android:text="@string/feedback_search_nothing"
+                    android:layout_centerInParent="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextContent"
+                    style="@style/title_text"/>
+
+                <com.github.rahatarmanahmed.cpv.CircularProgressView
+                    android:id="@+id/activity_search_progress"
+                    android:layout_width="@dimen/little_flag_icon_size"
+                    android:layout_height="@dimen/little_flag_icon_size"
+                    android:layout_centerInParent="true"
+                    app:cpv_animAutostart="true"
+                    app:cpv_color="@color/colorTextContent"
+                    app:cpv_indeterminate="true" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/activity_search_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

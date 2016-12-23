@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.History;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.view.widget.SwipeSwitchLayout;
 
@@ -27,7 +27,7 @@ public class TrendRecyclerView extends RecyclerView {
     // data
     private History history;
     private int[] tempYs;
-    private boolean daily = true;
+    private boolean canScroll = false;
 
     private float MARGIN_BOTTOM;
     private float CHART_LINE_SIZE = 1;
@@ -69,7 +69,7 @@ public class TrendRecyclerView extends RecyclerView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
-        if (!daily) {
+        if (canScroll) {
             switch (e.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     if (switchLayout != null) {
@@ -149,7 +149,10 @@ public class TrendRecyclerView extends RecyclerView {
             return;
         }
         this.history = history;
-        this.daily = state == TrendItemView.DATA_TYPE_DAILY;
+        if (state == TrendItemView.DATA_TYPE_DAILY) {
+            canScroll = weather.dailyList.size() > 7;
+        } else
+            canScroll = state == TrendItemView.DATA_TYPE_HOURLY && weather.hourlyList.size() > 7;
         calcTempYs(weather, history, state);
         invalidate();
     }

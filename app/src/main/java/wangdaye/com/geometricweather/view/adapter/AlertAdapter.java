@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Alert;
 
 /**
  * Alert adapter.
@@ -17,12 +17,12 @@ import wangdaye.com.geometricweather.data.entity.model.Weather;
 
 public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> {
     // data
-    private List<Weather.Alarm> alarmList;
+    private List<Alert> alertList;
 
     /** <br> life cycle. */
 
-    public AlertAdapter(List<Weather.Alarm> list) {
-        this.alarmList = list;
+    public AlertAdapter(List<Alert> list) {
+        this.alertList = list;
     }
 
     /** <br> UI. */
@@ -35,16 +35,16 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.title.setText(alarmList.get(position).description);
-        holder.subtitle.setText(alarmList.get(position).publishTime);
-        holder.content.setText(alarmList.get(position).content);
+        holder.title.setText(alertList.get(position).description);
+        holder.subtitle.setText(alertList.get(position).publishTime);
+        holder.content.setText(alertList.get(position).content);
     }
 
     /** <br> data. */
 
     @Override
     public int getItemCount() {
-        return alarmList.size();
+        return alertList.size();
     }
 
     /** <br> inner class. */

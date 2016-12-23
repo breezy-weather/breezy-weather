@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import org.greenrobot.greendao.annotation.Generated;
 
@@ -33,15 +33,23 @@ public class DailyEntity {
     public String nighttimeWeatherKind;
     public int maxiTemp;
     public int miniTemp;
-    public String windDir;
-    public String windLevel;
+    public String daytimeWindDir;
+    public String nighttimeWindDir;
+    public String daytimeWindSpeed;
+    public String nighttimeWindSpeed;
+    public String daytimeWindLevel;
+    public String nighttimeWindLevel;
     public String sunrise;
     public String sunset;
+    public int daytimePrecipitations;
+    public int nighttimePrecipitations;
 
-    @Generated(hash = 800568837)
-    public DailyEntity(Long id, String cityId, String city, String date, String week, String daytimeWeather, String nighttimeWeather,
-            String daytimeWeatherKind, String nighttimeWeatherKind, int maxiTemp, int miniTemp, String windDir, String windLevel,
-            String sunrise, String sunset) {
+    @Generated(hash = 1302784266)
+    public DailyEntity(Long id, String cityId, String city, String date, String week, String daytimeWeather,
+            String nighttimeWeather, String daytimeWeatherKind, String nighttimeWeatherKind, int maxiTemp,
+            int miniTemp, String daytimeWindDir, String nighttimeWindDir, String daytimeWindSpeed,
+            String nighttimeWindSpeed, String daytimeWindLevel, String nighttimeWindLevel, String sunrise,
+            String sunset, int daytimePrecipitations, int nighttimePrecipitations) {
         this.id = id;
         this.cityId = cityId;
         this.city = city;
@@ -53,10 +61,16 @@ public class DailyEntity {
         this.nighttimeWeatherKind = nighttimeWeatherKind;
         this.maxiTemp = maxiTemp;
         this.miniTemp = miniTemp;
-        this.windDir = windDir;
-        this.windLevel = windLevel;
+        this.daytimeWindDir = daytimeWindDir;
+        this.nighttimeWindDir = nighttimeWindDir;
+        this.daytimeWindSpeed = daytimeWindSpeed;
+        this.nighttimeWindSpeed = nighttimeWindSpeed;
+        this.daytimeWindLevel = daytimeWindLevel;
+        this.nighttimeWindLevel = nighttimeWindLevel;
         this.sunrise = sunrise;
         this.sunset = sunset;
+        this.daytimePrecipitations = daytimePrecipitations;
+        this.nighttimePrecipitations = nighttimePrecipitations;
     }
 
     @Generated(hash = 1809948821)
@@ -79,10 +93,16 @@ public class DailyEntity {
             entity.nighttimeWeatherKind = weather.dailyList.get(i).weatherKinds[1];
             entity.maxiTemp = weather.dailyList.get(i).temps[0];
             entity.miniTemp = weather.dailyList.get(i).temps[1];
-            entity.windDir = weather.dailyList.get(i).windDir;
-            entity.windLevel = weather.dailyList.get(i).windLevel;
+            entity.daytimeWindDir = weather.dailyList.get(i).windDirs[0];
+            entity.nighttimeWindDir = weather.dailyList.get(i).windDirs[1];
+            entity.daytimeWindSpeed = weather.dailyList.get(i).windSpeeds[0];
+            entity.nighttimeWindSpeed = weather.dailyList.get(i).windSpeeds[1];
+            entity.daytimeWindLevel = weather.dailyList.get(i).windLevels[0];
+            entity.nighttimeWindLevel = weather.dailyList.get(i).windLevels[1];
             entity.sunrise = weather.dailyList.get(i).astros[0];
             entity.sunset = weather.dailyList.get(i).astros[1];
+            entity.daytimePrecipitations = weather.dailyList.get(i).precipitations[0];
+            entity.nighttimePrecipitations = weather.dailyList.get(i).precipitations[1];
             entityList.add(entity);
         }
         return entityList;
@@ -102,23 +122,19 @@ public class DailyEntity {
                 searchLocationDailyEntity(database, location));   
         
         List<DailyEntity> entityList = buildDailyEntityList(weather);
-        DailyEntityDao dao = new DaoMaster(database)
+        new DaoMaster(database)
                 .newSession()
-                .getDailyEntityDao();
-        for (int i = 0; i < entityList.size(); i ++) {
-            dao.insert(entityList.get(i));
-        }
+                .getDailyEntityDao()
+                .insertInTx(entityList);
     }
 
     // delete.
 
     private static void deleteDailyEntityList(SQLiteDatabase database, List<DailyEntity> list) {
-        for (int i = 0; i < list.size(); i ++) {
-            new DaoMaster(database)
-                    .newSession()
-                    .getDailyEntityDao()
-                    .delete(list.get(i));
-        }
+        new DaoMaster(database)
+                .newSession()
+                .getDailyEntityDao()
+                .deleteInTx(list);
     }
 
     // search.
@@ -128,8 +144,7 @@ public class DailyEntity {
                 .newSession()
                 .getDailyEntityDao()
                 .queryBuilder()
-                .where(location.isEngLocation() ?
-                        DailyEntityDao.Properties.City.eq(location.city) : DailyEntityDao.Properties.CityId.eq(location.cityId))
+                .where(DailyEntityDao.Properties.CityId.eq(location.cityId))
                 .list();
     }
 
@@ -221,20 +236,52 @@ public class DailyEntity {
         this.miniTemp = miniTemp;
     }
 
-    public String getWindDir() {
-        return this.windDir;
+    public String getDaytimeWindDir() {
+        return this.daytimeWindDir;
     }
 
-    public void setWindDir(String windDir) {
-        this.windDir = windDir;
+    public void setDaytimeWindDir(String daytimeWindDir) {
+        this.daytimeWindDir = daytimeWindDir;
     }
 
-    public String getWindLevel() {
-        return this.windLevel;
+    public String getNighttimeWindDir() {
+        return this.nighttimeWindDir;
     }
 
-    public void setWindLevel(String windLevel) {
-        this.windLevel = windLevel;
+    public void setNighttimeWindDir(String nighttimeWindDir) {
+        this.nighttimeWindDir = nighttimeWindDir;
+    }
+
+    public String getDaytimeWindSpeed() {
+        return this.daytimeWindSpeed;
+    }
+
+    public void setDaytimeWindSpeed(String daytimeWindSpeed) {
+        this.daytimeWindSpeed = daytimeWindSpeed;
+    }
+
+    public String getNighttimeWindSpeed() {
+        return this.nighttimeWindSpeed;
+    }
+
+    public void setNighttimeWindSpeed(String nighttimeWindSpeed) {
+        this.nighttimeWindSpeed = nighttimeWindSpeed;
+    }
+
+    public String getDaytimeWindLevel() {
+        return this.daytimeWindLevel;
+    }
+
+    public void setDaytimeWindLevel(String daytimeWindLevel) {
+        this.daytimeWindLevel = daytimeWindLevel;
+    }
+
+    public String getNighttimeWindLevel() {
+        return this.nighttimeWindLevel;
+    }
+
+    public void setNighttimeWindLevel(String nighttimeWindLevel) {
+        this.nighttimeWindLevel = nighttimeWindLevel;
     }
 
     public String getSunrise() {
@@ -251,5 +298,21 @@ public class DailyEntity {
 
     public void setSunset(String sunset) {
         this.sunset = sunset;
+    }
+
+    public int getDaytimePrecipitations() {
+        return this.daytimePrecipitations;
+    }
+
+    public void setDaytimePrecipitations(int daytimePrecipitations) {
+        this.daytimePrecipitations = daytimePrecipitations;
+    }
+
+    public int getNighttimePrecipitations() {
+        return this.nighttimePrecipitations;
+    }
+
+    public void setNighttimePrecipitations(int nighttimePrecipitations) {
+        this.nighttimePrecipitations = nighttimePrecipitations;
     }
 }

@@ -7,16 +7,13 @@ import android.util.DisplayMetrics;
 
 import java.util.Locale;
 
-import wangdaye.com.geometricweather.GeometricWeather;
-
 /**
  * Language utils.
  * */
 
 public class LanguageUtils {
 
-    public static void setLanguage(Context c) {
-        String language = GeometricWeather.getInstance().getLanguage();
+    public static void setLanguage(Context c, String language) {
         Resources resources = c.getResources();
         Configuration configuration = resources.getConfiguration();
         DisplayMetrics metrics = resources.getDisplayMetrics();
@@ -48,5 +45,9 @@ public class LanguageUtils {
             }
         }
         resources.updateConfiguration(configuration, metrics);
+    }
+
+    public static String getLanguageCode(Context c) {
+        return c.getResources().getConfiguration().locale.getLanguage();
     }
 }

@@ -7,7 +7,6 @@ import org.greenrobot.greendao.annotation.Entity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,7 +127,7 @@ public class LocationEntity {
         }
     }
 
-    public static void clearLocation(SQLiteDatabase database) {
+    private static void clearLocation(SQLiteDatabase database) {
         new DaoMaster(database)
                 .newSession()
                 .getLocationEntityDao()
@@ -147,18 +146,12 @@ public class LocationEntity {
     // search.
 
     private static LocationEntity searchLocationEntity(SQLiteDatabase database, Location location) {
-        LocationEntityDao dao = new DaoMaster(database)
+        List<LocationEntity> entityList = new DaoMaster(database)
                 .newSession()
-                .getLocationEntityDao();
-
-        QueryBuilder<LocationEntity> builder = dao.queryBuilder();
-        if (location.isEngLocation()) {
-            builder.where(LocationEntityDao.Properties.City.eq(location.city));
-        } else {
-            builder.where(LocationEntityDao.Properties.CityId.eq(location.cityId));
-        }
-
-        List<LocationEntity> entityList = builder.list();
+                .getLocationEntityDao()
+                .queryBuilder()
+                .where(LocationEntityDao.Properties.CityId.eq(location.cityId))
+                .list();
         if (entityList == null || entityList.size() <= 0) {
             return null;
         } else {

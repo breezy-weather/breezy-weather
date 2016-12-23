@@ -5,10 +5,9 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
@@ -16,14 +15,13 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public abstract class GeoWidgetConfigActivity extends GeoActivity
-        implements WeatherHelper.OnRequestWeatherListener, LocationHelper.OnRequestLocationListener  {
+        implements WeatherHelper.OnRequestWeatherListener {
     // data
     private Location locationNow;
     private List<Location> locationList;
     private List<String> nameList;
 
     private WeatherHelper weatherHelper;
-    private LocationHelper locationHelper;
 
     /** <br> life cycle. */
 
@@ -36,7 +34,11 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
             initWidget();
 
             if (locationNow.isLocal()) {
-                locationHelper.requestLocation(this, locationNow, this);
+                if (locationNow.isUsable()) {
+                    weatherHelper.requestWeather(this, locationNow, this);
+                } else {
+                    weatherHelper.requestWeather(this, Location.buildDefaultLocation(), this);
+                }
             } else {
                 weatherHelper.requestWeather(this, locationNow, this);
             }
@@ -47,7 +49,6 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     protected void onDestroy() {
         super.onDestroy();
         weatherHelper.cancel();
-        locationHelper.cancel();
     }
 
     private void initData() {
@@ -59,7 +60,6 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         this.locationNow = locationList.get(0);
 
         this.weatherHelper = new WeatherHelper();
-        this.locationHelper = new LocationHelper(this);
     }
 
     public abstract void initWidget();
@@ -85,26 +85,6 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     }
 
     /** <br> interface. */
-
-    // on request name listener.
-
-    @Override
-    public void requestLocationSuccess(Location requestLocation) {
-        if (!requestLocation.isUsable()) {
-            requestLocationFailed(requestLocation);
-        } else {
-            DatabaseHelper.getInstance(this).writeLocation(requestLocation);
-            weatherHelper.requestWeather(this, requestLocation, this);
-        }
-    }
-
-    @Override
-    public void requestLocationFailed(Location requestLocation) {
-        SnackbarUtils.showSnackbar(getString(R.string.feedback_location_failed));
-        if (requestLocation.isUsable()) {
-            weatherHelper.requestWeather(this, requestLocation, this);
-        }
-    }
 
     // on request realTimeWeather listener.
 

@@ -50,9 +50,10 @@
             android:id="@+id/container_weather_realtime_alarmBtn"
             android:src="@drawable/ic_alert"
             android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/container_weather_realtime_weatherTxt"
             android:layout_alignParentBottom="true"
             style="@style/material_image_button"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -139,7 +140,7 @@
                 android:textSize="@dimen/title_text_size"
                 style="@style/content_text" />
 
-            <wangdaye.com.geometricweather.view.widget.weatherView.details.LifeInfoView
+            <wangdaye.com.geometricweather.view.widget.weatherView.details.IndexListView
                 android:id="@+id/container_weather_lifeInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

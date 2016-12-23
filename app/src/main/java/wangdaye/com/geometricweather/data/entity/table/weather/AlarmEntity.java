@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import org.greenrobot.greendao.annotation.Generated;
 
@@ -24,31 +24,21 @@ public class AlarmEntity {
     public Long id;
     public String cityId;
     public String city;
-    
+
+    public int alertId;
     public String content;
     public String description;
-    public String name;
-    public String level;
-    public String color;
-    public String typeCode;
-    public String typeDescription;
-    public String precaution;
     public String publishTime;
 
-    @Generated(hash = 526696603)
-    public AlarmEntity(Long id, String cityId, String city, String content, String description, String name, String level,
-            String color, String typeCode, String typeDescription, String precaution, String publishTime) {
+    @Generated(hash = 221670418)
+    public AlarmEntity(Long id, String cityId, String city, int alertId, String content, String description,
+            String publishTime) {
         this.id = id;
         this.cityId = cityId;
         this.city = city;
+        this.alertId = alertId;
         this.content = content;
         this.description = description;
-        this.name = name;
-        this.level = level;
-        this.color = color;
-        this.typeCode = typeCode;
-        this.typeDescription = typeDescription;
-        this.precaution = precaution;
         this.publishTime = publishTime;
     }
 
@@ -59,20 +49,15 @@ public class AlarmEntity {
     /** <br> life cycle. */
 
     private static List<AlarmEntity> buildAlarmEntityList(Weather weather) {
-        List<AlarmEntity> entityList = new ArrayList<>(weather.alarmList.size());
-        for (int i = 0; i < weather.alarmList.size(); i ++) {
+        List<AlarmEntity> entityList = new ArrayList<>(weather.alertList.size());
+        for (int i = 0; i < weather.alertList.size(); i ++) {
             AlarmEntity entity = new AlarmEntity();
             entity.cityId = weather.base.cityId;
             entity.city = weather.base.city;
-            entity.content = weather.alarmList.get(i).content;
-            entity.description = weather.alarmList.get(i).description;
-            entity.name = weather.alarmList.get(i).name;
-            entity.level = weather.alarmList.get(i).level;
-            entity.color = weather.alarmList.get(i).color;
-            entity.typeCode = weather.alarmList.get(i).typeCode;
-            entity.typeDescription = weather.alarmList.get(i).typeDescription;
-            entity.precaution = weather.alarmList.get(i).precaution;
-            entity.publishTime = weather.alarmList.get(i).publishTime;
+            entity.alertId = weather.alertList.get(i).id;
+            entity.content = weather.alertList.get(i).content;
+            entity.description = weather.alertList.get(i).description;
+            entity.publishTime = weather.alertList.get(i).publishTime;
             entityList.add(entity);
         }
         return entityList;
@@ -92,23 +77,19 @@ public class AlarmEntity {
                 searchLocationAlarmEntity(database, location));
 
         List<AlarmEntity> entityList = buildAlarmEntityList(weather);
-        AlarmEntityDao dao = new DaoMaster(database)
+        new DaoMaster(database)
                 .newSession()
-                .getAlarmEntityDao();
-        for (int i = 0; i < entityList.size(); i ++) {
-            dao.insert(entityList.get(i));
-        }
+                .getAlarmEntityDao()
+                .insertInTx(entityList);
     }
 
     // delete.
 
     private static void deleteAlarmEntityList(SQLiteDatabase database, List<AlarmEntity> list) {
-        for (int i = 0; i < list.size(); i ++) {
-            new DaoMaster(database)
-                    .newSession()
-                    .getAlarmEntityDao()
-                    .delete(list.get(i));
-        }
+        new DaoMaster(database)
+                .newSession()
+                .getAlarmEntityDao()
+                .deleteInTx(list);
     }
 
     // search.
@@ -118,8 +99,7 @@ public class AlarmEntity {
                 .newSession()
                 .getAlarmEntityDao()
                 .queryBuilder()
-                .where(location.isEngLocation() ?
-                        AlarmEntityDao.Properties.City.eq(location.city) : AlarmEntityDao.Properties.CityId.eq(location.cityId))
+                .where(AlarmEntityDao.Properties.CityId.eq(location.cityId))
                 .list();
     }
 
@@ -147,6 +127,14 @@ public class AlarmEntity {
         this.city = city;
     }
 
+    public int getAlertId() {
+        return this.alertId;
+    }
+
+    public void setAlertId(int alertId) {
+        this.alertId = alertId;
+    }
+
     public String getContent() {
         return this.content;
     }
@@ -161,54 +149,6 @@ public class AlarmEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLevel() {
-        return this.level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getColor() {
-        return this.color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getTypeCode() {
-        return this.typeCode;
-    }
-
-    public void setTypeCode(String typeCode) {
-        this.typeCode = typeCode;
-    }
-
-    public String getTypeDescription() {
-        return this.typeDescription;
-    }
-
-    public void setTypeDescription(String typeDescription) {
-        this.typeDescription = typeDescription;
-    }
-
-    public String getPrecaution() {
-        return this.precaution;
-    }
-
-    public void setPrecaution(String precaution) {
-        this.precaution = precaution;
     }
 
     public String getPublishTime() {

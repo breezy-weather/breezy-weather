@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.data.entity.model;
 
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
 
 /**

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 /**
  * Geometric realTimeWeather.
@@ -17,7 +18,6 @@ public class GeometricWeather extends Application {
     // data
     private List<GeoActivity> activityList;
     private boolean colorNavigationBar;
-    private String language;
 
     /** <br> life cycle. */
 
@@ -33,7 +33,7 @@ public class GeometricWeather extends Application {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
-        language = sharedPreferences.getString(getString(R.string.key_language), "follow_system");
+        LanguageUtils.setLanguage(this, sharedPreferences.getString(getString(R.string.key_language), "follow_system"));
     }
 
     /** <br> data. */
@@ -59,14 +59,6 @@ public class GeometricWeather extends Application {
 
     public void setColorNavigationBar() {
         this.colorNavigationBar = !colorNavigationBar;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
     }
 
     /** <br> singleton. */

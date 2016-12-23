@@ -11,9 +11,9 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Alert;
 import wangdaye.com.geometricweather.view.adapter.AlertAdapter;
-import wangdaye.com.geometricweather.view.adapter.LocationAdapter;
+import wangdaye.com.geometricweather.view.decotarion.ListDecoration;
 
 /**
  * Alert activity.
@@ -25,7 +25,7 @@ public class AlertActivity extends GeoActivity
     private CoordinatorLayout container;
 
     // data
-    private List<Weather.Alarm> alarmList;
+    private List<Alert> alarmList;
     public static final String KEY_ALERT_ACTIVITY_ALERT_LIST = "ALERT_ACTIVITY_ALERT_LIST";
 
     /** <br> life cycle. */
@@ -62,7 +62,7 @@ public class AlertActivity extends GeoActivity
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.activity_alert_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.addItemDecoration(new LocationAdapter.ListDecoration(this));
+        recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(new AlertAdapter(alarmList));
     }
 

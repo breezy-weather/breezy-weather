@@ -1,5 +1,5 @@
-package wangdaye.com.geometricweather.view.dialog;
-
+package wangdaye.com.geometricweather.basic.deprecated;
+/*
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
-
+*/
 /**
  * Initializing dialog.
  * */
-
+/*
 public class InitializingDialog extends GeoDialogFragment {
     // widget
     private CoordinatorLayout container;
@@ -23,9 +23,9 @@ public class InitializingDialog extends GeoDialogFragment {
 
     // data
     private String initTxt;
-
+*/
     /** <br> life cycle. */
-
+/*
     @SuppressLint("InflateParams")
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class InitializingDialog extends GeoDialogFragment {
         initTxt = getString(R.string.feedback_initializing);
         container = (CoordinatorLayout) view.findViewById(R.id.dialog_initializing_container);
         textView = (TextView) view.findViewById(R.id.dialog_initializing_txt);
+        setProcess(0);
         setCancelable(false);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -45,10 +46,11 @@ public class InitializingDialog extends GeoDialogFragment {
     public View getSnackbarContainer() {
         return container;
     }
-
+*/
     /** <br> UI. */
-
-    public void setProcess(int process) {
-        textView.setText(initTxt + " " + process + "%");
+/*
+    public void setProcess(int step) {
+        textView.setText(initTxt + " " + step + "/6");
     }
 }
+*/

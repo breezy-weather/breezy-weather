@@ -10,12 +10,14 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.view.View;
 
+import org.greenrobot.greendao.annotation.NotNull;
+
 import java.util.ArrayList;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.view.activity.AboutActivity;
 import wangdaye.com.geometricweather.view.activity.AlertActivity;
 import wangdaye.com.geometricweather.view.activity.MainActivity;
@@ -40,11 +42,16 @@ public class IntentHelper {
                 .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName);
     }
 
+    public static Intent buildMainActivityIntent(@NotNull String cityName) {
+        return new Intent("com.wangdaye.geometricweather.Main")
+                .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, cityName);
+    }
+
     public static void startAlertActivity(GeoActivity activity, Weather weather) {
         Intent intent = new Intent(activity, AlertActivity.class);
         intent.putParcelableArrayListExtra(
                 AlertActivity.KEY_ALERT_ACTIVITY_ALERT_LIST,
-                (ArrayList<? extends Parcelable>) weather.alarmList);
+                (ArrayList<? extends Parcelable>) weather.alertList);
         activity.startActivity(intent);
     }
 

@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import java.util.Calendar;
 
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 
 /**
  * Time utils.

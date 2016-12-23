@@ -9,16 +9,20 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -26,7 +30,9 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
+import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.view.adapter.LocationAdapter;
+import wangdaye.com.geometricweather.view.decotarion.ListDecoration;
 
 /**
  * Search activity.
@@ -34,16 +40,27 @@ import wangdaye.com.geometricweather.view.adapter.LocationAdapter;
 
 public class SearcActivity extends GeoActivity
         implements View.OnClickListener, LocationAdapter.OnLocationItemClickListener,
-        EditText.OnEditorActionListener, TextWatcher {
+        EditText.OnEditorActionListener, LocationHelper.OnRequestWeatherLocationListener {
     // widget
     private CoordinatorLayout container;
     private RelativeLayout searchContainer;
     private EditText editText;
+
     private RecyclerView recyclerView;
+    private CircularProgressView progressView;
+    private TextView feedbackText;
 
     // data
     private LocationAdapter adapter;
     private List<Location> locationList;
+
+    private LocationHelper locationHelper;
+    private String query = "";
+
+    private int state = STATE_SHOWING;
+    private static final int STATE_SHOWING = 1;
+    private static final int STATE_LOADING = 2;
+    private static final int STATE_FAILED = 3;
 
     public static final int SEARCH_ACTIVITY = 1;
 
@@ -117,13 +134,17 @@ public class SearcActivity extends GeoActivity
 
         this.editText = (EditText) findViewById(R.id.activity_search_editText);
         editText.setOnEditorActionListener(this);
-        editText.addTextChangedListener(this);
 
         this.recyclerView = (RecyclerView) findViewById(R.id.activity_search_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.addItemDecoration(new LocationAdapter.ListDecoration(this));
+        recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(adapter);
 
+        this.progressView = (CircularProgressView) findViewById(R.id.activity_search_progress);
+        progressView.setAlpha(0);
+
+        this.feedbackText = (TextView) findViewById(R.id.activity_search_feedbackTxt);
+        feedbackText.setAlpha(0);
 
         AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.search_container_in);
         animationSet.setStartDelay(350);
@@ -131,14 +152,98 @@ public class SearcActivity extends GeoActivity
         animationSet.start();
     }
 
+    private void setState(int stateTo) {
+        if(state == stateTo) {
+            return;
+        }
+
+        recyclerView.clearAnimation();
+        progressView.clearAnimation();
+        feedbackText.clearAnimation();
+
+        switch (stateTo) {
+            case STATE_SHOWING:
+                if (state == STATE_LOADING) {
+                    recyclerView.setVisibility(View.VISIBLE);
+
+                    ShowAnimation show = new ShowAnimation(recyclerView);
+                    show.setDuration(150);
+                    recyclerView.startAnimation(show);
+
+                    HideAnimation hide = new HideAnimation(progressView);
+                    hide.setDuration(150);
+                    progressView.startAnimation(hide);
+                }
+                break;
+
+            case STATE_LOADING:
+                if (state == STATE_SHOWING) {
+                    recyclerView.setAlpha(0);
+                    progressView.setAlpha(1);
+                    recyclerView.setVisibility(View.GONE);
+                } else if (state == STATE_FAILED) {
+                    feedbackText.setAlpha(0);
+                    progressView.setAlpha(1);
+                }
+                break;
+
+            case STATE_FAILED:
+                if (state == STATE_LOADING) {
+                    ShowAnimation show = new ShowAnimation(feedbackText);
+                    show.setDuration(150);
+                    feedbackText.startAnimation(show);
+
+                    HideAnimation hide = new HideAnimation(progressView);
+                    hide.setDuration(150);
+                    progressView.startAnimation(hide);
+                }
+                break;
+        }
+        state = stateTo;
+    }
+
     /** <br> data. */
 
     private void initData() {
         this.adapter = new LocationAdapter(
                 this,
-                DatabaseHelper.getInstance(this).readCityList(),
+                new ArrayList<Location>(),
                 this);
         this.locationList = DatabaseHelper.getInstance(this).readLocationList();
+
+        this.locationHelper = new LocationHelper(this);
+    }
+
+    /** <br> anim. */
+
+    private class ShowAnimation extends Animation {
+        // widget
+        private View v;
+
+        ShowAnimation(View v) {
+            this.v = v;
+        }
+
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            v.setAlpha(interpolatedTime);
+        }
+    }
+
+    private class HideAnimation extends Animation {
+        // widget
+        private View v;
+
+        HideAnimation(View v) {
+            this.v = v;
+        }
+
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            v.setAlpha(1 - interpolatedTime);
+        }
     }
 
     /** <br> listener. */
@@ -177,19 +282,36 @@ public class SearcActivity extends GeoActivity
 
     @Override
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        if (TextUtils.isEmpty(textView.getText().toString())) {
-            adapter.itemList = DatabaseHelper.getInstance(this).fuzzySearchCityList(textView.getText().toString());
-            adapter.notifyDataSetChanged();
-        } else if (Location.checkEveryCharIsEnglish(textView.getText().toString())) {
-            adapter.itemList = DatabaseHelper.getInstance(this).fuzzySearchCityList(textView.getText().toString());
-            adapter.notifyDataSetChanged();
-        } else {
-            adapter.itemList = DatabaseHelper.getInstance(this).fuzzySearchCityList(textView.getText().toString());
-            adapter.notifyDataSetChanged();
+        if (!TextUtils.isEmpty(textView.getText().toString())) {
+            InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+
+            query = textView.getText().toString();
+            setState(STATE_LOADING);
+            locationHelper.requestWeatherLocation(this, query, this);
         }
         return true;
     }
 
+    // on request weather location listener.
+
+    @Override
+    public void requestWeatherLocationSuccess(String query, List<Location> locationList) {
+        if (this.query.equals(query)) {
+            adapter.itemList.clear();
+            adapter.itemList.addAll(locationList);
+            adapter.notifyDataSetChanged();
+            setState(STATE_SHOWING);
+        }
+    }
+
+    @Override
+    public void requestWeatherLocationFailed(String query) {
+        if (this.query.equals(query)) {
+            setState(STATE_FAILED);
+        }
+    }
+/*
     // text watch.
 
     @Override
@@ -220,5 +342,5 @@ public class SearcActivity extends GeoActivity
                 adapter.notifyDataSetChanged();
             }
         }
-    }
+    }*/
 }

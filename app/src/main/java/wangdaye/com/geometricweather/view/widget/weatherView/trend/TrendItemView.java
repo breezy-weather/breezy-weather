@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -14,7 +15,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
@@ -50,6 +51,7 @@ public class TrendItemView extends FrameLayout {
     private float MARGIN_TOP;
     private float MARGIN_BOTTOM;
     private float WEATHER_TEXT_SIZE = 14;
+    private float POP_TEXT_SIZE = 12;
     private float TREND_LINE_SIZE = 2;
     private float CHART_LINE_SIZE = 1;
     private float MARGIN_TEXT = 2;
@@ -89,7 +91,7 @@ public class TrendItemView extends FrameLayout {
                 ContextCompat.getColor(getContext(), R.color.darkPrimary_1),
                 ContextCompat.getColor(getContext(), R.color.colorLine)};
         this.shadowColors = new int[] {
-                Color.argb(70, 176, 176, 176),
+                Color.argb(50, 176, 176, 176),
                 Color.argb(0, 176, 176, 176),
                 Color.argb(200, 176, 176, 176)};
         this.textColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
@@ -97,6 +99,7 @@ public class TrendItemView extends FrameLayout {
         this.MARGIN_TOP = calcHeaderHeight(getContext()) + calcDrawSpecMarginTop(getContext());
         this.MARGIN_BOTTOM = calcDrawSpecMarginBottom(getContext());
         this.WEATHER_TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) WEATHER_TEXT_SIZE);
+        this.POP_TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) POP_TEXT_SIZE);
         this.TREND_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) TREND_LINE_SIZE);
         this.CHART_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE);
         this.MARGIN_TEXT = DisplayUtils.dpToPx(getContext(), (int) MARGIN_TEXT);
@@ -142,6 +145,7 @@ public class TrendItemView extends FrameLayout {
 
             case DATA_TYPE_HOURLY:
                 drawTimeLine(canvas);
+                drawHourlyPrecipitationData(canvas);
                 drawHourlyTemp(canvas);
                 break;
         }
@@ -427,6 +431,34 @@ public class TrendItemView extends FrameLayout {
                 paint);
     }
 
+    private void drawHourlyPrecipitationData(Canvas canvas) {
+        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+
+        paint.setColor(lineColors[1]);
+        paint.setAlpha((int) (255 * 0.1));
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRoundRect(
+                new RectF(
+                        (float) (getMeasuredWidth() / 2.0 - TREND_LINE_SIZE * 1.5),
+                        miniTempYs[0],
+                        (float) (getMeasuredWidth() / 2.0 + TREND_LINE_SIZE * 1.5),
+                        getMeasuredHeight() - MARGIN_BOTTOM),
+                TREND_LINE_SIZE * 3, TREND_LINE_SIZE * 3,
+                paint);
+
+        if (temps[1] != 0) {
+            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setTextSize(POP_TEXT_SIZE);
+            canvas.drawText(
+                    temps[1] + "%",
+                    (float) (getMeasuredWidth() / 2.0),
+                    getMeasuredHeight() - MARGIN_BOTTOM - paint.getFontMetrics().top + MARGIN_TEXT,
+                    paint);
+        }
+
+        paint.setAlpha(255);
+    }
+
     /** <br> data. */
 
     // init.
@@ -529,7 +561,9 @@ public class TrendItemView extends FrameLayout {
     // hourly.
 
     public void setHourlyData(Weather weather, int position, int highest, int lowest) {
-        this.temps = new int[] {weather.hourlyList.get(position).temp, 0};
+        this.temps = new int[] {
+                weather.hourlyList.get(position).temp,
+                weather.hourlyList.get(position).precipitation};
         if (position == 0) {
             positionType = POSITION_TYPE_LEFT;
             setHourlyLeftData(weather, position, highest, lowest);
@@ -540,6 +574,7 @@ public class TrendItemView extends FrameLayout {
             positionType = POSITION_TYPE_CENTER;
             setHourlyCenterData(weather, position, highest, lowest);
         }
+        serPrecipitationData(weather, position);
     }
 
     private void setHourlyLeftData(Weather weather, int position, int highest, int lowest) {
@@ -573,6 +608,11 @@ public class TrendItemView extends FrameLayout {
             maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
                     - calcDrawSpecUsableHeight(getContext()) * (temps[i] - lowest) / (highest - lowest));
         }
+    }
+
+    private void serPrecipitationData(Weather weather, int position) {
+        miniTempYs[0] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                - calcDrawSpecUsableHeight(getContext()) * weather.hourlyList.get(position).precipitation / 100.0);
     }
 
     public static int calcWidth(Context context) {

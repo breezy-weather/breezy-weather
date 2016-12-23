@@ -30,8 +30,7 @@ import java.util.TimerTask;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.Weather;
-import wangdaye.com.geometricweather.utils.FileUtils;
+import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.PermissionUtils;
 import wangdaye.com.geometricweather.utils.SafeHandler;
@@ -41,13 +40,11 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
-import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
-import wangdaye.com.geometricweather.view.dialog.InitializingDialog;
 import wangdaye.com.geometricweather.view.widget.StatusBarView;
 import wangdaye.com.geometricweather.view.widget.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.TimeUtils;
-import wangdaye.com.geometricweather.view.widget.weatherView.details.LifeInfoView;
+import wangdaye.com.geometricweather.view.widget.weatherView.details.IndexListView;
 import wangdaye.com.geometricweather.view.widget.weatherView.sky.SkyView;
 import wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendItemView;
 import wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendRecyclerView;
@@ -83,9 +80,7 @@ public class MainActivity extends GeoActivity
     private TextView overviewTitle;
     private TrendView trendView;
     private TextView lifeInfoTitle;
-    private LifeInfoView lifeInfoView;
-
-    private InitializingDialog dialog;
+    private IndexListView indexListView;
 
     // data
     private List<Location> locationList;
@@ -104,9 +99,7 @@ public class MainActivity extends GeoActivity
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int MANAGE_ACTIVITY = 2;
 
-    public static final int MESSAGE_WHAT_WRITING_CITY = 1;
-    public static final int MESSAGE_WHAT_WRITE_CITY_DONE = 2;
-    public static final int MESSAGE_WHAT_STARTUP_SEARVICE = 3;
+    public static final int MESSAGE_WHAT_STARTUP_SERVICE = 1;
 
     public static final String KEY_MAIN_ACTIVITY_LOCATION = "MAIN_ACTIVITY_LOCATION";
 
@@ -239,7 +232,7 @@ public class MainActivity extends GeoActivity
         this.initWeatherCard();
 
         //get life info 
-        this.lifeInfoView = (LifeInfoView) findViewById(R.id.container_weather_lifeInfoView);
+        this.indexListView = (IndexListView) findViewById(R.id.container_weather_lifeInfoView);
     }
 
     private void initWeatherCard() {
@@ -308,9 +301,9 @@ public class MainActivity extends GeoActivity
 
         titleTexts[0].setText(weather.realTime.temp + "°");
         titleTexts[1].setText(weather.realTime.weather);
-        titleTexts[2].setText(WeatherHelper.getAqiTxt(weather.aqi.quality));
+        titleTexts[2].setText(weather.aqi.quality);
 
-        if (weather.alarmList.size() == 0) {
+        if (weather.alertList.size() == 0) {
             alertButton.setVisibility(View.GONE);
         } else {
             alertButton.setVisibility(View.VISIBLE);
@@ -331,7 +324,7 @@ public class MainActivity extends GeoActivity
 
         trendView.setData(locationNow.weather, locationNow.history);
         trendView.setState(TrendItemView.DATA_TYPE_DAILY, false);
-        lifeInfoView.setData(locationNow.weather);
+        indexListView.setData(locationNow.weather);
 
         weatherContainer.setVisibility(View.VISIBLE);
         viewShowAnimator.start();
@@ -377,26 +370,6 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    private void writeCityList() {
-        if (DatabaseHelper.getInstance(this).isNeedWriteCityList()
-                || DatabaseHelper.getInstance(this).isNeedWriteOverseaCityList()) {
-            dialog = new InitializingDialog();
-            dialog.show(getFragmentManager(), null);
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    if (Build.VERSION.SDK_INT >= 25) {
-                        ShortcutsManager.refreshShortcuts(MainActivity.this, locationList);
-                    }
-                    FileUtils.writeCityList(MainActivity.this, handler);
-                    FileUtils.writeOverseaCityList(MainActivity.this, handler);
-                    handler.obtainMessage(MESSAGE_WHAT_WRITE_CITY_DONE).sendToTarget();
-                }
-            }).start();
-        }
-    }
-
     // buildWeather.
 
     private void setLocationAndReset(Location location) {
@@ -417,7 +390,7 @@ public class MainActivity extends GeoActivity
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                handler.obtainMessage(MESSAGE_WHAT_STARTUP_SEARVICE, locationNow).sendToTarget();
+                handler.obtainMessage(MESSAGE_WHAT_STARTUP_SERVICE, locationNow).sendToTarget();
             }
         }, 500);
     }
@@ -530,14 +503,7 @@ public class MainActivity extends GeoActivity
         weatherHelper.cancel();
 
         if (locationNow.isLocal()) {
-            if (DatabaseHelper.getInstance(this).isNeedWriteCityList()
-                    || DatabaseHelper.getInstance(this).isNeedWriteOverseaCityList()) {
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_initializing));
-                setRefreshing(false);
-                writeCityList();
-            } else {
-                locationHelper.requestLocation(this, locationNow, this);
-            }
+            locationHelper.requestLocation(this, locationNow, this);
         } else {
             weatherHelper.requestWeather(this, locationNow, this);
         }
@@ -638,20 +604,7 @@ public class MainActivity extends GeoActivity
     @Override
     public void handleMessage(Message message) {
         switch (message.what) {
-            case MESSAGE_WHAT_WRITING_CITY:
-                if (dialog != null) {
-                    dialog.setProcess((Integer) message.obj);
-                }
-                break;
-
-            case MESSAGE_WHAT_WRITE_CITY_DONE:
-                if (dialog != null) {
-                    dialog.dismiss();
-                    reset();
-                }
-                break;
-
-            case MESSAGE_WHAT_STARTUP_SEARVICE:
+            case MESSAGE_WHAT_STARTUP_SERVICE:
                 Location location = (Location) message.obj;
                 WidgetUtils.startupAllOfWidgetService(this, location);
                 if (locationList.get(0).equals(location)) {
