@@ -150,7 +150,10 @@ public class LocationEntity {
                 .newSession()
                 .getLocationEntityDao()
                 .queryBuilder()
-                .where(LocationEntityDao.Properties.CityId.eq(location.cityId))
+                .where(location.isLocal() ?
+                        LocationEntityDao.Properties.Local.eq(location.local)
+                        :
+                        LocationEntityDao.Properties.CityId.eq(location.cityId))
                 .list();
         if (entityList == null || entityList.size() <= 0) {
             return null;

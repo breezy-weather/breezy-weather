@@ -122,7 +122,7 @@ public class TrendRecyclerView extends RecyclerView {
         canvas.drawText(
                 history.miniTemp + "°",
                 2 * MARGIN_TEXT,
-                tempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
+                tempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint);
 
         paint.setTextAlign(Paint.Align.RIGHT);
@@ -134,7 +134,7 @@ public class TrendRecyclerView extends RecyclerView {
         canvas.drawText(
                 getContext().getString(R.string.yesterday),
                 getMeasuredWidth() - 2 * MARGIN_TEXT,
-                tempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
+                tempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint);
     }
 

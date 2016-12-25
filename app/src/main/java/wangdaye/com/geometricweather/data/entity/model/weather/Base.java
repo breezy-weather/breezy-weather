@@ -1,7 +1,7 @@
 package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.NewRealtimeResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 
 /**

@@ -24,7 +24,7 @@
     <color name="colorTextTitle">@color/colorTextDark</color>
     <color name="colorTextContent">@color/colorTextDark2nd</color>
     <color name="colorTextSubtitle">@color/colorTextGrey2nd</color>
-    <color name="colorTextAlert">#feda7e</color>
+    <color name="colorTextAlert">#fcc96b</color>
 
     <color name="colorTextDark">#424242</color>
     <color name="colorTextDark2nd">#757575</color>

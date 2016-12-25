@@ -11,6 +11,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/dialog_weather_title"
+            android:layout_margin="@dimen/normal_margin"
+            android:textStyle="bold"
+            style="@style/content_text"
+            tools:text="12-24 : 周五" />
+
         <RelativeLayout
             android:id="@+id/dialog_weather_weatherContainer_day"
             android:layout_width="match_parent"

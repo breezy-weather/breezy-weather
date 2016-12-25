@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewLocationResult;
+import wangdaye.com.geometricweather.data.entity.result.NewLocationResult;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
 
 /**
@@ -58,7 +58,7 @@ public class Location
         location.lat = "39.904000";
         location.lon = "116.391000";
         location.prov = "直辖市";
-        location.local = false;
+        location.local = true;
         return location;
     }
 
@@ -122,6 +122,11 @@ public class Location
         }
     }
 
+    public Location setLocal() {
+        local = true;
+        return this;
+    }
+
     public boolean isLocal() {
         return local;
     }
@@ -159,11 +164,6 @@ public class Location
                 .replace("t", "").replace("u", "").replace("v", "").replace("w", "").replace("x", "")
                 .replace("y", "").replace("z", "");*/
         return cityId;
-    }
-
-    public Location setLocal() {
-        local = true;
-        return this;
     }
 
     /** <br> parcelable. */

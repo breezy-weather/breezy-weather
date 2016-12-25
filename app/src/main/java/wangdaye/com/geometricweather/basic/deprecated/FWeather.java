@@ -6,7 +6,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.BuildConfig;
-import wangdaye.com.geometricweather.data.api.FWApi;
+import wangdaye.com.geometricweather.basic.deprecated.FWApi;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.result.old.FWResult;

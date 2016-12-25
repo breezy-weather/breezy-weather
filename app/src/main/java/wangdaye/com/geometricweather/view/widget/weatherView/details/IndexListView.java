@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 
 /**
- * Life info view.
+ * Index list view.
  * */
 
 public class IndexListView extends FrameLayout {
@@ -44,7 +44,7 @@ public class IndexListView extends FrameLayout {
     private RelativeLayout uv;
     private TextView uvTitle;
     private TextView uvContent;
-
+/*
     private RelativeLayout exercise;
     private TextView exerciseTitle;
     private TextView exerciseContent;
@@ -56,7 +56,7 @@ public class IndexListView extends FrameLayout {
     private RelativeLayout washCar;
     private TextView washCarTitle;
     private TextView washCarContent;
-
+*/
     /** <br> life cycle. */
 
     public IndexListView(Context context) {
@@ -108,7 +108,7 @@ public class IndexListView extends FrameLayout {
         uv = (RelativeLayout) findViewById(R.id.container_details_uv);
         uvTitle = (TextView) findViewById(R.id.container_details_uv_title);
         uvContent = (TextView) findViewById(R.id.container_details_uv_content);
-
+/*
         exercise = (RelativeLayout) findViewById(R.id.container_details_exercise);
         exerciseTitle = (TextView) findViewById(R.id.container_details_exercise_title);
         exerciseContent = (TextView) findViewById(R.id.container_details_exercise_content);
@@ -120,6 +120,7 @@ public class IndexListView extends FrameLayout {
         cold = (RelativeLayout) findViewById(R.id.container_details_cold);
         coldTitle = (TextView) findViewById(R.id.container_details_cold_title);
         coldContent = (TextView) findViewById(R.id.container_details_cold_content);
+*/
     }
 
     /** <br> data. */
@@ -172,7 +173,7 @@ public class IndexListView extends FrameLayout {
             uvTitle.setText(weather.index.uvs[0]);
             uvContent.setText(weather.index.uvs[1]);
         }
-
+/*
         if (TextUtils.isEmpty(weather.index.exercises[1])) {
             exercise.setVisibility(GONE);
         } else {
@@ -196,5 +197,6 @@ public class IndexListView extends FrameLayout {
             washCarTitle.setText(weather.index.carWashes[0]);
             washCarContent.setText(weather.index.carWashes[1]);
         }
+*/
     }
 }

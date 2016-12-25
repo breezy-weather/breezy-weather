@@ -18,7 +18,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -72,9 +73,10 @@ public class MainActivity extends GeoActivity
     private LinearLayout weatherContainer;
 
     private TextView[] titleTexts;
-    private ImageButton alertButton;
 
     private TextView refreshTime;
+    private FrameLayout locationIconBtn;
+    private ImageView locationIcon;
     private TextView locationText;
 
     private TextView overviewTitle;
@@ -224,10 +226,6 @@ public class MainActivity extends GeoActivity
                 (TextView) findViewById(R.id.container_weather_realtime_weatherTxt),
                 (TextView) findViewById(R.id.container_weather_realtime_aqiTxt)};
 
-        this.alertButton = (ImageButton) findViewById(R.id.container_weather_realtime_alarmBtn);
-        alertButton.setOnClickListener(this);
-        alertButton.setVisibility(View.GONE);
-
         // realTimeWeather card.
         this.initWeatherCard();
 
@@ -240,6 +238,9 @@ public class MainActivity extends GeoActivity
 
         findViewById(R.id.container_weather_locationContainer).setOnClickListener(this);
 
+        this.locationIconBtn = (FrameLayout) findViewById(R.id.container_weather_location_iconButton);
+        locationIconBtn.setOnClickListener(this);
+        this.locationIcon = (ImageView) findViewById(R.id.container_weather_location_icon);
         this.locationText = (TextView) findViewById(R.id.container_weather_location_text_live);
 
         this.overviewTitle = (TextView) findViewById(R.id.container_weather_overviewTitle);
@@ -303,14 +304,15 @@ public class MainActivity extends GeoActivity
         titleTexts[1].setText(weather.realTime.weather);
         titleTexts[2].setText(weather.aqi.quality);
 
-        if (weather.alertList.size() == 0) {
-            alertButton.setVisibility(View.GONE);
-        } else {
-            alertButton.setVisibility(View.VISIBLE);
-        }
-
         refreshTime.setText(weather.base.time);
         locationText.setText(weather.base.city);
+        if (weather.alertList.size() == 0) {
+            locationIconBtn.setEnabled(false);
+            locationIcon.setImageResource(R.drawable.ic_location);
+        } else {
+            locationIconBtn.setEnabled(true);
+            locationIcon.setImageResource(R.drawable.ic_alert);
+        }
 
         if (TimeUtils.getInstance(this).isDayTime()) {
             overviewTitle.setTextColor(ContextCompat.getColor(this, R.color.lightPrimary_3));
@@ -436,7 +438,7 @@ public class MainActivity extends GeoActivity
                 skyView.onClickSky();
                 break;
 
-            case R.id.container_weather_realtime_alarmBtn:
+            case R.id.container_weather_location_iconButton:
                 IntentHelper.startAlertActivity(this, locationNow.weather);
                 break;
 

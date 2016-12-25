@@ -15,7 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import wangdaye.com.geometricweather.data.api.HefengApi;
+import wangdaye.com.geometricweather.basic.deprecated.HefengApi;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.result.old.HefengResult;
 import wangdaye.com.geometricweather.data.entity.model.Location;

@@ -75,14 +75,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                
-                <TextView
-                    android:id="@+id/activity_search_feedbackTxt"
-                    android:text="@string/feedback_search_nothing"
-                    android:layout_centerInParent="true"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorTextContent"
-                    style="@style/title_text"/>
 
                 <com.github.rahatarmanahmed.cpv.CircularProgressView
                     android:id="@+id/activity_search_progress"

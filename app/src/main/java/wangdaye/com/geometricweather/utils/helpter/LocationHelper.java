@@ -86,8 +86,8 @@ public class LocationHelper {
                 case BDLocation.TypeNetWorkLocation: // 网络定位结果
                 case BDLocation.TypeOffLineLocation: // 离线定位
                     if (listener != null) {
-                        location.local = true;
                         String oldCity = bdLocation.getDistrict();
+                        location.local = true;
                         location.city = bdLocation.getDistrict();
                         location.cnty = bdLocation.getCountry();
                         location.lat = String.valueOf(bdLocation.getLatitude());

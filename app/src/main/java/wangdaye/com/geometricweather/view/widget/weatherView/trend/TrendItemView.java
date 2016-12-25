@@ -447,6 +447,7 @@ public class TrendItemView extends FrameLayout {
                 paint);
 
         if (temps[1] != 0) {
+            paint.setAlpha((int) (255 * 0.2));
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setTextSize(POP_TEXT_SIZE);
             canvas.drawText(

@@ -48,7 +48,6 @@ public class SearcActivity extends GeoActivity
 
     private RecyclerView recyclerView;
     private CircularProgressView progressView;
-    private TextView feedbackText;
 
     // data
     private LocationAdapter adapter;
@@ -60,7 +59,6 @@ public class SearcActivity extends GeoActivity
     private int state = STATE_SHOWING;
     private static final int STATE_SHOWING = 1;
     private static final int STATE_LOADING = 2;
-    private static final int STATE_FAILED = 3;
 
     public static final int SEARCH_ACTIVITY = 1;
 
@@ -143,9 +141,6 @@ public class SearcActivity extends GeoActivity
         this.progressView = (CircularProgressView) findViewById(R.id.activity_search_progress);
         progressView.setAlpha(0);
 
-        this.feedbackText = (TextView) findViewById(R.id.activity_search_feedbackTxt);
-        feedbackText.setAlpha(0);
-
         AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.search_container_in);
         animationSet.setStartDelay(350);
         animationSet.setTarget(searchContainer);
@@ -159,7 +154,6 @@ public class SearcActivity extends GeoActivity
 
         recyclerView.clearAnimation();
         progressView.clearAnimation();
-        feedbackText.clearAnimation();
 
         switch (stateTo) {
             case STATE_SHOWING:
@@ -181,21 +175,6 @@ public class SearcActivity extends GeoActivity
                     recyclerView.setAlpha(0);
                     progressView.setAlpha(1);
                     recyclerView.setVisibility(View.GONE);
-                } else if (state == STATE_FAILED) {
-                    feedbackText.setAlpha(0);
-                    progressView.setAlpha(1);
-                }
-                break;
-
-            case STATE_FAILED:
-                if (state == STATE_LOADING) {
-                    ShowAnimation show = new ShowAnimation(feedbackText);
-                    show.setDuration(150);
-                    feedbackText.startAnimation(show);
-
-                    HideAnimation hide = new HideAnimation(progressView);
-                    hide.setDuration(150);
-                    progressView.startAnimation(hide);
                 }
                 break;
         }
@@ -287,8 +266,20 @@ public class SearcActivity extends GeoActivity
             manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
             query = textView.getText().toString();
-            setState(STATE_LOADING);
-            locationHelper.requestWeatherLocation(this, query, this);
+            if (query.equals(getString(R.string.local))) {
+                for (int j = 0; j < locationList.size(); j ++) {
+                    if (locationList.get(j).isLocal()) {
+                        SnackbarUtils.showSnackbar(getString(R.string.feedback_collect_failed));
+                        editText.setText("");
+                        return true;
+                    }
+                }
+                DatabaseHelper.getInstance(this).writeLocation(Location.buildLocal());
+                finishSelf(true);
+            } else {
+                setState(STATE_LOADING);
+                locationHelper.requestWeatherLocation(this, query, this);
+            }
         }
         return true;
     }
@@ -302,13 +293,20 @@ public class SearcActivity extends GeoActivity
             adapter.itemList.addAll(locationList);
             adapter.notifyDataSetChanged();
             setState(STATE_SHOWING);
+            if (locationList.size() <= 0) {
+                SnackbarUtils.showSnackbar(getString(R.string.feedback_search_nothing));
+            }
         }
     }
 
     @Override
     public void requestWeatherLocationFailed(String query) {
         if (this.query.equals(query)) {
-            setState(STATE_FAILED);
+            adapter.itemList.clear();
+            adapter.itemList.addAll(locationList);
+            adapter.notifyDataSetChanged();
+            setState(STATE_SHOWING);
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_search_nothing));
         }
     }
 /*

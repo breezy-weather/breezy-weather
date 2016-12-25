@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.data.entity.result.old;
+package wangdaye.com.geometricweather.basic.deprecated;
 
 import com.google.gson.annotations.SerializedName;
 

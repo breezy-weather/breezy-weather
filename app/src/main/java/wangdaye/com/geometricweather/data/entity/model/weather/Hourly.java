@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 import android.content.Context;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewHourlyResult;
+import wangdaye.com.geometricweather.data.entity.result.NewHourlyResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 

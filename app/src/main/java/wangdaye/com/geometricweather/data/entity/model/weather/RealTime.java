@@ -2,8 +2,8 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import android.content.Context;
 
-import wangdaye.com.geometricweather.data.entity.result.neww.NewDailyResult;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.NewDailyResult;
+import wangdaye.com.geometricweather.data.entity.result.NewRealtimeResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 

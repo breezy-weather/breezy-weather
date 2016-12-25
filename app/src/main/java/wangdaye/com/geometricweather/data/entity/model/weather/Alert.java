@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewAlertResult;
+import wangdaye.com.geometricweather.data.entity.result.NewAlertResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
 
 /**

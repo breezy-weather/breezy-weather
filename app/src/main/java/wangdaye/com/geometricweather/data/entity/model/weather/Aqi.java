@@ -2,7 +2,7 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import android.content.Context;
 
-import wangdaye.com.geometricweather.data.entity.result.neww.NewAqiResult;
+import wangdaye.com.geometricweather.data.entity.result.NewAqiResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 

@@ -130,6 +130,22 @@ public class ManageActivity extends GeoActivity
         }
     }
 
+    private class CancelDeleteListener
+            implements View.OnClickListener {
+        // data
+        private Location location;
+
+        CancelDeleteListener(Location l) {
+            this.location = l;
+        }
+
+        @Override
+        public void onClick(View view) {
+            adapter.insertData(location, adapter.getItemCount());
+            DatabaseHelper.getInstance(ManageActivity.this).writeLocation(location);
+        }
+    }
+
     // on location item click listener.
 
     @Override
@@ -176,9 +192,13 @@ public class ManageActivity extends GeoActivity
                 adapter.insertData(item, position);
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_location_list_cannot_be_null));
             } else {
+                Location location = adapter.itemList.get(position);
                 adapter.removeData(position);
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_delete_succeed));
                 DatabaseHelper.getInstance(ManageActivity.this).deleteLocation(item);
+                SnackbarUtils.showSnackbar(
+                        getString(R.string.feedback_delete_succeed),
+                        getString(R.string.cancel),
+                        new CancelDeleteListener(location));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                     ShortcutsManager.refreshShortcuts(ManageActivity.this, adapter.itemList);
                 }

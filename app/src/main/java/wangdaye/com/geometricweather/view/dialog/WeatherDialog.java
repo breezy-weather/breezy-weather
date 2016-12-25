@@ -61,6 +61,14 @@ public class WeatherDialog extends GeoDialogFragment
     private void initWidget(View view) {
         this.container = (CoordinatorLayout) view.findViewById(R.id.dialog_weather_container);
 
+        TextView title = (TextView) view.findViewById(R.id.dialog_weather_title);
+        if (daily) {
+            title.setText(weather.dailyList.get(position).date.split("-", 2)[1]
+                    + " : " + weather.dailyList.get(position).week);
+        } else {
+            title.setText(weather.hourlyList.get(position).time);
+        }
+
         view.findViewById(R.id.dialog_weather_weatherContainer_day).setOnClickListener(this);
         view.findViewById(R.id.dialog_weather_weatherContainer_night).setOnClickListener(this);
 
@@ -147,7 +155,7 @@ public class WeatherDialog extends GeoDialogFragment
         } else {
             view.findViewById(R.id.dialog_weather_sunriseIcon).setVisibility(View.GONE);
             view.findViewById(R.id.dialog_weather_sunset_icon).setVisibility(View.GONE);
-            sunText[0].setText(weather.hourlyList.get(position).time);
+            sunText[0].setVisibility(View.GONE);
             sunText[1].setVisibility(View.GONE);
         }
 

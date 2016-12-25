@@ -1,9 +1,9 @@
-package wangdaye.com.geometricweather.data.api;
+package wangdaye.com.geometricweather.basic.deprecated;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import wangdaye.com.geometricweather.data.entity.result.old.HefengResult;
+import wangdaye.com.geometricweather.basic.deprecated.HefengResult;
 
 /**
  * Hefeng api.

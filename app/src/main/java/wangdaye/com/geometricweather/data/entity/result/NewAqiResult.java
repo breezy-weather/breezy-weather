@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.data.entity.result.neww;
+package wangdaye.com.geometricweather.data.entity.result;
 
 /**
  * Accu aqi result.

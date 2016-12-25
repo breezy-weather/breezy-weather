@@ -6,12 +6,12 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewAlertResult;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewAqiResult;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewDailyResult;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewHourlyResult;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewLocationResult;
-import wangdaye.com.geometricweather.data.entity.result.neww.NewRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.NewAlertResult;
+import wangdaye.com.geometricweather.data.entity.result.NewAqiResult;
+import wangdaye.com.geometricweather.data.entity.result.NewDailyResult;
+import wangdaye.com.geometricweather.data.entity.result.NewHourlyResult;
+import wangdaye.com.geometricweather.data.entity.result.NewLocationResult;
+import wangdaye.com.geometricweather.data.entity.result.NewRealtimeResult;
 
 /**
  * Accu api.
