@@ -72,7 +72,7 @@
                     android:text="@string/wait_refresh"
                     android:textColor="@color/colorTextLight"
                     style="@style/content_text"
-                    tools:text="5.17周三 / 四月初五"/>
+                    tools:text="05-17 周三"/>
 
             </RelativeLayout>
 
@@ -87,7 +87,7 @@
                     android:text="@string/ellipsis"
                     android:textColor="@color/colorTextLight"
                     style="@style/content_text"
-                    tools:text="青岛 / 阴 8℃"/>
+                    tools:text="青岛 8℃"/>
 
             </RelativeLayout>
 

@@ -102,7 +102,7 @@ public class WidgetClockDayWeekAlarmService extends GeoAlarmService {
                 R.id.widget_clock_day_week_date,
                 dateText);
         // buildWeather weather text.
-        String weatherText = weather.base.city + " / " + weather.realTime.weather + " " + weather.realTime.temp + "℃";
+        String weatherText = weather.base.city + " " + weather.realTime.temp + "℃";
         views.setTextViewText( // set weather text.
                 R.id.widget_clock_day_week_weather,
                 weatherText);

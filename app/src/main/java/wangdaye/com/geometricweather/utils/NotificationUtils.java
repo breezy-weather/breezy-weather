@@ -31,6 +31,8 @@ import wangdaye.com.geometricweather.service.notification.job.TodayForecastJobSe
 import wangdaye.com.geometricweather.service.notification.job.TomorrowForecastJobService;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.ThreadManager;
+import wangdaye.com.geometricweather.utils.widget.PriorityRunnable;
 
 /**
  * Notification utils.
@@ -48,34 +50,28 @@ public class NotificationUtils {
 
     /** <br> options. */
 
-    public static void refreshNotification(final Context c, final Location location) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
-                if (sharedPreferences.getBoolean(c.getString(R.string.key_notification), false)) {
-                    buildNotificationAndSendIt(c, location.weather);
-                }
-            }
-        }).start();
-    }
-
-    public static void startupAllOfNotificationService(final Context c) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
-                if (sharedPreferences.getBoolean(c.getString(R.string.key_notification), false)) {
-                    NotificationUtils.startNotificationService(c);
-                }
-                if (sharedPreferences.getBoolean(c.getString(R.string.key_forecast_today), false)) {
-                    NotificationUtils.startTodayForecastService(c);
-                }
-                if (sharedPreferences.getBoolean(c.getString(R.string.key_forecast_today), false)) {
-                    NotificationUtils.startTomorrowForecastService(c);
-                }
-            }
-        }).start();
+    public static void refreshNotification(final Context c, final Location location, final boolean startupService) {
+        ThreadManager.getInstance()
+                .execute(new PriorityRunnable(false) {
+                    @Override
+                    public void run() {
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
+                        if (sharedPreferences.getBoolean(c.getString(R.string.key_notification), false)) {
+                            buildNotificationAndSendIt(c, location.weather);
+                        }
+                        if (startupService) {
+                            if (sharedPreferences.getBoolean(c.getString(R.string.key_notification), false)) {
+                                NotificationUtils.startNotificationService(c);
+                            }
+                            if (sharedPreferences.getBoolean(c.getString(R.string.key_forecast_today), false)) {
+                                NotificationUtils.startTodayForecastService(c);
+                            }
+                            if (sharedPreferences.getBoolean(c.getString(R.string.key_forecast_today), false)) {
+                                NotificationUtils.startTomorrowForecastService(c);
+                            }
+                        }
+                    }
+        });
     }
 
     public static void startNotificationService(Context context) {

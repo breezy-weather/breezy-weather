@@ -28,7 +28,7 @@ public class ShortcutsManager {
 
         List<ShortcutInfo> shortcutList = new ArrayList<>();
         String title;
-        for (int i = 0; i < locationList.size() && i < 5; i ++) {
+        for (int i = 0; i < locationList.size(); i ++) {
             title = locationList.get(i).isLocal() ? c.getString(R.string.local) : locationList.get(i).city;
             shortcutList.add(
                     new ShortcutInfo.Builder(c, locationList.get(i).cityId)

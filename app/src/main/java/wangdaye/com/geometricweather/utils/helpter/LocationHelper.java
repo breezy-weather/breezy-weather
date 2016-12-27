@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -23,6 +24,9 @@ public class LocationHelper {
     private LocationClient client;
     private NewWeather weather;
 
+    private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
+    private static final String KEY_LAST_RESULT = "LAST_RESULT";
+
     /** <br> life cycle. */
 
     public LocationHelper(Context c) {
@@ -44,6 +48,10 @@ public class LocationHelper {
 
     public void requestWeatherLocation(Context c, String query, OnRequestWeatherLocationListener l) {
         weather = NewWeather.getService().requestNewLocation(c, query, l);
+    }
+
+    private void requestWeatherLocationByGeoPosition(Context c, Location location, OnRequestWeatherLocationListener l) {
+        weather = NewWeather.getService().requestNewLocationByGeoPosition(c, location.lat, location.lon, l);
     }
 
     public void cancel() {
@@ -82,19 +90,27 @@ public class LocationHelper {
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
             switch (bdLocation.getLocType()) {
-                case BDLocation.TypeGpsLocation: // GPS定位结果
-                case BDLocation.TypeNetWorkLocation: // 网络定位结果
-                case BDLocation.TypeOffLineLocation: // 离线定位
+                case BDLocation.TypeGpsLocation:
+                case BDLocation.TypeNetWorkLocation:
+                case BDLocation.TypeOffLineLocation:
                     if (listener != null) {
-                        String oldCity = bdLocation.getDistrict();
+                        SharedPreferences sharedPreferences = c.getSharedPreferences(
+                                PREFERENCE_LOCAL, Context.MODE_PRIVATE);
+                        String oldCity = sharedPreferences.getString(KEY_LAST_RESULT, ".");
+
                         location.local = true;
                         location.city = bdLocation.getDistrict();
+                        location.prov = bdLocation.getProvince();
                         location.cnty = bdLocation.getCountry();
                         location.lat = String.valueOf(bdLocation.getLatitude());
                         location.lon = String.valueOf(bdLocation.getLongitude());
-                        location.prov = bdLocation.getProvince().split("省")[0];
+
+                        sharedPreferences.edit()
+                                .putString(KEY_LAST_RESULT, location.city)
+                                .apply();
+
                         if (!location.isUsable() || !location.city.equals(oldCity)) {
-                            requestWeatherLocation(c, location.city, new SimpleWeatherLocationListener(location, listener));
+                            requestWeatherLocationByGeoPosition(c, location, new SimpleWeatherLocationListener(location, listener));
                         } else {
                             listener.requestLocationSuccess(location);
                         }

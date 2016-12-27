@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.utils;
+package wangdaye.com.geometricweather.utils.widget;
 
 import android.os.Handler;
 import android.os.Message;

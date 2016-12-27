@@ -111,6 +111,19 @@ public class Location
         return locationList;
     }
 
+    public static List<Location> buildLocationList(NewLocationResult result) {
+        List<Location> locationList = new ArrayList<>();
+        Location location = new Location();
+        location.cityId = result.Key;
+        location.city = result.LocalizedName;
+        location.cnty = result.Country.LocalizedName;
+        location.prov = result.AdministrativeArea.LocalizedName;
+        location.lat = String.valueOf(result.GeoPosition.Latitude);
+        location.lon = String.valueOf(result.GeoPosition.Longitude);
+        locationList.add(location);
+        return locationList;
+    }
+
     /** <br> data. */
 
     public boolean equals(Location location) {

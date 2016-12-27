@@ -50,8 +50,8 @@ public class TrendItemView extends FrameLayout {
 
     private float MARGIN_TOP;
     private float MARGIN_BOTTOM;
-    private float WEATHER_TEXT_SIZE = 14;
-    private float POP_TEXT_SIZE = 12;
+    private float WEATHER_TEXT_SIZE = 13;
+    private float POP_TEXT_SIZE = 11;
     private float TREND_LINE_SIZE = 2;
     private float CHART_LINE_SIZE = 1;
     private float MARGIN_TEXT = 2;

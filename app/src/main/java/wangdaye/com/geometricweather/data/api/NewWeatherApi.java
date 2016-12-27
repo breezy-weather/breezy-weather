@@ -25,6 +25,12 @@ public interface NewWeatherApi {
                                                      @Query("q") String q,
                                                      @Query("language") String language);
 
+    @GET("locations/v1/cities/geoposition/search.json")
+    Call<NewLocationResult> getWeatherLocationByGeoPosition(@Query("alias") String alias,
+                                                                  @Query("apikey") String apikey,
+                                                                  @Query("q") String q,
+                                                                  @Query("language") String language);
+
     @GET("currentconditions/v1/{city_key}.json")
     Call<List<NewRealtimeResult>> getNewRealtime(@Path("city_key") String city_key,
                                                  @Query("apikey") String apikey,

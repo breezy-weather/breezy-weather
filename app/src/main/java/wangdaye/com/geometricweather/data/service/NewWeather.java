@@ -111,6 +111,37 @@ public class NewWeather {
         return this;
     }
 
+    public NewWeather requestNewLocationByGeoPosition(Context c, final String lat, final String lon,
+                                                       final LocationHelper.OnRequestWeatherLocationListener l) {
+        this.languageCode = LanguageUtils.getLanguageCode(c);
+        Call<NewLocationResult> getAccuLocationByGeoPosition = buildApi().getWeatherLocationByGeoPosition(
+                "Always",
+                BuildConfig.NEW_WEATHER_KEY,
+                lat + "," + lon,
+                languageCode);
+        getAccuLocationByGeoPosition.enqueue(new Callback<NewLocationResult>() {
+            @Override
+            public void onResponse(Call<NewLocationResult> call, Response<NewLocationResult> response) {
+                if (l != null) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        l.requestWeatherLocationSuccess(lat + "," + lon, Location.buildLocationList(response.body()));
+                    } else {
+                        l.requestWeatherLocationFailed(lat + "," + lon);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NewLocationResult> call, Throwable t) {
+                if (l != null) {
+                    l.requestWeatherLocationFailed(lat + "," + lon);
+                }
+            }
+        });
+        locationCall = getAccuLocationByGeoPosition;
+        return this;
+    }
+
     private void requestNewRealtime(final Context c, final Location location,
                                     final WeatherHelper.OnRequestWeatherListener l) {
         Call<List<NewRealtimeResult>> getAccuRealtime = buildApi().getNewRealtime(

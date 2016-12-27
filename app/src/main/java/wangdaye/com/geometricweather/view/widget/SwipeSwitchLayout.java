@@ -8,8 +8,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
 
 /**
@@ -167,7 +167,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout
                     } else {
                         resetAnimation.reset();
                         resetAnimation.setDuration(300);
-                        resetAnimation.setInterpolator(new DecelerateInterpolator());
+                        resetAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
                         resetAnimation.setAnimationListener(animListener);
                         startAnimation(resetAnimation);
                     }
@@ -314,7 +314,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         } else {
             resetAnimation.reset();
             resetAnimation.setDuration(300);
-            resetAnimation.setInterpolator(new DecelerateInterpolator());
+            resetAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
             resetAnimation.setAnimationListener(animListener);
             startAnimation(resetAnimation);
         }

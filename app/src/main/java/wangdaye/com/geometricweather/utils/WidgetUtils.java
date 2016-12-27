@@ -29,6 +29,8 @@ import wangdaye.com.geometricweather.service.widget.job.WidgetClockDayWeekJobSer
 import wangdaye.com.geometricweather.service.widget.job.WidgetDayJobService;
 import wangdaye.com.geometricweather.service.widget.job.WidgetDayWeekJobService;
 import wangdaye.com.geometricweather.service.widget.job.WidgetWeekJobService;
+import wangdaye.com.geometricweather.utils.manager.ThreadManager;
+import wangdaye.com.geometricweather.utils.widget.PriorityRunnable;
 
 /**
  * Widget utils.
@@ -39,98 +41,105 @@ public class WidgetUtils {
     /** <br> options. */
 
     public static void startupAllOfWidgetService(final Context c, final Location location) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sharedPreferences;
-                String locationName;
-                int[] widgetIds;
+        ThreadManager.getInstance()
+                .execute(new PriorityRunnable(false) {
+                    @Override
+                    public void run() {
+                        SharedPreferences sharedPreferences;
+                        String locationName;
+                        int[] widgetIds;
 
-                // day
-                sharedPreferences = c.getSharedPreferences(
-                        c.getString(R.string.sp_widget_day_setting),
-                        Context.MODE_PRIVATE);
-                locationName = sharedPreferences.getString(
-                        c.getString(R.string.key_location),
-                        c.getString(R.string.local));
-                widgetIds = AppWidgetManager.getInstance(c)
-                        .getAppWidgetIds(new ComponentName(c, WidgetDayProvider.class));
-                if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
-                        && widgetIds != null && widgetIds.length > 0) {
-                    startDayWidgetService(c);
-                }
+                        // day
+                        sharedPreferences = c.getSharedPreferences(
+                                c.getString(R.string.sp_widget_day_setting),
+                                Context.MODE_PRIVATE);
+                        locationName = sharedPreferences.getString(
+                                c.getString(R.string.key_location),
+                                c.getString(R.string.local));
+                        widgetIds = AppWidgetManager.getInstance(c)
+                                .getAppWidgetIds(new ComponentName(c, WidgetDayProvider.class));
+                        if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
+                                && widgetIds != null && widgetIds.length > 0) {
+                            WidgetDayAlarmService.refreshWidgetView(c, location, location.weather);
+                            startDayWidgetService(c);
+                        }
 
-                // week
-                sharedPreferences = c.getSharedPreferences(
-                        c.getString(R.string.sp_widget_week_setting),
-                        Context.MODE_PRIVATE);
-                locationName = sharedPreferences.getString(
-                        c.getString(R.string.key_location),
-                        c.getString(R.string.local));
-                widgetIds = AppWidgetManager.getInstance(c)
-                        .getAppWidgetIds(new ComponentName(c, WidgetWeekProvider.class));
-                if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
-                        && widgetIds != null && widgetIds.length > 0) {
-                    startWeekWidgetService(c);
-                }
+                        // week
+                        sharedPreferences = c.getSharedPreferences(
+                                c.getString(R.string.sp_widget_week_setting),
+                                Context.MODE_PRIVATE);
+                        locationName = sharedPreferences.getString(
+                                c.getString(R.string.key_location),
+                                c.getString(R.string.local));
+                        widgetIds = AppWidgetManager.getInstance(c)
+                                .getAppWidgetIds(new ComponentName(c, WidgetWeekProvider.class));
+                        if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
+                                && widgetIds != null && widgetIds.length > 0) {
+                            WidgetWeekAlarmService.refreshWidgetView(c, location, location.weather);
+                            startWeekWidgetService(c);
+                        }
 
-                // day week
-                sharedPreferences = c.getSharedPreferences(
-                        c.getString(R.string.sp_widget_day_week_setting),
-                        Context.MODE_PRIVATE);
-                locationName = sharedPreferences.getString(
-                        c.getString(R.string.key_location),
-                        c.getString(R.string.local));
-                widgetIds = AppWidgetManager.getInstance(c)
-                        .getAppWidgetIds(new ComponentName(c, WidgetDayWeekProvider.class));
-                if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
-                        && widgetIds != null && widgetIds.length > 0) {
-                    startDayWeekWidgetService(c);
-                }
+                        // day week
+                        sharedPreferences = c.getSharedPreferences(
+                                c.getString(R.string.sp_widget_day_week_setting),
+                                Context.MODE_PRIVATE);
+                        locationName = sharedPreferences.getString(
+                                c.getString(R.string.key_location),
+                                c.getString(R.string.local));
+                        widgetIds = AppWidgetManager.getInstance(c)
+                                .getAppWidgetIds(new ComponentName(c, WidgetDayWeekProvider.class));
+                        if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
+                                && widgetIds != null && widgetIds.length > 0) {
+                            WidgetDayWeekAlarmService.refreshWidgetView(c, location, location.weather);
+                            startDayWeekWidgetService(c);
+                        }
 
-                // clock day center
-                sharedPreferences = c.getSharedPreferences(
-                        c.getString(R.string.sp_widget_clock_day_center_setting),
-                        Context.MODE_PRIVATE);
-                locationName = sharedPreferences.getString(
-                        c.getString(R.string.key_location),
-                        c.getString(R.string.local));
-                widgetIds = AppWidgetManager.getInstance(c)
-                        .getAppWidgetIds(new ComponentName(c, WidgetClockDayCenterProvider.class));
-                if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
-                        && widgetIds != null && widgetIds.length > 0) {
-                    startClockDayCenterWidgetService(c);
-                }
+                        // clock day center
+                        sharedPreferences = c.getSharedPreferences(
+                                c.getString(R.string.sp_widget_clock_day_center_setting),
+                                Context.MODE_PRIVATE);
+                        locationName = sharedPreferences.getString(
+                                c.getString(R.string.key_location),
+                                c.getString(R.string.local));
+                        widgetIds = AppWidgetManager.getInstance(c)
+                                .getAppWidgetIds(new ComponentName(c, WidgetClockDayCenterProvider.class));
+                        if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
+                                && widgetIds != null && widgetIds.length > 0) {
+                            WidgetClockDayCenterAlarmService.refreshWidgetView(c, location, location.weather);
+                            startClockDayCenterWidgetService(c);
+                        }
 
-                // clock day
-                sharedPreferences = c.getSharedPreferences(
-                        c.getString(R.string.sp_widget_clock_day_setting),
-                        Context.MODE_PRIVATE);
-                locationName = sharedPreferences.getString(
-                        c.getString(R.string.key_location),
-                        c.getString(R.string.local));
-                widgetIds = AppWidgetManager.getInstance(c)
-                        .getAppWidgetIds(new ComponentName(c, WidgetClockDayProvider.class));
-                if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
-                        && widgetIds != null && widgetIds.length > 0) {
-                    startClockDayWidgetService(c);
-                }
+                        // clock day
+                        sharedPreferences = c.getSharedPreferences(
+                                c.getString(R.string.sp_widget_clock_day_setting),
+                                Context.MODE_PRIVATE);
+                        locationName = sharedPreferences.getString(
+                                c.getString(R.string.key_location),
+                                c.getString(R.string.local));
+                        widgetIds = AppWidgetManager.getInstance(c)
+                                .getAppWidgetIds(new ComponentName(c, WidgetClockDayProvider.class));
+                        if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
+                                && widgetIds != null && widgetIds.length > 0) {
+                            WidgetClockDayAlarmService.refreshWidgetView(c, location, location.weather);
+                            startClockDayWidgetService(c);
+                        }
 
-                // clock day week
-                sharedPreferences = c.getSharedPreferences(
-                        c.getString(R.string.sp_widget_clock_day_week_setting),
-                        Context.MODE_PRIVATE);
-                locationName = sharedPreferences.getString(
-                        c.getString(R.string.key_location),
-                        c.getString(R.string.local));
-                widgetIds = AppWidgetManager.getInstance(c)
-                        .getAppWidgetIds(new ComponentName(c, WidgetClockDayWeekProvider.class));
-                if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
-                        && widgetIds != null && widgetIds.length > 0) {
-                    startClockDayWeekWidgetService(c);
-                }
-            }
-        }).start();
+                        // clock day week
+                        sharedPreferences = c.getSharedPreferences(
+                                c.getString(R.string.sp_widget_clock_day_week_setting),
+                                Context.MODE_PRIVATE);
+                        locationName = sharedPreferences.getString(
+                                c.getString(R.string.key_location),
+                                c.getString(R.string.local));
+                        widgetIds = AppWidgetManager.getInstance(c)
+                                .getAppWidgetIds(new ComponentName(c, WidgetClockDayWeekProvider.class));
+                        if (((location.isLocal() && locationName.equals(c.getString(R.string.local))) || (location.city.equals(locationName)))
+                                && widgetIds != null && widgetIds.length > 0) {
+                            WidgetClockDayWeekAlarmService.refreshWidgetView(c, location, location.weather);
+                            startClockDayWeekWidgetService(c);
+                        }
+                    }
+                });
     }
 
     public static void startDayWidgetService(Context context) {
