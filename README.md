@@ -20,22 +20,22 @@
 
 ### 上架情况
 
-* 酷安： http://www.coolapk.com/apk/wangdaye.com.geometricweather
-* 小米应用商店： http://app.mi.com/detail/245625?ref=search
-* 豌豆荚： http://www.wandoujia.com/apps/wangdaye.com.geometricweather
+* 酷安： http://www.coolapk.com/apk/wangdaye.com.geometricweathe
 * google play： https://play.google.com/store/apps/details?id=wangdaye.com.geometricweathe
 
 
 ### 联系作者
 
 * 在酷安Geometric Weather页面留言
-* wangdayeeeeee@gmail.co
+* wangdayeeeeee@gmail.com
 
 
 ### PREVIEW
 
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_home_day.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_home_day_hourly.png)
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_home_night.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_alert.png)
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_manage.png)
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_search.png)
 ![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_widget.png)
