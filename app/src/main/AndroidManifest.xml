@@ -127,35 +127,24 @@
             </intent-filter>
         </activity>
 
-        <!-- notification service -->
-        <service android:name=".service.notification.alarm.NotificationAlarmService" />
-        <service android:name=".service.notification.alarm.TodayForecastAlarmService" />
-        <service android:name=".service.notification.alarm.TomorrowForecastAlarmService" />
-        <service android:name=".service.notification.job.NotificationJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.notification.job.TodayForecastJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.notification.job.TomorrowForecastJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <activity
+            android:name=".view.activity.widget.CreateWidgetDayPixelActivity"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
 
-        <!-- widget service -->
-        <service android:name=".service.widget.alarm.WidgetDayAlarmService" />
-        <service android:name=".service.widget.alarm.WidgetWeekAlarmService" />
-        <service android:name=".service.widget.alarm.WidgetDayWeekAlarmService" />
-        <service android:name=".service.widget.alarm.WidgetClockDayCenterAlarmService" />
-        <service android:name=".service.widget.alarm.WidgetClockDayAlarmService" />
-        <service android:name=".service.widget.alarm.WidgetClockDayWeekAlarmService" />
-        <service android:name=".service.widget.job.WidgetDayJobService"
+        <!-- service -->
+        <service android:name=".service.alarm.PollingAlarmService" />
+        <service android:name=".service.alarm.TodayForecastAlarmService" />
+        <service android:name=".service.alarm.TomorrowForecastAlarmService" />
+        <service android:name=".service.job.PollingJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.widget.job.WidgetWeekJobService"
+        <service android:name=".service.job.TodayForecastJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.widget.job.WidgetDayWeekJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.widget.job.WidgetClockDayCenterJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.widget.job.WidgetClockDayJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.widget.job.WidgetClockDayWeekJobService"
+        <service android:name=".service.job.TomorrowForecastJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- receiver -->
@@ -177,7 +166,18 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
             </intent-filter>
+        </receiver>
 
+        <receiver
+            android:name=".receiver.widget.WidgetDayPixelProvider"
+            android:label="@string/widget_day_pixel">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_day_pixel" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
         </receiver>
 
         <receiver

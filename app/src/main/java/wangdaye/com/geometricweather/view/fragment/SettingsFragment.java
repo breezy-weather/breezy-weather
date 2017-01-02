@@ -1,7 +1,5 @@
 package wangdaye.com.geometricweather.view.fragment;
 
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,9 +12,9 @@ import android.preference.PreferenceScreen;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
+import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.view.dialog.TimeSetterDialog;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
@@ -142,11 +140,9 @@ public class SettingsFragment extends PreferenceFragment
             // forecast today.
             initForecastPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
-                NotificationUtils.startTodayForecastService(getActivity());
+                ServiceHelper.startForecastService(getActivity(), true);
             } else {
-                NotificationUtils.stopTodayForecastService(getActivity());
-                ((NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE))
-                        .cancel(NotificationUtils.FORECAST_ID);
+                ServiceHelper.stopForecastService(getActivity(), true);
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today_time))) {
@@ -160,11 +156,9 @@ public class SettingsFragment extends PreferenceFragment
             // timing forecast tomorrow.
             initForecastPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-                NotificationUtils.startTomorrowForecastService(getActivity());
+                ServiceHelper.startForecastService(getActivity(), false);
             } else {
-                NotificationUtils.stopTomorrowForecastService(getActivity());
-                ((NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE))
-                        .cancel(NotificationUtils.FORECAST_ID);
+                ServiceHelper.stopForecastService(getActivity(), false);
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_forecast_tomorrow_time))) {
@@ -179,13 +173,11 @@ public class SettingsFragment extends PreferenceFragment
             initNotificationPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
                 // open notification.
-                NotificationUtils.startNotificationService(getActivity());
+                ServiceHelper.startPollingService(getActivity());
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             } else {
                 // close notification.
-                NotificationUtils.stopNotificationService(getActivity());
-                ((NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE))
-                        .cancel(NotificationUtils.NOTIFICATION_ID);
+                ServiceHelper.stopPollingService(getActivity());
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
@@ -228,10 +220,10 @@ public class SettingsFragment extends PreferenceFragment
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         this.initForecastPart(sharedPreferences);
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
-            NotificationUtils.startTodayForecastService(getActivity());
+            ServiceHelper.startForecastService(getActivity(), true);
         }
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-            NotificationUtils.startTomorrowForecastService(getActivity());
+            ServiceHelper.startForecastService(getActivity(), false);
         }
     }
 }

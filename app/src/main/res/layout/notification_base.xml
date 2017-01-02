@@ -20,7 +20,7 @@
         android:layout_height="48dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/normal_margin"
+        android:layout_marginLeft="@dimen/little_margin"
         tools:src="@drawable/weather_cloudy"
         tools:ignore="ContentDescription,RtlHardcoded" />
 

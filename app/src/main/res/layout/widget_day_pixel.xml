@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_day_pixel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/cardview_dark_background">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/normal_margin"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/widget_day_pixel_temp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:maxLines="1"
+                android:textSize="30sp"
+                style="@style/large_title_text"
+                tools:text="9℃"
+                tools:ignore="RtlHardcoded" />
+
+            <ImageView
+                android:id="@+id/widget_day_pixel_icon"
+                android:layout_width="@dimen/little_flag_icon_size"
+                android:layout_height="@dimen/little_flag_icon_size"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/widget_day_pixel_temp"
+                android:layout_marginRight="@dimen/little_margin"
+                android:src="@drawable/weather_cloudy"
+                tools:src="@drawable/weather_sun_day"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/widget_day_pixel_date"
+                android:layout_marginTop="4dp"
+                android:layout_alignParentRight="true"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:maxLines="1"
+                style="@style/content_text"
+                tools:text="12-29 周四"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/widget_day_pixel_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

@@ -34,6 +34,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.PermissionUtils;
+import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.widget.SafeHandler;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
@@ -140,7 +141,7 @@ public class MainActivity extends GeoActivity
         switch (requestCode) {
             case SETTINGS_ACTIVITY:
                 DisplayUtils.setNavigationBarColor(this, TimeUtils.getInstance(this).isDayTime());
-                NotificationUtils.refreshNotification(this, locationList.get(0), false);
+                NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
                 break;
 
             case MANAGE_ACTIVITY:
@@ -392,7 +393,7 @@ public class MainActivity extends GeoActivity
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                handler.obtainMessage(MESSAGE_WHAT_STARTUP_SERVICE, locationNow).sendToTarget();
+                handler.obtainMessage(MESSAGE_WHAT_STARTUP_SERVICE).sendToTarget();
             }
         }, 1500);
     }
@@ -607,11 +608,9 @@ public class MainActivity extends GeoActivity
     public void handleMessage(Message message) {
         switch (message.what) {
             case MESSAGE_WHAT_STARTUP_SERVICE:
-                Location location = (Location) message.obj;
-                WidgetUtils.startupAllOfWidgetService(this, location);
-                if (locationList.get(0).equals(location)) {
-                    NotificationUtils.refreshNotification(this, locationList.get(0), true);
-                }
+                WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
+                NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
+                ServiceHelper.startupAllService(this);
                 break;
         }
     }

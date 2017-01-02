@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.service.widget.alarm;
+package wangdaye.com.geometricweather.utils.remoteView;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -11,59 +11,25 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import wangdaye.com.geometricweather.basic.GeoAlarmService;
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.WidgetUtils;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayCenterProvider;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.WidgetUtils;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
- * Widget clock day center service.
+ * Widget clock day center utils.
  * */
 
-
-public class WidgetClockDayCenterAlarmService extends GeoAlarmService {
+public class WidgetClockDayCenterUtils {
     // data
-    private static final int WEATHER_PENDING_INTENT_CODE = 14;
-    private static final int CLOCK_PENDING_INTENT_CODE = 24;
-    public static final int ALARM_CODE = 4;
+    private static final int WEATHER_PENDING_INTENT_CODE = 122;
+    private static final int CLOCK_PENDING_INTENT_CODE = 222;
 
-    /** <br> life cycle. */
-
-    public WidgetClockDayCenterAlarmService() {
-        super("WidgetClockDayCenterAlarmService");
-    }
-
-    public WidgetClockDayCenterAlarmService(String name) {
-        super(name);
-    }
-
-    @Override
-    public String readSettings() {
-        return getSharedPreferences(getString(R.string.sp_widget_clock_day_center_setting), MODE_PRIVATE)
-                .getString(getString(R.string.key_location), getString(R.string.local));
-    }
-
-    @Override
-    protected void doRefresh(Location location) {
-        int[] widgetIds = AppWidgetManager.getInstance(this)
-                .getAppWidgetIds(new ComponentName(this, WidgetClockDayCenterProvider.class));
-        if (widgetIds != null && widgetIds.length != 0) {
-            requestData(location);
-            setAlarmIntent(this, getClass(), ALARM_CODE);
-        }
-    }
-
-    @Override
-    public void updateView(Context context, Location location, Weather weather) {
-        refreshWidgetView(context, location, weather);
-    }
-
-    /** <br> widget. */
+    /** <br> UI. */
 
     public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
@@ -133,5 +99,13 @@ public class WidgetClockDayCenterAlarmService extends GeoAlarmService {
         appWidgetManager.updateAppWidget(
                 new ComponentName(context, WidgetClockDayCenterProvider.class),
                 views);
+    }
+
+    /** <br> data. */
+
+    public static boolean isEnable(Context context) {
+        int[] widgetIds = AppWidgetManager.getInstance(context)
+                .getAppWidgetIds(new ComponentName(context, WidgetClockDayCenterProvider.class));
+        return widgetIds != null && widgetIds.length > 0;
     }
 }

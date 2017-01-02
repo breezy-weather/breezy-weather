@@ -50,13 +50,15 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/widget_day_week_icon"
                 android:text="@string/ellipsis"
+                android:gravity="right"
+                android:textAlignment="gravity"
                 android:textColor="@color/colorTextLight"
                 android:shadowColor="@color/colorTextGrey"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/content_text"
-                tools:text="10°\n  3°"
+                tools:text="10°\n3°"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

@@ -9,12 +9,9 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -23,8 +20,8 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
@@ -32,7 +29,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
-        implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+        implements View.OnClickListener {
     // widget
     private ImageView widgetCard;
     private TextView[] widgetWeeks;
@@ -80,12 +77,6 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
         wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());
 
         this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_week_container);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_text, getNameList());
-        adapter.setDropDownViewResource(R.layout.spinner_text);
-        Spinner locationSpinner = (Spinner) findViewById(R.id.activity_create_widget_week_spinner);
-        locationSpinner.setAdapter(adapter);
-        locationSpinner.setOnItemSelectedListener(this);
 
         this.showCardSwitch = (Switch) findViewById(R.id.activity_create_widget_week_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
@@ -161,9 +152,6 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
                         getString(R.string.sp_widget_week_setting),
                         MODE_PRIVATE)
                         .edit();
-                editor.putString(
-                        getString(R.string.key_location),
-                        getLocationNow().isLocal() ? getString(R.string.local) : getLocationNow().city);
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
                 editor.apply();
@@ -180,22 +168,10 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                WidgetUtils.startWeekWidgetService(this);
+                ServiceHelper.startPollingService(this);
                 finish();
                 break;
         }
-    }
-
-    // on select changed listener(spinner).
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        setLocationNow(getLocationList().get(position));
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // do nothing.
     }
 
     // on check changed listener(switch).

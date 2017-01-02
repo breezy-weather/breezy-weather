@@ -89,7 +89,6 @@
 
     <string name="feedback_first_refresh_widget">小部件第一次刷新数据可能会有些慢</string>
     <string name="feedback_use_local_as_example">以默认位置天气为例，以实际所选地址为准</string>
-    <string name="feedback_choose_location">选择位置</string>
     <string name="feedback_show_widget_card">卡片背景</string>
     <string name="feedback_dark_widget_card">暗色卡片</string>
     <string name="feedback_hide_refresh_time">隐藏刷新时间</string>
@@ -121,12 +120,13 @@
     <string name="action_about">关于</string>
 
     <!-- widget -->
-    <string name="widget_day">@string/today</string>
+    <string name="widget_day">今日</string>
+    <string name="widget_day_pixel">今日 (Pixel风格)</string>
     <string name="widget_week">一周</string>
-    <string name="widget_day_week">今日+一周</string>
-    <string name="widget_clock_day">时钟+今日</string>
-    <string name="widget_clock_day_center">时钟+今日(轴对称)</string>
-    <string name="widget_clock_day_week">时钟+今日+一周</string>
+    <string name="widget_day_week">今日 + 一周</string>
+    <string name="widget_clock_day">时钟 + 今日</string>
+    <string name="widget_clock_day_center">时钟 + 今日 (垂直排列)</string>
+    <string name="widget_clock_day_week">时钟 + 今日 + 一周</string>
     <string name="wait_refresh">等待更新</string>
     <string name="ellipsis">…</string>
 

@@ -7,10 +7,10 @@ import android.content.Context;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 
 /**
- * Widget clock day provider.
+ * Widget day pixel provider.
  * */
 
-public class WidgetClockDayProvider extends AppWidgetProvider {
+public class WidgetDayPixelProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {

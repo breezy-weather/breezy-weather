@@ -50,6 +50,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/widget_day_icon"
                 android:text="@string/ellipsis"
+                android:gravity="right"
+                android:textAlignment="gravity"
                 android:textColor="@color/colorTextLight"
                 android:shadowColor="@color/colorTextGrey"
                 android:shadowDx="1"

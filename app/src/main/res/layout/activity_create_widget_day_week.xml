@@ -27,23 +27,6 @@
 
         </FrameLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:alpha="0.2"
-            android:background="@android:color/black">
-
-            <TextView
-                android:text="@string/feedback_use_local_as_example"
-                android:textColor="@android:color/white"
-                android:layout_centerInParent="true"
-                android:layout_margin="@dimen/normal_margin"
-                style="@style/content_text"
-                tools:ignore="RtlHardcoded" />
-
-        </RelativeLayout>
-
     </RelativeLayout>
 
     <android.support.design.widget.CoordinatorLayout
@@ -60,27 +43,6 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/activity_create_widget_day_week_chooseLocationTitle"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_choose_location"
-                        style="@style/content_text" />
-
-                    <Spinner
-                        android:id="@+id/activity_create_widget_day_week_spinner"
-                        style="@style/spinner"
-                        tools:ignore="RtlHardcoded"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/normal_margin"
-                        android:layout_toRightOf="@+id/activity_create_widget_day_week_chooseLocationTitle" />
-
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"

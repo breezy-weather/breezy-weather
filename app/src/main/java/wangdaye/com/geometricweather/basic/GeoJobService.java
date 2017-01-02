@@ -1,7 +1,10 @@
 package wangdaye.com.geometricweather.basic;
 
+import android.app.job.JobInfo;
 import android.app.job.JobParameters;
+import android.app.job.JobScheduler;
 import android.app.job.JobService;
+import android.content.ComponentName;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -16,6 +19,7 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.remoteView.ForecastNotificationUtils;
 
 /**
  * Widget job service.
@@ -35,9 +39,8 @@ public abstract class GeoJobService extends JobService
     @Override
     public boolean onStartJob(JobParameters params) {
         jobParameters = params;
-        doRefresh(
-                readLocation(
-                        readSettings()));
+        List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
+        doRefresh(locationList.get(0));
         return true;
     }
 
@@ -47,21 +50,6 @@ public abstract class GeoJobService extends JobService
             weatherHelper.cancel();
         }
         return false;
-    }
-
-    protected abstract String readSettings();
-
-    protected Location readLocation(String locationName) {
-        List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationName.equals(getString(R.string.local)) && locationList.get(i).isLocal()) {
-                return locationList.get(i);
-            } else if (!locationName.equals(getString(R.string.local))
-                    && locationList.get(i).city.equals(locationName)) {
-                return locationList.get(i);
-            }
-        }
-        return locationList.get(0);
     }
 
     protected abstract void doRefresh(Location location);
@@ -108,6 +96,24 @@ public abstract class GeoJobService extends JobService
     }
 
     protected abstract void updateView(Context context, Location location, Weather weather);
+
+    public static void scheduleCycleJob(Context context, Class cls, int scheduleCode) {
+        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).schedule(
+                new JobInfo.Builder(scheduleCode, new ComponentName(context.getPackageName(), cls.getName()))
+                        .setPeriodic((long) (1000 * 60 * 60 * 1.5))
+                        .build());
+    }
+
+    public static void scheduleDelayJob(Context context, Class cls, int scheduleCode, boolean today) {
+        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).schedule(
+                new JobInfo.Builder(scheduleCode, new ComponentName(context.getPackageName(), cls.getName()))
+                        .setMinimumLatency(ForecastNotificationUtils.calcForecastDuration(context, today, true))
+                        .build());
+    }
+
+    public static void cancel(Context context, int scheduleCode) {
+        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancel(scheduleCode);
+    }
 
     /** <br> widget. */
 

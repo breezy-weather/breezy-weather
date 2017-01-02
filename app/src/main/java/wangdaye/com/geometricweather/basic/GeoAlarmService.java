@@ -35,24 +35,8 @@ public abstract class GeoAlarmService extends IntentService
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        doRefresh(
-                readLocation(
-                        readSettings()));
-    }
-
-    protected abstract String readSettings();
-
-    protected Location readLocation(String locationName) {
         List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationName.equals(getString(R.string.local)) && locationList.get(i).isLocal()) {
-                return locationList.get(i);
-            } else if (!locationName.equals(getString(R.string.local))
-                    && locationList.get(i).city.equals(locationName)) {
-                return locationList.get(i);
-            }
-        }
-        return locationList.get(0);
+        doRefresh(locationList.get(0));
     }
 
     protected abstract void doRefresh(Location location);
@@ -98,7 +82,7 @@ public abstract class GeoAlarmService extends IntentService
         }
     }
 
-    public void setAlarmIntent(Context context, Class<?> cls, int requestCode) {
+    public static void setAlarmIntent(Context context, Class<?> cls, int requestCode) {
         Intent target = new Intent(context, cls);
         PendingIntent pendingIntent = PendingIntent.getService(
                 context,
@@ -107,7 +91,7 @@ public abstract class GeoAlarmService extends IntentService
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         int duration = (int) (1000 * 60 * 60 * 1.5);
-        ((AlarmManager) getSystemService(Context.ALARM_SERVICE))
+        ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE))
                 .set(
                         AlarmManager.ELAPSED_REALTIME,
                         SystemClock.elapsedRealtime() + duration, 
