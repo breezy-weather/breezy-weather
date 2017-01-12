@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v5.0.9</string>
+    <string name="version_code">v5.1.0</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -97,12 +97,10 @@
     <string name="feedback_location_failed">Location failed.</string>
     <string name="feedback_get_weather_failed">Request weather data failed.</string>
 
-    <string name="feedback_first_refresh_widget">For the first time to refresh widget might be a bit slow.</string>
-    <string name="feedback_use_local_as_example">The local weather information is a sample.</string>
+    <string name="feedback_view_style">Style of view.</string>
     <string name="feedback_show_widget_card">Card background.</string>
-    <string name="feedback_dark_widget_card">Dark card.</string>
-    <string name="feedback_hide_refresh_time">Hide refresh time.</string>
     <string name="feedback_black_text">Dark text.</string>
+    <string name="feedback_hide_refresh_time">Hide refresh time.</string>
 
     <string name="feedback_click_toggle">-Click chart to toggle data.</string>
     <string name="feedback_no_data">NO DATA</string>
@@ -131,11 +129,10 @@
 
     <!-- widget -->
     <string name="widget_day">Daily</string>
-    <string name="widget_day_pixel">Daily (Pixel style)</string>
     <string name="widget_week">Weekly</string>
     <string name="widget_day_week">Daily + Weekly</string>
-    <string name="widget_clock_day">Clock + Daily</string>
-    <string name="widget_clock_day_center">Clock + Daily (Vertical style)</string>
+    <string name="widget_clock_day_horizontal">Clock + Daily (Horizontal style)</string>
+    <string name="widget_clock_day_vertical">Clock + Daily (Vertical style)</string>
     <string name="widget_clock_day_week">Clock + Daily + Weekly</string>
     <string name="wait_refresh">waiting</string>
     <string name="ellipsis">…</string>
@@ -170,16 +167,15 @@
 
     <!--share preference-->
     <string name="sp_widget_day_setting">widget_day_setting</string>
-    <string name="sp_widget_day_pixel_setting">widget_day_pixel_setting</string>
     <string name="sp_widget_week_setting">widget_week_setting</string>
     <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
-    <string name="sp_widget_clock_day_setting">widget_clock_day_setting</string>
-    <string name="sp_widget_clock_day_center_setting">widget_clock_day_center_setting</string>
+    <string name="sp_widget_clock_day_horizontal_setting">widget_clock_day_horizontal_setting</string>
+    <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
     <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
+    <string name="key_view_type">view_type</string>
     <string name="key_show_card">showCard</string>
-    <string name="key_hide_refresh_time">show_refresh_time</string>
+    <string name="key_hide_refresh_time">hide_refresh_time</string>
     <string name="key_black_text">black_text</string>
-    <string name="key_share_uri">share_uri</string>
     <string name="key_navigationBar_color">navigation_bar_color_switch</string>
     <string name="key_language">language</string>
     <string name="key_forecast_today">timing_forecast_switch_today</string>

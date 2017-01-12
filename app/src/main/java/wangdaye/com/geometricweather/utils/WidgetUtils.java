@@ -7,10 +7,9 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayCenterUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayUtils;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayHorizontalUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayWeekUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetDayPixelUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayWeekUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
@@ -33,20 +32,17 @@ public class WidgetUtils {
                         if (WidgetDayUtils.isEnable(context)) {
                             WidgetDayUtils.refreshWidgetView(context, location, location.weather);
                         }
-                        if (WidgetDayPixelUtils.isEnable(context)) {
-                            WidgetDayPixelUtils.refreshWidgetView(context, location, location.weather);
-                        }
                         if (WidgetWeekUtils.isEnable(context)) {
                             WidgetWeekUtils.refreshWidgetView(context, location, location.weather);
                         }
                         if (WidgetDayWeekUtils.isEnable(context)) {
                             WidgetDayWeekUtils.refreshWidgetView(context, location, location.weather);
                         }
-                        if (WidgetClockDayUtils.isEnable(context)) {
-                            WidgetClockDayUtils.refreshWidgetView(context, location, location.weather);
+                        if (WidgetClockDayHorizontalUtils.isEnable(context)) {
+                            WidgetClockDayHorizontalUtils.refreshWidgetView(context, location, location.weather);
                         }
-                        if (WidgetClockDayCenterUtils.isEnable(context)) {
-                            WidgetClockDayCenterUtils.refreshWidgetView(context, location, location.weather);
+                        if (WidgetClockDayVerticalUtils.isEnable(context)) {
+                            WidgetClockDayVerticalUtils.refreshWidgetView(context, location, location.weather);
                         }
                         if (WidgetClockDayWeekUtils.isEnable(context)) {
                             WidgetClockDayWeekUtils.refreshWidgetView(context, location, location.weather);

@@ -35,16 +35,15 @@ public class WidgetDayWeekUtils {
             return;
         }
 
-        // get settings & time.
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_day_week_setting),
                 Context.MODE_PRIVATE);
+        String viewStyle = sharedPreferences.getString(context.getString(R.string.key_view_type), "rectangle");
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean hideRefreshTime = sharedPreferences.getBoolean(context.getString(R.string.key_hide_refresh_time), false);
-        boolean isDay = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
-        // get text color.
         int textColor;
         if (blackText || showCard) {
             textColor = ContextCompat.getColor(context, R.color.colorTextDark);
@@ -52,52 +51,38 @@ public class WidgetDayWeekUtils {
             textColor = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
-        // get remote views.
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week);
+        // build day part.
+        RemoteViews views = buildWidgetViewDayPart(
+                context, weather, dayTime, textColor, viewStyle, hideRefreshTime);
 
-        // buildWeather view.
-        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
-        views.setImageViewResource( // set icon.
-                R.id.widget_day_week_icon,
-                imageId[3]);
-        // buildWeather realTimeWeather & temps text.
-        String[] texts = WidgetUtils.buildWidgetDayStyleText(weather);
-        views.setTextViewText( // set realTimeWeather.
-                R.id.widget_day_week_weather,
-                texts[0]);
-        views.setTextViewText( // set temps.
-                R.id.widget_day_week_temp,
-                texts[1]);
-        views.setTextViewText( // set time.
-                R.id.widget_day_week_refreshTime,
-                weather.base.city + "." + weather.base.time);
         // set week icons.
         views.setImageViewResource(
                 R.id.widget_day_week_icon_1,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_day_week_icon_2,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_day_week_icon_3,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_day_week_icon_4,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_day_week_icon_5,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
-                        isDay)[3]);
-        // buildWeather week texts.
+                        dayTime ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
+                        dayTime)[3]);
+
+        // set week texts.
         String firstWeekDay;
         String secondWeekDay;
         Calendar c = Calendar.getInstance();
@@ -119,7 +104,7 @@ public class WidgetDayWeekUtils {
             firstWeekDay = weather.dailyList.get(0).week;
             secondWeekDay = weather.dailyList.get(1).week;
         }
-        // set week texts.
+
         views.setTextViewText(
                 R.id.widget_day_week_week_1,
                 firstWeekDay);
@@ -151,10 +136,8 @@ public class WidgetDayWeekUtils {
         views.setTextViewText(
                 R.id.widget_day_week_temp_5,
                 weather.dailyList.get(4).temps[1] + "/" + weather.dailyList.get(4).temps[0] + "°");
+
         // set text color.
-        views.setTextColor(R.id.widget_day_week_weather, textColor);
-        views.setTextColor(R.id.widget_day_week_temp, textColor);
-        views.setTextColor(R.id.widget_day_week_refreshTime, textColor);
         views.setTextColor(R.id.widget_day_week_week_1, textColor);
         views.setTextColor(R.id.widget_day_week_week_2, textColor);
         views.setTextColor(R.id.widget_day_week_week_3, textColor);
@@ -165,10 +148,10 @@ public class WidgetDayWeekUtils {
         views.setTextColor(R.id.widget_day_week_temp_3, textColor);
         views.setTextColor(R.id.widget_day_week_temp_4, textColor);
         views.setTextColor(R.id.widget_day_week_temp_5, textColor);
+
         // set card visibility.
         views.setViewVisibility(R.id.widget_day_week_card, showCard ? View.VISIBLE : View.GONE);
-        // set refresh time visibility.
-        views.setViewVisibility(R.id.widget_day_week_refreshTime, hideRefreshTime ? View.GONE : View.VISIBLE);
+
         // set intent.
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context,
@@ -182,6 +165,72 @@ public class WidgetDayWeekUtils {
         appWidgetManager.updateAppWidget(
                 new ComponentName(context, WidgetDayWeekProvider.class),
                 views);
+    }
+
+    private static RemoteViews buildWidgetViewDayPart(Context context, Weather weather, boolean dayTime, int textColor,
+                                                      String viewStyle, boolean hideRefreshTime) {
+        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
+        RemoteViews views;
+        switch (viewStyle) {
+            case "rectangle":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_rectangle);
+
+                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather);
+
+                views.setImageViewResource(R.id.widget_day_week_icon, imageId[3]);
+                views.setTextViewText(R.id.widget_day_week_title, texts[0]);
+                views.setTextViewText(R.id.widget_day_week_subtitle, texts[1]);
+                views.setTextViewText(
+                        R.id.widget_day_time,
+                        weather.base.city + " " + weather.base.time);
+
+                views.setTextColor(R.id.widget_day_week_title, textColor);
+                views.setTextColor(R.id.widget_day_week_subtitle, textColor);
+                views.setTextColor(R.id.widget_day_week_time, textColor);
+                views.setViewVisibility(R.id.widget_day_week_time, hideRefreshTime ? View.GONE : View.VISIBLE);
+                return views;
+
+            case "symmetry":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
+
+                views.setImageViewResource(R.id.widget_day_week_icon, imageId[3]);
+                views.setTextViewText(
+                        R.id.widget_day_week_title,
+                        weather.base.city + "\n" + weather.realTime.temp + " ℃");
+                views.setTextViewText(
+                        R.id.widget_day_week_subtitle,
+                        weather.realTime.weather + "\n" + weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
+                views.setTextViewText(
+                        R.id.widget_day_week_time,
+                        weather.dailyList.get(0).week + " " + weather.base.time);
+
+                views.setTextColor(R.id.widget_day_week_title, textColor);
+                views.setTextColor(R.id.widget_day_week_subtitle, textColor);
+                views.setTextColor(R.id.widget_day_week_time, textColor);
+                views.setViewVisibility(R.id.widget_day_week_time, hideRefreshTime ? View.GONE : View.VISIBLE);
+                return views;
+
+            case "tile":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_tile);
+
+                views.setImageViewResource(R.id.widget_day_week_icon, imageId[3]);
+                views.setTextViewText(
+                        R.id.widget_day_week_title,
+                        weather.realTime.weather + " " + weather.realTime.temp + "℃");
+                views.setTextViewText(
+                        R.id.widget_day_week_subtitle,
+                        weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
+                views.setTextViewText(
+                        R.id.widget_day_week_time,
+                        weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+
+                views.setTextColor(R.id.widget_day_week_title, textColor);
+                views.setTextColor(R.id.widget_day_week_subtitle, textColor);
+                views.setTextColor(R.id.widget_day_week_time, textColor);
+                views.setViewVisibility(R.id.widget_day_week_time, hideRefreshTime ? View.GONE : View.VISIBLE);
+                return views;
+        }
+        return new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
     }
 
     /** <br> data. */

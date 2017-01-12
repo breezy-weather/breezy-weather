@@ -4,25 +4,29 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.AlarmClock;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.receiver.widget.WidgetDayPixelProvider;
+import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayHorizontalProvider;
 import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
- * Widget day pixel utils.
+ * Widget clock day horizontal utils.
  * */
 
-public class WidgetDayPixelUtils {
+public class WidgetClockDayHorizontalUtils {
     // data
-    private static final int PENDING_INTENT_CODE = 112;
+    private static final int WEATHER_PENDING_INTENT_CODE = 121;
+    private static final int CLOCK_PENDING_INTENT_CODE = 221;
 
     /** <br> UI. */
 
@@ -32,47 +36,57 @@ public class WidgetDayPixelUtils {
         }
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(
-                context.getString(R.string.sp_widget_day_pixel_setting),
+                context.getString(R.string.sp_widget_clock_day_horizontal_setting),
                 Context.MODE_PRIVATE);
+        boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
         int textColor;
-        if (blackText) {
+        if (blackText || showCard) {
             textColor = ContextCompat.getColor(context, R.color.colorTextDark);
         } else {
             textColor = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_pixel);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_horizontal);
 
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
         views.setImageViewResource(
-                R.id.widget_day_pixel_icon,
+                R.id.widget_clock_day_icon,
                 imageId[3]);
 
+        String dateText = weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week;
         views.setTextViewText(
-                R.id.widget_day_pixel_temp,
-                weather.realTime.temp + "℃");
+                R.id.widget_clock_day_title,
+                dateText);
+
+        String weatherText = weather.base.city + " " + weather.realTime.temp + "℃";
         views.setTextViewText(
-                R.id.widget_day_pixel_date,
-                weather.base.date.split("-", 2)[1] + " " + weather.base.city);
+                R.id.widget_clock_day_subtitle,
+                weatherText);
 
-        views.setTextColor(R.id.widget_day_pixel_temp, textColor);
-        views.setTextColor(R.id.widget_day_pixel_date, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock, textColor);
+        views.setTextColor(R.id.widget_clock_day_title, textColor);
+        views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
 
-        // set intent.
-        PendingIntent pendingIntent = PendingIntent.getActivity(
+        views.setViewVisibility(R.id.widget_clock_day_card, showCard ? View.VISIBLE : View.GONE);
+
+        Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+        PendingIntent pendingIntentClock = PendingIntent.getActivity(
+                context, CLOCK_PENDING_INTENT_CODE, intentClock, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setOnClickPendingIntent(R.id.widget_clock_day_clockButton, pendingIntentClock);
+
+        PendingIntent pendingIntentWeather = PendingIntent.getActivity(
                 context,
-                PENDING_INTENT_CODE,
+                WEATHER_PENDING_INTENT_CODE,
                 IntentHelper.buildMainActivityIntent(context, location),
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        views.setOnClickPendingIntent(R.id.widget_day_button, pendingIntent);
+        views.setOnClickPendingIntent(R.id.widget_clock_day_weatherButton, pendingIntentWeather);
 
-        // commit.
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(
-                new ComponentName(context, WidgetDayPixelProvider.class),
+                new ComponentName(context, WidgetClockDayHorizontalProvider.class),
                 views);
     }
 
@@ -80,7 +94,7 @@ public class WidgetDayPixelUtils {
 
     public static boolean isEnable(Context context) {
         int[] widgetIds = AppWidgetManager.getInstance(context)
-                .getAppWidgetIds(new ComponentName(context, WidgetDayPixelProvider.class));
+                .getAppWidgetIds(new ComponentName(context, WidgetClockDayHorizontalProvider.class));
         return widgetIds != null && widgetIds.length > 0;
     }
 }

@@ -8,13 +8,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.Calendar;
 
@@ -35,8 +40,8 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
     private ImageView widgetCard;
     private ImageView widgetIcon;
     private TextClock widgetClock;
-    private TextView widgetDate;
-    private TextView widgetWeather;
+    private TextView widgetTitle;
+    private TextView widgetSubtitle;
     private TextView[] widgetWeeks;
     private ImageView[] widgetIcons;
     private TextView[] widgetTemps;
@@ -54,34 +59,38 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
         setContentView(R.layout.activity_create_widget_clock_day_week);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void initWidget() {
-        this.widgetCard = (ImageView) findViewById(R.id.widget_clock_day_week_card);
+        View widgetView = LayoutInflater.from(this).inflate(R.layout.widget_clock_day_week, null);
+        ((ViewGroup) findViewById(R.id.activity_create_widget_clock_day_week_widgetContainer)).addView(widgetView);
+
+        this.widgetCard = (ImageView) widgetView.findViewById(R.id.widget_clock_day_week_card);
         widgetCard.setVisibility(View.GONE);
 
-        this.widgetIcon = (ImageView) findViewById(R.id.widget_clock_day_week_icon);
-        this.widgetClock = (TextClock) findViewById(R.id.widget_clock_day_week_clock);
-        this.widgetDate = (TextView) findViewById(R.id.widget_clock_day_week_date);
-        this.widgetWeather = (TextView) findViewById(R.id.widget_clock_day_week_weather);
+        this.widgetIcon = (ImageView) widgetView.findViewById(R.id.widget_clock_day_week_icon);
+        this.widgetClock = (TextClock) widgetView.findViewById(R.id.widget_clock_day_week_clock);
+        this.widgetTitle = (TextView) widgetView.findViewById(R.id.widget_clock_day_week_title);
+        this.widgetSubtitle = (TextView) widgetView.findViewById(R.id.widget_clock_day_week_subtitle);
 
         this.widgetWeeks = new TextView[] {
-                (TextView) findViewById(R.id.widget_clock_day_week_week_1),
-                (TextView) findViewById(R.id.widget_clock_day_week_week_2),
-                (TextView) findViewById(R.id.widget_clock_day_week_week_3),
-                (TextView) findViewById(R.id.widget_clock_day_week_week_4),
-                (TextView) findViewById(R.id.widget_clock_day_week_week_5)};
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_week_1),
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_week_2),
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_week_3),
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_week_4),
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_week_5)};
         this.widgetIcons = new ImageView[] {
-                (ImageView) findViewById(R.id.widget_clock_day_week_icon_1),
-                (ImageView) findViewById(R.id.widget_clock_day_week_icon_2),
-                (ImageView) findViewById(R.id.widget_clock_day_week_icon_3),
-                (ImageView) findViewById(R.id.widget_clock_day_week_icon_4),
-                (ImageView) findViewById(R.id.widget_clock_day_week_icon_5)};
+                (ImageView) widgetView.findViewById(R.id.widget_clock_day_week_icon_1),
+                (ImageView) widgetView.findViewById(R.id.widget_clock_day_week_icon_2),
+                (ImageView) widgetView.findViewById(R.id.widget_clock_day_week_icon_3),
+                (ImageView) widgetView.findViewById(R.id.widget_clock_day_week_icon_4),
+                (ImageView) widgetView.findViewById(R.id.widget_clock_day_week_icon_5)};
         this.widgetTemps = new TextView[] {
-                (TextView) findViewById(R.id.widget_clock_day_week_temp_1),
-                (TextView) findViewById(R.id.widget_clock_day_week_temp_2),
-                (TextView) findViewById(R.id.widget_clock_day_week_temp_3),
-                (TextView) findViewById(R.id.widget_clock_day_week_temp_4),
-                (TextView) findViewById(R.id.widget_clock_day_week_temp_5)};
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_temp_1),
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_temp_2),
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_temp_3),
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_temp_4),
+                (TextView) widgetView.findViewById(R.id.widget_clock_day_week_temp_5)};
 
         ImageView wallpaper = (ImageView) findViewById(R.id.activity_create_widget_clock_day_week_wall);
         wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());
@@ -104,18 +113,18 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
         if (weather == null) {
             return;
         }
+        getLocationNow().weather = weather;
 
         boolean isDay = TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime();
 
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
-        widgetIcon.setImageResource(imageId[3]);
+        Glide.with(this)
+                .load(imageId[3])
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(widgetIcon);
 
-        String[] solar = weather.base.date.split("-");
-        String dateText = solar[1] + "-" + solar[2] + " " + weather.dailyList.get(0).week;
-        widgetDate.setText(dateText);
-
-        String weatherText = weather.base.city + " / " + weather.realTime.weather + " " + weather.realTime.temp + "℃";
-        widgetWeather.setText(weatherText);
+        widgetTitle.setText(weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
+        widgetSubtitle.setText(weather.base.city + " " + weather.realTime.temp + "℃");
 
         String firstWeekDay;
         String secondWeekDay;
@@ -150,7 +159,10 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
             int[] imageIds = WeatherHelper.getWeatherIcon(
                     isDay ? weather.dailyList.get(i).weatherKinds[0] : weather.dailyList.get(i).weatherKinds[1],
                     isDay);
-            widgetIcons[i].setImageResource(imageIds[3]);
+            Glide.with(this)
+                    .load(imageIds[3])
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(widgetIcons[i]);
             widgetTemps[i].setText(weather.dailyList.get(i).temps[1] + "/" + weather.dailyList.get(i).temps[0] + "°");
         }
     }
@@ -203,8 +215,8 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
             if (isChecked) {
                 widgetCard.setVisibility(View.VISIBLE);
                 widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
-                widgetDate.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
-                widgetWeather.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
                 for (int i = 0; i < 5; i ++) {
                     widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
                     widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
@@ -213,8 +225,8 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
                 widgetCard.setVisibility(View.GONE);
                 if (!blackTextSwitch.isChecked()) {
                     widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
-                    widgetDate.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
-                    widgetWeather.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
                     for (int i = 0; i < 5; i ++) {
                         widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
                         widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
@@ -230,8 +242,8 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
                 widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
-                widgetDate.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
-                widgetWeather.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
+                widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
                 for (int i = 0; i < 5; i ++) {
                     widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
                     widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextDark));
@@ -239,8 +251,8 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
             } else {
                 if (!showCardSwitch.isChecked()) {
                     widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
-                    widgetDate.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
-                    widgetWeather.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
+                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
                     for (int i = 0; i < 5; i ++) {
                         widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));
                         widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetClockDayWeekActivity.this, R.color.colorTextLight));

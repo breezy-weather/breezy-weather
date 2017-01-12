@@ -34,6 +34,7 @@
         android:layout_marginRight="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/normal_margin"
         android:textColor="@color/colorTextGrey"
+        android:lineSpacingMultiplier="1.3"
         style="@style/content_text"
         tools:text="较适宜洗车，未来一天无雨，风力较小，擦洗一新的汽车至少能保持一天。"
         tools:ignore="RtlHardcoded" />

@@ -2,22 +2,16 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 
 import wangdaye.com.geometricweather.basic.GeoAlarmService;
-import wangdaye.com.geometricweather.basic.GeoJobService;
 import wangdaye.com.geometricweather.service.alarm.PollingAlarmService;
 import wangdaye.com.geometricweather.service.alarm.TodayForecastAlarmService;
 import wangdaye.com.geometricweather.service.alarm.TomorrowForecastAlarmService;
-import wangdaye.com.geometricweather.service.job.PollingJobService;
-import wangdaye.com.geometricweather.service.job.TodayForecastJobService;
-import wangdaye.com.geometricweather.service.job.TomorrowForecastJobService;
 import wangdaye.com.geometricweather.utils.remoteView.ForecastNotificationUtils;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayCenterUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayUtils;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayHorizontalUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayWeekUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetDayPixelUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayWeekUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
@@ -28,15 +22,14 @@ import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
 
 public class ServiceHelper {
 
-    /** <br> total. */
+    /** <br> utils. */
 
     public static void startupAllService(Context context) {
         if (WidgetDayUtils.isEnable(context)
-                || WidgetDayPixelUtils.isEnable(context)
                 || WidgetWeekUtils.isEnable(context)
                 || WidgetDayWeekUtils.isEnable(context)
-                || WidgetClockDayUtils.isEnable(context)
-                || WidgetClockDayCenterUtils.isEnable(context)
+                || WidgetClockDayHorizontalUtils.isEnable(context)
+                || WidgetClockDayVerticalUtils.isEnable(context)
                 || WidgetClockDayWeekUtils.isEnable(context)
                 || NormalNotificationUtils.isEnable(context)) {
 
@@ -55,6 +48,8 @@ public class ServiceHelper {
 
     public static void startPollingService(Context context) {
         stopPollingService(context);
+        Intent intent = new Intent(context, PollingAlarmService.class);
+        context.startService(intent);/*
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             Intent intent = new Intent(context, PollingAlarmService.class);
             context.startService(intent);
@@ -63,10 +58,14 @@ public class ServiceHelper {
                     context,
                     PollingJobService.class,
                     PollingJobService.SCHEDULE_CODE);
-        }
+        }*/
     }
 
     public static void stopPollingService(Context context) {
+        GeoAlarmService.cancelAlarmIntent(
+                context,
+                PollingAlarmService.class,
+                PollingAlarmService.ALARM_CODE);/*
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             GeoAlarmService.cancelAlarmIntent(
                     context,
@@ -74,16 +73,15 @@ public class ServiceHelper {
                     PollingAlarmService.ALARM_CODE);
         } else {
             GeoJobService.cancel(context, PollingJobService.SCHEDULE_CODE);
-        }
+        }*/
     }
 
     public static boolean isNeedShutdownPollingService(Context context) {
         return !WidgetDayUtils.isEnable(context)
-                && !WidgetDayPixelUtils.isEnable(context)
                 && !WidgetWeekUtils.isEnable(context)
                 && !WidgetDayWeekUtils.isEnable(context)
-                && !WidgetClockDayUtils.isEnable(context)
-                && !WidgetClockDayCenterUtils.isEnable(context)
+                && !WidgetClockDayHorizontalUtils.isEnable(context)
+                && !WidgetClockDayVerticalUtils.isEnable(context)
                 && !WidgetClockDayWeekUtils.isEnable(context)
                 && !NormalNotificationUtils.isEnable(context);
     }
@@ -92,6 +90,10 @@ public class ServiceHelper {
 
     public static void startForecastService(Context context, boolean today) {
         stopForecastService(context, today);
+        Intent intent = new Intent(
+                context,
+                today ? TodayForecastAlarmService.class : TomorrowForecastAlarmService.class);
+        context.startService(intent);/*
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             Intent intent = new Intent(
                     context,
@@ -103,10 +105,14 @@ public class ServiceHelper {
                     today ? TodayForecastJobService.class : TomorrowForecastJobService.class,
                     today ? TodayForecastJobService.SCHEDULE_CODE : TomorrowForecastJobService.SCHEDULE_CODE,
                     today);
-        }
+        }*/
     }
 
     public static void stopForecastService(Context context, boolean today) {
+        GeoAlarmService.cancelAlarmIntent(
+                context,
+                today ? TodayForecastAlarmService.class : TomorrowForecastAlarmService.class,
+                today ? TodayForecastAlarmService.ALARM_CODE : TomorrowForecastAlarmService.ALARM_CODE);/*
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             GeoAlarmService.cancelAlarmIntent(
                     context,
@@ -116,6 +122,6 @@ public class ServiceHelper {
             GeoJobService.cancel(
                     context,
                     today ? TodayForecastJobService.SCHEDULE_CODE : TomorrowForecastJobService.SCHEDULE_CODE);
-        }
+        }*/
     }
 }

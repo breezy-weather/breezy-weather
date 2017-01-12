@@ -3,7 +3,7 @@
     android:minWidth="@dimen/widget_grid_4"
     android:minHeight="@dimen/widget_grid_2"
     android:updatePeriodMillis="0"
-    android:initialLayout="@layout/widget_day_week"
+    android:initialLayout="@layout/widget_day_week_symmetry"
     android:previewImage="@drawable/widget_day_week"
     android:resizeMode="horizontal|vertical"
     android:configure="wangdaye.com.geometricweather.view.activity.widget.CreateWidgetDayWeekActivity"

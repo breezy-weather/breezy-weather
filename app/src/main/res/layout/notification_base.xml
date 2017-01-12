@@ -61,7 +61,7 @@
         android:text="@string/ellipsis"
         android:textSize="@dimen/widget_time_text_size"
         android:textColor="@color/colorTextGrey"
-        tools:text="青岛.10:00"
+        tools:text="青岛 周三 10:00"
         tools:ignore="RtlHardcoded,SmallSp" />
 
 </RelativeLayout>

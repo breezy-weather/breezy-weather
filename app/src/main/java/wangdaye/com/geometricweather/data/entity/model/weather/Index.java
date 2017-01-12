@@ -122,7 +122,13 @@ public class Index {
         } else {
             aqis = new String[] {
                     "AQI : " + result.Index + " (" + WeatherHelper.getAqiQuality(c, result.Index) + ")",
-                    "PM 2.5 : " + result.ParticulateMatter2_5 + " / " + "PM 10 : " + result.ParticulateMatter10};
+                    "PM 2.5 : " + result.ParticulateMatter2_5 + "\n"
+                            + "PM 10 : " + result.ParticulateMatter10 + "\n"
+                            + "O₃ : " + (int) (result.Ozone) + "\n"
+                            + "CO : " + (int) (result.CarbonMonoxide) + "\n"
+                            + "NO : " + result.NitrogenMonoxide + "\n"
+                            + "NO₂ : " + result.NitrogenDioxide + "\n"
+                            + "SO₂ : " + result.SulfurDioxide};
         }
     }
     

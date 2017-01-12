@@ -572,7 +572,9 @@ public class MainActivity extends GeoActivity
                 setRefreshing(false);
                 buildUI();
 
-                startupService();
+                if (locationNow.equals(locationList.get(0))) {
+                    startupService();
+                }
             } else {
                 setRefreshing(false);
             }
@@ -594,7 +596,9 @@ public class MainActivity extends GeoActivity
                 setRefreshing(false);
                 buildUI();
 
-                startupService();
+                if (locationNow.equals(locationList.get(0))) {
+                    startupService();
+                }
             } else {
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_get_weather_failed));
                 setRefreshing(false);

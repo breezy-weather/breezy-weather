@@ -64,11 +64,15 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/widget_clock_day_date"
+                    android:id="@+id/widget_clock_day_title"
                     android:layout_centerInParent="true"
                     android:text="@string/wait_refresh"
                     android:textColor="@color/colorTextLight"
                     android:maxLines="1"
+                    android:shadowColor="@color/colorTextGrey"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
                     style="@style/content_text"
                     tools:text="05-17 周三"/>
 
@@ -80,11 +84,15 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/widget_clock_day_weather"
+                    android:id="@+id/widget_clock_day_subtitle"
                     android:layout_centerInParent="true"
                     android:text="@string/ellipsis"
                     android:textColor="@color/colorTextLight"
                     android:maxLines="1"
+                    android:shadowColor="@color/colorTextGrey"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
                     style="@style/content_text"
                     tools:text="青岛 8℃"/>
 

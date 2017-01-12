@@ -101,7 +101,7 @@ public class NormalNotificationUtils {
                 R.id.notification_base_content,
                 weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
         base.setTextViewText( // set time.
-                R.id.notification_base_time, weather.base.city + "." + weather.base.time);
+                R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
         if (backgroundColor) { // set background.
             base.setViewVisibility(R.id.notification_base_background, View.VISIBLE);
         } else {
@@ -131,7 +131,7 @@ public class NormalNotificationUtils {
                 R.id.notification_base_content,
                 weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
         big.setTextViewText( // set time.
-                R.id.notification_base_time, weather.base.city + "." + weather.base.time);
+                R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
         big.setViewVisibility(R.id.notification_base_background, View.GONE);
         // 1
         big.setTextViewText( // set week 1.

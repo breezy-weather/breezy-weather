@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.view.activity.widget;
 
+import android.annotation.SuppressLint;
 import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
@@ -7,13 +8,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
@@ -23,17 +29,16 @@ import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
- * Create widget clock day activity.
+ * Create widget clock day horizontal activity.
  * */
 
-public class CreateWidgetClockDayActivity extends GeoWidgetConfigActivity
+public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActivity
         implements View.OnClickListener {
-    // widget
     private ImageView widgetCard;
     private ImageView widgetIcon;
     private TextClock widgetClock;
-    private TextView widgetDate;
-    private TextView widgetWeather;
+    private TextView widgetTitle;
+    private TextView widgetSubtitle;
 
     private CoordinatorLayout container;
 
@@ -45,31 +50,35 @@ public class CreateWidgetClockDayActivity extends GeoWidgetConfigActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_widget_clock_day);
+        setContentView(R.layout.activity_create_widget_clock_day_horizontal);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void initWidget() {
-        this.widgetCard = (ImageView) findViewById(R.id.widget_clock_day_card);
+        View widgetView = LayoutInflater.from(this).inflate(R.layout.widget_clock_day_horizontal, null);
+        ((ViewGroup) findViewById(R.id.activity_create_widget_clock_day_horizontal_widgetContainer)).addView(widgetView);
+
+        this.widgetCard = (ImageView) widgetView.findViewById(R.id.widget_clock_day_card);
         widgetCard.setVisibility(View.GONE);
 
-        this.widgetIcon = (ImageView) findViewById(R.id.widget_clock_day_icon);
-        this.widgetClock = (TextClock) findViewById(R.id.widget_clock_day_clock);
-        this.widgetDate = (TextView) findViewById(R.id.widget_clock_day_date);
-        this.widgetWeather = (TextView) findViewById(R.id.widget_clock_day_weather);
+        this.widgetIcon = (ImageView) widgetView.findViewById(R.id.widget_clock_day_icon);
+        this.widgetClock = (TextClock) widgetView.findViewById(R.id.widget_clock_day_clock);
+        this.widgetTitle = (TextView) widgetView.findViewById(R.id.widget_clock_day_title);
+        this.widgetSubtitle = (TextView) widgetView.findViewById(R.id.widget_clock_day_subtitle);
 
-        ImageView wallpaper = (ImageView) findViewById(R.id.activity_create_widget_clock_day_wall);
+        ImageView wallpaper = (ImageView) findViewById(R.id.activity_create_widget_clock_day_horizontal_wall);
         wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());
 
-        this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_clock_day_container);
+        this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_clock_day_horizontal_container);
 
-        this.showCardSwitch = (Switch) findViewById(R.id.activity_create_widget_clock_day_showCardSwitch);
+        this.showCardSwitch = (Switch) findViewById(R.id.activity_create_widget_clock_day_horizontal_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
 
-        this.blackTextSwitch = (Switch) findViewById(R.id.activity_create_widget_clock_day_blackTextSwitch);
+        this.blackTextSwitch = (Switch) findViewById(R.id.activity_create_widget_clock_day_horizontal_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
 
-        Button doneButton = (Button) findViewById(R.id.activity_create_widget_clock_day_doneButton);
+        Button doneButton = (Button) findViewById(R.id.activity_create_widget_clock_day_horizontal_doneButton);
         doneButton.setOnClickListener(this);
     }
 
@@ -78,18 +87,17 @@ public class CreateWidgetClockDayActivity extends GeoWidgetConfigActivity
         if (weather == null) {
             return;
         }
+        getLocationNow().weather = weather;
 
         int[] imageId = WeatherHelper.getWeatherIcon(
                 weather.realTime.weatherKind,
                 TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime());
-        widgetIcon.setImageResource(imageId[3]);
-
-        String[] solar = weather.base.date.split("-");
-        String dateText = solar[1] + "-" + solar[2] + " " + weather.dailyList.get(0).week;
-        widgetDate.setText(dateText);
-
-        String weatherText = weather.base.city + " / " + weather.realTime.weather + " " + weather.realTime.temp + "℃";
-        widgetWeather.setText(weatherText);
+        Glide.with(this)
+                .load(imageId[3])
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(widgetIcon);
+        widgetTitle.setText(weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
+        widgetSubtitle.setText(weather.base.city + " " + weather.realTime.temp + "℃");
     }
 
     @Override
@@ -104,9 +112,9 @@ public class CreateWidgetClockDayActivity extends GeoWidgetConfigActivity
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.activity_create_widget_clock_day_doneButton:
+            case R.id.activity_create_widget_clock_day_horizontal_doneButton:
                 SharedPreferences.Editor editor = getSharedPreferences(
-                        getString(R.string.sp_widget_clock_day_setting),
+                        getString(R.string.sp_widget_clock_day_horizontal_setting),
                         MODE_PRIVATE)
                         .edit();
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
@@ -139,15 +147,15 @@ public class CreateWidgetClockDayActivity extends GeoWidgetConfigActivity
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
                 widgetCard.setVisibility(View.VISIBLE);
-                widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
-                widgetDate.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
-                widgetWeather.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
+                widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextDark));
+                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextDark));
+                widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextDark));
             } else {
                 widgetCard.setVisibility(View.GONE);
                 if (!blackTextSwitch.isChecked()) {
-                    widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
-                    widgetDate.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
-                    widgetWeather.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                    widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextLight));
+                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextLight));
+                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextLight));
                 }
             }
         }
@@ -158,14 +166,14 @@ public class CreateWidgetClockDayActivity extends GeoWidgetConfigActivity
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
-                widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
-                widgetDate.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
-                widgetWeather.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextDark));
+                widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextDark));
+                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextDark));
+                widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextDark));
             } else {
                 if (!showCardSwitch.isChecked()) {
-                    widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
-                    widgetDate.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
-                    widgetWeather.setTextColor(ContextCompat.getColor(CreateWidgetClockDayActivity.this, R.color.colorTextLight));
+                    widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextLight));
+                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextLight));
+                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayHorizontalActivity.this, R.color.colorTextLight));
                 }
             }
         }

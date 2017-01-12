@@ -108,12 +108,10 @@
     </style>
 
     <!-- spinner -->
-    <style name="spinner">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:spinnerMode">dropdown</item>
-        <item name="android:dropDownWidth">wrap_content</item>
-        <item name="android:layout_alignParentRight">true</item>
+    <style name="spinner_item" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textSize">@dimen/content_text_size</item>
+        <item name="android:textColor">@color/colorTextContent</item>
+        <item name="android:background">@color/colorRoot</item>
     </style>
 
     <!-- switch -->

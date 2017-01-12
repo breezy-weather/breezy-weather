@@ -1,8 +1,5 @@
 package wangdaye.com.geometricweather.basic;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
@@ -18,9 +15,6 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         implements WeatherHelper.OnRequestWeatherListener {
     // data
     private Location locationNow;
-    private List<Location> locationList;
-    private List<String> nameList;
-
     private WeatherHelper weatherHelper;
 
     /** <br> life cycle. */
@@ -51,14 +45,8 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         weatherHelper.cancel();
     }
 
-    private void initData() {
-        this.nameList = new ArrayList<>();
-        locationList = DatabaseHelper.getInstance(this).readLocationList();
-        for (Location l : locationList) {
-            nameList.add(l.isLocal() ? getString(R.string.local) : l.city);
-        }
-        this.locationNow = locationList.get(0);
-
+    public void initData() {
+        this.locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
         this.weatherHelper = new WeatherHelper();
     }
 
@@ -66,22 +54,8 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
 
     public abstract void refreshWidgetView(Weather weather);
 
-    /** <br> data. */
-
-    public void setLocationNow(Location location) {
-        this.locationNow = location;
-    }
-
     public Location getLocationNow() {
         return locationNow;
-    }
-
-    public List<Location> getLocationList() {
-        return locationList;
-    }
-
-    public List<String> getNameList() {
-        return nameList;
     }
 
     /** <br> interface. */

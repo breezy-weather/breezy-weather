@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_create_widget_clock_day_center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_create_widget_clock_day_vertical"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,7 +12,7 @@
         android:layout_height="300dp">
 
         <ImageView
-            android:id="@+id/activity_create_widget_clock_day_center_wall"
+            android:id="@+id/activity_create_widget_clock_day_vertical_wall"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -19,18 +20,15 @@
             tools:ignore="contentDescription" />
 
         <FrameLayout
+            android:id="@+id/activity_create_widget_clock_day_vertical_widgetContainer"
             android:layout_centerInParent="true"
             android:layout_width="300dp"
-            android:layout_height="172dp">
-
-            <include layout="@layout/widget_clock_day_center" />
-
-        </FrameLayout>
+            android:layout_height="172dp" />
 
     </RelativeLayout>
 
     <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/activity_create_widget_clock_day_center_container"
+        android:id="@+id/activity_create_widget_clock_day_vertical_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -49,14 +47,40 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/activity_create_widget_clock_day_center_showCardTitle"
+                        android:id="@+id/activity_create_widget_clock_day_vertical_viewStyleTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_view_style"
+                        style="@style/content_text" />
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/activity_create_widget_clock_day_vertical_styleSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown"
+                        android:layout_toRightOf="@id/activity_create_widget_clock_day_vertical_viewStyleTitle"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/normal_margin"
+                        android:layout_marginRight="@dimen/normal_margin"
+                        app:theme="@style/spinner_item"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_create_widget_clock_day_vertical_showCardTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_show_widget_card"
                         style="@style/content_text" />
 
                     <Switch
-                        android:id="@+id/activity_create_widget_clock_day_center_showCardSwitch"
+                        android:id="@+id/activity_create_widget_clock_day_vertical_showCardSwitch"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/normal_margin"
@@ -70,14 +94,14 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/activity_create_widget_clock_day_center_hideRefreshTimeTitle"
+                        android:id="@+id/activity_create_widget_clock_day_vertical_hideRefreshTimeTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_hide_refresh_time"
                         style="@style/content_text" />
 
                     <Switch
-                        android:id="@+id/activity_create_widget_clock_day_center_hideRefreshTimeSwitch"
+                        android:id="@+id/activity_create_widget_clock_day_vertical_hideRefreshTimeSwitch"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/normal_margin"
@@ -91,14 +115,14 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/activity_create_widget_clock_day_center_blackTextTitle"
+                        android:id="@+id/activity_create_widget_clock_day_vertical_blackTextTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_black_text"
                         style="@style/content_text" />
 
                     <Switch
-                        android:id="@+id/activity_create_widget_clock_day_center_blackTextSwitch"
+                        android:id="@+id/activity_create_widget_clock_day_vertical_blackTextSwitch"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/normal_margin"
@@ -112,7 +136,7 @@
                     android:layout_height="wrap_content" >
 
                     <Button
-                        android:id="@+id/activity_create_widget_clock_day_center_doneButton"
+                        android:id="@+id/activity_create_widget_clock_day_vertical_doneButton"
                         android:layout_margin="@dimen/normal_margin"
                         android:layout_alignParentRight="true"
                         android:text="@string/done"

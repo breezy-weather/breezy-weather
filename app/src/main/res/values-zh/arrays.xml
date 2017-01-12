@@ -15,4 +15,13 @@
         <item>亮色</item>
     </string-array>
 
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>矩形</item>
+        <item>对称</item>
+        <item>平铺</item>
+        <item>迷你</item>
+        <item>Pixel</item>
+    </string-array>
+
 </resources>

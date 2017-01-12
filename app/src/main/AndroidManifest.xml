@@ -101,7 +101,7 @@
         </activity>
 
         <activity
-            android:name=".view.activity.widget.CreateWidgetClockDayActivity"
+            android:name=".view.activity.widget.CreateWidgetClockDayHorizontalActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -110,7 +110,7 @@
         </activity>
 
         <activity
-            android:name=".view.activity.widget.CreateWidgetClockDayCenterActivity"
+            android:name=".view.activity.widget.CreateWidgetClockDayVerticalActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -120,15 +120,6 @@
 
         <activity
             android:name=".view.activity.widget.CreateWidgetClockDayWeekActivity"
-            android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".view.activity.widget.CreateWidgetDayPixelActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -169,18 +160,6 @@
         </receiver>
 
         <receiver
-            android:name=".receiver.widget.WidgetDayPixelProvider"
-            android:label="@string/widget_day_pixel">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_day_pixel" />
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
             android:name=".receiver.widget.WidgetWeekProvider"
             android:label="@string/widget_week">
             <meta-data
@@ -205,11 +184,11 @@
         </receiver>
 
         <receiver
-            android:name=".receiver.widget.WidgetClockDayProvider"
-            android:label="@string/widget_clock_day">
+            android:name=".receiver.widget.WidgetClockDayHorizontalProvider"
+            android:label="@string/widget_clock_day_horizontal">
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_clock_day" />
+                android:resource="@xml/widget_clock_day_horizontal" />
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
@@ -217,11 +196,11 @@
         </receiver>
 
         <receiver
-            android:name=".receiver.widget.WidgetClockDayCenterProvider"
-            android:label="@string/widget_clock_day_center">
+            android:name=".receiver.widget.WidgetClockDayVerticalProvider"
+            android:label="@string/widget_clock_day_vertical">
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_clock_day_center" />
+                android:resource="@xml/widget_clock_day_vertical" />
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />

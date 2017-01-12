@@ -34,6 +34,7 @@
         android:layout_marginRight="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/normal_margin"
         android:textColor="@color/colorTextGrey"
+        android:lineSpacingMultiplier="1.3"
         style="@style/content_text"
         tools:text="天气较好，但风力较大，推荐您进行室内运动，若在户外运动请注意防风。"
         tools:ignore="RtlHardcoded" />

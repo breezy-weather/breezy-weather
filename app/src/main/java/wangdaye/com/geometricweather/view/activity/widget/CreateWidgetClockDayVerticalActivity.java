@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -32,15 +33,16 @@ import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
- * Create widget day activity.
+ * Create widget clock day center activity.
  * */
 
-public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
+public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivity
         implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     // widget
     private View[] widgetViews;
     private ImageView widgetCard;
     private ImageView widgetIcon;
+    private TextClock widgetClock;
     private TextView widgetTitle;
     private TextView widgetSubtitle;
     private TextView widgetTime;
@@ -48,8 +50,8 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
     private CoordinatorLayout container;
 
     private Switch showCardSwitch;
-    private Switch hideRefreshTimeSwitch;
     private Switch blackTextSwitch;
+    private Switch hideRefreshTimeSwitch;
 
     // data
     private String viewTypeValueNow = "rectangle";
@@ -61,39 +63,45 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_widget_day);
+        setContentView(R.layout.activity_create_widget_clock_day_vertical);
     }
 
     @Override
     public void initData() {
         super.initData();
-        this.viewTypes = getResources().getStringArray(R.array.widget_styles);
-        this.viewTypeValues = getResources().getStringArray(R.array.widget_style_values);
+        this.viewTypes = new String[] {
+                getResources().getStringArray(R.array.widget_styles)[0],
+                getResources().getStringArray(R.array.widget_styles)[1],
+                getResources().getStringArray(R.array.widget_styles)[2]};
+        this.viewTypeValues = new String[] {
+                getResources().getStringArray(R.array.widget_style_values)[0],
+                getResources().getStringArray(R.array.widget_style_values)[1],
+                getResources().getStringArray(R.array.widget_style_values)[2]};
     }
 
     @Override
     public void initWidget() {
         setWidgetView(true);
 
-        ImageView wallpaper = (ImageView) findViewById(R.id.activity_create_widget_day_wall);
+        ImageView wallpaper = (ImageView) findViewById(R.id.activity_create_widget_clock_day_vertical_wall);
         wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());
 
-        this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_day_container);
+        this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_clock_day_vertical_container);
 
-        AppCompatSpinner spinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_day_styleSpinner);
+        AppCompatSpinner spinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_clock_day_vertical_styleSpinner);
         spinner.setOnItemSelectedListener(this);
         spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, viewTypes));
 
-        this.showCardSwitch = (Switch) findViewById(R.id.activity_create_widget_day_showCardSwitch);
+        this.showCardSwitch = (Switch) findViewById(R.id.activity_create_widget_clock_day_vertical_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
 
-        this.hideRefreshTimeSwitch = (Switch) findViewById(R.id.activity_create_widget_day_hideRefreshTimeSwitch);
+        this.hideRefreshTimeSwitch = (Switch) findViewById(R.id.activity_create_widget_clock_day_vertical_hideRefreshTimeSwitch);
         hideRefreshTimeSwitch.setOnCheckedChangeListener(new HideRefreshTimeSwitchCheckListener());
 
-        this.blackTextSwitch = (Switch) findViewById(R.id.activity_create_widget_day_blackTextSwitch);
+        this.blackTextSwitch = (Switch) findViewById(R.id.activity_create_widget_clock_day_vertical_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
 
-        Button doneButton = (Button) findViewById(R.id.activity_create_widget_day_doneButton);
+        Button doneButton = (Button) findViewById(R.id.activity_create_widget_clock_day_vertical_doneButton);
         doneButton.setOnClickListener(this);
     }
 
@@ -132,16 +140,6 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 widgetSubtitle.setText(weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
                 widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
                 break;
-
-            case "mini":
-                widgetTitle.setText(weather.realTime.weather + " " + weather.realTime.temp + "℃");
-                widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                break;
-
-            case "pixel":
-                widgetTitle.setText(weather.realTime.temp + "℃");
-                widgetSubtitle.setText(weather.dailyList.get(0).date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
-                break;
         }
     }
 
@@ -156,13 +154,11 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
     private void setWidgetView(boolean init) {
         if (init) {
             this.widgetViews = new View[] {
-                    LayoutInflater.from(this).inflate(R.layout.widget_day_rectangle, null),
-                    LayoutInflater.from(this).inflate(R.layout.widget_day_symmetry, null),
-                    LayoutInflater.from(this).inflate(R.layout.widget_day_tile, null),
-                    LayoutInflater.from(this).inflate(R.layout.widget_day_mini, null),
-                    LayoutInflater.from(this).inflate(R.layout.widget_day_pixel, null)};
+                    LayoutInflater.from(this).inflate(R.layout.widget_clock_day_rectangle, null),
+                    LayoutInflater.from(this).inflate(R.layout.widget_clock_day_symmetry, null),
+                    LayoutInflater.from(this).inflate(R.layout.widget_clock_day_tile, null),};
             for (View widgetView : widgetViews) {
-                ((ViewGroup) findViewById(R.id.activity_create_widget_day_widgetContainer)).addView(widgetView);
+                ((ViewGroup) findViewById(R.id.activity_create_widget_clock_day_vertical_widgetContainer)).addView(widgetView);
             }
         }
         for (View widgetView : widgetViews) {
@@ -173,60 +169,40 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
             case "rectangle":
                 this.widgetViews[0].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[0].findViewById(R.id.widget_day_card);
+                this.widgetCard = (ImageView) widgetViews[0].findViewById(R.id.widget_clock_day_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[0].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[0].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[0].findViewById(R.id.widget_day_subtitle);
-                this.widgetTime = (TextView) widgetViews[0].findViewById(R.id.widget_day_time);
+                this.widgetIcon = (ImageView) widgetViews[0].findViewById(R.id.widget_clock_day_icon);
+                this.widgetClock = (TextClock) widgetViews[0].findViewById(R.id.widget_clock_day_clock);
+                this.widgetTitle = (TextView) widgetViews[0].findViewById(R.id.widget_clock_day_title);
+                this.widgetSubtitle = (TextView) widgetViews[0].findViewById(R.id.widget_clock_day_subtitle);
+                this.widgetTime = (TextView) widgetViews[0].findViewById(R.id.widget_clock_day_time);
                 break;
 
             case "symmetry":
-                this.widgetViews[1].setVisibility(View.VISIBLE);
+                widgetViews[1].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[1].findViewById(R.id.widget_day_card);
+                this.widgetCard = (ImageView) widgetViews[1].findViewById(R.id.widget_clock_day_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[1].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[1].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[1].findViewById(R.id.widget_day_subtitle);
-                this.widgetTime = (TextView) widgetViews[1].findViewById(R.id.widget_day_time);
+                this.widgetIcon = (ImageView) widgetViews[1].findViewById(R.id.widget_clock_day_icon);
+                this.widgetClock = (TextClock) widgetViews[1].findViewById(R.id.widget_clock_day_clock);
+                this.widgetTitle = (TextView) widgetViews[1].findViewById(R.id.widget_clock_day_title);
+                this.widgetSubtitle = (TextView) widgetViews[1].findViewById(R.id.widget_clock_day_subtitle);
+                this.widgetTime = (TextView) widgetViews[1].findViewById(R.id.widget_clock_day_time);
                 break;
 
             case "tile":
-                this.widgetViews[2].setVisibility(View.VISIBLE);
+                widgetViews[2].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[2].findViewById(R.id.widget_day_card);
+                this.widgetCard = (ImageView) widgetViews[2].findViewById(R.id.widget_clock_day_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[2].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[2].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[2].findViewById(R.id.widget_day_subtitle);
-                this.widgetTime = (TextView) widgetViews[2].findViewById(R.id.widget_day_time);
-                break;
-
-            case "mini":
-                this.widgetViews[3].setVisibility(View.VISIBLE);
-
-                this.widgetCard = (ImageView) widgetViews[3].findViewById(R.id.widget_day_card);
-                widgetCard.setVisibility(View.GONE);
-
-                this.widgetIcon = (ImageView) widgetViews[3].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[3].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = null;
-                this.widgetTime = (TextView) widgetViews[3].findViewById(R.id.widget_day_time);
-                break;
-
-            case "pixel":
-                this.widgetViews[4].setVisibility(View.VISIBLE);
-
-                this.widgetCard = null;
-
-                this.widgetIcon = (ImageView) widgetViews[4].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[4].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[4].findViewById(R.id.widget_day_subtitle);
-                this.widgetTime = null;
+                this.widgetIcon = (ImageView) widgetViews[2].findViewById(R.id.widget_clock_day_icon);
+                this.widgetClock = (TextClock) widgetViews[2].findViewById(R.id.widget_clock_day_clock);
+                this.widgetTitle = (TextView) widgetViews[2].findViewById(R.id.widget_clock_day_title);
+                this.widgetSubtitle = (TextView) widgetViews[2].findViewById(R.id.widget_clock_day_subtitle);
+                this.widgetTime = (TextView) widgetViews[2].findViewById(R.id.widget_clock_day_time);
                 break;
         }
     }
@@ -238,9 +214,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.activity_create_widget_day_doneButton:
+            case R.id.activity_create_widget_clock_day_vertical_doneButton:
                 SharedPreferences.Editor editor = getSharedPreferences(
-                        getString(R.string.sp_widget_day_setting),
+                        getString(R.string.sp_widget_clock_day_vertical_setting),
                         MODE_PRIVATE)
                         .edit();
                 editor.putString(getString(R.string.key_view_type), viewTypeValueNow);
@@ -277,40 +253,30 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
             refreshWidgetView(getLocationNow().weather);
 
             if (showCardSwitch.isChecked()) {
-                if (widgetCard != null) {
-                    widgetCard.setVisibility(View.VISIBLE);
-                }
+                widgetCard.setVisibility(View.VISIBLE);
+                widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                if (widgetSubtitle != null) {
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                }
+                widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
             } else {
-                if (widgetCard != null) {
-                    widgetCard.setVisibility(View.GONE);
-                }
+                widgetCard.setVisibility(View.GONE);
                 if (!blackTextSwitch.isChecked()) {
+                    widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
-                    if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
-                    }
+                    widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                 }
             }
 
-            if (widgetTime != null) {
-                widgetTime.setVisibility(hideRefreshTimeSwitch.isChecked() ? View.GONE : View.VISIBLE);
-            }
+            widgetTime.setVisibility(hideRefreshTimeSwitch.isChecked() ? View.GONE : View.VISIBLE);
 
             if (blackTextSwitch.isChecked()) {
+                widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                if (widgetSubtitle != null) {
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                }
+                widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
             } else {
                 if (!showCardSwitch.isChecked()) {
+                    widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
-                    if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
-                    }
+                    widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                 }
             }
         }
@@ -328,22 +294,16 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
-                if (widgetCard != null) {
-                    widgetCard.setVisibility(View.VISIBLE);
-                }
-                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                if (widgetSubtitle != null) {
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                }
+                widgetCard.setVisibility(View.VISIBLE);
+                widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
+                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
+                widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
             } else {
-                if (widgetCard != null) {
-                    widgetCard.setVisibility(View.GONE);
-                }
+                widgetCard.setVisibility(View.GONE);
                 if (!blackTextSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    }
+                    widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
+                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
+                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
                 }
             }
         }
@@ -353,9 +313,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (widgetTime != null) {
-                widgetTime.setVisibility(isChecked ? View.GONE : View.VISIBLE);
-            }
+            widgetTime.setVisibility(isChecked ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -364,16 +322,14 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
-                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                if (widgetSubtitle != null) {
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                }
+                widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
+                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
+                widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
             } else {
                 if (!showCardSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    }
+                    widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
+                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
+                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
                 }
             }
         }

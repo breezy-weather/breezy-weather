@@ -4,7 +4,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.IBinder;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import wangdaye.com.geometricweather.R;
@@ -22,14 +24,6 @@ public class TomorrowForecastAlarmService extends GeoAlarmService {
     public static final int ALARM_CODE = 3;
 
     /** <br> life cycle. */
-
-    public TomorrowForecastAlarmService() {
-        super("TomorrowForecastAlarmService");
-    }
-
-    public TomorrowForecastAlarmService(String name) {
-        super(name);
-    }
 
     @Override
     protected void doRefresh(Location location) {
@@ -69,5 +63,11 @@ public class TomorrowForecastAlarmService extends GeoAlarmService {
                 this,
                 getString(R.string.feedback_get_weather_failed),
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 }

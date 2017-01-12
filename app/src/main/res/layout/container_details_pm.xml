@@ -34,6 +34,7 @@
         android:layout_marginRight="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/normal_margin"
         android:textColor="@color/colorTextGrey"
+        android:lineSpacingMultiplier="1.3"
         style="@style/content_text"
         tools:text="颗粒物等级:轻度污染"
         tools:ignore="RtlHardcoded" />

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_create_widget_day"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -19,13 +20,10 @@
             tools:ignore="contentDescription" />
 
         <FrameLayout
+            android:id="@+id/activity_create_widget_day_widgetContainer"
             android:layout_centerInParent="true"
             android:layout_width="180dp"
-            android:layout_height="96dp">
-
-            <include layout="@layout/widget_day" />
-
-        </FrameLayout>
+            android:layout_height="96dp" />
 
     </RelativeLayout>
 
@@ -43,6 +41,32 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_create_widget_day_viewStyleTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_view_style"
+                        style="@style/content_text" />
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/activity_create_widget_day_styleSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown"
+                        android:layout_toRightOf="@id/activity_create_widget_day_viewStyleTitle"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/normal_margin"
+                        android:layout_marginRight="@dimen/normal_margin"
+                        app:theme="@style/spinner_item"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"

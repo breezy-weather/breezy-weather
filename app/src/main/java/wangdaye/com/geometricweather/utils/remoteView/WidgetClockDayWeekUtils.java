@@ -37,15 +37,13 @@ public class WidgetClockDayWeekUtils {
             return;
         }
 
-        // get settings & time.
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 context.getString(R.string.sp_widget_clock_day_week_setting),
                 Context.MODE_PRIVATE);
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
-        boolean isDay = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
-        // get text color.
         int textColor;
         if (blackText || showCard) {
             textColor = ContextCompat.getColor(context, R.color.colorTextDark);
@@ -53,26 +51,23 @@ public class WidgetClockDayWeekUtils {
             textColor = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
-        // get remote views.
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_week);
 
-        // buildWeather view.
-        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
-        views.setImageViewResource( // set icon.
+        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
+        views.setImageViewResource(
                 R.id.widget_clock_day_week_icon,
                 imageId[3]);
-        // buildWeather date text.
-        String[] solar = weather.base.date.split("-");
-        String dateText = solar[1] + "-" + solar[2] + " " + weather.dailyList.get(0).week;
-        views.setTextViewText( // set date.
-                R.id.widget_clock_day_week_date,
+
+        String dateText = weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week;
+        views.setTextViewText(
+                R.id.widget_clock_day_week_title,
                 dateText);
-        // buildWeather weather text.
+
         String weatherText = weather.base.city + " " + weather.realTime.temp + "℃";
-        views.setTextViewText( // set weather text.
-                R.id.widget_clock_day_week_weather,
+        views.setTextViewText(
+                R.id.widget_clock_day_week_subtitle,
                 weatherText);
-        // buildWeather week texts.
+
         String firstWeekDay;
         String secondWeekDay;
         Calendar c = Calendar.getInstance();
@@ -94,7 +89,7 @@ public class WidgetClockDayWeekUtils {
             firstWeekDay = weather.dailyList.get(0).week;
             secondWeekDay = weather.dailyList.get(1).week;
         }
-        // set week texts.
+
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_1,
                 firstWeekDay);
@@ -110,7 +105,7 @@ public class WidgetClockDayWeekUtils {
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_5,
                 weather.dailyList.get(4).week);
-        // set temps texts.
+
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_1,
                 weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
@@ -126,36 +121,36 @@ public class WidgetClockDayWeekUtils {
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_5,
                 weather.dailyList.get(4).temps[1] + "/" + weather.dailyList.get(4).temps[0] + "°");
-        // set icons.
+
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_1,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_2,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_3,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_4,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_5,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
-                        isDay)[3]);
-        // set text color.
+                        dayTime ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
+                        dayTime)[3]);
+
         views.setTextColor(R.id.widget_clock_day_week_clock, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_date, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_weather, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_title, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_subtitle, textColor);
         views.setTextColor(R.id.widget_clock_day_week_week_1, textColor);
         views.setTextColor(R.id.widget_clock_day_week_week_2, textColor);
         views.setTextColor(R.id.widget_clock_day_week_week_3, textColor);
@@ -166,14 +161,14 @@ public class WidgetClockDayWeekUtils {
         views.setTextColor(R.id.widget_clock_day_week_temp_3, textColor);
         views.setTextColor(R.id.widget_clock_day_week_temp_4, textColor);
         views.setTextColor(R.id.widget_clock_day_week_temp_5, textColor);
-        // set card visibility.
+
         views.setViewVisibility(R.id.widget_clock_day_week_card, showCard ? View.VISIBLE : View.GONE);
-        // set clock intent.
+
         Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
         PendingIntent pendingIntentClock = PendingIntent.getActivity(
                 context, CLOCK_PENDING_INTENT_CODE, intentClock, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_clock_day_week_clockButton, pendingIntentClock);
-        // set weather intent.
+
         PendingIntent pendingIntentWeather = PendingIntent.getActivity(
                 context,
                 WEATHER_PENDING_INTENT_CODE,
@@ -181,7 +176,6 @@ public class WidgetClockDayWeekUtils {
                 PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_clock_day_week_weatherButton, pendingIntentWeather);
 
-        // commit.
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(
                 new ComponentName(context, WidgetClockDayWeekProvider.class),

@@ -34,6 +34,7 @@
         android:layout_marginRight="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/normal_margin"
         android:textColor="@color/colorTextGrey"
+        android:lineSpacingMultiplier="1.3"
         style="@style/content_text"
         tools:text="昼夜温差较大，较易发生感冒，请适当增减衣服。体质较弱的朋友请注意防护。"
         tools:ignore="RtlHardcoded" />

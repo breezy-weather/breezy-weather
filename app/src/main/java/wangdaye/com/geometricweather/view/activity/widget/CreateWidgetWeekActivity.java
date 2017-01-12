@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -49,29 +51,33 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
         setContentView(R.layout.activity_create_widget_week);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void initWidget() {
-        this.widgetCard = (ImageView) findViewById(R.id.widget_week_card);
+        View widgetView = LayoutInflater.from(this).inflate(R.layout.widget_week, null);
+        ((ViewGroup) findViewById(R.id.activity_create_widget_week_widgetContainer)).addView(widgetView);
+
+        this.widgetCard = (ImageView) widgetView.findViewById(R.id.widget_week_card);
         widgetCard.setVisibility(View.GONE);
 
         this.widgetWeeks = new TextView[] {
-                (TextView) findViewById(R.id.widget_week_week_1),
-                (TextView) findViewById(R.id.widget_week_week_2),
-                (TextView) findViewById(R.id.widget_week_week_3),
-                (TextView) findViewById(R.id.widget_week_week_4),
-                (TextView) findViewById(R.id.widget_week_week_5)};
+                (TextView) widgetView.findViewById(R.id.widget_week_week_1),
+                (TextView) widgetView.findViewById(R.id.widget_week_week_2),
+                (TextView) widgetView.findViewById(R.id.widget_week_week_3),
+                (TextView) widgetView.findViewById(R.id.widget_week_week_4),
+                (TextView) widgetView.findViewById(R.id.widget_week_week_5)};
         this.widgetIcons = new ImageView[] {
-                (ImageView) findViewById(R.id.widget_week_icon_1),
-                (ImageView) findViewById(R.id.widget_week_icon_2),
-                (ImageView) findViewById(R.id.widget_week_icon_3),
-                (ImageView) findViewById(R.id.widget_week_icon_4),
-                (ImageView) findViewById(R.id.widget_week_icon_5)};
+                (ImageView) widgetView.findViewById(R.id.widget_week_icon_1),
+                (ImageView) widgetView.findViewById(R.id.widget_week_icon_2),
+                (ImageView) widgetView.findViewById(R.id.widget_week_icon_3),
+                (ImageView) widgetView.findViewById(R.id.widget_week_icon_4),
+                (ImageView) widgetView.findViewById(R.id.widget_week_icon_5)};
         this.widgetTemps = new TextView[] {
-                (TextView) findViewById(R.id.widget_week_temp_1),
-                (TextView) findViewById(R.id.widget_week_temp_2),
-                (TextView) findViewById(R.id.widget_week_temp_3),
-                (TextView) findViewById(R.id.widget_week_temp_4),
-                (TextView) findViewById(R.id.widget_week_temp_5)};
+                (TextView) widgetView.findViewById(R.id.widget_week_temp_1),
+                (TextView) widgetView.findViewById(R.id.widget_week_temp_2),
+                (TextView) widgetView.findViewById(R.id.widget_week_temp_3),
+                (TextView) widgetView.findViewById(R.id.widget_week_temp_4),
+                (TextView) widgetView.findViewById(R.id.widget_week_temp_5)};
 
         ImageView wallpaper = (ImageView) findViewById(R.id.activity_create_widget_week_wall);
         wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());

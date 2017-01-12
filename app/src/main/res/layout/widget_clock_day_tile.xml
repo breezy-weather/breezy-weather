@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_clock_day"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/cardview_dark_background">
+
+    <ImageView
+        android:id="@+id/widget_clock_day_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock"
+                style="@style/widget_text_clock" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/normal_margin"
+                android:layout_marginRight="@dimen/normal_margin"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/widget_clock_day_icon"
+                    android:layout_width="@dimen/flag_icon_size"
+                    android:layout_height="@dimen/flag_icon_size"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/little_margin"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/widget_clock_day_icon"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/widget_clock_day_title"
+                        android:text="@string/ellipsis"
+                        android:maxLines="1"
+                        android:textColor="@color/colorTextLight"
+                        android:shadowColor="@color/colorTextGrey"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="1"
+                        style="@style/content_text"
+                        tools:text="Partly Cloud 21℃"
+                        tools:ignore="RtlHardcoded" />
+
+                    <TextView
+                        android:id="@+id/widget_clock_day_subtitle"
+                        android:text="@string/ellipsis"
+                        android:maxLines="1"
+                        android:gravity="right"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/colorTextLight"
+                        android:shadowColor="@color/colorTextGrey"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="1"
+                        style="@style/content_text"
+                        tools:text="17°/23°"
+                        tools:ignore="RtlHardcoded" />
+
+                    <TextView
+                        android:id="@+id/widget_clock_day_time"
+                        android:text="@string/wait_refresh"
+                        android:textColor="@color/colorTextGrey"
+                        android:textSize="@dimen/widget_time_text_size"
+                        android:maxLines="1"
+                        android:shadowColor="@color/colorTextGrey"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="1"
+                        style="@style/content_text"
+                        tools:text="San Francisco WEN 17:00"
+                        tools:ignore="RtlHardcoded" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/widget_clock_day_clockButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/widget_clock_day_weatherButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+</RelativeLayout>

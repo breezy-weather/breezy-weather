@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_day"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/cardview_dark_background">
+
+    <ImageView
+        android:id="@+id/widget_day_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/widget_day_icon"
+                android:layout_width="@dimen/flag_icon_size"
+                android:layout_height="@dimen/flag_icon_size"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/little_margin"
+                android:layout_marginRight="@dimen/little_margin"
+                android:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/widget_day_title"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/widget_day_icon"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="2"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                style="@style/content_text"
+                tools:text="Partly Could\n21℃"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/widget_day_subtitle"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/widget_day_icon"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="2"
+                android:gravity="right"
+                android:textAlignment="gravity"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                style="@style/content_text"
+                tools:text="              17°\n              23°"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/widget_day_center"
+                android:layout_centerInParent="true"
+                android:layout_width="40dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:id="@+id/widget_day_time"
+                android:text="@string/wait_refresh"
+                android:textColor="@color/colorTextGrey"
+                android:textSize="@dimen/widget_time_text_size"
+                android:maxLines="1"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:layout_toRightOf="@id/widget_day_center"
+                style="@style/content_text"
+                tools:text="San Francisco 17:00"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/widget_day_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

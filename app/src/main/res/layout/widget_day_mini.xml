@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_day"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/cardview_dark_background">
+
+    <ImageView
+        android:id="@+id/widget_day_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/widget_day_icon"
+            android:layout_width="@dimen/little_flag_icon_size"
+            android:layout_height="@dimen/little_flag_icon_size"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/weather_cloudy"
+            android:layout_marginTop="2dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/widget_day_title"
+            android:text="@string/ellipsis"
+            android:textSize="@dimen/subtitle_text_size"
+            android:textColor="@color/colorTextLight"
+            android:shadowColor="@color/colorTextGrey"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:layout_below="@id/widget_day_icon"
+            android:layout_centerHorizontal="true"
+            style="@style/content_text"
+            tools:text="Partly Cloud 21℃"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/widget_day_time"
+            android:text="@string/wait_refresh"
+            android:textColor="@color/colorTextGrey"
+            android:textSize="@dimen/widget_time_text_size"
+            android:shadowColor="@color/colorTextGrey"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:layout_below="@id/widget_day_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            style="@style/content_text"
+            tools:text="San Francisco WEN 17:00"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/widget_day_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

@@ -3,10 +3,10 @@
     android:minWidth="@dimen/widget_grid_4"
     android:minHeight="@dimen/widget_grid_1"
     android:updatePeriodMillis="0"
-    android:initialLayout="@layout/widget_clock_day"
-    android:previewImage="@drawable/widget_clock_day"
+    android:initialLayout="@layout/widget_clock_day_horizontal"
+    android:previewImage="@drawable/widget_clock_day_horizontal"
     android:resizeMode="horizontal|vertical"
-    android:configure="wangdaye.com.geometricweather.view.activity.widget.CreateWidgetClockDayActivity"
+    android:configure="wangdaye.com.geometricweather.view.activity.widget.CreateWidgetClockDayHorizontalActivity"
     android:widgetCategory="home_screen" >
 
 </appwidget-provider>

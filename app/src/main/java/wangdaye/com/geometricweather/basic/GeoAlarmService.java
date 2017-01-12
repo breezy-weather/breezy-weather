@@ -1,8 +1,8 @@
 package wangdaye.com.geometricweather.basic;
 
 import android.app.AlarmManager;
-import android.app.IntentService;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
@@ -22,21 +22,19 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * Widget service.
  * */
 
-public abstract class GeoAlarmService extends IntentService
+public abstract class GeoAlarmService extends Service
         implements WeatherHelper.OnRequestWeatherListener {
     // widget.
     private WeatherHelper weatherHelper;
 
     /** <br> life cycle. */
 
-    public GeoAlarmService(String name) {
-        super(name);
-    }
-
     @Override
-    protected void onHandleIntent(Intent intent) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
         List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
         doRefresh(locationList.get(0));
+        return START_NOT_STICKY;
     }
 
     protected abstract void doRefresh(Location location);
