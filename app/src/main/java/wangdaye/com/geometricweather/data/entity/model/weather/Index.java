@@ -91,7 +91,7 @@ public class Index {
                 + " " + result.Wind.Speed.Metric.Value + "km/h"
                 + " (" + WeatherHelper.getWindLevel(c, result.Wind.Speed.Metric.Value) + ")";
         humidities = new String[2];
-        humidities[0] = c.getString(R.string.sensible_temp) + " : " + result.RealFeelTemperature.Metric.Value + "°";
+        humidities[0] = c.getString(R.string.sensible_temp) + " : " + result.RealFeelTemperature.Metric.Value + "℃";
         humidities[1] = c.getString(R.string.humidity) + result.RelativeHumidity + "%";
         uvs = new String[2];
         uvs[0] = c.getString(R.string.uv_index) + " : " + result.UVIndex;
@@ -122,13 +122,14 @@ public class Index {
         } else {
             aqis = new String[] {
                     "AQI : " + result.Index + " (" + WeatherHelper.getAqiQuality(c, result.Index) + ")",
-                    "PM 2.5 : " + result.ParticulateMatter2_5 + "\n"
-                            + "PM 10 : " + result.ParticulateMatter10 + "\n"
+                    "PM 2.5 : " + (int) (result.ParticulateMatter2_5) + "\n"
+                            + "PM 10 : " + (int) (result.ParticulateMatter10) + "\n"
                             + "O₃ : " + (int) (result.Ozone) + "\n"
                             + "CO : " + (int) (result.CarbonMonoxide) + "\n"
-                            + "NO : " + result.NitrogenMonoxide + "\n"
-                            + "NO₂ : " + result.NitrogenDioxide + "\n"
-                            + "SO₂ : " + result.SulfurDioxide};
+                            + "NO : " + (int) (result.NitrogenMonoxide) + "\n"
+                            + "NO₂ : " + (int) (result.NitrogenDioxide) + "\n"
+                            + "SO₂ : " + (int) (result.SulfurDioxide) + "\n"
+                            + "Pb : " + (int) (result.Lead)};
         }
     }
     

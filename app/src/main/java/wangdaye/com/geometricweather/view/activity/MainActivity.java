@@ -42,10 +42,13 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.view.widget.InkPageIndicator;
 import wangdaye.com.geometricweather.view.widget.StatusBarView;
 import wangdaye.com.geometricweather.view.widget.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.view.widget.VerticalNestedScrollView;
+import wangdaye.com.geometricweather.view.widget.VerticalSwipeRefreshView;
 import wangdaye.com.geometricweather.view.widget.weatherView.details.IndexListView;
 import wangdaye.com.geometricweather.view.widget.weatherView.sky.SkyView;
 import wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendItemView;
@@ -57,7 +60,7 @@ import wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendView;
  * */
 
 public class MainActivity extends GeoActivity
-        implements View.OnClickListener, Toolbar.OnMenuItemClickListener, SwipeSwitchLayout.OnSwipeListener,
+        implements View.OnClickListener, Toolbar.OnMenuItemClickListener, SwipeSwitchLayout.OnSwitchListener,
         SwipeRefreshLayout.OnRefreshListener, NestedScrollView.OnScrollChangeListener,
         LocationHelper.OnRequestLocationListener, WeatherHelper.OnRequestWeatherListener,
         SafeHandler.HandlerContainer {
@@ -69,8 +72,9 @@ public class MainActivity extends GeoActivity
     private Toolbar toolbar;
 
     private SwipeSwitchLayout swipeSwitchLayout;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private NestedScrollView nestedScrollView;
+    private InkPageIndicator indicator;
+    private VerticalSwipeRefreshView swipeRefreshLayout;
+    private VerticalNestedScrollView nestedScrollView;
     private LinearLayout weatherContainer;
 
     private TextView[] titleTexts;
@@ -149,6 +153,8 @@ public class MainActivity extends GeoActivity
                     readLocationList();
                     readIntentData(data);
                     reset();
+                    swipeSwitchLayout.setData(locationList, locationNow);
+                    indicator.setSwitchView(swipeSwitchLayout);
                 } else {
                     readLocationList();
                     for (int i = 0; i < locationList.size(); i ++) {
@@ -158,6 +164,8 @@ public class MainActivity extends GeoActivity
                     }
                     locationNow = locationList.get(0);
                     reset();
+                    swipeSwitchLayout.setData(locationList, locationNow);
+                    indicator.setSwitchView(swipeSwitchLayout);
                 }
                 break;
         }
@@ -193,12 +201,18 @@ public class MainActivity extends GeoActivity
     }
     
     private void initScrollViewPart() {
+
         // get swipe switch layout.
         this.swipeSwitchLayout = (SwipeSwitchLayout) findViewById(R.id.activity_main_switchView);
-        swipeSwitchLayout.setOnSwipeListener(this);
+        swipeSwitchLayout.setData(locationList, locationNow);
+        swipeSwitchLayout.setOnSwitchListener(this);
+
+        // get indicator.
+        this.indicator = (InkPageIndicator) findViewById(R.id.activity_main_indicator);
+        indicator.setSwitchView(swipeSwitchLayout);
 
         // get swipe refresh layout & set color.
-        this.swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_refreshView);
+        this.swipeRefreshLayout = (VerticalSwipeRefreshView) findViewById(R.id.activity_main_refreshView);
         if (TimeUtils.getInstance(this).isDayTime()) {
             swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightPrimary_3));
         } else {
@@ -207,8 +221,12 @@ public class MainActivity extends GeoActivity
         swipeRefreshLayout.setOnRefreshListener(this);
 
         // get nested scroll view & set listener.
-        this.nestedScrollView = (NestedScrollView) findViewById(R.id.activity_main_scrollView);
+        this.nestedScrollView = (VerticalNestedScrollView) findViewById(R.id.activity_main_scrollView);
         nestedScrollView.setOnScrollChangeListener(this);
+
+        swipeSwitchLayout.setIndicator(indicator);
+        swipeRefreshLayout.setIndicator(indicator);
+        nestedScrollView.setIndicator(indicator);
 
         // get realTimeWeather container.
         this.weatherContainer = (LinearLayout) findViewById(R.id.container_weather);

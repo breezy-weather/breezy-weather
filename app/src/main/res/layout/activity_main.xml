@@ -47,6 +47,18 @@
             android:background="@android:color/transparent"
             app:theme="@style/GeometricWeatherTheme.AppbarTheme"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
+
+        <wangdaye.com.geometricweather.view.widget.InkPageIndicator
+            android:id="@+id/activity_main_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            app:layout_behavior=".view.behavior.InkPageIndicatorBehavior"
+            app:dotDiameter="8dp"
+            app:dotGap="8dp"
+            app:animationDuration="300"
+            app:pageIndicatorColor="@color/colorTextSubtitle"
+            app:currentPageIndicatorColor="@color/colorPrimary"/>
         
     </wangdaye.com.geometricweather.view.widget.SwipeSwitchLayout>
 

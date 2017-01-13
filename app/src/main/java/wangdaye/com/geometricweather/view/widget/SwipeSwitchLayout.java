@@ -12,6 +12,10 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
+import java.util.List;
+
+import wangdaye.com.geometricweather.data.entity.model.Location;
+
 /**
  * Swipe switch layout.
  * */
@@ -20,10 +24,15 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         implements GestureDetector.OnGestureListener {
     // widget
     private View target;
+    private InkPageIndicator indicator;
     private GestureDetector gestureDetector;
-    private OnSwipeListener listener;
+    private OnSwitchListener switchListener;
+    private OnSwipeListener swipeListener;
 
     // data
+    private int totalCount = 1;
+    private int position = 0;
+
     private float swipeDistance;
     private float swipeTrigger;
 
@@ -94,11 +103,15 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         target.setAlpha(1 - Math.abs(realDistance) / swipeTrigger);
     }
 
+    public void setIndicator(InkPageIndicator indicator) {
+        this.indicator = indicator;
+    }
+
     /** <br> touch. */
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        return listener != null && super.dispatchTouchEvent(ev);
+        return switchListener != null && super.dispatchTouchEvent(ev);
     }
 
     @Override
@@ -119,6 +132,9 @@ public class SwipeSwitchLayout extends CoordinatorLayout
                         isBeingDragged = true;
                         if (Math.abs(ev.getX() - initialX) > Math.abs(ev.getY() - initialY)) {
                             isHorizontalDragged = true;
+                            if (indicator != null) {
+                                indicator.setDisplayState(true);
+                            }
                         }
                     } else {
                         initialX = ev.getX();
@@ -155,15 +171,23 @@ public class SwipeSwitchLayout extends CoordinatorLayout
                 if (isBeingDragged && isHorizontalDragged) {
                     swipeDistance = ev.getX() - initialX;
                     setTranslation();
+                    notifySwipeListenerScrolled();
                 }
                 break;
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+                if (indicator != null) {
+                    indicator.setDisplayState(false);
+                }
                 if (swipeDistance != 0) {
                     if (Math.abs(swipeDistance) > Math.abs(swipeTrigger)) {
-                        listener.swipeTakeEffect(
+                        setPosition(ev.getX() < initialX ? DIRECTION_LEFT : DIRECTION_RIGHT);
+                        switchListener.swipeTakeEffect(
                                 ev.getX() < initialX ? DIRECTION_LEFT : DIRECTION_RIGHT);
+                        if (swipeListener != null) {
+                            swipeListener.onPageSelected(position);
+                        }
                     } else {
                         resetAnimation.reset();
                         resetAnimation.setDuration(300);
@@ -178,6 +202,60 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         return true;
     }
 
+    /** <br> data. */
+
+    public void setData(List<Location> locationList, Location locationNow) {
+        this.totalCount = locationList.size();
+        position = 0;
+        for (int i = 0; i < locationList.size(); i ++) {
+            if (locationNow.equals(locationList.get(i))) {
+                position = i;
+                return;
+            }
+        }
+    }
+
+    private void setPosition(int dir) {
+        switch (dir) {
+            case DIRECTION_LEFT:
+                position ++;
+                break;
+
+            case DIRECTION_RIGHT:
+                position --;
+                break;
+        }
+        if (position < 0) {
+            position = totalCount - 1;
+        } else if (position > totalCount - 1) {
+            position = 0;
+        }
+    }
+
+    private void notifySwipeListenerScrolled() {
+        if (swipeListener != null) {
+            if (swipeDistance > 0) {
+                swipeListener.onPageScrolled(
+                        position - 1,
+                        1 - Math.min(1, swipeDistance / swipeTrigger),
+                        (int) Math.max(0, swipeTrigger - swipeDistance));
+            } else {
+                swipeListener.onPageScrolled(
+                        position,
+                        Math.min(1, -swipeDistance / swipeTrigger),
+                        (int) Math.min(-swipeDistance, swipeTrigger));
+            }
+        }
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     /** <br> animate. */
 
     private Animation resetAnimation = new Animation() {
@@ -186,6 +264,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         public void applyTransformation(float interpolatedTime, Transformation t) {
             swipeDistance *= (1 - interpolatedTime);
             setTranslation();
+            notifySwipeListenerScrolled();
         }
     };
 
@@ -204,9 +283,14 @@ public class SwipeSwitchLayout extends CoordinatorLayout
             if (!notified) {
                 swipeDistance = startX + (-swipeTrigger - startX) * interpolatedTime;
                 setTranslation();
+                notifySwipeListenerScrolled();
                 if (interpolatedTime == 1) {
                     notified = true;
-                    listener.swipeTakeEffect(DIRECTION_LEFT);
+                    setPosition(DIRECTION_LEFT);
+                    switchListener.swipeTakeEffect(DIRECTION_LEFT);
+                    if (swipeListener != null) {
+                        swipeListener.onPageSelected(position);
+                    }
                 }
             }
         }
@@ -227,9 +311,14 @@ public class SwipeSwitchLayout extends CoordinatorLayout
             if (!notified) {
                 swipeDistance = startX + (swipeTrigger - startX) * interpolatedTime;
                 setTranslation();
+                notifySwipeListenerScrolled();
                 if (interpolatedTime == 1) {
                     notified = true;
-                    listener.swipeTakeEffect(DIRECTION_RIGHT);
+                    setPosition(DIRECTION_RIGHT);
+                    switchListener.swipeTakeEffect(DIRECTION_RIGHT);
+                    if (swipeListener != null) {
+                        swipeListener.onPageSelected(position);
+                    }
                 }
             }
         }
@@ -254,17 +343,29 @@ public class SwipeSwitchLayout extends CoordinatorLayout
 
     /** <br> interface. */
 
-    // on swipe listener.
+    // on switch listener.
 
-    public interface OnSwipeListener {
+    public interface OnSwitchListener {
         void swipeTakeEffect(int direction);
     }
 
-    public void setOnSwipeListener(OnSwipeListener l) {
-        this.listener = l;
+    public void setOnSwitchListener(OnSwitchListener l) {
+        this.switchListener = l;
     }
 
-    // on gesture listener.
+    // on swipe listener.
+
+    public interface OnSwipeListener {
+
+        void onPageScrolled(int position, float positionOffset, int positionOffsetPixels);
+        void onPageSelected(int position);
+    }
+
+    public void setOnSwipeListener(OnSwipeListener l) {
+        this.swipeListener = l;
+    }
+
+    // on gesture switchListener.
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
@@ -273,7 +374,6 @@ public class SwipeSwitchLayout extends CoordinatorLayout
 
     @Override
     public void onShowPress(MotionEvent motionEvent) {
-
     }
 
     @Override
@@ -293,8 +393,15 @@ public class SwipeSwitchLayout extends CoordinatorLayout
 
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        if (indicator != null) {
+            indicator.setDisplayState(false);
+        }
         if (Math.abs(swipeDistance) >= swipeTrigger) {
-            listener.swipeTakeEffect(swipeDistance < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT);
+            setPosition(swipeDistance < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT);
+            switchListener.swipeTakeEffect(swipeDistance < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT);
+            if (swipeListener != null) {
+                swipeListener.onPageSelected(position);
+            }
         } else if (Math.abs(v) >= 2000 && Math.abs(swipeDistance) >= swipeTrigger / 3.0) {
             if (v > 0) {
                 // to right.

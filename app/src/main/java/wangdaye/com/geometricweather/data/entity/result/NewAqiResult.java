@@ -28,9 +28,9 @@ public class NewAqiResult {
     public double ParticulateMatter10;
     public double Ozone;
     public double CarbonMonoxide;
-    public Object NitrogenMonoxide;
+    public double NitrogenMonoxide;
     public double NitrogenDioxide;
     public double SulfurDioxide;
-    public Object Lead;
+    public double Lead;
     public String Source;
 }

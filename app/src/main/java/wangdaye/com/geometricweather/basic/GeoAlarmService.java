@@ -42,22 +42,21 @@ public abstract class GeoAlarmService extends Service
     public void requestData(Location location) {
         Weather weather = DatabaseHelper.getInstance(this).readWeather(location);
         if (weather != null) {
-
             Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
+            int month = c.get(Calendar.MONTH) + 1;
             int day = c.get(Calendar.DAY_OF_MONTH);
             int hour = c.get(Calendar.HOUR_OF_DAY);
             int minute = c.get(Calendar.MINUTE);
             String[] weatherDates = weather.base.date.split("-");
             String[] weatherTimes = weather.base.time.split(":");
 
-            if (weatherDates[0].equals(String.valueOf(year))
-                    && weatherDates[1].equals(String.valueOf(month))
-                    && weatherDates[2].equals(String.valueOf(day))) {
+            if (year == Integer.parseInt(weatherDates[0])
+                    && month == Integer.parseInt(weatherDates[1])
+                    && day == Integer.parseInt(weatherDates[2])) {
 
                 if (Math.abs((hour * 60 + minute)
-                        - (Integer.parseInt(weatherTimes[0]) * 60 + Integer.parseInt(weatherTimes[1]))) > 60) {
+                        - (Integer.parseInt(weatherTimes[0]) * 60 + Integer.parseInt(weatherTimes[1]))) <= 60) {
                     requestWeatherSuccess(weather, location);
                     return;
                 }
@@ -138,6 +137,7 @@ public abstract class GeoAlarmService extends Service
         DatabaseHelper.getInstance(this).writeHistory(weather);
         NotificationUtils.checkAndSendAlert(this, weather, oldResult);
         updateView(this, requestLocation, weather);
+        stopSelf();
     }
 
     @Override
@@ -148,5 +148,6 @@ public abstract class GeoAlarmService extends Service
                 this,
                 getString(R.string.feedback_get_weather_failed),
                 Toast.LENGTH_SHORT).show();
+        stopSelf();
     }
 }

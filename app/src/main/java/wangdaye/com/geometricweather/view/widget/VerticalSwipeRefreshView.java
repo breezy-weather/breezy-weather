@@ -11,6 +11,9 @@ import android.view.ViewConfiguration;
  * */
 
 public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
+    // widget
+    private InkPageIndicator indicator;
+
     // data
     private float initialX, initialY;
     private int touchSlop;
@@ -54,6 +57,8 @@ public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
                         isBeingDragged = true;
                         if (Math.abs(ev.getX() - initialX) > Math.abs(ev.getY() - initialY)) {
                             isHorizontalDragged = true;
+                        } else if (indicator != null) {
+                            indicator.setDisplayState(true);
                         }
                     } else {
                         initialX = ev.getX();
@@ -69,11 +74,23 @@ public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
                 break;
         }
 
-        return result && !isHorizontalDragged;
+        return result && isBeingDragged && !isHorizontalDragged;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_UP
+                || ev.getAction() == MotionEvent.ACTION_CANCEL) {
+            if (indicator != null) {
+                indicator.setDisplayState(false);
+            }
+        }
         return super.onTouchEvent(ev) && !isHorizontalDragged;
+    }
+
+    /** <br> UI. */
+
+    public void setIndicator(InkPageIndicator indicator) {
+        this.indicator = indicator;
     }
 }
