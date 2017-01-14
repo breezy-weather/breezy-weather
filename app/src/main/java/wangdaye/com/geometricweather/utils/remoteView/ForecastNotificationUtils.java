@@ -93,6 +93,8 @@ public class ForecastNotificationUtils {
 
         // set view
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.notification_forecast);
+
+        // set icon.
         int[][] imageIds = new int[2][3];
         if (today) {
             imageIds[0] = WeatherHelper.getWeatherIcon(weather.dailyList.get(0).weatherKinds[0], true);
@@ -101,34 +103,35 @@ public class ForecastNotificationUtils {
             imageIds[0] = WeatherHelper.getWeatherIcon(weather.dailyList.get(0).weatherKinds[0], true);
             imageIds[1] = WeatherHelper.getWeatherIcon(weather.dailyList.get(1).weatherKinds[0], true);
         }
-        // set icon.
         view.setImageViewResource(
                 R.id.notification_forecast_icon_1,
                 imageIds[0][3]);
         view.setImageViewResource(
                 R.id.notification_forecast_icon_2,
                 imageIds[1][3]);
+
         // set title.
         String[] titles = new String[2];
         if (today) {
-            titles[0] = context.getString(R.string.day) + " " + weather.dailyList.get(0).weathers[0];
-            titles[1] = context.getString(R.string.night) + " " + weather.dailyList.get(0).weathers[1];
+            titles[0] = context.getString(R.string.day) + " " + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[0], false, fahrenheit);
+            titles[1] = context.getString(R.string.night) + " " + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[1], false, fahrenheit);
         } else {
-            titles[0] = context.getString(R.string.today) + " " + weather.dailyList.get(0).weathers[0];
-            titles[1] = context.getString(R.string.tomorrow) + " " + weather.dailyList.get(1).weathers[0];
+            titles[0] = context.getString(R.string.today) + " " + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[0], false, fahrenheit);
+            titles[1] = context.getString(R.string.tomorrow) + " " + ValueUtils.buildCurrentTemp(weather.dailyList.get(1).temps[0], false, fahrenheit);
         }
         view.setTextViewText(
                 R.id.notification_forecast_title_1, titles[0]);
         view.setTextViewText(
                 R.id.notification_forecast_title_2, titles[1]);
+
         // set content.
         String[] contents = new String[2];
         if (today) {
-            contents[0] = ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[0], false, fahrenheit);
-            contents[1] = ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[1], false, fahrenheit);
+            contents[0] = weather.dailyList.get(0).weathers[0];
+            contents[1] = weather.dailyList.get(0).weathers[1];
         } else {
-            contents[0] = ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit);
-            contents[1] = ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit);
+            contents[0] = weather.dailyList.get(0).weathers[0];
+            contents[1] = weather.dailyList.get(1).weathers[0];
         }
         view.setTextViewText(
                 R.id.notification_forecast_content_1,
@@ -136,23 +139,21 @@ public class ForecastNotificationUtils {
         view.setTextViewText(
                 R.id.notification_forecast_content_2,
                 contents[1]);
-        // set time.
-        view.setTextViewText(
-                R.id.notification_forecast_time,
-                weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+
         // set background.
         if (backgroundColor) {
             view.setViewVisibility(R.id.notification_forecast_background, View.VISIBLE);
         } else {
             view.setViewVisibility(R.id.notification_forecast_background, View.GONE);
         }
+
         // set text color.
         view.setTextColor(R.id.notification_forecast_title_1, mainColor);
         view.setTextColor(R.id.notification_forecast_title_2, mainColor);
         view.setTextColor(R.id.notification_forecast_content_1, subColor);
         view.setTextColor(R.id.notification_forecast_content_2, subColor);
-        view.setTextColor(R.id.notification_forecast_time, subColor);
         builder.setContent(view);
+
         // set intent.
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context, 0, IntentHelper.buildMainActivityIntent(context, null), 0);

@@ -50,23 +50,26 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/notification_forecast_icon_1"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/normal_margin"
+                android:layout_marginLeft="@dimen/little_margin"
+                android:layout_marginRight="@dimen/little_margin"
                 tools:ignore="RtlHardcoded">
 
                 <TextView
                     android:id="@+id/notification_forecast_title_1"
                     android:text="@string/wait_refresh"
-                    android:textSize="@dimen/title_text_size"
+                    android:textSize="@dimen/content_text_size"
+                    android:maxLines="1"
                     style="@style/large_title_text"
-                    tools:text="阴 15℃"
+                    tools:text="今日 10/16°"
                     tools:textColor="@color/colorTextLight" />
 
                 <TextView
                     android:id="@+id/notification_forecast_content_1"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/content_text_size"
+                    android:maxLines="2"
                     style="@style/large_title_text"
-                    tools:text="10/15°"
+                    tools:text="Partly Sunny w/ Showers"
                     tools:textColor="@color/colorTextLight2nd" />
 
             </LinearLayout>
@@ -95,23 +98,26 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/notification_forecast_icon_2"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/normal_margin"
+                android:layout_marginLeft="@dimen/little_margin"
+                android:layout_marginRight="@dimen/little_margin"
                 tools:ignore="RtlHardcoded">
 
                 <TextView
                     android:id="@+id/notification_forecast_title_2"
                     android:text="@string/wait_refresh"
                     android:textSize="@dimen/title_text_size"
+                    android:maxLines="1"
                     style="@style/large_title_text"
-                    tools:text="阴 15℃"
+                    tools:text=" 明日 7/11°"
                     tools:textColor="@color/colorTextLight" />
 
                 <TextView
                     android:id="@+id/notification_forecast_content_2"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/content_text_size"
+                    android:maxLines="2"
                     style="@style/large_title_text"
-                    tools:text="10/15°"
+                    tools:text="Dreary (Overcast)"
                     tools:textColor="@color/colorTextLight2nd" />
 
             </LinearLayout>
@@ -119,18 +125,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/notification_forecast_time"
-        android:padding="@dimen/little_margin"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ellipsis"
-        android:textSize="@dimen/widget_time_text_size"
-        android:textColor="@color/colorTextGrey"
-        tools:text="青岛.10:00"
-        tools:ignore="RtlHardcoded,SmallSp" />
 
 </RelativeLayout>
