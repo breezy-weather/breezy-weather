@@ -20,6 +20,7 @@ public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
 
     private boolean isBeingDragged = false;
     private boolean isHorizontalDragged = false;
+    private boolean moveActionStarted = false;
 
     /** <br> life cycle. */
 
@@ -57,8 +58,6 @@ public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
                         isBeingDragged = true;
                         if (Math.abs(ev.getX() - initialX) > Math.abs(ev.getY() - initialY)) {
                             isHorizontalDragged = true;
-                        } else if (indicator != null) {
-                            indicator.setDisplayState(true);
                         }
                     } else {
                         initialX = ev.getX();
@@ -74,13 +73,19 @@ public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
                 break;
         }
 
-        return result && isBeingDragged && !isHorizontalDragged;
+        return result && !isHorizontalDragged;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_UP
+        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+            if (!moveActionStarted && indicator != null) {
+                moveActionStarted = true;
+                indicator.setDisplayState(true);
+            }
+        } else if (ev.getAction() == MotionEvent.ACTION_UP
                 || ev.getAction() == MotionEvent.ACTION_CANCEL) {
+            moveActionStarted = false;
             if (indicator != null) {
                 indicator.setDisplayState(false);
             }

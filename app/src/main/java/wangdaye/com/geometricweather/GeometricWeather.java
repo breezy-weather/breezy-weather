@@ -18,6 +18,7 @@ public class GeometricWeather extends Application {
     // data
     private List<GeoActivity> activityList;
     private boolean colorNavigationBar;
+    private boolean fahrenheit;
 
     /** <br> life cycle. */
 
@@ -34,6 +35,7 @@ public class GeometricWeather extends Application {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
         LanguageUtils.setLanguage(this, sharedPreferences.getString(getString(R.string.key_language), "follow_system"));
+        fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
     }
 
     /** <br> data. */
@@ -59,6 +61,14 @@ public class GeometricWeather extends Application {
 
     public void setColorNavigationBar() {
         this.colorNavigationBar = !colorNavigationBar;
+    }
+
+    public boolean isFahrenheit() {
+        return fahrenheit;
+    }
+
+    public void setFahrenheit() {
+        this.fahrenheit = !fahrenheit;
     }
 
     /** <br> singleton. */

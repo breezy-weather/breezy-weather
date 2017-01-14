@@ -14,9 +14,11 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Trend item view.
@@ -259,7 +261,7 @@ public class TrendItemView extends FrameLayout {
         paint.setTextSize(WEATHER_TEXT_SIZE);
         paint.setShadowLayer(2, 0, 2, shadowColors[2]);
         canvas.drawText(
-                temps[0] + "°",
+                ValueUtils.buildAbbreviatedCurrentTemp(temps[0], GeometricWeather.getInstance().isFahrenheit()),
                 (float) (getMeasuredWidth() / 2.0),
                 maxiTempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint);
@@ -321,7 +323,7 @@ public class TrendItemView extends FrameLayout {
         paint.setTextSize(WEATHER_TEXT_SIZE);
         paint.setShadowLayer(2, 0, 2, shadowColors[2]);
         canvas.drawText(
-                temps[1] + "°",
+                ValueUtils.buildAbbreviatedCurrentTemp(temps[1], GeometricWeather.getInstance().isFahrenheit()),
                 (float) (getMeasuredWidth() / 2.0),
                 miniTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint);
@@ -425,7 +427,7 @@ public class TrendItemView extends FrameLayout {
         paint.setTextSize(WEATHER_TEXT_SIZE);
         paint.setShadowLayer(2, 0, 2, shadowColors[2]);
         canvas.drawText(
-                temps[0] + "°",
+                ValueUtils.buildAbbreviatedCurrentTemp(temps[0], GeometricWeather.getInstance().isFahrenheit()),
                 (float) (getMeasuredWidth() / 2.0),
                 maxiTempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint);
@@ -504,18 +506,40 @@ public class TrendItemView extends FrameLayout {
                 0,
                 weather.dailyList.get(position).temps[0],
                 (float) ((weather.dailyList.get(position).temps[0] + weather.dailyList.get(position + 1).temps[0]) / 2.0)};
-        for (int i = 0; i < maxiTemps.length; i ++) {
-            maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (maxiTemps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < maxiTemps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(maxiTemps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < maxiTemps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (maxiTemps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
 
         float[] miniTemps = new float[] {
                 0,
                 weather.dailyList.get(position).temps[1],
                 (float) ((weather.dailyList.get(position).temps[1] + weather.dailyList.get(position + 1).temps[1]) / 2.0)};
-        for (int i = 0; i < miniTemps.length; i ++) {
-            miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (miniTemps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < miniTemps.length; i ++) {
+                miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(miniTemps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < miniTemps.length; i ++) {
+                miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (miniTemps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
     }
 
@@ -524,18 +548,40 @@ public class TrendItemView extends FrameLayout {
                 (float) ((weather.dailyList.get(position - 1).temps[0] + weather.dailyList.get(position).temps[0]) / 2.0),
                 weather.dailyList.get(position).temps[0],
                 0};
-        for (int i = 0; i < maxiTemps.length; i ++) {
-            maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (maxiTemps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < maxiTemps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(maxiTemps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < maxiTemps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (maxiTemps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
 
         float[] miniTemps = new float[] {
                 (float) ((weather.dailyList.get(position - 1).temps[1] + weather.dailyList.get(position).temps[1]) / 2.0),
                 weather.dailyList.get(position).temps[1],
                 0};
-        for (int i = 0; i < miniTemps.length; i ++) {
-            miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (miniTemps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < miniTemps.length; i ++) {
+                miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(miniTemps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < miniTemps.length; i ++) {
+                miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (miniTemps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
     }
 
@@ -544,18 +590,40 @@ public class TrendItemView extends FrameLayout {
                 (float) ((weather.dailyList.get(position - 1).temps[0] + weather.dailyList.get(position).temps[0]) / 2.0),
                 weather.dailyList.get(position).temps[0],
                 (float) ((weather.dailyList.get(position).temps[0] + weather.dailyList.get(position + 1).temps[0]) / 2.0)};
-        for (int i = 0; i < maxiTemps.length; i ++) {
-            maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (maxiTemps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < maxiTemps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(maxiTemps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < maxiTemps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (maxiTemps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
 
         float[] miniTemps = new float[] {
                 (float) ((weather.dailyList.get(position - 1).temps[1] + weather.dailyList.get(position).temps[1]) / 2.0),
                 weather.dailyList.get(position).temps[1],
                 (float) ((weather.dailyList.get(position).temps[1] + weather.dailyList.get(position + 1).temps[1]) / 2.0)};
-        for (int i = 0; i < miniTemps.length; i ++) {
-            miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (miniTemps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < miniTemps.length; i ++) {
+                miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(miniTemps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < miniTemps.length; i ++) {
+                miniTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (miniTemps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
     }
 
@@ -583,9 +651,20 @@ public class TrendItemView extends FrameLayout {
                 0,
                 weather.hourlyList.get(position).temp,
                 (float) ((weather.hourlyList.get(position).temp + weather.hourlyList.get(position + 1).temp) / 2.0)};
-        for (int i = 0; i < temps.length; i ++) {
-            maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (temps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < temps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(temps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < temps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (temps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
     }
 
@@ -594,9 +673,20 @@ public class TrendItemView extends FrameLayout {
                 (float) ((weather.hourlyList.get(position - 1).temp + weather.hourlyList.get(position).temp) / 2.0),
                 weather.hourlyList.get(position).temp,
                 0};
-        for (int i = 0; i < temps.length; i ++) {
-            maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (temps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < temps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(temps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < temps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (temps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
     }
 
@@ -605,9 +695,20 @@ public class TrendItemView extends FrameLayout {
                 (float) ((weather.hourlyList.get(position - 1).temp + weather.hourlyList.get(position).temp) / 2.0),
                 weather.hourlyList.get(position).temp,
                 (float) ((weather.hourlyList.get(position).temp + weather.hourlyList.get(position + 1).temp) / 2.0)};
-        for (int i = 0; i < temps.length; i ++) {
-            maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                    - calcDrawSpecUsableHeight(getContext()) * (temps[i] - lowest) / (highest - lowest));
+        if (GeometricWeather.getInstance().isFahrenheit()) {
+            for (int i = 0; i < temps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (ValueUtils.calcFahrenheit(temps[i]) - ValueUtils.calcFahrenheit(lowest))
+                        / (ValueUtils.calcFahrenheit(highest) - ValueUtils.calcFahrenheit(lowest)));
+            }
+        } else {
+            for (int i = 0; i < temps.length; i ++) {
+                maxiTempYs[i] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                        - calcDrawSpecUsableHeight(getContext())
+                        * (temps[i] - lowest)
+                        / (highest - lowest));
+            }
         }
     }
 

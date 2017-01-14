@@ -25,6 +25,7 @@ import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -97,7 +98,8 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(widgetIcon);
         widgetTitle.setText(weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
-        widgetSubtitle.setText(weather.base.city + " " + weather.realTime.temp + "℃");
+        widgetSubtitle.setText(weather.base.city + " "
+                + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
     }
 
     @Override

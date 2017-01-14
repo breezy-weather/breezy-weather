@@ -54,12 +54,12 @@ public class WidgetUtils {
                 });
     }
 
-    public static String[] buildWidgetDayStyleText(Weather weather) {
+    public static String[] buildWidgetDayStyleText(Weather weather, boolean fahrenheit) {
         String[] texts = new String[] {
                 weather.realTime.weather,
-                weather.realTime.temp + "℃",
-                weather.dailyList.get(0).temps[0] + "°",
-                weather.dailyList.get(0).temps[1] + "°"};
+                ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit),
+                ValueUtils.buildAbbreviatedCurrentTemp(weather.dailyList.get(0).temps[0], fahrenheit),
+                ValueUtils.buildAbbreviatedCurrentTemp(weather.dailyList.get(0).temps[1], fahrenheit)};
 
         TextPaint paint = new TextPaint();
 

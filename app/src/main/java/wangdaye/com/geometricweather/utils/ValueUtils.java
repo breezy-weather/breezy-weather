@@ -38,4 +38,36 @@ public class ValueUtils {
                 return c.getResources().getStringArray(R.array.notification_text_colors)[2];
         }
     }
+
+    public static String buildCurrentTemp(int temp, boolean space, boolean f) {
+        if (f) {
+            return calcFahrenheit(temp) + (space ? " ℉" : "℉");
+        } else {
+            return temp + (space ? " ℃" : "℃");
+        }
+    }
+
+    public static String buildAbbreviatedCurrentTemp(int temp, boolean f) {
+        if (f) {
+            return calcFahrenheit(temp) + "°";
+        } else {
+            return temp + "°";
+        }
+    }
+
+    public static String buildDailyTemp(int[] temps, boolean space, boolean f) {
+        if (f) {
+            return calcFahrenheit(temps[1]) + (space ? "° / " : "/") + calcFahrenheit(temps[0]) + "°";
+        } else {
+            return temps[1] + (space ? "° / " : "/") + temps[0] + "°";
+        }
+    }
+
+    public static int calcFahrenheit(int temp) {
+        return (int) (9.0 / 5.0 * temp + 32);
+    }
+
+    public static float calcFahrenheit(float temp) {
+        return (float) (9.0 / 5.0 * temp + 32);
+    }
 }

@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -14,6 +15,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetDayProvider;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -42,8 +44,11 @@ public class WidgetDayUtils {
         boolean hideRefreshTime = sharedPreferences.getBoolean(context.getString(R.string.key_hide_refresh_time), false);
         boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
+        boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.key_fahrenheit), false);
+
         RemoteViews views = buildWidgetView(
-                context, weather, dayTime, viewStyle, showCard, blackText, hideRefreshTime);
+                context, weather, dayTime, fahrenheit, viewStyle, showCard, blackText, hideRefreshTime);
         views.setViewVisibility(R.id.widget_day_card, showCard ? View.VISIBLE : View.GONE);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -59,7 +64,8 @@ public class WidgetDayUtils {
                 views);
     }
 
-    private static RemoteViews buildWidgetView(Context context, Weather weather, boolean dayTime,
+    private static RemoteViews buildWidgetView(Context context, Weather weather,
+                                               boolean dayTime, boolean fahrenheit,
                                                String viewStyle, boolean showCard, boolean blackText, boolean hideRefreshTime) {
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
         int textColor;
@@ -73,7 +79,7 @@ public class WidgetDayUtils {
             case "rectangle":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_day_rectangle);
 
-                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather);
+                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather, fahrenheit);
 
                 views.setImageViewResource(R.id.widget_day_icon, imageId[3]);
                 views.setTextViewText(R.id.widget_day_title, texts[0]);
@@ -94,10 +100,10 @@ public class WidgetDayUtils {
                 views.setImageViewResource(R.id.widget_day_icon, imageId[3]);
                 views.setTextViewText(
                         R.id.widget_day_title,
-                        weather.base.city + "\n" + weather.realTime.temp + " ℃");
+                        weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_day_subtitle,
-                        weather.realTime.weather + "\n" + weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
+                        weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_day_time,
                         weather.dailyList.get(0).week + " " + weather.base.time);
@@ -114,10 +120,10 @@ public class WidgetDayUtils {
                 views.setImageViewResource(R.id.widget_day_icon, imageId[3]);
                 views.setTextViewText(
                         R.id.widget_day_title,
-                        weather.realTime.weather + " " + weather.realTime.temp + "℃");
+                        weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_day_subtitle,
-                        weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
+                        ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_day_time,
                         weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
@@ -134,7 +140,7 @@ public class WidgetDayUtils {
                 views.setImageViewResource(R.id.widget_day_icon, imageId[3]);
                 views.setTextViewText(
                         R.id.widget_day_title,
-                        weather.realTime.weather + " " + weather.realTime.temp + "℃");
+                        weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_day_time,
                         weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
@@ -150,7 +156,7 @@ public class WidgetDayUtils {
                 views.setImageViewResource(R.id.widget_day_icon, imageId[3]);
                 views.setTextViewText(
                         R.id.widget_day_title,
-                        weather.realTime.temp + "℃");
+                        ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_day_subtitle,
                         weather.dailyList.get(0).date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);

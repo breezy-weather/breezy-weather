@@ -27,6 +27,7 @@ import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -115,31 +116,31 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         switch (viewTypeValueNow) {
             case "rectangle":
-                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather);
+                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather, isFahrenheit());
                 widgetTitle.setText(texts[0]);
                 widgetSubtitle.setText(texts[1]);
                 widgetTime.setText(weather.base.city + " " + weather.base.time);
                 break;
 
             case "symmetry":
-                widgetTitle.setText(weather.base.city + "\n" + weather.realTime.temp + " ℃");
-                widgetSubtitle.setText(weather.realTime.weather + "\n" + weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
+                widgetTitle.setText(weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, isFahrenheit()));
+                widgetSubtitle.setText(weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
                 widgetTime.setText(weather.dailyList.get(0).week + " " + weather.base.time);
                 break;
 
             case "tile":
-                widgetTitle.setText(weather.realTime.weather + " " + weather.realTime.temp + "℃");
-                widgetSubtitle.setText(weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
+                widgetTitle.setText(weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
+                widgetSubtitle.setText(ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
                 widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
                 break;
 
             case "mini":
-                widgetTitle.setText(weather.realTime.weather + " " + weather.realTime.temp + "℃");
+                widgetTitle.setText(ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
                 widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
                 break;
 
             case "pixel":
-                widgetTitle.setText(weather.realTime.temp + "℃");
+                widgetTitle.setText(ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
                 widgetSubtitle.setText(weather.dailyList.get(0).date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
                 break;
         }

@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -16,6 +17,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetWeekProvider;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -41,6 +43,9 @@ public class WidgetWeekUtils {
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean isDay = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+
+        boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.key_fahrenheit), false);
 
         // get text color.
         int textColor;
@@ -117,19 +122,19 @@ public class WidgetWeekUtils {
         // set temps texts.
         views.setTextViewText(
                 R.id.widget_week_temp_1,
-                weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
         views.setTextViewText(
                 R.id.widget_week_temp_2,
-                weather.dailyList.get(1).temps[1] + "/" + weather.dailyList.get(1).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit));
         views.setTextViewText(
                 R.id.widget_week_temp_3,
-                weather.dailyList.get(2).temps[1] + "/" + weather.dailyList.get(2).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit));
         views.setTextViewText(
                 R.id.widget_week_temp_4,
-                weather.dailyList.get(3).temps[1] + "/" + weather.dailyList.get(3).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit));
         views.setTextViewText(
                 R.id.widget_week_temp_5,
-                weather.dailyList.get(4).temps[1] + "/" + weather.dailyList.get(4).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit));
         // set text color.
         views.setTextColor(R.id.widget_week_week_1, textColor);
         views.setTextColor(R.id.widget_week_week_2, textColor);

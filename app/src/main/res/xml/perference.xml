@@ -20,6 +20,12 @@
             android:dialogTitle="@string/settings_language"
             android:defaultValue="follow_system" />
 
+        <CheckBoxPreference
+            android:title="@string/settings_title_fahrenheit"
+            android:key="@string/key_fahrenheit"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

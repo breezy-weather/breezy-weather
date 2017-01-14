@@ -9,11 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.view.widget.InkPageIndicator;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.view.widget.SwipeSwitchLayout;
 
 /**
@@ -116,12 +117,12 @@ public class TrendRecyclerView extends RecyclerView {
         paint.setTextAlign(Paint.Align.LEFT);
         paint.setColor(ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd));
         canvas.drawText(
-                history.maxiTemp + "°",
+                ValueUtils.buildAbbreviatedCurrentTemp(history.maxiTemp, GeometricWeather.getInstance().isFahrenheit()),
                 2 * MARGIN_TEXT,
                 tempYs[0] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint);
         canvas.drawText(
-                history.miniTemp + "°",
+                ValueUtils.buildAbbreviatedCurrentTemp(history.miniTemp, GeometricWeather.getInstance().isFahrenheit()),
                 2 * MARGIN_TEXT,
                 tempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint);
@@ -163,27 +164,51 @@ public class TrendRecyclerView extends RecyclerView {
             tempYs = null;
             return;
         }
-        int highest = history.maxiTemp;
-        int lowest = history.miniTemp;
+        int highest = GeometricWeather.getInstance().isFahrenheit()
+                ? ValueUtils.calcFahrenheit(history.maxiTemp) : history.maxiTemp;
+        int lowest = GeometricWeather.getInstance().isFahrenheit()
+                ? ValueUtils.calcFahrenheit(history.miniTemp) : history.miniTemp;
         switch (state) {
             case TrendItemView.DATA_TYPE_DAILY:
-                for (int i = 0; i < weather.dailyList.size(); i ++) {
-                    if (weather.dailyList.get(i).temps[0] > highest) {
-                        highest = weather.dailyList.get(i).temps[0];
+                if (GeometricWeather.getInstance().isFahrenheit()) {
+                    for (int i = 0; i < weather.dailyList.size(); i ++) {
+                        if (ValueUtils.calcFahrenheit(weather.dailyList.get(i).temps[0]) > highest) {
+                            highest = ValueUtils.calcFahrenheit(weather.dailyList.get(i).temps[0]);
+                        }
+                        if (ValueUtils.calcFahrenheit(weather.dailyList.get(i).temps[1]) < lowest) {
+                            lowest = ValueUtils.calcFahrenheit(weather.dailyList.get(i).temps[1]);
+                        }
                     }
-                    if (weather.dailyList.get(i).temps[1] < lowest) {
-                        lowest = weather.dailyList.get(i).temps[1];
+                } else {
+                    for (int i = 0; i < weather.dailyList.size(); i ++) {
+                        if (weather.dailyList.get(i).temps[0] > highest) {
+                            highest = weather.dailyList.get(i).temps[0];
+                        }
+                        if (weather.dailyList.get(i).temps[1] < lowest) {
+                            lowest = weather.dailyList.get(i).temps[1];
+                        }
                     }
                 }
                 break;
 
             case TrendItemView.DATA_TYPE_HOURLY:
-                for (int i = 0; i < weather.hourlyList.size(); i ++) {
-                    if (weather.hourlyList.get(i).temp > highest) {
-                        highest = weather.hourlyList.get(i).temp;
+                if (GeometricWeather.getInstance().isFahrenheit()) {
+                    for (int i = 0; i < weather.hourlyList.size(); i ++) {
+                        if (ValueUtils.calcFahrenheit(weather.hourlyList.get(i).temp) > highest) {
+                            highest = ValueUtils.calcFahrenheit(weather.hourlyList.get(i).temp);
+                        }
+                        if (ValueUtils.calcFahrenheit(weather.hourlyList.get(i).temp) < lowest) {
+                            lowest = ValueUtils.calcFahrenheit(weather.hourlyList.get(i).temp);
+                        }
                     }
-                    if (weather.hourlyList.get(i).temp < lowest) {
-                        lowest = weather.hourlyList.get(i).temp;
+                } else {
+                    for (int i = 0; i < weather.hourlyList.size(); i ++) {
+                        if (weather.hourlyList.get(i).temp > highest) {
+                            highest = weather.hourlyList.get(i).temp;
+                        }
+                        if (weather.hourlyList.get(i).temp < lowest) {
+                            lowest = weather.hourlyList.get(i).temp;
+                        }
                     }
                 }
                 break;

@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.basic;
 
+import android.preference.PreferenceManager;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
@@ -16,6 +18,7 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     // data
     private Location locationNow;
     private WeatherHelper weatherHelper;
+    private boolean fahrenheit;
 
     /** <br> life cycle. */
 
@@ -48,6 +51,8 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     public void initData() {
         this.locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
         this.weatherHelper = new WeatherHelper();
+        this.fahrenheit = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(getString(R.string.key_fahrenheit), false);
     }
 
     public abstract void initWidget();
@@ -56,6 +61,10 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
 
     public Location getLocationNow() {
         return locationNow;
+    }
+
+    public boolean isFahrenheit() {
+        return fahrenheit;
     }
 
     /** <br> interface. */

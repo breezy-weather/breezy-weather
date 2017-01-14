@@ -12,8 +12,10 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Index list view.
@@ -162,7 +164,11 @@ public class IndexListView extends FrameLayout {
             humidity.setVisibility(GONE);
         } else {
             humidity.setVisibility(VISIBLE);
-            humidityTitle.setText(weather.index.humidities[0]);
+            humidityTitle.setText(getContext().getString(R.string.sensible_temp) + " : "
+                    + ValueUtils.buildCurrentTemp(
+                    weather.realTime.sensibleTemp,
+                    false,
+                    GeometricWeather.getInstance().isFahrenheit()));
             humidityContent.setText(weather.index.humidities[1]);
         }
 

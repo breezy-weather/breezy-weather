@@ -133,6 +133,7 @@
     <string name="settings_navigationBar_color_on">导航栏显示主题颜色</string>
     <string name="settings_navigationBar_color_off">导航栏显示黑色</string>
     <string name="settings_language">语言</string>
+    <string name="settings_title_fahrenheit">华氏度</string>
     <string name="settings_category_forecast">预报</string>
     <string name="settings_title_forecast_today">定时预报(今日天气)</string>
     <string name="settings_title_forecast_today_time">设定预报时间(今日天气)</string>

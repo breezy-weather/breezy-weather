@@ -15,6 +15,7 @@ import android.widget.RemoteViews;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -35,6 +36,7 @@ public class NormalNotificationUtils {
 
         // get sp & realTimeWeather.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean fahrenheit = sharedPreferences.getBoolean(context.getString(R.string.key_fahrenheit), false);
 
         // get time & background color.
         boolean isDay = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
@@ -96,10 +98,10 @@ public class NormalNotificationUtils {
                 imageId[3]);
         base.setTextViewText( // set title.
                 R.id.notification_base_title,
-                weather.realTime.weather + " " + weather.realTime.temp + "℃");
+                weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
         base.setTextViewText( // set content.
                 R.id.notification_base_content,
-                weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
         base.setTextViewText( // set time.
                 R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
         if (backgroundColor) { // set background.
@@ -126,10 +128,10 @@ public class NormalNotificationUtils {
                 imageId[3]);
         big.setTextViewText( // set title.
                 R.id.notification_base_title,
-                weather.realTime.weather + " " + weather.realTime.temp + "℃");
+                weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
         big.setTextViewText( // set content.
                 R.id.notification_base_content,
-                weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
         big.setTextViewText( // set time.
                 R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
         big.setViewVisibility(R.id.notification_base_background, View.GONE);
@@ -139,7 +141,7 @@ public class NormalNotificationUtils {
                 context.getString(R.string.today));
         big.setTextViewText( // set temps 1.
                 R.id.notification_big_temp_1,
-                weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
         imageId = WeatherHelper.getWeatherIcon( // get icon 1 resource id.
                 isDay ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
                 isDay);
@@ -152,7 +154,7 @@ public class NormalNotificationUtils {
                 weather.dailyList.get(1).week);
         big.setTextViewText( // set temps 2.
                 R.id.notification_big_temp_2,
-                weather.dailyList.get(1).temps[1] + "/" + weather.dailyList.get(1).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit));
         imageId = WeatherHelper.getWeatherIcon( // get icon 2 resource id.
                 isDay ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
                 isDay);
@@ -165,7 +167,7 @@ public class NormalNotificationUtils {
                 weather.dailyList.get(2).week);
         big.setTextViewText( // set temps 3.
                 R.id.notification_big_temp_3,
-                weather.dailyList.get(2).temps[1] + "/" + weather.dailyList.get(2).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit));
         imageId = WeatherHelper.getWeatherIcon( // get icon 3 resource id.
                 isDay ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
                 isDay);
@@ -178,7 +180,7 @@ public class NormalNotificationUtils {
                 weather.dailyList.get(3).week);
         big.setTextViewText( // set temps 4.
                 R.id.notification_big_temp_4,
-                weather.dailyList.get(3).temps[1] + "/" + weather.dailyList.get(3).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit));
         imageId = WeatherHelper.getWeatherIcon( // get icon 4 resource id.
                 isDay ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
                 isDay);
@@ -191,7 +193,7 @@ public class NormalNotificationUtils {
                 weather.dailyList.get(4).week);
         big.setTextViewText( // set temps 5.
                 R.id.notification_big_temp_5,
-                weather.dailyList.get(4).temps[1] + "/" + weather.dailyList.get(4).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit));
         imageId = WeatherHelper.getWeatherIcon( // get icon 5 resource id.
                 isDay ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
                 isDay);

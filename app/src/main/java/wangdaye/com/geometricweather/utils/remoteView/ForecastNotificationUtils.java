@@ -16,6 +16,7 @@ import java.util.Calendar;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -28,8 +29,13 @@ public class ForecastNotificationUtils {
     /** <br> UI. */
 
     public static void buildForecastAndSendIt(Context context, Weather weather, boolean today) {
+        if (weather == null) {
+            return;
+        }
+
         // get sp & realTimeWeather.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean fahrenheit = sharedPreferences.getBoolean(context.getString(R.string.key_fahrenheit), false);
 
         // get time & background color.
         boolean backgroundColor = sharedPreferences.getBoolean(
@@ -118,11 +124,11 @@ public class ForecastNotificationUtils {
         // set content.
         String[] contents = new String[2];
         if (today) {
-            contents[0] = weather.dailyList.get(0).temps[0] + "℃";
-            contents[1] = weather.dailyList.get(0).temps[1] + "℃";
+            contents[0] = ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[0], false, fahrenheit);
+            contents[1] = ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[1], false, fahrenheit);
         } else {
-            contents[0] = weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°";
-            contents[1] = weather.dailyList.get(1).temps[1] + "/" + weather.dailyList.get(1).temps[0] + "°";
+            contents[0] = ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit);
+            contents[1] = ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit);
         }
         view.setTextViewText(
                 R.id.notification_forecast_content_1,
@@ -133,7 +139,7 @@ public class ForecastNotificationUtils {
         // set time.
         view.setTextViewText(
                 R.id.notification_forecast_time,
-                weather.base.city + "." + weather.base.time);
+                weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
         // set background.
         if (backgroundColor) {
             view.setViewVisibility(R.id.notification_forecast_background, View.VISIBLE);

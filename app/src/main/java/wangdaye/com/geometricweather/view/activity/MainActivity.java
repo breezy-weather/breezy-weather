@@ -28,12 +28,14 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.PermissionUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.widget.SafeHandler;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
@@ -152,20 +154,22 @@ public class MainActivity extends GeoActivity
                 if (resultCode == RESULT_OK) {
                     readLocationList();
                     readIntentData(data);
-                    reset();
                     swipeSwitchLayout.setData(locationList, locationNow);
                     indicator.setSwitchView(swipeSwitchLayout);
+                    reset();
                 } else {
                     readLocationList();
                     for (int i = 0; i < locationList.size(); i ++) {
                         if (locationNow.equals(locationList.get(i))) {
+                            swipeSwitchLayout.setData(locationList, locationNow);
+                            indicator.setSwitchView(swipeSwitchLayout);
                             return;
                         }
                     }
                     locationNow = locationList.get(0);
-                    reset();
                     swipeSwitchLayout.setData(locationList, locationNow);
                     indicator.setSwitchView(swipeSwitchLayout);
+                    reset();
                 }
                 break;
         }
@@ -319,7 +323,10 @@ public class MainActivity extends GeoActivity
 
         skyView.setWeather(weather);
 
-        titleTexts[0].setText(weather.realTime.temp + "°");
+        titleTexts[0].setText(
+                ValueUtils.buildAbbreviatedCurrentTemp(
+                        weather.realTime.temp,
+                        GeometricWeather.getInstance().isFahrenheit()));
         titleTexts[1].setText(weather.realTime.weather);
         titleTexts[2].setText(weather.aqi.quality);
 

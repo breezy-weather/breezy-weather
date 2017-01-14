@@ -258,6 +258,9 @@ public class InkPageIndicator extends View
         retreatingJoinX1 = INVALID_FRACTION;
         retreatingJoinX2 = INVALID_FRACTION;
         selectedDotInPosition = true;
+        if (getMeasuredHeight() != 0 || getMeasuredWidth() != 0) {
+            calculateDotPositions(getMeasuredWidth(), getMeasuredHeight());
+        }
     }
 
     @Override

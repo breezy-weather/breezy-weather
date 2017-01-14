@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.AlarmClock;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -16,6 +17,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayVerticalProvider;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -45,6 +47,9 @@ public class WidgetClockDayVerticalUtils {
         boolean hideRefreshTime = sharedPreferences.getBoolean(context.getString(R.string.key_hide_refresh_time), false);
         boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
+        boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.key_fahrenheit), false);
+
         int textColor;
         if (blackText || showCard) {
             textColor = ContextCompat.getColor(context, R.color.colorTextDark);
@@ -53,7 +58,7 @@ public class WidgetClockDayVerticalUtils {
         }
 
         RemoteViews views = buildWidgetViewDayPart(
-                context, weather, dayTime, textColor, viewStyle, hideRefreshTime);
+                context, weather, dayTime, textColor, fahrenheit, viewStyle, hideRefreshTime);
 
         views.setViewVisibility(R.id.widget_clock_day_card, showCard ? View.VISIBLE : View.GONE);
 
@@ -76,7 +81,8 @@ public class WidgetClockDayVerticalUtils {
                 views);
     }
 
-    private static RemoteViews buildWidgetViewDayPart(Context context, Weather weather, boolean dayTime, int textColor,
+    private static RemoteViews buildWidgetViewDayPart(Context context, Weather weather,
+                                                      boolean dayTime, int textColor, boolean fahrenheit,
                                                       String viewStyle, boolean hideRefreshTime) {
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
         RemoteViews views;
@@ -84,7 +90,7 @@ public class WidgetClockDayVerticalUtils {
             case "rectangle":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_rectangle);
 
-                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather);
+                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather, fahrenheit);
 
                 views.setImageViewResource(R.id.widget_clock_day_icon, imageId[3]);
                 views.setTextViewText(R.id.widget_clock_day_title, texts[0]);
@@ -105,10 +111,10 @@ public class WidgetClockDayVerticalUtils {
                 views.setImageViewResource(R.id.widget_clock_day_icon, imageId[3]);
                 views.setTextViewText(
                         R.id.widget_clock_day_title,
-                        weather.base.city + "\n" + weather.realTime.temp + " ℃");
+                        weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_clock_day_subtitle,
-                        weather.realTime.weather + "\n" + weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
+                        weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_clock_day_time,
                         weather.dailyList.get(0).week + " " + weather.base.time);
@@ -126,10 +132,10 @@ public class WidgetClockDayVerticalUtils {
                 views.setImageViewResource(R.id.widget_clock_day_icon, imageId[3]);
                 views.setTextViewText(
                         R.id.widget_clock_day_title,
-                        weather.realTime.weather + " " + weather.realTime.temp + "℃");
+                        weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_clock_day_subtitle,
-                        weather.dailyList.get(0).temps[1] + " / " + weather.dailyList.get(0).temps[0] + "°");
+                        ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_clock_day_time,
                         weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);

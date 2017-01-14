@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.AlarmClock;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -16,6 +17,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayHorizontalProvider;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -42,6 +44,9 @@ public class WidgetClockDayHorizontalUtils {
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
+        boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.key_fahrenheit), false);
+
         int textColor;
         if (blackText || showCard) {
             textColor = ContextCompat.getColor(context, R.color.colorTextDark);
@@ -61,7 +66,7 @@ public class WidgetClockDayHorizontalUtils {
                 R.id.widget_clock_day_title,
                 dateText);
 
-        String weatherText = weather.base.city + " " + weather.realTime.temp + "℃";
+        String weatherText = weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
         views.setTextViewText(
                 R.id.widget_clock_day_subtitle,
                 weatherText);

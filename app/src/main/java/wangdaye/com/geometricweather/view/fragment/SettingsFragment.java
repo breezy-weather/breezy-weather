@@ -53,6 +53,9 @@ public class SettingsFragment extends PreferenceFragment
                         getActivity(),
                         sharedPreferences.getString(getString(R.string.key_language), "follow_system")));
         language.setOnPreferenceChangeListener(this);
+
+        Preference fahrenheit = findPreference(getString(R.string.key_fahrenheit));
+        fahrenheit.setOnPreferenceChangeListener(this);
     }
 
     private void initForecastPart(SharedPreferences sharedPreferences) {
@@ -136,6 +139,9 @@ public class SettingsFragment extends PreferenceFragment
             GeometricWeather.getInstance().setColorNavigationBar();
             DisplayUtils.setNavigationBarColor(getActivity(), true);
             return true;
+        } else if (preference.getKey().equals(getString(R.string.key_fahrenheit))) {
+            // ℉
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today))) {
             // forecast today.
             initForecastPart(sharedPreferences);

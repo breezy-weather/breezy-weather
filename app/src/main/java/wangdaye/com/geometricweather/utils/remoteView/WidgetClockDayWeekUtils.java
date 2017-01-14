@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.AlarmClock;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -18,6 +19,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayWeekProvider;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -44,6 +46,9 @@ public class WidgetClockDayWeekUtils {
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
+        boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.key_fahrenheit), false);
+
         int textColor;
         if (blackText || showCard) {
             textColor = ContextCompat.getColor(context, R.color.colorTextDark);
@@ -63,10 +68,9 @@ public class WidgetClockDayWeekUtils {
                 R.id.widget_clock_day_week_title,
                 dateText);
 
-        String weatherText = weather.base.city + " " + weather.realTime.temp + "℃";
         views.setTextViewText(
                 R.id.widget_clock_day_week_subtitle,
-                weatherText);
+                weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
 
         String firstWeekDay;
         String secondWeekDay;
@@ -108,19 +112,19 @@ public class WidgetClockDayWeekUtils {
 
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_1,
-                weather.dailyList.get(0).temps[1] + "/" + weather.dailyList.get(0).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_2,
-                weather.dailyList.get(1).temps[1] + "/" + weather.dailyList.get(1).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit));
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_3,
-                weather.dailyList.get(2).temps[1] + "/" + weather.dailyList.get(2).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit));
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_4,
-                weather.dailyList.get(3).temps[1] + "/" + weather.dailyList.get(3).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit));
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_5,
-                weather.dailyList.get(4).temps[1] + "/" + weather.dailyList.get(4).temps[0] + "°");
+                ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit));
 
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_1,
