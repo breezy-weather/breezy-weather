@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingRight="@dimen/normal_margin"
+        android:layout_centerVertical="true"
         tools:ignore="RtlHardcoded,RtlSymmetry">
 
         <RelativeLayout
@@ -35,8 +35,8 @@
 
             <ImageView
                 android:id="@+id/widget_day_icon"
-                android:layout_width="@dimen/little_flag_icon_size"
-                android:layout_height="@dimen/little_flag_icon_size"
+                android:layout_width="@dimen/widget_week_icon_size"
+                android:layout_height="@dimen/widget_week_icon_size"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/widget_day_title"
                 android:layout_marginRight="@dimen/little_margin"
@@ -60,7 +60,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:maxLines="1"
-                style="@style/content_text"
+                style="@style/subtitle_text"
                 tools:text="12-29 周四"
                 tools:ignore="RtlHardcoded" />
 

@@ -69,10 +69,18 @@ public class WidgetDayUtils {
                                                String viewStyle, boolean showCard, boolean blackText, boolean hideRefreshTime) {
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
         int textColor;
-        if (blackText || showCard) {
-            textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+        if (viewStyle.equals("pixel")) {
+            if (blackText) {
+                textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+            } else {
+                textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+            }
         } else {
-            textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+            if (blackText || showCard) {
+                textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+            } else {
+                textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+            }
         }
         RemoteViews views;
         switch (viewStyle) {

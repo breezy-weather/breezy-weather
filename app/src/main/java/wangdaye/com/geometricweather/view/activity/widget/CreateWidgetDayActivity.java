@@ -277,6 +277,13 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
             setWidgetView(false);
             refreshWidgetView(getLocationNow().weather);
 
+            if (viewTypeValueNow.equals("pixel")) {
+                showCardSwitch.setChecked(false);
+                showCardSwitch.setEnabled(false);
+            } else {
+                showCardSwitch.setEnabled(true);
+            }
+
             if (showCardSwitch.isChecked()) {
                 if (widgetCard != null) {
                     widgetCard.setVisibility(View.VISIBLE);
