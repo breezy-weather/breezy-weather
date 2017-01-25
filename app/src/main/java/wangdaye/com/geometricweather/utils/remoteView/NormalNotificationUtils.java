@@ -114,10 +114,26 @@ public class NormalNotificationUtils {
             base.setTextViewText(
                     R.id.notification_base_aqi_wind,
                     "AQI " + weather.aqi.aqi);
+            int colorRes = WeatherHelper.getAqiColorResId(Integer.parseInt(weather.aqi.aqi));
+            if (colorRes == 0) {
+                base.setTextColor(R.id.notification_base_aqi_wind, subColor);
+            } else {
+                base.setTextColor(
+                        R.id.notification_base_aqi_wind,
+                        ContextCompat.getColor(context, colorRes));
+            }
         } else {
             base.setTextViewText(
                     R.id.notification_base_aqi_wind,
                     weather.realTime.windLevel);
+            int colorRes = WeatherHelper.getWindColorResId(weather.realTime.windSpeed);
+            if (colorRes == 0) {
+                base.setTextColor(R.id.notification_base_aqi_wind, subColor);
+            } else {
+                base.setTextColor(
+                        R.id.notification_base_aqi_wind,
+                        ContextCompat.getColor(context, colorRes));
+            }
         }
 
         base.setTextViewText(
@@ -135,7 +151,6 @@ public class NormalNotificationUtils {
 
         base.setTextColor(R.id.notification_base_realtimeTemp, mainColor);
         base.setTextColor(R.id.notification_base_dailyTemp, subColor);
-        base.setTextColor(R.id.notification_base_aqi_wind, subColor);
         base.setTextColor(R.id.notification_base_weather, mainColor);
         base.setTextColor(R.id.notification_base_time, subColor);
 
@@ -167,10 +182,26 @@ public class NormalNotificationUtils {
                 big.setTextViewText(
                         R.id.notification_base_aqi_wind,
                         "AQI " + weather.aqi.aqi);
+                int colorRes = WeatherHelper.getAqiColorResId(Integer.parseInt(weather.aqi.aqi));
+                if (colorRes == 0) {
+                    big.setTextColor(R.id.notification_base_aqi_wind, subColor);
+                } else {
+                    big.setTextColor(
+                            R.id.notification_base_aqi_wind,
+                            ContextCompat.getColor(context, colorRes));
+                }
             } else {
                 big.setTextViewText(
                         R.id.notification_base_aqi_wind,
                         weather.realTime.windLevel);
+                int colorRes = WeatherHelper.getWindColorResId(weather.realTime.windSpeed);
+                if (colorRes == 0) {
+                    big.setTextColor(R.id.notification_base_aqi_wind, subColor);
+                } else {
+                    big.setTextColor(
+                            R.id.notification_base_aqi_wind,
+                            ContextCompat.getColor(context, colorRes));
+                }
             }
 
             big.setTextViewText(
@@ -259,7 +290,6 @@ public class NormalNotificationUtils {
 
             big.setTextColor(R.id.notification_base_realtimeTemp, mainColor);
             big.setTextColor(R.id.notification_base_dailyTemp, subColor);
-            big.setTextColor(R.id.notification_base_aqi_wind, subColor);
             big.setTextColor(R.id.notification_base_weather, mainColor);
             big.setTextColor(R.id.notification_base_time, subColor);
             big.setTextColor(R.id.notification_big_week_1, subColor);

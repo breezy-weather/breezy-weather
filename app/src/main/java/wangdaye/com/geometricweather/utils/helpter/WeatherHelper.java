@@ -537,6 +537,23 @@ public class WeatherHelper {
             return c.getString(R.string.wind_12);
         }
     }
+
+    public static int getWindColorResId(String speed) {
+        double s = Double.parseDouble(speed.split("km/h")[0]);
+        if (s <= 30) {
+            return 0;
+        } else if (s <= 51) {
+            return 0;
+        } else if (s <= 75) {
+            return 0;
+        } else if (s <= 103) {
+            return R.color.colorLevel_4;
+        } else if (s <= 117) {
+            return R.color.colorLevel_5;
+        } else {
+            return R.color.colorLevel_6;
+        }
+    }
 /*
     public static int getPrecipitation(int precipitation) {
         if (precipitation < 3) {
@@ -563,6 +580,22 @@ public class WeatherHelper {
             return c.getString(R.string.aqi_5);
         } else {
             return c.getString(R.string.aqi_6);
+        }
+    }
+
+    public static int getAqiColorResId(int index) {
+        if (index <= 50) {
+            return 0;
+        } else if (index <= 100) {
+            return 0;
+        } else if (index <= 150) {
+            return 0;
+        } else if (index <= 200) {
+            return R.color.colorLevel_4;
+        } else if (index <= 300) {
+            return R.color.colorLevel_5;
+        } else {
+            return R.color.colorLevel_6;
         }
     }
 
