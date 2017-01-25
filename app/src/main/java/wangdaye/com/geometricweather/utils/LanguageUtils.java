@@ -14,37 +14,25 @@ import java.util.Locale;
 public class LanguageUtils {
 
     public static void setLanguage(Context c, String language) {
-        Resources resources = c.getResources();
-        Configuration configuration = resources.getConfiguration();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-
-        if (language.equals("follow_system")) {
-            switch (Locale.getDefault().getCountry()) {
-                case "CN":
-                case "cn":
-                    configuration.setLocale(Locale.SIMPLIFIED_CHINESE);
-                    break;
-
-                default:
-                    configuration.setLocale(Locale.US);
-                    break;
-            }
-        } else {
+        if (!language.equals("follow_system")) {
+            Resources resources = c.getResources();
+            Configuration configuration = resources.getConfiguration();
+            DisplayMetrics metrics = resources.getDisplayMetrics();
             switch (language) {
                 case "chinese":
-                    configuration.setLocale(Locale.SIMPLIFIED_CHINESE);
+                    configuration.setLocale(new Locale("zh"));
                     break;
 
-                case "english":
-                    configuration.setLocale(Locale.US);
+                case "turkish":
+                    configuration.setLocale(new Locale("tr"));
                     break;
 
                 default:
-                    configuration.setLocale(Locale.US);
+                    configuration.setLocale(new Locale("en"));
                     break;
             }
+            resources.updateConfiguration(configuration, metrics);
         }
-        resources.updateConfiguration(configuration, metrics);
     }
 
     public static String getLanguageCode(Context c) {

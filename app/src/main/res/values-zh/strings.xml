@@ -12,7 +12,7 @@
     <string name="time">时间</string>
     <string name="day">白天</string>
     <string name="night">夜间</string>
-    <string name="wind">风力</string>
+    <string name="wind">风况</string>
     <string name="sensible_temp">体感温度</string>
     <string name="humidity">相对湿度</string>
     <string name="uv_index">紫外线指数</string>
@@ -68,6 +68,7 @@
     <string name="introduce">介绍</string>
     <string name="email">E-mail</string>
     <string name="gitHub">GitHub</string>
+    <string name="translator">译者</string>
     <string name="thanks">鸣谢</string>
 
     <!-- about. -->
@@ -128,12 +129,13 @@
     <string name="ellipsis">…</string>
 
     <!-- settings -->
-    <string name="settings_category_ui">界面</string>
+    <string name="settings_category_basic">基础</string>
     <string name="settings_title_navigationBar_color">导航栏着色</string>
     <string name="settings_navigationBar_color_on">导航栏显示主题颜色</string>
     <string name="settings_navigationBar_color_off">导航栏显示黑色</string>
     <string name="settings_language">语言</string>
     <string name="settings_title_fahrenheit">华氏度</string>
+    <string name="settings_title_permanent_service">后台服务常驻</string>
     <string name="settings_category_forecast">预报</string>
     <string name="settings_title_forecast_today">定时预报(今日天气)</string>
     <string name="settings_title_forecast_today_time">设定预报时间(今日天气)</string>
@@ -151,8 +153,11 @@
     <string name="settings_title_notification_hide_icon">隐藏通知图标</string>
     <string name="settings_notification_hide_icon_on">隐藏通知图标</string>
     <string name="settings_notification_hide_icon_off">显示通知图标</string>
-    <string name="settings_title_notification_hide_in_lockScreen">隐藏锁屏通知(5.0+)</string>
+    <string name="settings_title_notification_hide_in_lockScreen">隐藏锁屏通知</string>
     <string name="settings_notification_hide_in_lockScreen_on">在锁屏界面隐藏(需在系统设置中隐藏敏感通知)</string>
     <string name="settings_notification_hide_in_lockScreen_off">在锁屏界面显示通知</string>
+    <string name="settings_title_notification_hide_big_view">隐藏大视图</string>
+    <string name="settings_notification_hide_big_view_on">隐藏</string>
+    <string name="settings_notification_hide_big_view_off">显示</string>
 
 </resources>

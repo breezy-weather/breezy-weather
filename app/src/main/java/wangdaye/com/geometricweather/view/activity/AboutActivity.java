@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.view.dialog.TranslatorDialog;
 
 /**
  * Show application's details.
@@ -63,6 +64,7 @@ public class AboutActivity extends GeoActivity
 
         findViewById(R.id.container_about_app_github).setOnClickListener(this);
         findViewById(R.id.container_about_app_email).setOnClickListener(this);
+        findViewById(R.id.container_about_app_translator).setOnClickListener(this);
         findViewById(R.id.container_about_thx_location).setOnClickListener(this);
         findViewById(R.id.container_about_thx_retrofit).setOnClickListener(this);
         findViewById(R.id.container_about_thx_glide).setOnClickListener(this);
@@ -93,6 +95,11 @@ public class AboutActivity extends GeoActivity
                         new Intent(
                                 Intent.ACTION_SENDTO,
                                 Uri.parse("mailto:wangdayeeeeee@gmail.com")));
+                break;
+
+            case R.id.container_about_app_translator:
+                TranslatorDialog dialog = new TranslatorDialog();
+                dialog.show(getFragmentManager(), null);
                 break;
 
             case R.id.container_about_thx_location:

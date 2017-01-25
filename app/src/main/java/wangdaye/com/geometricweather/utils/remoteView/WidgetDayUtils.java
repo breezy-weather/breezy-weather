@@ -69,7 +69,7 @@ public class WidgetDayUtils {
                                                String viewStyle, boolean showCard, boolean blackText, boolean hideRefreshTime) {
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
         int textColor;
-        if (viewStyle.equals("pixel")) {
+        if (viewStyle.equals("pixel") || viewStyle.equals("nano")) {
             if (blackText) {
                 textColor = ContextCompat.getColor(context, R.color.colorTextDark);
             } else {
@@ -155,6 +155,18 @@ public class WidgetDayUtils {
 
                 views.setTextColor(R.id.widget_day_title, textColor);
                 views.setTextColor(R.id.widget_day_time, textColor);
+                views.setViewVisibility(R.id.widget_day_time, hideRefreshTime ? View.GONE : View.VISIBLE);
+                return views;
+
+            case "nano":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_nano);
+
+                views.setImageViewResource(R.id.widget_day_icon, imageId[3]);
+                views.setTextViewText(
+                        R.id.widget_day_title,
+                        ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
+
+                views.setTextColor(R.id.widget_day_title, textColor);
                 views.setViewVisibility(R.id.widget_day_time, hideRefreshTime ? View.GONE : View.VISIBLE);
                 return views;
 

@@ -135,8 +135,12 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 break;
 
             case "mini":
-                widgetTitle.setText(ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
+                widgetTitle.setText(weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
                 widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                break;
+
+            case "nano":
+                widgetTitle.setText(ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
                 break;
 
             case "pixel":
@@ -161,6 +165,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                     LayoutInflater.from(this).inflate(R.layout.widget_day_symmetry, null),
                     LayoutInflater.from(this).inflate(R.layout.widget_day_tile, null),
                     LayoutInflater.from(this).inflate(R.layout.widget_day_mini, null),
+                    LayoutInflater.from(this).inflate(R.layout.widget_day_nano, null),
                     LayoutInflater.from(this).inflate(R.layout.widget_day_pixel, null)};
             for (View widgetView : widgetViews) {
                 ((ViewGroup) findViewById(R.id.activity_create_widget_day_widgetContainer)).addView(widgetView);
@@ -219,14 +224,25 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 this.widgetTime = (TextView) widgetViews[3].findViewById(R.id.widget_day_time);
                 break;
 
-            case "pixel":
+            case "nano":
                 this.widgetViews[4].setVisibility(View.VISIBLE);
 
                 this.widgetCard = null;
 
                 this.widgetIcon = (ImageView) widgetViews[4].findViewById(R.id.widget_day_icon);
                 this.widgetTitle = (TextView) widgetViews[4].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[4].findViewById(R.id.widget_day_subtitle);
+                this.widgetSubtitle = null;
+                this.widgetTime = null;
+                break;
+
+            case "pixel":
+                this.widgetViews[5].setVisibility(View.VISIBLE);
+
+                this.widgetCard = null;
+
+                this.widgetIcon = (ImageView) widgetViews[5].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = (TextView) widgetViews[5].findViewById(R.id.widget_day_title);
+                this.widgetSubtitle = (TextView) widgetViews[5].findViewById(R.id.widget_day_subtitle);
                 this.widgetTime = null;
                 break;
         }
@@ -277,7 +293,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
             setWidgetView(false);
             refreshWidgetView(getLocationNow().weather);
 
-            if (viewTypeValueNow.equals("pixel")) {
+            if (viewTypeValueNow.equals("pixel") || viewTypeValueNow.equals("nano")) {
                 showCardSwitch.setChecked(false);
                 showCardSwitch.setEnabled(false);
             } else {

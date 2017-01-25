@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
 
     <!-- language. -->
     <string-array name="languages">
-        <item>跟随系统</item>
+        <item>Sistem Dili</item>
         <item>中文</item>
         <item>English</item>
         <item>Türkçe</item>
@@ -11,16 +12,16 @@
 
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
-        <item>深色</item>
-        <item>灰色</item>
-        <item>亮色</item>
+        <item>Koyu</item>
+        <item>Gri</item>
+        <item>Açık</item>
     </string-array>
 
     <!-- widget style. -->
     <string-array name="widget_styles">
-        <item>矩形</item>
-        <item>对称</item>
-        <item>平铺</item>
+        <item>Dikdörtgen</item>
+        <item>Simetri</item>
+        <item>Döşeme</item>
         <item>Mini</item>
         <item>Nano</item>
         <item>Pixel</item>

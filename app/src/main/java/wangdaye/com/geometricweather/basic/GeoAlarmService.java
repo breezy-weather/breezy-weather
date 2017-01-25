@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -27,13 +28,24 @@ public abstract class GeoAlarmService extends Service
     // widget.
     private WeatherHelper weatherHelper;
 
+    // data.
+    private boolean refreshing;
+
     /** <br> life cycle. */
+
+    @Override
+    public void onCreate() {
+        refreshing = false;
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
-        doRefresh(locationList.get(0));
+        if (!refreshing) {
+            refreshing = true;
+            List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
+            doRefresh(locationList.get(0));
+        }
         return START_NOT_STICKY;
     }
 
@@ -80,19 +92,30 @@ public abstract class GeoAlarmService extends Service
     }
 
     public static void setAlarmIntent(Context context, Class<?> cls, int requestCode) {
-        Intent target = new Intent(context, cls);
-        PendingIntent pendingIntent = PendingIntent.getService(
-                context,
-                requestCode,
-                target,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        if (!PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.key_permanent_service), false)) {
+            Intent target = new Intent(context, cls);
+            PendingIntent pendingIntent = PendingIntent.getService(
+                    context,
+                    requestCode,
+                    target,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
 
-        int duration = (int) (1000 * 60 * 60 * 1.5);
-        ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE))
-                .set(
-                        AlarmManager.ELAPSED_REALTIME,
-                        SystemClock.elapsedRealtime() + duration, 
-                        pendingIntent);
+            int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+            int minute = Calendar.getInstance().get(Calendar.MINUTE);
+            int duration;
+            if (24 * 60 - hour * 60 - minute < 1000 * 60 * 60 * 1.5) {
+                duration = (24 * 60 + 10 - hour * 60 - minute) * 60 * 1000;
+            } else {
+                duration = (int) (1000 * 60 * 60 * 1.5);
+            }
+
+            ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE))
+                    .set(
+                            AlarmManager.ELAPSED_REALTIME,
+                            SystemClock.elapsedRealtime() + duration,
+                            pendingIntent);
+        }
     }
     
     public static void cancelAlarmIntent(Context context, Class<?> cls, int requestCode) {
@@ -111,6 +134,7 @@ public abstract class GeoAlarmService extends Service
     @Override
     public void onDestroy() {
         super.onDestroy();
+        refreshing = false;
         if (weatherHelper != null) {
             weatherHelper.cancel();
         }

@@ -64,7 +64,7 @@ public class WeatherDialog extends GeoDialogFragment
         TextView title = (TextView) view.findViewById(R.id.dialog_weather_title);
         if (daily) {
             title.setText(weather.dailyList.get(position).date.split("-", 2)[1]
-                    + " : " + weather.dailyList.get(position).week);
+                    + " " + weather.dailyList.get(position).week);
         } else {
             title.setText(weather.hourlyList.get(position).time);
         }

@@ -128,6 +128,14 @@ public class MainActivity extends GeoActivity
             initData();
             initWidget();
             reset();
+        } else if (!swipeRefreshLayout.isRefreshing()) {
+            Weather memory = DatabaseHelper.getInstance(this).readWeather(locationNow);
+            if (locationNow.weather != null && memory != null
+                    && !memory.base.time.equals(locationNow.weather.base.time)) {
+                locationNow.weather = memory;
+                locationNow.history = DatabaseHelper.getInstance(this).readHistory(memory);
+                reset();
+            }
         }
     }
 

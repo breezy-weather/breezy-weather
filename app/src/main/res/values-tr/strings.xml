@@ -1,0 +1,168 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <!-- app. -->
+    <string name="app_name">Hava Durumu</string>
+
+    <!-- keyword. -->
+    <string name="local">yerel</string>
+    <string name="default_location">varsayılan konum</string>
+    <string name="live">Canlı</string>
+    <string name="today">Bugün</string>
+    <string name="refresh_at">güncelleme</string>
+    <string name="precipitation">Yağış</string>
+    <string name="maxi_temp">gündüz</string>
+    <string name="mini_temp">akşam</string>
+    <string name="time">zaman</string>
+    <string name="day">gündüz</string>
+    <string name="night">gece</string>
+    <string name="wind">Rüzgar</string>
+    <string name="sensible_temp">Hissedilen sıcaklık</string>
+    <string name="humidity">Nem</string>
+    <string name="uv_index">UV Endeksi</string>
+    <string name="forecast">Tahmin</string>
+    <string name="briefings">Brifingler</string>
+    <string name="daytime">Gündüz</string>
+    <string name="nighttime">Gece</string>
+    <string name="publish_at">Yayınlama</string>
+
+    <string name="of_clock">:00</string>
+    <string name="yesterday">dün</string>
+    <string name="tomorrow">yrn</string>
+    <string name="week">hafta</string>
+    <string name="week_1">PZT</string>
+    <string name="week_2">SAL</string>
+    <string name="week_3">ÇAR</string>
+    <string name="week_4">PER</string>
+    <string name="week_5">CUM</string>
+    <string name="week_6">CMT</string>
+    <string name="week_7">PAZ</string>
+
+    <string name="wind_0">Sakin</string>
+    <string name="wind_1">Hafif</string>
+    <string name="wind_2">Hafif bir esinti</string>
+    <string name="wind_3">Hafif esinti</string>
+    <string name="wind_4">Orta dereceli esinti</string>
+    <string name="wind_5">Taze esinti</string>
+    <string name="wind_6">Kuvvetli esinti</string>
+    <string name="wind_7">Yakın esinti</string>
+    <string name="wind_8">Rüzgar</string>
+    <string name="wind_9">Kuvvetli rüzgar</string>
+    <string name="wind_10">Fırtına</string>
+    <string name="wind_11">Şiddetli Fırtına</string>
+    <string name="wind_12">Kasırga/Tayfun</string>
+
+    <string name="aqi_1">Taze hava</string>
+    <string name="aqi_2">Temiz hava</string>
+    <string name="aqi_3">Az kirli</string>
+    <string name="aqi_4">Orta kirli</string>
+    <string name="aqi_5">Çok kirli</string>
+    <string name="aqi_6">Tehlikeli</string>
+
+    <string name="week_weather">Genel Bakış</string>
+    <string name="life_details">ayrıntılar</string>
+
+    <string name="next">SONRAKİ</string>
+    <string name="done">BİTTİ</string>
+    <string name="cancel" tools:ignore="ButtonCase">İPTAL</string>
+    <string name="on">AÇ</string>
+    <string name="off">KAPAT</string>
+
+    <string name="about_app">HAKKINDA</string>
+    <string name="introduce">Giriş</string>
+    <string name="email">E-posta</string>
+    <string name="gitHub">GitHub</string>
+    <string name="thanks">TŞK</string>
+    <string name="translator">Çevirmenler</string>
+
+    <!-- about. -->
+    <string name="baidu_location">Baidu Konum</string>
+    <string name="juhe_weather">Juhe.cn</string>
+    <string name="hefeng_weather">HeWeather.com</string>
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">İzinler</string>
+    <string name="feedback_request_location_permission_success">Konum izin isteği başarılı.</string>
+    <string name="feedback_request_location_permission_failed">Konum izin isteği başarısız.</string>
+
+    <string name="feedback_location_failed">Konum başarısız.</string>
+    <string name="feedback_get_weather_failed">Hava Durumu isteği başarısız.</string>
+
+    <string name="feedback_view_style">Görüntüleme şekli.</string>
+    <string name="feedback_show_widget_card">Kart görünümü.</string>
+    <string name="feedback_black_text">Koyu yazı.</string>
+    <string name="feedback_hide_refresh_time">Güncelleme zamanını sakla.</string>
+
+    <string name="feedback_click_toggle">-Verileri değiştirmek için grafiği tıklayın.</string>
+    <string name="feedback_no_data">VERİ YOK</string>
+
+    <string name="feedback_collect_failed">Bu konum mevcut.</string>
+    <string name="feedback_collect_succeed">Konum ekleme başarılı.</string>
+    <string name="feedback_delete_succeed">Konum kaldırma başarılı.</string>
+    <string name="feedback_location_list_cannot_be_null">Konum listesi boş olamaz.</string>
+
+    <string name="feedback_search_location">Konum ara \"local\"…</string>
+    <string name="feedback_not_yet_location">Henüz konum yok…</string>
+    <string name="feedback_search_nothing">Hiçbir şey aranmadı…</string>
+    <string name="feedback_initializing">Başlatılıyor…</string>
+
+    <string name="feedback_refresh_notification_after_back">Ana sayfaya geri döndüğünüzde etkili olacak.</string>
+    <string name="feedback_refresh_notification_now">Şimdi güncelle.</string>
+    <string name="feedback_refresh_ui_after_refresh">Veri güncellendiğinde etkili olacak.</string>
+    <string name="feedback_restart">Yeniden başlatınca etkili olacak.</string>
+
+    <!-- action -->
+    <string name="action_alert">Uyarı</string>
+    <string name="action_manage">Yönet</string>
+    <string name="action_search">Ara</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_about">Hakkında</string>
+
+    <!-- widget -->
+    <string name="widget_day">Günlük</string>
+    <string name="widget_week">Haftalık</string>
+    <string name="widget_day_week">Günlük + Haftalık</string>
+    <string name="widget_clock_day_horizontal">Saat + Günlük (Yatay görünüm)</string>
+    <string name="widget_clock_day_vertical">Saat + Günlük (Dikey görünüm)</string>
+    <string name="widget_clock_day_week">Saat + Günlük + Haftalık</string>
+    <string name="wait_refresh">bekliyor</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">Temel</string>
+    <string name="settings_title_navigationBar_color">Gezinme çubuğu rengi.</string>
+    <string name="settings_navigationBar_color_on">Tema rengi.</string>
+    <string name="settings_navigationBar_color_off">Koyu.</string>
+    <string name="settings_language">Dil.</string>
+    <string name="settings_title_fahrenheit">Fahrenheit.</string>
+    <string name="settings_title_permanent_service">kalıcı servis.</string>
+    <string name="settings_category_forecast">Tahmin</string>
+    <string name="settings_title_forecast_today">Bugün için tahmin.</string>
+    <string name="settings_title_forecast_today_time">Bugün için tahmin zamanı.</string>
+    <string name="settings_title_forecast_tomorrow">Yarın için tahmin.</string>
+    <string name="settings_title_forecast_tomorrow_time">Yarın için tahmin zamanı.</string>
+    <string name="settings_category_widget">Widget</string>
+    <string name="settings_category_notification">Uyarı</string>
+    <string name="settings_title_notification">Uyarı gönder.</string>
+    <string name="settings_title_notification_text_color">Yazı rengi.</string>
+    <string name="settings_title_notification_background">Arkaplan rengi.</string>
+    <string name="settings_notification_background_on">AOSP kontrol merkezi ile aynı.</string>
+    <string name="settings_notification_background_off">Sistem varsayılanı.</string>
+    <string name="settings_title_notification_can_be_cleared">Kaldırılabilir.</string>
+    <string name="settings_notification_can_be_cleared_on">Kaldırılabilir.</string>
+    <string name="settings_notification_can_be_cleared_off">Kaldırılamaz.</string>
+    <string name="settings_title_notification_hide_icon">Uyarı ikonunu gizle.</string>
+    <string name="settings_notification_hide_icon_on">Gizle.</string>
+    <string name="settings_notification_hide_icon_off">Göster.</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Kilit ekranında gizle.</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Gizle (Sistem ayarlarında açmanız gerekir).</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Göster.</string>
+
+</resources>

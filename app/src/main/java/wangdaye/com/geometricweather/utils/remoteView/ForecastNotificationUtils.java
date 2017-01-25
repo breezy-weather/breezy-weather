@@ -14,6 +14,7 @@ import android.widget.RemoteViews;
 
 import java.util.Calendar;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -196,11 +197,15 @@ public class ForecastNotificationUtils {
         int settingsTime;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if (today) {
-            String[] times = sharedPreferences.getString(context.getString(R.string.key_forecast_today_time), "07:00").split(":");
+            String[] times = sharedPreferences.getString(
+                    context.getString(R.string.key_forecast_today_time),
+                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME).split(":");
             settingsTime = Integer.parseInt(times[0]) * 60 * 60 * 1000
                     + Integer.parseInt(times[1]) * 60 * 1000;
         } else {
-            String[] times = sharedPreferences.getString(context.getString(R.string.key_forecast_tomorrow_time), "21:00").split(":");
+            String[] times = sharedPreferences.getString(
+                    context.getString(R.string.key_forecast_tomorrow_time),
+                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME).split(":");
             settingsTime = Integer.parseInt(times[0]) * 60 * 60 * 1000
                     + Integer.parseInt(times[1]) * 60 * 1000;
         }
@@ -228,10 +233,14 @@ public class ForecastNotificationUtils {
         int min = calendar.get(Calendar.MINUTE);
 
         if (today) {
-            String[] times = sharedPreferences.getString(context.getString(R.string.key_forecast_today_time), "07:00").split(":");
+            String[] times = sharedPreferences.getString(
+                    context.getString(R.string.key_forecast_today_time),
+                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME).split(":");
             return Integer.parseInt(times[0]) == hour && Integer.parseInt(times[1]) == min;
         } else {
-            String[] times = sharedPreferences.getString(context.getString(R.string.key_forecast_tomorrow_time), "21:00").split(":");
+            String[] times = sharedPreferences.getString(
+                    context.getString(R.string.key_forecast_tomorrow_time),
+                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME).split(":");
             return Integer.parseInt(times[0]) == hour && Integer.parseInt(times[1]) == min;
         }
     }

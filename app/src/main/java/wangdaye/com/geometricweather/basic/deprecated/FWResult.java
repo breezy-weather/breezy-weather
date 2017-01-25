@@ -1,13 +1,13 @@
 package wangdaye.com.geometricweather.basic.deprecated;
-
+/*
 import java.util.List;
-
+*/
 /**
  * Flyme result.
  * */
-
+/*
 public class FWResult {
-
+*/
     /**
      * alarms : [{"alarmContent":"青岛市气象台2016年12月14日14时30分继续发布寒潮蓝色预警信号：受北方冷空气影响，预计今天下午到明天夜间，我市北风陆地4到5级阵风8级，沿海地区5到6级阵风9级，海上7到8级阵风10级。14日和15日夜间气温较低，最低气温市区及沿海地区-3℃左右，内陆地区-7到-5℃，请注意防范。","alarmDesc":"48小时内最低气温下降8℃以上，最低气温≤4℃，并可能持续。","alarmId":"201612141432548570寒潮蓝色","alarmLevelNo":"01","alarmLevelNoDesc":"蓝色","alarmType":"04","alarmTypeDesc":"寒潮预警","precaution":"1.准备手套、帽子、围巾、口罩等御寒衣物；\n\n2.检查取暖设备，确保正常使用。","publishTime":"12月14日 14:30 发布"}]
      * city : 青岛
@@ -19,9 +19,9 @@ public class FWResult {
      * weatherDetailsInfo : {"publishTime":"2016-12-14 21:00:00","weather24HoursDetailsInfos":[{"endTime":"2016-12-14 23:00:00","highestTemperature":"-4","img":"1","isRainFall":"无降水","lowerestTemperature":"-4","precipitation":"0","startTime":"2016-12-14 22:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 00:00:00","highestTemperature":"-3","img":"2","isRainFall":"无降水","lowerestTemperature":"-3","precipitation":"0","startTime":"2016-12-14 23:00:00","wd":"","weather":"阴","ws":""},{"endTime":"2016-12-15 01:00:00","highestTemperature":"-3","img":"1","isRainFall":"无降水","lowerestTemperature":"-3","precipitation":"0","startTime":"2016-12-15 00:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 02:00:00","highestTemperature":"-3","img":"1","isRainFall":"无降水","lowerestTemperature":"-3","precipitation":"0","startTime":"2016-12-15 01:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 03:00:00","highestTemperature":"-4","img":"1","isRainFall":"无降水","lowerestTemperature":"-4","precipitation":"0","startTime":"2016-12-15 02:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 04:00:00","highestTemperature":"-4","img":"1","isRainFall":"无降水","lowerestTemperature":"-4","precipitation":"0","startTime":"2016-12-15 03:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 05:00:00","highestTemperature":"-5","img":"1","isRainFall":"无降水","lowerestTemperature":"-5","precipitation":"0","startTime":"2016-12-15 04:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 06:00:00","highestTemperature":"-5","img":"1","isRainFall":"无降水","lowerestTemperature":"-5","precipitation":"0","startTime":"2016-12-15 05:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 07:00:00","highestTemperature":"-5","img":"0","isRainFall":"无降水","lowerestTemperature":"-5","precipitation":"0","startTime":"2016-12-15 06:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 08:00:00","highestTemperature":"-5","img":"0","isRainFall":"无降水","lowerestTemperature":"-5","precipitation":"0","startTime":"2016-12-15 07:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 09:00:00","highestTemperature":"-3","img":"0","isRainFall":"无降水","lowerestTemperature":"-3","precipitation":"0","startTime":"2016-12-15 08:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 10:00:00","highestTemperature":"0","img":"0","isRainFall":"无降水","lowerestTemperature":"0","precipitation":"0","startTime":"2016-12-15 09:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 11:00:00","highestTemperature":"1","img":"0","isRainFall":"无降水","lowerestTemperature":"1","precipitation":"0","startTime":"2016-12-15 10:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 12:00:00","highestTemperature":"2","img":"0","isRainFall":"无降水","lowerestTemperature":"2","precipitation":"0","startTime":"2016-12-15 11:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 13:00:00","highestTemperature":"3","img":"0","isRainFall":"无降水","lowerestTemperature":"3","precipitation":"0","startTime":"2016-12-15 12:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 14:00:00","highestTemperature":"4","img":"0","isRainFall":"无降水","lowerestTemperature":"4","precipitation":"0","startTime":"2016-12-15 13:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 15:00:00","highestTemperature":"4","img":"1","isRainFall":"无降水","lowerestTemperature":"4","precipitation":"0","startTime":"2016-12-15 14:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 16:00:00","highestTemperature":"4","img":"2","isRainFall":"无降水","lowerestTemperature":"4","precipitation":"0","startTime":"2016-12-15 15:00:00","wd":"","weather":"阴","ws":""},{"endTime":"2016-12-15 17:00:00","highestTemperature":"3","img":"1","isRainFall":"无降水","lowerestTemperature":"3","precipitation":"0","startTime":"2016-12-15 16:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 18:00:00","highestTemperature":"1","img":"1","isRainFall":"无降水","lowerestTemperature":"1","precipitation":"0","startTime":"2016-12-15 17:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 19:00:00","highestTemperature":"1","img":"1","isRainFall":"无降水","lowerestTemperature":"1","precipitation":"0","startTime":"2016-12-15 18:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 20:00:00","highestTemperature":"0","img":"1","isRainFall":"无降水","lowerestTemperature":"0","precipitation":"0","startTime":"2016-12-15 19:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 21:00:00","highestTemperature":"-1","img":"1","isRainFall":"无降水","lowerestTemperature":"-1","precipitation":"0","startTime":"2016-12-15 20:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 22:00:00","highestTemperature":"-1","img":"2","isRainFall":"无降水","lowerestTemperature":"-1","precipitation":"0","startTime":"2016-12-15 21:00:00","wd":"","weather":"阴","ws":""},{"endTime":"2016-12-15 23:00:00","highestTemperature":"-2","img":"2","isRainFall":"无降水","lowerestTemperature":"-2","precipitation":"0","startTime":"2016-12-15 22:00:00","wd":"","weather":"阴","ws":""}]}
      * weathers : [{"date":"2016-12-14","img":"1","sun_down_time":"16:45","sun_rise_time":"07:01","temp_day_c":"3","temp_day_f":"37.4","temp_night_c":"-3","temp_night_f":"26.6","wd":"无持续风向","weather":"多云","week":"星期三","ws":"3级"},{"date":"2016-12-15","img":"1","sun_down_time":"16:45","sun_rise_time":"07:02","temp_day_c":"4","temp_day_f":"39.2","temp_night_c":"-3","temp_night_f":"26.6","wd":"无持续风向","weather":"多云","week":"星期四","ws":"2级"},{"date":"2016-12-16","img":"0","sun_down_time":"16:45","sun_rise_time":"07:02","temp_day_c":"6","temp_day_f":"42.8","temp_night_c":"1","temp_night_f":"33.8","wd":"南风","weather":"晴","week":"星期五","ws":"1级"},{"date":"2016-12-17","img":"1","sun_down_time":"16:46","sun_rise_time":"07:03","temp_day_c":"8","temp_day_f":"46.4","temp_night_c":"5","temp_night_f":"41.0","wd":"南风","weather":"多云","week":"星期六","ws":"2级"},{"date":"2016-12-18","img":"1","sun_down_time":"16:46","sun_rise_time":"07:04","temp_day_c":"11","temp_day_f":"51.8","temp_night_c":"5","temp_night_f":"41.0","wd":"南风","weather":"多云","week":"星期日","ws":"1级"},{"date":"2016-12-19","img":"0","sun_down_time":"16:47","sun_rise_time":"07:04","temp_day_c":"11","temp_day_f":"51.8","temp_night_c":"4","temp_night_f":"39.2","wd":"北风","weather":"晴","week":"星期一","ws":"1级"},{"date":"2016-12-13","img":"2","sun_down_time":"16:45","sun_rise_time":"07:00","temp_day_c":"3","temp_day_f":"37.4","temp_night_c":"-2","temp_night_f":"28.4","wd":"无持续风向","weather":"阴","week":"星期二","ws":"2级"}]
      */
-
+/*
     public String city;
-    public int cityid;
+    public int cityid;*/
     /**
      * advice :
      * aqi : 49
@@ -39,9 +39,9 @@ public class FWResult {
      * timestamp : 0
      * upDateTime : 2016-12-14 20:00:00
      */
-
+/*
     public Pm25 pm25;
-    public String provinceName;
+    public String provinceName;*/
     /**
      * img : 1
      * sD : 59
@@ -53,13 +53,13 @@ public class FWResult {
      * weather : 多云
      * ziwaixian : N/A
      */
-
-    public Realtime realtime;
+/*
+    public Realtime realtime;*/
     /**
      * publishTime : 2016-12-14 21:00:00
      * weather24HoursDetailsInfos : [{"endTime":"2016-12-14 23:00:00","highestTemperature":"-4","img":"1","isRainFall":"无降水","lowerestTemperature":"-4","precipitation":"0","startTime":"2016-12-14 22:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 00:00:00","highestTemperature":"-3","img":"2","isRainFall":"无降水","lowerestTemperature":"-3","precipitation":"0","startTime":"2016-12-14 23:00:00","wd":"","weather":"阴","ws":""},{"endTime":"2016-12-15 01:00:00","highestTemperature":"-3","img":"1","isRainFall":"无降水","lowerestTemperature":"-3","precipitation":"0","startTime":"2016-12-15 00:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 02:00:00","highestTemperature":"-3","img":"1","isRainFall":"无降水","lowerestTemperature":"-3","precipitation":"0","startTime":"2016-12-15 01:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 03:00:00","highestTemperature":"-4","img":"1","isRainFall":"无降水","lowerestTemperature":"-4","precipitation":"0","startTime":"2016-12-15 02:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 04:00:00","highestTemperature":"-4","img":"1","isRainFall":"无降水","lowerestTemperature":"-4","precipitation":"0","startTime":"2016-12-15 03:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 05:00:00","highestTemperature":"-5","img":"1","isRainFall":"无降水","lowerestTemperature":"-5","precipitation":"0","startTime":"2016-12-15 04:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 06:00:00","highestTemperature":"-5","img":"1","isRainFall":"无降水","lowerestTemperature":"-5","precipitation":"0","startTime":"2016-12-15 05:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 07:00:00","highestTemperature":"-5","img":"0","isRainFall":"无降水","lowerestTemperature":"-5","precipitation":"0","startTime":"2016-12-15 06:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 08:00:00","highestTemperature":"-5","img":"0","isRainFall":"无降水","lowerestTemperature":"-5","precipitation":"0","startTime":"2016-12-15 07:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 09:00:00","highestTemperature":"-3","img":"0","isRainFall":"无降水","lowerestTemperature":"-3","precipitation":"0","startTime":"2016-12-15 08:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 10:00:00","highestTemperature":"0","img":"0","isRainFall":"无降水","lowerestTemperature":"0","precipitation":"0","startTime":"2016-12-15 09:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 11:00:00","highestTemperature":"1","img":"0","isRainFall":"无降水","lowerestTemperature":"1","precipitation":"0","startTime":"2016-12-15 10:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 12:00:00","highestTemperature":"2","img":"0","isRainFall":"无降水","lowerestTemperature":"2","precipitation":"0","startTime":"2016-12-15 11:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 13:00:00","highestTemperature":"3","img":"0","isRainFall":"无降水","lowerestTemperature":"3","precipitation":"0","startTime":"2016-12-15 12:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 14:00:00","highestTemperature":"4","img":"0","isRainFall":"无降水","lowerestTemperature":"4","precipitation":"0","startTime":"2016-12-15 13:00:00","wd":"","weather":"晴","ws":""},{"endTime":"2016-12-15 15:00:00","highestTemperature":"4","img":"1","isRainFall":"无降水","lowerestTemperature":"4","precipitation":"0","startTime":"2016-12-15 14:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 16:00:00","highestTemperature":"4","img":"2","isRainFall":"无降水","lowerestTemperature":"4","precipitation":"0","startTime":"2016-12-15 15:00:00","wd":"","weather":"阴","ws":""},{"endTime":"2016-12-15 17:00:00","highestTemperature":"3","img":"1","isRainFall":"无降水","lowerestTemperature":"3","precipitation":"0","startTime":"2016-12-15 16:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 18:00:00","highestTemperature":"1","img":"1","isRainFall":"无降水","lowerestTemperature":"1","precipitation":"0","startTime":"2016-12-15 17:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 19:00:00","highestTemperature":"1","img":"1","isRainFall":"无降水","lowerestTemperature":"1","precipitation":"0","startTime":"2016-12-15 18:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 20:00:00","highestTemperature":"0","img":"1","isRainFall":"无降水","lowerestTemperature":"0","precipitation":"0","startTime":"2016-12-15 19:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 21:00:00","highestTemperature":"-1","img":"1","isRainFall":"无降水","lowerestTemperature":"-1","precipitation":"0","startTime":"2016-12-15 20:00:00","wd":"","weather":"多云","ws":""},{"endTime":"2016-12-15 22:00:00","highestTemperature":"-1","img":"2","isRainFall":"无降水","lowerestTemperature":"-1","precipitation":"0","startTime":"2016-12-15 21:00:00","wd":"","weather":"阴","ws":""},{"endTime":"2016-12-15 23:00:00","highestTemperature":"-2","img":"2","isRainFall":"无降水","lowerestTemperature":"-2","precipitation":"0","startTime":"2016-12-15 22:00:00","wd":"","weather":"阴","ws":""}]
      */
-
+/*
     public WeatherDetailsInfo weatherDetailsInfo;
     /**
      * alarmContent : 青岛市气象台2016年12月14日14时30分继续发布寒潮蓝色预警信号：受北方冷空气影响，预计今天下午到明天夜间，我市北风陆地4到5级阵风8级，沿海地区5到6级阵风9级，海上7到8级阵风10级。14日和15日夜间气温较低，最低气温市区及沿海地区-3℃左右，内陆地区-7到-5℃，请注意防范。
@@ -74,7 +74,7 @@ public class FWResult {
      2.检查取暖设备，确保正常使用。
      * publishTime : 12月14日 14:30 发布
      */
-
+/*
     public List<Alarms> alarms;
     /**
      * abbreviation : zs
@@ -83,7 +83,7 @@ public class FWResult {
      * level : 无
      * name : 中暑指数
      */
-
+/*
     public List<Indexes> indexes;
     /**
      * date : 2016-12-14
@@ -99,7 +99,7 @@ public class FWResult {
      * week : 星期三
      * ws : 3级
      */
-
+/*
     public List<Weathers> weathers;
 
     public static class Pm25 {
@@ -146,7 +146,7 @@ public class FWResult {
          * weather : 多云
          * ws :
          */
-
+/*
         public List<Weather24HoursDetailsInfos> weather24HoursDetailsInfos;
 
         public static class Weather24HoursDetailsInfos {
@@ -198,3 +198,4 @@ public class FWResult {
         public String ws;
     }
 }
+*/

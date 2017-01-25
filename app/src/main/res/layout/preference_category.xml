@@ -12,6 +12,8 @@
         android:layout_margin="@dimen/normal_margin"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/content_text_size"
+        android:textStyle="bold"
+        android:alpha="0.5"
         tools:text="settings"
         tools:ignore="RtlSymmetry" />
 

@@ -35,7 +35,6 @@ public class PollingAlarmService extends GeoAlarmService {
                 || WidgetClockDayVerticalUtils.isEnable(this)
                 || WidgetClockDayWeekUtils.isEnable(this)
                 || NormalNotificationUtils.isEnable(this)) {
-
             setAlarmIntent(this, PollingAlarmService.class, ALARM_CODE);
             requestData(location);
         }

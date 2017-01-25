@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoAlarmService;
@@ -41,28 +41,21 @@ public class TomorrowForecastAlarmService extends GeoAlarmService {
     }
 
     public void setAlarmIntent(Context context, Class<?> cls) {
-        Intent target = new Intent(context, cls);
-        PendingIntent pendingIntent = PendingIntent.getService(
-                context,
-                ALARM_CODE,
-                target,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        if (!PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.key_permanent_service), false)) {
+            Intent target = new Intent(context, cls);
+            PendingIntent pendingIntent = PendingIntent.getService(
+                    context,
+                    ALARM_CODE,
+                    target,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
 
-        ((AlarmManager) getSystemService(Context.ALARM_SERVICE))
-                .set(
-                        AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + ForecastNotificationUtils.calcForecastDuration(context, false, false),
-                        pendingIntent);
-    }
-
-    /** <br> interface. */
-
-    @Override
-    public void requestWeatherFailed(Location requestLocation) {
-        Toast.makeText(
-                this,
-                getString(R.string.feedback_get_weather_failed),
-                Toast.LENGTH_SHORT).show();
+            ((AlarmManager) getSystemService(Context.ALARM_SERVICE))
+                    .set(
+                            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                            SystemClock.elapsedRealtime() + ForecastNotificationUtils.calcForecastDuration(context, false, false),
+                            pendingIntent);
+        }
     }
 
     @Nullable

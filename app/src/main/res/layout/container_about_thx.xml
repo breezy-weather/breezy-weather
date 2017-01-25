@@ -8,6 +8,7 @@
     <TextView
         android:text="@string/thanks"
         android:layout_margin="@dimen/normal_margin"
+        android:textStyle="bold"
         style="@style/content_text" />
 
     <LinearLayout

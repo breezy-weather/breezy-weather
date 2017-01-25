@@ -43,6 +43,9 @@ public class NormalNotificationUtils {
         boolean backgroundColor = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_background),
                 false);
+        boolean hideBigView = sharedPreferences.getBoolean(
+                context.getString(R.string.key_notification_hide_big_view),
+                false);
 
         // get text color.
         String textColor = sharedPreferences.getString(
@@ -71,7 +74,8 @@ public class NormalNotificationUtils {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
         // set notification level.
-        if (sharedPreferences.getBoolean(context.getString(R.string.key_notification_hide_icon), false)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                && sharedPreferences.getBoolean(context.getString(R.string.key_notification_hide_icon), false)) {
             builder.setPriority(NotificationCompat.PRIORITY_MIN);
         } else {
             builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
@@ -92,140 +96,186 @@ public class NormalNotificationUtils {
 
         // buildWeather base view.
         RemoteViews base = new RemoteViews(context.getPackageName(), R.layout.notification_base);
+
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
-        base.setImageViewResource( // set icon.
+        base.setImageViewResource(
                 R.id.notification_base_icon,
                 imageId[3]);
-        base.setTextViewText( // set title.
-                R.id.notification_base_title,
-                weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
-        base.setTextViewText( // set content.
-                R.id.notification_base_content,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
-        base.setTextViewText( // set time.
+
+        base.setTextViewText(
+                R.id.notification_base_realtimeTemp,
+                ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit));
+
+        base.setTextViewText(
+                R.id.notification_base_dailyTemp,
+                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
+
+        if (weather.aqi != null) {
+            base.setTextViewText(
+                    R.id.notification_base_aqi_wind,
+                    "AQI " + weather.aqi.aqi);
+        } else {
+            base.setTextViewText(
+                    R.id.notification_base_aqi_wind,
+                    weather.realTime.windLevel);
+        }
+
+        base.setTextViewText(
+                R.id.notification_base_weather,
+                weather.realTime.weather);
+
+        base.setTextViewText(
                 R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-        if (backgroundColor) { // set background.
+
+        if (backgroundColor) {
             base.setViewVisibility(R.id.notification_base_background, View.VISIBLE);
         } else {
             base.setViewVisibility(R.id.notification_base_background, View.GONE);
         }
-        // set text color.
-        base.setTextColor(R.id.notification_base_title, mainColor);
-        base.setTextColor(R.id.notification_base_content, subColor);
+
+        base.setTextColor(R.id.notification_base_realtimeTemp, mainColor);
+        base.setTextColor(R.id.notification_base_dailyTemp, subColor);
+        base.setTextColor(R.id.notification_base_aqi_wind, subColor);
+        base.setTextColor(R.id.notification_base_weather, mainColor);
         base.setTextColor(R.id.notification_base_time, subColor);
-        builder.setContent(base); // commit.
-        // set intent.
+
+        builder.setContent(base);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context, 0, IntentHelper.buildMainActivityIntent(context, null), 0);
         builder.setContentIntent(pendingIntent);
 
-        // buildWeather big view.
-        RemoteViews big = new RemoteViews(context.getPackageName(), R.layout.notification_big);
-        // today
-        imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
-        big.setImageViewResource( // set icon.
-                R.id.notification_base_icon,
-                imageId[3]);
-        big.setTextViewText( // set title.
-                R.id.notification_base_title,
-                weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
-        big.setTextViewText( // set content.
-                R.id.notification_base_content,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
-        big.setTextViewText( // set time.
-                R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-        big.setViewVisibility(R.id.notification_base_background, View.GONE);
-        // 1
-        big.setTextViewText( // set week 1.
-                R.id.notification_big_week_1,
-                context.getString(R.string.today));
-        big.setTextViewText( // set temps 1.
-                R.id.notification_big_temp_1,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
-        imageId = WeatherHelper.getWeatherIcon( // get icon 1 resource id.
-                isDay ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
-                isDay);
-        big.setImageViewResource( // set icon 1.
-                R.id.notification_big_icon_1,
-                imageId[3]);
-        // 2
-        big.setTextViewText( // set week 2.
-                R.id.notification_big_week_2,
-                weather.dailyList.get(1).week);
-        big.setTextViewText( // set temps 2.
-                R.id.notification_big_temp_2,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit));
-        imageId = WeatherHelper.getWeatherIcon( // get icon 2 resource id.
-                isDay ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
-                isDay);
-        big.setImageViewResource( // set icon 2.
-                R.id.notification_big_icon_2,
-                imageId[3]);
-        // 3
-        big.setTextViewText( // set week 3.
-                R.id.notification_big_week_3,
-                weather.dailyList.get(2).week);
-        big.setTextViewText( // set temps 3.
-                R.id.notification_big_temp_3,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit));
-        imageId = WeatherHelper.getWeatherIcon( // get icon 3 resource id.
-                isDay ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
-                isDay);
-        big.setImageViewResource( // set icon 3.
-                R.id.notification_big_icon_3,
-                imageId[3]);
-        // 4
-        big.setTextViewText( // set week 4.
-                R.id.notification_big_week_4,
-                weather.dailyList.get(3).week);
-        big.setTextViewText( // set temps 4.
-                R.id.notification_big_temp_4,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit));
-        imageId = WeatherHelper.getWeatherIcon( // get icon 4 resource id.
-                isDay ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
-                isDay);
-        big.setImageViewResource( // set icon 4.
-                R.id.notification_big_icon_4,
-                imageId[3]);
-        // 5
-        big.setTextViewText( // set week 5.
-                R.id.notification_big_week_5,
-                weather.dailyList.get(4).week);
-        big.setTextViewText( // set temps 5.
-                R.id.notification_big_temp_5,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit));
-        imageId = WeatherHelper.getWeatherIcon( // get icon 5 resource id.
-                isDay ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
-                isDay);
-        big.setImageViewResource( // set icon 5.
-                R.id.notification_big_icon_5,
-                imageId[3]);
-        // set text color.
-        big.setTextColor(R.id.notification_base_title, mainColor);
-        big.setTextColor(R.id.notification_base_content, subColor);
-        big.setTextColor(R.id.notification_base_time, subColor);
-        big.setTextColor(R.id.notification_big_week_1, subColor);
-        big.setTextColor(R.id.notification_big_week_2, subColor);
-        big.setTextColor(R.id.notification_big_week_3, subColor);
-        big.setTextColor(R.id.notification_big_week_4, subColor);
-        big.setTextColor(R.id.notification_big_week_5, subColor);
-        big.setTextColor(R.id.notification_big_temp_1, subColor);
-        big.setTextColor(R.id.notification_big_temp_2, subColor);
-        big.setTextColor(R.id.notification_big_temp_3, subColor);
-        big.setTextColor(R.id.notification_big_temp_4, subColor);
-        big.setTextColor(R.id.notification_big_temp_5, subColor);
-        // set background.
-        big.setViewVisibility(R.id.notification_base_background, View.GONE);
-        if (backgroundColor) {
-            big.setViewVisibility(R.id.notification_base_background, View.VISIBLE);
-            big.setViewVisibility(R.id.notification_big_background, View.VISIBLE);
-        } else {
-            big.setViewVisibility(R.id.notification_base_background, View.GONE);
-            big.setViewVisibility(R.id.notification_big_background, View.GONE);
-        }
+        if (!hideBigView) {
+            // buildWeather big view.
+            RemoteViews big = new RemoteViews(context.getPackageName(), R.layout.notification_big);
 
-        // set big view.
-        builder.setCustomBigContentView(big);
+            // today
+            imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
+            big.setImageViewResource(
+                    R.id.notification_base_icon,
+                    imageId[3]);
+
+            big.setTextViewText(
+                    R.id.notification_base_realtimeTemp,
+                    ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit));
+
+            big.setTextViewText(
+                    R.id.notification_base_dailyTemp,
+                    ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
+
+            if (weather.aqi != null) {
+                big.setTextViewText(
+                        R.id.notification_base_aqi_wind,
+                        "AQI " + weather.aqi.aqi);
+            } else {
+                big.setTextViewText(
+                        R.id.notification_base_aqi_wind,
+                        weather.realTime.windLevel);
+            }
+
+            big.setTextViewText(
+                    R.id.notification_base_weather,
+                    weather.realTime.weather);
+
+            big.setTextViewText(
+                    R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+
+            big.setViewVisibility(R.id.notification_base_background, View.GONE);
+
+            // 1
+            big.setTextViewText( // set week 1.
+                    R.id.notification_big_week_1,
+                    context.getString(R.string.today));
+            big.setTextViewText( // set temps 1.
+                    R.id.notification_big_temp_1,
+                    ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
+            imageId = WeatherHelper.getWeatherIcon( // get icon 1 resource id.
+                    isDay ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
+                    isDay);
+            big.setImageViewResource( // set icon 1.
+                    R.id.notification_big_icon_1,
+                    imageId[3]);
+            // 2
+            big.setTextViewText( // set week 2.
+                    R.id.notification_big_week_2,
+                    weather.dailyList.get(1).week);
+            big.setTextViewText( // set temps 2.
+                    R.id.notification_big_temp_2,
+                    ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit));
+            imageId = WeatherHelper.getWeatherIcon( // get icon 2 resource id.
+                    isDay ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
+                    isDay);
+            big.setImageViewResource( // set icon 2.
+                    R.id.notification_big_icon_2,
+                    imageId[3]);
+            // 3
+            big.setTextViewText( // set week 3.
+                    R.id.notification_big_week_3,
+                    weather.dailyList.get(2).week);
+            big.setTextViewText( // set temps 3.
+                    R.id.notification_big_temp_3,
+                    ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit));
+            imageId = WeatherHelper.getWeatherIcon( // get icon 3 resource id.
+                    isDay ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
+                    isDay);
+            big.setImageViewResource( // set icon 3.
+                    R.id.notification_big_icon_3,
+                    imageId[3]);
+            // 4
+            big.setTextViewText( // set week 4.
+                    R.id.notification_big_week_4,
+                    weather.dailyList.get(3).week);
+            big.setTextViewText( // set temps 4.
+                    R.id.notification_big_temp_4,
+                    ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit));
+            imageId = WeatherHelper.getWeatherIcon( // get icon 4 resource id.
+                    isDay ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
+                    isDay);
+            big.setImageViewResource( // set icon 4.
+                    R.id.notification_big_icon_4,
+                    imageId[3]);
+            // 5
+            big.setTextViewText( // set week 5.
+                    R.id.notification_big_week_5,
+                    weather.dailyList.get(4).week);
+            big.setTextViewText( // set temps 5.
+                    R.id.notification_big_temp_5,
+                    ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit));
+            imageId = WeatherHelper.getWeatherIcon( // get icon 5 resource id.
+                    isDay ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
+                    isDay);
+            big.setImageViewResource( // set icon 5.
+                    R.id.notification_big_icon_5,
+                    imageId[3]);
+
+            big.setViewVisibility(R.id.notification_base_background, View.GONE);
+            if (backgroundColor) {
+                big.setViewVisibility(R.id.notification_base_background, View.VISIBLE);
+                big.setViewVisibility(R.id.notification_big_background, View.VISIBLE);
+            } else {
+                big.setViewVisibility(R.id.notification_base_background, View.GONE);
+                big.setViewVisibility(R.id.notification_big_background, View.GONE);
+            }
+
+            big.setTextColor(R.id.notification_base_realtimeTemp, mainColor);
+            big.setTextColor(R.id.notification_base_dailyTemp, subColor);
+            big.setTextColor(R.id.notification_base_aqi_wind, subColor);
+            big.setTextColor(R.id.notification_base_weather, mainColor);
+            big.setTextColor(R.id.notification_base_time, subColor);
+            big.setTextColor(R.id.notification_big_week_1, subColor);
+            big.setTextColor(R.id.notification_big_week_2, subColor);
+            big.setTextColor(R.id.notification_big_week_3, subColor);
+            big.setTextColor(R.id.notification_big_week_4, subColor);
+            big.setTextColor(R.id.notification_big_week_5, subColor);
+            big.setTextColor(R.id.notification_big_temp_1, subColor);
+            big.setTextColor(R.id.notification_big_temp_2, subColor);
+            big.setTextColor(R.id.notification_big_temp_3, subColor);
+            big.setTextColor(R.id.notification_big_temp_4, subColor);
+            big.setTextColor(R.id.notification_big_temp_5, subColor);
+
+            // set big view.
+            builder.setCustomBigContentView(big);
+        }
 
         // get notification.
         Notification notification = builder.build();
@@ -241,6 +291,10 @@ public class NormalNotificationUtils {
 
         // commit.
         notificationManager.notify(NOTIFICATION_ID, notification);
+    }
+
+    public static void cancelNotification(Context context) {
+        ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).cancel(NOTIFICATION_ID);
     }
 
     /** <br> data. */

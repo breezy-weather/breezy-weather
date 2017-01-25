@@ -3,7 +3,7 @@
     android:title="@string/action_settings" >
 
     <PreferenceCategory
-        android:title="@string/settings_category_ui"
+        android:title="@string/settings_category_basic"
         android:layout="@layout/preference_category" >
 
         <CheckBoxPreference
@@ -12,6 +12,18 @@
             android:summaryOn="@string/settings_navigationBar_color_on"
             android:summaryOff="@string/settings_navigationBar_color_off" />
 
+        <CheckBoxPreference
+            android:title="@string/settings_title_fahrenheit"
+            android:key="@string/key_fahrenheit"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_permanent_service"
+            android:key="@string/key_permanent_service"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
         <ListPreference
             android:title="@string/settings_language"
             android:key="@string/key_language"
@@ -19,12 +31,6 @@
             android:entryValues="@array/language_values"
             android:dialogTitle="@string/settings_language"
             android:defaultValue="follow_system" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_fahrenheit"
-            android:key="@string/key_fahrenheit"
-            android:summaryOn="@string/on"
-            android:summaryOff="@string/off" />
 
     </PreferenceCategory>
 
@@ -95,6 +101,12 @@
             android:key="@string/key_notification_hide_in_lockScreen"
             android:summaryOn="@string/settings_notification_hide_in_lockScreen_on"
             android:summaryOff="@string/settings_notification_hide_in_lockScreen_off" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_notification_hide_big_view"
+            android:key="@string/key_notification_hide_big_view"
+            android:summaryOn="@string/settings_notification_hide_big_view_on"
+            android:summaryOff="@string/settings_notification_hide_big_view_off" />
 
     </PreferenceCategory>
 

@@ -3,7 +3,11 @@ package wangdaye.com.geometricweather;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +24,19 @@ public class GeometricWeather extends Application {
     private boolean colorNavigationBar;
     private boolean fahrenheit;
 
+    public static final String DEFAULT_TODAY_FORECAST_TIME = "07:00";
+    public static final String DEFAULT_TOMORROW_FORECAST_TIME = "21:00";
+
     /** <br> life cycle. */
 
     @Override
     public void onCreate() {
         super.onCreate();
-        initialize();
+        String processName = getProcessName();
+        if (!TextUtils.isEmpty(processName)
+                && processName.equals(this.getPackageName())) {
+            initialize();
+        }
     }
 
     private void initialize() {
@@ -67,8 +78,17 @@ public class GeometricWeather extends Application {
         return fahrenheit;
     }
 
-    public void setFahrenheit() {
-        this.fahrenheit = !fahrenheit;
+    public static String getProcessName() {
+        try {
+            File file = new File("/proc/" + android.os.Process.myPid() + "/" + "cmdline");
+            BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));
+            String processName = mBufferedReader.readLine().trim();
+            mBufferedReader.close();
+            return processName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /** <br> singleton. */

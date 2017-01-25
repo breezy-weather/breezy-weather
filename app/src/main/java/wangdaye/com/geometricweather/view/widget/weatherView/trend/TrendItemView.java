@@ -717,6 +717,8 @@ public class TrendItemView extends FrameLayout {
                 - calcDrawSpecUsableHeight(getContext()) * weather.hourlyList.get(position).precipitation / 100.0);
     }
 
+    // size.
+
     public static int calcWidth(Context context) {
         return (int) ((context.getResources().getDisplayMetrics().widthPixels - 2.0 * DisplayUtils.dpToPx(context, 8)) / 7.0);
     }

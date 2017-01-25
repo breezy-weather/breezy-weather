@@ -131,12 +131,12 @@
         <service android:name=".service.alarm.PollingAlarmService" />
         <service android:name=".service.alarm.TodayForecastAlarmService" />
         <service android:name=".service.alarm.TomorrowForecastAlarmService" />
-        <service android:name=".service.job.PollingJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.job.TodayForecastJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.job.TomorrowForecastJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".service.PollingService"
+            android:process=":service" />
+        <service
+            android:name=".service.ProtectService"
+            android:process=":remote" />
 
         <!-- receiver -->
         <receiver
@@ -228,5 +228,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 </manifest>

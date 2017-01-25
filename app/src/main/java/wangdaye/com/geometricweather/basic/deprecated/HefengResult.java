@@ -1,5 +1,5 @@
 package wangdaye.com.geometricweather.basic.deprecated;
-
+/*
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Hefeng result.
  * */
-
+/*
 public class HefengResult {
 
     /**
@@ -19,7 +19,7 @@ public class HefengResult {
      * status : ok
      * suggestion : {"comf":{"brf":"舒适","txt":"白天不太热也不太冷，风力不大，相信您在这样的天气条件下，应会感到比较清爽和舒适。"},"cw":{"brf":"不宜","txt":"不宜洗车，未来24小时内有霾，如果在此期间洗车，会弄脏您的爱车。"},"drsg":{"brf":"舒适","txt":"建议着长袖T恤、衬衫加单裤等服装。年老体弱者宜着针织长袖衬衫、马甲和长裤。"},"flu":{"brf":"较易发","txt":"天气转凉，空气湿度较大，较易发生感冒，体质较弱的朋友请注意适当防护。"},"sport":{"brf":"较不宜","txt":"有扬沙或浮尘，建议适当停止户外运动，选择在室内进行运动，以避免吸入更多沙尘，有损健康。"},"trav":{"brf":"较不宜","txt":"空气质量差，不适宜旅游"},"uv":{"brf":"最弱","txt":"属弱紫外线辐射天气，无需特别防护。若长期在户外，建议涂擦SPF在8-12之间的防晒护肤品。"}}
      */
-
+/*
     @SerializedName("HeWeather data service 3.0")
     public List<HeWeather> heWeather;
 
@@ -27,7 +27,7 @@ public class HefengResult {
         /**
          * city : {"aqiAqi":"196","co":"0","no2":"14","o3":"45","pm10":"116","aqiPm25":"196","qlty":"优","so2":"2"}
          */
-
+/*
         public Aqi aqi;
         /**
          * city : 北京
@@ -37,7 +37,7 @@ public class HefengResult {
          * lon : 116.391000
          * update : {"loc":"2016-10-01 08:51","utc":"2016-10-01 00:51"}
          */
-
+/*
         public Basic basic;
         /**
          * cond : {"code":"101","txt":"多云"}
@@ -49,7 +49,7 @@ public class HefengResult {
          * vis : 6
          * wind : {"deg":"122","dir":"东北风","sc":"3-4","spd":"13"}
          */
-
+/*
         public Now now;
         public String status;
         /**
@@ -61,7 +61,7 @@ public class HefengResult {
          * trav : {"brf":"较不宜","txt":"空气质量差，不适宜旅游"}
          * uv : {"brf":"最弱","txt":"属弱紫外线辐射天气，无需特别防护。若长期在户外，建议涂擦SPF在8-12之间的防晒护肤品。"}
          */
-
+/*
         public Suggestion suggestion;
         /**
          * astro : {"sr":"06:10","ss":"17:57"}
@@ -75,7 +75,7 @@ public class HefengResult {
          * vis : 10
          * wind : {"deg":"182","dir":"无持续风向","sc":"微风","spd":"8"}
          */
-
+/*
         public List<DailyForecast> daily_forecast;
         /**
          * date : 2016-10-01 10:00
@@ -85,7 +85,7 @@ public class HefengResult {
          * tmp : 24
          * wind : {"deg":"146","dir":"东南风","sc":"微风","spd":"6"}
          */
-
+/*
         public List<HourlyForecast> hourly_forecast;
 
         public static class Aqi {
@@ -99,7 +99,7 @@ public class HefengResult {
              * qlty : 优
              * so2 : 2
              */
-
+/*
             public City city;
 
             public static class City {
@@ -124,7 +124,7 @@ public class HefengResult {
              * loc : 2016-10-01 08:51
              * utc : 2016-10-01 00:51
              */
-
+/*
             public Update update;
 
             public static class Update {
@@ -138,7 +138,7 @@ public class HefengResult {
              * code : 101
              * txt : 多云
              */
-
+/*
             public Cond cond;
             public String fl;
             public String hum;
@@ -152,7 +152,7 @@ public class HefengResult {
              * sc : 3-4
              * spd : 13
              */
-
+/*
             public Wind wind;
 
             public static class Cond {
@@ -173,43 +173,43 @@ public class HefengResult {
              * brf : 舒适
              * txt : 白天不太热也不太冷，风力不大，相信您在这样的天气条件下，应会感到比较清爽和舒适。
              */
-
+/*
             public Comf comf;
             /**
              * brf : 不宜
              * txt : 不宜洗车，未来24小时内有霾，如果在此期间洗车，会弄脏您的爱车。
              */
-
+/*
             public Cw cw;
             /**
              * brf : 舒适
              * txt : 建议着长袖T恤、衬衫加单裤等服装。年老体弱者宜着针织长袖衬衫、马甲和长裤。
              */
-
+/*
             public Drsg drsg;
             /**
              * brf : 较易发
              * txt : 天气转凉，空气湿度较大，较易发生感冒，体质较弱的朋友请注意适当防护。
              */
-
+/*
             public Flu flu;
             /**
              * brf : 较不宜
              * txt : 有扬沙或浮尘，建议适当停止户外运动，选择在室内进行运动，以避免吸入更多沙尘，有损健康。
              */
-
+/*
             public Sport sport;
             /**
              * brf : 较不宜
              * txt : 空气质量差，不适宜旅游
              */
-
+/*
             public Trav trav;
             /**
              * brf : 最弱
              * txt : 属弱紫外线辐射天气，无需特别防护。若长期在户外，建议涂擦SPF在8-12之间的防晒护肤品。
              */
-
+/*
             public Uv uv;
 
             public static class Comf {
@@ -253,7 +253,7 @@ public class HefengResult {
              * sr : 06:10
              * ss : 17:57
              */
-
+/*
             public Astro astro;
             /**
              * code_d : 502
@@ -261,7 +261,7 @@ public class HefengResult {
              * txt_d : 霾
              * txt_n : 霾
              */
-
+/*
             public Cond cond;
             public String date;
             public String hum;
@@ -272,7 +272,7 @@ public class HefengResult {
              * max : 25
              * min : 15
              */
-
+/*
             public Tmp tmp;
             public String vis;
             /**
@@ -281,7 +281,7 @@ public class HefengResult {
              * sc : 微风
              * spd : 8
              */
-
+/*
             public Wind wind;
 
             public static class Astro {
@@ -321,7 +321,7 @@ public class HefengResult {
              * sc : 微风
              * spd : 6
              */
-
+/*
             public Wind wind;
 
             public static class Wind {
@@ -333,3 +333,4 @@ public class HefengResult {
         }
     }
 }
+*/

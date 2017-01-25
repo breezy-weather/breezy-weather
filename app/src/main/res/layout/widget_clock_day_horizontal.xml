@@ -11,96 +11,78 @@
         style="@style/widget_background_card"
         tools:ignore="ContentDescription" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
+    <RelativeLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="DisableBaselineAlignment">
+        android:layout_centerInParent="true">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/widget_clock_day_horizontal_clockContainer"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/material_icon_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded">
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+            <TextClock
+                android:id="@+id/widget_clock_day_clock"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/material_icon_size"
+                style="@style/widget_text_clock"
+                tools:ignore="RtlHardcoded" />
 
-                <TextClock
-                    android:id="@+id/widget_clock_day_clock"
-                    style="@style/widget_text_clock" />
+            <TextView
+                android:id="@+id/widget_clock_day_title"
+                android:layout_below="@id/widget_clock_day_clock"
+                android:layout_centerHorizontal="true"
+                android:text="@string/wait_refresh"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                style="@style/content_text"
+                tools:text="05-17 周三"/>
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+        <RelativeLayout
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/widget_clock_day_horizontal_clockContainer"
+            android:layout_marginRight="@dimen/material_icon_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded">
 
-                <ImageView
-                    android:id="@+id/widget_clock_day_icon"
-                    android:layout_width="@dimen/flag_icon_size"
-                    android:layout_height="@dimen/flag_icon_size"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="@dimen/little_margin"
-                    android:layout_marginRight="@dimen/little_margin"
-                    android:src="@drawable/weather_cloudy"
-                    tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/widget_clock_day_subtitle"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/ellipsis"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:shadowColor="@color/colorTextGrey"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                style="@style/content_text"
+                tools:text="青岛 8℃"/>
 
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/widget_clock_day_icon"
+                android:layout_width="@dimen/flag_icon_size"
+                android:layout_height="@dimen/flag_icon_size"
+                android:layout_above="@id/widget_clock_day_subtitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="@dimen/material_icon_size"
+                android:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/widget_clock_day_title"
-                    android:layout_centerInParent="true"
-                    android:text="@string/wait_refresh"
-                    android:textColor="@color/colorTextLight"
-                    android:maxLines="1"
-                    android:shadowColor="@color/colorTextGrey"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    style="@style/content_text"
-                    tools:text="05-17 周三"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/widget_clock_day_subtitle"
-                    android:layout_centerInParent="true"
-                    android:text="@string/ellipsis"
-                    android:textColor="@color/colorTextLight"
-                    android:maxLines="1"
-                    android:shadowColor="@color/colorTextGrey"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    style="@style/content_text"
-                    tools:text="青岛 8℃"/>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:orientation="horizontal"

@@ -15,6 +15,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
+import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 import wangdaye.com.geometricweather.view.dialog.TimeSetterDialog;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
@@ -33,19 +34,25 @@ public class SettingsFragment extends PreferenceFragment
         addPreferencesFromResource(R.xml.perference);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        initUIPart(sharedPreferences);
+        initBasicPart(sharedPreferences);
         initForecastPart(sharedPreferences);
         initNotificationPart(sharedPreferences);
     }
 
     /** <br> UI. */
 
-    private void initUIPart(SharedPreferences sharedPreferences) {
+    private void initBasicPart(SharedPreferences sharedPreferences) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             findPreference(getString(R.string.key_navigationBar_color)).setEnabled(false);
         } else {
             findPreference(getString(R.string.key_navigationBar_color)).setEnabled(true);
         }
+
+        Preference fahrenheit = findPreference(getString(R.string.key_fahrenheit));
+        fahrenheit.setOnPreferenceChangeListener(this);
+
+        Preference permanentService = findPreference(getString(R.string.key_permanent_service));
+        permanentService.setOnPreferenceChangeListener(this);
 
         Preference language = findPreference(getString(R.string.key_language));
         language.setSummary(
@@ -53,21 +60,22 @@ public class SettingsFragment extends PreferenceFragment
                         getActivity(),
                         sharedPreferences.getString(getString(R.string.key_language), "follow_system")));
         language.setOnPreferenceChangeListener(this);
-
-        Preference fahrenheit = findPreference(getString(R.string.key_fahrenheit));
-        fahrenheit.setOnPreferenceChangeListener(this);
     }
 
     private void initForecastPart(SharedPreferences sharedPreferences) {
         // set today forecast time & todayForecastType.
         Preference todayForecastTime = findPreference(getString(R.string.key_forecast_today_time));
         todayForecastTime.setSummary(
-                sharedPreferences.getString(getString(R.string.key_forecast_today_time), "07:00"));
+                sharedPreferences.getString(
+                        getString(R.string.key_forecast_today_time),
+                        GeometricWeather.DEFAULT_TODAY_FORECAST_TIME));
 
         // set tomorrow forecast time & tomorrowForecastType.
         Preference tomorrowForecastTime = findPreference(getString(R.string.key_forecast_tomorrow_time));
         tomorrowForecastTime.setSummary(
-                sharedPreferences.getString(getString(R.string.key_forecast_tomorrow_time), "21:00"));
+                sharedPreferences.getString(
+                        getString(R.string.key_forecast_tomorrow_time),
+                        GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME));
 
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
             // open today forecast.
@@ -107,6 +115,9 @@ public class SettingsFragment extends PreferenceFragment
         // notification hide in lock screen.
         CheckBoxPreference notificationHideBehavior = (CheckBoxPreference) findPreference(getString(R.string.key_notification_hide_in_lockScreen));
 
+        // notification hide big view.
+        CheckBoxPreference notificationHideBigView = (CheckBoxPreference) findPreference(getString(R.string.key_notification_hide_big_view));
+
         if(sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
             // open notification.
             notificationTextColor.setEnabled(true);
@@ -118,6 +129,7 @@ public class SettingsFragment extends PreferenceFragment
             } else {
                 notificationHideBehavior.setEnabled(false);
             }
+            notificationHideBigView.setEnabled(true);
         } else {
             // close notification.
             notificationTextColor.setEnabled(false);
@@ -125,6 +137,7 @@ public class SettingsFragment extends PreferenceFragment
             notificationClearFlag.setEnabled(false);
             notificationIconBehavior.setEnabled(false);
             notificationHideBehavior.setEnabled(false);
+            notificationHideBigView.setEnabled(false);
         }
     }
 
@@ -142,6 +155,16 @@ public class SettingsFragment extends PreferenceFragment
         } else if (preference.getKey().equals(getString(R.string.key_fahrenheit))) {
             // ℉
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+        } else if (preference.getKey().equals(getString(R.string.key_permanent_service))) {
+            // permanent service.
+            ServiceHelper.startPermanentService(getActivity());
+            if (sharedPreferences.getBoolean(getString(R.string.key_permanent_service), false)) {
+                ServiceHelper.stopPollingService(getActivity());
+                ServiceHelper.stopForecastService(getActivity(), true);
+                ServiceHelper.stopForecastService(getActivity(), false);
+            } else {
+                ServiceHelper.startupAllService(getActivity());
+            }
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today))) {
             // forecast today.
             initForecastPart(sharedPreferences);
@@ -183,26 +206,31 @@ public class SettingsFragment extends PreferenceFragment
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             } else {
                 // close notification.
+                NormalNotificationUtils.cancelNotification(getActivity());
                 ServiceHelper.stopPollingService(getActivity());
             }
             return true;
-        } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
-            // notification text color.
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_after_back));
-            return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_background))) {
             // notification background.
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_after_back));
+            ServiceHelper.startPollingService(getActivity());
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_can_be_cleared))) {
             // notification clear flag.
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_after_back));
+            ServiceHelper.startPollingService(getActivity());
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_icon))) {
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_after_back));
+            ServiceHelper.startPollingService(getActivity());
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_in_lockScreen))) {
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_after_back));
+            ServiceHelper.startPollingService(getActivity());
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
+            return true;
+        } else if (preference.getKey().equals(getString(R.string.key_notification_hide_big_view))) {
+            ServiceHelper.startPollingService(getActivity());
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -213,11 +241,12 @@ public class SettingsFragment extends PreferenceFragment
         if (preference.getKey().equals(getString(R.string.key_language))) {
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+        } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
+            // notification text color.
+            ServiceHelper.startPollingService(getActivity());
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
+            preference.setSummary(ValueUtils.getNotificationTextColor(getActivity(), (String) o));
         }
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        initForecastPart(sharedPreferences);
-        initNotificationPart(sharedPreferences);
         return true;
     }
 

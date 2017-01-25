@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_translator_container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorRoot">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/dialog_translator_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorRoot"
+            android:elevation="2dp"
+            tools:ignore="UnusedAttribute">
+
+            <TextView
+                android:text="@string/translator"
+                android:layout_margin="@dimen/normal_margin"
+                style="@style/title_text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dialog_translator_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorRoot"
+            android:elevation="5dp"
+            tools:ignore="UnusedAttribute">
+
+            <Button
+                android:id="@+id/dialog_translator_enterBtn"
+                android:text="@string/done"
+                android:textColor="?attr/colorAccent"
+                android:layout_margin="@dimen/little_margin"
+                android:layout_alignParentRight="true"
+                style="@style/material_button"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dialog_translator_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/dialog_translator_header"
+            android:layout_above="@id/dialog_translator_footer" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

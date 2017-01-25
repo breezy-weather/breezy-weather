@@ -7,11 +7,13 @@
         <item>Follow system</item>
         <item>中文</item>
         <item>English</item>
+        <item>Türkçe</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
         <item>chinese</item>
         <item>english</item>
+        <item>turkish</item>
     </string-array>
 
     <!-- notification text color. -->
@@ -32,6 +34,7 @@
         <item>Symmetry</item>
         <item>Tile</item>
         <item>Mini</item>
+        <item>Nano</item>
         <item>Pixel</item>
     </string-array>
     <string-array name="widget_style_values">
@@ -39,6 +42,7 @@
         <item>symmetry</item>
         <item>tile</item>
         <item>mini</item>
+        <item>nano</item>
         <item>pixel</item>
     </string-array>
 

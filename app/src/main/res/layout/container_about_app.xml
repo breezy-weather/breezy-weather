@@ -50,6 +50,7 @@
     <TextView
         android:text="@string/about_app"
         android:layout_margin="@dimen/normal_margin"
+        android:textStyle="bold"
         style="@style/content_text" />
 
     <RelativeLayout
@@ -91,6 +92,28 @@
             android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/container_about_app_emailIcon"
+            style="@style/content_text"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_about_app_translator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/container_about_app_translatorIcon"
+            android:src="@drawable/ic_translate"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:text="@string/translator"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/container_about_app_translatorIcon"
             style="@style/content_text"
             tools:ignore="RtlHardcoded" />
 
