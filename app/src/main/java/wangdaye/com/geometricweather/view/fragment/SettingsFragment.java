@@ -157,21 +157,21 @@ public class SettingsFragment extends PreferenceFragment
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_permanent_service))) {
             // permanent service.
-            ServiceHelper.startPermanentService(getActivity());
+            ServiceHelper.startPermanentService(getActivity(), false);
             if (sharedPreferences.getBoolean(getString(R.string.key_permanent_service), false)) {
-                ServiceHelper.stopPollingService(getActivity());
-                ServiceHelper.stopForecastService(getActivity(), true);
-                ServiceHelper.stopForecastService(getActivity(), false);
+                ServiceHelper.stopPollingService(getActivity(), false);
+                ServiceHelper.stopForecastService(getActivity(), true, false);
+                ServiceHelper.stopForecastService(getActivity(), false, false);
             } else {
-                ServiceHelper.startupAllService(getActivity());
+                ServiceHelper.startupAllService(getActivity(), false);
             }
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today))) {
             // forecast today.
             initForecastPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
-                ServiceHelper.startForecastService(getActivity(), true);
+                ServiceHelper.startForecastService(getActivity(), true, false);
             } else {
-                ServiceHelper.stopForecastService(getActivity(), true);
+                ServiceHelper.stopForecastService(getActivity(), true, false);
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today_time))) {
@@ -185,9 +185,9 @@ public class SettingsFragment extends PreferenceFragment
             // timing forecast tomorrow.
             initForecastPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-                ServiceHelper.startForecastService(getActivity(), false);
+                ServiceHelper.startForecastService(getActivity(), false, false);
             } else {
-                ServiceHelper.stopForecastService(getActivity(), false);
+                ServiceHelper.stopForecastService(getActivity(), false, false);
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_forecast_tomorrow_time))) {
@@ -202,34 +202,34 @@ public class SettingsFragment extends PreferenceFragment
             initNotificationPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
                 // open notification.
-                ServiceHelper.startPollingService(getActivity());
+                ServiceHelper.startPollingService(getActivity(), true);
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             } else {
                 // close notification.
                 NormalNotificationUtils.cancelNotification(getActivity());
-                ServiceHelper.stopPollingService(getActivity());
+                ServiceHelper.stopPollingService(getActivity(), true);
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_background))) {
             // notification background.
-            ServiceHelper.startPollingService(getActivity());
+            ServiceHelper.startPollingService(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_can_be_cleared))) {
             // notification clear flag.
-            ServiceHelper.startPollingService(getActivity());
+            ServiceHelper.startPollingService(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_icon))) {
-            ServiceHelper.startPollingService(getActivity());
+            ServiceHelper.startPollingService(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_in_lockScreen))) {
-            ServiceHelper.startPollingService(getActivity());
+            ServiceHelper.startPollingService(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_big_view))) {
-            ServiceHelper.startPollingService(getActivity());
+            ServiceHelper.startPollingService(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         }
@@ -243,7 +243,7 @@ public class SettingsFragment extends PreferenceFragment
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
             // notification text color.
-            ServiceHelper.startPollingService(getActivity());
+            ServiceHelper.startPollingService(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             preference.setSummary(ValueUtils.getNotificationTextColor(getActivity(), (String) o));
         }
@@ -255,10 +255,10 @@ public class SettingsFragment extends PreferenceFragment
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         this.initForecastPart(sharedPreferences);
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
-            ServiceHelper.startForecastService(getActivity(), true);
+            ServiceHelper.startForecastService(getActivity(), true, false);
         }
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-            ServiceHelper.startForecastService(getActivity(), false);
+            ServiceHelper.startForecastService(getActivity(), false, false);
         }
     }
 }

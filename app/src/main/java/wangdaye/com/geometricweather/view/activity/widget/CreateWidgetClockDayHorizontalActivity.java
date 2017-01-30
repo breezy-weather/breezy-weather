@@ -135,7 +135,7 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startPollingService(this);
+                ServiceHelper.startPollingService(this, false);
                 finish();
                 break;
         }

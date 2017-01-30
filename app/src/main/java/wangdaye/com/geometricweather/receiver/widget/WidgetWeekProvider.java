@@ -15,14 +15,14 @@ public class WidgetWeekProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        ServiceHelper.startPollingService(context);
+        ServiceHelper.startPollingService(context, false);
     }
 
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
         if (ServiceHelper.isNeedShutdownPollingService(context)) {
-            ServiceHelper.stopPollingService(context);
+            ServiceHelper.stopPollingService(context, false);
         }
     }
 }

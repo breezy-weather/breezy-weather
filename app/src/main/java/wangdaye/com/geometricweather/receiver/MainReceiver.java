@@ -16,7 +16,7 @@ public class MainReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         switch (intent.getAction()) {
             case Intent.ACTION_BOOT_COMPLETED:
-                ServiceHelper.startupAllService(context);
+                ServiceHelper.startupAllService(context, false);
                 break;
         }
     }

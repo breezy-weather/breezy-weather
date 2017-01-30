@@ -31,7 +31,11 @@ public class TodayForecastAlarmService extends GeoAlarmService {
             setAlarmIntent(this, TodayForecastAlarmService.class);
             if (ForecastNotificationUtils.isForecastTime(this, true)) {
                 requestData(location);
+            } else {
+                stopSelf();
             }
+        } else {
+            stopSelf();
         }
     }
 

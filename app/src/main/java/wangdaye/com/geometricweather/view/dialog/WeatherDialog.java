@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
@@ -121,28 +123,23 @@ public class WeatherDialog extends GeoDialogFragment
                 (TextView) view.findViewById(R.id.dialog_weather_text_day),
                 (TextView) view.findViewById(R.id.dialog_weather_text_night)};
         if (daily) {
-            String daytimeTxt = weather.dailyList.get(position).weathers[0] + "  " + weather.dailyList.get(position).temps[0] + "°"
-                    + "\n" + getString(R.string.wind) + " : "
-                    + weather.dailyList.get(position).windDirs[0] + " " + weather.dailyList.get(position).windSpeeds[0]
-                    + " (" + weather.dailyList.get(position).windLevels[0] + ")";
-            if (weather.dailyList.get(position).precipitations[0] != 0) {
-                daytimeTxt = daytimeTxt + "\n" + getString(R.string.precipitation)
-                        + " : " + weather.dailyList.get(position).precipitations[0] + "%";
-            }
+            String daytimeTxt = weather.dailyList.get(position).weathers[0] + "  "
+                    + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[0], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
+                    + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[0] + " "
+                    + weather.dailyList.get(position).windSpeeds[0] + " (" + weather.dailyList.get(position).windLevels[0] + ")" + "\n"
+                    + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[0] + "%";
             weatherTexts[0].setText(daytimeTxt);
 
-            String nighttimeTxt = weather.dailyList.get(position).weathers[1] + "  " + weather.dailyList.get(position).temps[1] + "°"
-                    + "\n" + getString(R.string.wind) + " : "
-                    + weather.dailyList.get(position).windDirs[1] + " " + weather.dailyList.get(position).windSpeeds[1]
-                    + " (" + weather.dailyList.get(position).windLevels[1] + ")";
-            if (weather.dailyList.get(position).precipitations[1] != 0) {
-                nighttimeTxt = nighttimeTxt + "\n" + getString(R.string.precipitation)
-                        + " : " + weather.dailyList.get(position).precipitations[1] + "%";
-            }
+            String nighttimeTxt = weather.dailyList.get(position).weathers[1] + "  "
+                    + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[1], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
+                    + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[1] + " "
+                    + weather.dailyList.get(position).windSpeeds[1] + " (" + weather.dailyList.get(position).windLevels[1] + ")" + "\n"
+                    + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[1] + "%";
             weatherTexts[1].setText(nighttimeTxt);
         } else {
-            String text = weather.hourlyList.get(position).weather + "  " + weather.hourlyList.get(position).temp + "°"
-                    + "\n" + getString(R.string.precipitation) + " : " + weather.hourlyList.get(position).precipitation + "%";
+            String text = weather.hourlyList.get(position).weather + "  "
+                    + ValueUtils.buildCurrentTemp(weather.hourlyList.get(position).temp, false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
+                    + getString(R.string.precipitation) + " : " + weather.hourlyList.get(position).precipitation + "%";
             weatherTexts[0].setText(text);
         }
         

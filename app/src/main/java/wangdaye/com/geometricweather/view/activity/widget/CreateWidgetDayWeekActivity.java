@@ -337,7 +337,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startPollingService(this);
+                ServiceHelper.startPollingService(this, false);
                 finish();
                 break;
         }

@@ -647,7 +647,7 @@ public class MainActivity extends GeoActivity
             case MESSAGE_WHAT_STARTUP_SERVICE:
                 WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
                 NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
-                ServiceHelper.startupAllService(this);
+                ServiceHelper.startupAllService(this, true);
                 break;
         }
     }

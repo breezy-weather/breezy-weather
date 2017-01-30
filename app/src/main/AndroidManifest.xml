@@ -133,10 +133,10 @@
         <service android:name=".service.alarm.TomorrowForecastAlarmService" />
         <service
             android:name=".service.PollingService"
-            android:process=":service" />
+            android:process=":polling" />
         <service
             android:name=".service.ProtectService"
-            android:process=":remote" />
+            android:process=":protect" />
 
         <!-- receiver -->
         <receiver

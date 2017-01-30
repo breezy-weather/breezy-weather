@@ -9,6 +9,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -110,7 +111,7 @@ public class NormalNotificationUtils {
                 R.id.notification_base_dailyTemp,
                 ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
 
-        if (weather.aqi != null) {
+        if (weather.aqi != null && !TextUtils.isEmpty(weather.aqi.aqi)) {
             base.setTextViewText(
                     R.id.notification_base_aqi_wind,
                     "AQI " + weather.aqi.aqi);
@@ -178,7 +179,7 @@ public class NormalNotificationUtils {
                     R.id.notification_base_dailyTemp,
                     ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
 
-            if (weather.aqi != null) {
+            if (weather.aqi != null && !TextUtils.isEmpty(weather.aqi.aqi)) {
                 big.setTextViewText(
                         R.id.notification_base_aqi_wind,
                         "AQI " + weather.aqi.aqi);

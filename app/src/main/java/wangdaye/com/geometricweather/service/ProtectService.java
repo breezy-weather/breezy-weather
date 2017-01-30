@@ -29,7 +29,7 @@ public class ProtectService extends Service {
         super.onStartCommand(intent, flags, startId);
         readData(intent);
         doProtectionWork();
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     @Nullable
@@ -47,7 +47,7 @@ public class ProtectService extends Service {
     }
 
     private void readData(Intent intent) {
-        if (intent.getBooleanExtra("from_main", false)) {
+        if (intent != null && intent.getBooleanExtra("is_refresh", false)) {
             working = intent.getBooleanExtra("working", true);
         }
     }

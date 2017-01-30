@@ -37,6 +37,8 @@ public class PollingAlarmService extends GeoAlarmService {
                 || NormalNotificationUtils.isEnable(this)) {
             setAlarmIntent(this, PollingAlarmService.class, ALARM_CODE);
             requestData(location);
+        } else {
+            stopSelf();
         }
     }
 
