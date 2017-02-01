@@ -79,7 +79,10 @@ public class WidgetClockDayHorizontalUtils {
 
         Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
         PendingIntent pendingIntentClock = PendingIntent.getActivity(
-                context, CLOCK_PENDING_INTENT_CODE, intentClock, PendingIntent.FLAG_UPDATE_CURRENT);
+                context,
+                CLOCK_PENDING_INTENT_CODE,
+                intentClock,
+                PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_clock_day_clockButton, pendingIntentClock);
 
         PendingIntent pendingIntentWeather = PendingIntent.getActivity(

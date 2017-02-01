@@ -1,9 +1,9 @@
 package wangdaye.com.geometricweather.view.activity;
 
+import android.Manifest;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -34,7 +34,6 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
-import wangdaye.com.geometricweather.utils.PermissionUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.widget.SafeHandler;
@@ -434,8 +433,23 @@ public class MainActivity extends GeoActivity
     /** <br> permission. */
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestLocationPermission() {
-        PermissionUtils.requestLocationPermission(this, LOCATION_PERMISSIONS_REQUEST_CODE);
+    private void requestPermission(int permissionCode) {
+        switch (permissionCode) {
+            case LOCATION_PERMISSIONS_REQUEST_CODE:
+                if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED
+                        || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    this.requestPermissions(
+                            new String[] {
+                                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                                    Manifest.permission.ACCESS_FINE_LOCATION},
+                            LOCATION_PERMISSIONS_REQUEST_CODE);
+                } else {
+                    locationHelper.requestLocation(this, locationNow, this);
+                }
+                break;
+        }
     }
 
     @Override
@@ -446,8 +460,7 @@ public class MainActivity extends GeoActivity
                 if (grantResult[0] == PackageManager.PERMISSION_GRANTED) {
                     SnackbarUtils.showSnackbar(getString(R.string.feedback_request_location_permission_success));
                     if (locationNow.isLocal()) {
-                        setRefreshing(true);
-                        onRefresh();
+                        locationHelper.requestLocation(this, locationNow, this);
                     }
                 } else {
                     SnackbarUtils.showSnackbar(getString(R.string.feedback_request_location_permission_failed));
@@ -481,14 +494,6 @@ public class MainActivity extends GeoActivity
                 break;
         }
     }
-
-    private View.OnClickListener snackbarAction = new View.OnClickListener() {
-        @TargetApi(Build.VERSION_CODES.M)
-        @Override
-        public void onClick(View view) {
-            requestLocationPermission();
-        }
-    };
 
     // on menu item click listener.
 
@@ -539,7 +544,11 @@ public class MainActivity extends GeoActivity
         weatherHelper.cancel();
 
         if (locationNow.isLocal()) {
-            locationHelper.requestLocation(this, locationNow, this);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                locationHelper.requestLocation(this, locationNow, this);
+            } else {
+                requestPermission(LOCATION_PERMISSIONS_REQUEST_CODE);
+            }
         } else {
             weatherHelper.requestWeather(this, locationNow, this);
         }
@@ -576,14 +585,7 @@ public class MainActivity extends GeoActivity
                 setRefreshing(false);
             }
 
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_location_failed));
-            } else {
-                SnackbarUtils.showSnackbar(
-                        getString(R.string.feedback_location_failed),
-                        getString(R.string.feedback_request_permission),
-                        snackbarAction);
-            }
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_location_failed));
         }
     }
 
