@@ -2,12 +2,6 @@
 
 ![Geometric Weather](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_header.png)
 
-### 历史版本
-
-* 历史版本全部收录于history文件夹。
-* 历史版本从v1.0.3开始收录
-
-
 ### app简介
 
 * 遵守google material design设计规范。
