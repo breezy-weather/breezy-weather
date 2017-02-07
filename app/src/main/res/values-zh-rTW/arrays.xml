@@ -3,7 +3,7 @@
 
     <!-- language. -->
     <string-array name="languages">
-        <item>跟随系统</item>
+        <item>Follow system</item>
         <item>中文</item>
         <item>繁體中文</item>
         <item>English</item>
@@ -12,7 +12,7 @@
 
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
-        <item>深色</item>
+        <item>暗色</item>
         <item>灰色</item>
         <item>亮色</item>
     </string-array>
@@ -20,8 +20,8 @@
     <!-- widget style. -->
     <string-array name="widget_styles">
         <item>矩形</item>
-        <item>对称</item>
-        <item>平铺</item>
+        <item>對稱</item>
+        <item>瓷磚</item>
         <item>Mini</item>
         <item>Nano</item>
         <item>Pixel</item>

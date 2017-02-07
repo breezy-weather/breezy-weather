@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingTranslation">
+<resources>
 
     <!-- language. -->
     <string-array name="languages">
         <item>Sistem Dili</item>
         <item>中文</item>
+        <item>繁體中文</item>
         <item>English</item>
         <item>Türkçe</item>
     </string-array>

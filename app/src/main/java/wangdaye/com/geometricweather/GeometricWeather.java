@@ -45,8 +45,10 @@ public class GeometricWeather extends Application {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
-        LanguageUtils.setLanguage(this, sharedPreferences.getString(getString(R.string.key_language), "follow_system"));
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
+        LanguageUtils.setLanguage(
+                this,
+                sharedPreferences.getString(getString(R.string.key_language), "follow_system"));
     }
 
     /** <br> data. */

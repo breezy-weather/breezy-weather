@@ -23,6 +23,10 @@ public class LanguageUtils {
                     configuration.setLocale(new Locale("zh"));
                     break;
 
+                case "unsimplified_chinese":
+                    configuration.setLocale(new Locale("zh", "TW"));
+                    break;
+
                 case "turkish":
                     configuration.setLocale(new Locale("tr"));
                     break;

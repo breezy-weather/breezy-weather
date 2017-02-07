@@ -18,11 +18,14 @@ public class ValueUtils {
             case "chinese":
                 return c.getResources().getStringArray(R.array.languages)[1];
 
-            case "english":
+            case "unsimplified_chinese":
                 return c.getResources().getStringArray(R.array.languages)[2];
 
-            case "turkish":
+            case "english":
                 return c.getResources().getStringArray(R.array.languages)[3];
+
+            case "turkish":
+                return c.getResources().getStringArray(R.array.languages)[4];
 
             default:
                 return null;

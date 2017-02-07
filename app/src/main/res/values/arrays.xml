@@ -6,12 +6,14 @@
     <string-array name="languages">
         <item>Follow system</item>
         <item>中文</item>
+        <item>繁體中文</item>
         <item>English</item>
         <item>Türkçe</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
         <item>chinese</item>
+        <item>unsimplified_chinese</item>
         <item>english</item>
         <item>turkish</item>
     </string-array>
