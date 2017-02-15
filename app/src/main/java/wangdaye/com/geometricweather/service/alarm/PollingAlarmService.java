@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import wangdaye.com.geometricweather.basic.GeoAlarmService;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.utils.helpter.TileHelper;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayHorizontalUtils;
@@ -34,7 +35,8 @@ public class PollingAlarmService extends GeoAlarmService {
                 || WidgetClockDayHorizontalUtils.isEnable(this)
                 || WidgetClockDayVerticalUtils.isEnable(this)
                 || WidgetClockDayWeekUtils.isEnable(this)
-                || NormalNotificationUtils.isEnable(this)) {
+                || NormalNotificationUtils.isEnable(this)
+                || TileHelper.isEnable(this)) {
             setAlarmIntent(this, PollingAlarmService.class, ALARM_CODE);
             requestData(location);
         } else {

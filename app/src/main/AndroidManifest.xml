@@ -137,6 +137,15 @@
         <service
             android:name=".service.ProtectService"
             android:process=":protect" />
+        <service
+            android:name=".service.GeoTileService"
+            android:label="@string/geometric_weather"
+            android:icon="@drawable/weather_sun_day_mini"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
         <!-- receiver -->
         <receiver

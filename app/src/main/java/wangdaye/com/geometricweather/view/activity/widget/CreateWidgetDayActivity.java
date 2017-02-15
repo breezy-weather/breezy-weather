@@ -320,7 +320,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 }
             }
 
-            if (widgetTime != null) {
+            if (viewTypeValueNow.equals("pixel")) {
+                widgetSubtitle.setVisibility(hideRefreshTimeSwitch.isChecked() ? View.GONE : View.VISIBLE);
+            } else if (widgetTime != null) {
                 widgetTime.setVisibility(hideRefreshTimeSwitch.isChecked() ? View.GONE : View.VISIBLE);
             }
 
@@ -377,7 +379,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (widgetTime != null) {
+            if (viewTypeValueNow.equals("pixel")) {
+                widgetSubtitle.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+            } else if (widgetTime != null) {
                 widgetTime.setVisibility(isChecked ? View.GONE : View.VISIBLE);
             }
         }

@@ -21,6 +21,7 @@
         <CheckBoxPreference
             android:title="@string/settings_title_permanent_service"
             android:key="@string/key_permanent_service"
+            android:defaultValue="true"
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 

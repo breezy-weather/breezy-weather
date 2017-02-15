@@ -32,7 +32,7 @@ public class ServiceHelper {
 
     public static void startupAllService(Context context, boolean onlyRefreshNormalView) {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), false)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), true)) {
             startPermanentService(context, sharedPreferences, onlyRefreshNormalView);
         } else {
             if (WidgetDayUtils.isEnable(context)
@@ -41,7 +41,8 @@ public class ServiceHelper {
                     || WidgetClockDayHorizontalUtils.isEnable(context)
                     || WidgetClockDayVerticalUtils.isEnable(context)
                     || WidgetClockDayWeekUtils.isEnable(context)
-                    || NormalNotificationUtils.isEnable(context)) {
+                    || NormalNotificationUtils.isEnable(context)
+                    || TileHelper.isEnable(context)) {
                 startPollingService(context, onlyRefreshNormalView);
             }
 
@@ -64,7 +65,7 @@ public class ServiceHelper {
     }
 
     private static void startPermanentService(Context context, SharedPreferences sharedPreferences, boolean onlyRefreshNormalView) {
-        boolean working = sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), false)
+        boolean working = sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), true)
                 && isBackgroundWorking(context);
         boolean openTodayForecast = sharedPreferences.getBoolean(context.getString(R.string.key_forecast_today), false);
         String todayForecastTime = sharedPreferences.getString(
@@ -104,14 +105,15 @@ public class ServiceHelper {
                 || WidgetClockDayWeekUtils.isEnable(context)
                 || NormalNotificationUtils.isEnable(context)
                 || ForecastNotificationUtils.isEnable(context, true)
-                || ForecastNotificationUtils.isEnable(context, false);
+                || ForecastNotificationUtils.isEnable(context, false)
+                || TileHelper.isEnable(context);
     }
 
     /** <br> polling. */
 
     public static void startPollingService(Context context, boolean onlyRefreshNormalView) {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), false)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), true)) {
             startPermanentService(context, sharedPreferences, onlyRefreshNormalView);
         } else {
             stopPollingService(context, onlyRefreshNormalView);
@@ -122,7 +124,7 @@ public class ServiceHelper {
 
     public static void stopPollingService(Context context, boolean onlyRefreshNormalView) {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), false)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), true)) {
             startPermanentService(context, sharedPreferences, onlyRefreshNormalView);
         } else {
             context.stopService(new Intent(context, PollingAlarmService.class));
@@ -140,14 +142,15 @@ public class ServiceHelper {
                 && !WidgetClockDayHorizontalUtils.isEnable(context)
                 && !WidgetClockDayVerticalUtils.isEnable(context)
                 && !WidgetClockDayWeekUtils.isEnable(context)
-                && !NormalNotificationUtils.isEnable(context);
+                && !NormalNotificationUtils.isEnable(context)
+                && !TileHelper.isEnable(context);
     }
 
     /** <br> forecast. */
 
     public static void startForecastService(Context context, boolean today, boolean onlyRefreshNormalView) {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), false)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), true)) {
             startPermanentService(context, sharedPreferences, onlyRefreshNormalView);
         } else {
             stopForecastService(context, today, onlyRefreshNormalView);
@@ -160,7 +163,7 @@ public class ServiceHelper {
 
     public static void stopForecastService(Context context, boolean today, boolean onlyRefreshNormalView) {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), false)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), true)) {
             startPermanentService(context, sharedPreferences, onlyRefreshNormalView);
         } else {
             if (today) {
