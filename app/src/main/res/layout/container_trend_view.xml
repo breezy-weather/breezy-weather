@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,12 +16,38 @@
         android:id="@+id/container_trend_view_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    
+    <wangdaye.com.geometricweather.view.widget.SwitchImageButton
+        android:id="@+id/container_trend_view_popBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="6dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:drawable_res_on="@drawable/ic_water_percent_on"
+        app:drawable_res_off="@drawable/ic_water_percent_off"
+        tools:ignore="RtlHardcoded" />
+
+    <wangdaye.com.geometricweather.view.widget.SwitchImageButton
+        android:id="@+id/container_trend_view_dateBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="6dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/container_trend_view_popBtn"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:drawable_res_on="@drawable/ic_date_on"
+        app:drawable_res_off="@drawable/ic_date_off"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:text="@string/feedback_click_toggle"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@id/container_trend_view_dateBtn"
         android:layout_margin="@dimen/little_margin"
+        android:maxLines="1"
+        android:layout_width="match_parent"
         style="@style/subtitle_text"
         tools:ignore="RtlHardcoded" />
 

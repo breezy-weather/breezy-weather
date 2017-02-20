@@ -46,7 +46,7 @@ public class TomorrowForecastAlarmService extends GeoAlarmService {
 
     public void setAlarmIntent(Context context, Class<?> cls) {
         if (!PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.key_permanent_service), false)) {
+                .getBoolean(context.getString(R.string.key_permanent_service), true)) {
             Intent target = new Intent(context, cls);
             PendingIntent pendingIntent = PendingIntent.getService(
                     context,

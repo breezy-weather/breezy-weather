@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -92,8 +94,11 @@ public abstract class GeoAlarmService extends Service
     }
 
     public static void setAlarmIntent(Context context, Class<?> cls, int requestCode) {
-        if (!PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.key_permanent_service), false)) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), true)) {
+            String rateScale = sharedPreferences.getString(
+                    context.getString(R.string.key_refresh_rate), "1:30");
+
             Intent target = new Intent(context, cls);
             PendingIntent pendingIntent = PendingIntent.getService(
                     context,
@@ -104,10 +109,10 @@ public abstract class GeoAlarmService extends Service
             int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
             int minute = Calendar.getInstance().get(Calendar.MINUTE);
             int duration;
-            if (24 * 60 - hour * 60 - minute < 1000 * 60 * 60 * 1.5) {
+            if (24 * 60 - hour * 60 - minute < 1000 * 60 * 60 * ValueUtils.getRefreshRateScale(rateScale)) {
                 duration = (24 * 60 + 10 - hour * 60 - minute) * 60 * 1000;
             } else {
-                duration = (int) (1000 * 60 * 60 * 1.5);
+                duration = (int) (1000 * 60 * 60 * ValueUtils.getRefreshRateScale(rateScale));
             }
 
             ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE))

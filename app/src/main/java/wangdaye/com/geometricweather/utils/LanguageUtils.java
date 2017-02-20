@@ -3,6 +3,8 @@ package wangdaye.com.geometricweather.utils;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import java.util.Locale;
@@ -18,28 +20,43 @@ public class LanguageUtils {
             Resources resources = c.getResources();
             Configuration configuration = resources.getConfiguration();
             DisplayMetrics metrics = resources.getDisplayMetrics();
+            Locale locale;
             switch (language) {
                 case "chinese":
-                    configuration.setLocale(new Locale("zh"));
+                    locale = new Locale("zh", "CN");
                     break;
 
                 case "unsimplified_chinese":
-                    configuration.setLocale(new Locale("zh", "TW"));
+                    locale = new Locale("zh", "TW");
                     break;
 
                 case "turkish":
-                    configuration.setLocale(new Locale("tr"));
+                    locale = new Locale("tr");
+                    break;
+
+                case "french":
+                    locale = new Locale("fr");
                     break;
 
                 default:
-                    configuration.setLocale(new Locale("en"));
+                    locale = new Locale("en");
                     break;
             }
+            configuration.setLocale(locale);
             resources.updateConfiguration(configuration, metrics);
         }
     }
 
     public static String getLanguageCode(Context c) {
-        return c.getResources().getConfiguration().locale.getLanguage();
+        Locale locale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locale = c.getResources().getConfiguration().getLocales().get(0);
+        } else {
+            locale = c.getResources().getConfiguration().locale;
+        }
+        String language = locale.getLanguage();
+        String country = locale.getCountry();
+        return language.toLowerCase()
+                + (TextUtils.isEmpty(country) ? "" : ("-" + country.toLowerCase()));
     }
 }

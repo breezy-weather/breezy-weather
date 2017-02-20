@@ -79,7 +79,7 @@ public class NormalNotificationUtils {
                 && sharedPreferences.getBoolean(context.getString(R.string.key_notification_hide_icon), false)) {
             builder.setPriority(NotificationCompat.PRIORITY_MIN);
         } else {
-            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+            builder.setPriority(NotificationCompat.PRIORITY_MAX);
         }
 
         // set notification visibility.

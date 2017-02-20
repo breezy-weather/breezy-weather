@@ -10,4 +10,10 @@
         <attr name="currentPageIndicatorColor" format="color" />
     </declare-styleable>
 
+    <!-- Switch image button. -->
+    <declare-styleable name="SwitchImageButton">
+        <attr name="drawable_res_on" format="reference" />
+        <attr name="drawable_res_off" format="reference" />
+    </declare-styleable>
+
 </resources>

@@ -13,6 +13,7 @@ import wangdaye.com.geometricweather.service.ProtectService;
 import wangdaye.com.geometricweather.service.alarm.PollingAlarmService;
 import wangdaye.com.geometricweather.service.alarm.TodayForecastAlarmService;
 import wangdaye.com.geometricweather.service.alarm.TomorrowForecastAlarmService;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.remoteView.ForecastNotificationUtils;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
@@ -67,6 +68,7 @@ public class ServiceHelper {
     private static void startPermanentService(Context context, SharedPreferences sharedPreferences, boolean onlyRefreshNormalView) {
         boolean working = sharedPreferences.getBoolean(context.getString(R.string.key_permanent_service), true)
                 && isBackgroundWorking(context);
+        String refreshRate = sharedPreferences.getString(context.getString(R.string.key_refresh_rate), "1:30");
         boolean openTodayForecast = sharedPreferences.getBoolean(context.getString(R.string.key_forecast_today), false);
         String todayForecastTime = sharedPreferences.getString(
                 context.getString(R.string.key_forecast_today_time),
@@ -78,19 +80,20 @@ public class ServiceHelper {
 
         // protect service.
         Intent protect = new Intent(context, ProtectService.class);
-        protect.putExtra("is_refresh", true);
-        protect.putExtra("working", working);
+        protect.putExtra(ProtectService.INTENT_KEY_IS_REFRESH, true);
+        protect.putExtra(ProtectService.INTENT_KEY_WORKING, working);
 
         // polling service.
         Intent polling = new Intent(context, PollingService.class);
-        polling.putExtra("is_refresh", true);
-        polling.putExtra("working", working);
-        polling.putExtra("force_refresh", true);
-        polling.putExtra("only_refresh_normal_view", onlyRefreshNormalView);
-        polling.putExtra("today_forecast", openTodayForecast);
-        polling.putExtra("today_forecast_time", todayForecastTime);
-        polling.putExtra("tomorrow_forecast", openTomorrowForecast);
-        polling.putExtra("tomorrow_forecast_time", tomorrowForecastTime);
+        polling.putExtra(PollingService.INTENT_KEY_IS_REFRESH, true);
+        polling.putExtra(PollingService.INTENT_KEY_WORKING, working);
+        polling.putExtra(PollingService.INTENT_KEY_FORCE_REFRESH, true);
+        polling.putExtra(PollingService.INTENT_KEY_REFRESH_NORMAL_VIEW, onlyRefreshNormalView);
+        polling.putExtra(PollingService.INTENT_KEY_POLLING_RATE, ValueUtils.getRefreshRateScale(refreshRate));
+        polling.putExtra(PollingService.INTENT_KEY_TODAY_FORECAST, openTodayForecast);
+        polling.putExtra(PollingService.INTENT_KEY_TODAY_FORECAST_TIME, todayForecastTime);
+        polling.putExtra(PollingService.INTENT_KEY_TOMORROW_FORECAST, openTomorrowForecast);
+        polling.putExtra(PollingService.INTENT_KEY_TOMORROW_FORECAST_TIME, tomorrowForecastTime);
 
         context.startService(polling);
         context.startService(protect);

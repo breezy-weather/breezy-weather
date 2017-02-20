@@ -32,8 +32,10 @@ public class TrendItemView extends FrameLayout {
 
     // data.
     private int temps[] = new int[2];
+    private int precipitation;
     private int[] maxiTempYs = new int[3];
     private int[] miniTempYs = new int[3];
+    private int precipitationY;
 
     private int dataType = DATA_TYPE_NULL;
     public static final int DATA_TYPE_NULL = 0;
@@ -141,13 +143,18 @@ public class TrendItemView extends FrameLayout {
         switch (dataType) {
             case DATA_TYPE_DAILY:
                 drawTimeLine(canvas);
+                if (precipitation != 0) {
+                    drawPrecipitationData(canvas);
+                }
                 drawDailyMaxiTemp(canvas);
                 drawDailyMiniTemp(canvas);
                 break;
 
             case DATA_TYPE_HOURLY:
                 drawTimeLine(canvas);
-                drawHourlyPrecipitationData(canvas);
+                if (precipitation != 0) {
+                    drawPrecipitationData(canvas);
+                }
                 drawHourlyTemp(canvas);
                 break;
         }
@@ -433,31 +440,32 @@ public class TrendItemView extends FrameLayout {
                 paint);
     }
 
-    private void drawHourlyPrecipitationData(Canvas canvas) {
+    // precipitation.
+
+    private void drawPrecipitationData(Canvas canvas) {
         paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
         paint.setColor(lineColors[1]);
         paint.setAlpha((int) (255 * 0.1));
         paint.setStyle(Paint.Style.FILL);
+
         canvas.drawRoundRect(
                 new RectF(
                         (float) (getMeasuredWidth() / 2.0 - TREND_LINE_SIZE * 1.5),
-                        miniTempYs[0],
+                        precipitationY,
                         (float) (getMeasuredWidth() / 2.0 + TREND_LINE_SIZE * 1.5),
                         getMeasuredHeight() - MARGIN_BOTTOM),
                 TREND_LINE_SIZE * 3, TREND_LINE_SIZE * 3,
                 paint);
 
-        if (temps[1] != 0) {
-            paint.setAlpha((int) (255 * 0.2));
-            paint.setTextAlign(Paint.Align.CENTER);
-            paint.setTextSize(POP_TEXT_SIZE);
-            canvas.drawText(
-                    temps[1] + "%",
-                    (float) (getMeasuredWidth() / 2.0),
-                    getMeasuredHeight() - MARGIN_BOTTOM - paint.getFontMetrics().top + MARGIN_TEXT,
-                    paint);
-        }
+        paint.setAlpha((int) (255 * 0.2));
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTextSize(POP_TEXT_SIZE);
+        canvas.drawText(
+                precipitation + "%",
+                (float) (getMeasuredWidth() / 2.0),
+                getMeasuredHeight() - MARGIN_BOTTOM - paint.getFontMetrics().top + MARGIN_TEXT,
+                paint);
 
         paint.setAlpha(255);
     }
@@ -466,11 +474,12 @@ public class TrendItemView extends FrameLayout {
 
     // init.
 
-    public void setData(Weather weather, int dataType, int position, int highest, int lowest) {
+    public void setData(Weather weather,
+                        int dataType, int position, int highest, int lowest, boolean showDailyPop) {
         this.dataType = dataType;
         switch (dataType) {
             case DATA_TYPE_DAILY:
-                setDailyData(weather, position, highest, lowest);
+                setDailyData(weather, position, highest, lowest, showDailyPop);
                 break;
 
             case DATA_TYPE_HOURLY:
@@ -485,7 +494,7 @@ public class TrendItemView extends FrameLayout {
 
     // daily.
 
-    private void setDailyData(Weather weather, int position, int highest, int lowest) {
+    private void setDailyData(Weather weather, int position, int highest, int lowest, boolean showDailyPop) {
         this.temps = new int[] {
                 weather.dailyList.get(position).temps[0],
                 weather.dailyList.get(position).temps[1]};
@@ -499,6 +508,7 @@ public class TrendItemView extends FrameLayout {
             positionType = POSITION_TYPE_CENTER;
             setDailyCenterData(weather, position, highest, lowest);
         }
+        setDailyPrecipitationData(weather, position, showDailyPop);
     }
 
     private void setDailyLeftData(Weather weather, int position, int highest, int lowest) {
@@ -627,12 +637,23 @@ public class TrendItemView extends FrameLayout {
         }
     }
 
+    private void setDailyPrecipitationData(Weather weather, int position, boolean showDailyPop) {
+        if (showDailyPop) {
+            precipitation = (weather.dailyList.get(position).precipitations[0] + weather.dailyList.get(position).precipitations[1]) / 2;
+            precipitationY = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                    - calcDrawSpecUsableHeight(getContext()) * precipitation / 100.0);
+        } else {
+            precipitation = 0;
+            precipitationY = 0;
+        }
+    }
+
     // hourly.
 
     public void setHourlyData(Weather weather, int position, int highest, int lowest) {
         this.temps = new int[] {
                 weather.hourlyList.get(position).temp,
-                weather.hourlyList.get(position).precipitation};
+                0};
         if (position == 0) {
             positionType = POSITION_TYPE_LEFT;
             setHourlyLeftData(weather, position, highest, lowest);
@@ -643,7 +664,7 @@ public class TrendItemView extends FrameLayout {
             positionType = POSITION_TYPE_CENTER;
             setHourlyCenterData(weather, position, highest, lowest);
         }
-        serPrecipitationData(weather, position);
+        setHourlyPrecipitationData(weather, position);
     }
 
     private void setHourlyLeftData(Weather weather, int position, int highest, int lowest) {
@@ -712,9 +733,10 @@ public class TrendItemView extends FrameLayout {
         }
     }
 
-    private void serPrecipitationData(Weather weather, int position) {
-        miniTempYs[0] = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
-                - calcDrawSpecUsableHeight(getContext()) * weather.hourlyList.get(position).precipitation / 100.0);
+    private void setHourlyPrecipitationData(Weather weather, int position) {
+        precipitation = weather.hourlyList.get(position).precipitation;
+        precipitationY = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
+                - calcDrawSpecUsableHeight(getContext()) * precipitation / 100.0);
     }
 
     // size.

@@ -32,16 +32,20 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
     // data
     private Weather weather;
     private History history;
+    private boolean showDailyPop;
+    private boolean showDate;
     private boolean dayTime;
     private int state;
     private int highest, lowest;
 
     /** <br> life cycle. */
 
-    public TrendAdapter(Context context, Weather weather, History history, OnTrendItemClickListener l) {
+    public TrendAdapter(Context context,
+                        Weather weather, History history, boolean showDailyPop, boolean showDate,
+                        OnTrendItemClickListener l) {
         this.context = context;
         this.listener = l;
-        this.setData(weather, history, TrendItemView.DATA_TYPE_DAILY);
+        this.setData(weather, history, showDailyPop, showDate, TrendItemView.DATA_TYPE_DAILY);
     }
 
     /** <br> UI. */
@@ -58,13 +62,17 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
         if (weather == null) {
             holder.trendItemView.setNullData();
         } else {
-            holder.trendItemView.setData(weather, state, position, highest, lowest);
+            holder.trendItemView.setData(weather, state, position, highest, lowest, showDailyPop);
             switch (state) {
                 case TrendItemView.DATA_TYPE_DAILY:
-                    if (position == 0) {
-                        holder.textView.setText(context.getString(R.string.today));
+                    if (showDate) {
+                        holder.textView.setText(weather.dailyList.get(position).date.split("-", 2)[1]);
                     } else {
-                        holder.textView.setText(weather.dailyList.get(position).week);
+                        if (position == 0) {
+                            holder.textView.setText(context.getString(R.string.today));
+                        } else {
+                            holder.textView.setText(weather.dailyList.get(position).week);
+                        }
                     }
                     Glide.with(context)
                             .load(WeatherHelper.getWeatherIcon(
@@ -89,9 +97,11 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
 
     /** <br> data. */
 
-    public void setData(Weather weather, History history, int state) {
+    public void setData(Weather weather, History history, boolean showDailyPop, boolean showDate, int state) {
         this.weather = weather;
         this.history = history;
+        this.showDailyPop = showDailyPop;
+        this.showDate = showDate;
         this.dayTime = TimeUtils.getInstance(context).isDayTime();
         this.state = state;
 

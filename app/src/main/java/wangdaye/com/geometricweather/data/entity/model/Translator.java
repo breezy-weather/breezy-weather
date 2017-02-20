@@ -27,6 +27,7 @@ public class Translator {
         List<Translator> translatorList = new ArrayList<>(1);
 
         translatorList.add(new Translator("Mehmet Saygin Yilmaz", "memcos@gmail.com", R.drawable.flag_tr));
+        translatorList.add(new Translator("benjamin Tourrel", "polo_naref@hotmail.fr", R.drawable.flag_fr));
 
         return translatorList;
     }

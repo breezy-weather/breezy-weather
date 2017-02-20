@@ -183,6 +183,7 @@ public class WidgetDayUtils {
 
                 views.setTextColor(R.id.widget_day_title, textColor);
                 views.setTextColor(R.id.widget_day_subtitle, textColor);
+                views.setViewVisibility(R.id.widget_day_subtitle, hideRefreshTime ? View.GONE : View.VISIBLE);
                 return views;
 
         }

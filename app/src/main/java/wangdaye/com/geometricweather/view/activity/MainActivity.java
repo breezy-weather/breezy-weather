@@ -141,6 +141,8 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        locationHelper.cancel();
+        weatherHelper.cancel();
         handler.removeCallbacksAndMessages(null);
     }
 

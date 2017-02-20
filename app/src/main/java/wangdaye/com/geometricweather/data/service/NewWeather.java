@@ -112,7 +112,7 @@ public class NewWeather {
     }
 
     public NewWeather requestNewLocationByGeoPosition(Context c, final String lat, final String lon,
-                                                       final LocationHelper.OnRequestWeatherLocationListener l) {
+                                                      final LocationHelper.OnRequestWeatherLocationListener l) {
         this.languageCode = LanguageUtils.getLanguageCode(c);
         Call<NewLocationResult> getAccuLocationByGeoPosition = buildApi().getWeatherLocationByGeoPosition(
                 "Always",

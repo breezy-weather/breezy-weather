@@ -93,7 +93,7 @@
     <string name="feedback_black_text">暗色字体</string>
     <string name="feedback_hide_refresh_time">隐藏刷新时间</string>
 
-    <string name="feedback_click_toggle">-点击趋势图可切换数据</string>
+    <string name="feedback_click_toggle">点击趋势图可切换数据</string>
     <string name="feedback_no_data">暂无数据</string>
 
     <string name="feedback_collect_failed">地址已存在</string>
@@ -135,6 +135,7 @@
     <string name="settings_navigationBar_color_off">导航栏显示黑色</string>
     <string name="settings_language">语言</string>
     <string name="settings_title_fahrenheit">华氏度</string>
+    <string name="settings_title_refresh_rate">自动刷新频率</string>
     <string name="settings_title_permanent_service">后台服务常驻</string>
     <string name="settings_category_forecast">预报</string>
     <string name="settings_title_forecast_today">定时预报(今日天气)</string>

@@ -99,7 +99,7 @@
     <string name="feedback_black_text">Koyu yazı.</string>
     <string name="feedback_hide_refresh_time">Güncelleme zamanını sakla.</string>
 
-    <string name="feedback_click_toggle">-Verileri değiştirmek için grafiği tıklayın.</string>
+    <string name="feedback_click_toggle">Verileri değiştirmek için grafiği tıklayın.</string>
     <string name="feedback_no_data">VERİ YOK</string>
 
     <string name="feedback_collect_failed">Bu konum mevcut.</string>

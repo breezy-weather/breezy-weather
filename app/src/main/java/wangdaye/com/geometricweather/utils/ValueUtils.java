@@ -10,6 +10,31 @@ import wangdaye.com.geometricweather.R;
 
 public class ValueUtils {
 
+    public static float getRefreshRateScale(String value) {
+        switch (value) {
+            case "1:00":
+                return 1.0f;
+
+            case "2:00":
+                return 2.0f;
+
+            case "2:30":
+                return 2.5f;
+
+            case "3:00":
+                return 3.0f;
+
+            case "3:30":
+                return 3.0f;
+
+            case "4:00":
+                return 4.0f;
+
+            default:
+                return 1.5f;
+        }
+    }
+
     public static String getLanguage(Context c, String value) {
         switch (value) {
             case "follow_system":
@@ -26,6 +51,9 @@ public class ValueUtils {
 
             case "turkish":
                 return c.getResources().getStringArray(R.array.languages)[4];
+
+            case "french":
+                return c.getResources().getStringArray(R.array.languages)[5];
 
             default:
                 return null;

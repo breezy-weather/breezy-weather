@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v5.2.6</string>
+    <string name="version_code">v5.2.7</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -103,7 +103,7 @@
     <string name="feedback_black_text">Dark text.</string>
     <string name="feedback_hide_refresh_time">Hide refresh time.</string>
 
-    <string name="feedback_click_toggle">-Click chart to toggle data.</string>
+    <string name="feedback_click_toggle">Click chart to toggle data.</string>
     <string name="feedback_no_data">NO DATA</string>
 
     <string name="feedback_collect_failed">This location already exists.</string>
@@ -145,6 +145,7 @@
     <string name="settings_navigationBar_color_off">Dark.</string>
     <string name="settings_language">Language.</string>
     <string name="settings_title_fahrenheit">Fahrenheit.</string>
+    <string name="settings_title_refresh_rate">Automatic refresh rate</string>
     <string name="settings_title_permanent_service">Permanent service.</string>
     <string name="settings_category_forecast">Forecast</string>
     <string name="settings_title_forecast_today">Forecast for today.</string>
@@ -185,6 +186,7 @@
     <string name="key_navigationBar_color">navigation_bar_color_switch</string>
     <string name="key_language">language</string>
     <string name="key_fahrenheit">fahrenheit</string>
+    <string name="key_refresh_rate">refresh_rate</string>
     <string name="key_permanent_service">permanent_service</string>
     <string name="key_forecast_today">timing_forecast_switch_today</string>
     <string name="key_forecast_today_time">forecast_time_today</string>

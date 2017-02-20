@@ -32,18 +32,31 @@ public class PollingService extends Service {
     private static boolean forceRefresh;
     private static boolean onlyRefreshNormalView;
 
-    private String lastPollingTime;
-    private boolean openTodayForecast;
-    private String todayForecastTime;
-    private boolean openTomorrowForecast;
-    private String tomorrowForecastTime;
+    private static float pollingRate;
+    private static String lastPollingTime;
+
+    private static boolean openTodayForecast;
+    private static String todayForecastTime;
+    private static boolean openTomorrowForecast;
+    private static String tomorrowForecastTime;
 
     private static final String PREFERENCE_NAME = "polling_service_preference";
+    private static final String KEY_POLLING_RATE = "polling_rate";
     private static final String KEY_LAST_POLLING_TIME = "last_polling_time";
     private static final String KEY_OPEN_TODAY_FORECAST = "open_today_forecast";
     private static final String KEY_TODAY_FORECAST_TIME = "today_forecast_time";
     private static final String KEY_OPEN_TOMORROW_FORECAST = "open_tomorrow_forecast";
     private static final String KEY_TOMORROW_FORECAST_TIME = "tomorrow_forecast_time";
+
+    public static final String INTENT_KEY_IS_REFRESH = "is_refresh";
+    public static final String INTENT_KEY_WORKING = "working";
+    public static final String INTENT_KEY_FORCE_REFRESH = "force_refresh";
+    public static final String INTENT_KEY_REFRESH_NORMAL_VIEW = "only_refresh_normal_view";
+    public static final String INTENT_KEY_POLLING_RATE = "polling_rate";
+    public static final String INTENT_KEY_TODAY_FORECAST = "today_forecast";
+    public static final String INTENT_KEY_TODAY_FORECAST_TIME = "today_forecast_time";
+    public static final String INTENT_KEY_TOMORROW_FORECAST = "tomorrow_forecast";
+    public static final String INTENT_KEY_TOMORROW_FORECAST_TIME = "tomorrow_forecast_time";
 
     /** <br> life cycle. */
 
@@ -51,7 +64,6 @@ public class PollingService extends Service {
     public void onCreate() {
         super.onCreate();
         initData();
-        registerReceiver();
     }
 
     @Override
@@ -66,10 +78,7 @@ public class PollingService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (receiver != null) {
-            unregisterReceiver(receiver);
-            receiver = null;
-        }
+        unregisterReceiver();
     }
 
     @Nullable
@@ -88,14 +97,46 @@ public class PollingService extends Service {
         onlyRefreshNormalView = false;
 
         SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-        this.lastPollingTime = sharedPreferences.getString(KEY_LAST_POLLING_TIME, null);
-        this.openTodayForecast = sharedPreferences.getBoolean(KEY_OPEN_TODAY_FORECAST, false);
-        this.todayForecastTime = sharedPreferences.getString(KEY_TODAY_FORECAST_TIME, null);
-        this.openTomorrowForecast = sharedPreferences.getBoolean(KEY_OPEN_TOMORROW_FORECAST, false);
-        this.tomorrowForecastTime = sharedPreferences.getString(KEY_TOMORROW_FORECAST_TIME, null);
+
+        pollingRate = sharedPreferences.getFloat(KEY_POLLING_RATE, 1.5f);
+        lastPollingTime = sharedPreferences.getString(KEY_LAST_POLLING_TIME, null);
+
+        openTodayForecast = sharedPreferences.getBoolean(KEY_OPEN_TODAY_FORECAST, false);
+        todayForecastTime = sharedPreferences.getString(KEY_TODAY_FORECAST_TIME, null);
+        openTomorrowForecast = sharedPreferences.getBoolean(KEY_OPEN_TOMORROW_FORECAST, false);
+        tomorrowForecastTime = sharedPreferences.getString(KEY_TOMORROW_FORECAST_TIME, null);
+    }
+
+    private void readData(Intent intent) {
+        if (intent != null && intent.getBooleanExtra(INTENT_KEY_IS_REFRESH, false)) {
+            working = intent.getBooleanExtra(INTENT_KEY_WORKING, true);
+            forceRefresh = intent.getBooleanExtra(INTENT_KEY_FORCE_REFRESH, false);
+            onlyRefreshNormalView = intent.getBooleanExtra(INTENT_KEY_REFRESH_NORMAL_VIEW, false);
+
+            pollingRate = intent.getFloatExtra(INTENT_KEY_POLLING_RATE, 1.5f);
+
+            openTodayForecast = intent.getBooleanExtra(INTENT_KEY_TODAY_FORECAST, false);
+            todayForecastTime = intent.getStringExtra(INTENT_KEY_TODAY_FORECAST_TIME);
+            openTomorrowForecast = intent.getBooleanExtra(INTENT_KEY_TOMORROW_FORECAST, false);
+            tomorrowForecastTime = intent.getStringExtra(INTENT_KEY_TOMORROW_FORECAST_TIME);
+
+            SharedPreferences.Editor editor = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE).edit();
+            editor.putFloat(KEY_POLLING_RATE, pollingRate);
+            editor.putBoolean(KEY_OPEN_TODAY_FORECAST, openTodayForecast);
+            editor.putString(KEY_TODAY_FORECAST_TIME, todayForecastTime);
+            editor.putBoolean(KEY_OPEN_TOMORROW_FORECAST, openTomorrowForecast);
+            editor.putString(KEY_TOMORROW_FORECAST_TIME, tomorrowForecastTime);
+            editor.apply();
+
+            registerReceiver();
+        } else if (receiver == null) {
+            registerReceiver();
+        }
     }
 
     private void registerReceiver() {
+        unregisterReceiver();
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
@@ -103,23 +144,10 @@ public class PollingService extends Service {
         registerReceiver(receiver, filter);
     }
 
-    private void readData(Intent intent) {
-        if (intent != null && intent.getBooleanExtra("is_refresh", false)) {
-            working = intent.getBooleanExtra("working", true);
-            forceRefresh = intent.getBooleanExtra("force_refresh", false);
-            onlyRefreshNormalView = intent.getBooleanExtra("only_refresh_normal_view", false);
-
-            openTodayForecast = intent.getBooleanExtra("today_forecast", false);
-            todayForecastTime = intent.getStringExtra("today_forecast_time");
-            openTomorrowForecast = intent.getBooleanExtra("tomorrow_forecast", false);
-            tomorrowForecastTime = intent.getStringExtra("tomorrow_forecast_time");
-
-            SharedPreferences.Editor editor = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE).edit();
-            editor.putBoolean(KEY_OPEN_TODAY_FORECAST, openTodayForecast);
-            editor.putString(KEY_TODAY_FORECAST_TIME, todayForecastTime);
-            editor.putBoolean(KEY_OPEN_TOMORROW_FORECAST, openTomorrowForecast);
-            editor.putString(KEY_TOMORROW_FORECAST_TIME, tomorrowForecastTime);
-            editor.apply();
+    private void unregisterReceiver() {
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+            receiver = null;
         }
     }
 
@@ -156,8 +184,8 @@ public class PollingService extends Service {
                     Integer.parseInt(lastPollingTime.split(":")[0]),
                     Integer.parseInt(lastPollingTime.split(":")[1])};
             int deltaTime = (realTimes[0] * 60 + realTimes[1]) - (lastTimes[0] * 60 + lastTimes[1]);
-            if ((realTimes[0] == 0 && realTimes[1] == 10)
-                    || Math.abs(deltaTime) >= 60 * 1.5) {
+            if ((realTimes[0] == 0 && realTimes[1] == 15)
+                    || Math.abs(deltaTime) >= 60 * pollingRate) {
                 startServiceAndRefresh(context);
             }
         }

@@ -35,8 +35,8 @@
         android:layout_toRightOf="@id/item_translator_title"
         android:layout_above="@id/item_translator_subtitle"
         android:layout_marginLeft="@dimen/little_margin"
-        android:layout_width="@dimen/material_icon_size"
-        android:layout_height="@dimen/material_icon_size"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         tools:src="@drawable/flag_tr"
         tools:ignore="ContentDescription,RtlHardcoded" />
 

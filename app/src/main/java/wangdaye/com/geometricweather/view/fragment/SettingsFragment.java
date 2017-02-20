@@ -51,6 +51,14 @@ public class SettingsFragment extends PreferenceFragment
         Preference fahrenheit = findPreference(getString(R.string.key_fahrenheit));
         fahrenheit.setOnPreferenceChangeListener(this);
 
+        Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));
+        refreshRate.setSummary(
+                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                        .getString(
+                                getString(R.string.key_refresh_rate),
+                                "1:30"));
+        refreshRate.setOnPreferenceChangeListener(this);
+
         Preference permanentService = findPreference(getString(R.string.key_permanent_service));
         permanentService.setOnPreferenceChangeListener(this);
 
@@ -158,7 +166,7 @@ public class SettingsFragment extends PreferenceFragment
         } else if (preference.getKey().equals(getString(R.string.key_permanent_service))) {
             // permanent service.
             ServiceHelper.startPermanentService(getActivity(), false);
-            if (sharedPreferences.getBoolean(getString(R.string.key_permanent_service), false)) {
+            if (sharedPreferences.getBoolean(getString(R.string.key_permanent_service), true)) {
                 ServiceHelper.stopPollingService(getActivity(), false);
                 ServiceHelper.stopForecastService(getActivity(), true, false);
                 ServiceHelper.stopForecastService(getActivity(), false, false);
@@ -238,7 +246,14 @@ public class SettingsFragment extends PreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
-        if (preference.getKey().equals(getString(R.string.key_language))) {
+        if (preference.getKey().equals(getString(R.string.key_refresh_rate))) {
+            ServiceHelper.startPollingService(getActivity(), true);
+            preference.setSummary(
+                    PreferenceManager.getDefaultSharedPreferences(getActivity())
+                            .getString(
+                                    getString(R.string.key_refresh_rate),
+                                    "1:30"));
+        } else if (preference.getKey().equals(getString(R.string.key_language))) {
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
