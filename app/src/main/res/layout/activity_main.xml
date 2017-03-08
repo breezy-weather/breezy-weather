@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <wangdaye.com.geometricweather.view.widget.SwipeSwitchLayout
+    <wangdaye.com.geometricweather.view.widget.verticalScrollView.SwipeSwitchLayout
         android:id="@+id/activity_main_switchView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,12 +23,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <wangdaye.com.geometricweather.view.widget.VerticalSwipeRefreshView
+        <wangdaye.com.geometricweather.view.widget.verticalScrollView.VerticalSwipeRefreshView
             android:id="@+id/activity_main_refreshView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <wangdaye.com.geometricweather.view.widget.VerticalNestedScrollView
+            <wangdaye.com.geometricweather.view.widget.verticalScrollView.VerticalNestedScrollView
                 android:id="@+id/activity_main_scrollView"
                 android:scrollbars="none"
                 android:layout_width="match_parent"
@@ -36,9 +36,9 @@
 
                 <include layout="@layout/container_weather" />
 
-            </wangdaye.com.geometricweather.view.widget.VerticalNestedScrollView>
+            </wangdaye.com.geometricweather.view.widget.verticalScrollView.VerticalNestedScrollView>
 
-        </wangdaye.com.geometricweather.view.widget.VerticalSwipeRefreshView>
+        </wangdaye.com.geometricweather.view.widget.verticalScrollView.VerticalSwipeRefreshView>
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/activity_main_toolbar"
@@ -60,6 +60,6 @@
             app:pageIndicatorColor="@color/colorTextSubtitle"
             app:currentPageIndicatorColor="@color/colorPrimary"/>
         
-    </wangdaye.com.geometricweather.view.widget.SwipeSwitchLayout>
+    </wangdaye.com.geometricweather.view.widget.verticalScrollView.SwipeSwitchLayout>
 
 </LinearLayout>

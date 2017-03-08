@@ -111,6 +111,9 @@ public class SettingsFragment extends PreferenceFragment
                         sharedPreferences.getString(getString(R.string.key_notification_text_color), "grey")));
         notificationTextColor.setOnPreferenceChangeListener(this);
 
+        // notification temp icon.
+        CheckBoxPreference notificationTempIcon = (CheckBoxPreference) findPreference(getString(R.string.key_notification_temp_icon));
+
         // notification background.
         CheckBoxPreference notificationBackground = (CheckBoxPreference) findPreference(getString(R.string.key_notification_background));
 
@@ -128,6 +131,7 @@ public class SettingsFragment extends PreferenceFragment
 
         if(sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
             // open notification.
+            notificationTempIcon.setEnabled(true);
             notificationTextColor.setEnabled(true);
             notificationBackground.setEnabled(true);
             notificationClearFlag.setEnabled(true);
@@ -140,6 +144,7 @@ public class SettingsFragment extends PreferenceFragment
             notificationHideBigView.setEnabled(true);
         } else {
             // close notification.
+            notificationTempIcon.setEnabled(false);
             notificationTextColor.setEnabled(false);
             notificationBackground.setEnabled(false);
             notificationClearFlag.setEnabled(false);
@@ -217,6 +222,11 @@ public class SettingsFragment extends PreferenceFragment
                 NormalNotificationUtils.cancelNotification(getActivity());
                 ServiceHelper.stopPollingService(getActivity(), true);
             }
+            return true;
+        } else if (preference.getKey().equals(getString(R.string.key_notification_temp_icon))) {
+            // notification temp icon.
+            ServiceHelper.startPollingService(getActivity(), true);
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_background))) {
             // notification background.

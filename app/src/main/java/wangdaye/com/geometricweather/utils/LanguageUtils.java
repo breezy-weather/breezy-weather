@@ -38,6 +38,10 @@ public class LanguageUtils {
                     locale = new Locale("fr");
                     break;
 
+                case "russian":
+                    locale = new Locale("ru");
+                    break;
+
                 default:
                     locale = new Locale("en");
                     break;

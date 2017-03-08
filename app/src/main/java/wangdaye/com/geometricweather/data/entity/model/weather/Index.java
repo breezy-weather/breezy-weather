@@ -92,7 +92,7 @@ public class Index {
                 + " (" + WeatherHelper.getWindLevel(c, result.Wind.Speed.Metric.Value) + ")";
         humidities = new String[2];
         humidities[0] = c.getString(R.string.sensible_temp) + " : " + result.RealFeelTemperature.Metric.Value + "℃";
-        humidities[1] = c.getString(R.string.humidity) + result.RelativeHumidity + "%";
+        humidities[1] = c.getString(R.string.humidity) + " : " + result.RelativeHumidity + "%";
         uvs = new String[2];
         uvs[0] = c.getString(R.string.uv_index) + " : " + result.UVIndex;
         uvs[1] = result.UVIndexText;

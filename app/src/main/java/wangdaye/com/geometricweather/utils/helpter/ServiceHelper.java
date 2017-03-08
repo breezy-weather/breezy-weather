@@ -80,20 +80,20 @@ public class ServiceHelper {
 
         // protect service.
         Intent protect = new Intent(context, ProtectService.class);
-        protect.putExtra(ProtectService.INTENT_KEY_IS_REFRESH, true);
-        protect.putExtra(ProtectService.INTENT_KEY_WORKING, working);
+        protect.putExtra(ProtectService.KEY_IS_REFRESH, true);
+        protect.putExtra(ProtectService.KEY_WORKING, working);
 
         // polling service.
         Intent polling = new Intent(context, PollingService.class);
-        polling.putExtra(PollingService.INTENT_KEY_IS_REFRESH, true);
-        polling.putExtra(PollingService.INTENT_KEY_WORKING, working);
-        polling.putExtra(PollingService.INTENT_KEY_FORCE_REFRESH, true);
-        polling.putExtra(PollingService.INTENT_KEY_REFRESH_NORMAL_VIEW, onlyRefreshNormalView);
-        polling.putExtra(PollingService.INTENT_KEY_POLLING_RATE, ValueUtils.getRefreshRateScale(refreshRate));
-        polling.putExtra(PollingService.INTENT_KEY_TODAY_FORECAST, openTodayForecast);
-        polling.putExtra(PollingService.INTENT_KEY_TODAY_FORECAST_TIME, todayForecastTime);
-        polling.putExtra(PollingService.INTENT_KEY_TOMORROW_FORECAST, openTomorrowForecast);
-        polling.putExtra(PollingService.INTENT_KEY_TOMORROW_FORECAST_TIME, tomorrowForecastTime);
+        polling.putExtra(PollingService.KEY_IS_REFRESH, true);
+        polling.putExtra(PollingService.KEY_WORKING, working);
+        polling.putExtra(PollingService.KEY_FORCE_REFRESH, true);
+        polling.putExtra(PollingService.KEY_REFRESH_NORMAL_VIEW, onlyRefreshNormalView);
+        polling.putExtra(PollingService.KEY_POLLING_RATE, ValueUtils.getRefreshRateScale(refreshRate));
+        polling.putExtra(PollingService.KEY_OPEN_TODAY_FORECAST, openTodayForecast);
+        polling.putExtra(PollingService.KEY_TODAY_FORECAST_TIME, todayForecastTime);
+        polling.putExtra(PollingService.KEY_OPEN_TOMORROW_FORECAST, openTomorrowForecast);
+        polling.putExtra(PollingService.KEY_TOMORROW_FORECAST_TIME, tomorrowForecastTime);
 
         context.startService(polling);
         context.startService(protect);

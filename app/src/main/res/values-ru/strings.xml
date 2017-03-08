@@ -1,0 +1,172 @@
+﻿<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- app. -->
+    <string name="app_name">Weather</string>
+
+    <!-- keyword. -->
+    <string name="local">Местоположение</string>
+    <string name="default_location">Местоположение по умолчанию</string>
+    <string name="live">Сейчас</string>
+    <string name="today">Сегодня</string>
+    <string name="refresh_at">Обновлено в</string>
+    <string name="precipitation">Осадки</string>
+    <string name="maxi_temp">Днем</string>
+    <string name="mini_temp">Ночью</string>
+    <string name="time">время</string>
+    <string name="day">Днем</string>
+    <string name="night">Ночью</string>
+    <string name="wind">Ветер</string>
+    <string name="sensible_temp">Ощущается как</string>
+    <string name="humidity">Влажность</string>
+    <string name="uv_index">УФ-индекс</string>
+    <string name="forecast">Прогноз</string>
+    <string name="briefings">Обзор</string>
+    <string name="daytime">Днем</string>
+    <string name="nighttime">Ночью</string>
+    <string name="publish_at">Опубликовано в</string>
+
+    <string name="of_clock">:00</string>
+    <string name="yesterday">вчера</string>
+    <string name="tomorrow">завтра</string>
+    <string name="week">неделя</string>
+    <string name="week_1">ПН</string>
+    <string name="week_2">ВТ</string>
+    <string name="week_3">СР</string>
+    <string name="week_4">ЧТ</string>
+    <string name="week_5">ПТ</string>
+    <string name="week_6">СБ</string>
+    <string name="week_7">ВС</string>
+
+    <string name="wind_0">Штиль</string>
+    <string name="wind_1">Тихий ветер</string>
+    <string name="wind_2">Легкий ветер</string>
+    <string name="wind_3">Слабый ветер</string>
+    <string name="wind_4">Умеренный ветер</string>
+    <string name="wind_5">Свежий ветер</string>
+    <string name="wind_6">Сильный ветер</string>
+    <string name="wind_7">Крепкий ветер</string>
+    <string name="wind_8">Очень крепкий ветер</string>
+    <string name="wind_9">Шторм</string>
+    <string name="wind_10">Сильный шторм</string>
+    <string name="wind_11">Жестокий шторм</string>
+    <string name="wind_12">Ураган</string>
+
+    <string name="aqi_1">Отлично</string>
+    <string name="aqi_2">Хорошо</string>
+    <string name="aqi_3">Слегка загрязненный</string>
+    <string name="aqi_4">Умеренно загрязненный</string>
+    <string name="aqi_5">Сильно загрязненный</string>
+    <string name="aqi_6">Опасно</string>
+
+    <string name="week_weather">Обзор</string>
+    <string name="life_details">Детали</string>
+
+    <string name="next">ДАЛЕЕ</string>
+    <string name="done">ОК</string>
+    <string name="cancel" tools:ignore="ButtonCase">ОТМЕНА</string>
+    <string name="on">ВКЛ</string>
+    <string name="off">ВЫКЛ</string>
+
+    <string name="about_app">О ПРОГРАМММЕ</string>
+    <string name="introduce">Введение</string>
+    <string name="email">E-mail</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">Переводчики</string>
+    <string name="thanks">БЛАГОДАРНОСТИ</string>
+
+    <!-- about. -->
+    <string name="baidu_location">Baidu Location</string>
+    <string name="juhe_weather">Juhe.cn</string>
+    <string name="hefeng_weather">HeWeather.com</string>
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">Разрешения</string>
+    <string name="feedback_request_location_permission_success">Запрос местоположения успешно выполнен</string>
+    <string name="feedback_request_location_permission_failed">Ошибка запроса местоположения</string>
+
+    <string name="feedback_location_failed">Ошибка определения местоположения</string>
+    <string name="feedback_get_weather_failed">Ошибка запроса данных о погоде</string>
+
+    <string name="feedback_view_style">Стиль внешнего вида</string>
+    <string name="feedback_show_widget_card">Фон</string>
+    <string name="feedback_black_text">Темный цвет текста</string>
+    <string name="feedback_hide_refresh_time">Скрывать время получения данных</string>
+
+    <string name="feedback_click_toggle">Нажмите на диаграмму для смены типа данных</string>
+    <string name="feedback_no_data">НЕТ ДАННЫХ</string>
+
+    <string name="feedback_collect_failed">Данное место уже существует в списке</string>
+    <string name="feedback_collect_succeed">Место успешно добавлено</string>
+    <string name="feedback_delete_succeed">Место успешно удалено</string>
+    <string name="feedback_location_list_cannot_be_null">Список мест не можеть быть пустым</string>
+
+    <string name="feedback_search_location">Поиск места или \"Местоположение\"…</string>
+    <string name="feedback_not_yet_location">Место еще не задано…</string>
+    <string name="feedback_search_nothing">Поиск не дал результатов</string>
+    <string name="feedback_initializing">Инициализация…</string>
+
+    <string name="feedback_refresh_notification_after_back">Активируется после возврата на главную страницу</string>
+    <string name="feedback_refresh_notification_now">Обновлено сейчас</string>
+    <string name="feedback_refresh_ui_after_refresh">Активируется после обновления</string>
+    <string name="feedback_restart">Активируется после перезапуска</string>
+
+    <!-- action -->
+    <string name="action_alert">Предупреждение</string>
+    <string name="action_manage">Управление</string>
+    <string name="action_search">Поиск</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_about">О программе</string>
+
+    <!-- widget -->
+    <string name="widget_day">День</string>
+    <string name="widget_week">Неделя</string>
+    <string name="widget_day_week">День + Неделя</string>
+    <string name="widget_clock_day_horizontal">Часы + День (Горизонтальное расположение)</string>
+    <string name="widget_clock_day_vertical">Часы + День (Вертикальное расположение)</string>
+    <string name="widget_clock_day_week">Часы + День + Неделя</string>
+    <string name="wait_refresh">Ждите</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">Основные</string>
+    <string name="settings_title_navigationBar_color">Цвет панели навигации</string>
+    <string name="settings_navigationBar_color_on">Цвет темы</string>
+    <string name="settings_navigationBar_color_off">Темный</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_title_fahrenheit">Градусы по Фаренгейту</string>
+    <string name="settings_title_refresh_rate">Частота обновления</string>
+    <string name="settings_title_permanent_service">Фоновый режим</string>
+    <string name="settings_category_forecast">Прогноз погоды</string>
+    <string name="settings_title_forecast_today">Прогноз на сегодня</string>
+    <string name="settings_title_forecast_today_time">Время получения прогноза на сегодня</string>
+    <string name="settings_title_forecast_tomorrow">Прогноз на завтра</string>
+    <string name="settings_title_forecast_tomorrow_time">Время получения прогноза на завтра</string>
+    <string name="settings_category_widget">Виджет</string>
+    <string name="settings_category_notification">Уведомление</string>
+    <string name="settings_title_notification">Уведомление в строке состояния</string>
+    <string name="settings_title_notification_text_color">Цвет текста</string>
+    <string name="settings_title_notification_background">Цвет фона</string>
+    <string name="settings_notification_background_on">Согласно настроек Android</string>
+    <string name="settings_notification_background_off">По умолчанию</string>
+    <string name="settings_title_notification_can_be_cleared">Статус уведомления</string>
+    <string name="settings_notification_can_be_cleared_on">Стираемое уведомление</string>
+    <string name="settings_notification_can_be_cleared_off">Нестираемое уведомление</string>
+    <string name="settings_title_notification_hide_icon">Скрывать иконку в строке состояния</string>
+    <string name="settings_notification_hide_icon_on">Скрывать</string>
+    <string name="settings_notification_hide_icon_off">Показывать</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Скрывать на экране блокировки</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Скрывать (необходимо активировать в настройках системы).</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Показывать</string>
+    <string name="settings_title_notification_hide_big_view">Расширенное уведомление</string>
+    <string name="settings_notification_hide_big_view_on">Скрывать</string>
+    <string name="settings_notification_hide_big_view_off">Показывать</string>
+
+</resources>

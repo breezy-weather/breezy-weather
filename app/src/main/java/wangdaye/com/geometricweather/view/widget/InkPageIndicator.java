@@ -22,6 +22,7 @@ import android.view.animation.Interpolator;
 import java.util.Arrays;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.view.widget.verticalScrollView.SwipeSwitchLayout;
 
 /**
  * Ink page indicator.

@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     
-    <wangdaye.com.geometricweather.view.widget.SwitchImageButton
+    <wangdaye.com.geometricweather.view.widget.switchButton.SwitchImageButton
         android:id="@+id/container_trend_view_popBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -29,7 +29,7 @@
         app:drawable_res_off="@drawable/ic_water_percent_off"
         tools:ignore="RtlHardcoded" />
 
-    <wangdaye.com.geometricweather.view.widget.SwitchImageButton
+    <wangdaye.com.geometricweather.view.widget.switchButton.SwitchImageButton
         android:id="@+id/container_trend_view_dateBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -41,10 +41,20 @@
         app:drawable_res_off="@drawable/ic_date_off"
         tools:ignore="RtlHardcoded" />
 
+    <wangdaye.com.geometricweather.view.widget.switchButton.RecyclerSwitchImageButton
+        android:id="@+id/container_trend_view_previewTimeBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="6dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/container_trend_view_dateBtn"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        tools:ignore="RtlHardcoded" />
+
     <TextView
         android:text="@string/feedback_click_toggle"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/container_trend_view_dateBtn"
+        android:layout_toLeftOf="@id/container_trend_view_previewTimeBtn"
         android:layout_margin="@dimen/little_margin"
         android:maxLines="1"
         android:layout_width="match_parent"

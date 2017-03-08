@@ -9,7 +9,8 @@
         <item>繁體中文</item>
         <item>English</item>
         <item>Türkçe</item>
-        <item>français</item>
+        <item>Français</item>
+        <item>Pусский</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -18,10 +19,12 @@
         <item>english</item>
         <item>turkish</item>
         <item>french</item>
+        <item>russian</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>0:30</item>
         <item>1:00</item>
         <item>1:30</item>
         <item>2:00</item>
@@ -31,6 +34,7 @@
         <item>4:00</item>
     </string-array>
     <string-array name="automatic_refresh_rate_values">
+        <item>0:30</item>
         <item>1:00</item>
         <item>1:30</item>
         <item>2:00</item>

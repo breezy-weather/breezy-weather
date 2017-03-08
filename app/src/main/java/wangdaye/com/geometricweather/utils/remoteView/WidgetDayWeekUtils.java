@@ -187,7 +187,7 @@ public class WidgetDayWeekUtils {
                 views.setTextViewText(R.id.widget_day_week_title, texts[0]);
                 views.setTextViewText(R.id.widget_day_week_subtitle, texts[1]);
                 views.setTextViewText(
-                        R.id.widget_day_time,
+                        R.id.widget_day_week_time,
                         weather.base.city + " " + weather.base.time);
 
                 views.setTextColor(R.id.widget_day_week_title, textColor);

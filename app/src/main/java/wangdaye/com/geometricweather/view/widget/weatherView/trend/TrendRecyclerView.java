@@ -15,7 +15,7 @@ import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.view.widget.SwipeSwitchLayout;
+import wangdaye.com.geometricweather.view.widget.verticalScrollView.SwipeSwitchLayout;
 
 /**
  * Trend recycler view.

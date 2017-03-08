@@ -17,8 +17,11 @@
             android:layout_height="22dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:maxLines="1"
             style="@style/content_text"
             tools:text="周三" />
 

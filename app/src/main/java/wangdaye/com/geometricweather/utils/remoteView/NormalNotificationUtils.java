@@ -41,6 +41,9 @@ public class NormalNotificationUtils {
 
         // get time & background color.
         boolean isDay = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean tempIcon = sharedPreferences.getBoolean(
+                context.getString(R.string.key_notification_temp_icon),
+                false);
         boolean backgroundColor = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_background),
                 false);
@@ -93,7 +96,14 @@ public class NormalNotificationUtils {
 
         // set small icon.
         builder.setSmallIcon(
-                WeatherHelper.getMiniWeatherIcon(weather.realTime.weatherKind, isDay));
+                tempIcon ?
+                        ValueUtils.getTempIconId(
+                                fahrenheit ?
+                                        ValueUtils.calcFahrenheit(weather.realTime.temp)
+                                        :
+                                        weather.realTime.temp)
+                        :
+                        WeatherHelper.getMiniWeatherIcon(weather.realTime.weatherKind, isDay));
 
         // buildWeather base view.
         RemoteViews base = new RemoteViews(context.getPackageName(), R.layout.notification_base);

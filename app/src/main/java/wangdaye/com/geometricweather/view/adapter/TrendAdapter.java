@@ -34,18 +34,24 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
     private History history;
     private boolean showDailyPop;
     private boolean showDate;
+    private int previewTime;
     private boolean dayTime;
     private int state;
     private int highest, lowest;
 
+    public static final int PREVIEW_TIME_AUTO = 1;
+    public static final int PREVIEW_TIME_DAY = 2;
+    public static final int PREVIEW_TIME_NIGHT = 3;
+
     /** <br> life cycle. */
 
     public TrendAdapter(Context context,
-                        Weather weather, History history, boolean showDailyPop, boolean showDate,
+                        Weather weather, History history,
+                        boolean showDailyPop, boolean showDate, int previewTime,
                         OnTrendItemClickListener l) {
         this.context = context;
         this.listener = l;
-        this.setData(weather, history, showDailyPop, showDate, TrendItemView.DATA_TYPE_DAILY);
+        this.setData(weather, history, showDailyPop, showDate, previewTime, TrendItemView.DATA_TYPE_DAILY);
     }
 
     /** <br> UI. */
@@ -74,10 +80,24 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
                             holder.textView.setText(weather.dailyList.get(position).week);
                         }
                     }
+                    int resId = WeatherHelper.getWeatherIcon(
+                            weather.dailyList.get(position).weatherKinds[dayTime ? 0 : 1],
+                            dayTime)[3];
+                    switch (previewTime) {
+                        case PREVIEW_TIME_DAY:
+                            resId = WeatherHelper.getWeatherIcon(
+                                    weather.dailyList.get(position).weatherKinds[0],
+                                    true)[3];
+                            break;
+
+                        case PREVIEW_TIME_NIGHT:
+                            resId = WeatherHelper.getWeatherIcon(
+                                    weather.dailyList.get(position).weatherKinds[1],
+                                    false)[3];
+                            break;
+                    }
                     Glide.with(context)
-                            .load(WeatherHelper.getWeatherIcon(
-                                    weather.dailyList.get(position).weatherKinds[dayTime ? 0 : 1],
-                                    dayTime)[3])
+                            .load(resId)
                             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                             .into(holder.imageView);
                     break;
@@ -97,11 +117,14 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
 
     /** <br> data. */
 
-    public void setData(Weather weather, History history, boolean showDailyPop, boolean showDate, int state) {
+    public void setData(Weather weather, History history,
+                        boolean showDailyPop, boolean showDate, int previewTime,
+                        int state) {
         this.weather = weather;
         this.history = history;
         this.showDailyPop = showDailyPop;
         this.showDate = showDate;
+        this.previewTime = previewTime;
         this.dayTime = TimeUtils.getInstance(context).isDayTime();
         this.state = state;
 

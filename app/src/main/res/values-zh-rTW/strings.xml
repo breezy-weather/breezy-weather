@@ -144,6 +144,7 @@
     <string name="settings_title_forecast_tomorrow_time">設定預報時間(明日天氣)</string>
     <string name="settings_category_notification">通知</string>
     <string name="settings_title_notification">開啓天氣通知</string>
+    <string name="settings_title_notification_temp_icon">將溫度作爲通知小圖標</string>
     <string name="settings_title_notification_text_color">天氣通知字體顔色</string>
     <string name="settings_title_notification_background">天氣通知背景顔色</string>
     <string name="settings_notification_background_on">與原生ROM下拉菜單相同</string>

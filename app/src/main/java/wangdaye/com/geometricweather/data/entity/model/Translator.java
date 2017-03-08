@@ -28,6 +28,7 @@ public class Translator {
 
         translatorList.add(new Translator("Mehmet Saygin Yilmaz", "memcos@gmail.com", R.drawable.flag_tr));
         translatorList.add(new Translator("benjamin Tourrel", "polo_naref@hotmail.fr", R.drawable.flag_fr));
+        translatorList.add(new Translator("Roman Adadurov", "orelars53@gmail.com", R.drawable.flag_ru));
 
         return translatorList;
     }

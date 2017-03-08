@@ -16,8 +16,8 @@ public class ProtectService extends Service {
     private static boolean running;
     private static boolean working;
 
-    public static final String INTENT_KEY_IS_REFRESH = "is_refresh";
-    public static final String INTENT_KEY_WORKING = "working";
+    public static final String KEY_IS_REFRESH = "is_refresh";
+    public static final String KEY_WORKING = "working";
 
     /** <br> life cycle. */
 
@@ -50,8 +50,8 @@ public class ProtectService extends Service {
     }
 
     private void readData(Intent intent) {
-        if (intent != null && intent.getBooleanExtra(INTENT_KEY_IS_REFRESH, false)) {
-            working = intent.getBooleanExtra(INTENT_KEY_WORKING, true);
+        if (intent != null && intent.getBooleanExtra(KEY_IS_REFRESH, false)) {
+            working = intent.getBooleanExtra(KEY_WORKING, true);
         }
     }
 

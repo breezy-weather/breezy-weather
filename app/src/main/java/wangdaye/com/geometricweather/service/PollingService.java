@@ -41,22 +41,17 @@ public class PollingService extends Service {
     private static String tomorrowForecastTime;
 
     private static final String PREFERENCE_NAME = "polling_service_preference";
-    private static final String KEY_POLLING_RATE = "polling_rate";
-    private static final String KEY_LAST_POLLING_TIME = "last_polling_time";
-    private static final String KEY_OPEN_TODAY_FORECAST = "open_today_forecast";
-    private static final String KEY_TODAY_FORECAST_TIME = "today_forecast_time";
-    private static final String KEY_OPEN_TOMORROW_FORECAST = "open_tomorrow_forecast";
-    private static final String KEY_TOMORROW_FORECAST_TIME = "tomorrow_forecast_time";
+    public static final String KEY_POLLING_RATE = "polling_rate";
+    public static final String KEY_LAST_POLLING_TIME = "last_polling_time";
+    public static final String KEY_OPEN_TODAY_FORECAST = "open_today_forecast";
+    public static final String KEY_TODAY_FORECAST_TIME = "today_forecast_time";
+    public static final String KEY_OPEN_TOMORROW_FORECAST = "open_tomorrow_forecast";
+    public static final String KEY_TOMORROW_FORECAST_TIME = "tomorrow_forecast_time";
 
-    public static final String INTENT_KEY_IS_REFRESH = "is_refresh";
-    public static final String INTENT_KEY_WORKING = "working";
-    public static final String INTENT_KEY_FORCE_REFRESH = "force_refresh";
-    public static final String INTENT_KEY_REFRESH_NORMAL_VIEW = "only_refresh_normal_view";
-    public static final String INTENT_KEY_POLLING_RATE = "polling_rate";
-    public static final String INTENT_KEY_TODAY_FORECAST = "today_forecast";
-    public static final String INTENT_KEY_TODAY_FORECAST_TIME = "today_forecast_time";
-    public static final String INTENT_KEY_TOMORROW_FORECAST = "tomorrow_forecast";
-    public static final String INTENT_KEY_TOMORROW_FORECAST_TIME = "tomorrow_forecast_time";
+    public static final String KEY_IS_REFRESH = "is_refresh";
+    public static final String KEY_WORKING = "working";
+    public static final String KEY_FORCE_REFRESH = "force_refresh";
+    public static final String KEY_REFRESH_NORMAL_VIEW = "only_refresh_normal_view";
 
     /** <br> life cycle. */
 
@@ -108,17 +103,17 @@ public class PollingService extends Service {
     }
 
     private void readData(Intent intent) {
-        if (intent != null && intent.getBooleanExtra(INTENT_KEY_IS_REFRESH, false)) {
-            working = intent.getBooleanExtra(INTENT_KEY_WORKING, true);
-            forceRefresh = intent.getBooleanExtra(INTENT_KEY_FORCE_REFRESH, false);
-            onlyRefreshNormalView = intent.getBooleanExtra(INTENT_KEY_REFRESH_NORMAL_VIEW, false);
+        if (intent != null && intent.getBooleanExtra(KEY_IS_REFRESH, false)) {
+            working = intent.getBooleanExtra(KEY_WORKING, true);
+            forceRefresh = intent.getBooleanExtra(KEY_FORCE_REFRESH, false);
+            onlyRefreshNormalView = intent.getBooleanExtra(KEY_REFRESH_NORMAL_VIEW, false);
 
-            pollingRate = intent.getFloatExtra(INTENT_KEY_POLLING_RATE, 1.5f);
+            pollingRate = intent.getFloatExtra(KEY_POLLING_RATE, 1.5f);
 
-            openTodayForecast = intent.getBooleanExtra(INTENT_KEY_TODAY_FORECAST, false);
-            todayForecastTime = intent.getStringExtra(INTENT_KEY_TODAY_FORECAST_TIME);
-            openTomorrowForecast = intent.getBooleanExtra(INTENT_KEY_TOMORROW_FORECAST, false);
-            tomorrowForecastTime = intent.getStringExtra(INTENT_KEY_TOMORROW_FORECAST_TIME);
+            openTodayForecast = intent.getBooleanExtra(KEY_OPEN_TODAY_FORECAST, false);
+            todayForecastTime = intent.getStringExtra(KEY_TODAY_FORECAST_TIME);
+            openTomorrowForecast = intent.getBooleanExtra(KEY_OPEN_TOMORROW_FORECAST, false);
+            tomorrowForecastTime = intent.getStringExtra(KEY_TOMORROW_FORECAST_TIME);
 
             SharedPreferences.Editor editor = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE).edit();
             editor.putFloat(KEY_POLLING_RATE, pollingRate);
@@ -129,7 +124,7 @@ public class PollingService extends Service {
             editor.apply();
 
             registerReceiver();
-        } else if (receiver == null) {
+        } else if (intent == null || receiver == null) {
             registerReceiver();
         }
     }

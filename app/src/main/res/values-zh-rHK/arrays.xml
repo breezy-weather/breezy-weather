@@ -8,7 +8,8 @@
         <item>繁體中文</item>
         <item>English</item>
         <item>Türkçe</item>
-        <item>français</item>
+        <item>Français</item>
+        <item>Pусский</item>
     </string-array>
 
     <!-- notification text color. -->

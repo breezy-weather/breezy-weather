@@ -16,12 +16,16 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.view.adapter.TrendAdapter;
-import wangdaye.com.geometricweather.view.widget.SwitchImageButton;
+import wangdaye.com.geometricweather.view.widget.switchButton.RecyclerSwitchImageButton;
+import wangdaye.com.geometricweather.view.widget.switchButton.SwitchImageButton;
 
 /**
  * Trend view.
@@ -33,6 +37,7 @@ public class TrendView extends FrameLayout
     private TrendRecyclerView recyclerView;
     private SwitchImageButton popBtn;
     private SwitchImageButton dateBtn;
+    private RecyclerSwitchImageButton previewTimeBtn;
 
     // data
     private TrendAdapter adapter;
@@ -40,6 +45,7 @@ public class TrendView extends FrameLayout
     private History history;
     private boolean showDailyPop;
     private boolean showDate;
+    private int previewTime;
 
     private int state = TrendItemView.DATA_TYPE_DAILY;
 
@@ -48,6 +54,7 @@ public class TrendView extends FrameLayout
     private static final String PREFERENCE_NAME = "sp_trend_view";
     private static final String KEY_DAILY_POP_SWITCH = "daily_pop_switch";
     private static final String KEY_DATE_SWITCH = "date_switch";
+    private static final String KEY_PREVIEW_TIME = "preview_time";
 
     // animator
     private AnimatorSet viewIn;
@@ -85,8 +92,9 @@ public class TrendView extends FrameLayout
                 PREFERENCE_NAME, Context.MODE_PRIVATE);
         showDailyPop = sharedPreferences.getBoolean(KEY_DAILY_POP_SWITCH, false);
         showDate = sharedPreferences.getBoolean(KEY_DATE_SWITCH, false);
+        previewTime = sharedPreferences.getInt(KEY_PREVIEW_TIME, TrendAdapter.PREVIEW_TIME_AUTO);
 
-        this.adapter = new TrendAdapter(getContext(), null, null, showDailyPop, showDate, this);
+        this.adapter = new TrendAdapter(getContext(), null, null, showDailyPop, showDate, previewTime, this);
 
         this.recyclerView = (TrendRecyclerView) findViewById(R.id.container_trend_view_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -99,6 +107,20 @@ public class TrendView extends FrameLayout
         this.dateBtn = (SwitchImageButton) findViewById(R.id.container_trend_view_dateBtn);
         dateBtn.initSwitchState(showDate);
         dateBtn.setOnSwitchListener(dateSwitchListener);
+
+        List<Integer> stateList = new ArrayList<>();
+        stateList.add(TrendAdapter.PREVIEW_TIME_AUTO);
+        stateList.add(TrendAdapter.PREVIEW_TIME_DAY);
+        stateList.add(TrendAdapter.PREVIEW_TIME_NIGHT);
+
+        List<Integer> resList = new ArrayList<>();
+        resList.add(R.drawable.ic_auto_off);
+        resList.add(R.drawable.ic_day_on);
+        resList.add(R.drawable.ic_night_on);
+
+        this.previewTimeBtn = (RecyclerSwitchImageButton) findViewById(R.id.container_trend_view_previewTimeBtn);
+        previewTimeBtn.setStateAndRes(stateList, resList);
+        previewTimeBtn.setOnSwitchListener(previewTimeSwitchListener);
 
         viewIn = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.view_in);
         viewIn.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -124,7 +146,7 @@ public class TrendView extends FrameLayout
     }
 
     public void reset() {
-        adapter.setData(weather, history, showDailyPop, showDate, state);
+        adapter.setData(weather, history, showDailyPop, showDate, previewTime, state);
         adapter.notifyDataSetChanged();
 
         switch (state) {
@@ -135,6 +157,9 @@ public class TrendView extends FrameLayout
                 dateBtn.initSwitchState(dateBtn.isSwitchOn());
                 dateBtn.setAlpha(1f);
                 dateBtn.setEnabled(true);
+                previewTimeBtn.initSwitchState(previewTimeBtn.getState());
+                previewTimeBtn.setAlpha(1f);
+                previewTimeBtn.setEnabled(true);
                 break;
 
             default:
@@ -142,6 +167,8 @@ public class TrendView extends FrameLayout
                 popBtn.setEnabled(false);
                 dateBtn.setAlpha(0f);
                 dateBtn.setEnabled(false);
+                previewTimeBtn.setAlpha(0f);
+                previewTimeBtn.setEnabled(false);
                 break;
         }
     }
@@ -228,7 +255,7 @@ public class TrendView extends FrameLayout
         @Override
         public void onSwitch(boolean on) {
             showDailyPop = on;
-            adapter.setData(weather, history, showDailyPop, showDate, state);
+            adapter.setData(weather, history, showDailyPop, showDate, previewTime, state);
             adapter.notifyDataSetChanged();
 
             SharedPreferences.Editor editor = getContext().getSharedPreferences(
@@ -242,12 +269,29 @@ public class TrendView extends FrameLayout
         @Override
         public void onSwitch(boolean on) {
             showDate = on;
-            adapter.setData(weather, history, showDailyPop, showDate, state);
+            adapter.setData(weather, history, showDailyPop, showDate, previewTime, state);
             adapter.notifyDataSetChanged();
 
             SharedPreferences.Editor editor = getContext().getSharedPreferences(
                     PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
             editor.putBoolean(KEY_DATE_SWITCH, on);
+            editor.apply();
+        }
+    };
+
+    // on recycler switch listener.
+
+    private RecyclerSwitchImageButton.OnRecyclerSwitchListener previewTimeSwitchListener
+            = new RecyclerSwitchImageButton.OnRecyclerSwitchListener() {
+        @Override
+        public void onRecyclerSwitch(int newState) {
+            previewTime = newState;
+            adapter.setData(weather, history, showDailyPop, showDate, previewTime, state);
+            adapter.notifyDataSetChanged();
+
+            SharedPreferences.Editor editor = getContext().getSharedPreferences(
+                    PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+            editor.putInt(KEY_PREVIEW_TIME, newState);
             editor.apply();
         }
     };

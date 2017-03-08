@@ -79,6 +79,12 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 
+        <CheckBoxPreference
+            android:title="@string/settings_title_notification_temp_icon"
+            android:key="@string/key_notification_temp_icon"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
         <ListPreference
             android:title="@string/settings_title_notification_text_color"
             android:key="@string/key_notification_text_color"

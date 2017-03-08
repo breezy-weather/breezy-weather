@@ -34,19 +34,18 @@ public class ForecastNotificationUtils {
             return;
         }
 
-        // get sp & realTimeWeather.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = sharedPreferences.getBoolean(context.getString(R.string.key_fahrenheit), false);
-
-        // get time & background color.
+        boolean tempIcon = sharedPreferences.getBoolean(
+                context.getString(R.string.key_notification_temp_icon),
+                false);
         boolean backgroundColor = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_background),
                 false);
-
-        // get text color.
         String textColor = sharedPreferences.getString(
                 context.getString(R.string.key_notification_text_color),
                 "grey");
+
         int mainColor;
         int subColor;
         switch (textColor) {
@@ -88,9 +87,21 @@ public class ForecastNotificationUtils {
         }
 
         // set small icon.
-        builder.setSmallIcon(WeatherHelper.getMiniWeatherIcon(
-                today ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[0],
-                true));
+        int iconTemp = today ? weather.dailyList.get(0).temps[0] : weather.dailyList.get(1).temps[0];
+        builder.setSmallIcon(
+                tempIcon ?
+                        ValueUtils.getTempIconId(
+                                fahrenheit ?
+                                        ValueUtils.calcFahrenheit(iconTemp)
+                                        :
+                                        iconTemp)
+                        :
+                        WeatherHelper.getMiniWeatherIcon(
+                                today ?
+                                        weather.dailyList.get(0).weatherKinds[0]
+                                        :
+                                        weather.dailyList.get(1).weatherKinds[0],
+                                true));
 
         // set view
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.notification_forecast);
