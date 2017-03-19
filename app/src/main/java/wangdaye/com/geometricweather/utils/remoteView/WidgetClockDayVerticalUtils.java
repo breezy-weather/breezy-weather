@@ -146,6 +146,22 @@ public class WidgetClockDayVerticalUtils {
                 views.setTextColor(R.id.widget_clock_day_time, textColor);
                 views.setViewVisibility(R.id.widget_clock_day_time, hideRefreshTime ? View.GONE : View.VISIBLE);
                 return views;
+
+            case "mini":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_mini);
+
+                views.setImageViewResource(R.id.widget_clock_day_icon, imageId[3]);
+                views.setTextViewText(
+                        R.id.widget_clock_day_title,
+                        weather.realTime.weather);
+                views.setTextViewText(
+                        R.id.widget_clock_day_subtitle,
+                        ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
+
+                views.setTextColor(R.id.widget_clock_day_clock, textColor);
+                views.setTextColor(R.id.widget_clock_day_title, textColor);
+                views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
+                return views;
         }
         return new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
     }

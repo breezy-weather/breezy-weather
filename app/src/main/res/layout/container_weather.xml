@@ -119,7 +119,7 @@
                 style="@style/content_text"
                 tools:ignore="RtlHardcoded" />
 
-            <wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendView
+            <wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendView
                 android:id="@+id/container_weather_trendView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -143,7 +143,7 @@
                 android:textSize="@dimen/title_text_size"
                 style="@style/content_text" />
 
-            <wangdaye.com.geometricweather.view.widget.weatherView.details.IndexListView
+            <wangdaye.com.geometricweather.ui.widget.weatherView.details.IndexListView
                 android:id="@+id/container_weather_lifeInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

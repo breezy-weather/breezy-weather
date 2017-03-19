@@ -6,7 +6,7 @@ import android.view.View;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.view.widget.verticalScrollView.SwipeSwitchLayout;
+import wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout;
 
 /**
  * Notification utils.

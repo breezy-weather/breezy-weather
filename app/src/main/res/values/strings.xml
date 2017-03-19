@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v5.2.8</string>
+    <string name="version_code">v5.2.9</string>
 
     <!-- keyword. -->
     <string name="local">local</string>

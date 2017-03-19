@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.view.widget.StatusBarView
+    <wangdaye.com.geometricweather.ui.widget.StatusBarView
         android:id="@+id/activity_search_statusBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

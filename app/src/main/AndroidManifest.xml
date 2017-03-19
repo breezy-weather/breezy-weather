@@ -25,7 +25,7 @@
 
         <!-- activity -->
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:label="@string/geometric_weather"
             android:theme="@style/GeometricWeatherTheme"
             android:configChanges="orientation|screenSize">
@@ -44,37 +44,37 @@
         </activity>
 
         <activity
-            android:name=".view.activity.AlertActivity"
+            android:name=".ui.activity.AlertActivity"
             android:label="@string/action_alert"
             android:theme="@style/GeometricWeatherTheme"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name=".view.activity.ManageActivity"
+            android:name=".ui.activity.ManageActivity"
             android:label="@string/action_manage"
             android:theme="@style/GeometricWeatherTheme"
             android:configChanges="orientation|screenSize" />
 
-        <activity android:name=".view.activity.SearcActivity"
+        <activity android:name=".ui.activity.SearcActivity"
             android:label="@string/action_search"
             android:theme="@style/GeometricWeatherTheme.Search"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name=".view.activity.SettingsActivity"
+            android:name=".ui.activity.SettingsActivity"
             android:label="@string/action_settings"
             android:theme="@style/GeometricWeatherTheme"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name=".view.activity.AboutActivity"
+            android:name=".ui.activity.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/GeometricWeatherTheme"
             android:configChanges="orientation|screenSize" />
 
         <!-- create widget activity -->
         <activity
-            android:name=".view.activity.widget.CreateWidgetDayActivity"
+            android:name=".ui.activity.widget.CreateWidgetDayActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -83,7 +83,7 @@
         </activity>
 
         <activity
-            android:name=".view.activity.widget.CreateWidgetWeekActivity"
+            android:name=".ui.activity.widget.CreateWidgetWeekActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -92,7 +92,7 @@
         </activity>
 
         <activity
-            android:name=".view.activity.widget.CreateWidgetDayWeekActivity"
+            android:name=".ui.activity.widget.CreateWidgetDayWeekActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -101,7 +101,7 @@
         </activity>
 
         <activity
-            android:name=".view.activity.widget.CreateWidgetClockDayHorizontalActivity"
+            android:name=".ui.activity.widget.CreateWidgetClockDayHorizontalActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -110,7 +110,7 @@
         </activity>
 
         <activity
-            android:name=".view.activity.widget.CreateWidgetClockDayVerticalActivity"
+            android:name=".ui.activity.widget.CreateWidgetClockDayVerticalActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -119,7 +119,7 @@
         </activity>
 
         <activity
-            android:name=".view.activity.widget.CreateWidgetClockDayWeekActivity"
+            android:name=".ui.activity.widget.CreateWidgetClockDayWeekActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>

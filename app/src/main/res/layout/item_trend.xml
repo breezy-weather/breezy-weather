@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendItemView
+<wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendItemView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_trend"
@@ -36,4 +36,4 @@
 
     </RelativeLayout>
 
-</wangdaye.com.geometricweather.view.widget.weatherView.trend.TrendItemView>
+</wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendItemView>

@@ -15,7 +15,7 @@ import android.view.WindowManager;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.view.activity.MainActivity;
+import wangdaye.com.geometricweather.ui.activity.MainActivity;
 
 /**
  * Display utils.

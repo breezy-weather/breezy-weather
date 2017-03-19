@@ -6,7 +6,7 @@
     android:initialLayout="@layout/widget_clock_day_symmetry"
     android:previewImage="@drawable/widget_clock_day_vertical"
     android:resizeMode="horizontal|vertical"
-    android:configure="wangdaye.com.geometricweather.view.activity.widget.CreateWidgetClockDayVerticalActivity"
+    android:configure="wangdaye.com.geometricweather.ui.activity.widget.CreateWidgetClockDayVerticalActivity"
     android:widgetCategory="home_screen" >
 
 </appwidget-provider>

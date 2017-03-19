@@ -20,7 +20,7 @@ public abstract class GeoActivity extends AppCompatActivity {
     private List<GeoDialogFragment> dialogList;
 
     // data
-    private boolean started = false;
+    private boolean started;
 
     /** <br> life cycle. */
 
@@ -34,6 +34,7 @@ public abstract class GeoActivity extends AppCompatActivity {
         DisplayUtils.setNavigationBarColor(this, TimeUtils.getInstance(this).isDayTime());
 
         this.dialogList = new ArrayList<>();
+        this.started = false;
     }
 
     @Override

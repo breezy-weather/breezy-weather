@@ -18,18 +18,25 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.view.activity.AboutActivity;
-import wangdaye.com.geometricweather.view.activity.AlertActivity;
-import wangdaye.com.geometricweather.view.activity.MainActivity;
-import wangdaye.com.geometricweather.view.activity.ManageActivity;
-import wangdaye.com.geometricweather.view.activity.SearcActivity;
-import wangdaye.com.geometricweather.view.activity.SettingsActivity;
+import wangdaye.com.geometricweather.ui.activity.AboutActivity;
+import wangdaye.com.geometricweather.ui.activity.AlertActivity;
+import wangdaye.com.geometricweather.ui.activity.MainActivity;
+import wangdaye.com.geometricweather.ui.activity.ManageActivity;
+import wangdaye.com.geometricweather.ui.activity.SearcActivity;
+import wangdaye.com.geometricweather.ui.activity.SettingsActivity;
 
 /**
  * Intent helper.
  * */
 
 public class IntentHelper {
+
+    public static void startMainActivity(Context context) {
+        Intent intent = new Intent("com.wangdaye.geometricweather.Main")
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
+    }
 
     public static Intent buildMainActivityIntent(Context context, @Nullable Location location) {
         String locationName;
@@ -39,11 +46,15 @@ public class IntentHelper {
             locationName= location.isLocal() ? context.getString(R.string.local) : location.city;
         }
         return new Intent("com.wangdaye.geometricweather.Main")
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName);
     }
 
     public static Intent buildMainActivityIntent(@NotNull String cityName) {
         return new Intent("com.wangdaye.geometricweather.Main")
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, cityName);
     }
 
