@@ -24,6 +24,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,7 +39,7 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
-import wangdaye.com.geometricweather.utils.widget.SafeHandler;
+import wangdaye.com.geometricweather.utils.SafeHandler;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -120,6 +123,7 @@ public class MainActivity extends GeoActivity
     }
 
     @Override
+    @SuppressLint("SimpleDateFormat")
     protected void onStart() {
         super.onStart();
         if (!isStarted()) {
@@ -129,11 +133,19 @@ public class MainActivity extends GeoActivity
             reset();
         } else if (!swipeRefreshLayout.isRefreshing()) {
             Weather memory = DatabaseHelper.getInstance(this).readWeather(locationNow);
-            if (locationNow.weather != null && memory != null
-                    && !memory.base.time.equals(locationNow.weather.base.time)) {
-                locationNow.weather = memory;
-                locationNow.history = DatabaseHelper.getInstance(this).readHistory(memory);
-                reset();
+            if (locationNow.weather != null && memory != null) {
+                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                try {
+                    Date latestDate = format.parse(locationNow.weather.base.date + " " + locationNow.weather.base.time);
+                    Date memoryDate = format.parse(memory.base.date + " " + memory.base.time);
+                    if (latestDate.before(memoryDate)) {
+                        locationNow.weather = memory;
+                        locationNow.history = DatabaseHelper.getInstance(this).readHistory(memory);
+                        reset();
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

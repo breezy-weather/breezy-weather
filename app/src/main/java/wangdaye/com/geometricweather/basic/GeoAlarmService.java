@@ -70,7 +70,7 @@ public abstract class GeoAlarmService extends Service
                     && day == Integer.parseInt(weatherDates[2])) {
 
                 if (Math.abs((hour * 60 + minute)
-                        - (Integer.parseInt(weatherTimes[0]) * 60 + Integer.parseInt(weatherTimes[1]))) <= 60) {
+                        - (Integer.parseInt(weatherTimes[0]) * 60 + Integer.parseInt(weatherTimes[1]))) <= 30) {
                     requestWeatherSuccess(weather, location);
                     return;
                 }

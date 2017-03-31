@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Widget week utils.
@@ -42,7 +43,17 @@ public class WidgetWeekUtils {
                 Context.MODE_PRIVATE);
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
-        boolean isDay = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+
+        boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        switch (ChartStyleManager.getInstance(context).getPreviewTime()) {
+            case ChartStyleManager.PREVIEW_TIME_DAY:
+                dayTime = true;
+                break;
+
+            case ChartStyleManager.PREVIEW_TIME_NIGHT:
+                dayTime = false;
+                break;
+        }
 
         boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.key_fahrenheit), false);
@@ -63,28 +74,28 @@ public class WidgetWeekUtils {
         views.setImageViewResource(
                 R.id.widget_week_icon_1,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_week_icon_2,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_week_icon_3,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_week_icon_4,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
+                        dayTime)[3]);
         views.setImageViewResource(
                 R.id.widget_week_icon_5,
                 WeatherHelper.getWeatherIcon(
-                        isDay ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
-                        isDay)[3]);
+                        dayTime ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
+                        dayTime)[3]);
         // buildWeather week texts.
         String secondWeekDay;
         Calendar c = Calendar.getInstance();

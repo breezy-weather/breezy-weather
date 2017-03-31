@@ -107,7 +107,6 @@ public class TimeSetterDialog extends GeoDialogFragment
                 break;
 
             case R.id.dialog_time_setter_done:
-                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
                 String hourText;
                 String minuteText;
 
@@ -123,6 +122,7 @@ public class TimeSetterDialog extends GeoDialogFragment
                     minuteText = Integer.toString(minute);
                 }
 
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
                 if (today) {
                     editor.putString(getString(R.string.key_forecast_today_time), hourText + ":" + minuteText);
                 } else {

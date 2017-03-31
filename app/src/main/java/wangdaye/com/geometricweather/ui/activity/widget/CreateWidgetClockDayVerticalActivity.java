@@ -279,12 +279,18 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                if (widgetTime != null) {
+                    widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             } else {
                 widgetCard.setVisibility(View.GONE);
                 if (!blackTextSwitch.isChecked()) {
                     widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    if (widgetTime != null) {
+                        widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    }
                 }
             }
 
@@ -296,11 +302,17 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                if (widgetTime != null) {
+                    widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             } else {
                 if (!showCardSwitch.isChecked()) {
                     widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    if (widgetTime != null) {
+                        widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    }
                 }
             }
         }
@@ -322,12 +334,18 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
                 widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
                 widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
+                if (widgetTime != null) {
+                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
+                }
             } else {
                 widgetCard.setVisibility(View.GONE);
                 if (!blackTextSwitch.isChecked()) {
                     widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
                     widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
                     widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
+                    if (widgetTime != null) {
+                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
+                    }
                 }
             }
         }
@@ -351,11 +369,17 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
                 widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
                 widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
+                if (widgetTime != null) {
+                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextDark));
+                }
             } else {
                 if (!showCardSwitch.isChecked()) {
                     widgetClock.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
                     widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
                     widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
+                    if (widgetTime != null) {
+                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetClockDayVerticalActivity.this, R.color.colorTextLight));
+                    }
                 }
             }
         }

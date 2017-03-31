@@ -30,6 +30,7 @@ import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Create widget clock day week activity.
@@ -116,9 +117,9 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
         }
         getLocationNow().weather = weather;
 
-        boolean isDay = TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime();
+        boolean dayTime = TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime();
 
-        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, isDay);
+        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
         Glide.with(this)
                 .load(imageId[3])
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -126,6 +127,16 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
 
         widgetTitle.setText(weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
         widgetSubtitle.setText(weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
+
+        switch (ChartStyleManager.getInstance(this).getPreviewTime()) {
+            case ChartStyleManager.PREVIEW_TIME_DAY:
+                dayTime = true;
+                break;
+
+            case ChartStyleManager.PREVIEW_TIME_NIGHT:
+                dayTime = false;
+                break;
+        }
 
         String firstWeekDay;
         String secondWeekDay;
@@ -158,8 +169,8 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
                 widgetWeeks[i].setText(weather.dailyList.get(i).week);
             }
             int[] imageIds = WeatherHelper.getWeatherIcon(
-                    isDay ? weather.dailyList.get(i).weatherKinds[0] : weather.dailyList.get(i).weatherKinds[1],
-                    isDay);
+                    dayTime ? weather.dailyList.get(i).weatherKinds[0] : weather.dailyList.get(i).weatherKinds[1],
+                    dayTime);
             Glide.with(this)
                     .load(imageIds[3])
                     .diskCacheStrategy(DiskCacheStrategy.NONE)

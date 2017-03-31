@@ -29,7 +29,6 @@ import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 public class ManageActivity extends GeoActivity
         implements View.OnClickListener, LocationAdapter.OnLocationItemClickListener {
     // widget
-
     private CoordinatorLayout container;
     private CardView cardView;
     private RecyclerView recyclerView;

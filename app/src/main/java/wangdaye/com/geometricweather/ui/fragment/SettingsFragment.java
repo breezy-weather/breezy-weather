@@ -257,12 +257,11 @@ public class SettingsFragment extends PreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
         if (preference.getKey().equals(getString(R.string.key_refresh_rate))) {
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+            editor.putString(getString(R.string.key_refresh_rate), (String) o);
+            editor.apply();
+            preference.setSummary((String) o);
             ServiceHelper.startPollingService(getActivity(), true);
-            preference.setSummary(
-                    PreferenceManager.getDefaultSharedPreferences(getActivity())
-                            .getString(
-                                    getString(R.string.key_refresh_rate),
-                                    "1:30"));
         } else if (preference.getKey().equals(getString(R.string.key_language))) {
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));

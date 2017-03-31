@@ -19,6 +19,7 @@ import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 import wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendItemView;
 import wangdaye.com.geometricweather.ui.dialog.WeatherDialog;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Trend adapter.
@@ -38,10 +39,6 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
     private boolean dayTime;
     private int state;
     private int highest, lowest;
-
-    public static final int PREVIEW_TIME_AUTO = 1;
-    public static final int PREVIEW_TIME_DAY = 2;
-    public static final int PREVIEW_TIME_NIGHT = 3;
 
     /** <br> life cycle. */
 
@@ -84,13 +81,13 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
                             weather.dailyList.get(position).weatherKinds[dayTime ? 0 : 1],
                             dayTime)[3];
                     switch (previewTime) {
-                        case PREVIEW_TIME_DAY:
+                        case ChartStyleManager.PREVIEW_TIME_DAY:
                             resId = WeatherHelper.getWeatherIcon(
                                     weather.dailyList.get(position).weatherKinds[0],
                                     true)[3];
                             break;
 
-                        case PREVIEW_TIME_NIGHT:
+                        case ChartStyleManager.PREVIEW_TIME_NIGHT:
                             resId = WeatherHelper.getWeatherIcon(
                                     weather.dailyList.get(position).weatherKinds[1],
                                     false)[3];

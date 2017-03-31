@@ -22,6 +22,7 @@ import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Widget clock day week utils.
@@ -71,6 +72,16 @@ public class WidgetClockDayWeekUtils {
         views.setTextViewText(
                 R.id.widget_clock_day_week_subtitle,
                 weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
+
+        switch (ChartStyleManager.getInstance(context).getPreviewTime()) {
+            case ChartStyleManager.PREVIEW_TIME_DAY:
+                dayTime = true;
+                break;
+
+            case ChartStyleManager.PREVIEW_TIME_NIGHT:
+                dayTime = false;
+                break;
+        }
 
         String firstWeekDay;
         String secondWeekDay;

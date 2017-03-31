@@ -89,7 +89,7 @@
     <string name="feedback_get_weather_failed">獲取天氣數據失敗</string>
 
     <string name="feedback_view_style">界面風格</string>
-    <string name="feedback_show_widget_card">卡片北京</string>
+    <string name="feedback_show_widget_card">卡片背景</string>
     <string name="feedback_black_text">暗色字體</string>
     <string name="feedback_hide_refresh_time">隱藏刷新時間</string>
 

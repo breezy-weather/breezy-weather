@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.basic;
 
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.R;
@@ -19,6 +20,8 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     private Location locationNow;
     private WeatherHelper weatherHelper;
     private boolean fahrenheit;
+
+    private boolean destroyed;
 
     /** <br> life cycle. */
 
@@ -45,7 +48,13 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        destroyed = true;
         weatherHelper.cancel();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // do nothing.
     }
 
     public void initData() {
@@ -53,6 +62,7 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         this.weatherHelper = new WeatherHelper();
         this.fahrenheit = PreferenceManager.getDefaultSharedPreferences(this)
                 .getBoolean(getString(R.string.key_fahrenheit), false);
+        this.destroyed = false;
     }
 
     public abstract void initWidget();
@@ -73,6 +83,9 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
 
     @Override
     public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+        if (destroyed) {
+            return;
+        }
         if (weather == null) {
             requestWeatherFailed(requestLocation);
         } else {
@@ -84,6 +97,9 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
 
     @Override
     public void requestWeatherFailed(Location requestLocation) {
+        if (destroyed) {
+            return;
+        }
         Weather weather = DatabaseHelper.getInstance(this).readWeather(requestLocation);
         refreshWidgetView(weather);
         SnackbarUtils.showSnackbar(getString(R.string.feedback_get_weather_failed));

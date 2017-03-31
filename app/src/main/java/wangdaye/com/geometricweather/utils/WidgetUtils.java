@@ -13,7 +13,6 @@ import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayWeekUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayWeekUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
-import wangdaye.com.geometricweather.utils.widget.PriorityRunnable;
 
 /**
  * Widget utils.
@@ -26,7 +25,7 @@ public class WidgetUtils {
     public static void refreshWidgetInNewThread(final Context context,
                                                     final Location location) {
         ThreadManager.getInstance()
-                .execute(new PriorityRunnable(false) {
+                .execute(new Runnable() {
                     @Override
                     public void run() {
                         if (WidgetDayUtils.isEnable(context)) {

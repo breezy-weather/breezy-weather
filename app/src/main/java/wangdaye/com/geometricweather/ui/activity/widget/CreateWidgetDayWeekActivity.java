@@ -33,6 +33,7 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Create widget day week activity.
@@ -145,6 +146,16 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 widgetTitle.setText(weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
                 widgetSubtitle.setText(ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
                 widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                break;
+        }
+
+        switch (ChartStyleManager.getInstance(this).getPreviewTime()) {
+            case ChartStyleManager.PREVIEW_TIME_DAY:
+                dayTime = true;
+                break;
+
+            case ChartStyleManager.PREVIEW_TIME_NIGHT:
+                dayTime = false;
                 break;
         }
 
@@ -356,11 +367,21 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 widgetCard.setVisibility(View.VISIBLE);
                 widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                for (int j = 0; j < 5; j ++) {
+                    widgetWeeks[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                    widgetTemps[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             } else {
                 widgetCard.setVisibility(View.GONE);
                 if (!blackTextSwitch.isChecked()) {
                     widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    for (int j = 0; j < 5; j ++) {
+                        widgetWeeks[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                        widgetTemps[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    }
                 }
             }
 
@@ -369,10 +390,20 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
             if (blackTextSwitch.isChecked()) {
                 widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                for (int j = 0; j < 5; j ++) {
+                    widgetWeeks[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                    widgetTemps[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             } else {
                 if (!showCardSwitch.isChecked()) {
                     widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    for (int j = 0; j < 5; j ++) {
+                        widgetWeeks[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                        widgetTemps[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    }
                 }
             }
         }
@@ -393,6 +424,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 widgetCard.setVisibility(View.VISIBLE);
                 widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
                 widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
                 for (int i = 0; i < 5; i ++) {
                     widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
                     widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
@@ -402,6 +434,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 if (!blackTextSwitch.isChecked()) {
                     widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
                     widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
                     for (int i = 0; i < 5; i ++) {
                         widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
                         widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
@@ -426,6 +459,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
             if (isChecked) {
                 widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
                 widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
+                widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
                 for (int i = 0; i < 5; i ++) {
                     widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
                     widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
@@ -434,6 +468,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 if (!showCardSwitch.isChecked()) {
                     widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
                     widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
+                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
                     for (int i = 0; i < 5; i ++) {
                         widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
                         widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));

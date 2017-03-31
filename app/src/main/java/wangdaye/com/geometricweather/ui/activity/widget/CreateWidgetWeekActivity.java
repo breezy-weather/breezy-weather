@@ -26,6 +26,7 @@ import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Create the widget [week] on the launcher.
@@ -103,6 +104,15 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
         }
 
         boolean dayTime = TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime();
+        switch (ChartStyleManager.getInstance(this).getPreviewTime()) {
+            case ChartStyleManager.PREVIEW_TIME_DAY:
+                dayTime = true;
+                break;
+
+            case ChartStyleManager.PREVIEW_TIME_NIGHT:
+                dayTime = false;
+                break;
+        }
 
         String firstWeekDay;
         String secondWeekDay;

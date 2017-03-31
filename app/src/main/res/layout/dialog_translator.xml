@@ -5,7 +5,7 @@
     android:id="@+id/dialog_translator_container"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="420dp"
+    android:layout_height="360dp"
     android:background="@color/colorRoot">
 
     <RelativeLayout

@@ -308,6 +308,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 if (widgetSubtitle != null) {
                     widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 }
+                if (widgetTime != null) {
+                    widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             } else {
                 if (widgetCard != null) {
                     widgetCard.setVisibility(View.GONE);
@@ -316,6 +319,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                     widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     if (widgetSubtitle != null) {
                         widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    }
+                    if (widgetTime != null) {
+                        widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     }
                 }
             }
@@ -331,11 +337,17 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 if (widgetSubtitle != null) {
                     widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 }
+                if (widgetTime != null) {
+                    widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             } else {
                 if (!showCardSwitch.isChecked()) {
                     widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     if (widgetSubtitle != null) {
                         widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                    }
+                    if (widgetTime != null) {
+                        widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
                     }
                 }
             }
@@ -361,6 +373,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 if (widgetSubtitle != null) {
                     widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
                 }
+                if (widgetTime != null) {
+                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                }
             } else {
                 if (widgetCard != null) {
                     widgetCard.setVisibility(View.GONE);
@@ -369,6 +384,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                     widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
                     if (widgetSubtitle != null) {
                         widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                    }
+                    if (widgetTime != null) {
+                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
                     }
                 }
             }
@@ -396,11 +414,17 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 if (widgetSubtitle != null) {
                     widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
                 }
+                if (widgetTime != null) {
+                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                }
             } else {
                 if (!showCardSwitch.isChecked()) {
                     widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
                     if (widgetSubtitle != null) {
                         widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                    }
+                    if (widgetTime != null) {
+                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
                     }
                 }
             }

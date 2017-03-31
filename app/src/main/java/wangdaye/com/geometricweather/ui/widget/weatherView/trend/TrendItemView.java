@@ -464,7 +464,7 @@ public class TrendItemView extends FrameLayout {
         canvas.drawText(
                 precipitation + "%",
                 (float) (getMeasuredWidth() / 2.0),
-                getMeasuredHeight() - MARGIN_BOTTOM - paint.getFontMetrics().top + MARGIN_TEXT,
+                (float) (getMeasuredHeight() - MARGIN_BOTTOM - paint.getFontMetrics().top + MARGIN_TEXT + WEATHER_TEXT_SIZE / 2.0),
                 paint);
 
         paint.setAlpha(255);
@@ -639,7 +639,9 @@ public class TrendItemView extends FrameLayout {
 
     private void setDailyPrecipitationData(Weather weather, int position, boolean showDailyPop) {
         if (showDailyPop) {
-            precipitation = (weather.dailyList.get(position).precipitations[0] + weather.dailyList.get(position).precipitations[1]) / 2;
+            precipitation = Math.max(
+                    weather.dailyList.get(position).precipitations[0],
+                    weather.dailyList.get(position).precipitations[1]);
             precipitationY = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
                     - calcDrawSpecUsableHeight(getContext()) * precipitation / 100.0);
         } else {

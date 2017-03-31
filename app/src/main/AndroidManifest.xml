@@ -4,10 +4,9 @@
     package="wangdaye.com.geometricweather" >
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:label="@string/app_name"
+        android:label="@string/geometric_weather"
         android:name=".GeometricWeather"
         android:supportsRtl="true"
         android:largeHeap="true"
@@ -26,8 +25,10 @@
         <!-- activity -->
         <activity
             android:name=".ui.activity.MainActivity"
-            android:label="@string/geometric_weather"
+            android:label="@string/app_name"
             android:theme="@style/GeometricWeatherTheme"
+            android:clearTaskOnLaunch="true"
+            android:launchMode="singleTask"
             android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

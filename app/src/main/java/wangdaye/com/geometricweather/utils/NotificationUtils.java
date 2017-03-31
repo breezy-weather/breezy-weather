@@ -19,7 +19,6 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
-import wangdaye.com.geometricweather.utils.widget.PriorityRunnable;
 
 /**
  * Notification utils.
@@ -36,7 +35,7 @@ public class NotificationUtils {
 
     public static void refreshNotificationInNewThread(final Context c, final Location location) {
         ThreadManager.getInstance()
-                .execute(new PriorityRunnable(false) {
+                .execute(new Runnable() {
                     @Override
                     public void run() {
                         if (NormalNotificationUtils.isEnable(c)) {

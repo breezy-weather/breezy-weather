@@ -6,7 +6,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,12 +18,17 @@ import android.widget.ImageView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.History;
+import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.ui.popup.DailyPreviewSettingsPopupWindow;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.ui.adapter.TrendAdapter;
 import wangdaye.com.geometricweather.ui.widget.switchButton.RecyclerSwitchImageButton;
 import wangdaye.com.geometricweather.ui.widget.switchButton.SwitchImageButton;
+import wangdaye.com.geometricweather.utils.NotificationUtils;
+import wangdaye.com.geometricweather.utils.WidgetUtils;
+import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Trend view.
@@ -47,11 +51,6 @@ public class TrendView extends FrameLayout
     private int state = TrendItemView.DATA_TYPE_DAILY;
 
     private boolean animating = false;
-
-    private static final String PREFERENCE_NAME = "sp_trend_view";
-    private static final String KEY_DAILY_POP_SWITCH = "daily_pop_switch";
-    private static final String KEY_DATE_SWITCH = "date_switch";
-    private static final String KEY_PREVIEW_TIME = "preview_time";
 
     // animator
     private AnimatorSet viewIn;
@@ -85,11 +84,9 @@ public class TrendView extends FrameLayout
         View view = LayoutInflater.from(getContext()).inflate(R.layout.container_trend_view, null);
         addView(view);
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(
-                PREFERENCE_NAME, Context.MODE_PRIVATE);
-        showDailyPop = sharedPreferences.getBoolean(KEY_DAILY_POP_SWITCH, false);
-        showDate = sharedPreferences.getBoolean(KEY_DATE_SWITCH, false);
-        previewTime = sharedPreferences.getInt(KEY_PREVIEW_TIME, TrendAdapter.PREVIEW_TIME_AUTO);
+        this.showDailyPop = ChartStyleManager.getInstance(getContext()).isShowDailyPop();
+        this.showDate = ChartStyleManager.getInstance(getContext()).isShowDate();
+        this.previewTime = ChartStyleManager.getInstance(getContext()).getPreviewTime();
 
         this.adapter = new TrendAdapter(getContext(), null, null, showDailyPop, showDate, previewTime, this);
 
@@ -236,13 +233,9 @@ public class TrendView extends FrameLayout
         @Override
         public void onSwitch(boolean on) {
             showDailyPop = on;
+            ChartStyleManager.getInstance(getContext()).setShowDailyPop(getContext(), on);
             adapter.setData(weather, history, showDailyPop, showDate, previewTime, state);
             adapter.notifyDataSetChanged();
-
-            SharedPreferences.Editor editor = getContext().getSharedPreferences(
-                    PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
-            editor.putBoolean(KEY_DAILY_POP_SWITCH, on);
-            editor.apply();
         }
     };
 
@@ -250,13 +243,9 @@ public class TrendView extends FrameLayout
         @Override
         public void onSwitch(boolean on) {
             showDate = on;
+            ChartStyleManager.getInstance(getContext()).setShowDate(getContext(), on);
             adapter.setData(weather, history, showDailyPop, showDate, previewTime, state);
             adapter.notifyDataSetChanged();
-
-            SharedPreferences.Editor editor = getContext().getSharedPreferences(
-                    PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
-            editor.putBoolean(KEY_DATE_SWITCH, on);
-            editor.apply();
         }
     };
 
@@ -267,13 +256,16 @@ public class TrendView extends FrameLayout
         @Override
         public void onRecyclerSwitch(int newState) {
             previewTime = newState;
+            ChartStyleManager.getInstance(getContext()).setPreviewTime(getContext(), newState);
             adapter.setData(weather, history, showDailyPop, showDate, previewTime, state);
             adapter.notifyDataSetChanged();
 
-            SharedPreferences.Editor editor = getContext().getSharedPreferences(
-                    PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
-            editor.putInt(KEY_PREVIEW_TIME, newState);
-            editor.apply();
+            Location location = DatabaseHelper.getInstance(getContext()).readLocationList().get(0);
+            location.weather = DatabaseHelper.getInstance(getContext()).readWeather(location);
+            if (location.weather != null) {
+                WidgetUtils.refreshWidgetInNewThread(getContext(), location);
+                NotificationUtils.refreshNotificationInNewThread(getContext(), location);
+            }
         }
     };
 }

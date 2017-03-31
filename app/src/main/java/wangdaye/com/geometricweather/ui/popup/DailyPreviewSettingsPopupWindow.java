@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.adapter.TrendAdapter;
 import wangdaye.com.geometricweather.ui.widget.switchButton.RecyclerSwitchImageButton;
 import wangdaye.com.geometricweather.ui.widget.switchButton.SwitchImageButton;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Daily preview settings popup window.
@@ -81,9 +81,9 @@ public class DailyPreviewSettingsPopupWindow extends PopupWindow {
         dateBtn.setOnSwitchListener(dateListener);
 
         List<Integer> stateList = new ArrayList<>();
-        stateList.add(TrendAdapter.PREVIEW_TIME_AUTO);
-        stateList.add(TrendAdapter.PREVIEW_TIME_DAY);
-        stateList.add(TrendAdapter.PREVIEW_TIME_NIGHT);
+        stateList.add(ChartStyleManager.PREVIEW_TIME_AUTO);
+        stateList.add(ChartStyleManager.PREVIEW_TIME_DAY);
+        stateList.add(ChartStyleManager.PREVIEW_TIME_NIGHT);
 
         List<Integer> resList = new ArrayList<>();
         resList.add(R.drawable.ic_auto_off);

@@ -43,7 +43,7 @@
         <TextView
             android:id="@+id/widget_day_time"
             android:text="@string/wait_refresh"
-            android:textColor="@color/colorTextGrey"
+            android:textColor="@color/colorTextLight"
             android:textSize="@dimen/widget_time_text_size"
             android:shadowColor="@color/colorTextGrey"
             android:shadowDx="1"

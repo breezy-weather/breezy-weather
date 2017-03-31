@@ -21,6 +21,7 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Widget day week utils.
@@ -61,6 +62,16 @@ public class WidgetDayWeekUtils {
                 context, weather, dayTime, textColor, fahrenheit, viewStyle, hideRefreshTime);
 
         // set week icons.
+        switch (ChartStyleManager.getInstance(context).getPreviewTime()) {
+            case ChartStyleManager.PREVIEW_TIME_DAY:
+                dayTime = true;
+                break;
+
+            case ChartStyleManager.PREVIEW_TIME_NIGHT:
+                dayTime = false;
+                break;
+        }
+
         views.setImageViewResource(
                 R.id.widget_day_week_icon_1,
                 WeatherHelper.getWeatherIcon(
