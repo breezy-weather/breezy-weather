@@ -50,6 +50,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
     private Switch showCardSwitch;
     private Switch hideRefreshTimeSwitch;
+    private Switch showAqiOrWindSwitch;
     private Switch blackTextSwitch;
 
     // data
@@ -91,6 +92,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         this.hideRefreshTimeSwitch = (Switch) findViewById(R.id.activity_create_widget_day_hideRefreshTimeSwitch);
         hideRefreshTimeSwitch.setOnCheckedChangeListener(new HideRefreshTimeSwitchCheckListener());
 
+        this.showAqiOrWindSwitch = (Switch) findViewById(R.id.activity_create_widget_day_showAqiOrWindSwitch);
+        showAqiOrWindSwitch.setOnCheckedChangeListener(new ShowAqiOrWindSwitchCheckListener());
+
         this.blackTextSwitch = (Switch) findViewById(R.id.activity_create_widget_day_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
 
@@ -119,19 +123,16 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 String[] texts = WidgetUtils.buildWidgetDayStyleText(weather, isFahrenheit());
                 widgetTitle.setText(texts[0]);
                 widgetSubtitle.setText(texts[1]);
-                widgetTime.setText(weather.base.city + " " + weather.base.time);
                 break;
 
             case "symmetry":
                 widgetTitle.setText(weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, isFahrenheit()));
                 widgetSubtitle.setText(weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
-                widgetTime.setText(weather.dailyList.get(0).week + " " + weather.base.time);
                 break;
 
             case "tile":
                 widgetTitle.setText(weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
                 widgetSubtitle.setText(ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
-                widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
                 break;
 
             case "mini":
@@ -148,6 +149,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 widgetSubtitle.setText(weather.dailyList.get(0).date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
                 break;
         }
+        setTimeText(weather, showAqiOrWindSwitch.isChecked());
     }
 
     @Override
@@ -248,6 +250,36 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         }
     }
 
+    private void setTimeText(Weather weather, boolean showAqiOrWind) {
+        if (showAqiOrWind) {
+            if (widgetTime != null) {
+                if (weather.aqi != null) {
+                    widgetTime.setText(weather.aqi.quality + " (" + weather.aqi.aqi + ")");
+                } else {
+                    widgetTime.setText(weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
+                }
+            }
+        } else {
+            switch (viewTypeValueNow) {
+                case "rectangle":
+                    widgetTime.setText(weather.base.city + " " + weather.base.time);
+                    break;
+
+                case "symmetry":
+                    widgetTime.setText(weather.dailyList.get(0).week + " " + weather.base.time);
+                    break;
+
+                case "tile":
+                    widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                    break;
+
+                case "mini":
+                    widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                    break;
+            }
+        }
+    }
+
     /** <br> interface. */
 
     // on click listener.
@@ -263,6 +295,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 editor.putString(getString(R.string.key_view_type), viewTypeValueNow);
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_hide_refresh_time), hideRefreshTimeSwitch.isChecked());
+                editor.putBoolean(getString(R.string.key_show_aqi_or_wind), showAqiOrWindSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
                 editor.apply();
 
@@ -401,6 +434,16 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 widgetSubtitle.setVisibility(isChecked ? View.GONE : View.VISIBLE);
             } else if (widgetTime != null) {
                 widgetTime.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+            }
+        }
+    }
+
+    private class ShowAqiOrWindSwitchCheckListener implements CompoundButton.OnCheckedChangeListener {
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (widgetTime != null) {
+                setTimeText(getLocationNow().weather, isChecked);
             }
         }
     }

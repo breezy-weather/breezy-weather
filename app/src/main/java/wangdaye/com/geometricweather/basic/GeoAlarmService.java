@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
  * Widget service.
@@ -29,6 +31,7 @@ public abstract class GeoAlarmService extends Service
         implements WeatherHelper.OnRequestWeatherListener {
     // widget.
     private WeatherHelper weatherHelper;
+    private List<Location> locationList;
 
     // data.
     private boolean refreshing;
@@ -44,9 +47,9 @@ public abstract class GeoAlarmService extends Service
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         if (!refreshing) {
-            refreshing = true;
-            List<Location> locationList = DatabaseHelper.getInstance(this).readLocationList();
-            doRefresh(locationList.get(0));
+            this.refreshing = true;
+            this.locationList = DatabaseHelper.getInstance(this).readLocationList();
+            this.doRefresh(locationList.get(0));
         }
         return START_NOT_STICKY;
     }
@@ -166,6 +169,9 @@ public abstract class GeoAlarmService extends Service
         DatabaseHelper.getInstance(this).writeHistory(weather);
         NotificationUtils.checkAndSendAlert(this, weather, oldResult);
         updateView(this, requestLocation, weather);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            ShortcutsManager.refreshShortcuts(this, locationList);
+        }
         stopSelf();
     }
 

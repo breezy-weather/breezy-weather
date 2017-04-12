@@ -1,6 +1,6 @@
 <resources>
     <!-- app. -->
-    <string name="app_name">天氣</string>
+    <string name="app_name">幾何天氣</string>
 
     <!-- keyword. -->
     <string name="local">本地</string>
@@ -90,8 +90,9 @@
 
     <string name="feedback_view_style">界面風格</string>
     <string name="feedback_show_widget_card">卡片背景</string>
-    <string name="feedback_black_text">暗色字體</string>
     <string name="feedback_hide_refresh_time">隱藏刷新時間</string>
+    <string name="feedback_show_aqi_or_wind">以AQI或風況代替時間</string>
+    <string name="feedback_black_text">暗色字體</string>
 
     <string name="feedback_click_toggle">點擊趨勢圖可切換數據</string>
     <string name="feedback_no_data">暫無數據</string>

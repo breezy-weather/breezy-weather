@@ -480,6 +480,72 @@ public class WeatherHelper {
         return imageId;
     }
 
+    public static int getShortcutIcon(String weatherInfo, boolean dayTime) {
+        int imageId;
+        switch (weatherInfo) {
+            case KIND_CLEAR:
+                if(dayTime) {
+                    imageId = R.drawable.ic_shortcut_sun_day;
+                } else {
+                    imageId = R.drawable.ic_shortcut_sun_night;
+                }
+                break;
+
+            case KIND_PARTLY_CLOUDY:
+                if(dayTime) {
+                    imageId = R.drawable.ic_shortcut_cloud_day;
+                } else {
+                    imageId = R.drawable.ic_shortcut_cloudy;
+                }
+                break;
+
+            case KIND_CLOUDY:
+                imageId = R.drawable.ic_shortcut_cloudy;
+                break;
+
+            case KIND_RAIN:
+                imageId = R.drawable.ic_shortcut_rain;
+                break;
+
+            case KIND_WIND:
+                imageId = R.drawable.ic_shortcut_wind;
+                break;
+
+            case KIND_SNOW:
+                imageId = R.drawable.ic_shortcut_snow;
+                break;
+
+            case KIND_FOG:
+                imageId = R.drawable.ic_shortcut_fog;
+                break;
+
+            case KIND_HAZE:
+                imageId = R.drawable.ic_shortcut_haze;
+                break;
+
+            case KIND_SLEET:
+                imageId = R.drawable.ic_shortcut_sleet;
+                break;
+
+            case KIND_THUNDERSTORM:
+                imageId = R.drawable.ic_shortcut_thunder;
+                break;
+
+            case KIND_THUNDER:
+                imageId = R.drawable.ic_shortcut_thunder;
+                break;
+
+            case KIND_HAIL:
+                imageId = R.drawable.ic_shortcut_hail;
+                break;
+
+            default:
+                imageId = R.drawable.ic_shortcut_cloudy;
+                break;
+        }
+        return imageId;
+    }
+
     @SuppressLint("SimpleDateFormat")
     public static String getWeek(Context c, String dateTxt) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

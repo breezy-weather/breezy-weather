@@ -42,13 +42,14 @@ public class WidgetDayUtils {
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean hideRefreshTime = sharedPreferences.getBoolean(context.getString(R.string.key_hide_refresh_time), false);
+        boolean showAqiOrWind = sharedPreferences.getBoolean(context.getString(R.string.key_show_aqi_or_wind), false);
         boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
         boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.key_fahrenheit), false);
 
         RemoteViews views = buildWidgetView(
-                context, weather, dayTime, fahrenheit, viewStyle, showCard, blackText, hideRefreshTime);
+                context, weather, dayTime, fahrenheit, viewStyle, showCard, blackText, hideRefreshTime, showAqiOrWind);
         views.setViewVisibility(R.id.widget_day_card, showCard ? View.VISIBLE : View.GONE);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -66,7 +67,8 @@ public class WidgetDayUtils {
 
     private static RemoteViews buildWidgetView(Context context, Weather weather,
                                                boolean dayTime, boolean fahrenheit,
-                                               String viewStyle, boolean showCard, boolean blackText, boolean hideRefreshTime) {
+                                               String viewStyle, boolean showCard, boolean blackText,
+                                               boolean hideRefreshTime, boolean showAqiOrWind) {
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
         int textColor;
         if (viewStyle.equals("pixel") || viewStyle.equals("nano")) {
@@ -92,9 +94,21 @@ public class WidgetDayUtils {
                 views.setImageViewResource(R.id.widget_day_icon, imageId[3]);
                 views.setTextViewText(R.id.widget_day_title, texts[0]);
                 views.setTextViewText(R.id.widget_day_subtitle, texts[1]);
-                views.setTextViewText(
-                        R.id.widget_day_time,
-                        weather.base.city + " " + weather.base.time);
+                if (showAqiOrWind) {
+                    if (weather.aqi != null) {
+                        views.setTextViewText(
+                                R.id.widget_day_time,
+                                weather.aqi.quality + " (" + weather.aqi.aqi + ")");
+                    } else {
+                        views.setTextViewText(
+                                R.id.widget_day_time,
+                                weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
+                    }
+                } else {
+                    views.setTextViewText(
+                            R.id.widget_day_time,
+                            weather.base.city + " " + weather.base.time);
+                }
 
                 views.setTextColor(R.id.widget_day_title, textColor);
                 views.setTextColor(R.id.widget_day_subtitle, textColor);
@@ -112,9 +126,21 @@ public class WidgetDayUtils {
                 views.setTextViewText(
                         R.id.widget_day_subtitle,
                         weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
-                views.setTextViewText(
-                        R.id.widget_day_time,
-                        weather.dailyList.get(0).week + " " + weather.base.time);
+                if (showAqiOrWind) {
+                    if (weather.aqi != null) {
+                        views.setTextViewText(
+                                R.id.widget_day_time,
+                                weather.aqi.quality + " (" + weather.aqi.aqi + ")");
+                    } else {
+                        views.setTextViewText(
+                                R.id.widget_day_time,
+                                weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
+                    }
+                } else {
+                    views.setTextViewText(
+                            R.id.widget_day_time,
+                            weather.dailyList.get(0).week + " " + weather.base.time);
+                }
 
                 views.setTextColor(R.id.widget_day_title, textColor);
                 views.setTextColor(R.id.widget_day_subtitle, textColor);
@@ -132,9 +158,21 @@ public class WidgetDayUtils {
                 views.setTextViewText(
                         R.id.widget_day_subtitle,
                         ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
-                views.setTextViewText(
-                        R.id.widget_day_time,
-                        weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                if (showAqiOrWind) {
+                    if (weather.aqi != null) {
+                        views.setTextViewText(
+                                R.id.widget_day_time,
+                                weather.aqi.quality + " (" + weather.aqi.aqi + ")");
+                    } else {
+                        views.setTextViewText(
+                                R.id.widget_day_time,
+                                weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
+                    }
+                } else {
+                    views.setTextViewText(
+                            R.id.widget_day_time,
+                            weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                }
 
                 views.setTextColor(R.id.widget_day_title, textColor);
                 views.setTextColor(R.id.widget_day_subtitle, textColor);
@@ -149,9 +187,21 @@ public class WidgetDayUtils {
                 views.setTextViewText(
                         R.id.widget_day_title,
                         weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
-                views.setTextViewText(
-                        R.id.widget_day_time,
-                        weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                if (showAqiOrWind) {
+                    if (weather.aqi != null) {
+                        views.setTextViewText(
+                                R.id.widget_day_time,
+                                weather.aqi.quality + " (" + weather.aqi.aqi + ")");
+                    } else {
+                        views.setTextViewText(
+                                R.id.widget_day_time,
+                                weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
+                    }
+                } else {
+                    views.setTextViewText(
+                            R.id.widget_day_time,
+                            weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                }
 
                 views.setTextColor(R.id.widget_day_title, textColor);
                 views.setTextColor(R.id.widget_day_time, textColor);

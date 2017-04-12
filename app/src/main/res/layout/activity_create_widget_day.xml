@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            tools:src="@drawable/nav_head_day"
             tools:ignore="contentDescription" />
 
         <FrameLayout
@@ -102,6 +101,27 @@
 
                     <Switch
                         android:id="@+id/activity_create_widget_day_hideRefreshTimeSwitch"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/normal_margin"
+                        style="@style/my_switch"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_create_widget_day_showAqiOrWindTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_show_aqi_or_wind"
+                        style="@style/content_text" />
+
+                    <Switch
+                        android:id="@+id/activity_create_widget_day_showAqiOrWindSwitch"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/normal_margin"

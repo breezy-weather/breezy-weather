@@ -58,6 +58,7 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.sky.SkyView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendItemView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendView;
+import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
  * Main activity.
@@ -156,6 +157,13 @@ public class MainActivity extends GeoActivity
         locationHelper.cancel();
         weatherHelper.cancel();
         handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        readIntentData(intent);
+        reset();
     }
 
     @Override
@@ -625,6 +633,9 @@ public class MainActivity extends GeoActivity
 
                 setRefreshing(false);
                 buildUI();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                    ShortcutsManager.refreshShortcuts(this, locationList);
+                }
 
                 if (locationNow.equals(locationList.get(0))) {
                     startupService();
