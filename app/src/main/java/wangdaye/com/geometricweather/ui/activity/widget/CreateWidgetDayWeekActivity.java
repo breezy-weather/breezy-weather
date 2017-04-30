@@ -28,7 +28,7 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
@@ -41,7 +41,7 @@ import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
         implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-    // widget
+
     private View[] widgetViews;
     private ImageView widgetCard;
     private ImageView widgetIcon;
@@ -64,12 +64,15 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
     private String[] viewTypes;
     private String[] viewTypeValues;
 
-    /** <br> life cycle. */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_widget_day_week);
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return container;
     }
 
     @Override
@@ -122,7 +125,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
         }
         getLocationNow().weather = weather;
 
-        boolean dayTime = TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime();
 
         int[] imageId = WeatherHelper.getWeatherIcon(
                 weather.realTime.weatherKind,
@@ -200,11 +203,6 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                     .into(widgetIcons[i]);
             widgetTemps[i].setText(ValueUtils.buildDailyTemp(weather.dailyList.get(i).temps, false, isFahrenheit()));
         }
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
     }
 
     /** <br> UI. */
@@ -377,7 +375,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startPollingService(this, false);
+                ServiceHelper.startupService(this, false);
                 finish();
                 break;
         }

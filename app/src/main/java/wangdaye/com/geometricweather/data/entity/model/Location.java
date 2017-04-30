@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
 
 public class Location
         implements Parcelable {
-    // data
+
     public String cityId;
     public String city;
     public String cnty;
@@ -29,8 +29,6 @@ public class Location
 
     public boolean local;
     private static final String NULL_ID = "NULL_ID";
-
-    /** <br> life cycle. */
 
     private Location() {
         this.cityId = NULL_ID;
@@ -124,8 +122,6 @@ public class Location
         return locationList;
     }
 
-    /** <br> data. */
-
     public boolean equals(Location location) {
         if (location.isLocal()) {
             return isLocal();
@@ -178,8 +174,6 @@ public class Location
                 .replace("y", "").replace("z", "");*/
         return cityId;
     }
-
-    /** <br> parcelable. */
 
     @Override
     public int describeContents() {

@@ -14,7 +14,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class Index {
-    // data
+
     public String[] simpleForecasts;
     public String[] briefings;
     public String[] winds;
@@ -36,6 +36,7 @@ public class Index {
         colds = new String[] {"", ""};
         carWashes = new String[] {"", ""};
     }
+
 /*
     void buildIndex(RealTime realTime, Daily daily, Hourly hourly, Aqi aqi, FWResult result) {
         simpleForecasts = new String[] {"", ""};

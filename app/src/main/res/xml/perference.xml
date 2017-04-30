@@ -26,13 +26,6 @@
             android:dialogTitle="@string/settings_title_refresh_rate"
             android:defaultValue="1:30" />
 
-        <CheckBoxPreference
-            android:title="@string/settings_title_permanent_service"
-            android:key="@string/key_permanent_service"
-            android:defaultValue="true"
-            android:summaryOn="@string/on"
-            android:summaryOff="@string/off" />
-
         <ListPreference
             android:title="@string/settings_language"
             android:key="@string/key_language"

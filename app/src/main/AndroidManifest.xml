@@ -129,9 +129,9 @@
         </activity>
 
         <!-- service -->
-        <service android:name=".service.alarm.PollingAlarmService" />
-        <service android:name=".service.alarm.TodayForecastAlarmService" />
-        <service android:name=".service.alarm.TomorrowForecastAlarmService" />
+        <service android:name=".service.NormalUpdateService" />
+        <service android:name=".service.TodayForecastUpdateService" />
+        <service android:name=".service.TomorrowForecastUpdateService" />
         <service
             android:name=".service.PollingService"
             android:process=":polling" />
@@ -139,7 +139,7 @@
             android:name=".service.ProtectService"
             android:process=":protect" />
         <service
-            android:name=".service.GeoTileService"
+            android:name=".service.TileService"
             android:label="@string/geometric_weather"
             android:icon="@drawable/weather_sun_day_mini"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">

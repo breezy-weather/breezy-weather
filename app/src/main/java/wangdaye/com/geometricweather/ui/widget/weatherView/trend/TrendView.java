@@ -6,8 +6,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -36,11 +34,10 @@ import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 public class TrendView extends FrameLayout
         implements View.OnClickListener, TrendAdapter.OnTrendItemClickListener {
-    // widget
+
     private TrendRecyclerView recyclerView;
     private ImageView menuBtn;
 
-    // data
     private TrendAdapter adapter;
     private Weather weather;
     private History history;
@@ -52,11 +49,8 @@ public class TrendView extends FrameLayout
 
     private boolean animating = false;
 
-    // animator
     private AnimatorSet viewIn;
     private AnimatorSet viewOut;
-
-    /** <br> life cycle. */
 
     public TrendView(Context context) {
         super(context);
@@ -73,11 +67,7 @@ public class TrendView extends FrameLayout
         this.initialize();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public TrendView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
-    }
+    // init.
 
     @SuppressLint("InflateParams")
     private void initialize() {
@@ -108,7 +98,7 @@ public class TrendView extends FrameLayout
         viewOut.setTarget(recyclerView);
     }
 
-    /** <br> UI. */
+    // draw.
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -119,6 +109,8 @@ public class TrendView extends FrameLayout
                 MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
         setMeasuredDimension(width, height);
     }
+
+    // control.
 
     public void reset() {
         adapter.setData(weather, history, showDailyPop, showDate, previewTime, state);
@@ -136,8 +128,6 @@ public class TrendView extends FrameLayout
                 break;
         }
     }
-
-    /** data. */
 
     public void setData(Weather weather, History history) {
         if (weather != null) {
@@ -163,7 +153,7 @@ public class TrendView extends FrameLayout
         }
     }
 
-    /** <br> interface. */
+    // interface.
 
     // on click listener.
 

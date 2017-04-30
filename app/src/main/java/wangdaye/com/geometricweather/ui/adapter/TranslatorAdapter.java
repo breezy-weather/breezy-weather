@@ -23,45 +23,9 @@ import wangdaye.com.geometricweather.data.entity.model.Translator;
  * */
 
 public class TranslatorAdapter extends RecyclerView.Adapter<TranslatorAdapter.ViewHolder> {
-    // widget
+
     private Context context;
-
-    // data
     private List<Translator> itemList;
-
-    /** <br> life cycle. */
-
-    public TranslatorAdapter(Context context) {
-        this.context = context;
-        this.itemList = Translator.buildTranslatorList();
-    }
-
-    /** <br> UI. */
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_translator, parent, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.title.setText(itemList.get(position).name);
-        holder.subtitle.setText(itemList.get(position).email);
-        Glide.with(context)
-                .load(itemList.get(position).flagResId)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(holder.flag);
-    }
-
-    /** <br> data. */
-
-    @Override
-    public int getItemCount() {
-        return itemList.size();
-    }
-
-    /** <br> inner class. */
 
     class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
@@ -89,5 +53,31 @@ public class TranslatorAdapter extends RecyclerView.Adapter<TranslatorAdapter.Vi
                     break;
             }
         }
+    }
+
+    public TranslatorAdapter(Context context) {
+        this.context = context;
+        this.itemList = Translator.buildTranslatorList();
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_translator, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.title.setText(itemList.get(position).name);
+        holder.subtitle.setText(itemList.get(position).email);
+        Glide.with(context)
+                .load(itemList.get(position).flagResId)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(holder.flag);
+    }
+
+    @Override
+    public int getItemCount() {
+        return itemList.size();
     }
 }

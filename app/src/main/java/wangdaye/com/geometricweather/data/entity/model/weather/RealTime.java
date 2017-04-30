@@ -12,7 +12,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class RealTime {
-    // data
+
     public String weather;
     public String weatherKind;
     public int temp;
@@ -22,10 +22,8 @@ public class RealTime {
     public String windLevel;
     public String simpleForecast;
 
-    /** <br> life cycle. */
+    RealTime() {}
 
-    RealTime() {
-    }
 /*
     void buildRealTime(FWResult result) {
         weather = result.realtime.weather;
@@ -49,6 +47,7 @@ public class RealTime {
         simpleForecast = "";
     }
 */
+
     public void buildRealTime(Context c, NewRealtimeResult result) {
         weather = result.WeatherText;
         weatherKind = WeatherHelper.getNewWeatherKind(result.WeatherIcon);

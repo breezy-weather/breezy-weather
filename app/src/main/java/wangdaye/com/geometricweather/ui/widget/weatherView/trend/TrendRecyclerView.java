@@ -22,11 +22,10 @@ import wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLay
  * */
 
 public class TrendRecyclerView extends RecyclerView {
-    // widget
+
     private SwipeSwitchLayout switchLayout;
     private Paint paint;
 
-    // data
     private History history;
     private int[] tempYs;
     private boolean canScroll = false;
@@ -35,8 +34,6 @@ public class TrendRecyclerView extends RecyclerView {
     private float CHART_LINE_SIZE = 1;
     private float TEXT_SIZE = 10;
     private float MARGIN_TEXT = 2;
-
-    /** <br> life cycle. */
 
     public TrendRecyclerView(Context context) {
         super(context);
@@ -53,6 +50,8 @@ public class TrendRecyclerView extends RecyclerView {
         this.initialize();
     }
 
+    // init.
+
     private void initialize() {
         setWillNotDraw(false);
 
@@ -67,7 +66,7 @@ public class TrendRecyclerView extends RecyclerView {
         this.MARGIN_TEXT = DisplayUtils.dpToPx(getContext(), (int) MARGIN_TEXT);
     }
 
-    /** <br> touch. */
+    // touch.
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
@@ -90,7 +89,7 @@ public class TrendRecyclerView extends RecyclerView {
         return super.onInterceptTouchEvent(e);
     }
 
-    /** <br> UI. */
+    // draw.
 
     @Override
     public void onDraw(Canvas canvas) {
@@ -144,7 +143,7 @@ public class TrendRecyclerView extends RecyclerView {
         this.switchLayout = v;
     }
 
-    /** <br> data. */
+    // control.
 
     public void setData(Weather weather, History history, int state) {
         if (weather == null) {

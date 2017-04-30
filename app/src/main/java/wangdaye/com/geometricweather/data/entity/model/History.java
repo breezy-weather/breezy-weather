@@ -8,15 +8,13 @@ import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
  * */
 
 public class History {
-    // data
+
     public String cityId;
     public String city;
     public String date;
 
     public int maxiTemp;
     public int miniTemp;
-
-    /** <br> life cycle. */
 
     public static History buildHistory(Weather weather) {
         History history = new History();

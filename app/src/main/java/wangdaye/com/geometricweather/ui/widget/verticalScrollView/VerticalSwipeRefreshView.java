@@ -13,18 +13,15 @@ import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
  * */
 
 public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
-    // widget
+
     private InkPageIndicator indicator;
 
-    // data
     private float initialX, initialY;
     private int touchSlop;
 
     private boolean isBeingDragged = false;
     private boolean isHorizontalDragged = false;
     private boolean moveActionStarted = false;
-
-    /** <br> life cycle. */
 
     public VerticalSwipeRefreshView(Context context) {
         super(context);
@@ -40,7 +37,9 @@ public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
 
-    /** <br> touch. */
+    public void setIndicator(InkPageIndicator indicator) {
+        this.indicator = indicator;
+    }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -93,11 +92,5 @@ public class VerticalSwipeRefreshView extends SwipeRefreshLayout {
             }
         }
         return super.onTouchEvent(ev) && !isHorizontalDragged;
-    }
-
-    /** <br> UI. */
-
-    public void setIndicator(InkPageIndicator indicator) {
-        this.indicator = indicator;
     }
 }

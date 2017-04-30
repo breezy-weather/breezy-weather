@@ -26,7 +26,7 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -38,7 +38,7 @@ import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
         implements View.OnClickListener {
-    // widget
+
     private ImageView widgetCard;
     private ImageView widgetIcon;
     private TextClock widgetClock;
@@ -53,12 +53,15 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
     private Switch showCardSwitch;
     private Switch blackTextSwitch;
 
-    /** <br> life cycle. */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_widget_clock_day_week);
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return container;
     }
 
     @SuppressLint("InflateParams")
@@ -117,7 +120,7 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
         }
         getLocationNow().weather = weather;
 
-        boolean dayTime = TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime();
 
         int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
         Glide.with(this)
@@ -179,12 +182,7 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
         }
     }
 
-    @Override
-    public View getSnackbarContainer() {
-        return container;
-    }
-
-    /** <br> interface. */
+    // interface.
 
     // on click listener.
 
@@ -212,7 +210,7 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startPollingService(this, false);
+                ServiceHelper.startupService(this, false);
                 finish();
                 break;
         }

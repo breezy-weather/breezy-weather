@@ -9,20 +9,16 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
- * Geometric activity.
+ * Geometric weather activity.
  * */
 
 public abstract class GeoActivity extends AppCompatActivity {
-    // widget
+
     private List<GeoDialogFragment> dialogList;
-
-    // data
     private boolean started;
-
-    /** <br> life cycle. */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +27,7 @@ public abstract class GeoActivity extends AppCompatActivity {
         GeometricWeather.getInstance().addActivity(this);
         DisplayUtils.setWindowTopColor(this);
         DisplayUtils.setStatusBarTranslate(getWindow());
-        DisplayUtils.setNavigationBarColor(this, TimeUtils.getInstance(this).isDayTime());
+        DisplayUtils.setNavigationBarColor(this, TimeManager.getInstance(this).isDayTime());
 
         this.dialogList = new ArrayList<>();
         this.started = false;
@@ -43,25 +39,25 @@ public abstract class GeoActivity extends AppCompatActivity {
         GeometricWeather.getInstance().removeActivity();
     }
 
-    public void setStarted() {
-        started = true;
-    }
-
-    public boolean isStarted() {
-        return started;
-    }
-
-    public abstract View getSnackbarContainer();
-
-    public List<GeoDialogFragment> getDialogList() {
-        return dialogList;
-    }
-
     public View provideSnackbarContainer() {
         if (dialogList.size() > 0) {
             return dialogList.get(dialogList.size() - 1).getSnackbarContainer();
         } else {
             return getSnackbarContainer();
         }
+    }
+
+    public abstract View getSnackbarContainer();
+
+    public boolean isStarted() {
+        return started;
+    }
+
+    public void setStarted() {
+        started = true;
+    }
+
+    public List<GeoDialogFragment> getDialogList() {
+        return dialogList;
     }
 }

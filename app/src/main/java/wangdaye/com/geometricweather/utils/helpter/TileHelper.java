@@ -10,7 +10,7 @@ import android.support.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
@@ -30,10 +30,10 @@ public class TileHelper {
         editor.putBoolean(KEY_ENABLE, enable);
         editor.apply();
 
-        if (ServiceHelper.isNeedShutdownPollingService(context)) {
-            ServiceHelper.stopPollingService(context, false);
+        if (!ServiceHelper.hasNormalView(context)) {
+            ServiceHelper.stopNormalService(context, false);
         } else {
-            ServiceHelper.startPollingService(context, false);
+            ServiceHelper.startupService(context, false);
         }
     }
 
@@ -56,7 +56,7 @@ public class TileHelper {
                             context,
                             WeatherHelper.getMiniWeatherIcon(
                                     location.weather.realTime.weatherKind,
-                                    TimeUtils.getInstance(context).isDayTime())));
+                                    TimeManager.getInstance(context).isDayTime())));
             tile.setLabel(
                     ValueUtils.buildCurrentTemp(
                             location.weather.realTime.temp,

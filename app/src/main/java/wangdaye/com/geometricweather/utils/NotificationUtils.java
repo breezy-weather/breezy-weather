@@ -25,13 +25,11 @@ import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
  * */
 
 public class NotificationUtils {
-    // data
+
     private static final String NOTIFICATION_GROUP_KEY = "geometric_weather_alert_notification_group";
     private static final String PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE";
     private static final String KEY_NOTIFICATION_ID = "NOTIFICATION_ID";
     private static final int NOTIFICATION_GROUP_SUMMARY_ID = 10001;
-
-    /** <br> options. */
 
     public static void refreshNotificationInNewThread(final Context c, final Location location) {
         ThreadManager.getInstance()

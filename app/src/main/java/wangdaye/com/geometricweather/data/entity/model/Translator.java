@@ -10,12 +10,10 @@ import wangdaye.com.geometricweather.R;
  * */
 
 public class Translator {
-    // data
+
     public String name;
     public String email;
     public int flagResId;
-
-    /** <br> life cycle. */
 
     private Translator(String name, String email, int flagResId) {
         this.name = name;
@@ -27,6 +25,7 @@ public class Translator {
         List<Translator> translatorList = new ArrayList<>(1);
 
         translatorList.add(new Translator("Mehmet Saygin Yilmaz", "memcos@gmail.com", R.drawable.flag_tr));
+        translatorList.add(new Translator("Ali D.", "siyaha@gmail.com", R.drawable.flag_tr));
         translatorList.add(new Translator("benjamin Tourrel", "polo_naref@hotmail.fr", R.drawable.flag_fr));
         translatorList.add(new Translator("Roman Adadurov", "orelars53@gmail.com", R.drawable.flag_ru));
 

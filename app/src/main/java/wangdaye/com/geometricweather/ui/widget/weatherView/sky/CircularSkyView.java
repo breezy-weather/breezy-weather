@@ -3,8 +3,6 @@ package wangdaye.com.geometricweather.ui.widget.weatherView.sky;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
@@ -14,17 +12,16 @@ import android.view.animation.Transformation;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
- * Show the sky.
+ * Circular sky view.
  * */
 
 public class CircularSkyView extends View {
-    // widget
+
     private Paint paint;
 
-    // data
     private float[] initRadius = new float[4];
     private float[] realRadius = new float[4];
     private int[] colors;
@@ -37,7 +34,35 @@ public class CircularSkyView extends View {
     private static final int HIDE_ANIM_DURATION = 400;
     private static final int TOUCH_ANIM_DURATION = 1500;
 
-    /** <br> life cycle. */
+    private Animation animShow = new Animation() {
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            paintAlpha = (int) (255 * interpolatedTime);
+            calcRadiusWhenShowing(interpolatedTime);
+            invalidate();
+        }
+    };
+
+    private Animation animHide = new Animation() {
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            paintAlpha = (int) (255 * (1 - interpolatedTime));
+            calcRadiusWhenHiding(interpolatedTime);
+            invalidate();
+        }
+    };
+
+    private Animation animTouch = new Animation() {
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            paintAlpha = 255;
+            calcRadiusWhenTouching(interpolatedTime);
+            invalidate();
+        }
+    };
 
     public CircularSkyView(Context context) {
         super(context);
@@ -54,22 +79,34 @@ public class CircularSkyView extends View {
         this.initialize();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public CircularSkyView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
-    }
+    // init.
 
     private void initialize() {
         this.paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
 
-        this.dayTime = TimeUtils.getInstance(getContext()).isDayTime();
+        this.dayTime = TimeManager.getInstance(getContext()).isDayTime();
         setColor();
     }
 
-    /** <br> UI. */
+    // draw.
+
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = (int) (width / 6.8 * 4 + DisplayUtils.dpToPx(getContext(), 40 + 16));
+        setMeasuredDimension(width, height);
+
+        float unitRadius = (float) (width / 6.8);
+        for (int i = 0; i < 4; i ++) {
+            initRadius[i] = unitRadius * (i + 1);
+            realRadius[i] = initRadius[i];
+        }
+        cX = (float) (getMeasuredWidth() / 2.0);
+        cY = getMeasuredHeight();
+    }
+
+    // control.
 
     public void showCircle(boolean dayTime) {
         if (this.dayTime != dayTime) {
@@ -159,23 +196,25 @@ public class CircularSkyView extends View {
         startAnimation(animTouch);
     }
 
-    /** <br> measure */
-
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = getResources().getDisplayMetrics().widthPixels;
-        int height = (int) (width / 6.8 * 4 + DisplayUtils.dpToPx(getContext(), 40 + 16));
-        setMeasuredDimension(width, height);
-
-        float unitRadius = (float) (width / 6.8);
-        for (int i = 0; i < 4; i ++) {
-            initRadius[i] = unitRadius * (i + 1);
-            realRadius[i] = initRadius[i];
+    private void setColor() {
+        if (dayTime) {
+            colors = new int[] {
+                    ContextCompat.getColor(getContext(), R.color.lightPrimary_1),
+                    ContextCompat.getColor(getContext(), R.color.lightPrimary_2),
+                    ContextCompat.getColor(getContext(), R.color.lightPrimary_3),
+                    ContextCompat.getColor(getContext(), R.color.lightPrimary_4),
+                    ContextCompat.getColor(getContext(), R.color.lightPrimary_5)};
+        } else {
+            colors = new int[] {
+                    ContextCompat.getColor(getContext(), R.color.darkPrimary_1),
+                    ContextCompat.getColor(getContext(), R.color.darkPrimary_2),
+                    ContextCompat.getColor(getContext(), R.color.darkPrimary_3),
+                    ContextCompat.getColor(getContext(), R.color.darkPrimary_4),
+                    ContextCompat.getColor(getContext(), R.color.darkPrimary_5)};
         }
-        cX = (float) (getMeasuredWidth() / 2.0);
-        cY = getMeasuredHeight();
     }
 
-    /** <br> draw. */
+    // anim.
 
     protected void onDraw(Canvas canvas) {
         drawBackground(canvas);
@@ -214,26 +253,6 @@ public class CircularSkyView extends View {
         paint.setAlpha(paintAlpha);
         canvas.drawCircle(cX, cY, realRadius[0], paint);
     }
-
-    private void setColor() {
-        if (dayTime) {
-            colors = new int[] {
-                    ContextCompat.getColor(getContext(), R.color.lightPrimary_1),
-                    ContextCompat.getColor(getContext(), R.color.lightPrimary_2),
-                    ContextCompat.getColor(getContext(), R.color.lightPrimary_3),
-                    ContextCompat.getColor(getContext(), R.color.lightPrimary_4),
-                    ContextCompat.getColor(getContext(), R.color.lightPrimary_5)};
-        } else {
-            colors = new int[] {
-                    ContextCompat.getColor(getContext(), R.color.darkPrimary_1),
-                    ContextCompat.getColor(getContext(), R.color.darkPrimary_2),
-                    ContextCompat.getColor(getContext(), R.color.darkPrimary_3),
-                    ContextCompat.getColor(getContext(), R.color.darkPrimary_4),
-                    ContextCompat.getColor(getContext(), R.color.darkPrimary_5)};
-        }
-    }
-
-    /** <br> data. */
 
     private void calcRadiusWhenShowing(float animTime) {
         realRadius[0] = (float) (initRadius[0] * (0.5 * animTime + 0.5));
@@ -317,36 +336,4 @@ public class CircularSkyView extends View {
             }
         }
     }
-
-    /** <br> anim. */
-
-    private Animation animShow = new Animation() {
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            paintAlpha = (int) (255 * interpolatedTime);
-            calcRadiusWhenShowing(interpolatedTime);
-            invalidate();
-        }
-    };
-
-    private Animation animHide = new Animation() {
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            paintAlpha = (int) (255 * (1 - interpolatedTime));
-            calcRadiusWhenHiding(interpolatedTime);
-            invalidate();
-        }
-    };
-
-    private Animation animTouch = new Animation() {
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            paintAlpha = 255;
-            calcRadiusWhenTouching(interpolatedTime);
-            invalidate();
-        }
-    };
 }

@@ -2,8 +2,6 @@ package wangdaye.com.geometricweather.ui.widget.switchButton;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,17 +18,14 @@ import wangdaye.com.geometricweather.R;
 
 public class SwitchImageButton extends ImageView
         implements View.OnClickListener {
-    // widget
+
     private OnSwitchListener listener;
 
-    // data
     private boolean switchOn;
     private boolean animating;
 
     private int drawableIdOn;
     private int drawableIdOff;
-
-    /** <br> life cycle. */
 
     public SwitchImageButton(Context context) {
         super(context);
@@ -47,11 +42,7 @@ public class SwitchImageButton extends ImageView
         this.initialize(attrs, defStyleAttr, 0);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public SwitchImageButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize(attrs, defStyleAttr, defStyleRes);
-    }
+    // init.
 
     private void initialize(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         this.animating = false;
@@ -64,7 +55,7 @@ public class SwitchImageButton extends ImageView
         a.recycle();
     }
 
-    /** <br> UI. */
+    // control.
 
     private void animHide() {
         Animation hide = AnimationUtils.loadAnimation(getContext(), R.anim.switch_image_hide);
@@ -137,13 +128,11 @@ public class SwitchImageButton extends ImageView
         }
     }
 
-    /** <br> data. */
-
     public boolean isSwitchOn() {
         return switchOn;
     }
 
-    /** <br> interface. */
+    // interface.
 
     public interface OnSwitchListener {
         void onSwitch(boolean on);

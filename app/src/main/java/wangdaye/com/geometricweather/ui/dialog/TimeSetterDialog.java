@@ -23,16 +23,13 @@ import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 
 public class TimeSetterDialog extends GeoDialogFragment
         implements View.OnClickListener, TimePicker.OnTimeChangedListener {
-    // widget
+
     private CoordinatorLayout container;
     private OnTimeChangedListener listener;
 
-    // data
     private int hour;
     private int minute;
     private boolean today = true;
-
-    /** <br> life cycle. */
 
     @SuppressLint("InflateParams")
     @Override
@@ -51,8 +48,6 @@ public class TimeSetterDialog extends GeoDialogFragment
         return container;
     }
 
-    /** <br> data. */
-
     public void setModel(boolean today) {
         this.today = today;
     }
@@ -62,8 +57,6 @@ public class TimeSetterDialog extends GeoDialogFragment
         this.hour = calendar.get(Calendar.HOUR_OF_DAY);
         this.minute = calendar.get(Calendar.MINUTE);
     }
-
-    /** <br> UI. */
 
     private void initWidget(View view) {
         this.container = (CoordinatorLayout) view.findViewById(R.id.dialog_time_setter_container);
@@ -79,7 +72,9 @@ public class TimeSetterDialog extends GeoDialogFragment
         timePicker.setOnTimeChangedListener(this);
     }
 
-    /** <br> interface. */
+    // interface.
+
+    // on time changed listener.
 
     public interface OnTimeChangedListener {
         void timeChanged();

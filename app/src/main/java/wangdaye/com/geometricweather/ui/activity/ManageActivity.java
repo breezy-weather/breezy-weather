@@ -28,142 +28,14 @@ import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 
 public class ManageActivity extends GeoActivity
         implements View.OnClickListener, LocationAdapter.OnLocationItemClickListener {
-    // widget
+
     private CoordinatorLayout container;
     private CardView cardView;
     private RecyclerView recyclerView;
 
-    // data
     private LocationAdapter adapter;
 
     public static final int SEARCH_ACTIVITY = 1;
-
-    /** <br> life cycle. */
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (!isStarted()) {
-            setStarted();
-            initData();
-            initWidget();
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // do nothing.
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case SEARCH_ACTIVITY:
-                if (resultCode == RESULT_OK) {
-                    this.adapter = new LocationAdapter(
-                            this,
-                            DatabaseHelper.getInstance(this).readLocationList(),
-                            this);
-                    recyclerView.setAdapter(adapter);
-                    Snackbar.make(
-                            getSnackbarContainer(),
-                            R.string.feedback_collect_succeed,
-                            Snackbar.LENGTH_SHORT).show();
-                }
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    ShortcutsManager.refreshShortcuts(this, adapter.itemList);
-                }
-                break;
-        }
-    }
-
-    /** <br> UI. */
-
-    private void initWidget() {
-        this.container = (CoordinatorLayout) findViewById(R.id.activity_manage_container);
-
-        this.cardView = (CardView) findViewById(R.id.activity_manage_searchBar);
-        cardView.setOnClickListener(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cardView.setTransitionName(getString(R.string.transition_activity_search_bar));
-        }
-
-        this.recyclerView = (RecyclerView) findViewById(R.id.activity_manage_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.addItemDecoration(new ListDecoration(this));
-        recyclerView.setAdapter(adapter);
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                new LocationSwipeCallback(
-                        ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT));
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-    }
-
-    /** <br> data. */
-
-    private void initData() {
-        this.adapter = new LocationAdapter(
-                this,
-                DatabaseHelper.getInstance(this).readLocationList(),
-                this);
-    }
-
-    /** <br> listener. */
-
-    // on click listener.
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.activity_manage_searchBar:
-                IntentHelper.startSearchActivityForResult(this, cardView);
-                break;
-        }
-    }
-
-    private class CancelDeleteListener
-            implements View.OnClickListener {
-        // data
-        private Location location;
-
-        CancelDeleteListener(Location l) {
-            this.location = l;
-        }
-
-        @Override
-        public void onClick(View view) {
-            adapter.insertData(location, adapter.getItemCount());
-            DatabaseHelper.getInstance(ManageActivity.this).writeLocation(location);
-        }
-    }
-
-    // on location item click listener.
-
-    @Override
-    public void onItemClick(View view, int position) {
-        String locationName = adapter.itemList.get(position).isLocal() ?
-                getString(R.string.local) : adapter.itemList.get(position).city;
-
-        setResult(
-                RESULT_OK,
-                new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName));
-        finish();
-    }
-
-    /** <br> inner class. */
 
     public class LocationSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
@@ -221,5 +93,124 @@ public class ManageActivity extends GeoActivity
                     break;
             }
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_manage);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!isStarted()) {
+            setStarted();
+            initData();
+            initWidget();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case SEARCH_ACTIVITY:
+                if (resultCode == RESULT_OK) {
+                    this.adapter = new LocationAdapter(
+                            this,
+                            DatabaseHelper.getInstance(this).readLocationList(),
+                            this);
+                    recyclerView.setAdapter(adapter);
+                    Snackbar.make(
+                            getSnackbarContainer(),
+                            R.string.feedback_collect_succeed,
+                            Snackbar.LENGTH_SHORT).show();
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                    ShortcutsManager.refreshShortcuts(this, adapter.itemList);
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // do nothing.
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return container;
+    }
+
+    private void initData() {
+        this.adapter = new LocationAdapter(
+                this,
+                DatabaseHelper.getInstance(this).readLocationList(),
+                this);
+    }
+
+    private void initWidget() {
+        this.container = (CoordinatorLayout) findViewById(R.id.activity_manage_container);
+
+        this.cardView = (CardView) findViewById(R.id.activity_manage_searchBar);
+        cardView.setOnClickListener(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cardView.setTransitionName(getString(R.string.transition_activity_search_bar));
+        }
+
+        this.recyclerView = (RecyclerView) findViewById(R.id.activity_manage_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.addItemDecoration(new ListDecoration(this));
+        recyclerView.setAdapter(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new LocationSwipeCallback(
+                        ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    // interface.
+
+    // on click listener.
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.activity_manage_searchBar:
+                IntentHelper.startSearchActivityForResult(this, cardView);
+                break;
+        }
+    }
+
+    private class CancelDeleteListener
+            implements View.OnClickListener {
+        // data
+        private Location location;
+
+        CancelDeleteListener(Location l) {
+            this.location = l;
+        }
+
+        @Override
+        public void onClick(View view) {
+            adapter.insertData(location, adapter.getItemCount());
+            DatabaseHelper.getInstance(ManageActivity.this).writeLocation(location);
+        }
+    }
+
+    // on location item click listener.
+
+    @Override
+    public void onItemClick(View view, int position) {
+        String locationName = adapter.itemList.get(position).isLocal() ?
+                getString(R.string.local) : adapter.itemList.get(position).city;
+
+        setResult(
+                RESULT_OK,
+                new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName));
+        finish();
     }
 }

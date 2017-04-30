@@ -10,6 +10,7 @@ import java.lang.ref.WeakReference;
  * */
 
 public class SafeHandler<T extends SafeHandler.HandlerContainer> extends Handler {
+
     protected WeakReference<T> mRef;
 
     public SafeHandler(WeakReference<T> ref) {
@@ -32,8 +33,6 @@ public class SafeHandler<T extends SafeHandler.HandlerContainer> extends Handler
             container.handleMessage(msg);
         }
     }
-
-    /** <br> interface. */
 
     public interface HandlerContainer {
         void handleMessage(Message message);

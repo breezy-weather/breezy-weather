@@ -18,22 +18,39 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
  * */
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHolder> {
-    // widget
+
     private Context context;
     private OnLocationItemClickListener listener = null;
 
-    // data
     public List<Location> itemList;
 
-    /** <br> life cycle. */
+    class ViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
+        // widget
+        TextView title;
+        TextView subtitle;
+
+        private OnLocationItemClickListener listener;
+
+        ViewHolder(View itemView, OnLocationItemClickListener listener) {
+            super(itemView);
+            this.title = (TextView) itemView.findViewById(R.id.item_location_title);
+            this.subtitle = (TextView) itemView.findViewById(R.id.item_location_subtitle);
+            this.listener = listener;
+            itemView.findViewById(R.id.item_location).setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onItemClick(v,getAdapterPosition());
+        }
+    }
 
     public LocationAdapter(Context context, List<Location> itemList, OnLocationItemClickListener l) {
         this.context = context;
         this.itemList = itemList;
         setOnLocationItemClickListener(l);
     }
-
-    /** <br> UI. */
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -59,8 +76,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                     + " " + itemList.get(position).city);
         }
     }
-
-    /** <br> data. */
 
     @Override
     public int getItemCount() {
@@ -90,7 +105,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         this.notifyItemMoved(fromPosition, toPosition);
     }
 
-    /** <br> listener. */
+    // interface.
 
     public interface OnLocationItemClickListener {
         void onItemClick(View view, int position);
@@ -98,29 +113,5 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
     private void setOnLocationItemClickListener(OnLocationItemClickListener l){
         this.listener = l;
-    }
-
-    /** <br> inner class. */
-
-    class ViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
-        // widget
-        TextView title;
-        TextView subtitle;
-
-        private OnLocationItemClickListener listener;
-
-        ViewHolder(View itemView, OnLocationItemClickListener listener) {
-            super(itemView);
-            this.title = (TextView) itemView.findViewById(R.id.item_location_title);
-            this.subtitle = (TextView) itemView.findViewById(R.id.item_location_subtitle);
-            this.listener = listener;
-            itemView.findViewById(R.id.item_location).setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            listener.onItemClick(v,getAdapterPosition());
-        }
     }
 }

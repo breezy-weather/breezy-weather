@@ -1,8 +1,6 @@
 package wangdaye.com.geometricweather.ui.widget.switchButton;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,17 +20,14 @@ import wangdaye.com.geometricweather.R;
 
 public class RecyclerSwitchImageButton extends ImageView
         implements View.OnClickListener {
-    // widget
+
     private OnRecyclerSwitchListener listener;
 
-    // data
     private boolean animating;
 
     private int statePosition;
     private List<Integer> resList;
     private List<Integer> stateList;
-
-    /** <br> life cycle. */
 
     public RecyclerSwitchImageButton(Context context) {
         super(context);
@@ -49,11 +44,7 @@ public class RecyclerSwitchImageButton extends ImageView
         this.initialize();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public RecyclerSwitchImageButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
-    }
+    // init.
 
     private void initialize() {
         this.animating = false;
@@ -64,7 +55,7 @@ public class RecyclerSwitchImageButton extends ImageView
         this.stateList = new ArrayList<>();
     }
 
-    /** <br> UI. */
+    // control.
 
     private void animHide() {
         Animation hide = AnimationUtils.loadAnimation(getContext(), R.anim.switch_image_hide);
@@ -139,8 +130,6 @@ public class RecyclerSwitchImageButton extends ImageView
         }
     }
 
-    /** <br> data. */
-
     public int getState() {
         if (statePosition == -1) {
             return -1;
@@ -164,7 +153,7 @@ public class RecyclerSwitchImageButton extends ImageView
         }
     }
 
-    /** <br> interface. */
+    // interface.
 
     public interface OnRecyclerSwitchListener {
         void onRecyclerSwitch(int newState);

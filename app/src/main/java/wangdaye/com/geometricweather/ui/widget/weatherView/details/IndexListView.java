@@ -2,8 +2,6 @@ package wangdaye.com.geometricweather.ui.widget.weatherView.details;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -22,7 +20,7 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
  * */
 
 public class IndexListView extends FrameLayout {
-    // widget
+
     private RelativeLayout forecast;
     private TextView forecastTitle;
     private TextView forecastContent;
@@ -46,20 +44,6 @@ public class IndexListView extends FrameLayout {
     private RelativeLayout uv;
     private TextView uvTitle;
     private TextView uvContent;
-/*
-    private RelativeLayout exercise;
-    private TextView exerciseTitle;
-    private TextView exerciseContent;
-
-    private RelativeLayout cold;
-    private TextView coldTitle;
-    private TextView coldContent;
-
-    private RelativeLayout washCar;
-    private TextView washCarTitle;
-    private TextView washCarContent;
-*/
-    /** <br> life cycle. */
 
     public IndexListView(Context context) {
         super(context);
@@ -76,11 +60,7 @@ public class IndexListView extends FrameLayout {
         this.initialize();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public IndexListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
-    }
+    // init.
 
     @SuppressLint("InflateParams")
     private void initialize() {
@@ -110,22 +90,8 @@ public class IndexListView extends FrameLayout {
         uv = (RelativeLayout) findViewById(R.id.container_details_uv);
         uvTitle = (TextView) findViewById(R.id.container_details_uv_title);
         uvContent = (TextView) findViewById(R.id.container_details_uv_content);
-/*
-        exercise = (RelativeLayout) findViewById(R.id.container_details_exercise);
-        exerciseTitle = (TextView) findViewById(R.id.container_details_exercise_title);
-        exerciseContent = (TextView) findViewById(R.id.container_details_exercise_content);
 
-        washCar = (RelativeLayout) findViewById(R.id.container_details_wash_car);
-        washCarTitle = (TextView) findViewById(R.id.container_details_wash_car_title);
-        washCarContent = (TextView) findViewById(R.id.container_details_wash_car_content);
-
-        cold = (RelativeLayout) findViewById(R.id.container_details_cold);
-        coldTitle = (TextView) findViewById(R.id.container_details_cold_title);
-        coldContent = (TextView) findViewById(R.id.container_details_cold_content);
-*/
     }
-
-    /** <br> data. */
 
     public void setData(Weather weather) {
         if (TextUtils.isEmpty(weather.index.simpleForecasts[1])) {
@@ -179,30 +145,5 @@ public class IndexListView extends FrameLayout {
             uvTitle.setText(weather.index.uvs[0]);
             uvContent.setText(weather.index.uvs[1]);
         }
-/*
-        if (TextUtils.isEmpty(weather.index.exercises[1])) {
-            exercise.setVisibility(GONE);
-        } else {
-            exercise.setVisibility(VISIBLE);
-            exerciseTitle.setText(weather.index.exercises[0]);
-            exerciseContent.setText(weather.index.exercises[1]);
-        }
-
-        if (TextUtils.isEmpty(weather.index.colds[1])) {
-            cold.setVisibility(GONE);
-        } else {
-            cold.setVisibility(VISIBLE);
-            coldTitle.setText(weather.index.colds[0]);
-            coldContent.setText(weather.index.colds[1]);
-        }
-
-        if (TextUtils.isEmpty(weather.index.carWashes[1])) {
-            washCar.setVisibility(GONE);
-        } else {
-            washCar.setVisibility(VISIBLE);
-            washCarTitle.setText(weather.index.carWashes[0]);
-            washCarContent.setText(weather.index.carWashes[1]);
-        }
-*/
     }
 }

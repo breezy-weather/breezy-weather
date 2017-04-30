@@ -23,14 +23,13 @@ import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 
 public class SwipeSwitchLayout extends CoordinatorLayout
         implements GestureDetector.OnGestureListener {
-    // widget
+
     private View target;
     private InkPageIndicator indicator;
     private GestureDetector gestureDetector;
     private OnSwitchListener switchListener;
     private OnSwipeListener swipeListener;
 
-    // data
     private int totalCount = 1;
     private int position = 0;
 
@@ -46,7 +45,88 @@ public class SwipeSwitchLayout extends CoordinatorLayout
     public static final int DIRECTION_LEFT = -1;
     public static final int DIRECTION_RIGHT = 1;
 
-    /** <br> life cycle. */
+    private Animation resetAnimation = new Animation() {
+
+        @Override
+        public void applyTransformation(float interpolatedTime, Transformation t) {
+            swipeDistance *= (1 - interpolatedTime);
+            setTranslation();
+            notifySwipeListenerScrolled();
+        }
+    };
+
+    private class LeftExitAnimation extends Animation {
+        // data
+        private float startX;
+        private boolean notified;
+
+        LeftExitAnimation(float distanceNow) {
+            startX = distanceNow;
+            notified = false;
+        }
+
+        @Override
+        public void applyTransformation(float interpolatedTime, Transformation t) {
+            if (!notified) {
+                swipeDistance = startX + (-swipeTrigger - startX) * interpolatedTime;
+                setTranslation();
+                notifySwipeListenerScrolled();
+                if (interpolatedTime == 1) {
+                    notified = true;
+                    setPosition(DIRECTION_LEFT);
+                    switchListener.swipeTakeEffect(DIRECTION_LEFT);
+                    if (swipeListener != null) {
+                        swipeListener.onPageSelected(position);
+                    }
+                }
+            }
+        }
+    }
+
+    private class RightExitAnimation extends Animation {
+        // data
+        private float startX;
+        private boolean notified;
+
+        RightExitAnimation(float distanceNow) {
+            startX = distanceNow;
+            notified = false;
+        }
+
+        @Override
+        public void applyTransformation(float interpolatedTime, Transformation t) {
+            if (!notified) {
+                swipeDistance = startX + (swipeTrigger - startX) * interpolatedTime;
+                setTranslation();
+                notifySwipeListenerScrolled();
+                if (interpolatedTime == 1) {
+                    notified = true;
+                    setPosition(DIRECTION_RIGHT);
+                    switchListener.swipeTakeEffect(DIRECTION_RIGHT);
+                    if (swipeListener != null) {
+                        swipeListener.onPageSelected(position);
+                    }
+                }
+            }
+        }
+    }
+
+    private Animation.AnimationListener animListener = new Animation.AnimationListener() {
+        @Override
+        public void onAnimationStart(Animation animation) {
+            setEnabled(false);
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            setEnabled(true);
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+            // do nothing.
+        }
+    };
 
     public SwipeSwitchLayout(Context context) {
         super(context);
@@ -63,6 +143,8 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         this.initialize();
     }
 
+    // init.
+
     private void initialize() {
         this.gestureDetector = new GestureDetector(getContext(), this);
 
@@ -71,44 +153,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
 
-    /** <br> UI. */
-
-    public void reset() {
-        isBeingDragged = false;
-        isHorizontalDragged = false;
-        swipeDistance = 0;
-        setTranslation();
-    }
-
-    private void getTarget() {
-        if (target == null) {
-            for (int i = 0; i <getChildCount(); i ++) {
-                if (getChildAt(i) instanceof SwipeRefreshLayout) {
-                    target = getChildAt(i);
-                    return;
-                }
-            }
-        }
-    }
-
-    private void setTranslation() {
-        this.getTarget();
-
-        float realDistance = swipeDistance;
-        if (realDistance > swipeTrigger) {
-            realDistance = swipeTrigger;
-        } else if (realDistance < -swipeTrigger) {
-            realDistance = -swipeTrigger;
-        }
-        target.setTranslationX(realDistance);
-        target.setAlpha(1 - Math.abs(realDistance) / swipeTrigger);
-    }
-
-    public void setIndicator(InkPageIndicator indicator) {
-        this.indicator = indicator;
-    }
-
-    /** <br> touch. */
+    // touch.
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -203,7 +248,56 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         return true;
     }
 
-    /** <br> data. */
+    // control.
+
+    public void reset() {
+        isBeingDragged = false;
+        isHorizontalDragged = false;
+        swipeDistance = 0;
+        setTranslation();
+    }
+
+    private void getTarget() {
+        if (target == null) {
+            for (int i = 0; i <getChildCount(); i ++) {
+                if (getChildAt(i) instanceof SwipeRefreshLayout) {
+                    target = getChildAt(i);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void setTranslation() {
+        this.getTarget();
+
+        float realDistance = swipeDistance;
+        if (realDistance > swipeTrigger) {
+            realDistance = swipeTrigger;
+        } else if (realDistance < -swipeTrigger) {
+            realDistance = -swipeTrigger;
+        }
+        target.setTranslationX(realDistance);
+        target.setAlpha(1 - Math.abs(realDistance) / swipeTrigger);
+    }
+
+    private void notifySwipeListenerScrolled() {
+        if (swipeListener != null) {
+            if (swipeDistance > 0) {
+                swipeListener.onPageScrolled(
+                        position - 1,
+                        1 - Math.min(1, swipeDistance / swipeTrigger),
+                        (int) Math.max(0, swipeTrigger - swipeDistance));
+            } else {
+                swipeListener.onPageScrolled(
+                        position,
+                        Math.min(1, -swipeDistance / swipeTrigger),
+                        (int) Math.min(-swipeDistance, swipeTrigger));
+            }
+        }
+    }
+
+    // interface.
 
     public void setData(List<Location> locationList, Location locationNow) {
         this.totalCount = locationList.size();
@@ -233,20 +327,8 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         }
     }
 
-    private void notifySwipeListenerScrolled() {
-        if (swipeListener != null) {
-            if (swipeDistance > 0) {
-                swipeListener.onPageScrolled(
-                        position - 1,
-                        1 - Math.min(1, swipeDistance / swipeTrigger),
-                        (int) Math.max(0, swipeTrigger - swipeDistance));
-            } else {
-                swipeListener.onPageScrolled(
-                        position,
-                        Math.min(1, -swipeDistance / swipeTrigger),
-                        (int) Math.min(-swipeDistance, swipeTrigger));
-            }
-        }
+    public void setIndicator(InkPageIndicator indicator) {
+        this.indicator = indicator;
     }
 
     public int getTotalCount() {
@@ -257,92 +339,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         return position;
     }
 
-    /** <br> animate. */
-
-    private Animation resetAnimation = new Animation() {
-
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            swipeDistance *= (1 - interpolatedTime);
-            setTranslation();
-            notifySwipeListenerScrolled();
-        }
-    };
-
-    private class LeftExitAnimation extends Animation {
-        // data
-        private float startX;
-        private boolean notified;
-
-        LeftExitAnimation(float distanceNow) {
-            startX = distanceNow;
-            notified = false;
-        }
-
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            if (!notified) {
-                swipeDistance = startX + (-swipeTrigger - startX) * interpolatedTime;
-                setTranslation();
-                notifySwipeListenerScrolled();
-                if (interpolatedTime == 1) {
-                    notified = true;
-                    setPosition(DIRECTION_LEFT);
-                    switchListener.swipeTakeEffect(DIRECTION_LEFT);
-                    if (swipeListener != null) {
-                        swipeListener.onPageSelected(position);
-                    }
-                }
-            }
-        }
-    }
-
-    private class RightExitAnimation extends Animation {
-        // data
-        private float startX;
-        private boolean notified;
-
-        RightExitAnimation(float distanceNow) {
-            startX = distanceNow;
-            notified = false;
-        }
-
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            if (!notified) {
-                swipeDistance = startX + (swipeTrigger - startX) * interpolatedTime;
-                setTranslation();
-                notifySwipeListenerScrolled();
-                if (interpolatedTime == 1) {
-                    notified = true;
-                    setPosition(DIRECTION_RIGHT);
-                    switchListener.swipeTakeEffect(DIRECTION_RIGHT);
-                    if (swipeListener != null) {
-                        swipeListener.onPageSelected(position);
-                    }
-                }
-            }
-        }
-    }
-
-    private Animation.AnimationListener animListener = new Animation.AnimationListener() {
-        @Override
-        public void onAnimationStart(Animation animation) {
-            setEnabled(false);
-        }
-
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            setEnabled(true);
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {
-            // do nothing.
-        }
-    };
-
-    /** <br> interface. */
+    // interface.
 
     // on switch listener.
 

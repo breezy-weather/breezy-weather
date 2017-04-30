@@ -19,15 +19,19 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
  * */
 
 public class GeometricWeather extends Application {
-    // data
+
+    private static GeometricWeather instance;
+
+    public static GeometricWeather getInstance() {
+        return instance;
+    }
+
     private List<GeoActivity> activityList;
     private boolean colorNavigationBar;
     private boolean fahrenheit;
 
     public static final String DEFAULT_TODAY_FORECAST_TIME = "07:00";
     public static final String DEFAULT_TOMORROW_FORECAST_TIME = "21:00";
-
-    /** <br> life cycle. */
 
     @Override
     public void onCreate() {
@@ -50,8 +54,6 @@ public class GeometricWeather extends Application {
                 this,
                 sharedPreferences.getString(getString(R.string.key_language), "follow_system"));
     }
-
-    /** <br> data. */
 
     public void addActivity(GeoActivity a) {
         activityList.add(a);
@@ -91,13 +93,5 @@ public class GeometricWeather extends Application {
             e.printStackTrace();
             return null;
         }
-    }
-
-    /** <br> singleton. */
-
-    private static GeometricWeather instance;
-
-    public static GeometricWeather getInstance() {
-        return instance;
     }
 }

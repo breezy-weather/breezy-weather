@@ -11,16 +11,14 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class Aqi {
-    // data
+
     public String aqi;
     public String pm25;
     public String pm10;
     public String quality;
 
-    /** <br> life cycle. */
+    Aqi() {}
 
-    Aqi() {
-    }
 /*
     void buildAqi(FWResult result) {
         aqi = result.pm25.aqi;
@@ -29,6 +27,7 @@ public class Aqi {
         quality = result.pm25.quality;
     }
 */
+
     public void buildAqi(Context c, NewAqiResult result) {
         if (result == null) {
             aqi = "";

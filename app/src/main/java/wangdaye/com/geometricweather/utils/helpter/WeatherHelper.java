@@ -10,17 +10,16 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.service.NewWeather;
+import wangdaye.com.geometricweather.data.service.WeatherService;
 
 /**
  * Weather kind tools.
  * */
 
 public class WeatherHelper {
-    // widget
-    private NewWeather newWeather;
 
-    // data
+    private WeatherService weatherService;
+
     private static final String KIND_CLEAR = "CLEAR";
     private static final String KIND_PARTLY_CLOUDY = "PARTLY_CLOUDY";
     private static final String KIND_CLOUDY = "CLOUDY";
@@ -34,148 +33,20 @@ public class WeatherHelper {
     private static final String KIND_THUNDER = "THUNDER";
     private static final String KIND_THUNDERSTORM = "THUNDERSTORM";
 
-    /** <br> life cycle. */
-
     public WeatherHelper() {
-        newWeather = null;
+        weatherService = null;
     }
-
-    /** <br> data. */
 
     public void requestWeather(Context c, Location location, OnRequestWeatherListener l) {
-        newWeather = NewWeather.getService().requestNewWeather(c, location, l);
-    }
-/*
-    public void requestWeather(Context c, final Location location, OnRequestWeatherListener l) {
-        if (DatabaseHelper.getInstance(c).isNeedWriteCityList()
-                || DatabaseHelper.getInstance(c).isNeedWriteOverseaCityList()) {
-            l.requestWeatherFailed(location);
-            return;
-        }
-
-        if (location.isEngLocation()) {
-            requestHefengWeather(c, location, l);
-        } else {
-            requestFWeather(location, l);
-        }
+        weatherService = WeatherService.getService().requestNewWeather(c, location, l);
     }
 
-    private void requestHefengWeather(Context context, Location location, OnRequestWeatherListener l) {
-        hefengWeather = HefengWeather.getService().requestHefengWeather(
-                DatabaseHelper.getInstance(context).readWeather(location), location, l);
-    }
-
-    private void requestFWeather(Location location, OnRequestWeatherListener l) {
-        fWeather = FWeather.getService().requestFWeather(location, l);
-    }
-*/
     public void cancel() {
-        if (newWeather != null) {
-            newWeather.cancel();
+        if (weatherService != null) {
+            weatherService.cancel();
         }
     }
 
-    /** <br> utils. */
-/*
-    public static String getFWeatherKind(String weather) {
-        if(weather.contains("雨")) {
-            if(weather.contains("雪")) {
-                return KIND_SLEET;
-            } else if(weather.contains("雷")) {
-                return KIND_THUNDERSTORM;
-            } else {
-                return KIND_RAIN;
-            }
-        }
-        if(weather.contains("雷")) {
-            if (weather.contains("雨")) {
-                return KIND_THUNDERSTORM;
-            } else {
-                return KIND_THUNDER;
-            }
-        }
-        if (weather.contains("雪")) {
-            if(weather.contains("雨")) {
-                return KIND_SLEET;
-            } else {
-                return KIND_SNOW;
-            }
-        }
-        if (weather.contains("雹")) {
-            return KIND_HAIL;
-        }
-        if (weather.contains("冰")) {
-            return KIND_HAIL;
-        }
-        if (weather.contains("冻")) {
-            return KIND_HAIL;
-        }
-        if (weather.contains("云")) {
-            return KIND_PARTLY_CLOUDY;
-        }
-        if (weather.contains("阴")) {
-            return KIND_CLOUDY;
-        }
-        if (weather.contains("风")) {
-            return KIND_WIND;
-        }
-        if(weather.contains("沙")) {
-            return KIND_WIND;
-        }
-        if(weather.contains("尘")) {
-            return KIND_HAZE;
-        }
-        if(weather.contains("雾")) {
-            return KIND_FOG;
-        }
-        if(weather.contains("霾")) {
-            return KIND_HAZE;
-        }
-        if (weather.contains("晴")) {
-            return KIND_CLEAR;
-        }
-        return KIND_CLOUDY;
-    }
-
-    public static String getHefengWeatherKind(String code) {
-        int realCode = Integer.parseInt(code);
-        if (realCode == 100) {
-            return KIND_CLEAR;
-        } else if (101 <= realCode && realCode <= 103) {
-            return KIND_PARTLY_CLOUDY;
-        } else if (realCode == 104) {
-            return KIND_CLOUDY;
-        } else if (realCode == 200) {
-            return KIND_WIND;
-        } else if (201 <= realCode && realCode <= 204) {
-            return KIND_CLOUDY;
-        } else if (205 <= realCode && realCode <= 213) {
-            return KIND_WIND;
-        } else if (300 <= realCode && realCode <= 303) {
-            return KIND_RAIN;
-        } else if (realCode == 304) {
-            return KIND_HAIL;
-        } else if (305 <= realCode && realCode <= 312) {
-            return KIND_RAIN;
-        } else if (realCode == 313) {
-            return KIND_SLEET;
-        } else if (400 <= realCode && realCode <= 403) {
-            return KIND_SNOW;
-        } else if (404 <= realCode && realCode <= 406) {
-            return KIND_SLEET;
-        } else if (realCode == 407) {
-            return KIND_SNOW;
-        } else if (500 <= realCode && realCode <= 501) {
-            return KIND_FOG;
-        } else if (realCode == 502 || realCode == 504) {
-            return KIND_HAZE;
-        } else if (503 <= realCode && realCode <= 508) {
-            return KIND_WIND;
-        } else {
-            return KIND_CLOUDY;
-        }
-    }
-*/
     public static String getNewWeatherKind(int icon) {
         if (icon == 1 || icon == 2 || icon == 3
                 || icon == 30 || icon == 33 || icon == 34 || icon == 35) {
@@ -665,7 +536,7 @@ public class WeatherHelper {
         }
     }
 
-    /** <br> listener. */
+    // interface.
 
     public interface OnRequestWeatherListener {
         void requestWeatherSuccess(Weather weather, Location requestLocation);

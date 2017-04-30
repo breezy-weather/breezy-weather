@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
  * */
 
 public class Weather {
-    // data
+
     public Base base;
     public RealTime realTime;
     public List<Daily> dailyList;
@@ -21,8 +21,6 @@ public class Weather {
     public Aqi aqi;
     public Index index;
     public List<Alert> alertList;
-
-    /** <br> life cycle. */
 
     public Weather() {
         this.base = new Base();
@@ -33,6 +31,7 @@ public class Weather {
         this.index = new Index();
         this.alertList = new ArrayList<>();
     }
+
 /*
     public static Weather buildWeather(FWResult result) {
         if (result == null) {
@@ -101,6 +100,7 @@ public class Weather {
         }
     }
 */
+
     public static Weather buildWeatherPrimaryData(WeatherEntity entity) {
         Weather weather = new Weather();
         weather.base.buildBase(entity);

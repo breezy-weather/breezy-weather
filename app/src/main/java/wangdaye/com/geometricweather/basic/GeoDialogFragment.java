@@ -8,7 +8,7 @@ import android.view.View;
 import wangdaye.com.geometricweather.GeometricWeather;
 
 /**
- * Geometric dialog fragment.
+ * Geometric weather dialog fragment.
  * */
 
 public abstract class GeoDialogFragment extends DialogFragment {

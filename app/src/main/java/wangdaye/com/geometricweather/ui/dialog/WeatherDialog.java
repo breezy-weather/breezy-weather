@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -28,18 +28,14 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 public class WeatherDialog extends GeoDialogFragment
         implements View.OnClickListener {
-    // widget
+
     private CoordinatorLayout container;
 
-    // animator
     private AnimatorSet[][] iconAnimatorSets;
 
-    // data
     private Weather weather;
     private int position;
     private boolean daily;
-
-    /** <br> life cycle. */
 
     @SuppressLint("InflateParams")
     @Override
@@ -56,8 +52,6 @@ public class WeatherDialog extends GeoDialogFragment
     public View getSnackbarContainer() {
         return container;
     }
-
-    /** <br> UI. */
 
     @SuppressLint("SetTextI18n")
     private void initWidget(View view) {
@@ -158,7 +152,7 @@ public class WeatherDialog extends GeoDialogFragment
 
         Button done = (Button) view.findViewById(R.id.dialog_weather_button);
         boolean dayTime = daily
-                ? TimeUtils.getInstance(getActivity()).isDayTime() : weather.hourlyList.get(position).dayTime;
+                ? TimeManager.getInstance(getActivity()).isDayTime() : weather.hourlyList.get(position).dayTime;
         if (dayTime) {
             done.setTextColor(ContextCompat.getColor(getActivity(), R.color.lightPrimary_3));
         } else {
@@ -201,15 +195,15 @@ public class WeatherDialog extends GeoDialogFragment
         }
     }
 
-    /** <br> data. */
-
     public void setData(Weather weather, int position, boolean daily) {
         this.weather = weather;
         this.position = position;
         this.daily = daily;
     }
 
-    /** <br> interface. */
+    // interface.
+
+    // on click listener.
 
     @Override
     public void onClick(View v) {

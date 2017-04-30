@@ -11,7 +11,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class Daily {
-    // data
+
     public String date;
     public String week;
     public String[] weathers;
@@ -23,8 +23,8 @@ public class Daily {
     public String[] astros;
     public int[] precipitations;
 
-    public Daily() {
-    }
+    public Daily() {}
+
 /*
     Daily buildDaily(FWResult.Weathers weather) {
         date = weather.date;
@@ -69,6 +69,7 @@ public class Daily {
         return this;
     }
 */
+
     public Daily buildDaily(Context c, NewDailyResult.DailyForecasts forecast) {
         date = forecast.Date.split("T")[0];
         week = WeatherHelper.getWeek(c, date);

@@ -6,8 +6,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,30 +19,64 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
- * Sky realTimeWeather view.
+ * Sky view.
  * */
 
 public class SkyView extends FrameLayout
         implements WeatherIconControlView.OnWeatherIconChangingListener {
-    // widget
+
     private WeatherIconControlView controlView;
     private CircularSkyView circularSkyView;
     private FrameLayout starContainer;
     private ImageView[] flagIcons;
 
-    // data
     private int[] imageIds;
     private boolean animating = false;
 
-    // animator
     private AnimatorSet[] iconTouchAnimators;
     private AnimatorSet[] starShineAnimators;
 
-    /** <br> life cycle. */
+    private class StarAlphaAnimation extends Animation {
+
+        private float startAlpha;
+        private float endAlpha;
+
+        StarAlphaAnimation(float startAlpha, float endAlpha) {
+            this.startAlpha = startAlpha;
+            this.endAlpha = endAlpha;
+        }
+
+        // anim.
+
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            starContainer.setAlpha(startAlpha + (endAlpha - startAlpha) * interpolatedTime);
+        }
+    }
+
+    private AnimatorListenerAdapter[] starShineAnimatorListeners = new AnimatorListenerAdapter[] {
+            // 1.
+            new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    starShineAnimators[0].start();
+                }
+            },
+            // 2.
+            new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    starShineAnimators[1].start();
+                }
+            }
+    };
 
     public SkyView(Context context) {
         super(context);
@@ -61,11 +93,7 @@ public class SkyView extends FrameLayout
         this.initialize();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public SkyView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
-    }
+    // init.
 
     @SuppressLint("InflateParams")
     private void initialize() {
@@ -78,7 +106,7 @@ public class SkyView extends FrameLayout
         this.circularSkyView = (CircularSkyView) findViewById(R.id.container_sky_view_circularSkyView);
 
         this.starContainer = (FrameLayout) findViewById(R.id.container_sky_view_starContainer);
-        if (TimeUtils.getInstance(getContext()).isDayTime()) {
+        if (TimeManager.getInstance(getContext()).isDayTime()) {
             starContainer.setAlpha(0);
         } else {
             starContainer.setAlpha(1);
@@ -113,15 +141,15 @@ public class SkyView extends FrameLayout
         }
     }
 
-    /** <br> UI. */
+    // control.
 
     public void reset() {
-        circularSkyView.showCircle(TimeUtils.getInstance(getContext()).isDayTime());
+        circularSkyView.showCircle(TimeManager.getInstance(getContext()).isDayTime());
         changeStarAlPha();
     }
 
     public void showCircles() {
-        circularSkyView.showCircle(TimeUtils.getInstance(getContext()).isDayTime());
+        circularSkyView.showCircle(TimeManager.getInstance(getContext()).isDayTime());
         changeStarAlPha();
     }
 
@@ -137,7 +165,7 @@ public class SkyView extends FrameLayout
     }
 
     public void setWeather(Weather weather) {
-        boolean isDay = TimeUtils.getInstance(getContext()).isDayTime();
+        boolean isDay = TimeManager.getInstance(getContext()).isDayTime();
 
         int[] animatorIds = WeatherHelper.getAnimatorId(weather.realTime.weatherKind, isDay);
         iconTouchAnimators = new AnimatorSet[animatorIds.length];
@@ -181,60 +209,16 @@ public class SkyView extends FrameLayout
         }
     }
 
-    /** <br> anim. */
-
     private void changeStarAlPha() {
         starContainer.clearAnimation();
 
         StarAlphaAnimation animation = new StarAlphaAnimation(
-                starContainer.getAlpha(), TimeUtils.getInstance(getContext()).isDayTime() ? 0 : 1);
+                starContainer.getAlpha(), TimeManager.getInstance(getContext()).isDayTime() ? 0 : 1);
         animation.setDuration(500);
         starContainer.startAnimation(animation);
     }
 
-    private class StarAlphaAnimation extends Animation {
-        // data
-        private float startAlpha;
-        private float endAlpha;
-
-        // life cycle.
-
-        StarAlphaAnimation(float startAlpha, float endAlpha) {
-            this.startAlpha = startAlpha;
-            this.endAlpha = endAlpha;
-        }
-
-        // anim.
-
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            starContainer.setAlpha(startAlpha + (endAlpha - startAlpha) * interpolatedTime);
-        }
-    }
-
-    /** <br> listener. */
-
-    private AnimatorListenerAdapter[] starShineAnimatorListeners = new AnimatorListenerAdapter[] {
-            // 1.
-            new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    starShineAnimators[0].start();
-                }
-            },
-            // 2.
-            new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    starShineAnimators[1].start();
-                }
-            }
-    };
-
-    /** <br> interface. */
+    // interface.
 
     @Override
     public void OnWeatherIconChanging() {

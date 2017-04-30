@@ -15,7 +15,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 import wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendItemView;
 import wangdaye.com.geometricweather.ui.dialog.WeatherDialog;
@@ -26,11 +26,10 @@ import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
  * */
 
 public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> {
-    // widget
+
     private Context context;
     private OnTrendItemClickListener listener;
 
-    // data
     private Weather weather;
     private History history;
     private boolean showDailyPop;
@@ -40,7 +39,42 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
     private int state;
     private int highest, lowest;
 
-    /** <br> life cycle. */
+    class ViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
+        // widget
+        TrendItemView trendItemView;
+        TextView textView;
+        ImageView imageView;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+
+            this.trendItemView = (TrendItemView) itemView.findViewById(R.id.item_trend);
+            trendItemView.setOnClickListener(this);
+
+            this.textView = (TextView) itemView.findViewById(R.id.item_trend_txt);
+            this.imageView = (ImageView) itemView.findViewById(R.id.item_trend_icon);
+
+            itemView.findViewById(R.id.item_trend_iconBar).setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.item_trend:
+                    listener.onTrendItemClick();
+                    break;
+
+                case R.id.item_trend_iconBar:
+                    WeatherDialog weatherDialog = new WeatherDialog();
+                    weatherDialog.setData(weather, getAdapterPosition(), state == TrendItemView.DATA_TYPE_DAILY);
+                    weatherDialog.show(
+                            GeometricWeather.getInstance().getTopActivity().getFragmentManager(),
+                            null);
+                    break;
+            }
+        }
+    }
 
     public TrendAdapter(Context context,
                         Weather weather, History history,
@@ -50,8 +84,6 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
         this.listener = l;
         this.setData(weather, history, showDailyPop, showDate, previewTime, TrendItemView.DATA_TYPE_DAILY);
     }
-
-    /** <br> UI. */
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -112,7 +144,25 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
         }
     }
 
-    /** <br> data. */
+    @Override
+    public int getItemCount() {
+        switch (state) {
+            case TrendItemView.DATA_TYPE_DAILY:
+                return weather == null ? 7 : weather.dailyList.size();
+
+            case TrendItemView.DATA_TYPE_HOURLY:
+                if (weather == null) {
+                    return 7;
+                } else if (weather.hourlyList.size() > 1) {
+                    return weather.hourlyList.size();
+                } else {
+                    return 0;
+                }
+
+            default:
+                return 7;
+        }
+    }
 
     public void setData(Weather weather, History history,
                         boolean showDailyPop, boolean showDate, int previewTime,
@@ -122,7 +172,7 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
         this.showDailyPop = showDailyPop;
         this.showDate = showDate;
         this.previewTime = previewTime;
-        this.dayTime = TimeUtils.getInstance(context).isDayTime();
+        this.dayTime = TimeManager.getInstance(context).isDayTime();
         this.state = state;
 
         calcTempRange();
@@ -172,68 +222,9 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
         }
     }
 
-    @Override
-    public int getItemCount() {
-        switch (state) {
-            case TrendItemView.DATA_TYPE_DAILY:
-                return weather == null ? 7 : weather.dailyList.size();
-
-            case TrendItemView.DATA_TYPE_HOURLY:
-                if (weather == null) {
-                    return 7;
-                } else if (weather.hourlyList.size() > 1) {
-                    return weather.hourlyList.size();
-                } else {
-                    return 0;
-                }
-
-            default:
-                return 7;
-        }
-    }
-
-    /** <br> interface. */
+    // interface.
 
     public interface OnTrendItemClickListener {
         void onTrendItemClick();
-    }
-
-    /** <br> inner class. */
-
-    class ViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
-        // widget
-        TrendItemView trendItemView;
-        TextView textView;
-        ImageView imageView;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-
-            this.trendItemView = (TrendItemView) itemView.findViewById(R.id.item_trend);
-            trendItemView.setOnClickListener(this);
-
-            this.textView = (TextView) itemView.findViewById(R.id.item_trend_txt);
-            this.imageView = (ImageView) itemView.findViewById(R.id.item_trend_icon);
-
-            itemView.findViewById(R.id.item_trend_iconBar).setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.item_trend:
-                    listener.onTrendItemClick();
-                    break;
-
-                case R.id.item_trend_iconBar:
-                    WeatherDialog weatherDialog = new WeatherDialog();
-                    weatherDialog.setData(weather, getAdapterPosition(), state == TrendItemView.DATA_TYPE_DAILY);
-                    weatherDialog.show(
-                            GeometricWeather.getInstance().getTopActivity().getFragmentManager(),
-                            null);
-                    break;
-            }
-        }
     }
 }

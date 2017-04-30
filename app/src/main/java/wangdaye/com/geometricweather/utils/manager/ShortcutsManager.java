@@ -14,7 +14,6 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -43,7 +42,7 @@ public class ShortcutsManager {
                         icon = Icon.createWithResource(
                                 c,
                                 WeatherHelper.getShortcutIcon(
-                                        weather.realTime.weatherKind, TimeUtils.getInstance(c).isDayTime()));
+                                        weather.realTime.weatherKind, TimeManager.getInstance(c).isDayTime()));
                     } else {
                         icon = Icon.createWithResource(c, R.drawable.ic_shortcut_sun_day);
                     }

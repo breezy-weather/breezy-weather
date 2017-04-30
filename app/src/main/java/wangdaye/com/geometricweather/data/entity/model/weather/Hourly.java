@@ -12,7 +12,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class Hourly {
-    // data
+
     public String time;
     public boolean dayTime;
     public String weather;
@@ -20,10 +20,8 @@ public class Hourly {
     public int temp;
     public int precipitation;
 
-    /** <br> life cycle. */
-    
-    public Hourly() {
-    }
+    public Hourly() {}
+
 /*
     Hourly buildHourly(Calendar c, Daily daily, FWResult.WeatherDetailsInfo.Weather24HoursDetailsInfos info) {
         time = info
@@ -69,6 +67,7 @@ public class Hourly {
         return this;
     }
 */
+
     public Hourly buildHourly(Context c, NewHourlyResult result) {
         time = result.DateTime.split("T")[1].split(":")[0] + c.getString(R.string.of_clock);
         dayTime = result.IsDaylight;

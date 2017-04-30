@@ -20,8 +20,6 @@ import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
 
 public class WidgetUtils {
 
-    /** <br> UI. */
-
     public static void refreshWidgetInNewThread(final Context context,
                                                     final Location location) {
         ThreadManager.getInstance()

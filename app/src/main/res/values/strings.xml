@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v5.3.1</string>
+    <string name="version_code">v5.3.2</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -186,11 +186,11 @@
     <string name="key_hide_refresh_time">hide_refresh_time</string>
     <string name="key_show_aqi_or_wind">show_aqi_or_wind</string>
     <string name="key_black_text">black_text</string>
+
     <string name="key_navigationBar_color">navigation_bar_color_switch</string>
     <string name="key_language">language</string>
     <string name="key_fahrenheit">fahrenheit</string>
     <string name="key_refresh_rate">refresh_rate</string>
-    <string name="key_permanent_service">permanent_service</string>
     <string name="key_forecast_today">timing_forecast_switch_today</string>
     <string name="key_forecast_today_time">forecast_time_today</string>
     <string name="key_forecast_tomorrow">timing_forecast_switch_tomorrow</string>

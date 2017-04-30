@@ -15,14 +15,14 @@ public class WidgetClockDayWeekProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        ServiceHelper.startPollingService(context, false);
+        ServiceHelper.startupService(context, false);
     }
 
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
-        if (ServiceHelper.isNeedShutdownPollingService(context)) {
-            ServiceHelper.stopPollingService(context, false);
+        if (!ServiceHelper.hasNormalView(context)) {
+            ServiceHelper.stopNormalService(context, false);
         }
     }
 }

@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.activity.MainActivity;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
  * Display utils.
@@ -63,7 +64,7 @@ public class DisplayUtils {
 
     public static void setWindowTopColor(Activity a) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            boolean isDay = TimeUtils.getInstance(a).isDayTime();
+            boolean isDay = TimeManager.getInstance(a).isDayTime();
             int color = a instanceof MainActivity
                     ?
                     ContextCompat.getColor(

@@ -16,10 +16,8 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
  * */
 
 public class ListDecoration extends RecyclerView.ItemDecoration {
-    // widget
-    private Paint paint;
 
-    // data
+    private Paint paint;
     private int decorationHeight;
 
     public ListDecoration(Context context) {

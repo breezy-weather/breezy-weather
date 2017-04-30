@@ -13,13 +13,12 @@ import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
  * */
 
 public class Alert implements Parcelable {
-    // data
+
     public int id;
     public String description;
     public String content;
     public String publishTime;
     
-    /** <br> life cycle. */
 /*
     Alert buildAlert(FWResult.Alarms alarm) {
         description = alarm.alarmDesc;
@@ -44,8 +43,6 @@ public class Alert implements Parcelable {
         publishTime = entity.publishTime;
         return this;
     }
-
-    /** <br> parcelable. */
 
     @Override
     public int describeContents() {

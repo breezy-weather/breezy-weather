@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetDayWeekProvider;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -28,10 +28,8 @@ import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
  * */
 
 public class WidgetDayWeekUtils {
-    // data
-    private static final int PENDING_INTENT_CODE = 114;
 
-    /** <br> UI. */
+    private static final int PENDING_INTENT_CODE = 114;
 
     public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
@@ -46,7 +44,7 @@ public class WidgetDayWeekUtils {
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean hideRefreshTime = sharedPreferences.getBoolean(context.getString(R.string.key_hide_refresh_time), false);
         boolean showAqiOrWind = sharedPreferences.getBoolean(context.getString(R.string.key_show_aqi_or_wind), false);
-        boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
         boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.key_fahrenheit), false);
@@ -287,8 +285,6 @@ public class WidgetDayWeekUtils {
         }
         return new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
     }
-
-    /** <br> data. */
 
     public static boolean isEnable(Context context) {
         int[] widgetIds = AppWidgetManager.getInstance(context)

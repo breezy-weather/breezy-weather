@@ -9,16 +9,14 @@ import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
  * */
 
 public class Base {
-    // data
+
     public String cityId;
     public String city;
     public String date;
     public String time;
 
-    /** <br> life cycle. */
+    Base() {}
 
-    Base() {
-    }
 /*
     void buildBase(FWResult result) {
         cityId = "CN" + result.cityid;
@@ -35,6 +33,7 @@ public class Base {
         time = result.heWeather.get(p).basic.update.loc.split(" ")[1];
     }
 */
+
     public void buildBase(Location location, NewRealtimeResult result) {
         cityId = location.cityId;
         city = location.city;

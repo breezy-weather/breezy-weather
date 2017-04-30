@@ -25,7 +25,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class HistoryEntity {
-    // data
+
     @Id
     public Long id;
 
@@ -50,8 +50,6 @@ public class HistoryEntity {
     public HistoryEntity() {
     }
 
-    /** <br> life cycle. */
-
     private static HistoryEntity buildHistoryEntity(History history) {
         HistoryEntity entity = new HistoryEntity();
         entity.cityId = history.cityId;
@@ -61,8 +59,6 @@ public class HistoryEntity {
         entity.miniTemp = history.miniTemp;
         return entity;
     }
-
-    /** <br> database. */
 
     // insert.
 

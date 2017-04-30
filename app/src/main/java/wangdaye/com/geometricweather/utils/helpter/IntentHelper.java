@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -99,5 +100,11 @@ public class IntentHelper {
 
     public static void startAboutActivity(GeoActivity activity) {
         activity.startActivity(new Intent(activity, AboutActivity.class));
+    }
+
+    public static void startLocationActivity(Context context) {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        context.startActivity(intent);
     }
 }

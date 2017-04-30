@@ -7,7 +7,7 @@ import android.content.Intent;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 
 /**
- * My receiver.
+ * Main receiver.
  * */
 
 public class MainReceiver extends BroadcastReceiver {
@@ -16,7 +16,7 @@ public class MainReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         switch (intent.getAction()) {
             case Intent.ACTION_BOOT_COMPLETED:
-                ServiceHelper.startupAllService(context, false);
+                ServiceHelper.startupService(context, false);
                 break;
         }
     }

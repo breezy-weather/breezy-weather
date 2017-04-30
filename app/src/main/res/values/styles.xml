@@ -40,6 +40,27 @@
         <item name="android:visibility">gone</item>
     </style>
 
+    <!-- Popup window. -->
+    <style name="PopupWindowAnimation.Top.Left" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_show_top_left</item>
+        <item name="android:windowExitAnimation">@anim/popup_hide</item>
+    </style>
+
+    <style name="PopupWindowAnimation.Top.Right" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_show_top_right</item>
+        <item name="android:windowExitAnimation">@anim/popup_hide</item>
+    </style>
+
+    <style name="PopupWindowAnimation.Bottom.Left" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_show_bottom_left</item>
+        <item name="android:windowExitAnimation">@anim/popup_hide</item>
+    </style>
+
+    <style name="PopupWindowAnimation.Bottom.Right" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_show_bottom_right</item>
+        <item name="android:windowExitAnimation">@anim/popup_hide</item>
+    </style>
+
     <!-- view. -->
     <style name="week_weather_week_info">
         <item name="android:layout_width">0dp</item>

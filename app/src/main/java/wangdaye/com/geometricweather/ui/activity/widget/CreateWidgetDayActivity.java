@@ -26,7 +26,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
@@ -38,7 +38,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-    // widget
+
     private View[] widgetViews;
     private ImageView widgetCard;
     private ImageView widgetIcon;
@@ -58,12 +58,15 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
     private String[] viewTypes;
     private String[] viewTypeValues;
 
-    /** <br> life cycle. */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_widget_day);
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return container;
     }
 
     @Override
@@ -112,7 +115,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         int[] imageId = WeatherHelper.getWeatherIcon(
                 weather.realTime.weatherKind,
-                TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime());
+                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime());
         Glide.with(this)
                 .load(imageId[3])
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -151,13 +154,6 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         }
         setTimeText(weather, showAqiOrWindSwitch.isChecked());
     }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
-    }
-
-    /** <br> UI. */
 
     @SuppressLint("InflateParams")
     private void setWidgetView(boolean init) {
@@ -280,7 +276,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         }
     }
 
-    /** <br> interface. */
+    // interface.
 
     // on click listener.
 
@@ -311,7 +307,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startPollingService(this, false);
+                ServiceHelper.startupService(this, false);
                 finish();
                 break;
         }

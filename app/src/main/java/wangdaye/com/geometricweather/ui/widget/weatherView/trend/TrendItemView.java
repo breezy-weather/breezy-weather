@@ -8,8 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
@@ -25,12 +23,11 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
  * */
 
 public class TrendItemView extends FrameLayout {
-    // widget.
+
     private Paint paint;
     private Path path;
     private Shader shader;
 
-    // data.
     private int temps[] = new int[2];
     private int precipitation;
     private int[] maxiTempYs = new int[3];
@@ -64,8 +61,6 @@ public class TrendItemView extends FrameLayout {
     private static final int DRAW_SPEC_USABLE_HEIGHT = 96;
     private static final int DRAW_SPEC_MARGIN_BOTTOM = 60;
 
-    /** <br> life cycle. */
-
     public TrendItemView(Context context) {
         super(context);
         this.initialize();
@@ -81,11 +76,7 @@ public class TrendItemView extends FrameLayout {
         this.initialize();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public TrendItemView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
-    }
+    // init.
 
     private void initialize() {
         setWillNotDraw(false);
@@ -121,9 +112,7 @@ public class TrendItemView extends FrameLayout {
                 Shader.TileMode.CLAMP);
     }
 
-    /** <br> UI. */
-
-    // measure.
+    // draw.
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -134,8 +123,6 @@ public class TrendItemView extends FrameLayout {
                 calcWidth(getContext()),
                 calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()));
     }
-
-    // draw.
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -169,8 +156,6 @@ public class TrendItemView extends FrameLayout {
                 (float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - MARGIN_BOTTOM,
                 paint);
     }
-
-    // daily.
 
     private void drawDailyMaxiTemp(Canvas canvas) {
         switch (positionType) {
@@ -336,8 +321,6 @@ public class TrendItemView extends FrameLayout {
                 paint);
     }
 
-    // hourly.
-
     private void drawHourlyTemp(Canvas canvas) {
         switch (positionType) {
             case POSITION_TYPE_NULL:
@@ -440,8 +423,6 @@ public class TrendItemView extends FrameLayout {
                 paint);
     }
 
-    // precipitation.
-
     private void drawPrecipitationData(Canvas canvas) {
         paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
@@ -470,9 +451,7 @@ public class TrendItemView extends FrameLayout {
         paint.setAlpha(255);
     }
 
-    /** <br> data. */
-
-    // init.
+    // control.
 
     public void setData(Weather weather,
                         int dataType, int position, int highest, int lowest, boolean showDailyPop) {
@@ -491,8 +470,6 @@ public class TrendItemView extends FrameLayout {
     public void setNullData() {
         this.dataType = DATA_TYPE_NULL;
     }
-
-    // daily.
 
     private void setDailyData(Weather weather, int position, int highest, int lowest, boolean showDailyPop) {
         this.temps = new int[] {
@@ -650,8 +627,6 @@ public class TrendItemView extends FrameLayout {
         }
     }
 
-    // hourly.
-
     public void setHourlyData(Weather weather, int position, int highest, int lowest) {
         this.temps = new int[] {
                 weather.hourlyList.get(position).temp,
@@ -740,8 +715,6 @@ public class TrendItemView extends FrameLayout {
         precipitationY = (int) (calcHeaderHeight(getContext()) + calcDrawSpecHeight(getContext()) - MARGIN_BOTTOM
                 - calcDrawSpecUsableHeight(getContext()) * precipitation / 100.0);
     }
-
-    // size.
 
     public static int calcWidth(Context context) {
         return (int) ((context.getResources().getDisplayMetrics().widthPixels - 2.0 * DisplayUtils.dpToPx(context, 8)) / 7.0);

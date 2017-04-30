@@ -11,15 +11,13 @@ import android.support.annotation.Nullable;
  * */
 
 public class ProtectService extends Service {
-    // data
+
     private static boolean sPower;
     private static boolean running;
     private static boolean working;
 
     public static final String KEY_IS_REFRESH = "is_refresh";
     public static final String KEY_WORKING = "working";
-
-    /** <br> life cycle. */
 
     @Override
     public void onCreate() {
@@ -40,8 +38,6 @@ public class ProtectService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-
-    /** <br> data. */
 
     private void initData() {
         sPower = true;

@@ -11,19 +11,17 @@ import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
- * Geometric widget configuration activity.
+ * Geometric weather widget configuration activity.
  * */
 
 public abstract class GeoWidgetConfigActivity extends GeoActivity
         implements WeatherHelper.OnRequestWeatherListener {
-    // data
+
     private Location locationNow;
     private WeatherHelper weatherHelper;
+
     private boolean fahrenheit;
-
     private boolean destroyed;
-
-    /** <br> life cycle. */
 
     @Override
     protected void onStart() {
@@ -77,9 +75,9 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         return fahrenheit;
     }
 
-    /** <br> interface. */
+    // interface.
 
-    // on request realTimeWeather listener.
+    // on request weather listener.
 
     @Override
     public void requestWeatherSuccess(Weather weather, Location requestLocation) {

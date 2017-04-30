@@ -24,10 +24,8 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 /** <br> forecast notification utils. */
 
 public class ForecastNotificationUtils {
-    // data
-    private static final int NOTIFICATION_ID = 318;
 
-    /** <br> UI. */
+    private static final int NOTIFICATION_ID = 318;
 
     public static void buildForecastAndSendIt(Context context, Weather weather, boolean today) {
         if (weather == null) {
@@ -183,8 +181,6 @@ public class ForecastNotificationUtils {
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
-    /** <br> data. */
-
     public static boolean isEnable(Context context, boolean today) {
         if (today) {
             return PreferenceManager.getDefaultSharedPreferences(context)
@@ -197,44 +193,6 @@ public class ForecastNotificationUtils {
                             context.getString(R.string.key_forecast_tomorrow),
                             false);
         }
-    }
-
-    public static long calcForecastDuration(Context context, boolean today, boolean doNow) {
-        Calendar calendar = Calendar.getInstance();
-        int realTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 *60 * 1000
-                + calendar.get(Calendar.MINUTE) * 60 * 1000
-                + calendar.get(Calendar.SECOND) * 1000;
-
-        int settingsTime;
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (today) {
-            String[] times = sharedPreferences.getString(
-                    context.getString(R.string.key_forecast_today_time),
-                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME).split(":");
-            settingsTime = Integer.parseInt(times[0]) * 60 * 60 * 1000
-                    + Integer.parseInt(times[1]) * 60 * 1000;
-        } else {
-            String[] times = sharedPreferences.getString(
-                    context.getString(R.string.key_forecast_tomorrow_time),
-                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME).split(":");
-            settingsTime = Integer.parseInt(times[0]) * 60 * 60 * 1000
-                    + Integer.parseInt(times[1]) * 60 * 1000;
-        }
-
-        long duration = 0;
-        if (isForecastTime(context, today)) {
-            if (doNow) {
-                duration = 0;
-            } else {
-                duration = 24 * 60 * 60 * 1000 + (settingsTime - realTime);
-            }
-        } else if (realTime < settingsTime) {
-            duration = settingsTime - realTime;
-        } else if (realTime > settingsTime) {
-            duration = 24 * 60 * 60 * 1000 + (settingsTime - realTime);
-        }
-
-        return duration;
     }
 
     public static boolean isForecastTime(Context context, boolean today) {

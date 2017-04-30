@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,7 +51,7 @@ import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 import wangdaye.com.geometricweather.ui.widget.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.details.IndexListView;
@@ -65,11 +66,12 @@ import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
  * */
 
 public class MainActivity extends GeoActivity
-        implements View.OnClickListener, Toolbar.OnMenuItemClickListener, SwipeSwitchLayout.OnSwitchListener,
-        SwipeRefreshLayout.OnRefreshListener, NestedScrollView.OnScrollChangeListener,
+        implements View.OnClickListener, Toolbar.OnMenuItemClickListener,
+        SwipeSwitchLayout.OnSwitchListener, SwipeRefreshLayout.OnRefreshListener,
+        NestedScrollView.OnScrollChangeListener,
         LocationHelper.OnRequestLocationListener, WeatherHelper.OnRequestWeatherListener,
         SafeHandler.HandlerContainer {
-    // widget
+
     private SafeHandler<MainActivity> handler;
 
     private StatusBarView statusBar;
@@ -94,7 +96,8 @@ public class MainActivity extends GeoActivity
     private TextView lifeInfoTitle;
     private IndexListView indexListView;
 
-    // data
+    private AnimatorSet initShowAnimator;
+
     private List<Location> locationList;
     public Location locationNow;
 
@@ -102,9 +105,6 @@ public class MainActivity extends GeoActivity
 
     private WeatherHelper weatherHelper;
     private LocationHelper locationHelper;
-
-    // animation
-    private AnimatorSet viewShowAnimator;
 
     private final int LOCATION_PERMISSIONS_REQUEST_CODE = 1;
 
@@ -115,12 +115,17 @@ public class MainActivity extends GeoActivity
 
     public static final String KEY_MAIN_ACTIVITY_LOCATION = "MAIN_ACTIVITY_LOCATION";
 
-    /** <br> life cycle. */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        readIntentData(intent);
+        reset();
     }
 
     @Override
@@ -152,35 +157,10 @@ public class MainActivity extends GeoActivity
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        locationHelper.cancel();
-        weatherHelper.cancel();
-        handler.removeCallbacksAndMessages(null);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        readIntentData(intent);
-        reset();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // do nothing.
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return swipeSwitchLayout;
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case SETTINGS_ACTIVITY:
-                DisplayUtils.setNavigationBarColor(this, TimeUtils.getInstance(this).isDayTime());
+                DisplayUtils.setNavigationBarColor(this, TimeManager.getInstance(this).isDayTime());
                 NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
                 break;
 
@@ -209,9 +189,71 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    /** <br> UI. */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (locationList.size() > 1) {
+            indicator.setVisibility(View.VISIBLE);
+        } else {
+            indicator.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        locationHelper.cancel();
+        weatherHelper.cancel();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // do nothing.
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return swipeSwitchLayout;
+    }
 
     // init.
+
+    private void initData() {
+        readLocationList();
+        readIntentData(getIntent());
+
+        this.weatherHelper = new WeatherHelper();
+        this.locationHelper = new LocationHelper(this);
+
+        this.scrollTrigger = (int) (getResources().getDisplayMetrics().widthPixels / 6.8 * 4
+                + DisplayUtils.dpToPx(this, 60)
+                - DisplayUtils.dpToPx(this, 300 - 256));
+    }
+
+    private void readLocationList() {
+        this.locationList = DatabaseHelper.getInstance(this).readLocationList();
+    }
+
+    private void readIntentData(Intent intent) {
+        String locationName = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION);
+        if (TextUtils.isEmpty(locationName)) {
+            locationNow = locationList.get(0);
+            return;
+        }
+        for (int i = 0; i < locationList.size(); i ++) {
+            if (locationList.get(i).isLocal() && locationName.equals(getString(R.string.local))) {
+                locationNow = locationList.get(i);
+                return;
+            } else if (locationList.get(i).city.equals(locationName)) {
+                locationNow = locationList.get(i);
+                return;
+            }
+        }
+        if (locationNow == null) {
+            locationNow = locationList.get(0);
+        }
+    }
 
     private void initWidget() {
         this.handler = new SafeHandler<>(this);
@@ -231,7 +273,7 @@ public class MainActivity extends GeoActivity
     }
 
     public void setStatusBarColor() {
-        if (TimeUtils.getInstance(this).isDayTime()) {
+        if (TimeManager.getInstance(this).isDayTime()) {
             statusBar.setBackgroundColor(ContextCompat.getColor(this, R.color.lightPrimary_5));
         } else {
             statusBar.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPrimary_5));
@@ -251,7 +293,7 @@ public class MainActivity extends GeoActivity
 
         // get swipe refresh layout & set color.
         this.swipeRefreshLayout = (VerticalSwipeRefreshView) findViewById(R.id.activity_main_refreshView);
-        if (TimeUtils.getInstance(this).isDayTime()) {
+        if (TimeManager.getInstance(this).isDayTime()) {
             swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightPrimary_3));
         } else {
             swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.darkPrimary_1));
@@ -268,8 +310,6 @@ public class MainActivity extends GeoActivity
 
         // get realTimeWeather container.
         this.weatherContainer = (LinearLayout) findViewById(R.id.container_weather);
-        viewShowAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_in);
-        viewShowAnimator.setTarget(weatherContainer);
 
         // get touch layout, set height & get realTime texts.
         RelativeLayout touchLayout = (RelativeLayout) findViewById(R.id.container_weather_touchLayout);
@@ -331,7 +371,7 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    // build UI.
+    // control.
 
     private void setRefreshing(final boolean b) {
         swipeRefreshLayout.post(new Runnable() {
@@ -348,12 +388,12 @@ public class MainActivity extends GeoActivity
         if (weather == null) {
             return;
         } else {
-            TimeUtils.getInstance(this).getDayTime(this, weather, true);
+            TimeManager.getInstance(this).getDayTime(this, weather, true);
         }
 
         setStatusBarColor();
         DisplayUtils.setWindowTopColor(this);
-        DisplayUtils.setNavigationBarColor(this, TimeUtils.getInstance(this).isDayTime());
+        DisplayUtils.setNavigationBarColor(this, TimeManager.getInstance(this).isDayTime());
 
         skyView.setWeather(weather);
 
@@ -374,7 +414,7 @@ public class MainActivity extends GeoActivity
             locationIcon.setImageResource(R.drawable.ic_alert);
         }
 
-        if (TimeUtils.getInstance(this).isDayTime()) {
+        if (TimeManager.getInstance(this).isDayTime()) {
             overviewTitle.setTextColor(ContextCompat.getColor(this, R.color.lightPrimary_3));
             lifeInfoTitle.setTextColor(ContextCompat.getColor(this, R.color.lightPrimary_3));
             swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightPrimary_3));
@@ -389,50 +429,14 @@ public class MainActivity extends GeoActivity
         indexListView.setData(locationNow.weather);
 
         weatherContainer.setVisibility(View.VISIBLE);
-        viewShowAnimator.start();
-    }
-
-    /** <br> data. */
-
-    // init.
-
-    private void initData() {
-        readLocationList();
-        readIntentData(getIntent());
-
-        this.weatherHelper = new WeatherHelper();
-        this.locationHelper = new LocationHelper(this);
-
-        this.scrollTrigger = (int) (getResources().getDisplayMetrics().widthPixels / 6.8 * 4
-                + DisplayUtils.dpToPx(this, 60)
-                - DisplayUtils.dpToPx(this, 300 - 256));
-    }
-
-    private void readLocationList() {
-        this.locationList = DatabaseHelper.getInstance(this).readLocationList();
-    }
-
-    private void readIntentData(Intent intent) {
-        String locationName = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION);
-        if (TextUtils.isEmpty(locationName)) {
-            locationNow = locationList.get(0);
-            return;
+        if (initShowAnimator != null) {
+            initShowAnimator.cancel();
         }
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).isLocal() && locationName.equals(getString(R.string.local))) {
-                locationNow = locationList.get(i);
-                return;
-            } else if (locationList.get(i).city.equals(locationName)) {
-                locationNow = locationList.get(i);
-                return;
-            }
-        }
-        if (locationNow == null) {
-            locationNow = locationList.get(0);
-        }
+        initShowAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_in);
+        initShowAnimator.setTarget(weatherContainer);
+        initShowAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        initShowAnimator.start();
     }
-
-    // buildWeather.
 
     private void setLocationAndReset(Location location) {
         this.locationNow = location;
@@ -457,7 +461,7 @@ public class MainActivity extends GeoActivity
         }, 1500);
     }
 
-    /** <br> permission. */
+    // permission.
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void requestPermission(int permissionCode) {
@@ -480,7 +484,8 @@ public class MainActivity extends GeoActivity
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permission, @NonNull int[] grantResult) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permission, @NonNull int[] grantResult) {
         super.onRequestPermissionsResult(requestCode, permission, grantResult);
         switch (requestCode) {
             case LOCATION_PERMISSIONS_REQUEST_CODE:
@@ -496,7 +501,7 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    /** <br> interface. */
+    // interface.
 
     // on click listener.
 
@@ -592,7 +597,7 @@ public class MainActivity extends GeoActivity
     // on request location listener.
 
     @Override
-    public void requestLocationSuccess(Location requestLocation) {
+    public void requestLocationSuccess(Location requestLocation, boolean locationChanged) {
         if (!requestLocation.isUsable()) {
             requestLocationFailed(requestLocation);
         } else if (locationNow.equals(requestLocation)) {
@@ -679,7 +684,7 @@ public class MainActivity extends GeoActivity
             case MESSAGE_WHAT_STARTUP_SERVICE:
                 WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
                 NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
-                ServiceHelper.startupAllService(this, true);
+                ServiceHelper.startupService(this, true);
                 break;
         }
     }

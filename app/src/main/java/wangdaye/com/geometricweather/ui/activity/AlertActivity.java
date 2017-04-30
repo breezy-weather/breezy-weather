@@ -21,14 +21,11 @@ import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 
 public class AlertActivity extends GeoActivity
         implements View.OnClickListener {
-    // widget
+
     private CoordinatorLayout container;
 
-    // data
     private List<Alert> alarmList;
     public static final String KEY_ALERT_ACTIVITY_ALERT_LIST = "ALERT_ACTIVITY_ALERT_LIST";
-
-    /** <br> life cycle. */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +53,9 @@ public class AlertActivity extends GeoActivity
         return container;
     }
 
-    /** <br> UI. */
+    private void initData() {
+        this.alarmList = getIntent().getParcelableArrayListExtra(KEY_ALERT_ACTIVITY_ALERT_LIST);
+    }
 
     private void initWidget() {
         this.container = (CoordinatorLayout) findViewById(R.id.activity_alert_container);
@@ -71,13 +70,7 @@ public class AlertActivity extends GeoActivity
         recyclerView.setAdapter(new AlertAdapter(alarmList));
     }
 
-    /** <br> data. */
-
-    private void initData() {
-        this.alarmList = getIntent().getParcelableArrayListExtra(KEY_ALERT_ACTIVITY_ALERT_LIST);
-    }
-
-    /** <br> listener. */
+    // interface.
 
     // on click listener.
 

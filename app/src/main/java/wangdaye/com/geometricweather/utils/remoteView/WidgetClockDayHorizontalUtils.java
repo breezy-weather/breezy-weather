@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayHorizontalProvider;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -26,11 +26,9 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class WidgetClockDayHorizontalUtils {
-    // data
+
     private static final int WEATHER_PENDING_INTENT_CODE = 121;
     private static final int CLOCK_PENDING_INTENT_CODE = 221;
-
-    /** <br> UI. */
 
     public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
@@ -42,7 +40,7 @@ public class WidgetClockDayHorizontalUtils {
                 Context.MODE_PRIVATE);
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
-        boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
         boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.key_fahrenheit), false);
@@ -97,8 +95,6 @@ public class WidgetClockDayHorizontalUtils {
                 new ComponentName(context, WidgetClockDayHorizontalProvider.class),
                 views);
     }
-
-    /** <br> data. */
 
     public static boolean isEnable(Context context) {
         int[] widgetIds = AppWidgetManager.getInstance(context)

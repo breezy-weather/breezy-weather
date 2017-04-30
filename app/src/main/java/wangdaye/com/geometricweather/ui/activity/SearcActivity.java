@@ -41,7 +41,7 @@ import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 public class SearcActivity extends GeoActivity
         implements View.OnClickListener, LocationAdapter.OnLocationItemClickListener,
         EditText.OnEditorActionListener, LocationHelper.OnRequestWeatherLocationListener {
-    // widget
+
     private CoordinatorLayout container;
     private RelativeLayout searchContainer;
     private EditText editText;
@@ -49,7 +49,6 @@ public class SearcActivity extends GeoActivity
     private RecyclerView recyclerView;
     private CircularProgressView progressView;
 
-    // data
     private LocationAdapter adapter;
     private List<Location> locationList;
 
@@ -62,7 +61,35 @@ public class SearcActivity extends GeoActivity
 
     public static final int SEARCH_ACTIVITY = 1;
 
-    /** <br> life cycle. */
+    private class ShowAnimation extends Animation {
+        // widget
+        private View v;
+
+        ShowAnimation(View v) {
+            this.v = v;
+        }
+
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            v.setAlpha(interpolatedTime);
+        }
+    }
+
+    private class HideAnimation extends Animation {
+        // widget
+        private View v;
+
+        HideAnimation(View v) {
+            this.v = v;
+        }
+
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            v.setAlpha(1 - interpolatedTime);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +104,19 @@ public class SearcActivity extends GeoActivity
             setStarted();
             initData();
             initWidget();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case SEARCH_ACTIVITY:
+                this.adapter = new LocationAdapter(
+                        this,
+                        DatabaseHelper.getInstance(this).readLocationList(),
+                        this);
+                recyclerView.setAdapter(adapter);
+                break;
         }
     }
 
@@ -100,26 +140,17 @@ public class SearcActivity extends GeoActivity
         return container;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case SEARCH_ACTIVITY:
-                this.adapter = new LocationAdapter(
-                        this,
-                        DatabaseHelper.getInstance(this).readLocationList(),
-                        this);
-                recyclerView.setAdapter(adapter);
-                break;
-        }
-    }
+    // init.
 
-    private void finishSelf(boolean selected) {
-        setResult(selected ? RESULT_OK : RESULT_CANCELED, null);
-        searchContainer.setAlpha(0);
-        ActivityCompat.finishAfterTransition(this);
-    }
+    private void initData() {
+        this.adapter = new LocationAdapter(
+                this,
+                new ArrayList<Location>(),
+                this);
+        this.locationList = DatabaseHelper.getInstance(this).readLocationList();
 
-    /** <br> UI. */
+        this.locationHelper = new LocationHelper(this);
+    }
 
     private void initWidget() {
         this.container = (CoordinatorLayout) findViewById(R.id.activity_search_container);
@@ -150,6 +181,14 @@ public class SearcActivity extends GeoActivity
         animationSet.setStartDelay(350);
         animationSet.setTarget(searchContainer);
         animationSet.start();
+    }
+
+    // control.
+
+    private void finishSelf(boolean selected) {
+        setResult(selected ? RESULT_OK : RESULT_CANCELED, null);
+        searchContainer.setAlpha(0);
+        ActivityCompat.finishAfterTransition(this);
     }
 
     private void setState(int stateTo) {
@@ -186,51 +225,7 @@ public class SearcActivity extends GeoActivity
         state = stateTo;
     }
 
-    /** <br> data. */
-
-    private void initData() {
-        this.adapter = new LocationAdapter(
-                this,
-                new ArrayList<Location>(),
-                this);
-        this.locationList = DatabaseHelper.getInstance(this).readLocationList();
-
-        this.locationHelper = new LocationHelper(this);
-    }
-
-    /** <br> anim. */
-
-    private class ShowAnimation extends Animation {
-        // widget
-        private View v;
-
-        ShowAnimation(View v) {
-            this.v = v;
-        }
-
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            v.setAlpha(interpolatedTime);
-        }
-    }
-
-    private class HideAnimation extends Animation {
-        // widget
-        private View v;
-
-        HideAnimation(View v) {
-            this.v = v;
-        }
-
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            v.setAlpha(1 - interpolatedTime);
-        }
-    }
-
-    /** <br> listener. */
+    // interface.
 
     // on click listener.
 
@@ -314,36 +309,4 @@ public class SearcActivity extends GeoActivity
             SnackbarUtils.showSnackbar(getString(R.string.feedback_search_nothing));
         }
     }
-/*
-    // text watch.
-
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-        if (TextUtils.isEmpty(editable.toString())) {
-            adapter.itemList = DatabaseHelper.getInstance(this).readCityList();
-            adapter.notifyDataSetChanged();
-        } else if (editable.toString().equals(getString(R.string.local))) {
-            adapter.itemList.clear();
-            adapter.itemList.add(Location.buildLocal());
-            adapter.notifyDataSetChanged();
-        } else {
-            if (Location.checkEveryCharIsEnglish(editable.toString())) {
-                adapter.itemList = DatabaseHelper.getInstance(this).fuzzySearchOverseaCityList(editable.toString());
-                adapter.notifyDataSetChanged();
-            } else {
-                adapter.itemList = DatabaseHelper.getInstance(this).fuzzySearchCityList(editable.toString());
-                adapter.notifyDataSetChanged();
-            }
-        }
-    }*/
 }

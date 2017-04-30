@@ -1,36 +1,37 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Hava Durumu</string>
+    <string name="geometric_weather">Geometrik Hava Durumu</string>
 
     <!-- keyword. -->
-    <string name="local">yerel</string>
+    <string name="local">konum</string>
     <string name="default_location">varsayılan konum</string>
-    <string name="live">Canlı</string>
+    <string name="live">Rüzgar</string>
     <string name="today">Bugün</string>
-    <string name="refresh_at">güncelleme</string>
-    <string name="precipitation">Yağış</string>
-    <string name="maxi_temp">gündüz</string>
-    <string name="mini_temp">akşam</string>
-    <string name="time">zaman</string>
-    <string name="day">gündüz</string>
-    <string name="night">gece</string>
+    <string name="refresh_at">Son güncelleme</string>
+    <string name="precipitation">Yağış ihtimali</string>
+    <string name="maxi_temp">Gündüz</string>
+    <string name="mini_temp">Gece</string>
+    <string name="time">Zaman</string>
+    <string name="day">Tüm gün</string>
+    <string name="night">Gece</string>
     <string name="wind">Rüzgar</string>
     <string name="sensible_temp">Hissedilen sıcaklık</string>
     <string name="humidity">Nem</string>
-    <string name="uv_index">UV Endeksi</string>
+    <string name="uv_index">UV indeksi</string>
     <string name="forecast">Tahmin</string>
-    <string name="briefings">Brifingler</string>
+    <string name="briefings">Durum</string>
     <string name="daytime">Gündüz</string>
     <string name="nighttime">Gece</string>
-    <string name="publish_at">Yayınlama</string>
+    <string name="publish_at">Yayın</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">dün</string>
-    <string name="tomorrow">yrn</string>
-    <string name="week">hafta</string>
+    <string name="yesterday">Dün</string>
+    <string name="tomorrow">Yarın</string>
+    <string name="week">Hafta</string>
     <string name="week_1">PZT</string>
     <string name="week_2">SAL</string>
-    <string name="week_3">ÇAR</string>
+    <string name="week_3">ÇRŞ</string>
     <string name="week_4">PER</string>
     <string name="week_5">CUM</string>
     <string name="week_6">CMT</string>
@@ -57,8 +58,8 @@
     <string name="aqi_5">Çok kirli</string>
     <string name="aqi_6">Tehlikeli</string>
 
-    <string name="week_weather">Genel Bakış</string>
-    <string name="life_details">ayrıntılar</string>
+    <string name="week_weather">Durum</string>
+    <string name="life_details">Detaylar</string>
 
     <string name="next">SONRAKİ</string>
     <string name="done">BİTTİ</string>
@@ -72,19 +73,6 @@
     <string name="gitHub">GitHub</string>
     <string name="thanks">TŞK</string>
     <string name="translator">Çevirmenler</string>
-
-    <!-- about. -->
-    <string name="baidu_location">Baidu Konum</string>
-    <string name="juhe_weather">Juhe.cn</string>
-    <string name="hefeng_weather">HeWeather.com</string>
-    <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
-    <string name="glide">Glide</string>
-    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
-    <string name="gson">Gson</string>
-    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
-    <string name="greenDAO">GreenDAO</string>
-    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">İzinler</string>

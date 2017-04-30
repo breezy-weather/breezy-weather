@@ -21,17 +21,24 @@ import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
  * */
 
 public class DatabaseHelper {
-    // data
+
+    private static DatabaseHelper instance;
+
+    public static DatabaseHelper getInstance(Context c) {
+        if (instance == null) {
+            synchronized (DatabaseHelper.class) {
+                instance = new DatabaseHelper(c);
+            }
+        }
+        return instance;
+    }
+
     private DaoMaster.DevOpenHelper helper;
     private final static String DATABASE_NAME = "Geometric_Weather_db";
-
-    /** <br> life cycle. */
 
     private DatabaseHelper(Context c) {
         helper = new DaoMaster.DevOpenHelper(c, DATABASE_NAME);
     }
-
-    /** <br> data. */
 
     private SQLiteDatabase getDatabase() {
         return helper.getWritableDatabase();
@@ -160,16 +167,4 @@ public class DatabaseHelper {
         return OverseaCityEntity.fuzzySearchOverseaCity(getDatabase(), txt);
     }
 */
-    /** <br> singleton. */
-
-    private static DatabaseHelper instance;
-
-    public static DatabaseHelper getInstance(Context c) {
-        if (instance == null) {
-            synchronized (DatabaseHelper.class) {
-                instance = new DatabaseHelper(c);
-            }
-        }
-        return instance;
-    }
 }

@@ -15,7 +15,7 @@ import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -26,10 +26,8 @@ import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
  * */
 
 public class NormalNotificationUtils {
-    // data
-    private static final int NOTIFICATION_ID = 317;
 
-    /** <br> UI. */
+    private static final int NOTIFICATION_ID = 317;
 
     public static void buildNotificationAndSendIt(Context context, Weather weather) {
         if (weather == null) {
@@ -41,7 +39,7 @@ public class NormalNotificationUtils {
         boolean fahrenheit = sharedPreferences.getBoolean(context.getString(R.string.key_fahrenheit), false);
 
         // get time & background color.
-        boolean dayTime = TimeUtils.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
         boolean tempIcon = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_temp_icon),
                 false);
@@ -350,8 +348,6 @@ public class NormalNotificationUtils {
     public static void cancelNotification(Context context) {
         ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).cancel(NOTIFICATION_ID);
     }
-
-    /** <br> data. */
 
     public static boolean isEnable(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)

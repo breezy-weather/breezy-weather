@@ -18,7 +18,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class LocationEntity {
-    // data
+
     @Id
     public Long id;
 
@@ -47,8 +47,6 @@ public class LocationEntity {
     public LocationEntity() {
     }
 
-    /** <br> life cycle. */
-
     private static LocationEntity buildLocationEntity(Location location) {
         LocationEntity entity = new LocationEntity();
         entity.cityId = location.cityId;
@@ -73,8 +71,6 @@ public class LocationEntity {
         entity.local = location.local;
         return entity;
     }
-    
-    /** <br> database. */
 
     // insert.
 

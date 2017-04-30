@@ -20,11 +20,9 @@ import wangdaye.com.geometricweather.ui.adapter.TranslatorAdapter;
 
 public class TranslatorDialog extends GeoDialogFragment
         implements View.OnClickListener {
-    // widget
+
     private CoordinatorLayout container;
     private RecyclerView recyclerView;
-
-    /** <br> life cycle. */
 
     @SuppressLint("InflateParams")
     @Override
@@ -42,8 +40,6 @@ public class TranslatorDialog extends GeoDialogFragment
         return container;
     }
 
-    /** <br> UI. */
-
     private void initWidget(View view) {
         this.container = (CoordinatorLayout) view.findViewById(R.id.dialog_translator_container);
 
@@ -55,7 +51,7 @@ public class TranslatorDialog extends GeoDialogFragment
         view.findViewById(R.id.dialog_translator_enterBtn).setOnClickListener(this);
     }
 
-    /** <br> interface. */
+    // interface.
 
     @Override
     public void onClick(View view) {

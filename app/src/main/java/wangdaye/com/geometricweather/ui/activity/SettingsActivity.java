@@ -15,8 +15,6 @@ import wangdaye.com.geometricweather.ui.fragment.SettingsFragment;
 public class SettingsActivity extends GeoActivity
         implements View.OnClickListener {
 
-    /** <br> life cycle. */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +44,12 @@ public class SettingsActivity extends GeoActivity
         // do nothing.
     }
 
-    /** <br> UI. */
-
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_settings_toolbar);
         toolbar.setTitle(getString(R.string.action_settings));
         toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         toolbar.setNavigationOnClickListener(this);
     }
-
-    /** <br> listener. */
 
     @Override
     public void onClick(View v) {

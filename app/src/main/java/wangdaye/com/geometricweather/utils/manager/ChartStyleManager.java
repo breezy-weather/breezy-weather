@@ -8,21 +8,6 @@ import android.content.SharedPreferences;
  * */
 
 public class ChartStyleManager {
-    // data
-    private boolean showDailyPop;
-    private boolean showDate;
-    private int previewTime;
-
-    private static final String PREFERENCE_NAME = "sp_trend_view";
-    private static final String KEY_DAILY_POP_SWITCH = "daily_pop_switch";
-    private static final String KEY_DATE_SWITCH = "date_switch";
-    private static final String KEY_PREVIEW_TIME = "preview_time";
-
-    public static final int PREVIEW_TIME_AUTO = 1;
-    public static final int PREVIEW_TIME_DAY = 2;
-    public static final int PREVIEW_TIME_NIGHT = 3;
-
-    /** <br> singleton. */
 
     private static ChartStyleManager instance;
 
@@ -37,7 +22,18 @@ public class ChartStyleManager {
         return instance;
     }
 
-    /** <br> life cycle. */
+    private boolean showDailyPop;
+    private boolean showDate;
+    private int previewTime;
+
+    private static final String PREFERENCE_NAME = "sp_trend_view";
+    private static final String KEY_DAILY_POP_SWITCH = "daily_pop_switch";
+    private static final String KEY_DATE_SWITCH = "date_switch";
+    private static final String KEY_PREVIEW_TIME = "preview_time";
+
+    public static final int PREVIEW_TIME_AUTO = 1;
+    public static final int PREVIEW_TIME_DAY = 2;
+    public static final int PREVIEW_TIME_NIGHT = 3;
 
     private ChartStyleManager(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
@@ -46,8 +42,6 @@ public class ChartStyleManager {
         showDate = sharedPreferences.getBoolean(KEY_DATE_SWITCH, false);
         previewTime = sharedPreferences.getInt(KEY_PREVIEW_TIME, PREVIEW_TIME_AUTO);
     }
-
-    /** <br> data. */
 
     public boolean isShowDailyPop() {
         return showDailyPop;

@@ -24,7 +24,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.TimeUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -35,6 +35,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActivity
         implements View.OnClickListener {
+
     private ImageView widgetCard;
     private ImageView widgetIcon;
     private TextClock widgetClock;
@@ -46,12 +47,15 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
     private Switch showCardSwitch;
     private Switch blackTextSwitch;
 
-    /** <br> life cycle. */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_widget_clock_day_horizontal);
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return container;
     }
 
     @SuppressLint("InflateParams")
@@ -92,7 +96,7 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
 
         int[] imageId = WeatherHelper.getWeatherIcon(
                 weather.realTime.weatherKind,
-                TimeUtils.getInstance(this).getDayTime(this, weather, false).isDayTime());
+                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime());
         Glide.with(this)
                 .load(imageId[3])
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -102,12 +106,7 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
                 + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
     }
 
-    @Override
-    public View getSnackbarContainer() {
-        return container;
-    }
-
-    /** <br> interface. */
+    // interface.
 
     // on click listener.
 
@@ -135,7 +134,7 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startPollingService(this, false);
+                ServiceHelper.startupService(this, false);
                 finish();
                 break;
         }

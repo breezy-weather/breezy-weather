@@ -8,9 +8,6 @@ import java.util.concurrent.Executors;
  * */
 
 public class ThreadManager {
-    private ExecutorService threadPool;
-
-    /** <br> singleton. */
 
     private static ThreadManager instance;
 
@@ -25,13 +22,11 @@ public class ThreadManager {
         return instance;
     }
 
-    /** <br> life cycle. */
+    private ExecutorService threadPool;
 
     private ThreadManager() {
         this.threadPool = Executors.newCachedThreadPool();
     }
-
-    /** <br> data. */
 
     public void execute(Runnable runnable) {
         threadPool.execute(runnable);

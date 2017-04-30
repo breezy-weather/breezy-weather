@@ -16,15 +16,13 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.ui.dialog.TranslatorDialog;
 
 /**
- * Show application's details.
+ * About activity.
  * */
 
 public class AboutActivity extends GeoActivity
         implements View.OnClickListener {
-    // widget
-    private CoordinatorLayout container;
 
-    /** <br> life cycle. */
+    private CoordinatorLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +49,6 @@ public class AboutActivity extends GeoActivity
         return container;
     }
 
-    /** <br> UI. */
-
     private void initWidget() {
         this.container = (CoordinatorLayout) findViewById(R.id.activity_about_container);
 
@@ -77,7 +73,7 @@ public class AboutActivity extends GeoActivity
         findViewById(R.id.container_about_thx_greenDAO).setOnClickListener(this);
     }
 
-    /** <br> interface. */
+    // interface.
 
     // on click listener.
 

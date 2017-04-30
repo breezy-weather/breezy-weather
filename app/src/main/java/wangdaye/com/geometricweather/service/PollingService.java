@@ -13,19 +13,14 @@ import android.text.TextUtils;
 
 import java.util.Calendar;
 
-import wangdaye.com.geometricweather.service.alarm.PollingAlarmService;
-import wangdaye.com.geometricweather.service.alarm.TodayForecastAlarmService;
-import wangdaye.com.geometricweather.service.alarm.TomorrowForecastAlarmService;
-
 /**
  * Polling service.
  * */
 
 public class PollingService extends Service {
-    // widget
+
     private static TimeTickReceiver receiver;
 
-    // data
     private static boolean sPower;
     private static boolean running;
     private static boolean working;
@@ -53,7 +48,24 @@ public class PollingService extends Service {
     public static final String KEY_FORCE_REFRESH = "force_refresh";
     public static final String KEY_REFRESH_NORMAL_VIEW = "only_refresh_normal_view";
 
-    /** <br> life cycle. */
+    private class TimeTickReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch (intent.getAction()) {
+                case Intent.ACTION_TIME_TICK:
+                case Intent.ACTION_TIME_CHANGED:
+                    doRefreshWork(context, false);
+                    break;
+            }
+        }
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 
     @Override
     public void onCreate() {
@@ -75,14 +87,6 @@ public class PollingService extends Service {
         super.onDestroy();
         unregisterReceiver();
     }
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
-    /** <br> data. */
 
     private void initData() {
         sPower = true;
@@ -197,7 +201,7 @@ public class PollingService extends Service {
                         Integer.parseInt(todayForecastTime.split(":")[0]),
                         Integer.parseInt(todayForecastTime.split(":")[1])};
                 if (realTimes[0] == setTimes[0] && realTimes[1] == setTimes[1]) {
-                    Intent intent = new Intent(context, TodayForecastAlarmService.class);
+                    Intent intent = new Intent(context, TodayForecastUpdateService.class);
                     startService(intent);
                 }
             }
@@ -208,7 +212,7 @@ public class PollingService extends Service {
                         Integer.parseInt(tomorrowForecastTime.split(":")[0]),
                         Integer.parseInt(tomorrowForecastTime.split(":")[1])};
                 if (realTimes[0] == setTimes[0] && realTimes[1] == setTimes[1]) {
-                    Intent intent = new Intent(context, TomorrowForecastAlarmService.class);
+                    Intent intent = new Intent(context, TomorrowForecastUpdateService.class);
                     startService(intent);
                 }
             }
@@ -221,7 +225,7 @@ public class PollingService extends Service {
     private void startServiceAndRefresh(Context context) {
         lastPollingTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
                 + ":" + Calendar.getInstance().get(Calendar.MINUTE);
-        Intent intent = new Intent(context, PollingAlarmService.class);
+        Intent intent = new Intent(context, NormalUpdateService.class);
         startService(intent);
         savePollingTime();
     }
@@ -230,20 +234,5 @@ public class PollingService extends Service {
         SharedPreferences.Editor editor = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE).edit();
         editor.putString(KEY_LAST_POLLING_TIME, lastPollingTime);
         editor.apply();
-    }
-
-    /** <br> inner class. */
-
-    private class TimeTickReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            switch (intent.getAction()) {
-                case Intent.ACTION_TIME_TICK:
-                case Intent.ACTION_TIME_CHANGED:
-                    doRefreshWork(context, false);
-                    break;
-            }
-        }
     }
 }
