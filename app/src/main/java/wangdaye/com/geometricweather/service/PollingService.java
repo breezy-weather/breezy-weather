@@ -13,6 +13,8 @@ import android.text.TextUtils;
 
 import java.util.Calendar;
 
+import wangdaye.com.geometricweather.utils.helpter.AlarmHelper;
+
 /**
  * Polling service.
  * */
@@ -24,8 +26,8 @@ public class PollingService extends Service {
     private static boolean sPower;
     private static boolean running;
     private static boolean working;
-    private static boolean forceRefresh;
-    private static boolean onlyRefreshNormalView;
+    private static boolean backgroundFree;
+    private static int forceRefreshType;
 
     private static float pollingRate;
     private static String lastPollingTime;
@@ -45,18 +47,27 @@ public class PollingService extends Service {
 
     public static final String KEY_IS_REFRESH = "is_refresh";
     public static final String KEY_WORKING = "working";
-    public static final String KEY_FORCE_REFRESH = "force_refresh";
-    public static final String KEY_REFRESH_NORMAL_VIEW = "only_refresh_normal_view";
+    public static final String KEY_BACKGROUND_FREE = "background_free";
+    public static final String KEY_FORCE_REFRESH_TYPE = "refresh_type";
+
+    public static final int FORCE_REFRESH_TYPE_NONE = 0;
+    public static final int FORCE_REFRESH_TYPE_NORMAL_VIEW = 1;
+    public static final int FORCE_REFRESH_TYPE_FORECAST_TODAY = 2;
+    public static final int FORCE_REFRESH_TYPE_FORECAST_TOMORROW = 3;
+    public static final int FORCE_REFRESH_TYPE_FORECAST = 4;
+    public static final int FORCE_REFRESH_TYPE_ALL = 5;
 
     private class TimeTickReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            switch (intent.getAction()) {
-                case Intent.ACTION_TIME_TICK:
-                case Intent.ACTION_TIME_CHANGED:
-                    doRefreshWork(context, false);
-                    break;
+            if (!backgroundFree) {
+                switch (intent.getAction()) {
+                    case Intent.ACTION_TIME_TICK:
+                    case Intent.ACTION_TIME_CHANGED:
+                        doRefreshWork(context, false);
+                        break;
+                }
             }
         }
     }
@@ -78,7 +89,11 @@ public class PollingService extends Service {
         super.onStartCommand(intent, flags, startId);
         readData(intent);
         doProtectionWork();
+        doAlarmWork();
         doRefreshWork(this, true);
+        if (!working || backgroundFree) {
+            stopSelf();
+        }
         return START_STICKY;
     }
 
@@ -92,8 +107,8 @@ public class PollingService extends Service {
         sPower = true;
         running = false;
         working = true;
-        forceRefresh = false;
-        onlyRefreshNormalView = false;
+        backgroundFree = false;
+        forceRefreshType = FORCE_REFRESH_TYPE_NONE;
 
         SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
 
@@ -109,8 +124,8 @@ public class PollingService extends Service {
     private void readData(Intent intent) {
         if (intent != null && intent.getBooleanExtra(KEY_IS_REFRESH, false)) {
             working = intent.getBooleanExtra(KEY_WORKING, true);
-            forceRefresh = intent.getBooleanExtra(KEY_FORCE_REFRESH, false);
-            onlyRefreshNormalView = intent.getBooleanExtra(KEY_REFRESH_NORMAL_VIEW, false);
+            backgroundFree = intent.getBooleanExtra(KEY_BACKGROUND_FREE, false);
+            forceRefreshType = intent.getIntExtra(KEY_FORCE_REFRESH_TYPE, FORCE_REFRESH_TYPE_NONE);
 
             pollingRate = intent.getFloatExtra(KEY_POLLING_RATE, 1.5f);
 
@@ -151,19 +166,19 @@ public class PollingService extends Service {
     }
 
     private void doProtectionWork() {
-        if (!running && working) {
+        if (!running && working && !backgroundFree) {
             running = true;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (sPower && working) {
+                    while (sPower && working && !backgroundFree) {
                         if (System.currentTimeMillis() >= 123456789000000L) {
                             sPower = false;
                         }
                         startService(new Intent(PollingService.this, ProtectService.class));
                         SystemClock.sleep(3000);
                     }
-                    if (!working) {
+                    if (!working || backgroundFree) {
                         stopSelf();
                     }
                 }
@@ -171,9 +186,33 @@ public class PollingService extends Service {
         }
     }
 
+    private void doAlarmWork() {
+        if (working && backgroundFree) {
+            AlarmHelper.setAlarmForNormalView(
+                    this, getBaseIntent(FORCE_REFRESH_TYPE_NORMAL_VIEW), pollingRate);
+            if (openTodayForecast) {
+                AlarmHelper.setAlarmForTodayForecast(
+                        this, getBaseIntent(FORCE_REFRESH_TYPE_FORECAST_TODAY), todayForecastTime);
+            }
+            if (openTomorrowForecast) {
+                AlarmHelper.setAlarmForTomorrowForecast(
+                        this, getBaseIntent(FORCE_REFRESH_TYPE_FORECAST_TOMORROW), tomorrowForecastTime);
+            }
+        } else {
+            AlarmHelper.cancelNormalViewAlarm(
+                    this, getBaseIntent(FORCE_REFRESH_TYPE_NORMAL_VIEW));
+            AlarmHelper.cancelTodayForecastAlarm(
+                    this, getBaseIntent(FORCE_REFRESH_TYPE_FORECAST_TODAY));
+            AlarmHelper.cancelTomorrowForecastAlarm(
+                    this, getBaseIntent(FORCE_REFRESH_TYPE_FORECAST_TOMORROW));
+        }
+    }
+
     private void doRefreshWork(Context context, boolean init) {
         // polling service.
-        if (forceRefresh || TextUtils.isEmpty(lastPollingTime)) {
+        if (TextUtils.isEmpty(lastPollingTime)
+                || forceRefreshType == FORCE_REFRESH_TYPE_NORMAL_VIEW
+                || forceRefreshType == FORCE_REFRESH_TYPE_ALL) {
             startServiceAndRefresh(context);
         } else {
             int realTimes[] = new int[] {
@@ -190,36 +229,39 @@ public class PollingService extends Service {
         }
 
         // forecast.
-        if ((!init || forceRefresh) && !onlyRefreshNormalView) {
+        if (!init
+                || (forceRefreshType != FORCE_REFRESH_TYPE_NONE
+                && forceRefreshType != FORCE_REFRESH_TYPE_NORMAL_VIEW)) {
             int realTimes[] = new int[] {
                     Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
                     Calendar.getInstance().get(Calendar.MINUTE)};
 
             // today.
-            if (openTodayForecast && !TextUtils.isEmpty(todayForecastTime)) {
+            if ((openTodayForecast && !TextUtils.isEmpty(todayForecastTime))) {
                 int setTimes[] = new int[]{
                         Integer.parseInt(todayForecastTime.split(":")[0]),
                         Integer.parseInt(todayForecastTime.split(":")[1])};
-                if (realTimes[0] == setTimes[0] && realTimes[1] == setTimes[1]) {
+                if ((realTimes[0] == setTimes[0] && realTimes[1] == setTimes[1])
+                        || (!init && backgroundFree && forceRefreshType != FORCE_REFRESH_TYPE_FORECAST_TOMORROW)) {
                     Intent intent = new Intent(context, TodayForecastUpdateService.class);
                     startService(intent);
                 }
             }
 
             // tomorrow.
-            if (openTomorrowForecast && !TextUtils.isEmpty(tomorrowForecastTime)) {
+            if ((openTomorrowForecast && !TextUtils.isEmpty(tomorrowForecastTime))) {
                 int setTimes[] = new int[]{
                         Integer.parseInt(tomorrowForecastTime.split(":")[0]),
                         Integer.parseInt(tomorrowForecastTime.split(":")[1])};
-                if (realTimes[0] == setTimes[0] && realTimes[1] == setTimes[1]) {
+                if ((realTimes[0] == setTimes[0] && realTimes[1] == setTimes[1])
+                        || (!init && backgroundFree && forceRefreshType != FORCE_REFRESH_TYPE_FORECAST_TODAY)) {
                     Intent intent = new Intent(context, TomorrowForecastUpdateService.class);
                     startService(intent);
                 }
             }
         }
 
-        forceRefresh = false;
-        onlyRefreshNormalView = false;
+        forceRefreshType = FORCE_REFRESH_TYPE_NONE;
     }
 
     private void startServiceAndRefresh(Context context) {
@@ -234,5 +276,19 @@ public class PollingService extends Service {
         SharedPreferences.Editor editor = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE).edit();
         editor.putString(KEY_LAST_POLLING_TIME, lastPollingTime);
         editor.apply();
+    }
+
+    private Intent getBaseIntent(int forceRefreshType) {
+        Intent intent = new Intent(this, PollingService.class);
+        intent.putExtra(PollingService.KEY_IS_REFRESH, true);
+        intent.putExtra(PollingService.KEY_WORKING, working);
+        intent.putExtra(PollingService.KEY_BACKGROUND_FREE, backgroundFree);
+        intent.putExtra(PollingService.KEY_FORCE_REFRESH_TYPE, forceRefreshType);
+        intent.putExtra(PollingService.KEY_POLLING_RATE, pollingRate);
+        intent.putExtra(PollingService.KEY_OPEN_TODAY_FORECAST, openTodayForecast);
+        intent.putExtra(PollingService.KEY_TODAY_FORECAST_TIME, todayForecastTime);
+        intent.putExtra(PollingService.KEY_OPEN_TOMORROW_FORECAST, openTomorrowForecast);
+        intent.putExtra(PollingService.KEY_TOMORROW_FORECAST_TIME, tomorrowForecastTime);
+        return intent;
     }
 }

@@ -7,6 +7,12 @@
         android:layout="@layout/preference_category" >
 
         <CheckBoxPreference
+            android:title="@string/settings_title_background_free"
+            android:key="@string/key_background_free"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
+        <CheckBoxPreference
             android:title="@string/settings_title_navigationBar_color"
             android:key="@string/key_navigationBar_color"
             android:summaryOn="@string/settings_navigationBar_color_on"

@@ -37,6 +37,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
@@ -684,7 +685,7 @@ public class MainActivity extends GeoActivity
             case MESSAGE_WHAT_STARTUP_SERVICE:
                 WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
                 NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
-                ServiceHelper.startupService(this, true);
+                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
                 break;
         }
     }

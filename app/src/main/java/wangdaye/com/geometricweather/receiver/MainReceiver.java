@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 
 /**
@@ -16,7 +17,7 @@ public class MainReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         switch (intent.getAction()) {
             case Intent.ACTION_BOOT_COMPLETED:
-                ServiceHelper.startupService(context, false);
+                ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_ALL);
                 break;
         }
     }

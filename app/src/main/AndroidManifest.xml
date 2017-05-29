@@ -29,7 +29,7 @@
             android:theme="@style/GeometricWeatherTheme"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTask"
-            android:configChanges="orientation|screenSize">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -48,30 +48,30 @@
             android:name=".ui.activity.AlertActivity"
             android:label="@string/action_alert"
             android:theme="@style/GeometricWeatherTheme"
-            android:configChanges="orientation|screenSize" />
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.activity.ManageActivity"
             android:label="@string/action_manage"
             android:theme="@style/GeometricWeatherTheme"
-            android:configChanges="orientation|screenSize" />
+            android:screenOrientation="portrait" />
 
         <activity android:name=".ui.activity.SearcActivity"
             android:label="@string/action_search"
             android:theme="@style/GeometricWeatherTheme.Search"
-            android:configChanges="orientation|screenSize" />
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.activity.SettingsActivity"
             android:label="@string/action_settings"
             android:theme="@style/GeometricWeatherTheme"
-            android:configChanges="orientation|screenSize" />
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.activity.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/GeometricWeatherTheme"
-            android:configChanges="orientation|screenSize" />
+            android:screenOrientation="portrait" />
 
         <!-- create widget activity -->
         <activity

@@ -32,15 +32,20 @@ public class LocationHelper {
         private Context c;
         private Location location;
         private OnRequestLocationListener listener;
+        private boolean finish;
 
         SimpleLocationListener(Context c, Location location, OnRequestLocationListener l) {
             this.c = c;
             this.location = location;
             this.listener = l;
+            this.finish = false;
         }
 
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
+            if (finish) {
+                return;
+            }
             switch (bdLocation.getLocType()) {
                 case BDLocation.TypeGpsLocation:
                 case BDLocation.TypeNetWorkLocation:
@@ -69,6 +74,7 @@ public class LocationHelper {
                         } else {
                             listener.requestLocationSuccess(location, false);
                         }
+                        finish = true;
                     }
                     break;
 

@@ -12,6 +12,7 @@ import android.preference.PreferenceScreen;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
@@ -153,7 +154,10 @@ public class SettingsFragment extends PreferenceFragment
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
+        if (preference.getKey().equals(getString(R.string.key_background_free))) {
+            // background free.
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_ALL);
+        } else if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
             // navigation bar color.
             GeometricWeather.getInstance().setColorNavigationBar();
             DisplayUtils.setNavigationBarColor(getActivity(), true);
@@ -165,9 +169,9 @@ public class SettingsFragment extends PreferenceFragment
             // forecast today.
             initForecastPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
-                ServiceHelper.startupService(getActivity(), false);
+                ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_FORECAST_TODAY);
             } else {
-                ServiceHelper.stopForecastService(getActivity(), true, false);
+                ServiceHelper.stopForecastService(getActivity(), true);
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today_time))) {
@@ -181,9 +185,9 @@ public class SettingsFragment extends PreferenceFragment
             // timing forecast tomorrow.
             initForecastPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-                ServiceHelper.startupService(getActivity(), false);
+                ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_FORECAST_TOMORROW);
             } else {
-                ServiceHelper.stopForecastService(getActivity(), false, false);
+                ServiceHelper.stopForecastService(getActivity(), false);
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_forecast_tomorrow_time))) {
@@ -198,39 +202,39 @@ public class SettingsFragment extends PreferenceFragment
             initNotificationPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
                 // open notification.
-                ServiceHelper.startupService(getActivity(), true);
+                ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             } else {
                 // close notification.
                 NormalNotificationUtils.cancelNotification(getActivity());
-                ServiceHelper.stopNormalService(getActivity(), true);
+                ServiceHelper.stopNormalService(getActivity());
             }
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_temp_icon))) {
             // notification temp icon.
-            ServiceHelper.startupService(getActivity(), true);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_background))) {
             // notification background.
-            ServiceHelper.startupService(getActivity(), true);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_can_be_cleared))) {
             // notification clear flag.
-            ServiceHelper.startupService(getActivity(), true);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_icon))) {
-            ServiceHelper.startupService(getActivity(), true);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_in_lockScreen))) {
-            ServiceHelper.startupService(getActivity(), true);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_big_view))) {
-            ServiceHelper.startupService(getActivity(), true);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             return true;
         }
@@ -244,13 +248,13 @@ public class SettingsFragment extends PreferenceFragment
             editor.putString(getString(R.string.key_refresh_rate), (String) o);
             editor.apply();
             preference.setSummary((String) o);
-            ServiceHelper.startupService(getActivity(), true);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
         } else if (preference.getKey().equals(getString(R.string.key_language))) {
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
             // notification text color.
-            ServiceHelper.startupService(getActivity(), true);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             preference.setSummary(ValueUtils.getNotificationTextColor(getActivity(), (String) o));
         }
@@ -262,10 +266,10 @@ public class SettingsFragment extends PreferenceFragment
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         this.initForecastPart(sharedPreferences);
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
-            ServiceHelper.startupService(getActivity(), false);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_FORECAST_TODAY);
         }
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-            ServiceHelper.startupService(getActivity(), false);
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_FORECAST_TOMORROW);
         }
     }
 }

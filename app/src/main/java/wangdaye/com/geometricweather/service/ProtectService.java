@@ -15,9 +15,11 @@ public class ProtectService extends Service {
     private static boolean sPower;
     private static boolean running;
     private static boolean working;
+    private static boolean backgroundFree;
 
     public static final String KEY_IS_REFRESH = "is_refresh";
     public static final String KEY_WORKING = "working";
+    public static final String KEY_BACKGROUND_FREE = "background_free";
 
     @Override
     public void onCreate() {
@@ -30,6 +32,9 @@ public class ProtectService extends Service {
         super.onStartCommand(intent, flags, startId);
         readData(intent);
         doProtectionWork();
+        if (!working || backgroundFree) {
+            stopSelf();
+        }
         return START_STICKY;
     }
 
@@ -48,11 +53,12 @@ public class ProtectService extends Service {
     private void readData(Intent intent) {
         if (intent != null && intent.getBooleanExtra(KEY_IS_REFRESH, false)) {
             working = intent.getBooleanExtra(KEY_WORKING, true);
+            backgroundFree = intent.getBooleanExtra(KEY_BACKGROUND_FREE, false);
         }
     }
 
     private void doProtectionWork() {
-        if (!running && working) {
+        if (!running && working && !backgroundFree) {
             running = true;
             new Thread(new Runnable() {
                 @Override
@@ -64,7 +70,7 @@ public class ProtectService extends Service {
                         SystemClock.sleep(1500);
                         startService(new Intent(ProtectService.this, PollingService.class));
                     }
-                    if (!working) {
+                    if (!working || backgroundFree) {
                         stopSelf();
                     }
                 }

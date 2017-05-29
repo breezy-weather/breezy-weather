@@ -131,6 +131,7 @@
 
     <!-- settings -->
     <string name="settings_category_basic">基础</string>
+    <string name="settings_title_background_free">后台纯净</string>
     <string name="settings_title_navigationBar_color">导航栏着色</string>
     <string name="settings_navigationBar_color_on">导航栏显示主题颜色</string>
     <string name="settings_navigationBar_color_off">导航栏显示黑色</string>

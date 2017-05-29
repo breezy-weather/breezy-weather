@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
@@ -31,9 +32,9 @@ public class TileHelper {
         editor.apply();
 
         if (!ServiceHelper.hasNormalView(context)) {
-            ServiceHelper.stopNormalService(context, false);
+            ServiceHelper.stopNormalService(context);
         } else {
-            ServiceHelper.startupService(context, false);
+            ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
         }
     }
 

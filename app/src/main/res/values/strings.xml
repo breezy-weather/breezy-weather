@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v5.3.2</string>
+    <string name="version_code">v5.3.3</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -141,6 +141,7 @@
 
     <!-- settings -->
     <string name="settings_category_basic">Basic</string>
+    <string name="settings_title_background_free">Background free.</string>
     <string name="settings_title_navigationBar_color">Navigation bar color.</string>
     <string name="settings_navigationBar_color_on">Show theme color.</string>
     <string name="settings_navigationBar_color_off">Dark.</string>
@@ -187,6 +188,7 @@
     <string name="key_show_aqi_or_wind">show_aqi_or_wind</string>
     <string name="key_black_text">black_text</string>
 
+    <string name="key_background_free">background_free</string>
     <string name="key_navigationBar_color">navigation_bar_color_switch</string>
     <string name="key_language">language</string>
     <string name="key_fahrenheit">fahrenheit</string>
