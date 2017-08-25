@@ -24,14 +24,6 @@
 * wangdayeeeeee@gmail.com
 
 
-### PREVIEW
-
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_en_1.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_en_2.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_en_3.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_en_4.png)
-
-
 ### LICENSE
 
 
