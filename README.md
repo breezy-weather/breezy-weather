@@ -26,13 +26,10 @@
 
 ### PREVIEW
 
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_home_day.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_home_day_hourly.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_home_night.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_alert.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_manage.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_search.png)
-![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/preview/thumbnails/preview_widget.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_en_1.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_en_2.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_en_3.png)
+![](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_en_4.png)
 
 
 ### LICENSE
