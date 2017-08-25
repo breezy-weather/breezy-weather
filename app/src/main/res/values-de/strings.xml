@@ -1,0 +1,174 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- app. -->
+    <string name="app_name">Weather</string>
+    <string name="geometric_weather">Geometric Weather</string>
+
+    <!-- keyword. -->
+    <string name="local">Lokal</string>
+    <string name="default_location">Standard Standort</string>
+    <string name="live">Jetzt</string>
+    <string name="today">Heute</string>
+    <string name="refresh_at">Aktualisieren um</string>
+    <string name="precipitation">Niederschlag</string>
+    <string name="maxi_temp">Max</string>
+    <string name="mini_temp">Min</string>
+    <string name="time">Zeit</string>
+    <string name="day">Tag</string>
+    <string name="night">Nacht</string>
+    <string name="wind">Wind</string>
+    <string name="sensible_temp">Gefühlt</string>
+    <string name="humidity">Luftfeuchte</string>
+    <string name="uv_index">UV Index</string>
+    <string name="forecast">Prognose</string>
+    <string name="briefings">Bericht</string>
+    <string name="daytime">Tag</string>
+    <string name="nighttime">Nacht</string>
+    <string name="publish_at">Veröffentlicht</string>
+    <string name="feels_like">Mögen</string>
+
+    <string name="of_clock">:00</string>
+    <string name="yesterday">Gestern</string>
+    <string name="tomorrow">Morgen</string>
+    <string name="week">Woche</string>
+    <string name="week_1">Mo</string>
+    <string name="week_2">Di</string>
+    <string name="week_3">Mi</string>
+    <string name="week_4">Do</string>
+    <string name="week_5">Fr</string>
+    <string name="week_6">Sa</string>
+    <string name="week_7">So</string>
+
+    <string name="wind_0">Ruhig</string>
+    <string name="wind_1">Leichte Brise</string>
+    <string name="wind_2">Sanfter Wind</string>
+    <string name="wind_3">Leichter Wind</string>
+    <string name="wind_4">Windig</string>
+    <string name="wind_5">Frischer Wind</string>
+    <string name="wind_6">Starker Wind</string>
+    <string name="wind_7">Kräftiger Wind</string>
+    <string name="wind_8">Sturm</string>
+    <string name="wind_9">Starker Sturm</string>
+    <string name="wind_10">Orkan</string>
+    <string name="wind_11">Gewaltiger Orkan</string>
+    <string name="wind_12">Hurrikan</string>
+
+    <string name="aqi_1">Frische Luft</string>
+    <string name="aqi_2">Saubere Luft</string>
+    <string name="aqi_3">Leicht verschmutzt</string>
+    <string name="aqi_4">Mittel verschmutzt</string>
+    <string name="aqi_5">Stark verschmutzt</string>
+    <string name="aqi_6">Gefährlich</string>
+
+    <string name="daily_overview">Tage</string>
+    <string name="hourly_overview">Stunden</string>
+    <string name="life_details">Details</string>
+
+    <string name="next">Nächste</string>
+    <string name="done">Erledigt</string>
+    <string name="cancel" tools:ignore="ButtonCase">Abbruch</string>
+    <string name="on">Ein</string>
+    <string name="off">Aus</string>
+
+    <string name="about_app">Über</string>
+    <string name="introduce">Vorstellung</string>
+    <string name="email">E-Mail</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">Übersetzung</string>
+    <string name="thanks">Danke</string>
+
+    <!-- about. -->
+    <string name="baidu_location">Baidu Location</string>
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">HTTP Client für Android und Java von Square Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">Eine Bildaufbau- und Cachebibliothek welche sich auf sanftes Scrolling fokussiert.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">Eine Java Serialisierungs/Deserialisierungsbibliothek welche Javaobjekte nach JSON konvertieren kann und vice versa.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO ist eine leichte und schnelle ORM-Lösung für Android, welche mehrere Objekte SQLite Datenbanken zuordnet.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">Berechtigungen</string>
+    <string name="feedback_request_location_permission_success">Berechtigung zur Standortermittlung erteilt!</string>
+    <string name="feedback_request_location_permission_failed">Berechtigung zur Standortermittlung fehlgeschlagen!</string>
+
+    <string name="feedback_location_failed">Standortermittlung fehlgeschlagen!</string>
+    <string name="feedback_get_weather_failed">Abruf der Wetterdaten fehlgeschlagen!</string>
+
+    <string name="feedback_view_style">Ansicht</string>
+    <string name="feedback_show_widget_card">Widget Hintergrund</string>
+    <string name="feedback_black_text">Dunkler Text</string>
+
+    <string name="feedback_click_toggle">Für Ansichtswechsel (Tage/Stunden) tippen.</string>
+    <string name="feedback_no_data">Keine Daten</string>
+
+    <string name="feedback_collect_failed">Ort existiert bereits!</string>
+    <string name="feedback_collect_succeed">Ort hinzugefügt.</string>
+    <string name="feedback_delete_succeed">Ort entfernt.</string>
+    <string name="feedback_location_list_cannot_be_null">Die Ortsliste darf nicht leer sein.</string>
+
+    <string name="feedback_search_location">Suche einen Ort oder \"Standort\"…</string>
+    <string name="feedback_not_yet_location">Noch kein Ort…</string>
+    <string name="feedback_search_nothing">Nichts gefunden…</string>
+    <string name="feedback_initializing">Initialisiere…</string>
+
+    <string name="feedback_refresh_notification_after_back">Wird übernommen sobald sie sich auf der Startseite befinden.</string>
+    <string name="feedback_refresh_notification_now">Aktualisiere…</string>
+    <string name="feedback_refresh_ui_after_refresh">Wird bei nächster Aktualisierung übernommen.</string>
+    <string name="feedback_restart">Wird bei Neustart übernommen.</string>
+
+    <!-- action -->
+    <string name="action_alert">Alarm</string>
+    <string name="action_manage">Bearbeiten</string>
+    <string name="action_search">Suche</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_about">Über</string>
+
+    <!-- widget -->
+    <string name="widget_day">Tage</string>
+    <string name="widget_week">Wochen</string>
+    <string name="widget_day_week">Tage + Wochen</string>
+    <string name="widget_clock_day_horizontal">Uhr + Tage (Horizontal)</string>
+    <string name="widget_clock_day_vertical">Uhr + Tage (Vertikal)</string>
+    <string name="widget_clock_day_week">Uhr + Tage + Wochen</string>
+    <string name="wait_refresh">Aktualisiere</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">Allgemein</string>
+    <string name="settings_title_background_free">Hintergrund</string>
+    <string name="settings_title_navigationBar_color">Farbe der Navigationsleiste</string>
+    <string name="settings_navigationBar_color_on">Standard</string>
+    <string name="settings_navigationBar_color_off">Dunkel</string>
+    <string name="settings_language">Sprache</string>
+    <string name="settings_title_fahrenheit">Fahrenheit</string>
+    <string name="settings_title_refresh_rate">Aktualisierungsintervall</string>
+    <string name="settings_title_permanent_service">Dienst</string>
+    <string name="settings_category_forecast">Vorhersagebenachrichtigung</string>
+    <string name="settings_title_forecast_today">Vorhersage für diesen Tag</string>
+    <string name="settings_title_forecast_today_time">Benachrichtigungszeit</string>
+    <string name="settings_title_forecast_tomorrow">Vorhersage für nächsten Tag</string>
+    <string name="settings_title_forecast_tomorrow_time">Benachrichtigungszeit</string>
+    <string name="settings_category_widget">Widget</string>
+    <string name="settings_title_icon_style">Icons</string>
+    <string name="settings_category_notification">Benachrichtigung</string>
+    <string name="settings_title_notification">Dauerhafte Benachrichtigung</string>
+    <string name="settings_title_notification_temp_icon">Temperatur in der Statusleiste anzeigen</string>
+    <string name="settings_title_notification_text_color">Textfarbe</string>
+    <string name="settings_title_notification_background">Hintergrund</string>
+    <string name="settings_notification_background_on">Globale Menüfarbe</string>
+    <string name="settings_notification_background_off">Systemeinstellungen</string>
+    <string name="settings_title_notification_can_be_cleared">Permanent?</string>
+    <string name="settings_notification_can_be_cleared_on">Nein</string>
+    <string name="settings_notification_can_be_cleared_off">Ja</string>
+    <string name="settings_title_notification_hide_icon">Statusicon</string>
+    <string name="settings_notification_hide_icon_on">Verstecken</string>
+    <string name="settings_notification_hide_icon_off">Zeigen</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Sperrbildschirm</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Versteckt</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Sichtbar</string>
+    <string name="settings_title_notification_hide_big_view">Erweiterbar</string>
+    <string name="settings_notification_hide_big_view_on">Nein</string>
+    <string name="settings_notification_hide_big_view_off">Ja</string>
+
+</resources>

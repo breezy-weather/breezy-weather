@@ -120,14 +120,16 @@ public class WeatherDialog extends GeoDialogFragment
             String daytimeTxt = weather.dailyList.get(position).weathers[0] + "  "
                     + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[0], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
                     + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[0] + " "
-                    + weather.dailyList.get(position).windSpeeds[0] + " (" + weather.dailyList.get(position).windLevels[0] + ")" + "\n"
+                    + weather.dailyList.get(position).windSpeeds[0] + " (" + weather.dailyList.get(position).windLevels[0] + ") "
+                    + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[0]) + "\n"
                     + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[0] + "%";
             weatherTexts[0].setText(daytimeTxt);
 
             String nighttimeTxt = weather.dailyList.get(position).weathers[1] + "  "
                     + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[1], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
                     + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[1] + " "
-                    + weather.dailyList.get(position).windSpeeds[1] + " (" + weather.dailyList.get(position).windLevels[1] + ")" + "\n"
+                    + weather.dailyList.get(position).windSpeeds[1] + " (" + weather.dailyList.get(position).windLevels[1] + ") "
+                    + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[1]) + "\n"
                     + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[1] + "%";
             weatherTexts[1].setText(nighttimeTxt);
         } else {

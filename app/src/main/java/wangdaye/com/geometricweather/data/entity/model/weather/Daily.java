@@ -20,6 +20,7 @@ public class Daily {
     public String[] windDirs;
     public String[] windSpeeds;
     public String[] windLevels;
+    public int[] windDegrees;
     public String[] astros;
     public int[] precipitations;
 
@@ -89,6 +90,9 @@ public class Daily {
         windLevels = new String[] {
                 WeatherHelper.getWindLevel(c, forecast.Day.Wind.Speed.Value),
                 WeatherHelper.getWindLevel(c, forecast.Night.Wind.Speed.Value)};
+        windDegrees = new int[] {
+                forecast.Day.Wind.Direction.Degrees,
+                forecast.Night.Wind.Direction.Degrees};
         astros = new String[] {
                 forecast.Sun.Rise.split("T")[1].split(":")[0]
                         + ":" + forecast.Sun.Rise.split("T")[1].split(":")[1],
@@ -113,6 +117,7 @@ public class Daily {
         windDirs = new String[] {entity.daytimeWindDir, entity.nighttimeWindDir};
         windSpeeds = new String[] {entity.daytimeWindSpeed, entity.nighttimeWindSpeed};
         windLevels = new String[] {entity.daytimeWindLevel, entity.nighttimeWindLevel};
+        windDegrees = new int[] {entity.daytimeWindDegree, entity.nighttimeWindDegree};
         astros = new String[] {
                 entity.sunrise,
                 entity.sunset};

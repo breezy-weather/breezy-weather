@@ -16,6 +16,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayHorizontalProvider;
+import wangdaye.com.geometricweather.service.NormalUpdateService;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -42,8 +43,16 @@ public class WidgetClockDayHorizontalUtils {
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
-        boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.key_fahrenheit), false);
+        SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean fahrenheit = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_fahrenheit),
+                false);
+        String iconStyle = defaultSharePreferences.getString(
+                context.getString(R.string.key_widget_icon_style),
+                "material");
+        boolean touchToRefresh = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_click_widget_to_refresh),
+                false);
 
         int textColor;
         if (blackText || showCard) {
@@ -54,10 +63,11 @@ public class WidgetClockDayHorizontalUtils {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_horizontal);
 
-        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
+        int imageId = WeatherHelper.getWidgetNotificationIcon(
+                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
         views.setImageViewResource(
                 R.id.widget_clock_day_icon,
-                imageId[3]);
+                imageId);
 
         String dateText = weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week;
         views.setTextViewText(
@@ -83,11 +93,20 @@ public class WidgetClockDayHorizontalUtils {
                 PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_clock_day_clockButton, pendingIntentClock);
 
-        PendingIntent pendingIntentWeather = PendingIntent.getActivity(
-                context,
-                WEATHER_PENDING_INTENT_CODE,
-                IntentHelper.buildMainActivityIntent(context, location),
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntentWeather;
+        if (touchToRefresh) {
+            pendingIntentWeather = PendingIntent.getService(
+                    context,
+                    WEATHER_PENDING_INTENT_CODE,
+                    new Intent(context, NormalUpdateService.class),
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+        } else {
+             pendingIntentWeather = PendingIntent.getActivity(
+                    context,
+                    WEATHER_PENDING_INTENT_CODE,
+                    IntentHelper.buildMainActivityIntent(context, location),
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+        }
         views.setOnClickPendingIntent(R.id.widget_clock_day_weatherButton, pendingIntentWeather);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);

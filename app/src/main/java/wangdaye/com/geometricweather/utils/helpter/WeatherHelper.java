@@ -20,18 +20,18 @@ public class WeatherHelper {
 
     private WeatherService weatherService;
 
-    private static final String KIND_CLEAR = "CLEAR";
-    private static final String KIND_PARTLY_CLOUDY = "PARTLY_CLOUDY";
-    private static final String KIND_CLOUDY = "CLOUDY";
-    private static final String KIND_RAIN = "RAIN";
-    private static final String KIND_SNOW = "SNOW";
-    private static final String KIND_WIND = "WIND";
-    private static final String KIND_FOG = "FOG";
-    private static final String KIND_HAZE = "HAZE";
-    private static final String KIND_SLEET = "SLEET";
-    private static final String KIND_HAIL = "HAIL";
-    private static final String KIND_THUNDER = "THUNDER";
-    private static final String KIND_THUNDERSTORM = "THUNDERSTORM";
+    public static final String KIND_CLEAR = "CLEAR";
+    public static final String KIND_PARTLY_CLOUDY = "PARTLY_CLOUDY";
+    public static final String KIND_CLOUDY = "CLOUDY";
+    public static final String KIND_RAIN = "RAIN";
+    public static final String KIND_SNOW = "SNOW";
+    public static final String KIND_WIND = "WIND";
+    public static final String KIND_FOG = "FOG";
+    public static final String KIND_HAZE = "HAZE";
+    public static final String KIND_SLEET = "SLEET";
+    public static final String KIND_HAIL = "HAIL";
+    public static final String KIND_THUNDER = "THUNDER";
+    public static final String KIND_THUNDERSTORM = "THUNDERSTORM";
 
     public WeatherHelper() {
         weatherService = null;
@@ -48,13 +48,13 @@ public class WeatherHelper {
     }
 
     public static String getNewWeatherKind(int icon) {
-        if (icon == 1 || icon == 2 || icon == 3
-                || icon == 30 || icon == 33 || icon == 34 || icon == 35) {
+        if (icon == 1 || icon == 2 || icon == 30
+                || icon == 33 || icon == 34) {
             return KIND_CLEAR;
-        } else if (icon == 4 || icon == 6 || icon == 36 || icon == 38) {
+        } else if (icon == 3 || icon == 4 || icon == 6 || icon == 7
+                || icon == 35 || icon == 36 || icon == 38) {
             return KIND_PARTLY_CLOUDY;
-        } else if (icon == 5 || icon == 7 || icon == 8
-                || icon == 37) {
+        } else if (icon == 5 || icon == 8 || icon == 37) {
             return KIND_CLOUDY;
         } else if (icon == 11) {
             return KIND_FOG;
@@ -286,69 +286,267 @@ public class WeatherHelper {
     }
 
     public static int getMiniWeatherIcon(String weatherInfo, boolean dayTime) {
-        int imageId;
+        return getMiniWeatherIcon(weatherInfo, dayTime, "light");
+    }
+
+    private static int getMiniWeatherIcon(String weatherInfo, boolean dayTime, String textColor) {
+        int imageId = R.drawable.weather_cloudy_mini_light;
         switch (weatherInfo) {
             case KIND_CLEAR:
                 if(dayTime) {
-                    imageId = R.drawable.weather_sun_day_mini;
+                    switch (textColor) {
+                        case "light":
+                            imageId = R.drawable.weather_sun_day_mini_light;
+                            break;
+
+                        case "grey":
+                            imageId = R.drawable.weather_sun_day_mini_grey;
+                            break;
+
+                        case "dark":
+                            imageId = R.drawable.weather_sun_day_mini_dark;
+                            break;
+                    }
                 } else {
-                    imageId = R.drawable.weather_sun_night_mini;
+                    switch (textColor) {
+                        case "light":
+                            imageId = R.drawable.weather_sun_night_mini_light;
+                            break;
+
+                        case "grey":
+                            imageId = R.drawable.weather_sun_night_mini_grey;
+                            break;
+
+                        case "dark":
+                            imageId = R.drawable.weather_sun_night_mini_dark;
+                            break;
+                    }
                 }
                 break;
 
             case KIND_PARTLY_CLOUDY:
                 if(dayTime) {
-                    imageId = R.drawable.weather_cloud_day_mini;
+                    switch (textColor) {
+                        case "light":
+                            imageId = R.drawable.weather_cloud_day_mini_light;
+                            break;
+
+                        case "grey":
+                            imageId = R.drawable.weather_cloud_day_mini_grey;
+                            break;
+
+                        case "dark":
+                            imageId = R.drawable.weather_cloud_day_mini_dark;
+                            break;
+                    }
                 } else {
-                    imageId = R.drawable.weather_cloud_mini;
+                    switch (textColor) {
+                        case "light":
+                            imageId = R.drawable.weather_cloud_night_mini_light;
+                            break;
+
+                        case "grey":
+                            imageId = R.drawable.weather_cloud_night_mini_grey;
+                            break;
+
+                        case "dark":
+                            imageId = R.drawable.weather_cloud_night_mini_dark;
+                            break;
+                    }
                 }
                 break;
 
             case KIND_CLOUDY:
-                imageId = R.drawable.weather_cloud_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_cloudy_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_cloudy_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_cloudy_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_RAIN:
-                imageId = R.drawable.weather_rain_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_rain_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_rain_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_rain_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_WIND:
-                imageId = R.drawable.weather_wind_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_wind_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_wind_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_wind_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_SNOW:
-                imageId = R.drawable.weather_snow_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_snow_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_snow_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_snow_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_FOG:
-                imageId = R.drawable.weather_fog_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_fog_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_fog_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_fog_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_HAZE:
-                imageId = R.drawable.weather_haze_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_haze_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_haze_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_haze_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_SLEET:
-                imageId = R.drawable.weather_sleet_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_sleet_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_sleet_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_sleet_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_THUNDERSTORM:
-                imageId = R.drawable.weather_thunder_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_thunderstorm_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_thunderstorm_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_thunderstorm_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_THUNDER:
-                imageId = R.drawable.weather_thunder_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_thunder_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_thunder_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_thunder_mini_dark;
+                        break;
+                }
                 break;
 
             case KIND_HAIL:
-                imageId = R.drawable.weather_hail_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_hail_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_hail_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_hail_mini_dark;
+                        break;
+                }
                 break;
 
             default:
-                imageId = R.drawable.weather_cloud_mini;
+                switch (textColor) {
+                    case "light":
+                        imageId = R.drawable.weather_cloudy_mini_light;
+                        break;
+
+                    case "grey":
+                        imageId = R.drawable.weather_cloudy_mini_grey;
+                        break;
+
+                    case "dark":
+                        imageId = R.drawable.weather_cloudy_mini_dark;
+                        break;
+                }
                 break;
         }
         return imageId;
+    }
+
+    public static int getWidgetNotificationIcon(String weatherInfo, boolean dayTime,
+                                                String iconStyle, String textColor) {
+        if (iconStyle.equals("material")) {
+            return getWeatherIcon(weatherInfo, dayTime)[3];
+        } else {
+            return getMiniWeatherIcon(weatherInfo, dayTime, textColor);
+        }
+    }
+
+    public static int getWidgetNotificationIcon(String weatherInfo, boolean dayTime,
+                                                String iconStyle, boolean darkText) {
+        return getWidgetNotificationIcon(weatherInfo, dayTime, iconStyle, darkText ? "dark" : "light");
     }
 
     public static int getShortcutIcon(String weatherInfo, boolean dayTime) {
@@ -489,6 +687,26 @@ public class WeatherHelper {
             return R.color.colorLevel_5;
         } else {
             return R.color.colorLevel_6;
+        }
+    }
+
+    public static String getWindArrows(int degree) {
+        if (22.5 < degree && degree <= 67.5) {
+            return "↙";
+        } else if (67.5 < degree && degree <= 112.5) {
+            return "←";
+        } else if (112.5 < degree && degree <= 157.5) {
+            return "↖";
+        } else if (157.5 < degree && degree <= 202.5) {
+            return "↑";
+        } else if (202.5 < degree && degree <= 247.5) {
+            return "↗";
+        } else if (247.5 < degree && degree <= 292.5) {
+            return "→";
+        } else if (292. < degree && degree <= 337.5) {
+            return "↘";
+        } else {
+            return "↓";
         }
     }
 /*

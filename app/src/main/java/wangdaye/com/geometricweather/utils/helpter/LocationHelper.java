@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class LocationHelper {
     private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
     private static final String KEY_LAST_RESULT = "LAST_RESULT";
 
-    private class SimpleLocationListener implements BDLocationListener {
+    private class SimpleLocationListener extends BDAbstractLocationListener {
         // data
         private Context c;
         private Location location;

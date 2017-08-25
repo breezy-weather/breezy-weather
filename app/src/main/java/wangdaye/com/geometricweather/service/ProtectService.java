@@ -32,7 +32,7 @@ public class ProtectService extends Service {
         super.onStartCommand(intent, flags, startId);
         readData(intent);
         doProtectionWork();
-        if (!working || backgroundFree) {
+        if (!running && (!working || backgroundFree)) {
             stopSelf();
         }
         return START_STICKY;
@@ -48,6 +48,7 @@ public class ProtectService extends Service {
         sPower = true;
         running = false;
         working = true;
+        backgroundFree = false;
     }
 
     private void readData(Intent intent) {
@@ -63,7 +64,7 @@ public class ProtectService extends Service {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (sPower && working) {
+                    while (sPower && working && !backgroundFree) {
                         if (System.currentTimeMillis() >= 123456789000000L) {
                             sPower = false;
                         }

@@ -73,6 +73,7 @@ public class InkPageIndicator extends View
     private float[] dotRevealFractions;
     private boolean isAttachedToWindow;
     private boolean pageChanging;
+    private boolean showing;
 
     // drawing
     private final Paint unselectedPaint;
@@ -149,6 +150,9 @@ public class InkPageIndicator extends View
         rectF = new RectF();
 
         addOnAttachStateChangeListener(this);
+
+        this.showing = false;
+        setAlpha(0);
     }
 
     public void setSwitchView(SwipeSwitchLayout switchView) {
@@ -159,6 +163,11 @@ public class InkPageIndicator extends View
     }
 
     public void setDisplayState(boolean show) {
+        if (showing == show) {
+            return;
+        }
+
+        showing = show;
         if (dismissAnimator != null) {
             dismissAnimator.cancel();
         }

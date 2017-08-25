@@ -21,6 +21,7 @@
     <string name="daytime">白天</string>
     <string name="nighttime">夜间</string>
     <string name="publish_at">发布于</string>
+    <string name="feels_like">体感</string>
 
     <string name="of_clock">时</string>
     <string name="yesterday">昨日</string>
@@ -55,7 +56,8 @@
     <string name="aqi_5">重度污染</string>
     <string name="aqi_6">严重污染</string>
 
-    <string name="week_weather">天气概览</string>
+    <string name="daily_overview">每日概览</string>
+    <string name="hourly_overview">小时概览</string>
     <string name="life_details">详情数据</string>
 
     <string name="next">下一步</string>
@@ -67,14 +69,13 @@
     <string name="about_app">概览</string>
     <string name="introduce">介绍</string>
     <string name="email">E-mail</string>
+    <string name="donate">捐赠 (支付宝)</string>
     <string name="gitHub">GitHub</string>
     <string name="translator">译者</string>
     <string name="thanks">鸣谢</string>
 
     <!-- about. -->
     <string name="baidu_location">Baidu Location</string>
-    <string name="juhe_weather">Juhe.cn</string>
-    <string name="hefeng_weather">HeWeather.com</string>
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
     <string name="glide">Glide</string>
@@ -90,8 +91,8 @@
 
     <string name="feedback_view_style">界面风格</string>
     <string name="feedback_show_widget_card">卡片背景</string>
-    <string name="feedback_hide_refresh_time">隐藏刷新时间</string>
-    <string name="feedback_show_aqi_or_wind">以AQI或风况代替时间</string>
+    <string name="feedback_hide_subtitle">隐藏副标题</string>
+    <string name="feedback_subtitle_data">副标题数据</string>
     <string name="feedback_black_text">暗色字体</string>
 
     <string name="feedback_click_toggle">点击趋势图可切换数据</string>
@@ -132,6 +133,7 @@
     <!-- settings -->
     <string name="settings_category_basic">基础</string>
     <string name="settings_title_background_free">后台纯净</string>
+    <string name="settings_title_ui_style">界面风格</string>
     <string name="settings_title_navigationBar_color">导航栏着色</string>
     <string name="settings_navigationBar_color_on">导航栏显示主题颜色</string>
     <string name="settings_navigationBar_color_off">导航栏显示黑色</string>
@@ -144,6 +146,9 @@
     <string name="settings_title_forecast_today_time">设定预报时间(今日天气)</string>
     <string name="settings_title_forecast_tomorrow">定时预报(明日天气)</string>
     <string name="settings_title_forecast_tomorrow_time">设定预报时间(明日天气)</string>
+    <string name="settings_category_widget">小部件</string>
+    <string name="settings_title_icon_style">图标风格</string>
+    <string name="settings_title_click_widget_to_refresh">点击小部件时进行刷新</string>
     <string name="settings_category_notification">通知</string>
     <string name="settings_title_notification">开启天气通知</string>
     <string name="settings_title_notification_temp_icon">将温度作为通知小图标</string>

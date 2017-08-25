@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_main_base_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:foreground="?attr/selectableItemBackground"
+    tools:layout_height="256dp"
+    tools:background="@android:color/black">
+
+    <TextView
+        android:id="@+id/container_main_base_view_aqiOrWindTxt"
+        android:layout_margin="@dimen/normal_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/title_text_size"
+        android:maxLines="1"
+        style="@style/large_title_text"
+        tools:text="轻度污染"
+        tools:ignore="RtlHardcoded" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/container_main_base_view_aqiOrWindTxt"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/little_margin"
+        tools:ignore="RtlHardcoded">
+
+        <TextView
+            android:id="@+id/container_main_base_view_tempTxt"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/design_title_text_size"
+            style="@style/large_title_text"
+            tools:text="30°"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/container_main_base_view_tempTxt"
+            android:layout_marginLeft="@dimen/little_margin"
+            android:layout_centerVertical="true"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:id="@+id/container_main_base_view_weatherTxt"
+                android:maxLines="1"
+                android:textSize="@dimen/title_text_size"
+                android:layout_marginBottom="2dp"
+                style="@style/large_title_text"
+                tools:text="晴"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/container_main_base_view_sendibleTempTxt"
+                android:maxLines="1"
+                android:textSize="@dimen/title_text_size"
+                style="@style/large_title_text"
+                tools:text="体感 37°"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

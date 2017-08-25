@@ -12,9 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import java.util.Calendar;
-
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -33,7 +30,12 @@ public class ForecastNotificationUtils {
         }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean fahrenheit = sharedPreferences.getBoolean(context.getString(R.string.key_fahrenheit), false);
+        boolean fahrenheit = sharedPreferences.getBoolean(
+                context.getString(R.string.key_fahrenheit),
+                false);
+        String iconStyle = sharedPreferences.getString(
+                context.getString(R.string.key_notification_icon_style),
+                "material");
         boolean tempIcon = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_temp_icon),
                 false);
@@ -78,9 +80,9 @@ public class ForecastNotificationUtils {
         // set notification visibility.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (sharedPreferences.getBoolean(context.getString(R.string.key_notification_hide_in_lockScreen), false)) {
-                builder.setVisibility(Notification.VISIBILITY_SECRET);
+                builder.setVisibility(NotificationCompat.VISIBILITY_SECRET);
             } else {
-                builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+                builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
             }
         }
 
@@ -105,20 +107,36 @@ public class ForecastNotificationUtils {
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.notification_forecast);
 
         // set icon.
-        int[][] imageIds = new int[2][3];
+        int[] imageIds = new int[2];
         if (today) {
-            imageIds[0] = WeatherHelper.getWeatherIcon(weather.dailyList.get(0).weatherKinds[0], true);
-            imageIds[1] = WeatherHelper.getWeatherIcon(weather.dailyList.get(0).weatherKinds[1], false);
+            imageIds[0] = WeatherHelper.getWidgetNotificationIcon(
+                    weather.dailyList.get(0).weatherKinds[0],
+                    true,
+                    iconStyle,
+                    textColor);
+            imageIds[1] = WeatherHelper.getWidgetNotificationIcon(
+                    weather.dailyList.get(0).weatherKinds[1],
+                    false,
+                    iconStyle,
+                    textColor);
         } else {
-            imageIds[0] = WeatherHelper.getWeatherIcon(weather.dailyList.get(0).weatherKinds[0], true);
-            imageIds[1] = WeatherHelper.getWeatherIcon(weather.dailyList.get(1).weatherKinds[0], true);
+            imageIds[0] = WeatherHelper.getWidgetNotificationIcon(
+                    weather.dailyList.get(0).weatherKinds[0],
+                    true,
+                    iconStyle,
+                    textColor);
+            imageIds[1] = WeatherHelper.getWidgetNotificationIcon(
+                    weather.dailyList.get(1).weatherKinds[0],
+                    true,
+                    iconStyle,
+                    textColor);
         }
         view.setImageViewResource(
                 R.id.notification_forecast_icon_1,
-                imageIds[0][3]);
+                imageIds[0]);
         view.setImageViewResource(
                 R.id.notification_forecast_icon_2,
-                imageIds[1][3]);
+                imageIds[1]);
 
         // set title.
         String[] titles = new String[2];
@@ -192,25 +210,6 @@ public class ForecastNotificationUtils {
                     .getBoolean(
                             context.getString(R.string.key_forecast_tomorrow),
                             false);
-        }
-    }
-
-    public static boolean isForecastTime(Context context, boolean today) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int min = calendar.get(Calendar.MINUTE);
-
-        if (today) {
-            String[] times = sharedPreferences.getString(
-                    context.getString(R.string.key_forecast_today_time),
-                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME).split(":");
-            return Integer.parseInt(times[0]) == hour && Integer.parseInt(times[1]) == min;
-        } else {
-            String[] times = sharedPreferences.getString(
-                    context.getString(R.string.key_forecast_tomorrow_time),
-                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME).split(":");
-            return Integer.parseInt(times[0]) == hour && Integer.parseInt(times[1]) == min;
         }
     }
 }

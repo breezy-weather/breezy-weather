@@ -126,7 +126,6 @@ public class Location
         if (location.isLocal()) {
             return isLocal();
         } else {
-
             return cityId.equals(location.cityId);
         }
     }

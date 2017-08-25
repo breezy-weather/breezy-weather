@@ -20,7 +20,8 @@
     <string name="briefings">簡報</string>
     <string name="daytime">白天</string>
     <string name="nighttime">夜間</string>
-    <string name="publish_at">髮布於</string>
+    <string name="publish_at">發布於</string>
+    <string name="feels_like">體感</string>
 
     <string name="of_clock">時</string>
     <string name="yesterday">昨日</string>
@@ -55,7 +56,8 @@
     <string name="aqi_5">重度污染</string>
     <string name="aqi_6">嚴重污染</string>
 
-    <string name="week_weather">天氣概覽</string>
+    <string name="daily_overview">每日概覽</string>
+    <string name="hourly_overview">小時概覽</string>
     <string name="life_details">詳情數據</string>
 
     <string name="next">下一步</string>
@@ -67,14 +69,13 @@
     <string name="about_app">概覽</string>
     <string name="introduce">介紹</string>
     <string name="email">E-mail</string>
+    <string name="donate">捐贈 (支付寶)</string>
     <string name="gitHub">GitHub</string>
     <string name="translator">譯者</string>
     <string name="thanks">鳴謝</string>
 
     <!-- about. -->
     <string name="baidu_location">Baidu Location</string>
-    <string name="juhe_weather">Juhe.cn</string>
-    <string name="hefeng_weather">HeWeather.com</string>
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
     <string name="glide">Glide</string>
@@ -90,8 +91,8 @@
 
     <string name="feedback_view_style">界面風格</string>
     <string name="feedback_show_widget_card">卡片背景</string>
-    <string name="feedback_hide_refresh_time">隱藏刷新時間</string>
-    <string name="feedback_show_aqi_or_wind">以AQI或風況代替時間</string>
+    <string name="feedback_hide_subtitle">隱藏副標題</string>
+    <string name="feedback_subtitle_data">副標題數據</string>
     <string name="feedback_black_text">暗色字體</string>
 
     <string name="feedback_click_toggle">點擊趨勢圖可切換數據</string>
@@ -131,6 +132,8 @@
 
     <!-- settings -->
     <string name="settings_category_basic">基礎</string>
+    <string name="settings_title_background_free">後臺純净</string>
+    <string name="settings_title_ui_style">界面風格</string>
     <string name="settings_title_navigationBar_color">導航欄著色</string>
     <string name="settings_navigationBar_color_on">導航欄顯示主題色</string>
     <string name="settings_navigationBar_color_off">導航欄顯示黑色</string>
@@ -143,6 +146,9 @@
     <string name="settings_title_forecast_today_time">設定預報時間(今日天氣)</string>
     <string name="settings_title_forecast_tomorrow">定時預報(明日天氣)</string>
     <string name="settings_title_forecast_tomorrow_time">設定預報時間(明日天氣)</string>
+    <string name="settings_category_widget">小部件</string>
+    <string name="settings_title_icon_style">圖標風格</string>
+    <string name="settings_title_click_widget_to_refresh">點擊小部件時進行刷新</string>
     <string name="settings_category_notification">通知</string>
     <string name="settings_title_notification">開啓天氣通知</string>
     <string name="settings_title_notification_temp_icon">將溫度作爲通知小圖標</string>

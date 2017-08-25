@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.io.BufferedReader;
@@ -63,6 +64,7 @@ public class GeometricWeather extends Application {
         activityList.remove(activityList.size() - 1);
     }
 
+    @Nullable
     public GeoActivity getTopActivity() {
         if (activityList.size() == 0) {
             return null;

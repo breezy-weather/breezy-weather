@@ -9,35 +9,42 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.service.PollingService;
+import wangdaye.com.geometricweather.ui.adapter.DetailsAdapter;
+import wangdaye.com.geometricweather.ui.widget.NoneSlipRecyclerView;
+import wangdaye.com.geometricweather.ui.widget.StatusBarView;
+import wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView;
+import wangdaye.com.geometricweather.ui.widget.trendView.TrendViewController;
+import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
+import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
+import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
@@ -49,17 +56,11 @@ import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
-import wangdaye.com.geometricweather.ui.widget.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
-import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.details.IndexListView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.sky.SkyView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendItemView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendRecyclerView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.trend.TrendView;
+import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
@@ -69,40 +70,47 @@ import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 public class MainActivity extends GeoActivity
         implements View.OnClickListener, Toolbar.OnMenuItemClickListener,
         SwipeSwitchLayout.OnSwitchListener, SwipeRefreshLayout.OnRefreshListener,
-        NestedScrollView.OnScrollChangeListener,
         LocationHelper.OnRequestLocationListener, WeatherHelper.OnRequestWeatherListener,
         SafeHandler.HandlerContainer {
 
     private SafeHandler<MainActivity> handler;
 
     private StatusBarView statusBar;
-    private SkyView skyView;
+
+    private WeatherView weatherView;
+
+    private LinearLayout appBar;
     private Toolbar toolbar;
 
-    private SwipeSwitchLayout swipeSwitchLayout;
     private InkPageIndicator indicator;
-    private VerticalSwipeRefreshView swipeRefreshLayout;
-    private VerticalNestedScrollView nestedScrollView;
-    private LinearLayout weatherContainer;
 
-    private TextView[] titleTexts;
+    private SwipeSwitchLayout switchLayout;
+    private VerticalSwipeRefreshLayout refreshLayout;
+    private VerticalNestedScrollView scrollView;
 
+    private LinearLayout cardContainer;
+
+    private TextView realtimeTemp;
+    private TextView realtimeWeather;
+    private TextView realtimeSendibleTemp;
+    private TextView aqiOrWind;
+
+    private ImageView timeIcon;
     private TextView refreshTime;
-    private FrameLayout locationIconBtn;
-    private ImageView locationIcon;
-    private TextView locationText;
 
-    private TextView overviewTitle;
-    private TrendView trendView;
-    private TextView lifeInfoTitle;
-    private IndexListView indexListView;
+    private TextView dailyTitle;
+    private TrendRecyclerView dailyTrendRecyclerView;
 
-    private AnimatorSet initShowAnimator;
+    private TextView hourlyTitle;
+    private TrendRecyclerView hourlyTrendRecyclerView;
+
+    private TextView detailsTitle;
+    private NoneSlipRecyclerView detailRecyclerView;
+
+    private AnimatorSet initAnimator;
 
     private List<Location> locationList;
     public Location locationNow;
-
-    private int scrollTrigger;
 
     private WeatherHelper weatherHelper;
     private LocationHelper locationHelper;
@@ -119,14 +127,23 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        if (PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(getString(R.string.key_ui_style), "material").equals("material")) {
+            setContentView(R.layout.activity_main_material);
+        } else {
+            setContentView(R.layout.activity_main_circular);
+        }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        Location old = locationNow;
+        readLocationList();
         readIntentData(intent);
-        reset();
+        if (!old.equals(locationNow)) {
+            reset();
+        }
     }
 
     @Override
@@ -138,20 +155,22 @@ public class MainActivity extends GeoActivity
             initData();
             initWidget();
             reset();
-        } else if (!swipeRefreshLayout.isRefreshing()) {
-            Weather memory = DatabaseHelper.getInstance(this).readWeather(locationNow);
-            if (locationNow.weather != null && memory != null) {
-                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-                try {
-                    Date latestDate = format.parse(locationNow.weather.base.date + " " + locationNow.weather.base.time);
-                    Date memoryDate = format.parse(memory.base.date + " " + memory.base.time);
-                    if (latestDate.before(memoryDate)) {
-                        locationNow.weather = memory;
-                        locationNow.history = DatabaseHelper.getInstance(this).readHistory(memory);
+        } else {
+            Weather old = locationNow.weather;
+            readLocationList();
+            for (int i = 0; i < locationList.size(); i ++) {
+                if (locationList.get(i).equals(locationNow)) {
+                    locationNow = locationList.get(i);
+                    break;
+                }
+            }
+            if (!refreshLayout.isRefreshing()) {
+                if (locationNow.weather != null && old != null) {
+                    String[] latestTimes = old.base.time.split(":");
+                    String[] memoryTimes = locationNow.weather.base.time.split(":");
+                    if (ValueUtils.compareTimes(memoryTimes, latestTimes) != 0) {
                         reset();
                     }
-                } catch (ParseException e) {
-                    e.printStackTrace();
                 }
             }
         }
@@ -161,7 +180,7 @@ public class MainActivity extends GeoActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case SETTINGS_ACTIVITY:
-                DisplayUtils.setNavigationBarColor(this, TimeManager.getInstance(this).isDayTime());
+                DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
                 NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
                 break;
 
@@ -169,21 +188,21 @@ public class MainActivity extends GeoActivity
                 if (resultCode == RESULT_OK) {
                     readLocationList();
                     readIntentData(data);
-                    swipeSwitchLayout.setData(locationList, locationNow);
-                    indicator.setSwitchView(swipeSwitchLayout);
+                    switchLayout.setData(locationList, locationNow);
+                    indicator.setSwitchView(switchLayout);
                     reset();
                 } else {
                     readLocationList();
                     for (int i = 0; i < locationList.size(); i ++) {
                         if (locationNow.equals(locationList.get(i))) {
-                            swipeSwitchLayout.setData(locationList, locationNow);
-                            indicator.setSwitchView(swipeSwitchLayout);
+                            switchLayout.setData(locationList, locationNow);
+                            indicator.setSwitchView(switchLayout);
                             return;
                         }
                     }
                     locationNow = locationList.get(0);
-                    swipeSwitchLayout.setData(locationList, locationNow);
-                    indicator.setSwitchView(swipeSwitchLayout);
+                    switchLayout.setData(locationList, locationNow);
+                    indicator.setSwitchView(switchLayout);
                     reset();
                 }
                 break;
@@ -215,7 +234,7 @@ public class MainActivity extends GeoActivity
 
     @Override
     public View getSnackbarContainer() {
-        return swipeSwitchLayout;
+        return switchLayout;
     }
 
     // init.
@@ -226,29 +245,38 @@ public class MainActivity extends GeoActivity
 
         this.weatherHelper = new WeatherHelper();
         this.locationHelper = new LocationHelper(this);
-
-        this.scrollTrigger = (int) (getResources().getDisplayMetrics().widthPixels / 6.8 * 4
-                + DisplayUtils.dpToPx(this, 60)
-                - DisplayUtils.dpToPx(this, 300 - 256));
     }
 
     private void readLocationList() {
         this.locationList = DatabaseHelper.getInstance(this).readLocationList();
+        for (int i = 0; i <locationList.size(); i ++) {
+            locationList.get(i).weather = DatabaseHelper.getInstance(this)
+                    .readWeather(locationList.get(i));
+            if (locationList.get(i).weather != null) {
+                locationList.get(i).history = DatabaseHelper.getInstance(this)
+                        .readHistory(locationList.get(i).weather);
+            }
+        }
     }
 
     private void readIntentData(Intent intent) {
         String locationName = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION);
-        if (TextUtils.isEmpty(locationName)) {
+        if (TextUtils.isEmpty(locationName) && locationNow == null) {
             locationNow = locationList.get(0);
             return;
-        }
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).isLocal() && locationName.equals(getString(R.string.local))) {
-                locationNow = locationList.get(i);
-                return;
-            } else if (locationList.get(i).city.equals(locationName)) {
-                locationNow = locationList.get(i);
-                return;
+        } else if (!TextUtils.isEmpty(locationName)) {
+            for (int i = 0; i < locationList.size(); i ++) {
+                if (locationList.get(i).isLocal() && locationName.equals(getString(R.string.local))) {
+                    if (locationNow == null || !locationNow.equals(locationList.get(i))) {
+                        locationNow = locationList.get(i);
+                        return;
+                    }
+                } else if (locationList.get(i).city.equals(locationName)) {
+                    if (locationNow == null || !locationNow.city.equals(locationName)) {
+                        locationNow = locationList.get(i);
+                        return;
+                    }
+                }
             }
         }
         if (locationNow == null) {
@@ -260,108 +288,103 @@ public class MainActivity extends GeoActivity
         this.handler = new SafeHandler<>(this);
 
         this.statusBar = (StatusBarView) findViewById(R.id.activity_main_statusBar);
-        this.setStatusBarColor();
 
-        this.skyView = (SkyView) findViewById(R.id.activity_main_skyView);
-        initScrollViewPart();
+        this.weatherView = (WeatherView) findViewById(R.id.activity_main_weatherView);
+        if (weatherView instanceof MaterialWeatherView) {
+            int kind;
+            if (locationNow.weather == null) {
+                kind = WeatherView.WEATHER_KIND_CLEAR_DAY;
+            } else {
+                kind = WeatherViewController.getWeatherViewWeatherKind(
+                        locationNow.weather.realTime.weatherKind,
+                        TimeManager.getInstance(this).isDayTime());
+            }
+            weatherView.setWeather(kind);
+        }
+
+        this.appBar = (LinearLayout) findViewById(R.id.activity_main_appBar);
 
         this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_toolbar_close);
         toolbar.inflateMenu(R.menu.activity_main);
         toolbar.setNavigationOnClickListener(this);
         toolbar.setOnClickListener(this);
         toolbar.setOnMenuItemClickListener(this);
-    }
 
-    public void setStatusBarColor() {
-        if (TimeManager.getInstance(this).isDayTime()) {
-            statusBar.setBackgroundColor(ContextCompat.getColor(this, R.color.lightPrimary_5));
-        } else {
-            statusBar.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPrimary_5));
+        this.switchLayout = (SwipeSwitchLayout) findViewById(R.id.activity_main_switchView);
+        switchLayout.setData(locationList, locationNow);
+        switchLayout.setOnSwitchListener(this);
+        switchLayout.setOnTouchListener(indicatorStateListener);
+
+        this.refreshLayout = (VerticalSwipeRefreshLayout) findViewById(R.id.activity_main_refreshView);
+        int startPosition = (int) (DisplayUtils.getStatusBarHeight(getResources())
+                + DisplayUtils.dpToPx(this, 16));
+        refreshLayout.setProgressViewOffset(
+                false, startPosition, startPosition + refreshLayout.getProgressViewEndOffset());
+        refreshLayout.setOnRefreshListener(this);
+        if (weatherView instanceof MaterialWeatherView) {
+            refreshLayout.setColorSchemeColors(weatherView.getThemeColors()[0]);
         }
-    }
-    
-    private void initScrollViewPart() {
 
-        // get swipe switch layout.
-        this.swipeSwitchLayout = (SwipeSwitchLayout) findViewById(R.id.activity_main_switchView);
-        swipeSwitchLayout.setData(locationList, locationNow);
-        swipeSwitchLayout.setOnSwitchListener(this);
+        this.scrollView = (VerticalNestedScrollView) findViewById(R.id.activity_main_scrollView);
+        scrollView.setOnScrollChangeListener(new OnScrollListener(weatherView.getFirstCardMarginTop()));
+        scrollView.setOnTouchListener(indicatorStateListener);
 
-        // get indicator.
+        this.cardContainer = (LinearLayout) findViewById(R.id.activity_main_cardContainer);
+
+        RelativeLayout baseView = (RelativeLayout) findViewById(R.id.container_main_base_view);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) baseView.getLayoutParams();
+        params.height = weatherView.getFirstCardMarginTop();
+        baseView.setLayoutParams(params);
+        baseView.setOnClickListener(this);
+
+        this.realtimeTemp = (TextView) findViewById(R.id.container_main_base_view_tempTxt);
+        this.realtimeWeather = (TextView) findViewById(R.id.container_main_base_view_weatherTxt);
+        this.realtimeSendibleTemp = (TextView) findViewById(R.id.container_main_base_view_sendibleTempTxt);
+        this.aqiOrWind = (TextView) findViewById(R.id.container_main_base_view_aqiOrWindTxt);
+
+        findViewById(R.id.container_main_trend_daily_card_timeContainer).setOnClickListener(this);
+
+        this.timeIcon = (ImageView) findViewById(R.id.container_main_trend_daily_card_timeIcon);
+        timeIcon.setOnClickListener(this);
+
+        this.refreshTime = (TextView) findViewById(R.id.container_main_trend_daily_card_timeText);
+
+        this.dailyTitle = (TextView) findViewById(R.id.container_main_trend_daily_card_title);
+        this.dailyTrendRecyclerView
+                = (TrendRecyclerView) findViewById(R.id.container_main_trend_daily_card_trendRecyclerView);
+
+        this.hourlyTitle = (TextView) findViewById(R.id.container_main_trend_hourly_card_title);
+        this.hourlyTrendRecyclerView
+                = (TrendRecyclerView) findViewById(R.id.container_main_trend_hourly_card_trendRecyclerView);
+
+        this.detailsTitle = (TextView) findViewById(R.id.container_main_details_card_title);
+        this.detailRecyclerView = (NoneSlipRecyclerView) findViewById(R.id.container_main_details_card_recyclerView);
+
         this.indicator = (InkPageIndicator) findViewById(R.id.activity_main_indicator);
-        indicator.setSwitchView(swipeSwitchLayout);
-
-        // get swipe refresh layout & set color.
-        this.swipeRefreshLayout = (VerticalSwipeRefreshView) findViewById(R.id.activity_main_refreshView);
-        if (TimeManager.getInstance(this).isDayTime()) {
-            swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightPrimary_3));
-        } else {
-            swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.darkPrimary_1));
-        }
-        swipeRefreshLayout.setOnRefreshListener(this);
-
-        // get nested scroll view & set listener.
-        this.nestedScrollView = (VerticalNestedScrollView) findViewById(R.id.activity_main_scrollView);
-        nestedScrollView.setOnScrollChangeListener(this);
-
-        swipeSwitchLayout.setIndicator(indicator);
-        swipeRefreshLayout.setIndicator(indicator);
-        nestedScrollView.setIndicator(indicator);
-
-        // get realTimeWeather container.
-        this.weatherContainer = (LinearLayout) findViewById(R.id.container_weather);
-
-        // get touch layout, set height & get realTime texts.
-        RelativeLayout touchLayout = (RelativeLayout) findViewById(R.id.container_weather_touchLayout);
-        LinearLayout.LayoutParams touchParams = (LinearLayout.LayoutParams) touchLayout.getLayoutParams();
-        touchParams.height = scrollTrigger;
-        touchLayout.setLayoutParams(touchParams);
-        touchLayout.setOnClickListener(this);
-
-        this.titleTexts = new TextView[] {
-                (TextView) findViewById(R.id.container_weather_realtime_tempTxt),
-                (TextView) findViewById(R.id.container_weather_realtime_weatherTxt),
-                (TextView) findViewById(R.id.container_weather_realtime_aqiTxt)};
-
-        // realTimeWeather card.
-        this.initWeatherCard();
-
-        //get life info 
-        this.indexListView = (IndexListView) findViewById(R.id.container_weather_lifeInfoView);
+        indicator.setSwitchView(switchLayout);
     }
 
-    private void initWeatherCard() {
-        this.refreshTime = (TextView) findViewById(R.id.container_weather_time_text_live);
-
-        findViewById(R.id.container_weather_locationContainer).setOnClickListener(this);
-
-        this.locationIconBtn = (FrameLayout) findViewById(R.id.container_weather_location_iconButton);
-        locationIconBtn.setOnClickListener(this);
-        this.locationIcon = (ImageView) findViewById(R.id.container_weather_location_icon);
-        this.locationText = (TextView) findViewById(R.id.container_weather_location_text_live);
-
-        this.overviewTitle = (TextView) findViewById(R.id.container_weather_overviewTitle);
-
-        this.trendView = (TrendView) findViewById(R.id.container_weather_trendView);
-        ((TrendRecyclerView) findViewById(R.id.container_trend_view_recyclerView)).setSwitchLayout(swipeSwitchLayout);
-
-        this.lifeInfoTitle = (TextView) findViewById(R.id.container_weather_lifeInfoTitle);
-    }
-
-    // reset.
+    // control.
 
     public void reset() {
-        skyView.reset();
-        this.resetScrollViewPart();
-    }
+        DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors()[0]);
+        DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
 
-    private void resetScrollViewPart() {
-        weatherContainer.setVisibility(View.GONE);
-        nestedScrollView.scrollTo(0, 0);
+        if (locationNow.weather == null) {
+            if (TextUtils.isEmpty(locationNow.city)) {
+                toolbar.setTitle(getString(R.string.local));
+            } else {
+                toolbar.setTitle(locationNow.city);
+            }
+        } else {
+            toolbar.setTitle(locationNow.weather.base.city);
+        }
 
-        swipeSwitchLayout.reset();
-        swipeSwitchLayout.setEnabled(true);
+        cardContainer.setVisibility(View.GONE);
+        scrollView.scrollTo(0, 0);
+
+        switchLayout.reset();
+        switchLayout.setEnabled(true);
 
         if (locationNow.weather == null) {
             setRefreshing(true);
@@ -372,13 +395,11 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    // control.
-
     private void setRefreshing(final boolean b) {
-        swipeRefreshLayout.post(new Runnable() {
+        refreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                swipeRefreshLayout.setRefreshing(b);
+                refreshLayout.setRefreshing(b);
             }
         });
     }
@@ -386,57 +407,72 @@ public class MainActivity extends GeoActivity
     @SuppressLint("SetTextI18n")
     private void buildUI() {
         Weather weather = locationNow.weather;
+        History history = locationNow.history;
+
         if (weather == null) {
             return;
         } else {
             TimeManager.getInstance(this).getDayTime(this, weather, true);
         }
+        boolean dayTime = TimeManager.getInstance(this).isDayTime();
 
-        setStatusBarColor();
-        DisplayUtils.setWindowTopColor(this);
-        DisplayUtils.setNavigationBarColor(this, TimeManager.getInstance(this).isDayTime());
+        WeatherViewController.setWeatherViewWeatherKind(weatherView, weather, dayTime);
 
-        skyView.setWeather(weather);
+        DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors()[0]);
+        DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
 
-        titleTexts[0].setText(
+        toolbar.setTitle(weather.base.city);
+        refreshLayout.setColorSchemeColors(weatherView.getThemeColors()[0]);
+
+        realtimeTemp.setText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         weather.realTime.temp,
                         GeometricWeather.getInstance().isFahrenheit()));
-        titleTexts[1].setText(weather.realTime.weather);
-        titleTexts[2].setText(weather.aqi.quality);
+        realtimeWeather.setText(weather.realTime.weather);
+        realtimeSendibleTemp.setText(
+                getString(R.string.feels_like) + " "
+                        + ValueUtils.buildAbbreviatedCurrentTemp(
+                                weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit()));
 
-        refreshTime.setText(weather.base.time);
-        locationText.setText(weather.base.city);
+        if (weather.aqi == null) {
+            aqiOrWind.setText(weather.realTime.windLevel);
+        } else {
+            aqiOrWind.setText(weather.aqi.quality);
+        }
+
         if (weather.alertList.size() == 0) {
-            locationIconBtn.setEnabled(false);
-            locationIcon.setImageResource(R.drawable.ic_location);
+            timeIcon.setEnabled(false);
+            timeIcon.setImageResource(R.drawable.ic_time);
         } else {
-            locationIconBtn.setEnabled(true);
-            locationIcon.setImageResource(R.drawable.ic_alert);
+            timeIcon.setEnabled(true);
+            timeIcon.setImageResource(R.drawable.ic_alert);
         }
+        refreshTime.setText(weather.base.time);
 
-        if (TimeManager.getInstance(this).isDayTime()) {
-            overviewTitle.setTextColor(ContextCompat.getColor(this, R.color.lightPrimary_3));
-            lifeInfoTitle.setTextColor(ContextCompat.getColor(this, R.color.lightPrimary_3));
-            swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.lightPrimary_3));
-        } else {
-            overviewTitle.setTextColor(ContextCompat.getColor(this, R.color.darkPrimary_1));
-            lifeInfoTitle.setTextColor(ContextCompat.getColor(this, R.color.darkPrimary_1));
-            swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.darkPrimary_1));
+        dailyTitle.setTextColor(weatherView.getThemeColors()[0]);
+        hourlyTitle.setTextColor(weatherView.getThemeColors()[0]);
+        detailsTitle.setTextColor(weatherView.getThemeColors()[0]);
+
+        TrendViewController.setDailyTrend(
+                this, dailyTrendRecyclerView, weather, history, weatherView.getThemeColors());
+        TrendViewController.setHourlyTrend(
+                this, hourlyTrendRecyclerView, weather, history, weatherView.getThemeColors());
+
+        detailRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        detailRecyclerView.setAdapter(new DetailsAdapter(this, weather));
+
+        cardContainer.setVisibility(View.VISIBLE);
+        if (initAnimator != null) {
+            initAnimator.cancel();
         }
+        initAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_in);
+        initAnimator.setTarget(cardContainer);
+        initAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        initAnimator.start();
 
-        trendView.setData(locationNow.weather, locationNow.history);
-        trendView.setState(TrendItemView.DATA_TYPE_DAILY, false);
-        indexListView.setData(locationNow.weather);
-
-        weatherContainer.setVisibility(View.VISIBLE);
-        if (initShowAnimator != null) {
-            initShowAnimator.cancel();
+        if (locationNow.equals(locationList.get(0))) {
+            startupService();
         }
-        initShowAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_in);
-        initShowAnimator.setTarget(weatherContainer);
-        initShowAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        initShowAnimator.start();
     }
 
     private void setLocationAndReset(Location location) {
@@ -509,20 +545,15 @@ public class MainActivity extends GeoActivity
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case -1:
-                finish();
+            case R.id.container_main_base_view:
+                weatherView.onClick();
                 break;
 
-            case R.id.container_weather_touchLayout:
-            case R.id.activity_main_toolbar:
-                skyView.onClickSky();
-                break;
-
-            case R.id.container_weather_location_iconButton:
+            case R.id.container_main_trend_daily_card_timeIcon:
                 IntentHelper.startAlertActivity(this, locationNow.weather);
                 break;
 
-            case R.id.container_weather_locationContainer:
+            case R.id.container_main_trend_daily_card_timeContainer:
                 IntentHelper.startManageActivityForResult(this);
                 break;
         }
@@ -548,11 +579,30 @@ public class MainActivity extends GeoActivity
         return true;
     }
 
+    // on touch listener.
+
+    private View.OnTouchListener indicatorStateListener = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_MOVE:
+                    indicator.setDisplayState(true);
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    indicator.setDisplayState(false);
+                    break;
+            }
+            return false;
+        }
+    };
+
     // on swipe listener(swipe switch layout).
 
     @Override
     public void swipeTakeEffect(int direction) {
-        swipeSwitchLayout.setEnabled(false);
+        switchLayout.setEnabled(false);
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(locationNow)) {
                 int position = direction == SwipeSwitchLayout.DIRECTION_LEFT ?
@@ -589,10 +639,40 @@ public class MainActivity extends GeoActivity
 
     // on scroll changed listener.
 
-    @Override
-    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-        skyView.setTranslationY((float) (-Math.min(1, 1.0 * scrollY / scrollTrigger) * skyView.getMeasuredHeight()));
-        toolbar.setTranslationY((float) (-Math.min(1, 1.0 * scrollY / scrollTrigger) * toolbar.getMeasuredHeight()));
+    private class OnScrollListener implements NestedScrollView.OnScrollChangeListener {
+
+        private int firstCardMarginTop;
+        private int overlapTriggerDistance;
+
+        OnScrollListener(int firstCardMarginTop) {
+            this.firstCardMarginTop = firstCardMarginTop;
+            this.overlapTriggerDistance = firstCardMarginTop
+                    - DisplayUtils.getStatusBarHeight(getResources());
+        }
+
+        @Override
+        public void onScrollChange(NestedScrollView v,
+                                   int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+            weatherView.onScroll(scrollY);
+
+            // set translation y of toolbar.
+            if (scrollY < firstCardMarginTop - appBar.getMeasuredHeight() - realtimeTemp.getMeasuredHeight()) {
+                appBar.setTranslationY(0);
+            } else if (scrollY > firstCardMarginTop - appBar.getY()) {
+                appBar.setTranslationY(-appBar.getMeasuredHeight());
+            } else {
+                appBar.setTranslationY(
+                        firstCardMarginTop - realtimeTemp.getMeasuredHeight() - scrollY
+                                - appBar.getMeasuredHeight());
+            }
+
+            // set status bar style.
+            if (oldScrollY < overlapTriggerDistance && overlapTriggerDistance <= scrollY) {
+                DisplayUtils.setStatusBarStyleWithScrolling(getWindow(), statusBar, true);
+            } else if (oldScrollY >= overlapTriggerDistance && overlapTriggerDistance > scrollY) {
+                DisplayUtils.setStatusBarStyleWithScrolling(getWindow(), statusBar, false);
+            }
+        }
     }
 
     // on request location listener.
@@ -630,6 +710,7 @@ public class MainActivity extends GeoActivity
             if (weather == null) {
                 requestWeatherFailed(requestLocation);
             } else if (locationNow.weather == null
+                    || !locationNow.weather.base.date.equals(weather.base.date)
                     || !locationNow.weather.base.time.equals(weather.base.time)) {
                 locationNow.weather = weather;
                 locationNow.history = DatabaseHelper.getInstance(this).readHistory(weather);
@@ -641,10 +722,6 @@ public class MainActivity extends GeoActivity
                 buildUI();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                     ShortcutsManager.refreshShortcuts(this, locationList);
-                }
-
-                if (locationNow.equals(locationList.get(0))) {
-                    startupService();
                 }
             } else {
                 setRefreshing(false);
@@ -666,10 +743,6 @@ public class MainActivity extends GeoActivity
 
                 setRefreshing(false);
                 buildUI();
-
-                if (locationNow.equals(locationList.get(0))) {
-                    startupService();
-                }
             } else {
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_get_weather_failed));
                 setRefreshing(false);

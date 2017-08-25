@@ -23,17 +23,9 @@ public class TodayForecastUpdateService extends UpdateService {
     }
 
     @Override
-    protected void doRefresh(Location location) {
-        if (ForecastNotificationUtils.isEnable(this, true)
-                && ForecastNotificationUtils.isForecastTime(this, true)) {
-            requestData(location);
-        } else {
-            stopSelf();
-        }
-    }
-
-    @Override
     public void updateView(Context context, Location location, Weather weather) {
-        ForecastNotificationUtils.buildForecastAndSendIt(context, weather, true);
+        if (ForecastNotificationUtils.isEnable(this, true)) {
+            ForecastNotificationUtils.buildForecastAndSendIt(context, weather, true);
+        }
     }
 }

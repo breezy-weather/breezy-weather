@@ -31,11 +31,7 @@ public class TileHelper {
         editor.putBoolean(KEY_ENABLE, enable);
         editor.apply();
 
-        if (!ServiceHelper.hasNormalView(context)) {
-            ServiceHelper.stopNormalService(context);
-        } else {
-            ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
-        }
+        ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
     }
 
     public static boolean isEnable(Context context) {
@@ -47,6 +43,9 @@ public class TileHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void refreshTile(Context context, Tile tile) {
+        if (tile == null) {
+            return;
+        }
         Location location = DatabaseHelper.getInstance(context).readLocationList().get(0);
         location.weather = DatabaseHelper.getInstance(context).readWeather(location);
         if (location.weather != null) {

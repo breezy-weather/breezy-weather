@@ -37,6 +37,7 @@ public class WeatherEntity {
     public String realTimeWindDir;
     public String realTimeWindSpeed;
     public String realTimeWindLevel;
+    public int realTimeWindDegree;
     public String realTimeSimpleForecast;
 
     // aqi.
@@ -65,18 +66,16 @@ public class WeatherEntity {
     public String indexCarWashTitle;
     public String indexCarWashContent;
 
-    @Generated(hash = 1800991)
-    public WeatherEntity(Long id, String cityId, String city, String date, String time,
-            String realTimeWeather, String realTimeWeatherKind, int realTimeTemp,
-            int realTimeSensibleTemp, String realTimeWindDir, String realTimeWindSpeed,
-            String realTimeWindLevel, String realTimeSimpleForecast, String aqiAqi, String aqiPm25,
-            String aqiPm10, String aqiQuality, String indexSimpleForecastTitle,
-            String indexSimpleForecastContent, String indexBriefingTitle, String indexBriefingContent,
-            String indexWindTitle, String indexWindContent, String indexAqiTitle,
-            String indexAqiContent, String indexHumidityTitle, String indexHumidityContent,
-            String indexUvTitle, String indexUvContent, String indexExerciseTitle,
-            String indexExerciseContent, String indexColdTitle, String indexColdContent,
-            String indexCarWashTitle, String indexCarWashContent) {
+    @Generated(hash = 452533366)
+    public WeatherEntity(Long id, String cityId, String city, String date, String time, String realTimeWeather,
+            String realTimeWeatherKind, int realTimeTemp, int realTimeSensibleTemp, String realTimeWindDir,
+            String realTimeWindSpeed, String realTimeWindLevel, int realTimeWindDegree,
+            String realTimeSimpleForecast, String aqiAqi, String aqiPm25, String aqiPm10, String aqiQuality,
+            String indexSimpleForecastTitle, String indexSimpleForecastContent, String indexBriefingTitle,
+            String indexBriefingContent, String indexWindTitle, String indexWindContent, String indexAqiTitle,
+            String indexAqiContent, String indexHumidityTitle, String indexHumidityContent, String indexUvTitle,
+            String indexUvContent, String indexExerciseTitle, String indexExerciseContent, String indexColdTitle,
+            String indexColdContent, String indexCarWashTitle, String indexCarWashContent) {
         this.id = id;
         this.cityId = cityId;
         this.city = city;
@@ -89,6 +88,7 @@ public class WeatherEntity {
         this.realTimeWindDir = realTimeWindDir;
         this.realTimeWindSpeed = realTimeWindSpeed;
         this.realTimeWindLevel = realTimeWindLevel;
+        this.realTimeWindDegree = realTimeWindDegree;
         this.realTimeSimpleForecast = realTimeSimpleForecast;
         this.aqiAqi = aqiAqi;
         this.aqiPm25 = aqiPm25;
@@ -137,6 +137,7 @@ public class WeatherEntity {
         entity.realTimeWindDir = weather.realTime.windDir;
         entity.realTimeWindSpeed = weather.realTime.windSpeed;
         entity.realTimeWindLevel = weather.realTime.windLevel;
+        entity.realTimeWindDegree = weather.realTime.windDegree;
         entity.realTimeSimpleForecast = weather.realTime.simpleForecast;
 
         // aqi.
@@ -177,9 +178,9 @@ public class WeatherEntity {
             return;
         }
 
-        WeatherEntity entity = searchWeatherEntity(database, location);
-        if (entity != null) {
-            deleteWeather(database, entity);
+        List<WeatherEntity> entityList = searchWeatherEntityList(database, location);
+        for (int i = 0; i < entityList.size(); i ++) {
+            deleteWeather(database, entityList.get(i));
         }
         new DaoMaster(database)
                 .newSession()
@@ -221,6 +222,15 @@ public class WeatherEntity {
         } else {
             return entityList.get(0);
         }
+    }
+
+    private static List<WeatherEntity> searchWeatherEntityList(SQLiteDatabase database, Location location) {
+        WeatherEntityDao dao = new DaoMaster(database)
+                .newSession()
+                .getWeatherEntityDao();
+        return dao.queryBuilder()
+                .where(WeatherEntityDao.Properties.CityId.eq(location.cityId))
+                .list();
     }
 
     public Long getId() {
@@ -317,6 +327,14 @@ public class WeatherEntity {
 
     public void setRealTimeWindLevel(String realTimeWindLevel) {
         this.realTimeWindLevel = realTimeWindLevel;
+    }
+
+    public int getRealTimeWindDegree() {
+        return this.realTimeWindDegree;
+    }
+
+    public void setRealTimeWindDegree(int realTimeWindDegree) {
+        this.realTimeWindDegree = realTimeWindDegree;
     }
 
     public String getRealTimeSimpleForecast() {

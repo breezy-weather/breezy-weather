@@ -2,6 +2,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Circular sky</item>
+        <item>Material animation</item>
+    </string-array>
+    <string-array name="ui_style_values">
+        <item>circular</item>
+        <item>material</item>
+    </string-array>
+
     <!-- language. -->
     <string-array name="languages">
         <item>Follow system</item>
@@ -11,6 +21,8 @@
         <item>Türkçe</item>
         <item>Français</item>
         <item>Pусский</item>
+        <item>Deutsch</item>
+        <item>Српски</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -20,6 +32,8 @@
         <item>turkish</item>
         <item>french</item>
         <item>russian</item>
+        <item>german</item>
+        <item>serbian</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -72,6 +86,30 @@
         <item>mini</item>
         <item>nano</item>
         <item>pixel</item>
+    </string-array>
+
+    <!-- icon style. -->
+    <string-array name="icon_styles">
+        <item>Material</item>
+        <item>Minimal</item>
+    </string-array>
+    <string-array name="icon_style_values">
+        <item>material</item>
+        <item>minimal</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Refresh time</item>
+        <item>AQI (Invalid in some area.)</item>
+        <item>Wind</item>
+        <item>Sensible temp</item>
+    </string-array>
+    <string-array name="subtitle_data_values">
+        <item>time</item>
+        <item>aqi</item>
+        <item>wind</item>
+        <item>sensible_time</item>
     </string-array>
 
 </resources>

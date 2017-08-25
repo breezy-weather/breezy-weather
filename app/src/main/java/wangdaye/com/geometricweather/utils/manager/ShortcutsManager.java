@@ -35,7 +35,7 @@ public class ShortcutsManager {
             public void run() {
                 ShortcutManager shortcutManager = c.getSystemService(ShortcutManager.class);
                 List<ShortcutInfo> shortcutList = new ArrayList<>();
-                for (int i = 0; i < list.size(); i ++) {
+                for (int i = 0; i < list.size() && i < 5; i ++) {
                     Icon icon;
                     Weather weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
                     if (weather != null) {

@@ -13,14 +13,6 @@ import wangdaye.com.geometricweather.service.NormalUpdateService;
 import wangdaye.com.geometricweather.service.TodayForecastUpdateService;
 import wangdaye.com.geometricweather.service.TomorrowForecastUpdateService;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.utils.remoteView.ForecastNotificationUtils;
-import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayHorizontalUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayWeekUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetDayUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetDayWeekUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
 
 /**
  * Service helper.
@@ -50,7 +42,6 @@ public class ServiceHelper {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), false);
-        boolean working = isBackgroundWorking(context);
         String refreshRate = sharedPreferences.getString(context.getString(R.string.key_refresh_rate), "1:30");
         boolean openTodayForecast = sharedPreferences.getBoolean(context.getString(R.string.key_forecast_today), false);
         String todayForecastTime = sharedPreferences.getString(
@@ -64,7 +55,7 @@ public class ServiceHelper {
         // polling service.
         Intent polling = new Intent(context, PollingService.class);
         polling.putExtra(PollingService.KEY_IS_REFRESH, true);
-        polling.putExtra(PollingService.KEY_WORKING, working);
+        polling.putExtra(PollingService.KEY_WORKING, true);
         polling.putExtra(PollingService.KEY_BACKGROUND_FREE, backgroundFree);
         polling.putExtra(PollingService.KEY_FORCE_REFRESH_TYPE, forceRefreshType);
         polling.putExtra(PollingService.KEY_POLLING_RATE, ValueUtils.getRefreshRateScale(refreshRate));
@@ -76,27 +67,10 @@ public class ServiceHelper {
         // protect service.
         Intent protect = new Intent(context, ProtectService.class);
         protect.putExtra(ProtectService.KEY_IS_REFRESH, true);
-        protect.putExtra(ProtectService.KEY_WORKING, working);
+        protect.putExtra(ProtectService.KEY_WORKING, true);
         protect.putExtra(ProtectService.KEY_BACKGROUND_FREE, backgroundFree);
 
         context.startService(polling);
         context.startService(protect);
-    }
-
-    private static boolean isBackgroundWorking(Context context) {
-        return hasNormalView(context)
-                || ForecastNotificationUtils.isEnable(context, true)
-                || ForecastNotificationUtils.isEnable(context, false);
-    }
-
-    public static boolean hasNormalView(Context context) {
-        return WidgetDayUtils.isEnable(context)
-                || WidgetWeekUtils.isEnable(context)
-                || WidgetDayWeekUtils.isEnable(context)
-                || WidgetClockDayHorizontalUtils.isEnable(context)
-                || WidgetClockDayVerticalUtils.isEnable(context)
-                || WidgetClockDayWeekUtils.isEnable(context)
-                || NormalNotificationUtils.isEnable(context)
-                || TileHelper.isEnable(context);
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_about_header_appIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/material_icon_size"
+        android:layout_width="@dimen/flag_icon_size"
+        android:layout_height="@dimen/flag_icon_size"
+        tools:src="@drawable/ic_launcher_material"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/item_about_header_appName"
+        android:text="@string/geometric_weather"
+        android:textColor="@color/colorTextTitle"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/item_about_header_appIcon"
+        android:layout_marginTop="@dimen/material_icon_size"
+        style="@style/large_title_text" />
+
+    <TextView
+        android:id="@+id/item_about_header_appVersion"
+        android:text="@string/version_code"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/item_about_header_appName"
+        android:layout_marginTop="@dimen/little_margin"
+        style="@style/title_text" />
+
+</RelativeLayout>

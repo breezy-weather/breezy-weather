@@ -1,0 +1,174 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- app. -->
+    <string name="app_name">Време</string>
+    <string name="geometric_weather">Геометријско време</string>
+
+    <!-- keyword. -->
+    <string name="local">локално</string>
+    <string name="default_location">подразумевана локација</string>
+    <string name="live">Уживо</string>
+    <string name="today">Данас</string>
+    <string name="refresh_at">освежи за</string>
+    <string name="precipitation">Падавине</string>
+    <string name="maxi_temp">дневно</string>
+    <string name="mini_temp">ноћу</string>
+    <string name="time">време</string>
+    <string name="day">дневно</string>
+    <string name="night">ноћу</string>
+    <string name="wind">Ветар</string>
+    <string name="sensible_temp">Осетна температура</string>
+    <string name="humidity">Влажност</string>
+    <string name="uv_index">Uv индекс</string>
+    <string name="forecast">Прогноза</string>
+    <string name="briefings">Информације</string>
+    <string name="daytime">Дневно</string>
+    <string name="nighttime">Ноћу</string>
+    <string name="publish_at">Објави у</string>
+    <string name="feels_like">Као</string>
+
+    <string name="of_clock">:00</string>
+    <string name="yesterday">јуче</string>
+    <string name="tomorrow">сутра</string>
+    <string name="week">недеља</string>
+    <string name="week_1">ПОН</string>
+    <string name="week_2">УТО</string>
+    <string name="week_3">СРЕ</string>
+    <string name="week_4">ЧЕТ</string>
+    <string name="week_5">ПЕТ</string>
+    <string name="week_6">СУБ</string>
+    <string name="week_7">НЕД</string>
+
+    <string name="wind_0">Мирно</string>
+    <string name="wind_1">Слаб ветар</string>
+    <string name="wind_2">Поветарац</string>
+    <string name="wind_3">Благ ветар</string>
+    <string name="wind_4">Умерен ветар</string>
+    <string name="wind_5">Јачи ветар</string>
+    <string name="wind_6">Јак ветар</string>
+    <string name="wind_7">Баш јак ветар</string>
+    <string name="wind_8">Олуја</string>
+    <string name="wind_9">Јака олуја</string>
+    <string name="wind_10">Невреме</string>
+    <string name="wind_11">Опасно невреме</string>
+    <string name="wind_12">Ураган/Тајфун</string>
+
+    <string name="aqi_1">Свеж ваздух</string>
+    <string name="aqi_2">Чист ваздух</string>
+    <string name="aqi_3">S-загађен</string>
+    <string name="aqi_4">M-загађен</string>
+    <string name="aqi_5">H-загађен</string>
+    <string name="aqi_6">Опасан</string>
+
+    <string name="daily_overview">дневни</string>
+    <string name="hourly_overview">часовни</string>
+    <string name="life_details">детаљни</string>
+
+    <string name="next">СЛЕДЕЋЕ</string>
+    <string name="done">ГОТОВО</string>
+    <string name="cancel" tools:ignore="ButtonCase">ОДУСТАНИ</string>
+    <string name="on">УПАЉЕНО</string>
+    <string name="off">УГАШЕНО</string>
+
+    <string name="about_app">О AПЛИКАЦИЈИ</string>
+    <string name="introduce">представљање</string>
+    <string name="email">E-mail</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">Преводиоци</string>
+    <string name="thanks">Хвала</string>
+
+    <!-- about. -->
+    <string name="baidu_location">Baidu Location</string>
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">HTTP клијент који ради на типу за Андроид и Jaву by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">Библиотека за учитавање слика и кеширање за Андроид, фокусира се на глатко померање.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">Јава серијализација/десеријализација библиотеке која може претворити Јава објекте у JSON и назад.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO је лака и брза ORM солуција за Aндроид која мапира објекте у SQLite датабазе.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">Дозволе</string>
+    <string name="feedback_request_location_permission_success">Захтевај дозволу за локацију.</string>
+    <string name="feedback_request_location_permission_failed">Захтев за одобрење локације није успео.</string>
+
+    <string name="feedback_location_failed">Локација неуспешна.</string>
+    <string name="feedback_get_weather_failed">Подаци о временским условима неуспешни.</string>
+
+    <string name="feedback_view_style">Стил изгледа.</string>
+    <string name="feedback_show_widget_card">Позадина картице.</string>
+    <string name="feedback_black_text">Тамни текст.</string>
+
+    <string name="feedback_click_toggle">Кликни на карту за добијање података.</string>
+    <string name="feedback_no_data">НЕМА ПОДАТАКА</string>
+
+    <string name="feedback_collect_failed">Ова локација већ постоји.</string>
+    <string name="feedback_collect_succeed">Успешно додата локација.</string>
+    <string name="feedback_delete_succeed">Успешно обрисана локација.</string>
+    <string name="feedback_location_list_cannot_be_null">Листа локација не може бити празна.</string>
+
+    <string name="feedback_search_location">Потражите локацију или \"локално\"…</string>
+    <string name="feedback_not_yet_location">Још увек није успела локација…</string>
+    <string name="feedback_search_nothing">Ништа није пронађено…</string>
+    <string name="feedback_initializing">Иницијализација…</string>
+
+    <string name="feedback_refresh_notification_after_back">Промена ће бити након повратка на почетну страну.</string>
+    <string name="feedback_refresh_notification_now">Освежи сада.</string>
+    <string name="feedback_refresh_ui_after_refresh">Промена ће бити након освежавања података.</string>
+    <string name="feedback_restart">Промена ће бити након рестарта.</string>
+
+    <!-- action -->
+    <string name="action_alert">Упозорење</string>
+    <string name="action_manage">Управљати</string>
+    <string name="action_search">Претрага</string>
+    <string name="action_settings">Подешавања</string>
+    <string name="action_about">О нама</string>
+
+    <!-- widget -->
+    <string name="widget_day">Дневно</string>
+    <string name="widget_week">Недељно</string>
+    <string name="widget_day_week">Дневно + Недељно</string>
+    <string name="widget_clock_day_horizontal">Сат + Дневно (Хоризонтални стил)</string>
+    <string name="widget_clock_day_vertical">Сат + Дневно (Вертикални стил)</string>
+    <string name="widget_clock_day_week">Време + Дневно + Недељно</string>
+    <string name="wait_refresh">чекање</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">Основно</string>
+    <string name="settings_title_background_free">Без позадине.</string>
+    <string name="settings_title_navigationBar_color">Боја траке за навигацију.</string>
+    <string name="settings_navigationBar_color_on">Прикажи боју теме.</string>
+    <string name="settings_navigationBar_color_off">Тамно.</string>
+    <string name="settings_language">Језик.</string>
+    <string name="settings_title_fahrenheit">Фаренхајт.</string>
+    <string name="settings_title_refresh_rate">Аутоматско освежавање</string>
+    <string name="settings_title_permanent_service">Стална служба.</string>
+    <string name="settings_category_forecast">Прогноза</string>
+    <string name="settings_title_forecast_today">Прогноза за данас.</string>
+    <string name="settings_title_forecast_today_time">Прогноза времена за данас.</string>
+    <string name="settings_title_forecast_tomorrow">Прогноза времена за сутра.</string>
+    <string name="settings_title_forecast_tomorrow_time">Прогноза времена за сутра време.</string>
+    <string name="settings_category_widget">Виџет</string>
+    <string name="settings_title_icon_style">Стил икона.</string>
+    <string name="settings_category_notification">Обавештење</string>
+    <string name="settings_title_notification">Пошаљи обавештење.</string>
+    <string name="settings_title_notification_temp_icon">Покажи температуру као мини икону.</string>
+    <string name="settings_title_notification_text_color">Боја текста.</string>
+    <string name="settings_title_notification_background">Боја позадине.</string>
+    <string name="settings_notification_background_on">Исто као контролни центар у AOSP.</string>
+    <string name="settings_notification_background_off">Прати систем.</string>
+    <string name="settings_title_notification_can_be_cleared">Може да се очисти.</string>
+    <string name="settings_notification_can_be_cleared_on">Може да се очисти.</string>
+    <string name="settings_notification_can_be_cleared_off">Не може да се очисти.</string>
+    <string name="settings_title_notification_hide_icon">Сакриј икону обавештења.</string>
+    <string name="settings_notification_hide_icon_on">Сакриј.</string>
+    <string name="settings_notification_hide_icon_off">Прикажи.</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Сакриј у закључаном екрану.</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Сакриј (треба да се отвори у системским подешавањима).</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Прикажи.</string>
+    <string name="settings_title_notification_hide_big_view">Сакриј велики приказ.</string>
+    <string name="settings_notification_hide_big_view_on">Сакриј.</string>
+    <string name="settings_notification_hide_big_view_off">Прикажи.</string>
+
+</resources>

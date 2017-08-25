@@ -4,14 +4,15 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
@@ -36,17 +37,22 @@ import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
  *
  * */
 
-public abstract class UpdateService extends Service
-        implements LocationHelper.OnRequestLocationListener, WeatherHelper.OnRequestWeatherListener {
+public abstract class UpdateService extends Service {
 
     private LocationHelper locationHelper;
     private WeatherHelper weatherHelper;
 
     private List<Location> locationList;
     private boolean refreshing;
+    private boolean needFailedCallback;
+
+    public static final String KEY_NEED_FAILED_CALLBACK = "need_failed_callback";
 
     @Override
     public void onCreate() {
+        super.onCreate();
+        locationHelper = new LocationHelper(this);
+        weatherHelper = new WeatherHelper();
         refreshing = false;
     }
 
@@ -56,7 +62,10 @@ public abstract class UpdateService extends Service
         if (!refreshing) {
             this.refreshing = true;
             this.locationList = DatabaseHelper.getInstance(this).readLocationList();
-            this.doRefresh(locationList.get(0));
+            requestData(0, false);
+        }
+        if (!needFailedCallback) {
+            needFailedCallback = intent.getBooleanExtra(KEY_NEED_FAILED_CALLBACK, false);
         }
         return START_NOT_STICKY;
     }
@@ -65,115 +74,130 @@ public abstract class UpdateService extends Service
     public void onDestroy() {
         super.onDestroy();
         refreshing = false;
-        if (locationHelper != null) {
-            locationHelper.cancel();
-        }
-        if (weatherHelper != null) {
-            weatherHelper.cancel();
-        }
+        locationHelper.cancel();
+        weatherHelper.cancel();
     }
 
     // control.
 
-    protected abstract void doRefresh(Location location);
-
-    public void requestData(Location location) {
-        initLocationHelper();
-        locationHelper.requestLocation(this, location, this);
-    }
-
-    private void initLocationHelper() {
-        if (locationHelper == null) {
-            locationHelper = new LocationHelper(this);
+    private void requestData(int position, boolean located) {
+        if (locationList.get(position).isLocal() && !located) {
+            locationHelper.requestLocation(
+                    this, locationList.get(position), new RequestLocationCallback(position));
         } else {
-            locationHelper.cancel();
+            Weather old = DatabaseHelper.getInstance(UpdateService.this).readWeather(locationList.get(position));
+            if (old != null && old.isValid(0.5F)) {
+                new RequestWeatherCallback(old, position)
+                        .requestWeatherSuccess(old, locationList.get(position));
+                return;
+            }
+            weatherHelper.requestWeather(
+                    this, locationList.get(position), new RequestWeatherCallback(old, position));
         }
     }
 
-    private void initWeatherHelper() {
-        if (weatherHelper == null) {
-            weatherHelper = new WeatherHelper();
-        } else {
-            weatherHelper.cancel();
-        }
-    }
-
-    public abstract void updateView(Context context, Location location, Weather weather);
+    public abstract void updateView(Context context, Location location, @Nullable Weather weather);
 
     // interface.
 
     // on request location listener.
 
-    @Override
-    public void requestLocationSuccess(Location requestLocation, boolean locationChanged) {
-        Weather weather = DatabaseHelper.getInstance(this).readWeather(requestLocation);
-        if (weather != null) {
-            Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH) + 1;
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-            String[] weatherDates = weather.base.date.split("-");
-            String[] weatherTimes = weather.base.time.split(":");
+    private class RequestLocationCallback implements LocationHelper.OnRequestLocationListener {
 
-            if (!locationChanged
-                    && year == Integer.parseInt(weatherDates[0])
-                    && month == Integer.parseInt(weatherDates[1])
-                    && day == Integer.parseInt(weatherDates[2])) {
+        private int position;
 
-                if (Math.abs((hour * 60 + minute) - (Integer.parseInt(weatherTimes[0]) * 60
-                        + Integer.parseInt(weatherTimes[1]))) <= 30) {
-                    requestWeatherSuccess(weather, requestLocation);
-                    return;
-                }
-            }
+        RequestLocationCallback(int position) {
+            this.position = position;
         }
 
-        initWeatherHelper();
-        if(requestLocation.isLocal()) {
+        @Override
+        public void requestLocationSuccess(Location requestLocation, boolean locationChanged) {
+            Weather old = DatabaseHelper.getInstance(UpdateService.this).readWeather(locationList.get(position));
+            if (old != null && old.isValid(0.5F) && !locationChanged) {
+                new RequestWeatherCallback(old, position)
+                        .requestWeatherSuccess(old, locationList.get(position));
+                return;
+            }
+
             if (requestLocation.isUsable()) {
-                weatherHelper.requestWeather(this, requestLocation, this);
+                requestData(position, true);
             } else {
-                weatherHelper.requestWeather(this, Location.buildDefaultLocation(), this);
+                requestLocationFailed(requestLocation);
                 Toast.makeText(
-                        this,
+                        UpdateService.this,
                         getString(R.string.feedback_not_yet_location),
                         Toast.LENGTH_SHORT).show();
             }
-        } else {
-            weatherHelper.requestWeather(this, requestLocation, this);
         }
-    }
 
-    @Override
-    public void requestLocationFailed(Location requestLocation) {
-        requestWeatherFailed(requestLocation);
+        @Override
+        public void requestLocationFailed(Location requestLocation) {
+            if (locationList.get(position).isUsable()) {
+                requestData(position, true);
+            } else {
+                new RequestWeatherCallback(null, position)
+                        .requestWeatherFailed(locationList.get(position));
+            }
+        }
     }
 
     // on request weather listener.
 
-    @Override
-    public void requestWeatherSuccess(Weather weather, Location requestLocation) {
-        Weather oldResult = DatabaseHelper.getInstance(this).readWeather(requestLocation);
-        DatabaseHelper.getInstance(this).writeWeather(requestLocation, weather);
-        DatabaseHelper.getInstance(this).writeHistory(weather);
-        NotificationUtils.checkAndSendAlert(this, weather, oldResult);
-        updateView(this, requestLocation, weather);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcuts(this, locationList);
-        }
-        stopSelf();
-    }
+    private class RequestWeatherCallback implements WeatherHelper.OnRequestWeatherListener {
 
-    @Override
-    public void requestWeatherFailed(Location requestLocation) {
-        Weather weather = DatabaseHelper.getInstance(this).readWeather(requestLocation);
-        updateView(this, requestLocation, weather);
-        Toast.makeText(
-                this,
-                getString(R.string.feedback_get_weather_failed),
-                Toast.LENGTH_SHORT).show();
-        stopSelf();
+        @Nullable
+        private Weather old;
+        private int position;
+
+        RequestWeatherCallback(@Nullable Weather old, int position) {
+            this.old = old;
+            this.position = position;
+        }
+
+        @Override
+        public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+            DatabaseHelper.getInstance(UpdateService.this).writeWeather(requestLocation, weather);
+            DatabaseHelper.getInstance(UpdateService.this).writeHistory(weather);
+            if (position == 0) {
+                NotificationUtils.checkAndSendAlert(UpdateService.this, weather, old);
+                updateView(UpdateService.this, requestLocation, weather);
+
+                if (needFailedCallback && weather == null) {
+                    Intent intent = new Intent(UpdateService.this, PollingService.class);
+                    intent.putExtra(PollingService.KEY_POLLING_UPDATE_FAILED, true);
+                    startService(intent);
+                }
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                ShortcutsManager.refreshShortcuts(UpdateService.this, locationList);
+            }
+            if (position + 1 < locationList.size()) {
+                requestData(position + 1, false);
+            } else {
+                stopSelf();
+            }
+        }
+
+        @Override
+        public void requestWeatherFailed(Location requestLocation) {
+            if (position == 0) {
+                updateView(UpdateService.this, requestLocation, old);
+                Toast.makeText(
+                        UpdateService.this,
+                        getString(R.string.feedback_get_weather_failed),
+                        Toast.LENGTH_SHORT).show();
+
+                if (needFailedCallback) {
+                    Intent intent = new Intent(UpdateService.this, PollingService.class);
+                    intent.putExtra(PollingService.KEY_POLLING_UPDATE_FAILED, true);
+                    startService(intent);
+                }
+            }
+            if (position + 1 < locationList.size()) {
+                requestData(position + 1, false);
+            } else {
+                stopSelf();
+            }
+        }
     }
 }

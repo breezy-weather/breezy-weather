@@ -37,7 +37,7 @@ public class ManageActivity extends GeoActivity
 
     public static final int SEARCH_ACTIVITY = 1;
 
-    public class LocationSwipeCallback extends ItemTouchHelper.SimpleCallback {
+    private class LocationSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
         LocationSwipeCallback(int dragDirs, int swipeDirs) {
             super(dragDirs, swipeDirs);

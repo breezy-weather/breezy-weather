@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSpinner;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
@@ -38,7 +40,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
-        implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+        implements View.OnClickListener {
 
     private View[] widgetViews;
     private ImageView widgetCard;
@@ -50,14 +52,17 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
     private CoordinatorLayout container;
 
     private Switch showCardSwitch;
-    private Switch hideRefreshTimeSwitch;
-    private Switch showAqiOrWindSwitch;
+    private Switch hideSubtitleSwitch;
     private Switch blackTextSwitch;
 
     // data
     private String viewTypeValueNow = "rectangle";
     private String[] viewTypes;
     private String[] viewTypeValues;
+
+    private String subtitleDataValueNow = "time";
+    private String[] subtitleData;
+    private String[] subtitleDataValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,8 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         super.initData();
         this.viewTypes = getResources().getStringArray(R.array.widget_styles);
         this.viewTypeValues = getResources().getStringArray(R.array.widget_style_values);
+        this.subtitleData = getResources().getStringArray(R.array.subtitle_data);
+        this.subtitleDataValues = getResources().getStringArray(R.array.subtitle_data_values);
     }
 
     @Override
@@ -86,18 +93,19 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_day_container);
 
-        AppCompatSpinner spinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_day_styleSpinner);
-        spinner.setOnItemSelectedListener(this);
-        spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, viewTypes));
+        AppCompatSpinner viewTypeSpinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_day_styleSpinner);
+        viewTypeSpinner.setOnItemSelectedListener(new ViewTypeSpinnerSelectedListener());
+        viewTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, viewTypes));
 
         this.showCardSwitch = (Switch) findViewById(R.id.activity_create_widget_day_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
 
-        this.hideRefreshTimeSwitch = (Switch) findViewById(R.id.activity_create_widget_day_hideRefreshTimeSwitch);
-        hideRefreshTimeSwitch.setOnCheckedChangeListener(new HideRefreshTimeSwitchCheckListener());
+        this.hideSubtitleSwitch = (Switch) findViewById(R.id.activity_create_widget_day_hideSubtitleSwitch);
+        hideSubtitleSwitch.setOnCheckedChangeListener(new HideRefreshTimeSwitchCheckListener());
 
-        this.showAqiOrWindSwitch = (Switch) findViewById(R.id.activity_create_widget_day_showAqiOrWindSwitch);
-        showAqiOrWindSwitch.setOnCheckedChangeListener(new ShowAqiOrWindSwitchCheckListener());
+        AppCompatSpinner subtitleDataSpinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_day_subtitleDataSpinner);
+        subtitleDataSpinner.setOnItemSelectedListener(new SubtitleDataSpinnerSelectedListener());
+        subtitleDataSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, subtitleData));
 
         this.blackTextSwitch = (Switch) findViewById(R.id.activity_create_widget_day_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
@@ -113,12 +121,18 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
             return;
         }
         getLocationNow().weather = weather;
+        String iconStyle = PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(
+                        getString(R.string.key_widget_icon_style),
+                        "material");
 
-        int[] imageId = WeatherHelper.getWeatherIcon(
+        int imageId = WeatherHelper.getWidgetNotificationIcon(
                 weather.realTime.weatherKind,
-                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime());
+                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime(),
+                iconStyle,
+                blackTextSwitch.isChecked());
         Glide.with(this)
-                .load(imageId[3])
+                .load(imageId)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(widgetIcon);
 
@@ -153,7 +167,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 widgetSubtitle.setText(weather.dailyList.get(0).date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
                 break;
         }
-        setTimeText(weather, showAqiOrWindSwitch.isChecked());
+        setTimeText(weather, subtitleDataValueNow);
     }
 
     @SuppressLint("InflateParams")
@@ -247,33 +261,48 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         }
     }
 
-    private void setTimeText(Weather weather, boolean showAqiOrWind) {
-        if (showAqiOrWind) {
-            if (widgetTime != null) {
+    private void setTimeText(Weather weather, String subtitleDataValue) {
+        if (weather == null || widgetTime == null) {
+            return;
+        }
+
+        switch (subtitleDataValue) {
+            case "time":
+                switch (viewTypeValueNow) {
+                    case "rectangle":
+                        widgetTime.setText(weather.base.city + " " + weather.base.time);
+                        break;
+
+                    case "symmetry":
+                        widgetTime.setText(weather.dailyList.get(0).week + " " + weather.base.time);
+                        break;
+
+                    case "tile":
+                        widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                        break;
+
+                    case "mini":
+                        widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                        break;
+                }
+                break;
+
+            case "aqi":
                 if (weather.aqi != null) {
                     widgetTime.setText(weather.aqi.quality + " (" + weather.aqi.aqi + ")");
-                } else {
-                    widgetTime.setText(weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
                 }
-            }
-        } else {
-            switch (viewTypeValueNow) {
-                case "rectangle":
-                    widgetTime.setText(weather.base.city + " " + weather.base.time);
-                    break;
+                break;
 
-                case "symmetry":
-                    widgetTime.setText(weather.dailyList.get(0).week + " " + weather.base.time);
-                    break;
+            case "wind":
+                widgetTime.setText(weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
+                break;
 
-                case "tile":
-                    widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                    break;
-
-                case "mini":
-                    widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                    break;
-            }
+            default:
+                widgetTime.setText(
+                        getString(R.string.feels_like) + " "
+                                + ValueUtils.buildAbbreviatedCurrentTemp(
+                                weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit()));
+                break;
         }
     }
 
@@ -291,8 +320,8 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                         .edit();
                 editor.putString(getString(R.string.key_view_type), viewTypeValueNow);
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
-                editor.putBoolean(getString(R.string.key_hide_refresh_time), hideRefreshTimeSwitch.isChecked());
-                editor.putBoolean(getString(R.string.key_show_aqi_or_wind), showAqiOrWindSwitch.isChecked());
+                editor.putBoolean(getString(R.string.key_hide_subtitle), hideSubtitleSwitch.isChecked());
+                editor.putString(getString(R.string.key_subtitle_data), subtitleDataValueNow);
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
                 editor.apply();
 
@@ -316,77 +345,97 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
     // on item selected listener.
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        if (!viewTypeValueNow.equals(viewTypeValues[i])) {
-            viewTypeValueNow = viewTypeValues[i];
-            setWidgetView(false);
-            refreshWidgetView(getLocationNow().weather);
+    private class ViewTypeSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
 
-            if (viewTypeValueNow.equals("pixel") || viewTypeValueNow.equals("nano")) {
-                showCardSwitch.setChecked(false);
-                showCardSwitch.setEnabled(false);
-            } else {
-                showCardSwitch.setEnabled(true);
-            }
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            if (!viewTypeValueNow.equals(viewTypeValues[i])) {
+                viewTypeValueNow = viewTypeValues[i];
+                setWidgetView(false);
+                refreshWidgetView(getLocationNow().weather);
 
-            if (showCardSwitch.isChecked()) {
-                if (widgetCard != null) {
-                    widgetCard.setVisibility(View.VISIBLE);
+                if (viewTypeValueNow.equals("pixel") || viewTypeValueNow.equals("nano")) {
+                    showCardSwitch.setChecked(false);
+                    showCardSwitch.setEnabled(false);
+                } else {
+                    showCardSwitch.setEnabled(true);
                 }
-                widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                if (widgetSubtitle != null) {
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                }
-                if (widgetTime != null) {
-                    widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                }
-            } else {
-                if (widgetCard != null) {
-                    widgetCard.setVisibility(View.GONE);
-                }
-                if (!blackTextSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+
+                if (showCardSwitch.isChecked()) {
+                    if (widgetCard != null) {
+                        widgetCard.setVisibility(View.VISIBLE);
+                    }
+                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
                     if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
                     }
                     if (widgetTime != null) {
-                        widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                    }
+                } else {
+                    if (widgetCard != null) {
+                        widgetCard.setVisibility(View.GONE);
+                    }
+                    if (!blackTextSwitch.isChecked()) {
+                        widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        if (widgetSubtitle != null) {
+                            widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        }
+                        if (widgetTime != null) {
+                            widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        }
                     }
                 }
-            }
 
-            if (viewTypeValueNow.equals("pixel")) {
-                widgetSubtitle.setVisibility(hideRefreshTimeSwitch.isChecked() ? View.GONE : View.VISIBLE);
-            } else if (widgetTime != null) {
-                widgetTime.setVisibility(hideRefreshTimeSwitch.isChecked() ? View.GONE : View.VISIBLE);
-            }
+                if (viewTypeValueNow.equals("pixel")) {
+                    widgetSubtitle.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
+                } else if (widgetTime != null) {
+                    widgetTime.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
+                }
 
-            if (blackTextSwitch.isChecked()) {
-                widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                if (widgetSubtitle != null) {
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                }
-                if (widgetTime != null) {
-                    widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                }
-            } else {
-                if (!showCardSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                if (blackTextSwitch.isChecked()) {
+                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
                     if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
                     }
                     if (widgetTime != null) {
-                        widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
+                    }
+                } else {
+                    if (!showCardSwitch.isChecked()) {
+                        widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        if (widgetSubtitle != null) {
+                            widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        }
+                        if (widgetTime != null) {
+                            widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
+                        }
                     }
                 }
             }
         }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+            // do nothing.
+        }
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-        // do nothing.
+    private class SubtitleDataSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            if (!subtitleDataValueNow.equals(subtitleDataValues[i])) {
+                subtitleDataValueNow = subtitleDataValues[i];
+                if (widgetTime != null) {
+                    setTimeText(getLocationNow().weather, subtitleDataValueNow);
+                }
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+            // do nothing.
+        }
     }
 
     // on check changed listener(switch).
@@ -431,16 +480,6 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 widgetSubtitle.setVisibility(isChecked ? View.GONE : View.VISIBLE);
             } else if (widgetTime != null) {
                 widgetTime.setVisibility(isChecked ? View.GONE : View.VISIBLE);
-            }
-        }
-    }
-
-    private class ShowAqiOrWindSwitchCheckListener implements CompoundButton.OnCheckedChangeListener {
-
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (widgetTime != null) {
-                setTimeText(getLocationNow().weather, isChecked);
             }
         }
     }

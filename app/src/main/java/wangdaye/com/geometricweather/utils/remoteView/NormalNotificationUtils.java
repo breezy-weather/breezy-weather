@@ -19,7 +19,6 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
-import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Normal notification utils.
@@ -40,6 +39,9 @@ public class NormalNotificationUtils {
 
         // get time & background color.
         boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        String iconStyle = sharedPreferences.getString(
+                context.getString(R.string.key_notification_icon_style),
+                "material");
         boolean tempIcon = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_temp_icon),
                 false);
@@ -87,9 +89,9 @@ public class NormalNotificationUtils {
         // set notification visibility.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (sharedPreferences.getBoolean(context.getString(R.string.key_notification_hide_in_lockScreen), false)) {
-                builder.setVisibility(Notification.VISIBILITY_SECRET);
+                builder.setVisibility(NotificationCompat.VISIBILITY_SECRET);
             } else {
-                builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+                builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
             }
         }
 
@@ -107,10 +109,11 @@ public class NormalNotificationUtils {
         // buildWeather base view.
         RemoteViews base = new RemoteViews(context.getPackageName(), R.layout.notification_base);
 
-        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
+        int imageId = WeatherHelper.getWidgetNotificationIcon(
+                weather.realTime.weatherKind, dayTime, iconStyle, textColor);
         base.setImageViewResource(
                 R.id.notification_base_icon,
-                imageId[3]);
+                imageId);
 
         base.setTextViewText(
                 R.id.notification_base_realtimeTemp,
@@ -175,10 +178,11 @@ public class NormalNotificationUtils {
             RemoteViews big = new RemoteViews(context.getPackageName(), R.layout.notification_big);
 
             // today
-            imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
+            imageId = WeatherHelper.getWidgetNotificationIcon(
+                    weather.realTime.weatherKind, dayTime, iconStyle, textColor);
             big.setImageViewResource(
                     R.id.notification_base_icon,
-                    imageId[3]);
+                    imageId);
 
             big.setTextViewText(
                     R.id.notification_base_realtimeTemp,
@@ -225,16 +229,6 @@ public class NormalNotificationUtils {
 
             // weekly.
 
-            switch (ChartStyleManager.getInstance(context).getPreviewTime()) {
-                case ChartStyleManager.PREVIEW_TIME_DAY:
-                    dayTime = true;
-                    break;
-
-                case ChartStyleManager.PREVIEW_TIME_NIGHT:
-                    dayTime = false;
-                    break;
-            }
-
             // 1
             big.setTextViewText( // set week 1.
                     R.id.notification_big_week_1,
@@ -242,12 +236,12 @@ public class NormalNotificationUtils {
             big.setTextViewText( // set temps 1.
                     R.id.notification_big_temp_1,
                     ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
-            imageId = WeatherHelper.getWeatherIcon( // get icon 1 resource id.
+            imageId = WeatherHelper.getWidgetNotificationIcon( // get icon 1 resource id.
                     dayTime ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
-                    dayTime);
+                    dayTime, iconStyle, textColor);
             big.setImageViewResource( // set icon 1.
                     R.id.notification_big_icon_1,
-                    imageId[3]);
+                    imageId);
             // 2
             big.setTextViewText( // set week 2.
                     R.id.notification_big_week_2,
@@ -255,12 +249,12 @@ public class NormalNotificationUtils {
             big.setTextViewText( // set temps 2.
                     R.id.notification_big_temp_2,
                     ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit));
-            imageId = WeatherHelper.getWeatherIcon( // get icon 2 resource id.
+            imageId = WeatherHelper.getWidgetNotificationIcon( // get icon 2 resource id.
                     dayTime ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
-                    dayTime);
+                    dayTime, iconStyle, textColor);
             big.setImageViewResource( // set icon 2.
                     R.id.notification_big_icon_2,
-                    imageId[3]);
+                    imageId);
             // 3
             big.setTextViewText( // set week 3.
                     R.id.notification_big_week_3,
@@ -268,12 +262,12 @@ public class NormalNotificationUtils {
             big.setTextViewText( // set temps 3.
                     R.id.notification_big_temp_3,
                     ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit));
-            imageId = WeatherHelper.getWeatherIcon( // get icon 3 resource id.
+            imageId = WeatherHelper.getWidgetNotificationIcon( // get icon 3 resource id.
                     dayTime ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
-                    dayTime);
+                    dayTime, iconStyle, textColor);
             big.setImageViewResource( // set icon 3.
                     R.id.notification_big_icon_3,
-                    imageId[3]);
+                    imageId);
             // 4
             big.setTextViewText( // set week 4.
                     R.id.notification_big_week_4,
@@ -281,12 +275,12 @@ public class NormalNotificationUtils {
             big.setTextViewText( // set temps 4.
                     R.id.notification_big_temp_4,
                     ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit));
-            imageId = WeatherHelper.getWeatherIcon( // get icon 4 resource id.
+            imageId = WeatherHelper.getWidgetNotificationIcon( // get icon 4 resource id.
                     dayTime ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
-                    dayTime);
+                    dayTime, iconStyle, textColor);
             big.setImageViewResource( // set icon 4.
                     R.id.notification_big_icon_4,
-                    imageId[3]);
+                    imageId);
             // 5
             big.setTextViewText( // set week 5.
                     R.id.notification_big_week_5,
@@ -294,12 +288,12 @@ public class NormalNotificationUtils {
             big.setTextViewText( // set temps 5.
                     R.id.notification_big_temp_5,
                     ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit));
-            imageId = WeatherHelper.getWeatherIcon( // get icon 5 resource id.
+            imageId = WeatherHelper.getWidgetNotificationIcon( // get icon 5 resource id.
                     dayTime ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
-                    dayTime);
+                    dayTime, iconStyle, textColor);
             big.setImageViewResource( // set icon 5.
                     R.id.notification_big_icon_5,
-                    imageId[3]);
+                    imageId);
 
             big.setViewVisibility(R.id.notification_base_background, View.GONE);
             if (backgroundColor) {

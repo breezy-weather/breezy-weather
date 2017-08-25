@@ -24,6 +24,7 @@
     <string name="daytime">Gündüz</string>
     <string name="nighttime">Gece</string>
     <string name="publish_at">Yayın</string>
+    <string name="feels_like">Gibi geliyor</string>
 
     <string name="of_clock">:00</string>
     <string name="yesterday">Dün</string>
@@ -58,7 +59,8 @@
     <string name="aqi_5">Çok kirli</string>
     <string name="aqi_6">Tehlikeli</string>
 
-    <string name="week_weather">Durum</string>
+    <string name="daily_overview">günlük</string>
+    <string name="hourly_overview">saatlik</string>
     <string name="life_details">Detaylar</string>
 
     <string name="next">SONRAKİ</string>
@@ -85,7 +87,6 @@
     <string name="feedback_view_style">Görüntüleme şekli.</string>
     <string name="feedback_show_widget_card">Kart görünümü.</string>
     <string name="feedback_black_text">Koyu yazı.</string>
-    <string name="feedback_hide_refresh_time">Güncelleme zamanını sakla.</string>
 
     <string name="feedback_click_toggle">Verileri değiştirmek için grafiği tıklayın.</string>
     <string name="feedback_no_data">VERİ YOK</string>

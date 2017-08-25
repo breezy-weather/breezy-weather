@@ -35,10 +35,21 @@ public class SettingsFragment extends PreferenceFragment
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         initBasicPart(sharedPreferences);
         initForecastPart(sharedPreferences);
+        initWidgetPart(sharedPreferences);
         initNotificationPart(sharedPreferences);
     }
 
     private void initBasicPart(SharedPreferences sharedPreferences) {
+        Preference uiStyle = findPreference(getString(R.string.key_ui_style));
+        uiStyle.setSummary(
+                ValueUtils.getUIStyle(
+                        getActivity(),
+                        PreferenceManager.getDefaultSharedPreferences(getActivity())
+                                .getString(
+                                        getString(R.string.key_ui_style),
+                                        "material")));
+        uiStyle.setOnPreferenceChangeListener(this);
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             findPreference(getString(R.string.key_navigationBar_color)).setEnabled(false);
         } else {
@@ -96,7 +107,28 @@ public class SettingsFragment extends PreferenceFragment
         }
     }
 
+    private void initWidgetPart(SharedPreferences sharedPreferences) {
+        // widget icon style.
+        ListPreference widgetIconStyle = (ListPreference) findPreference(getString(R.string.key_widget_icon_style));
+        widgetIconStyle.setSummary(
+                ValueUtils.getIconStyle(
+                        getActivity(),
+                        sharedPreferences.getString(getString(R.string.key_widget_icon_style), "material")));
+        widgetIconStyle.setOnPreferenceChangeListener(this);
+    }
+
     private void initNotificationPart(SharedPreferences sharedPreferences) {
+        // widget icon style.
+        ListPreference notificationIconStyle = (ListPreference) findPreference(getString(R.string.key_notification_icon_style));
+        notificationIconStyle.setSummary(
+                ValueUtils.getIconStyle(
+                        getActivity(),
+                        sharedPreferences.getString(getString(R.string.key_notification_icon_style), "material")));
+        notificationIconStyle.setOnPreferenceChangeListener(this);
+
+        // notification temp icon.
+        CheckBoxPreference notificationTempIcon = (CheckBoxPreference) findPreference(getString(R.string.key_notification_temp_icon));
+
         // notification text color.
         ListPreference notificationTextColor = (ListPreference) findPreference(getString(R.string.key_notification_text_color));
         notificationTextColor.setSummary(
@@ -104,9 +136,6 @@ public class SettingsFragment extends PreferenceFragment
                         getActivity(),
                         sharedPreferences.getString(getString(R.string.key_notification_text_color), "grey")));
         notificationTextColor.setOnPreferenceChangeListener(this);
-
-        // notification temp icon.
-        CheckBoxPreference notificationTempIcon = (CheckBoxPreference) findPreference(getString(R.string.key_notification_temp_icon));
 
         // notification background.
         CheckBoxPreference notificationBackground = (CheckBoxPreference) findPreference(getString(R.string.key_notification_background));
@@ -125,6 +154,7 @@ public class SettingsFragment extends PreferenceFragment
 
         if(sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
             // open notification.
+            notificationIconStyle.setEnabled(true);
             notificationTempIcon.setEnabled(true);
             notificationTextColor.setEnabled(true);
             notificationBackground.setEnabled(true);
@@ -138,6 +168,7 @@ public class SettingsFragment extends PreferenceFragment
             notificationHideBigView.setEnabled(true);
         } else {
             // close notification.
+            notificationIconStyle.setEnabled(false);
             notificationTempIcon.setEnabled(false);
             notificationTextColor.setEnabled(false);
             notificationBackground.setEnabled(false);
@@ -160,7 +191,7 @@ public class SettingsFragment extends PreferenceFragment
         } else if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
             // navigation bar color.
             GeometricWeather.getInstance().setColorNavigationBar();
-            DisplayUtils.setNavigationBarColor(getActivity(), true);
+            DisplayUtils.setNavigationBarColor(getActivity(), 0);
             return true;
         } else if (preference.getKey().equals(getString(R.string.key_fahrenheit))) {
             // ℉
@@ -197,6 +228,10 @@ public class SettingsFragment extends PreferenceFragment
             dialog.setOnTimeChangedListener(this);
             dialog.show(getFragmentManager(), null);
             return true;
+        } else if (preference.getKey().equals(getString(R.string.key_click_widget_to_refresh))) {
+            // click widget to refresh.
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification))) {
             // notification switch.
             initNotificationPart(sharedPreferences);
@@ -243,7 +278,10 @@ public class SettingsFragment extends PreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
-        if (preference.getKey().equals(getString(R.string.key_refresh_rate))) {
+        if (preference.getKey().equals(getString(R.string.key_ui_style))) {
+            // UI style.
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+        } else if (preference.getKey().equals(getString(R.string.key_refresh_rate))) {
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
             editor.putString(getString(R.string.key_refresh_rate), (String) o);
             editor.apply();
@@ -252,6 +290,11 @@ public class SettingsFragment extends PreferenceFragment
         } else if (preference.getKey().equals(getString(R.string.key_language))) {
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+        } else if (preference.getKey().equals(getString(R.string.key_widget_icon_style))
+                || preference.getKey().equals(getString(R.string.key_notification_icon_style))) {
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
+            preference.setSummary(ValueUtils.getIconStyle(getActivity(), (String) o));
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
             // notification text color.
             ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
@@ -265,11 +308,9 @@ public class SettingsFragment extends PreferenceFragment
     public void timeChanged() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         this.initForecastPart(sharedPreferences);
-        if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
-            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_FORECAST_TODAY);
-        }
-        if (sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_FORECAST_TOMORROW);
+        if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)
+                || sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
+            ServiceHelper.startupService(getActivity(), PollingService.FORCE_REFRESH_TYPE_FORECAST);
         }
     }
 }

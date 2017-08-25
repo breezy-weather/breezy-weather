@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_about_link"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/item_about_link_icon"
+        style="@style/material_icon"
+        tools:src="@drawable/ic_github"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/item_about_link_text"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/item_about_link_icon"
+        style="@style/content_text"
+        tools:text="@string/gitHub"
+        tools:ignore="RtlHardcoded" />
+
+</RelativeLayout>

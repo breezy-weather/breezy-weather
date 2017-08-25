@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
@@ -16,11 +17,11 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetWeekProvider;
+import wangdaye.com.geometricweather.service.NormalUpdateService;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
-import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Widget week utils.
@@ -43,18 +44,17 @@ public class WidgetWeekUtils {
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
 
         boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
-        switch (ChartStyleManager.getInstance(context).getPreviewTime()) {
-            case ChartStyleManager.PREVIEW_TIME_DAY:
-                dayTime = true;
-                break;
 
-            case ChartStyleManager.PREVIEW_TIME_NIGHT:
-                dayTime = false;
-                break;
-        }
-
-        boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.key_fahrenheit), false);
+        SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean fahrenheit = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_fahrenheit),
+                false);
+        String iconStyle = defaultSharePreferences.getString(
+                context.getString(R.string.key_widget_icon_style),
+                "material");
+        boolean touchToRefresh = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_click_widget_to_refresh),
+                false);
 
         // get text color.
         int textColor;
@@ -71,30 +71,31 @@ public class WidgetWeekUtils {
         // set icons.
         views.setImageViewResource(
                 R.id.widget_week_icon_1,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         views.setImageViewResource(
                 R.id.widget_week_icon_2,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         views.setImageViewResource(
                 R.id.widget_week_icon_3,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         views.setImageViewResource(
                 R.id.widget_week_icon_4,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         views.setImageViewResource(
                 R.id.widget_week_icon_5,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         // buildWeather week texts.
+        String firstWeekDay;
         String secondWeekDay;
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -104,18 +105,21 @@ public class WidgetWeekUtils {
         if (Integer.parseInt(weatherDates[0]) == year
                 && Integer.parseInt(weatherDates[1]) == month
                 && Integer.parseInt(weatherDates[2]) == day) {
-            secondWeekDay = context.getString(R.string.tomorrow);
+            firstWeekDay = context.getString(R.string.today);
+            secondWeekDay = weather.dailyList.get(1).week;
         } else if (Integer.parseInt(weatherDates[0]) == year
                 && Integer.parseInt(weatherDates[1]) == month
                 && Integer.parseInt(weatherDates[2]) == day - 1) {
+            firstWeekDay = context.getString(R.string.yesterday);
             secondWeekDay = context.getString(R.string.today);
         } else {
+            firstWeekDay = weather.dailyList.get(0).week;
             secondWeekDay = weather.dailyList.get(1).week;
         }
         // set week texts.
         views.setTextViewText(
                 R.id.widget_week_week_1,
-                weather.base.city);
+                firstWeekDay);
         views.setTextViewText(
                 R.id.widget_week_week_2,
                 secondWeekDay);
@@ -158,11 +162,20 @@ public class WidgetWeekUtils {
         // set card visibility.
         views.setViewVisibility(R.id.widget_week_card, showCard ? View.VISIBLE : View.GONE);
         // set intent.
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                context,
-                PENDING_INTENT_CODE,
-                IntentHelper.buildMainActivityIntent(context, location),
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent;
+        if (touchToRefresh) {
+            pendingIntent = PendingIntent.getService(
+                    context,
+                    PENDING_INTENT_CODE,
+                    new Intent(context, NormalUpdateService.class),
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+        } else {
+            pendingIntent = PendingIntent.getActivity(
+                    context,
+                    PENDING_INTENT_CODE,
+                    IntentHelper.buildMainActivityIntent(context, location),
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+        }
         views.setOnClickPendingIntent(R.id.widget_week_button, pendingIntent);
 
         // commit.

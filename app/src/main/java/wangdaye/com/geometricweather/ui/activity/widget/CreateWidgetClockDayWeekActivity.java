@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -31,7 +32,6 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
-import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Create widget clock day week activity.
@@ -120,27 +120,25 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
             return;
         }
         getLocationNow().weather = weather;
+        String iconStyle = PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(
+                        getString(R.string.key_widget_icon_style),
+                        "material");
 
         boolean dayTime = TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime();
 
-        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
+        int imageId = WeatherHelper.getWidgetNotificationIcon(
+                weather.realTime.weatherKind,
+                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime(),
+                iconStyle,
+                blackTextSwitch.isChecked());
         Glide.with(this)
-                .load(imageId[3])
+                .load(imageId)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(widgetIcon);
 
         widgetTitle.setText(weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
         widgetSubtitle.setText(weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
-
-        switch (ChartStyleManager.getInstance(this).getPreviewTime()) {
-            case ChartStyleManager.PREVIEW_TIME_DAY:
-                dayTime = true;
-                break;
-
-            case ChartStyleManager.PREVIEW_TIME_NIGHT:
-                dayTime = false;
-                break;
-        }
 
         String firstWeekDay;
         String secondWeekDay;
@@ -172,11 +170,13 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
             } else {
                 widgetWeeks[i].setText(weather.dailyList.get(i).week);
             }
-            int[] imageIds = WeatherHelper.getWeatherIcon(
+            imageId = WeatherHelper.getWidgetNotificationIcon(
                     dayTime ? weather.dailyList.get(i).weatherKinds[0] : weather.dailyList.get(i).weatherKinds[1],
-                    dayTime);
+                    dayTime,
+                    iconStyle,
+                    blackTextSwitch.isChecked());
             Glide.with(this)
-                    .load(imageIds[3])
+                    .load(imageId)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(widgetIcons[i]);
             widgetTemps[i].setText(ValueUtils.buildDailyTemp(weather.dailyList.get(i).temps, false, isFahrenheit()));

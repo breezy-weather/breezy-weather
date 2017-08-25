@@ -30,33 +30,12 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/activity_about_scrollView"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_about_recyclerView"
             android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include layout="@layout/container_about_app" />
-
-                <FrameLayout
-                    android:background="@color/colorLine"
-                    android:layout_marginLeft="@dimen/large_margin"
-                    android:layout_marginRight="@dimen/large_margin"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp" />
-
-                <include layout="@layout/container_about_thx" />
-
-            </LinearLayout>
-
-        </android.support.v4.widget.NestedScrollView>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 

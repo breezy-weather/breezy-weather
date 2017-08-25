@@ -39,17 +39,20 @@ public class DailyEntity {
     public String nighttimeWindSpeed;
     public String daytimeWindLevel;
     public String nighttimeWindLevel;
+    public int daytimeWindDegree;
+    public int nighttimeWindDegree;
     public String sunrise;
     public String sunset;
     public int daytimePrecipitations;
     public int nighttimePrecipitations;
 
-    @Generated(hash = 1302784266)
+    @Generated(hash = 1398898456)
     public DailyEntity(Long id, String cityId, String city, String date, String week, String daytimeWeather,
             String nighttimeWeather, String daytimeWeatherKind, String nighttimeWeatherKind, int maxiTemp,
             int miniTemp, String daytimeWindDir, String nighttimeWindDir, String daytimeWindSpeed,
-            String nighttimeWindSpeed, String daytimeWindLevel, String nighttimeWindLevel, String sunrise,
-            String sunset, int daytimePrecipitations, int nighttimePrecipitations) {
+            String nighttimeWindSpeed, String daytimeWindLevel, String nighttimeWindLevel, int daytimeWindDegree,
+            int nighttimeWindDegree, String sunrise, String sunset, int daytimePrecipitations,
+            int nighttimePrecipitations) {
         this.id = id;
         this.cityId = cityId;
         this.city = city;
@@ -67,6 +70,8 @@ public class DailyEntity {
         this.nighttimeWindSpeed = nighttimeWindSpeed;
         this.daytimeWindLevel = daytimeWindLevel;
         this.nighttimeWindLevel = nighttimeWindLevel;
+        this.daytimeWindDegree = daytimeWindDegree;
+        this.nighttimeWindDegree = nighttimeWindDegree;
         this.sunrise = sunrise;
         this.sunset = sunset;
         this.daytimePrecipitations = daytimePrecipitations;
@@ -99,6 +104,8 @@ public class DailyEntity {
             entity.nighttimeWindSpeed = weather.dailyList.get(i).windSpeeds[1];
             entity.daytimeWindLevel = weather.dailyList.get(i).windLevels[0];
             entity.nighttimeWindLevel = weather.dailyList.get(i).windLevels[1];
+            entity.daytimeWindDegree = weather.dailyList.get(i).windDegrees[0];
+            entity.nighttimeWindDegree = weather.dailyList.get(i).windDegrees[1];
             entity.sunrise = weather.dailyList.get(i).astros[0];
             entity.sunset = weather.dailyList.get(i).astros[1];
             entity.daytimePrecipitations = weather.dailyList.get(i).precipitations[0];
@@ -282,6 +289,22 @@ public class DailyEntity {
 
     public void setNighttimeWindLevel(String nighttimeWindLevel) {
         this.nighttimeWindLevel = nighttimeWindLevel;
+    }
+
+    public int getDaytimeWindDegree() {
+        return this.daytimeWindDegree;
+    }
+
+    public void setDaytimeWindDegree(int daytimeWindDegree) {
+        this.daytimeWindDegree = daytimeWindDegree;
+    }
+
+    public int getNighttimeWindDegree() {
+        return this.nighttimeWindDegree;
+    }
+
+    public void setNighttimeWindDegree(int nighttimeWindDegree) {
+        this.nighttimeWindDegree = nighttimeWindDegree;
     }
 
     public String getSunrise() {

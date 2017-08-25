@@ -15,14 +15,20 @@ public abstract class GeoDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        GeometricWeather.getInstance().getTopActivity().getDialogList().add(this);
+        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
+        if (activity != null) {
+            activity.getDialogList().add(this);
+        }
         return super.onCreateDialog(savedInstanceState);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        GeometricWeather.getInstance().getTopActivity().getDialogList().remove(this);
+        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
+        if (activity != null) {
+            activity.getDialogList().remove(this);
+        }
     }
 
     public abstract View getSnackbarContainer();

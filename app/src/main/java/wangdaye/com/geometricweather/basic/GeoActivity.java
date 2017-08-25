@@ -9,7 +9,6 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
  * Geometric weather activity.
@@ -25,9 +24,9 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         GeometricWeather.getInstance().addActivity(this);
-        DisplayUtils.setWindowTopColor(this);
         DisplayUtils.setStatusBarTranslate(getWindow());
-        DisplayUtils.setNavigationBarColor(this, TimeManager.getInstance(this).isDayTime());
+        DisplayUtils.setWindowTopColor(this, 0);
+        DisplayUtils.setNavigationBarColor(this, 0);
 
         this.dialogList = new ArrayList<>();
         this.started = false;

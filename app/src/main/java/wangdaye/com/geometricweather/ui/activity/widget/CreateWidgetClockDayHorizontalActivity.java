@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -94,12 +95,18 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
             return;
         }
         getLocationNow().weather = weather;
+        String iconStyle = PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(
+                        getString(R.string.key_widget_icon_style),
+                        "material");
 
-        int[] imageId = WeatherHelper.getWeatherIcon(
+        int imageId = WeatherHelper.getWidgetNotificationIcon(
                 weather.realTime.weatherKind,
-                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime());
+                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime(),
+                iconStyle,
+                blackTextSwitch.isChecked());
         Glide.with(this)
-                .load(imageId[3])
+                .load(imageId)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(widgetIcon);
         widgetTitle.setText(weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);

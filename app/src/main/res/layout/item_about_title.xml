@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_about_title"
+    android:layout_margin="@dimen/normal_margin"
+    android:textStyle="bold"
+    style="@style/content_text"
+    tools:text="@string/about_app" />

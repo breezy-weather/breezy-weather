@@ -2,6 +2,9 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import org.greenrobot.greendao.database.Database;
 
 import java.util.List;
 
@@ -12,9 +15,13 @@ import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
+import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntityDao;
 
 /**
  * Database helper
@@ -33,11 +40,38 @@ public class DatabaseHelper {
         return instance;
     }
 
-    private DaoMaster.DevOpenHelper helper;
+    private GeoWeatherOpenHelper helper;
     private final static String DATABASE_NAME = "Geometric_Weather_db";
 
+    private class GeoWeatherOpenHelper extends DaoMaster.DevOpenHelper {
+
+        GeoWeatherOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
+            super(context, name, factory);
+        }
+
+        @Override
+        public void onUpgrade(Database db, int oldVersion, int newVersion) {
+            Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
+            if (newVersion >= 22) {
+                if (oldVersion < 22) {
+                    WeatherEntityDao.dropTable(db, true);
+                    DailyEntityDao.dropTable(db, true);
+                    HourlyEntityDao.dropTable(db, true);
+                    AlarmEntityDao.dropTable(db, true);
+
+                    WeatherEntityDao.createTable(db, true);
+                    DailyEntityDao.createTable(db, true);
+                    HourlyEntityDao.createTable(db, true);
+                    AlarmEntityDao.createTable(db, true);
+                }
+            } else {
+                super.onUpgrade(db, oldVersion, newVersion);
+            }
+        }
+    }
+
     private DatabaseHelper(Context c) {
-        helper = new DaoMaster.DevOpenHelper(c, DATABASE_NAME);
+        helper = new GeoWeatherOpenHelper(c, DATABASE_NAME, null);
     }
 
     private SQLiteDatabase getDatabase() {

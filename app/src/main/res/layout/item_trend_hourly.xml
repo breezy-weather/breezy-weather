@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wangdaye.com.geometricweather.ui.widget.trendView.TrendItemContainerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_trend_hourly"
+    android:layout_width="56dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:foreground="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/item_trend_hourly_txt"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:maxLines="1"
+        android:gravity="center"
+        style="@style/content_text"
+        tools:text="13时" />
+
+    <ImageView
+        android:id="@+id/item_trend_hourly_icon_day"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="@dimen/little_margin"
+        tools:src="@drawable/weather_sun_day"
+        tools:ignore="ContentDescription" />
+
+    <wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView
+        android:id="@+id/item_trend_hourly_trendItem"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_marginBottom="@dimen/normal_margin"/>
+
+</wangdaye.com.geometricweather.ui.widget.trendView.TrendItemContainerLayout>
+

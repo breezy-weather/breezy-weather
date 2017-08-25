@@ -20,8 +20,8 @@
         <FrameLayout
             android:id="@+id/activity_create_widget_clock_day_week_widgetContainer"
             android:layout_centerInParent="true"
-            android:layout_width="300dp"
-            android:layout_height="172dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <!-- Sprache -->
+    <string-array name="languages">
+        <item>Follow system</item>
+        <item>中文</item>
+        <item>繁體中文</item>
+        <item>English</item>
+        <item>Türkçe</item>
+        <item>Français</item>
+        <item>Pусский</item>
+        <item>Deutsch</item>
+        <item>Српски</item>
+    </string-array>
+
+    <!-- Aktualisierungsintervall -->
+    <string-array name="automatic_refresh_rates">
+        <item>30 Minuten</item>
+        <item>1 Stunde</item>
+        <item>1,5 Stunden</item>
+        <item>2 Stunden</item>
+        <item>2,5 Stunden</item>
+        <item>3 Stunden</item>
+        <item>3,5 Stunden</item>
+        <item>4 Stunden</item>
+    </string-array>
+
+    <!-- Benachrichtigungstext -->
+    <string-array name="notification_text_colors">
+        <item>Dark</item>
+        <item>Grey</item>
+        <item>Light</item>
+    </string-array>
+
+    <!-- Widget Stil -->
+    <string-array name="widget_styles">
+        <item>Rechteckig</item>
+        <item>Symmetrisch</item>
+        <item>Kachel</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+    </string-array>
+
+    <!-- Icon Stil -->
+    <string-array name="icon_styles">
+        <item>Material</item>
+        <item>Minimal</item>
+    </string-array>
+
+</resources>

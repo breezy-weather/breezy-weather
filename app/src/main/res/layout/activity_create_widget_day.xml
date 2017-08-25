@@ -21,8 +21,8 @@
         <FrameLayout
             android:id="@+id/activity_create_widget_day_widgetContainer"
             android:layout_centerInParent="true"
-            android:layout_width="180dp"
-            android:layout_height="96dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
@@ -93,14 +93,14 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/activity_create_widget_day_hideRefreshTimeTitle"
+                        android:id="@+id/activity_create_widget_day_hideSubtitleTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_hide_refresh_time"
+                        android:text="@string/feedback_hide_subtitle"
                         style="@style/content_text" />
 
                     <Switch
-                        android:id="@+id/activity_create_widget_day_hideRefreshTimeSwitch"
+                        android:id="@+id/activity_create_widget_day_hideSubtitleSwitch"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/normal_margin"
@@ -114,18 +114,23 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/activity_create_widget_day_showAqiOrWindTitle"
+                        android:id="@+id/activity_create_widget_day_subtitleDataTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_show_aqi_or_wind"
+                        android:text="@string/feedback_subtitle_data"
                         style="@style/content_text" />
 
-                    <Switch
-                        android:id="@+id/activity_create_widget_day_showAqiOrWindSwitch"
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/activity_create_widget_day_subtitleDataSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown"
+                        android:layout_toRightOf="@id/activity_create_widget_day_subtitleDataTitle"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/normal_margin"
                         android:layout_marginRight="@dimen/normal_margin"
-                        style="@style/my_switch"
+                        app:theme="@style/spinner_item"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>

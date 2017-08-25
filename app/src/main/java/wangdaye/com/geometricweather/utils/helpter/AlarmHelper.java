@@ -53,20 +53,9 @@ public class AlarmHelper {
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        int realTimes[] = new int[] {
-                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                Calendar.getInstance().get(Calendar.MINUTE)};
-        int setTimes[] = new int[]{
-                Integer.parseInt(todayForecastTime.split(":")[0]),
-                Integer.parseInt(todayForecastTime.split(":")[1])};
-        int duration = (setTimes[0] - realTimes[0]) * HOUR + (setTimes[1] - realTimes[1]) * MINUTE;
-        if (duration <= 0) {
-            duration += 24 * HOUR;
-        }
-
         ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).set(
                 AlarmManager.ELAPSED_REALTIME,
-                SystemClock.elapsedRealtime() + duration,
+                SystemClock.elapsedRealtime() + getAlarmDelay(todayForecastTime),
                 pendingIntent);
     }
 
@@ -88,20 +77,9 @@ public class AlarmHelper {
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        int realTimes[] = new int[] {
-                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                Calendar.getInstance().get(Calendar.MINUTE)};
-        int setTimes[] = new int[]{
-                Integer.parseInt(tomorrowForecastTime.split(":")[0]),
-                Integer.parseInt(tomorrowForecastTime.split(":")[1])};
-        int duration = (setTimes[0] - realTimes[0]) * HOUR + (setTimes[1] - realTimes[1]) * MINUTE;
-        if (duration <= 0) {
-            duration += 24 * HOUR;
-        }
-
         ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).set(
                 AlarmManager.ELAPSED_REALTIME,
-                SystemClock.elapsedRealtime() + duration,
+                SystemClock.elapsedRealtime() + getAlarmDelay(tomorrowForecastTime),
                 pendingIntent);
     }
 
@@ -112,5 +90,19 @@ public class AlarmHelper {
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
         ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).cancel(pendingIntent);
+    }
+
+    private static long getAlarmDelay(String time) {
+        int realTimes[] = new int[] {
+                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                Calendar.getInstance().get(Calendar.MINUTE)};
+        int setTimes[] = new int[]{
+                Integer.parseInt(time.split(":")[0]),
+                Integer.parseInt(time.split(":")[1])};
+        int duration = (setTimes[0] - realTimes[0]) * HOUR + (setTimes[1] - realTimes[1]) * MINUTE;
+        if (duration <= 0) {
+            duration += 24 * HOUR;
+        }
+        return duration;
     }
 }

@@ -1,19 +1,15 @@
 package wangdaye.com.geometricweather.ui.activity;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.ui.dialog.TranslatorDialog;
+import wangdaye.com.geometricweather.ui.adapter.AboutAdapter;
 
 /**
  * About activity.
@@ -57,20 +53,9 @@ public class AboutActivity extends GeoActivity
         toolbar.setTitle(R.string.action_about);
         toolbar.setNavigationOnClickListener(this);
 
-        ImageView appIcon = (ImageView) findViewById(R.id.container_about_app_appIcon);
-        Glide.with(this)
-                .load(R.drawable.ic_launcher)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(appIcon);
-
-        findViewById(R.id.container_about_app_github).setOnClickListener(this);
-        findViewById(R.id.container_about_app_email).setOnClickListener(this);
-        findViewById(R.id.container_about_app_translator).setOnClickListener(this);
-        findViewById(R.id.container_about_thx_location).setOnClickListener(this);
-        findViewById(R.id.container_about_thx_retrofit).setOnClickListener(this);
-        findViewById(R.id.container_about_thx_glide).setOnClickListener(this);
-        findViewById(R.id.container_about_thx_gson).setOnClickListener(this);
-        findViewById(R.id.container_about_thx_greenDAO).setOnClickListener(this);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.activity_about_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new AboutAdapter(this));
     }
 
     // interface.
@@ -82,60 +67,6 @@ public class AboutActivity extends GeoActivity
         switch (v.getId()) {
             case -1:
                 finish();
-                break;
-
-            case R.id.container_about_app_github:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/WangDaYeeeeee/GeometricWeather")));
-                break;
-
-            case R.id.container_about_app_email:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_SENDTO,
-                                Uri.parse("mailto:wangdayeeeeee@gmail.com")));
-                break;
-
-            case R.id.container_about_app_translator:
-                TranslatorDialog dialog = new TranslatorDialog();
-                dialog.show(getFragmentManager(), null);
-                break;
-
-            case R.id.container_about_thx_location:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("http://lbsyun.baidu.com/index.php?title=android-locsdk")));
-                break;
-
-            case R.id.container_about_thx_retrofit:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/square/retrofit")));
-                break;
-
-            case R.id.container_about_thx_glide:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/bumptech/glide")));
-                break;
-
-            case R.id.container_about_thx_gson:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/google/gson")));
-                break;
-
-            case R.id.container_about_thx_greenDAO:
-                startActivity(
-                        new Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/greenrobot/greenDAO")));
                 break;
         }
     }

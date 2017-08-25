@@ -15,7 +15,6 @@ import android.view.animation.Transformation;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 
 /**
  * Swipe switch layout.
@@ -25,7 +24,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         implements GestureDetector.OnGestureListener {
 
     private View target;
-    private InkPageIndicator indicator;
+
     private GestureDetector gestureDetector;
     private OnSwitchListener switchListener;
     private OnSwipeListener swipeListener;
@@ -178,9 +177,6 @@ public class SwipeSwitchLayout extends CoordinatorLayout
                         isBeingDragged = true;
                         if (Math.abs(ev.getX() - initialX) > Math.abs(ev.getY() - initialY)) {
                             isHorizontalDragged = true;
-                            if (indicator != null) {
-                                indicator.setDisplayState(true);
-                            }
                         }
                     } else {
                         initialX = ev.getX();
@@ -223,9 +219,6 @@ public class SwipeSwitchLayout extends CoordinatorLayout
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                if (indicator != null) {
-                    indicator.setDisplayState(false);
-                }
                 if (swipeDistance != 0) {
                     if (Math.abs(swipeDistance) > Math.abs(swipeTrigger)) {
                         setPosition(ev.getX() < initialX ? DIRECTION_LEFT : DIRECTION_RIGHT);
@@ -327,10 +320,6 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         }
     }
 
-    public void setIndicator(InkPageIndicator indicator) {
-        this.indicator = indicator;
-    }
-
     public int getTotalCount() {
         return totalCount;
     }
@@ -391,9 +380,6 @@ public class SwipeSwitchLayout extends CoordinatorLayout
 
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        if (indicator != null) {
-            indicator.setDisplayState(false);
-        }
         if (Math.abs(swipeDistance) >= swipeTrigger) {
             setPosition(swipeDistance < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT);
             switchListener.swipeTakeEffect(swipeDistance < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT);

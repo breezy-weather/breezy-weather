@@ -10,6 +10,8 @@
         <item>Türkçe</item>
         <item>Français</item>
         <item>Pусский</item>
+        <item>Deutsch</item>
+        <item>Српски</item>
     </string-array>
 
     <!-- notification text color. -->

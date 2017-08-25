@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
@@ -12,16 +13,17 @@ import android.widget.RemoteViews;
 
 import java.util.Calendar;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetDayWeekProvider;
+import wangdaye.com.geometricweather.service.NormalUpdateService;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
-import wangdaye.com.geometricweather.utils.manager.ChartStyleManager;
 
 /**
  * Widget day week utils.
@@ -42,12 +44,20 @@ public class WidgetDayWeekUtils {
         String viewStyle = sharedPreferences.getString(context.getString(R.string.key_view_type), "rectangle");
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
-        boolean hideRefreshTime = sharedPreferences.getBoolean(context.getString(R.string.key_hide_refresh_time), false);
-        boolean showAqiOrWind = sharedPreferences.getBoolean(context.getString(R.string.key_show_aqi_or_wind), false);
+        boolean hideSubtitle = sharedPreferences.getBoolean(context.getString(R.string.key_hide_subtitle), false);
+        String subtitleData = sharedPreferences.getString(context.getString(R.string.key_subtitle_data), "time");
         boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
-        boolean fahrenheit = PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.key_fahrenheit), false);
+        SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean fahrenheit = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_fahrenheit),
+                false);
+        String iconStyle = defaultSharePreferences.getString(
+                context.getString(R.string.key_widget_icon_style),
+                "material");
+        boolean touchToRefresh = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_click_widget_to_refresh),
+                false);
 
         int textColor;
         if (blackText || showCard) {
@@ -58,44 +68,38 @@ public class WidgetDayWeekUtils {
 
         // build day part.
         RemoteViews views = buildWidgetViewDayPart(
-                context, weather, dayTime, textColor, fahrenheit, viewStyle, hideRefreshTime, showAqiOrWind);
+                context, weather,
+                dayTime, textColor, fahrenheit,
+                iconStyle, blackText, viewStyle,
+                hideSubtitle, subtitleData);
 
         // set week icons.
-        switch (ChartStyleManager.getInstance(context).getPreviewTime()) {
-            case ChartStyleManager.PREVIEW_TIME_DAY:
-                dayTime = true;
-                break;
-
-            case ChartStyleManager.PREVIEW_TIME_NIGHT:
-                dayTime = false;
-                break;
-        }
 
         views.setImageViewResource(
                 R.id.widget_day_week_icon_1,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         views.setImageViewResource(
                 R.id.widget_day_week_icon_2,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         views.setImageViewResource(
                 R.id.widget_day_week_icon_3,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         views.setImageViewResource(
                 R.id.widget_day_week_icon_4,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
         views.setImageViewResource(
                 R.id.widget_day_week_icon_5,
-                WeatherHelper.getWeatherIcon(
+                WeatherHelper.getWidgetNotificationIcon(
                         dayTime ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
-                        dayTime)[3]);
+                        dayTime, iconStyle, blackText));
 
         // set week texts.
         String firstWeekDay;
@@ -168,11 +172,20 @@ public class WidgetDayWeekUtils {
         views.setViewVisibility(R.id.widget_day_week_card, showCard ? View.VISIBLE : View.GONE);
 
         // set intent.
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                context,
-                PENDING_INTENT_CODE,
-                IntentHelper.buildMainActivityIntent(context, location),
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent;
+        if (touchToRefresh) {
+            pendingIntent = PendingIntent.getService(
+                    context,
+                    PENDING_INTENT_CODE,
+                    new Intent(context, NormalUpdateService.class),
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+        } else {
+            pendingIntent = PendingIntent.getActivity(
+                    context,
+                    PENDING_INTENT_CODE,
+                    IntentHelper.buildMainActivityIntent(context, location),
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+        }
         views.setOnClickPendingIntent(R.id.widget_day_week_button, pendingIntent);
 
         // commit.
@@ -184,106 +197,107 @@ public class WidgetDayWeekUtils {
 
     private static RemoteViews buildWidgetViewDayPart(Context context, Weather weather,
                                                       boolean dayTime, int textColor, boolean fahrenheit,
-                                                      String viewStyle,
-                                                      boolean hideRefreshTime, boolean showAqiOrWind) {
-        int[] imageId = WeatherHelper.getWeatherIcon(weather.realTime.weatherKind, dayTime);
-        RemoteViews views;
+                                                      String iconStyle, boolean blackText, String viewStyle,
+                                                      boolean hideSubtitle, String subtitleData) {
+        int imageId = WeatherHelper.getWidgetNotificationIcon(
+                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
         switch (viewStyle) {
             case "rectangle":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_rectangle);
 
                 String[] texts = WidgetUtils.buildWidgetDayStyleText(weather, fahrenheit);
 
-                views.setImageViewResource(R.id.widget_day_week_icon, imageId[3]);
+                views.setImageViewResource(R.id.widget_day_week_icon, imageId);
                 views.setTextViewText(R.id.widget_day_week_title, texts[0]);
                 views.setTextViewText(R.id.widget_day_week_subtitle, texts[1]);
-                if (showAqiOrWind) {
-                    if (weather.aqi != null) {
-                        views.setTextViewText(
-                                R.id.widget_day_week_time,
-                                weather.aqi.quality + " (" + weather.aqi.aqi + ")");
-                    } else {
-                        views.setTextViewText(
-                                R.id.widget_day_week_time,
-                                weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
-                    }
-                } else {
-                    views.setTextViewText(
-                            R.id.widget_day_week_time,
-                            weather.base.city + " " + weather.base.time);
-                }
 
                 views.setTextColor(R.id.widget_day_week_title, textColor);
                 views.setTextColor(R.id.widget_day_week_subtitle, textColor);
                 views.setTextColor(R.id.widget_day_week_time, textColor);
-                views.setViewVisibility(R.id.widget_day_week_time, hideRefreshTime ? View.GONE : View.VISIBLE);
-                return views;
+                views.setViewVisibility(R.id.widget_day_week_time, hideSubtitle ? View.GONE : View.VISIBLE);
+                break;
 
             case "symmetry":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
 
-                views.setImageViewResource(R.id.widget_day_week_icon, imageId[3]);
+                views.setImageViewResource(R.id.widget_day_week_icon, imageId);
                 views.setTextViewText(
                         R.id.widget_day_week_title,
                         weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_day_week_subtitle,
                         weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
-                if (showAqiOrWind) {
-                    if (weather.aqi != null) {
-                        views.setTextViewText(
-                                R.id.widget_day_week_time,
-                                weather.aqi.quality + " (" + weather.aqi.aqi + ")");
-                    } else {
-                        views.setTextViewText(
-                                R.id.widget_day_week_time,
-                                weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
-                    }
-                } else {
-                    views.setTextViewText(
-                            R.id.widget_day_week_time,
-                            weather.dailyList.get(0).week + " " + weather.base.time);
-                }
 
                 views.setTextColor(R.id.widget_day_week_title, textColor);
                 views.setTextColor(R.id.widget_day_week_subtitle, textColor);
                 views.setTextColor(R.id.widget_day_week_time, textColor);
-                views.setViewVisibility(R.id.widget_day_week_time, hideRefreshTime ? View.GONE : View.VISIBLE);
-                return views;
+                views.setViewVisibility(R.id.widget_day_week_time, hideSubtitle ? View.GONE : View.VISIBLE);
+                break;
 
             case "tile":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_tile);
 
-                views.setImageViewResource(R.id.widget_day_week_icon, imageId[3]);
+                views.setImageViewResource(R.id.widget_day_week_icon, imageId);
                 views.setTextViewText(
                         R.id.widget_day_week_title,
                         weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
                 views.setTextViewText(
                         R.id.widget_day_week_subtitle,
                         ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
-                if (showAqiOrWind) {
-                    if (weather.aqi != null) {
-                        views.setTextViewText(
-                                R.id.widget_day_week_time,
-                                weather.aqi.quality + " (" + weather.aqi.aqi + ")");
-                    } else {
-                        views.setTextViewText(
-                                R.id.widget_day_week_time,
-                                weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
-                    }
-                } else {
-                    views.setTextViewText(
-                            R.id.widget_day_week_time,
-                            weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                }
 
                 views.setTextColor(R.id.widget_day_week_title, textColor);
                 views.setTextColor(R.id.widget_day_week_subtitle, textColor);
                 views.setTextColor(R.id.widget_day_week_time, textColor);
-                views.setViewVisibility(R.id.widget_day_week_time, hideRefreshTime ? View.GONE : View.VISIBLE);
-                return views;
+                views.setViewVisibility(R.id.widget_day_week_time, hideSubtitle ? View.GONE : View.VISIBLE);
+                break;
         }
-        return new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
+        switch (subtitleData) {
+            case "time":
+                switch (viewStyle) {
+                    case "rectangle":
+                        views.setTextViewText(
+                                R.id.widget_day_week_time,
+                                weather.base.city + " " + weather.base.time);
+                        break;
+
+                    case "symmetry":
+                        views.setTextViewText(
+                                R.id.widget_day_week_time,
+                                weather.dailyList.get(0).week + " " + weather.base.time);
+                        break;
+
+                    case "tile":
+                        views.setTextViewText(
+                                R.id.widget_day_week_time,
+                                weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                        break;
+                }
+                break;
+
+            case "aqi":
+                if (weather.aqi != null) {
+                    views.setTextViewText(
+                            R.id.widget_day_week_time,
+                            weather.aqi.quality + " (" + weather.aqi.aqi + ")");
+                }
+                break;
+
+            case "wind":
+                views.setTextViewText(
+                        R.id.widget_day_week_time,
+                        weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
+                break;
+
+            default:
+                views.setTextViewText(
+                        R.id.widget_day_week_time,
+                        context.getString(R.string.feels_like) + " "
+                                + ValueUtils.buildAbbreviatedCurrentTemp(
+                                weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit()));
+                break;
+        }
+        return views;
     }
 
     public static boolean isEnable(Context context) {

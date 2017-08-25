@@ -90,7 +90,8 @@ public class Index {
         }
         winds[0] = c.getString(R.string.live) + " : " + result.Wind.Direction.Localized
                 + " " + result.Wind.Speed.Metric.Value + "km/h"
-                + " (" + WeatherHelper.getWindLevel(c, result.Wind.Speed.Metric.Value) + ")";
+                + " (" + WeatherHelper.getWindLevel(c, result.Wind.Speed.Metric.Value) + ") "
+                + WeatherHelper.getWindArrows(result.Wind.Direction.Degrees);
         humidities = new String[2];
         humidities[0] = c.getString(R.string.sensible_temp) + " : " + result.RealFeelTemperature.Metric.Value + "℃";
         humidities[1] = c.getString(R.string.humidity) + " : " + result.RelativeHumidity + "%";
@@ -111,10 +112,12 @@ public class Index {
         winds[1] =
                 c.getString(R.string.daytime) + " : " + result.DailyForecasts.get(0).Day.Wind.Direction.Localized
                         + " " + result.DailyForecasts.get(0).Day.Wind.Speed.Value + "km/h"
-                        + " (" + WeatherHelper.getWindLevel(c, result.DailyForecasts.get(0).Day.Wind.Speed.Value) + ")" + "\n"
+                        + " (" + WeatherHelper.getWindLevel(c, result.DailyForecasts.get(0).Day.Wind.Speed.Value) + ") "
+                        + WeatherHelper.getWindArrows(result.DailyForecasts.get(0).Day.Wind.Direction.Degrees) + "\n"
                         + c.getString(R.string.nighttime) + " : " + result.DailyForecasts.get(0).Night.Wind.Direction.Localized
                         + " " + result.DailyForecasts.get(0).Night.Wind.Speed.Value + "km/h"
-                        + " (" + WeatherHelper.getWindLevel(c, result.DailyForecasts.get(0).Night.Wind.Speed.Value) + ")";
+                        + " (" + WeatherHelper.getWindLevel(c, result.DailyForecasts.get(0).Night.Wind.Speed.Value) + ") "
+                        + WeatherHelper.getWindArrows(result.DailyForecasts.get(0).Night.Wind.Direction.Degrees) + "\n";
     }
 
     public void buildIndex(Context c, NewAqiResult result) {

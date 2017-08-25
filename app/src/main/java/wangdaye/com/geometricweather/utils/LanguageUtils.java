@@ -42,6 +42,14 @@ public class LanguageUtils {
                     locale = new Locale("ru");
                     break;
 
+                case "german":
+                    locale = new Locale("de");
+                    break;
+
+                case "serbian":
+                    locale = new Locale("sr");
+                    break;
+
                 default:
                     locale = new Locale("en");
                     break;

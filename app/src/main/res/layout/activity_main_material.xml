@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorRoot">
+
+    <wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView
+        android:id="@+id/activity_main_weatherView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout
+        android:id="@+id/activity_main_switchView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout
+            android:id="@+id/activity_main_refreshView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView
+                android:id="@+id/activity_main_scrollView"
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/activity_main_cardContainer"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants">
+
+                    <include layout="@layout/container_main_base_view" />
+                    <include layout="@layout/container_main_trend_daily_card" />
+                    <include layout="@layout/container_main_trend_hourly_card" />
+                    <include layout="@layout/container_main_details_card" />
+
+                </LinearLayout>
+
+            </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView>
+
+        </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/activity_main_appBar"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <wangdaye.com.geometricweather.ui.widget.StatusBarView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/activity_main_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                app:theme="@style/GeometricWeatherTheme.AppbarTheme"
+                app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
+
+        </LinearLayout>
+
+        <wangdaye.com.geometricweather.ui.widget.InkPageIndicator
+            android:id="@+id/activity_main_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            app:layout_behavior=".ui.behavior.InkPageIndicatorBehavior"
+            app:dotDiameter="8dp"
+            app:dotGap="8dp"
+            app:animationDuration="300"
+            app:pageIndicatorColor="@color/colorTextSubtitle"
+            app:currentPageIndicatorColor="@color/colorPrimary"/>
+        
+    </wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout>
+
+    <wangdaye.com.geometricweather.ui.widget.StatusBarView
+        android:id="@+id/activity_main_statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:alpha="0.05" />
+
+</FrameLayout>

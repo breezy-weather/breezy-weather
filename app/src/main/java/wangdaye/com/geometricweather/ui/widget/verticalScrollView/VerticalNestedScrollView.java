@@ -6,22 +6,17 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
-import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
-
 /**
  * Vertical nested scroll view.
  * */
 
 public class VerticalNestedScrollView extends NestedScrollView {
 
-    private InkPageIndicator indicator;
-
     private float initialX, initialY;
     private int touchSlop;
 
     private boolean isBeingDragged = false;
     private boolean isHorizontalDragged = false;
-    private boolean moveActionStarted = false;
 
     public VerticalNestedScrollView(Context context) {
         super(context);
@@ -40,10 +35,6 @@ public class VerticalNestedScrollView extends NestedScrollView {
 
     private void initialize() {
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-    }
-
-    public void setIndicator(InkPageIndicator indicator) {
-        this.indicator = indicator;
     }
 
     @Override
@@ -84,18 +75,6 @@ public class VerticalNestedScrollView extends NestedScrollView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-            if (!moveActionStarted && indicator != null) {
-                moveActionStarted = true;
-                indicator.setDisplayState(true);
-            }
-        } else if (ev.getAction() == MotionEvent.ACTION_UP
-                || ev.getAction() == MotionEvent.ACTION_CANCEL) {
-            moveActionStarted = false;
-            if (indicator != null) {
-                indicator.setDisplayState(false);
-            }
-        }
         return super.onTouchEvent(ev) && !isHorizontalDragged;
     }
 }

@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- app theme -->
-    <style name="GeometricWeatherTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="GeometricWeatherTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -77,19 +77,6 @@
         <item name="android:layout_marginLeft">@dimen/normal_margin</item>
         <item name="android:layout_marginRight">@dimen/normal_margin</item>
         <item name="android:layout_marginBottom">@dimen/normal_margin</item>
-    </style>
-
-    <style name="live_weather_icon">
-        <item name="android:layout_width">@dimen/live_weather_icon_size</item>
-        <item name="android:layout_height">@dimen/live_weather_icon_size</item>
-        <item name="android:layout_margin">@dimen/normal_margin</item>
-    </style>
-
-    <style name="week_weather_icon">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginLeft">@dimen/little_margin</item>
-        <item name="android:layout_marginRight">@dimen/little_margin</item>
     </style>
 
     <style name="widget_week_icon">

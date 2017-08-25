@@ -20,6 +20,7 @@ public class RealTime {
     public String windDir;
     public String windSpeed;
     public String windLevel;
+    public int windDegree;
     public String simpleForecast;
 
     RealTime() {}
@@ -56,6 +57,7 @@ public class RealTime {
         windDir = result.Wind.Direction.Localized;
         windSpeed = result.Wind.Speed.Metric.Value + "km/h";
         windLevel = WeatherHelper.getWindLevel(c, result.Wind.Speed.Metric.Value);
+        windDegree = result.Wind.Direction.Degrees;
     }
 
     public void buildRealTime(NewDailyResult result) {
@@ -70,6 +72,7 @@ public class RealTime {
         windDir = entity.realTimeWindDir;
         windSpeed = entity.realTimeWindSpeed;
         windLevel = entity.realTimeWindLevel;
+        windDegree = entity.realTimeWindDegree;
         simpleForecast = entity.realTimeSimpleForecast;
     }
 }

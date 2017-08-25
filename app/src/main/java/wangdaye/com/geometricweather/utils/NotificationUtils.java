@@ -84,6 +84,7 @@ public class NotificationUtils {
                 .setContentTitle(c.getString(R.string.action_alert))
                 .setSubText(alert.publishTime)
                 .setContentText(alert.description)
+                .setAutoCancel(true)
                 .setContentIntent(buildIntent(c, cityName));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
