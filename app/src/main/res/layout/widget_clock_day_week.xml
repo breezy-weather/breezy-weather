@@ -66,18 +66,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <TextView
+                <TextClock
                     android:id="@+id/widget_clock_day_week_title"
                     android:layout_centerInParent="true"
                     android:text="@string/wait_refresh"
+                    android:textSize="@dimen/content_text_size"
                     android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextGrey"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="1"
-                    style="@style/content_text"
-                    tools:text="05-17 周三"/>
+                    android:format24Hour="MM-dd EEE"
+                    android:format12Hour="MM-dd EEE"
+                    style="@style/widget_text_clock" />
 
             </RelativeLayout>
 

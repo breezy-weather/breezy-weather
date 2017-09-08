@@ -1,7 +1,7 @@
 package wangdaye.com.geometricweather.data.entity.model.weather;
 
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
@@ -34,26 +34,7 @@ public class Weather {
     }
 
     public boolean isValid(float hours) {
-        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH) + 1;
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
-        String[] weatherDates = base.date.split("-");
-        String[] weatherTimes = base.time.split(":");
-
-        if (year == Integer.parseInt(weatherDates[0])
-                && month == Integer.parseInt(weatherDates[1])
-                && day == Integer.parseInt(weatherDates[2])) {
-
-            if (Math.abs((hour * 60 + minute)
-                    - (Integer.parseInt(weatherTimes[0]) * 60 + Integer.parseInt(weatherTimes[1])))
-                    <= 60 * hours) {
-                return true;
-            }
-        }
-        return false;
+        return System.currentTimeMillis() - base.timeStamp < hours * 60 * 60 * 1000;
     }
 
 /*

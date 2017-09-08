@@ -65,100 +65,60 @@ public class WidgetClockDayWeekUtils {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_week);
 
-        int imageId = WeatherHelper.getWidgetNotificationIcon(
-                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon,
-                imageId);
-
-        String dateText = weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week;
-        views.setTextViewText(
-                R.id.widget_clock_day_week_title,
-                dateText);
-
+                getWeatherIconId(weather, dayTime, iconStyle, blackText));
         views.setTextViewText(
                 R.id.widget_clock_day_week_subtitle,
-                weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
-
-        String firstWeekDay;
-        String secondWeekDay;
-        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        String[] weatherDates = weather.base.date.split("-");
-        if (Integer.parseInt(weatherDates[0]) == year
-                && Integer.parseInt(weatherDates[1]) == month
-                && Integer.parseInt(weatherDates[2]) == day) {
-            firstWeekDay = context.getString(R.string.today);
-            secondWeekDay = weather.dailyList.get(1).week;
-        } else if (Integer.parseInt(weatherDates[0]) == year
-                && Integer.parseInt(weatherDates[1]) == month
-                && Integer.parseInt(weatherDates[2]) == day - 1) {
-            firstWeekDay = context.getString(R.string.yesterday);
-            secondWeekDay = context.getString(R.string.today);
-        } else {
-            firstWeekDay = weather.dailyList.get(0).week;
-            secondWeekDay = weather.dailyList.get(1).week;
-        }
+                getSubtitleText(weather, fahrenheit));
 
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_1,
-                firstWeekDay);
+                getWeek(context, weather, 0));
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_2,
-                secondWeekDay);
+                getWeek(context, weather, 1));
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_3,
-                weather.dailyList.get(2).week);
+                getWeek(context, weather, 2));
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_4,
-                weather.dailyList.get(3).week);
+                getWeek(context, weather, 3));
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_5,
-                weather.dailyList.get(4).week);
+                getWeek(context, weather, 4));
 
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_1,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit));
+                getTemp(weather, fahrenheit, 0));
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_2,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit));
+                getTemp(weather, fahrenheit, 1));
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_3,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit));
+                getTemp(weather, fahrenheit, 2));
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_4,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit));
+                getTemp(weather, fahrenheit, 3));
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_5,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit));
+                getTemp(weather, fahrenheit, 4));
 
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_1,
-                WeatherHelper.getWidgetNotificationIcon(
-                        dayTime ? weather.dailyList.get(0).weatherKinds[0] : weather.dailyList.get(0).weatherKinds[1],
-                        dayTime, iconStyle, blackText));
+                getIconId(weather, dayTime, iconStyle, blackText, 0));
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_2,
-                WeatherHelper.getWidgetNotificationIcon(
-                        dayTime ? weather.dailyList.get(1).weatherKinds[0] : weather.dailyList.get(1).weatherKinds[1],
-                        dayTime, iconStyle, blackText));
+                getIconId(weather, dayTime, iconStyle, blackText, 1));
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_3,
-                WeatherHelper.getWidgetNotificationIcon(
-                        dayTime ? weather.dailyList.get(2).weatherKinds[0] : weather.dailyList.get(2).weatherKinds[1],
-                        dayTime, iconStyle, blackText));
+                getIconId(weather, dayTime, iconStyle, blackText, 2));
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_4,
-                WeatherHelper.getWidgetNotificationIcon(
-                        dayTime ? weather.dailyList.get(3).weatherKinds[0] : weather.dailyList.get(3).weatherKinds[1],
-                        dayTime, iconStyle, blackText));
+                getIconId(weather, dayTime, iconStyle, blackText, 3));
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_5,
-                WeatherHelper.getWidgetNotificationIcon(
-                        dayTime ? weather.dailyList.get(4).weatherKinds[0] : weather.dailyList.get(4).weatherKinds[1],
-                        dayTime, iconStyle, blackText));
+                getIconId(weather, dayTime, iconStyle, blackText, 4));
 
         views.setTextColor(R.id.widget_clock_day_week_clock, textColor);
         views.setTextColor(R.id.widget_clock_day_week_title, textColor);
@@ -207,5 +167,60 @@ public class WidgetClockDayWeekUtils {
         int[] widgetIds = AppWidgetManager.getInstance(context)
                 .getAppWidgetIds(new ComponentName(context, WidgetClockDayWeekProvider.class));
         return widgetIds != null && widgetIds.length > 0;
+    }
+
+    public static int getWeatherIconId(Weather weather,
+                                       boolean dayTime, String iconStyle, boolean blackText) {
+        return WeatherHelper.getWidgetNotificationIcon(
+                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
+    }
+
+    public static String getSubtitleText(Weather weather, boolean fahrenheit) {
+        return weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
+    }
+
+    public static String getWeek(Context context, Weather weather, int index) {
+        if (index > 1) {
+            return weather.dailyList.get(index).week;
+        }
+
+        String firstWeekDay;
+        String secondWeekDay;
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        String[] weatherDates = weather.base.date.split("-");
+        if (Integer.parseInt(weatherDates[0]) == year
+                && Integer.parseInt(weatherDates[1]) == month + 1
+                && Integer.parseInt(weatherDates[2]) == day) {
+            firstWeekDay = context.getString(R.string.today);
+            secondWeekDay = weather.dailyList.get(1).week;
+        } else if (Integer.parseInt(weatherDates[0]) == year
+                && Integer.parseInt(weatherDates[1]) == month + 1
+                && Integer.parseInt(weatherDates[2]) == day - 1) {
+            firstWeekDay = context.getString(R.string.yesterday);
+            secondWeekDay = context.getString(R.string.today);
+        } else {
+            firstWeekDay = weather.dailyList.get(0).week;
+            secondWeekDay = weather.dailyList.get(1).week;
+        }
+
+        if (index == 0) {
+            return firstWeekDay;
+        } else {
+            return secondWeekDay;
+        }
+    }
+
+    public static String getTemp(Weather weather, boolean fahrenheit, int index) {
+        return ValueUtils.buildDailyTemp(weather.dailyList.get(index).temps, false, fahrenheit);
+    }
+
+    public static int getIconId(Weather weather,
+                                boolean dayTime, String iconStyle, boolean blackText, int index) {
+        return WeatherHelper.getWidgetNotificationIcon(
+                weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
+                dayTime, iconStyle, blackText);
     }
 }

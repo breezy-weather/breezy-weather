@@ -24,16 +24,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
-import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetDayUtils;
 
 /**
  * Create widget day activity.
@@ -88,29 +85,29 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
     public void initWidget() {
         setWidgetView(true);
 
-        ImageView wallpaper = (ImageView) findViewById(R.id.activity_create_widget_day_wall);
+        ImageView wallpaper = findViewById(R.id.activity_create_widget_day_wall);
         wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());
 
-        this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_day_container);
+        this.container = findViewById(R.id.activity_create_widget_day_container);
 
-        AppCompatSpinner viewTypeSpinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_day_styleSpinner);
+        AppCompatSpinner viewTypeSpinner = findViewById(R.id.activity_create_widget_day_styleSpinner);
         viewTypeSpinner.setOnItemSelectedListener(new ViewTypeSpinnerSelectedListener());
         viewTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, viewTypes));
 
-        this.showCardSwitch = (Switch) findViewById(R.id.activity_create_widget_day_showCardSwitch);
+        this.showCardSwitch = findViewById(R.id.activity_create_widget_day_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
 
-        this.hideSubtitleSwitch = (Switch) findViewById(R.id.activity_create_widget_day_hideSubtitleSwitch);
+        this.hideSubtitleSwitch = findViewById(R.id.activity_create_widget_day_hideSubtitleSwitch);
         hideSubtitleSwitch.setOnCheckedChangeListener(new HideRefreshTimeSwitchCheckListener());
 
-        AppCompatSpinner subtitleDataSpinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_day_subtitleDataSpinner);
+        AppCompatSpinner subtitleDataSpinner = findViewById(R.id.activity_create_widget_day_subtitleDataSpinner);
         subtitleDataSpinner.setOnItemSelectedListener(new SubtitleDataSpinnerSelectedListener());
         subtitleDataSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, subtitleData));
 
-        this.blackTextSwitch = (Switch) findViewById(R.id.activity_create_widget_day_blackTextSwitch);
+        this.blackTextSwitch = findViewById(R.id.activity_create_widget_day_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
 
-        Button doneButton = (Button) findViewById(R.id.activity_create_widget_day_doneButton);
+        Button doneButton = findViewById(R.id.activity_create_widget_day_doneButton);
         doneButton.setOnClickListener(this);
     }
 
@@ -120,14 +117,14 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         if (weather == null) {
             return;
         }
-        getLocationNow().weather = weather;
+
         String iconStyle = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(
                         getString(R.string.key_widget_icon_style),
                         "material");
 
-        int imageId = WeatherHelper.getWidgetNotificationIcon(
-                weather.realTime.weatherKind,
+        int imageId = WidgetDayUtils.getWeatherIconId(
+                weather,
                 TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime(),
                 iconStyle,
                 blackTextSwitch.isChecked());
@@ -136,38 +133,47 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(widgetIcon);
 
-        switch (viewTypeValueNow) {
-            case "rectangle":
-                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather, isFahrenheit());
-                widgetTitle.setText(texts[0]);
-                widgetSubtitle.setText(texts[1]);
-                break;
-
-            case "symmetry":
-                widgetTitle.setText(weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, isFahrenheit()));
-                widgetSubtitle.setText(weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
-                break;
-
-            case "tile":
-                widgetTitle.setText(weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
-                widgetSubtitle.setText(ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
-                break;
-
-            case "mini":
-                widgetTitle.setText(weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
-                widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                break;
-
-            case "nano":
-                widgetTitle.setText(ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
-                break;
-
-            case "pixel":
-                widgetTitle.setText(ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
-                widgetSubtitle.setText(weather.dailyList.get(0).date.split("-", 2)[1] + " " + weather.dailyList.get(0).week);
-                break;
+        widgetTitle.setText(WidgetDayUtils.getTitleText(weather, viewTypeValueNow, isFahrenheit()));
+        if (widgetSubtitle != null && !viewTypeValueNow.equals("pixel")) {
+            widgetSubtitle.setText(WidgetDayUtils.getSubtitleText(weather, viewTypeValueNow, isFahrenheit()));
         }
-        setTimeText(weather, subtitleDataValueNow);
+        if (widgetTime != null) {
+            widgetTime.setText(WidgetDayUtils.getTimeText(this, weather, viewTypeValueNow, subtitleDataValueNow));
+        }
+
+        if (showCardSwitch.isChecked() || blackTextSwitch.isChecked()) {
+            if (widgetCard != null) {
+                if (showCardSwitch.isChecked()) {
+                    widgetCard.setVisibility(View.VISIBLE);
+                } else {
+                    widgetCard.setVisibility(View.GONE);
+                }
+            }
+            widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            if (widgetSubtitle != null) {
+                widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            }
+            if (widgetTime != null) {
+                widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            }
+        } else {
+            if (widgetCard != null) {
+                widgetCard.setVisibility(View.GONE);
+            }
+            widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            if (widgetSubtitle != null) {
+                widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            }
+            if (widgetTime != null) {
+                widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            }
+        }
+
+        if (viewTypeValueNow.equals("pixel")) {
+            widgetSubtitle.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
+        } else if (widgetTime != null) {
+            widgetTime.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
+        }
     }
 
     @SuppressLint("InflateParams")
@@ -179,7 +185,8 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                     LayoutInflater.from(this).inflate(R.layout.widget_day_tile, null),
                     LayoutInflater.from(this).inflate(R.layout.widget_day_mini, null),
                     LayoutInflater.from(this).inflate(R.layout.widget_day_nano, null),
-                    LayoutInflater.from(this).inflate(R.layout.widget_day_pixel, null)};
+                    LayoutInflater.from(this).inflate(R.layout.widget_day_pixel, null),
+                    LayoutInflater.from(this).inflate(R.layout.widget_day_vertical, null)};
             for (View widgetView : widgetViews) {
                 ((ViewGroup) findViewById(R.id.activity_create_widget_day_widgetContainer)).addView(widgetView);
             }
@@ -192,49 +199,49 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
             case "rectangle":
                 this.widgetViews[0].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[0].findViewById(R.id.widget_day_card);
+                this.widgetCard = widgetViews[0].findViewById(R.id.widget_day_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[0].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[0].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[0].findViewById(R.id.widget_day_subtitle);
-                this.widgetTime = (TextView) widgetViews[0].findViewById(R.id.widget_day_time);
+                this.widgetIcon = widgetViews[0].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = widgetViews[0].findViewById(R.id.widget_day_title);
+                this.widgetSubtitle = widgetViews[0].findViewById(R.id.widget_day_subtitle);
+                this.widgetTime = widgetViews[0].findViewById(R.id.widget_day_time);
                 break;
 
             case "symmetry":
                 this.widgetViews[1].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[1].findViewById(R.id.widget_day_card);
+                this.widgetCard = widgetViews[1].findViewById(R.id.widget_day_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[1].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[1].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[1].findViewById(R.id.widget_day_subtitle);
-                this.widgetTime = (TextView) widgetViews[1].findViewById(R.id.widget_day_time);
+                this.widgetIcon = widgetViews[1].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = widgetViews[1].findViewById(R.id.widget_day_title);
+                this.widgetSubtitle = widgetViews[1].findViewById(R.id.widget_day_subtitle);
+                this.widgetTime = widgetViews[1].findViewById(R.id.widget_day_time);
                 break;
 
             case "tile":
                 this.widgetViews[2].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[2].findViewById(R.id.widget_day_card);
+                this.widgetCard = widgetViews[2].findViewById(R.id.widget_day_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[2].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[2].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[2].findViewById(R.id.widget_day_subtitle);
-                this.widgetTime = (TextView) widgetViews[2].findViewById(R.id.widget_day_time);
+                this.widgetIcon = widgetViews[2].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = widgetViews[2].findViewById(R.id.widget_day_title);
+                this.widgetSubtitle = widgetViews[2].findViewById(R.id.widget_day_subtitle);
+                this.widgetTime = widgetViews[2].findViewById(R.id.widget_day_time);
                 break;
 
             case "mini":
                 this.widgetViews[3].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[3].findViewById(R.id.widget_day_card);
+                this.widgetCard = widgetViews[3].findViewById(R.id.widget_day_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[3].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[3].findViewById(R.id.widget_day_title);
+                this.widgetIcon = widgetViews[3].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = widgetViews[3].findViewById(R.id.widget_day_title);
                 this.widgetSubtitle = null;
-                this.widgetTime = (TextView) widgetViews[3].findViewById(R.id.widget_day_time);
+                this.widgetTime = widgetViews[3].findViewById(R.id.widget_day_time);
                 break;
 
             case "nano":
@@ -242,8 +249,8 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
                 this.widgetCard = null;
 
-                this.widgetIcon = (ImageView) widgetViews[4].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[4].findViewById(R.id.widget_day_title);
+                this.widgetIcon = widgetViews[4].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = widgetViews[4].findViewById(R.id.widget_day_title);
                 this.widgetSubtitle = null;
                 this.widgetTime = null;
                 break;
@@ -253,55 +260,21 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
                 this.widgetCard = null;
 
-                this.widgetIcon = (ImageView) widgetViews[5].findViewById(R.id.widget_day_icon);
-                this.widgetTitle = (TextView) widgetViews[5].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = (TextView) widgetViews[5].findViewById(R.id.widget_day_subtitle);
+                this.widgetIcon = widgetViews[5].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = widgetViews[5].findViewById(R.id.widget_day_title);
+                this.widgetSubtitle = widgetViews[5].findViewById(R.id.widget_day_subtitle);
                 this.widgetTime = null;
                 break;
-        }
-    }
 
-    private void setTimeText(Weather weather, String subtitleDataValue) {
-        if (weather == null || widgetTime == null) {
-            return;
-        }
+            case "vertical":
+                this.widgetViews[6].setVisibility(View.VISIBLE);
 
-        switch (subtitleDataValue) {
-            case "time":
-                switch (viewTypeValueNow) {
-                    case "rectangle":
-                        widgetTime.setText(weather.base.city + " " + weather.base.time);
-                        break;
+                this.widgetCard = null;
 
-                    case "symmetry":
-                        widgetTime.setText(weather.dailyList.get(0).week + " " + weather.base.time);
-                        break;
-
-                    case "tile":
-                        widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                        break;
-
-                    case "mini":
-                        widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                        break;
-                }
-                break;
-
-            case "aqi":
-                if (weather.aqi != null) {
-                    widgetTime.setText(weather.aqi.quality + " (" + weather.aqi.aqi + ")");
-                }
-                break;
-
-            case "wind":
-                widgetTime.setText(weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
-                break;
-
-            default:
-                widgetTime.setText(
-                        getString(R.string.feels_like) + " "
-                                + ValueUtils.buildAbbreviatedCurrentTemp(
-                                weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit()));
+                this.widgetIcon = widgetViews[6].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = widgetViews[6].findViewById(R.id.widget_day_title);
+                this.widgetSubtitle = widgetViews[6].findViewById(R.id.widget_day_subtitle);
+                this.widgetTime = widgetViews[6].findViewById(R.id.widget_day_time);
                 break;
         }
     }
@@ -337,7 +310,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
+                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW, false);
                 finish();
                 break;
         }
@@ -353,65 +326,6 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 viewTypeValueNow = viewTypeValues[i];
                 setWidgetView(false);
                 refreshWidgetView(getLocationNow().weather);
-
-                if (viewTypeValueNow.equals("pixel") || viewTypeValueNow.equals("nano")) {
-                    showCardSwitch.setChecked(false);
-                    showCardSwitch.setEnabled(false);
-                } else {
-                    showCardSwitch.setEnabled(true);
-                }
-
-                if (showCardSwitch.isChecked()) {
-                    if (widgetCard != null) {
-                        widgetCard.setVisibility(View.VISIBLE);
-                    }
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    }
-                    if (widgetTime != null) {
-                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    }
-                } else {
-                    if (widgetCard != null) {
-                        widgetCard.setVisibility(View.GONE);
-                    }
-                    if (!blackTextSwitch.isChecked()) {
-                        widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                        if (widgetSubtitle != null) {
-                            widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                        }
-                        if (widgetTime != null) {
-                            widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                        }
-                    }
-                }
-
-                if (viewTypeValueNow.equals("pixel")) {
-                    widgetSubtitle.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
-                } else if (widgetTime != null) {
-                    widgetTime.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
-                }
-
-                if (blackTextSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    }
-                    if (widgetTime != null) {
-                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                    }
-                } else {
-                    if (!showCardSwitch.isChecked()) {
-                        widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                        if (widgetSubtitle != null) {
-                            widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                        }
-                        if (widgetTime != null) {
-                            widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                        }
-                    }
-                }
             }
         }
 
@@ -426,9 +340,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             if (!subtitleDataValueNow.equals(subtitleDataValues[i])) {
                 subtitleDataValueNow = subtitleDataValues[i];
-                if (widgetTime != null) {
-                    setTimeText(getLocationNow().weather, subtitleDataValueNow);
-                }
+                refreshWidgetView(getLocationNow().weather);
             }
         }
 
@@ -444,31 +356,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (isChecked) {
-                if (widgetCard != null) {
-                    widgetCard.setVisibility(View.VISIBLE);
-                }
-                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                if (widgetSubtitle != null) {
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                }
-                if (widgetTime != null) {
-                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                }
-            } else {
-                if (widgetCard != null) {
-                    widgetCard.setVisibility(View.GONE);
-                }
-                if (!blackTextSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    }
-                    if (widgetTime != null) {
-                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    }
-                }
-            }
+            refreshWidgetView(getLocationNow().weather);
         }
     }
 
@@ -476,11 +364,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (viewTypeValueNow.equals("pixel")) {
-                widgetSubtitle.setVisibility(isChecked ? View.GONE : View.VISIBLE);
-            } else if (widgetTime != null) {
-                widgetTime.setVisibility(isChecked ? View.GONE : View.VISIBLE);
-            }
+            refreshWidgetView(getLocationNow().weather);
         }
     }
 
@@ -488,25 +372,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (isChecked) {
-                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                if (widgetSubtitle != null) {
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                }
-                if (widgetTime != null) {
-                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextDark));
-                }
-            } else {
-                if (!showCardSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    if (widgetSubtitle != null) {
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    }
-                    if (widgetTime != null) {
-                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayActivity.this, R.color.colorTextLight));
-                    }
-                }
-            }
+            refreshWidgetView(getLocationNow().weather);
         }
     }
 }

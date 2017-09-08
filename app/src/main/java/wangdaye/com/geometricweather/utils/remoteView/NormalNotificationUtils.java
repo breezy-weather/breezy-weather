@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
@@ -75,8 +76,8 @@ public class NormalNotificationUtils {
         }
 
         // get manager & builder.
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                context, NotificationCompat.CATEGORY_SERVICE);
 
         // set notification level.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
@@ -104,7 +105,7 @@ public class NormalNotificationUtils {
                                         :
                                         weather.realTime.temp)
                         :
-                        WeatherHelper.getMiniWeatherIcon(weather.realTime.weatherKind, dayTime));
+                        WeatherHelper.getNotificationWeatherIcon(weather.realTime.weatherKind, dayTime));
 
         // buildWeather base view.
         RemoteViews base = new RemoteViews(context.getPackageName(), R.layout.notification_base);
@@ -323,20 +324,20 @@ public class NormalNotificationUtils {
             builder.setCustomBigContentView(big);
         }
 
-        // get notification.
-        Notification notification = builder.build();
-
         // set clear flag
         if (sharedPreferences.getBoolean(context.getString(R.string.key_notification_can_be_cleared), false)) {
             // the notification can be cleared
-            notification.flags = Notification.FLAG_AUTO_CANCEL;
+            builder.setAutoCancel(true);
         } else {
             // the notification can not be cleared
-            notification.flags = Notification.FLAG_ONGOING_EVENT;
+            builder.setOngoing(true);
         }
 
+        // get notification.
+        Notification notification = builder.build();
+
         // commit.
-        notificationManager.notify(NOTIFICATION_ID, notification);
+        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification);
     }
 
     public static void cancelNotification(Context context) {

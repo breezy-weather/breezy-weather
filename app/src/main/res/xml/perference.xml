@@ -21,6 +21,13 @@
             android:defaultValue="material" />
 
         <CheckBoxPreference
+            android:title="@string/settings_title_gravity_sensor_switch"
+            android:key="@string/key_gravity_sensor_switch"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
             android:title="@string/settings_title_navigationBar_color"
             android:key="@string/key_navigationBar_color"
             android:summaryOn="@string/settings_navigationBar_color_on"
@@ -39,6 +46,13 @@
             android:entryValues="@array/automatic_refresh_rate_values"
             android:dialogTitle="@string/settings_title_refresh_rate"
             android:defaultValue="1:30" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_title_alert_notification_switch"
+            android:key="@string/key_alert_notification_switch"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off"
+            android:defaultValue="true" />
 
         <ListPreference
             android:title="@string/settings_language"

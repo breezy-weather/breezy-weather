@@ -63,21 +63,13 @@ public class WidgetClockDayHorizontalUtils {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_horizontal);
 
-        int imageId = WeatherHelper.getWidgetNotificationIcon(
-                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
         views.setImageViewResource(
                 R.id.widget_clock_day_icon,
-                imageId);
+                getWeatherIconId(weather, dayTime, iconStyle, blackText));
 
-        String dateText = weather.base.date.split("-", 2)[1] + " " + weather.dailyList.get(0).week;
-        views.setTextViewText(
-                R.id.widget_clock_day_title,
-                dateText);
-
-        String weatherText = weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
         views.setTextViewText(
                 R.id.widget_clock_day_subtitle,
-                weatherText);
+                getSubtitleText(weather, fahrenheit));
 
         views.setTextColor(R.id.widget_clock_day_clock, textColor);
         views.setTextColor(R.id.widget_clock_day_title, textColor);
@@ -119,5 +111,15 @@ public class WidgetClockDayHorizontalUtils {
         int[] widgetIds = AppWidgetManager.getInstance(context)
                 .getAppWidgetIds(new ComponentName(context, WidgetClockDayHorizontalProvider.class));
         return widgetIds != null && widgetIds.length > 0;
+    }
+
+    public static int getWeatherIconId(Weather weather,
+                                       boolean dayTime, String iconStyle, boolean blackText) {
+        return WeatherHelper.getWidgetNotificationIcon(
+                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
+    }
+
+    public static String getSubtitleText(Weather weather, boolean fahrenheit) {
+        return weather.base.city + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
     }
 }

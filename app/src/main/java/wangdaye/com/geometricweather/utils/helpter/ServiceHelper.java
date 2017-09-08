@@ -1,9 +1,12 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -20,17 +23,17 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class ServiceHelper {
 
-    public static void startupService(Context context, int forceRefreshType) {
-        startPermanentService(context, forceRefreshType);
+    public static void startupService(Context context, int forceRefreshType, boolean checkIsRunning) {
+        startPermanentService(context, forceRefreshType, checkIsRunning);
     }
 
     public static void stopNormalService(Context context) {
-        startPermanentService(context, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
+        startPermanentService(context, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW, false);
         context.stopService(new Intent(context, NormalUpdateService.class));
     }
 
     public static void stopForecastService(Context context, boolean today) {
-        startPermanentService(context, PollingService.FORCE_REFRESH_TYPE_FORECAST);
+        startPermanentService(context, PollingService.FORCE_REFRESH_TYPE_FORECAST, false);
         if (today) {
             context.stopService(new Intent(context, TodayForecastUpdateService.class));
         } else {
@@ -38,7 +41,7 @@ public class ServiceHelper {
         }
     }
 
-    private static void startPermanentService(Context context, int forceRefreshType) {
+    private static void startPermanentService(Context context, int forceRefreshType, boolean checkIsRunning) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), false);
@@ -63,14 +66,33 @@ public class ServiceHelper {
         polling.putExtra(PollingService.KEY_TODAY_FORECAST_TIME, todayForecastTime);
         polling.putExtra(PollingService.KEY_OPEN_TOMORROW_FORECAST, openTomorrowForecast);
         polling.putExtra(PollingService.KEY_TOMORROW_FORECAST_TIME, tomorrowForecastTime);
+        boolean pollingExist = checkIsRunning && isExist(context, PollingService.class);
 
         // protect service.
         Intent protect = new Intent(context, ProtectService.class);
         protect.putExtra(ProtectService.KEY_IS_REFRESH, true);
         protect.putExtra(ProtectService.KEY_WORKING, true);
         protect.putExtra(ProtectService.KEY_BACKGROUND_FREE, backgroundFree);
+        boolean protectExist = checkIsRunning && isExist(context, ProtectService.class);
 
-        context.startService(polling);
-        context.startService(protect);
+        if (!pollingExist) {
+            context.startService(polling);
+        }
+        if (!protectExist) {
+            context.startService(protect);
+        }
+    }
+
+    private static boolean isExist(Context context, Class cls) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> serviceList = manager.getRunningServices(Integer.MAX_VALUE);
+        int myUid = android.os.Process.myUid();
+        for (ActivityManager.RunningServiceInfo runningServiceInfo : serviceList) {
+            if (runningServiceInfo.uid == myUid
+                    && runningServiceInfo.service.getClassName().equals(cls.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

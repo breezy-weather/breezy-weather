@@ -31,7 +31,7 @@ public class TileHelper {
         editor.putBoolean(KEY_ENABLE, enable);
         editor.apply();
 
-        ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
+        ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW, false);
     }
 
     public static boolean isEnable(Context context) {
@@ -54,7 +54,7 @@ public class TileHelper {
             tile.setIcon(
                     Icon.createWithResource(
                             context,
-                            WeatherHelper.getMiniWeatherIcon(
+                            WeatherHelper.getNotificationWeatherIcon(
                                     location.weather.realTime.weatherKind,
                                     TimeManager.getInstance(context).isDayTime())));
             tile.setLabel(

@@ -87,6 +87,7 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         if (weather == null) {
             requestWeatherFailed(requestLocation);
         } else {
+            locationNow.weather = weather;
             refreshWidgetView(weather);
             DatabaseHelper.getInstance(this).writeWeather(requestLocation, weather);
             DatabaseHelper.getInstance(this).writeHistory(weather);
@@ -99,6 +100,7 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
             return;
         }
         Weather weather = DatabaseHelper.getInstance(this).readWeather(requestLocation);
+        locationNow.weather = weather;
         refreshWidgetView(weather);
         SnackbarUtils.showSnackbar(getString(R.string.feedback_get_weather_failed));
     }

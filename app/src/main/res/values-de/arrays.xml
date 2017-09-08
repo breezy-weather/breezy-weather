@@ -42,6 +42,7 @@
         <item>Mini</item>
         <item>Nano</item>
         <item>Pixel</item>
+        <item>Vertical</item>
     </string-array>
 
     <!-- Icon Stil -->

@@ -188,107 +188,6 @@ public class WeatherHelper {
         return imageId;
     }
 
-    public static int[] getAnimatorId(String weatherKind, boolean dayTime) {
-        int[] animatorId = new int[3];
-
-        switch (weatherKind) {
-            case KIND_CLEAR:
-                if(dayTime) {
-                    animatorId[0] = R.animator.weather_sun_day_1;
-                    animatorId[1] = R.animator.weather_sun_day_2;
-                    animatorId[2] = 0;
-                } else {
-                    animatorId[0] = R.animator.weather_sun_night;
-                    animatorId[1] = 0;
-                    animatorId[2] = 0;
-                }
-                break;
-
-            case KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    animatorId[0] = R.animator.weather_cloud_day_1;
-                    animatorId[1] = R.animator.weather_cloud_day_2;
-                    animatorId[2] = R.animator.weather_cloud_day_3;
-                } else {
-                    animatorId[0] = R.animator.weather_cloud_night_1;
-                    animatorId[1] = R.animator.weather_cloud_night_2;
-                    animatorId[2] = 0;
-                }
-                break;
-
-            case KIND_CLOUDY:
-                animatorId[0] = R.animator.weather_cloudy_1;
-                animatorId[1] = R.animator.weather_cloudy_2;
-                animatorId[2] = 0;
-                break;
-
-            case KIND_RAIN:
-                animatorId[0] = R.animator.weather_rain_1;
-                animatorId[1] = R.animator.weather_rain_2;
-                animatorId[2] = R.animator.weather_rain_3;
-                break;
-
-            case KIND_WIND:
-                animatorId[0] = R.animator.weather_wind;
-                animatorId[1] = 0;
-                animatorId[2] = 0;
-                break;
-
-            case KIND_SNOW:
-                animatorId[0] = R.animator.weather_snow_1;
-                animatorId[1] = R.animator.weather_snow_2;
-                animatorId[2] = R.animator.weather_snow_3;
-                break;
-
-            case KIND_FOG:
-                animatorId[0] = R.animator.weather_fog_1;
-                animatorId[1] = R.animator.weather_fog_2;
-                animatorId[2] = R.animator.weather_fog_3;
-                break;
-
-            case KIND_HAZE:
-                animatorId[0] = R.animator.weather_haze_1;
-                animatorId[1] = R.animator.weather_haze_2;
-                animatorId[2] = R.animator.weather_haze_3;
-                break;
-
-            case KIND_SLEET:
-                animatorId[0] = R.animator.weather_sleet_1;
-                animatorId[1] = R.animator.weather_sleet_2;
-                animatorId[2] = R.animator.weather_sleet_3;
-                break;
-
-            case KIND_THUNDERSTORM:
-                animatorId[0] = R.animator.weather_thunderstorm_1;
-                animatorId[1] = R.animator.weather_thunderstorm_2;
-                animatorId[2] = R.animator.weather_thunderstorm_3;
-                break;
-
-            case KIND_THUNDER:
-                animatorId[0] = R.animator.weather_thunder_1;
-                animatorId[1] = R.animator.weather_thunder_2;
-                animatorId[2] = R.animator.weather_thunder_2;
-                break;
-
-            case KIND_HAIL:
-                animatorId[0] = R.animator.weather_hail_1;
-                animatorId[1] = R.animator.weather_hail_2;
-                animatorId[2] = R.animator.weather_hail_3;
-                break;
-
-            default:
-                animatorId[0] = R.animator.weather_cloudy_1;
-                animatorId[1] = R.animator.weather_cloudy_2;
-                animatorId[2] = 0;
-                break;
-        }
-        return animatorId;
-    }
-
-    public static int getMiniWeatherIcon(String weatherInfo, boolean dayTime) {
-        return getMiniWeatherIcon(weatherInfo, dayTime, "light");
-    }
-
     private static int getMiniWeatherIcon(String weatherInfo, boolean dayTime, String textColor) {
         int imageId = R.drawable.weather_cloudy_mini_light;
         switch (weatherInfo) {
@@ -533,6 +432,154 @@ public class WeatherHelper {
                 break;
         }
         return imageId;
+    }
+
+    public static int getNotificationWeatherIcon(String weatherInfo, boolean dayTime) {
+        switch (weatherInfo) {
+            case KIND_CLEAR:
+                if(dayTime) {
+                    return R.drawable.weather_sun_day_xml;
+                } else {
+                    return R.drawable.weather_sun_night_xml;
+                }
+
+            case KIND_PARTLY_CLOUDY:
+                if(dayTime) {
+                    return R.drawable.weather_cloud_day_xml;
+                } else {
+                    return R.drawable.weather_cloud_night_xml;
+                }
+
+            case KIND_CLOUDY:
+                return R.drawable.weather_cloudy_xml;
+
+            case KIND_RAIN:
+                return R.drawable.weather_rain_xml;
+
+            case KIND_WIND:
+                return R.drawable.weather_wind_xml;
+
+            case KIND_SNOW:
+                return R.drawable.weather_snow_xml;
+
+            case KIND_FOG:
+                return R.drawable.weather_fog_xml;
+
+            case KIND_HAZE:
+                return R.drawable.weather_haze_xml;
+
+            case KIND_SLEET:
+                return R.drawable.weather_sleet_xml;
+
+            case KIND_THUNDERSTORM:
+                return R.drawable.weather_thunderstorm_xml;
+
+            case KIND_THUNDER:
+                return R.drawable.weather_thunder_xml;
+
+            case KIND_HAIL:
+                return R.drawable.weather_hail_xml;
+
+            default:
+                return R.drawable.weather_cloudy_xml;
+        }
+    }
+
+    public static int[] getAnimatorId(String weatherKind, boolean dayTime) {
+        int[] animatorId = new int[3];
+
+        switch (weatherKind) {
+            case KIND_CLEAR:
+                if(dayTime) {
+                    animatorId[0] = R.animator.weather_sun_day_1;
+                    animatorId[1] = R.animator.weather_sun_day_2;
+                    animatorId[2] = 0;
+                } else {
+                    animatorId[0] = R.animator.weather_sun_night;
+                    animatorId[1] = 0;
+                    animatorId[2] = 0;
+                }
+                break;
+
+            case KIND_PARTLY_CLOUDY:
+                if(dayTime) {
+                    animatorId[0] = R.animator.weather_cloud_day_1;
+                    animatorId[1] = R.animator.weather_cloud_day_2;
+                    animatorId[2] = R.animator.weather_cloud_day_3;
+                } else {
+                    animatorId[0] = R.animator.weather_cloud_night_1;
+                    animatorId[1] = R.animator.weather_cloud_night_2;
+                    animatorId[2] = 0;
+                }
+                break;
+
+            case KIND_CLOUDY:
+                animatorId[0] = R.animator.weather_cloudy_1;
+                animatorId[1] = R.animator.weather_cloudy_2;
+                animatorId[2] = 0;
+                break;
+
+            case KIND_RAIN:
+                animatorId[0] = R.animator.weather_rain_1;
+                animatorId[1] = R.animator.weather_rain_2;
+                animatorId[2] = R.animator.weather_rain_3;
+                break;
+
+            case KIND_WIND:
+                animatorId[0] = R.animator.weather_wind;
+                animatorId[1] = 0;
+                animatorId[2] = 0;
+                break;
+
+            case KIND_SNOW:
+                animatorId[0] = R.animator.weather_snow_1;
+                animatorId[1] = R.animator.weather_snow_2;
+                animatorId[2] = R.animator.weather_snow_3;
+                break;
+
+            case KIND_FOG:
+                animatorId[0] = R.animator.weather_fog_1;
+                animatorId[1] = R.animator.weather_fog_2;
+                animatorId[2] = R.animator.weather_fog_3;
+                break;
+
+            case KIND_HAZE:
+                animatorId[0] = R.animator.weather_haze_1;
+                animatorId[1] = R.animator.weather_haze_2;
+                animatorId[2] = R.animator.weather_haze_3;
+                break;
+
+            case KIND_SLEET:
+                animatorId[0] = R.animator.weather_sleet_1;
+                animatorId[1] = R.animator.weather_sleet_2;
+                animatorId[2] = R.animator.weather_sleet_3;
+                break;
+
+            case KIND_THUNDERSTORM:
+                animatorId[0] = R.animator.weather_thunderstorm_1;
+                animatorId[1] = R.animator.weather_thunderstorm_2;
+                animatorId[2] = R.animator.weather_thunderstorm_3;
+                break;
+
+            case KIND_THUNDER:
+                animatorId[0] = R.animator.weather_thunder_1;
+                animatorId[1] = R.animator.weather_thunder_2;
+                animatorId[2] = R.animator.weather_thunder_2;
+                break;
+
+            case KIND_HAIL:
+                animatorId[0] = R.animator.weather_hail_1;
+                animatorId[1] = R.animator.weather_hail_2;
+                animatorId[2] = R.animator.weather_hail_3;
+                break;
+
+            default:
+                animatorId[0] = R.animator.weather_cloudy_1;
+                animatorId[1] = R.animator.weather_cloudy_2;
+                animatorId[2] = 0;
+                break;
+        }
+        return animatorId;
     }
 
     public static int getWidgetNotificationIcon(String weatherInfo, boolean dayTime,

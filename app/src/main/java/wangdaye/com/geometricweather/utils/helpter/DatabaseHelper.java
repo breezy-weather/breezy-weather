@@ -53,7 +53,7 @@ public class DatabaseHelper {
         public void onUpgrade(Database db, int oldVersion, int newVersion) {
             Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
             if (newVersion >= 22) {
-                if (oldVersion < 22) {
+                if (oldVersion < 23) {
                     WeatherEntityDao.dropTable(db, true);
                     DailyEntityDao.dropTable(db, true);
                     HourlyEntityDao.dropTable(db, true);

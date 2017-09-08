@@ -16,7 +16,7 @@ public class WidgetWeekProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_ALL);
+        ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_ALL, true);
     }
 }
 

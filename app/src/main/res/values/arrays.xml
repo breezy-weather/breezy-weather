@@ -78,6 +78,7 @@
         <item>Mini</item>
         <item>Nano</item>
         <item>Pixel</item>
+        <item>Vertical</item>
     </string-array>
     <string-array name="widget_style_values">
         <item>rectangle</item>
@@ -86,6 +87,7 @@
         <item>mini</item>
         <item>nano</item>
         <item>pixel</item>
+        <item>vertical</item>
     </string-array>
 
     <!-- icon style. -->

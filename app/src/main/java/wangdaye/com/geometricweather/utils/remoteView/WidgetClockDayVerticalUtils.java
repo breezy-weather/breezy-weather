@@ -108,122 +108,48 @@ public class WidgetClockDayVerticalUtils {
                                                       String iconStyle, boolean blackText,
                                                       String viewStyle,
                                                       boolean hideSubtitle, String subtitleData) {
-        int imageId = WeatherHelper.getWidgetNotificationIcon(
-                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
         switch (viewStyle) {
             case "rectangle":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_rectangle);
-
-                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather, fahrenheit);
-
-                views.setImageViewResource(R.id.widget_clock_day_icon, imageId);
-                views.setTextViewText(R.id.widget_clock_day_title, texts[0]);
-                views.setTextViewText(R.id.widget_clock_day_subtitle, texts[1]);
-
-                views.setTextColor(R.id.widget_clock_day_title, textColor);
-                views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
-                views.setTextColor(R.id.widget_clock_day_time, textColor);
-                views.setViewVisibility(R.id.widget_clock_day_time, hideSubtitle ? View.GONE : View.VISIBLE);
                 break;
 
             case "symmetry":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
-
-                views.setImageViewResource(R.id.widget_clock_day_icon, imageId);
-                views.setTextViewText(
-                        R.id.widget_clock_day_title,
-                        weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, fahrenheit));
-                views.setTextViewText(
-                        R.id.widget_clock_day_subtitle,
-                        weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
-
-                views.setTextColor(R.id.widget_clock_day_clock, textColor);
-                views.setTextColor(R.id.widget_clock_day_title, textColor);
-                views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
-                views.setTextColor(R.id.widget_clock_day_time, textColor);
-                views.setViewVisibility(R.id.widget_clock_day_time, hideSubtitle ? View.GONE : View.VISIBLE);
                 break;
 
             case "tile":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_tile);
-
-                views.setImageViewResource(R.id.widget_clock_day_icon, imageId);
-                views.setTextViewText(
-                        R.id.widget_clock_day_title,
-                        weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
-                views.setTextViewText(
-                        R.id.widget_clock_day_subtitle,
-                        ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
-
-                views.setTextColor(R.id.widget_clock_day_clock, textColor);
-                views.setTextColor(R.id.widget_clock_day_title, textColor);
-                views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
-                views.setTextColor(R.id.widget_clock_day_time, textColor);
-                views.setViewVisibility(R.id.widget_clock_day_time, hideSubtitle ? View.GONE : View.VISIBLE);
                 break;
 
             case "mini":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_mini);
+                break;
 
-                views.setImageViewResource(R.id.widget_clock_day_icon, imageId);
-                views.setTextViewText(
-                        R.id.widget_clock_day_title,
-                        weather.realTime.weather);
-                views.setTextViewText(
-                        R.id.widget_clock_day_subtitle,
-                        ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit));
-
-                views.setTextColor(R.id.widget_clock_day_clock, textColor);
-                views.setTextColor(R.id.widget_clock_day_title, textColor);
-                views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
+            case "vertical":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_vertical);
                 break;
         }
-        switch (subtitleData) {
-            case "time":
-                switch (viewStyle) {
-                    case "rectangle":
-                        views.setTextViewText(
-                                R.id.widget_clock_day_time,
-                                weather.base.city + " " + weather.base.time);
-                        break;
 
-                    case "symmetry":
-                        views.setTextViewText(
-                                R.id.widget_clock_day_time,
-                                weather.dailyList.get(0).week + " " + weather.base.time);
-                        break;
+        views.setImageViewResource(
+                R.id.widget_clock_day_icon,
+                getWeatherIconId(weather, dayTime, iconStyle, blackText));
+        views.setTextViewText(
+                R.id.widget_clock_day_title,
+                getTitleText(weather, viewStyle, fahrenheit));
+        views.setTextViewText(
+                R.id.widget_clock_day_subtitle,
+                getSubtitleText(weather, viewStyle, fahrenheit));
+        views.setTextViewText(
+                R.id.widget_clock_day_time,
+                getTimeText(context, weather, viewStyle, subtitleData));
 
-                    case "tile":
-                        views.setTextViewText(
-                                R.id.widget_clock_day_time,
-                                weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                        break;
-                }
-                break;
+        views.setTextColor(R.id.widget_clock_day_clock, textColor);
+        views.setTextColor(R.id.widget_clock_day_title, textColor);
+        views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
+        views.setTextColor(R.id.widget_clock_day_time, textColor);
+        views.setViewVisibility(R.id.widget_clock_day_time, hideSubtitle ? View.GONE : View.VISIBLE);
 
-            case "aqi":
-                if (weather.aqi != null) {
-                    views.setTextViewText(
-                            R.id.widget_clock_day_time,
-                            weather.aqi.quality + " (" + weather.aqi.aqi + ")");
-                }
-                break;
-
-            case "wind":
-                views.setTextViewText(
-                        R.id.widget_clock_day_time,
-                        weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
-                break;
-
-            default:
-                views.setTextViewText(
-                        R.id.widget_clock_day_time,
-                        context.getString(R.string.feels_like) + " "
-                                + ValueUtils.buildAbbreviatedCurrentTemp(
-                                weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit()));
-                break;
-        }
         return views;
     }
 
@@ -231,5 +157,81 @@ public class WidgetClockDayVerticalUtils {
         int[] widgetIds = AppWidgetManager.getInstance(context)
                 .getAppWidgetIds(new ComponentName(context, WidgetClockDayVerticalProvider.class));
         return widgetIds != null && widgetIds.length > 0;
+    }
+
+    public static int getWeatherIconId(Weather weather,
+                                       boolean dayTime, String iconStyle, boolean blackText) {
+        return WeatherHelper.getWidgetNotificationIcon(
+                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
+    }
+
+    public static String getTitleText(Weather weather, String viewStyle, boolean fahrenheit) {
+        switch (viewStyle) {
+            case "rectangle":
+                return WidgetUtils.buildWidgetDayStyleText(weather, fahrenheit)[0];
+
+            case "symmetry":
+                return weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, fahrenheit);
+
+            case "tile":
+                return weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
+
+            case "mini":
+                return weather.realTime.weather;
+
+            case "vertical":
+                return weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
+        }
+        return "";
+    }
+
+    public static String getSubtitleText(Weather weather, String viewStyle, boolean fahrenheit) {
+        switch (viewStyle) {
+            case "rectangle":
+                return WidgetUtils.buildWidgetDayStyleText(weather, fahrenheit)[1];
+
+            case "symmetry":
+                return weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit);
+
+            case "tile":
+                return ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit);
+
+            case "mini":
+                return ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
+        }
+        return "";
+    }
+
+    public static String getTimeText(Context context, Weather weather, String viewStyle, String subtitleData) {
+        switch (subtitleData) {
+            case "time":
+                switch (viewStyle) {
+                    case "rectangle":
+                        return weather.base.city + " " + weather.base.time;
+
+                    case "symmetry":
+                        return weather.dailyList.get(0).week + " " + weather.base.time;
+
+                    case "tile":
+                    case "vertical":
+                        return weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time;
+                }
+                break;
+
+            case "aqi":
+                if (weather.aqi != null) {
+                    return weather.aqi.quality + " (" + weather.aqi.aqi + ")";
+                }
+                break;
+
+            case "wind":
+                return weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")";
+
+            default:
+                return context.getString(R.string.feels_like) + " "
+                        + ValueUtils.buildAbbreviatedCurrentTemp(
+                        weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit());
+        }
+        return "";
     }
 }

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Circular sky</item>
+        <item>Material animation</item>
+    </string-array>
+
     <!-- language. -->
     <string-array name="languages">
         <item>Par défaut</item>
@@ -29,6 +35,15 @@
         <item>Mini</item>
         <item>Nano</item>
         <item>Pixel</item>
+        <item>Vertical</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Heure rafraichissement</item>
+        <item>AQI (Indispo en France)</item>
+        <item>Vent</item>
+        <item>Temp. ressentie</item>
     </string-array>
 
 </resources>

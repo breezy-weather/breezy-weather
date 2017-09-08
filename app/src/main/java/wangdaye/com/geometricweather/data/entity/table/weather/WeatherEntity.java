@@ -22,6 +22,7 @@ public class WeatherEntity {
     // data
     @Id
     public Long id;
+    public long timeStamp;
 
     // base.
     public String cityId;
@@ -66,10 +67,10 @@ public class WeatherEntity {
     public String indexCarWashTitle;
     public String indexCarWashContent;
 
-    @Generated(hash = 452533366)
-    public WeatherEntity(Long id, String cityId, String city, String date, String time, String realTimeWeather,
-            String realTimeWeatherKind, int realTimeTemp, int realTimeSensibleTemp, String realTimeWindDir,
-            String realTimeWindSpeed, String realTimeWindLevel, int realTimeWindDegree,
+    @Generated(hash = 1155263832)
+    public WeatherEntity(Long id, long timeStamp, String cityId, String city, String date, String time,
+            String realTimeWeather, String realTimeWeatherKind, int realTimeTemp, int realTimeSensibleTemp,
+            String realTimeWindDir, String realTimeWindSpeed, String realTimeWindLevel, int realTimeWindDegree,
             String realTimeSimpleForecast, String aqiAqi, String aqiPm25, String aqiPm10, String aqiQuality,
             String indexSimpleForecastTitle, String indexSimpleForecastContent, String indexBriefingTitle,
             String indexBriefingContent, String indexWindTitle, String indexWindContent, String indexAqiTitle,
@@ -77,6 +78,7 @@ public class WeatherEntity {
             String indexUvContent, String indexExerciseTitle, String indexExerciseContent, String indexColdTitle,
             String indexColdContent, String indexCarWashTitle, String indexCarWashContent) {
         this.id = id;
+        this.timeStamp = timeStamp;
         this.cityId = cityId;
         this.city = city;
         this.date = date;
@@ -128,6 +130,7 @@ public class WeatherEntity {
         entity.city = weather.base.city;
         entity.date = weather.base.date;
         entity.time = weather.base.time;
+        entity.timeStamp = weather.base.timeStamp;
 
         // realTime.
         entity.realTimeWeather = weather.realTime.weather;
@@ -239,6 +242,14 @@ public class WeatherEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public long getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
     public String getCityId() {

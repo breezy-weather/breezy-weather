@@ -133,17 +133,6 @@ public class ValueUtils {
         return (int) (9.0 / 5.0 * temp + 32);
     }
 
-    public static int compareTimes(String[] a, String[] b) {
-        for (int i = 0; i < a.length && i < b.length; i ++) {
-            if (Integer.parseInt(a[i]) > Integer.parseInt(b[i])) {
-                return 1;
-            } else if (Integer.parseInt(a[i]) < Integer.parseInt(b[i])) {
-                return -1;
-            }
-        }
-        return 0;
-    }
-
     public static int getTempIconId(int temp) {
         if (temp >= 0) {
             switch (temp) {

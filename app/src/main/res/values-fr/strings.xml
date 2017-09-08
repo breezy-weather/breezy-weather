@@ -146,6 +146,10 @@
     <string name="geometric_weather">Geometric Weather</string>
     <string name="settings_title_icon_style">Style d\'icône</string>
     <string name="settings_title_notification_temp_icon">Temp. comme icône de notification</string>
-    <string name="feels_like">Ressentir</string>
+    <string name="feels_like">Ressenti</string>
+    <string name="feedback_hide_subtitle">Masquer sous-titre</string>
+    <string name="feedback_subtitle_data">Sous-titre</string>
+    <string name="settings_title_click_widget_to_refresh">Rafraichir le widget en cliquant dessus</string>
+    <string name="settings_title_ui_style">UI style</string>
 
 </resources>

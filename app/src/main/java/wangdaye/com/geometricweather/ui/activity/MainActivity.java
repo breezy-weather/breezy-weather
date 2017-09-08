@@ -164,14 +164,10 @@ public class MainActivity extends GeoActivity
                     break;
                 }
             }
-            if (!refreshLayout.isRefreshing()) {
-                if (locationNow.weather != null && old != null) {
-                    String[] latestTimes = old.base.time.split(":");
-                    String[] memoryTimes = locationNow.weather.base.time.split(":");
-                    if (ValueUtils.compareTimes(memoryTimes, latestTimes) != 0) {
-                        reset();
-                    }
-                }
+            if (!refreshLayout.isRefreshing()
+                    && locationNow.weather != null && old != null
+                    && locationNow.weather.base.timeStamp > old.base.timeStamp) {
+                reset();
             }
         }
     }
@@ -287,9 +283,9 @@ public class MainActivity extends GeoActivity
     private void initWidget() {
         this.handler = new SafeHandler<>(this);
 
-        this.statusBar = (StatusBarView) findViewById(R.id.activity_main_statusBar);
+        this.statusBar = findViewById(R.id.activity_main_statusBar);
 
-        this.weatherView = (WeatherView) findViewById(R.id.activity_main_weatherView);
+        this.weatherView = findViewById(R.id.activity_main_weatherView);
         if (weatherView instanceof MaterialWeatherView) {
             int kind;
             if (locationNow.weather == null) {
@@ -300,22 +296,25 @@ public class MainActivity extends GeoActivity
                         TimeManager.getInstance(this).isDayTime());
             }
             weatherView.setWeather(kind);
+            ((MaterialWeatherView) weatherView).setOpenGravitySensor(
+                    PreferenceManager.getDefaultSharedPreferences(this)
+                            .getBoolean(getString(R.string.key_gravity_sensor_switch), true));
         }
 
-        this.appBar = (LinearLayout) findViewById(R.id.activity_main_appBar);
+        this.appBar = findViewById(R.id.activity_main_appBar);
 
-        this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
+        this.toolbar = findViewById(R.id.activity_main_toolbar);
         toolbar.inflateMenu(R.menu.activity_main);
         toolbar.setNavigationOnClickListener(this);
         toolbar.setOnClickListener(this);
         toolbar.setOnMenuItemClickListener(this);
 
-        this.switchLayout = (SwipeSwitchLayout) findViewById(R.id.activity_main_switchView);
+        this.switchLayout = findViewById(R.id.activity_main_switchView);
         switchLayout.setData(locationList, locationNow);
         switchLayout.setOnSwitchListener(this);
         switchLayout.setOnTouchListener(indicatorStateListener);
 
-        this.refreshLayout = (VerticalSwipeRefreshLayout) findViewById(R.id.activity_main_refreshView);
+        this.refreshLayout = findViewById(R.id.activity_main_refreshView);
         int startPosition = (int) (DisplayUtils.getStatusBarHeight(getResources())
                 + DisplayUtils.dpToPx(this, 16));
         refreshLayout.setProgressViewOffset(
@@ -325,42 +324,40 @@ public class MainActivity extends GeoActivity
             refreshLayout.setColorSchemeColors(weatherView.getThemeColors()[0]);
         }
 
-        this.scrollView = (VerticalNestedScrollView) findViewById(R.id.activity_main_scrollView);
+        this.scrollView = findViewById(R.id.activity_main_scrollView);
         scrollView.setOnScrollChangeListener(new OnScrollListener(weatherView.getFirstCardMarginTop()));
         scrollView.setOnTouchListener(indicatorStateListener);
 
-        this.cardContainer = (LinearLayout) findViewById(R.id.activity_main_cardContainer);
+        this.cardContainer = findViewById(R.id.activity_main_cardContainer);
 
-        RelativeLayout baseView = (RelativeLayout) findViewById(R.id.container_main_base_view);
+        RelativeLayout baseView = findViewById(R.id.container_main_base_view);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) baseView.getLayoutParams();
         params.height = weatherView.getFirstCardMarginTop();
         baseView.setLayoutParams(params);
         baseView.setOnClickListener(this);
 
-        this.realtimeTemp = (TextView) findViewById(R.id.container_main_base_view_tempTxt);
-        this.realtimeWeather = (TextView) findViewById(R.id.container_main_base_view_weatherTxt);
-        this.realtimeSendibleTemp = (TextView) findViewById(R.id.container_main_base_view_sendibleTempTxt);
-        this.aqiOrWind = (TextView) findViewById(R.id.container_main_base_view_aqiOrWindTxt);
+        this.realtimeTemp = findViewById(R.id.container_main_base_view_tempTxt);
+        this.realtimeWeather = findViewById(R.id.container_main_base_view_weatherTxt);
+        this.realtimeSendibleTemp = findViewById(R.id.container_main_base_view_sendibleTempTxt);
+        this.aqiOrWind = findViewById(R.id.container_main_base_view_aqiOrWindTxt);
 
         findViewById(R.id.container_main_trend_daily_card_timeContainer).setOnClickListener(this);
 
-        this.timeIcon = (ImageView) findViewById(R.id.container_main_trend_daily_card_timeIcon);
+        this.timeIcon = findViewById(R.id.container_main_trend_daily_card_timeIcon);
         timeIcon.setOnClickListener(this);
 
-        this.refreshTime = (TextView) findViewById(R.id.container_main_trend_daily_card_timeText);
+        this.refreshTime = findViewById(R.id.container_main_trend_daily_card_timeText);
 
-        this.dailyTitle = (TextView) findViewById(R.id.container_main_trend_daily_card_title);
-        this.dailyTrendRecyclerView
-                = (TrendRecyclerView) findViewById(R.id.container_main_trend_daily_card_trendRecyclerView);
+        this.dailyTitle = findViewById(R.id.container_main_trend_daily_card_title);
+        this.dailyTrendRecyclerView = findViewById(R.id.container_main_trend_daily_card_trendRecyclerView);
 
-        this.hourlyTitle = (TextView) findViewById(R.id.container_main_trend_hourly_card_title);
-        this.hourlyTrendRecyclerView
-                = (TrendRecyclerView) findViewById(R.id.container_main_trend_hourly_card_trendRecyclerView);
+        this.hourlyTitle = findViewById(R.id.container_main_trend_hourly_card_title);
+        this.hourlyTrendRecyclerView = findViewById(R.id.container_main_trend_hourly_card_trendRecyclerView);
 
-        this.detailsTitle = (TextView) findViewById(R.id.container_main_details_card_title);
-        this.detailRecyclerView = (NoneSlipRecyclerView) findViewById(R.id.container_main_details_card_recyclerView);
+        this.detailsTitle = findViewById(R.id.container_main_details_card_title);
+        this.detailRecyclerView = findViewById(R.id.container_main_details_card_recyclerView);
 
-        this.indicator = (InkPageIndicator) findViewById(R.id.activity_main_indicator);
+        this.indicator = findViewById(R.id.activity_main_indicator);
         indicator.setSwitchView(switchLayout);
     }
 
@@ -390,8 +387,12 @@ public class MainActivity extends GeoActivity
             setRefreshing(true);
             onRefresh();
         } else {
-            setRefreshing(false);
+            boolean valid = locationNow.weather.isValid(4);
+            setRefreshing(!valid);
             buildUI();
+            if (!valid) {
+                onRefresh();
+            }
         }
     }
 
@@ -758,7 +759,7 @@ public class MainActivity extends GeoActivity
             case MESSAGE_WHAT_STARTUP_SERVICE:
                 WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
                 NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
-                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
+                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW, true);
                 break;
         }
     }

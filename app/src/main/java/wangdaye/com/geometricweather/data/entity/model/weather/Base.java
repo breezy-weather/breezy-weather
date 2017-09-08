@@ -14,6 +14,7 @@ public class Base {
     public String city;
     public String date;
     public String time;
+    public long timeStamp;
 
     Base() {}
 
@@ -40,6 +41,7 @@ public class Base {
         date = result.LocalObservationDateTime.split("T")[0];
         time = result.LocalObservationDateTime.split("T")[1].split(":")[0]
                 + ":" + result.LocalObservationDateTime.split("T")[1].split(":")[1];
+        timeStamp = System.currentTimeMillis();
     }
 
     void buildBase(WeatherEntity entity) {
@@ -47,5 +49,6 @@ public class Base {
         city = entity.city;
         date = entity.date;
         time = entity.time;
+        timeStamp = entity.timeStamp;
     }
 }

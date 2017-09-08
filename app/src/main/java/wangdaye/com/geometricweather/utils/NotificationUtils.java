@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
@@ -44,6 +45,11 @@ public class NotificationUtils {
     }
 
     public static void checkAndSendAlert(Context c, Weather weather, Weather oldResult) {
+        if (!PreferenceManager.getDefaultSharedPreferences(c)
+                .getBoolean(c.getString(R.string.key_alert_notification_switch), true)) {
+            return;
+        }
+
         List<Alert> alertList = new ArrayList<>();
         if (oldResult != null) {
             for (int i = 0; i < weather.alertList.size(); i ++) {
@@ -78,7 +84,8 @@ public class NotificationUtils {
     }
 
     private static Notification buildSingleNotification(Context c, String cityName, Alert alert) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(c)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                c, NotificationCompat.CATEGORY_REMINDER)
                 .setSmallIcon(R.drawable.ic_alert)
                 .setLargeIcon(BitmapFactory.decodeResource(c.getResources(), R.drawable.ic_launcher))
                 .setContentTitle(c.getString(R.string.action_alert))

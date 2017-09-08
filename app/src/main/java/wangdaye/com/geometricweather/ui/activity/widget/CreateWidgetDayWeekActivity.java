@@ -24,18 +24,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.util.Calendar;
-
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
-import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetDayWeekUtils;
 
 /**
  * Create widget day week activity.
@@ -99,29 +94,29 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
     public void initWidget() {
         setWidgetView(true);
 
-        ImageView wallpaper = (ImageView) findViewById(R.id.activity_create_widget_day_week_wall);
+        ImageView wallpaper = findViewById(R.id.activity_create_widget_day_week_wall);
         wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());
 
-        this.container = (CoordinatorLayout) findViewById(R.id.activity_create_widget_day_week_container);
+        this.container = findViewById(R.id.activity_create_widget_day_week_container);
 
-        AppCompatSpinner viewTypeSpinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_day_week_styleSpinner);
+        AppCompatSpinner viewTypeSpinner = findViewById(R.id.activity_create_widget_day_week_styleSpinner);
         viewTypeSpinner.setOnItemSelectedListener(new ViewTypeSpinnerSelectedListener());
         viewTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, viewTypes));
 
-        this.showCardSwitch = (Switch) findViewById(R.id.activity_create_widget_day_week_showCardSwitch);
+        this.showCardSwitch = findViewById(R.id.activity_create_widget_day_week_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
 
-        this.hideSubtitleSwitch = (Switch) findViewById(R.id.activity_create_widget_day_week_hideSubtitleSwitch);
+        this.hideSubtitleSwitch = findViewById(R.id.activity_create_widget_day_week_hideSubtitleSwitch);
         hideSubtitleSwitch.setOnCheckedChangeListener(new HideRefreshTimeSwitchCheckListener());
 
-        AppCompatSpinner subtitleDataSpinner = (AppCompatSpinner) findViewById(R.id.activity_create_widget_day_week_subtitleDataSpinner);
+        AppCompatSpinner subtitleDataSpinner = findViewById(R.id.activity_create_widget_day_week_subtitleDataSpinner);
         subtitleDataSpinner.setOnItemSelectedListener(new SubtitleDataSpinnerSelectedListener());
         subtitleDataSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, subtitleData));
 
-        this.blackTextSwitch = (Switch) findViewById(R.id.activity_create_widget_day_week_blackTextSwitch);
+        this.blackTextSwitch = findViewById(R.id.activity_create_widget_day_week_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
 
-        Button doneButton = (Button) findViewById(R.id.activity_create_widget_day_week_doneButton);
+        Button doneButton = findViewById(R.id.activity_create_widget_day_week_doneButton);
         doneButton.setOnClickListener(this);
     }
 
@@ -131,16 +126,15 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
         if (weather == null) {
             return;
         }
-        getLocationNow().weather = weather;
+
         String iconStyle = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(
                         getString(R.string.key_widget_icon_style),
                         "material");
-
         boolean dayTime = TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime();
 
-        int imageId = WeatherHelper.getWidgetNotificationIcon(
-                weather.realTime.weatherKind,
+        int imageId = WidgetDayWeekUtils.getWeatherIconId(
+                weather,
                 TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime(),
                 iconStyle,
                 blackTextSwitch.isChecked());
@@ -149,65 +143,49 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(widgetIcon);
 
-        switch (viewTypeValueNow) {
-            case "rectangle":
-                String[] texts = WidgetUtils.buildWidgetDayStyleText(weather, isFahrenheit());
-                widgetTitle.setText(texts[0]);
-                widgetSubtitle.setText(texts[1]);
-                break;
-
-            case "symmetry":
-                widgetTitle.setText(weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, isFahrenheit()));
-                widgetSubtitle.setText(weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
-                break;
-
-            case "tile":
-                widgetTitle.setText(weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, isFahrenheit()));
-                widgetSubtitle.setText(ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, isFahrenheit()));
-                break;
-        }
-        setTimeText(weather, subtitleDataValueNow);
-
-        String firstWeekDay;
-        String secondWeekDay;
-        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        String[] weatherDates = weather.base.date.split("-");
-        if (Integer.parseInt(weatherDates[0]) == year
-                && Integer.parseInt(weatherDates[1]) == month
-                && Integer.parseInt(weatherDates[2]) == day) {
-            firstWeekDay = getString(R.string.today);
-            secondWeekDay = weather.dailyList.get(1).week;
-        } else if (Integer.parseInt(weatherDates[0]) == year
-                && Integer.parseInt(weatherDates[1]) == month
-                && Integer.parseInt(weatherDates[2]) == day - 1) {
-            firstWeekDay = getString(R.string.yesterday);
-            secondWeekDay = getString(R.string.today);
-        } else {
-            firstWeekDay = weather.dailyList.get(0).week;
-            secondWeekDay = weather.dailyList.get(1).week;
-        }
+        widgetTitle.setText(WidgetDayWeekUtils.getTitleText(weather, viewTypeValueNow, isFahrenheit()));
+        widgetSubtitle.setText(WidgetDayWeekUtils.getSubtitleText(weather, viewTypeValueNow, isFahrenheit()));
+        widgetTime.setText(WidgetDayWeekUtils.getTimeText(this, weather, viewTypeValueNow, subtitleDataValueNow));
 
         for (int i = 0; i < 5; i ++) {
-            if (i == 0) {
-                widgetWeeks[i].setText(firstWeekDay);
-            } else if (i == 1) {
-                widgetWeeks[i].setText(secondWeekDay);
-            } else {
-                widgetWeeks[i].setText(weather.dailyList.get(i).week);
-            }
-            imageId = WeatherHelper.getWidgetNotificationIcon(
-                    dayTime ? weather.dailyList.get(i).weatherKinds[0] : weather.dailyList.get(i).weatherKinds[1],
-                    dayTime,
-                    iconStyle,
-                    blackTextSwitch.isChecked());
+            widgetWeeks[i].setText(WidgetDayWeekUtils.getWeek(this, weather, i));
+            widgetTemps[i].setText(WidgetDayWeekUtils.getTemp(weather, isFahrenheit(), i));
             Glide.with(this)
-                    .load(imageId)
+                    .load(
+                            WidgetDayWeekUtils.getIconId(
+                                    weather, dayTime, iconStyle, blackTextSwitch.isChecked(), i))
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(widgetIcons[i]);
-            widgetTemps[i].setText(ValueUtils.buildDailyTemp(weather.dailyList.get(i).temps, false, isFahrenheit()));
+        }
+
+        if (showCardSwitch.isChecked() || blackTextSwitch.isChecked()) {
+            if (showCardSwitch.isChecked()) {
+                widgetCard.setVisibility(View.VISIBLE);
+            } else {
+                widgetCard.setVisibility(View.GONE);
+            }
+            widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            for (int j = 0; j < 5; j ++) {
+                widgetWeeks[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                widgetTemps[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            }
+        } else {
+            widgetCard.setVisibility(View.GONE);
+            widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            widgetTime.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            for (int j = 0; j < 5; j ++) {
+                widgetWeeks[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                widgetTemps[j].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            }
+        }
+
+        if (hideSubtitleSwitch.isChecked()) {
+            widgetTime.setVisibility(View.GONE);
+        } else {
+            widgetTime.setVisibility(View.VISIBLE);
         }
     }
 
@@ -232,134 +210,94 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
             case "rectangle":
                 this.widgetViews[0].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[0].findViewById(R.id.widget_day_week_card);
+                this.widgetCard = widgetViews[0].findViewById(R.id.widget_day_week_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[0].findViewById(R.id.widget_day_week_icon);
-                this.widgetTitle = (TextView) widgetViews[0].findViewById(R.id.widget_day_week_title);
-                this.widgetSubtitle = (TextView) widgetViews[0].findViewById(R.id.widget_day_week_subtitle);
-                this.widgetTime = (TextView) widgetViews[0].findViewById(R.id.widget_day_week_time);
+                this.widgetIcon = widgetViews[0].findViewById(R.id.widget_day_week_icon);
+                this.widgetTitle = widgetViews[0].findViewById(R.id.widget_day_week_title);
+                this.widgetSubtitle = widgetViews[0].findViewById(R.id.widget_day_week_subtitle);
+                this.widgetTime = widgetViews[0].findViewById(R.id.widget_day_week_time);
 
                 this.widgetWeeks = new TextView[] {
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_week_1),
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_week_2),
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_week_3),
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_week_4),
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_week_5)};
+                        widgetViews[0].findViewById(R.id.widget_day_week_week_1),
+                        widgetViews[0].findViewById(R.id.widget_day_week_week_2),
+                        widgetViews[0].findViewById(R.id.widget_day_week_week_3),
+                        widgetViews[0].findViewById(R.id.widget_day_week_week_4),
+                        widgetViews[0].findViewById(R.id.widget_day_week_week_5)};
                 this.widgetIcons = new ImageView[] {
-                        (ImageView) widgetViews[0].findViewById(R.id.widget_day_week_icon_1),
-                        (ImageView) widgetViews[0].findViewById(R.id.widget_day_week_icon_2),
-                        (ImageView) widgetViews[0].findViewById(R.id.widget_day_week_icon_3),
-                        (ImageView) widgetViews[0].findViewById(R.id.widget_day_week_icon_4),
-                        (ImageView) widgetViews[0].findViewById(R.id.widget_day_week_icon_5)};
+                        widgetViews[0].findViewById(R.id.widget_day_week_icon_1),
+                        widgetViews[0].findViewById(R.id.widget_day_week_icon_2),
+                        widgetViews[0].findViewById(R.id.widget_day_week_icon_3),
+                        widgetViews[0].findViewById(R.id.widget_day_week_icon_4),
+                        widgetViews[0].findViewById(R.id.widget_day_week_icon_5)};
                 this.widgetTemps = new TextView[] {
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_temp_1),
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_temp_2),
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_temp_3),
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_temp_4),
-                        (TextView) widgetViews[0].findViewById(R.id.widget_day_week_temp_5)};
+                        widgetViews[0].findViewById(R.id.widget_day_week_temp_1),
+                        widgetViews[0].findViewById(R.id.widget_day_week_temp_2),
+                        widgetViews[0].findViewById(R.id.widget_day_week_temp_3),
+                        widgetViews[0].findViewById(R.id.widget_day_week_temp_4),
+                        widgetViews[0].findViewById(R.id.widget_day_week_temp_5)};
                 break;
 
             case "symmetry":
                 widgetViews[1].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[1].findViewById(R.id.widget_day_week_card);
+                this.widgetCard = widgetViews[1].findViewById(R.id.widget_day_week_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[1].findViewById(R.id.widget_day_week_icon);
-                this.widgetTitle = (TextView) widgetViews[1].findViewById(R.id.widget_day_week_title);
-                this.widgetSubtitle = (TextView) widgetViews[1].findViewById(R.id.widget_day_week_subtitle);
-                this.widgetTime = (TextView) widgetViews[1].findViewById(R.id.widget_day_week_time);
+                this.widgetIcon = widgetViews[1].findViewById(R.id.widget_day_week_icon);
+                this.widgetTitle = widgetViews[1].findViewById(R.id.widget_day_week_title);
+                this.widgetSubtitle = widgetViews[1].findViewById(R.id.widget_day_week_subtitle);
+                this.widgetTime = widgetViews[1].findViewById(R.id.widget_day_week_time);
 
                 this.widgetWeeks = new TextView[] {
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_week_1),
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_week_2),
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_week_3),
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_week_4),
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_week_5)};
+                        widgetViews[1].findViewById(R.id.widget_day_week_week_1),
+                        widgetViews[1].findViewById(R.id.widget_day_week_week_2),
+                        widgetViews[1].findViewById(R.id.widget_day_week_week_3),
+                        widgetViews[1].findViewById(R.id.widget_day_week_week_4),
+                        widgetViews[1].findViewById(R.id.widget_day_week_week_5)};
                 this.widgetIcons = new ImageView[] {
-                        (ImageView) widgetViews[1].findViewById(R.id.widget_day_week_icon_1),
-                        (ImageView) widgetViews[1].findViewById(R.id.widget_day_week_icon_2),
-                        (ImageView) widgetViews[1].findViewById(R.id.widget_day_week_icon_3),
-                        (ImageView) widgetViews[1].findViewById(R.id.widget_day_week_icon_4),
-                        (ImageView) widgetViews[1].findViewById(R.id.widget_day_week_icon_5)};
+                        widgetViews[1].findViewById(R.id.widget_day_week_icon_1),
+                        widgetViews[1].findViewById(R.id.widget_day_week_icon_2),
+                        widgetViews[1].findViewById(R.id.widget_day_week_icon_3),
+                        widgetViews[1].findViewById(R.id.widget_day_week_icon_4),
+                        widgetViews[1].findViewById(R.id.widget_day_week_icon_5)};
                 this.widgetTemps = new TextView[] {
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_temp_1),
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_temp_2),
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_temp_3),
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_temp_4),
-                        (TextView) widgetViews[1].findViewById(R.id.widget_day_week_temp_5)};
+                        widgetViews[1].findViewById(R.id.widget_day_week_temp_1),
+                        widgetViews[1].findViewById(R.id.widget_day_week_temp_2),
+                        widgetViews[1].findViewById(R.id.widget_day_week_temp_3),
+                        widgetViews[1].findViewById(R.id.widget_day_week_temp_4),
+                        widgetViews[1].findViewById(R.id.widget_day_week_temp_5)};
                 break;
 
             case "tile":
                 widgetViews[2].setVisibility(View.VISIBLE);
 
-                this.widgetCard = (ImageView) widgetViews[2].findViewById(R.id.widget_day_week_card);
+                this.widgetCard = widgetViews[2].findViewById(R.id.widget_day_week_card);
                 widgetCard.setVisibility(View.GONE);
 
-                this.widgetIcon = (ImageView) widgetViews[2].findViewById(R.id.widget_day_week_icon);
-                this.widgetTitle = (TextView) widgetViews[2].findViewById(R.id.widget_day_week_title);
-                this.widgetSubtitle = (TextView) widgetViews[2].findViewById(R.id.widget_day_week_subtitle);
-                this.widgetTime = (TextView) widgetViews[2].findViewById(R.id.widget_day_week_time);
+                this.widgetIcon = widgetViews[2].findViewById(R.id.widget_day_week_icon);
+                this.widgetTitle = widgetViews[2].findViewById(R.id.widget_day_week_title);
+                this.widgetSubtitle = widgetViews[2].findViewById(R.id.widget_day_week_subtitle);
+                this.widgetTime = widgetViews[2].findViewById(R.id.widget_day_week_time);
 
                 this.widgetWeeks = new TextView[] {
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_week_1),
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_week_2),
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_week_3),
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_week_4),
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_week_5)};
+                        widgetViews[2].findViewById(R.id.widget_day_week_week_1),
+                        widgetViews[2].findViewById(R.id.widget_day_week_week_2),
+                        widgetViews[2].findViewById(R.id.widget_day_week_week_3),
+                        widgetViews[2].findViewById(R.id.widget_day_week_week_4),
+                        widgetViews[2].findViewById(R.id.widget_day_week_week_5)};
                 this.widgetIcons = new ImageView[] {
-                        (ImageView) widgetViews[2].findViewById(R.id.widget_day_week_icon_1),
-                        (ImageView) widgetViews[2].findViewById(R.id.widget_day_week_icon_2),
-                        (ImageView) widgetViews[2].findViewById(R.id.widget_day_week_icon_3),
-                        (ImageView) widgetViews[2].findViewById(R.id.widget_day_week_icon_4),
-                        (ImageView) widgetViews[2].findViewById(R.id.widget_day_week_icon_5)};
+                        widgetViews[2].findViewById(R.id.widget_day_week_icon_1),
+                        widgetViews[2].findViewById(R.id.widget_day_week_icon_2),
+                        widgetViews[2].findViewById(R.id.widget_day_week_icon_3),
+                        widgetViews[2].findViewById(R.id.widget_day_week_icon_4),
+                        widgetViews[2].findViewById(R.id.widget_day_week_icon_5)};
                 this.widgetTemps = new TextView[] {
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_temp_1),
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_temp_2),
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_temp_3),
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_temp_4),
-                        (TextView) widgetViews[2].findViewById(R.id.widget_day_week_temp_5)};
-                break;
-        }
-    }
-
-    private void setTimeText(Weather weather, String subtitleDataValue) {
-        if (weather == null || widgetTime == null) {
-            return;
-        }
-        switch (subtitleDataValue) {
-            case "time":
-                switch (viewTypeValueNow) {
-                    case "rectangle":
-                        widgetTime.setText(weather.base.city + " " + weather.base.time);
-                        break;
-
-                    case "symmetry":
-                        widgetTime.setText(weather.dailyList.get(0).week + " " + weather.base.time);
-                        break;
-
-                    case "tile":
-                        widgetTime.setText(weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
-                        break;
-                }
-                break;
-
-            case "aqi":
-                if (weather.aqi != null) {
-                    widgetTime.setText(weather.aqi.quality + " (" + weather.aqi.aqi + ")");
-                }
-                break;
-
-            case "wind":
-                widgetTime.setText(weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")");
-                break;
-
-            default:
-                widgetTime.setText(
-                        getString(R.string.feels_like) + " "
-                                + ValueUtils.buildAbbreviatedCurrentTemp(
-                                weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit()));
+                        widgetViews[2].findViewById(R.id.widget_day_week_temp_1),
+                        widgetViews[2].findViewById(R.id.widget_day_week_temp_2),
+                        widgetViews[2].findViewById(R.id.widget_day_week_temp_3),
+                        widgetViews[2].findViewById(R.id.widget_day_week_temp_4),
+                        widgetViews[2].findViewById(R.id.widget_day_week_temp_5)};
                 break;
         }
     }
@@ -395,7 +333,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW);
+                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW, false);
                 finish();
                 break;
         }
@@ -411,50 +349,6 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 viewTypeValueNow = viewTypeValues[i];
                 setWidgetView(false);
                 refreshWidgetView(getLocationNow().weather);
-
-                if (showCardSwitch.isChecked()) {
-                    widgetCard.setVisibility(View.VISIBLE);
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    for (int j = 0; j < 5; j ++) {
-                        widgetWeeks[j].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                        widgetTemps[j].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    }
-                } else {
-                    widgetCard.setVisibility(View.GONE);
-                    if (!blackTextSwitch.isChecked()) {
-                        widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        for (int j = 0; j < 5; j ++) {
-                            widgetWeeks[j].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                            widgetTemps[j].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        }
-                    }
-                }
-
-                widgetTime.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
-
-                if (blackTextSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    for (int j = 0; j < 5; j ++) {
-                        widgetWeeks[j].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                        widgetTemps[j].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    }
-                } else {
-                    if (!showCardSwitch.isChecked()) {
-                        widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        for (int j = 0; j < 5; j ++) {
-                            widgetWeeks[j].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                            widgetTemps[j].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        }
-                    }
-                }
             }
         }
 
@@ -469,9 +363,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             if (!subtitleDataValueNow.equals(subtitleDataValues[i])) {
                 subtitleDataValueNow = subtitleDataValues[i];
-                if (widgetTime != null) {
-                    setTimeText(getLocationNow().weather, subtitleDataValueNow);
-                }
+                refreshWidgetView(getLocationNow().weather);
             }
         }
 
@@ -487,27 +379,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (isChecked) {
-                widgetCard.setVisibility(View.VISIBLE);
-                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                for (int i = 0; i < 5; i ++) {
-                    widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                }
-            } else {
-                widgetCard.setVisibility(View.GONE);
-                if (!blackTextSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    for (int i = 0; i < 5; i ++) {
-                        widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    }
-                }
-            }
+            refreshWidgetView(getLocationNow().weather);
         }
     }
 
@@ -515,7 +387,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            widgetTime.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
+            refreshWidgetView(getLocationNow().weather);
         }
     }
 
@@ -523,25 +395,7 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (isChecked) {
-                widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                for (int i = 0; i < 5; i ++) {
-                    widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                    widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextDark));
-                }
-            } else {
-                if (!showCardSwitch.isChecked()) {
-                    widgetTitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    widgetSubtitle.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    widgetTime.setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    for (int i = 0; i < 5; i ++) {
-                        widgetWeeks[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                        widgetTemps[i].setTextColor(ContextCompat.getColor(CreateWidgetDayWeekActivity.this, R.color.colorTextLight));
-                    }
-                }
-            }
+            refreshWidgetView(getLocationNow().weather);
         }
     }
 }

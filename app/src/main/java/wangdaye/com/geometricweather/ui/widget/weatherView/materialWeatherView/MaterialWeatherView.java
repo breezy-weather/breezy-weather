@@ -48,6 +48,7 @@ public class MaterialWeatherView extends SurfaceView
     private float rotation3D;
     private float displayRotation2D;
     private float displayRotation3D;
+    private boolean openGravitySensor;
 
     private static final float MAX_ROTATIVE_SPEED
             = (float) (90.0 / 2000.0 * WeatherAnimationImplementor.REFRESH_INTERVAL);
@@ -105,6 +106,7 @@ public class MaterialWeatherView extends SurfaceView
 
         this.sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
         this.sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+        this.openGravitySensor = true;
 
         this.step = STEP_DISPLAY;
         setWeather(WeatherView.WEATHER_KING_NULL);
@@ -208,6 +210,10 @@ public class MaterialWeatherView extends SurfaceView
         this.rotation3D = 0;
         this.displayRotation2D = 0;
         this.displayRotation3D = 0;
+    }
+
+    public void setOpenGravitySensor(boolean openGravitySensor) {
+        this.openGravitySensor = openGravitySensor;
     }
 
     // interface.
@@ -421,15 +427,20 @@ public class MaterialWeatherView extends SurfaceView
         // z : (+) look down / (-) look up.
         // rotation2D : (+) anticlockwise / (-) clockwise.
         // rotation3D : (+) look down / (-) look up.
-        float aX = ev.values[0];
-        float aY = ev.values[1];
-        float aZ = ev.values[2];
-        double g2D = Math.sqrt(aX * aX + aY * aY);
-        double g3D = Math.sqrt(aX * aX + aY * aY + aZ * aZ);
-        double cos2D = Math.max(Math.min(1, aY / g2D), -1);
-        double cos3D = Math.max(Math.min(1, g2D * (aY > 0 ? 1 : -1) / g3D), -1);
-        rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX > 0 ? 1 : -1);
-        rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ > 0 ? 1 : -1);
+        if (openGravitySensor) {
+            float aX = ev.values[0];
+            float aY = ev.values[1];
+            float aZ = ev.values[2];
+            double g2D = Math.sqrt(aX * aX + aY * aY);
+            double g3D = Math.sqrt(aX * aX + aY * aY + aZ * aZ);
+            double cos2D = Math.max(Math.min(1, aY / g2D), -1);
+            double cos3D = Math.max(Math.min(1, g2D * (aY > 0 ? 1 : -1) / g3D), -1);
+            rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX > 0 ? 1 : -1);
+            rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ > 0 ? 1 : -1);
+        } else {
+            rotation2D = 0;
+            rotation3D = 0;
+        }
     }
 
     @Override

@@ -35,7 +35,8 @@ public class TrendRecyclerView extends RecyclerView {
 
     private float TREND_ITEM_HEIGHT;
     private float BOTTOM_MARGIN;
-    private float TREND_MARGIN = 24;
+    private float TREND_MARGIN_TOP = 24;
+    private float TREND_MARGIN_BOTTOM = 36;
     private float CHART_LINE_SIZE = 1;
     private float TEXT_SIZE = 10;
     private float MARGIN_TEXT = 2;
@@ -65,7 +66,8 @@ public class TrendRecyclerView extends RecyclerView {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setTextSize(TEXT_SIZE);
 
-        this.TREND_MARGIN = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN);
+        this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
+        this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
         this.TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) TEXT_SIZE);
         this.CHART_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE);
         this.MARGIN_TEXT = DisplayUtils.dpToPx(getContext(), (int) MARGIN_TEXT);
@@ -180,8 +182,8 @@ public class TrendRecyclerView extends RecyclerView {
     }
 
     private int computeSingleCoordinate(float value, float max, float min) {
-        float canvasHeight = TREND_ITEM_HEIGHT - 2 * TREND_MARGIN;
-        return (int) (getMeasuredHeight() - BOTTOM_MARGIN - TREND_MARGIN
+        float canvasHeight = TREND_ITEM_HEIGHT - TREND_MARGIN_TOP - TREND_MARGIN_BOTTOM;
+        return (int) (getMeasuredHeight() - BOTTOM_MARGIN - TREND_MARGIN_BOTTOM
                 - canvasHeight * (value - min) / (max - min));
     }
 }

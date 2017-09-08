@@ -48,7 +48,8 @@ public class TrendItemView extends View {
     public static final int NONEXISTENT_VALUE = Integer.MAX_VALUE;
 
     // dp size.
-    private float TREND_MARGIN = 24;
+    private float TREND_MARGIN_TOP = 24;
+    private float TREND_MARGIN_BOTTOM = 36;
     private float WEATHER_TEXT_SIZE = 13;
     private float POP_TEXT_SIZE = 11;
     private float TREND_LINE_SIZE = 2;
@@ -82,7 +83,8 @@ public class TrendItemView extends View {
         this.textColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
         this.precipitationTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle);
 
-        this.TREND_MARGIN = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN);
+        this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
+        this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
         this.WEATHER_TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) WEATHER_TEXT_SIZE);
         this.POP_TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) POP_TEXT_SIZE);
         this.TREND_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) TREND_LINE_SIZE);
@@ -104,8 +106,8 @@ public class TrendItemView extends View {
 
         if (shader == null) {
             this.shader = new LinearGradient(
-                    0, TREND_MARGIN,
-                    0, getMeasuredHeight() - TREND_MARGIN,
+                    0, TREND_MARGIN_TOP,
+                    0, getMeasuredHeight() - TREND_MARGIN_BOTTOM,
                     shadowColors[0], shadowColors[1],
                     Shader.TileMode.CLAMP);
         }
@@ -127,8 +129,8 @@ public class TrendItemView extends View {
         paint.setStrokeWidth(CHART_LINE_SIZE);
         paint.setColor(lineColors[2]);
         canvas.drawLine(
-                (float) (getMeasuredWidth() / 2.0), TREND_MARGIN,
-                (float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN,
+                (float) (getMeasuredWidth() / 2.0), TREND_MARGIN_TOP,
+                (float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN_BOTTOM,
                 paint);
     }
 
@@ -143,8 +145,8 @@ public class TrendItemView extends View {
             path.moveTo(0, maxiTempYs[0]);
             path.lineTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
             path.lineTo(getMeasuredWidth(), maxiTempYs[2]);
-            path.lineTo(getMeasuredWidth(), getMeasuredHeight() - TREND_MARGIN);
-            path.lineTo(0, getMeasuredHeight() - TREND_MARGIN);
+            path.lineTo(getMeasuredWidth(), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.lineTo(0, getMeasuredHeight() - TREND_MARGIN_BOTTOM);
             path.close();
             canvas.drawPath(path, paint);
 
@@ -169,8 +171,8 @@ public class TrendItemView extends View {
             path.reset();
             path.moveTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
             path.lineTo(getMeasuredWidth(), maxiTempYs[2]);
-            path.lineTo(getMeasuredWidth(), getMeasuredHeight() - TREND_MARGIN);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN);
+            path.lineTo(getMeasuredWidth(), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.lineTo((float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
             path.close();
             canvas.drawPath(path, paint);
 
@@ -194,8 +196,8 @@ public class TrendItemView extends View {
             path.reset();
             path.moveTo(0, maxiTempYs[0]);
             path.lineTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN);
-            path.lineTo(0, getMeasuredHeight() - TREND_MARGIN);
+            path.lineTo((float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.lineTo(0, getMeasuredHeight() - TREND_MARGIN_BOTTOM);
             path.close();
             canvas.drawPath(path, paint);
 
@@ -287,7 +289,7 @@ public class TrendItemView extends View {
                         (float) (getMeasuredWidth() / 2.0 - TREND_LINE_SIZE * 1.5),
                         precipitationY,
                         (float) (getMeasuredWidth() / 2.0 + TREND_LINE_SIZE * 1.5),
-                        getMeasuredHeight() - TREND_MARGIN),
+                        getMeasuredHeight() - TREND_MARGIN_BOTTOM),
                 TREND_LINE_SIZE * 3, TREND_LINE_SIZE * 3,
                 paint);
 
@@ -298,7 +300,7 @@ public class TrendItemView extends View {
         canvas.drawText(
                 precipitation + "%",
                 (float) (getMeasuredWidth() / 2.0),
-                (float) (getMeasuredHeight() - TREND_MARGIN - paint.getFontMetrics().top + MARGIN_TEXT + WEATHER_TEXT_SIZE / 2.0),
+                (float) (getMeasuredHeight() - TREND_MARGIN_BOTTOM - paint.getFontMetrics().top + 2.0 * MARGIN_TEXT + WEATHER_TEXT_SIZE),
                 paint);
 
         paint.setAlpha(255);
@@ -346,8 +348,8 @@ public class TrendItemView extends View {
     }
 
     private int computeSingleCoordinate(float value, float max, float min) {
-        float canvasHeight = getMeasuredHeight() - 2 * TREND_MARGIN;
-        return (int) (getMeasuredHeight() - TREND_MARGIN
+        float canvasHeight = getMeasuredHeight() - TREND_MARGIN_TOP - TREND_MARGIN_BOTTOM;
+        return (int) (getMeasuredHeight() - TREND_MARGIN_BOTTOM
                 - canvasHeight * (value - min) / (max - min));
     }
 }

@@ -35,6 +35,7 @@
         <item>Mini</item>
         <item>Nano</item>
         <item>Pixel</item>
+        <item>竪版</item>
     </string-array>
 
     <!-- Widget subtitle data. -->

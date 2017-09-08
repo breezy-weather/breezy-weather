@@ -51,17 +51,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
+            <TextClock
                 android:id="@+id/widget_day_subtitle"
                 android:layout_alignParentRight="true"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/subtitle_text_size"
                 android:textColor="@color/colorTextLight"
                 android:shadowColor="@color/colorTextGrey"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:maxLines="1"
-                style="@style/subtitle_text"
+                android:format24Hour="MM-dd EEE"
+                android:format12Hour="MM-dd EEE"
+                style="@style/widget_text_clock"
                 tools:text="12-29 周四"
                 tools:ignore="RtlHardcoded" />
 
