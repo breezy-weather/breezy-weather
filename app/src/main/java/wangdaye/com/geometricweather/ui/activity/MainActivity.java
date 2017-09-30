@@ -36,7 +36,6 @@ import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.ui.adapter.DetailsAdapter;
 import wangdaye.com.geometricweather.ui.widget.NoneSlipRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.StatusBarView;
@@ -47,9 +46,9 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
+import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.SafeHandler;
-import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
@@ -58,6 +57,7 @@ import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout;
@@ -185,20 +185,17 @@ public class MainActivity extends GeoActivity
                     readLocationList();
                     readIntentData(data);
                     switchLayout.setData(locationList, locationNow);
-                    indicator.setSwitchView(switchLayout);
                     reset();
                 } else {
                     readLocationList();
                     for (int i = 0; i < locationList.size(); i ++) {
                         if (locationNow.equals(locationList.get(i))) {
                             switchLayout.setData(locationList, locationNow);
-                            indicator.setSwitchView(switchLayout);
                             return;
                         }
                     }
                     locationNow = locationList.get(0);
                     switchLayout.setData(locationList, locationNow);
-                    indicator.setSwitchView(switchLayout);
                     reset();
                 }
                 break;
@@ -208,6 +205,7 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onResume() {
         super.onResume();
+        indicator.setSwitchView(switchLayout);
         if (locationList.size() > 1) {
             indicator.setVisibility(View.VISIBLE);
         } else {
@@ -358,7 +356,6 @@ public class MainActivity extends GeoActivity
         this.detailRecyclerView = findViewById(R.id.container_main_details_card_recyclerView);
 
         this.indicator = findViewById(R.id.activity_main_indicator);
-        indicator.setSwitchView(switchLayout);
     }
 
     // control.
@@ -759,7 +756,14 @@ public class MainActivity extends GeoActivity
             case MESSAGE_WHAT_STARTUP_SERVICE:
                 WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
                 NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
-                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW, true);
+                ThreadManager.getInstance().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        ServiceHelper.resetPollingService(MainActivity.this, true, false);
+                        ServiceHelper.resetForecastService(MainActivity.this, true);
+                        ServiceHelper.resetForecastService(MainActivity.this, false);
+                    }
+                });
                 break;
         }
     }

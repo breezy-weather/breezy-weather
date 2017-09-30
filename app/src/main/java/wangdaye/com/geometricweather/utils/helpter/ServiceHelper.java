@@ -4,8 +4,10 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
+import java.util.Calendar;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
@@ -23,56 +25,50 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class ServiceHelper {
 
-    public static void startupService(Context context, int forceRefreshType, boolean checkIsRunning) {
-        startPermanentService(context, forceRefreshType, checkIsRunning);
-    }
-
-    public static void stopNormalService(Context context) {
-        startPermanentService(context, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW, false);
-        context.stopService(new Intent(context, NormalUpdateService.class));
-    }
-
-    public static void stopForecastService(Context context, boolean today) {
-        startPermanentService(context, PollingService.FORCE_REFRESH_TYPE_FORECAST, false);
-        if (today) {
-            context.stopService(new Intent(context, TodayForecastUpdateService.class));
+    public static void resetNormalService(Context context, boolean checkIfRunning, boolean forceRefresh) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String refreshRate = sharedPreferences.getString(context.getString(R.string.key_refresh_rate), "1:30");
+        boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            JobHelper.setJobForNormalView(context, ValueUtils.getRefreshRateScale(refreshRate));
         } else {
-            context.stopService(new Intent(context, TomorrowForecastUpdateService.class));
+            if (backgroundFree) {
+                stopNormalService(context);
+                if (forceRefresh) {
+                    context.startService(new Intent(context, NormalUpdateService.class));
+                } else {
+                    AlarmHelper.setAlarmForNormalView(context, ValueUtils.getRefreshRateScale(refreshRate));
+                }
+            } else {
+                resetPollingService(context, checkIfRunning, forceRefresh);
+            }
         }
     }
 
-    private static void startPermanentService(Context context, int forceRefreshType, boolean checkIsRunning) {
+    private static void stopNormalService(Context context) {
+        resetPollingService(context, false, false);
+        context.stopService(new Intent(context, NormalUpdateService.class));
+        AlarmHelper.cancelNormalViewAlarm(context);
+    }
+
+    public static void resetPollingService(Context context, boolean checkIsRunning, boolean forceRefresh) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), false);
         String refreshRate = sharedPreferences.getString(context.getString(R.string.key_refresh_rate), "1:30");
-        boolean openTodayForecast = sharedPreferences.getBoolean(context.getString(R.string.key_forecast_today), false);
-        String todayForecastTime = sharedPreferences.getString(
-                context.getString(R.string.key_forecast_today_time),
-                GeometricWeather.DEFAULT_TODAY_FORECAST_TIME);
-        boolean openTomorrowForecast = sharedPreferences.getBoolean(context.getString(R.string.key_forecast_tomorrow), false);
-        String tomorrowForecastTime = sharedPreferences.getString(
-                context.getString(R.string.key_forecast_tomorrow_time),
-                GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME);
 
         // polling service.
         Intent polling = new Intent(context, PollingService.class);
         polling.putExtra(PollingService.KEY_IS_REFRESH, true);
-        polling.putExtra(PollingService.KEY_WORKING, true);
-        polling.putExtra(PollingService.KEY_BACKGROUND_FREE, backgroundFree);
-        polling.putExtra(PollingService.KEY_FORCE_REFRESH_TYPE, forceRefreshType);
+        polling.putExtra(PollingService.KEY_WORKING, !backgroundFree);
         polling.putExtra(PollingService.KEY_POLLING_RATE, ValueUtils.getRefreshRateScale(refreshRate));
-        polling.putExtra(PollingService.KEY_OPEN_TODAY_FORECAST, openTodayForecast);
-        polling.putExtra(PollingService.KEY_TODAY_FORECAST_TIME, todayForecastTime);
-        polling.putExtra(PollingService.KEY_OPEN_TOMORROW_FORECAST, openTomorrowForecast);
-        polling.putExtra(PollingService.KEY_TOMORROW_FORECAST_TIME, tomorrowForecastTime);
+        polling.putExtra(PollingService.KEY_FORCE_REFRESH, forceRefresh);
         boolean pollingExist = checkIsRunning && isExist(context, PollingService.class);
 
         // protect service.
         Intent protect = new Intent(context, ProtectService.class);
         protect.putExtra(ProtectService.KEY_IS_REFRESH, true);
-        protect.putExtra(ProtectService.KEY_WORKING, true);
-        protect.putExtra(ProtectService.KEY_BACKGROUND_FREE, backgroundFree);
+        protect.putExtra(ProtectService.KEY_WORKING, !backgroundFree);
         boolean protectExist = checkIsRunning && isExist(context, ProtectService.class);
 
         if (!pollingExist) {
@@ -94,5 +90,78 @@ public class ServiceHelper {
             }
         }
         return false;
+    }
+
+    public static void resetForecastService(Context context, boolean today) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean openTodayForecast = sharedPreferences.getBoolean(
+                context.getString(R.string.key_forecast_today),
+                false);
+        boolean openTomorrowForecast = sharedPreferences.getBoolean(
+                context.getString(R.string.key_forecast_tomorrow),
+                false);
+        String todayForecastTime = sharedPreferences.getString(
+                context.getString(R.string.key_forecast_today_time),
+                GeometricWeather.DEFAULT_TODAY_FORECAST_TIME);
+        String tomorrowForecastTime = sharedPreferences.getString(
+                context.getString(R.string.key_forecast_tomorrow_time),
+                GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (today) {
+                if (openTodayForecast) {
+                    if (isForecastTime(todayForecastTime)) {
+                        context.startService(new Intent(context, TodayForecastUpdateService.class));
+                    }
+                    JobHelper.setJobForTodayForecast(context, todayForecastTime);
+                } else {
+                    JobHelper.cancelTodayForecastJob(context);
+                }
+            } else {
+                if (openTomorrowForecast) {
+                    if (isForecastTime(tomorrowForecastTime)) {
+                        context.startService(new Intent(context, TomorrowForecastUpdateService.class));
+                    }
+                    JobHelper.setJobForTomorrowForecast(context, tomorrowForecastTime);
+                } else {
+                    JobHelper.cancelTomorrowForecastJob(context);
+                }
+            }
+        } else {
+            stopForecastService(context, today);
+            if (today && openTodayForecast) {
+                if (isForecastTime(todayForecastTime)) {
+                    context.startService(new Intent(context, TodayForecastUpdateService.class));
+                } else {
+                    AlarmHelper.setAlarmForTodayForecast(context, todayForecastTime);
+                }
+            } else if (!today && openTomorrowForecast) {
+                if (isForecastTime(tomorrowForecastTime)) {
+                    context.startService(new Intent(context, TomorrowForecastUpdateService.class));
+                } else {
+                    AlarmHelper.setAlarmForTomorrowForecast(context, tomorrowForecastTime);
+                }
+            }
+        }
+    }
+
+    private static void stopForecastService(Context context, boolean today) {
+        if (today) {
+            context.stopService(new Intent(context, TodayForecastUpdateService.class));
+            AlarmHelper.cancelTodayForecastAlarm(context);
+        } else {
+            context.stopService(new Intent(context, TomorrowForecastUpdateService.class));
+            AlarmHelper.cancelTomorrowForecastAlarm(context);
+        }
+    }
+
+    public static boolean isForecastTime(String time) {
+        int realTimes[] = new int[] {
+                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                Calendar.getInstance().get(Calendar.MINUTE)};
+        int setTimes[] = new int[]{
+                Integer.parseInt(time.split(":")[0]),
+                Integer.parseInt(time.split(":")[1])};
+        return realTimes[0] == setTimes[0] && realTimes[1] == setTimes[1];
     }
 }

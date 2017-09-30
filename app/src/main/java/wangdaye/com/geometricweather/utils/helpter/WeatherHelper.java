@@ -662,6 +662,72 @@ public class WeatherHelper {
         return imageId;
     }
 
+    public static int getShortcutForeground(String weatherInfo, boolean dayTime) {
+        int imageId;
+        switch (weatherInfo) {
+            case KIND_CLEAR:
+                if(dayTime) {
+                    imageId = R.drawable.ic_shortcut_sun_day_foreground;
+                } else {
+                    imageId = R.drawable.ic_shortcut_sun_night_foreground;
+                }
+                break;
+
+            case KIND_PARTLY_CLOUDY:
+                if(dayTime) {
+                    imageId = R.drawable.ic_shortcut_cloud_day_foreground;
+                } else {
+                    imageId = R.drawable.ic_shortcut_cloudy_foreground;
+                }
+                break;
+
+            case KIND_CLOUDY:
+                imageId = R.drawable.ic_shortcut_cloudy_foreground;
+                break;
+
+            case KIND_RAIN:
+                imageId = R.drawable.ic_shortcut_rain_foreground;
+                break;
+
+            case KIND_WIND:
+                imageId = R.drawable.ic_shortcut_wind_foreground;
+                break;
+
+            case KIND_SNOW:
+                imageId = R.drawable.ic_shortcut_snow_foreground;
+                break;
+
+            case KIND_FOG:
+                imageId = R.drawable.ic_shortcut_fog_foreground;
+                break;
+
+            case KIND_HAZE:
+                imageId = R.drawable.ic_shortcut_haze_foreground;
+                break;
+
+            case KIND_SLEET:
+                imageId = R.drawable.ic_shortcut_sleet_foreground;
+                break;
+
+            case KIND_THUNDERSTORM:
+                imageId = R.drawable.ic_shortcut_thunder_foreground;
+                break;
+
+            case KIND_THUNDER:
+                imageId = R.drawable.ic_shortcut_thunder_foreground;
+                break;
+
+            case KIND_HAIL:
+                imageId = R.drawable.ic_shortcut_hail_foreground;
+                break;
+
+            default:
+                imageId = R.drawable.ic_shortcut_cloudy_foreground;
+                break;
+        }
+        return imageId;
+    }
+
     @SuppressLint("SimpleDateFormat")
     public static String getWeek(Context c, String dateTxt) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

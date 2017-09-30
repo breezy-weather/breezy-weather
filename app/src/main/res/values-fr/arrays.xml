@@ -44,6 +44,7 @@
         <item>AQI (Indispo en France)</item>
         <item>Vent</item>
         <item>Temp. ressentie</item>
+        <item>Lunar Calendar</item>
     </string-array>
 
 </resources>

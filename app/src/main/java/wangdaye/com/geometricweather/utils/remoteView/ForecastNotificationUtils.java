@@ -1,13 +1,14 @@
 package wangdaye.com.geometricweather.utils.remoteView;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -23,6 +24,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 public class ForecastNotificationUtils {
 
     private static final int NOTIFICATION_ID = 318;
+    private static final String CHANNEL_ID_FORECAST = "forecast";
 
     public static void buildForecastAndSendIt(Context context, Weather weather, boolean today) {
         if (weather == null) {
@@ -42,6 +44,8 @@ public class ForecastNotificationUtils {
         boolean backgroundColor = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_background),
                 false);
+        boolean hideNotificationIcon = sharedPreferences.getBoolean(
+                context.getString(R.string.key_notification_hide_icon), false);
         String textColor = sharedPreferences.getString(
                 context.getString(R.string.key_notification_text_color),
                 "grey");
@@ -66,14 +70,25 @@ public class ForecastNotificationUtils {
                 break;
         }
 
-        // get manager & builder.
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationCompat.CATEGORY_REMINDER);
+        // create channel.
+        NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            manager.createNotificationChannel(
+                    new NotificationChannel(
+                            CHANNEL_ID_FORECAST,
+                            context.getString(R.string.app_name) + " " + context.getString(R.string.forecast),
+                            hideNotificationIcon ? NotificationManager.IMPORTANCE_MIN : NotificationManager.IMPORTANCE_DEFAULT));
+        }
+
+        // get builder.
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                context, CHANNEL_ID_FORECAST);
 
         // set notification level.
-        if (sharedPreferences.getBoolean(context.getString(R.string.key_notification_hide_icon), false)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && hideNotificationIcon) {
             builder.setPriority(NotificationCompat.PRIORITY_MIN);
         } else {
-            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+            builder.setPriority(NotificationCompat.PRIORITY_MAX);
         }
 
         // set notification visibility.
@@ -190,10 +205,11 @@ public class ForecastNotificationUtils {
         builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
         builder.setAutoCancel(true);
 
-        Notification notification = builder.build();
+        // set badge.
+        builder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL);
 
         // commit.
-        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification);
+        manager.notify(NOTIFICATION_ID, builder.build());
     }
 
     public static boolean isEnable(Context context, boolean today) {

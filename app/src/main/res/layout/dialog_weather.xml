@@ -11,12 +11,29 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/dialog_weather_title"
-            android:layout_margin="@dimen/normal_margin"
-            android:textStyle="bold"
-            style="@style/content_text"
-            tools:text="12-24 : 周五" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/dialog_weather_title"
+                android:layout_margin="@dimen/normal_margin"
+                android:textStyle="bold"
+                android:maxLines="1"
+                style="@style/content_text"
+                tools:text="12-24 : 周五" />
+
+            <TextView
+                android:id="@+id/dialog_weather_subtitle"
+                android:layout_margin="@dimen/normal_margin"
+                android:layout_alignParentRight="true"
+                android:textStyle="bold"
+                android:maxLines="1"
+                style="@style/content_text"
+                tools:text="十一月初七"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/dialog_weather_weatherContainer_day"

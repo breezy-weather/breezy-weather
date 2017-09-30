@@ -52,7 +52,7 @@
             android:layout_height="wrap_content">
 
             <TextClock
-                android:id="@+id/widget_day_subtitle"
+                android:id="@+id/widget_day_time"
                 android:layout_alignParentRight="true"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/subtitle_text_size"

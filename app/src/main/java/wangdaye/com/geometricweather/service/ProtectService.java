@@ -12,14 +12,11 @@ import android.support.annotation.Nullable;
 
 public class ProtectService extends Service {
 
-    private static boolean sPower;
-    private static boolean running;
     private static boolean working;
-    private static boolean backgroundFree;
+    private static boolean threadRunning;
 
     public static final String KEY_IS_REFRESH = "is_refresh";
     public static final String KEY_WORKING = "working";
-    public static final String KEY_BACKGROUND_FREE = "background_free";
 
     @Override
     public void onCreate() {
@@ -32,7 +29,7 @@ public class ProtectService extends Service {
         super.onStartCommand(intent, flags, startId);
         readData(intent);
         doProtectionWork();
-        if (!running && (!working || backgroundFree)) {
+        if (!threadRunning && !working) {
             stopSelf();
         }
         return START_STICKY;
@@ -45,33 +42,27 @@ public class ProtectService extends Service {
     }
 
     private void initData() {
-        sPower = true;
-        running = false;
         working = true;
-        backgroundFree = false;
+        threadRunning = false;
     }
 
     private void readData(Intent intent) {
         if (intent != null && intent.getBooleanExtra(KEY_IS_REFRESH, false)) {
             working = intent.getBooleanExtra(KEY_WORKING, true);
-            backgroundFree = intent.getBooleanExtra(KEY_BACKGROUND_FREE, false);
         }
     }
 
     private void doProtectionWork() {
-        if (!running && working && !backgroundFree) {
-            running = true;
+        if (!threadRunning && working) {
+            threadRunning = true;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (sPower && working && !backgroundFree) {
-                        if (System.currentTimeMillis() >= 123456789000000L) {
-                            sPower = false;
-                        }
-                        SystemClock.sleep(1500);
+                    while (working) {
                         startService(new Intent(ProtectService.this, PollingService.class));
+                        SystemClock.sleep(1500);
                     }
-                    if (!working || backgroundFree) {
+                    if (!working) {
                         stopSelf();
                     }
                 }

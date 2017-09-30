@@ -7,8 +7,8 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
-import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayHorizontalUtils;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayWeekUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayWeekUtils;
@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
 public class WidgetUtils {
 
     public static void refreshWidgetInNewThread(final Context context,
-                                                    final Location location) {
+                                                final Location location) {
         ThreadManager.getInstance()
                 .execute(new Runnable() {
                     @Override

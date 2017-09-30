@@ -24,8 +24,8 @@
             <TextClock
                 android:id="@+id/widget_clock_day_clock"
                 android:textSize="56sp"
-                android:format24Hour="HH\nmm"
-                android:format12Hour="hh\nmm"
+                android:format24Hour=" HH\n mm"
+                android:format12Hour=" hh\n mm"
                 style="@style/widget_text_clock" />
 
         </RelativeLayout>

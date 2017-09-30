@@ -44,6 +44,7 @@
         <item>空气质量 (部分地区无效)</item>
         <item>风况</item>
         <item>体感温度</item>
+        <item>农历</item>
     </string-array>
 
 </resources>

@@ -106,12 +106,14 @@
         <item>AQI (Invalid in some area.)</item>
         <item>Wind</item>
         <item>Sensible temp</item>
+        <item>Lunar Calendar</item>
     </string-array>
     <string-array name="subtitle_data_values">
         <item>time</item>
         <item>aqi</item>
         <item>wind</item>
         <item>sensible_time</item>
+        <item>lunar</item>
     </string-array>
 
 </resources>

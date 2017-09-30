@@ -16,6 +16,7 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.data.entity.model.Lunar;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetDayWeekProvider;
 import wangdaye.com.geometricweather.service.NormalUpdateService;
@@ -265,6 +266,19 @@ public class WidgetDayWeekUtils {
 
             case "wind":
                 return weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")";
+
+            case "lunar":
+                switch (viewStyle) {
+                    case "rectangle":
+                        return weather.base.city + " " + new Lunar(Calendar.getInstance()).toString();
+
+                    case "symmetry":
+                        return weather.dailyList.get(0).week + " " + new Lunar(Calendar.getInstance()).toString();
+
+                    case "tile":
+                        return weather.base.city + " " + weather.dailyList.get(0).week + " " + new Lunar(Calendar.getInstance()).toString();
+                }
+                break;
 
             default:
                 return context.getString(R.string.feels_like) + " "

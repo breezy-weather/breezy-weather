@@ -2,12 +2,15 @@ package wangdaye.com.geometricweather.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.UpdateService;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.utils.ValueUtils;
+import wangdaye.com.geometricweather.utils.helpter.AlarmHelper;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayHorizontalUtils;
@@ -47,9 +50,21 @@ public class NormalUpdateService extends UpdateService {
         }
     }
 
-    @Nullable
     @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public void setDelayTask(boolean notifyFailed) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean backgroundFree = sharedPreferences.getBoolean(getString(R.string.key_background_free), false);
+        String refreshRate = sharedPreferences.getString(getString(R.string.key_refresh_rate), "1:30");
+        if (notifyFailed) {
+            if (backgroundFree) {
+                AlarmHelper.setAlarmForNormalView(this, 0.25F);
+            } else {
+                startService(
+                        new Intent(this, PollingService.class)
+                                .putExtra(PollingService.KEY_POLLING_UPDATE_FAILED, true));
+            }
+        } else if (backgroundFree) {
+            AlarmHelper.setAlarmForNormalView(this, ValueUtils.getRefreshRateScale(refreshRate));
+        }
     }
 }

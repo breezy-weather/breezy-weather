@@ -129,6 +129,15 @@
         <service android:name=".service.TodayForecastUpdateService" />
         <service android:name=".service.TomorrowForecastUpdateService" />
         <service
+            android:name=".service.JobNormalUpdateService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".service.JobTodayForecastUpdateService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".service.JobTomorrowForecastUpdateService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
             android:name=".service.PollingService"
             android:process=":polling" />
         <service

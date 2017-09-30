@@ -44,6 +44,7 @@
         <item>空氣質量 (部分地區無效)</item>
         <item>風況</item>
         <item>體感溫度</item>
+        <item>農曆</item>
     </string-array>
 
 </resources>

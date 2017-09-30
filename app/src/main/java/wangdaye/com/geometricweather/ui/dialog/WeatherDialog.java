@@ -14,10 +14,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.data.entity.model.Lunar;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -55,9 +59,9 @@ public class WeatherDialog extends GeoDialogFragment
 
     @SuppressLint("SetTextI18n")
     private void initWidget(View view) {
-        this.container = (CoordinatorLayout) view.findViewById(R.id.dialog_weather_container);
+        this.container = view.findViewById(R.id.dialog_weather_container);
 
-        TextView title = (TextView) view.findViewById(R.id.dialog_weather_title);
+        TextView title = view.findViewById(R.id.dialog_weather_title);
         if (daily) {
             title.setText(weather.dailyList.get(position).date.split("-", 2)[1]
                     + " " + weather.dailyList.get(position).week);
@@ -65,16 +69,29 @@ public class WeatherDialog extends GeoDialogFragment
             title.setText(weather.hourlyList.get(position).time);
         }
 
+        TextView subtitle = view.findViewById(R.id.dialog_weather_subtitle);
+        if (daily && LanguageUtils.getLanguageCode(getActivity()).startsWith("zh")) {
+            String dates[] = weather.dailyList.get(position).date.split("-");
+            Calendar c = Calendar.getInstance();
+            c.set(
+                    Integer.parseInt(dates[0]),
+                    Integer.parseInt(dates[1]),
+                    Integer.parseInt(dates[2]));
+            subtitle.setText(new Lunar(c).toString());
+        } else {
+            subtitle.setVisibility(View.GONE);
+        }
+
         view.findViewById(R.id.dialog_weather_weatherContainer_day).setOnClickListener(this);
         view.findViewById(R.id.dialog_weather_weatherContainer_night).setOnClickListener(this);
 
         ImageView[][] weatherIcons = new ImageView[2][3];
-        weatherIcons[0][0] = (ImageView) view.findViewById(R.id.dialog_weather_icon_1_day);
-        weatherIcons[0][1] = (ImageView) view.findViewById(R.id.dialog_weather_icon_2_day);
-        weatherIcons[0][2] = (ImageView) view.findViewById(R.id.dialog_weather_icon_3_day);
-        weatherIcons[1][0] = (ImageView) view.findViewById(R.id.dialog_weather_icon_1_night);
-        weatherIcons[1][1] = (ImageView) view.findViewById(R.id.dialog_weather_icon_2_night);
-        weatherIcons[1][2] = (ImageView) view.findViewById(R.id.dialog_weather_icon_3_night);
+        weatherIcons[0][0] = view.findViewById(R.id.dialog_weather_icon_1_day);
+        weatherIcons[0][1] = view.findViewById(R.id.dialog_weather_icon_2_day);
+        weatherIcons[0][2] = view.findViewById(R.id.dialog_weather_icon_3_day);
+        weatherIcons[1][0] = view.findViewById(R.id.dialog_weather_icon_1_night);
+        weatherIcons[1][1] = view.findViewById(R.id.dialog_weather_icon_2_night);
+        weatherIcons[1][2] = view.findViewById(R.id.dialog_weather_icon_3_night);
         if (daily) {
             int[] daytimeImageIds = WeatherHelper.getWeatherIcon(
                     weather.dailyList.get(position).weatherKinds[0], true);
@@ -114,8 +131,8 @@ public class WeatherDialog extends GeoDialogFragment
         }
 
         TextView[] weatherTexts = new TextView[] {
-                (TextView) view.findViewById(R.id.dialog_weather_text_day),
-                (TextView) view.findViewById(R.id.dialog_weather_text_night)};
+                view.findViewById(R.id.dialog_weather_text_day),
+                view.findViewById(R.id.dialog_weather_text_night)};
         if (daily) {
             String daytimeTxt = weather.dailyList.get(position).weathers[0] + "  "
                     + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[0], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
@@ -140,8 +157,8 @@ public class WeatherDialog extends GeoDialogFragment
         }
         
         TextView[] sunText = new TextView[] {
-                (TextView) view.findViewById(R.id.dialog_weather_sunrise),
-                (TextView) view.findViewById(R.id.dialog_weather_sunset)};
+                view.findViewById(R.id.dialog_weather_sunrise),
+                view.findViewById(R.id.dialog_weather_sunset)};
         if (daily) {
             sunText[0].setText(weather.dailyList.get(position).astros[0]);
             sunText[1].setText(weather.dailyList.get(position).astros[1]);
@@ -152,7 +169,7 @@ public class WeatherDialog extends GeoDialogFragment
             sunText[1].setVisibility(View.GONE);
         }
 
-        Button done = (Button) view.findViewById(R.id.dialog_weather_button);
+        Button done = view.findViewById(R.id.dialog_weather_button);
         boolean dayTime = daily
                 ? TimeManager.getInstance(getActivity()).isDayTime() : weather.hourlyList.get(position).dayTime;
         if (dayTime) {

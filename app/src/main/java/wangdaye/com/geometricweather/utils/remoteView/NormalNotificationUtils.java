@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.utils.remoteView;
 
-import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -8,14 +8,17 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import java.util.Calendar;
+
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.data.entity.model.Lunar;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -28,6 +31,7 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 public class NormalNotificationUtils {
 
     private static final int NOTIFICATION_ID = 317;
+    private static final String CHANNEL_ID_NORMALLY = "normally";
 
     public static void buildNotificationAndSendIt(Context context, Weather weather) {
         if (weather == null) {
@@ -52,6 +56,8 @@ public class NormalNotificationUtils {
         boolean hideBigView = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_hide_big_view),
                 false);
+        boolean hideNotificationIcon = sharedPreferences.getBoolean(
+                context.getString(R.string.key_notification_hide_icon), false);
 
         // get text color.
         String textColor = sharedPreferences.getString(
@@ -75,13 +81,23 @@ public class NormalNotificationUtils {
                 break;
         }
 
+        // build channel.
+        NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID_NORMALLY,
+                    context.getString(R.string.app_name),
+                    hideNotificationIcon ? NotificationManager.IMPORTANCE_MIN : NotificationManager.IMPORTANCE_LOW);
+            channel.setShowBadge(false);
+            manager.createNotificationChannel(channel);
+        }
+
         // get manager & builder.
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                context, NotificationCompat.CATEGORY_SERVICE);
+                context, CHANNEL_ID_NORMALLY);
 
         // set notification level.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && sharedPreferences.getBoolean(context.getString(R.string.key_notification_hide_icon), false)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && hideNotificationIcon) {
             builder.setPriority(NotificationCompat.PRIORITY_MIN);
         } else {
             builder.setPriority(NotificationCompat.PRIORITY_MAX);
@@ -154,8 +170,18 @@ public class NormalNotificationUtils {
                 R.id.notification_base_weather,
                 weather.realTime.weather);
 
+        Calendar c = Calendar.getInstance();
+        String dates[] = weather.base.date.split("-");
+        c.set(
+                Integer.parseInt(dates[0]),
+                Integer.parseInt(dates[1]),
+                Integer.parseInt(dates[2]));
         base.setTextViewText(
-                R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                R.id.notification_base_time,
+                weather.base.city
+                        + " " + weather.dailyList.get(0).week
+                        + (LanguageUtils.getLanguageCode(context).startsWith("zh") ? " " + new Lunar(c).toString() : "")
+                        + " " + weather.base.time);
 
         if (backgroundColor) {
             base.setViewVisibility(R.id.notification_base_background, View.VISIBLE);
@@ -224,7 +250,11 @@ public class NormalNotificationUtils {
                     weather.realTime.weather);
 
             big.setTextViewText(
-                    R.id.notification_base_time, weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time);
+                    R.id.notification_base_time,
+                    weather.base.city
+                            + " " + weather.dailyList.get(0).week
+                            + (LanguageUtils.getLanguageCode(context).startsWith("zh") ? " " + new Lunar(c).toString() : "")
+                            + " " + weather.base.time);
 
             big.setViewVisibility(R.id.notification_base_background, View.GONE);
 
@@ -333,11 +363,8 @@ public class NormalNotificationUtils {
             builder.setOngoing(true);
         }
 
-        // get notification.
-        Notification notification = builder.build();
-
         // commit.
-        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification);
+        manager.notify(NOTIFICATION_ID, builder.build());
     }
 
     public static void cancelNotification(Context context) {

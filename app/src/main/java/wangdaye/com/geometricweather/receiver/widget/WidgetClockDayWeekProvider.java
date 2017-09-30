@@ -4,7 +4,6 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 
-import wangdaye.com.geometricweather.service.PollingService;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 
 /**
@@ -16,6 +15,6 @@ public class WidgetClockDayWeekProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        ServiceHelper.startupService(context, PollingService.FORCE_REFRESH_TYPE_ALL, true);
+        ServiceHelper.resetNormalService(context, false, true);
     }
 }

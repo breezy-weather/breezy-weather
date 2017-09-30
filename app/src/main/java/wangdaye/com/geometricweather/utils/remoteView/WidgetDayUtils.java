@@ -11,9 +11,12 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import java.util.Calendar;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.data.entity.model.Lunar;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetDayProvider;
 import wangdaye.com.geometricweather.service.NormalUpdateService;
@@ -140,14 +143,14 @@ public class WidgetDayUtils {
         views.setTextViewText(
                 R.id.widget_day_title,
                 getTitleText(weather, viewStyle, fahrenheit));
+        views.setTextViewText(
+                R.id.widget_day_subtitle,
+                getSubtitleText(weather, viewStyle, fahrenheit));
         if (!viewStyle.equals("pixel")) {
             views.setTextViewText(
-                    R.id.widget_day_subtitle,
-                    getSubtitleText(weather, viewStyle, fahrenheit));
+                    R.id.widget_day_time,
+                    getTimeText(context, weather, viewStyle, subtitleData));
         }
-        views.setTextViewText(
-                R.id.widget_day_time,
-                getTimeText(context, weather, viewStyle, subtitleData));
 
         views.setTextColor(R.id.widget_day_title, textColor);
         views.setTextColor(R.id.widget_day_subtitle, textColor);
@@ -233,6 +236,21 @@ public class WidgetDayUtils {
 
             case "wind":
                 return weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")";
+
+            case "lunar":
+                switch (viewStyle) {
+                    case "rectangle":
+                        return weather.base.city + " " + new Lunar(Calendar.getInstance()).toString();
+
+                    case "symmetry":
+                        return weather.dailyList.get(0).week + " " + new Lunar(Calendar.getInstance()).toString();
+
+                    case "tile":
+                    case "mini":
+                    case "vertical":
+                        return weather.base.city + " " + weather.dailyList.get(0).week + " " + new Lunar(Calendar.getInstance()).toString();
+                }
+                break;
 
             default:
                 return context.getString(R.string.feels_like) + " "

@@ -1,6 +1,8 @@
 package wangdaye.com.geometricweather.utils;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class NotificationUtils {
     private static final String PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE";
     private static final String KEY_NOTIFICATION_ID = "NOTIFICATION_ID";
     private static final int NOTIFICATION_GROUP_SUMMARY_ID = 10001;
+    private static final String CHANNEL_ID_ALERT = "alert";
 
     public static void refreshNotificationInNewThread(final Context c, final Location location) {
         ThreadManager.getInstance()
@@ -72,26 +74,34 @@ public class NotificationUtils {
     }
 
     private static void sendAlertNotification(Context c, String cityName, Alert alert) {
-        NotificationManagerCompat.from(c)
-                .notify(
+        NotificationManager manager = ((NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID_ALERT,
+                    c.getString(R.string.app_name) + " " + c.getString(R.string.action_alert),
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setShowBadge(true);
+            manager.createNotificationChannel(channel);
+        }
+        manager.notify(
                         getNotificationId(c),
                         buildSingleNotification(c, cityName, alert));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            NotificationManagerCompat.from(c)
+            ((NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE))
                     .notify(NOTIFICATION_GROUP_SUMMARY_ID, buildGroupSummaryNotification(c, cityName, alert));
         }
     }
 
     private static Notification buildSingleNotification(Context c, String cityName, Alert alert) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                c, NotificationCompat.CATEGORY_REMINDER)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(c, CHANNEL_ID_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
                 .setLargeIcon(BitmapFactory.decodeResource(c.getResources(), R.drawable.ic_launcher))
                 .setContentTitle(c.getString(R.string.action_alert))
                 .setSubText(alert.publishTime)
                 .setContentText(alert.description)
                 .setAutoCancel(true)
+                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                 .setContentIntent(buildIntent(c, cityName));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -101,7 +111,7 @@ public class NotificationUtils {
     }
 
     private static Notification buildGroupSummaryNotification(Context c, String cityName, Alert alert) {
-        return new NotificationCompat.Builder(c)
+        return new NotificationCompat.Builder(c, CHANNEL_ID_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
                 .setContentTitle(alert.description)
                 .setGroup(NOTIFICATION_GROUP_KEY)

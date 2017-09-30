@@ -27,7 +27,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import wangdaye.com.geometricweather.basic.GeoWidgetConfigActivity;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.service.PollingService;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayUtils;
@@ -77,8 +77,15 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
         super.initData();
         this.viewTypes = getResources().getStringArray(R.array.widget_styles);
         this.viewTypeValues = getResources().getStringArray(R.array.widget_style_values);
-        this.subtitleData = getResources().getStringArray(R.array.subtitle_data);
-        this.subtitleDataValues = getResources().getStringArray(R.array.subtitle_data_values);
+        int length = LanguageUtils.getLanguageCode(this).startsWith("zh") ? 5 : 4;
+        this.subtitleData = new String[length];
+        this.subtitleDataValues = new String[length];
+        String[] data = getResources().getStringArray(R.array.subtitle_data);
+        String[] dataValues = getResources().getStringArray(R.array.subtitle_data_values);
+        for (int i = 0; i < length; i ++) {
+            subtitleData[i] = data[i];
+            subtitleDataValues[i] = dataValues[i];
+        }
     }
 
     @Override
@@ -134,10 +141,10 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 .into(widgetIcon);
 
         widgetTitle.setText(WidgetDayUtils.getTitleText(weather, viewTypeValueNow, isFahrenheit()));
-        if (widgetSubtitle != null && !viewTypeValueNow.equals("pixel")) {
+        if (widgetSubtitle != null) {
             widgetSubtitle.setText(WidgetDayUtils.getSubtitleText(weather, viewTypeValueNow, isFahrenheit()));
         }
-        if (widgetTime != null) {
+        if (widgetTime != null && !viewTypeValueNow.equals("pixel")) {
             widgetTime.setText(WidgetDayUtils.getTimeText(this, weather, viewTypeValueNow, subtitleDataValueNow));
         }
 
@@ -169,9 +176,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
             }
         }
 
-        if (viewTypeValueNow.equals("pixel")) {
-            widgetSubtitle.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
-        } else if (widgetTime != null) {
+        if (widgetTime != null) {
             widgetTime.setVisibility(hideSubtitleSwitch.isChecked() ? View.GONE : View.VISIBLE);
         }
     }
@@ -262,8 +267,8 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
                 this.widgetIcon = widgetViews[5].findViewById(R.id.widget_day_icon);
                 this.widgetTitle = widgetViews[5].findViewById(R.id.widget_day_title);
-                this.widgetSubtitle = widgetViews[5].findViewById(R.id.widget_day_subtitle);
-                this.widgetTime = null;
+                this.widgetSubtitle = null;
+                this.widgetTime = widgetViews[5].findViewById(R.id.widget_day_time);
                 break;
 
             case "vertical":
@@ -310,7 +315,7 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, resultValue);
 
-                ServiceHelper.startupService(this, PollingService.FORCE_REFRESH_TYPE_NORMAL_VIEW, false);
+                ServiceHelper.resetNormalService(this, false, true);
                 finish();
                 break;
         }
