@@ -24,8 +24,8 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         GeometricWeather.getInstance().addActivity(this);
-        DisplayUtils.setStatusBarTranslate(getWindow());
         DisplayUtils.setWindowTopColor(this, 0);
+        DisplayUtils.setStatusBarTranslate(getWindow());
         DisplayUtils.setNavigationBarColor(this, 0);
 
         this.dialogList = new ArrayList<>();

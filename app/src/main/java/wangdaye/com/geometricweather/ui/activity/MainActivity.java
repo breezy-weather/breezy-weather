@@ -221,6 +221,7 @@ public class MainActivity extends GeoActivity
         handler.removeCallbacksAndMessages(null);
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // do nothing.
@@ -278,6 +279,7 @@ public class MainActivity extends GeoActivity
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initWidget() {
         this.handler = new SafeHandler<>(this);
 
@@ -430,7 +432,7 @@ public class MainActivity extends GeoActivity
         realtimeSendibleTemp.setText(
                 getString(R.string.feels_like) + " "
                         + ValueUtils.buildAbbreviatedCurrentTemp(
-                                weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit()));
+                        weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit()));
 
         if (weather.aqi == null) {
             aqiOrWind.setText(weather.realTime.windLevel);
@@ -581,6 +583,7 @@ public class MainActivity extends GeoActivity
 
     private View.OnTouchListener indicatorStateListener = new View.OnTouchListener() {
 
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {

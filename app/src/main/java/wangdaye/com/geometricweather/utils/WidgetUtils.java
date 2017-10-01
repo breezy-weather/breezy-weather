@@ -3,6 +3,9 @@ package wangdaye.com.geometricweather.utils;
 import android.content.Context;
 import android.text.TextPaint;
 
+import java.util.Calendar;
+
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
@@ -106,5 +109,35 @@ public class WidgetUtils {
         return new String[] {
                 texts[0] + "\n" + texts[1],
                 texts[2] + "\n" + texts[3]};
+    }
+
+    public static String getWeek(Context context) {
+        Calendar c = Calendar.getInstance();
+        int week = c.get(Calendar.DAY_OF_WEEK);
+        switch (week) {
+            case Calendar.SUNDAY:
+                return context.getString(R.string.week_7);
+
+            case Calendar.MONDAY:
+                return context.getString(R.string.week_1);
+
+            case Calendar.TUESDAY:
+                return context.getString(R.string.week_2);
+
+            case Calendar.WEDNESDAY:
+                return context.getString(R.string.week_3);
+
+            case Calendar.THURSDAY:
+                return context.getString(R.string.week_4);
+
+            case Calendar.FRIDAY:
+                return context.getString(R.string.week_5);
+
+            case Calendar.SATURDAY:
+                return context.getString(R.string.week_6);
+
+            default:
+                return "";
+        }
     }
 }

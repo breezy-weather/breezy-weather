@@ -42,7 +42,9 @@ public class MaterialWeatherView extends SurfaceView
     private WeatherAnimationImplementor implementor;
     private boolean running;
 
+    @Nullable
     private SensorManager sensorManager;
+    @Nullable
     private Sensor sensor;
     private float rotation2D;
     private float rotation3D;
@@ -105,8 +107,10 @@ public class MaterialWeatherView extends SurfaceView
         holder.setFormat(PixelFormat.RGBA_8888);
 
         this.sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
-        this.sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
-        this.openGravitySensor = true;
+        if (sensorManager != null) {
+            this.sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+            this.openGravitySensor = true;
+        }
 
         this.step = STEP_DISPLAY;
         setWeather(WeatherView.WEATHER_KING_NULL);
@@ -340,7 +344,9 @@ public class MaterialWeatherView extends SurfaceView
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         initSensorData();
-        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+        if (sensorManager != null) {
+            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+        }
 
         setWeatherImplementor();
 
@@ -356,7 +362,9 @@ public class MaterialWeatherView extends SurfaceView
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         synchronized (surfaceLock) {
-            sensorManager.unregisterListener(this, sensor);
+            if (sensorManager != null) {
+                sensorManager.unregisterListener(this, sensor);
+            }
             running = false;
         }
     }

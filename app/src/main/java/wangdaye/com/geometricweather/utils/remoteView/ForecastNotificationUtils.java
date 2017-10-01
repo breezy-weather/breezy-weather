@@ -72,6 +72,10 @@ public class ForecastNotificationUtils {
 
         // create channel.
         NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+        if (manager == null) {
+            return;
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             manager.createNotificationChannel(
                     new NotificationChannel(

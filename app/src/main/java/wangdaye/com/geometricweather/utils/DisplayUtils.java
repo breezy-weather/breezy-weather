@@ -114,15 +114,15 @@ public class DisplayUtils {
     }
 
     public static void setStatusBarStyleWithScrolling(Window window, View statusBar, boolean overlap) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            if (overlap) {
-                statusBar.clearAnimation();
-                statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
-            } else {
-                statusBar.clearAnimation();
-                statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.05F));
-            }
+        if (overlap) {
+            statusBar.clearAnimation();
+            statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
         } else {
+            statusBar.clearAnimation();
+            statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.05F));
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (overlap) {
                 setDarkTextStatusBar(window);
             } else {

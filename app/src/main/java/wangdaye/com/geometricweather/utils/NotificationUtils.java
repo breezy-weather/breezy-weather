@@ -75,21 +75,22 @@ public class NotificationUtils {
 
     private static void sendAlertNotification(Context c, String cityName, Alert alert) {
         NotificationManager manager = ((NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID_ALERT,
-                    c.getString(R.string.app_name) + " " + c.getString(R.string.action_alert),
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setShowBadge(true);
-            manager.createNotificationChannel(channel);
-        }
-        manager.notify(
-                        getNotificationId(c),
-                        buildSingleNotification(c, cityName, alert));
+        if (manager != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel(
+                        CHANNEL_ID_ALERT,
+                        c.getString(R.string.app_name) + " " + c.getString(R.string.action_alert),
+                        NotificationManager.IMPORTANCE_DEFAULT);
+                channel.setShowBadge(true);
+                manager.createNotificationChannel(channel);
+            }
+            manager.notify(
+                    getNotificationId(c),
+                    buildSingleNotification(c, cityName, alert));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            ((NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE))
-                    .notify(NOTIFICATION_GROUP_SUMMARY_ID, buildGroupSummaryNotification(c, cityName, alert));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                manager.notify(NOTIFICATION_GROUP_SUMMARY_ID, buildGroupSummaryNotification(c, cityName, alert));
+            }
         }
     }
 

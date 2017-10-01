@@ -11,8 +11,7 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/GeometricWeatherTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource"
-        tools:targetApi="25">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource">
 
         <!-- baidu location -->
         <meta-data

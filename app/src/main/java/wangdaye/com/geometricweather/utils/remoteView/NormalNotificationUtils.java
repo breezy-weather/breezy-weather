@@ -19,6 +19,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Lunar;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -83,6 +84,10 @@ public class NormalNotificationUtils {
 
         // build channel.
         NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+        if (manager == null) {
+            return;
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID_NORMALLY,
@@ -174,12 +179,12 @@ public class NormalNotificationUtils {
         String dates[] = weather.base.date.split("-");
         c.set(
                 Integer.parseInt(dates[0]),
-                Integer.parseInt(dates[1]),
+                Integer.parseInt(dates[1]) - 1,
                 Integer.parseInt(dates[2]));
         base.setTextViewText(
                 R.id.notification_base_time,
                 weather.base.city
-                        + " " + weather.dailyList.get(0).week
+                        + " " + WidgetUtils.getWeek(context)
                         + (LanguageUtils.getLanguageCode(context).startsWith("zh") ? " " + new Lunar(c).toString() : "")
                         + " " + weather.base.time);
 
@@ -368,7 +373,10 @@ public class NormalNotificationUtils {
     }
 
     public static void cancelNotification(Context context) {
-        ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).cancel(NOTIFICATION_ID);
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (manager != null) {
+            manager.cancel(NOTIFICATION_ID);
+        }
     }
 
     public static boolean isEnable(Context context) {

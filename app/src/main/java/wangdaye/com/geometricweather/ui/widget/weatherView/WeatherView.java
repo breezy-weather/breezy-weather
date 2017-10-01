@@ -56,7 +56,7 @@ public interface WeatherView {
     @WeatherView.WeatherKindRule
     int getWeatherKind();
 
-    // primary color, chart colors.
+    // primary color * 1, chart colors * 2.
     @ColorInt
     @Size(3)
     int[] getThemeColors();

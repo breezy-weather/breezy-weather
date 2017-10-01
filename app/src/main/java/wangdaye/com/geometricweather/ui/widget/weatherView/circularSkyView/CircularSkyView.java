@@ -108,17 +108,17 @@ public class CircularSkyView extends FrameLayout
         View view = LayoutInflater.from(getContext()).inflate(R.layout.container_circular_sky_view, null);
         addView(view);
 
-        this.container = (LinearLayout) findViewById(R.id.container_circular_sky_view);
+        this.container = findViewById(R.id.container_circular_sky_view);
 
-        this.statusBar = (StatusBarView) findViewById(R.id.container_circular_sky_view_statusBar);
+        this.statusBar = findViewById(R.id.container_circular_sky_view_statusBar);
         setStatusBarColor();
 
-        this.controlView = (WeatherIconControlView) findViewById(R.id.container_circular_sky_view_controller);
+        this.controlView = findViewById(R.id.container_circular_sky_view_controller);
         controlView.setOnWeatherIconChangingListener(this);
 
-        this.circleView = (CircleView) findViewById(R.id.container_circular_sky_view_circularSkyView);
+        this.circleView = findViewById(R.id.container_circular_sky_view_circularSkyView);
 
-        this.starContainer = (FrameLayout) findViewById(R.id.container_circular_sky_view_starContainer);
+        this.starContainer = findViewById(R.id.container_circular_sky_view_starContainer);
         if (TimeManager.getInstance(getContext()).isDayTime()) {
             starContainer.setAlpha(0);
         } else {
@@ -128,15 +128,15 @@ public class CircularSkyView extends FrameLayout
         findViewById(R.id.container_circular_sky_view_iconContainer).setVisibility(GONE);
 
         this.flagIcons = new ImageView[] {
-                (ImageView) findViewById(R.id.container_circular_sky_view_icon_1),
-                (ImageView) findViewById(R.id.container_circular_sky_view_icon_2),
-                (ImageView) findViewById(R.id.container_circular_sky_view_icon_3)};
+                findViewById(R.id.container_circular_sky_view_icon_1),
+                findViewById(R.id.container_circular_sky_view_icon_2),
+                findViewById(R.id.container_circular_sky_view_icon_3)};
         imageIds = new int[3];
         iconTouchAnimators = new AnimatorSet[3];
 
         ImageView[] starts = new ImageView[] {
-                (ImageView) findViewById(R.id.container_circular_sky_view_star_1),
-                (ImageView) findViewById(R.id.container_circular_sky_view_star_2)};
+                findViewById(R.id.container_circular_sky_view_star_1),
+                findViewById(R.id.container_circular_sky_view_star_2)};
         Glide.with(getContext())
                 .load(R.drawable.star_1)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)

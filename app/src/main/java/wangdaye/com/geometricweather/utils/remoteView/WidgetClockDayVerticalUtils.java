@@ -213,11 +213,11 @@ public class WidgetClockDayVerticalUtils {
                         return weather.base.city + " " + weather.base.time;
 
                     case "symmetry":
-                        return weather.dailyList.get(0).week + " " + weather.base.time;
+                        return WidgetUtils.getWeek(context) + " " + weather.base.time;
 
                     case "tile":
                     case "vertical":
-                        return weather.base.city + " " + weather.dailyList.get(0).week + " " + weather.base.time;
+                        return weather.base.city + " " + WidgetUtils.getWeek(context) + " " + weather.base.time;
                 }
                 break;
 
@@ -236,11 +236,11 @@ public class WidgetClockDayVerticalUtils {
                         return weather.base.city + " " + new Lunar(Calendar.getInstance()).toString();
 
                     case "symmetry":
-                        return weather.dailyList.get(0).week + " " + new Lunar(Calendar.getInstance()).toString();
+                        return WidgetUtils.getWeek(context) + " " + new Lunar(Calendar.getInstance()).toString();
 
                     case "tile":
                     case "vertical":
-                        return weather.base.city + " " + weather.dailyList.get(0).week + " " + new Lunar(Calendar.getInstance()).toString();
+                        return weather.base.city + " " + WidgetUtils.getWeek(context) + " " + new Lunar(Calendar.getInstance()).toString();
                 }
                 break;
 

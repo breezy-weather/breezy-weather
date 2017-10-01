@@ -75,7 +75,7 @@ public class WeatherDialog extends GeoDialogFragment
             Calendar c = Calendar.getInstance();
             c.set(
                     Integer.parseInt(dates[0]),
-                    Integer.parseInt(dates[1]),
+                    Integer.parseInt(dates[1]) - 1,
                     Integer.parseInt(dates[2]));
             subtitle.setText(new Lunar(c).toString());
         } else {
