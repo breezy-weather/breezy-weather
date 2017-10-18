@@ -122,6 +122,7 @@
     <string name="week_6">SAM</string>
     <string name="week_7">DIM</string>
     <string name="widget_clock_day_horizontal">Horloge + Jour (Horizontal style)</string>
+    <string name="widget_clock_day_details">Horloge + Jour (Details)</string>
     <string name="widget_clock_day_vertical">Horloge + Jour (Vertical style)</string>
     <string name="widget_clock_day_week">Horloge + Jour + Semaine</string>
     <string name="widget_day">Jour</string>

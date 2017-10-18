@@ -125,6 +125,7 @@
     <string name="widget_week">一周</string>
     <string name="widget_day_week">今日 + 一周</string>
     <string name="widget_clock_day_horizontal">时钟 + 今日 (水平排列)</string>
+    <string name="widget_clock_day_details">时钟 + 今日 (详情)</string>
     <string name="widget_clock_day_vertical">时钟 + 今日 (垂直排列)</string>
     <string name="widget_clock_day_week">时钟 + 今日 + 一周</string>
     <string name="wait_refresh">等待更新</string>

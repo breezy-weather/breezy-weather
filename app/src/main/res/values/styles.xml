@@ -164,7 +164,7 @@
         <item name="android:textSize">@dimen/flag_icon_size</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/colorTextLight</item>
-        <item name="android:shadowColor">@color/colorTextGrey</item>
+        <item name="android:shadowColor">@color/colorTextDark2nd</item>
         <item name="android:shadowDx">1</item>
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>

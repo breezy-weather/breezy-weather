@@ -12,6 +12,7 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.AlarmHelper;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayDetailsUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayHorizontalUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayWeekUtils;
@@ -38,6 +39,9 @@ public class NormalUpdateService extends UpdateService {
         }
         if (WidgetClockDayHorizontalUtils.isEnable(context)) {
             WidgetClockDayHorizontalUtils.refreshWidgetView(context, location, weather);
+        }
+        if (WidgetClockDayDetailsUtils.isEnable(context)) {
+            WidgetClockDayDetailsUtils.refreshWidgetView(context, location, weather);
         }
         if (WidgetClockDayVerticalUtils.isEnable(context)) {
             WidgetClockDayVerticalUtils.refreshWidgetView(context, location, weather);

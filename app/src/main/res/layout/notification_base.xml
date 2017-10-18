@@ -82,6 +82,19 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/notification_base_lunar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="@dimen/widget_time_text_size"
+        android:textColor="@color/colorTextLight2nd"
+        android:padding="@dimen/little_margin"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        tools:text="正月初六"
+        tools:ignore="RelativeOverlap,RtlHardcoded,SmallSp" />
+
+    <TextView
         android:id="@+id/notification_base_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

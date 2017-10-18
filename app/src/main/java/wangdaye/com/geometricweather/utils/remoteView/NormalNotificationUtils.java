@@ -13,13 +13,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import java.util.Calendar;
-
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.Lunar;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
+import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -157,6 +155,11 @@ public class NormalNotificationUtils {
                         R.id.notification_base_aqi_wind,
                         ContextCompat.getColor(context, colorRes));
             }
+
+            String dates[] = weather.base.date.split("-");
+            base.setTextViewText(
+                    R.id.notification_base_lunar,
+                    LanguageUtils.getLanguageCode(context).startsWith("zh") ? LunarHelper.getLunarDate(dates) : "");
         } else {
             base.setTextViewText(
                     R.id.notification_base_aqi_wind,
@@ -175,17 +178,10 @@ public class NormalNotificationUtils {
                 R.id.notification_base_weather,
                 weather.realTime.weather);
 
-        Calendar c = Calendar.getInstance();
-        String dates[] = weather.base.date.split("-");
-        c.set(
-                Integer.parseInt(dates[0]),
-                Integer.parseInt(dates[1]) - 1,
-                Integer.parseInt(dates[2]));
         base.setTextViewText(
                 R.id.notification_base_time,
                 weather.base.city
                         + " " + WidgetUtils.getWeek(context)
-                        + (LanguageUtils.getLanguageCode(context).startsWith("zh") ? " " + new Lunar(c).toString() : "")
                         + " " + weather.base.time);
 
         if (backgroundColor) {
@@ -197,6 +193,7 @@ public class NormalNotificationUtils {
         base.setTextColor(R.id.notification_base_realtimeTemp, mainColor);
         base.setTextColor(R.id.notification_base_dailyTemp, subColor);
         base.setTextColor(R.id.notification_base_weather, mainColor);
+        base.setTextColor(R.id.notification_base_lunar, subColor);
         base.setTextColor(R.id.notification_base_time, subColor);
 
         builder.setContent(base);
@@ -236,6 +233,11 @@ public class NormalNotificationUtils {
                             R.id.notification_base_aqi_wind,
                             ContextCompat.getColor(context, colorRes));
                 }
+
+                String dates[] = weather.base.date.split("-");
+                big.setTextViewText(
+                        R.id.notification_base_lunar,
+                        LanguageUtils.getLanguageCode(context).startsWith("zh") ? LunarHelper.getLunarDate(dates) : "");
             } else {
                 big.setTextViewText(
                         R.id.notification_base_aqi_wind,
@@ -258,7 +260,6 @@ public class NormalNotificationUtils {
                     R.id.notification_base_time,
                     weather.base.city
                             + " " + weather.dailyList.get(0).week
-                            + (LanguageUtils.getLanguageCode(context).startsWith("zh") ? " " + new Lunar(c).toString() : "")
                             + " " + weather.base.time);
 
             big.setViewVisibility(R.id.notification_base_background, View.GONE);
@@ -343,6 +344,7 @@ public class NormalNotificationUtils {
             big.setTextColor(R.id.notification_base_realtimeTemp, mainColor);
             big.setTextColor(R.id.notification_base_dailyTemp, subColor);
             big.setTextColor(R.id.notification_base_weather, mainColor);
+            big.setTextColor(R.id.notification_base_lunar, subColor);
             big.setTextColor(R.id.notification_base_time, subColor);
             big.setTextColor(R.id.notification_big_week_1, subColor);
             big.setTextColor(R.id.notification_big_week_2, subColor);

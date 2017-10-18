@@ -24,7 +24,7 @@
             android:text="@string/ellipsis"
             android:textSize="@dimen/subtitle_text_size"
             android:textColor="@color/colorTextLight"
-            android:shadowColor="@color/colorTextGrey"
+            android:shadowColor="@color/colorTextDark2nd"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="1"

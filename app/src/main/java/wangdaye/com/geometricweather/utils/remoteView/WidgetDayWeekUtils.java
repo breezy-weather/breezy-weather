@@ -16,10 +16,10 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.Lunar;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetDayWeekProvider;
 import wangdaye.com.geometricweather.service.NormalUpdateService;
+import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
@@ -270,13 +270,13 @@ public class WidgetDayWeekUtils {
             case "lunar":
                 switch (viewStyle) {
                     case "rectangle":
-                        return weather.base.city + " " + new Lunar(Calendar.getInstance()).toString();
+                        return weather.base.city + " " + LunarHelper.getLunarDate(Calendar.getInstance());
 
                     case "symmetry":
-                        return WidgetUtils.getWeek(context) + " " + new Lunar(Calendar.getInstance()).toString();
+                        return WidgetUtils.getWeek(context) + " " + LunarHelper.getLunarDate(Calendar.getInstance());
 
                     case "tile":
-                        return weather.base.city + " " + WidgetUtils.getWeek(context) + " " + new Lunar(Calendar.getInstance()).toString();
+                        return weather.base.city + " " + WidgetUtils.getWeek(context) + " " + LunarHelper.getLunarDate(Calendar.getInstance());
                 }
                 break;
 

@@ -14,14 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Calendar;
-
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
-import wangdaye.com.geometricweather.data.entity.model.Lunar;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -72,12 +70,7 @@ public class WeatherDialog extends GeoDialogFragment
         TextView subtitle = view.findViewById(R.id.dialog_weather_subtitle);
         if (daily && LanguageUtils.getLanguageCode(getActivity()).startsWith("zh")) {
             String dates[] = weather.dailyList.get(position).date.split("-");
-            Calendar c = Calendar.getInstance();
-            c.set(
-                    Integer.parseInt(dates[0]),
-                    Integer.parseInt(dates[1]) - 1,
-                    Integer.parseInt(dates[2]));
-            subtitle.setText(new Lunar(c).toString());
+            subtitle.setText(LunarHelper.getLunarDate(dates));
         } else {
             subtitle.setVisibility(View.GONE);
         }

@@ -40,6 +40,7 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
     private ImageView widgetIcon;
     private TextClock widgetClock;
     private TextClock widgetTitle;
+    private TextView widgetLunar;
     private TextView widgetSubtitle;
 
     private CoordinatorLayout container;
@@ -70,6 +71,7 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
         this.widgetIcon = widgetView.findViewById(R.id.widget_clock_day_icon);
         this.widgetClock = widgetView.findViewById(R.id.widget_clock_day_clock);
         this.widgetTitle = widgetView.findViewById(R.id.widget_clock_day_title);
+        this.widgetLunar = widgetView.findViewById(R.id.widget_clock_day_lunar);
         this.widgetSubtitle = widgetView.findViewById(R.id.widget_clock_day_subtitle);
 
         ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_horizontal_wall);
@@ -107,6 +109,7 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
                 .load(imageId)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(widgetIcon);
+        widgetLunar.setText(WidgetClockDayHorizontalUtils.getLunarText(this));
         widgetSubtitle.setText(WidgetClockDayHorizontalUtils.getSubtitleText(weather, isFahrenheit()));
 
         if (showCardSwitch.isChecked() || blackTextSwitch.isChecked()) {
@@ -117,11 +120,13 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
             }
             widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
             widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            widgetLunar.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
             widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
         } else {
             widgetCard.setVisibility(View.GONE);
             widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
             widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            widgetLunar.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
             widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
         }
     }

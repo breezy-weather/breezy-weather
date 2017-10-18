@@ -12,23 +12,28 @@
         tools:ignore="ContentDescription" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:gravity="center_horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextClock
+            android:id="@+id/widget_clock_day_clock_1"
+            android:textSize="64sp"
+            android:format24Hour="HH"
+            android:format12Hour="hh"
+            android:layout_marginTop="-8dp"
+            style="@style/widget_text_clock" />
 
-            <TextClock
-                android:id="@+id/widget_clock_day_clock"
-                android:textSize="56sp"
-                android:format24Hour=" HH\n mm"
-                android:format12Hour=" hh\n mm"
-                style="@style/widget_text_clock" />
-
-        </RelativeLayout>
+        <TextClock
+            android:id="@+id/widget_clock_day_clock_2"
+            android:textSize="64sp"
+            android:format24Hour="mm"
+            android:format12Hour="mm"
+            android:layout_marginTop="-16dp"
+            android:layout_marginBottom="-4dp"
+            style="@style/widget_text_clock" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,8 +41,8 @@
 
             <ImageView
                 android:id="@+id/widget_clock_day_icon"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
+                android:layout_width="@dimen/little_flag_icon_size"
+                android:layout_height="@dimen/little_flag_icon_size"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/weather_cloudy"
                 tools:ignore="ContentDescription" />
@@ -47,7 +52,7 @@
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/content_text_size"
                 android:textColor="@color/colorTextLight"
-                android:shadowColor="@color/colorTextGrey"
+                android:shadowColor="@color/colorTextDark2nd"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
@@ -63,14 +68,13 @@
                 android:text="@string/wait_refresh"
                 android:textColor="@color/colorTextLight"
                 android:textSize="@dimen/widget_time_text_size"
-                android:shadowColor="@color/colorTextGrey"
+                android:shadowColor="@color/colorTextDark2nd"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/widget_clock_day_title"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
                 style="@style/content_text"
                 tools:text="San Francisco WEN 19:36"
                 tools:ignore="RtlHardcoded" />

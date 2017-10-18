@@ -12,11 +12,15 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import java.util.Calendar;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayHorizontalProvider;
 import wangdaye.com.geometricweather.service.NormalUpdateService;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -68,11 +72,16 @@ public class WidgetClockDayHorizontalUtils {
                 getWeatherIconId(weather, dayTime, iconStyle, blackText));
 
         views.setTextViewText(
+                R.id.widget_clock_day_lunar,
+                getLunarText(context));
+
+        views.setTextViewText(
                 R.id.widget_clock_day_subtitle,
                 getSubtitleText(weather, fahrenheit));
 
         views.setTextColor(R.id.widget_clock_day_clock, textColor);
         views.setTextColor(R.id.widget_clock_day_title, textColor);
+        views.setTextColor(R.id.widget_clock_day_lunar, textColor);
         views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
 
         views.setViewVisibility(R.id.widget_clock_day_card, showCard ? View.VISIBLE : View.GONE);
@@ -117,6 +126,11 @@ public class WidgetClockDayHorizontalUtils {
                                        boolean dayTime, String iconStyle, boolean blackText) {
         return WeatherHelper.getWidgetNotificationIcon(
                 weather.realTime.weatherKind, dayTime, iconStyle, blackText);
+    }
+
+    public static String getLunarText(Context context) {
+        return LanguageUtils.getLanguageCode(context).startsWith("zh") ?
+                LunarHelper.getLunarDate(Calendar.getInstance()) : "";
     }
 
     public static String getSubtitleText(Weather weather, boolean fahrenheit) {

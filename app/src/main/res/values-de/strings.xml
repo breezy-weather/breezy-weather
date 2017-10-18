@@ -129,6 +129,7 @@
     <string name="widget_week">Wochen</string>
     <string name="widget_day_week">Tage + Wochen</string>
     <string name="widget_clock_day_horizontal">Uhr + Tage (Horizontal)</string>
+    <string name="widget_clock_day_details">Uhr + Tage (Details)</string>
     <string name="widget_clock_day_vertical">Uhr + Tage (Vertikal)</string>
     <string name="widget_clock_day_week">Uhr + Tage + Wochen</string>
     <string name="wait_refresh">Aktualisiere</string>

@@ -8,8 +8,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 2005
-        versionName "2.005"
+        versionCode 2006
+        versionName "2.006"
     }
     buildTypes {
         release {
@@ -52,6 +52,9 @@ allprojects {
         maven {
             url "https://maven.google.com"
         }
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 
@@ -82,4 +85,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
 
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
+
+    compile 'com.github.XhinLiang:LunarCalendar:3.0.0'
 }

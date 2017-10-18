@@ -27,7 +27,7 @@
 
     <!-- widget. -->
     <dimen name="widget_grid_1">40dp</dimen>
-    <dimen name="widget_grid_2">80dp</dimen>
+    <dimen name="widget_grid_2">110dp</dimen>
     <dimen name="widget_grid_3">180dp</dimen>
     <dimen name="widget_grid_4">250dp</dimen>
 
