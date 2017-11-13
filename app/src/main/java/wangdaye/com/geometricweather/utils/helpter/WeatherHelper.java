@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
@@ -820,6 +821,26 @@ public class WeatherHelper {
             return "↘";
         } else {
             return "↓";
+        }
+    }
+
+    @SuppressLint("DefaultLocale")
+    public static String getWindSpeed(double speed) {
+        return GeometricWeather.getInstance().isImperial()
+                ? (String.format("%.1f", speed * 0.621F) + "mi/h") : (speed + "km/h");
+    }
+
+    public static String getWindSpeed(String speed) {
+        if (speed.endsWith("km/h")) {
+            return getWindSpeed(Double.parseDouble(speed.replace("km/h", "")));
+        } else if (speed.endsWith("mi/h")) {
+            return getWindSpeed(Double.parseDouble(speed.replace("mi/h", "")) * 1.6093);
+        } else {
+            try {
+                return getWindSpeed(Double.parseDouble(speed));
+            } catch (Exception e) {
+                return speed;
+            }
         }
     }
 /*

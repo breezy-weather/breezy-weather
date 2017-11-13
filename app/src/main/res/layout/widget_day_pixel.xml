@@ -62,10 +62,10 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:maxLines="1"
-                android:format24Hour="MM-dd EEE"
-                android:format12Hour="MM-dd EEE"
+                android:format24Hour="@string/date_format_long"
+                android:format12Hour="@string/date_format_long"
                 style="@style/widget_text_clock"
-                tools:text="12-29 周四"
+                tools:text="12月29日 星期四"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

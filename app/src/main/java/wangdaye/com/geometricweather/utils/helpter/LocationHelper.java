@@ -118,12 +118,14 @@ public class LocationHelper {
     }
 
     public void requestLocation(Context c, Location location, OnRequestLocationListener l) {
-        NetworkInfo info = ((ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE))
-                .getActiveNetworkInfo();
-        if (info != null && info.isAvailable()) {
-            LocationService.requestLocation(client, new SimpleLocationListener(c, location, l));
-        } else {
-            l.requestLocationFailed(location);
+        ConnectivityManager manager = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (manager != null) {
+            NetworkInfo info = manager.getActiveNetworkInfo();
+            if (info != null && info.isAvailable()) {
+                LocationService.requestLocation(client, new SimpleLocationListener(c, location, l));
+            } else {
+                l.requestLocationFailed(location);
+            }
         }
     }
 

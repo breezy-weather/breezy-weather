@@ -32,7 +32,8 @@ public class Alert implements Parcelable {
         description = result.Description.Localized;
         content = result.Area.get(0).Text;
         publishTime = c.getString(R.string.publish_at) + " " + result.Area.get(0).StartTime.split("T")[0]
-                + " " + result.Area.get(0).StartTime.split("T")[1].split(":")[0] + ":" + result.Area.get(0).StartTime.split("T")[1].split(":")[1];
+                + " " + result.Area.get(0).StartTime.split("T")[1].split(":")[0]
+                + ":" + result.Area.get(0).StartTime.split("T")[1].split(":")[1];
         return this;
     }
 

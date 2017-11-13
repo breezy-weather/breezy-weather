@@ -186,3 +186,7 @@ public static java.lang.String TABLENAME;
 
 # CircularProgressView
 -keep class com.github.rahatarmanahmed.cpv.** { *; }
+
+# Cyanogenmod
+-keep class cyanogenmod.** { *; }
+-dontwarn cyanogenmod.**

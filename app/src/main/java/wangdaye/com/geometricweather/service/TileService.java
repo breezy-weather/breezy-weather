@@ -1,7 +1,9 @@
 package wangdaye.com.geometricweather.service;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.TileHelper;
 
@@ -33,8 +35,20 @@ public class TileService extends android.service.quicksettings.TileService {
         TileHelper.refreshTile(this, getQsTile());
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick () {
         IntentHelper.startMainActivity(this);
+        try {
+            Object statusBarManager = getSystemService("statusbar");
+            if (statusBarManager != null) {
+                statusBarManager
+                        .getClass()
+                        .getMethod("collapsePanels")
+                        .invoke(statusBarManager);
+            }
+        } catch (Exception ignored) {
+
+        }
     }
 }

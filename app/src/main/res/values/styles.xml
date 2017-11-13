@@ -159,9 +159,24 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:format24Hour">HH:mm</item>
-        <item name="android:format12Hour">hh:mm</item>
+        <item name="android:format12Hour">h:mm</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">@dimen/flag_icon_size</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/colorTextLight</item>
+        <item name="android:shadowColor">@color/colorTextDark2nd</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <style name="widget_text_clock_aa">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:format24Hour" />
+        <item name="android:format12Hour">aa</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize" tools:ignore="SpUsage">14dp</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/colorTextLight</item>
         <item name="android:shadowColor">@color/colorTextDark2nd</item>

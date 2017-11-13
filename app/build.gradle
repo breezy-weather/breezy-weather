@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.1'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 2006
-        versionName "2.006"
+        versionCode 2007
+        versionName "2.007"
     }
     buildTypes {
         release {
@@ -87,4 +87,6 @@ dependencies {
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
 
     compile 'com.github.XhinLiang:LunarCalendar:3.0.0'
+
+    compile 'org.cyanogenmod:platform.sdk:5.0'
 }

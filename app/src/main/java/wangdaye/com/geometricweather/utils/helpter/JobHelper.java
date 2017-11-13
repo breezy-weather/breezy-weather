@@ -27,7 +27,7 @@ public class JobHelper {
     private static final int JOB_ID_TODAY_FORECAST = 2;
     private static final int JOB_ID_TOMORROW_FORECAST = 3;
 
-    public static void setJobForNormalView(Context context, float pollingRate) {
+    static void setJobForNormalView(Context context, float pollingRate) {
         cancelNormalViewJob(context);
 
         JobInfo.Builder builder = new JobInfo.Builder(
@@ -36,13 +36,17 @@ public class JobHelper {
                 .setBackoffCriteria(15 * MINUTE, JobInfo.BACKOFF_POLICY_LINEAR)
                 .setPeriodic((long) (pollingRate * HOUR))
                 .setPersisted(true);
-        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE))
-                .schedule(builder.build());
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (scheduler != null) {
+            scheduler.schedule(builder.build());
+        }
     }
 
-    public static void cancelNormalViewJob(Context context) {
-        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE))
-                .cancel(JOB_ID_NORMAL_VIEW);
+    private static void cancelNormalViewJob(Context context) {
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (scheduler != null) {
+            scheduler.cancel(JOB_ID_NORMAL_VIEW);
+        }
     }
 
     public static void setJobForTodayForecast(Context context, String todayForecastTime) {
@@ -52,13 +56,17 @@ public class JobHelper {
                 JOB_ID_TODAY_FORECAST,
                 new ComponentName(context.getPackageName(), JobTodayForecastUpdateService.class.getName()))
                 .setMinimumLatency(getForecastAlarmDelay(todayForecastTime));
-        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE))
-                .schedule(builder.build());
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (scheduler != null) {
+            scheduler.schedule(builder.build());
+        }
     }
 
-    public static void cancelTodayForecastJob(Context context) {
-        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE))
-                .cancel(JOB_ID_TODAY_FORECAST);
+    static void cancelTodayForecastJob(Context context) {
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (scheduler != null) {
+            scheduler.cancel(JOB_ID_TODAY_FORECAST);
+        }
     }
 
     public static void setJobForTomorrowForecast(Context context, String TomorrowForecastTime) {
@@ -68,13 +76,17 @@ public class JobHelper {
                 JOB_ID_TOMORROW_FORECAST,
                 new ComponentName(context.getPackageName(), JobTomorrowForecastUpdateService.class.getName()))
                 .setMinimumLatency(getForecastAlarmDelay(TomorrowForecastTime));
-        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE))
-                .schedule(builder.build());
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (scheduler != null) {
+            scheduler.schedule(builder.build());
+        }
     }
 
-    public static void cancelTomorrowForecastJob(Context context) {
-        ((JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE))
-                .cancel(JOB_ID_TOMORROW_FORECAST);
+    static void cancelTomorrowForecastJob(Context context) {
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        if (scheduler != null) {
+            scheduler.cancel(JOB_ID_TOMORROW_FORECAST);
+        }
     }
 
     private static long getForecastAlarmDelay(String time) {

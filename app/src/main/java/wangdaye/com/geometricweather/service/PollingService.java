@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 /**
  * Polling service.
@@ -38,16 +39,19 @@ public class PollingService extends Service {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            switch (intent.getAction()) {
-                case Intent.ACTION_TIME_TICK:
-                    doRefreshWork();
-                    break;
+            String action = intent.getAction();
+            if (!TextUtils.isEmpty(action)) {
+                switch (intent.getAction()) {
+                    case Intent.ACTION_TIME_TICK:
+                        doRefreshWork();
+                        break;
 
-                case Intent.ACTION_TIME_CHANGED:
-                case Intent.ACTION_TIMEZONE_CHANGED:
-                    lastUpdateNormalViewTime = -1;
-                    doRefreshWork();
-                    break;
+                    case Intent.ACTION_TIME_CHANGED:
+                    case Intent.ACTION_TIMEZONE_CHANGED:
+                        lastUpdateNormalViewTime = -1;
+                        doRefreshWork();
+                        break;
+                }
             }
         }
     }

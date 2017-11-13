@@ -114,9 +114,12 @@ public class DisplayUtils {
     }
 
     public static void setStatusBarStyleWithScrolling(Window window, View statusBar, boolean overlap) {
-        if (overlap) {
+        if (overlap && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             statusBar.clearAnimation();
             statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
+        } else if (overlap) {
+            statusBar.clearAnimation();
+            statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.1F));
         } else {
             statusBar.clearAnimation();
             statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.05F));

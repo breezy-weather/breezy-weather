@@ -23,7 +23,20 @@
 
             <TextClock
                 android:id="@+id/widget_clock_day_clock"
-                style="@style/widget_text_clock" />
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/little_margin"
+                android:layout_marginRight="@dimen/little_margin"
+                style="@style/widget_text_clock"
+                tools:text="9:10"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_aa"
+                android:layout_toRightOf="@id/widget_clock_day_clock"
+                android:layout_alignBaseline="@id/widget_clock_day_clock"
+                style="@style/widget_text_clock_aa"
+                tools:text="AM"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
 
         </RelativeLayout>
 

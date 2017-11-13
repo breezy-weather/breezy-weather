@@ -279,7 +279,6 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private void initWidget() {
         this.handler = new SafeHandler<>(this);
 
@@ -762,7 +761,7 @@ public class MainActivity extends GeoActivity
                 ThreadManager.getInstance().execute(new Runnable() {
                     @Override
                     public void run() {
-                        ServiceHelper.resetPollingService(MainActivity.this, true, false);
+                        ServiceHelper.resetNormalService(MainActivity.this, true, false);
                         ServiceHelper.resetForecastService(MainActivity.this, true);
                         ServiceHelper.resetForecastService(MainActivity.this, false);
                     }

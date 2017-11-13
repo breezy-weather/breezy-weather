@@ -30,6 +30,7 @@ public class GeometricWeather extends Application {
     private List<GeoActivity> activityList;
     private boolean colorNavigationBar;
     private boolean fahrenheit;
+    private boolean imperial;
 
     public static final String DEFAULT_TODAY_FORECAST_TIME = "07:00";
     public static final String DEFAULT_TOMORROW_FORECAST_TIME = "21:00";
@@ -51,6 +52,7 @@ public class GeometricWeather extends Application {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
+        imperial = sharedPreferences.getBoolean(getString(R.string.key_imperial), false);
         LanguageUtils.setLanguage(
                 this,
                 sharedPreferences.getString(getString(R.string.key_language), "follow_system"));
@@ -82,6 +84,18 @@ public class GeometricWeather extends Application {
 
     public boolean isFahrenheit() {
         return fahrenheit;
+    }
+
+    public void setFahrenheit(boolean fahrenheit) {
+        this.fahrenheit = fahrenheit;
+    }
+
+    public boolean isImperial() {
+        return imperial;
+    }
+
+    public void setImperial(boolean imperial) {
+        this.imperial = imperial;
     }
 
     public static String getProcessName() {

@@ -64,6 +64,9 @@ public class SettingsFragment extends PreferenceFragment
         Preference fahrenheit = findPreference(getString(R.string.key_fahrenheit));
         fahrenheit.setOnPreferenceChangeListener(this);
 
+        Preference imperial = findPreference(getString(R.string.key_imperial));
+        imperial.setOnPreferenceChangeListener(this);
+
         Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));
         refreshRate.setSummary(
                 PreferenceManager.getDefaultSharedPreferences(getActivity())
@@ -199,6 +202,11 @@ public class SettingsFragment extends PreferenceFragment
             DisplayUtils.setNavigationBarColor(getActivity(), 0);
         } else if (preference.getKey().equals(getString(R.string.key_fahrenheit))) {
             // ℉
+            GeometricWeather.getInstance().setFahrenheit(!GeometricWeather.getInstance().isFahrenheit());
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+        } else if (preference.getKey().equals(getString(R.string.key_imperial))) {
+            // imperial units.
+            GeometricWeather.getInstance().setImperial(!GeometricWeather.getInstance().isImperial());
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today))) {
             // forecast today.

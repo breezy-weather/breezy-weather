@@ -126,6 +126,7 @@ public class WidgetClockDayWeekUtils {
                 getIconId(weather, dayTime, iconStyle, blackText, 4));
 
         views.setTextColor(R.id.widget_clock_day_week_clock, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_clock_aa, textColor);
         views.setTextColor(R.id.widget_clock_day_week_title, textColor);
         views.setTextColor(R.id.widget_clock_day_week_lunar, textColor);
         views.setTextColor(R.id.widget_clock_day_week_subtitle, textColor);
@@ -183,7 +184,7 @@ public class WidgetClockDayWeekUtils {
 
     public static String getLunarText(Context context) {
         return LanguageUtils.getLanguageCode(context).startsWith("zh") ?
-                LunarHelper.getLunarDate(Calendar.getInstance()) : "";
+                (" -" + LunarHelper.getLunarDate(Calendar.getInstance())) : "";
     }
 
     public static String getSubtitleText(Weather weather, boolean fahrenheit) {

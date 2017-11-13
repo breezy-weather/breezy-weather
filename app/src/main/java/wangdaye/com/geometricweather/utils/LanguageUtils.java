@@ -50,6 +50,10 @@ public class LanguageUtils {
                     locale = new Locale("sr");
                     break;
 
+                case "spanish":
+                    locale = new Locale("es");
+                    break;
+
                 default:
                     locale = new Locale("en");
                     break;

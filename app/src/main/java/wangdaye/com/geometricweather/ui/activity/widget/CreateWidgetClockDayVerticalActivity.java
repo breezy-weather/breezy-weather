@@ -44,6 +44,7 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
     private ImageView widgetCard;
     private ImageView widgetIcon;
     private TextClock widgetClock;
+    private TextClock widgetClockAA;
     private TextClock[] widgetClockArray;
     private TextView widgetTitle;
     private TextView widgetSubtitle;
@@ -177,6 +178,9 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
             if (widgetClock != null) {
                 widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
             }
+            if (widgetClockAA != null) {
+                widgetClockAA.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            }
             if (widgetClockArray != null) {
                 widgetClockArray[0].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
                 widgetClockArray[1].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
@@ -192,6 +196,9 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
             widgetCard.setVisibility(View.GONE);
             if (widgetClock != null) {
                 widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            }
+            if (widgetClockAA != null) {
+                widgetClockAA.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
             }
             if (widgetClockArray != null) {
                 widgetClockArray[0].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
@@ -239,6 +246,7 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
 
                 this.widgetIcon = widgetViews[0].findViewById(R.id.widget_clock_day_icon);
                 this.widgetClock = widgetViews[0].findViewById(R.id.widget_clock_day_clock);
+                this.widgetClockAA = widgetViews[0].findViewById(R.id.widget_clock_day_clock_aa);
                 this.widgetClockArray = null;
                 this.widgetTitle = widgetViews[0].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = widgetViews[0].findViewById(R.id.widget_clock_day_subtitle);
@@ -253,6 +261,7 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
 
                 this.widgetIcon = widgetViews[1].findViewById(R.id.widget_clock_day_icon);
                 this.widgetClock = widgetViews[1].findViewById(R.id.widget_clock_day_clock);
+                this.widgetClockAA = widgetViews[1].findViewById(R.id.widget_clock_day_clock_aa);
                 this.widgetClockArray = null;
                 this.widgetTitle = widgetViews[1].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = widgetViews[1].findViewById(R.id.widget_clock_day_subtitle);
@@ -267,6 +276,7 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
 
                 this.widgetIcon = widgetViews[2].findViewById(R.id.widget_clock_day_icon);
                 this.widgetClock = widgetViews[2].findViewById(R.id.widget_clock_day_clock);
+                this.widgetClockAA = widgetViews[2].findViewById(R.id.widget_clock_day_clock_aa);
                 this.widgetClockArray = null;
                 this.widgetTitle = widgetViews[2].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = widgetViews[2].findViewById(R.id.widget_clock_day_subtitle);
@@ -281,6 +291,7 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
 
                 this.widgetIcon = widgetViews[3].findViewById(R.id.widget_clock_day_icon);
                 this.widgetClock = widgetViews[3].findViewById(R.id.widget_clock_day_clock);
+                this.widgetClockAA = widgetViews[3].findViewById(R.id.widget_clock_day_clock_aa);
                 this.widgetClockArray = null;
                 this.widgetTitle = widgetViews[3].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = widgetViews[3].findViewById(R.id.widget_clock_day_subtitle);
@@ -298,6 +309,7 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 this.widgetClockArray = new TextClock[] {
                         widgetViews[4].findViewById(R.id.widget_clock_day_clock_1),
                         widgetViews[4].findViewById(R.id.widget_clock_day_clock_2)};
+                this.widgetClockAA = null;
                 this.widgetTitle = widgetViews[4].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = null;
                 this.widgetTime = widgetViews[4].findViewById(R.id.widget_clock_day_time);

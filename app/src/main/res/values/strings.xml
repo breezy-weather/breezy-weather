@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.006</string>
+    <string name="version_code">v2.007</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -79,6 +79,10 @@
     <string name="gitHub">GitHub</string>
     <string name="translator">Translators</string>
     <string name="thanks">THX</string>
+
+    <string name="date_format_short">EEEE, MMM d</string>
+    <string name="date_format_long">EEEE, MMM d</string>
+    <string name="date_format_oreo_style">EEEE, MMM d │ </string>
 
     <!-- about. -->
     <string name="baidu_location">Baidu Location</string>
@@ -155,6 +159,7 @@
     <string name="settings_navigationBar_color_off">Dark.</string>
     <string name="settings_language">Language.</string>
     <string name="settings_title_fahrenheit">Fahrenheit.</string>
+    <string name="settings_title_imperial">Imperial units.</string>
     <string name="settings_title_refresh_rate">Automatic refresh rate</string>
     <string name="settings_title_alert_notification_switch">Send alert notification.</string>
     <string name="settings_title_permanent_service">Permanent service.</string>
@@ -206,6 +211,7 @@
     <string name="key_navigationBar_color">navigation_bar_color_switch</string>
     <string name="key_language">language</string>
     <string name="key_fahrenheit">fahrenheit</string>
+    <string name="key_imperial">imperial</string>
     <string name="key_refresh_rate">refresh_rate</string>
     <string name="key_alert_notification_switch">alert_notification_switch</string>
     <string name="key_forecast_today">timing_forecast_switch_today</string>

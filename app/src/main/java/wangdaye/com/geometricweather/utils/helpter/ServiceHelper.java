@@ -51,7 +51,7 @@ public class ServiceHelper {
         AlarmHelper.cancelNormalViewAlarm(context);
     }
 
-    public static void resetPollingService(Context context, boolean checkIsRunning, boolean forceRefresh) {
+    private static void resetPollingService(Context context, boolean checkIsRunning, boolean forceRefresh) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), false);
@@ -81,12 +81,14 @@ public class ServiceHelper {
 
     private static boolean isExist(Context context, Class cls) {
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> serviceList = manager.getRunningServices(Integer.MAX_VALUE);
-        int myUid = android.os.Process.myUid();
-        for (ActivityManager.RunningServiceInfo runningServiceInfo : serviceList) {
-            if (runningServiceInfo.uid == myUid
-                    && runningServiceInfo.service.getClassName().equals(cls.getName())) {
-                return true;
+        if (manager != null) {
+            List<ActivityManager.RunningServiceInfo> serviceList = manager.getRunningServices(Integer.MAX_VALUE);
+            int myUid = android.os.Process.myUid();
+            for (ActivityManager.RunningServiceInfo runningServiceInfo : serviceList) {
+                if (runningServiceInfo.uid == myUid
+                        && runningServiceInfo.service.getClassName().equals(cls.getName())) {
+                    return true;
+                }
             }
         }
         return false;
@@ -111,7 +113,11 @@ public class ServiceHelper {
             if (today) {
                 if (openTodayForecast) {
                     if (isForecastTime(todayForecastTime)) {
-                        context.startService(new Intent(context, TodayForecastUpdateService.class));
+                        try {
+                            context.startService(new Intent(context, TodayForecastUpdateService.class));
+                        } catch (Exception ignore) {
+
+                        }
                     }
                     JobHelper.setJobForTodayForecast(context, todayForecastTime);
                 } else {
@@ -120,7 +126,11 @@ public class ServiceHelper {
             } else {
                 if (openTomorrowForecast) {
                     if (isForecastTime(tomorrowForecastTime)) {
-                        context.startService(new Intent(context, TomorrowForecastUpdateService.class));
+                        try {
+                            context.startService(new Intent(context, TomorrowForecastUpdateService.class));
+                        } catch (Exception ignore) {
+
+                        }
                     }
                     JobHelper.setJobForTomorrowForecast(context, tomorrowForecastTime);
                 } else {
@@ -155,7 +165,7 @@ public class ServiceHelper {
         }
     }
 
-    public static boolean isForecastTime(String time) {
+    private static boolean isForecastTime(String time) {
         int realTimes[] = new int[] {
                 Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
                 Calendar.getInstance().get(Calendar.MINUTE)};

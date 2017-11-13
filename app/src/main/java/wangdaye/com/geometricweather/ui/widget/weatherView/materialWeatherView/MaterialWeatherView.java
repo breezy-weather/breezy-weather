@@ -379,38 +379,40 @@ public class MaterialWeatherView extends SurfaceView
         while (running) {
             timestamp = SystemClock.currentThreadTimeMillis();
             if (implementor != null) {
+                if (Math.abs(rotation2D - displayRotation2D) < MAX_ROTATIVE_SPEED) {
+                    displayRotation2D = rotation2D;
+                } else if (displayRotation2D < rotation2D) {
+                    displayRotation2D += MAX_ROTATIVE_SPEED;
+                } else {
+                    displayRotation2D -= MAX_ROTATIVE_SPEED;
+                }
+                if (Math.abs(rotation3D - displayRotation3D) < MAX_ROTATIVE_SPEED) {
+                    displayRotation3D = rotation3D;
+                } else if (displayRotation3D < rotation3D) {
+                    displayRotation3D += MAX_ROTATIVE_SPEED;
+                } else {
+                    displayRotation3D -= MAX_ROTATIVE_SPEED;
+                }
+
+                implementor.updateData(this, rotation2D, rotation3D);
+
                 synchronized (surfaceLock) {
-                    if (Math.abs(rotation2D - displayRotation2D) < MAX_ROTATIVE_SPEED) {
-                        displayRotation2D = rotation2D;
-                    } else if (displayRotation2D < rotation2D) {
-                        displayRotation2D += MAX_ROTATIVE_SPEED;
-                    } else {
-                        displayRotation2D -= MAX_ROTATIVE_SPEED;
-                    }
-                    if (Math.abs(rotation3D - displayRotation3D) < MAX_ROTATIVE_SPEED) {
-                        displayRotation3D = rotation3D;
-                    } else if (displayRotation3D < rotation3D) {
-                        displayRotation3D += MAX_ROTATIVE_SPEED;
-                    } else {
-                        displayRotation3D -= MAX_ROTATIVE_SPEED;
-                    }
-
-                    implementor.updateData(this, rotation2D, rotation3D);
-
-                    canvas = holder.lockCanvas();
-                    if (canvas != null) {
-                        if (step == STEP_DISPLAY) {
-                            displayRate = (float) Math.min(
-                                    1, displayRate + WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
-                        } else {
-                            displayRate = (float) Math.max(
-                                    0, displayRate - WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
+                    if (running) {
+                        canvas = holder.lockCanvas();
+                        if (canvas != null) {
+                            if (step == STEP_DISPLAY) {
+                                displayRate = (float) Math.min(
+                                        1, displayRate + WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
+                            } else {
+                                displayRate = (float) Math.max(
+                                        0, displayRate - WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
+                            }
+                            implementor.draw(this, canvas, displayRate, scrollRate, rotation2D, rotation3D);
+                            if (displayRate == 0) {
+                                setWeatherImplementor();
+                            }
+                            holder.unlockCanvasAndPost(canvas);
                         }
-                        implementor.draw(this, canvas, displayRate, scrollRate, rotation2D, rotation3D);
-                        if (displayRate == 0) {
-                            setWeatherImplementor();
-                        }
-                        holder.unlockCanvasAndPost(canvas);
                     }
                 }
             }

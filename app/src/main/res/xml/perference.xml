@@ -39,6 +39,12 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 
+        <CheckBoxPreference
+            android:title="@string/settings_title_imperial"
+            android:key="@string/key_imperial"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
+
         <ListPreference
             android:title="@string/settings_title_refresh_rate"
             android:key="@string/key_refresh_rate"

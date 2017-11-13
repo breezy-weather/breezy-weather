@@ -140,7 +140,9 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(widgetIcon);
 
-        widgetTitle.setText(WidgetDayUtils.getTitleText(weather, viewTypeValueNow, isFahrenheit()));
+        if (!viewTypeValueNow.equals("oreo")) {
+            widgetTitle.setText(WidgetDayUtils.getTitleText(weather, viewTypeValueNow, isFahrenheit()));
+        }
         if (widgetSubtitle != null) {
             widgetSubtitle.setText(WidgetDayUtils.getSubtitleText(weather, viewTypeValueNow, isFahrenheit()));
         }
@@ -191,7 +193,8 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                     LayoutInflater.from(this).inflate(R.layout.widget_day_mini, null),
                     LayoutInflater.from(this).inflate(R.layout.widget_day_nano, null),
                     LayoutInflater.from(this).inflate(R.layout.widget_day_pixel, null),
-                    LayoutInflater.from(this).inflate(R.layout.widget_day_vertical, null)};
+                    LayoutInflater.from(this).inflate(R.layout.widget_day_vertical, null),
+                    LayoutInflater.from(this).inflate(R.layout.widget_day_oreo, null)};
             for (View widgetView : widgetViews) {
                 ((ViewGroup) findViewById(R.id.activity_create_widget_day_widgetContainer)).addView(widgetView);
             }
@@ -280,6 +283,17 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
                 this.widgetTitle = widgetViews[6].findViewById(R.id.widget_day_title);
                 this.widgetSubtitle = widgetViews[6].findViewById(R.id.widget_day_subtitle);
                 this.widgetTime = widgetViews[6].findViewById(R.id.widget_day_time);
+                break;
+
+            case "oreo":
+                this.widgetViews[7].setVisibility(View.VISIBLE);
+
+                this.widgetCard = null;
+
+                this.widgetIcon = widgetViews[7].findViewById(R.id.widget_day_icon);
+                this.widgetTitle = widgetViews[7].findViewById(R.id.widget_day_title);
+                this.widgetSubtitle = widgetViews[7].findViewById(R.id.widget_day_subtitle);
+                this.widgetTime = null;
                 break;
         }
     }

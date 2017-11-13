@@ -150,6 +150,7 @@ public class WidgetClockDayVerticalUtils {
         views.setTextColor(R.id.widget_clock_day_clock, textColor);
         views.setTextColor(R.id.widget_clock_day_clock_1, textColor);
         views.setTextColor(R.id.widget_clock_day_clock_2, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_aa, textColor);
         views.setTextColor(R.id.widget_clock_day_title, textColor);
         views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
         views.setTextColor(R.id.widget_clock_day_time, textColor);

@@ -96,6 +96,7 @@ public class WidgetClockDayDetailsUtils {
                 getWindText(context, weather));
 
         views.setTextColor(R.id.widget_clock_day_clock, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_aa, textColor);
         views.setTextColor(R.id.widget_clock_day_title, textColor);
         views.setTextColor(R.id.widget_clock_day_lunar, textColor);
         views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
@@ -151,7 +152,7 @@ public class WidgetClockDayDetailsUtils {
 
     public static String getLunarText(Context context) {
         return LanguageUtils.getLanguageCode(context).startsWith("zh") ?
-                LunarHelper.getLunarDate(Calendar.getInstance()) : "";
+                (" -" + LunarHelper.getLunarDate(Calendar.getInstance())) : "";
     }
 
     public static String getSubtitleText(Weather weather, boolean fahrenheit) {

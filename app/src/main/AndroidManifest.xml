@@ -161,6 +161,17 @@
             </intent-filter>
         </service>
 
+        <service
+            android:name=".service.CMWeatherProviderService"
+            android:permission="cyanogenmod.permission.BIND_WEATHER_PROVIDER_SERVICE">
+            <intent-filter>
+                <action android:name="cyanogenmod.weatherservice.WeatherProviderService" />
+            </intent-filter>
+            <meta-data
+                android:name="cyanogenmod.weatherservice"
+                android:resource="@xml/cm_weather_provider_options" />
+        </service>
+
         <!-- receiver -->
         <receiver
             android:name=".receiver.MainReceiver">
@@ -264,6 +275,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
 </manifest>

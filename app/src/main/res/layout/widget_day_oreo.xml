@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_day"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/cardview_dark_background">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical">
+
+        <TextClock
+            android:id="@+id/widget_day_title"
+            android:textSize="@dimen/large_title_text_size"
+            android:format24Hour="@string/date_format_oreo_style"
+            android:format12Hour="@string/date_format_oreo_style"
+            style="@style/widget_text_clock"
+            tools:text="11月14日星期六 │ "
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/widget_day_icon"
+            android:layout_width="@dimen/material_icon_size"
+            android:layout_height="@dimen/material_icon_size"
+            android:src="@drawable/weather_sun_day"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/widget_day_subtitle"
+            android:layout_marginLeft="@dimen/little_margin"
+            android:textSize="@dimen/large_title_text_size"
+            android:textColor="@color/colorTextLight"
+            android:shadowColor="@color/colorTextDark2nd"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            style="@style/content_text"
+            tools:text="24 ℃"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/widget_day_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

@@ -89,7 +89,7 @@ public class Index {
             winds = new String[] {"", ""};
         }
         winds[0] = c.getString(R.string.live) + " : " + result.Wind.Direction.Localized
-                + " " + result.Wind.Speed.Metric.Value + "km/h"
+                + " " + WeatherHelper.getWindSpeed(result.Wind.Speed.Metric.Value)
                 + " (" + WeatherHelper.getWindLevel(c, result.Wind.Speed.Metric.Value) + ") "
                 + WeatherHelper.getWindArrows(result.Wind.Direction.Degrees);
         humidities = new String[2];
@@ -111,11 +111,11 @@ public class Index {
         }
         winds[1] =
                 c.getString(R.string.daytime) + " : " + result.DailyForecasts.get(0).Day.Wind.Direction.Localized
-                        + " " + result.DailyForecasts.get(0).Day.Wind.Speed.Value + "km/h"
+                        + " " + WeatherHelper.getWindSpeed(result.DailyForecasts.get(0).Day.Wind.Speed.Value)
                         + " (" + WeatherHelper.getWindLevel(c, result.DailyForecasts.get(0).Day.Wind.Speed.Value) + ") "
                         + WeatherHelper.getWindArrows(result.DailyForecasts.get(0).Day.Wind.Direction.Degrees) + "\n"
                         + c.getString(R.string.nighttime) + " : " + result.DailyForecasts.get(0).Night.Wind.Direction.Localized
-                        + " " + result.DailyForecasts.get(0).Night.Wind.Speed.Value + "km/h"
+                        + " " + WeatherHelper.getWindSpeed(result.DailyForecasts.get(0).Night.Wind.Speed.Value)
                         + " (" + WeatherHelper.getWindLevel(c, result.DailyForecasts.get(0).Night.Wind.Speed.Value) + ") "
                         + WeatherHelper.getWindArrows(result.DailyForecasts.get(0).Night.Wind.Direction.Degrees) + "\n";
     }
@@ -142,8 +142,39 @@ public class Index {
         simpleForecasts[1] = entity.indexSimpleForecastContent;
         briefings[0] = entity.indexBriefingTitle;
         briefings[1] = entity.indexBriefingContent;
-        winds[0] = entity.indexWindTitle;
-        winds[1] = entity.indexWindContent;
+
+        try {
+            int beginIndex = 0;
+            int endIndex;
+            String speed;
+
+            for (int i = 0; i < 3; i ++) {
+                beginIndex = entity.indexWindTitle.indexOf(" ", beginIndex + 1);
+            }
+            endIndex = entity.indexWindTitle.indexOf(" (", beginIndex);
+            speed = entity.indexWindTitle.substring(beginIndex + 1, endIndex);
+            winds[0] = entity.indexWindTitle.replaceFirst(speed, WeatherHelper.getWindSpeed(speed));
+
+            beginIndex = 0;
+            for (int i = 0; i < 3; i ++) {
+                beginIndex = entity.indexWindContent.indexOf(" ", beginIndex + 1);
+            }
+            endIndex = entity.indexWindContent.indexOf(" (", beginIndex);
+            speed = entity.indexWindContent.substring(beginIndex + 1, endIndex);
+            winds[1] = entity.indexWindContent.replaceFirst(speed, WeatherHelper.getWindSpeed(speed));
+
+            beginIndex = 0;
+            for (int i = 0; i < 8; i ++) {
+                beginIndex = entity.indexWindContent.indexOf(" ", beginIndex + 1);
+            }
+            endIndex = entity.indexWindContent.indexOf(" (", beginIndex);
+            speed = entity.indexWindContent.substring(beginIndex + 1, endIndex);
+            winds[1] = winds[1].replaceFirst(speed, WeatherHelper.getWindSpeed(speed));
+        } catch (Exception e) {
+            winds[0] = entity.indexWindTitle;
+            winds[1] = entity.indexWindContent;
+        }
+
         aqis[0] = entity.indexAqiTitle;
         aqis[1] = entity.indexAqiContent;
         humidities[0] = entity.indexHumidityTitle;

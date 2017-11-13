@@ -86,7 +86,9 @@ public class Daily {
         windDirs = new String[] {
                 forecast.Day.Wind.Direction.Localized,
                 forecast.Night.Wind.Direction.Localized};
-        windSpeeds = new String[] {forecast.Day.Wind.Speed.Value + "km/h", forecast.Night.Wind.Speed.Value + "km/h"};
+        windSpeeds = new String[] {
+                WeatherHelper.getWindSpeed(forecast.Day.Wind.Speed.Value),
+                WeatherHelper.getWindSpeed(forecast.Night.Wind.Speed.Value)};
         windLevels = new String[] {
                 WeatherHelper.getWindLevel(c, forecast.Day.Wind.Speed.Value),
                 WeatherHelper.getWindLevel(c, forecast.Night.Wind.Speed.Value)};
@@ -115,7 +117,13 @@ public class Daily {
                 entity.maxiTemp,
                 entity.miniTemp};
         windDirs = new String[] {entity.daytimeWindDir, entity.nighttimeWindDir};
-        windSpeeds = new String[] {entity.daytimeWindSpeed, entity.nighttimeWindSpeed};
+        try {
+            windSpeeds = new String[] {
+                    WeatherHelper.getWindSpeed(entity.daytimeWindSpeed),
+                    WeatherHelper.getWindSpeed(entity.nighttimeWindSpeed)};
+        } catch (Exception e) {
+            windSpeeds = new String[] {entity.daytimeWindSpeed, entity.nighttimeWindSpeed};
+        }
         windLevels = new String[] {entity.daytimeWindLevel, entity.nighttimeWindLevel};
         windDegrees = new int[] {entity.daytimeWindDegree, entity.nighttimeWindDegree};
         astros = new String[] {

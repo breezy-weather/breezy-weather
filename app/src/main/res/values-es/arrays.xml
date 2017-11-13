@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Cielo circular</item>
+        <item>Animación estilo Material</item>
+    </string-array>
+
+    <!-- language. -->
+    <string-array name="languages">
+        <item>Usar el mismo que el sistema</item>
+        <item>中文</item>
+        <item>繁體中文</item>
+        <item>English</item>
+        <item>Türkçe</item>
+        <item>Français</item>
+        <item>Pусский</item>
+        <item>Deutsch</item>
+        <item>Српски</item>
+        <item>Español</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>0:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Oscuro</item>
+        <item>Gris</item>
+        <item>Claro</item>
+    </string-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Rectágular</item>
+        <item>Simétrico</item>
+        <item>Mosaico</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+        <item>Vertical</item>
+        <item>Oreo</item>
+    </string-array>
+
+    <!-- icon style. -->
+    <string-array name="icon_styles">
+        <item>Material</item>
+        <item>Minimal</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Tiempo de refresco</item>
+        <item>AQI (No disponible en algunas regiones).</item>
+        <item>Viento</item>
+        <item>Sensación de la temperatura</item>
+        <item>Calendario lunar</item>
+    </string-array>
+
+</resources>

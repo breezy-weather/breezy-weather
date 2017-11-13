@@ -13,6 +13,7 @@
         <item>Pусский</item>
         <item>Deutsch</item>
         <item>Српски</item>
+        <item>Español</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -43,6 +44,7 @@
         <item>Нaнo</item>
         <item>Пиксел</item>
         <item>Vertical</item>
+        <item>Oreo</item>
     </string-array>
 
     <!-- icon style. -->

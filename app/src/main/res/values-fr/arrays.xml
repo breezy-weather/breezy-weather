@@ -18,6 +18,7 @@
         <item>Pусский</item>
         <item>Deutsch</item>
         <item>Српски</item>
+        <item>Español</item>
     </string-array>
 
     <!-- notification text color. -->
@@ -36,6 +37,7 @@
         <item>Nano</item>
         <item>Pixel</item>
         <item>Vertical</item>
+        <item>Oreo</item>
     </string-array>
 
     <!-- Widget subtitle data. -->

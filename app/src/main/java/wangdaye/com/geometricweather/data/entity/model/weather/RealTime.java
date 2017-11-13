@@ -55,7 +55,7 @@ public class RealTime {
         temp = (int) result.Temperature.Metric.Value;
         sensibleTemp = (int) result.RealFeelTemperature.Metric.Value;
         windDir = result.Wind.Direction.Localized;
-        windSpeed = result.Wind.Speed.Metric.Value + "km/h";
+        windSpeed = WeatherHelper.getWindSpeed(result.Wind.Speed.Metric.Value);
         windLevel = WeatherHelper.getWindLevel(c, result.Wind.Speed.Metric.Value);
         windDegree = result.Wind.Direction.Degrees;
     }
@@ -70,7 +70,11 @@ public class RealTime {
         temp = entity.realTimeTemp;
         sensibleTemp = entity.realTimeSensibleTemp;
         windDir = entity.realTimeWindDir;
-        windSpeed = entity.realTimeWindSpeed;
+        try {
+            windSpeed = WeatherHelper.getWindSpeed(entity.realTimeWindSpeed);
+        } catch (Exception e) {
+            windSpeed = entity.realTimeWindSpeed;
+        }
         windLevel = entity.realTimeWindLevel;
         windDegree = entity.realTimeWindDegree;
         simpleForecast = entity.realTimeSimpleForecast;

@@ -77,6 +77,9 @@ public class ValueUtils {
             case "serbian":
                 return c.getResources().getStringArray(R.array.languages)[8];
 
+            case "spanish":
+                return c.getResources().getStringArray(R.array.languages)[9];
+
             default:
                 return null;
         }

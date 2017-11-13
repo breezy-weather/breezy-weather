@@ -135,14 +135,21 @@ public class WidgetDayUtils {
 
             case "vertical":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_day_vertical);
+                break;
+
+            case "oreo":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_oreo);
+                break;
         }
 
         views.setImageViewResource(
                 R.id.widget_day_icon,
                 getWeatherIconId(weather, dayTime, iconStyle, blackText));
-        views.setTextViewText(
-                R.id.widget_day_title,
-                getTitleText(weather, viewStyle, fahrenheit));
+        if (!viewStyle.equals("oreo")) {
+            views.setTextViewText(
+                    R.id.widget_day_title,
+                    getTitleText(weather, viewStyle, fahrenheit));
+        }
         views.setTextViewText(
                 R.id.widget_day_subtitle,
                 getSubtitleText(weather, viewStyle, fahrenheit));
@@ -207,6 +214,9 @@ public class WidgetDayUtils {
 
             case "vertical":
                 return weather.realTime.weather + " " + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit);
+
+            case "oreo":
+                return ValueUtils.buildCurrentTemp(weather.realTime.temp, true, fahrenheit);
         }
         return "";
     }

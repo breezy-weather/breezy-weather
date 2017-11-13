@@ -167,7 +167,9 @@ public class PollingUpdateHelper {
                     DatabaseHelper.getInstance(context).writeWeather(locationList.get(position), weather);
                     DatabaseHelper.getInstance(context).writeHistory(weather);
                 }
-                listener.onUpdateCompleted(locationList.get(position), weather, old, true);
+                if (listener != null) {
+                    listener.onUpdateCompleted(locationList.get(position), weather, old, true);
+                }
                 if (position + 1 < locationList.size()) {
                     requestData(position + 1, false);
                 } else if (listener != null) {
