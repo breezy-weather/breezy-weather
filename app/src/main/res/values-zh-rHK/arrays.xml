@@ -7,6 +7,12 @@
         <item>Material動畫</item>
     </string-array>
 
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>每日數據在上</item>
+        <item>小時數據在上</item>
+    </string-array>
+
     <!-- language. -->
     <string-array name="languages">
         <item>Follow system</item>

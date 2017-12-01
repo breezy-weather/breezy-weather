@@ -16,8 +16,8 @@
         <TextClock
             android:id="@+id/widget_day_title"
             android:textSize="@dimen/large_title_text_size"
-            android:format24Hour="@string/date_format_oreo_style"
-            android:format12Hour="@string/date_format_oreo_style"
+            android:format24Hour="@string/date_format_widget_oreo_style"
+            android:format12Hour="@string/date_format_widget_oreo_style"
             style="@style/widget_text_clock"
             tools:text="11月14日星期六 │ "
             tools:ignore="RelativeOverlap,RtlHardcoded" />

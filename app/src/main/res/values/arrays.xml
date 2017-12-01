@@ -12,6 +12,16 @@
         <item>material</item>
     </string-array>
 
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>Daily first</item>
+        <item>Hourly first</item>
+    </string-array>
+    <string-array name="card_order_values">
+        <item>daily_first</item>
+        <item>hourly_first</item>
+    </string-array>
+
     <!-- language. -->
     <string-array name="languages">
         <item>Follow system</item>

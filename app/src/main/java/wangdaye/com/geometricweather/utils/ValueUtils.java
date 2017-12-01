@@ -20,6 +20,16 @@ public class ValueUtils {
         }
     }
 
+    public static String getCardOrder(Context c, String value) {
+        switch (value) {
+            case "daily_first":
+                return c.getResources().getStringArray(R.array.card_orders)[0];
+
+            default:
+                return c.getResources().getStringArray(R.array.card_orders)[1];
+        }
+    }
+
     public static float getRefreshRateScale(String value) {
         switch (value) {
             case "0:30":

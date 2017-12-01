@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.007</string>
+    <string name="version_code">v2.008</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -80,9 +80,11 @@
     <string name="translator">Translators</string>
     <string name="thanks">THX</string>
 
-    <string name="date_format_short">EEEE, MMM d</string>
-    <string name="date_format_long">EEEE, MMM d</string>
-    <string name="date_format_oreo_style">EEEE, MMM d │ </string>
+    <string name="date_format_short">M-d</string>
+    <string name="date_format_long">MMM d</string>
+    <string name="date_format_widget_short">EEEE, MMM d</string>
+    <string name="date_format_widget_long">EEEE, MMM d</string>
+    <string name="date_format_widget_oreo_style">EEEE, MMM d │ </string>
 
     <!-- about. -->
     <string name="baidu_location">Baidu Location</string>
@@ -153,6 +155,7 @@
     <string name="settings_category_basic">Basic</string>
     <string name="settings_title_background_free">Background free.</string>
     <string name="settings_title_ui_style">UI style.</string>
+    <string name="settings_title_card_order">Card order.</string>
     <string name="settings_title_gravity_sensor_switch">Open gravity sensor.</string>
     <string name="settings_title_navigationBar_color">Navigation bar color.</string>
     <string name="settings_navigationBar_color_on">Show theme color.</string>
@@ -207,6 +210,7 @@
 
     <string name="key_background_free">background_free</string>
     <string name="key_ui_style">ui_style</string>
+    <string name="key_card_order">card_order</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
     <string name="key_navigationBar_color">navigation_bar_color_switch</string>
     <string name="key_language">language</string>

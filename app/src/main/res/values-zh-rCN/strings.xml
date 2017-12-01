@@ -74,9 +74,11 @@
     <string name="translator">译者</string>
     <string name="thanks">鸣谢</string>
 
-    <string name="date_format_short">MM-dd EEE</string>
-    <string name="date_format_long">M月d日 EEEE</string>
-    <string name="date_format_oreo_style">M月d日EEEE │ </string>
+    <string name="date_format_short">M-d</string>
+    <string name="date_format_long">M月d日</string>
+    <string name="date_format_widget_short">MM-dd EEE</string>
+    <string name="date_format_widget_long">M月d日 EEEE</string>
+    <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
 
     <!-- about. -->
     <string name="baidu_location">Baidu Location</string>
@@ -139,12 +141,14 @@
     <string name="settings_category_basic">基础</string>
     <string name="settings_title_background_free">后台纯净</string>
     <string name="settings_title_ui_style">界面风格</string>
+    <string name="settings_title_card_order">卡片顺序</string>
     <string name="settings_title_gravity_sensor_switch">开启重力感应</string>
     <string name="settings_title_navigationBar_color">导航栏着色</string>
     <string name="settings_navigationBar_color_on">导航栏显示主题颜色</string>
     <string name="settings_navigationBar_color_off">导航栏显示黑色</string>
     <string name="settings_language">语言</string>
     <string name="settings_title_fahrenheit">华氏度</string>
+    <string name="settings_title_imperial">英制单位</string>
     <string name="settings_title_refresh_rate">自动刷新频率</string>
     <string name="settings_title_alert_notification_switch">推送预警通知</string>
     <string name="settings_title_permanent_service">后台服务常驻</string>

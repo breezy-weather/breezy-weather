@@ -131,7 +131,7 @@ public class WidgetClockDayHorizontalUtils {
 
     public static String getLunarText(Context context) {
         return LanguageUtils.getLanguageCode(context).startsWith("zh") ?
-                (" -" + LunarHelper.getLunarDate(Calendar.getInstance())) : "";
+                (" - " + LunarHelper.getLunarDate(Calendar.getInstance())) : "";
     }
 
     public static String getSubtitleText(Weather weather, boolean fahrenheit) {

@@ -7,6 +7,12 @@
         <item>Material动画</item>
     </string-array>
 
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>每日数据在上</item>
+        <item>小时数据在上</item>
+    </string-array>
+
     <!-- language. -->
     <string-array name="languages">
         <item>跟随系统</item>

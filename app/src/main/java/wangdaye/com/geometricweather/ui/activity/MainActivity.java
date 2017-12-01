@@ -98,11 +98,11 @@ public class MainActivity extends GeoActivity
     private ImageView timeIcon;
     private TextView refreshTime;
 
-    private TextView dailyTitle;
-    private TrendRecyclerView dailyTrendRecyclerView;
+    private TextView firstTitle;
+    private TrendRecyclerView firstTrendRecyclerView;
 
-    private TextView hourlyTitle;
-    private TrendRecyclerView hourlyTrendRecyclerView;
+    private TextView secondTitle;
+    private TrendRecyclerView secondTrendRecyclerView;
 
     private TextView detailsTitle;
     private NoneSlipRecyclerView detailRecyclerView;
@@ -128,7 +128,8 @@ public class MainActivity extends GeoActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(getString(R.string.key_ui_style), "material").equals("material")) {
+                .getString(getString(R.string.key_ui_style), "material")
+                .equals("material")) {
             setContentView(R.layout.activity_main_material);
         } else {
             setContentView(R.layout.activity_main_circular);
@@ -340,18 +341,18 @@ public class MainActivity extends GeoActivity
         this.realtimeSendibleTemp = findViewById(R.id.container_main_base_view_sendibleTempTxt);
         this.aqiOrWind = findViewById(R.id.container_main_base_view_aqiOrWindTxt);
 
-        findViewById(R.id.container_main_trend_daily_card_timeContainer).setOnClickListener(this);
+        findViewById(R.id.container_main_trend_first_card_timeContainer).setOnClickListener(this);
 
-        this.timeIcon = findViewById(R.id.container_main_trend_daily_card_timeIcon);
+        this.timeIcon = findViewById(R.id.container_main_trend_first_card_timeIcon);
         timeIcon.setOnClickListener(this);
 
-        this.refreshTime = findViewById(R.id.container_main_trend_daily_card_timeText);
+        this.refreshTime = findViewById(R.id.container_main_trend_first_card_timeText);
 
-        this.dailyTitle = findViewById(R.id.container_main_trend_daily_card_title);
-        this.dailyTrendRecyclerView = findViewById(R.id.container_main_trend_daily_card_trendRecyclerView);
+        this.firstTitle = findViewById(R.id.container_main_trend_first_card_title);
+        this.firstTrendRecyclerView = findViewById(R.id.container_main_trend_first_card_trendRecyclerView);
 
-        this.hourlyTitle = findViewById(R.id.container_main_trend_hourly_card_title);
-        this.hourlyTrendRecyclerView = findViewById(R.id.container_main_trend_hourly_card_trendRecyclerView);
+        this.secondTitle = findViewById(R.id.container_main_trend_second_card_title);
+        this.secondTrendRecyclerView = findViewById(R.id.container_main_trend_second_card_trendRecyclerView);
 
         this.detailsTitle = findViewById(R.id.container_main_details_card_title);
         this.detailRecyclerView = findViewById(R.id.container_main_details_card_recyclerView);
@@ -448,14 +449,25 @@ public class MainActivity extends GeoActivity
         }
         refreshTime.setText(weather.base.time);
 
-        dailyTitle.setTextColor(weatherView.getThemeColors()[0]);
-        hourlyTitle.setTextColor(weatherView.getThemeColors()[0]);
+        firstTitle.setTextColor(weatherView.getThemeColors()[0]);
+        secondTitle.setTextColor(weatherView.getThemeColors()[0]);
         detailsTitle.setTextColor(weatherView.getThemeColors()[0]);
 
-        TrendViewController.setDailyTrend(
-                this, dailyTrendRecyclerView, weather, history, weatherView.getThemeColors());
-        TrendViewController.setHourlyTrend(
-                this, hourlyTrendRecyclerView, weather, history, weatherView.getThemeColors());
+        if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
+            TrendViewController.setDailyTrend(
+                    this, firstTitle, firstTrendRecyclerView,
+                    weather, history, weatherView.getThemeColors());
+            TrendViewController.setHourlyTrend(
+                    this, secondTitle, secondTrendRecyclerView,
+                    weather, history, weatherView.getThemeColors());
+        } else {
+            TrendViewController.setHourlyTrend(
+                    this, firstTitle, firstTrendRecyclerView,
+                    weather, history, weatherView.getThemeColors());
+            TrendViewController.setDailyTrend(
+                    this, secondTitle, secondTrendRecyclerView,
+                    weather, history, weatherView.getThemeColors());
+        }
 
         detailRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailRecyclerView.setAdapter(new DetailsAdapter(this, weather));
@@ -548,11 +560,11 @@ public class MainActivity extends GeoActivity
                 weatherView.onClick();
                 break;
 
-            case R.id.container_main_trend_daily_card_timeIcon:
+            case R.id.container_main_trend_first_card_timeIcon:
                 IntentHelper.startAlertActivity(this, locationNow.weather);
                 break;
 
-            case R.id.container_main_trend_daily_card_timeContainer:
+            case R.id.container_main_trend_first_card_timeContainer:
                 IntentHelper.startManageActivityForResult(this);
                 break;
         }

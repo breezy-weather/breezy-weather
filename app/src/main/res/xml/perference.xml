@@ -20,6 +20,14 @@
             android:dialogTitle="@string/settings_title_ui_style"
             android:defaultValue="material" />
 
+        <ListPreference
+            android:title="@string/settings_title_card_order"
+            android:key="@string/key_card_order"
+            android:entries="@array/card_orders"
+            android:entryValues="@array/card_order_values"
+            android:dialogTitle="@string/settings_title_card_order"
+            android:defaultValue="daily_first" />
+
         <CheckBoxPreference
             android:title="@string/settings_title_gravity_sensor_switch"
             android:key="@string/key_gravity_sensor_switch"

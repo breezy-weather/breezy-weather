@@ -34,8 +34,8 @@
                     android:descendantFocusability="blocksDescendants">
 
                     <include layout="@layout/container_main_base_view" />
-                    <include layout="@layout/container_main_trend_daily_card" />
-                    <include layout="@layout/container_main_trend_hourly_card" />
+                    <include layout="@layout/container_main_trend_first_card" />
+                    <include layout="@layout/container_main_trend_second_card" />
                     <include layout="@layout/container_main_details_card" />
 
                 </LinearLayout>

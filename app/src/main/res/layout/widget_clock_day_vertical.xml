@@ -24,7 +24,6 @@
             android:textAlignment="center"
             android:format24Hour="HH"
             android:format12Hour="hh"
-            android:layout_width="match_parent"
             android:layout_marginTop="-8dp"
             style="@style/widget_text_clock"
             tools:text="09" />
@@ -35,7 +34,6 @@
             android:textAlignment="center"
             android:format24Hour="mm"
             android:format12Hour="mm"
-            android:layout_width="match_parent"
             android:layout_marginTop="-16dp"
             android:layout_marginBottom="-4dp"
             style="@style/widget_text_clock"

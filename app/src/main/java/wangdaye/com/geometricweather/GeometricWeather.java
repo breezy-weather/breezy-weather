@@ -28,6 +28,7 @@ public class GeometricWeather extends Application {
     }
 
     private List<GeoActivity> activityList;
+    private String cardOrder;
     private boolean colorNavigationBar;
     private boolean fahrenheit;
     private boolean imperial;
@@ -50,6 +51,7 @@ public class GeometricWeather extends Application {
         activityList = new ArrayList<>();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
         imperial = sharedPreferences.getBoolean(getString(R.string.key_imperial), false);
@@ -72,6 +74,14 @@ public class GeometricWeather extends Application {
             return null;
         }
         return activityList.get(activityList.size() - 1);
+    }
+
+    public String getCardOrder() {
+        return cardOrder;
+    }
+
+    public void setCardOrder(String cardOrder) {
+        this.cardOrder = cardOrder;
     }
 
     public boolean isColorNavigationBar() {

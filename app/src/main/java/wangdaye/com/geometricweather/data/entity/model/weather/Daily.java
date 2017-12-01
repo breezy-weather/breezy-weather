@@ -1,6 +1,10 @@
 package wangdaye.com.geometricweather.data.entity.model.weather;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import wangdaye.com.geometricweather.data.entity.result.NewDailyResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
@@ -131,5 +135,14 @@ public class Daily {
                 entity.sunset};
         precipitations = new int[] {entity.daytimePrecipitations, entity.nighttimePrecipitations};
         return this;
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public String getDateInFormat(String format) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, Integer.parseInt(date.split("-")[0]));
+        calendar.set(Calendar.MONTH, Integer.parseInt(date.split("-")[1]) - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date.split("-")[2]));
+        return new SimpleDateFormat(format).format(calendar.getTime());
     }
 }

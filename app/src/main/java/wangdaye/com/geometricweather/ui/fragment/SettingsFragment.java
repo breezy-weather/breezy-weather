@@ -55,6 +55,16 @@ public class SettingsFragment extends PreferenceFragment
                                         "material")));
         uiStyle.setOnPreferenceChangeListener(this);
 
+        Preference cardOrder = findPreference(getString(R.string.key_card_order));
+        cardOrder.setSummary(
+                ValueUtils.getCardOrder(
+                        getActivity(),
+                        PreferenceManager.getDefaultSharedPreferences(getActivity())
+                                .getString(
+                                        getString(R.string.key_card_order),
+                                        "daily_first")));
+        cardOrder.setOnPreferenceChangeListener(this);
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             findPreference(getString(R.string.key_navigationBar_color)).setEnabled(false);
         } else {
@@ -274,6 +284,11 @@ public class SettingsFragment extends PreferenceFragment
         if (preference.getKey().equals(getString(R.string.key_ui_style))) {
             // UI style.
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+        } else if (preference.getKey().equals(getString(R.string.key_card_order))) {
+            // Card order.
+            GeometricWeather.getInstance().setCardOrder((String) o);
+            preference.setSummary(ValueUtils.getCardOrder(getActivity(), (String) o));
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
         } else if (preference.getKey().equals(getString(R.string.key_refresh_rate))) {
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
             editor.putString(getString(R.string.key_refresh_rate), (String) o);

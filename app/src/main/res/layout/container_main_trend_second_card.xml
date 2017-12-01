@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/material_card">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/container_main_trend_second_card_title"
+            android:textSize="@dimen/title_text_size"
+            android:layout_margin="@dimen/normal_margin"
+            style="@style/content_text"
+            tools:text="@string/hourly_overview"
+            tools:ignore="RtlHardcoded" />
+
+        <wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView
+            android:id="@+id/container_main_trend_second_card_trendRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
