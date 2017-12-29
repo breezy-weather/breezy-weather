@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Rotazioni</item>
+        <item>Material design</item>
+    </string-array>
+
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>Giornaliero</item>
+        <item>Ogni ora</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>0:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Scuro</item>
+        <item>Grigio</item>
+        <item>Chiaro</item>
+    </string-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Rettangolo</item>
+        <item>Simmetrico</item>
+        <item>Piastrella</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+        <item>Verticale</item>
+        <item>Oreo</item>
+    </string-array>
+
+    <!-- icon style. -->
+    <string-array name="icon_styles">
+        <item>Material</item>
+        <item>Minimale</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Frequenza di aggiornamento</item>
+        <item>Qualità dell\'aria</item>
+        <item>Vento</item>
+        <item>Temperatura risentita</item>
+        <item>Calendario Lunare</item>
+    </string-array>
+
+</resources>

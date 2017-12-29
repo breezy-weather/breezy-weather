@@ -24,28 +24,34 @@
 
     <!-- language. -->
     <string-array name="languages">
-        <item>Follow system</item>
+        <item>@string/follow_system</item>
         <item>中文</item>
         <item>繁體中文</item>
-        <item>English</item>
+        <item>English (America)</item>
+        <item>English (Britain)</item>
+        <item>English (Australia)</item>
         <item>Türkçe</item>
         <item>Français</item>
         <item>Pусский</item>
         <item>Deutsch</item>
         <item>Српски</item>
         <item>Español</item>
+        <item>Italiano</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
         <item>chinese</item>
         <item>unsimplified_chinese</item>
-        <item>english</item>
+        <item>english_america</item>
+        <item>english_britain</item>
+        <item>english_australia</item>
         <item>turkish</item>
         <item>french</item>
         <item>russian</item>
         <item>german</item>
         <item>serbian</item>
         <item>spanish</item>
+        <item>italian</item>
     </string-array>
 
     <!-- automatic refresh rate. -->

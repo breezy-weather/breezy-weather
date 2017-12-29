@@ -17,8 +17,8 @@
 
             <ImageView
                 android:id="@+id/container_main_trend_first_card_timeIcon"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
+                android:layout_width="@dimen/standard_weather_icon_size"
+                android:layout_height="@dimen/standard_weather_icon_size"
                 android:padding="@dimen/normal_margin"
                 android:src="@drawable/ic_time"
                 android:layout_alignParentLeft="true"

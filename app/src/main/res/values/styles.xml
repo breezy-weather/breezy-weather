@@ -161,7 +161,7 @@
         <item name="android:format24Hour">HH:mm</item>
         <item name="android:format12Hour">h:mm</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">@dimen/flag_icon_size</item>
+        <item name="android:textSize">@dimen/widget_current_weather_icon_size</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/colorTextLight</item>
         <item name="android:shadowColor">@color/colorTextDark2nd</item>
@@ -176,7 +176,7 @@
         <item name="android:format24Hour" />
         <item name="android:format12Hour">aa</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize" tools:ignore="SpUsage">14dp</item>
+        <item name="android:textSize" tools:ignore="SpUsage">@dimen/widget_aa_text_size</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/colorTextLight</item>
         <item name="android:shadowColor">@color/colorTextDark2nd</item>

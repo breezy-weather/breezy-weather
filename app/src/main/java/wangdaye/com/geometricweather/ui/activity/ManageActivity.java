@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Build;
@@ -60,25 +61,7 @@ public class ManageActivity extends GeoActivity
 
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-            int position = viewHolder.getAdapterPosition();
-
-            Location item = adapter.itemList.get(position);
-            if (adapter.itemList.size() <= 1) {
-                adapter.removeData(position);
-                adapter.insertData(item, position);
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_location_list_cannot_be_null));
-            } else {
-                Location location = adapter.itemList.get(position);
-                adapter.removeData(position);
-                DatabaseHelper.getInstance(ManageActivity.this).deleteLocation(item);
-                SnackbarUtils.showSnackbar(
-                        getString(R.string.feedback_delete_succeed),
-                        getString(R.string.cancel),
-                        new CancelDeleteListener(location));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    ShortcutsManager.refreshShortcuts(ManageActivity.this, adapter.itemList);
-                }
-            }
+            deleteLocation(viewHolder.getAdapterPosition());
         }
 
         @Override
@@ -119,6 +102,7 @@ public class ManageActivity extends GeoActivity
                     this.adapter = new LocationAdapter(
                             this,
                             DatabaseHelper.getInstance(this).readLocationList(),
+                            true,
                             this);
                     recyclerView.setAdapter(adapter);
                     Snackbar.make(
@@ -134,6 +118,7 @@ public class ManageActivity extends GeoActivity
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // do nothing.
@@ -148,19 +133,20 @@ public class ManageActivity extends GeoActivity
         this.adapter = new LocationAdapter(
                 this,
                 DatabaseHelper.getInstance(this).readLocationList(),
+                true,
                 this);
     }
 
     private void initWidget() {
-        this.container = (CoordinatorLayout) findViewById(R.id.activity_manage_container);
+        this.container = findViewById(R.id.activity_manage_container);
 
-        this.cardView = (CardView) findViewById(R.id.activity_manage_searchBar);
+        this.cardView = findViewById(R.id.activity_manage_searchBar);
         cardView.setOnClickListener(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             cardView.setTransitionName(getString(R.string.transition_activity_search_bar));
         }
 
-        this.recyclerView = (RecyclerView) findViewById(R.id.activity_manage_recyclerView);
+        this.recyclerView = findViewById(R.id.activity_manage_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(adapter);
@@ -170,6 +156,26 @@ public class ManageActivity extends GeoActivity
                         ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                         ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT));
         itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    private void deleteLocation(int position) {
+        Location item = adapter.itemList.get(position);
+        if (adapter.itemList.size() <= 1) {
+            adapter.removeData(position);
+            adapter.insertData(item, position);
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_location_list_cannot_be_null));
+        } else {
+            Location location = adapter.itemList.get(position);
+            adapter.removeData(position);
+            DatabaseHelper.getInstance(ManageActivity.this).deleteLocation(item);
+            SnackbarUtils.showSnackbar(
+                    getString(R.string.feedback_delete_succeed),
+                    getString(R.string.cancel),
+                    new CancelDeleteListener(location));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                ShortcutsManager.refreshShortcuts(ManageActivity.this, adapter.itemList);
+            }
+        }
     }
 
     // interface.
@@ -204,7 +210,7 @@ public class ManageActivity extends GeoActivity
     // on location item click listener.
 
     @Override
-    public void onItemClick(View view, int position) {
+    public void onClick(View view, int position) {
         String locationName = adapter.itemList.get(position).isLocal() ?
                 getString(R.string.local) : adapter.itemList.get(position).city;
 
@@ -212,5 +218,10 @@ public class ManageActivity extends GeoActivity
                 RESULT_OK,
                 new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName));
         finish();
+    }
+
+    @Override
+    public void onDelete(View view, int position) {
+        deleteLocation(position);
     }
 }

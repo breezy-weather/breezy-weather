@@ -196,7 +196,8 @@ public class WidgetDayUtils {
                 return ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
 
             case "vertical":
-                return " " + ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit);
+                return (weather.realTime.temp < 0 ? "" : " ")
+                        + ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit);
         }
         return "";
     }

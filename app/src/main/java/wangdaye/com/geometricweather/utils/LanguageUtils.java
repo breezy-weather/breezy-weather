@@ -16,50 +16,63 @@ import java.util.Locale;
 public class LanguageUtils {
 
     public static void setLanguage(Context c, String language) {
-        if (!language.equals("follow_system")) {
+        Locale target = buildLocale(language);
+        if (!c.getResources().getConfiguration().locale.equals(target)) {
             Resources resources = c.getResources();
             Configuration configuration = resources.getConfiguration();
             DisplayMetrics metrics = resources.getDisplayMetrics();
-            Locale locale;
-            switch (language) {
-                case "chinese":
-                    locale = new Locale("zh", "CN");
-                    break;
-
-                case "unsimplified_chinese":
-                    locale = new Locale("zh", "TW");
-                    break;
-
-                case "turkish":
-                    locale = new Locale("tr");
-                    break;
-
-                case "french":
-                    locale = new Locale("fr");
-                    break;
-
-                case "russian":
-                    locale = new Locale("ru");
-                    break;
-
-                case "german":
-                    locale = new Locale("de");
-                    break;
-
-                case "serbian":
-                    locale = new Locale("sr");
-                    break;
-
-                case "spanish":
-                    locale = new Locale("es");
-                    break;
-
-                default:
-                    locale = new Locale("en");
-                    break;
-            }
-            configuration.setLocale(locale);
+            configuration.setLocale(target);
             resources.updateConfiguration(configuration, metrics);
+        }
+    }
+
+    private static Locale buildLocale(String language) {
+        switch (language) {
+            case "follow_system":
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    return Resources.getSystem().getConfiguration().getLocales().get(0);
+                } else {
+                    return Resources.getSystem().getConfiguration().locale;
+                }
+
+            case "chinese":
+                return new Locale("zh", "CN");
+
+            case "unsimplified_chinese":
+                return new Locale("zh", "TW");
+
+            case "english_america":
+                return new Locale("en", "US");
+
+            case "english_britain":
+                return new Locale("en", "GB");
+
+            case "english_australia":
+                return new Locale("en", "AU");
+
+            case "turkish":
+                return new Locale("tr");
+
+            case "french":
+                return new Locale("fr");
+
+            case "russian":
+                return new Locale("ru");
+
+            case "german":
+                return new Locale("de");
+
+            case "serbian":
+                return new Locale("sr");
+
+            case "spanish":
+                return new Locale("es");
+
+            case "italian":
+                return new Locale("it");
+
+            default:
+                return new Locale("en");
         }
     }
 

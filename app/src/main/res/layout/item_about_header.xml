@@ -8,8 +8,8 @@
         android:id="@+id/item_about_header_appIcon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/material_icon_size"
-        android:layout_width="@dimen/flag_icon_size"
-        android:layout_height="@dimen/flag_icon_size"
+        android:layout_width="@dimen/standard_weather_icon_size"
+        android:layout_height="@dimen/standard_weather_icon_size"
         tools:src="@drawable/ic_launcher_material"
         tools:ignore="ContentDescription" />
 

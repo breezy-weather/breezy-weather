@@ -69,26 +69,35 @@ public class ValueUtils {
             case "unsimplified_chinese":
                 return c.getResources().getStringArray(R.array.languages)[2];
 
-            case "english":
+            case "english_america":
                 return c.getResources().getStringArray(R.array.languages)[3];
 
-            case "turkish":
+            case "english_britain":
                 return c.getResources().getStringArray(R.array.languages)[4];
 
-            case "french":
+            case "english_australia":
                 return c.getResources().getStringArray(R.array.languages)[5];
 
-            case "russian":
+            case "turkish":
                 return c.getResources().getStringArray(R.array.languages)[6];
 
-            case "german":
+            case "french":
                 return c.getResources().getStringArray(R.array.languages)[7];
 
-            case "serbian":
+            case "russian":
                 return c.getResources().getStringArray(R.array.languages)[8];
 
-            case "spanish":
+            case "german":
                 return c.getResources().getStringArray(R.array.languages)[9];
+
+            case "serbian":
+                return c.getResources().getStringArray(R.array.languages)[10];
+
+            case "spanish":
+                return c.getResources().getStringArray(R.array.languages)[11];
+
+            case "italian":
+                return c.getResources().getStringArray(R.array.languages)[12];
 
             default:
                 return null;

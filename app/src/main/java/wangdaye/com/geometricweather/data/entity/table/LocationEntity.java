@@ -170,6 +170,7 @@ public class LocationEntity {
         }
         if (locationList.size() <= 0) {
             locationList.add(Location.buildLocal());
+            insertLocation(database, locationList.get(0));
         }
         return locationList;
     }

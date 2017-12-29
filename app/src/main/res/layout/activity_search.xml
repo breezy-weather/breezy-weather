@@ -78,8 +78,8 @@
 
                 <com.github.rahatarmanahmed.cpv.CircularProgressView
                     android:id="@+id/activity_search_progress"
-                    android:layout_width="@dimen/little_flag_icon_size"
-                    android:layout_height="@dimen/little_flag_icon_size"
+                    android:layout_width="@dimen/little_weather_icon_size"
+                    android:layout_height="@dimen/little_weather_icon_size"
                     android:layout_centerInParent="true"
                     app:cpv_animAutostart="true"
                     app:cpv_color="@color/colorTextContent"

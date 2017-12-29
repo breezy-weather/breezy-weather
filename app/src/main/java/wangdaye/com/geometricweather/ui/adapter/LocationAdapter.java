@@ -1,10 +1,12 @@
 package wangdaye.com.geometricweather.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Collections;
@@ -23,32 +25,49 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     private OnLocationItemClickListener listener = null;
 
     public List<Location> itemList;
+    private boolean manage;
 
     class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         // widget
         TextView title;
         TextView subtitle;
+        ImageButton deleteButton;
 
         private OnLocationItemClickListener listener;
 
         ViewHolder(View itemView, OnLocationItemClickListener listener) {
             super(itemView);
-            this.title = (TextView) itemView.findViewById(R.id.item_location_title);
-            this.subtitle = (TextView) itemView.findViewById(R.id.item_location_subtitle);
+            this.title = itemView.findViewById(R.id.item_location_title);
+            this.subtitle = itemView.findViewById(R.id.item_location_subtitle);
+            this.deleteButton = itemView.findViewById(R.id.item_location_deleteBtn);
             this.listener = listener;
+
             itemView.findViewById(R.id.item_location).setOnClickListener(this);
+            deleteButton.setOnClickListener(this);
+            if (!manage) {
+                deleteButton.setVisibility(View.GONE);
+            }
         }
 
         @Override
         public void onClick(View v) {
-            listener.onItemClick(v,getAdapterPosition());
+            switch (v.getId()) {
+                case R.id.item_location:
+                    listener.onClick(v,getAdapterPosition());
+                    break;
+
+                case R.id.item_location_deleteBtn:
+                    listener.onDelete(v,getAdapterPosition());
+                    break;
+            }
         }
     }
 
-    public LocationAdapter(Context context, List<Location> itemList, OnLocationItemClickListener l) {
+    public LocationAdapter(Context context, List<Location> itemList, boolean manage, OnLocationItemClickListener l) {
         this.context = context;
         this.itemList = itemList;
+        this.manage = manage;
         setOnLocationItemClickListener(l);
     }
 
@@ -58,6 +77,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         return new ViewHolder(view, listener);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (itemList.get(position).isLocal()) {
@@ -108,7 +128,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     // interface.
 
     public interface OnLocationItemClickListener {
-        void onItemClick(View view, int position);
+        void onClick(View view, int position);
+        void onDelete(View view, int position);
     }
 
     private void setOnLocationItemClickListener(OnLocationItemClickListener l){

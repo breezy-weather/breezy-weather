@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/widget_day_icon"
-            android:layout_width="@dimen/flag_icon_size"
-            android:layout_height="@dimen/flag_icon_size"
+            android:layout_width="@dimen/widget_current_weather_icon_size"
+            android:layout_height="@dimen/widget_current_weather_icon_size"
             android:layout_centerVertical="true"
             android:src="@drawable/weather_cloudy"
             tools:ignore="ContentDescription" />
@@ -37,6 +37,7 @@
             <TextView
                 android:id="@+id/widget_day_title"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 android:textColor="@color/colorTextLight"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -50,6 +51,7 @@
             <TextView
                 android:id="@+id/widget_day_subtitle"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 android:gravity="right"
                 android:textAlignment="gravity"

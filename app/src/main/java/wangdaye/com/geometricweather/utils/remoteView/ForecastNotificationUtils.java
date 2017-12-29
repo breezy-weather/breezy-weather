@@ -13,8 +13,10 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -30,6 +32,8 @@ public class ForecastNotificationUtils {
         if (weather == null) {
             return;
         }
+
+        LanguageUtils.setLanguage(context, GeometricWeather.getInstance().getLanguage());
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = sharedPreferences.getBoolean(

@@ -13,20 +13,6 @@
         <item>小時數據在上</item>
     </string-array>
 
-    <!-- language. -->
-    <string-array name="languages">
-        <item>Follow system</item>
-        <item>中文</item>
-        <item>繁體中文</item>
-        <item>English</item>
-        <item>Türkçe</item>
-        <item>Français</item>
-        <item>Pусский</item>
-        <item>Deutsch</item>
-        <item>Српски</item>
-        <item>Español</item>
-    </string-array>
-
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
         <item>暗色</item>

@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.ui.activity;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -114,12 +115,14 @@ public class SearcActivity extends GeoActivity
                 this.adapter = new LocationAdapter(
                         this,
                         DatabaseHelper.getInstance(this).readLocationList(),
+                        false,
                         this);
                 recyclerView.setAdapter(adapter);
                 break;
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // do nothing.
@@ -146,6 +149,7 @@ public class SearcActivity extends GeoActivity
         this.adapter = new LocationAdapter(
                 this,
                 new ArrayList<Location>(),
+                false,
                 this);
         this.locationList = DatabaseHelper.getInstance(this).readLocationList();
 
@@ -153,7 +157,7 @@ public class SearcActivity extends GeoActivity
     }
 
     private void initWidget() {
-        this.container = (CoordinatorLayout) findViewById(R.id.activity_search_container);
+        this.container = findViewById(R.id.activity_search_container);
 
         findViewById(R.id.activity_search_searchBar).setOnClickListener(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -161,20 +165,20 @@ public class SearcActivity extends GeoActivity
                     .setTransitionName(getString(R.string.transition_activity_search_bar));
         }
 
-        this.searchContainer = (RelativeLayout) findViewById(R.id.activity_search_searchContainer);
+        this.searchContainer = findViewById(R.id.activity_search_searchContainer);
 
         findViewById(R.id.activity_search_backBtn).setOnClickListener(this);
         findViewById(R.id.activity_search_clearBtn).setOnClickListener(this);
 
-        this.editText = (EditText) findViewById(R.id.activity_search_editText);
+        this.editText = findViewById(R.id.activity_search_editText);
         editText.setOnEditorActionListener(this);
 
-        this.recyclerView = (RecyclerView) findViewById(R.id.activity_search_recyclerView);
+        this.recyclerView = findViewById(R.id.activity_search_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(adapter);
 
-        this.progressView = (CircularProgressView) findViewById(R.id.activity_search_progress);
+        this.progressView = findViewById(R.id.activity_search_progress);
         progressView.setAlpha(0);
 
         AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.search_container_in);
@@ -245,7 +249,7 @@ public class SearcActivity extends GeoActivity
     // on location item click listener.
 
     @Override
-    public void onItemClick(View view, int position) {
+    public void onClick(View view, int position) {
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(adapter.itemList.get(position))) {
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_collect_failed));
@@ -257,13 +261,20 @@ public class SearcActivity extends GeoActivity
         finishSelf(true);
     }
 
+    @Override
+    public void onDelete(View view, int position) {
+        // do nothing.
+    }
+
     // on editor action listener.
 
     @Override
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         if (!TextUtils.isEmpty(textView.getText().toString())) {
             InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            if (manager != null) {
+                manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            }
 
             query = textView.getText().toString();
             if (query.equals(getString(R.string.local))) {

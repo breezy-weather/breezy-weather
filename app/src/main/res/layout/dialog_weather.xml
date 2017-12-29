@@ -43,24 +43,24 @@
 
             <ImageView
                 android:id="@+id/dialog_weather_icon_3_day"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
+                android:layout_width="@dimen/standard_weather_icon_size"
+                android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/dialog_weather_icon_2_day"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
+                android:layout_width="@dimen/standard_weather_icon_size"
+                android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/dialog_weather_icon_1_day"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
+                android:layout_width="@dimen/standard_weather_icon_size"
+                android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
@@ -83,24 +83,24 @@
 
             <ImageView
                 android:id="@+id/dialog_weather_icon_3_night"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
+                android:layout_width="@dimen/standard_weather_icon_size"
+                android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 tools:src="@drawable/weather_sun_night"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/dialog_weather_icon_2_night"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
+                android:layout_width="@dimen/standard_weather_icon_size"
+                android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 tools:src="@drawable/weather_sun_night"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/dialog_weather_icon_1_night"
-                android:layout_width="@dimen/flag_icon_size"
-                android:layout_height="@dimen/flag_icon_size"
+                android:layout_width="@dimen/standard_weather_icon_size"
+                android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 tools:src="@drawable/weather_sun_night"
                 tools:ignore="ContentDescription" />

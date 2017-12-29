@@ -26,6 +26,7 @@
             <TextView
                 android:id="@+id/widget_week_week_1"
                 android:text="@string/wait_refresh"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -39,8 +40,8 @@
 
             <ImageView
                 android:id="@+id/widget_week_icon_1"
-                android:layout_width="@dimen/widget_week_icon_size"
-                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_width="@dimen/widget_little_weather_icon_size"
+                android:layout_height="@dimen/widget_little_weather_icon_size"
                 android:layout_below="@id/widget_week_week_1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="2dp"
@@ -51,6 +52,7 @@
             <TextView
                 android:id="@+id/widget_week_temp_1"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -72,6 +74,7 @@
             <TextView
                 android:id="@+id/widget_week_week_2"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -85,8 +88,8 @@
 
             <ImageView
                 android:id="@+id/widget_week_icon_2"
-                android:layout_width="@dimen/widget_week_icon_size"
-                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_width="@dimen/widget_little_weather_icon_size"
+                android:layout_height="@dimen/widget_little_weather_icon_size"
                 android:layout_below="@id/widget_week_week_2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="2dp"
@@ -97,6 +100,7 @@
             <TextView
                 android:id="@+id/widget_week_temp_2"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -118,6 +122,7 @@
             <TextView
                 android:id="@+id/widget_week_week_3"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -131,8 +136,8 @@
 
             <ImageView
                 android:id="@+id/widget_week_icon_3"
-                android:layout_width="@dimen/widget_week_icon_size"
-                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_width="@dimen/widget_little_weather_icon_size"
+                android:layout_height="@dimen/widget_little_weather_icon_size"
                 android:layout_below="@id/widget_week_week_3"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="2dp"
@@ -143,6 +148,7 @@
             <TextView
                 android:id="@+id/widget_week_temp_3"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -164,6 +170,7 @@
             <TextView
                 android:id="@+id/widget_week_week_4"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -177,8 +184,8 @@
 
             <ImageView
                 android:id="@+id/widget_week_icon_4"
-                android:layout_width="@dimen/widget_week_icon_size"
-                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_width="@dimen/widget_little_weather_icon_size"
+                android:layout_height="@dimen/widget_little_weather_icon_size"
                 android:layout_below="@id/widget_week_week_4"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="2dp"
@@ -189,6 +196,7 @@
             <TextView
                 android:id="@+id/widget_week_temp_4"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -210,6 +218,7 @@
             <TextView
                 android:id="@+id/widget_week_week_5"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"
@@ -223,8 +232,8 @@
 
             <ImageView
                 android:id="@+id/widget_week_icon_5"
-                android:layout_width="@dimen/widget_week_icon_size"
-                android:layout_height="@dimen/widget_week_icon_size"
+                android:layout_width="@dimen/widget_little_weather_icon_size"
+                android:layout_height="@dimen/widget_little_weather_icon_size"
                 android:layout_below="@id/widget_week_week_5"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="2dp"
@@ -236,6 +245,7 @@
             <TextView
                 android:id="@+id/widget_week_temp_5"
                 android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
                 android:shadowColor="@color/colorTextDark2nd"

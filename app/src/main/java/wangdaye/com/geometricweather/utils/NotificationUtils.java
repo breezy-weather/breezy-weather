@@ -102,6 +102,7 @@ public class NotificationUtils {
                 .setSubText(alert.publishTime)
                 .setContentText(alert.description)
                 .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                 .setContentIntent(buildIntent(c, cityName));
 
@@ -117,6 +118,7 @@ public class NotificationUtils {
                 .setContentTitle(alert.description)
                 .setGroup(NOTIFICATION_GROUP_KEY)
                 .setGroupSummary(true)
+                .setOnlyAlertOnce(true)
                 .setContentIntent(buildIntent(c, cityName))
                 .build();
     }

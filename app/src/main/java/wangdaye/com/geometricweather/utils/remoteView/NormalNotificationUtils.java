@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
@@ -36,6 +37,8 @@ public class NormalNotificationUtils {
         if (weather == null) {
             return;
         }
+
+        LanguageUtils.setLanguage(context, GeometricWeather.getInstance().getLanguage());
 
         // get sp & realTimeWeather.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

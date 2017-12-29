@@ -297,6 +297,7 @@ public class SettingsFragment extends PreferenceFragment
             ServiceHelper.resetNormalService(getActivity(), false, true);
         } else if (preference.getKey().equals(getString(R.string.key_language))) {
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
+            GeometricWeather.getInstance().setLanguage((String) o);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_widget_icon_style))
                 || preference.getKey().equals(getString(R.string.key_notification_icon_style))) {

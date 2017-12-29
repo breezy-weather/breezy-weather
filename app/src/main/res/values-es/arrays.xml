@@ -7,20 +7,6 @@
         <item>Animación estilo Material</item>
     </string-array>
 
-    <!-- language. -->
-    <string-array name="languages">
-        <item>Usar el mismo que el sistema</item>
-        <item>中文</item>
-        <item>繁體中文</item>
-        <item>English</item>
-        <item>Türkçe</item>
-        <item>Français</item>
-        <item>Pусский</item>
-        <item>Deutsch</item>
-        <item>Српски</item>
-        <item>Español</item>
-    </string-array>
-
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>0:30</item>

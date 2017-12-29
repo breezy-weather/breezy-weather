@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- widget. -->
+    <dimen name="widget_current_weather_icon_size">67dp</dimen>
+    <dimen name="widget_standard_weather_icon_size">57dp</dimen>
+    <dimen name="widget_little_weather_icon_size">43dp</dimen>
+    <dimen name="widget_mini_weather_icon_size">28dp</dimen>
+    <dimen name="widget_design_title_text_size">36sp</dimen>
+    <dimen name="widget_large_title_text_size">24sp</dimen>
+    <dimen name="widget_title_text_size">19sp</dimen>
+    <dimen name="widget_subtitle_text_size">14sp</dimen>
+    <dimen name="widget_content_text_size">16sp</dimen>
+    <dimen name="widget_time_text_size">12sp</dimen>
+    <dimen name="widget_aa_text_size">16dp</dimen>
+
+</resources>

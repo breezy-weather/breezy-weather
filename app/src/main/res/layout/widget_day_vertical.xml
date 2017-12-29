@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/widget_day_title"
             android:text="@string/ellipsis"
-            android:textSize="56sp"
+            android:textSize="@dimen/widget_current_weather_icon_size"
             android:textColor="@color/colorTextLight"
             android:shadowColor="@color/colorTextDark2nd"
             android:shadowDx="1"
@@ -34,8 +34,8 @@
 
         <ImageView
             android:id="@+id/widget_day_icon"
-            android:layout_width="@dimen/flag_icon_size"
-            android:layout_height="@dimen/flag_icon_size"
+            android:layout_width="@dimen/widget_current_weather_icon_size"
+            android:layout_height="@dimen/widget_current_weather_icon_size"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/widget_day_title"
             android:src="@drawable/weather_cloudy"
@@ -44,7 +44,7 @@
         <TextView
             android:id="@+id/widget_day_subtitle"
             android:text="@string/ellipsis"
-            android:textSize="@dimen/content_text_size"
+            android:textSize="@dimen/widget_content_text_size"
             android:textColor="@color/colorTextLight"
             android:shadowColor="@color/colorTextDark2nd"
             android:shadowDx="1"

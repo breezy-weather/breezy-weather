@@ -22,6 +22,7 @@
     <string name="nighttime">夜間</string>
     <string name="publish_at">發布於</string>
     <string name="feels_like">體感</string>
+    <string name="follow_system">跟隨系統</string>
 
     <string name="of_clock">時</string>
     <string name="yesterday">昨日</string>

@@ -8,11 +8,22 @@
     android:stateListAnimator="@animator/touch_raise"
     tools:targetApi="lollipop">
 
+    <ImageButton
+        android:id="@+id/item_location_deleteBtn"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_close"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        style="@style/material_image_button"
+        tools:ignore="ContentDescription" />
+
     <TextView
         android:id="@+id/item_location_title"
+        android:layout_width="match_parent"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_marginLeft="@dimen/normal_margin"
         android:layout_marginBottom="2dp"
+        android:layout_toLeftOf="@id/item_location_deleteBtn"
         android:maxLines="1"
         android:textColor="@color/colorTextContent"
         style="@style/title_text"
@@ -21,9 +32,11 @@
 
     <TextView
         android:id="@+id/item_location_subtitle"
+        android:layout_width="match_parent"
         android:layout_below="@id/item_location_title"
         android:layout_marginBottom="@dimen/normal_margin"
         android:layout_marginLeft="@dimen/normal_margin"
+        android:layout_toLeftOf="@id/item_location_deleteBtn"
         android:maxLines="1"
         style="@style/subtitle_text"
         tools:text="中国 山东 青岛 CN101120201"
