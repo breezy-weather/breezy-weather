@@ -24,15 +24,15 @@
             <TextClock
                 android:id="@+id/widget_clock_day_clock"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/little_margin"
-                android:layout_marginRight="@dimen/little_margin"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin"
                 style="@style/widget_text_clock"
                 tools:text="9:10"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
 
             <TextClock
                 android:id="@+id/widget_clock_day_clock_aa"
-                android:layout_toRightOf="@id/widget_clock_day_clock"
+                android:layout_toEndOf="@id/widget_clock_day_clock"
                 android:layout_alignBaseline="@id/widget_clock_day_clock"
                 style="@style/widget_text_clock_aa"
                 tools:text="AM"
@@ -48,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/normal_margin"
-                android:layout_marginRight="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 tools:ignore="UselessParent">
 
                 <ImageView
@@ -70,9 +70,9 @@
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="1"
-                    android:layout_toRightOf="@id/widget_clock_day_icon"
+                    android:layout_toEndOf="@id/widget_clock_day_icon"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/little_margin"
+                    android:layout_marginStart="@dimen/little_margin"
                     style="@style/content_text"
                     tools:text="Partly Cloud"
                     tools:ignore="RtlHardcoded" />
@@ -81,7 +81,7 @@
                     android:id="@+id/widget_clock_day_subtitle"
                     android:text="@string/ellipsis"
                     android:maxLines="1"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:textAlignment="gravity"
                     android:textSize="@dimen/widget_content_text_size"
                     android:textColor="@color/colorTextLight"
@@ -89,9 +89,9 @@
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="1"
-                    android:layout_toRightOf="@id/widget_clock_day_title"
+                    android:layout_toEndOf="@id/widget_clock_day_title"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/little_margin"
+                    android:layout_marginStart="@dimen/little_margin"
                     style="@style/content_text"
                     tools:text="21℃"
                     tools:ignore="RtlHardcoded" />

@@ -38,9 +38,9 @@
                 android:scaleType="fitCenter"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
                 tools:src="@drawable/weather_cloudy"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -48,10 +48,10 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/notification_forecast_icon_1"
+                android:layout_toEndOf="@id/notification_forecast_icon_1"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/little_margin"
-                android:layout_marginRight="@dimen/little_margin"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin"
                 tools:ignore="RtlHardcoded">
 
                 <TextView
@@ -86,9 +86,9 @@
                 android:scaleType="fitCenter"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
                 tools:src="@drawable/weather_cloudy"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -96,10 +96,10 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/notification_forecast_icon_2"
+                android:layout_toEndOf="@id/notification_forecast_icon_2"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/little_margin"
-                android:layout_marginRight="@dimen/little_margin"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin"
                 tools:ignore="RtlHardcoded">
 
                 <TextView

@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/item_about_link_icon"
+        android:layout_alignParentStart="true"
         style="@style/material_icon"
         tools:src="@drawable/ic_github"
         tools:ignore="ContentDescription" />
@@ -16,7 +17,7 @@
         android:id="@+id/item_about_link_text"
         android:textStyle="bold"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/item_about_link_icon"
+        android:layout_toEndOf="@id/item_about_link_icon"
         style="@style/content_text"
         tools:text="@string/gitHub"
         tools:ignore="RtlHardcoded" />

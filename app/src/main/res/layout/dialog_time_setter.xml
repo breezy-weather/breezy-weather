@@ -26,7 +26,7 @@
                 style="@style/material_button"
                 android:text="@string/done"
                 android:textColor="@color/colorAccent"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 tools:ignore="RtlHardcoded" />
 
             <Button
@@ -34,7 +34,7 @@
                 style="@style/material_button"
                 android:text="@string/cancel"
                 android:textColor="@color/colorTextDark2nd"
-                android:layout_toLeftOf="@id/dialog_time_setter_done"
+                android:layout_toStartOf="@id/dialog_time_setter_done"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

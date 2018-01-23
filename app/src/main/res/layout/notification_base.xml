@@ -18,7 +18,7 @@
         android:scaleType="fitCenter"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_margin="@dimen/little_margin"
         tools:src="@drawable/weather_cloudy"
@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/notification_base_realtimeTemp"
-        android:layout_toRightOf="@id/notification_base_icon"
+        android:layout_toEndOf="@id/notification_base_icon"
         android:layout_centerVertical="true"
         android:textSize="@dimen/design_title_text_size"
         style="@style/large_title_text"
@@ -38,8 +38,8 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/notification_base_realtimeTemp"
-        android:layout_marginLeft="@dimen/little_margin"
+        android:layout_toEndOf="@id/notification_base_realtimeTemp"
+        android:layout_marginStart="@dimen/little_margin"
         android:layout_centerVertical="true"
         tools:ignore="RtlHardcoded">
 
@@ -52,7 +52,7 @@
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/content_text_size"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin"
                 style="@style/large_title_text"
                 tools:text="10° / 15°"
                 tools:textColor="@color/colorTextLight2nd" />
@@ -64,7 +64,7 @@
                 android:textSize="@dimen/subtitle_text_size"
                 android:textColor="@color/colorTextLight2nd"
                 android:textStyle="bold"
-                android:layout_toRightOf="@id/notification_base_dailyTemp"
+                android:layout_toEndOf="@id/notification_base_dailyTemp"
                 android:layout_centerVertical="true"
                 tools:text="AQI 79"
                 tools:ignore="RtlHardcoded,SmallSp" />
@@ -89,7 +89,7 @@
         android:textSize="@dimen/widget_time_text_size"
         android:textColor="@color/colorTextLight2nd"
         android:padding="@dimen/little_margin"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         tools:text="正月初六"
         tools:ignore="RelativeOverlap,RtlHardcoded,SmallSp" />
@@ -102,7 +102,7 @@
         android:textSize="@dimen/widget_time_text_size"
         android:textColor="@color/colorTextLight2nd"
         android:padding="@dimen/little_margin"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         tools:text="青岛 周三 10:00"
         tools:ignore="RtlHardcoded,SmallSp" />

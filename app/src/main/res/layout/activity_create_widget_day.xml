@@ -50,6 +50,7 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_view_style"
+                        android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
                     <android.support.v7.widget.AppCompatSpinner
@@ -57,11 +58,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:spinnerMode="dropdown"
-                        android:layout_toRightOf="@id/activity_create_widget_day_viewStyleTitle"
-                        android:layout_alignParentRight="true"
+                        android:layout_toEndOf="@id/activity_create_widget_day_viewStyleTitle"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/normal_margin"
-                        android:layout_marginRight="@dimen/normal_margin"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
                         app:theme="@style/spinner_item"
                         tools:ignore="RtlHardcoded" />
 
@@ -76,13 +77,14 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_show_widget_card"
+                        android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
                     <Switch
                         android:id="@+id/activity_create_widget_day_showCardSwitch"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
                         style="@style/my_switch"
                         tools:ignore="RtlHardcoded" />
 
@@ -97,13 +99,14 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_hide_subtitle"
+                        android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
                     <Switch
                         android:id="@+id/activity_create_widget_day_hideSubtitleSwitch"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
                         style="@style/my_switch"
                         tools:ignore="RtlHardcoded" />
 
@@ -118,6 +121,7 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_subtitle_data"
+                        android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
                     <android.support.v7.widget.AppCompatSpinner
@@ -125,11 +129,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:spinnerMode="dropdown"
-                        android:layout_toRightOf="@id/activity_create_widget_day_subtitleDataTitle"
-                        android:layout_alignParentRight="true"
+                        android:layout_toEndOf="@id/activity_create_widget_day_subtitleDataTitle"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/normal_margin"
-                        android:layout_marginRight="@dimen/normal_margin"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
                         app:theme="@style/spinner_item"
                         tools:ignore="RtlHardcoded" />
 
@@ -144,13 +148,14 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_black_text"
+                        android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
                     <Switch
                         android:id="@+id/activity_create_widget_day_blackTextSwitch"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
                         style="@style/my_switch"
                         tools:ignore="RtlHardcoded" />
 
@@ -163,7 +168,7 @@
                     <Button
                         android:id="@+id/activity_create_widget_day_doneButton"
                         android:layout_margin="@dimen/normal_margin"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:text="@string/done"
                         android:textColor="?attr/colorAccent"
                         style="@style/material_button"

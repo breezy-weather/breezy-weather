@@ -12,7 +12,8 @@
     <TextView
         android:id="@+id/item_alert_title"
         android:layout_marginTop="@dimen/normal_margin"
-        android:layout_marginLeft="@dimen/normal_margin"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
         android:layout_marginBottom="4dp"
         style="@style/title_text"
         tools:text="寒潮预警"
@@ -20,8 +21,8 @@
 
     <TextView
         android:id="@+id/item_alert_subtitle"
-        android:layout_marginLeft="@dimen/normal_margin"
-        android:layout_marginRight="@dimen/normal_margin"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/normal_margin"
         android:layout_below="@id/item_alert_title"
         style="@style/subtitle_text"
@@ -30,8 +31,8 @@
 
     <TextView
         android:id="@+id/item_alert_content"
-        android:layout_marginLeft="@dimen/normal_margin"
-        android:layout_marginRight="@dimen/normal_margin"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/normal_margin"
         android:layout_below="@id/item_alert_subtitle"
         style="@style/content_text"

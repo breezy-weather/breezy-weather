@@ -49,13 +49,14 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_show_widget_card"
+                        android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
                     <Switch
                         android:id="@+id/activity_create_widget_clock_day_horizontal_showCardSwitch"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
                         style="@style/my_switch"
                         tools:ignore="RtlHardcoded" />
 
@@ -70,13 +71,14 @@
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
                         android:text="@string/feedback_black_text"
+                        android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
                     <Switch
                         android:id="@+id/activity_create_widget_clock_day_horizontal_blackTextSwitch"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
                         style="@style/my_switch"
                         tools:ignore="RtlHardcoded" />
 
@@ -89,7 +91,7 @@
                     <Button
                         android:id="@+id/activity_create_widget_clock_day_horizontal_doneButton"
                         android:layout_margin="@dimen/normal_margin"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:text="@string/done"
                         style="@style/material_button"
                         tools:ignore="RtlHardcoded" />

@@ -40,9 +40,9 @@
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/little_margin"
+                    android:layout_marginStart="@dimen/little_margin"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/widget_day_week_icon"
+                    android:layout_toEndOf="@id/widget_day_week_icon"
                     tools:ignore="RtlHardcoded">
 
                     <TextView
@@ -62,7 +62,7 @@
                         android:id="@+id/widget_day_week_subtitle"
                         android:text="@string/ellipsis"
                         android:maxLines="1"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:textAlignment="gravity"
                         android:textColor="@color/colorTextLight"
                         android:shadowColor="@color/colorTextDark2nd"

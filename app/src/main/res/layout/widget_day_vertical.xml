@@ -30,7 +30,7 @@
             android:layout_marginBottom="2dp"
             style="@style/content_text"
             tools:text=" 21°"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded,SpUsage" />
 
         <ImageView
             android:id="@+id/widget_day_icon"

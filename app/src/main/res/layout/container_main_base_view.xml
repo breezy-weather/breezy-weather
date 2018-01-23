@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/container_main_base_view_tempTxt"
-        android:layout_marginLeft="@dimen/normal_margin"
+        android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/little_margin"
         android:layout_centerVertical="true"
         android:layout_alignParentBottom="true"
@@ -24,8 +24,8 @@
         android:id="@+id/container_main_base_view_sendibleTempTxt"
         android:maxLines="1"
         android:textSize="@dimen/title_text_size"
-        android:layout_toRightOf="@id/container_main_base_view_tempTxt"
-        android:layout_marginLeft="@dimen/little_margin"
+        android:layout_toEndOf="@id/container_main_base_view_tempTxt"
+        android:layout_marginStart="@dimen/little_margin"
         android:layout_alignBaseline="@id/container_main_base_view_tempTxt"
         style="@style/large_title_text"
         tools:text="体感 37°"
@@ -35,8 +35,8 @@
         android:id="@+id/container_main_base_view_weatherTxt"
         android:maxLines="1"
         android:textSize="@dimen/title_text_size"
-        android:layout_toRightOf="@id/container_main_base_view_tempTxt"
-        android:layout_marginLeft="@dimen/little_margin"
+        android:layout_toEndOf="@id/container_main_base_view_tempTxt"
+        android:layout_marginStart="@dimen/little_margin"
         android:layout_above="@id/container_main_base_view_sendibleTempTxt"
         style="@style/large_title_text"
         tools:text="晴"
@@ -44,9 +44,9 @@
 
     <TextView
         android:id="@+id/container_main_base_view_aqiOrWindTxt"
-        android:layout_marginLeft="@dimen/normal_margin"
-        android:layout_marginRight="@dimen/normal_margin"
-        android:layout_alignParentRight="true"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:layout_alignParentEnd="true"
         android:layout_alignBaseline="@id/container_main_base_view_tempTxt"
         android:textSize="@dimen/title_text_size"
         android:maxLines="1"

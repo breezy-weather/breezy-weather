@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notification_base"
+    android:orientation="horizontal" 
+    android:layout_width="match_parent"
+    android:layout_height="86dp">
+
+    <FrameLayout
+        android:id="@+id/notification_base_background"
+        android:background="@color/colorNotificationBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/notification_base_icon"
+        android:scaleType="fitCenter"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/little_margin"
+        tools:src="@drawable/weather_cloudy"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/notification_base_realtimeTemp"
+        android:layout_toEndOf="@id/notification_base_icon"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/design_title_text_size"
+        style="@style/large_title_text"
+        tools:text="3°"
+        tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+    <LinearLayout
+        android:id="@+id/notification_base_titleContainer"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/notification_base_realtimeTemp"
+        android:layout_marginStart="@dimen/little_margin"
+        android:layout_centerVertical="true"
+        tools:ignore="RtlHardcoded">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/notification_base_dailyTemp"
+                android:text="@string/ellipsis"
+                android:textSize="@dimen/content_text_size"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/little_margin"
+                style="@style/large_title_text"
+                tools:text="10° / 15°"
+                tools:textColor="@color/colorTextLight2nd" />
+
+            <TextView
+                android:id="@+id/notification_base_aqi_wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/subtitle_text_size"
+                android:textColor="@color/colorTextLight2nd"
+                android:textStyle="bold"
+                android:layout_toEndOf="@id/notification_base_dailyTemp"
+                android:layout_centerVertical="true"
+                tools:text="AQI 79"
+                tools:ignore="RtlHardcoded,SmallSp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/notification_base_weather"
+            android:text="@string/wait_refresh"
+            android:textSize="@dimen/title_text_size"
+            style="@style/large_title_text"
+            tools:text="Partly Cloudy"
+            tools:textColor="@color/colorTextLight" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/notification_base_lunar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="@dimen/widget_time_text_size"
+        android:textColor="@color/colorTextLight2nd"
+        android:padding="@dimen/little_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        tools:text="正月初六"
+        tools:ignore="RelativeOverlap,RtlHardcoded,SmallSp" />
+
+    <TextView
+        android:id="@+id/notification_base_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ellipsis"
+        android:textSize="@dimen/widget_time_text_size"
+        android:textColor="@color/colorTextLight2nd"
+        android:padding="@dimen/little_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        tools:text="青岛 周三 10:00"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+</RelativeLayout>

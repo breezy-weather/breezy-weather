@@ -24,15 +24,15 @@
             <TextClock
                 android:id="@+id/widget_clock_day_clock"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/little_margin"
-                android:layout_marginRight="@dimen/little_margin"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin"
                 style="@style/widget_text_clock"
                 tools:text="9:10"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
 
             <TextClock
                 android:id="@+id/widget_clock_day_clock_aa"
-                android:layout_toRightOf="@id/widget_clock_day_clock"
+                android:layout_toEndOf="@id/widget_clock_day_clock"
                 android:layout_alignBaseline="@id/widget_clock_day_clock"
                 style="@style/widget_text_clock_aa"
                 tools:text="AM"
@@ -49,18 +49,18 @@
                 android:layout_width="@dimen/widget_current_weather_icon_size"
                 android:layout_height="@dimen/widget_current_weather_icon_size"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/little_margin"
-                android:layout_marginRight="@dimen/little_margin"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin"
                 android:src="@drawable/weather_cloudy"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/widget_clock_day_title"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/widget_clock_day_icon"
+                android:layout_toStartOf="@id/widget_clock_day_icon"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:gravity="right"
+                android:gravity="end"
                 android:textAlignment="gravity"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="2"
@@ -75,7 +75,7 @@
             <TextView
                 android:id="@+id/widget_clock_day_subtitle"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/widget_clock_day_icon"
+                android:layout_toEndOf="@id/widget_clock_day_icon"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
@@ -110,7 +110,7 @@
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:layout_toRightOf="@id/widget_clock_day_center"
+                android:layout_toEndOf="@id/widget_clock_day_center"
                 style="@style/content_text"
                 tools:text="WEN 17:00"
                 tools:ignore="RtlHardcoded" />

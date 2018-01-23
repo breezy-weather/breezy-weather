@@ -11,8 +11,9 @@
 
     <TextView
         android:id="@+id/item_about_translator_title"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/normal_margin"
-        android:layout_marginLeft="@dimen/normal_margin"
+        android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginBottom="2dp"
         android:maxLines="1"
         android:textStyle="bold"
@@ -23,9 +24,10 @@
 
     <TextView
         android:id="@+id/item_about_translator_subtitle"
+        android:layout_alignParentStart="true"
         android:layout_below="@id/item_about_translator_title"
         android:layout_marginBottom="@dimen/normal_margin"
-        android:layout_marginLeft="@dimen/normal_margin"
+        android:layout_marginStart="@dimen/normal_margin"
         android:maxLines="1"
         style="@style/subtitle_text"
         tools:text="memcos@gmail.com"
@@ -34,9 +36,9 @@
     <ImageView
         android:id="@+id/item_about_translator_flag"
         android:layout_alignTop="@id/item_about_translator_title"
-        android:layout_toRightOf="@id/item_about_translator_title"
+        android:layout_toEndOf="@id/item_about_translator_title"
         android:layout_above="@id/item_about_translator_subtitle"
-        android:layout_marginLeft="@dimen/little_margin"
+        android:layout_marginStart="@dimen/little_margin"
         android:layout_marginBottom="2dp"
         android:layout_width="18dp"
         android:layout_height="match_parent"

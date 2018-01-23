@@ -85,7 +85,11 @@ public class LanguageUtils {
         }
         String language = locale.getLanguage();
         String country = locale.getCountry();
-        return language.toLowerCase()
-                + (TextUtils.isEmpty(country) ? "" : ("-" + country.toLowerCase()));
+        if (!TextUtils.isEmpty(country)
+                && (country.toLowerCase().equals("tw") || country.toLowerCase().equals("hk"))) {
+            return language.toLowerCase() + "-" + country.toLowerCase();
+        } else {
+            return language.toLowerCase();
+        }
     }
 }

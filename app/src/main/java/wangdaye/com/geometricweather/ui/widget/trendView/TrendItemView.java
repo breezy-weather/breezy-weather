@@ -142,11 +142,11 @@ public class TrendItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo(0, maxiTempYs[0]);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
-            path.lineTo(getMeasuredWidth(), maxiTempYs[2]);
-            path.lineTo(getMeasuredWidth(), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
-            path.lineTo(0, getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), maxiTempYs[2]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.lineTo(getRTLCompactX(0), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
             path.close();
             canvas.drawPath(path, paint);
 
@@ -158,9 +158,9 @@ public class TrendItemView extends View {
             paint.setShadowLayer(2, 0, 2, shadowColors[2]);
 
             path.reset();
-            path.moveTo(0, maxiTempYs[0]);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
-            path.lineTo(getMeasuredWidth(), maxiTempYs[2]);
+            path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), maxiTempYs[2]);
             canvas.drawPath(path, paint);
         } else if (maxiTempYs[0] == NONEXISTENT_VALUE) {
             // shadow.
@@ -169,10 +169,10 @@ public class TrendItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
-            path.lineTo(getMeasuredWidth(), maxiTempYs[2]);
-            path.lineTo(getMeasuredWidth(), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), maxiTempYs[2]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
             path.close();
             canvas.drawPath(path, paint);
 
@@ -184,8 +184,8 @@ public class TrendItemView extends View {
             paint.setShadowLayer(2, 0, 2, shadowColors[2]);
 
             path.reset();
-            path.moveTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
-            path.lineTo(getMeasuredWidth(), maxiTempYs[2]);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), maxiTempYs[2]);
             canvas.drawPath(path, paint);
         } else {
             // shadow.
@@ -194,10 +194,10 @@ public class TrendItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo(0, maxiTempYs[0]);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
-            path.lineTo(0, getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.lineTo(getRTLCompactX(0), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
             path.close();
             canvas.drawPath(path, paint);
 
@@ -209,8 +209,8 @@ public class TrendItemView extends View {
             paint.setShadowLayer(2, 0, 2, shadowColors[2]);
 
             path.reset();
-            path.moveTo(0, maxiTempYs[0]);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), maxiTempYs[1]);
+            path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
             canvas.drawPath(path, paint);
         }
 
@@ -222,7 +222,7 @@ public class TrendItemView extends View {
         paint.setShadowLayer(2, 0, 2, shadowColors[2]);
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp((int) maxiTemps[1], GeometricWeather.getInstance().isFahrenheit()),
-                (float) (getMeasuredWidth() / 2.0),
+                getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
                 maxiTempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint);
     }
@@ -236,9 +236,9 @@ public class TrendItemView extends View {
             paint.setShadowLayer(2, 0, 2, shadowColors[2]);
 
             path.reset();
-            path.moveTo(0, miniTempYs[0]);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), miniTempYs[1]);
-            path.lineTo(getMeasuredWidth(), miniTempYs[2]);
+            path.moveTo(getRTLCompactX(0), miniTempYs[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), miniTempYs[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), miniTempYs[2]);
             canvas.drawPath(path, paint);
         } else if (miniTempYs[0] == NONEXISTENT_VALUE) {
             paint.setShader(null);
@@ -248,8 +248,8 @@ public class TrendItemView extends View {
             paint.setShadowLayer(2, 0, 2, shadowColors[2]);
 
             path.reset();
-            path.moveTo((float) (getMeasuredWidth() / 2.0), miniTempYs[1]);
-            path.lineTo(getMeasuredWidth(), miniTempYs[2]);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), miniTempYs[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), miniTempYs[2]);
             canvas.drawPath(path, paint);
         } else {
             paint.setShader(null);
@@ -259,8 +259,8 @@ public class TrendItemView extends View {
             paint.setShadowLayer(2, 0, 2, shadowColors[2]);
 
             path.reset();
-            path.moveTo(0, miniTempYs[0]);
-            path.lineTo((float) (getMeasuredWidth() / 2.0), miniTempYs[1]);
+            path.moveTo(getRTLCompactX(0), miniTempYs[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), miniTempYs[1]);
             canvas.drawPath(path, paint);
         }
 
@@ -272,7 +272,7 @@ public class TrendItemView extends View {
         paint.setShadowLayer(2, 0, 2, shadowColors[2]);
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp((int) miniTemps[1], GeometricWeather.getInstance().isFahrenheit()),
-                (float) (getMeasuredWidth() / 2.0),
+                getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
                 miniTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint);
     }
@@ -351,5 +351,9 @@ public class TrendItemView extends View {
         float canvasHeight = getMeasuredHeight() - TREND_MARGIN_TOP - TREND_MARGIN_BOTTOM;
         return (int) (getMeasuredHeight() - TREND_MARGIN_BOTTOM
                 - canvasHeight * (value - min) / (max - min));
+    }
+
+    private float getRTLCompactX(float x) {
+        return getLayoutDirection() == LAYOUT_DIRECTION_RTL ? (getMeasuredWidth() - x) : x;
     }
 }

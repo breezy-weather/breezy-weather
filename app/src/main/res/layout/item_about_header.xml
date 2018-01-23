@@ -10,7 +10,7 @@
         android:layout_marginTop="@dimen/material_icon_size"
         android:layout_width="@dimen/standard_weather_icon_size"
         android:layout_height="@dimen/standard_weather_icon_size"
-        tools:src="@drawable/ic_launcher_material"
+        tools:src="@drawable/ic_launcher"
         tools:ignore="ContentDescription" />
 
     <TextView

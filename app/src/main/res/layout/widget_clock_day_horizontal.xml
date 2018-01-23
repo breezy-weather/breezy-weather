@@ -24,10 +24,10 @@
 
             <TextClock
                 android:id="@+id/widget_clock_day_clock"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/normal_margin"
-                android:layout_marginRight="@dimen/little_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/little_margin"
                 android:layout_marginTop="-2dp"
                 android:layout_marginBottom="-2dp"
                 android:textSize="48dp"
@@ -37,7 +37,7 @@
 
             <TextClock
                 android:id="@+id/widget_clock_day_clock_aa"
-                android:layout_toRightOf="@id/widget_clock_day_clock"
+                android:layout_toEndOf="@id/widget_clock_day_clock"
                 android:layout_alignBaseline="@id/widget_clock_day_clock"
                 style="@style/widget_text_clock_aa"
                 tools:text="AM"
@@ -47,10 +47,10 @@
                 android:id="@+id/widget_clock_day_icon"
                 android:layout_width="@dimen/widget_standard_weather_icon_size"
                 android:layout_height="@dimen/widget_standard_weather_icon_size"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/little_margin"
-                android:layout_marginRight="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -64,7 +64,7 @@
                 android:id="@+id/widget_clock_day_title"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/large_margin"
+                android:layout_marginStart="@dimen/large_margin"
                 android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
                 android:maxLines="1"
@@ -80,10 +80,10 @@
 
             <TextView
                 android:id="@+id/widget_clock_day_lunar"
-                android:layout_toRightOf="@id/widget_clock_day_title"
+                android:layout_toEndOf="@id/widget_clock_day_title"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="@dimen/little_margin"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="@dimen/little_margin"
                 android:text=""
                 android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
@@ -100,8 +100,8 @@
                 android:id="@+id/widget_clock_day_subtitle"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/little_margin"
-                android:layout_marginRight="@dimen/large_margin"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/large_margin"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:textColor="@color/colorTextLight"
