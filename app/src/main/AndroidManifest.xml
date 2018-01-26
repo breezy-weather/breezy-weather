@@ -42,19 +42,16 @@
         <activity
             android:name=".ui.activity.AlertActivity"
             android:label="@string/action_alert"
-            android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait" />
+            android:theme="@style/GeometricWeatherTheme" />
 
         <activity
             android:name=".ui.activity.ManageActivity"
             android:label="@string/action_manage"
-            android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait" />
+            android:theme="@style/GeometricWeatherTheme" />
 
         <activity android:name=".ui.activity.SearcActivity"
             android:label="@string/action_search"
-            android:theme="@style/GeometricWeatherTheme.Search"
-            android:screenOrientation="portrait" />
+            android:theme="@style/GeometricWeatherTheme.Search" />
 
         <activity
             android:name=".ui.activity.SettingsActivity"

@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -34,7 +33,6 @@ public abstract class GeoActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
                     && !TextUtils.isEmpty(intent.getAction())
                     && intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
-                Log.d("Language", "ACTION_LOCALE_CHANGED");
                 LanguageUtils.setLanguage(
                         GeoActivity.this,
                         GeometricWeather.getInstance().getLanguage());

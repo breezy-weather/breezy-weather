@@ -48,8 +48,8 @@
                     <ImageButton
                         android:id="@+id/activity_search_clearBtn"
                         android:src="@drawable/ic_close"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         style="@style/material_image_button"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
