@@ -1,10 +1,11 @@
 package wangdaye.com.geometricweather.ui.activity.widget;
 
 import android.annotation.SuppressLint;
-import android.app.WallpaperManager;
+
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
@@ -107,7 +108,7 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
         setWidgetView(true);
 
         ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_vertical_wall);
-        wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());
+        bindWallpaper(wallpaper);
 
         this.container = findViewById(R.id.activity_create_widget_clock_day_vertical_container);
 

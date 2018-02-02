@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.ui.activity.widget;
 
 import android.annotation.SuppressLint;
-import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
@@ -85,7 +85,7 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
                 widgetView.findViewById(R.id.widget_week_temp_5)};
 
         ImageView wallpaper = findViewById(R.id.activity_create_widget_week_wall);
-        wallpaper.setImageDrawable(WallpaperManager.getInstance(this).getDrawable());
+        bindWallpaper(wallpaper);
 
         this.container = findViewById(R.id.activity_create_widget_week_container);
 

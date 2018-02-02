@@ -1,7 +1,16 @@
 package wangdaye.com.geometricweather.basic;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.WallpaperManager;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.widget.ImageView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
@@ -20,8 +29,12 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     private Location locationNow;
     private WeatherHelper weatherHelper;
 
+    private ImageView wallpaper;
+
     private boolean fahrenheit;
     private boolean destroyed;
+
+    private final int READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE = 0;
 
     @Override
     protected void onStart() {
@@ -50,6 +63,7 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         weatherHelper.cancel();
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // do nothing.
@@ -103,5 +117,52 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         locationNow.weather = weather;
         refreshWidgetView(weather);
         SnackbarUtils.showSnackbar(getString(R.string.feedback_get_weather_failed));
+    }
+
+    public void bindWallpaper(ImageView imageView) {
+        bindWallpaper(imageView, true);
+    }
+
+    private void bindWallpaper(ImageView imageView, boolean requestPermissionIfFailed) {
+        try {
+            WallpaperManager manager = WallpaperManager.getInstance(this);
+            if (manager != null) {
+                Drawable drawable = manager.getDrawable();
+                if (drawable != null) {
+                    imageView.setImageDrawable(drawable);
+                }
+            }
+        } catch (Exception ignore) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && requestPermissionIfFailed) {
+                requestReadExternalStoragePermission(imageView);
+            }
+        }
+    }
+
+    // permission.
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void requestReadExternalStoragePermission(ImageView imageView) {
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            wallpaper = imageView;
+            this.requestPermissions(
+                    new String[] {
+                            Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE);
+        } else {
+            bindWallpaper(imageView, false);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permission, @NonNull int[] grantResult) {
+        super.onRequestPermissionsResult(requestCode, permission, grantResult);
+        switch (requestCode) {
+            case READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE:
+                bindWallpaper(wallpaper, false);
+                break;
+        }
     }
 }
