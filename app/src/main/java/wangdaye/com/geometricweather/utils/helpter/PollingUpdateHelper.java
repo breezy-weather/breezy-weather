@@ -11,7 +11,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 
 /**
- * Polling update helper.
+ * Polling updateRotation helper.
  * */
 
 public class PollingUpdateHelper {

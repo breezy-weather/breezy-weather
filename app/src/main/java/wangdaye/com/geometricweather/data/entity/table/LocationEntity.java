@@ -130,7 +130,7 @@ public class LocationEntity {
                 .deleteAll();
     }
 
-    // update
+    // updateRotation
 
     private static void updateLocation(SQLiteDatabase database, LocationEntity entity) {
         new DaoMaster(database)

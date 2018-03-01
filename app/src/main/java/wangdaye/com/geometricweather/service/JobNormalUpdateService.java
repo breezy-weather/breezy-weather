@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.utils.remoteView.WidgetDayWeekUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
 
 /**
- * Job update service.
+ * Job updateRotation service.
  * */
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

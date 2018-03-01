@@ -30,8 +30,8 @@ public class Base {
     void buildBase(HefengResult result, int p) {
         cityId = result.heWeather.get(p).basic.id;
         city = result.heWeather.get(p).basic.city;
-        date = result.heWeather.get(p).basic.update.loc.split(" ")[0];
-        time = result.heWeather.get(p).basic.update.loc.split(" ")[1];
+        date = result.heWeather.get(p).basic.updateRotation.loc.split(" ")[0];
+        time = result.heWeather.get(p).basic.updateRotation.loc.split(" ")[1];
     }
 */
 

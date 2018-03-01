@@ -26,6 +26,8 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.i
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.SnowImplementor;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.SunImplementor;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.WindImplementor;
+import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.rotateController.BaseRotateController;
+import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.rotateController.DecelerateRotateController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
@@ -33,27 +35,25 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
  * */
 
 public class MaterialWeatherView extends SurfaceView
-        implements WeatherView, SurfaceHolder.Callback, Runnable, SensorEventListener {
+        implements WeatherView, SurfaceHolder.Callback, Runnable {
 
     private SurfaceHolder holder;
     private final Object surfaceLock = new Object();
 
     @Nullable
     private WeatherAnimationImplementor implementor;
+    @Nullable
+    private RotateController[] rotators;
     private boolean running;
 
+    private boolean openGravitySensor;
     @Nullable
     private SensorManager sensorManager;
     @Nullable
-    private Sensor sensor;
+    private Sensor gravitySensor;
+
     private float rotation2D;
     private float rotation3D;
-    private float displayRotation2D;
-    private float displayRotation3D;
-    private boolean openGravitySensor;
-
-    private static final float MAX_ROTATIVE_SPEED
-            = (float) (90.0 / 2000.0 * WeatherAnimationImplementor.REFRESH_INTERVAL);
 
     @WeatherView.WeatherKindRule
     private int weatherKind;
@@ -76,7 +76,7 @@ public class MaterialWeatherView extends SurfaceView
      * */
     public static abstract class WeatherAnimationImplementor {
 
-        protected static long REFRESH_INTERVAL = 16;
+        public static long REFRESH_INTERVAL = 16;
 
         public abstract void updateData(MaterialWeatherView view, float rotation2D, float rotation3D);
 
@@ -85,6 +85,44 @@ public class MaterialWeatherView extends SurfaceView
                                   float displayRatio, float scrollRate,
                                   float rotation2D, float rotation3D);
     }
+
+    public static abstract class RotateController {
+
+        public abstract void updateRotation(double rotation);
+
+        public abstract double getRotate();
+    }
+
+    private SensorEventListener gravityListener = new SensorEventListener() {
+
+        @Override
+        public void onSensorChanged(SensorEvent ev) {
+            // x : (+) fall to the left / (-) fall to the right.
+            // y : (+) stand / (-) head stand.
+            // z : (+) look down / (-) look up.
+            // rotation2D : (+) anticlockwise / (-) clockwise.
+            // rotation3D : (+) look down / (-) look up.
+            if (openGravitySensor) {
+                float aX = ev.values[0];
+                float aY = ev.values[1];
+                float aZ = ev.values[2];
+                double g2D = Math.sqrt(aX * aX + aY * aY);
+                double g3D = Math.sqrt(aX * aX + aY * aY + aZ * aZ);
+                double cos2D = Math.max(Math.min(1, aY / g2D), -1);
+                double cos3D = Math.max(Math.min(1, g2D * (aY >= 0 ? 1 : -1) / g3D), -1);
+                rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
+                rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
+            } else {
+                rotation2D = 0;
+                rotation3D = 0;
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+            // do nothing.
+        }
+    };
 
     public MaterialWeatherView(Context context) {
         super(context);
@@ -108,8 +146,8 @@ public class MaterialWeatherView extends SurfaceView
 
         this.sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
-            this.sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
             this.openGravitySensor = true;
+            this.gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
         }
 
         this.step = STEP_DISPLAY;
@@ -133,78 +171,133 @@ public class MaterialWeatherView extends SurfaceView
         switch (weatherKind) {
             case WeatherView.WEATHER_KIND_CLEAR_DAY:
                 implementor = new SunImplementor(this);
+                rotators = new RotateController[] {
+                        new DecelerateRotateController(rotation2D),
+                        new DecelerateRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_CLEAR_NIGHT:
                 implementor = new MeteorShowerImplementor(this);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_CLOUDY:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_CLOUDY);
+                rotators = new RotateController[] {
+                        new DecelerateRotateController(rotation2D),
+                        new DecelerateRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_CLOUD_DAY:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_CLOUD_DAY);
+                rotators = new RotateController[] {
+                        new DecelerateRotateController(rotation2D),
+                        new DecelerateRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_CLOUD_NIGHT:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_CLOUD_NIGHT);
+                rotators = new RotateController[] {
+                        new DecelerateRotateController(rotation2D),
+                        new DecelerateRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_FOG:
                 implementor = new SmogImplementor(this, SmogImplementor.TYPE_FOG);
+                rotators = new RotateController[] {
+                        new DecelerateRotateController(rotation2D),
+                        new DecelerateRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_HAIL_DAY:
                 implementor = new HailImplementor(this, HailImplementor.TYPE_HAIL_DAY);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_HAIL_NIGHT:
                 implementor = new HailImplementor(this, HailImplementor.TYPE_HAIL_NIGHT);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_HAZE:
                 implementor = new SmogImplementor(this, SmogImplementor.TYPE_HAZE);
+                rotators = new RotateController[] {
+                        new DecelerateRotateController(rotation2D),
+                        new DecelerateRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_RAINY_DAY:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_RAIN_DAY);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_RAINY_NIGHT:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_RAIN_NIGHT);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_SNOW_DAY:
                 implementor = new SnowImplementor(this, SnowImplementor.TYPE_SNOW_DAY);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_SNOW_NIGHT:
                 implementor = new SnowImplementor(this, SnowImplementor.TYPE_SNOW_NIGHT);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_THUNDERSTORM:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_THUNDERSTORM);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_THUNDER:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_THUNDER);
+                rotators = new RotateController[] {
+                        new DecelerateRotateController(rotation2D),
+                        new DecelerateRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_WIND:
                 implementor = new WindImplementor(this);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_SLEET_DAY:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_SLEET_DAY);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_SLEET_NIGHT:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_SLEET_NIGHT);
+                rotators = new RotateController[] {
+                        new BaseRotateController(rotation2D),
+                        new BaseRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KING_NULL:
                 implementor = null;
+                rotators = null;
                 break;
         }
     }
@@ -212,8 +305,6 @@ public class MaterialWeatherView extends SurfaceView
     private void initSensorData() {
         this.rotation2D = 0;
         this.rotation3D = 0;
-        this.displayRotation2D = 0;
-        this.displayRotation3D = 0;
     }
 
     public void setOpenGravitySensor(boolean openGravitySensor) {
@@ -345,7 +436,7 @@ public class MaterialWeatherView extends SurfaceView
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         initSensorData();
         if (sensorManager != null) {
-            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+            sensorManager.registerListener(gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
         }
 
         setWeatherImplementor();
@@ -363,7 +454,7 @@ public class MaterialWeatherView extends SurfaceView
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         synchronized (surfaceLock) {
             if (sensorManager != null) {
-                sensorManager.unregisterListener(this, sensor);
+                sensorManager.unregisterListener(gravityListener, gravitySensor);
             }
             running = false;
         }
@@ -378,23 +469,13 @@ public class MaterialWeatherView extends SurfaceView
         long remaining;
         while (running) {
             timestamp = SystemClock.currentThreadTimeMillis();
-            if (implementor != null) {
-                if (Math.abs(rotation2D - displayRotation2D) < MAX_ROTATIVE_SPEED) {
-                    displayRotation2D = rotation2D;
-                } else if (displayRotation2D < rotation2D) {
-                    displayRotation2D += MAX_ROTATIVE_SPEED;
-                } else {
-                    displayRotation2D -= MAX_ROTATIVE_SPEED;
-                }
-                if (Math.abs(rotation3D - displayRotation3D) < MAX_ROTATIVE_SPEED) {
-                    displayRotation3D = rotation3D;
-                } else if (displayRotation3D < rotation3D) {
-                    displayRotation3D += MAX_ROTATIVE_SPEED;
-                } else {
-                    displayRotation3D -= MAX_ROTATIVE_SPEED;
-                }
+            if (implementor != null && rotators != null) {
+                rotators[0].updateRotation(rotation2D);
+                rotators[1].updateRotation(rotation3D);
 
-                implementor.updateData(this, rotation2D, rotation3D);
+                implementor.updateData(
+                        this,
+                        (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
 
                 synchronized (surfaceLock) {
                     if (running) {
@@ -407,7 +488,10 @@ public class MaterialWeatherView extends SurfaceView
                                 displayRate = (float) Math.max(
                                         0, displayRate - WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
                             }
-                            implementor.draw(this, canvas, displayRate, scrollRate, rotation2D, rotation3D);
+                            implementor.draw(
+                                    this, canvas,
+                                    displayRate, scrollRate,
+                                    (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
                             if (displayRate == 0) {
                                 setWeatherImplementor();
                             }
@@ -426,35 +510,5 @@ public class MaterialWeatherView extends SurfaceView
                 }
             }
         }
-    }
-
-    // sensor event listener.
-
-    @Override
-    public void onSensorChanged(SensorEvent ev) {
-        // x : (+) fall to the left / (-) fall to the right.
-        // y : (+) stand / (-) head stand.
-        // z : (+) look down / (-) look up.
-        // rotation2D : (+) anticlockwise / (-) clockwise.
-        // rotation3D : (+) look down / (-) look up.
-        if (openGravitySensor) {
-            float aX = ev.values[0];
-            float aY = ev.values[1];
-            float aZ = ev.values[2];
-            double g2D = Math.sqrt(aX * aX + aY * aY);
-            double g3D = Math.sqrt(aX * aX + aY * aY + aZ * aZ);
-            double cos2D = Math.max(Math.min(1, aY / g2D), -1);
-            double cos3D = Math.max(Math.min(1, g2D * (aY > 0 ? 1 : -1) / g3D), -1);
-            rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX > 0 ? 1 : -1);
-            rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ > 0 ? 1 : -1);
-        } else {
-            rotation2D = 0;
-            rotation3D = 0;
-        }
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-        // do nothing.
     }
 }

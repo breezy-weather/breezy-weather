@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.utils.helpter.JobHelper;
 import wangdaye.com.geometricweather.utils.remoteView.ForecastNotificationUtils;
 
 /**
- * Job tomorrow forecast update service.
+ * Job tomorrow forecast updateRotation service.
  * */
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

@@ -19,7 +19,7 @@ import wangdaye.com.geometricweather.utils.helpter.PollingUpdateHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
- * Job update service.
+ * Job updateRotation service.
  * */
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -81,7 +81,7 @@ public abstract class JobUpdateService extends JobService
 
     // interface.
 
-    // on polling update listener.
+    // on polling updateRotation listener.
 
     @Override
     public void onUpdateCompleted(Location location, Weather weather, Weather old, boolean succeed) {

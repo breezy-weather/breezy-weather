@@ -83,7 +83,7 @@ public abstract class UpdateService extends Service
 
     // interface.
 
-    // on polling update listener.
+    // on polling updateRotation listener.
 
     @Override
     public void onUpdateCompleted(Location location, Weather weather, Weather old, boolean succeed) {

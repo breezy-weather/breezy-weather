@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.utils.helpter.AlarmHelper;
 import wangdaye.com.geometricweather.utils.remoteView.ForecastNotificationUtils;
 
 /**
- * Today forecast update service.
+ * Today forecast updateRotation service.
  * */
 
 public class TomorrowForecastUpdateService extends UpdateService {
