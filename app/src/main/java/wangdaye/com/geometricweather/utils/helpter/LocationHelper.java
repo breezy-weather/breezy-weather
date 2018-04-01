@@ -4,16 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import com.baidu.location.BDAbstractLocationListener;
-import com.baidu.location.BDLocation;
-import com.baidu.location.LocationClient;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.service.WeatherService;
-import wangdaye.com.geometricweather.data.service.LocationService;
+import wangdaye.com.geometricweather.data.service.location.BaiduLocationService;
+import wangdaye.com.geometricweather.data.service.location.LocationService;
+import wangdaye.com.geometricweather.data.service.weather.WeatherService;
 
 /**
  * Location utils.
@@ -21,13 +20,13 @@ import wangdaye.com.geometricweather.data.service.LocationService;
 
 public class LocationHelper {
 
-    private LocationClient client;
+    private LocationService service;
     private WeatherService weather;
 
     private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
     private static final String KEY_LAST_RESULT = "LAST_RESULT";
 
-    private class SimpleLocationListener extends BDAbstractLocationListener {
+    private class SimpleLocationListener implements LocationService.LocationCallback {
         // data
         private Context c;
         private Location location;
@@ -42,57 +41,41 @@ public class LocationHelper {
         }
 
         @Override
-        public void onReceiveLocation(BDLocation bdLocation) {
+        public void onCompleted(@Nullable LocationService.Result result) {
             if (finish) {
                 return;
             }
-            switch (bdLocation.getLocType()) {
-                case BDLocation.TypeGpsLocation:
-                case BDLocation.TypeNetWorkLocation:
-                case BDLocation.TypeOffLineLocation:
-                    if (listener != null) {
-                        SharedPreferences sharedPreferences = c.getSharedPreferences(
-                                PREFERENCE_LOCAL, Context.MODE_PRIVATE);
-                        String oldCity = sharedPreferences.getString(KEY_LAST_RESULT, ".");
+            finish = true;
+            service.cancel();
+            if (listener == null) {
+                return;
+            }
+            if (result == null) {
+                listener.requestLocationFailed(location);
+                return;
+            }
 
-                        location.local = true;
-                        location.city = bdLocation.getDistrict();
-                        location.prov = bdLocation.getProvince();
-                        location.cnty = bdLocation.getCountry();
-                        location.lat = String.valueOf(bdLocation.getLatitude());
-                        location.lon = String.valueOf(bdLocation.getLongitude());
+            location.local = true;
+            location.city = result.district;
+            location.prov = result.province;
+            location.cnty = result.contry;
+            location.lat = result.latitude;
+            location.lon = result.longitude;
 
-                        sharedPreferences.edit()
-                                .putString(KEY_LAST_RESULT, location.city)
-                                .apply();
-
-                        if (!location.isUsable() || !location.city.equals(oldCity)) {
-                            requestWeatherLocationByGeoPosition(
-                                    c,
-                                    location,
-                                    new SimpleWeatherLocationListener(location, listener));
-                        } else {
-                            listener.requestLocationSuccess(location, false);
-                        }
-                        finish = true;
-                    }
-                    break;
-
-                default:
-                    if (listener != null) {
-                        listener.requestLocationFailed(location);
-                    }
-                    break;
+            if (result.inChina) {
+                requestCNWeatherLocation(c, location, result, listener);
+            } else {
+                requestAccuWeatherLocation(c, location, listener);
             }
         }
     }
 
-    private class SimpleWeatherLocationListener implements OnRequestWeatherLocationListener {
+    private class AccuWeatherLocationListener implements OnRequestWeatherLocationListener {
         // data
         private Location location;
         private OnRequestLocationListener listener;
 
-        SimpleWeatherLocationListener(Location location, OnRequestLocationListener l) {
+        AccuWeatherLocationListener(Location location, OnRequestLocationListener l) {
             this.location = location;
             this.listener = l;
         }
@@ -112,8 +95,41 @@ public class LocationHelper {
         }
     }
 
-    public LocationHelper(Context c) {
-        client = new LocationClient(c);
+    private class CNWeatherLocationListener implements OnRequestWeatherLocationListener {
+        // data
+        private Context context;
+        private Location location;
+        private OnRequestLocationListener listener;
+
+        CNWeatherLocationListener(Context context, Location location, OnRequestLocationListener l) {
+            this.context = context;
+            this.location = location;
+            this.listener = l;
+        }
+
+        @Override
+        public void requestWeatherLocationSuccess(String query, List<Location> locationList) {
+            if (locationList.size() > 0) {
+                String oldId = location.cityId;
+                location.cityId = locationList.get(0).cityId;
+                location.city = locationList.get(0).city;
+                location.setLocal();
+                listener.requestLocationSuccess(
+                        location,
+                        TextUtils.isEmpty(oldId) || !oldId.equals(location.cityId));
+            } else {
+                requestWeatherLocationFailed(query);
+            }
+        }
+
+        @Override
+        public void requestWeatherLocationFailed(String query) {
+            requestAccuWeatherLocation(context, location, listener);
+        }
+    }
+
+    public LocationHelper(Context context) {
+        service = new BaiduLocationService(context);
         weather = new WeatherService();
     }
 
@@ -122,24 +138,63 @@ public class LocationHelper {
         if (manager != null) {
             NetworkInfo info = manager.getActiveNetworkInfo();
             if (info != null && info.isAvailable()) {
-                LocationService.requestLocation(client, new SimpleLocationListener(c, location, l));
+                service.requestLocation(c, new SimpleLocationListener(c, location, l));
             } else {
                 l.requestLocationFailed(location);
             }
         }
     }
 
-    public void requestWeatherLocation(Context c, String query, OnRequestWeatherLocationListener l) {
-        weather = WeatherService.getService().requestNewLocation(c, query, l);
+    private void requestAccuWeatherLocation(Context c, Location location, OnRequestLocationListener l) {
+        SharedPreferences sharedPreferences = c.getSharedPreferences(
+                PREFERENCE_LOCAL, Context.MODE_PRIVATE);
+        String oldCity = sharedPreferences.getString(KEY_LAST_RESULT, ".");
+
+        if (!TextUtils.isEmpty(location.city)) {
+            sharedPreferences.edit()
+                    .putString(KEY_LAST_RESULT, location.city)
+                    .apply();
+        }
+        if (TextUtils.isEmpty(location.city) || !location.city.equals(oldCity)
+                || !location.isUsable()) {
+            requestWeatherLocation(
+                    c,
+                    null,
+                    location.lat,
+                    location.lon,
+                    false,
+                    new AccuWeatherLocationListener(location, l));
+        } else {
+            l.requestLocationSuccess(location, false);
+        }
     }
 
-    private void requestWeatherLocationByGeoPosition(Context c, Location location, OnRequestWeatherLocationListener l) {
-        weather = WeatherService.getService().requestNewLocationByGeoPosition(c, location.lat, location.lon, l);
+    private void requestCNWeatherLocation(Context c,
+                                          Location location, LocationService.Result result,
+                                          OnRequestLocationListener l) {
+        requestWeatherLocation(
+                c,
+                new String[] {result.district, result.city},
+                location.lat,
+                location.lon,
+                false,
+                new CNWeatherLocationListener(c, location, l));
+    }
+
+    public void requestWeatherLocation(Context c, String query, boolean fuzzy, OnRequestWeatherLocationListener l) {
+        requestWeatherLocation(c, new String[] {query}, null, null, fuzzy, l);
+    }
+
+    private void requestWeatherLocation(Context c,
+                                        String[] queries, @Nullable String lat, @Nullable String lon,
+                                        boolean fuzzy,
+                                        OnRequestWeatherLocationListener l) {
+        weather = WeatherService.getService().requestLocation(c, queries, lat, lon, fuzzy, l);
     }
 
     public void cancel() {
-        if (client != null) {
-            client.stop();
+        if (service != null) {
+            service.cancel();
         }
         if (weather != null) {
             weather.cancel();

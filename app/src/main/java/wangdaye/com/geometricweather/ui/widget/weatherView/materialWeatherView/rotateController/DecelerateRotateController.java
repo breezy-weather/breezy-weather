@@ -93,7 +93,7 @@ public class DecelerateRotateController extends MaterialWeatherView.RotateContro
                     rotate += 360;
                 }
             }
-            return getRotateInScope(rotate);
+            return rotate;
         }
     }
 }

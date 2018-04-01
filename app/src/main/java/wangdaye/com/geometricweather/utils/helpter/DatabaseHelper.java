@@ -1,16 +1,22 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import org.greenrobot.greendao.database.Database;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import wangdaye.com.geometricweather.data.entity.model.CNCityList;
 import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.data.entity.table.CNCityEntity;
+import wangdaye.com.geometricweather.data.entity.table.CNCityEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
@@ -41,7 +47,14 @@ public class DatabaseHelper {
     }
 
     private GeoWeatherOpenHelper helper;
+
+    private boolean writingCityList;
+    private final Object writingLock = new Object();
+
     private final static String DATABASE_NAME = "Geometric_Weather_db";
+
+    private static final String CONVERSION_CLASS_NOT_FOUND_EXCEPTION
+            = "MIGRATION HELPER - CLASS DOESN'T MATCH WITH THE CURRENT PARAMETERS";
 
     private class GeoWeatherOpenHelper extends DaoMaster.DevOpenHelper {
 
@@ -52,7 +65,13 @@ public class DatabaseHelper {
         @Override
         public void onUpgrade(Database db, int oldVersion, int newVersion) {
             Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
+            if (newVersion >= 24 && oldVersion < 25) {
+                // add cn city entity in version 24 and version 25.
+                CNCityEntityDao.dropTable(db, true);
+                CNCityEntityDao.createTable(db, true);
+            }
             if (newVersion >= 22) {
+                // rebuild all entities in version 22 and version 23.
                 if (oldVersion < 23) {
                     WeatherEntityDao.dropTable(db, true);
                     DailyEntityDao.dropTable(db, true);
@@ -72,10 +91,43 @@ public class DatabaseHelper {
 
     private DatabaseHelper(Context c) {
         helper = new GeoWeatherOpenHelper(c, DATABASE_NAME, null);
+        writingCityList = false;
     }
 
     private SQLiteDatabase getDatabase() {
         return helper.getWritableDatabase();
+    }
+
+    public static List<String> getColumns(Database db, String tableName) {
+        List<String> columns = new ArrayList<>();
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT * FROM " + tableName + " limit 1", null);
+            if (cursor != null) {
+                columns = new ArrayList<>(Arrays.asList(cursor.getColumnNames()));
+            }
+        } catch (Exception e) {
+            Log.v(tableName, e.getMessage(), e);
+            e.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return columns;
+    }
+
+    public static String getTypeByClass(Class<?> type) throws Exception {
+        if (type.equals(String.class)) {
+            return "TEXT";
+        }
+        if (type.equals(Long.class) || type.equals(Integer.class) || type.equals(long.class)) {
+            return "INTEGER";
+        }
+        if (type.equals(Boolean.class)) {
+            return "BOOLEAN";
+        }
+
+        throw new Exception(CONVERSION_CLASS_NOT_FOUND_EXCEPTION.concat(" - Class: ").concat(type.toString()));
     }
 
     // location.
@@ -102,6 +154,10 @@ public class DatabaseHelper {
         HistoryEntity.insertHistory(getDatabase(), weather);
     }
 
+    public void writeHistory(History history) {
+        HistoryEntity.insertHistory(getDatabase(), history);
+    }
+
     public History readHistory(Weather weather) {
         return HistoryEntity.searchYesterdayHistory(getDatabase(), weather);
     }
@@ -124,6 +180,33 @@ public class DatabaseHelper {
                     .buildWeatherAlarmList(AlarmEntity.searchLocationAlarmEntity(getDatabase(), location));
         }
         return weather;
+    }
+
+    // cn city.
+
+    public void writeCityList(CNCityList list) {
+        if (!writingCityList) {
+            synchronized (writingLock) {
+                if (!writingCityList) {
+                    writingCityList = true;
+                    CNCityEntity.removeCNCityList(getDatabase());
+                    CNCityEntity.insertCNCityList(getDatabase(), list);
+                    writingCityList = false;
+                }
+            }
+        }
+    }
+
+    public CNCityList.CNCity readCNCity(String name) {
+        return CNCityEntity.searchCNCity(getDatabase(), name);
+    }
+
+    public CNCityList.CNCity fuzzyReadCNCity(String name) {
+        return CNCityEntity.fuzzySearchCNCity(getDatabase(), name);
+    }
+
+    public long countCNCity() {
+        return CNCityEntity.countCNCity(getDatabase());
     }
 /*
     // city.

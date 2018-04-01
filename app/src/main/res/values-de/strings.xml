@@ -89,6 +89,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Berechtigungen</string>
+    <string name="feedback_request_location">Standortermittlung</string>
     <string name="feedback_request_location_permission_success">Berechtigung zur Standortermittlung erteilt!</string>
     <string name="feedback_request_location_permission_failed">Berechtigung zur Standortermittlung fehlgeschlagen!</string>
 

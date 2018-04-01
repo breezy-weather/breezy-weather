@@ -89,6 +89,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Разрешения</string>
+    <string name="feedback_request_location">местоположения</string>
     <string name="feedback_request_location_permission_success">Запрос местоположения успешно выполнен</string>
     <string name="feedback_request_location_permission_failed">Ошибка запроса местоположения</string>
 

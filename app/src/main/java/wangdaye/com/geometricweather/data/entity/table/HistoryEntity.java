@@ -79,6 +79,23 @@ public class HistoryEntity {
         dao.insert(buildHistoryEntity(History.buildHistory(weather)));
     }
 
+    public static void insertHistory(SQLiteDatabase database, History history) {
+        if (history == null) {
+            return;
+        }
+
+        History today = searchTodayHistory(database, history);
+        clearLocationHistory(database, history);
+
+        HistoryEntityDao dao = new DaoMaster(database)
+                .newSession()
+                .getHistoryEntityDao();
+        dao.insert(buildHistoryEntity(history));
+        if (today != null) {
+            dao.insert(buildHistoryEntity(today));
+        }
+    }
+
     // delete.
 
     private static void clearLocationHistory(SQLiteDatabase database, Weather weather) {
@@ -87,6 +104,20 @@ public class HistoryEntity {
         }
 
         List<HistoryEntity> entityList = searchHistoryEntity(database, weather);
+        HistoryEntityDao dao = new DaoMaster(database)
+                .newSession()
+                .getHistoryEntityDao();
+        for (int i = 0; i < entityList.size(); i ++) {
+            dao.delete(entityList.get(i));
+        }
+    }
+
+    private static void clearLocationHistory(SQLiteDatabase database, History history) {
+        if (history == null) {
+            return;
+        }
+
+        List<HistoryEntity> entityList = searchHistoryEntity(database, history);
         HistoryEntityDao dao = new DaoMaster(database)
                 .newSession()
                 .getHistoryEntityDao();
@@ -129,6 +160,39 @@ public class HistoryEntity {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private static History searchTodayHistory(SQLiteDatabase database, History history) {
+        if (history == null) {
+            return null;
+        }
+
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = format.parse(history.date);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+
+            HistoryEntityDao dao = new DaoMaster(database)
+                    .newSession()
+                    .getHistoryEntityDao();
+
+            QueryBuilder<HistoryEntity> builder = dao.queryBuilder();
+            builder.where(
+                    HistoryEntityDao.Properties.CityId.eq(history.cityId),
+                    HistoryEntityDao.Properties.Date.eq(format.format(calendar.getTime())));
+
+            List<HistoryEntity> entityList = builder.list();
+            if (entityList == null || entityList.size() <= 0) {
+                return null;
+            } else {
+                return History.buildHistory(entityList.get(0));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private static List<HistoryEntity> searchHistoryEntity(SQLiteDatabase database, Weather weather) {
         if (weather == null) {
             return new ArrayList<>();
@@ -139,6 +203,19 @@ public class HistoryEntity {
                 .getHistoryEntityDao()
                 .queryBuilder()
                 .where(HistoryEntityDao.Properties.CityId.eq(weather.base.cityId))
+                .list();
+    }
+
+    private static List<HistoryEntity> searchHistoryEntity(SQLiteDatabase database, History history) {
+        if (history == null) {
+            return new ArrayList<>();
+        }
+
+        return new DaoMaster(database)
+                .newSession()
+                .getHistoryEntityDao()
+                .queryBuilder()
+                .where(HistoryEntityDao.Properties.CityId.eq(history.cityId))
                 .list();
     }
 

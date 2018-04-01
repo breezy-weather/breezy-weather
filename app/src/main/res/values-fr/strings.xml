@@ -45,6 +45,7 @@
     <string name="feedback_request_location_permission_failed">La localisation a échouée.</string>
     <string name="feedback_request_location_permission_success">Localisation réussie.</string>
     <string name="feedback_request_permission">Permissions</string>
+    <string name="feedback_request_location">Location</string>
     <string name="feedback_restart">"Veuillez redémarrer l'application."</string>
     <string name="feedback_search_location">"Tapez le nom d'une ville…"</string>
     <string name="feedback_search_nothing">Recherche nulle…</string>

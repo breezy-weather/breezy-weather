@@ -4,6 +4,7 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;

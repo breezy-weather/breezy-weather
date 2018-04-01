@@ -79,6 +79,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">İzinler</string>
+    <string name="feedback_request_location">Konum</string>
     <string name="feedback_request_location_permission_success">Konum izin isteği başarılı.</string>
     <string name="feedback_request_location_permission_failed">Konum izin isteği başarısız.</string>
 

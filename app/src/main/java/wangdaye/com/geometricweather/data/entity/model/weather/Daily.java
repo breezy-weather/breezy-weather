@@ -6,7 +6,8 @@ import android.content.Context;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import wangdaye.com.geometricweather.data.entity.result.NewDailyResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuDailyResult;
+import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -75,7 +76,7 @@ public class Daily {
     }
 */
 
-    public Daily buildDaily(Context c, NewDailyResult.DailyForecasts forecast) {
+    public Daily buildDaily(Context c, AccuDailyResult.DailyForecasts forecast) {
         date = forecast.Date.split("T")[0];
         week = WeatherHelper.getWeek(c, date);
         weathers = new String[] {
@@ -105,6 +106,33 @@ public class Daily {
                 forecast.Sun.Set.split("T")[1].split(":")[0]
                         + ":" + forecast.Sun.Set.split("T")[1].split(":")[1]};
         precipitations = new int[] {forecast.Day.PrecipitationProbability, forecast.Night.PrecipitationProbability};
+        return this;
+    }
+
+    public Daily buildDaily(Context c, CNWeatherResult.WeatherX daily) {
+        date = daily.date;
+        week = WeatherHelper.getWeek(c, date);
+        weathers = new String[] {
+                daily.info.day.get(1),
+                daily.info.night.get(1)};
+        weatherKinds = new String[] {
+                WeatherHelper.getNewWeatherKind(daily.info.day.get(0)),
+                WeatherHelper.getNewWeatherKind(daily.info.night.get(0))};
+        temps = new int[] {
+                Integer.parseInt(daily.info.day.get(2)),
+                Integer.parseInt(daily.info.night.get(2))};
+        windDirs = new String[] {
+                daily.info.day.get(3),
+                daily.info.night.get(3)};
+        windSpeeds = new String[] {null, null};
+        windLevels = new String[] {
+                daily.info.day.get(4),
+                daily.info.night.get(4)};
+        windDegrees = new int[] {-1, -1};
+        astros = new String[] {
+                daily.info.day.get(5),
+                daily.info.night.get(5)};
+        precipitations = new int[] {-1, -1};
         return this;
     }
 

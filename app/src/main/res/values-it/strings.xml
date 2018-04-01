@@ -101,6 +101,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Permessi</string>
+    <string name="feedback_request_location">localizzazione</string>
     <string name="feedback_request_location_permission_success">Permesso di localizzazione ottenuto</string>
     <string name="feedback_request_location_permission_failed">Permesso di localizzazione negato</string>
 

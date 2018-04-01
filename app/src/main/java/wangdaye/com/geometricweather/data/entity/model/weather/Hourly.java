@@ -3,9 +3,11 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 import android.content.Context;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.result.NewHourlyResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuHourlyResult;
+import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
  * Hourly.
@@ -68,13 +70,24 @@ public class Hourly {
     }
 */
 
-    public Hourly buildHourly(Context c, NewHourlyResult result) {
+    public Hourly buildHourly(Context c, AccuHourlyResult result) {
         time = result.DateTime.split("T")[1].split(":")[0] + c.getString(R.string.of_clock);
         dayTime = result.IsDaylight;
         weather = result.IconPhrase;
         weatherKind = WeatherHelper.getNewWeatherKind(result.WeatherIcon);
         temp = (int) result.Temperature.Value;
         precipitation = result.PrecipitationProbability;
+        return this;
+    }
+
+    public Hourly buildHourly(Context c,
+                              CNWeatherResult.WeatherX today, CNWeatherResult.HourlyForecast hourly) {
+        time = hourly.hour + c.getString(R.string.of_clock);
+        dayTime = TimeManager.isDaylight(hourly.hour, today.info.day.get(5), today.info.night.get(5));
+        weather = hourly.info;
+        weatherKind = WeatherHelper.getNewWeatherKind(hourly.img);
+        temp = Integer.parseInt(hourly.temperature);
+        precipitation = -1;
         return this;
     }
 

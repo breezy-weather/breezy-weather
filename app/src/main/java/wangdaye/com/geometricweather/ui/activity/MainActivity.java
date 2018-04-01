@@ -543,7 +543,11 @@ public class MainActivity extends GeoActivity
                         locationHelper.requestLocation(this, locationNow, this);
                     }
                 } else {
-                    SnackbarUtils.showSnackbar(getString(R.string.feedback_request_location_permission_failed));
+                    SnackbarUtils.showSnackbar(
+                            getString(R.string.feedback_request_location_permission_failed),
+                            getString(R.string.feedback_request_permission),
+                            applicationDetalsListener);
+                    setRefreshing(false);
                 }
                 break;
         }
@@ -589,6 +593,13 @@ public class MainActivity extends GeoActivity
         }
         return true;
     }
+
+    private View.OnClickListener applicationDetalsListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            IntentHelper.startApplicationDetailsActivity(MainActivity.this);
+        }
+    };
 
     // on touch listener.
 
@@ -710,7 +721,18 @@ public class MainActivity extends GeoActivity
                 setRefreshing(false);
             }
 
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_location_failed));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                    && (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED)) {
+                SnackbarUtils.showSnackbar(
+                        getString(R.string.feedback_location_failed),
+                        getString(R.string.feedback_request_permission),
+                        applicationDetalsListener);
+            } else {
+                SnackbarUtils.showSnackbar(getString(R.string.feedback_location_failed));
+            }
         }
     }
 
@@ -725,7 +747,12 @@ public class MainActivity extends GeoActivity
                     || !locationNow.weather.base.date.equals(weather.base.date)
                     || !locationNow.weather.base.time.equals(weather.base.time)) {
                 locationNow.weather = weather;
-                locationNow.history = DatabaseHelper.getInstance(this).readHistory(weather);
+                if (requestLocation.history == null) {
+                    locationNow.history = DatabaseHelper.getInstance(this).readHistory(weather);
+                } else {
+                    locationNow.history = requestLocation.history;
+                    DatabaseHelper.getInstance(this).writeHistory(locationNow.history);
+                }
                 refreshLocation(locationNow);
                 DatabaseHelper.getInstance(this).writeWeather(locationNow, weather);
                 DatabaseHelper.getInstance(this).writeHistory(weather);

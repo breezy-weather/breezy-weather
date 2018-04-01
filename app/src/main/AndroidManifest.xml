@@ -13,7 +13,6 @@
         android:theme="@style/GeometricWeatherTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource">
 
-        <!-- baidu location -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="8Ag8g9warGQeUVFbqx4LRrXU" />
@@ -21,7 +20,6 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <!-- context -->
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
@@ -264,16 +262,16 @@
 
     </application>
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
         tools:ignore="ManifestOrder" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.INSTANT_APP_FOREGROUND_SERVICE" />
+
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
 </manifest>

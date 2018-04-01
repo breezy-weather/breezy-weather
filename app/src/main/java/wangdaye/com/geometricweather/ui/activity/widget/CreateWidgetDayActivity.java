@@ -1,11 +1,9 @@
 package wangdaye.com.geometricweather.ui.activity.widget;
 
 import android.annotation.SuppressLint;
-import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;

@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -129,23 +130,25 @@ public class WeatherDialog extends GeoDialogFragment
         if (daily) {
             String daytimeTxt = weather.dailyList.get(position).weathers[0] + "  "
                     + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[0], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
-                    + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[0] + " "
-                    + weather.dailyList.get(position).windSpeeds[0] + " (" + weather.dailyList.get(position).windLevels[0] + ") "
-                    + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[0]) + "\n"
-                    + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[0] + "%";
+                    + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[0]
+                    + (TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[0]) ? "" : " " + weather.dailyList.get(position).windSpeeds[0])
+                    + " (" + weather.dailyList.get(position).windLevels[0] + ") "
+                    + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[0])
+                    + (weather.dailyList.get(position).precipitations[0] >= 0 ? "\n" + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[0] + "%" : "");
             weatherTexts[0].setText(daytimeTxt);
 
             String nighttimeTxt = weather.dailyList.get(position).weathers[1] + "  "
                     + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[1], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
-                    + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[1] + " "
-                    + weather.dailyList.get(position).windSpeeds[1] + " (" + weather.dailyList.get(position).windLevels[1] + ") "
-                    + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[1]) + "\n"
-                    + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[1] + "%";
+                    + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[1]
+                    + (TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[1]) ? "" : " " + weather.dailyList.get(position).windSpeeds[1])
+                    + " (" + weather.dailyList.get(position).windLevels[1] + ") "
+                    + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[1])
+                    + (weather.dailyList.get(position).precipitations[1] >= 0 ? "\n" + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[1] + "%" : "");
             weatherTexts[1].setText(nighttimeTxt);
         } else {
             String text = weather.hourlyList.get(position).weather + "  "
-                    + ValueUtils.buildCurrentTemp(weather.hourlyList.get(position).temp, false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
-                    + getString(R.string.precipitation) + " : " + weather.hourlyList.get(position).precipitation + "%";
+                    + ValueUtils.buildCurrentTemp(weather.hourlyList.get(position).temp, false, GeometricWeather.getInstance().isFahrenheit())
+                    + (weather.hourlyList.get(position).precipitation >= 0 ? "\n" + getString(R.string.precipitation) + " : " + weather.hourlyList.get(position).precipitation + "%" : "");
             weatherTexts[0].setText(text);
         }
         

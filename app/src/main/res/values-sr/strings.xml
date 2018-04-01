@@ -90,6 +90,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Дозволе</string>
+    <string name="feedback_request_location">локацију</string>
     <string name="feedback_request_location_permission_success">Захтевај дозволу за локацију.</string>
     <string name="feedback_request_location_permission_failed">Захтев за одобрење локације није успео.</string>
 

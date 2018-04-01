@@ -84,7 +84,7 @@ public class CMWeatherProviderService extends WeatherProviderService
 
     private void requestWeather(String cityName) {
         if (!TextUtils.isEmpty(cityName)) {
-            locationHelper.requestWeatherLocation(this, cityName, this);
+            locationHelper.requestWeatherLocation(this, cityName, false, this);
         } else if (request != null) {
             request.fail();
         }

@@ -289,7 +289,7 @@ public class SearcActivity extends GeoActivity
                 finishSelf(true);
             } else {
                 setState(STATE_LOADING);
-                locationHelper.requestWeatherLocation(this, query, this);
+                locationHelper.requestWeatherLocation(this, query, true, this);
             }
         }
         return true;

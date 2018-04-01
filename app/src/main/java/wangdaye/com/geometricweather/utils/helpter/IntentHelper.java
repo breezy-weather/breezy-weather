@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.provider.Settings;
@@ -102,9 +103,10 @@ public class IntentHelper {
         activity.startActivity(new Intent(activity, AboutActivity.class));
     }
 
-    public static void startLocationActivity(Context context) {
+    public static void startApplicationDetailsActivity(Context context) {
         Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.fromParts("package", context.getPackageName(), null));
         context.startActivity(intent);
     }
 }

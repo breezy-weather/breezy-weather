@@ -3,9 +3,10 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 import android.content.Context;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.result.NewAqiResult;
-import wangdaye.com.geometricweather.data.entity.result.NewDailyResult;
-import wangdaye.com.geometricweather.data.entity.result.NewRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuAqiResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuDailyResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -84,7 +85,7 @@ public class Index {
         carWashes = new String[] {"", ""};
     }
 */
-    public void buildIndex(Context c, NewRealtimeResult result) {
+    public void buildIndex(Context c, AccuRealtimeResult result) {
         if (winds == null) {
             winds = new String[] {"", ""};
         }
@@ -100,7 +101,7 @@ public class Index {
         uvs[1] = result.UVIndexText;
     }
 
-    public void buildIndex(Context c, NewDailyResult result) {
+    public void buildIndex(Context c, AccuDailyResult result) {
         simpleForecasts = new String[] {c.getString(R.string.forecast), result.Headline.Text};
         briefings = new String[] {
                 c.getString(R.string.briefings),
@@ -117,10 +118,10 @@ public class Index {
                         + c.getString(R.string.nighttime) + " : " + result.DailyForecasts.get(0).Night.Wind.Direction.Localized
                         + " " + WeatherHelper.getWindSpeed(result.DailyForecasts.get(0).Night.Wind.Speed.Value)
                         + " (" + WeatherHelper.getWindLevel(c, result.DailyForecasts.get(0).Night.Wind.Speed.Value) + ") "
-                        + WeatherHelper.getWindArrows(result.DailyForecasts.get(0).Night.Wind.Direction.Degrees) + "\n";
+                        + WeatherHelper.getWindArrows(result.DailyForecasts.get(0).Night.Wind.Direction.Degrees);
     }
 
-    public void buildIndex(Context c, NewAqiResult result) {
+    public void buildIndex(Context c, AccuAqiResult result) {
         if (result == null) {
             aqis = new String[] {"", ""};
         } else {
@@ -135,6 +136,39 @@ public class Index {
                             + "SO₂ : " + (int) (result.SulfurDioxide) + "\n"
                             + "Pb : " + (int) (result.Lead)};
         }
+    }
+
+    public void buildIndex(Context c, CNWeatherResult result) {
+        simpleForecasts = new String[] {
+                result.life.info.chuanyi.get(0),
+                result.life.info.chuanyi.get(1)};
+        briefings = new String[] {
+                c.getString(R.string.forecast) + " : " + result.life.info.daisan.get(0),
+                result.life.info.daisan.get(1)};
+        winds = new String[2];
+        winds[0] = c.getString(R.string.live) + " : " + result.realtime.wind.direct
+                + " " + WeatherHelper.getWindSpeed(result.realtime.wind.windspeed)
+                + " (" + result.realtime.wind.power + ")";
+        winds[1] =
+                c.getString(R.string.daytime) + " : " + result.weather.get(0).info.day.get(3)
+                        + " " + WeatherHelper.getWindSpeed(result.weather.get(0).info.day.get(4)) + "\n"
+                        + c.getString(R.string.nighttime) + " : " + result.weather.get(0).info.night.get(3)
+                        + " " + WeatherHelper.getWindSpeed(result.weather.get(0).info.night.get(4));
+        aqis = new String[] {
+                "AQI : " + result.pm25.aqi + " (" + WeatherHelper.getAqiQuality(c, result.pm25.aqi) + ")",
+                result.pm25.advice + "\n"
+                        + "PM 2.5 : " + result.pm25.pm25 + "\n"
+                        + "PM 10 : " + result.pm25.pm10 + "\n"
+                        + "O₃ : " + result.pm25.o3 + "\n"
+                        + "CO : " + result.pm25.co + "\n"
+                        + "NO₂ : " + result.pm25.no2 + "\n"
+                        + "SO₂ : " + result.pm25.so2};
+        humidities = new String[2];
+        humidities[0] = c.getString(R.string.exercise) + " : " + result.life.info.yundong.get(0);
+        humidities[1] = result.life.info.yundong.get(1);
+        uvs = new String[2];
+        uvs[0] = c.getString(R.string.uv_index) + " : " + result.life.info.ziwaixian.get(0);
+        uvs[1] = result.life.info.ziwaixian.get(1);
     }
     
     void buildIndex(WeatherEntity entity) {

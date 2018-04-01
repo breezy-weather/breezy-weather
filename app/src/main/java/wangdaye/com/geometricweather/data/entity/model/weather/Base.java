@@ -1,7 +1,8 @@
 package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.result.NewRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 
 /**
@@ -35,12 +36,20 @@ public class Base {
     }
 */
 
-    public void buildBase(Location location, NewRealtimeResult result) {
+    public void buildBase(Location location, AccuRealtimeResult result) {
         cityId = location.cityId;
         city = location.city;
         date = result.LocalObservationDateTime.split("T")[0];
         time = result.LocalObservationDateTime.split("T")[1].split(":")[0]
                 + ":" + result.LocalObservationDateTime.split("T")[1].split(":")[1];
+        timeStamp = System.currentTimeMillis();
+    }
+
+    public void buildBase(Location location, CNWeatherResult result) {
+        cityId = location.cityId;
+        city = location.city;
+        date = result.realtime.date;
+        time = result.realtime.time.split(":")[0] + ":" + result.realtime.time.split(":")[1];
         timeStamp = System.currentTimeMillis();
     }
 

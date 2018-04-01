@@ -2,8 +2,9 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import android.content.Context;
 
-import wangdaye.com.geometricweather.data.entity.result.NewDailyResult;
-import wangdaye.com.geometricweather.data.entity.result.NewRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuDailyResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -49,7 +50,7 @@ public class RealTime {
     }
 */
 
-    public void buildRealTime(Context c, NewRealtimeResult result) {
+    public void buildRealTime(Context c, AccuRealtimeResult result) {
         weather = result.WeatherText;
         weatherKind = WeatherHelper.getNewWeatherKind(result.WeatherIcon);
         temp = (int) result.Temperature.Metric.Value;
@@ -60,7 +61,18 @@ public class RealTime {
         windDegree = result.Wind.Direction.Degrees;
     }
 
-    public void buildRealTime(NewDailyResult result) {
+    public void buildRealTime(CNWeatherResult result) {
+        weather = result.realtime.weather.info;
+        weatherKind = WeatherHelper.getNewWeatherKind(result.realtime.weather.img);
+        temp = Integer.parseInt(result.realtime.weather.temperature);
+        sensibleTemp = Integer.parseInt(result.realtime.feelslike_c);
+        windDir = result.realtime.wind.direct;
+        windSpeed = WeatherHelper.getWindSpeed(result.realtime.wind.windspeed);
+        windLevel = result.realtime.wind.power;
+        windDegree = -1;
+    }
+
+    public void buildRealTime(AccuDailyResult result) {
         simpleForecast = result.Headline.Text;
     }
 

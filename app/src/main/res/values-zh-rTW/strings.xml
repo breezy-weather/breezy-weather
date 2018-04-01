@@ -22,6 +22,7 @@
     <string name="nighttime">夜間</string>
     <string name="publish_at">發布於</string>
     <string name="feels_like">體感</string>
+    <string name="exercise">運動指數</string>
     <string name="follow_system">跟隨系統</string>
 
     <string name="of_clock">時</string>
@@ -90,10 +91,12 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">授權</string>
+    <string name="feedback_request_location">位置信息</string>
+    <string name="feedback_request_location_in_background">正在後臺進行定位</string>
     <string name="feedback_request_location_permission_success">獲取位置權限成功</string>
     <string name="feedback_request_location_permission_failed">獲取位置權限失敗</string>
 
-    <string name="feedback_location_failed">定位失敗，請檢查權限和網絡情況</string>
+    <string name="feedback_location_failed">定位失敗</string>
     <string name="feedback_get_weather_failed">獲取天氣數據失敗</string>
 
     <string name="feedback_view_style">界面風格</string>

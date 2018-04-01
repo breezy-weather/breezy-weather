@@ -26,7 +26,7 @@ public class LanguageUtils {
         }
     }
 
-    private static Locale buildLocale(String language) {
+    public static Locale buildLocale(String language) {
         switch (language) {
             case "follow_system":
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

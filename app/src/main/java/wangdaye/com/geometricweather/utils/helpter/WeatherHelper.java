@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +12,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.service.WeatherService;
+import wangdaye.com.geometricweather.data.service.weather.WeatherService;
 
 /**
  * Weather kind tools.
@@ -35,11 +36,11 @@ public class WeatherHelper {
     public static final String KIND_THUNDERSTORM = "THUNDERSTORM";
 
     public WeatherHelper() {
-        weatherService = null;
+        weatherService = new WeatherService();
     }
 
     public void requestWeather(Context c, Location location, OnRequestWeatherListener l) {
-        weatherService = WeatherService.getService().requestNewWeather(c, location, l);
+        weatherService = WeatherService.getService().requestWeather(c, location, l);
     }
 
     public void cancel() {
@@ -75,6 +76,89 @@ public class WeatherHelper {
             return KIND_WIND;
         } else {
             return KIND_CLOUDY;
+        }
+    }
+
+    public static String getNewWeatherKind(String icon) {
+        if (TextUtils.isEmpty(icon)) {
+            return KIND_CLOUDY;
+        }
+
+        switch (icon) {
+            case "0":
+            case "00":
+                return KIND_CLEAR;
+
+            case "1":
+            case "01":
+                return KIND_PARTLY_CLOUDY;
+
+            case "2":
+            case "02":
+                return KIND_CLOUDY;
+
+            case "3":
+            case "7":
+            case "8":
+            case "9":
+            case "03":
+            case "07":
+            case "08":
+            case "09":
+            case "10":
+            case "11":
+            case "12":
+            case "21":
+            case "22":
+            case "23":
+            case "24":
+            case "25":
+                return KIND_RAIN;
+
+            case "4":
+            case "04":
+                return KIND_THUNDERSTORM;
+
+            case "5":
+            case "05":
+                return KIND_HAIL;
+
+            case "6":
+            case "06":
+                return KIND_SLEET;
+
+            case "13":
+            case "14":
+            case "15":
+            case "16":
+            case "17":
+            case "26":
+            case "27":
+            case "28":
+                return KIND_SNOW;
+
+            case "18":
+            case "32":
+            case "49":
+            case "57":
+                return KIND_FOG;
+
+            case "19":
+                return KIND_SLEET;
+
+            case "20":
+            case "29":
+            case "30":
+                return KIND_WIND;
+
+            case "53":
+            case "54":
+            case "55":
+            case "56":
+                return KIND_HAZE;
+
+            default:
+                return KIND_CLOUDY;
         }
     }
 
@@ -805,7 +889,9 @@ public class WeatherHelper {
     }
 
     public static String getWindArrows(int degree) {
-        if (22.5 < degree && degree <= 67.5) {
+        if (degree < 0) {
+            return "";
+        }if (22.5 < degree && degree <= 67.5) {
             return "↙";
         } else if (67.5 < degree && degree <= 112.5) {
             return "←";

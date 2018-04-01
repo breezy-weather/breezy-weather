@@ -31,15 +31,16 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'FW_BASE_URL', FW_BASE_URL
-        it.buildConfigField 'String', 'NEW_WEATHER_BASE_URL', NEW_WEATHER_BASE_URL
-        it.buildConfigField 'String', 'NEW_WEATHER_KEY', NEW_WEATHER_KEY
-        it.buildConfigField 'String', 'NEW_AQI_KEY', NEW_AQI_KEY
+        it.buildConfigField 'String', 'CN_WEATHER_BASE_URL', CN_WEATHER_BASE_URL
+        it.buildConfigField 'String', 'ACCU_WEATHER_BASE_URL', ACCU_WEATHER_BASE_URL
+        it.buildConfigField 'String', 'ACCU_WEATHER_KEY', ACCU_WEATHER_KEY
+        it.buildConfigField 'String', 'ACCU_AQI_KEY', ACCU_AQI_KEY
     }
 
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            jni.srcDirs = []
         }
     }
     compileOptions {
@@ -60,7 +61,7 @@ allprojects {
 
 apply plugin: 'org.greenrobot.greendao'
 greendao {
-    schemaVersion 23
+    schemaVersion 25
     generateTests false
 }
 dependencies {
@@ -69,11 +70,10 @@ dependencies {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile files('libs/BaiduLBS_Android.jar')
 
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.android.support:design:27.0.2'
-    compile 'com.android.support:cardview-v7:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.1.0'
+    compile 'com.android.support:design:27.1.0'
+    compile 'com.android.support:cardview-v7:27.1.0'
 
     compile 'com.github.bumptech.glide:glide:3.7.0'
 

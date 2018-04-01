@@ -34,9 +34,9 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.icon = (ImageView) itemView.findViewById(R.id.item_details_icon);
-            this.title = (TextView) itemView.findViewById(R.id.item_details_title);
-            this.content = (TextView) itemView.findViewById(R.id.item_details_content);
+            this.icon = itemView.findViewById(R.id.item_details_icon);
+            this.title = itemView.findViewById(R.id.item_details_title);
+            this.content = itemView.findViewById(R.id.item_details_content);
         }
 
         void onBindView(int iconId, String[] details) {

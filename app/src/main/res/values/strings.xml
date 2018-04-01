@@ -28,6 +28,7 @@
     <string name="nighttime">Nighttime</string>
     <string name="publish_at">Publish at</string>
     <string name="feels_like">Feels like</string>
+    <string name="exercise">运动指数</string>
     <string name="follow_system">Follow system</string>
 
     <string name="of_clock">:00</string>
@@ -104,6 +105,8 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Permissions</string>
+    <string name="feedback_request_location">Location</string>
+    <string name="feedback_request_location_in_background">Locating in background.</string>
     <string name="feedback_request_location_permission_success">Request location permission success.</string>
     <string name="feedback_request_location_permission_failed">Request location permission failed.</string>
 
