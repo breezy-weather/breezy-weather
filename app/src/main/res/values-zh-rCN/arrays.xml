@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Chinese source. -->
+    <string-array name="chinese_sources">
+        <item>中国天气网</item>
+        <item>Accu Weather</item>
+    </string-array>
+
     <!-- UI style. -->
     <string-array name="ui_styles">
         <item>圆环状天空</item>

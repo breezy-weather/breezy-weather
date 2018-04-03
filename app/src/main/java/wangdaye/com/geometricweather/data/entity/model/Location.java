@@ -94,7 +94,7 @@ public class Location
         return location;
     }
 */
-    public static List<Location> buildLocationList(List<AccuLocationResult> resultList) {
+    public static List<Location> buildLocationListByAccuResult(List<AccuLocationResult> resultList) {
         List<Location> locationList = new ArrayList<>(resultList.size());
         for (int i = 0; i < resultList.size(); i ++) {
             Location location = new Location();
@@ -109,6 +109,20 @@ public class Location
         return locationList;
     }
 
+    public static List<Location> buildLocationListByCNWeather(List<CNCityList.CNCity> cityList) {
+        List<Location> locationList = new ArrayList<>();
+        for (int i = 0; i < cityList.size(); i ++) {
+            Location location = new Location();
+            location.cityId = cityList.get(i).id;
+            location.city = cityList.get(i).name;
+            location.prov = cityList.get(i).province_name;
+            location.cnty = "中国";
+            location.local = false;
+            locationList.add(location);
+        }
+        return locationList;
+    }
+
     public static List<Location> buildLocationList(AccuLocationResult result) {
         List<Location> locationList = new ArrayList<>();
         Location location = new Location();
@@ -118,6 +132,18 @@ public class Location
         location.prov = result.AdministrativeArea.LocalizedName;
         location.lat = String.valueOf(result.GeoPosition.Latitude);
         location.lon = String.valueOf(result.GeoPosition.Longitude);
+        locationList.add(location);
+        return locationList;
+    }
+
+    public static List<Location> buildLocationList(CNCityList.CNCity city) {
+        List<Location> locationList = new ArrayList<>();
+        Location location = new Location();
+        location.cityId = city.id;
+        location.city = city.name;
+        location.prov = city.province_name;
+        location.cnty = "中国";
+        location.local = false;
         locationList.add(location);
         return locationList;
     }

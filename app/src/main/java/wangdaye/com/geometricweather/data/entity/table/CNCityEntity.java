@@ -90,7 +90,29 @@ public class CNCityEntity {
         }
     }
 
-    public static CNCityList.CNCity fuzzySearchCNCity(SQLiteDatabase database, String name) {
+    public static CNCityList.CNCity searchCNCity(SQLiteDatabase database,
+                                                 String name, String province) {
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(province)) {
+            return null;
+        }
+
+        CNCityEntityDao dao = new DaoMaster(database)
+                .newSession()
+                .getCNCityEntityDao();
+
+        QueryBuilder<CNCityEntity> builder = dao.queryBuilder();
+        builder.where(CNCityEntityDao.Properties.CityName.eq(name));
+        builder.where(CNCityEntityDao.Properties.Province.eq(province));
+
+        List<CNCityEntity> entityList = builder.list();
+        if (entityList == null || entityList.size() <= 0) {
+            return null;
+        } else {
+            return CNCityList.CNCity.buildCNCity(entityList.get(0));
+        }
+    }
+
+    public static List<CNCityList.CNCity> fuzzySearchCNCity(SQLiteDatabase database, String name) {
         if (TextUtils.isEmpty(name)) {
             return null;
         }
@@ -102,12 +124,14 @@ public class CNCityEntity {
         QueryBuilder<CNCityEntity> builder = dao.queryBuilder();
         builder.where(CNCityEntityDao.Properties.CityName.like("%" + name + "%"));
 
+        List<CNCityList.CNCity> cityList = new ArrayList<>();
         List<CNCityEntity> entityList = builder.list();
-        if (entityList == null || entityList.size() <= 0) {
-            return null;
-        } else {
-            return CNCityList.CNCity.buildCNCity(entityList.get(0));
+        if (entityList != null && entityList.size() > 0) {
+            for (int i = 0; i < entityList.size(); i ++) {
+                cityList.add(CNCityList.CNCity.buildCNCity(entityList.get(i)));
+            }
         }
+        return cityList;
     }
 
     public static long countCNCity(SQLiteDatabase database) {

@@ -10,6 +10,16 @@ import wangdaye.com.geometricweather.R;
 
 public class ValueUtils {
 
+    public static String getChineseSource(Context c, String value) {
+        switch (value) {
+            case "cn":
+                return c.getResources().getStringArray(R.array.chinese_sources)[0];
+
+            default:
+                return c.getResources().getStringArray(R.array.chinese_sources)[1];
+        }
+    }
+
     public static String getUIStyle(Context c, String value) {
         switch (value) {
             case "circular":

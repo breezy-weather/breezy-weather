@@ -61,7 +61,10 @@ public class CNWeatherService {
             }
 
             for (int i = 0; i < queries.length; i ++) {
-                if (queries[i].endsWith("市") || queries[i].endsWith("区") || queries[i].endsWith("县")) {
+                if (queries[i].endsWith("省")
+                        || queries[i].endsWith("市")
+                        || queries[i].endsWith("区")
+                        || queries[i].endsWith("县")) {
                     queries[i] = queries[i].substring(0, queries[i].length() - 1);
                 }
             }
@@ -70,38 +73,57 @@ public class CNWeatherService {
                 DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
             }
 
-            final List<Location> list = new ArrayList<>();
+            List<Location> locationList = new ArrayList<>();
+            List<CNCityList.CNCity> cityList;
             CNCityList.CNCity city;
             String query = null;
-            for (String q : queries) {
-                if (fuzzy) {
-                    city = DatabaseHelper.getInstance(context).fuzzyReadCNCity(q);
-                } else {
-                    city = DatabaseHelper.getInstance(context).readCNCity(q);
+
+            if (fuzzy) {
+                cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
+                if (cityList != null) {
+                    query = queries[0];
+                    locationList = Location.buildLocationListByCNWeather(cityList);
                 }
-                if (city != null) {
-                    query = q;
-                    Location location = new Location();
-                    location.cityId = city.id;
-                    location.city = city.name;
-                    location.prov = city.province_name;
-                    location.cnty = "中国";
-                    location.local = false;
-                    list.add(location);
-                    break;
+            } else {
+                String[][] cityProvinceSet = null;
+                if (queries.length == 3) {
+                    cityProvinceSet = new String[][] {
+                            new String[] {queries[0], queries[1]},
+                            new String[] {queries[0], queries[2]},
+                            new String[] {queries[1], queries[2]}};
+                } else if (queries.length == 2) {
+                    cityProvinceSet = new String[][] {new String[] {queries[0], queries[1]}};
+                }
+                if (cityProvinceSet != null) {
+                    for (String[] cityProvince : cityProvinceSet) {
+                        city = DatabaseHelper.getInstance(context).readCNCity(cityProvince[0], cityProvince[1]);
+                        if (city != null) {
+                            query = cityProvince[0];
+                            locationList = Location.buildLocationList(city);
+                            break;
+                        }
+                    }
+                } else {
+                    city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
+                    if (city != null) {
+                        query = queries[0];
+                        locationList = Location.buildLocationList(city);
+                    }
                 }
             }
+
             if (handler != null) {
                 synchronized (handlerLock) {
                     if (handler != null) {
+                        final List<Location> finalLocationList = locationList;
                         final String finalQuery = query;
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                if (list.size() > 0) {
-                                    listener.requestWeatherLocationSuccess(finalQuery, list);
+                                if (finalLocationList.size() > 0) {
+                                    listener.requestWeatherLocationSuccess(finalQuery, finalLocationList);
                                 } else {
-                                    listener.requestWeatherLocationFailed(queries[0]);
+                                    listener.requestWeatherLocationFailed(finalQuery);
                                 }
                                 handler = null;
                             }
@@ -149,6 +171,15 @@ public class CNWeatherService {
                         }
                         weather.aqi.buildAqi(context, response.body());
                         weather.index.buildIndex(context, response.body());
+                        for (int i = 0; i < response.body().alert.size(); i ++) {
+                            for (int j = i + 1; j < response.body().alert.size(); j ++) {
+                                if (response.body().alert.get(i).alarmTp1.equals(response.body().alert.get(j).alarmTp1)
+                                        && response.body().alert.get(i).alarmTp2.equals(response.body().alert.get(j).alarmTp2)) {
+                                    response.body().alert.remove(j);
+                                    j --;
+                                }
+                            }
+                        }
                         for (int i = 0; i < response.body().alert.size(); i ++) {
                             weather.alertList.add(new Alert().buildAlert(context, response.body().alert.get(i)));
                         }

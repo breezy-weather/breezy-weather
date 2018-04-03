@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import java.util.List;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.service.location.BaiduLocationService;
 import wangdaye.com.geometricweather.data.service.location.LocationService;
@@ -62,7 +63,7 @@ public class LocationHelper {
             location.lat = result.latitude;
             location.lon = result.longitude;
 
-            if (result.inChina) {
+            if (result.inChina && GeometricWeather.getInstance().getChineseSource().equals("cn")) {
                 requestCNWeatherLocation(c, location, result, listener);
             } else {
                 requestAccuWeatherLocation(c, location, listener);
@@ -174,7 +175,7 @@ public class LocationHelper {
                                           OnRequestLocationListener l) {
         requestWeatherLocation(
                 c,
-                new String[] {result.district, result.city},
+                new String[] {result.district, result.city, result.province},
                 location.lat,
                 location.lon,
                 false,

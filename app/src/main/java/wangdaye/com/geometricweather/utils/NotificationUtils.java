@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Alert;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 
 /**
@@ -66,6 +68,8 @@ public class NotificationUtils {
                     alertList.add(weather.alertList.get(i));
                 }
             }
+        } else {
+            alertList.addAll(weather.alertList);
         }
 
         for (int i = 0; i < alertList.size(); i ++) {
@@ -82,6 +86,9 @@ public class NotificationUtils {
                         c.getString(R.string.app_name) + " " + c.getString(R.string.action_alert),
                         NotificationManager.IMPORTANCE_DEFAULT);
                 channel.setShowBadge(true);
+                channel.setLightColor(ContextCompat.getColor(
+                        c,
+                        TimeManager.getInstance(c).isDayTime() ? R.color.lightPrimary_5 : R.color.darkPrimary_5));
                 manager.createNotificationChannel(channel);
             }
             manager.notify(
@@ -101,6 +108,9 @@ public class NotificationUtils {
                 .setContentTitle(c.getString(R.string.action_alert))
                 .setSubText(alert.publishTime)
                 .setContentText(alert.description)
+                .setColor(ContextCompat.getColor(
+                        c,
+                        TimeManager.getInstance(c).isDayTime() ? R.color.lightPrimary_5 : R.color.darkPrimary_5))
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
@@ -117,6 +127,9 @@ public class NotificationUtils {
                 .setSmallIcon(R.drawable.ic_alert)
                 .setContentTitle(alert.description)
                 .setGroup(NOTIFICATION_GROUP_KEY)
+                .setColor(ContextCompat.getColor(
+                        c,
+                        TimeManager.getInstance(c).isDayTime() ? R.color.lightPrimary_5 : R.color.darkPrimary_5))
                 .setGroupSummary(true)
                 .setOnlyAlertOnce(true)
                 .setContentIntent(buildIntent(c, cityName))

@@ -158,6 +158,7 @@
     <!-- settings -->
     <string name="settings_category_basic">Basic</string>
     <string name="settings_title_background_free">Background free.</string>
+    <string name="settings_title_chinese_source">Chinese weather source.</string>
     <string name="settings_title_ui_style">UI style.</string>
     <string name="settings_title_card_order">Card order.</string>
     <string name="settings_title_gravity_sensor_switch">Open gravity sensor.</string>
@@ -213,6 +214,7 @@
     <string name="key_black_text">black_text</string>
 
     <string name="key_background_free">background_free</string>
+    <string name="key_chinese_source">chinese_source</string>
     <string name="key_ui_style">ui_style</string>
     <string name="key_card_order">card_order</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>

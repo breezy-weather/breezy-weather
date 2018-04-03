@@ -2,6 +2,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <!-- Chinese source. -->
+    <string-array name="chinese_sources">
+        <item>weather.com.cn</item>
+        <item>accuweather.com</item>
+    </string-array>
+    <string-array name="chinese_source_values">
+        <item>cn</item>
+        <item>accu</item>
+    </string-array>
+
     <!-- UI style. -->
     <string-array name="ui_styles">
         <item>Circular sky</item>

@@ -4,6 +4,7 @@
 
     <PreferenceCategory
         android:title="@string/settings_category_basic"
+        android:key="basic"
         android:layout="@layout/preference_category">
 
         <CheckBoxPreference
@@ -11,6 +12,14 @@
             android:key="@string/key_background_free"
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
+
+        <ListPreference
+            android:title="@string/settings_title_chinese_source"
+            android:key="@string/key_chinese_source"
+            android:entries="@array/chinese_sources"
+            android:entryValues="@array/chinese_source_values"
+            android:dialogTitle="@string/settings_title_chinese_source"
+            android:defaultValue="accu" />
 
         <ListPreference
             android:title="@string/settings_title_ui_style"

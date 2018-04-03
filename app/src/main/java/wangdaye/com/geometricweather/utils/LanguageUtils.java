@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 /**
  * Language utils.
@@ -91,5 +92,19 @@ public class LanguageUtils {
         } else {
             return language.toLowerCase();
         }
+    }
+
+    public static boolean isChinese(String text) {
+        if (TextUtils.isEmpty(text)) {
+            return false;
+        }
+
+        char[] chars = text.toCharArray();
+        for (char c : chars) {
+            if (!Pattern.compile("[\u4e00-\u9fa5]").matcher(String.valueOf(c)).matches()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

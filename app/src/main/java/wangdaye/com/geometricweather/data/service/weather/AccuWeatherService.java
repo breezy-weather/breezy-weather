@@ -78,7 +78,7 @@ public class AccuWeatherService {
     }
 
     AccuWeatherService requestLocation(Context c, final String query,
-                                              final LocationHelper.OnRequestWeatherLocationListener l) {
+                                       final LocationHelper.OnRequestWeatherLocationListener l) {
         this.languageCode = LanguageUtils.getLanguageCode(c);
         Call<List<AccuLocationResult>> getAccuLocation = buildApi().getWeatherLocation(
                 "Always",
@@ -90,7 +90,7 @@ public class AccuWeatherService {
             public void onResponse(Call<List<AccuLocationResult>> call, Response<List<AccuLocationResult>> response) {
                 if (l != null) {
                     if (response.isSuccessful() && response.body() != null) {
-                        l.requestWeatherLocationSuccess(query, Location.buildLocationList(response.body()));
+                        l.requestWeatherLocationSuccess(query, Location.buildLocationListByAccuResult(response.body()));
                     } else {
                         l.requestWeatherLocationFailed(query);
                     }
@@ -109,7 +109,7 @@ public class AccuWeatherService {
     }
 
     AccuWeatherService requestLocationByGeoPosition(Context c, final String lat, final String lon,
-                                                           final LocationHelper.OnRequestWeatherLocationListener l) {
+                                                    final LocationHelper.OnRequestWeatherLocationListener l) {
         this.languageCode = LanguageUtils.getLanguageCode(c);
         Call<AccuLocationResult> getAccuLocationByGeoPosition = buildApi().getWeatherLocationByGeoPosition(
                 "Always",
@@ -140,7 +140,7 @@ public class AccuWeatherService {
     }
 
     void requestRealtime(final Context c, final Location location,
-                                 final WeatherHelper.OnRequestWeatherListener l) {
+                         final WeatherHelper.OnRequestWeatherListener l) {
         Call<List<AccuRealtimeResult>> getAccuRealtime = buildApi().getRealtime(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,

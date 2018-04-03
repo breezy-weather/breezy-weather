@@ -1,14 +1,11 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import org.greenrobot.greendao.database.Database;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.CNCityList;
@@ -53,9 +50,6 @@ public class DatabaseHelper {
 
     private final static String DATABASE_NAME = "Geometric_Weather_db";
 
-    private static final String CONVERSION_CLASS_NOT_FOUND_EXCEPTION
-            = "MIGRATION HELPER - CLASS DOESN'T MATCH WITH THE CURRENT PARAMETERS";
-
     private class GeoWeatherOpenHelper extends DaoMaster.DevOpenHelper {
 
         GeoWeatherOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
@@ -65,8 +59,8 @@ public class DatabaseHelper {
         @Override
         public void onUpgrade(Database db, int oldVersion, int newVersion) {
             Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
-            if (newVersion >= 24 && oldVersion < 25) {
-                // add cn city entity in version 24 and version 25.
+            if (newVersion >= 24 && oldVersion < 26) {
+                // added and modified cn city entity in version 24 - 26.
                 CNCityEntityDao.dropTable(db, true);
                 CNCityEntityDao.createTable(db, true);
             }
@@ -96,38 +90,6 @@ public class DatabaseHelper {
 
     private SQLiteDatabase getDatabase() {
         return helper.getWritableDatabase();
-    }
-
-    public static List<String> getColumns(Database db, String tableName) {
-        List<String> columns = new ArrayList<>();
-        Cursor cursor = null;
-        try {
-            cursor = db.rawQuery("SELECT * FROM " + tableName + " limit 1", null);
-            if (cursor != null) {
-                columns = new ArrayList<>(Arrays.asList(cursor.getColumnNames()));
-            }
-        } catch (Exception e) {
-            Log.v(tableName, e.getMessage(), e);
-            e.printStackTrace();
-        } finally {
-            if (cursor != null)
-                cursor.close();
-        }
-        return columns;
-    }
-
-    public static String getTypeByClass(Class<?> type) throws Exception {
-        if (type.equals(String.class)) {
-            return "TEXT";
-        }
-        if (type.equals(Long.class) || type.equals(Integer.class) || type.equals(long.class)) {
-            return "INTEGER";
-        }
-        if (type.equals(Boolean.class)) {
-            return "BOOLEAN";
-        }
-
-        throw new Exception(CONVERSION_CLASS_NOT_FOUND_EXCEPTION.concat(" - Class: ").concat(type.toString()));
     }
 
     // location.
@@ -201,7 +163,11 @@ public class DatabaseHelper {
         return CNCityEntity.searchCNCity(getDatabase(), name);
     }
 
-    public CNCityList.CNCity fuzzyReadCNCity(String name) {
+    public CNCityList.CNCity readCNCity(String name, String province) {
+        return CNCityEntity.searchCNCity(getDatabase(), name, province);
+    }
+
+    public List<CNCityList.CNCity> fuzzyReadCNCity(String name) {
         return CNCityEntity.fuzzySearchCNCity(getDatabase(), name);
     }
 

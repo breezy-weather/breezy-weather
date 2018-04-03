@@ -5,9 +5,10 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -27,9 +28,10 @@ public class WeatherService {
 
     public WeatherService requestWeather(final Context c, final Location location,
                                          final WeatherHelper.OnRequestWeatherListener l) {
-        if (isChinese(location.city)) {
+        if (LanguageUtils.isChinese(location.city)
+                && GeometricWeather.getInstance().getChineseSource().equals("cn")) {
             cn.requestLocation(
-                    c, new String[] {location.city}, false,
+                    c, new String[] {location.city, location.prov}, false,
                     new LocationHelper.OnRequestWeatherLocationListener() {
                         @Override
                         public void requestWeatherLocationSuccess(String query, List<Location> locationList) {
@@ -54,7 +56,8 @@ public class WeatherService {
                                           final boolean fuzzy,
                                           final LocationHelper.OnRequestWeatherLocationListener l) {
         if (queries != null && queries.length > 0) {
-            if (isChinese(queries[0])) {
+            if (LanguageUtils.isChinese(queries[0])
+                    && GeometricWeather.getInstance().getChineseSource().equals("cn")) {
                 cn.requestLocation(
                         c, queries, fuzzy,
                         new LocationHelper.OnRequestWeatherLocationListener() {
@@ -83,14 +86,29 @@ public class WeatherService {
         return this;
     }
 
-    private boolean isChinese(String text) {
-        char[] chars = text.toCharArray();
-        for (char c : chars) {
-            if (!Pattern.compile("[\u4e00-\u9fa5]").matcher(String.valueOf(c)).matches()) {
-                return false;
-            }
+    public WeatherService fuzzyRequestLocation(final Context c, final String query,
+                                               final LocationHelper.OnRequestWeatherLocationListener l) {
+        if (LanguageUtils.isChinese(query)
+                && GeometricWeather.getInstance().getChineseSource().equals("cn")) {
+            cn.requestLocation(
+                    c, new String[] {query}, true,
+                    new LocationHelper.OnRequestWeatherLocationListener() {
+                        @Override
+                        public void requestWeatherLocationSuccess(String query, List<Location> locationList) {
+                            if (l != null) {
+                                l.requestWeatherLocationSuccess(query, locationList);
+                            }
+                        }
+
+                        @Override
+                        public void requestWeatherLocationFailed(String query) {
+                            accu.requestLocation(c, query, l);
+                        }
+                    });
+        } else {
+            accu.requestLocation(c, query, l);
         }
-        return true;
+        return this;
     }
 
     public void cancel() {
