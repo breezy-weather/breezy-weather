@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.104</string>
+    <string name="version_code">v2.106</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -136,6 +136,8 @@
     <string name="feedback_refresh_notification_now">Refresh now.</string>
     <string name="feedback_refresh_ui_after_refresh">Take effect when refresh data.</string>
     <string name="feedback_restart">Take effect when restart.</string>
+    <string name="feedback_readd_location">Please re-add locations.</string>
+    <string name="feedback_readd_location_after_changing_source">Please re-add locations after changing data source.</string>
 
     <!-- action -->
     <string name="action_alert">Alert</string>

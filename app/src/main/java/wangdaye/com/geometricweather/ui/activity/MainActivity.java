@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -141,7 +142,7 @@ public class MainActivity extends GeoActivity
         super.onNewIntent(intent);
         Location old = locationNow;
         readLocationList();
-        readIntentData(intent);
+        readLocationNow(intent);
         if (!old.equals(locationNow)) {
             reset();
         }
@@ -179,12 +180,17 @@ public class MainActivity extends GeoActivity
             case SETTINGS_ACTIVITY:
                 DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
                 NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
+
+                readLocationList();
+                readLocationNow(data);
+                switchLayout.setData(locationList, locationNow);
+                reset();
                 break;
 
             case MANAGE_ACTIVITY:
                 if (resultCode == RESULT_OK) {
                     readLocationList();
-                    readIntentData(data);
+                    readLocationNow(data);
                     switchLayout.setData(locationList, locationNow);
                     reset();
                 } else {
@@ -237,7 +243,7 @@ public class MainActivity extends GeoActivity
 
     private void initData() {
         readLocationList();
-        readIntentData(getIntent());
+        readLocationNow(getIntent());
 
         this.weatherHelper = new WeatherHelper();
         this.locationHelper = new LocationHelper(this);
@@ -255,22 +261,37 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    private void readIntentData(Intent intent) {
-        String locationName = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION);
-        if (TextUtils.isEmpty(locationName) && locationNow == null) {
-            locationNow = locationList.get(0);
-            return;
-        } else if (!TextUtils.isEmpty(locationName)) {
+    private void readLocationNow(@Nullable Intent intent) {
+        if (locationNow != null) {
+            boolean exist = false;
             for (int i = 0; i < locationList.size(); i ++) {
-                if (locationList.get(i).isLocal() && locationName.equals(getString(R.string.local))) {
-                    if (locationNow == null || !locationNow.equals(locationList.get(i))) {
-                        locationNow = locationList.get(i);
-                        return;
-                    }
-                } else if (locationList.get(i).city.equals(locationName)) {
-                    if (locationNow == null || !locationNow.city.equals(locationName)) {
-                        locationNow = locationList.get(i);
-                        return;
+                if (locationList.get(i).equals(locationNow)) {
+                    exist = true;
+                    break;
+                }
+            }
+            if (!exist) {
+                locationNow = null;
+            }
+        }
+
+        if (intent != null) {
+            String locationName = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION);
+            if (TextUtils.isEmpty(locationName) && locationNow == null) {
+                locationNow = locationList.get(0);
+                return;
+            } else if (!TextUtils.isEmpty(locationName)) {
+                for (int i = 0; i < locationList.size(); i ++) {
+                    if (locationList.get(i).isLocal() && locationName.equals(getString(R.string.local))) {
+                        if (locationNow == null || !locationNow.equals(locationList.get(i))) {
+                            locationNow = locationList.get(i);
+                            return;
+                        }
+                    } else if (locationList.get(i).city.equals(locationName)) {
+                        if (locationNow == null || !locationNow.city.equals(locationName)) {
+                            locationNow = locationList.get(i);
+                            return;
+                        }
                     }
                 }
             }
@@ -486,11 +507,6 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    private void setLocationAndReset(Location location) {
-        this.locationNow = location;
-        reset();
-    }
-
     private void refreshLocation(Location location) {
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(location)) {
@@ -635,11 +651,16 @@ public class MainActivity extends GeoActivity
                 } else if (position > locationList.size() - 1) {
                     position = 0;
                 }
-                setLocationAndReset(locationList.get(position));
+
+                locationNow = locationList.get(position);
+                reset();
+
                 return;
             }
         }
-        setLocationAndReset(locationList.get(0));
+
+        locationNow = locationList.get(0);
+        reset();
     }
 
     // on refresh listener.

@@ -202,6 +202,13 @@ public class LocationHelper {
         }
     }
 
+    public static void clearLocationCache(Context context) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(
+                PREFERENCE_LOCAL, Context.MODE_PRIVATE).edit();
+        editor.putString(KEY_LAST_RESULT, ".");
+        editor.apply();
+    }
+
     // interface.
 
     public interface OnRequestLocationListener {

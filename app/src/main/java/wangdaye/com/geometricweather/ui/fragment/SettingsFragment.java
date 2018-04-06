@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
+import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
@@ -243,6 +244,9 @@ public class SettingsFragment extends PreferenceFragment
         if (preference.getKey().equals(getString(R.string.key_background_free))) {
             // background free.
             ServiceHelper.resetNormalService(getActivity(), false, true);
+        } else if (preference.getKey().equals(getString(R.string.key_chinese_source))) {
+            // Chinese source.
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_readd_location_after_changing_source));
         } else if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
             // navigation bar color.
             GeometricWeather.getInstance().setColorNavigationBar();
@@ -320,9 +324,13 @@ public class SettingsFragment extends PreferenceFragment
     public boolean onPreferenceChange(Preference preference, Object o) {
         if (preference.getKey().equals(getString(R.string.key_chinese_source))) {
             // Chinese source.
+            if (!GeometricWeather.getInstance().getChineseSource().equals(o)) {
+                DatabaseHelper.getInstance(getActivity()).clearLocation();
+                LocationHelper.clearLocationCache(getActivity());
+                SnackbarUtils.showSnackbar(getString(R.string.feedback_readd_location));
+            }
             GeometricWeather.getInstance().setChineseSource((String) o);
             preference.setSummary(ValueUtils.getChineseSource(getActivity(), (String) o));
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
         } if (preference.getKey().equals(getString(R.string.key_ui_style))) {
             // UI style.
             preference.setSummary(ValueUtils.getUIStyle(getActivity(), (String) o));

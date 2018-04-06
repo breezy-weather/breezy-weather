@@ -123,7 +123,7 @@ public class LocationEntity {
         }
     }
 
-    private static void clearLocation(SQLiteDatabase database) {
+    public static void clearLocation(SQLiteDatabase database) {
         new DaoMaster(database)
                 .newSession()
                 .getLocationEntityDao()

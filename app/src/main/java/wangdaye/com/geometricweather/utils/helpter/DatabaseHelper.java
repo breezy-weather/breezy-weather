@@ -3,11 +3,13 @@ package wangdaye.com.geometricweather.utils.helpter;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.greenrobot.greendao.database.Database;
 
 import java.util.List;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.CNCityList;
 import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
@@ -17,6 +19,7 @@ import wangdaye.com.geometricweather.data.entity.table.CNCityEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
+import wangdaye.com.geometricweather.data.entity.table.LocationEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
@@ -52,13 +55,25 @@ public class DatabaseHelper {
 
     private class GeoWeatherOpenHelper extends DaoMaster.DevOpenHelper {
 
+        private Context context;
+
         GeoWeatherOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
             super(context, name, factory);
+            this.context = context;
         }
 
         @Override
         public void onUpgrade(Database db, int oldVersion, int newVersion) {
             Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
+            if (newVersion >= 27 && oldVersion < 29) {
+                // delete locations and guide user to re-add them in version 27 - 28.
+                LocationEntityDao.dropTable(db, true);
+                LocationEntityDao.createTable(db, true);
+                Toast.makeText(
+                        context,
+                        context.getString(R.string.feedback_readd_location),
+                        Toast.LENGTH_SHORT).show();
+            }
             if (newVersion >= 24 && oldVersion < 26) {
                 // added and modified cn city entity in version 24 - 26.
                 CNCityEntityDao.dropTable(db, true);
@@ -104,6 +119,10 @@ public class DatabaseHelper {
 
     public void deleteLocation(Location location) {
         LocationEntity.deleteLocation(getDatabase(), location);
+    }
+
+    public void clearLocation() {
+        LocationEntity.clearLocation(getDatabase());
     }
 
     public List<Location> readLocationList() {
