@@ -164,7 +164,7 @@ public class Index {
                         + "NO₂ : " + result.pm25.no2 + "\n"
                         + "SO₂ : " + result.pm25.so2};
         humidities = new String[2];
-        humidities[0] = c.getString(R.string.exercise) + " : " + result.life.info.yundong.get(0);
+        humidities[0] = c.getString(R.string.humidity) + " : " + result.realtime.weather.humidity;
         humidities[1] = result.life.info.yundong.get(1);
         uvs = new String[2];
         uvs[0] = c.getString(R.string.uv_index) + " : " + result.life.info.ziwaixian.get(0);

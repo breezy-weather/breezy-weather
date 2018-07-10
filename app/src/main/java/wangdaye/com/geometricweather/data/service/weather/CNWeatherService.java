@@ -143,7 +143,7 @@ public class CNWeatherService {
                 if (l != null) {
                     if (response.isSuccessful() && response.body() != null) {
                         Weather weather = new Weather();
-                        weather.base.buildBase(location, response.body());
+                        weather.base.buildBase(context, location, response.body());
                         weather.realTime.buildRealTime(response.body());
                         while (response.body().weather.size() > 0
                                 && TimeManager.compareDate(response.body().weather.get(0).date, response.body().realtime.date) < 0) {

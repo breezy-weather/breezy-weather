@@ -73,11 +73,13 @@ public class NotificationUtils {
         }
 
         for (int i = 0; i < alertList.size(); i ++) {
-            sendAlertNotification(c, weather.base.city, alertList.get(i));
+            sendAlertNotification(
+                    c, weather.base.city, alertList.get(i), alertList.size() > 1);
         }
     }
 
-    private static void sendAlertNotification(Context c, String cityName, Alert alert) {
+    private static void sendAlertNotification(Context c,
+                                              String cityName, Alert alert, boolean inGroup) {
         NotificationManager manager = ((NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE));
         if (manager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -93,15 +95,16 @@ public class NotificationUtils {
             }
             manager.notify(
                     getNotificationId(c),
-                    buildSingleNotification(c, cityName, alert));
+                    buildSingleNotification(c, cityName, alert, inGroup));
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
                 manager.notify(NOTIFICATION_GROUP_SUMMARY_ID, buildGroupSummaryNotification(c, cityName, alert));
             }
         }
     }
 
-    private static Notification buildSingleNotification(Context c, String cityName, Alert alert) {
+    private static Notification buildSingleNotification(Context c,
+                                                        String cityName, Alert alert, boolean inGroup) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(c, CHANNEL_ID_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
                 .setLargeIcon(BitmapFactory.decodeResource(c.getResources(), R.drawable.ic_launcher))
@@ -116,7 +119,7 @@ public class NotificationUtils {
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                 .setContentIntent(buildIntent(c, cityName));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             builder.setGroup(NOTIFICATION_GROUP_KEY);
         }
         return builder.build();

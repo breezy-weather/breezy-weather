@@ -49,9 +49,9 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
         ViewHolder(View itemView) {
             super(itemView);
 
-            this.text = (TextView) itemView.findViewById(R.id.item_trend_hourly_txt);
-            this.dayIcon = (ImageView) itemView.findViewById(R.id.item_trend_hourly_icon_day);
-            this.trendItemView = (TrendItemView) itemView.findViewById(R.id.item_trend_hourly_trendItem);
+            this.text = itemView.findViewById(R.id.item_trend_hourly_txt);
+            this.dayIcon = itemView.findViewById(R.id.item_trend_hourly_icon_day);
+            this.trendItemView = itemView.findViewById(R.id.item_trend_hourly_trendItem);
 
             itemView.findViewById(R.id.item_trend_hourly).setOnClickListener(this);
         }
@@ -130,15 +130,16 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
         this.themeColors = themeColors;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_trend_hourly, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.onBindView(position);
     }
 

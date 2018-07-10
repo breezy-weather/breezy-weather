@@ -152,7 +152,7 @@ public class AccuWeatherService {
                 if (l != null) {
                     if (response.isSuccessful() && response.body() != null) {
                         if (!isFailed(location)) {
-                            weather.base.buildBase(location, response.body().get(0));
+                            weather.base.buildBase(c, location, response.body().get(0));
                             weather.realTime.buildRealTime(c, response.body().get(0));
                             weather.index.buildIndex(c, response.body().get(0));
                             loadSucceed(location, l);

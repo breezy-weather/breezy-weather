@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.utils.manager;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -109,5 +110,12 @@ public class TimeManager {
 
     public boolean isDayTime() {
         return dayTime;
+    }
+
+    public static boolean is12Hour(Context context) {
+        ContentResolver resolver = context.getContentResolver();
+        String strTimeFormat = android.provider.Settings.System.getString(
+                resolver, android.provider.Settings.System.TIME_12_24);
+        return strTimeFormat != null && strTimeFormat.equals("12");
     }
 }

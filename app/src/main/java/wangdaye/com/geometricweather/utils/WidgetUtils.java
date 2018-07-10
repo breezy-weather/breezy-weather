@@ -15,6 +15,7 @@ import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayVerticalUtil
 import wangdaye.com.geometricweather.utils.remoteView.WidgetClockDayWeekUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetDayWeekUtils;
+import wangdaye.com.geometricweather.utils.remoteView.WidgetTextUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
 
 /**
@@ -46,6 +47,9 @@ public class WidgetUtils {
                         }
                         if (WidgetClockDayWeekUtils.isEnable(context)) {
                             WidgetClockDayWeekUtils.refreshWidgetView(context, location, location.weather);
+                        }
+                        if (WidgetTextUtils.isEnable(context)) {
+                            WidgetTextUtils.refreshWidgetView(context, location, location.weather);
                         }
                         if (NormalNotificationUtils.isEnable(context)) {
                             NormalNotificationUtils.buildNotificationAndSendIt(context, location.weather);

@@ -48,7 +48,7 @@ public class Alert implements Parcelable {
         }
         description = alert.alarmTp1 + alert.alarmTp2 + c.getString(R.string.action_alert);
         content = alert.content;
-        publishTime = alert.pubTime;
+        publishTime = c.getString(R.string.publish_at) + " " + alert.pubTime;
         return this;
     }
 

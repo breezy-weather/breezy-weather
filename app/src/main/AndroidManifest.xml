@@ -5,7 +5,6 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/geometric_weather"
         android:name=".GeometricWeather"
         android:supportsRtl="true"
@@ -120,6 +119,14 @@
 
         <activity
             android:name=".ui.activity.widget.CreateWidgetClockDayWeekActivity"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.widget.CreateWidgetTextActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -260,6 +267,18 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".receiver.widget.WidgetTextProvider"
+            android:label="@string/widget_text">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_text" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
@@ -270,8 +289,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
-    <uses-permission android:name="android.permission.INSTANT_APP_FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.INSTANT_APP_FOREGROUND_SERVICE"
+        tools:ignore="ProtectedPermissions" />
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 </manifest>

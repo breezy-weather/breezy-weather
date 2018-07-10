@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_widget_text"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:id="@+id/activity_create_widget_text_wall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@color/colorTextDark2nd"
+            tools:ignore="contentDescription" />
+
+        <FrameLayout
+            android:id="@+id/activity_create_widget_text_widgetContainer"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="56dp"
+            android:paddingStart="@dimen/little_margin"
+            android:paddingEnd="@dimen/little_margin" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/activity_create_widget_text_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_create_widget_text_blackTextTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_black_text"
+                        android:layout_alignParentStart="true"
+                        style="@style/content_text" />
+
+                    <Switch
+                        android:id="@+id/activity_create_widget_text_blackTextSwitch"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        style="@style/my_switch"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <Button
+                        android:id="@+id/activity_create_widget_text_doneButton"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/done"
+                        android:textColor="?attr/colorAccent"
+                        style="@style/material_button"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>

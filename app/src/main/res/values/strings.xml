@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.106</string>
+    <string name="version_code">v2.108</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -154,6 +154,7 @@
     <string name="widget_clock_day_details">Clock + Daily (Details)</string>
     <string name="widget_clock_day_vertical">Clock + Daily (Vertical style)</string>
     <string name="widget_clock_day_week">Clock + Daily + Weekly</string>
+    <string name="widget_text">Text</string>
     <string name="wait_refresh">waiting</string>
     <string name="ellipsis">…</string>
 
@@ -209,6 +210,7 @@
     <string name="sp_widget_clock_day_details_setting">widget_clock_day_details_setting</string>
     <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
     <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
+    <string name="sp_widget_text_setting">widget_text_setting</string>
     <string name="key_view_type">view_type</string>
     <string name="key_show_card">showCard</string>
     <string name="key_hide_subtitle">hide_refresh_time</string>

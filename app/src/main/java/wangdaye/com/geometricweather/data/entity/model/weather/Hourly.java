@@ -71,7 +71,7 @@ public class Hourly {
 */
 
     public Hourly buildHourly(Context c, AccuHourlyResult result) {
-        time = result.DateTime.split("T")[1].split(":")[0] + c.getString(R.string.of_clock);
+        time = buildTime(c, result.DateTime.split("T")[1].split(":")[0]);
         dayTime = result.IsDaylight;
         weather = result.IconPhrase;
         weatherKind = WeatherHelper.getNewWeatherKind(result.WeatherIcon);
@@ -82,7 +82,7 @@ public class Hourly {
 
     public Hourly buildHourly(Context c,
                               CNWeatherResult.WeatherX today, CNWeatherResult.HourlyForecast hourly) {
-        time = hourly.hour + c.getString(R.string.of_clock);
+        time = buildTime(c, hourly.hour);
         dayTime = TimeManager.isDaylight(hourly.hour, today.info.day.get(5), today.info.night.get(5));
         weather = hourly.info;
         weatherKind = WeatherHelper.getNewWeatherKind(hourly.img);
@@ -99,5 +99,23 @@ public class Hourly {
         temp = entity.temp;
         precipitation = entity.precipitation;
         return this;
+    }
+
+    private String buildTime(Context c, String hourString) {
+        if (TimeManager.is12Hour(c)) {
+            try {
+                int hour = Integer.parseInt(hourString);
+                if (hour == 0) {
+                    hour = 24;
+                }
+                if (hour > 12) {
+                    hour -= 12;
+                }
+                return hour + c.getString(R.string.of_clock);
+            } catch (Exception ignored) {
+                // do nothing.
+            }
+        }
+        return hourString + c.getString(R.string.of_clock);
     }
 }

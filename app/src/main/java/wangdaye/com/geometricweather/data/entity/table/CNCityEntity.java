@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.CNCityList;
+import wangdaye.com.geometricweather.data.entity.table.weather.DaoMaster;
 
 /**
  * CN city entity.

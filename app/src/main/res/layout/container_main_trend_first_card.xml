@@ -36,6 +36,11 @@
 
         </RelativeLayout>
 
+        <wangdaye.com.geometricweather.ui.widget.AlertDisplayView
+            android:id="@+id/container_main_trend_first_card_alert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/container_main_trend_first_card_title"
             android:textSize="@dimen/title_text_size"

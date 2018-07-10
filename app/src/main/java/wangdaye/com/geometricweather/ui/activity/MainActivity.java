@@ -38,6 +38,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.ui.adapter.DetailsAdapter;
+import wangdaye.com.geometricweather.ui.widget.AlertDisplayView;
 import wangdaye.com.geometricweather.ui.widget.NoneSlipRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView;
@@ -98,6 +99,8 @@ public class MainActivity extends GeoActivity
 
     private ImageView timeIcon;
     private TextView refreshTime;
+    
+    private AlertDisplayView alertView;
 
     private TextView firstTitle;
     private TrendRecyclerView firstTrendRecyclerView;
@@ -158,6 +161,7 @@ public class MainActivity extends GeoActivity
             initWidget();
             reset();
         } else {
+            // reread cache and check if there are new data available through background service.
             Weather old = locationNow.weather;
             readLocationList();
             for (int i = 0; i < locationList.size(); i ++) {
@@ -166,10 +170,13 @@ public class MainActivity extends GeoActivity
                     break;
                 }
             }
+
             if (!refreshLayout.isRefreshing()
                     && locationNow.weather != null && old != null
                     && locationNow.weather.base.timeStamp > old.base.timeStamp) {
                 reset();
+            } else if (locationNow.weather != null) {
+                alertView.display(locationNow.weather.alertList);
             }
         }
     }
@@ -218,6 +225,12 @@ public class MainActivity extends GeoActivity
         } else {
             indicator.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        alertView.stop();
     }
 
     @Override
@@ -368,6 +381,9 @@ public class MainActivity extends GeoActivity
         timeIcon.setOnClickListener(this);
 
         this.refreshTime = findViewById(R.id.container_main_trend_first_card_timeText);
+        
+        this.alertView = findViewById(R.id.container_main_trend_first_card_alert);
+        alertView.setOnClickListener(this);
 
         this.firstTitle = findViewById(R.id.container_main_trend_first_card_title);
         this.firstTrendRecyclerView = findViewById(R.id.container_main_trend_first_card_trendRecyclerView);
@@ -402,6 +418,8 @@ public class MainActivity extends GeoActivity
 
         switchLayout.reset();
         switchLayout.setEnabled(true);
+
+        alertView.stop();
 
         if (locationNow.weather == null) {
             setRefreshing(true);
@@ -469,6 +487,14 @@ public class MainActivity extends GeoActivity
             timeIcon.setImageResource(R.drawable.ic_alert);
         }
         refreshTime.setText(weather.base.time);
+        
+        if (weather.alertList.size() == 0) {
+            alertView.setVisibility(View.GONE);
+            alertView.stop();
+        } else {
+            alertView.setVisibility(View.VISIBLE);
+            alertView.display(weather.alertList);
+        }
 
         firstTitle.setTextColor(weatherView.getThemeColors()[0]);
         secondTitle.setTextColor(weatherView.getThemeColors()[0]);
@@ -581,6 +607,7 @@ public class MainActivity extends GeoActivity
                 break;
 
             case R.id.container_main_trend_first_card_timeIcon:
+            case R.id.container_main_trend_first_card_alert:
                 IntentHelper.startAlertActivity(this, locationNow.weather);
                 break;
 

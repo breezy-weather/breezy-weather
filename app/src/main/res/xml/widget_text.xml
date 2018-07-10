@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="@dimen/widget_grid_2"
+    android:minHeight="@dimen/widget_grid_1"
+    android:minResizeWidth="@dimen/widget_grid_2"
+    android:minResizeHeight="@dimen/widget_grid_1"
+    android:updatePeriodMillis="0"
+    android:initialLayout="@layout/widget_text"
+    android:previewImage="@drawable/widget_text"
+    android:resizeMode="horizontal|vertical"
+    android:configure="wangdaye.com.geometricweather.ui.activity.widget.CreateWidgetTextActivity"
+    android:widgetCategory="home_screen|keyguard" />

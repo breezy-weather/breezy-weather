@@ -14,6 +14,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -41,6 +44,8 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
 
     private int[] themeColors;
 
+    private SimpleDateFormat format;
+
     class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
@@ -66,7 +71,11 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
         void onBindView(Context context, int position) {
             Daily daily = weather.dailyList.get(position);
 
-            weekText.setText(daily.week);
+            if (daily.date.equals(format.format(new Date()))) {
+                weekText.setText(context.getString(R.string.today));
+            } else {
+                weekText.setText(daily.week);
+            }
             dateText.setText(daily.getDateInFormat(context.getString(R.string.date_format_short)));
             Glide.with(context)
                     .load(WeatherHelper.getWeatherIcon(daily.weatherKinds[0], true)[3])
@@ -116,6 +125,7 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     public DailyTrendAdapter(Context context, @NonNull Weather weather, @Nullable History history,
                              int[] themeColors) {
         this.context = context;
@@ -149,6 +159,8 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
         }
 
         this.themeColors = themeColors;
+
+        this.format = new SimpleDateFormat("yyyy-MM-dd");
     }
 
     @Override
