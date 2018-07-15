@@ -174,7 +174,7 @@
     <style name="widget_text_clock_aa">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:format24Hour" />
+        <item name="android:format24Hour">\t</item>
         <item name="android:format12Hour">aa</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize" tools:ignore="SpUsage">@dimen/widget_aa_text_size</item>
