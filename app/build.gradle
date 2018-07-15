@@ -7,8 +7,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2108
-        versionName "2.108"
+        versionCode 2109
+        versionName "2.109"
     }
     buildTypes {
         release {
