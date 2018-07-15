@@ -3,7 +3,9 @@ package wangdaye.com.geometricweather.data.service.weather;
 import android.content.Context;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -328,7 +330,16 @@ public class AccuWeatherService {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(buildClient())
                 .build()
                 .create((AccuWeatherApi.class));
+    }
+
+    private OkHttpClient buildClient() {
+        return new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build();
     }
 }

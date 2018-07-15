@@ -5,7 +5,9 @@ import android.os.Handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -228,7 +230,16 @@ public class CNWeatherService {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.CN_WEATHER_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(buildClient())
                 .build()
                 .create((CNWeatherApi.class));
+    }
+
+    private OkHttpClient buildClient() {
+        return new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build();
     }
 }
