@@ -6,11 +6,9 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.widget.Toast;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
@@ -95,10 +93,6 @@ public abstract class JobUpdateService extends JobService
                         NotificationUtils.checkAndSendAlert(this, weather, old);
                     } else {
                         failed = true;
-                        Toast.makeText(
-                                JobUpdateService.this,
-                                getString(R.string.feedback_get_weather_failed),
-                                Toast.LENGTH_SHORT).show();
                     }
                 }
                 return;

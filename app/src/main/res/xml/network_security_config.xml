@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--Set application-wide security config using base-config tag.-->
+    <base-config cleartextTrafficPermitted="true"/>
+    <!--Set domain-specific security config using domain-config tags. -->
+    <!--See https://developer.android.com/training/articles/security-config.html for more information.-->
+</network-security-config>

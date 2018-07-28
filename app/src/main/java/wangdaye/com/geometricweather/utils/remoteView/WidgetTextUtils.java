@@ -87,7 +87,7 @@ public class WidgetTextUtils {
 
         views.setTextColor(R.id.widget_text_date, textColor);
         views.setTextColor(R.id.widget_text_weather, textColor);
-        views.setTextColor(R.id.widget_text_weather, textColor);
+        views.setTextColor(R.id.widget_text_temperature, textColor);
 
         return views;
     }

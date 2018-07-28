@@ -59,6 +59,13 @@ public class PollingUpdateHelper {
         }
     }
 
+    /**
+     * compare weather by time.
+     *
+     * @return 1: weather is newer than old.
+     *         0: weather equal old.
+     *        -1: weather is older than old.
+     * */
     private int compareWeatherData(@Nullable Weather weather, @Nullable Weather old) {
         if (weather == null) {
             return -1;
@@ -71,13 +78,13 @@ public class PollingUpdateHelper {
                 String[] oldDates = old.base.date.split("-");
                 String[] oldTimes = old.base.time.split(":");
                 
-                int[][] data = new int[][] {
+                int[][] dates = new int[][] {
                         new int[] {Integer.parseInt(newDates[0]), Integer.parseInt(oldDates[0])},
                         new int[] {Integer.parseInt(newDates[1]), Integer.parseInt(oldDates[1])},
                         new int[] {Integer.parseInt(newDates[2]), Integer.parseInt(oldDates[2])},
                         new int[] {Integer.parseInt(newTimes[0]), Integer.parseInt(oldTimes[0])},
                         new int[] {Integer.parseInt(newTimes[1]), Integer.parseInt(oldTimes[1])}};
-                for (int[] d : data) {
+                for (int[] d : dates) {
                     if (d[0] > d[1]) {
                         return 1;
                     } else if (d[0] < d[1]) {
@@ -86,7 +93,7 @@ public class PollingUpdateHelper {
                 }
                 return 0;
             } catch (Exception ignore) {
-
+                // do nothing.
             }
             return -1;
         }
