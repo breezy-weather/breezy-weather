@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorRoot">
 
     <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyView
@@ -31,12 +32,22 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:descendantFocusability="blocksDescendants">
 
                     <include layout="@layout/container_main_base_view" />
                     <include layout="@layout/container_main_trend_first_card" />
                     <include layout="@layout/container_main_trend_second_card" />
                     <include layout="@layout/container_main_details_card" />
+
+                    <TextView
+                        android:id="@+id/activity_main_footer_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/little_margin"
+                        android:textColor="@color/colorTextDark2nd"
+                        style="@style/content_text"
+                        tools:text="AccuWeather.com"/>
 
                 </LinearLayout>
 

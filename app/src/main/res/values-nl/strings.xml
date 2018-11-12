@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="Nederlands">
+
+    <!-- app. -->
+    <string name="app_name">Weer</string>
+    <string name="geometric_weather">Geometric Weather</string>
+
+    <!-- keyword. -->
+    <string name="local">Lokaal</string>
+    <string name="default_location">Standaardlocatie</string>
+    <string name="live">Live</string>
+    <string name="today">Vandaag</string>
+    <string name="refresh_at">Vernieuwd om</string>
+    <string name="precipitation">Neerslag</string>
+    <string name="maxi_temp">Overdag</string>
+    <string name="mini_temp">\'s Nachts</string>
+    <string name="time">Tijd</string>
+    <string name="day">Overdag</string>
+    <string name="night">\'s Nachts</string>
+    <string name="wind">Wind</string>
+    <string name="sensible_temp">Gevoelstemperatuur</string>
+    <string name="humidity">Luchtvochtigheid</string>
+    <string name="uv_index">UV-index</string>
+    <string name="forecast">Voorspelling</string>
+    <string name="briefings">Kort overzicht</string>
+    <string name="daytime">Overdag</string>
+    <string name="nighttime">\'s Nachts</string>
+    <string name="publish_at">Gepubliceerd om</string>
+    <string name="feels_like">Voelt als</string>
+    <string name="exercise">运动指数</string>
+    <string name="follow_system">Volg systeem</string>
+    <string name="of_clock">:00</string>
+    <string name="yesterday">Gisteren</string>
+    <string name="tomorrow">Morgen</string>
+    <string name="week">Week</string>
+    <string name="week_1">Ma</string>
+    <string name="week_2">Di</string>
+    <string name="week_3">Wo</string>
+    <string name="week_4">Do</string>
+    <string name="week_5">Vr</string>
+    <string name="week_6">Za</string>
+    <string name="week_7">Zo</string>
+    <string name="wind_0">Stil</string>
+    <string name="wind_1">Zwak</string>
+    <string name="wind_2">Zwak</string>
+    <string name="wind_3">Matig</string>
+    <string name="wind_4">Matig</string>
+    <string name="wind_5">Vrij krachtig</string>
+    <string name="wind_6">Krachtig</string>
+    <string name="wind_7">Hard</string>
+    <string name="wind_8">Stormachtig</string>
+    <string name="wind_9">Storm</string>
+    <string name="wind_10">Zware storm</string>
+    <string name="wind_11">Zeer zware storm</string>
+    <string name="wind_12">Orkaan</string>
+    <string name="aqi_1">Schone lucht</string>
+    <string name="aqi_2">Frisse lucht</string>
+    <string name="aqi_3">Licht vervuild</string>
+    <string name="aqi_4">Gemiddeld vervuild</string>
+    <string name="aqi_5">Ernstig vervuild</string>
+    <string name="aqi_6">Gevaarlijk</string>
+    <string name="daily_overview">Dagelijks</string>
+    <string name="hourly_overview">Per uur</string>
+    <string name="life_details">Details</string>
+    <string name="next">Volgende</string>
+    <string name="done">Klaar</string>
+    <string name="cancel" tools:ignore="ButtonCase">Annuleren</string>
+    <string name="on">Aan</string>
+    <string name="off">Uit</string>
+    <string name="about_app">Over de app</string>
+    <string name="introduce">Introduceer</string>
+    <string name="email">E-mail</string>
+    <string name="donate">Doneer via Alipay</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">Vertalers</string>
+    <string name="thanks">Dank aan</string>
+    <string name="date_format_short">d-M</string>
+    <string name="date_format_long">d MMM</string>
+    <string name="date_format_widget_short">EEEE, d MMM</string>
+    <string name="date_format_widget_long">EEEE, d MMM</string>
+    <string name="date_format_widget_oreo_style">EEEE, d MMM │ </string>
+
+    <!-- about. -->
+    <string name="baidu_location">Baidu Location</string>
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
+    <string name="page_indicator">InkPageIndicator</string>
+    <string name="about_page_indicator">InkPageIndicator created by @nickbutcher for Plaid https://github.com/nickbutcher/plaid and backported by David Pacioianu for API 14+ (4.0+).</string>
+    <string name="circular_progress_view">CircularProgressView</string>
+    <string name="about_circular_progress_view">Material style circular progress bar for Android.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">Machtigingen</string>
+    <string name="feedback_request_location">Locatie</string>
+    <string name="feedback_request_location_in_background">Lokaliseren op de achtergrond.</string>
+    <string name="feedback_request_location_permission_success">Locatieverzoek geaccepteerd.</string>
+    <string name="feedback_request_location_permission_failed">Locatieverzoek niet geaccepteerd.</string>
+    <string name="feedback_location_failed">Locatie gefaald.</string>
+    <string name="feedback_get_weather_failed">Weerdata ophalen mislukt.</string>
+    <string name="feedback_view_style">Stijl.</string>
+    <string name="feedback_show_widget_card">Kaartachtergrond.</string>
+    <string name="feedback_hide_subtitle">Verberg ondertitel.</string>
+    <string name="feedback_subtitle_data">Ondertiteldata.</string>
+    <string name="feedback_black_text">Donkere tekst.</string>
+    <string name="feedback_click_toggle">Klik op het diagram om gegevens te wisselen.</string>
+    <string name="feedback_no_data">Geen data.</string>
+    <string name="feedback_collect_failed">Deze locatie bestaat al.</string>
+    <string name="feedback_collect_succeed">Locatie toevoegen gelukt.</string>
+    <string name="feedback_delete_succeed">Verwijderen locatie gelukt.</string>
+    <string name="feedback_location_list_cannot_be_null">Er moet één locatie in de lijst staan.</string>
+    <string name="feedback_search_location">Zoek een locatie of \"local\"…</string>
+    <string name="feedback_not_yet_location">Nog geen locatie…</string>
+    <string name="feedback_search_nothing">Zoek niets…</string>
+    <string name="feedback_initializing">Initialiseren…</string>
+    <string name="feedback_refresh_notification_after_back">Wordt van kracht als je terug bent op de startpagina.</string>
+    <string name="feedback_refresh_notification_now">Vernieuw nu.</string>
+    <string name="feedback_refresh_ui_after_refresh">Wordt van kracht na het vernieuwen van de data.</string>
+    <string name="feedback_restart">Wordt van kracht na herstart.</string>
+    <string name="feedback_readd_location">Voeg de locaties opnieuw toe.</string>
+    <string name="feedback_readd_location_after_changing_source">Voeg de locaties opnieuw toe nadat je de bron hebt veranderd.</string>
+
+    <!-- action -->
+    <string name="action_alert">Alarm</string>
+    <string name="action_manage">Beheer</string>
+    <string name="action_search">Zoek</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="action_about">Over</string>
+
+    <!-- widget -->
+    <string name="widget_day">Dagelijks</string>
+    <string name="widget_week">Wekelijks</string>
+    <string name="widget_day_week">Dagelijks + Wekelijks</string>
+    <string name="widget_clock_day_horizontal">Klok + Dagelijks (Horizontaal)</string>
+    <string name="widget_clock_day_details">Klok + Dagelijks (Details)</string>
+    <string name="widget_clock_day_vertical">Klok + Dagelijks (Verticaal)</string>
+    <string name="widget_clock_day_week">Klok + Dagelijks + Wekelijks</string>
+    <string name="widget_text">Tekst</string>
+    <string name="wait_refresh">Wachten</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">Standaard</string>
+    <string name="settings_title_background_free">Achtergrondvrij</string>
+    <string name="settings_title_chinese_source">Chinese weeerbron</string>
+    <string name="settings_title_ui_style">UI stijl.</string>
+    <string name="settings_title_card_order">Kaartvolgorde.</string>
+    <string name="settings_title_gravity_sensor_switch">Gebruik sensoren.</string>
+    <string name="settings_title_navigationBar_color">Gekleurde navigatiebalk.</string>
+    <string name="settings_navigationBar_color_on">Laat themakleur zien.</string>
+    <string name="settings_navigationBar_color_off">Donker.</string>
+    <string name="settings_language">Taal.</string>
+    <string name="settings_title_fahrenheit">Fahrenheit.</string>
+    <string name="settings_title_imperial">Imperial units.</string>
+    <string name="settings_title_refresh_rate">Vernieuwfrequentie.</string>
+    <string name="settings_title_alert_notification_switch">Stuur alarmnotificaties.</string>
+    <string name="settings_title_permanent_service">Permanente service.</string>
+    <string name="settings_category_forecast">Voorspelling.</string>
+    <string name="settings_title_forecast_today">Voorspelling voor vandaag.</string>
+    <string name="settings_title_forecast_today_time">Tijd voor voorspelling van vandaag.</string>
+    <string name="settings_title_forecast_tomorrow">Voorspelling voor morgen.</string>
+    <string name="settings_title_forecast_tomorrow_time">Tijd voor voorspelling van morgen.</string>
+    <string name="settings_category_widget">Widget</string>
+    <string name="settings_title_icon_style">Icoonstijl.</string>
+    <string name="settings_title_click_widget_to_refresh">Vernieuw widget als je erop klikt.</string>
+    <string name="settings_category_notification">Notificatie</string>
+    <string name="settings_title_notification">Stuur notificatie.</string>
+    <string name="settings_title_notification_temp_icon">Laat temperatuur zien als klein icoon.</string>
+    <string name="settings_title_notification_text_color">Tekstkleur.</string>
+    <string name="settings_title_notification_background">Achtergrondkleur.</string>
+    <string name="settings_notification_background_on">Hetzelfde als snelle instellingen in AOSP.</string>
+    <string name="settings_notification_background_off">Volg systeem.</string>
+    <string name="settings_title_notification_can_be_cleared">Te verwijderen.</string>
+    <string name="settings_notification_can_be_cleared_on">Kan verwijderd worden.</string>
+    <string name="settings_notification_can_be_cleared_off">Kan niet verwijderd worden.</string>
+    <string name="settings_title_notification_hide_icon">Verberg notificatieicoon.</string>
+    <string name="settings_notification_hide_icon_on">Verborgen.</string>
+    <string name="settings_notification_hide_icon_off">Zichtbaar.</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Verberg op vergrendelscherm.</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Verborgen.</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Zichtbaar.</string>
+    <string name="settings_title_notification_hide_big_view">Verberg weekvoorspelling.</string>
+    <string name="settings_notification_hide_big_view_on">Verborgen.</string>
+    <string name="settings_notification_hide_big_view_off">Zichtbaar.</string>
+
+</resources>

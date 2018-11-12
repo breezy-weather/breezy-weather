@@ -39,7 +39,7 @@ public class AboutAppLink {
                 "mailto:wangdayeeeeee@gmail.com",
                 true));
         list.add(new AboutAppLink(
-                R.drawable.ic_thx,
+                R.drawable.ic_donate,
                 context.getString(R.string.donate),
                 "",
                 false));

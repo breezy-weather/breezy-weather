@@ -23,14 +23,57 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
  * */
 
 public class CMWeatherProviderService extends WeatherProviderService
-        implements LocationHelper.OnRequestLocationListener,
-        LocationHelper.OnRequestWeatherLocationListener, WeatherHelper.OnRequestWeatherListener {
+        implements WeatherHelper.OnRequestWeatherListener {
 
     @Nullable
     private ServiceRequest request;
 
     private LocationHelper locationHelper;
     private WeatherHelper weatherHelper;
+
+    private LocationHelper.OnRequestLocationListener locationListener
+            = new LocationHelper.OnRequestLocationListener() {
+        @Override
+        public void requestLocationSuccess(Location requestLocation, boolean locationChanged) {
+            if (request != null) {
+                weatherHelper.requestWeather(
+                        CMWeatherProviderService.this,
+                        requestLocation,
+                        CMWeatherProviderService.this);
+            }
+        }
+
+        @Override
+        public void requestLocationFailed(Location requestLocation) {
+            if (request != null) {
+                request.fail();
+            }
+        }
+    };
+
+    private WeatherHelper.OnRequestLocationListener weatherLocationListener
+            = new WeatherHelper.OnRequestLocationListener() {
+        @Override
+        public void requestLocationSuccess(String query, List<Location> locationList) {
+            if (request != null) {
+                if (locationList != null && locationList.size() > 0) {
+                    weatherHelper.requestWeather(
+                            CMWeatherProviderService.this,
+                            locationList.get(0),
+                            CMWeatherProviderService.this);
+                } else {
+                    requestLocationFailed(query);
+                }
+            }
+        }
+
+        @Override
+        public void requestLocationFailed(String query) {
+            if (request != null) {
+                request.fail();
+            }
+        }
+    };
 
     @Override
     public void onCreate() {
@@ -79,12 +122,12 @@ public class CMWeatherProviderService extends WeatherProviderService
     // control.
 
     private void requestLocation() {
-        locationHelper.requestLocation(this, Location.buildLocal(), this);
+        locationHelper.requestLocation(this, Location.buildLocal(), locationListener);
     }
 
     private void requestWeather(String cityName) {
         if (!TextUtils.isEmpty(cityName)) {
-            locationHelper.requestWeatherLocation(this, cityName, false, this);
+            weatherHelper.requestLocation(this, cityName, weatherLocationListener);
         } else if (request != null) {
             request.fail();
         }
@@ -97,42 +140,6 @@ public class CMWeatherProviderService extends WeatherProviderService
     }
 
     // interface.
-
-    // on request location listener.
-
-    @Override
-    public void requestLocationSuccess(Location requestLocation, boolean locationChanged) {
-        if (request != null) {
-            weatherHelper.requestWeather(this, requestLocation, this);
-        }
-    }
-
-    @Override
-    public void requestLocationFailed(Location requestLocation) {
-        if (request != null) {
-            request.fail();
-        }
-    }
-
-    // on request weather location listener.
-
-    @Override
-    public void requestWeatherLocationSuccess(String query, List<Location> locationList) {
-        if (request != null) {
-            if (locationList != null && locationList.size() > 0) {
-                weatherHelper.requestWeather(this, locationList.get(0), this);
-            } else {
-                requestWeatherLocationFailed(query);
-            }
-        }
-    }
-
-    @Override
-    public void requestWeatherLocationFailed(String query) {
-        if (request != null) {
-            request.fail();
-        }
-    }
 
     // on request weather listener.
 

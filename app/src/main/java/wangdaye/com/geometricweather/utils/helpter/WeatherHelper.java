@@ -2,17 +2,22 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.data.service.weather.AccuWeatherService;
+import wangdaye.com.geometricweather.data.service.weather.CNWeatherService;
 import wangdaye.com.geometricweather.data.service.weather.WeatherService;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 /**
  * Weather kind tools.
@@ -35,12 +40,50 @@ public class WeatherHelper {
     public static final String KIND_THUNDER = "THUNDER";
     public static final String KIND_THUNDERSTORM = "THUNDERSTORM";
 
-    public WeatherHelper() {
-        weatherService = new WeatherService();
+    private void setWeatherService(String query) {
+        if (LanguageUtils.isChinese(query)) {
+            switch (GeometricWeather.getInstance().getChineseSource()) {
+                case "cn":
+                    weatherService = new CNWeatherService();
+                    break;
+
+                default:
+                    weatherService = new AccuWeatherService();
+                    break;
+            }
+        } else {
+            weatherService = new AccuWeatherService();
+        }
     }
 
-    public void requestWeather(Context c, Location location, OnRequestWeatherListener l) {
-        weatherService = WeatherService.getService().requestWeather(c, location, l);
+    public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
+        setWeatherService(location.city);
+        weatherService.requestWeather(c, location, new WeatherService.RequestWeatherCallback() {
+            @Override
+            public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+                l.requestWeatherSuccess(weather, requestLocation);
+            }
+
+            @Override
+            public void requestWeatherFailed(Location requestLocation) {
+                l.requestWeatherFailed(requestLocation);
+            }
+        });
+    }
+
+    public void requestLocation(Context c, String query, @NonNull final OnRequestLocationListener l) {
+        setWeatherService(query);
+        weatherService.requestLocation(c, query, new WeatherService.RequestLocationCallback() {
+            @Override
+            public void requestLocationSuccess(String query, List<Location> locationList) {
+                l.requestLocationSuccess(query, locationList);
+            }
+
+            @Override
+            public void requestLocationFailed(String query) {
+                l.requestLocationFailed(query);
+            }
+        });
     }
 
     public void cancel() {
@@ -979,5 +1022,10 @@ public class WeatherHelper {
     public interface OnRequestWeatherListener {
         void requestWeatherSuccess(Weather weather, Location requestLocation);
         void requestWeatherFailed(Location requestLocation);
+    }
+
+    public interface OnRequestLocationListener {
+        void requestLocationSuccess(String query, List<Location> locationList);
+        void requestLocationFailed(String query);
     }
 }

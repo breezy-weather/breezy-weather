@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
@@ -26,6 +27,7 @@ import wangdaye.com.geometricweather.utils.manager.ThreadManager;
  * Android Location service.
  * */
 
+@Deprecated
 @SuppressLint("MissingPermission")
 public class AndroidLocationService extends LocationService {
 
@@ -86,7 +88,7 @@ public class AndroidLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, LocationCallback callback) {
+    public void requestLocation(Context context, @NonNull LocationCallback callback) {
         callbackList.add(callback);
 
         if (working) {
@@ -193,7 +195,7 @@ public class AndroidLocationService extends LocationService {
                         result.city = addressList.get(0).getSubAdminArea();
                     }
                     result.province = addressList.get(0).getAdminArea();
-                    result.contry = addressList.get(0).getCountryName();
+                    result.country = addressList.get(0).getCountryName();
                 }
             }
 

@@ -31,9 +31,9 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.ui.adapter.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
+import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
  * Search activity.
@@ -41,7 +41,7 @@ import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 
 public class SearcActivity extends GeoActivity
         implements View.OnClickListener, LocationAdapter.OnLocationItemClickListener,
-        EditText.OnEditorActionListener, LocationHelper.OnRequestWeatherLocationListener {
+        EditText.OnEditorActionListener, WeatherHelper.OnRequestLocationListener {
 
     private CoordinatorLayout container;
     private RelativeLayout searchContainer;
@@ -53,7 +53,7 @@ public class SearcActivity extends GeoActivity
     private LocationAdapter adapter;
     private List<Location> locationList;
 
-    private LocationHelper locationHelper;
+    private WeatherHelper weatherHelper;
     private String query = "";
 
     private int state = STATE_SHOWING;
@@ -153,7 +153,7 @@ public class SearcActivity extends GeoActivity
                 this);
         this.locationList = DatabaseHelper.getInstance(this).readLocationList();
 
-        this.locationHelper = new LocationHelper(this);
+        this.weatherHelper = new WeatherHelper();
     }
 
     private void initWidget() {
@@ -289,7 +289,7 @@ public class SearcActivity extends GeoActivity
                 finishSelf(true);
             } else {
                 setState(STATE_LOADING);
-                locationHelper.requestWeatherLocation(this, query, true, this);
+                weatherHelper.requestLocation(this, query, this);
             }
         }
         return true;
@@ -298,7 +298,7 @@ public class SearcActivity extends GeoActivity
     // on request weather location listener.
 
     @Override
-    public void requestWeatherLocationSuccess(String query, List<Location> locationList) {
+    public void requestLocationSuccess(String query, List<Location> locationList) {
         if (this.query.equals(query)) {
             adapter.itemList.clear();
             adapter.itemList.addAll(locationList);
@@ -311,7 +311,7 @@ public class SearcActivity extends GeoActivity
     }
 
     @Override
-    public void requestWeatherLocationFailed(String query) {
+    public void requestLocationFailed(String query) {
         if (this.query.equals(query)) {
             adapter.itemList.clear();
             adapter.itemList.addAll(locationList);

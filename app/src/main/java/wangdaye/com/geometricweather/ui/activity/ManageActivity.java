@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
@@ -45,8 +46,8 @@ public class ManageActivity extends GeoActivity
         }
 
         @Override
-        public boolean onMove(RecyclerView recyclerView,
-                              RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        public boolean onMove(@NonNull RecyclerView recyclerView,
+                              @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition = target.getAdapterPosition();
 
@@ -56,23 +57,36 @@ public class ManageActivity extends GeoActivity
                 ShortcutsManager.refreshShortcuts(ManageActivity.this, adapter.itemList);
             }
 
+            ((LocationAdapter.ViewHolder) viewHolder)
+                    .drawDrag(ManageActivity.this, false);
             return true;
         }
 
         @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             deleteLocation(viewHolder.getAdapterPosition());
         }
 
         @Override
-        public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+        public void onChildDraw(@NonNull Canvas c,
+                                @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                                 float dX, float dY, int actionState, boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             switch (actionState) {
                 case ItemTouchHelper.ACTION_STATE_SWIPE:
-                    final float alpha = 1 - Math.abs(dX) / (float) viewHolder.itemView.getWidth();
-                    viewHolder.itemView.setAlpha(alpha);
-                    viewHolder.itemView.setTranslationX(dX);
+                    ((LocationAdapter.ViewHolder) viewHolder)
+                            .drawSwipe(dX);
+                    break;
+
+                case ItemTouchHelper.ACTION_STATE_DRAG:
+                    ((LocationAdapter.ViewHolder) viewHolder)
+                            .drawDrag(ManageActivity.this, dY != 0);
+                    break;
+
+                case ItemTouchHelper.ACTION_STATE_IDLE:
+                    ((LocationAdapter.ViewHolder) viewHolder)
+                            .drawSwipe(0)
+                            .drawDrag(ManageActivity.this, false);
                     break;
             }
         }

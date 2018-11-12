@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Circular sky</item>
+        <item>Material animation</item>
+    </string-array>
+
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>Dagelijks eerst</item>
+        <item>Per uur eerst</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>0:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Donker</item>
+        <item>Grijs</item>
+        <item>Licht</item>
+    </string-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Rechthoek</item>
+        <item>Symmetrisch</item>
+        <item>Tile</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+        <item>Verticaal</item>
+        <item>Oreo</item>
+    </string-array>
+
+    <!-- icon style. -->
+    <string-array name="icon_styles">
+        <item>Material</item>
+        <item>Minimal</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Refresh time</item>
+        <item>AQI (Invalid in some area.)</item>
+        <item>Wind</item>
+        <item>Gevoelstemperatuur</item>
+        <item>Maankalender</item>
+    </string-array>
+
+</resources>

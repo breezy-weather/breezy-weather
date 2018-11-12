@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.utils.remoteView.WidgetTextUtils;
 import wangdaye.com.geometricweather.utils.remoteView.WidgetWeekUtils;
 
 /**
- * Normal updateRotation service.
+ * Normal update service.
  * */
 
 public class NormalUpdateService extends UpdateService {

@@ -72,6 +72,9 @@ public class LanguageUtils {
             case "italian":
                 return new Locale("it");
 
+            case "dutch":
+                return new Locale("nl");
+
             default:
                 return new Locale("en");
         }

@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.ui.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -56,7 +57,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
 
         if (!TextUtils.isEmpty(weather.index.briefings[1])) {
-            iconList.add(R.drawable.ic_nespaper);
+            iconList.add(R.drawable.ic_briefing);
             detailList.add(weather.index.briefings);
         }
 
@@ -71,7 +72,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
 
         if (!TextUtils.isEmpty(weather.index.humidities[1])) {
-            iconList.add(R.drawable.ic_leaf);
+            iconList.add(R.drawable.ic_flower);
             detailList.add(new String[] {
                     context.getString(R.string.sensible_temp) + " : "
                             + ValueUtils.buildCurrentTemp(
@@ -82,19 +83,20 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
 
         if (!TextUtils.isEmpty(weather.index.uvs[1])) {
-            iconList.add(R.drawable.ic_sun);
+            iconList.add(R.drawable.ic_uv);
             detailList.add(weather.index.uvs);
         }
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_details, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.onBindView(iconList.get(position), detailList.get(position));
     }
 

@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -14,7 +15,6 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
  * Baidu location service.
@@ -43,7 +43,7 @@ public class BaiduLocationService extends LocationService {
                         result.district = bdLocation.getDistrict();
                         result.city = bdLocation.getCity();
                         result.province = bdLocation.getProvince();
-                        result.contry = bdLocation.getCountry();
+                        result.country = bdLocation.getCountry();
                         result.latitude = String.valueOf(bdLocation.getLatitude());
                         result.longitude = String.valueOf(bdLocation.getLongitude());
                         result.inChina = bdLocation.getLocationWhere() == BDLocation.LOCATION_WHERE_IN_CN;
@@ -64,37 +64,35 @@ public class BaiduLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, LocationCallback callback){
+    public void requestLocation(Context context, @NonNull LocationCallback callback){
         this.callback = callback;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && manager != null) {
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID_LOCATION,
-                    context.getString(R.string.app_name) + " " + context.getString(R.string.feedback_request_location),
-                    NotificationManager.IMPORTANCE_MIN);
-            channel.setShowBadge(false);
-            channel.setLightColor(ContextCompat.getColor(
-                    context,
-                    TimeManager.getInstance(context).isDayTime() ? R.color.lightPrimary_5 : R.color.darkPrimary_5));
-            manager.createNotificationChannel(channel);
-        }
-
         LocationClientOption option = new LocationClientOption();
-        option.setLocationMode(LocationClientOption.LocationMode.Battery_Saving);//可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
-        option.setCoorType("wgs84");//可选，默认gcj02，设置返回的定位结果坐标系
-        option.setScanSpan(0);//可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
-        option.setIsNeedAddress(true);//可选，设置是否需要地址信息，默认不需要
-        option.setOpenGps(false);//可选，默认false,设置是否使用gps
-        option.setLocationNotify(false);//可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
-        option.setIsNeedLocationDescribe(false);//可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
-        option.setIsNeedLocationPoiList(false);//可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
-        option.setIgnoreKillProcess(false);//可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
-        option.SetIgnoreCacheException(true);//可选，默认false，设置是否收集CRASH信息，默认收集
-        option.setEnableSimulateGps(false);//可选，默认false，设置是否需要过滤gps仿真结果，默认需要
-        option.setWifiCacheTimeOut(5*60*1000);//可选，如果设置了该接口，首次启动定位时，会先判断当前WiFi是否超出有效期，若超出有效期，会先重新扫描WiFi，然后定位
+        option.setLocationMode(LocationClientOption.LocationMode.Battery_Saving); // 可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+        option.setCoorType("wgs84"); // 可选，默认gcj02，设置返回的定位结果坐标系
+        option.setScanSpan(0); // 可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
+        option.setIsNeedAddress(true); // 可选，设置是否需要地址信息，默认不需要
+        option.setOpenGps(false); // 可选，默认false,设置是否使用gps
+        option.setLocationNotify(false); // 可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
+        option.setIsNeedLocationDescribe(false); // 可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
+        option.setIsNeedLocationPoiList(false); // 可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
+        option.setIgnoreKillProcess(false); // 可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
+        option.SetIgnoreCacheException(true); // 可选，默认false，设置是否收集CRASH信息，默认收集
+        option.setEnableSimulateGps(false); // 可选，默认false，设置是否需要过滤gps仿真结果，默认需要
+        option.setWifiCacheTimeOut(5 * 60 * 1000); // 可选，如果设置了该接口，首次启动定位时，会先判断当前WiFi是否超出有效期，若超出有效期，会先重新扫描WiFi，然后定位
         client.setLocOption(option);
         client.registerLocationListener(listener);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (manager != null) {
+                NotificationChannel channel = new NotificationChannel(
+                        CHANNEL_ID_LOCATION,
+                        context.getString(R.string.app_name) + " " + context.getString(R.string.feedback_request_location),
+                        NotificationManager.IMPORTANCE_MIN);
+                channel.setShowBadge(false);
+                channel.setLightColor(ContextCompat.getColor(context, R.color.colorPrimary));
+                manager.createNotificationChannel(channel);
+            }
             client.enableLocInForeground(
                     LOCATION_NOTIFICATION_ID,
                     new NotificationCompat.Builder(context, CHANNEL_ID_LOCATION)
@@ -103,9 +101,7 @@ public class BaiduLocationService extends LocationService {
                             .setContentText(context.getString(R.string.feedback_request_location_in_background))
                             .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
                             .setPriority(NotificationCompat.PRIORITY_MIN)
-                            .setColor(ContextCompat.getColor(
-                                    context,
-                                    TimeManager.getInstance(context).isDayTime() ? R.color.lightPrimary_5 : R.color.darkPrimary_5))
+                            .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                             .setAutoCancel(true)
                             .build());
         }

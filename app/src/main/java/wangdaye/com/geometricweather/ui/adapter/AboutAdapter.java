@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +62,9 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         modelList.addAll(AboutAppLibrary.buildLibraryList(context));
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Object model = modelList.get(viewType);
         if (model instanceof Integer) {
             if (((Integer) model) == 1) {
@@ -96,7 +96,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.onBindView(context, modelList.get(position));
     }
 
@@ -117,7 +117,7 @@ class HeaderHolder extends AboutAdapter.ViewHolder {
 
     HeaderHolder(Context context, View itemView) {
         super(context, itemView);
-        this.image = (ImageView) itemView.findViewById(R.id.item_about_header_appIcon);
+        this.image = itemView.findViewById(R.id.item_about_header_appIcon);
     }
 
     @Override
@@ -134,7 +134,7 @@ class TitleHolder extends AboutAdapter.ViewHolder {
 
     TitleHolder(Context context, View itemView) {
         super(context, itemView);
-        this.title = (TextView) itemView.findViewById(R.id.item_about_title);
+        this.title = itemView.findViewById(R.id.item_about_title);
     }
 
     @Override
@@ -155,8 +155,8 @@ class LinkHolder extends AboutAdapter.ViewHolder
     LinkHolder(Context context, View itemView) {
         super(context, itemView);
         itemView.findViewById(R.id.item_about_link).setOnClickListener(this);
-        this.icon = (ImageView) itemView.findViewById(R.id.item_about_link_icon);
-        this.title = (TextView) itemView.findViewById(R.id.item_about_link_text);
+        this.icon = itemView.findViewById(R.id.item_about_link_icon);
+        this.title = itemView.findViewById(R.id.item_about_link_text);
     }
 
     @Override
@@ -196,9 +196,9 @@ class TranslatorHolder extends AboutAdapter.ViewHolder implements View.OnClickLi
     TranslatorHolder(Context context, View itemView) {
         super(context, itemView);
         itemView.findViewById(R.id.item_about_translator).setOnClickListener(this);
-        this.title = (TextView) itemView.findViewById(R.id.item_about_translator_title);
-        this.content = (TextView) itemView.findViewById(R.id.item_about_translator_subtitle);
-        this.flag = (ImageView) itemView.findViewById(R.id.item_about_translator_flag);
+        this.title = itemView.findViewById(R.id.item_about_translator_title);
+        this.content = itemView.findViewById(R.id.item_about_translator_subtitle);
+        this.flag = itemView.findViewById(R.id.item_about_translator_flag);
     }
 
     @Override
@@ -230,8 +230,8 @@ class LibraryHolder extends AboutAdapter.ViewHolder implements View.OnClickListe
     LibraryHolder(Context context, View itemView) {
         super(context, itemView);
         itemView.findViewById(R.id.item_about_library).setOnClickListener(this);
-        this.title = (TextView) itemView.findViewById(R.id.item_about_library_title);
-        this.content = (TextView) itemView.findViewById(R.id.item_about_library_content);
+        this.title = itemView.findViewById(R.id.item_about_library_title);
+        this.content = itemView.findViewById(R.id.item_about_library_content);
     }
 
     @Override

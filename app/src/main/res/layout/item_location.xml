@@ -1,52 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_location"
+    android:id="@+id/item_location_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorRoot"
+    android:background="@color/colorLevel_4"
     android:stateListAnimator="@animator/touch_raise"
-    tools:targetApi="lollipop">
+    tools:ignore="UnusedAttribute">
 
-    <ImageButton
-        android:id="@+id/item_location_deleteBtn"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_close"
+    <ImageView
+        android:id="@+id/item_location_deleteIconLeft"
+        android:src="@drawable/ic_delete"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:padding="@dimen/normal_margin"
         android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        style="@style/material_image_button"
-        tools:ignore="ContentDescription" />
+        android:layout_alignParentLeft="true"
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
-    <TextView
-        android:id="@+id/item_location_title"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/normal_margin"
-        android:layout_marginStart="@dimen/normal_margin"
-        android:layout_marginBottom="2dp"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@id/item_location_deleteBtn"
-        android:maxLines="1"
-        android:textColor="@color/colorTextContent"
-        android:gravity="start"
-        android:textAlignment="gravity"
-        style="@style/title_text"
-        tools:text="本地"
-        tools:ignore="RtlHardcoded" />
+    <ImageView
+        android:id="@+id/item_location_deleteIconRight"
+        android:src="@drawable/ic_delete"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:padding="@dimen/normal_margin"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
-    <TextView
-        android:id="@+id/item_location_subtitle"
+    <RelativeLayout
+        android:id="@+id/item_location_item"
         android:layout_width="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/item_location_title"
-        android:layout_marginBottom="@dimen/normal_margin"
-        android:layout_marginStart="@dimen/normal_margin"
-        android:layout_toStartOf="@id/item_location_deleteBtn"
-        android:maxLines="1"
-        android:gravity="start"
-        android:textAlignment="gravity"
-        style="@style/subtitle_text"
-        tools:text="中国 山东 青岛 CN101120201"
-        tools:ignore="RtlHardcoded" />
+        android:layout_height="wrap_content"
+        android:background="@color/colorRoot">
+
+        <ImageButton
+            android:id="@+id/item_location_deleteBtn"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_close"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            style="@style/material_image_button"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/item_location_title"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginBottom="2dp"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/item_location_deleteBtn"
+            android:maxLines="1"
+            android:textColor="@color/colorTextContent"
+            android:gravity="start"
+            android:textAlignment="gravity"
+            style="@style/title_text"
+            tools:text="本地"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/item_location_subtitle"
+            android:layout_width="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/item_location_title"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_toStartOf="@id/item_location_deleteBtn"
+            android:maxLines="1"
+            android:gravity="start"
+            android:textAlignment="gravity"
+            style="@style/subtitle_text"
+            tools:text="中国 山东 青岛 CN101120201"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
 

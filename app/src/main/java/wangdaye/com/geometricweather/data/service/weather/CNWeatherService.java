@@ -2,12 +2,11 @@ package wangdaye.com.geometricweather.data.service.weather;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,8 +24,6 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.utils.FileUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
-import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
@@ -34,7 +31,7 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
  * CN weather service.
  * */
 
-public class CNWeatherService {
+public class CNWeatherService extends WeatherService {
 
     private Handler handler;
     private final Object handlerLock = new Object();
@@ -46,19 +43,19 @@ public class CNWeatherService {
         private Context context;
         private String[] queries;
         private boolean fuzzy;
-        private LocationHelper.OnRequestWeatherLocationListener listener;
+        private RequestLocationCallback callback;
 
         SearchCityRunnable(Context context, String[] queries, boolean fuzzy,
-                           LocationHelper.OnRequestWeatherLocationListener l) {
+                           RequestLocationCallback callback) {
             this.context = context;
             this.queries = queries;
             this.fuzzy = fuzzy;
-            this.listener = l;
+            this.callback = callback;
         }
 
         @Override
         public void run() {
-            if (listener == null) {
+            if (callback == null) {
                 return;
             }
 
@@ -123,9 +120,9 @@ public class CNWeatherService {
                             @Override
                             public void run() {
                                 if (finalLocationList.size() > 0) {
-                                    listener.requestWeatherLocationSuccess(finalQuery, finalLocationList);
+                                    callback.requestLocationSuccess(finalQuery, finalLocationList);
                                 } else {
-                                    listener.requestWeatherLocationFailed(finalQuery);
+                                    callback.requestLocationFailed(finalQuery);
                                 }
                                 handler = null;
                             }
@@ -136,78 +133,89 @@ public class CNWeatherService {
         }
     }
 
-    void requestWeather(final Context context, final Location location,
-                        final WeatherHelper.OnRequestWeatherListener l) {
+    @Override
+    public void requestWeather(final Context context,
+                               final Location location, @NonNull final RequestWeatherCallback callback) {
         Call<CNWeatherResult> getWeather = buildApi().getWeather(location.cityId);
         getWeather.enqueue(new Callback<CNWeatherResult>() {
             @Override
             public void onResponse(Call<CNWeatherResult> call, Response<CNWeatherResult> response) {
-                if (l != null) {
-                    if (response.isSuccessful() && response.body() != null) {
-                        Weather weather = new Weather();
-                        weather.base.buildBase(context, location, response.body());
-                        weather.realTime.buildRealTime(response.body());
-                        while (response.body().weather.size() > 0
-                                && TimeManager.compareDate(response.body().weather.get(0).date, response.body().realtime.date) < 0) {
-                            if (response.body().weather.size() > 1
-                                    && TimeManager.compareDate(response.body().weather.get(1).date, response.body().realtime.date) == 0) {
-                                location.history = new History();
-                                location.history.cityId = location.cityId;
-                                location.history.city = location.city;
-                                location.history.date = response.body().weather.get(0).date;
-                                location.history.maxiTemp = Integer.parseInt(response.body().weather.get(0).info.day.get(2));
-                                location.history.miniTemp = Integer.parseInt(response.body().weather.get(0).info.night.get(2));
-                            }
-                            response.body().weather.remove(0);
+                if (response.isSuccessful() && response.body() != null) {
+                    Weather weather = new Weather();
+                    weather.base.buildBase(context, location, response.body());
+                    weather.realTime.buildRealTime(response.body());
+                    while (response.body().weather.size() > 0
+                            && TimeManager.compareDate(response.body().weather.get(0).date, response.body().realtime.date) < 0) {
+                        if (response.body().weather.size() > 1
+                                && TimeManager.compareDate(response.body().weather.get(1).date, response.body().realtime.date) == 0) {
+                            location.history = new History();
+                            location.history.cityId = location.cityId;
+                            location.history.city = location.city;
+                            location.history.date = response.body().weather.get(0).date;
+                            location.history.maxiTemp = Integer.parseInt(response.body().weather.get(0).info.day.get(2));
+                            location.history.miniTemp = Integer.parseInt(response.body().weather.get(0).info.night.get(2));
                         }
-                        for (int i = 0; i < response.body().weather.size(); i ++) {
-                            weather.dailyList.add(new Daily().buildDaily(context, response.body().weather.get(i)));
-                        }
-                        for (int i = 0; i < response.body().hourly_forecast.size(); i ++) {
-                            weather.hourlyList.add(
-                                    new Hourly()
-                                            .buildHourly(
-                                                    context,
-                                                    response.body().weather.get(0),
-                                                    response.body().hourly_forecast.get(i)));
-                        }
-                        weather.aqi.buildAqi(context, response.body());
-                        weather.index.buildIndex(context, response.body());
-                        for (int i = 0; i < response.body().alert.size(); i ++) {
-                            for (int j = i + 1; j < response.body().alert.size(); j ++) {
-                                if (response.body().alert.get(i).alarmTp1.equals(response.body().alert.get(j).alarmTp1)
-                                        && response.body().alert.get(i).alarmTp2.equals(response.body().alert.get(j).alarmTp2)) {
-                                    response.body().alert.remove(j);
-                                    j --;
-                                }
-                            }
-                        }
-                        for (int i = 0; i < response.body().alert.size(); i ++) {
-                            weather.alertList.add(new Alert().buildAlert(context, response.body().alert.get(i)));
-                        }
-                        l.requestWeatherSuccess(weather, location);
-                    } else {
-                        l.requestWeatherFailed(location);
+                        response.body().weather.remove(0);
                     }
+                    for (int i = 0; i < response.body().weather.size(); i ++) {
+                        weather.dailyList.add(new Daily().buildDaily(context, response.body().weather.get(i)));
+                    }
+                    for (int i = 0; i < response.body().hourly_forecast.size(); i ++) {
+                        weather.hourlyList.add(
+                                new Hourly()
+                                        .buildHourly(
+                                                context,
+                                                response.body().weather.get(0),
+                                                response.body().hourly_forecast.get(i)));
+                    }
+                    weather.aqi.buildAqi(context, response.body());
+                    weather.index.buildIndex(context, response.body());
+                    for (int i = 0; i < response.body().alert.size(); i ++) {
+                        for (int j = i + 1; j < response.body().alert.size(); j ++) {
+                            if (response.body().alert.get(i).alarmTp1.equals(response.body().alert.get(j).alarmTp1)
+                                    && response.body().alert.get(i).alarmTp2.equals(response.body().alert.get(j).alarmTp2)) {
+                                response.body().alert.remove(j);
+                                j --;
+                            }
+                        }
+                    }
+                    for (int i = 0; i < response.body().alert.size(); i ++) {
+                        weather.alertList.add(new Alert().buildAlert(context, response.body().alert.get(i)));
+                    }
+                    callback.requestWeatherSuccess(weather, location);
+                } else {
+                    callback.requestWeatherFailed(location);
                 }
             }
 
             @Override
             public void onFailure(Call<CNWeatherResult> call, Throwable t) {
-                if (l != null) {
-                    l.requestWeatherFailed(location);
-                }
+                callback.requestWeatherFailed(location);
             }
         });
         call = getWeather;
     }
 
-    void requestLocation(Context context, String[] queries, boolean fuzzy,
-                         LocationHelper.OnRequestWeatherLocationListener l) {
+    @Override
+    public void requestLocation(Context context, String query, @NonNull RequestLocationCallback callback) {
         handler = new Handler();
-        ThreadManager.getInstance().execute(new SearchCityRunnable(context, queries, fuzzy, l));
+        ThreadManager.getInstance()
+                .execute(new SearchCityRunnable(context, new String[] {query}, true, callback));
     }
 
+    @Override
+    public void requestLocation(Context context, String[] queries, @NonNull RequestLocationCallback callback) {
+        handler = new Handler();
+        ThreadManager.getInstance()
+                .execute(new SearchCityRunnable(context, queries, false, callback));
+    }
+
+    @Override
+    public void requestLocation(Context context, String lat, String lon, @NonNull RequestLocationCallback callback) {
+        // do nothing.
+    }
+
+    @Override
     public void cancel() {
         if (handler != null) {
             synchronized (handlerLock) {
@@ -222,24 +230,12 @@ public class CNWeatherService {
         }
     }
 
-    public static CNWeatherService getService() {
-        return new CNWeatherService();
-    }
-
     private CNWeatherApi buildApi() {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.CN_WEATHER_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(buildClient())
+                .client(getClientBuilder().build())
                 .build()
                 .create((CNWeatherApi.class));
-    }
-
-    private OkHttpClient buildClient() {
-        return new OkHttpClient.Builder()
-                .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(15, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .build();
     }
 }

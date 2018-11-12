@@ -47,6 +47,7 @@
         <item>Српски</item>
         <item>Español</item>
         <item>Italiano</item>
+        <item>Dutch</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -62,6 +63,7 @@
         <item>serbian</item>
         <item>spanish</item>
         <item>italian</item>
+        <item>dutch</item>
     </string-array>
 
     <!-- automatic refresh rate. -->

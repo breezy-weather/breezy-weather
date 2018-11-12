@@ -76,7 +76,7 @@ public class Base {
                 if (hour == 0) {
                     hour = 24;
                 }
-                String suffix = hour < 13 ? "AM" : "PM";
+                String suffix = hour == 24 || hour < 13 ? "AM" : "PM";
                 if (hour > 12) {
                     hour -= 12;
                 }

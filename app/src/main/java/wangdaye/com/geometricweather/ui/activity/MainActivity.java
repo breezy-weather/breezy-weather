@@ -46,6 +46,7 @@ import wangdaye.com.geometricweather.ui.widget.trendView.TrendViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
@@ -110,6 +111,8 @@ public class MainActivity extends GeoActivity
 
     private TextView detailsTitle;
     private NoneSlipRecyclerView detailRecyclerView;
+
+    private TextView footerText;
 
     private AnimatorSet initAnimator;
 
@@ -314,6 +317,7 @@ public class MainActivity extends GeoActivity
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initWidget() {
         this.handler = new SafeHandler<>(this);
 
@@ -393,6 +397,8 @@ public class MainActivity extends GeoActivity
 
         this.detailsTitle = findViewById(R.id.container_main_details_card_title);
         this.detailRecyclerView = findViewById(R.id.container_main_details_card_recyclerView);
+
+        this.footerText = findViewById(R.id.activity_main_footer_text);
 
         this.indicator = findViewById(R.id.activity_main_indicator);
     }
@@ -487,7 +493,7 @@ public class MainActivity extends GeoActivity
             timeIcon.setImageResource(R.drawable.ic_alert);
         }
         refreshTime.setText(weather.base.time);
-        
+
         if (weather.alertList.size() == 0) {
             alertView.setVisibility(View.GONE);
             alertView.stop();
@@ -518,6 +524,13 @@ public class MainActivity extends GeoActivity
 
         detailRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailRecyclerView.setAdapter(new DetailsAdapter(this, weather));
+
+        if (LanguageUtils.isChinese(locationNow.city)
+                && GeometricWeather.getInstance().getChineseSource().equals("cn")) {
+            footerText.setText("Powered by weather.com.cn");
+        } else {
+            footerText.setText("Powered by accuweather.com");
+        }
 
         cardContainer.setVisibility(View.VISIBLE);
         if (initAnimator != null) {
@@ -554,22 +567,18 @@ public class MainActivity extends GeoActivity
     // permission.
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestPermission(int permissionCode) {
-        switch (permissionCode) {
-            case LOCATION_PERMISSIONS_REQUEST_CODE:
-                if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED
-                        || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    this.requestPermissions(
-                            new String[] {
-                                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                                    Manifest.permission.ACCESS_FINE_LOCATION},
-                            LOCATION_PERMISSIONS_REQUEST_CODE);
-                } else {
-                    locationHelper.requestLocation(this, locationNow, this);
-                }
-                break;
+    private void requestLocationPermission() {
+        if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            this.requestPermissions(
+                    new String[] {
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_PERMISSIONS_REQUEST_CODE);
+        } else {
+            locationHelper.requestLocation(this, locationNow, this);
         }
     }
 
@@ -701,7 +710,7 @@ public class MainActivity extends GeoActivity
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 locationHelper.requestLocation(this, locationNow, this);
             } else {
-                requestPermission(LOCATION_PERMISSIONS_REQUEST_CODE);
+                requestLocationPermission();
             }
         } else {
             weatherHelper.requestWeather(this, locationNow, this);

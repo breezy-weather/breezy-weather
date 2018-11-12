@@ -140,11 +140,11 @@ public class Index {
 
     public void buildIndex(Context c, CNWeatherResult result) {
         simpleForecasts = new String[] {
-                result.life.info.chuanyi.get(0),
-                result.life.info.chuanyi.get(1)};
-        briefings = new String[] {
                 c.getString(R.string.forecast) + " : " + result.life.info.daisan.get(0),
                 result.life.info.daisan.get(1)};
+        briefings = new String[] {
+                result.life.info.chuanyi.get(0),
+                result.life.info.chuanyi.get(1)};
         winds = new String[2];
         winds[0] = c.getString(R.string.live) + " : " + result.realtime.wind.direct
                 + " " + WeatherHelper.getWindSpeed(result.realtime.wind.windspeed)
