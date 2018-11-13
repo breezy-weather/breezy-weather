@@ -36,7 +36,6 @@
 
         <ImageButton
             android:id="@+id/item_location_deleteBtn"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_close"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
