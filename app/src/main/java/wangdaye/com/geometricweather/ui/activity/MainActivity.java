@@ -50,7 +50,6 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
-import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.SafeHandler;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -60,6 +59,7 @@ import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.manager.BackgroundManager;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
@@ -857,9 +857,7 @@ public class MainActivity extends GeoActivity
                 ThreadManager.getInstance().execute(new Runnable() {
                     @Override
                     public void run() {
-                        ServiceHelper.resetNormalService(MainActivity.this, true, false);
-                        ServiceHelper.resetForecastService(MainActivity.this, true);
-                        ServiceHelper.resetForecastService(MainActivity.this, false);
+                        BackgroundManager.resetAllBackgroundTask(MainActivity.this, false);
                     }
                 });
                 break;

@@ -16,12 +16,14 @@ import java.util.List;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundDialog;
+import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
-import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
+import wangdaye.com.geometricweather.utils.manager.BackgroundManager;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -46,12 +48,6 @@ public class SettingsFragment extends PreferenceFragment
     }
 
     private void initBasicPart(SharedPreferences sharedPreferences) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CheckBoxPreference backgroundFree = (CheckBoxPreference) findPreference(getString(R.string.key_background_free));
-            backgroundFree.setChecked(true);
-            backgroundFree.setEnabled(false);
-        }
-
         Preference chineseSource = findPreference(getString(R.string.key_chinese_source));
         chineseSource.setSummary(
                 ValueUtils.getChineseSource(
@@ -243,7 +239,15 @@ public class SettingsFragment extends PreferenceFragment
 
         if (preference.getKey().equals(getString(R.string.key_background_free))) {
             // background free.
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
+            boolean backgroundFree = sharedPreferences.getBoolean(getString(R.string.key_background_free), true);
+            if (!backgroundFree) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    new RunningInBackgroundODialog().show(getFragmentManager(), null);
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    new RunningInBackgroundDialog().show(getFragmentManager(), null);
+                }
+            }
         } else if (preference.getKey().equals(getString(R.string.key_chinese_source))) {
             // Chinese source.
             SnackbarUtils.showSnackbar(getString(R.string.feedback_readd_location_after_changing_source));
@@ -262,7 +266,7 @@ public class SettingsFragment extends PreferenceFragment
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today))) {
             // forecast today.
             initForecastPart(sharedPreferences);
-            ServiceHelper.resetForecastService(getActivity(), true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today_time))) {
             // set today forecast time.
             TimeSetterDialog dialog = new TimeSetterDialog();
@@ -270,9 +274,9 @@ public class SettingsFragment extends PreferenceFragment
             dialog.setOnTimeChangedListener(this);
             dialog.show(getFragmentManager(), null);
         } else if (preference.getKey().equals(getString(R.string.key_forecast_tomorrow))) {
-            // timing forecast tomorrow.
+            // forecast tomorrow.
             initForecastPart(sharedPreferences);
-            ServiceHelper.resetForecastService(getActivity(), false);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
         } else if (preference.getKey().equals(getString(R.string.key_forecast_tomorrow_time))) {
             // set tomorrow forecast time.
             TimeSetterDialog dialog = new TimeSetterDialog();
@@ -281,40 +285,40 @@ public class SettingsFragment extends PreferenceFragment
             dialog.show(getFragmentManager(), null);
         } else if (preference.getKey().equals(getString(R.string.key_click_widget_to_refresh))) {
             // click widget to refresh.
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification))) {
             // notification switch.
             initNotificationPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
                 // open notification.
-                ServiceHelper.resetNormalService(getActivity(), false, true);
+                BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             } else {
                 // close notification.
                 NormalNotificationUtils.cancelNotification(getActivity());
-                ServiceHelper.resetNormalService(getActivity(), false, true);
+                BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
             }
         } else if (preference.getKey().equals(getString(R.string.key_notification_temp_icon))) {
             // notification temp icon.
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_background))) {
             // notification background.
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_can_be_cleared))) {
             // notification clear flag.
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_icon))) {
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_in_lockScreen))) {
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_big_view))) {
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -345,19 +349,19 @@ public class SettingsFragment extends PreferenceFragment
             editor.putString(getString(R.string.key_refresh_rate), (String) o);
             editor.apply();
             preference.setSummary((String) o);
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
         } else if (preference.getKey().equals(getString(R.string.key_language))) {
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
             GeometricWeather.getInstance().setLanguage((String) o);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_widget_icon_style))
                 || preference.getKey().equals(getString(R.string.key_notification_icon_style))) {
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             preference.setSummary(ValueUtils.getIconStyle(getActivity(), (String) o));
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
             // notification text color.
-            ServiceHelper.resetNormalService(getActivity(), false, true);
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             preference.setSummary(ValueUtils.getNotificationTextColor(getActivity(), (String) o));
         }
@@ -370,8 +374,8 @@ public class SettingsFragment extends PreferenceFragment
         this.initForecastPart(sharedPreferences);
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)
                 || sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-            ServiceHelper.resetForecastService(getActivity(), true);
-            ServiceHelper.resetForecastService(getActivity(), false);
+            BackgroundManager.resetTodayForecastBackgroundTask(getActivity(), false);
+            BackgroundManager.resetTomorrowForecastBackgroundTask(getActivity(), false);
         }
     }
 }

@@ -11,7 +11,8 @@
             android:title="@string/settings_title_background_free"
             android:key="@string/key_background_free"
             android:summaryOn="@string/on"
-            android:summaryOff="@string/off" />
+            android:summaryOff="@string/off"
+            android:defaultValue="true" />
 
         <ListPreference
             android:title="@string/settings_title_chinese_source"

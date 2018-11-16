@@ -14,6 +14,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 
 /**
@@ -24,11 +25,7 @@ public class BaiduLocationService extends LocationService {
 
     private LocationClient client;
     private NotificationManager manager;
-
     private LocationCallback callback;
-
-    private static final int LOCATION_NOTIFICATION_ID = 9999999;
-    private static final String CHANNEL_ID_LOCATION = "location";
 
     private BDAbstractLocationListener listener = new BDAbstractLocationListener() {
         @Override
@@ -86,16 +83,16 @@ public class BaiduLocationService extends LocationService {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (manager != null) {
                 NotificationChannel channel = new NotificationChannel(
-                        CHANNEL_ID_LOCATION,
-                        context.getString(R.string.app_name) + " " + context.getString(R.string.feedback_request_location),
+                        GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION,
+                        GeometricWeather.getNotificationChannelName(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION),
                         NotificationManager.IMPORTANCE_MIN);
                 channel.setShowBadge(false);
                 channel.setLightColor(ContextCompat.getColor(context, R.color.colorPrimary));
                 manager.createNotificationChannel(channel);
             }
             client.enableLocInForeground(
-                    LOCATION_NOTIFICATION_ID,
-                    new NotificationCompat.Builder(context, CHANNEL_ID_LOCATION)
+                    GeometricWeather.NOTIFICATION_ID_LOCATION,
+                    new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION)
                             .setSmallIcon(R.drawable.ic_location)
                             .setContentTitle(context.getString(R.string.feedback_request_location))
                             .setContentText(context.getString(R.string.feedback_request_location_in_background))

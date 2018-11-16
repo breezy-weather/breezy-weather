@@ -8,15 +8,15 @@ import android.os.SystemClock;
 
 import java.util.Calendar;
 
-import wangdaye.com.geometricweather.service.NormalUpdateService;
-import wangdaye.com.geometricweather.service.TodayForecastUpdateService;
-import wangdaye.com.geometricweather.service.TomorrowForecastUpdateService;
+import wangdaye.com.geometricweather.service.alarm.AlarmNormalUpdateService;
+import wangdaye.com.geometricweather.service.alarm.AlarmTodayForecastUpdateService;
+import wangdaye.com.geometricweather.service.alarm.AlarmTomorrowForecastUpdateService;
 
 /**
  * Alarm helper.
  * */
 
-public class AlarmHelper {
+class AlarmHelper {
 
     private static final int HOUR = 1000 * 60 * 60;
     private static final int MINUTE = 1000 * 60;
@@ -25,75 +25,85 @@ public class AlarmHelper {
     private static final int REQUEST_CODE_FORECAST_TODAY = 2;
     private static final int REQUEST_CODE_FORECAST_TOMORROW = 3;
 
-    public static void setAlarmForNormalView(Context context, float pollingRate) {
-        cancelNormalViewAlarm(context);
-
+    static void setAlarmForNormalView(Context context, float pollingRate) {
         PendingIntent pendingIntent = PendingIntent.getService(
                 context,
                 REQUEST_CODE_NORMAL_VIEW,
-                new Intent(context, NormalUpdateService.class),
+                new Intent(context, AlarmNormalUpdateService.class),
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).set(
-                AlarmManager.ELAPSED_REALTIME,
-                (long) (SystemClock.elapsedRealtime() + HOUR * pollingRate),
-                pendingIntent);
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (manager != null) {
+            manager.set(
+                    AlarmManager.ELAPSED_REALTIME,
+                    (long) (SystemClock.elapsedRealtime() + HOUR * pollingRate),
+                    pendingIntent);
+        }
     }
 
-    public static void cancelNormalViewAlarm(Context context) {
+    static void cancelNormalViewAlarm(Context context) {
         PendingIntent pendingIntent = PendingIntent.getService(
                 context,
                 REQUEST_CODE_NORMAL_VIEW,
-                new Intent(context, NormalUpdateService.class),
+                new Intent(context, AlarmNormalUpdateService.class),
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).cancel(pendingIntent);
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (manager != null) {
+            manager.cancel(pendingIntent);
+        }
     }
 
-    public static void setAlarmForTodayForecast(Context context, String todayForecastTime) {
-        cancelTodayForecastAlarm(context);
-
+    static void setAlarmForTodayForecast(Context context, String todayForecastTime) {
         PendingIntent pendingIntent = PendingIntent.getService(
                 context,
                 REQUEST_CODE_FORECAST_TODAY,
-                new Intent(context, TodayForecastUpdateService.class),
+                new Intent(context, AlarmTodayForecastUpdateService.class),
                 PendingIntent.FLAG_UPDATE_CURRENT);
-
-        ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).set(
-                AlarmManager.ELAPSED_REALTIME,
-                SystemClock.elapsedRealtime() + getForecastAlarmDelay(todayForecastTime),
-                pendingIntent);
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (manager != null) {
+            manager.set(
+                    AlarmManager.ELAPSED_REALTIME,
+                    SystemClock.elapsedRealtime() + getForecastAlarmDelay(todayForecastTime),
+                    pendingIntent);
+        }
     }
 
-    public static void cancelTodayForecastAlarm(Context context) {
+    static void cancelTodayForecastAlarm(Context context) {
         PendingIntent pendingIntent = PendingIntent.getService(
                 context,
                 REQUEST_CODE_FORECAST_TODAY,
-                new Intent(context, TodayForecastUpdateService.class),
+                new Intent(context, AlarmTodayForecastUpdateService.class),
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).cancel(pendingIntent);
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (manager != null) {
+            manager.cancel(pendingIntent);
+        }
     }
 
-    public static void setAlarmForTomorrowForecast(Context context, String tomorrowForecastTime) {
-        cancelTomorrowForecastAlarm(context);
-
+    static void setAlarmForTomorrowForecast(Context context, String tomorrowForecastTime) {
         PendingIntent pendingIntent = PendingIntent.getService(
                 context,
                 REQUEST_CODE_FORECAST_TOMORROW,
-                new Intent(context, TomorrowForecastUpdateService.class),
+                new Intent(context, AlarmTomorrowForecastUpdateService.class),
                 PendingIntent.FLAG_UPDATE_CURRENT);
-
-        ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).set(
-                AlarmManager.ELAPSED_REALTIME,
-                SystemClock.elapsedRealtime() + getForecastAlarmDelay(tomorrowForecastTime),
-                pendingIntent);
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (manager != null) {
+            manager.set(
+                    AlarmManager.ELAPSED_REALTIME,
+                    SystemClock.elapsedRealtime() + getForecastAlarmDelay(tomorrowForecastTime),
+                    pendingIntent);
+        }
     }
 
-    public static void cancelTomorrowForecastAlarm(Context context) {
+    static void cancelTomorrowForecastAlarm(Context context) {
         PendingIntent pendingIntent = PendingIntent.getService(
                 context,
                 REQUEST_CODE_FORECAST_TOMORROW,
-                new Intent(context, TomorrowForecastUpdateService.class),
+                new Intent(context, AlarmTomorrowForecastUpdateService.class),
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).cancel(pendingIntent);
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (manager != null) {
+            manager.cancel(pendingIntent);
+        }
     }
 
     private static long getForecastAlarmDelay(String time) {

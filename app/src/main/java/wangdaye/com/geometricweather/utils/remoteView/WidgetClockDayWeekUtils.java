@@ -14,13 +14,14 @@ import android.widget.RemoteViews;
 
 import java.util.Calendar;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayWeekProvider;
-import wangdaye.com.geometricweather.service.NormalUpdateService;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
+import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -31,9 +32,6 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class WidgetClockDayWeekUtils {
-
-    private static final int WEATHER_PENDING_INTENT_CODE = 123;
-    private static final int CLOCK_PENDING_INTENT_CODE = 223;
 
     public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
@@ -145,20 +143,23 @@ public class WidgetClockDayWeekUtils {
 
         Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
         PendingIntent pendingIntentClock = PendingIntent.getActivity(
-                context, CLOCK_PENDING_INTENT_CODE, intentClock, PendingIntent.FLAG_UPDATE_CURRENT);
+                context,
+                GeometricWeather.WIDGET_CLOCK_DAY_WEEK_CLOCK_PENDING_INTENT_CODE,
+                intentClock,
+                PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_clock_day_week_clockButton, pendingIntentClock);
 
         PendingIntent pendingIntentWeather;
         if (touchToRefresh) {
             pendingIntentWeather = PendingIntent.getService(
                     context,
-                    WEATHER_PENDING_INTENT_CODE,
-                    new Intent(context, NormalUpdateService.class),
+                    GeometricWeather.WIDGET_CLOCK_DAY_WEEK_WEATHER_PENDING_INTENT_CODE,
+                    ServiceHelper.getAwakePollingUpdateServiceIntent(context),
                     PendingIntent.FLAG_UPDATE_CURRENT);
         } else {
             pendingIntentWeather = PendingIntent.getActivity(
                     context,
-                    WEATHER_PENDING_INTENT_CODE,
+                    GeometricWeather.WIDGET_CLOCK_DAY_WEEK_WEATHER_PENDING_INTENT_CODE,
                     IntentHelper.buildMainActivityIntent(context, location),
                     PendingIntent.FLAG_UPDATE_CURRENT);
         }

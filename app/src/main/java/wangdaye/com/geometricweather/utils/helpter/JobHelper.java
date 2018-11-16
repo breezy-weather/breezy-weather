@@ -9,16 +9,16 @@ import android.support.annotation.RequiresApi;
 
 import java.util.Calendar;
 
-import wangdaye.com.geometricweather.service.JobNormalUpdateService;
-import wangdaye.com.geometricweather.service.JobTodayForecastUpdateService;
-import wangdaye.com.geometricweather.service.JobTomorrowForecastUpdateService;
+import wangdaye.com.geometricweather.service.job.JobNormalUpdateService;
+import wangdaye.com.geometricweather.service.job.JobTodayForecastUpdateService;
+import wangdaye.com.geometricweather.service.job.JobTomorrowForecastUpdateService;
 
 /**
  * Job helper.
  * */
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class JobHelper {
+class JobHelper {
 
     private static final int HOUR = 1000 * 60 * 60;
     private static final int MINUTE = 1000 * 60;
@@ -28,8 +28,6 @@ public class JobHelper {
     private static final int JOB_ID_TOMORROW_FORECAST = 3;
 
     static void setJobForNormalView(Context context, float pollingRate) {
-        cancelNormalViewJob(context);
-
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_NORMAL_VIEW,
                 new ComponentName(context.getPackageName(), JobNormalUpdateService.class.getName()))
@@ -42,16 +40,14 @@ public class JobHelper {
         }
     }
 
-    private static void cancelNormalViewJob(Context context) {
+    static void cancelNormalViewJob(Context context) {
         JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         if (scheduler != null) {
             scheduler.cancel(JOB_ID_NORMAL_VIEW);
         }
     }
 
-    public static void setJobForTodayForecast(Context context, String todayForecastTime) {
-        cancelTodayForecastJob(context);
-
+    static void setJobForTodayForecast(Context context, String todayForecastTime) {
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_TODAY_FORECAST,
                 new ComponentName(context.getPackageName(), JobTodayForecastUpdateService.class.getName()))
@@ -69,9 +65,7 @@ public class JobHelper {
         }
     }
 
-    public static void setJobForTomorrowForecast(Context context, String TomorrowForecastTime) {
-        cancelTomorrowForecastJob(context);
-
+    static void setJobForTomorrowForecast(Context context, String TomorrowForecastTime) {
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_TOMORROW_FORECAST,
                 new ComponentName(context.getPackageName(), JobTomorrowForecastUpdateService.class.getName()))

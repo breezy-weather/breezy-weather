@@ -30,9 +30,6 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 public class NormalNotificationUtils {
 
-    private static final int NOTIFICATION_ID = 317;
-    private static final String CHANNEL_ID_NORMALLY = "normally";
-
     public static void buildNotificationAndSendIt(Context context, Weather weather) {
         if (weather == null) {
             return;
@@ -91,8 +88,8 @@ public class NormalNotificationUtils {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID_NORMALLY,
-                    context.getString(R.string.app_name),
+                    GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY,
+                    GeometricWeather.getNotificationChannelName(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY),
                     hideNotificationIcon ? NotificationManager.IMPORTANCE_MIN : NotificationManager.IMPORTANCE_LOW);
             channel.setShowBadge(false);
             manager.createNotificationChannel(channel);
@@ -100,7 +97,7 @@ public class NormalNotificationUtils {
 
         // get manager & builder.
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                context, CHANNEL_ID_NORMALLY);
+                context, GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY);
 
         // set notification level.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && hideNotificationIcon) {
@@ -174,7 +171,7 @@ public class NormalNotificationUtils {
         }
 
         // commit.
-        manager.notify(NOTIFICATION_ID, builder.build());
+        manager.notify(GeometricWeather.NOTIFICATION_ID_NORMALLY, builder.build());
     }
 
     private static RemoteViews buildBaseView(Context context, RemoteViews views, Weather weather,
@@ -355,7 +352,7 @@ public class NormalNotificationUtils {
     public static void cancelNotification(Context context) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (manager != null) {
-            manager.cancel(NOTIFICATION_ID);
+            manager.cancel(GeometricWeather.NOTIFICATION_ID_NORMALLY);
         }
     }
 

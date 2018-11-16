@@ -36,5 +36,7 @@
     <color name="colorLevel_4">#e52f35</color>
     <color name="colorLevel_5">#99004c</color>
     <color name="colorLevel_6">#7e0023</color>
+    
+    <color name="striking_red">@color/colorLevel_4</color>
 
 </resources>

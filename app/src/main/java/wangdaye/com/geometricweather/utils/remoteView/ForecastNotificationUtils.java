@@ -25,9 +25,6 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 public class ForecastNotificationUtils {
 
-    private static final int NOTIFICATION_ID = 318;
-    private static final String CHANNEL_ID_FORECAST = "forecast";
-
     public static void buildForecastAndSendIt(Context context, Weather weather, boolean today) {
         if (weather == null) {
             return;
@@ -83,14 +80,14 @@ public class ForecastNotificationUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             manager.createNotificationChannel(
                     new NotificationChannel(
-                            CHANNEL_ID_FORECAST,
-                            context.getString(R.string.app_name) + " " + context.getString(R.string.forecast),
+                            GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST,
+                            GeometricWeather.getNotificationChannelName(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST),
                             hideNotificationIcon ? NotificationManager.IMPORTANCE_MIN : NotificationManager.IMPORTANCE_DEFAULT));
         }
 
         // get builder.
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                context, CHANNEL_ID_FORECAST);
+                context, GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST);
 
         // set notification level.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && hideNotificationIcon) {
@@ -217,7 +214,11 @@ public class ForecastNotificationUtils {
         builder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL);
 
         // commit.
-        manager.notify(NOTIFICATION_ID, builder.build());
+        if (today) {
+            manager.notify(GeometricWeather.NOTIFICATION_ID_TODAY_FORECAST, builder.build());
+        } else {
+            manager.notify(GeometricWeather.NOTIFICATION_ID_TOMORROW_FORECAST, builder.build());
+        }
     }
 
     public static boolean isEnable(Context context, boolean today) {

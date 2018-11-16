@@ -17,7 +17,7 @@ import wangdaye.com.geometricweather.utils.helpter.PollingUpdateHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
- * Job updateRotation service.
+ * Job update service.
  * */
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

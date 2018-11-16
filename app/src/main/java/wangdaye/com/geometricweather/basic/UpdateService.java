@@ -1,29 +1,23 @@
 package wangdaye.com.geometricweather.basic;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.PollingUpdateHelper;
-import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
- * Update service.
+ * Alarm update service.
  * */
 
 public abstract class UpdateService extends Service
@@ -35,12 +29,6 @@ public abstract class UpdateService extends Service
     private boolean refreshing;
 
     private boolean failed;
-    private boolean needFailedCallback;
-
-    private static final int BACKGROUND_NOTIFICATION_ID = 9999998;
-    private static final String CHANNEL_ID_BACKGROUND = "background";
-
-    public static final String KEY_NEED_FAILED_CALLBACK = "need_failed_callback";
 
     @Override
     public void onCreate() {
@@ -51,30 +39,6 @@ public abstract class UpdateService extends Service
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationManager manager = ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
-            if (manager != null) {
-                NotificationChannel channel = new NotificationChannel(
-                        CHANNEL_ID_BACKGROUND,
-                        getString(R.string.app_name) + " " + getString(R.string.settings_title_click_widget_to_refresh),
-                        NotificationManager.IMPORTANCE_MIN);
-                channel.setShowBadge(false);
-                channel.setLightColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                manager.createNotificationChannel(channel);
-            }
-            startForeground(
-                    BACKGROUND_NOTIFICATION_ID,
-                    new NotificationCompat.Builder(this, CHANNEL_ID_BACKGROUND)
-                            .setSmallIcon(R.drawable.ic_time)
-                            .setContentText(getString(R.string.settings_title_click_widget_to_refresh))
-                            .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
-                            .setPriority(NotificationCompat.PRIORITY_MIN)
-                            .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                            .setAutoCancel(true)
-                            .build());
-        }
-
         if (!refreshing) {
             refreshing = true;
             failed = false;
@@ -83,28 +47,17 @@ public abstract class UpdateService extends Service
             helper.setOnPollingUpdateListener(this);
             helper.pollingUpdate();
         }
-        if (!needFailedCallback) {
-            needFailedCallback = intent.getBooleanExtra(KEY_NEED_FAILED_CALLBACK, false);
-        }
         return START_NOT_STICKY;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         refreshing = false;
         if (helper != null) {
             helper.setOnPollingUpdateListener(null);
             helper.cancel();
             helper = null;
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            stopForeground(true);
-            ServiceHelper.resetNormalService(this, true, false);
-            ServiceHelper.resetForecastService(this, true);
-            ServiceHelper.resetForecastService(this, false);
         }
     }
 
@@ -118,7 +71,7 @@ public abstract class UpdateService extends Service
 
     public abstract void updateView(Context context, Location location, @Nullable Weather weather);
 
-    public abstract void setDelayTask(boolean notifyFailed);
+    public abstract void setDelayTask(boolean failed);
 
     // interface.
 
@@ -149,7 +102,7 @@ public abstract class UpdateService extends Service
             ShortcutsManager.refreshShortcuts(this, locationList);
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            setDelayTask(failed && needFailedCallback);
+            setDelayTask(failed);
         }
         stopSelf();
     }

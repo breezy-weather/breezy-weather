@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="wangdaye.com.geometricweather">
+    package="wangdaye.com.geometricweather"
+    tools:ignore="MissingVersion">
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,7 @@
         android:largeHeap="true"
         android:theme="@style/GeometricWeatherTheme"
         android:networkSecurityConfig="@xml/network_security_config"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource,RtlEnabled"
         tools:targetApi="n">
 
         <meta-data
@@ -138,24 +139,31 @@
         </activity>
 
         <!-- service -->
-        <service android:name=".service.NormalUpdateService" />
-        <service android:name=".service.TodayForecastUpdateService" />
-        <service android:name=".service.TomorrowForecastUpdateService" />
+        <service android:name=".service.AwakePollingUpdateService" />
+
         <service
-            android:name=".service.JobNormalUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name=".service.JobTodayForecastUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name=".service.JobTomorrowForecastUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name=".service.PollingService"
+            android:name=".service.polling.PollingService"
             android:process=":polling" />
+        <service android:name=".service.FakeForegroundService"
+            android:process=":polling" />
+        <service android:name=".service.polling.PollingNormalUpdateService" />
+        <service android:name=".service.polling.PollingTodayForecastUpdateService" />
+        <service android:name=".service.polling.PollingTomorrowForecastUpdateService" />
+
+        <service android:name=".service.alarm.AlarmNormalUpdateService" />
+        <service android:name=".service.alarm.AlarmTodayForecastUpdateService" />
+        <service android:name=".service.alarm.AlarmTomorrowForecastUpdateService" />
+
         <service
-            android:name=".service.ProtectService"
-            android:process=":protect" />
+            android:name=".service.job.JobNormalUpdateService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".service.job.JobTodayForecastUpdateService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".service.job.JobTomorrowForecastUpdateService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <service
             android:name=".service.TileService"
             android:label="@string/geometric_weather"

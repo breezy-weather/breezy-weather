@@ -24,6 +24,7 @@
     <string name="feels_like">体感</string>
     <string name="exercise">运动指数</string>
     <string name="follow_system">跟随系统</string>
+    <string name="background_information">后台信息</string>
 
     <string name="of_clock">时</string>
     <string name="yesterday">昨日</string>
@@ -67,6 +68,7 @@
     <string name="cancel">取消</string>
     <string name="on">开启</string>
     <string name="off">关闭</string>
+    <string name="go_to_set">设置</string>
 
     <string name="about_app">概览</string>
     <string name="introduce">介绍</string>
@@ -124,6 +126,13 @@
     <string name="feedback_restart">重启后生效</string>
     <string name="feedback_readd_location">请重新添加地址</string>
     <string name="feedback_readd_location_after_changing_source">更换数据源后需重新添加地址</string>
+
+    <string name="feedback_running_in_background">正在后台运行以保持更新数据</string>
+    <string name="feedback_updating_weather_data">正在更新天气数据</string>
+
+    <string name="feedback_interpret_background_notification_content">关闭后台纯净后，部分设备的通知栏中可能会出现一个无法清除的通知</string>
+    <string name="feedback_interpret_notification_group_title">关闭相应通知频道</string>
+    <string name="feedback_interpret_notification_group_content">关闭后台纯净后，会出现一个标示后台服务正在运行的通知，你可以在app相关信息页面中找到通知设置，在其中关闭“后台信息”这个频道来隐藏这个通知</string>
 
     <!-- action -->
     <string name="action_alert">预警</string>

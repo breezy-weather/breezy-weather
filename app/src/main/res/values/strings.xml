@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.113</string>
+    <string name="version_code">v2.114</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -30,6 +30,7 @@
     <string name="feels_like">Feels like</string>
     <string name="exercise">运动指数</string>
     <string name="follow_system">Follow system</string>
+    <string name="background_information">Background Information</string>
 
     <string name="of_clock">:00</string>
     <string name="yesterday">yday</string>
@@ -73,6 +74,7 @@
     <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="on">ON</string>
     <string name="off">OFF</string>
+    <string name="go_to_set">SET</string>
 
     <string name="about_app">ABOUT APP</string>
     <string name="introduce">introduce</string>
@@ -138,6 +140,13 @@
     <string name="feedback_restart">Take effect when restart.</string>
     <string name="feedback_readd_location">Please re-add locations.</string>
     <string name="feedback_readd_location_after_changing_source">Please re-add locations after changing data source.</string>
+
+    <string name="feedback_running_in_background">Running in background for keep updating.</string>
+    <string name="feedback_updating_weather_data">Updating weather data.</string>
+    
+    <string name="feedback_interpret_background_notification_content">In some devices, after turning off the background free, there might be a notification that cannot be cleared in the notification bar.</string>
+    <string name="feedback_interpret_notification_group_title">Block Notification Group</string>
+    <string name="feedback_interpret_notification_group_content">After turning off the background free, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in app\'s information page to block this notifications.</string>
 
     <!-- action -->
     <string name="action_alert">Alert</string>
@@ -217,7 +226,7 @@
     <string name="key_subtitle_data">subtitle_data</string>
     <string name="key_black_text">black_text</string>
 
-    <string name="key_background_free">background_free</string>
+    <string name="key_background_free">background_free_3</string>
     <string name="key_chinese_source">chinese_source</string>
     <string name="key_ui_style">ui_style</string>
     <string name="key_card_order">card_order</string>

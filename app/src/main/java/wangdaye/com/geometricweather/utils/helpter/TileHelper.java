@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.utils.manager.BackgroundManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
@@ -30,7 +31,7 @@ public class TileHelper {
         editor.putBoolean(KEY_ENABLE, enable);
         editor.apply();
 
-        ServiceHelper.resetNormalService(context, false, true);
+        BackgroundManager.resetNormalBackgroundTask(context, true);
     }
 
     public static boolean isEnable(Context context) {

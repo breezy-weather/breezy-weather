@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_running_in_background_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_running_in_background_content"
+            android:text="@string/feedback_interpret_background_notification_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextContent"
+            android:layout_margin="@dimen/normal_margin"
+            style="@style/content_text" />
+
+        <Button
+            android:id="@+id/dialog_running_in_background_doneBtn"
+            android:text="@string/done"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@id/dialog_running_in_background_content"
+            style="@style/material_button"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

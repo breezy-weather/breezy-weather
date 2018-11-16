@@ -4,7 +4,6 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
@@ -18,8 +17,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetDayProvider;
-import wangdaye.com.geometricweather.service.NormalUpdateService;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
+import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
@@ -31,8 +30,6 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
  * */
 
 public class WidgetDayUtils {
-
-    private static final int PENDING_INTENT_CODE = 111;
 
     public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
@@ -71,13 +68,13 @@ public class WidgetDayUtils {
         if (touchToRefresh) {
             pendingIntent = PendingIntent.getService(
                     context,
-                    PENDING_INTENT_CODE,
-                    new Intent(context, NormalUpdateService.class),
+                    GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE,
+                    ServiceHelper.getAwakePollingUpdateServiceIntent(context),
                     PendingIntent.FLAG_UPDATE_CURRENT);
         } else {
             pendingIntent = PendingIntent.getActivity(
                     context,
-                    PENDING_INTENT_CODE,
+                    GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE,
                     IntentHelper.buildMainActivityIntent(context, location),
                     PendingIntent.FLAG_UPDATE_CURRENT);
         }

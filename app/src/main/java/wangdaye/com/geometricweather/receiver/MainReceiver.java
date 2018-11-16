@@ -17,13 +17,7 @@ public class MainReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (!TextUtils.isEmpty(action) && action.equals(Intent.ACTION_BOOT_COMPLETED)) {
-            try {
-                ServiceHelper.resetNormalService(context, false, true);
-                ServiceHelper.resetForecastService(context, true);
-                ServiceHelper.resetForecastService(context, false);
-            } catch (Exception ignored) {
-
-            }
+            ServiceHelper.startAwakePollingUpdateService(context);
         }
     }
 }

@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -37,6 +38,37 @@ public class GeometricWeather extends Application {
 
     public static final String DEFAULT_TODAY_FORECAST_TIME = "07:00";
     public static final String DEFAULT_TOMORROW_FORECAST_TIME = "21:00";
+
+    public static final String NOTIFICATION_CHANNEL_ID_NORMALLY = "normally";
+    public static final String NOTIFICATION_CHANNEL_ID_ALERT = "alert";
+    public static final String NOTIFICATION_CHANNEL_ID_FORECAST = "forecast";
+    public static final String NOTIFICATION_CHANNEL_ID_LOCATION = "location";
+    public static final String NOTIFICATION_CHANNEL_ID_BACKGROUND = "background";
+
+    public static final int NOTIFICATION_ID_NORMALLY = 1;
+    public static final int NOTIFICATION_ID_TODAY_FORECAST = 2;
+    public static final int NOTIFICATION_ID_TOMORROW_FORECAST = 3;
+    public static final int NOTIFICATION_ID_LOCATION = 4;
+    public static final int NOTIFICATION_ID_RUNNING_IN_BACKGROUND = 5;
+    public static final int NOTIFICATION_ID_UPDATING_NORMALLY = 6;
+    public static final int NOTIFICATION_ID_UPDATING_TODAY_FORECAST= 7;
+    public static final int NOTIFICATION_ID_UPDATING_TOMORROW_FORECAST= 8;
+    public static final int NOTIFICATION_ID_ALERT_MIN = 1000;
+    public static final int NOTIFICATION_ID_ALERT_MAX = 1999;
+    public static final int NOTIFICATION_ID_ALERT_GROUP = 2000;
+
+    public static final int WIDGET_DAY_PENDING_INTENT_CODE = 11;
+    public static final int WIDGET_WEEK_PENDING_INTENT_CODE = 21;
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE = 31;
+    public static final int WIDGET_CLOCK_DAY_VERTICAL_WEATHER_PENDING_INTENT_CODE = 41;
+    public static final int WIDGET_CLOCK_DAY_VERTICAL_CLOCK_PENDING_INTENT_CODE = 42;
+    public static final int WIDGET_CLOCK_DAY_HORIZONTAL_WEATHER_PENDING_INTENT_CODE = 51;
+    public static final int WIDGET_CLOCK_DAY_HORIZONTAL_CLOCK_PENDING_INTENT_CODE = 52;
+    public static final int WIDGET_CLOCK_DAY_DETAILS_WEATHER_PENDING_INTENT_CODE = 61;
+    public static final int WIDGET_CLOCK_DAY_DETAILS_CLOCK_PENDING_INTENT_CODE = 62;
+    public static final int WIDGET_CLOCK_DAY_WEEK_WEATHER_PENDING_INTENT_CODE = 71;
+    public static final int WIDGET_CLOCK_DAY_WEEK_CLOCK_PENDING_INTENT_CODE = 72;
+    public static final int WIDGET_TEXT_PENDING_INTENT_CODE = 81;
 
     @Override
     public void onCreate() {
@@ -137,6 +169,25 @@ public class GeometricWeather extends Application {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static String getNotificationChannelName(Context c, String channelId) {
+        switch (channelId) {
+            case NOTIFICATION_CHANNEL_ID_ALERT:
+                return c.getString(R.string.geometric_weather) + " " + c.getString(R.string.action_alert);
+
+            case NOTIFICATION_CHANNEL_ID_FORECAST:
+                return c.getString(R.string.geometric_weather) + " " + c.getString(R.string.forecast);
+
+            case NOTIFICATION_CHANNEL_ID_LOCATION:
+                return c.getString(R.string.geometric_weather) + " " + c.getString(R.string.feedback_request_location);
+
+            case NOTIFICATION_CHANNEL_ID_BACKGROUND:
+                return c.getString(R.string.geometric_weather) + " " + c.getString(R.string.background_information);
+
+            default:
+                return c.getString(R.string.geometric_weather);
         }
     }
 }

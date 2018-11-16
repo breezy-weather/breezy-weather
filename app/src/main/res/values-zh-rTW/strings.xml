@@ -24,6 +24,7 @@
     <string name="feels_like">體感</string>
     <string name="exercise">運動指數</string>
     <string name="follow_system">跟隨系統</string>
+    <string name="background_information">後臺信息</string>
 
     <string name="of_clock">時</string>
     <string name="yesterday">昨日</string>
@@ -67,6 +68,7 @@
     <string name="cancel">取消</string>
     <string name="on">開啓</string>
     <string name="off">關閉</string>
+    <string name="go_to_set">設置</string>
 
     <string name="about_app">概覽</string>
     <string name="introduce">介紹</string>
@@ -124,6 +126,13 @@
     <string name="feedback_restart">重啓后生效</string>
     <string name="feedback_readd_location">請重新添加地址</string>
     <string name="feedback_readd_location_after_changing_source">更換數據源后需重新添加地址</string>
+
+    <string name="feedback_running_in_background">正在後臺運行以保持更新數據</string>
+    <string name="feedback_updating_weather_data">正在更新天氣數據</string>
+
+    <string name="feedback_interpret_background_notification_content">關閉後臺純净后，部分設備的通知欄中可能會出現一個無法清除的通知</string>
+    <string name="feedback_interpret_notification_group_title">關閉相應通知頻道</string>
+    <string name="feedback_interpret_notification_group_content">關閉後臺純净后，會出現一個標示後臺服務正在運行的通知，你可以在app相關頁面中找到通知設置，在其中關閉“後臺信息”這個頻道來隱藏這個通知</string>
 
     <!-- action -->
     <string name="action_alert">預警</string>

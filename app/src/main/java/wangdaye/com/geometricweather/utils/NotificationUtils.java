@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Alert;
@@ -33,8 +34,6 @@ public class NotificationUtils {
     private static final String NOTIFICATION_GROUP_KEY = "geometric_weather_alert_notification_group";
     private static final String PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE";
     private static final String KEY_NOTIFICATION_ID = "NOTIFICATION_ID";
-    private static final int NOTIFICATION_GROUP_SUMMARY_ID = 10001;
-    private static final String CHANNEL_ID_ALERT = "alert";
 
     public static void refreshNotificationInNewThread(final Context c, final Location location) {
         ThreadManager.getInstance()
@@ -84,8 +83,8 @@ public class NotificationUtils {
         if (manager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 NotificationChannel channel = new NotificationChannel(
-                        CHANNEL_ID_ALERT,
-                        c.getString(R.string.app_name) + " " + c.getString(R.string.action_alert),
+                        GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT,
+                        GeometricWeather.getNotificationChannelName(c, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT),
                         NotificationManager.IMPORTANCE_DEFAULT);
                 channel.setShowBadge(true);
                 channel.setLightColor(ContextCompat.getColor(
@@ -98,14 +97,14 @@ public class NotificationUtils {
                     buildSingleNotification(c, cityName, alert, inGroup));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
-                manager.notify(NOTIFICATION_GROUP_SUMMARY_ID, buildGroupSummaryNotification(c, cityName, alert));
+                manager.notify(GeometricWeather.NOTIFICATION_ID_ALERT_GROUP, buildGroupSummaryNotification(c, cityName, alert));
             }
         }
     }
 
     private static Notification buildSingleNotification(Context c,
                                                         String cityName, Alert alert, boolean inGroup) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(c, CHANNEL_ID_ALERT)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(c, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
                 .setLargeIcon(BitmapFactory.decodeResource(c.getResources(), R.drawable.ic_launcher))
                 .setContentTitle(c.getString(R.string.action_alert))
@@ -126,7 +125,7 @@ public class NotificationUtils {
     }
 
     private static Notification buildGroupSummaryNotification(Context c, String cityName, Alert alert) {
-        return new NotificationCompat.Builder(c, CHANNEL_ID_ALERT)
+        return new NotificationCompat.Builder(c, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
                 .setContentTitle(alert.description)
                 .setGroup(NOTIFICATION_GROUP_KEY)
@@ -143,9 +142,9 @@ public class NotificationUtils {
         SharedPreferences sharedPreferences = c.getSharedPreferences(
                 PREFERENCE_NOTIFICATION,
                 Context.MODE_PRIVATE);
-        int id = sharedPreferences.getInt(KEY_NOTIFICATION_ID, 1000) + 1;
-        if (id > NOTIFICATION_GROUP_SUMMARY_ID - 1) {
-            id = 1001;
+        int id = sharedPreferences.getInt(KEY_NOTIFICATION_ID, GeometricWeather.NOTIFICATION_ID_ALERT_MIN) + 1;
+        if (id > GeometricWeather.NOTIFICATION_ID_ALERT_MAX) {
+            id = GeometricWeather.NOTIFICATION_ID_ALERT_MIN;
         }
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
