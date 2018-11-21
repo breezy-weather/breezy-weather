@@ -30,10 +30,15 @@ public class FakeForegroundService extends Service {
             channel.setLightColor(ContextCompat.getColor(this, R.color.colorPrimary));
             manager.createNotificationChannel(channel);
         }
-        startForeground(
-                GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
-                PollingService.getForecastNotification(this));
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            startForeground(
+                    GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
+                    PollingService.getForecastNotification(this, false));
+        } else {
+            startForeground(
+                    GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
+                    PollingService.getForecastNotification(this, true));
+        }
         stopSelf();
     }
 

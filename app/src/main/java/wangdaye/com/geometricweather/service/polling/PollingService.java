@@ -169,11 +169,16 @@ public class PollingService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForeground(
                     GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
-                    getForecastNotification(this));
+                    getForecastNotification(this, true));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            startForeground(
+                    GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
+                    getForecastNotification(this, false));
+            startService(new Intent(this, FakeForegroundService.class));
         } else {
             startForeground(
                     GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
-                    getForecastNotification(this));
+                    getForecastNotification(this, true));
             startService(new Intent(this, FakeForegroundService.class));
         }
     }
@@ -182,9 +187,9 @@ public class PollingService extends Service {
         stopForeground(true);
     }
 
-    public static Notification getForecastNotification(Context context) {
+    public static Notification getForecastNotification(Context context, boolean setIcon) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND)
-                .setSmallIcon(R.drawable.ic_running_in_background)
+                .setSmallIcon(setIcon ? R.drawable.ic_running_in_background : 0)
                 .setContentTitle(context.getString(R.string.geometric_weather))
                 .setContentText(context.getString(R.string.feedback_running_in_background))
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)

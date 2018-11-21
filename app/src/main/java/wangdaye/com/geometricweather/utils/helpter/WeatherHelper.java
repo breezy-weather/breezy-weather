@@ -915,7 +915,12 @@ public class WeatherHelper {
     }
 
     public static int getWindColorResId(String speed) {
-        double s = Double.parseDouble(speed.split("km/h")[0]);
+        double s = 0;
+        try {
+            s = Double.parseDouble(speed.split("km/h")[0]);
+        } catch (Exception ignore) {
+
+        }
         if (s <= 30) {
             return 0;
         } else if (s <= 51) {

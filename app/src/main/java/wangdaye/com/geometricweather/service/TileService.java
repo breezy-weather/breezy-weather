@@ -38,19 +38,17 @@ public class TileService extends android.service.quicksettings.TileService {
     @SuppressLint("WrongConstant")
     @Override
     public void onClick () {
-        IntentHelper.startMainActivity(this);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-            try {
-                Object statusBarManager = getSystemService("statusbar");
-                if (statusBarManager != null) {
-                    statusBarManager
-                            .getClass()
-                            .getMethod("collapsePanels")
-                            .invoke(statusBarManager);
-                }
-            } catch (Exception ignored) {
-
+        try {
+            Object statusBarManager = getSystemService("statusbar");
+            if (statusBarManager != null) {
+                statusBarManager
+                        .getClass()
+                        .getMethod("collapsePanels")
+                        .invoke(statusBarManager);
             }
+        } catch (Exception ignored) {
+
         }
+        IntentHelper.startMainActivity(this);
     }
 }

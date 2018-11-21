@@ -35,8 +35,8 @@ public class IntentHelper {
 
     public static void startMainActivity(Context context) {
         Intent intent = new Intent("com.wangdaye.geometricweather.Main")
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
 
@@ -48,15 +48,15 @@ public class IntentHelper {
             locationName= location.isLocal() ? context.getString(R.string.local) : location.city;
         }
         return new Intent("com.wangdaye.geometricweather.Main")
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName);
     }
 
     public static Intent buildMainActivityIntent(@NotNull String cityName) {
         return new Intent("com.wangdaye.geometricweather.Main")
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, cityName);
     }
 
