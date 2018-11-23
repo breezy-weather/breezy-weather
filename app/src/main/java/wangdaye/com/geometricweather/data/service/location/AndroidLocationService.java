@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -21,13 +22,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 
 /**
  * Android Location service.
  * */
 
-@Deprecated
 @SuppressLint("MissingPermission")
 public class AndroidLocationService extends LocationService {
 
@@ -75,7 +76,7 @@ public class AndroidLocationService extends LocationService {
 
     public AndroidLocationService(Context c) {
         context = c;
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
 
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         provider = null;
@@ -172,12 +173,13 @@ public class AndroidLocationService extends LocationService {
     private Result buildResult() {
         Result result = null;
         if (location != null && location.hasAccuracy()) {
-            Log.d("location", location.getLatitude() + " " + location.getLongitude());
-            Log.d("location", "" + location.getAccuracy());
+            Log.d("AndroidLocation", location.getLatitude() + ", " + location.getLongitude()
+                    + " / getAccuracy = " + location.getAccuracy());
 
             result = new Result();
 
             if (Geocoder.isPresent()) {
+                Log.d("AndroidLocation", "geocoder is enabled.");
                 Geocoder geocoder = new Geocoder(context);
                 List<Address> addressList = null;
                 try {
@@ -187,21 +189,31 @@ public class AndroidLocationService extends LocationService {
                     e.printStackTrace();
                 }
                 if (addressList != null && addressList.size() > 0) {
-                    result.city = addressList.get(0).getSubLocality();
-                    if (TextUtils.isEmpty(result.city)) {
-                        result.city = addressList.get(0).getLocality();
-                    }
+                    Log.d("AndroidLocation", "geocoder returned " + addressList.size() + " results");
+                    result.district = addressList.get(0).getSubLocality();
+                    result.city = addressList.get(0).getLocality();
                     if (TextUtils.isEmpty(result.city)) {
                         result.city = addressList.get(0).getSubAdminArea();
                     }
                     result.province = addressList.get(0).getAdminArea();
                     result.country = addressList.get(0).getCountryName();
+                    result.inChina = LanguageUtils.isChinese(result.city)
+                            && (addressList.get(0).getCountryCode().equals("CN")
+                            || addressList.get(0).getCountryCode().equals("cn")
+                            || addressList.get(0).getCountryCode().equals("HK")
+                            || addressList.get(0).getCountryCode().equals("hk")
+                            || addressList.get(0).getCountryCode().equals("TW")
+                            || addressList.get(0).getCountryCode().equals("tw"));
                 }
             }
 
             result.latitude = String.valueOf(location.getLatitude());
             result.longitude = String.valueOf(location.getLongitude());
+            Log.d(
+                    "AndroidLocation",
+                    "result location = " + result.province + " " + result.city + " " + result.district);
         }
+
         return result;
     }
 
@@ -235,14 +247,13 @@ public class AndroidLocationService extends LocationService {
     }
 
     private void postLocationUpdateRequestToMainThread() {
-        Log.d("location", provider);
+        Log.d("AndroidLocation", provider);
         handler.post(new Runnable() {
             @Override
             public void run() {
                 if (locationManager != null) {
                     locationManager.removeUpdates(listener);
                     locationManager.requestSingleUpdate(provider, listener, null);
-                    // locationManager.requestLocationUpdates(provider, 100, 100, listener);
                 }
             }
         });

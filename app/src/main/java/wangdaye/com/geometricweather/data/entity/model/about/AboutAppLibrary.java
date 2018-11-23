@@ -27,10 +27,6 @@ public class AboutAppLibrary {
         List<AboutAppLibrary> list = new ArrayList<>();
 
         list.add(new AboutAppLibrary(
-                context.getString(R.string.baidu_location),
-                "http://lbsyun.baidu.com/index.php?title=android-locsdk",
-                "http://lbsyun.baidu.com/index.php?title=android-locsdk"));
-        list.add(new AboutAppLibrary(
                 context.getString(R.string.retrofit),
                 context.getString(R.string.about_retrofit),
                 "https://github.com/square/retrofit"));

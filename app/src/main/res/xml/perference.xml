@@ -20,7 +20,7 @@
             android:entries="@array/chinese_sources"
             android:entryValues="@array/chinese_source_values"
             android:dialogTitle="@string/settings_title_chinese_source"
-            android:defaultValue="accu" />
+            android:defaultValue="cn" />
 
         <ListPreference
             android:title="@string/settings_title_ui_style"

@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.data.service.weather;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -33,105 +34,8 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class CNWeatherService extends WeatherService {
 
-    private Handler handler;
-    private final Object handlerLock = new Object();
-
+    private Handler handler = new Handler(Looper.getMainLooper());
     private Call call;
-
-    private class SearchCityRunnable implements Runnable {
-
-        private Context context;
-        private String[] queries;
-        private boolean fuzzy;
-        private RequestLocationCallback callback;
-
-        SearchCityRunnable(Context context, String[] queries, boolean fuzzy,
-                           RequestLocationCallback callback) {
-            this.context = context;
-            this.queries = queries;
-            this.fuzzy = fuzzy;
-            this.callback = callback;
-        }
-
-        @Override
-        public void run() {
-            if (callback == null) {
-                return;
-            }
-
-            for (int i = 0; i < queries.length; i ++) {
-                if (queries[i].endsWith("省")
-                        || queries[i].endsWith("市")
-                        || queries[i].endsWith("区")
-                        || queries[i].endsWith("县")) {
-                    queries[i] = queries[i].substring(0, queries[i].length() - 1);
-                }
-            }
-
-            if (DatabaseHelper.getInstance(context).countCNCity() < 2567) {
-                DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
-            }
-
-            List<Location> locationList = new ArrayList<>();
-            List<CNCityList.CNCity> cityList;
-            CNCityList.CNCity city;
-            String query = null;
-
-            if (fuzzy) {
-                cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
-                if (cityList != null) {
-                    query = queries[0];
-                    locationList = Location.buildLocationListByCNWeather(cityList);
-                }
-            } else {
-                String[][] cityProvinceSet = null;
-                if (queries.length == 3) {
-                    cityProvinceSet = new String[][] {
-                            new String[] {queries[0], queries[1]},
-                            new String[] {queries[0], queries[2]},
-                            new String[] {queries[1], queries[2]}};
-                } else if (queries.length == 2) {
-                    cityProvinceSet = new String[][] {new String[] {queries[0], queries[1]}};
-                }
-                if (cityProvinceSet != null) {
-                    for (String[] cityProvince : cityProvinceSet) {
-                        city = DatabaseHelper.getInstance(context).readCNCity(cityProvince[0], cityProvince[1]);
-                        if (city != null) {
-                            query = cityProvince[0];
-                            locationList = Location.buildLocationList(city);
-                            break;
-                        }
-                    }
-                } else {
-                    city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
-                    if (city != null) {
-                        query = queries[0];
-                        locationList = Location.buildLocationList(city);
-                    }
-                }
-            }
-
-            if (handler != null) {
-                synchronized (handlerLock) {
-                    if (handler != null) {
-                        final List<Location> finalLocationList = locationList;
-                        final String finalQuery = query;
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (finalLocationList.size() > 0) {
-                                    callback.requestLocationSuccess(finalQuery, finalLocationList);
-                                } else {
-                                    callback.requestLocationFailed(finalQuery);
-                                }
-                                handler = null;
-                            }
-                        });
-                    }
-                }
-            }
-        }
-    }
 
     @Override
     public void requestWeather(final Context context,
@@ -198,16 +102,12 @@ public class CNWeatherService extends WeatherService {
 
     @Override
     public void requestLocation(Context context, String query, @NonNull RequestLocationCallback callback) {
-        handler = new Handler();
-        ThreadManager.getInstance()
-                .execute(new SearchCityRunnable(context, new String[] {query}, true, callback));
+        searchInThread(context, new String[] {query}, true, callback);
     }
 
     @Override
     public void requestLocation(Context context, String[] queries, @NonNull RequestLocationCallback callback) {
-        handler = new Handler();
-        ThreadManager.getInstance()
-                .execute(new SearchCityRunnable(context, queries, false, callback));
+        searchInThread(context, queries, false, callback);
     }
 
     @Override
@@ -217,17 +117,87 @@ public class CNWeatherService extends WeatherService {
 
     @Override
     public void cancel() {
-        if (handler != null) {
-            synchronized (handlerLock) {
-                if (handler != null) {
-                    handler.removeCallbacksAndMessages(null);
-                    handler = null;
-                }
-            }
-        }
+        handler.removeCallbacksAndMessages(null);
         if (call != null) {
             call.cancel();
         }
+    }
+
+    private void searchInThread(final Context context, final String[] queries, final boolean fuzzy,
+                                final RequestLocationCallback callback) {
+        ThreadManager.getInstance().execute(new Runnable() {
+            @Override
+            public void run() {
+                if (callback == null) {
+                    return;
+                }
+
+                for (int i = 0; i < queries.length; i ++) {
+                    if (queries[i].endsWith("省")
+                            || queries[i].endsWith("市")
+                            || queries[i].endsWith("区")
+                            || queries[i].endsWith("县")) {
+                        queries[i] = queries[i].substring(0, queries[i].length() - 1);
+                    }
+                }
+
+                if (DatabaseHelper.getInstance(context).countCNCity() < 2567) {
+                    DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
+                }
+
+                List<Location> locationList = new ArrayList<>();
+                List<CNCityList.CNCity> cityList;
+                CNCityList.CNCity city;
+                String query = null;
+
+                if (fuzzy) {
+                    cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
+                    if (cityList != null) {
+                        query = queries[0];
+                        locationList = Location.buildLocationListByCNWeather(cityList);
+                    }
+                } else {
+                    String[][] cityProvinceSet = null;
+                    if (queries.length == 3) {
+                        cityProvinceSet = new String[][] {
+                                new String[] {queries[0], queries[1]},
+                                new String[] {queries[0], queries[2]},
+                                new String[] {queries[1], queries[2]}};
+                    } else if (queries.length == 2) {
+                        cityProvinceSet = new String[][] {new String[] {queries[0], queries[1]}};
+                    }
+                    if (cityProvinceSet != null) {
+                        for (String[] cityProvince : cityProvinceSet) {
+                            city = DatabaseHelper.getInstance(context).readCNCity(cityProvince[0], cityProvince[1]);
+                            if (city != null) {
+                                query = cityProvince[0];
+                                locationList = Location.buildLocationList(city);
+                                break;
+                            }
+                        }
+                    } else {
+                        city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
+                        if (city != null) {
+                            query = queries[0];
+                            locationList = Location.buildLocationList(city);
+                        }
+                    }
+                }
+
+                final List<Location> finalLocationList = locationList;
+                final String finalQuery = query;
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (finalLocationList.size() > 0) {
+                            callback.requestLocationSuccess(finalQuery, finalLocationList);
+                        } else {
+                            callback.requestLocationFailed(finalQuery);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     private CNWeatherApi buildApi() {

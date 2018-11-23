@@ -7,8 +7,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2114
-        versionName "2.114"
+        versionCode 2115
+        versionName "2.115"
     }
     buildTypes {
         release {
@@ -24,6 +24,10 @@ android {
                 }
             }
         }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
     buildTypes.each {
         it.buildConfigField 'String', 'CN_WEATHER_BASE_URL', CN_WEATHER_BASE_URL
