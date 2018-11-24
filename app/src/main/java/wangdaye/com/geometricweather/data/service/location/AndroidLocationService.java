@@ -28,6 +28,7 @@ import wangdaye.com.geometricweather.utils.manager.ThreadManager;
  * Android Location service.
  * */
 
+@Deprecated
 @SuppressLint("MissingPermission")
 public class AndroidLocationService extends LocationService {
 

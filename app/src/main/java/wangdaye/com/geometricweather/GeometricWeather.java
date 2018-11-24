@@ -42,11 +42,13 @@ public class GeometricWeather extends Application {
     public static final String NOTIFICATION_CHANNEL_ID_NORMALLY = "normally";
     public static final String NOTIFICATION_CHANNEL_ID_ALERT = "alert";
     public static final String NOTIFICATION_CHANNEL_ID_FORECAST = "forecast";
+    public static final String NOTIFICATION_CHANNEL_ID_LOCATION = "location";
     public static final String NOTIFICATION_CHANNEL_ID_BACKGROUND = "background";
 
     public static final int NOTIFICATION_ID_NORMALLY = 1;
     public static final int NOTIFICATION_ID_TODAY_FORECAST = 2;
     public static final int NOTIFICATION_ID_TOMORROW_FORECAST = 3;
+    public static final int NOTIFICATION_ID_LOCATION = 4;
     public static final int NOTIFICATION_ID_RUNNING_IN_BACKGROUND = 5;
     public static final int NOTIFICATION_ID_UPDATING_NORMALLY = 6;
     public static final int NOTIFICATION_ID_UPDATING_TODAY_FORECAST= 7;
@@ -177,6 +179,9 @@ public class GeometricWeather extends Application {
 
             case NOTIFICATION_CHANNEL_ID_FORECAST:
                 return c.getString(R.string.geometric_weather) + " " + c.getString(R.string.forecast);
+
+            case NOTIFICATION_CHANNEL_ID_LOCATION:
+                return c.getString(R.string.geometric_weather) + " " + c.getString(R.string.feedback_request_location);
 
             case NOTIFICATION_CHANNEL_ID_BACKGROUND:
                 return c.getString(R.string.geometric_weather) + " " + c.getString(R.string.background_information);
