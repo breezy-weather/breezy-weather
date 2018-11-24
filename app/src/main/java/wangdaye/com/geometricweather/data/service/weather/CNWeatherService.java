@@ -132,67 +132,41 @@ public class CNWeatherService extends WeatherService {
                     return;
                 }
 
-                for (int i = 0; i < queries.length; i ++) {
-                    if (queries[i].endsWith("省")
-                            || queries[i].endsWith("市")
-                            || queries[i].endsWith("区")
-                            || queries[i].endsWith("县")) {
-                        queries[i] = queries[i].substring(0, queries[i].length() - 1);
-                    }
-                }
-
-                if (DatabaseHelper.getInstance(context).countCNCity() < 2567) {
+                if (DatabaseHelper.getInstance(context).countCNCity() < 2971) {
                     DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
                 }
 
                 List<Location> locationList = new ArrayList<>();
                 List<CNCityList.CNCity> cityList;
                 CNCityList.CNCity city;
-                String query = null;
 
                 if (fuzzy) {
                     cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
                     if (cityList != null) {
-                        query = queries[0];
                         locationList = Location.buildLocationListByCNWeather(cityList);
                     }
                 } else {
-                    String[][] cityProvinceSet = null;
                     if (queries.length == 3) {
-                        cityProvinceSet = new String[][] {
-                                new String[] {queries[0], queries[1]},
-                                new String[] {queries[0], queries[2]},
-                                new String[] {queries[1], queries[2]}};
-                    } else if (queries.length == 2) {
-                        cityProvinceSet = new String[][] {new String[] {queries[0], queries[1]}};
-                    }
-                    if (cityProvinceSet != null) {
-                        for (String[] cityProvince : cityProvinceSet) {
-                            city = DatabaseHelper.getInstance(context).readCNCity(cityProvince[0], cityProvince[1]);
-                            if (city != null) {
-                                query = cityProvince[0];
-                                locationList = Location.buildLocationList(city);
-                                break;
-                            }
+                        city = DatabaseHelper.getInstance(context).readCNCity(queries[0], queries[1], queries[2]);
+                        if (city != null) {
+                            locationList = Location.buildLocationList(city);
                         }
                     } else {
                         city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
                         if (city != null) {
-                            query = queries[0];
                             locationList = Location.buildLocationList(city);
                         }
                     }
                 }
 
                 final List<Location> finalLocationList = locationList;
-                final String finalQuery = query;
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         if (finalLocationList.size() > 0) {
-                            callback.requestLocationSuccess(finalQuery, finalLocationList);
+                            callback.requestLocationSuccess(queries[0], finalLocationList);
                         } else {
-                            callback.requestLocationFailed(finalQuery);
+                            callback.requestLocationFailed(queries[0]);
                         }
                     }
                 });

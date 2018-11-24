@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Location adapter.
@@ -41,6 +43,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         ImageView deleteImageRight;
         TextView title;
         TextView subtitle;
+        TextView source;
         ImageButton deleteButton;
 
         private OnLocationItemClickListener listener;
@@ -53,6 +56,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             this.deleteImageRight = itemView.findViewById(R.id.item_location_deleteIconRight);
             this.title = itemView.findViewById(R.id.item_location_title);
             this.subtitle = itemView.findViewById(R.id.item_location_subtitle);
+            this.source = itemView.findViewById(R.id.item_location_source);
             this.deleteButton = itemView.findViewById(R.id.item_location_deleteBtn);
             this.listener = listener;
 
@@ -113,18 +117,31 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         if (itemList.get(position).isLocal()) {
             holder.title.setText(context.getString(R.string.local));
             if (itemList.get(position).isUsable()) {
-                holder.subtitle.setText(itemList.get(position).cnty
-                        + " " + itemList.get(position).prov
-                        + " " + itemList.get(position).city);
+                holder.subtitle.setText(itemList.get(position).country
+                        + " " + itemList.get(position).province
+                        + " " + itemList.get(position).city
+                        + " " + itemList.get(position).district);
             } else {
                 holder.subtitle.setText(context.getString(R.string.feedback_not_yet_location));
             }
         } else {
-            holder.title.setText(itemList.get(position).city);
-            holder.subtitle.setText(itemList.get(position).cnty
-                    + " " + itemList.get(position).prov
-                    + " " + itemList.get(position).city);
+            if (!TextUtils.isEmpty(itemList.get(position).district)) {
+                holder.title.setText(itemList.get(position).district);
+            } else {
+                holder.title.setText(itemList.get(position).city);
+            }
+            holder.subtitle.setText(itemList.get(position).country
+                    + " " + itemList.get(position).province
+                    + " " + itemList.get(position).city
+                    + " " + itemList.get(position).district);
         }
+
+        if (itemList.get(position).isLocal() && !itemList.get(position).isUsable()) {
+            holder.source.setText("...");
+        } else {
+            holder.source.setText("Powered by " + ValueUtils.getWeatherSource(context, itemList.get(position).source));
+        }
+
         holder.drawSwipe(0);
         holder.drawDrag(context, false);
     }

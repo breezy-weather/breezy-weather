@@ -44,14 +44,13 @@
 
         <TextView
             android:id="@+id/item_location_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginBottom="2dp"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@id/item_location_deleteBtn"
             android:maxLines="1"
-            android:textColor="@color/colorTextContent"
             android:gravity="start"
             android:textAlignment="gravity"
             style="@style/title_text"
@@ -63,15 +62,29 @@
             android:layout_width="match_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@id/item_location_title"
-            android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_toStartOf="@id/item_location_deleteBtn"
-            android:maxLines="1"
             android:gravity="start"
             android:textAlignment="gravity"
             style="@style/subtitle_text"
-            tools:text="中国 山东 青岛 CN101120201"
+            tools:text="中国 山东省 青岛市 李沧区"
             tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/item_location_source"
+            android:layout_width="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/item_location_subtitle"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_toStartOf="@id/item_location_deleteBtn"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:textAlignment="gravity"
+            style="@style/subtitle_text"
+            tools:text="Powered by 彩云天气"
+            tools:ignore="RtlHardcoded,SmallSp" />
 
     </RelativeLayout>
 

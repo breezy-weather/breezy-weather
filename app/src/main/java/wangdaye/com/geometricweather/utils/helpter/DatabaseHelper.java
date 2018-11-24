@@ -65,6 +65,17 @@ public class DatabaseHelper {
         @Override
         public void onUpgrade(Database db, int oldVersion, int newVersion) {
             Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
+            if (newVersion >= 30 && oldVersion < 34) {
+                // delete china city list and recreate it.
+                CNCityEntityDao.dropTable(db, true);
+                CNCityEntityDao.createTable(db, true);
+                LocationEntityDao.dropTable(db, true);
+                LocationEntityDao.createTable(db, true);
+                Toast.makeText(
+                        context,
+                        context.getString(R.string.feedback_readd_location),
+                        Toast.LENGTH_SHORT).show();
+            }
             if (newVersion >= 27 && oldVersion < 29) {
                 // delete locations and guide user to re-add them in version 27 - 28.
                 LocationEntityDao.dropTable(db, true);
@@ -182,8 +193,8 @@ public class DatabaseHelper {
         return CNCityEntity.searchCNCity(getDatabase(), name);
     }
 
-    public CNCityList.CNCity readCNCity(String name, String province) {
-        return CNCityEntity.searchCNCity(getDatabase(), name, province);
+    public CNCityList.CNCity readCNCity(String district, String city, String province) {
+        return CNCityEntity.searchCNCity(getDatabase(), district, city, province);
     }
 
     public List<CNCityList.CNCity> fuzzyReadCNCity(String name) {

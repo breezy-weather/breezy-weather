@@ -46,7 +46,6 @@ import wangdaye.com.geometricweather.ui.widget.trendView.TrendViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
-import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.NotificationUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
@@ -410,10 +409,12 @@ public class MainActivity extends GeoActivity
         DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
 
         if (locationNow.weather == null) {
-            if (TextUtils.isEmpty(locationNow.city)) {
-                toolbar.setTitle(getString(R.string.local));
-            } else {
+            if (!TextUtils.isEmpty(locationNow.district)) {
+                toolbar.setTitle(locationNow.district);
+            } else if (!TextUtils.isEmpty(locationNow.city)) {
                 toolbar.setTitle(locationNow.city);
+            } else {
+                toolbar.setTitle(getString(R.string.local));
             }
         } else {
             toolbar.setTitle(locationNow.weather.base.city);
@@ -525,12 +526,7 @@ public class MainActivity extends GeoActivity
         detailRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailRecyclerView.setAdapter(new DetailsAdapter(this, weather));
 
-        if (LanguageUtils.isChinese(locationNow.city)
-                && GeometricWeather.getInstance().getChineseSource().equals("cn")) {
-            footerText.setText("Powered by weather.com.cn");
-        } else {
-            footerText.setText("Powered by accuweather.com");
-        }
+        footerText.setText("Powered by " + ValueUtils.getWeatherSource(this, locationNow.source));
 
         cardContainer.setVisibility(View.VISIBLE);
         if (initAnimator != null) {

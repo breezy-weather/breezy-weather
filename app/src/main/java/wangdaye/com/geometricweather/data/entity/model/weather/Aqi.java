@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 import android.content.Context;
 
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuAqiResult;
+import wangdaye.com.geometricweather.data.entity.result.caiyun.CaiYunMainlyResult;
 import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -48,6 +49,13 @@ public class Aqi {
         pm25 = String.valueOf(result.pm25.pm25);
         pm10 = String.valueOf(result.pm25.pm10);
         quality = WeatherHelper.getAqiQuality(c, result.pm25.aqi);
+    }
+
+    public void buildAqi(Context c, CaiYunMainlyResult result) {
+        aqi = result.aqi.aqi;
+        pm25 = result.aqi.pm25;
+        pm10 = result.aqi.pm10;
+        quality = WeatherHelper.getAqiQuality(c, Integer.parseInt(result.aqi.aqi));
     }
 
     void buildAqi(WeatherEntity entity) {

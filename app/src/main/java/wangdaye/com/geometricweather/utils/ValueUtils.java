@@ -10,13 +10,16 @@ import wangdaye.com.geometricweather.R;
 
 public class ValueUtils {
 
-    public static String getChineseSource(Context c, String value) {
+    public static String getWeatherSource(Context c, String value) {
         switch (value) {
             case "cn":
                 return c.getResources().getStringArray(R.array.chinese_sources)[0];
 
-            default:
+            case "caiyun":
                 return c.getResources().getStringArray(R.array.chinese_sources)[1];
+
+            default:
+                return c.getResources().getStringArray(R.array.chinese_sources)[2];
         }
     }
 

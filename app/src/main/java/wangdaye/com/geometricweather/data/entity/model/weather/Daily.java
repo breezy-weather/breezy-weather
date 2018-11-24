@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuDailyResult;
+import wangdaye.com.geometricweather.data.entity.result.caiyun.CaiYunMainlyResult;
 import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -83,8 +84,8 @@ public class Daily {
                 forecast.Day.IconPhrase,
                 forecast.Night.IconPhrase};
         weatherKinds = new String[] {
-                WeatherHelper.getNewWeatherKind(forecast.Day.Icon),
-                WeatherHelper.getNewWeatherKind(forecast.Night.Icon)};
+                WeatherHelper.getAccuWeatherKind(forecast.Day.Icon),
+                WeatherHelper.getAccuWeatherKind(forecast.Night.Icon)};
         temps = new int[] {
                 (int) forecast.Temperature.Maximum.Value,
                 (int) forecast.Temperature.Minimum.Value};
@@ -116,8 +117,8 @@ public class Daily {
                 daily.info.day.get(1),
                 daily.info.night.get(1)};
         weatherKinds = new String[] {
-                WeatherHelper.getNewWeatherKind(daily.info.day.get(0)),
-                WeatherHelper.getNewWeatherKind(daily.info.night.get(0))};
+                WeatherHelper.getCNWeatherKind(daily.info.day.get(0)),
+                WeatherHelper.getCNWeatherKind(daily.info.night.get(0))};
         temps = new int[] {
                 Integer.parseInt(daily.info.day.get(2)),
                 Integer.parseInt(daily.info.night.get(2))};
@@ -133,6 +134,43 @@ public class Daily {
                 daily.info.day.get(5),
                 daily.info.night.get(5)};
         precipitations = new int[] {-1, -1};
+        return this;
+    }
+
+    public Daily buildDaily(Context c, CaiYunMainlyResult result, int index) {
+        date = result.forecastDaily.sunRiseSet.value.get(index).from.split("T")[0];
+        week = WeatherHelper.getWeek(c, date);
+        weathers = new String[] {
+                WeatherHelper.getCNWeatherName(result.forecastDaily.weather.value.get(index).from),
+                WeatherHelper.getCNWeatherName(result.forecastDaily.weather.value.get(index).to)};
+        weatherKinds = new String[] {
+                WeatherHelper.getCNWeatherKind(result.forecastDaily.weather.value.get(index).from),
+                WeatherHelper.getCNWeatherKind(result.forecastDaily.weather.value.get(index).to)};
+        temps = new int[] {
+                Integer.parseInt(result.forecastDaily.temperature.value.get(index).from),
+                Integer.parseInt(result.forecastDaily.temperature.value.get(index).to)};
+        windDegrees = new int[] {
+                Integer.parseInt(result.forecastDaily.wind.direction.value.get(index).from),
+                Integer.parseInt(result.forecastDaily.wind.direction.value.get(index).to)};
+        windDirs = new String[] {
+                WeatherHelper.getCNWindName(windDegrees[0]),
+                WeatherHelper.getCNWindName(windDegrees[1])};
+        windSpeeds = new String[] {
+                result.forecastDaily.wind.speed.value.get(index).from,
+                result.forecastDaily.wind.speed.value.get(index).to};
+        windLevels = new String[] {
+                WeatherHelper.getWindSpeed(windSpeeds[0]),
+                WeatherHelper.getWindSpeed(windSpeeds[1])};
+        astros = new String[] {
+                result.forecastDaily.sunRiseSet.value.get(index).from.split("T")[1].substring(0, 5),
+                result.forecastDaily.sunRiseSet.value.get(index).to.split("T")[1].substring(0, 5)};
+        if (index < result.forecastDaily.precipitationProbability.value.size()) {
+            precipitations = new int[] {
+                    Integer.parseInt(result.forecastDaily.precipitationProbability.value.get(index)),
+                    Integer.parseInt(result.forecastDaily.precipitationProbability.value.get(index)),};
+        } else {
+            precipitations = new int[] {-1, -1};
+        }
         return this;
     }
 

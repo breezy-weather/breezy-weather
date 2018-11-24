@@ -5,29 +5,41 @@ import java.util.List;
 import wangdaye.com.geometricweather.data.entity.table.CNCityEntity;
 
 /**
- * CN city.
+ * CN city list.
  * */
 
 public class CNCityList {
 
-    public List<CNCity> citylist;
+    public List<CNCity> citys;
 
     public static class CNCity {
         /**
-         * name : 北京
-         * id : 101010100
-         * province_name : 北京
+         * id : 110101
+         * province : 北京市
+         * city : 东城区
+         * district : 无
+         * lat : 39.928353
+         * lon : 116.416357
+         * requestKey : 101011600
          */
 
-        public String name;
         public String id;
-        public String province_name;
+        public String province;
+        public String city;
+        public String district;
+        public String lat;
+        public String lon;
+        public String requestKey;
 
         public static CNCity buildCNCity(CNCityEntity entity) {
             CNCity city = new CNCity();
-            city.name = entity.cityName;
-            city.id = entity.cityId;
-            city.province_name = entity.province;
+            city.id = String.valueOf(entity.id);
+            city.province = entity.province;
+            city.city = entity.city;
+            city.district = entity.district;
+            city.lat = entity.lat;
+            city.lon = entity.lon;
+            city.requestKey = entity.requestKey;
             return city;
         }
     }

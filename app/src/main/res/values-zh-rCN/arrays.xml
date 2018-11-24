@@ -4,6 +4,7 @@
     <!-- Chinese source. -->
     <string-array name="chinese_sources">
         <item>中国天气网</item>
+        <item>彩云天气</item>
         <item>Accu Weather</item>
     </string-array>
 

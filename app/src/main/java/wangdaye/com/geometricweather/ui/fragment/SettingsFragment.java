@@ -6,23 +6,16 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 
-import java.util.List;
-
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundODialog;
-import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.manager.BackgroundManager;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
@@ -50,16 +43,13 @@ public class SettingsFragment extends PreferenceFragment
     private void initBasicPart(SharedPreferences sharedPreferences) {
         Preference chineseSource = findPreference(getString(R.string.key_chinese_source));
         chineseSource.setSummary(
-                ValueUtils.getChineseSource(
+                ValueUtils.getWeatherSource(
                         getActivity(),
                         PreferenceManager.getDefaultSharedPreferences(getActivity())
                                 .getString(
                                         getString(R.string.key_chinese_source),
                                         "cn")));
         chineseSource.setOnPreferenceChangeListener(this);
-        if (!hasChineseLocation()) {
-            ((PreferenceCategory) findPreference("basic")).removePreference(chineseSource);
-        }
 
         Preference uiStyle = findPreference(getString(R.string.key_ui_style));
         uiStyle.setSummary(
@@ -213,24 +203,6 @@ public class SettingsFragment extends PreferenceFragment
         }
     }
 
-    private boolean hasChineseLocation() {
-        if (LanguageUtils.buildLocale(GeometricWeather.getInstance().getLanguage())
-                .getLanguage().toLowerCase().equals("zh")) {
-            return true;
-        }
-
-        List<Location> list = DatabaseHelper.getInstance(getActivity()).readLocationList();
-        for (int i = 0; i < list.size(); i ++) {
-            if (LanguageUtils.isChinese(list.get(i).city)
-                    || LanguageUtils.isChinese(list.get(i).prov)
-                    || LanguageUtils.isChinese(list.get(i).cnty)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     // interface.
 
     @Override
@@ -248,9 +220,6 @@ public class SettingsFragment extends PreferenceFragment
                     new RunningInBackgroundDialog().show(getFragmentManager(), null);
                 }
             }
-        } else if (preference.getKey().equals(getString(R.string.key_chinese_source))) {
-            // Chinese source.
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_readd_location_after_changing_source));
         } else if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
             // navigation bar color.
             GeometricWeather.getInstance().setColorNavigationBar();
@@ -328,14 +297,9 @@ public class SettingsFragment extends PreferenceFragment
     public boolean onPreferenceChange(Preference preference, Object o) {
         if (preference.getKey().equals(getString(R.string.key_chinese_source))) {
             // Chinese source.
-            if (!GeometricWeather.getInstance().getChineseSource().equals(o)) {
-                DatabaseHelper.getInstance(getActivity()).clearLocation();
-                LocationHelper.clearLocationCache(getActivity());
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_readd_location));
-            }
             GeometricWeather.getInstance().setChineseSource((String) o);
-            preference.setSummary(ValueUtils.getChineseSource(getActivity(), (String) o));
-        } if (preference.getKey().equals(getString(R.string.key_ui_style))) {
+            preference.setSummary(ValueUtils.getWeatherSource(getActivity(), (String) o));
+        } else if (preference.getKey().equals(getString(R.string.key_ui_style))) {
             // UI style.
             preference.setSummary(ValueUtils.getUIStyle(getActivity(), (String) o));
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));

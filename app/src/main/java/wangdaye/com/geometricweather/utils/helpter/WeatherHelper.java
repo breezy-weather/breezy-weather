@@ -16,6 +16,7 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.service.weather.AccuWeatherService;
 import wangdaye.com.geometricweather.data.service.weather.CNWeatherService;
+import wangdaye.com.geometricweather.data.service.weather.CaiYunWeatherService;
 import wangdaye.com.geometricweather.data.service.weather.WeatherService;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 
@@ -40,24 +41,24 @@ public class WeatherHelper {
     public static final String KIND_THUNDER = "THUNDER";
     public static final String KIND_THUNDERSTORM = "THUNDERSTORM";
 
-    private void setWeatherService(String query) {
-        if (LanguageUtils.isChinese(query)) {
-            switch (GeometricWeather.getInstance().getChineseSource()) {
-                case "cn":
-                    weatherService = new CNWeatherService();
-                    break;
+    private void bindWeatherService(String source) {
+        switch (source) {
+            case "cn":
+                weatherService = new CNWeatherService();
+                break;
 
-                default:
-                    weatherService = new AccuWeatherService();
-                    break;
-            }
-        } else {
-            weatherService = new AccuWeatherService();
+            case "caiyun":
+                weatherService = new CaiYunWeatherService();
+                break;
+
+            default:
+                weatherService = new AccuWeatherService();
+                break;
         }
     }
 
     public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
-        setWeatherService(location.city);
+        bindWeatherService(location.source);
         weatherService.requestWeather(c, location, new WeatherService.RequestWeatherCallback() {
             @Override
             public void requestWeatherSuccess(Weather weather, Location requestLocation) {
@@ -72,7 +73,35 @@ public class WeatherHelper {
     }
 
     public void requestLocation(Context c, String query, @NonNull final OnRequestLocationListener l) {
-        setWeatherService(query);
+        if (LanguageUtils.isChinese(query) 
+                && !GeometricWeather.getInstance().getChineseSource().equals("accu")) {
+            requestCNAndGlobalLocation(c, query, l);
+        } else {
+            requestGlobalLocation(c, query, l);
+        }
+    }
+    
+    private void requestCNAndGlobalLocation(final Context c, String query, @NonNull final OnRequestLocationListener l) {
+        bindWeatherService(GeometricWeather.getInstance().getChineseSource());
+        weatherService.requestLocation(c, query, new WeatherService.RequestLocationCallback() {
+            @Override
+            public void requestLocationSuccess(String query, List<Location> locationList) {
+                if (locationList != null && locationList.size() > 0) {
+                    l.requestLocationSuccess(query, locationList);
+                } else {
+                    requestGlobalLocation(c, query, l);
+                }
+            }
+
+            @Override
+            public void requestLocationFailed(String query) {
+                requestGlobalLocation(c, query, l);
+            }
+        });
+    }
+
+    private void requestGlobalLocation(Context c, String query, @NonNull final OnRequestLocationListener l) {
+        bindWeatherService("accu");
         weatherService.requestLocation(c, query, new WeatherService.RequestLocationCallback() {
             @Override
             public void requestLocationSuccess(String query, List<Location> locationList) {
@@ -92,7 +121,7 @@ public class WeatherHelper {
         }
     }
 
-    public static String getNewWeatherKind(int icon) {
+    public static String getAccuWeatherKind(int icon) {
         if (icon == 1 || icon == 2 || icon == 30
                 || icon == 33 || icon == 34) {
             return KIND_CLEAR;
@@ -122,7 +151,7 @@ public class WeatherHelper {
         }
     }
 
-    public static String getNewWeatherKind(String icon) {
+    public static String getCNWeatherKind(String icon) {
         if (TextUtils.isEmpty(icon)) {
             return KIND_CLOUDY;
         }
@@ -202,6 +231,129 @@ public class WeatherHelper {
 
             default:
                 return KIND_CLOUDY;
+        }
+    }
+
+    public static String getCNWeatherName(String icon) {
+        if (TextUtils.isEmpty(icon)) {
+            return "未知";
+        }
+
+        switch (icon) {
+            case "0":
+            case "00":
+                return "晴";
+
+            case "1":
+            case "01":
+                return "多云";
+
+            case "2":
+            case "02":
+                return "阴";
+
+            case "3":
+            case "03":
+                return "阵雨";
+
+            case "4":
+            case "04":
+                return "雷阵雨";
+
+            case "5":
+            case "05":
+                return "雷阵雨伴有冰雹";
+
+            case "6":
+            case "06":
+                return "雨夹雪";
+
+            case "7":
+            case "07":
+                return "小雨";
+
+            case "8":
+            case "08":
+                return  "中雨";
+
+            case "9":
+            case "09":
+                return  "大雨";
+
+            case "10":
+                return  "暴雨";
+
+            case "11":
+                return  "大暴雨";
+
+            case "12":
+                return  "特大暴雨";
+
+            case "13":
+                return  "阵雪";
+
+            case "14":
+                return  "小雪";
+
+            case "15":
+                return  "中雪";
+
+            case "16":
+                return  "大雪";
+
+            case "17":
+                return  "暴雪";
+
+            case "18":
+                return  "雾";
+
+            case "19":
+                return  "冻雨";
+
+            case "20":
+                return  "沙尘暴";
+
+            case "21":
+                return  "小到中雨";
+
+            case "22":
+                return  "中到大雨";
+
+            case "23":
+                return  "大到暴雨";
+
+            case "24":
+                return  "暴雨到大暴雨";
+
+            case "25":
+                return  "大暴雨到特大暴雨";
+
+            case "26":
+                return  "小到中雪";
+
+            case "27":
+                return  "中到大雪";
+
+            case "28":
+                return  "大到暴雪";
+
+            case "29":
+                return  "浮尘";
+
+            case "30":
+                return  "扬沙";
+
+            case "31":
+                return  "强沙尘暴";
+
+            case "53":
+            case "54":
+            case "55":
+            case "56":
+                return  "霾";
+
+            default:
+                return "未知";
         }
     }
 
@@ -936,6 +1088,28 @@ public class WeatherHelper {
         }
     }
 
+    public static String getCNWindName(int degree) {
+        if (degree < 0) {
+            return "无风向";
+        }if (22.5 < degree && degree <= 67.5) {
+            return "东北风";
+        } else if (67.5 < degree && degree <= 112.5) {
+            return "东风";
+        } else if (112.5 < degree && degree <= 157.5) {
+            return "东南风";
+        } else if (157.5 < degree && degree <= 202.5) {
+            return "南风";
+        } else if (202.5 < degree && degree <= 247.5) {
+            return "西南风";
+        } else if (247.5 < degree && degree <= 292.5) {
+            return "西风";
+        } else if (292. < degree && degree <= 337.5) {
+            return "西北风";
+        } else {
+            return "北风";
+        }
+    }
+
     public static String getWindArrows(int degree) {
         if (degree < 0) {
             return "";
@@ -955,6 +1129,21 @@ public class WeatherHelper {
             return "↘";
         } else {
             return "↓";
+        }
+    }
+
+    public static String getCNUVIndex(String number) {
+        int num = Integer.parseInt(number);
+        if (num <= 2) {
+            return "最弱";
+        } else if (num <= 4) {
+            return "弱";
+        } else if (num <= 6) {
+            return "中等";
+        } else if (num <= 9) {
+            return "强";
+        } else {
+            return "很强";
         }
     }
 

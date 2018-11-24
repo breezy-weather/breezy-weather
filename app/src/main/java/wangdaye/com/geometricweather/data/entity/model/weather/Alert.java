@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuAlertResult;
+import wangdaye.com.geometricweather.data.entity.result.caiyun.CaiYunMainlyResult;
 import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
 
@@ -49,6 +50,18 @@ public class Alert implements Parcelable {
         description = alert.alarmTp1 + alert.alarmTp2 + c.getString(R.string.action_alert);
         content = alert.content;
         publishTime = c.getString(R.string.publish_at) + " " + alert.pubTime;
+        return this;
+    }
+
+    public Alert buildAlert(Context c, CaiYunMainlyResult.Alerts alert) {
+        id = Integer.parseInt(
+                alert.alertId.split(":")[1].split("-")[0]
+                        + alert.alertId.split(":")[1].split("-")[1]);
+        description = alert.title;
+        content = alert.detail;
+        publishTime = c.getString(R.string.publish_at)
+                + " " + alert.pubTime.split("T")[0]
+                + " " + alert.pubTime.split("T")[1].substring(0, 5);
         return this;
     }
 

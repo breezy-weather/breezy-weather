@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.data.service.weather;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Size;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public abstract class WeatherService extends TLSCompactService {
     public abstract void requestLocation(Context context, String query,
                                          @NonNull RequestLocationCallback callback);
 
-    public abstract void requestLocation(Context context, String[] queries,
+    public abstract void requestLocation(Context context, @Size(3) String[] queries,
                                          @NonNull RequestLocationCallback callback);
 
     public abstract void requestLocation(Context context, String lat, String lon,

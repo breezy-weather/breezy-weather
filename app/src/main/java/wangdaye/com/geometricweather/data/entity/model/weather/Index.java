@@ -6,6 +6,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuAqiResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.caiyun.CaiYunForecastResult;
+import wangdaye.com.geometricweather.data.entity.result.caiyun.CaiYunMainlyResult;
 import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -169,6 +171,43 @@ public class Index {
         uvs = new String[2];
         uvs[0] = c.getString(R.string.uv_index) + " : " + result.life.info.ziwaixian.get(0);
         uvs[1] = result.life.info.ziwaixian.get(1);
+    }
+
+    public void buildIndex(Context c, CaiYunMainlyResult mainly, CaiYunForecastResult forecast) {
+        simpleForecasts = new String[] {
+                c.getString(R.string.forecast) + " : " + forecast.precipitation.headDescription,
+                forecast.precipitation.description};
+        briefings = new String[] {
+                "压力",
+                mainly.current.pressure.value + mainly.current.pressure.unit};
+        winds = new String[2];
+        winds[0] = c.getString(R.string.live) + " : "
+                + WeatherHelper.getCNWindName(Integer.parseInt(mainly.current.wind.direction.value))
+                + " " + WeatherHelper.getWindSpeed(mainly.current.wind.speed.value)
+                + " (" + WeatherHelper.getWindLevel(c, Double.parseDouble(mainly.current.wind.speed.value)) + ")";
+        winds[1] =
+                c.getString(R.string.daytime) + " : "
+                        + WeatherHelper.getCNWindName(Integer.parseInt(mainly.forecastDaily.wind.direction.value.get(0).from))
+                        + " " + WeatherHelper.getWindSpeed(mainly.forecastDaily.wind.speed.value.get(0).from)
+                        + " (" + WeatherHelper.getWindLevel(c, Double.parseDouble(mainly.forecastDaily.wind.speed.value.get(0).from)) + ")" + "\n"
+                        + c.getString(R.string.nighttime) + " : "
+                        + WeatherHelper.getCNWindName(Integer.parseInt(mainly.forecastDaily.wind.direction.value.get(0).to))
+                        + " " + WeatherHelper.getWindSpeed(mainly.forecastDaily.wind.speed.value.get(0).to)
+                        + " (" + WeatherHelper.getWindLevel(c, Double.parseDouble(mainly.forecastDaily.wind.speed.value.get(0).to)) + ")";
+        aqis = new String[] {
+                "AQI : " + mainly.aqi.aqi + " (" + WeatherHelper.getAqiQuality(c, Integer.parseInt(mainly.aqi.aqi)) + ")",
+                "PM 2.5 : " + mainly.aqi.pm25 + "\n"
+                        + "PM 10 : " + mainly.aqi.pm10 + "\n"
+                        + "O₃ : " + mainly.aqi.o3 + "\n"
+                        + "CO : " + mainly.aqi.co + "\n"
+                        + "NO₂ : " + mainly.aqi.no2 + "\n"
+                        + "SO₂ : " + mainly.aqi.so2};
+        humidities = new String[2];
+        humidities[0] = c.getString(R.string.sensible_temp) + " : " + mainly.current.feelsLike.value + "℃";
+        humidities[1] = c.getString(R.string.humidity) + " : " + mainly.current.humidity.value;
+        uvs = new String[2];
+        uvs[0] = c.getString(R.string.uv_index);
+        uvs[1] = WeatherHelper.getCNUVIndex(mainly.current.uvIndex);
     }
     
     void buildIndex(WeatherEntity entity) {

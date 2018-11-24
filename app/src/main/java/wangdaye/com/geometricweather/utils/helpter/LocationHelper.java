@@ -16,6 +16,7 @@ import wangdaye.com.geometricweather.data.service.location.AndroidLocationServic
 import wangdaye.com.geometricweather.data.service.location.LocationService;
 import wangdaye.com.geometricweather.data.service.weather.AccuWeatherService;
 import wangdaye.com.geometricweather.data.service.weather.CNWeatherService;
+import wangdaye.com.geometricweather.data.service.weather.CaiYunWeatherService;
 import wangdaye.com.geometricweather.data.service.weather.WeatherService;
 
 
@@ -61,13 +62,15 @@ public class LocationHelper {
             }
 
             location.local = true;
-            location.city = result.district;
-            location.prov = result.province;
-            location.cnty = result.country;
+            location.district = result.district;
+            location.city = result.city;
+            location.province = result.province;
+            location.country = result.country;
             location.lat = result.latitude;
             location.lon = result.longitude;
+            location.china = result.inChina;
 
-            requestAvailableWeatherLocation(c, location, result, listener);
+            requestAvailableWeatherLocation(c, location, listener);
         }
     }
 
@@ -146,10 +149,13 @@ public class LocationHelper {
     }
 
     private void requestAvailableWeatherLocation(Context c,
-                                                 Location location, LocationService.Result result,
+                                                 Location location,
                                                  @NonNull OnRequestLocationListener l) {
-        if (!result.inChina || GeometricWeather.getInstance().getChineseSource().equals("accu")) {
+        if (!location.canUseChineseSource()
+                || GeometricWeather.getInstance().getChineseSource().equals("accu")) {
             // use accu as weather service api.
+            location.source = "accu";
+
             SharedPreferences sharedPreferences = c.getSharedPreferences(
                     PREFERENCE_LOCAL, Context.MODE_PRIVATE);
             String oldCity = sharedPreferences.getString(KEY_LAST_RESULT, ".");
@@ -169,12 +175,21 @@ public class LocationHelper {
             weatherService = new AccuWeatherService();
             weatherService.requestLocation(
                     c, location.lat, location.lon, new AccuLocationCallback(location, l));
-        } else {
+        } else if (GeometricWeather.getInstance().getChineseSource().equals("cn")) {
             // use cn weather net as the weather service api.
+            location.source = "cn";
             weatherService = new CNWeatherService();
             weatherService.requestLocation(
                     c,
-                    new String[]{result.district, result.city, result.province},
+                    new String[]{location.district, location.city, location.province},
+                    new CNLocationCallback(location, l));
+        } else {
+            // caiyun.
+            location.source = "caiyun";
+            weatherService = new CaiYunWeatherService();
+            weatherService.requestLocation(
+                    c,
+                    new String[]{location.district, location.city, location.province},
                     new CNLocationCallback(location, l));
         }
     }

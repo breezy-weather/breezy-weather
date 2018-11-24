@@ -4,6 +4,7 @@ import android.content.Context;
 
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuRealtimeResult;
+import wangdaye.com.geometricweather.data.entity.result.caiyun.CaiYunMainlyResult;
 import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
@@ -52,7 +53,7 @@ public class RealTime {
 
     public void buildRealTime(Context c, AccuRealtimeResult result) {
         weather = result.WeatherText;
-        weatherKind = WeatherHelper.getNewWeatherKind(result.WeatherIcon);
+        weatherKind = WeatherHelper.getAccuWeatherKind(result.WeatherIcon);
         temp = (int) result.Temperature.Metric.Value;
         sensibleTemp = (int) result.RealFeelTemperature.Metric.Value;
         windDir = result.Wind.Direction.Localized;
@@ -63,13 +64,24 @@ public class RealTime {
 
     public void buildRealTime(CNWeatherResult result) {
         weather = result.realtime.weather.info;
-        weatherKind = WeatherHelper.getNewWeatherKind(result.realtime.weather.img);
+        weatherKind = WeatherHelper.getCNWeatherKind(result.realtime.weather.img);
         temp = Integer.parseInt(result.realtime.weather.temperature);
         sensibleTemp = Integer.parseInt(result.realtime.feelslike_c);
         windDir = result.realtime.wind.direct;
         windSpeed = WeatherHelper.getWindSpeed(result.realtime.wind.windspeed);
         windLevel = result.realtime.wind.power;
         windDegree = -1;
+    }
+
+    public void buildRealTime(Context context, CaiYunMainlyResult result) {
+        weather = WeatherHelper.getCNWeatherName(result.current.weather);
+        weatherKind = WeatherHelper.getCNWeatherKind(result.current.weather);
+        temp = Integer.parseInt(result.current.temperature.value);
+        sensibleTemp = Integer.parseInt(result.current.feelsLike.value);
+        windDegree = Integer.parseInt(result.current.wind.direction.value);
+        windDir = WeatherHelper.getCNWindName(windDegree);
+        windSpeed = WeatherHelper.getWindSpeed(Double.parseDouble(result.current.wind.speed.value));
+        windLevel = WeatherHelper.getWindLevel(context, Double.parseDouble(result.current.wind.speed.value));
     }
 
     public void buildRealTime(AccuDailyResult result) {

@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 
 /**
@@ -197,13 +196,12 @@ public class AndroidLocationService extends LocationService {
                     }
                     result.province = addressList.get(0).getAdminArea();
                     result.country = addressList.get(0).getCountryName();
-                    result.inChina = LanguageUtils.isChinese(result.city)
-                            && (addressList.get(0).getCountryCode().equals("CN")
+                    result.inChina = addressList.get(0).getCountryCode().equals("CN")
                             || addressList.get(0).getCountryCode().equals("cn")
                             || addressList.get(0).getCountryCode().equals("HK")
                             || addressList.get(0).getCountryCode().equals("hk")
                             || addressList.get(0).getCountryCode().equals("TW")
-                            || addressList.get(0).getCountryCode().equals("tw"));
+                            || addressList.get(0).getCountryCode().equals("tw");
                 }
             }
 

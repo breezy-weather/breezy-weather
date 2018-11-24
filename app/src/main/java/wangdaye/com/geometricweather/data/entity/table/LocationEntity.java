@@ -24,24 +24,31 @@ public class LocationEntity {
     public Long id;
 
     public String cityId;
+    public String district;
     public String city;
-    public String cnty;
+    public String province;
+    public String country;
     public String lat;
     public String lon;
-    public String prov;
-    public boolean local;
+    public String source;
 
-    @Generated(hash = 513543808)
-    public LocationEntity(Long id, String cityId, String city, String cnty, String lat, String lon,
-            String prov, boolean local) {
+    public boolean local;
+    public boolean china;
+
+    @Generated(hash = 2018059014)
+    public LocationEntity(Long id, String cityId, String district, String city, String province,
+            String country, String lat, String lon, String source, boolean local, boolean china) {
         this.id = id;
         this.cityId = cityId;
+        this.district = district;
         this.city = city;
-        this.cnty = cnty;
+        this.province = province;
+        this.country = country;
         this.lat = lat;
         this.lon = lon;
-        this.prov = prov;
+        this.source = source;
         this.local = local;
+        this.china = china;
     }
 
     @Generated(hash = 1723987110)
@@ -51,12 +58,15 @@ public class LocationEntity {
     private static LocationEntity buildLocationEntity(Location location) {
         LocationEntity entity = new LocationEntity();
         entity.cityId = location.cityId;
+        entity.district = location.district;
         entity.city = location.city;
-        entity.cnty = location.cnty;
+        entity.province = location.province;
+        entity.country = location.country;
         entity.lat = location.lat;
         entity.lon = location.lon;
-        entity.prov = location.prov;
+        entity.source = location.source;
         entity.local = location.local;
+        entity.china = location.china;
         return entity;
     }
 
@@ -64,12 +74,15 @@ public class LocationEntity {
         LocationEntity entity = new LocationEntity();
         entity.id = id;
         entity.cityId = location.cityId;
+        entity.district = location.district;
         entity.city = location.city;
-        entity.cnty = location.cnty;
+        entity.province = location.province;
+        entity.country = location.country;
         entity.lat = location.lat;
         entity.lon = location.lon;
-        entity.prov = location.prov;
+        entity.source = location.source;
         entity.local = location.local;
+        entity.china = location.china;
         return entity;
     }
 
@@ -192,6 +205,14 @@ public class LocationEntity {
         this.cityId = cityId;
     }
 
+    public String getDistrict() {
+        return this.district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     public String getCity() {
         return this.city;
     }
@@ -200,12 +221,20 @@ public class LocationEntity {
         this.city = city;
     }
 
-    public String getCnty() {
-        return this.cnty;
+    public String getProvince() {
+        return this.province;
     }
 
-    public void setCnty(String cnty) {
-        this.cnty = cnty;
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCountry() {
+        return this.country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getLat() {
@@ -224,12 +253,12 @@ public class LocationEntity {
         this.lon = lon;
     }
 
-    public String getProv() {
-        return this.prov;
+    public String getSource() {
+        return this.source;
     }
 
-    public void setProv(String prov) {
-        this.prov = prov;
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public boolean getLocal() {
@@ -238,5 +267,13 @@ public class LocationEntity {
 
     public void setLocal(boolean local) {
         this.local = local;
+    }
+
+    public boolean getChina() {
+        return this.china;
+    }
+
+    public void setChina(boolean china) {
+        this.china = china;
     }
 }
