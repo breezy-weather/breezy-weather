@@ -30,6 +30,7 @@ public class GeometricWeather extends Application {
 
     private List<GeoActivity> activityList;
     private String chineseSource;
+    private String locationService;
     private String cardOrder;
     private boolean colorNavigationBar;
     private boolean fahrenheit;
@@ -86,6 +87,7 @@ public class GeometricWeather extends Application {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "cn");
+        locationService = sharedPreferences.getString(getString(R.string.key_location_service), "baidu");
         cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
@@ -117,6 +119,14 @@ public class GeometricWeather extends Application {
 
     public void setChineseSource(String chineseSource) {
         this.chineseSource = chineseSource;
+    }
+
+    public String getLocationService() {
+        return locationService;
+    }
+
+    public void setLocationService(String locationService) {
+        this.locationService = locationService;
     }
 
     public String getCardOrder() {

@@ -51,6 +51,16 @@ public class SettingsFragment extends PreferenceFragment
                                         "cn")));
         chineseSource.setOnPreferenceChangeListener(this);
 
+        Preference locationService = findPreference(getString(R.string.key_location_service));
+        locationService.setSummary(
+                ValueUtils.getLocationService(
+                        getActivity(),
+                        PreferenceManager.getDefaultSharedPreferences(getActivity())
+                                .getString(
+                                        getString(R.string.key_location_service),
+                                        "baidu")));
+        locationService.setOnPreferenceChangeListener(this);
+
         Preference uiStyle = findPreference(getString(R.string.key_ui_style));
         uiStyle.setSummary(
                 ValueUtils.getUIStyle(
@@ -299,6 +309,11 @@ public class SettingsFragment extends PreferenceFragment
             // Chinese source.
             GeometricWeather.getInstance().setChineseSource((String) o);
             preference.setSummary(ValueUtils.getWeatherSource(getActivity(), (String) o));
+        } else if (preference.getKey().equals(getString(R.string.key_location_service))) {
+            // Location service.
+            GeometricWeather.getInstance().setLocationService((String) o);
+            preference.setSummary(ValueUtils.getLocationService(getActivity(), (String) o));
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_ui_style))) {
             // UI style.
             preference.setSummary(ValueUtils.getUIStyle(getActivity(), (String) o));

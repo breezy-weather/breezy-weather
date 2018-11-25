@@ -142,7 +142,7 @@ public class CaiYunWeatherService extends CNWeatherService {
         if (isSucceed(location)) {
             try {
                 Weather weather = new Weather();
-                weather.base.buildBase(location, mainlyResult);
+                weather.base.buildBase(context, location, mainlyResult);
                 weather.realTime.buildRealTime(context, mainlyResult);
                 for (int i = 0; i < mainlyResult.forecastDaily.weather.value.size(); i ++) {
                     weather.dailyList.add(new Daily().buildDaily(context, mainlyResult, i));

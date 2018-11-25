@@ -14,6 +14,16 @@
         <item>accu</item>
     </string-array>
 
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Baidu Location</item>
+        <item>Native API</item>
+    </string-array>
+    <string-array name="location_service_values">
+        <item>baidu</item>
+        <item>native</item>
+    </string-array>
+
     <!-- UI style. -->
     <string-array name="ui_styles">
         <item>Circular sky</item>

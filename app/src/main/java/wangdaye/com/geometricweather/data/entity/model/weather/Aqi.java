@@ -19,7 +19,12 @@ public class Aqi {
     public String pm10;
     public String quality;
 
-    Aqi() {}
+    Aqi() {
+        aqi = "";
+        pm25 = "";
+        pm10 = "";
+        quality = "";
+    }
 
 /*
     void buildAqi(FWResult result) {

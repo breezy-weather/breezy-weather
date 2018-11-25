@@ -157,6 +157,7 @@
     <string name="settings_category_basic">基础</string>
     <string name="settings_title_background_free">后台纯净</string>
     <string name="settings_title_chinese_source">中国天气源</string>
+    <string name="settings_title_location_service">位置服务</string>
     <string name="settings_title_ui_style">界面风格</string>
     <string name="settings_title_card_order">卡片顺序</string>
     <string name="settings_title_gravity_sensor_switch">开启重力感应</string>

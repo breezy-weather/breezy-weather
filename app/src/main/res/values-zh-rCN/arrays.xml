@@ -8,6 +8,12 @@
         <item>Accu Weather</item>
     </string-array>
 
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>百度定位</item>
+        <item>原生接口</item>
+    </string-array>
+
     <!-- UI style. -->
     <string-array name="ui_styles">
         <item>圆环状天空</item>

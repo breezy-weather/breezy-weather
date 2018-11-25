@@ -31,8 +31,6 @@ public class AlertDisplayView extends FrameLayout {
     private boolean displaying;
     private int displayIndex;
 
-    private AlphaAnimation animation;
-
     private static final int DISPLAY_DURATION = 6000;
     private static final int EXCHANGE_DURATION = 300;
 
@@ -86,8 +84,6 @@ public class AlertDisplayView extends FrameLayout {
         this.alertList = null;
         this.displaying = false;
         this.displayIndex = -1;
-
-        this.animation = null;
     }
 
     public void display(List<Alert> alertList) {
@@ -113,24 +109,17 @@ public class AlertDisplayView extends FrameLayout {
     }
 
     public void stop() {
-        if (displaying) {
-            if (animation != null
-                    && animation.hasStarted() && !animation.hasEnded()) {
-                animation.cancel();
-            }
-            animation = null;
-
-            container.setAlpha(0F);
-            displaying = false;
-        }
+        displaying = false;
+        clearAnimation();
+        container.setAlpha(0F);
     }
 
     private void startHideAnimation() {
-        animation = new AlphaAnimation(container, container.getAlpha(), 0F);
-        animation.setDuration(EXCHANGE_DURATION);
-        animation.setStartOffset(DISPLAY_DURATION);
-        animation.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation.setAnimationListener(new Animation.AnimationListener() {
+        Animation hide = new AlphaAnimation(container, container.getAlpha(), 0F);
+        hide.setDuration(EXCHANGE_DURATION);
+        hide.setStartOffset(DISPLAY_DURATION);
+        hide.setInterpolator(new AccelerateDecelerateInterpolator());
+        hide.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 // do nothing.
@@ -138,11 +127,13 @@ public class AlertDisplayView extends FrameLayout {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                displayIndex ++;
-                displayIndex %= alertList.size();
-                setTitle(displayIndex);
-                setIndicator(displayIndex, alertList.size());
-                startShowAnimation();
+                if (displaying) {
+                    displayIndex ++;
+                    displayIndex %= alertList.size();
+                    setTitle(displayIndex);
+                    setIndicator(displayIndex, alertList.size());
+                    startShowAnimation();
+                }
             }
 
             @Override
@@ -150,14 +141,14 @@ public class AlertDisplayView extends FrameLayout {
                 // do nothing.
             }
         });
-        startAnimation(animation);
+        startAnimation(hide);
     }
 
     private void startShowAnimation() {
-        animation = new AlphaAnimation(container, container.getAlpha(), 1F);
-        animation.setDuration(EXCHANGE_DURATION);
-        animation.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation.setAnimationListener(new Animation.AnimationListener() {
+        Animation show = new AlphaAnimation(container, container.getAlpha(), 1F);
+        show.setDuration(EXCHANGE_DURATION);
+        show.setInterpolator(new AccelerateDecelerateInterpolator());
+        show.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 // do nothing.
@@ -165,7 +156,7 @@ public class AlertDisplayView extends FrameLayout {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (alertList.size() > 1) {
+                if (displaying && alertList.size() > 1) {
                     startHideAnimation();
                 }
             }
@@ -175,7 +166,7 @@ public class AlertDisplayView extends FrameLayout {
                 // do nothing.
             }
         });
-        startAnimation(animation);
+        startAnimation(show);
     }
 
     private void setTitle(int index) {

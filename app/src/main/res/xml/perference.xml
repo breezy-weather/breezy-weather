@@ -23,6 +23,14 @@
             android:defaultValue="cn" />
 
         <ListPreference
+            android:title="@string/settings_title_location_service"
+            android:key="@string/key_location_service"
+            android:entries="@array/location_services"
+            android:entryValues="@array/location_service_values"
+            android:dialogTitle="@string/settings_title_location_service"
+            android:defaultValue="baidu" />
+
+        <ListPreference
             android:title="@string/settings_title_ui_style"
             android:key="@string/key_ui_style"
             android:entries="@array/ui_styles"

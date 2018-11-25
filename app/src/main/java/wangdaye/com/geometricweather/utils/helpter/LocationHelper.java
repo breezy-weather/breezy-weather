@@ -12,6 +12,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.data.service.location.AndroidLocationService;
 import wangdaye.com.geometricweather.data.service.location.BaiduLocationService;
 import wangdaye.com.geometricweather.data.service.location.LocationService;
 import wangdaye.com.geometricweather.data.service.weather.AccuWeatherService;
@@ -131,8 +132,15 @@ public class LocationHelper {
     }
 
     public LocationHelper(Context context) {
-        // locationService = new AndroidLocationService(context);
-        locationService = new BaiduLocationService(context);
+        switch (GeometricWeather.getInstance().getLocationService()) {
+            case "baidu":
+                locationService = new BaiduLocationService(context);
+                break;
+
+            default:
+                locationService = new AndroidLocationService(context);
+                break;
+        }
     }
 
     public void requestLocation(Context c, Location location, @NonNull OnRequestLocationListener l) {

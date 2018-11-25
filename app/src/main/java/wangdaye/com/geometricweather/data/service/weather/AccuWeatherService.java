@@ -3,9 +3,13 @@ package wangdaye.com.geometricweather.data.service.weather;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
+
+import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +28,7 @@ import wangdaye.com.geometricweather.data.entity.result.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuRealtimeResult;
+import wangdaye.com.geometricweather.utils.GzipInterceptor;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 /**
@@ -48,10 +53,10 @@ public class AccuWeatherService extends WeatherService {
         this.languageCode = LanguageUtils.getLanguageCode(context);
 
         requestRealtime(context, location, callback);
-        requestAqi(context, location, callback);
         requestDaily(context, location, callback);
         requestHourly(context, location, callback);
         requestAlert(context, location, callback);
+        requestAqi(context, location, callback);
     }
 
     @Override
@@ -130,10 +135,19 @@ public class AccuWeatherService extends WeatherService {
     private AccuWeatherApi buildApi() {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(getClientBuilder().build())
+                .addConverterFactory(
+                        GsonConverterFactory.create(
+                                new GsonBuilder().setLenient().create()))
+                .client(buildClient())
                 .build()
                 .create((AccuWeatherApi.class));
+    }
+
+    private OkHttpClient buildClient() {
+        return getClientBuilder()
+                .addInterceptor(new GzipInterceptor())
+                // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
     }
 
     private boolean isSucceed(Location location) {
@@ -164,12 +178,15 @@ public class AccuWeatherService extends WeatherService {
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
-                true);
+                true,
+                false);
         getAccuRealtime.enqueue(new Callback<List<AccuRealtimeResult>>() {
             @Override
             public void onResponse(Call<List<AccuRealtimeResult>> call, Response<List<AccuRealtimeResult>> response) {
+                Log.d("ACCU", "requestRealtime - onResponse");
                 if (callback != null) {
                     if (response.isSuccessful() && response.body() != null) {
+                        Log.d("ACCU", "requestRealtime - isSuccessful");
                         if (!isFailed(location)) {
                             weather.base.buildBase(c, location, response.body().get(0));
                             weather.realTime.buildRealTime(c, response.body().get(0));
@@ -177,6 +194,7 @@ public class AccuWeatherService extends WeatherService {
                             loadSucceed(location, callback);
                         }
                     } else {
+                        Log.d("ACCU", "requestRealtime - body null");
                         loadFailed(location, callback);
                     }
                 }
@@ -184,6 +202,7 @@ public class AccuWeatherService extends WeatherService {
 
             @Override
             public void onFailure(Call<List<AccuRealtimeResult>> call, Throwable t) {
+                Log.d("ACCU", "requestRealtime - onFailure");
                 if (callback != null) {
                     loadFailed(location, callback);
                 }

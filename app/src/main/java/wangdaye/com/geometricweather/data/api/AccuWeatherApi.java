@@ -35,7 +35,8 @@ public interface AccuWeatherApi {
     Call<List<AccuRealtimeResult>> getRealtime(@Path("city_key") String city_key,
                                                @Query("apikey") String apikey,
                                                @Query("language") String language,
-                                               @Query("details") boolean details);
+                                               @Query("details") boolean details,
+                                               @Query("getphotos") boolean getphotos);
 
     @GET("forecasts/v1/daily/15day/{city_key}.json")
     Call<AccuDailyResult> getDaily(@Path("city_key") String city_key,

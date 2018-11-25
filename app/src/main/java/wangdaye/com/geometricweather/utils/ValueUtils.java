@@ -23,6 +23,16 @@ public class ValueUtils {
         }
     }
 
+    public static String getLocationService(Context c, String value) {
+        switch (value) {
+            case "baidu":
+                return c.getResources().getStringArray(R.array.location_services)[0];
+
+            default:
+                return c.getResources().getStringArray(R.array.location_services)[1];
+        }
+    }
+
     public static String getUIStyle(Context c, String value) {
         switch (value) {
             case "circular":

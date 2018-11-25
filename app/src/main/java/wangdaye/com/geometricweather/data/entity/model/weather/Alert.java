@@ -54,9 +54,7 @@ public class Alert implements Parcelable {
     }
 
     public Alert buildAlert(Context c, CaiYunMainlyResult.Alerts alert) {
-        id = Integer.parseInt(
-                alert.alertId.split(":")[1].split("-")[0]
-                        + alert.alertId.split(":")[1].split("-")[1]);
+        id = (int) (Long.parseLong(alert.alertId.split(":")[1].split("-")[1]) / 10000);
         description = alert.title;
         content = alert.detail;
         publishTime = c.getString(R.string.publish_at)

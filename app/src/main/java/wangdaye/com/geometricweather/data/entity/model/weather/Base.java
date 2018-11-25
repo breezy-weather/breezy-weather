@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuRealtimeResult;
@@ -43,11 +42,7 @@ public class Base {
 
     public void buildBase(Context c, Location location, AccuRealtimeResult result) {
         cityId = location.cityId;
-        if (!TextUtils.isEmpty(location.district)) {
-            city = location.district;
-        } else {
-            city = location.city;
-        }
+        city = location.getCityName(c);
         date = result.LocalObservationDateTime.split("T")[0];
         time = buildTime(
                 c,
@@ -58,11 +53,7 @@ public class Base {
 
     public void buildBase(Context c, Location location, CNWeatherResult result) {
         cityId = location.cityId;
-        if (!TextUtils.isEmpty(location.district)) {
-            city = location.district;
-        } else {
-            city = location.city;
-        }
+        city = location.getCityName(c);
         date = result.realtime.date;
         time = buildTime(
                 c,
@@ -71,13 +62,9 @@ public class Base {
         timeStamp = System.currentTimeMillis();
     }
 
-    public void buildBase(Location location, CaiYunMainlyResult result) {
+    public void buildBase(Context c, Location location, CaiYunMainlyResult result) {
         cityId = location.cityId;
-        if (!TextUtils.isEmpty(location.district)) {
-            city = location.district;
-        } else {
-            city = location.city;
-        }
+        city = location.getCityName(c);
         date = result.current.pubTime.split("T")[0];
         time = result.current.pubTime.split("T")[1].substring(0, 5);
         timeStamp = System.currentTimeMillis();

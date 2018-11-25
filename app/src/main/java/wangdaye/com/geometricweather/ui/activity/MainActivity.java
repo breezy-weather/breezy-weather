@@ -409,13 +409,7 @@ public class MainActivity extends GeoActivity
         DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
 
         if (locationNow.weather == null) {
-            if (!TextUtils.isEmpty(locationNow.district)) {
-                toolbar.setTitle(locationNow.district);
-            } else if (!TextUtils.isEmpty(locationNow.city)) {
-                toolbar.setTitle(locationNow.city);
-            } else {
-                toolbar.setTitle(getString(R.string.local));
-            }
+            toolbar.setTitle(locationNow.getCityName(this));
         } else {
             toolbar.setTitle(locationNow.weather.base.city);
         }
@@ -425,8 +419,6 @@ public class MainActivity extends GeoActivity
 
         switchLayout.reset();
         switchLayout.setEnabled(true);
-
-        alertView.stop();
 
         if (locationNow.weather == null) {
             setRefreshing(true);
@@ -496,8 +488,8 @@ public class MainActivity extends GeoActivity
         refreshTime.setText(weather.base.time);
 
         if (weather.alertList.size() == 0) {
-            alertView.setVisibility(View.GONE);
             alertView.stop();
+            alertView.setVisibility(View.GONE);
         } else {
             alertView.setVisibility(View.VISIBLE);
             alertView.display(weather.alertList);

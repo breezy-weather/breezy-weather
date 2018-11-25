@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,11 +124,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                 holder.subtitle.setText(context.getString(R.string.feedback_not_yet_location));
             }
         } else {
-            if (!TextUtils.isEmpty(itemList.get(position).district)) {
-                holder.title.setText(itemList.get(position).district);
-            } else {
-                holder.title.setText(itemList.get(position).city);
-            }
+            holder.title.setText(itemList.get(position).getCityName(context));
             holder.subtitle.setText(itemList.get(position).country
                     + " " + itemList.get(position).province
                     + " " + itemList.get(position).city

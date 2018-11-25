@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.data.entity.model;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
@@ -213,6 +215,20 @@ public class Location
 
     public String getCityId() {
         return cityId;
+    }
+
+    public String getCityName(Context context) {
+        if (!TextUtils.isEmpty(district) && !district.equals("市辖区") && !district.equals("无")) {
+            return district;
+        } else if (!TextUtils.isEmpty(city) && !city.equals("市辖区")) {
+            return city;
+        } else if (!TextUtils.isEmpty(province)) {
+            return province;
+        } else if (local) {
+            return context.getString(R.string.local);
+        } else {
+            return "";
+        }
     }
 
 
