@@ -32,6 +32,7 @@ public class LocationHelper {
 
     private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
     private static final String KEY_LAST_RESULT = "LAST_RESULT";
+    private static final String KEY_LAST_ACCU_KEY = "LAST_ACCU_KEY";
 
     private class RequestLocationListener implements LocationService.LocationCallback {
         // data
@@ -77,10 +78,12 @@ public class LocationHelper {
 
     private class AccuLocationCallback implements WeatherService.RequestLocationCallback {
         // data
+        private Context context;
         private Location location;
         private OnRequestLocationListener listener;
 
-        AccuLocationCallback(Location location, @NonNull OnRequestLocationListener l) {
+        AccuLocationCallback(Context c, Location location, @NonNull OnRequestLocationListener l) {
+            this.context = c;
             this.location = location;
             this.listener = l;
         }
@@ -88,6 +91,14 @@ public class LocationHelper {
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (locationList.size() > 0) {
+
+                if (!TextUtils.isEmpty(locationList.get(0).cityId)) {
+                    context.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
+                            .edit()
+                            .putString(KEY_LAST_ACCU_KEY, locationList.get(0).cityId)
+                            .apply();
+                }
+
                 listener.requestLocationSuccess(locationList.get(0).setLocal(), true);
             } else {
                 requestLocationFailed(query);
@@ -160,14 +171,15 @@ public class LocationHelper {
     private void requestAvailableWeatherLocation(Context c,
                                                  Location location,
                                                  @NonNull OnRequestLocationListener l) {
+        SharedPreferences sharedPreferences = c.getSharedPreferences(
+                PREFERENCE_LOCAL, Context.MODE_PRIVATE);
         if (!location.canUseChineseSource()
                 || GeometricWeather.getInstance().getChineseSource().equals("accu")) {
             // use accu as weather service api.
             location.source = "accu";
 
-            SharedPreferences sharedPreferences = c.getSharedPreferences(
-                    PREFERENCE_LOCAL, Context.MODE_PRIVATE);
-            String oldCity = sharedPreferences.getString(KEY_LAST_RESULT, ".");
+            String oldCity = sharedPreferences.getString(KEY_LAST_RESULT, "");
+            String oldKey = sharedPreferences.getString(KEY_LAST_ACCU_KEY, "");
 
             if (!TextUtils.isEmpty(location.city)) {
                 sharedPreferences.edit()
@@ -176,14 +188,14 @@ public class LocationHelper {
             }
 
             if (!TextUtils.isEmpty(location.city) && location.city.equals(oldCity)
-                    && location.isUsable()) {
+                    && !TextUtils.isEmpty(location.cityId) && location.cityId.equals(oldKey)) {
                 l.requestLocationSuccess(location, false);
                 return;
             }
 
             weatherService = new AccuWeatherService();
             weatherService.requestLocation(
-                    c, location.lat, location.lon, new AccuLocationCallback(location, l));
+                    c, location.lat, location.lon, new AccuLocationCallback(c, location, l));
         } else if (GeometricWeather.getInstance().getChineseSource().equals("cn")) {
             // use cn weather net as the weather service api.
             location.source = "cn";

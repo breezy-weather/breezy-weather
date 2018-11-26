@@ -7,8 +7,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2214
-        versionName "2.214"
+        versionCode 2215
+        versionName "2.215"
     }
     buildTypes {
         release {
@@ -34,6 +34,7 @@ android {
         it.buildConfigField 'String', 'CAIYUN_WEATHER_BASE_URL', CAIYUN_WEATHER_BASE_URL
         it.buildConfigField 'String', 'ACCU_WEATHER_BASE_URL', ACCU_WEATHER_BASE_URL
         it.buildConfigField 'String', 'ACCU_WEATHER_KEY', ACCU_WEATHER_KEY
+        it.buildConfigField 'String', 'ACCU_CURRENT_KEY', ACCU_CURRENT_KEY
         it.buildConfigField 'String', 'ACCU_AQI_KEY', ACCU_AQI_KEY
     }
 

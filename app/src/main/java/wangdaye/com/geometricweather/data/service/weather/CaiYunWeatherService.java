@@ -29,6 +29,8 @@ import wangdaye.com.geometricweather.utils.GzipInterceptor;
 
 public class CaiYunWeatherService extends CNWeatherService {
 
+    private CaiYunApi api;
+
     private Call mainlyCall;
     private Call forecastCall;
 
@@ -37,6 +39,22 @@ public class CaiYunWeatherService extends CNWeatherService {
     private CaiYunForecastResult forecastResult;
 
     private int successTime;
+
+    public CaiYunWeatherService() {
+        OkHttpClient client = getClientBuilder()
+                .addInterceptor(new GzipInterceptor())
+                // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
+
+        this.api = new Retrofit.Builder()
+                .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
+                .addConverterFactory(
+                        GsonConverterFactory.create(
+                                new GsonBuilder().setLenient().create()))
+                .client(client)
+                .build()
+                .create((CaiYunApi.class));
+    }
 
     @Override
     public void requestWeather(Context context,
@@ -51,7 +69,7 @@ public class CaiYunWeatherService extends CNWeatherService {
 
     private void requestMainlyWeather(final Context context,
                                       final Location location, @NonNull final RequestWeatherCallback callback) {
-        Call<CaiYunMainlyResult> getMainlyWeather = buildApi().getMainlyWeather(
+        Call<CaiYunMainlyResult> getMainlyWeather = api.getMainlyWeather(
                 location.lat,
                 location.lon,
                 location.isLocal(),
@@ -89,7 +107,7 @@ public class CaiYunWeatherService extends CNWeatherService {
 
     private void requestForecastWeather(final Context context,
                                         final Location location, @NonNull final RequestWeatherCallback callback) {
-        Call<CaiYunForecastResult> getForecastWeather = buildApi().getForecastWeather(
+        Call<CaiYunForecastResult> getForecastWeather = api.getForecastWeather(
                 location.lat,
                 location.lon,
                 "zh_cn",
@@ -175,23 +193,5 @@ public class CaiYunWeatherService extends CNWeatherService {
             successTime = -1;
             callback.requestWeatherFailed(requestLocation);
         }
-    }
-
-    private CaiYunApi buildApi() {
-        return new Retrofit.Builder()
-                .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
-                .addConverterFactory(
-                        GsonConverterFactory.create(
-                                new GsonBuilder().setLenient().create()))
-                .client(buildClient())
-                .build()
-                .create((CaiYunApi.class));
-    }
-
-    private OkHttpClient buildClient() {
-        return getClientBuilder()
-                .addInterceptor(new GzipInterceptor())
-                // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build();
     }
 }

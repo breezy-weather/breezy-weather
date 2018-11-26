@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuAqiResult;
@@ -123,7 +124,7 @@ public class Index {
                         + WeatherHelper.getWindArrows(result.DailyForecasts.get(0).Night.Wind.Direction.Degrees);
     }
 
-    public void buildIndex(Context c, AccuAqiResult result) {
+    public void buildIndex(Context c, @Nullable AccuAqiResult result) {
         if (result == null) {
             aqis = new String[] {"", ""};
         } else {

@@ -5,9 +5,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +27,7 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Hourly;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.result.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.utils.FileUtils;
+import wangdaye.com.geometricweather.utils.GzipInterceptor;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -177,9 +181,18 @@ public class CNWeatherService extends WeatherService {
     private CNWeatherApi buildApi() {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.CN_WEATHER_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(getClientBuilder().build())
+                .addConverterFactory(
+                        GsonConverterFactory.create(
+                                new GsonBuilder().setLenient().create()))
+                .client(buildClient())
                 .build()
                 .create((CNWeatherApi.class));
+    }
+
+    private OkHttpClient buildClient() {
+        return getClientBuilder()
+                .addInterceptor(new GzipInterceptor())
+                // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
     }
 }
