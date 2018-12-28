@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:maxLines="1"
-    android:padding="@dimen/normal_margin"
+    android:layout_margin="@dimen/normal_margin"
     android:textSize="@dimen/content_text_size">
 </TextView>

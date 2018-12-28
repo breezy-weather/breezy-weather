@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_main_details_card"
     style="@style/material_card">
 
@@ -16,10 +17,12 @@
             android:textSize="@dimen/title_text_size"
             style="@style/content_text" />
 
-        <wangdaye.com.geometricweather.ui.widget.NoneSlipRecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/container_main_details_card_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            tools:ignore="UnusedAttribute" />
 
     </LinearLayout>
 

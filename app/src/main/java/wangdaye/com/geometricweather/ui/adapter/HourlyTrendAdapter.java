@@ -3,11 +3,11 @@ package wangdaye.com.geometricweather.ui.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -43,7 +43,7 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
             implements View.OnClickListener {
 
         private TextView text;
-        private ImageView dayIcon;
+        private AppCompatImageView dayIcon;
         private TrendItemView trendItemView;
 
         ViewHolder(View itemView) {
@@ -97,7 +97,7 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
                     if (activity != null) {
                         WeatherDialog weatherDialog = new WeatherDialog();
                         weatherDialog.setData(weather, getAdapterPosition(), false);
-                        weatherDialog.show(activity.getFragmentManager(), null);
+                        weatherDialog.show(activity.getSupportFragmentManager(), null);
                     }
                     break;
             }

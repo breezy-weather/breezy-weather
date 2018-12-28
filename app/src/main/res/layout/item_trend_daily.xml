@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="@drawable/selectable_item_background">
 
     <TextView
         android:id="@+id/item_trend_daily_weekTxt"
@@ -33,7 +33,7 @@
         style="@style/content_text"
         tools:text="7-21" />
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/item_trend_daily_icon_day"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="144dp" />
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/item_trend_daily_icon_night"
         android:layout_width="48dp"
         android:layout_height="48dp"

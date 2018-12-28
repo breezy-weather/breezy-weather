@@ -26,6 +26,10 @@
     <color name="colorTextSubtitle">@color/colorTextGrey2nd</color>
     <color name="colorTextAlert">#fcc96b</color>
 
+    <color name="colorSearchBarBackground">@color/colorRoot</color>
+
+    <color name="colorRipple">#40808080</color>
+
     <color name="colorTextDark">#424242</color>
     <color name="colorTextDark2nd">#5f6267</color>
     <color name="colorTextGrey">#9e9e9e</color>

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorRoot"
     android:stateListAnimator="@animator/touch_raise"
-    android:foreground="?attr/selectableItemBackground"
+    android:foreground="@drawable/selectable_item_background"
     tools:targetApi="lollipop">
 
     <TextView
@@ -33,7 +33,7 @@
         tools:text="memcos@gmail.com"
         tools:ignore="RtlHardcoded" />
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/item_about_translator_flag"
         android:layout_alignTop="@id/item_about_translator_title"
         android:layout_toEndOf="@id/item_about_translator_title"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_weather_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorRoot">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,9 +41,9 @@
             android:id="@+id/dialog_weather_weatherContainer_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackgroundBorderless">
+            android:foreground="@drawable/selectable_item_background_borderless">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_3_day"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -51,7 +52,7 @@
                 tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_2_day"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -60,7 +61,7 @@
                 tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_1_day"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -86,9 +87,9 @@
             android:id="@+id/dialog_weather_weatherContainer_night"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackgroundBorderless">
+            android:foreground="@drawable/selectable_item_background_borderless">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_3_night"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -97,7 +98,7 @@
                 tools:src="@drawable/weather_sun_night"
                 tools:ignore="ContentDescription" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_2_night"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -106,7 +107,7 @@
                 tools:src="@drawable/weather_sun_night"
                 tools:ignore="ContentDescription" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_1_night"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -141,7 +142,7 @@
                 android:layout_centerVertical="true"
                 tools:ignore="RtlHardcoded">
 
-                <ImageView
+                <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/dialog_weather_sunriseIcon"
                     android:src="@drawable/ic_sunrise"
                     android:layout_alignParentStart="true"
@@ -170,7 +171,7 @@
                 android:layout_margin="@dimen/normal_margin"
                 tools:ignore="RtlHardcoded">
 
-                <ImageView
+                <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/dialog_weather_sunset_icon"
                     android:src="@drawable/ic_sunset"
                     android:layout_alignParentStart="true"

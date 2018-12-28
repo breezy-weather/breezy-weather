@@ -2,13 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-
     defaultConfig {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2214
-        versionName "2.214"
+        versionCode 2216
+        versionName "2.216"
     }
     buildTypes {
         release {
@@ -34,9 +33,9 @@ android {
         it.buildConfigField 'String', 'CAIYUN_WEATHER_BASE_URL', CAIYUN_WEATHER_BASE_URL
         it.buildConfigField 'String', 'ACCU_WEATHER_BASE_URL', ACCU_WEATHER_BASE_URL
         it.buildConfigField 'String', 'ACCU_WEATHER_KEY', ACCU_WEATHER_KEY
+        it.buildConfigField 'String', 'ACCU_CURRENT_KEY', ACCU_CURRENT_KEY
         it.buildConfigField 'String', 'ACCU_AQI_KEY', ACCU_AQI_KEY
     }
-
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
@@ -44,7 +43,10 @@ android {
         }
     }
     compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '28.0.3'
 }
 
 allprojects {
@@ -74,6 +76,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:preference-v7:28.0.0'
 
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'

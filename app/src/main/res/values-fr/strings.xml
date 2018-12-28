@@ -18,7 +18,6 @@
     <string name="aqi_4">Malsain</string>
     <string name="aqi_5">Très malsain</string>
     <string name="aqi_6">Air dangereux</string>
-    <string name="baidu_location">Baidu Location</string>
     <string name="briefings">Météo</string>
     <string name="cancel">ANNULER</string>
     <string name="daily_overview">Sur 15 jours</string>

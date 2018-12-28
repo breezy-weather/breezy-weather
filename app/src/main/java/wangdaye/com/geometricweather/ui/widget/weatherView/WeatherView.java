@@ -61,5 +61,8 @@ public interface WeatherView {
     @Size(3)
     int[] getThemeColors();
 
+    @ColorInt
+    int getBackgroundColor();
+
     int getFirstCardMarginTop();
 }

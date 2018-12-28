@@ -6,37 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <wangdaye.com.geometricweather.ui.widget.StatusBarView
-        android:id="@+id/activity_settings_statusBar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryDark"/>
+        app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
+
+        <wangdaye.com.geometricweather.ui.widget.StatusBarView
+            android:id="@+id/activity_settings_statusBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"/>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/activity_settings_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/action_settings"
+            app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/activity_settings_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/activity_settings_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="@string/action_settings"
-                app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
-
-        </android.support.design.widget.AppBarLayout>
-
-        <FrameLayout
-            android:id="@+id/activity_settings_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    </android.support.design.widget.CoordinatorLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

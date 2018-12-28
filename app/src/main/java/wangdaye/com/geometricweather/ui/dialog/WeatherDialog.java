@@ -6,13 +6,14 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.GeometricWeather;
@@ -40,6 +41,7 @@ public class WeatherDialog extends GeoDialogFragment
     private int position;
     private boolean daily;
 
+    @NonNull
     @SuppressLint("InflateParams")
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public class WeatherDialog extends GeoDialogFragment
         view.findViewById(R.id.dialog_weather_weatherContainer_day).setOnClickListener(this);
         view.findViewById(R.id.dialog_weather_weatherContainer_night).setOnClickListener(this);
 
-        ImageView[][] weatherIcons = new ImageView[2][3];
+        AppCompatImageView[][] weatherIcons = new AppCompatImageView[2][3];
         weatherIcons[0][0] = view.findViewById(R.id.dialog_weather_icon_1_day);
         weatherIcons[0][1] = view.findViewById(R.id.dialog_weather_icon_2_day);
         weatherIcons[0][2] = view.findViewById(R.id.dialog_weather_icon_3_day);

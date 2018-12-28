@@ -14,6 +14,13 @@
         <item>原生接口</item>
     </string-array>
 
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>自动</item>
+        <item>亮色主题</item>
+        <item>暗色主题</item>
+    </string-array>
+
     <!-- UI style. -->
     <string-array name="ui_styles">
         <item>圆环状天空</item>

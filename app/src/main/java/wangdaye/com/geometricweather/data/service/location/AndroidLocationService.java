@@ -196,12 +196,26 @@ public class AndroidLocationService extends LocationService {
                     }
                     result.province = addressList.get(0).getAdminArea();
                     result.country = addressList.get(0).getCountryName();
-                    result.inChina = addressList.get(0).getCountryCode().equals("CN")
-                            || addressList.get(0).getCountryCode().equals("cn")
-                            || addressList.get(0).getCountryCode().equals("HK")
-                            || addressList.get(0).getCountryCode().equals("hk")
-                            || addressList.get(0).getCountryCode().equals("TW")
-                            || addressList.get(0).getCountryCode().equals("tw");
+
+                    String countryCode = addressList.get(0).getCountryCode();
+                    if (TextUtils.isEmpty(countryCode)) {
+                        if (TextUtils.isEmpty(countryCode)) {
+                            result.inChina = false;
+                        } else {
+                            result.inChina = result.country.equals("中国")
+                                    || result.country.equals("香港")
+                                    || result.country.equals("澳门")
+                                    || result.country.equals("台湾")
+                                    || result.country.equals("China");
+                        }
+                    } else {
+                        result.inChina = countryCode.equals("CN")
+                                || addressList.get(0).getCountryCode().equals("cn")
+                                || addressList.get(0).getCountryCode().equals("HK")
+                                || addressList.get(0).getCountryCode().equals("hk")
+                                || addressList.get(0).getCountryCode().equals("TW")
+                                || addressList.get(0).getCountryCode().equals("tw");
+                    }
                 }
             }
 

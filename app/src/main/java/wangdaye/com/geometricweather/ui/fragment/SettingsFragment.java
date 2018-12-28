@@ -3,15 +3,15 @@ package wangdaye.com.geometricweather.ui.fragment;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
+import android.support.v7.preference.CheckBoxPreference;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.ui.activity.SettingsActivity;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
@@ -19,13 +19,12 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.manager.BackgroundManager;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
 import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Settings fragment.
  * */
 
-public class SettingsFragment extends PreferenceFragment
+public class SettingsFragment extends PreferenceFragmentCompat
         implements Preference.OnPreferenceChangeListener, TimeSetterDialog.OnTimeChangedListener {
 
     @Override
@@ -34,64 +33,27 @@ public class SettingsFragment extends PreferenceFragment
         addPreferencesFromResource(R.xml.perference);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        initBasicPart(sharedPreferences);
+        initBasicPart();
         initForecastPart(sharedPreferences);
         initWidgetPart(sharedPreferences);
         initNotificationPart(sharedPreferences);
     }
 
-    private void initBasicPart(SharedPreferences sharedPreferences) {
-        Preference chineseSource = findPreference(getString(R.string.key_chinese_source));
-        chineseSource.setSummary(
-                ValueUtils.getWeatherSource(
+    @Override
+    public void onCreatePreferences(Bundle bundle, String s) {
+        // do nothing.
+    }
+
+    private void initBasicPart() {
+        Preference darkMode = findPreference(getString(R.string.key_dark_mode));
+        darkMode.setSummary(
+                ValueUtils.getDarkMode(
                         getActivity(),
                         PreferenceManager.getDefaultSharedPreferences(getActivity())
                                 .getString(
-                                        getString(R.string.key_chinese_source),
-                                        "cn")));
-        chineseSource.setOnPreferenceChangeListener(this);
-
-        Preference locationService = findPreference(getString(R.string.key_location_service));
-        locationService.setSummary(
-                ValueUtils.getLocationService(
-                        getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(
-                                        getString(R.string.key_location_service),
-                                        "baidu")));
-        locationService.setOnPreferenceChangeListener(this);
-
-        Preference uiStyle = findPreference(getString(R.string.key_ui_style));
-        uiStyle.setSummary(
-                ValueUtils.getUIStyle(
-                        getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(
-                                        getString(R.string.key_ui_style),
-                                        "material")));
-        uiStyle.setOnPreferenceChangeListener(this);
-
-        Preference cardOrder = findPreference(getString(R.string.key_card_order));
-        cardOrder.setSummary(
-                ValueUtils.getCardOrder(
-                        getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(
-                                        getString(R.string.key_card_order),
-                                        "daily_first")));
-        cardOrder.setOnPreferenceChangeListener(this);
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            findPreference(getString(R.string.key_navigationBar_color)).setEnabled(false);
-        } else {
-            findPreference(getString(R.string.key_navigationBar_color)).setEnabled(true);
-        }
-
-        Preference fahrenheit = findPreference(getString(R.string.key_fahrenheit));
-        fahrenheit.setOnPreferenceChangeListener(this);
-
-        Preference imperial = findPreference(getString(R.string.key_imperial));
-        imperial.setOnPreferenceChangeListener(this);
+                                        getString(R.string.key_dark_mode),
+                                        "auto")));
+        darkMode.setOnPreferenceChangeListener(this);
 
         Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));
         refreshRate.setSummary(
@@ -100,13 +62,6 @@ public class SettingsFragment extends PreferenceFragment
                                 getString(R.string.key_refresh_rate),
                                 "1:30"));
         refreshRate.setOnPreferenceChangeListener(this);
-
-        Preference language = findPreference(getString(R.string.key_language));
-        language.setSummary(
-                ValueUtils.getLanguage(
-                        getActivity(),
-                        sharedPreferences.getString(getString(R.string.key_language), "follow_system")));
-        language.setOnPreferenceChangeListener(this);
     }
 
     private void initForecastPart(SharedPreferences sharedPreferences) {
@@ -216,10 +171,21 @@ public class SettingsFragment extends PreferenceFragment
     // interface.
 
     @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+    public boolean onPreferenceTreeClick(Preference preference) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-        if (preference.getKey().equals(getString(R.string.key_background_free))) {
+        if (preference.getKey().equals(getString(R.string.key_service_provider))) {
+            ((SettingsActivity) getActivity()).pushFragment(
+                    new ServiceProviderSettingsFragment(),
+                    preference.getKey());
+        } else if (preference.getKey().equals(getString(R.string.key_unit))) {
+            ((SettingsActivity) getActivity()).pushFragment(
+                    new UnitSettingsFragment(),
+                    preference.getKey());
+        } else if (preference.getKey().equals(getString(R.string.key_appearance))) {
+            ((SettingsActivity) getActivity()).pushFragment(
+                    new AppearanceSettingsFragment(),
+                    preference.getKey());
+        } else if (preference.getKey().equals(getString(R.string.key_background_free))) {
             // background free.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
             boolean backgroundFree = sharedPreferences.getBoolean(getString(R.string.key_background_free), true);
@@ -230,18 +196,6 @@ public class SettingsFragment extends PreferenceFragment
                     new RunningInBackgroundDialog().show(getFragmentManager(), null);
                 }
             }
-        } else if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
-            // navigation bar color.
-            GeometricWeather.getInstance().setColorNavigationBar();
-            DisplayUtils.setNavigationBarColor(getActivity(), 0);
-        } else if (preference.getKey().equals(getString(R.string.key_fahrenheit))) {
-            // ℉
-            GeometricWeather.getInstance().setFahrenheit(!GeometricWeather.getInstance().isFahrenheit());
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
-        } else if (preference.getKey().equals(getString(R.string.key_imperial))) {
-            // imperial units.
-            GeometricWeather.getInstance().setImperial(!GeometricWeather.getInstance().isImperial());
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today))) {
             // forecast today.
             initForecastPart(sharedPreferences);
@@ -300,39 +254,23 @@ public class SettingsFragment extends PreferenceFragment
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         }
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+        return super.onPreferenceTreeClick(preference);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
-        if (preference.getKey().equals(getString(R.string.key_chinese_source))) {
-            // Chinese source.
-            GeometricWeather.getInstance().setChineseSource((String) o);
-            preference.setSummary(ValueUtils.getWeatherSource(getActivity(), (String) o));
-        } else if (preference.getKey().equals(getString(R.string.key_location_service))) {
-            // Location service.
-            GeometricWeather.getInstance().setLocationService((String) o);
-            preference.setSummary(ValueUtils.getLocationService(getActivity(), (String) o));
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
-        } else if (preference.getKey().equals(getString(R.string.key_ui_style))) {
-            // UI style.
-            preference.setSummary(ValueUtils.getUIStyle(getActivity(), (String) o));
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
-        } else if (preference.getKey().equals(getString(R.string.key_card_order))) {
-            // Card order.
-            GeometricWeather.getInstance().setCardOrder((String) o);
-            preference.setSummary(ValueUtils.getCardOrder(getActivity(), (String) o));
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
+        if (preference.getKey().equals(getString(R.string.key_dark_mode))) {
+            // Dark mode.
+            preference.setSummary(ValueUtils.getDarkMode(getActivity(), (String) o));
+            GeometricWeather.getInstance().setDarkMode((String) o);
+            GeometricWeather.getInstance().resetDayNightMode();
+            GeometricWeather.getInstance().recreateAllActivities();
         } else if (preference.getKey().equals(getString(R.string.key_refresh_rate))) {
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
             editor.putString(getString(R.string.key_refresh_rate), (String) o);
             editor.apply();
             preference.setSummary((String) o);
             BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
-        } else if (preference.getKey().equals(getString(R.string.key_language))) {
-            preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
-            GeometricWeather.getInstance().setLanguage((String) o);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_widget_icon_style))
                 || preference.getKey().equals(getString(R.string.key_notification_icon_style))) {
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);

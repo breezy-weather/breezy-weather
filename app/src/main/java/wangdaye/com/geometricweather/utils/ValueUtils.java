@@ -43,6 +43,19 @@ public class ValueUtils {
         }
     }
 
+    public static String getDarkMode(Context c, String value) {
+        switch (value) {
+            case "auto":
+                return c.getResources().getStringArray(R.array.dark_modes)[0];
+
+            case "light":
+                return c.getResources().getStringArray(R.array.dark_modes)[1];
+
+            default:
+                return c.getResources().getStringArray(R.array.dark_modes)[2];
+        }
+    }
+
     public static String getCardOrder(Context c, String value) {
         switch (value) {
             case "daily_first":
@@ -121,6 +134,12 @@ public class ValueUtils {
 
             case "italian":
                 return c.getResources().getStringArray(R.array.languages)[12];
+
+            case "dutch":
+                return c.getResources().getStringArray(R.array.languages)[13];
+
+            case "hungarian":
+                return c.getResources().getStringArray(R.array.languages)[14];
 
             default:
                 return null;

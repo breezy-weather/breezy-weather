@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="@drawable/selectable_item_background">
 
     <TextView
         android:id="@+id/item_about_library_title"

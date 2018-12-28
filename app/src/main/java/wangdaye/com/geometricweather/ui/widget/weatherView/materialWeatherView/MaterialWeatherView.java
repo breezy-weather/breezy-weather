@@ -1,7 +1,9 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -16,6 +18,7 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.CloudImplementor;
@@ -38,7 +41,6 @@ public class MaterialWeatherView extends SurfaceView
         implements WeatherView, SurfaceHolder.Callback, Runnable {
 
     private SurfaceHolder holder;
-    private final Object surfaceLock = new Object();
 
     @Nullable
     private WeatherAnimationImplementor implementor;
@@ -153,15 +155,36 @@ public class MaterialWeatherView extends SurfaceView
         this.step = STEP_DISPLAY;
         setWeather(WeatherView.WEATHER_KING_NULL);
 
-        this.firstCardMarginTop = (int) (getResources().getDisplayMetrics().widthPixels * 1.1761);
-        if (getResources().getDisplayMetrics().heightPixels - firstCardMarginTop
-                < DisplayUtils.dpToPx(getContext(), 214)) {
-            firstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels
-                    - DisplayUtils.dpToPx(getContext(), 214));
-            if (firstCardMarginTop < getResources().getDisplayMetrics().heightPixels * 0.5) {
-                firstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels * 0.5);
-            }
+        if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
+            this.firstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels
+                    + getResources().getDimensionPixelSize(R.dimen.little_margin)
+                    - DisplayUtils.dpToPx(
+                            getContext(),
+                        56 /* time icon */
+                                + 16 * 2 /* first card title margin */
+                                + 3 * 4 /* daily item text margin */
+                                + 48 * 2 /* daily icon */
+                                + 144 /* daily trend */
+                                + 16 /* daily item bottom margin */)
+                    - getResources().getDimensionPixelSize(R.dimen.title_text_size) // first card title
+                    - getResources().getDimensionPixelSize(R.dimen.content_text_size) * 2); // daily item text
+        } else {
+            this.firstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels
+                    + getResources().getDimensionPixelSize(R.dimen.little_margin)
+                    - DisplayUtils.dpToPx(
+                            getContext(),
+                        56 /* time icon */
+                                + 16 * 2 /* first card title margin */
+                                + 2 * 4 /* hourly item text margin */
+                                + 48 /* hourly icon */
+                                + 128 /* hourly trend */
+                                + 16 /* hourly item bottom margin */)
+                    - getResources().getDimensionPixelSize(R.dimen.title_text_size) // first card title
+                    - getResources().getDimensionPixelSize(R.dimen.content_text_size)); // hourly item text
         }
+        firstCardMarginTop = (int) Math.max(
+                firstCardMarginTop,
+                getResources().getDisplayMetrics().heightPixels * 0.6);
 
         this.scrollRate = 0;
     }
@@ -311,6 +334,14 @@ public class MaterialWeatherView extends SurfaceView
         this.openGravitySensor = openGravitySensor;
     }
 
+    private int getBrighterColor(int color){
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[1] = hsv[1] - 0.25F;
+        hsv[2] = hsv[2] + 0.25F;
+        return Color.HSVToColor(hsv);
+    }
+
     // interface.
 
     // weather view.
@@ -345,6 +376,19 @@ public class MaterialWeatherView extends SurfaceView
 
     @Override
     public int[] getThemeColors() {
+        int color = getBackgroundColor();
+        int currentNightMode = getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+        if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
+            color = getBrighterColor(color);
+            return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
+        } else {
+            return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
+        }
+    }
+
+    @Override
+    public int getBackgroundColor() {
         int color = ContextCompat.getColor(getContext(), R.color.colorPrimary);
         switch (weatherKind) {
             case WeatherView.WEATHER_KIND_CLEAR_DAY:
@@ -422,7 +466,7 @@ public class MaterialWeatherView extends SurfaceView
             case WeatherView.WEATHER_KING_NULL:
                 break;
         }
-        return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
+        return color;
     }
 
     @Override
@@ -452,11 +496,9 @@ public class MaterialWeatherView extends SurfaceView
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        synchronized (surfaceLock) {
-            if (sensorManager != null) {
-                sensorManager.unregisterListener(gravityListener, gravitySensor);
-            }
-            running = false;
+        running = false;
+        if (sensorManager != null) {
+            sensorManager.unregisterListener(gravityListener, gravitySensor);
         }
     }
 
@@ -477,26 +519,24 @@ public class MaterialWeatherView extends SurfaceView
                         this,
                         (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
 
-                synchronized (surfaceLock) {
-                    if (running) {
-                        canvas = holder.lockCanvas();
-                        if (canvas != null) {
-                            if (step == STEP_DISPLAY) {
-                                displayRate = (float) Math.min(
-                                        1, displayRate + WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
-                            } else {
-                                displayRate = (float) Math.max(
-                                        0, displayRate - WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
-                            }
-                            implementor.draw(
-                                    this, canvas,
-                                    displayRate, scrollRate,
-                                    (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
-                            if (displayRate == 0) {
-                                setWeatherImplementor();
-                            }
-                            holder.unlockCanvasAndPost(canvas);
+                if (running) {
+                    canvas = holder.lockCanvas();
+                    if (canvas != null) {
+                        if (step == STEP_DISPLAY) {
+                            displayRate = (float) Math.min(
+                                    1, displayRate + WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
+                        } else {
+                            displayRate = (float) Math.max(
+                                    0, displayRate - WeatherAnimationImplementor.REFRESH_INTERVAL / 150.0);
                         }
+                        implementor.draw(
+                                this, canvas,
+                                displayRate, scrollRate,
+                                (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
+                        if (displayRate == 0) {
+                            setWeatherImplementor();
+                        }
+                        holder.unlockCanvasAndPost(canvas);
                     }
                 }
             }

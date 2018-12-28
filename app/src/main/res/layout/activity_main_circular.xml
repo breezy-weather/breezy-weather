@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorRoot">
 
-    <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyView
+    <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView
         android:id="@+id/activity_main_weatherView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -45,7 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/little_margin"
-                        android:textColor="@color/colorTextDark2nd"
+                        android:textColor="@color/colorTextLight2nd"
                         style="@style/content_text"
                         tools:text="AccuWeather.com"/>
 
@@ -85,7 +86,7 @@
             app:dotGap="8dp"
             app:animationDuration="300"
             app:pageIndicatorColor="@color/colorTextSubtitle"
-            app:currentPageIndicatorColor="@color/colorPrimary"/>
+            app:currentPageIndicatorColor="@color/colorAccent"/>
         
     </wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout>
 

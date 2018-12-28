@@ -1,11 +1,14 @@
 package wangdaye.com.geometricweather;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,9 +18,10 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
- * Geometric realTimeWeather.
+ * Geometric weather application class.
  * */
 
 public class GeometricWeather extends Application {
@@ -31,6 +35,7 @@ public class GeometricWeather extends Application {
     private List<GeoActivity> activityList;
     private String chineseSource;
     private String locationService;
+    private String darkMode;
     private String cardOrder;
     private boolean colorNavigationBar;
     private boolean fahrenheit;
@@ -78,6 +83,7 @@ public class GeometricWeather extends Application {
         if (!TextUtils.isEmpty(processName)
                 && processName.equals(this.getPackageName())) {
             initialize();
+            resetDayNightMode();
         }
     }
 
@@ -88,6 +94,7 @@ public class GeometricWeather extends Application {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "cn");
         locationService = sharedPreferences.getString(getString(R.string.key_location_service), "baidu");
+        darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
         cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
@@ -101,8 +108,8 @@ public class GeometricWeather extends Application {
         activityList.add(a);
     }
 
-    public void removeActivity() {
-        activityList.remove(activityList.size() - 1);
+    public void removeActivity(GeoActivity a) {
+        activityList.remove(a);
     }
 
     @Nullable
@@ -127,6 +134,14 @@ public class GeometricWeather extends Application {
 
     public void setLocationService(String locationService) {
         this.locationService = locationService;
+    }
+
+    public String getDarkMode() {
+        return darkMode;
+    }
+
+    public void setDarkMode(String darkMode) {
+        this.darkMode = darkMode;
     }
 
     public String getCardOrder() {
@@ -198,6 +213,33 @@ public class GeometricWeather extends Application {
 
             default:
                 return c.getString(R.string.geometric_weather);
+        }
+    }
+
+    public void resetDayNightMode() {
+        switch (darkMode) {
+            case "auto":
+                AppCompatDelegate.setDefaultNightMode(
+                        TimeManager.getInstance(this).isDayTime() ?
+                                AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+
+            case "light":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+
+            case "dark":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+        }
+    }
+
+    public void recreateAllActivities() {
+        for (Activity a : activityList) {
+            a.recreate();
+        }
+        for (Activity a : activityList) {
+            Log.d("GeoApp", a.getClass().toString());
         }
     }
 }

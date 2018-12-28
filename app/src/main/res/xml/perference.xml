@@ -3,9 +3,7 @@
     android:title="@string/action_settings" >
 
     <PreferenceCategory
-        android:title="@string/settings_category_basic"
-        android:key="basic"
-        android:layout="@layout/preference_category">
+        android:title="@string/settings_category_basic">
 
         <CheckBoxPreference
             android:title="@string/settings_title_background_free"
@@ -13,71 +11,6 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off"
             android:defaultValue="true" />
-
-        <ListPreference
-            android:title="@string/settings_title_chinese_source"
-            android:key="@string/key_chinese_source"
-            android:entries="@array/chinese_sources"
-            android:entryValues="@array/chinese_source_values"
-            android:dialogTitle="@string/settings_title_chinese_source"
-            android:defaultValue="cn" />
-
-        <ListPreference
-            android:title="@string/settings_title_location_service"
-            android:key="@string/key_location_service"
-            android:entries="@array/location_services"
-            android:entryValues="@array/location_service_values"
-            android:dialogTitle="@string/settings_title_location_service"
-            android:defaultValue="baidu" />
-
-        <ListPreference
-            android:title="@string/settings_title_ui_style"
-            android:key="@string/key_ui_style"
-            android:entries="@array/ui_styles"
-            android:entryValues="@array/ui_style_values"
-            android:dialogTitle="@string/settings_title_ui_style"
-            android:defaultValue="material" />
-
-        <ListPreference
-            android:title="@string/settings_title_card_order"
-            android:key="@string/key_card_order"
-            android:entries="@array/card_orders"
-            android:entryValues="@array/card_order_values"
-            android:dialogTitle="@string/settings_title_card_order"
-            android:defaultValue="daily_first" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_gravity_sensor_switch"
-            android:key="@string/key_gravity_sensor_switch"
-            android:summaryOn="@string/on"
-            android:summaryOff="@string/off"
-            android:defaultValue="true" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_navigationBar_color"
-            android:key="@string/key_navigationBar_color"
-            android:summaryOn="@string/settings_navigationBar_color_on"
-            android:summaryOff="@string/settings_navigationBar_color_off" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_fahrenheit"
-            android:key="@string/key_fahrenheit"
-            android:summaryOn="@string/on"
-            android:summaryOff="@string/off" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_imperial"
-            android:key="@string/key_imperial"
-            android:summaryOn="@string/on"
-            android:summaryOff="@string/off" />
-
-        <ListPreference
-            android:title="@string/settings_title_refresh_rate"
-            android:key="@string/key_refresh_rate"
-            android:entries="@array/automatic_refresh_rates"
-            android:entryValues="@array/automatic_refresh_rate_values"
-            android:dialogTitle="@string/settings_title_refresh_rate"
-            android:defaultValue="1:30" />
 
         <CheckBoxPreference
             android:title="@string/settings_title_alert_notification_switch"
@@ -87,18 +20,40 @@
             android:defaultValue="true" />
 
         <ListPreference
-            android:title="@string/settings_language"
-            android:key="@string/key_language"
-            android:entries="@array/languages"
-            android:entryValues="@array/language_values"
-            android:dialogTitle="@string/settings_language"
-            android:defaultValue="follow_system" />
+            android:title="@string/settings_title_refresh_rate"
+            android:key="@string/key_refresh_rate"
+            android:entries="@array/automatic_refresh_rates"
+            android:entryValues="@array/automatic_refresh_rate_values"
+            android:dialogTitle="@string/settings_title_refresh_rate"
+            android:defaultValue="1:30" />
+
+        <ListPreference
+            android:title="@string/settings_title_dark_mode"
+            android:key="@string/key_dark_mode"
+            android:entries="@array/dark_modes"
+            android:entryValues="@array/dark_mode_values"
+            android:dialogTitle="@string/settings_title_dark_mode"
+            android:defaultValue="auto" />
+
+        <Preference
+            android:title="@string/settings_title_service_provider"
+            android:key="@string/key_service_provider"
+            android:summary="@string/settings_summary_service_provider" />
+
+        <Preference
+            android:title="@string/settings_title_unit"
+            android:key="@string/key_unit"
+            android:summary="@string/settings_summary_unit" />
+
+        <Preference
+            android:title="@string/settings_title_appearance"
+            android:key="@string/key_appearance"
+            android:summary="@string/settings_summary_appearance" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/settings_category_forecast"
-        android:layout="@layout/preference_category">
+        android:title="@string/settings_category_forecast">
 
         <CheckBoxPreference
             android:title="@string/settings_title_forecast_today"
@@ -123,8 +78,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/settings_category_widget"
-        android:layout="@layout/preference_category">
+        android:title="@string/settings_category_widget">
 
         <ListPreference
             android:title="@string/settings_title_icon_style"
@@ -143,8 +97,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/settings_category_notification"
-        android:layout="@layout/preference_category">
+        android:title="@string/settings_category_notification">
 
         <CheckBoxPreference
             android:title="@string/settings_title_notification"

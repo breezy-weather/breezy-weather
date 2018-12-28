@@ -24,7 +24,7 @@
     <string name="daytime">Tag</string>
     <string name="nighttime">Nacht</string>
     <string name="publish_at">Veröffentlicht</string>
-    <string name="feels_like">Mögen</string>
+    <string name="feels_like">Gefühlt</string>
 
     <string name="of_clock">:00</string>
     <string name="yesterday">Gestern</string>
@@ -77,7 +77,6 @@
     <string name="thanks">Danke</string>
 
     <!-- about. -->
-    <string name="baidu_location">Baidu Location</string>
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">HTTP Client für Android und Java von Square Inc.</string>
     <string name="glide">Glide</string>

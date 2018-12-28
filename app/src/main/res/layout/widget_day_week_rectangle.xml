@@ -4,7 +4,7 @@
     android:id="@+id/widget_day_week"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/cardview_dark_background">
+    tools:background="@android:color/black">
 
     <ImageView
         android:id="@+id/widget_day_week_card"
@@ -127,6 +127,7 @@
                     android:layout_height="@dimen/widget_little_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_1"
                     android:layout_centerHorizontal="true"
+                    android:padding="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:src="@drawable/weather_cloudy"
@@ -175,6 +176,7 @@
                     android:layout_height="@dimen/widget_little_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_2"
                     android:layout_centerHorizontal="true"
+                    android:padding="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:src="@drawable/weather_cloudy"
@@ -223,6 +225,7 @@
                     android:layout_height="@dimen/widget_little_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_3"
                     android:layout_centerHorizontal="true"
+                    android:padding="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:src="@drawable/weather_cloudy"
@@ -271,6 +274,7 @@
                     android:layout_height="@dimen/widget_little_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_4"
                     android:layout_centerHorizontal="true"
+                    android:padding="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:src="@drawable/weather_cloudy"
@@ -319,6 +323,7 @@
                     android:layout_height="@dimen/widget_little_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_5"
                     android:layout_centerHorizontal="true"
+                    android:padding="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:src="@drawable/weather_cloudy"

@@ -21,9 +21,6 @@ public class GzipInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request()
                 .newBuilder()
-                .addHeader("method", "GET")
-                .addHeader("scheme", "http")
-                .addHeader("accept-encoding", "gzip, deflate, br")
                 .build();
         return buildResponse(request, chain.proceed(request));
     }

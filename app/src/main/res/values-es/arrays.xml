@@ -9,14 +9,14 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
-        <item>0:30</item>
-        <item>1:00</item>
-        <item>1:30</item>
-        <item>2:00</item>
-        <item>2:30</item>
-        <item>3:00</item>
-        <item>3:30</item>
-        <item>4:00</item>
+        <item>30 minutos</item>
+        <item>1 hora</item>
+        <item>1.5 horas</item>
+        <item>2 horas</item>
+        <item>2.5 horas</item>
+        <item>3 horas</item>
+        <item>3.5 horas</item>
+        <item>4 horas</item>
     </string-array>
 
     <!-- notification text color. -->

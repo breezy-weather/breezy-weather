@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuAqiResult;
 import wangdaye.com.geometricweather.data.entity.result.caiyun.CaiYunMainlyResult;
@@ -35,7 +36,7 @@ public class Aqi {
     }
 */
 
-    public void buildAqi(Context c, AccuAqiResult result) {
+    public void buildAqi(Context c, @Nullable AccuAqiResult result) {
         if (result == null) {
             aqi = "";
             pm25 = "";

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/item_about_header_appIcon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/material_icon_size"

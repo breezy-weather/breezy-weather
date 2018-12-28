@@ -22,7 +22,7 @@ public class AboutAppTranslator {
     }
 
     public static List<AboutAppTranslator> buildTranslatorList() {
-        List<AboutAppTranslator> list = new ArrayList<>(8);
+        List<AboutAppTranslator> list = new ArrayList<>(12);
         list.add(new AboutAppTranslator("Mehmet Saygin Yilmaz", "memcos@gmail.com", R.drawable.flag_tr));
         list.add(new AboutAppTranslator("Ali D.", "siyaha@gmail.com", R.drawable.flag_tr));
         list.add(new AboutAppTranslator("benjamin Tourrel", "polo_naref@hotmail.fr", R.drawable.flag_fr));
@@ -30,8 +30,11 @@ public class AboutAppTranslator {
         list.add(new AboutAppTranslator("Ken Berns", "ken.berns@yahoo.de", R.drawable.flag_de));
         list.add(new AboutAppTranslator("Milan Andrejić", "amikia@hotmail.com", R.drawable.flag_sr));
         list.add(new AboutAppTranslator("Miguel Torrijos", "migueltg352340@gmail.com", R.drawable.flag_es));
+        list.add(new AboutAppTranslator("juliomartinezrodenas", "https://github.com/juliomartinezrodenas", R.drawable.flag_es));
         list.add(new AboutAppTranslator("Andrea Carulli", "rctandrew100@gmail.com", R.drawable.flag_it));
         list.add(new AboutAppTranslator("Jurre Tas", "jurretas@gmail.com", R.drawable.flag_nl));
+        list.add(new AboutAppTranslator("Jörg Meinhardt", "jorime@web.de", R.drawable.flag_de));
+        list.add(new AboutAppTranslator("Olika120", "https://github.com/Olika120", R.drawable.flag_hu));
         return list;
     }
 }

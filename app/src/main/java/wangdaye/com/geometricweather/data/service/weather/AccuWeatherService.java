@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.data.service.weather;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.gson.GsonBuilder;
 
@@ -37,13 +36,32 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public class AccuWeatherService extends WeatherService {
 
+    private AccuWeatherApi api;
+
     private Call[] weatherCalls = new Call[5];
+    private Call locationCall;
+
     private Weather weather;
     private Location requestLocation;
+
     private int successTime;
+
     private String languageCode = "en";
 
-    private Call locationCall;
+    public AccuWeatherService() {
+        OkHttpClient client = getClientBuilder()
+                .addInterceptor(new GzipInterceptor())
+                // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
+        this.api = new Retrofit.Builder()
+                .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
+                .addConverterFactory(
+                        GsonConverterFactory.create(
+                                new GsonBuilder().setLenient().create()))
+                .client(client)
+                .build()
+                .create((AccuWeatherApi.class));
+    }
 
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
@@ -63,7 +81,7 @@ public class AccuWeatherService extends WeatherService {
     public void requestLocation(Context context, final String query,
                                 @NonNull final RequestLocationCallback callback) {
         this.languageCode = LanguageUtils.getLanguageCode(context);
-        Call<List<AccuLocationResult>> getAccuLocation = buildApi().getWeatherLocation(
+        Call<List<AccuLocationResult>> getAccuLocation = api.getWeatherLocation(
                 "Always",
                 BuildConfig.ACCU_WEATHER_KEY,
                 query,
@@ -97,7 +115,7 @@ public class AccuWeatherService extends WeatherService {
     public void requestLocation(Context context, final String lat, final String lon,
                                 @NonNull final RequestLocationCallback callback) {
         this.languageCode = LanguageUtils.getLanguageCode(context);
-        Call<AccuLocationResult> getAccuLocationByGeoPosition = buildApi().getWeatherLocationByGeoPosition(
+        Call<AccuLocationResult> getAccuLocationByGeoPosition = api.getWeatherLocationByGeoPosition(
                 "Always",
                 BuildConfig.ACCU_WEATHER_KEY,
                 lat + "," + lon,
@@ -132,24 +150,6 @@ public class AccuWeatherService extends WeatherService {
         }
     }
 
-    private AccuWeatherApi buildApi() {
-        return new Retrofit.Builder()
-                .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
-                .addConverterFactory(
-                        GsonConverterFactory.create(
-                                new GsonBuilder().setLenient().create()))
-                .client(buildClient())
-                .build()
-                .create((AccuWeatherApi.class));
-    }
-
-    private OkHttpClient buildClient() {
-        return getClientBuilder()
-                .addInterceptor(new GzipInterceptor())
-                // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build();
-    }
-
     private boolean isSucceed(Location location) {
         return successTime == 5 && location.equals(requestLocation);
     }
@@ -174,19 +174,17 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestRealtime(final Context c, final Location location,
                                  final RequestWeatherCallback callback) {
-        Call<List<AccuRealtimeResult>> getAccuRealtime = buildApi().getRealtime(
+        Call<List<AccuRealtimeResult>> getAccuRealtime = api.getRealtime(
                 location.cityId,
-                BuildConfig.ACCU_WEATHER_KEY,
+                BuildConfig.ACCU_CURRENT_KEY,
                 languageCode,
                 true,
                 false);
         getAccuRealtime.enqueue(new Callback<List<AccuRealtimeResult>>() {
             @Override
             public void onResponse(Call<List<AccuRealtimeResult>> call, Response<List<AccuRealtimeResult>> response) {
-                Log.d("ACCU", "requestRealtime - onResponse");
                 if (callback != null) {
                     if (response.isSuccessful() && response.body() != null) {
-                        Log.d("ACCU", "requestRealtime - isSuccessful");
                         if (!isFailed(location)) {
                             weather.base.buildBase(c, location, response.body().get(0));
                             weather.realTime.buildRealTime(c, response.body().get(0));
@@ -194,7 +192,6 @@ public class AccuWeatherService extends WeatherService {
                             loadSucceed(location, callback);
                         }
                     } else {
-                        Log.d("ACCU", "requestRealtime - body null");
                         loadFailed(location, callback);
                     }
                 }
@@ -202,7 +199,6 @@ public class AccuWeatherService extends WeatherService {
 
             @Override
             public void onFailure(Call<List<AccuRealtimeResult>> call, Throwable t) {
-                Log.d("ACCU", "requestRealtime - onFailure");
                 if (callback != null) {
                     loadFailed(location, callback);
                 }
@@ -213,7 +209,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestDaily(final Context c, final Location location,
                               final RequestWeatherCallback callback) {
-        Call<AccuDailyResult> getAccuDaily = buildApi().getDaily(
+        Call<AccuDailyResult> getAccuDaily = api.getDaily(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -250,7 +246,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestHourly(final Context c, final Location location,
                                final RequestWeatherCallback callback) {
-        Call<List<AccuHourlyResult>> getAccuHourly = buildApi().getHourly(
+        Call<List<AccuHourlyResult>> getAccuHourly = api.getHourly(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -284,7 +280,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestAlert(final Context c, final Location location,
                               final RequestWeatherCallback callback) {
-        Call<List<AccuAlertResult>> getAccuAlert = buildApi().getAlert(
+        Call<List<AccuAlertResult>> getAccuAlert = api.getAlert(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -318,7 +314,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestAqi(final Context c, final Location location,
                             final RequestWeatherCallback callback) {
-        Call<AccuAqiResult> getAccuAqi = buildApi().getAqi(
+        Call<AccuAqiResult> getAccuAqi = api.getAqi(
                 location.cityId,
                 BuildConfig.ACCU_AQI_KEY);
         getAccuAqi.enqueue(new Callback<AccuAqiResult>() {

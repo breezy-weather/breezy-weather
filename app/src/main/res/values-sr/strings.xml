@@ -78,7 +78,6 @@
     <string name="thanks">Хвала</string>
 
     <!-- about. -->
-    <string name="baidu_location">Baidu Location</string>
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">HTTP клијент који ради на типу за Андроид и Jaву by Square, Inc.</string>
     <string name="glide">Glide</string>

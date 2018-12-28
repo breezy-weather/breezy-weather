@@ -85,7 +85,6 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d │ </string>
 
     <!-- about. -->
-    <string name="baidu_location">Baidu Location</string>
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">Client HTTP Type-Safe per Android e Java creato da Square Inc.</string>
     <string name="glide">Glide</string>

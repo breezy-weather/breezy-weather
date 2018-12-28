@@ -77,7 +77,6 @@
     <string name="thanks">БЛАГОДАРНОСТИ</string>
 
     <!-- about. -->
-    <string name="baidu_location">Baidu Location</string>
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
     <string name="glide">Glide</string>

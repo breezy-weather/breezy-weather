@@ -59,7 +59,7 @@ public abstract class GeoActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        GeometricWeather.getInstance().removeActivity();
+        GeometricWeather.getInstance().removeActivity(this);
         unregisterReceiver(localeChangedReceiver);
     }
 

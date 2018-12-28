@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/container_circular_sky_view_star_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/star_2" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/container_circular_sky_view_star_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,20 +52,20 @@
             tools:layout_width="80dp"
             tools:layout_height="80dp">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/container_circular_sky_view_icon_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:src="@drawable/weather_cloudy"
                 tools:ignore="ContentDescription" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/container_circular_sky_view_icon_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:ignore="ContentDescription" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/container_circular_sky_view_icon_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

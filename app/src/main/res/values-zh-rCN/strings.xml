@@ -85,7 +85,6 @@
     <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
 
     <!-- about. -->
-    <string name="baidu_location">Baidu Location</string>
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
     <string name="glide">Glide</string>
@@ -156,8 +155,13 @@
     <!-- settings -->
     <string name="settings_category_basic">基础</string>
     <string name="settings_title_background_free">后台纯净</string>
+    <string name="settings_title_service_provider">数据提供商</string>
+    <string name="settings_summary_service_provider">选择天气数据及位置信息的数据提供商</string>
     <string name="settings_title_chinese_source">中国天气源</string>
     <string name="settings_title_location_service">位置服务</string>
+    <string name="settings_title_dark_mode">暗色模式</string>
+    <string name="settings_title_appearance">外观</string>
+    <string name="settings_summary_appearance">UI风格，卡片顺序，语言等…</string>
     <string name="settings_title_ui_style">界面风格</string>
     <string name="settings_title_card_order">卡片顺序</string>
     <string name="settings_title_gravity_sensor_switch">开启重力感应</string>
@@ -165,6 +169,8 @@
     <string name="settings_navigationBar_color_on">导航栏显示主题颜色</string>
     <string name="settings_navigationBar_color_off">导航栏显示黑色</string>
     <string name="settings_language">语言</string>
+    <string name="settings_title_unit">单位</string>
+    <string name="settings_summary_unit">设置天气数据的单位</string>
     <string name="settings_title_fahrenheit">华氏度</string>
     <string name="settings_title_imperial">英制单位</string>
     <string name="settings_title_refresh_rate">自动刷新频率</string>

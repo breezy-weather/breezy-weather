@@ -4,7 +4,7 @@
     android:id="@+id/widget_clock_day"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/cardview_dark_background">
+    tools:background="@android:color/black">
 
     <ImageView
         android:id="@+id/widget_clock_day_card"
@@ -25,6 +25,7 @@
             android:format24Hour="HH"
             android:format12Hour="hh"
             android:layout_marginTop="-8dp"
+            android:fontFamily="sans-serif-light"
             style="@style/widget_text_clock"
             tools:text="09" />
 
@@ -36,6 +37,7 @@
             android:format12Hour="mm"
             android:layout_marginTop="-16dp"
             android:layout_marginBottom="-4dp"
+            android:fontFamily="sans-serif-light"
             style="@style/widget_text_clock"
             tools:text="10" />
 

@@ -4,11 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -51,8 +51,8 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
 
         private TextView weekText;
         private TextView dateText;
-        private ImageView dayIcon;
-        private ImageView nightIcon;
+        private AppCompatImageView dayIcon;
+        private AppCompatImageView nightIcon;
         private TrendItemView trendItemView;
 
         ViewHolder(View itemView) {
@@ -118,7 +118,7 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
                     if (activity != null) {
                         WeatherDialog weatherDialog = new WeatherDialog();
                         weatherDialog.setData(weather, getAdapterPosition(), true);
-                        weatherDialog.show(activity.getFragmentManager(), null);
+                        weatherDialog.show(activity.getSupportFragmentManager(), null);
                     }
                     break;
             }
@@ -163,15 +163,16 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
         this.format = new SimpleDateFormat("yyyy-MM-dd");
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_trend_daily, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.onBindView(context, position);
     }
 

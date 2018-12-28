@@ -4,7 +4,7 @@
     android:id="@+id/widget_clock_day"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/cardview_dark_background">
+    tools:background="@android:color/black">
 
     <ImageView
         android:id="@+id/widget_clock_day_card"
@@ -31,6 +31,7 @@
                 android:layout_marginTop="-2dp"
                 android:layout_marginBottom="-2dp"
                 android:textSize="48dp"
+                android:fontFamily="sans-serif-light"
                 style="@style/widget_text_clock"
                 tools:text="9:10"
                 tools:ignore="RelativeOverlap,RtlHardcoded,SpUsage" />

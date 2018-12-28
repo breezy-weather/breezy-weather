@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorRoot">
 
     <wangdaye.com.geometricweather.ui.widget.StatusBarView
         android:id="@+id/activity_about_statusBar"

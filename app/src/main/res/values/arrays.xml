@@ -24,6 +24,18 @@
         <item>native</item>
     </string-array>
 
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automatic</item>
+        <item>Always light</item>
+        <item>Always dark</item>
+    </string-array>
+    <string-array name="dark_mode_values">
+        <item>auto</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+
     <!-- UI style. -->
     <string-array name="ui_styles">
         <item>Circular sky</item>
@@ -60,6 +72,7 @@
         <item>Español</item>
         <item>Italiano</item>
         <item>Dutch</item>
+        <item>Magyar</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -76,6 +89,7 @@
         <item>spanish</item>
         <item>italian</item>
         <item>dutch</item>
+        <item>hungarian</item>
     </string-array>
 
     <!-- automatic refresh rate. -->

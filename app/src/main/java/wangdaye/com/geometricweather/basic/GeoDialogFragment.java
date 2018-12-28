@@ -1,8 +1,9 @@
 package wangdaye.com.geometricweather.basic;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
 
 import wangdaye.com.geometricweather.GeometricWeather;
@@ -13,6 +14,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 
 public abstract class GeoDialogFragment extends DialogFragment {
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         GeoActivity activity = GeometricWeather.getInstance().getTopActivity();

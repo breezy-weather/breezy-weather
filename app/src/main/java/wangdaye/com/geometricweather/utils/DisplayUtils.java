@@ -114,19 +114,32 @@ public class DisplayUtils {
     }
 
     public static void setStatusBarStyleWithScrolling(Window window, View statusBar, boolean overlap) {
-        if (overlap && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            statusBar.clearAnimation();
-            statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
-        } else if (overlap) {
-            statusBar.clearAnimation();
-            statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.1F));
+        if (overlap) {
+            if ((window.getContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
+                    == Configuration.UI_MODE_NIGHT_YES) {
+                // dark mode.
+                statusBar.clearAnimation();
+                statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
+            } else {
+                // light mode.
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                    statusBar.clearAnimation();
+                    statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
+                } else {
+                    statusBar.clearAnimation();
+                    statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.1F));
+                }
+            }
         } else {
             statusBar.clearAnimation();
             statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.05F));
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (overlap) {
+            if (overlap
+                    && !((window.getContext().getResources().getConfiguration().uiMode
+                    & Configuration.UI_MODE_NIGHT_MASK)
+                    == Configuration.UI_MODE_NIGHT_YES)) {
                 setDarkTextStatusBar(window);
             } else {
                 setStatusBarTranslate(window);

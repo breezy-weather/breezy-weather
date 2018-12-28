@@ -71,6 +71,7 @@ public class AwakePollingUpdateService extends PollingUpdateService {
                 .setContentText(getString(R.string.feedback_updating_weather_data))
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
                 .setPriority(NotificationCompat.PRIORITY_MIN)
+                .setProgress(0, 0, true)
                 .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
                 .setAutoCancel(false)
                 .build();

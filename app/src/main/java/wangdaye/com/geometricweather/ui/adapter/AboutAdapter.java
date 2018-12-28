@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -113,7 +113,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
 
 class HeaderHolder extends AboutAdapter.ViewHolder {
 
-    private ImageView image;
+    private AppCompatImageView image;
 
     HeaderHolder(Context context, View itemView) {
         super(context, itemView);
@@ -146,7 +146,7 @@ class TitleHolder extends AboutAdapter.ViewHolder {
 class LinkHolder extends AboutAdapter.ViewHolder
         implements View.OnClickListener {
 
-    private ImageView icon;
+    private AppCompatImageView icon;
     private TextView title;
 
     private String url;
@@ -191,7 +191,7 @@ class TranslatorHolder extends AboutAdapter.ViewHolder implements View.OnClickLi
 
     private TextView title;
     private TextView content;
-    private ImageView flag;
+    private AppCompatImageView flag;
 
     TranslatorHolder(Context context, View itemView) {
         super(context, itemView);
@@ -213,10 +213,26 @@ class TranslatorHolder extends AboutAdapter.ViewHolder implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        c.startActivity(
-                new Intent(
-                        Intent.ACTION_SENDTO,
-                        Uri.parse("mailto:" + content.getText().toString())));
+        if (isEmail(content.getText().toString())) {
+            c.startActivity(
+                    new Intent(
+                            Intent.ACTION_SENDTO,
+                            Uri.parse("mailto:" + content.getText().toString())));
+        } else {
+            c.startActivity(
+                    new Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(content.getText().toString())));
+        }
+    }
+
+    private static boolean isEmail(String strEmail) {
+        String strPattern = "^[a-zA-Z0-9][\\w.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\\w.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z.]*[a-zA-Z]$";
+        if (TextUtils.isEmpty(strPattern)) {
+            return false;
+        } else {
+            return strEmail.matches(strPattern);
+        }
     }
 }
 

@@ -27,7 +27,7 @@
                 android:id="@+id/activity_search_searchBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/cardview_light_background"
+                android:background="@color/colorSearchBarBackground"
                 android:transitionName="@string/transition_activity_search_bar"
                 tools:targetApi="lollipop">
 
@@ -37,7 +37,7 @@
                     android:layout_height="match_parent"
                     android:alpha="0">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/activity_search_backBtn"
                         android:src="@drawable/ic_back"
                         android:layout_alignParentStart="true"
@@ -45,7 +45,7 @@
                         style="@style/material_image_button"
                         tools:ignore="ContentDescription" />
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/activity_search_clearBtn"
                         android:src="@drawable/ic_close"
                         android:layout_alignParentEnd="true"
@@ -67,7 +67,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@id/activity_search_backBtn"
                         android:layout_toStartOf="@id/activity_search_clearBtn"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="Autofill,RtlHardcoded" />
 
                 </RelativeLayout>
 

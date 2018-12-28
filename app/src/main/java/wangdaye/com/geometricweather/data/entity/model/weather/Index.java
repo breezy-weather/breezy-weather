@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuAqiResult;
@@ -40,53 +41,52 @@ public class Index {
         carWashes = new String[] {"", ""};
     }
 
-/*
-    void buildIndex(RealTime realTime, Daily daily, Hourly hourly, Aqi aqi, FWResult result) {
-        simpleForecasts = new String[] {"", ""};
-        briefings = new String[] {"", ""};
-        winds = new String[] {
-                "实时 : " + realTime.windDir + " " + realTime.windLevel,
-                "今日 : " + daily.windDirs[hourly.dayTime ? 0 : 1] + " " + daily.windLevels[hourly.dayTime ? 0 : 1]};
-        aqis = new String[] {
-                "空气 : " + aqi.quality + " (" + aqi.aqi + ")",
-                "PM2.5 : " + aqi.pm25 + " / " + "PM10 : " + aqi.pm10};
-        humidities = new String[] {
-                "体感温度",
-                realTime.sensibleTemp +  "℃"};
-        uvs = new String[] {
-                result.indexes.get(7).name + " : " + result.indexes.get(7).level,
-                result.indexes.get(7).content};
-        exercises = new String[] {
-                result.indexes.get(3).name + " : " + result.indexes.get(3).level,
-                result.indexes.get(3).content};
-        colds = new String[] {
-                result.indexes.get(19).name + " : " + result.indexes.get(19).level,
-                result.indexes.get(19).content};
-        carWashes = new String[] {
-                result.indexes.get(5).name + " : " + result.indexes.get(5).level,
-                result.indexes.get(5).content};
-    }
-
-    void buildIndex(RealTime realTime, Daily daily, Hourly hourly) {
-        simpleForecasts = new String[] {"", ""};
-        briefings = new String[] {"", ""};
-        winds = new String[] {
-                "Live : " + realTime.windDir + realTime.windLevel,
-                "Today : "
-                        + daily.windDirs[hourly.dayTime ? 0 : 1] + " " + daily.windSpeeds[hourly.dayTime ? 0 : 1]
-                        + " (" + daily.windLevels[hourly.dayTime ? 0 : 1] + ")"};
-        aqis = new String[] {"", ""};
-        humidities = new String[] {
-                "Apparent temperature",
-                realTime.sensibleTemp + "℃"};
-        uvs = new String[] {
-                "Sunrise : " + daily.astros[0],
-                "Sunset : " + daily.astros[1]};
-        exercises = new String[] {"", ""};
-        colds = new String[] {"", ""};
-        carWashes = new String[] {"", ""};
-    }
-*/
+    /*
+        void buildIndex(RealTime realTime, Daily daily, Hourly hourly, Aqi aqi, FWResult result) {
+            simpleForecasts = new String[] {"", ""};
+            briefings = new String[] {"", ""};
+            winds = new String[] {
+                    "实时 : " + realTime.windDir + " " + realTime.windLevel,
+                    "今日 : " + daily.windDirs[hourly.dayTime ? 0 : 1] + " " + daily.windLevels[hourly.dayTime ? 0 : 1]};
+            aqis = new String[] {
+                    "空气 : " + aqi.quality + " (" + aqi.aqi + ")",
+                    "PM2.5 : " + aqi.pm25 + " / " + "PM10 : " + aqi.pm10};
+            humidities = new String[] {
+                    "体感温度",
+                    realTime.sensibleTemp +  "℃"};
+            uvs = new String[] {
+                    result.indexes.get(7).name + " : " + result.indexes.get(7).level,
+                    result.indexes.get(7).content};
+            exercises = new String[] {
+                    result.indexes.get(3).name + " : " + result.indexes.get(3).level,
+                    result.indexes.get(3).content};
+            colds = new String[] {
+                    result.indexes.get(19).name + " : " + result.indexes.get(19).level,
+                    result.indexes.get(19).content};
+            carWashes = new String[] {
+                    result.indexes.get(5).name + " : " + result.indexes.get(5).level,
+                    result.indexes.get(5).content};
+        }
+        void buildIndex(RealTime realTime, Daily daily, Hourly hourly) {
+            simpleForecasts = new String[] {"", ""};
+            briefings = new String[] {"", ""};
+            winds = new String[] {
+                    "Live : " + realTime.windDir + realTime.windLevel,
+                    "Today : "
+                            + daily.windDirs[hourly.dayTime ? 0 : 1] + " " + daily.windSpeeds[hourly.dayTime ? 0 : 1]
+                            + " (" + daily.windLevels[hourly.dayTime ? 0 : 1] + ")"};
+            aqis = new String[] {"", ""};
+            humidities = new String[] {
+                    "Apparent temperature",
+                    realTime.sensibleTemp + "℃"};
+            uvs = new String[] {
+                    "Sunrise : " + daily.astros[0],
+                    "Sunset : " + daily.astros[1]};
+            exercises = new String[] {"", ""};
+            colds = new String[] {"", ""};
+            carWashes = new String[] {"", ""};
+        }
+    */
     public void buildIndex(Context c, AccuRealtimeResult result) {
         if (winds == null) {
             winds = new String[] {"", ""};
@@ -123,7 +123,7 @@ public class Index {
                         + WeatherHelper.getWindArrows(result.DailyForecasts.get(0).Night.Wind.Direction.Degrees);
     }
 
-    public void buildIndex(Context c, AccuAqiResult result) {
+    public void buildIndex(Context c, @Nullable AccuAqiResult result) {
         if (result == null) {
             aqis = new String[] {"", ""};
         } else {
@@ -209,7 +209,7 @@ public class Index {
         uvs[0] = c.getString(R.string.uv_index);
         uvs[1] = WeatherHelper.getCNUVIndex(mainly.current.uvIndex);
     }
-    
+
     void buildIndex(WeatherEntity entity) {
         simpleForecasts[0] = entity.indexSimpleForecastTitle;
         simpleForecasts[1] = entity.indexSimpleForecastContent;

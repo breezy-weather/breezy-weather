@@ -12,12 +12,6 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:icon="@drawable/ic_settings"
-        app:showAsAction="never" />
-
-    <item android:id="@+id/action_about"
-        android:title="@string/action_about"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_about"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
 </menu>

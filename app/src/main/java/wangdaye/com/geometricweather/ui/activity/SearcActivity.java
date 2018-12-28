@@ -3,9 +3,11 @@ package wangdaye.com.geometricweather.ui.activity;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -148,7 +150,7 @@ public class SearcActivity extends GeoActivity
     private void initData() {
         this.adapter = new LocationAdapter(
                 this,
-                new ArrayList<Location>(),
+                new ArrayList<>(),
                 false,
                 this);
         this.locationList = DatabaseHelper.getInstance(this).readLocationList();
@@ -172,6 +174,15 @@ public class SearcActivity extends GeoActivity
 
         this.editText = findViewById(R.id.activity_search_editText);
         editText.setOnEditorActionListener(this);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                editText.setFocusable(true);
+                editText.requestFocus();
+                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.showSoftInput(editText, 0);
+            }
+        });
 
         this.recyclerView = findViewById(R.id.activity_search_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

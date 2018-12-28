@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="@drawable/selectable_item_background">
 
     <TextView
         android:id="@+id/item_trend_hourly_txt"
@@ -21,7 +21,7 @@
         style="@style/content_text"
         tools:text="13时" />
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/item_trend_hourly_icon_day"
         android:layout_width="48dp"
         android:layout_height="48dp"

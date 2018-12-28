@@ -13,6 +13,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.ColorInt;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
@@ -226,6 +227,16 @@ public class InkPageIndicator extends View
         pageCount = pages;
         resetState();
         requestLayout();
+    }
+
+    public void setCurrentIndicatorColor(@ColorInt int color) {
+        selectedPaint.setColor(color);
+        invalidate();
+    }
+
+    public void setIndicatorColor(@ColorInt int color) {
+        unselectedPaint.setColor(color);
+        invalidate();
     }
 
     private void calculateDotPositions(int width, int height) {

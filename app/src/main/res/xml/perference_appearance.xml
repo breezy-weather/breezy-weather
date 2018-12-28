@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title_appearance">
+
+    <ListPreference
+        android:title="@string/settings_title_ui_style"
+        android:key="@string/key_ui_style"
+        android:entries="@array/ui_styles"
+        android:entryValues="@array/ui_style_values"
+        android:dialogTitle="@string/settings_title_ui_style"
+        android:defaultValue="material" />
+
+    <ListPreference
+        android:title="@string/settings_title_card_order"
+        android:key="@string/key_card_order"
+        android:entries="@array/card_orders"
+        android:entryValues="@array/card_order_values"
+        android:dialogTitle="@string/settings_title_card_order"
+        android:defaultValue="daily_first" />
+
+    <CheckBoxPreference
+        android:title="@string/settings_title_gravity_sensor_switch"
+        android:key="@string/key_gravity_sensor_switch"
+        android:summaryOn="@string/on"
+        android:summaryOff="@string/off"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:title="@string/settings_title_navigationBar_color"
+        android:key="@string/key_navigationBar_color"
+        android:summaryOn="@string/settings_navigationBar_color_on"
+        android:summaryOff="@string/settings_navigationBar_color_off" />
+
+    <ListPreference
+        android:title="@string/settings_language"
+        android:key="@string/key_language"
+        android:entries="@array/languages"
+        android:entryValues="@array/language_values"
+        android:dialogTitle="@string/settings_language"
+        android:defaultValue="follow_system" />
+
+</PreferenceScreen>
