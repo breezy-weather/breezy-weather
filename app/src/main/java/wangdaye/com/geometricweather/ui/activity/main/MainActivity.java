@@ -35,6 +35,7 @@ import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.ui.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.ui.widget.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -474,8 +475,8 @@ public class MainActivity extends GeoActivity
                 } else {
                     SnackbarUtils.showSnackbar(
                             getString(R.string.feedback_request_location_permission_failed),
-                            getString(R.string.feedback_request_permission),
-                            applicationDetailsListener);
+                            getString(R.string.help),
+                            locationHelperListener);
                     setRefreshing(false);
                 }
                 break;
@@ -500,10 +501,11 @@ public class MainActivity extends GeoActivity
         return true;
     }
 
-    private View.OnClickListener applicationDetailsListener = new View.OnClickListener() {
+    private View.OnClickListener locationHelperListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            IntentHelper.startApplicationDetailsActivity(MainActivity.this);
+            LocationHelpDialog dialog = new LocationHelpDialog();
+            dialog.show(getSupportFragmentManager(), null);
         }
     };
 
@@ -640,18 +642,10 @@ public class MainActivity extends GeoActivity
                 setRefreshing(false);
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                    && (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED)) {
-                SnackbarUtils.showSnackbar(
-                        getString(R.string.feedback_location_failed),
-                        getString(R.string.feedback_request_permission),
-                        applicationDetailsListener);
-            } else {
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_location_failed));
-            }
+            SnackbarUtils.showSnackbar(
+                    getString(R.string.feedback_location_failed),
+                    getString(R.string.help),
+                    locationHelperListener);
         }
     }
 

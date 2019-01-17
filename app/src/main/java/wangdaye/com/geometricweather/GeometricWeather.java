@@ -116,8 +116,8 @@ public class GeometricWeather extends Application {
         activityList = new ArrayList<>();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "cn");
-        locationService = sharedPreferences.getString(getString(R.string.key_location_service), "baidu");
+        chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "accu");
+        locationService = sharedPreferences.getString(getString(R.string.key_location_service), "native");
         darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
         cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);

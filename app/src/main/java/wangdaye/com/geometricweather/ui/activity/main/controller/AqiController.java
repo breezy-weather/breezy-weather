@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class AqiController extends AbstractMainItemController {
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
 
+    private boolean enable;
     private boolean executeEnterAnimation;
     @Nullable private AnimatorSet attachAnimatorSet;
 
@@ -53,7 +55,15 @@ public class AqiController extends AbstractMainItemController {
     @Override
     public void onBindView(@NonNull Location location) {
         if (location.weather != null) {
+            if (location.weather.aqi.aqi <= 0) {
+                enable = false;
+                view.setVisibility(View.GONE);
+                return;
+            }
+
+            enable = true;
             weather = location.weather;
+            view.setVisibility(View.VISIBLE);
             card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorRoot));
 
             title.setTextColor(weatherView.getThemeColors()[0]);
@@ -88,7 +98,7 @@ public class AqiController extends AbstractMainItemController {
 
     @Override
     public void onEnterScreen() {
-        if (executeEnterAnimation && weather != null) {
+        if (executeEnterAnimation && enable && weather != null) {
             executeEnterAnimation = false;
 
             int aqiColor = WeatherHelper.getAqiColor(progress.getContext(), weather.aqi.aqi);
@@ -142,6 +152,8 @@ public class AqiController extends AbstractMainItemController {
             attachAnimatorSet.cancel();
         }
         attachAnimatorSet = null;
-        adapter.cancelAnimation();
+        if (adapter != null) {
+            adapter.cancelAnimation();
+        }
     }
 }

@@ -29,7 +29,7 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
                         PreferenceManager.getDefaultSharedPreferences(getActivity())
                                 .getString(
                                         getString(R.string.key_chinese_source),
-                                        "cn")));
+                                        "accu")));
         chineseSource.setOnPreferenceChangeListener(this);
 
         Preference locationService = findPreference(getString(R.string.key_location_service));
@@ -39,7 +39,7 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
                         PreferenceManager.getDefaultSharedPreferences(getActivity())
                                 .getString(
                                         getString(R.string.key_location_service),
-                                        "baidu")));
+                                        "native")));
         locationService.setOnPreferenceChangeListener(this);
     }
 

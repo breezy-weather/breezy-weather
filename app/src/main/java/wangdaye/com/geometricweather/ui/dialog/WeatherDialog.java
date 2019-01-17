@@ -46,7 +46,8 @@ public class WeatherDialog extends GeoDialogFragment
     @SuppressLint("InflateParams")
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_weather, null, false);
+        View view = LayoutInflater.from(getActivity())
+                .inflate(R.layout.dialog_weather, null, false);
         this.initWidget(view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

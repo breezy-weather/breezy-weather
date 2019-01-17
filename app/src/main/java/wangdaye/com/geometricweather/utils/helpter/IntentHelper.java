@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.ui.activity.AboutActivity;
 import wangdaye.com.geometricweather.ui.activity.AlertActivity;
+import wangdaye.com.geometricweather.ui.activity.SelectProviderActivity;
 import wangdaye.com.geometricweather.ui.activity.main.MainActivity;
 import wangdaye.com.geometricweather.ui.activity.ManageActivity;
 import wangdaye.com.geometricweather.ui.activity.SearcActivity;
@@ -99,6 +101,10 @@ public class IntentHelper {
                 MainActivity.SETTINGS_ACTIVITY);
     }
 
+    public static void startSelectProviderActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, SelectProviderActivity.class));
+    }
+
     public static void startAboutActivity(GeoActivity activity) {
         activity.startActivity(new Intent(activity, AboutActivity.class));
     }
@@ -107,6 +113,11 @@ public class IntentHelper {
         Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(Uri.fromParts("package", context.getPackageName(), null));
+        context.startActivity(intent);
+    }
+
+    public static void startLocationSettingsActivity(Context context) {
+        Intent intent =  new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         context.startActivity(intent);
     }
 }

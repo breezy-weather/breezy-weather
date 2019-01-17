@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.217</string>
+    <string name="version_code">v2.219</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -89,6 +89,7 @@
     <string name="on">ON</string>
     <string name="off">OFF</string>
     <string name="go_to_set">SET</string>
+    <string name="help">HELP</string>
 
     <string name="about_app">ABOUT APP</string>
     <string name="introduce">introduce</string>
@@ -127,6 +128,10 @@
 
     <string name="feedback_location_failed">Location failed.</string>
     <string name="feedback_get_weather_failed">Request weather data failed.</string>
+    <string name="feedback_location_help_title">Cannot get location correctly?</string>
+    <string name="feedback_check_location_permission">Check Location Permissions</string>
+    <string name="feedback_enable_location_information">Enable Location Information</string>
+    <string name="feedback_select_location_provider">Select Location Provider</string>
 
     <string name="feedback_view_style">Style of view.</string>
     <string name="feedback_show_widget_card">Card background.</string>

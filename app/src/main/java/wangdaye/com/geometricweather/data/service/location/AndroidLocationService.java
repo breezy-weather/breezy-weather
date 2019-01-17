@@ -272,11 +272,11 @@ public class AndroidLocationService extends LocationService {
     }
 
     private void dispatchResult(@Nullable Result r) {
-        while (callbackList.size() > 0) {
-            if (callbackList.get(0) != null) {
-                callbackList.get(0).onCompleted(r);
+        for (int i = 0; i < callbackList.size(); i ++) {
+            if (callbackList.get(i) != null) {
+                callbackList.get(i).onCompleted(r);
             }
-            callbackList.remove(0);
         }
+        callbackList.clear();
     }
 }

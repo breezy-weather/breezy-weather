@@ -67,6 +67,12 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.activity.SelectProviderActivity"
+            android:label="@string/settings_title_service_provider"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.activity.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/GeometricWeatherTheme"

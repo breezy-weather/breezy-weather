@@ -34,9 +34,7 @@ class MainControllerAdapter {
             controllerList.add(new HeaderController(activity, weatherView));
             controllerList.add(new FirstTrendCardController(activity, weatherView));
             controllerList.add(new SecondTrendCardController(activity, weatherView));
-            if (location.weather.aqi != null && location.weather.aqi.aqi >= 0) {
-                controllerList.add(new AqiController(activity, weatherView));
-            }
+            controllerList.add(new AqiController(activity, weatherView));
             controllerList.add(new DetailsController(activity, weatherView));
             controllerList.add(new SunMoonController(activity, weatherView));
             controllerList.add(new FooterController(activity));

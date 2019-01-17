@@ -83,6 +83,7 @@
     <string name="on">開啓</string>
     <string name="off">關閉</string>
     <string name="go_to_set">設置</string>
+    <string name="help">幫助</string>
 
     <string name="about_app">概覽</string>
     <string name="introduce">介紹</string>
@@ -113,6 +114,10 @@
 
     <string name="feedback_location_failed">定位失敗</string>
     <string name="feedback_get_weather_failed">獲取天氣數據失敗</string>
+    <string name="feedback_location_help_title">無法正常進行定位？</string>
+    <string name="feedback_check_location_permission">檢查位置權限</string>
+    <string name="feedback_enable_location_information">開啓位置信息</string>
+    <string name="feedback_select_location_provider">選擇位置信息提供商</string>
 
     <string name="feedback_view_style">界面風格</string>
     <string name="feedback_show_widget_card">卡片背景</string>

@@ -17,6 +17,8 @@
         android:layout_centerVertical="true"
         android:layout_alignParentBottom="true"
         android:textSize="@dimen/design_title_text_size"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
         style="@style/large_title_text"
         tools:text="30°"
         tools:ignore="RelativeOverlap,RtlHardcoded" />
