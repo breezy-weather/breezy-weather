@@ -4,9 +4,9 @@
     android:visible="true" >
 
     <corners
-        android:radius="2dp" />
+        android:radius="8dp" />
 
     <solid
-        android:color="@color/cardview_light_background" />
+        android:color="#fafafa" />
 
 </shape>

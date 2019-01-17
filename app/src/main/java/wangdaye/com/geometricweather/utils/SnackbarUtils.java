@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.utils;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -34,7 +36,17 @@ public class SnackbarUtils {
         }
     }
 
-    public static void showSnackbar(String txt, String action, View.OnClickListener l) {
+    public static void showSnackbar(String txt, String action, @NonNull View.OnClickListener l) {
+        showSnackbar(txt, action, l, null);
+    }
+
+    public static void showSnackbar(String txt, String action,
+                                    @NonNull View.OnClickListener l,
+                                    @Nullable Snackbar.Callback callback) {
+        if (callback == null) {
+            callback = new Snackbar.Callback();
+        }
+
         GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
         if (activity != null) {
             View view = activity.provideSnackbarContainer();
@@ -49,6 +61,7 @@ public class SnackbarUtils {
                                 ContextCompat.getColor(
                                         GeometricWeather.getInstance(),
                                         R.color.colorTextAlert))
+                        .addCallback(callback)
                         .show();
             } else {
                 Snackbar.make(
@@ -60,6 +73,7 @@ public class SnackbarUtils {
                                 ContextCompat.getColor(
                                         GeometricWeather.getInstance(),
                                         R.color.colorTextAlert))
+                        .addCallback(callback)
                         .show();
             }
         }

@@ -62,7 +62,9 @@
 
     <string name="daily_overview">Giornaliero</string>
     <string name="hourly_overview">Ogni ora</string>
+    <string name="air_quality">Qualità dell\'aria</string>
     <string name="life_details">Dettagli</string>
+    <string name="sunrise_sunset">Sole &amp; luna</string>
 
     <string name="next">AVANTI</string>
     <string name="done">FINE</string>

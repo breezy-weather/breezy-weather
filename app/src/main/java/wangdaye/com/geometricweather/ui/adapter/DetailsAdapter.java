@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.ui.adapter;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
@@ -13,10 +14,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Details adapter.
@@ -24,8 +23,19 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
-    private List<Integer> iconList;
-    private List<String[]> detailList;
+    private List<Index> indexList;
+
+    private class Index {
+        @DrawableRes int iconId;
+        String title;
+        String content;
+
+        Index(@DrawableRes int iconId, String title, String content) {
+            this.iconId = iconId;
+            this.title = title;
+            this.content = content;
+        }
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -40,51 +50,52 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             this.content = itemView.findViewById(R.id.item_details_content);
         }
 
-        void onBindView(int iconId, String[] details) {
-            icon.setImageResource(iconId);
-            title.setText(details[0]);
-            content.setText(details[1]);
+        void onBindView(Index index) {
+            icon.setImageResource(index.iconId);
+            title.setText(index.title);
+            content.setText(index.content);
         }
     }
 
     public DetailsAdapter(Context context, Weather weather) {
-        this.iconList = new ArrayList<>();
-        this.detailList = new ArrayList<>();
+        this.indexList = new ArrayList<>();
 
-        if (!TextUtils.isEmpty(weather.index.simpleForecasts[1])) {
-            iconList.add(R.drawable.ic_forecast);
-            detailList.add(weather.index.simpleForecasts);
+        indexList.add(new Index(
+                R.drawable.ic_wind,
+                weather.index.currentWind,
+                weather.index.dailyWind));
+
+        indexList.add(new Index(
+                R.drawable.ic_flower,
+                weather.index.sensibleTemp,
+                weather.index.humidity));
+
+        if (!TextUtils.isEmpty(weather.index.uv)) {
+            indexList.add(new Index(
+                    R.drawable.ic_uv,
+                    context.getString(R.string.uv_index),
+                    weather.index.uv));
         }
 
-        if (!TextUtils.isEmpty(weather.index.briefings[1])) {
-            iconList.add(R.drawable.ic_briefing);
-            detailList.add(weather.index.briefings);
+        if (!TextUtils.isEmpty(weather.index.pressure)) {
+            indexList.add(new Index(
+                    R.drawable.ic_gauge,
+                    context.getString(R.string.pressure),
+                    weather.index.pressure));
         }
 
-        if (!TextUtils.isEmpty(weather.index.winds[1])) {
-            iconList.add(R.drawable.ic_wind);
-            detailList.add(weather.index.winds);
+        if (!TextUtils.isEmpty(weather.index.visibility)) {
+            indexList.add(new Index(
+                    R.drawable.ic_eye,
+                    context.getString(R.string.visibility),
+                    weather.index.visibility));
         }
 
-        if (!TextUtils.isEmpty(weather.index.aqis[1])) {
-            iconList.add(R.drawable.ic_pm);
-            detailList.add(weather.index.aqis);
-        }
-
-        if (!TextUtils.isEmpty(weather.index.humidities[1])) {
-            iconList.add(R.drawable.ic_flower);
-            detailList.add(new String[] {
-                    context.getString(R.string.sensible_temp) + " : "
-                            + ValueUtils.buildCurrentTemp(
-                                    weather.realTime.sensibleTemp,
-                            false,
-                            GeometricWeather.getInstance().isFahrenheit()),
-                    weather.index.humidities[1]});
-        }
-
-        if (!TextUtils.isEmpty(weather.index.uvs[1])) {
-            iconList.add(R.drawable.ic_uv);
-            detailList.add(weather.index.uvs);
+        if (!TextUtils.isEmpty(weather.index.dewPoint)) {
+            indexList.add(new Index(
+                    R.drawable.ic_water,
+                    context.getString(R.string.dew_point),
+                    weather.index.dewPoint));
         }
     }
 
@@ -97,11 +108,11 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(iconList.get(position), detailList.get(position));
+        holder.onBindView(indexList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return detailList.size();
+        return indexList.size();
     }
 }

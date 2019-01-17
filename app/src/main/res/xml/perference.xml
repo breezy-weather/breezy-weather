@@ -125,7 +125,7 @@
             android:entries="@array/notification_text_colors"
             android:entryValues="@array/notification_text_color_values"
             android:dialogTitle="@string/settings_title_notification_text_color"
-            android:defaultValue="grey" />
+            android:defaultValue="dark" />
 
         <CheckBoxPreference
             android:title="@string/settings_title_notification_background"

@@ -6,8 +6,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2216
-        versionName "2.216"
+        versionCode 2217
+        versionName "2.217"
     }
     buildTypes {
         release {
@@ -35,6 +35,8 @@ android {
         it.buildConfigField 'String', 'ACCU_WEATHER_KEY', ACCU_WEATHER_KEY
         it.buildConfigField 'String', 'ACCU_CURRENT_KEY', ACCU_CURRENT_KEY
         it.buildConfigField 'String', 'ACCU_AQI_KEY', ACCU_AQI_KEY
+        it.buildConfigField 'String', 'BAIDU_IP_LOCATION_BASE_URL', BAIDU_IP_LOCATION_BASE_URL
+        it.buildConfigField 'String', 'BAIDU_IP_LOCATION_AK', BAIDU_IP_LOCATION_AK
     }
     sourceSets {
         main {
@@ -63,7 +65,7 @@ allprojects {
 
 apply plugin: 'org.greenrobot.greendao'
 greendao {
-    schemaVersion 35
+    schemaVersion 39
     generateTests false
 }
 dependencies {
@@ -72,6 +74,8 @@ dependencies {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation 'com.amap.api:location:4.4.0'
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'

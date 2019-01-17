@@ -2,15 +2,11 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:ordering="together">
 
-    <set android:ordering="sequentially">
-
-        <objectAnimator
-            android:propertyName="translationY"
-            android:duration="300"
-            android:valueFrom="100"
-            android:valueTo="0" />
-
-    </set>
+    <objectAnimator
+        android:propertyName="translationY"
+        android:duration="300"
+        android:valueFrom="100"
+        android:valueTo="0" />
 
     <objectAnimator
         android:propertyName="alpha"

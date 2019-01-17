@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
@@ -18,10 +20,18 @@ import wangdaye.com.geometricweather.ui.adapter.HourlyTrendAdapter;
 
 public class TrendViewController {
 
-    public static void setDailyTrend(Context context, TextView title, TrendRecyclerView recyclerView,
+    public static void setDailyTrend(Context context, TextView title, TextView subtitle,
+                                     TrendRecyclerView recyclerView,
                                      @NonNull Weather weather, @Nullable History history,
                                      int[] themeColors) {
         title.setText(context.getString(R.string.daily_overview));
+
+        if (TextUtils.isEmpty(weather.index.simpleForecast)) {
+            subtitle.setVisibility(View.GONE);
+        } else {
+            subtitle.setVisibility(View.VISIBLE);
+            subtitle.setText(weather.index.simpleForecast);
+        }
 
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -45,10 +55,18 @@ public class TrendViewController {
         }
     }
 
-    public static void setHourlyTrend(Context context, TextView title, TrendRecyclerView recyclerView,
+    public static void setHourlyTrend(Context context, TextView title, TextView subtitle,
+                                      TrendRecyclerView recyclerView,
                                       @NonNull Weather weather, @Nullable History history,
                                       int[] themeColors) {
         title.setText(context.getString(R.string.hourly_overview));
+
+        if (TextUtils.isEmpty(weather.index.briefing)) {
+            subtitle.setVisibility(View.GONE);
+        } else {
+            subtitle.setVisibility(View.VISIBLE);
+            subtitle.setText(weather.index.briefing);
+        }
 
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));

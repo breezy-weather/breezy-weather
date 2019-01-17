@@ -16,6 +16,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.table.CNCityEntity;
 import wangdaye.com.geometricweather.data.entity.table.CNCityEntityDao;
+import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import wangdaye.com.geometricweather.data.entity.table.HistoryEntity;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntity;
 import wangdaye.com.geometricweather.data.entity.table.LocationEntityDao;
@@ -23,7 +24,6 @@ import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.AlarmEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.DailyEntityDao;
-import wangdaye.com.geometricweather.data.entity.table.weather.DaoMaster;
 import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntity;
 import wangdaye.com.geometricweather.data.entity.table.weather.HourlyEntityDao;
 import wangdaye.com.geometricweather.data.entity.table.weather.WeatherEntity;
@@ -65,46 +65,29 @@ public class DatabaseHelper {
         @Override
         public void onUpgrade(Database db, int oldVersion, int newVersion) {
             Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
-            if (newVersion >= 30 && oldVersion < 34) {
-                // delete china city list and recreate it.
-                CNCityEntityDao.dropTable(db, true);
-                CNCityEntityDao.createTable(db, true);
-                LocationEntityDao.dropTable(db, true);
-                LocationEntityDao.createTable(db, true);
-                Toast.makeText(
-                        context,
-                        context.getString(R.string.feedback_readd_location),
-                        Toast.LENGTH_SHORT).show();
-            }
-            if (newVersion >= 27 && oldVersion < 29) {
-                // delete locations and guide user to re-add them in version 27 - 28.
-                LocationEntityDao.dropTable(db, true);
-                LocationEntityDao.createTable(db, true);
-                Toast.makeText(
-                        context,
-                        context.getString(R.string.feedback_readd_location),
-                        Toast.LENGTH_SHORT).show();
-            }
-            if (newVersion >= 24 && oldVersion < 26) {
-                // added and modified cn city entity in version 24 - 26.
-                CNCityEntityDao.dropTable(db, true);
-                CNCityEntityDao.createTable(db, true);
-            }
-            if (newVersion >= 22) {
-                // rebuild all entities in version 22 and version 23.
-                if (oldVersion < 23) {
-                    WeatherEntityDao.dropTable(db, true);
-                    DailyEntityDao.dropTable(db, true);
-                    HourlyEntityDao.dropTable(db, true);
-                    AlarmEntityDao.dropTable(db, true);
-
-                    WeatherEntityDao.createTable(db, true);
-                    DailyEntityDao.createTable(db, true);
-                    HourlyEntityDao.createTable(db, true);
-                    AlarmEntityDao.createTable(db, true);
-                }
-            } else {
+            if (oldVersion < 30) {
                 super.onUpgrade(db, oldVersion, newVersion);
+                return;
+            }
+            if (newVersion >= 35 && oldVersion < 39) {
+                WeatherEntityDao.dropTable(db, true);
+                WeatherEntityDao.createTable(db, true);
+                DailyEntityDao.dropTable(db, true);
+                DailyEntityDao.createTable(db, true);
+                HourlyEntityDao.dropTable(db, true);
+                HourlyEntityDao.createTable(db, true);
+                AlarmEntityDao.dropTable(db, true);
+                AlarmEntityDao.createTable(db, true);
+            }
+            if (newVersion >= 30 && oldVersion < 34) {
+                CNCityEntityDao.dropTable(db, true);
+                CNCityEntityDao.createTable(db, true);
+                LocationEntityDao.dropTable(db, true);
+                LocationEntityDao.createTable(db, true);
+                Toast.makeText(
+                        context,
+                        context.getString(R.string.feedback_readd_location),
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -132,22 +115,18 @@ public class DatabaseHelper {
         LocationEntity.deleteLocation(getDatabase(), location);
     }
 
-    public void clearLocation() {
-        LocationEntity.clearLocation(getDatabase());
-    }
-
     public List<Location> readLocationList() {
         return LocationEntity.readLocationList(getDatabase());
     }
 
     // history.
 
-    public void writeHistory(Weather weather) {
-        HistoryEntity.insertHistory(getDatabase(), weather);
+    public void writeTodayHistory(Weather weather) {
+        HistoryEntity.insertTodayHistory(getDatabase(), weather);
     }
 
-    public void writeHistory(History history) {
-        HistoryEntity.insertHistory(getDatabase(), history);
+    public void writeYesterdayHistory(History history) {
+        HistoryEntity.insertYesterdayHistory(getDatabase(), history);
     }
 
     public History readHistory(Weather weather) {
@@ -172,6 +151,14 @@ public class DatabaseHelper {
                     .buildWeatherAlarmList(AlarmEntity.searchLocationAlarmEntity(getDatabase(), location));
         }
         return weather;
+    }
+
+    public void deleteWeather(Location location) {
+        WeatherEntity.deleteWeather(getDatabase(), location);
+        DailyEntity.deleteDailyList(getDatabase(), location);
+        HourlyEntity.deleteHourlyList(getDatabase(), location);
+        AlarmEntity.deleteAlarmList(getDatabase(), location);
+        HistoryEntity.clearLocationHistory(getDatabase(), location);
     }
 
     // cn city.
@@ -204,80 +191,4 @@ public class DatabaseHelper {
     public long countCNCity() {
         return CNCityEntity.countCNCity(getDatabase());
     }
-/*
-    // city.
-
-    public void writeCityList(CityListResult result) {
-        CityEntity.insertCityList(getDatabase(), result);
-    }
-
-    public boolean isNeedWriteCityList() {
-        return CityEntity.isNeedWriteData(getDatabase());
-    }
-
-    public List<Location> readCityList() {
-        return CityEntity.readCityLocation(getDatabase());
-    }
-
-    String[] searchCityId(String district, String city, String province) {
-        List<Location> locationList = CityEntity.accurateSearchCity(getDatabase(), district);
-        if (locationList.size() == 1) {
-            return new String[] {
-                    locationList.get(0).cityId,
-                    district};
-        } else if (locationList.size() == 0) {
-            locationList = CityEntity.accurateSearchCity(getDatabase(), city);
-            if (locationList.size() == 0) {
-                return new String[] {Location.NULL_ID, ""};
-            } else {
-                return new String[] {
-                        locationList.get(0).cityId,
-                        city};
-            }
-        } else {
-            for (int i = 0; i < locationList.size(); i ++) {
-                if (locationList.get(i).prov.equals(province.replace("省", ""))) {
-                    return new String[] {
-                            locationList.get(i).cityId,
-                            city
-                    };
-                }
-            }
-            return new String[] {Location.NULL_ID, ""};
-        }
-    }
-
-    public List<Location> fuzzySearchCityList(String txt) {
-        return CityEntity.fuzzySearchCity(getDatabase(), txt);
-    }
-
-    // oversea city.
-
-    public void writeOverseaCityList(OverseaCityListResult result) {
-        OverseaCityEntity.insertOverseaCityList(getDatabase(), result);
-    }
-
-    public boolean isNeedWriteOverseaCityList() {
-        return OverseaCityEntity.isNeedWriteData(getDatabase());
-    }
-
-    public List<Location> readOverseaCityList() {
-        return OverseaCityEntity.readOverseaCityLocation(getDatabase());
-    }
-
-    String[] searchOverseaCityId(String city) {
-        List<Location> locationList = OverseaCityEntity.accurateSearchOverseaCity(getDatabase(), city);
-        if (locationList.size() > 0) {
-            return new String[] {
-                    locationList.get(0).cityId,
-                    city};
-        } else {
-            return new String[] {Location.NULL_ID, ""};
-        }
-    }
-
-    public List<Location> fuzzySearchOverseaCityList(String txt) {
-        return OverseaCityEntity.fuzzySearchOverseaCity(getDatabase(), txt);
-    }
-*/
 }

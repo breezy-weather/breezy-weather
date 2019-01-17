@@ -52,16 +52,18 @@ public class CNWeatherService extends WeatherService {
                     Weather weather = new Weather();
                     weather.base.buildBase(context, location, response.body());
                     weather.realTime.buildRealTime(response.body());
+
+                    History history = null;
                     while (response.body().weather.size() > 0
                             && TimeManager.compareDate(response.body().weather.get(0).date, response.body().realtime.date) < 0) {
                         if (response.body().weather.size() > 1
                                 && TimeManager.compareDate(response.body().weather.get(1).date, response.body().realtime.date) == 0) {
-                            location.history = new History();
-                            location.history.cityId = location.cityId;
-                            location.history.city = location.city;
-                            location.history.date = response.body().weather.get(0).date;
-                            location.history.maxiTemp = Integer.parseInt(response.body().weather.get(0).info.day.get(2));
-                            location.history.miniTemp = Integer.parseInt(response.body().weather.get(0).info.night.get(2));
+                            history = new History();
+                            history.cityId = location.cityId;
+                            history.city = weather.base.city;
+                            history.date = response.body().weather.get(0).date;
+                            history.maxiTemp = Integer.parseInt(response.body().weather.get(0).info.day.get(2));
+                            history.miniTemp = Integer.parseInt(response.body().weather.get(0).info.night.get(2));
                         }
                         response.body().weather.remove(0);
                     }
@@ -90,7 +92,7 @@ public class CNWeatherService extends WeatherService {
                     for (int i = 0; i < response.body().alert.size(); i ++) {
                         weather.alertList.add(new Alert().buildAlert(context, response.body().alert.get(i)));
                     }
-                    callback.requestWeatherSuccess(weather, location);
+                    callback.requestWeatherSuccess(weather, history, location);
                 } else {
                     callback.requestWeatherFailed(location);
                 }

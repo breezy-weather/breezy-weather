@@ -45,6 +45,7 @@ public class CaiYunWeatherService extends CNWeatherService {
                 .addInterceptor(new GzipInterceptor())
                 // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
+        client.dispatcher().setMaxRequestsPerHost(1);
 
         this.api = new Retrofit.Builder()
                 .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
@@ -166,12 +167,12 @@ public class CaiYunWeatherService extends CNWeatherService {
                     weather.dailyList.add(new Daily().buildDaily(context, mainlyResult, i));
                 }
 
-                location.history = new History();
-                location.history.cityId = location.cityId;
-                location.history.city = location.city;
-                location.history.date = mainlyResult.yesterday.date.split("T")[0];
-                location.history.maxiTemp = Integer.parseInt(mainlyResult.yesterday.tempMax);
-                location.history.miniTemp = Integer.parseInt(mainlyResult.yesterday.tempMin);
+                History history = new History();
+                history.cityId = location.cityId;
+                history.city = weather.base.city;
+                history.date = mainlyResult.yesterday.date.split("T")[0];
+                history.maxiTemp = Integer.parseInt(mainlyResult.yesterday.tempMax);
+                history.miniTemp = Integer.parseInt(mainlyResult.yesterday.tempMin);
 
                 for (int i = 0; i < mainlyResult.forecastHourly.weather.value.size(); i ++) {
                     weather.hourlyList.add(new Hourly().buildHourly(context, mainlyResult, i));
@@ -181,7 +182,7 @@ public class CaiYunWeatherService extends CNWeatherService {
                 for (int i = 0; i < mainlyResult.alerts.size(); i ++) {
                     weather.alertList.add(new Alert().buildAlert(context, mainlyResult.alerts.get(i)));
                 }
-                callback.requestWeatherSuccess(weather, requestLocation);
+                callback.requestWeatherSuccess(weather, history, requestLocation);
             } catch (Exception e) {
                 callback.requestWeatherFailed(requestLocation);
             }

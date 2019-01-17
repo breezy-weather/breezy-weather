@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.CNCityList;
-import wangdaye.com.geometricweather.data.entity.table.weather.DaoMaster;
 
 /**
  * CN city entity.
@@ -104,7 +103,8 @@ public class CNCityEntity {
 
     public static CNCityList.CNCity searchCNCity(SQLiteDatabase database,
                                                  String district, String city, String province) {
-        if (TextUtils.isEmpty(district) || TextUtils.isEmpty(city) || TextUtils.isEmpty(province)) {
+        if ((TextUtils.isEmpty(district) && TextUtils.isEmpty(city))
+                || TextUtils.isEmpty(province)) {
             return null;
         }
 

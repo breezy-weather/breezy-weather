@@ -17,10 +17,14 @@
     <!-- Location service. -->
     <string-array name="location_services">
         <item>Baidu Location</item>
+        <item>Baidu IP Location (Only For China)</item>
+        <item>AMap Location</item>
         <item>Native API</item>
     </string-array>
     <string-array name="location_service_values">
         <item>baidu</item>
+        <item>baidu_ip</item>
+        <item>amap</item>
         <item>native</item>
     </string-array>
 

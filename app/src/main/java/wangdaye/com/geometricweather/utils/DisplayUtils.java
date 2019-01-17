@@ -19,7 +19,7 @@ import android.view.animation.Transformation;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.activity.MainActivity;
+import wangdaye.com.geometricweather.ui.activity.main.MainActivity;
 
 /**
  * Display utils.
@@ -115,8 +115,7 @@ public class DisplayUtils {
 
     public static void setStatusBarStyleWithScrolling(Window window, View statusBar, boolean overlap) {
         if (overlap) {
-            if ((window.getContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
-                    == Configuration.UI_MODE_NIGHT_YES) {
+            if (isDarkMode(window.getContext())) {
                 // dark mode.
                 statusBar.clearAnimation();
                 statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
@@ -136,14 +135,16 @@ public class DisplayUtils {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (overlap
-                    && !((window.getContext().getResources().getConfiguration().uiMode
-                    & Configuration.UI_MODE_NIGHT_MASK)
-                    == Configuration.UI_MODE_NIGHT_YES)) {
+            if (overlap && !isDarkMode(window.getContext())) {
                 setDarkTextStatusBar(window);
             } else {
                 setStatusBarTranslate(window);
             }
         }
+    }
+
+    public static boolean isDarkMode(Context context) {
+        return (context.getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
     }
 }

@@ -4,8 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
@@ -109,6 +113,7 @@ public class CircularSkyWeatherView extends FrameLayout
         addView(view);
 
         this.container = findViewById(R.id.container_circular_sky_view);
+        container.setBackgroundColor(getBackgroundColor());
 
         this.statusBar = findViewById(R.id.container_circular_sky_view_statusBar);
         setStatusBarColor();
@@ -159,9 +164,15 @@ public class CircularSkyWeatherView extends FrameLayout
                 + DisplayUtils.getStatusBarHeight(getResources()) - DisplayUtils.dpToPx(getContext(), 28));
     }
 
-    public void showCircles() {
-        circleView.showCircle(TimeManager.getInstance(getContext()).isDayTime());
-        changeStarAlPha();
+    /**
+     * @return Return true whether execute switch animation.
+     * */
+    public boolean showCircles() {
+        if (circleView.showCircle(TimeManager.getInstance(getContext()).isDayTime())) {
+            changeStarAlPha();
+            return true;
+        }
+        return false;
     }
 
     private void setStatusBarColor() {
@@ -229,8 +240,26 @@ public class CircularSkyWeatherView extends FrameLayout
         imageIds = WeatherHelper.getWeatherIcon(entityWeatherKind, isDay);
 
         setStatusBarColor();
-        showCircles();
         controlView.showWeatherIcon();
+        if (showCircles()) {
+            Drawable drawable = container.getBackground();
+            if (drawable instanceof ColorDrawable) {
+                ValueAnimator colorAnimator = ValueAnimator.ofObject(
+                        new ArgbEvaluator(),
+                        ((ColorDrawable) drawable).getColor(),
+                        getBackgroundColor());
+                colorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        container.setBackgroundColor((Integer) animation.getAnimatedValue());
+                    }
+                });
+                colorAnimator.setDuration(300);
+                colorAnimator.start();
+            } else {
+                container.setBackgroundColor(getBackgroundColor());
+            }
+        }
     }
 
     @Override
@@ -247,9 +276,10 @@ public class CircularSkyWeatherView extends FrameLayout
 
     @Override
     public void onScroll(int scrollY) {
-        container.setTranslationY(
+        statusBar.setTranslationY(
                 (float) (-(circleView.getMeasuredHeight() + statusBar.getMeasuredHeight())
                         * Math.min(1, 1.0 * scrollY / firstCardMarginTop)));
+        controlView.setTranslationY(statusBar.getTranslationY());
     }
 
     @Override

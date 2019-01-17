@@ -61,7 +61,9 @@
 
     <string name="daily_overview">Tage</string>
     <string name="hourly_overview">Stunden</string>
+    <string name="air_quality">Luftqualität</string>
     <string name="life_details">Details</string>
+    <string name="sunrise_sunset">Sonne &amp; Mond</string>
 
     <string name="next">Nächste</string>
     <string name="done">Erledigt</string>

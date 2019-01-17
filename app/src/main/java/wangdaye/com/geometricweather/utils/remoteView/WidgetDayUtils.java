@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.utils.remoteView;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -18,18 +17,16 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetDayProvider;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
-import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.WidgetUtils;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
  * Widget day utils.
  * */
 
-public class WidgetDayUtils {
+public class WidgetDayUtils extends AbstractRemoteViewsUtils {
 
     public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
@@ -64,21 +61,7 @@ public class WidgetDayUtils {
                 hideSubtitle, subtitleData);
         views.setViewVisibility(R.id.widget_day_card, showCard ? View.VISIBLE : View.GONE);
 
-        PendingIntent pendingIntent;
-        if (touchToRefresh) {
-            pendingIntent = PendingIntent.getService(
-                    context,
-                    GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE,
-                    ServiceHelper.getAwakePollingUpdateServiceIntent(context),
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-        } else {
-            pendingIntent = PendingIntent.getActivity(
-                    context,
-                    GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE,
-                    IntentHelper.buildMainActivityIntent(context, location),
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-        }
-        views.setOnClickPendingIntent(R.id.widget_day_button, pendingIntent);
+        setOnClickPendingIntent(context, views, location, viewStyle, subtitleData, touchToRefresh);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(
@@ -266,5 +249,37 @@ public class WidgetDayUtils {
                         weather.realTime.sensibleTemp, GeometricWeather.getInstance().isFahrenheit());
         }
         return "";
+    }
+
+    private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
+                                                String viewStyle, String subtitleData, boolean touchToRefresh) {
+        // weather.
+        if (touchToRefresh) {
+            views.setOnClickPendingIntent(
+                    R.id.widget_day_weather,
+                    getRefreshPendingIntent(context, GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_REFRESH));
+        } else {
+            views.setOnClickPendingIntent(
+                    R.id.widget_day_weather,
+                    getWeatherPendingIntent(context, location, GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_WEATHER));
+        }
+
+        // title.
+        if (viewStyle.equals("oreo")) {
+            views.setOnClickPendingIntent(
+                    R.id.widget_day_title,
+                    getCalendarPendingIntent(context, GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_CALENDAR));
+        }
+
+        // time.
+        if (viewStyle.equals("pixel") || subtitleData.equals("lunar")) {
+            views.setOnClickPendingIntent(
+                    R.id.widget_day_time,
+                    getCalendarPendingIntent(context, GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_CALENDAR));
+        } else if (!touchToRefresh && subtitleData.equals("time")) {
+            views.setOnClickPendingIntent(
+                    R.id.widget_day_time,
+                    getRefreshPendingIntent(context, GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_REFRESH));
+        }
     }
 }

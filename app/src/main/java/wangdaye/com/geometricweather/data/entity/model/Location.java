@@ -231,7 +231,6 @@ public class Location
         }
     }
 
-
     @Override
     public int describeContents() {
         return 0;

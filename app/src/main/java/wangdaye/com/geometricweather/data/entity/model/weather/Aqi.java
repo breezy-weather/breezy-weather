@@ -15,59 +15,113 @@ import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 public class Aqi {
 
-    public String aqi;
-    public String pm25;
-    public String pm10;
     public String quality;
+    public int aqi;
+    public int pm25;
+    public int pm10;
+    public int so2;
+    public int no2;
+    public int o3;
+    public float co;
 
     Aqi() {
-        aqi = "";
-        pm25 = "";
-        pm10 = "";
         quality = "";
+        aqi = -1;
+        pm25 = -1;
+        pm10 = -1;
+        so2 = -1;
+        no2 = -1;
+        o3 = -1;
+        co = -1;
     }
-
-/*
-    void buildAqi(FWResult result) {
-        aqi = result.pm25.aqi;
-        pm25 = result.pm25.pm25;
-        pm10 = result.pm25.pm10;
-        quality = result.pm25.quality;
-    }
-*/
 
     public void buildAqi(Context c, @Nullable AccuAqiResult result) {
         if (result == null) {
-            aqi = "";
-            pm25 = "";
-            pm10 = "";
             quality = "";
+            aqi = -1;
+            pm25 = -1;
+            pm10 = -1;
+            so2 = -1;
+            no2 = -1;
+            o3 = -1;
+            co = -1;
         } else {
-            aqi = String.valueOf(result.Index);
-            pm25 = String.valueOf(result.ParticulateMatter2_5);
-            pm10 = String.valueOf(result.ParticulateMatter10);
             quality = WeatherHelper.getAqiQuality(c, result.Index);
+            aqi = result.Index;
+            pm25 = (int) result.ParticulateMatter2_5;
+            pm10 = (int) result.ParticulateMatter10;
+            so2 = (int) result.SulfurDioxide;
+            no2 = (int) result.NitrogenDioxide;
+            o3 = (int) result.Ozone;
+            co = (int) result.CarbonMonoxide;
         }
     }
 
     public void buildAqi(Context c, CNWeatherResult result) {
-        aqi = String.valueOf(result.pm25.aqi);
-        pm25 = String.valueOf(result.pm25.pm25);
-        pm10 = String.valueOf(result.pm25.pm10);
         quality = WeatherHelper.getAqiQuality(c, result.pm25.aqi);
+        aqi = result.pm25.aqi;
+        pm25 = result.pm25.pm25;
+        pm10 = result.pm25.pm10;
+        so2 = result.pm25.so2;
+        no2 = result.pm25.no2;
+        o3 = result.pm25.o3;
+        co = Float.parseFloat(result.pm25.co);
     }
 
     public void buildAqi(Context c, CaiYunMainlyResult result) {
-        aqi = result.aqi.aqi;
-        pm25 = result.aqi.pm25;
-        pm10 = result.aqi.pm10;
         quality = WeatherHelper.getAqiQuality(c, Integer.parseInt(result.aqi.aqi));
+
+        try {
+            aqi = (int) Double.parseDouble(result.aqi.aqi);
+        } catch (Exception e) {
+            aqi = -1;
+        }
+
+        try {
+            pm25 = (int) Double.parseDouble(result.aqi.pm25);
+        } catch (Exception e) {
+            pm25 = -1;
+        }
+
+        try {
+            pm10 = (int) Double.parseDouble(result.aqi.pm10);
+        } catch (Exception e) {
+            pm10 = -1;
+        }
+
+        try {
+            so2 = (int) Double.parseDouble(result.aqi.so2);
+        } catch (Exception e) {
+            so2 = -1;
+        }
+
+        try {
+            no2 = (int) Double.parseDouble(result.aqi.no2);
+        } catch (Exception e) {
+            no2 = -1;
+        }
+
+        try {
+            o3 = (int) Double.parseDouble(result.aqi.o3);
+        } catch (Exception e) {
+            o3 = -1;
+        }
+
+        try {
+            co = Float.parseFloat(result.aqi.co);
+        } catch (Exception e) {
+            co = -1;
+        }
     }
 
     void buildAqi(WeatherEntity entity) {
+        quality = entity.aqiQuality;
         aqi = entity.aqiAqi;
         pm25 = entity.aqiPm25;
         pm10 = entity.aqiPm10;
-        quality = entity.aqiQuality;
+        so2 = entity.aqiSo2;
+        no2 = entity.aqiNo2;
+        o3 = entity.aqiO3;
+        co = entity.aqiCo;
     }
 }

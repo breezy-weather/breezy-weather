@@ -65,10 +65,9 @@ public class TimeManager {
         return this;
     }
 
-    private TimeManager getLastDayTime(Context context) {
+    private void getLastDayTime(Context context) {
         dayTime = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
                 .getBoolean(KEY_DAY_TIME, true);
-        return this;
     }
 
     @SuppressLint("SimpleDateFormat")

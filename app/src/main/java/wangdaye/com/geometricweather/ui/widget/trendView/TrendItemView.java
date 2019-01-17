@@ -45,6 +45,8 @@ public class TrendItemView extends View {
     private int textColor;
     private int precipitationTextColor;
 
+    private boolean darkMode;
+
     public static final int NONEXISTENT_VALUE = Integer.MAX_VALUE;
 
     // dp size.
@@ -76,12 +78,21 @@ public class TrendItemView extends View {
                 ContextCompat.getColor(getContext(), R.color.colorPrimary),
                 ContextCompat.getColor(getContext(), R.color.colorTextDark),
                 ContextCompat.getColor(getContext(), R.color.colorLine)};
-        this.shadowColors = new int[] {
-                Color.argb(50, 176, 176, 176),
-                Color.argb(0, 176, 176, 176),
-                Color.argb(200, 176, 176, 176)};
+        if (DisplayUtils.isDarkMode(getContext())) {
+            this.shadowColors = new int[] {
+                    Color.argb(20, 173, 173, 173),
+                    Color.TRANSPARENT,
+                    Color.argb((int) (255 * 0.2), 0, 0, 0)};
+        } else {
+            this.shadowColors = new int[] {
+                    Color.argb(50, 173, 173, 173),
+                    Color.TRANSPARENT,
+                    Color.argb((int) (255 * 0.2), 0, 0, 0)};
+        }
         this.textColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
         this.precipitationTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle);
+
+        this.darkMode = DisplayUtils.isDarkMode(getContext());
 
         this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
         this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
@@ -101,6 +112,7 @@ public class TrendItemView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
 
         computeCoordinates();
 
@@ -281,7 +293,11 @@ public class TrendItemView extends View {
         paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
         paint.setColor(lineColors[1]);
-        paint.setAlpha((int) (255 * 0.1));
+        if (darkMode) {
+            paint.setAlpha((int) (255 * 0.5));
+        } else {
+            paint.setAlpha((int) (255 * 0.2));
+        }
         paint.setStyle(Paint.Style.FILL);
 
         canvas.drawRoundRect(

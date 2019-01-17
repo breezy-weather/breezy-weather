@@ -6,9 +6,11 @@
     tools:background="@android:color/black" >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/widget_text_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <TextClock
             android:id="@+id/widget_text_date"
@@ -62,12 +64,5 @@
             tools:ignore="RtlHardcoded,SpUsage" />
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/widget_text_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

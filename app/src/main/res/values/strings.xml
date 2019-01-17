@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.216</string>
+    <string name="version_code">v2.217</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -31,6 +31,9 @@
     <string name="exercise">运动指数</string>
     <string name="follow_system">Follow system</string>
     <string name="background_information">Background Information</string>
+    <string name="pressure">Atmospheric Pressure</string>
+    <string name="visibility">Visibility</string>
+    <string name="dew_point">Dew Point</string>
 
     <string name="of_clock">:00</string>
     <string name="yesterday">yday</string>
@@ -65,9 +68,20 @@
     <string name="aqi_5">H-pollution</string>
     <string name="aqi_6">Dangerous</string>
 
-    <string name="daily_overview">daily</string>
-    <string name="hourly_overview">hourly</string>
-    <string name="life_details">details</string>
+    <string name="phase_new">New</string>
+    <string name="phase_waxing_crescent">Waxing Crescent</string>
+    <string name="phase_first">First Quarter</string>
+    <string name="phase_waxing_gibbous">Waxing Gibbous</string>
+    <string name="phase_full">Full</string>
+    <string name="phase_waning_gibbous">Waning Gibbous</string>
+    <string name="phase_third">Third Quarter</string>
+    <string name="phase_waning_crescent">Waning Crescent</string>
+
+    <string name="daily_overview">Daily</string>
+    <string name="hourly_overview">Hourly</string>
+    <string name="air_quality">Air Quality</string>
+    <string name="life_details">Details</string>
+    <string name="sunrise_sunset">Sun &amp; Moon</string>
 
     <string name="next">NEXT</string>
     <string name="done">DONE</string>

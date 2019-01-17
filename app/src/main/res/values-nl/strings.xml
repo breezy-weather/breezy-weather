@@ -61,7 +61,9 @@
     <string name="aqi_6">Gevaarlijk</string>
     <string name="daily_overview">Dagelijks</string>
     <string name="hourly_overview">Per uur</string>
+    <string name="air_quality">Luchtkwaliteit</string>
     <string name="life_details">Details</string>
+    <string name="sunrise_sunset">Zon &amp; maan</string>
     <string name="next">Volgende</string>
     <string name="done">Klaar</string>
     <string name="cancel" tools:ignore="ButtonCase">Annuleren</string>

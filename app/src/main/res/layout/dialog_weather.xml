@@ -14,25 +14,45 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin">
 
-            <TextView
-                android:id="@+id/dialog_weather_title"
-                android:layout_margin="@dimen/normal_margin"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_alignParentStart="true"
-                android:textStyle="bold"
-                android:maxLines="1"
-                style="@style/content_text"
-                tools:text="12-24 : 周五" />
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/dialog_weather_title"
+                    android:textSize="@dimen/title_text_size"
+                    style="@style/content_text"
+                    tools:text="12-24 周五" />
+
+                <TextView
+                    android:id="@+id/dialog_weather_subtitle"
+                    android:layout_marginTop="2dp"
+                    style="@style/subtitle_text"
+                    tools:text="十一月初七"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+            <wangdaye.com.geometricweather.ui.widget.MoonPhaseView
+                android:id="@+id/dialog_weather_phaseView"
+                android:layout_width="@dimen/material_icon_size"
+                android:layout_height="@dimen/material_icon_size"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
 
             <TextView
-                android:id="@+id/dialog_weather_subtitle"
-                android:layout_margin="@dimen/normal_margin"
-                android:layout_alignParentEnd="true"
-                android:textStyle="bold"
-                android:maxLines="1"
+                android:id="@+id/dialog_weather_phaseText"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="2dp"
+                android:layout_toStartOf="@id/dialog_weather_phaseView"
                 style="@style/content_text"
-                tools:text="十一月初七"
+                tools:text="上弦月"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
@@ -41,7 +61,8 @@
             android:id="@+id/dialog_weather_weatherContainer_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="@drawable/selectable_item_background_borderless">
+            android:foreground="@drawable/selectable_item_background_borderless"
+            tools:ignore="UnusedAttribute">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_3_day"
@@ -87,7 +108,8 @@
             android:id="@+id/dialog_weather_weatherContainer_night"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="@drawable/selectable_item_background_borderless">
+            android:foreground="@drawable/selectable_item_background_borderless"
+            tools:ignore="UnusedAttribute">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_3_night"
@@ -134,60 +156,66 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/dialog_weather_astroContainer"
+                android:id="@+id/dialog_weather_sunContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 tools:ignore="RtlHardcoded">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/dialog_weather_sunriseIcon"
-                    android:src="@drawable/ic_sunrise"
+                    android:id="@+id/dialog_weather_sun_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/weather_sun_day_xml"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="0dp"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/colorTextSubtitle"
                     style="@style/material_icon"
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <TextView
-                    android:id="@+id/dialog_weather_sunrise"
-                    android:textStyle="bold"
-                    android:layout_toEndOf="@id/dialog_weather_sunriseIcon"
+                    android:id="@+id/dialog_weather_sunrise_sunset"
+                    android:layout_toEndOf="@id/dialog_weather_sun_icon"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginStart="4dp"
                     style="@style/subtitle_text"
-                    tools:text="05:45"
+                    tools:text="05:45 / 17:45"
                     tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/dialog_weather_moonContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/dialog_weather_astroContainer"
+                android:layout_toEndOf="@id/dialog_weather_sunContainer"
                 android:layout_margin="@dimen/normal_margin"
                 tools:ignore="RtlHardcoded">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/dialog_weather_sunset_icon"
-                    android:src="@drawable/ic_sunset"
+                    android:id="@+id/dialog_weather_moon_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/weather_sun_night_xml"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="0dp"
+                    android:tint="@color/colorTextSubtitle"
                     style="@style/material_icon"
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <TextView
-                    android:id="@+id/dialog_weather_sunset"
-                    android:textStyle="bold"
-                    android:layout_toEndOf="@id/dialog_weather_sunset_icon"
+                    android:id="@+id/dialog_weather_moonrise_moonset"
+                    android:layout_toEndOf="@id/dialog_weather_moon_icon"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginStart="4dp"
                     style="@style/subtitle_text"
-                    tools:text="17:45"
+                    tools:text="02:42 / 13:49"
                     tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>

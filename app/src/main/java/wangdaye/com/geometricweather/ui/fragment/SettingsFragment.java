@@ -123,7 +123,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
         notificationTextColor.setSummary(
                 ValueUtils.getNotificationTextColor(
                         getActivity(),
-                        sharedPreferences.getString(getString(R.string.key_notification_text_color), "grey")));
+                        sharedPreferences.getString(getString(R.string.key_notification_text_color), "dark")));
         notificationTextColor.setOnPreferenceChangeListener(this);
 
         // notification background.

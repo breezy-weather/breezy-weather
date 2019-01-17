@@ -7,7 +7,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:foreground="@drawable/selectable_item_background">
+    android:foreground="@drawable/selectable_item_background"
+    tools:ignore="UnusedAttribute">
 
     <TextView
         android:id="@+id/item_trend_daily_weekTxt"

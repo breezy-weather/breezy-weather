@@ -110,6 +110,11 @@ public class TrendRecyclerView extends RecyclerView {
     }
 
     @Override
+    public void onMeasure(int widthSpec, int heightSpec) {
+        super.onMeasure(widthSpec, heightSpec);
+    }
+
+    @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (historyTemps == null) {

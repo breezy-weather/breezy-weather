@@ -109,7 +109,7 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
         this.context = context;
         this.weather = weather;
 
-        this.maxiTemps = new float[weather.hourlyList.size() * 2 - 1];
+        this.maxiTemps = new float[Math.max(0, weather.hourlyList.size() * 2 - 1)];
         for (int i = 0; i < maxiTemps.length; i += 2) {
             maxiTemps[i] = weather.hourlyList.get(i / 2).temp;
         }

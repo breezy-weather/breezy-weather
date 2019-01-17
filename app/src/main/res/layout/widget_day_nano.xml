@@ -7,9 +7,11 @@
     tools:background="@android:color/black">
 
     <RelativeLayout
+        android:id="@+id/widget_day_weather"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
 
         <ImageView
             android:id="@+id/widget_day_icon"
@@ -35,12 +37,5 @@
             tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
-
-    <ImageButton
-        android:id="@+id/widget_day_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

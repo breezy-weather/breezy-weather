@@ -2,7 +2,10 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import java.text.ParseException;
@@ -12,6 +15,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.service.weather.AccuWeatherService;
@@ -60,13 +64,18 @@ public class WeatherHelper {
     public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
         bindWeatherService(location.source);
         weatherService.requestWeather(c, location, new WeatherService.RequestWeatherCallback() {
+
             @Override
-            public void requestWeatherSuccess(Weather weather, Location requestLocation) {
-                l.requestWeatherSuccess(weather, requestLocation);
+            public void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
+                                              @NonNull Location requestLocation) {
+                DatabaseHelper.getInstance(c).writeWeather(requestLocation, weather);
+                DatabaseHelper.getInstance(c).writeTodayHistory(weather);
+                DatabaseHelper.getInstance(c).writeYesterdayHistory(history);
+                l.requestWeatherSuccess(weather, history, requestLocation);
             }
 
             @Override
-            public void requestWeatherFailed(Location requestLocation) {
+            public void requestWeatherFailed(@NonNull Location requestLocation) {
                 l.requestWeatherFailed(requestLocation);
             }
         });
@@ -128,7 +137,9 @@ public class WeatherHelper {
         } else if (icon == 3 || icon == 4 || icon == 6 || icon == 7
                 || icon == 35 || icon == 36 || icon == 38) {
             return KIND_PARTLY_CLOUDY;
-        } else if (icon == 5 || icon == 8 || icon == 37) {
+        } else if (icon == 5 || icon == 37) {
+            return KIND_HAZE;
+        } else if (icon == 8) {
             return KIND_CLOUDY;
         } else if (icon == 11) {
             return KIND_FOG;
@@ -1211,11 +1222,221 @@ public class WeatherHelper {
         }
     }
 
+    @ColorInt
+    public static int getAqiColor(Context context, int index) {
+        if (index <= 50) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (index <= 100) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (index <= 150) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (index <= 200) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else if (index <= 300) {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorLevel_6);
+        }
+    }
+
+    @ColorInt
+    public static int getPm25Color(Context context, int index) {
+        if (index <= 35) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (index <= 75) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (index <= 115) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (index <= 150) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else if (index <= 250) {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorLevel_6);
+        }
+    }
+
+    @ColorInt
+    public static int getPm10Color(Context context, int index) {
+        if (index <= 50) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (index <= 150) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (index <= 250) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (index <= 350) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else if (index <= 420) {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorLevel_6);
+        }
+    }
+
+    @ColorInt
+    public static int getSo2Color(Context context, int index) {
+        if (index <= 50) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (index <= 150) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (index <= 475) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (index <= 800) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else if (index <= 1600) {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorLevel_6);
+        }
+    }
+
+    @ColorInt
+    public static int getNo2Color(Context context, int index) {
+        if (index <= 40) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (index <= 80) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (index <= 180) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (index <= 280) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else if (index <= 565) {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorLevel_6);
+        }
+    }
+
+    @ColorInt
+    public static int getO3Color(Context context, int index) {
+        if (index <= 160) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (index <= 200) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (index <= 300) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (index <= 400) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else if (index <= 800) {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorLevel_6);
+        }
+    }
+
+    @ColorInt
+    public static int getCOColor(Context context, float index) {
+        if (index <= 5) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (index <= 10) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (index <= 35) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (index <= 60) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else if (index <= 90) {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorLevel_6);
+        }
+    }
+
+    public static String getMoonPhaseName(Context context, @Nullable String phase) {
+        if (TextUtils.isEmpty(phase)) {
+            return context.getString(R.string.phase_new);
+        }
+        assert phase != null;
+        switch (phase.toLowerCase()) {
+            case "waxingcrescent":
+            case "waxing crescent":
+                return context.getString(R.string.phase_waxing_crescent);
+
+            case "first":
+            case "firstquarter":
+            case "first quarter":
+                return context.getString(R.string.phase_first);
+
+            case "waxinggibbous":
+            case "waxing gibbous":
+                return context.getString(R.string.phase_waxing_gibbous);
+
+            case "full":
+            case "fullmoon":
+            case "full moon":
+                return context.getString(R.string.phase_full);
+
+            case "waninggibbous":
+            case "waning gibbous":
+                return context.getString(R.string.phase_waning_gibbous);
+
+            case "third":
+            case "thirdquarter":
+            case "third quarter":
+            case "last":
+            case "lastquarter":
+            case "last quarter":
+                return context.getString(R.string.phase_third);
+
+            case "waningcrescent":
+            case "waning crescent":
+                return context.getString(R.string.phase_waning_crescent);
+
+            default:
+                return context.getString(R.string.phase_new);
+        }
+    }
+
+    public static int getMoonPhaseAngle(@Nullable String phase) {
+        if (TextUtils.isEmpty(phase)) {
+            return 0;
+        }
+        assert phase != null;
+        switch (phase.toLowerCase()) {
+            case "waxingcrescent":
+            case "waxing crescent":
+                return 45;
+
+            case "first":
+            case "firstquarter":
+            case "first quarter":
+                return 90;
+
+            case "waxinggibbous":
+            case "waxing gibbous":
+                return 135;
+
+            case "full":
+            case "fullmoon":
+            case "full moon":
+                return 180;
+
+            case "waninggibbous":
+            case "waning gibbous":
+                return 225;
+
+            case "third":
+            case "thirdquarter":
+            case "third quarter":
+            case "last":
+            case "lastquarter":
+            case "last quarter":
+                return 270;
+
+            case "waningcrescent":
+            case "waning crescent":
+                return 315;
+
+            default:
+                return 360;
+        }
+    }
+
     // interface.
 
     public interface OnRequestWeatherListener {
-        void requestWeatherSuccess(Weather weather, Location requestLocation);
-        void requestWeatherFailed(Location requestLocation);
+        void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
+                                   @NonNull Location requestLocation);
+        void requestWeatherFailed(@NonNull Location requestLocation);
     }
 
     public interface OnRequestLocationListener {

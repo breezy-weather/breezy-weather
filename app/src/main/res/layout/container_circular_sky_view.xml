@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_circular_sky_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/darkPrimary_4">
 
     <wangdaye.com.geometricweather.ui.widget.StatusBarView
         android:id="@+id/container_circular_sky_view_statusBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/darkPrimary_5" />
 
     <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.WeatherIconControlView
         android:id="@+id/container_circular_sky_view_controller"

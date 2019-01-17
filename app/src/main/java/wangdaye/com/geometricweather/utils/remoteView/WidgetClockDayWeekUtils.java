@@ -1,13 +1,10 @@
 package wangdaye.com.geometricweather.utils.remoteView;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.provider.AlarmClock;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -21,17 +18,15 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetClockDayWeekProvider;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
-import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
  * Widget clock day week utils.
  * */
 
-public class WidgetClockDayWeekUtils {
+public class WidgetClockDayWeekUtils extends AbstractRemoteViewsUtils {
 
     public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
@@ -141,29 +136,7 @@ public class WidgetClockDayWeekUtils {
 
         views.setViewVisibility(R.id.widget_clock_day_week_card, showCard ? View.VISIBLE : View.GONE);
 
-        Intent intentClock = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
-        PendingIntent pendingIntentClock = PendingIntent.getActivity(
-                context,
-                GeometricWeather.WIDGET_CLOCK_DAY_WEEK_CLOCK_PENDING_INTENT_CODE,
-                intentClock,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        views.setOnClickPendingIntent(R.id.widget_clock_day_week_clockButton, pendingIntentClock);
-
-        PendingIntent pendingIntentWeather;
-        if (touchToRefresh) {
-            pendingIntentWeather = PendingIntent.getService(
-                    context,
-                    GeometricWeather.WIDGET_CLOCK_DAY_WEEK_WEATHER_PENDING_INTENT_CODE,
-                    ServiceHelper.getAwakePollingUpdateServiceIntent(context),
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-        } else {
-            pendingIntentWeather = PendingIntent.getActivity(
-                    context,
-                    GeometricWeather.WIDGET_CLOCK_DAY_WEEK_WEATHER_PENDING_INTENT_CODE,
-                    IntentHelper.buildMainActivityIntent(context, location),
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-        }
-        views.setOnClickPendingIntent(R.id.widget_clock_day_week_weatherButton, pendingIntentWeather);
+        setOnClickPendingIntent(context, views, location, touchToRefresh);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(
@@ -235,5 +208,36 @@ public class WidgetClockDayWeekUtils {
         return WeatherHelper.getWidgetNotificationIcon(
                 weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
                 dayTime, iconStyle, blackText);
+    }
+
+    private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
+                                                boolean touchToRefresh) {
+        // weather.
+        if (touchToRefresh) {
+            views.setOnClickPendingIntent(
+                    R.id.widget_clock_day_week_weather,
+                    getRefreshPendingIntent(
+                            context,
+                            GeometricWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_REFRESH));
+        } else {
+            views.setOnClickPendingIntent(
+                    R.id.widget_clock_day_week_weather,
+                    getWeatherPendingIntent(
+                            context,
+                            location,
+                            GeometricWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_WEATHER));
+        }
+
+        // clock.
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_week_clock,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK));
+
+        // title.
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_week_title,
+                getCalendarPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR));
     }
 }

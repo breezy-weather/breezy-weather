@@ -12,6 +12,7 @@
         tools:ignore="ContentDescription" />
 
     <LinearLayout
+        android:id="@+id/widget_clock_day_week_weather"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -28,7 +29,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginEnd="@dimen/little_margin"
-                android:fontFamily="sans-serif-light"
                 style="@style/widget_text_clock"
                 tools:text="9:10"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
@@ -369,29 +369,6 @@
             </RelativeLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageButton
-            android:id="@+id/widget_clock_day_week_clockButton"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            tools:ignore="ContentDescription" />
-
-        <ImageButton
-            android:id="@+id/widget_clock_day_week_weatherButton"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 

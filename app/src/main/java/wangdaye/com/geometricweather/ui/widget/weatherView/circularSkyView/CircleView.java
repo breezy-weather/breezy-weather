@@ -107,10 +107,15 @@ public class CircleView extends View {
 
     // control.
 
-    public void showCircle(boolean dayTime) {
+    /**
+     * @return Return true whether execute switch animation.
+     * */
+    public boolean showCircle(boolean dayTime) {
         if (this.dayTime != dayTime) {
             doHide(dayTime);
+            return true;
         }
+        return false;
     }
 
     public void touchCircle() {

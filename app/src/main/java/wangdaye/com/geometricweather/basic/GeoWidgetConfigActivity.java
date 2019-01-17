@@ -9,10 +9,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.widget.ImageView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
@@ -94,7 +96,8 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     // on request weather listener.
 
     @Override
-    public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+    public void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
+                                      @NonNull Location requestLocation) {
         if (destroyed) {
             return;
         }
@@ -103,13 +106,11 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
         } else {
             locationNow.weather = weather;
             refreshWidgetView(weather);
-            DatabaseHelper.getInstance(this).writeWeather(requestLocation, weather);
-            DatabaseHelper.getInstance(this).writeHistory(weather);
         }
     }
 
     @Override
-    public void requestWeatherFailed(Location requestLocation) {
+    public void requestWeatherFailed(@NonNull Location requestLocation) {
         if (destroyed) {
             return;
         }

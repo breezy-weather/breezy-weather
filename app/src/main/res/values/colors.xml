@@ -37,6 +37,9 @@
     <color name="colorTextLight">#fafafa</color>
     <color name="colorTextLight2nd">#f5f5f5</color>
 
+    <color name="colorLevel_1">#72d572</color>
+    <color name="colorLevel_2">#ffca28</color>
+    <color name="colorLevel_3">#ffa726</color>
     <color name="colorLevel_4">#e52f35</color>
     <color name="colorLevel_5">#99004c</color>
     <color name="colorLevel_6">#7e0023</color>

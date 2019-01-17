@@ -28,13 +28,11 @@ public class TrendItemContainerLayout extends LinearLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int targetWidth = (int) ((getResources().getDisplayMetrics().widthPixels
-                        - 2 * getResources().getDimensionPixelSize(R.dimen.little_margin)) * 0.2);
-        if (targetWidth > DisplayUtils.dpToPx(getContext(), 56)) {
-            super.onMeasure(
-                    MeasureSpec.makeMeasureSpec(targetWidth, MeasureSpec.EXACTLY),
-                    MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.EXACTLY));
-        }
+                - 2 * getResources().getDimensionPixelSize(R.dimen.little_margin)) / 5f);
+        targetWidth = (int) Math.max(DisplayUtils.dpToPx(getContext(), 56), targetWidth);
+        super.onMeasure(
+                MeasureSpec.makeMeasureSpec(targetWidth, MeasureSpec.EXACTLY),
+                heightMeasureSpec);
     }
 }

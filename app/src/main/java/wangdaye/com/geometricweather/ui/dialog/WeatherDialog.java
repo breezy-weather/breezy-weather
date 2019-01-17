@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.ui.widget.MoonPhaseView;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -76,6 +77,18 @@ public class WeatherDialog extends GeoDialogFragment
             subtitle.setText(LunarHelper.getLunarDate(dates));
         } else {
             subtitle.setVisibility(View.GONE);
+        }
+
+        TextView phaseTitle = view.findViewById(R.id.dialog_weather_phaseText);
+        MoonPhaseView phaseView = view.findViewById(R.id.dialog_weather_phaseView);
+        if (daily && !TextUtils.isEmpty(weather.dailyList.get(position).moonPhase)) {
+            phaseTitle.setText(WeatherHelper.getMoonPhaseName(
+                    getActivity(), weather.dailyList.get(position).moonPhase));
+            phaseView.setSurfaceAngle(WeatherHelper.getMoonPhaseAngle(
+                    weather.dailyList.get(position).moonPhase));
+        } else {
+            phaseTitle.setVisibility(View.GONE);
+            phaseView.setVisibility(View.GONE);
         }
 
         view.findViewById(R.id.dialog_weather_weatherContainer_day).setOnClickListener(this);
@@ -154,17 +167,23 @@ public class WeatherDialog extends GeoDialogFragment
             weatherTexts[0].setText(text);
         }
         
-        TextView[] sunText = new TextView[] {
-                view.findViewById(R.id.dialog_weather_sunrise),
-                view.findViewById(R.id.dialog_weather_sunset)};
+        TextView[] sunMoonText = new TextView[] {
+                view.findViewById(R.id.dialog_weather_sunrise_sunset),
+                view.findViewById(R.id.dialog_weather_moonrise_moonset)};
         if (daily) {
-            sunText[0].setText(weather.dailyList.get(position).astros[0]);
-            sunText[1].setText(weather.dailyList.get(position).astros[1]);
+            sunMoonText[0].setText(
+                    weather.dailyList.get(position).astros[0] + " / " + weather.dailyList.get(position).astros[1]);
+            if (!TextUtils.isEmpty(weather.dailyList.get(position).astros[2])) {
+                sunMoonText[1].setText(
+                        weather.dailyList.get(position).astros[2] + " / " + weather.dailyList.get(position).astros[3]);
+            } else {
+                view.findViewById(R.id.dialog_weather_moonContainer).setVisibility(View.GONE);
+            }
         } else {
-            view.findViewById(R.id.dialog_weather_sunriseIcon).setVisibility(View.GONE);
-            view.findViewById(R.id.dialog_weather_sunset_icon).setVisibility(View.GONE);
-            sunText[0].setVisibility(View.GONE);
-            sunText[1].setVisibility(View.GONE);
+            view.findViewById(R.id.dialog_weather_sun_icon).setVisibility(View.GONE);
+            view.findViewById(R.id.dialog_weather_moon_icon).setVisibility(View.GONE);
+            sunMoonText[0].setVisibility(View.GONE);
+            sunMoonText[1].setVisibility(View.GONE);
         }
 
         Button done = view.findViewById(R.id.dialog_weather_button);

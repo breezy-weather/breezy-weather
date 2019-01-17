@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.ui.activity.AboutActivity;
 import wangdaye.com.geometricweather.ui.activity.AlertActivity;
-import wangdaye.com.geometricweather.ui.activity.MainActivity;
+import wangdaye.com.geometricweather.ui.activity.main.MainActivity;
 import wangdaye.com.geometricweather.ui.activity.ManageActivity;
 import wangdaye.com.geometricweather.ui.activity.SearcActivity;
 import wangdaye.com.geometricweather.ui.activity.SettingsActivity;

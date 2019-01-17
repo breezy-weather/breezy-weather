@@ -25,6 +25,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     private Cloud[] clouds;
     private Star[] stars;
     private Thunder thunder;
+    private Random random;
 
     @ColorInt
     private int backgroundColor;
@@ -33,8 +34,10 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     public static final int TYPE_CLOUD_NIGHT = 2;
     public static final int TYPE_CLOUDY = 3;
     public static final int TYPE_THUNDER = 4;
+    public static final int TYPE_FOG = 5;
+    public static final int TYPE_HAZE = 6;
 
-    @IntDef({TYPE_CLOUD_DAY, TYPE_CLOUD_NIGHT, TYPE_CLOUDY, TYPE_THUNDER})
+    @IntDef({TYPE_CLOUD_DAY, TYPE_CLOUD_NIGHT, TYPE_CLOUDY, TYPE_THUNDER, TYPE_FOG, TYPE_HAZE})
     @interface TypeRule {}
 
     private class Cloud {
@@ -48,6 +51,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         float radius;
         float initRadius;
         float scaleRatio;
+        float moveFactor;
 
         @ColorInt
         int color;
@@ -57,7 +61,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         long progress;
 
         Cloud(float centerX, float centerY,
-              float radius, float scaleRatio,
+              float radius, float scaleRatio, float moveFactor,
               @ColorInt int color, float alpha,
               long duration, long initProgress) {
 
@@ -69,6 +73,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
 
             this.initRadius = radius;
             this.scaleRatio = scaleRatio;
+            this.moveFactor = moveFactor;
 
             this.color = color;
             this.alpha = alpha;
@@ -80,8 +85,8 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         }
 
         void move(long interval, float rotation2D, float rotation3D) {
-            centerX = (float) (initCX + Math.sin(rotation2D * Math.PI / 180.0) * 0.40 * radius);
-            centerY = (float) (initCY - Math.sin(rotation3D * Math.PI / 180.0) * 0.50 * radius);
+            centerX = (float) (initCX + Math.sin(rotation2D * Math.PI / 180.0) * 0.40 * radius * moveFactor);
+            centerY = (float) (initCY - Math.sin(rotation3D * Math.PI / 180.0) * 0.50 * radius * moveFactor);
             progress = (progress + interval) % duration;
             computeRadius(duration, progress);
         }
@@ -150,7 +155,9 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         private long delay;
 
         Thunder() {
-            this.r = this.g = this. b = 255;
+            this.r = 81;
+            this.g = 67;
+            this. b = 108;
             init();
             computeFrame();
         }
@@ -158,7 +165,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         private void init() {
             progress = 0;
             duration = 300;
-            delay = new Random().nextInt(2000) + 1000;
+            delay = new Random().nextInt(5000) + 2000;
         }
 
         private void computeFrame() {
@@ -189,51 +196,127 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     public CloudImplementor(MaterialWeatherView view, @TypeRule int type) {
         int viewWidth = view.getMeasuredWidth();
         int viewHeight = view.getMeasuredHeight();
+        this.random = new Random();
 
-        if (type == TYPE_CLOUDY || type == TYPE_THUNDER) {
+        if (type == TYPE_FOG || type == TYPE_HAZE) {
+            int backgroundColor = type == TYPE_FOG ?
+                    Color.rgb(79, 93, 104) : Color.rgb(66, 66, 66);
+            int cloudColors[] = type == TYPE_FOG ?
+                    new int[] {
+                            Color.rgb(85, 99, 110),
+                            Color.rgb(91, 104, 114),
+                            Color.rgb(99, 113, 123),}
+                    : new int[] {
+                            Color.rgb(57, 57, 57),
+                            Color.rgb(48, 48, 48),
+                            Color.rgb(44, 44, 44)};
+
+            float[] cloudAlphas = type == TYPE_FOG ?
+                    new float[] {0.8F, 0.8F, 0.8F} : new float[] {0.8F, 0.8F, 0.8F};
+
+            Cloud[] clouds = new Cloud[9];
+            clouds[8] = new Cloud(
+                    (float) (viewWidth * 0.0250),
+                    (float) (viewWidth * 0.0250 * 0.6820 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1.8f, 2.6f),
+                    cloudColors[2], cloudAlphas[2],
+                    7000, 700);
+            clouds[7] = new Cloud(
+                    (float) (viewWidth * 0.4694),
+                    (float) (viewWidth * 0.4694 * 0.0489 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1.8f, 2.6f),
+                    cloudColors[2], cloudAlphas[2],
+                    7000, 1200);
+            clouds[6] = new Cloud(
+                    (float) (viewWidth * 0.9250),
+                    (float) (viewWidth * 0.9250 * 0.0249 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1.8f, 2.6f),
+                    cloudColors[2], cloudAlphas[2],
+                    7000, 0);
+            clouds[5] = new Cloud(
+                    (float) (viewWidth * 0.1000),
+                    (float) (viewWidth * 0.1000 * 3.0462 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1.4f, 2.2f),
+                    cloudColors[1], cloudAlphas[1],
+                    7000, 300);
+            clouds[4] = new Cloud(
+                    (float) (viewWidth * 0.5444),
+                    (float) (viewWidth * 0.5444 * 0.4880 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1.4f, 2.2f),
+                    cloudColors[1], cloudAlphas[1],
+                    7000, 1500);
+            clouds[3] = new Cloud(
+                    (float) (viewWidth * 1.0000),
+                    (float) (viewWidth * 1.0000 * 0.3046 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1.4f, 2.2f),
+                    cloudColors[1], cloudAlphas[1],
+                    7000, 0);
+            clouds[2] = new Cloud(
+                    (float) (viewWidth * 0.0388),
+                    (float) (viewWidth * 0.0388 * 14.3333 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1f, 1.8f),
+                    cloudColors[0], cloudAlphas[0],
+                    7000, 1700);
+            clouds[1] = new Cloud(
+                    (float) (viewWidth * 0.4833),
+                    (float) (viewWidth * 0.4833 * 1.0727 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1f, 1.8f),
+                    cloudColors[0], cloudAlphas[0],
+                    7000, 3500);
+            clouds[0] = new Cloud(
+                    (float) (viewWidth * 0.9388),
+                    (float) (viewWidth * 0.9388 * 0.6101 + viewWidth * 0.1500),
+                    (float) (viewWidth * 0.3166), 1.15F, getRandomFactor(1f, 1.8f),
+                    cloudColors[0], cloudAlphas[0],
+                    7000, 2000);
+
+            this.initialize(clouds, null, backgroundColor);
+        } else if (type == TYPE_CLOUDY || type == TYPE_THUNDER) {
             int backgroundColor = type == TYPE_CLOUDY ?
-                    Color.rgb(96, 121, 136) : Color.rgb(43, 29, 69);
-            int cloudColor = type == TYPE_CLOUDY ?
-                    Color.rgb(171, 171, 171) : Color.rgb(0, 0, 0);
+                    Color.rgb(96, 121, 136) : Color.rgb(35, 23, 57);
+            int cloudColors[] = type == TYPE_CLOUDY ?
+                    new int[] {Color.rgb(107, 129, 143), Color.rgb(117, 135, 147)}
+                    : new int[] {Color.rgb(43, 30, 66), Color.rgb(53, 38, 78)};
+
             float[] cloudAlphas = type == TYPE_CLOUDY ?
-                    new float[] {0.20F, 0.10F} : new float[] {0.10F, 0.10F};
+                    new float[] {0.7F, 0.7F} : new float[] {0.8F, 0.8F};
 
             Cloud[] clouds = new Cloud[6];
-            clouds[0] = new Cloud(
+            clouds[5] = new Cloud(
                     (float) (viewWidth * -0.0234),
-                    (float) (viewWidth * 0.0234 * 5.7648 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.3975), 1.15F,
-                    cloudColor, cloudAlphas[0],
+                    (float) (viewWidth * 0.0234 * 5.7648 + viewWidth * 0.010),
+                    (float) (viewWidth * 0.2972/*0.3975*/), 1.15F, getRandomFactor(1.6f, 2f),
+                    cloudColors[1], cloudAlphas[1],
                     7000, 0);
-            clouds[1] = new Cloud(
+            clouds[4] = new Cloud(
                     (float) (viewWidth * 0.4663),
-                    (float) (viewWidth * 0.4663 * 0.3520 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.3886), 1.15F,
-                    cloudColor, cloudAlphas[0],
+                    (float) (viewWidth * 0.4663 * 0.3520 + viewWidth * 0.010),
+                    (float) (viewWidth * 0.2906/*0.3886*/), 1.15F, getRandomFactor(1.6f, 2f),
+                    cloudColors[1], cloudAlphas[1],
                     7000, 1500);
-            clouds[2] = new Cloud(
-                    (float) (viewWidth * 1.0270),
-                    (float) (viewWidth * 1.0270 * 0.1671 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.4330), 1.15F,
-                    cloudColor, cloudAlphas[0],
-                    7000, 0);
             clouds[3] = new Cloud(
+                    (float) (viewWidth * 1.0270),
+                    (float) (viewWidth * 1.0270 * 0.1671 + viewWidth * 0.010),
+                    (float) (viewWidth * 0.3238/*0.4330*/), 1.15F, getRandomFactor(1.6f, 2f),
+                    cloudColors[1], cloudAlphas[1],
+                    7000, 0);
+            clouds[2] = new Cloud(
                     (float) (viewWidth * -0.1701),
                     (float) (viewWidth * 0.1701 * 1.4327 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.6188), 1.10F,
-                    cloudColor, cloudAlphas[1],
+                    (float) (viewWidth * 0.4627/*0.6188*/), 1.10F, getRandomFactor(1.3f, 1.8f),
+                    cloudColors[0], cloudAlphas[0],
                     7000, 2000);
-            clouds[4] = new Cloud(
+            clouds[1] = new Cloud(
                     (float) (viewWidth * 0.4866),
                     (float) (viewWidth * 0.4866 * 0.6064 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.5277), 1.10F,
-                    cloudColor, cloudAlphas[1],
+                    (float) (viewWidth * 0.3946/*0.5277*/), 1.10F, getRandomFactor(1.3f, 1.8f),
+                    cloudColors[0], cloudAlphas[0],
                     7000, 3500);
-            clouds[5] = new Cloud(
-                    (float) (viewWidth * 1.3223),
-                    (float) (viewWidth * 1.3223 * 0.2286 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.6277), 1.10F,
-                    cloudColor, cloudAlphas[1],
+            clouds[0] = new Cloud(
+                    (float) (viewWidth * 1.1900/*1.3223*/),
+                    (float) (viewWidth * 1.1900 * 0.2286 + viewWidth * 0.050),
+                    (float) (viewWidth * 0.4694/*0.6277*/), 1.10F, getRandomFactor(1.3f, 1.8f),
+                    cloudColors[0], cloudAlphas[0],
                     7000, 2000);
 
             this.initialize(clouds, null, backgroundColor);
@@ -252,37 +335,37 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
             clouds[0] = new Cloud(
                     (float) (viewWidth * 0.1529),
                     (float) (viewWidth * 0.1529 * 0.5568 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.2649), 1.20F,
+                    (float) (viewWidth * 0.2649), 1.20F, getRandomFactor(1.5f, 1.8f),
                     cloudColor, cloudAlphas[0],
                     7000, 0);
             clouds[1] = new Cloud(
                     (float) (viewWidth * 0.4793),
                     (float) (viewWidth * 0.4793 * 0.2185 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.2426), 1.20F,
+                    (float) (viewWidth * 0.2426), 1.20F, getRandomFactor(1.5f, 1.8f),
                     cloudColor, cloudAlphas[0],
                     7000, 1500);
             clouds[2] = new Cloud(
                     (float) (viewWidth * 0.8531),
                     (float) (viewWidth * 0.8531 * 0.1286 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.2970), 1.20F,
+                    (float) (viewWidth * 0.2970), 1.20F, getRandomFactor(1.5f, 1.8f),
                     cloudColor, cloudAlphas[0],
                     7000, 0);
             clouds[3] = new Cloud(
                     (float) (viewWidth * 0.0551),
                     (float) (viewWidth * 0.0551 * 2.8600 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.4125), 1.15F,
+                    (float) (viewWidth * 0.4125), 1.15F, getRandomFactor(1.3f, 1.5f),
                     cloudColor, cloudAlphas[1],
                     7000, 2000);
             clouds[4] = new Cloud(
                     (float) (viewWidth * 0.4928),
                     (float) (viewWidth * 0.4928 * 0.3897 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.3521), 1.15F,
+                    (float) (viewWidth * 0.3521), 1.15F, getRandomFactor(1.3f, 1.5f),
                     cloudColor, cloudAlphas[1],
                     7000, 3500);
             clouds[5] = new Cloud(
                     (float) (viewWidth * 1.0499),
                     (float) (viewWidth * 1.0499 * 0.1875 + viewWidth * 0.050),
-                    (float) (viewWidth * 0.4186), 1.15F,
+                    (float) (viewWidth * 0.4186), 1.15F, getRandomFactor(1.3f, 1.5f),
                     cloudColor, cloudAlphas[1],
                     7000, 2000);
 
@@ -339,6 +422,10 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         this.stars = stars;
 
         this.backgroundColor = backgroundColor;
+    }
+
+    private float getRandomFactor(float from, float to) {
+        return from + random.nextFloat() % (to - from);
     }
 
     @Override
@@ -402,6 +489,12 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
 
             case TYPE_THUNDER:
                 return Color.rgb(43, 29, 69);
+
+            case TYPE_FOG:
+                return Color.rgb(79, 93, 104);
+
+            case TYPE_HAZE:
+                return Color.rgb(66, 66, 66);
         }
         return ContextCompat.getColor(context, R.color.colorPrimary);
     }

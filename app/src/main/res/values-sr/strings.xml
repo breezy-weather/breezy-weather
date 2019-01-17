@@ -62,7 +62,9 @@
 
     <string name="daily_overview">дневни</string>
     <string name="hourly_overview">часовни</string>
+    <string name="air_quality">Квалитет ваздуха</string>
     <string name="life_details">детаљни</string>
+    <string name="sunrise_sunset">Сунце &amp; месец</string>
 
     <string name="next">СЛЕДЕЋЕ</string>
     <string name="done">ГОТОВО</string>

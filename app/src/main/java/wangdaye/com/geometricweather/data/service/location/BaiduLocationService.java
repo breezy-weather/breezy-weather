@@ -1,12 +1,9 @@
 package wangdaye.com.geometricweather.data.service.location;
 
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -15,7 +12,6 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.R;
 
 /**
  * Baidu location service.
@@ -56,7 +52,6 @@ public class BaiduLocationService extends LocationService {
     };
 
     public BaiduLocationService(Context context) {
-        client = new LocationClient(context.getApplicationContext());
         manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
     }
 
@@ -77,39 +72,29 @@ public class BaiduLocationService extends LocationService {
         option.SetIgnoreCacheException(true); // 可选，默认false，设置是否收集CRASH信息，默认收集
         option.setEnableSimulateGps(false); // 可选，默认false，设置是否需要过滤gps仿真结果，默认需要
         option.setWifiCacheTimeOut(5 * 60 * 1000); // 可选，如果设置了该接口，首次启动定位时，会先判断当前WiFi是否超出有效期，若超出有效期，会先重新扫描WiFi，然后定位
+        client = new LocationClient(context.getApplicationContext());
         client.setLocOption(option);
         client.registerLocationListener(listener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (manager != null) {
-                NotificationChannel channel = new NotificationChannel(
-                        GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION,
-                        GeometricWeather.getNotificationChannelName(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION),
-                        NotificationManager.IMPORTANCE_MIN);
-                channel.setShowBadge(false);
-                channel.setLightColor(ContextCompat.getColor(context, R.color.colorPrimary));
-                manager.createNotificationChannel(channel);
+                manager.createNotificationChannel(getLocationNotificationChannel(context));
             }
             client.enableLocInForeground(
                     GeometricWeather.NOTIFICATION_ID_LOCATION,
-                    new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION)
-                            .setSmallIcon(R.drawable.ic_location)
-                            .setContentTitle(context.getString(R.string.feedback_request_location))
-                            .setContentText(context.getString(R.string.feedback_request_location_in_background))
-                            .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
-                            .setPriority(NotificationCompat.PRIORITY_MIN)
-                            .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                            .setAutoCancel(true)
-                            .build());
+                    getLocationNotification(context));
         }
         client.start();
     }
 
     @Override
     public void cancel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && manager != null) {
-            client.disableLocInForeground(true);
+        if (client != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && manager != null) {
+                client.disableLocInForeground(true);
+            }
+            client.stop();
+            client = null;
         }
-        client.stop();
     }
 }

@@ -12,6 +12,7 @@
         tools:ignore="ContentDescription" />
 
     <LinearLayout
+        android:id="@+id/widget_clock_day_weather"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +32,6 @@
                 android:layout_marginTop="-2dp"
                 android:layout_marginBottom="-2dp"
                 android:textSize="48dp"
-                android:fontFamily="sans-serif-light"
                 style="@style/widget_text_clock"
                 tools:text="9:10"
                 tools:ignore="RelativeOverlap,RtlHardcoded,SpUsage" />
@@ -116,29 +116,6 @@
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageButton
-            android:id="@+id/widget_clock_day_clockButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            tools:ignore="ContentDescription" />
-
-        <ImageButton
-            android:id="@+id/widget_clock_day_weatherButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 

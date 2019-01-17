@@ -62,7 +62,9 @@
 
     <string name="daily_overview">diariamente</string>
     <string name="hourly_overview">cada hora</string>
+    <string name="air_quality">calidad del aire</string>
     <string name="life_details">detalles</string>
+    <string name="sunrise_sunset">sol &amp; luna</string>
 
     <string name="next">SIGUIENTE</string>
     <string name="done">HECHO</string>

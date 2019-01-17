@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Entity;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 
 import org.greenrobot.greendao.annotation.Id;
 
@@ -19,8 +20,7 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class WeatherEntity {
     // data
-    @Id
-    public Long id;
+    @Id public Long id;
     public long timeStamp;
 
     // base.
@@ -41,41 +41,35 @@ public class WeatherEntity {
     public String realTimeSimpleForecast;
 
     // aqi.
-    public String aqiAqi;
-    public String aqiPm25;
-    public String aqiPm10;
     public String aqiQuality;
+    public int aqiAqi;
+    public int aqiPm25;
+    public int aqiPm10;
+    public int aqiSo2;
+    public int aqiNo2;
+    public int aqiO3;
+    public float aqiCo;
 
     //life.
-    public String indexSimpleForecastTitle;
-    public String indexSimpleForecastContent;
-    public String indexBriefingTitle;
-    public String indexBriefingContent;
-    public String indexWindTitle;
-    public String indexWindContent;
-    public String indexAqiTitle;
-    public String indexAqiContent;
-    public String indexHumidityTitle;
-    public String indexHumidityContent;
-    public String indexUvTitle;
-    public String indexUvContent;
-    public String indexExerciseTitle;
-    public String indexExerciseContent;
-    public String indexColdTitle;
-    public String indexColdContent;
-    public String indexCarWashTitle;
-    public String indexCarWashContent;
+    public String indexSimpleForecast;
+    public String indexBriefing;
+    public String indexCurrentWind;
+    public String indexDailyWind;
+    public String indexSensibleTemp;
+    public String indexHumidity;
+    public String indexUv;
+    public String indexPressure;
+    public String indexVisibility;
+    public String indexDewPoint;
 
-    @Generated(hash = 1155263832)
+    @Generated(hash = 677751435)
     public WeatherEntity(Long id, long timeStamp, String cityId, String city, String date, String time,
             String realTimeWeather, String realTimeWeatherKind, int realTimeTemp, int realTimeSensibleTemp,
             String realTimeWindDir, String realTimeWindSpeed, String realTimeWindLevel, int realTimeWindDegree,
-            String realTimeSimpleForecast, String aqiAqi, String aqiPm25, String aqiPm10, String aqiQuality,
-            String indexSimpleForecastTitle, String indexSimpleForecastContent, String indexBriefingTitle,
-            String indexBriefingContent, String indexWindTitle, String indexWindContent, String indexAqiTitle,
-            String indexAqiContent, String indexHumidityTitle, String indexHumidityContent, String indexUvTitle,
-            String indexUvContent, String indexExerciseTitle, String indexExerciseContent, String indexColdTitle,
-            String indexColdContent, String indexCarWashTitle, String indexCarWashContent) {
+            String realTimeSimpleForecast, String aqiQuality, int aqiAqi, int aqiPm25, int aqiPm10, int aqiSo2,
+            int aqiNo2, int aqiO3, float aqiCo, String indexSimpleForecast, String indexBriefing,
+            String indexCurrentWind, String indexDailyWind, String indexSensibleTemp, String indexHumidity,
+            String indexUv, String indexPressure, String indexVisibility, String indexDewPoint) {
         this.id = id;
         this.timeStamp = timeStamp;
         this.cityId = cityId;
@@ -91,28 +85,24 @@ public class WeatherEntity {
         this.realTimeWindLevel = realTimeWindLevel;
         this.realTimeWindDegree = realTimeWindDegree;
         this.realTimeSimpleForecast = realTimeSimpleForecast;
+        this.aqiQuality = aqiQuality;
         this.aqiAqi = aqiAqi;
         this.aqiPm25 = aqiPm25;
         this.aqiPm10 = aqiPm10;
-        this.aqiQuality = aqiQuality;
-        this.indexSimpleForecastTitle = indexSimpleForecastTitle;
-        this.indexSimpleForecastContent = indexSimpleForecastContent;
-        this.indexBriefingTitle = indexBriefingTitle;
-        this.indexBriefingContent = indexBriefingContent;
-        this.indexWindTitle = indexWindTitle;
-        this.indexWindContent = indexWindContent;
-        this.indexAqiTitle = indexAqiTitle;
-        this.indexAqiContent = indexAqiContent;
-        this.indexHumidityTitle = indexHumidityTitle;
-        this.indexHumidityContent = indexHumidityContent;
-        this.indexUvTitle = indexUvTitle;
-        this.indexUvContent = indexUvContent;
-        this.indexExerciseTitle = indexExerciseTitle;
-        this.indexExerciseContent = indexExerciseContent;
-        this.indexColdTitle = indexColdTitle;
-        this.indexColdContent = indexColdContent;
-        this.indexCarWashTitle = indexCarWashTitle;
-        this.indexCarWashContent = indexCarWashContent;
+        this.aqiSo2 = aqiSo2;
+        this.aqiNo2 = aqiNo2;
+        this.aqiO3 = aqiO3;
+        this.aqiCo = aqiCo;
+        this.indexSimpleForecast = indexSimpleForecast;
+        this.indexBriefing = indexBriefing;
+        this.indexCurrentWind = indexCurrentWind;
+        this.indexDailyWind = indexDailyWind;
+        this.indexSensibleTemp = indexSensibleTemp;
+        this.indexHumidity = indexHumidity;
+        this.indexUv = indexUv;
+        this.indexPressure = indexPressure;
+        this.indexVisibility = indexVisibility;
+        this.indexDewPoint = indexDewPoint;
     }
 
     @Generated(hash = 1598697471)
@@ -143,30 +133,26 @@ public class WeatherEntity {
         entity.realTimeSimpleForecast = weather.realTime.simpleForecast;
 
         // aqi.
+        entity.aqiQuality = weather.aqi.quality;
         entity.aqiAqi = weather.aqi.aqi;
         entity.aqiPm25 = weather.aqi.pm25;
         entity.aqiPm10 = weather.aqi.pm10;
-        entity.aqiQuality = weather.aqi.quality;
+        entity.aqiSo2 = weather.aqi.so2;
+        entity.aqiNo2 = weather.aqi.no2;
+        entity.aqiO3 = weather.aqi.o3;
+        entity.aqiCo = weather.aqi.co;
 
         //life.
-        entity.indexSimpleForecastTitle = weather.index.simpleForecasts[0];
-        entity.indexSimpleForecastContent = weather.index.simpleForecasts[1];
-        entity.indexBriefingTitle = weather.index.briefings[0];
-        entity.indexBriefingContent = weather.index.briefings[1];
-        entity.indexWindTitle = weather.index.winds[0];
-        entity.indexWindContent = weather.index.winds[1];
-        entity.indexAqiTitle = weather.index.aqis[0];
-        entity.indexAqiContent = weather.index.aqis[1];
-        entity.indexHumidityTitle = weather.index.humidities[0];
-        entity.indexHumidityContent = weather.index.humidities[1];
-        entity.indexUvTitle = weather.index.uvs[0];
-        entity.indexUvContent = weather.index.uvs[1];
-        entity.indexExerciseTitle = weather.index.exercises[0];
-        entity.indexExerciseContent = weather.index.exercises[1];
-        entity.indexColdTitle = weather.index.colds[0];
-        entity.indexColdContent = weather.index.colds[1];
-        entity.indexCarWashTitle = weather.index.carWashes[0];
-        entity.indexCarWashContent = weather.index.carWashes[1];
+        entity.indexSimpleForecast = weather.index.simpleForecast;
+        entity.indexBriefing = weather.index.briefing;
+        entity.indexCurrentWind = weather.index.currentWind;
+        entity.indexDailyWind = weather.index.dailyWind;
+        entity.indexSensibleTemp = weather.index.sensibleTemp;
+        entity.indexHumidity = weather.index.humidity;
+        entity.indexUv = weather.index.uv;
+        entity.indexPressure = weather.index.pressure;
+        entity.indexVisibility = weather.index.visibility;
+        entity.indexDewPoint = weather.index.dewPoint;
 
         return entity;
     }
@@ -191,6 +177,14 @@ public class WeatherEntity {
     }
 
     // delete.
+
+    public static void deleteWeather(SQLiteDatabase database, Location location) {
+        List<WeatherEntity> entityList = searchWeatherEntityList(database, location);
+        new DaoMaster(database)
+                .newSession()
+                .getWeatherEntityDao()
+                .deleteInTx(entityList);
+    }
 
     private static void deleteWeather(SQLiteDatabase database, WeatherEntity entity) {
         new DaoMaster(database)
@@ -355,30 +349,6 @@ public class WeatherEntity {
         this.realTimeSimpleForecast = realTimeSimpleForecast;
     }
 
-    public String getAqiAqi() {
-        return this.aqiAqi;
-    }
-
-    public void setAqiAqi(String aqiAqi) {
-        this.aqiAqi = aqiAqi;
-    }
-
-    public String getAqiPm25() {
-        return this.aqiPm25;
-    }
-
-    public void setAqiPm25(String aqiPm25) {
-        this.aqiPm25 = aqiPm25;
-    }
-
-    public String getAqiPm10() {
-        return this.aqiPm10;
-    }
-
-    public void setAqiPm10(String aqiPm10) {
-        this.aqiPm10 = aqiPm10;
-    }
-
     public String getAqiQuality() {
         return this.aqiQuality;
     }
@@ -387,147 +357,139 @@ public class WeatherEntity {
         this.aqiQuality = aqiQuality;
     }
 
-    public String getIndexSimpleForecastTitle() {
-        return this.indexSimpleForecastTitle;
+    public int getAqiAqi() {
+        return this.aqiAqi;
     }
 
-    public void setIndexSimpleForecastTitle(String indexSimpleForecastTitle) {
-        this.indexSimpleForecastTitle = indexSimpleForecastTitle;
+    public void setAqiAqi(int aqiAqi) {
+        this.aqiAqi = aqiAqi;
     }
 
-    public String getIndexSimpleForecastContent() {
-        return this.indexSimpleForecastContent;
+    public int getAqiPm25() {
+        return this.aqiPm25;
     }
 
-    public void setIndexSimpleForecastContent(String indexSimpleForecastContent) {
-        this.indexSimpleForecastContent = indexSimpleForecastContent;
+    public void setAqiPm25(int aqiPm25) {
+        this.aqiPm25 = aqiPm25;
     }
 
-    public String getIndexBriefingTitle() {
-        return this.indexBriefingTitle;
+    public int getAqiPm10() {
+        return this.aqiPm10;
     }
 
-    public void setIndexBriefingTitle(String indexBriefingTitle) {
-        this.indexBriefingTitle = indexBriefingTitle;
+    public void setAqiPm10(int aqiPm10) {
+        this.aqiPm10 = aqiPm10;
     }
 
-    public String getIndexBriefingContent() {
-        return this.indexBriefingContent;
+    public int getAqiSo2() {
+        return this.aqiSo2;
     }
 
-    public void setIndexBriefingContent(String indexBriefingContent) {
-        this.indexBriefingContent = indexBriefingContent;
+    public void setAqiSo2(int aqiSo2) {
+        this.aqiSo2 = aqiSo2;
     }
 
-    public String getIndexWindTitle() {
-        return this.indexWindTitle;
+    public int getAqiNo2() {
+        return this.aqiNo2;
     }
 
-    public void setIndexWindTitle(String indexWindTitle) {
-        this.indexWindTitle = indexWindTitle;
+    public void setAqiNo2(int aqiNo2) {
+        this.aqiNo2 = aqiNo2;
     }
 
-    public String getIndexWindContent() {
-        return this.indexWindContent;
+    public int getAqiO3() {
+        return this.aqiO3;
     }
 
-    public void setIndexWindContent(String indexWindContent) {
-        this.indexWindContent = indexWindContent;
+    public void setAqiO3(int aqiO3) {
+        this.aqiO3 = aqiO3;
     }
 
-    public String getIndexAqiTitle() {
-        return this.indexAqiTitle;
+    public float getAqiCo() {
+        return this.aqiCo;
     }
 
-    public void setIndexAqiTitle(String indexAqiTitle) {
-        this.indexAqiTitle = indexAqiTitle;
+    public void setAqiCo(float aqiCo) {
+        this.aqiCo = aqiCo;
     }
 
-    public String getIndexAqiContent() {
-        return this.indexAqiContent;
+    public String getIndexSimpleForecast() {
+        return this.indexSimpleForecast;
     }
 
-    public void setIndexAqiContent(String indexAqiContent) {
-        this.indexAqiContent = indexAqiContent;
+    public void setIndexSimpleForecast(String indexSimpleForecast) {
+        this.indexSimpleForecast = indexSimpleForecast;
     }
 
-    public String getIndexHumidityTitle() {
-        return this.indexHumidityTitle;
+    public String getIndexBriefing() {
+        return this.indexBriefing;
     }
 
-    public void setIndexHumidityTitle(String indexHumidityTitle) {
-        this.indexHumidityTitle = indexHumidityTitle;
+    public void setIndexBriefing(String indexBriefing) {
+        this.indexBriefing = indexBriefing;
     }
 
-    public String getIndexHumidityContent() {
-        return this.indexHumidityContent;
+    public String getIndexCurrentWind() {
+        return this.indexCurrentWind;
     }
 
-    public void setIndexHumidityContent(String indexHumidityContent) {
-        this.indexHumidityContent = indexHumidityContent;
+    public void setIndexCurrentWind(String indexCurrentWind) {
+        this.indexCurrentWind = indexCurrentWind;
     }
 
-    public String getIndexUvTitle() {
-        return this.indexUvTitle;
+    public String getIndexDailyWind() {
+        return this.indexDailyWind;
     }
 
-    public void setIndexUvTitle(String indexUvTitle) {
-        this.indexUvTitle = indexUvTitle;
+    public void setIndexDailyWind(String indexDailyWind) {
+        this.indexDailyWind = indexDailyWind;
     }
 
-    public String getIndexUvContent() {
-        return this.indexUvContent;
+    public String getIndexSensibleTemp() {
+        return this.indexSensibleTemp;
     }
 
-    public void setIndexUvContent(String indexUvContent) {
-        this.indexUvContent = indexUvContent;
+    public void setIndexSensibleTemp(String indexSensibleTemp) {
+        this.indexSensibleTemp = indexSensibleTemp;
     }
 
-    public String getIndexExerciseTitle() {
-        return this.indexExerciseTitle;
+    public String getIndexHumidity() {
+        return this.indexHumidity;
     }
 
-    public void setIndexExerciseTitle(String indexExerciseTitle) {
-        this.indexExerciseTitle = indexExerciseTitle;
+    public void setIndexHumidity(String indexHumidity) {
+        this.indexHumidity = indexHumidity;
     }
 
-    public String getIndexExerciseContent() {
-        return this.indexExerciseContent;
+    public String getIndexUv() {
+        return this.indexUv;
     }
 
-    public void setIndexExerciseContent(String indexExerciseContent) {
-        this.indexExerciseContent = indexExerciseContent;
+    public void setIndexUv(String indexUv) {
+        this.indexUv = indexUv;
     }
 
-    public String getIndexColdTitle() {
-        return this.indexColdTitle;
+    public String getIndexPressure() {
+        return this.indexPressure;
     }
 
-    public void setIndexColdTitle(String indexColdTitle) {
-        this.indexColdTitle = indexColdTitle;
+    public void setIndexPressure(String indexPressure) {
+        this.indexPressure = indexPressure;
     }
 
-    public String getIndexColdContent() {
-        return this.indexColdContent;
+    public String getIndexVisibility() {
+        return this.indexVisibility;
     }
 
-    public void setIndexColdContent(String indexColdContent) {
-        this.indexColdContent = indexColdContent;
+    public void setIndexVisibility(String indexVisibility) {
+        this.indexVisibility = indexVisibility;
     }
 
-    public String getIndexCarWashTitle() {
-        return this.indexCarWashTitle;
+    public String getIndexDewPoint() {
+        return this.indexDewPoint;
     }
 
-    public void setIndexCarWashTitle(String indexCarWashTitle) {
-        this.indexCarWashTitle = indexCarWashTitle;
-    }
-
-    public String getIndexCarWashContent() {
-        return this.indexCarWashContent;
-    }
-
-    public void setIndexCarWashContent(String indexCarWashContent) {
-        this.indexCarWashContent = indexCarWashContent;
+    public void setIndexDewPoint(String indexDewPoint) {
+        this.indexDewPoint = indexDewPoint;
     }
 }

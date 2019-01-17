@@ -62,7 +62,9 @@
 
     <string name="daily_overview">günlük</string>
     <string name="hourly_overview">saatlik</string>
+    <string name="air_quality">hava kalitesi</string>
     <string name="life_details">Detaylar</string>
+    <string name="sunrise_sunset">Güneş &amp; ay</string>
 
     <string name="next">SONRAKİ</string>
     <string name="done">BİTTİ</string>

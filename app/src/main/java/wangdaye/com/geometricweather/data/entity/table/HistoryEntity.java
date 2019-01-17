@@ -2,15 +2,15 @@ package wangdaye.com.geometricweather.data.entity.table;
 
 import android.annotation.SuppressLint;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import org.greenrobot.greendao.annotation.Entity;
 
 import wangdaye.com.geometricweather.data.entity.model.History;
+import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.data.entity.table.weather.DaoMaster;
 
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,7 +63,7 @@ public class HistoryEntity {
 
     // insert.
 
-    public static void insertHistory(SQLiteDatabase database, Weather weather) {
+    public static void insertTodayHistory(SQLiteDatabase database, Weather weather) {
         if (weather == null) {
             return;
         }
@@ -80,7 +80,7 @@ public class HistoryEntity {
         dao.insert(buildHistoryEntity(History.buildHistory(weather)));
     }
 
-    public static void insertHistory(SQLiteDatabase database, History history) {
+    public static void insertYesterdayHistory(SQLiteDatabase database, History history) {
         if (history == null) {
             return;
         }
@@ -99,18 +99,28 @@ public class HistoryEntity {
 
     // delete.
 
+    public static void clearLocationHistory(SQLiteDatabase database, Location location) {
+        if (location == null) {
+            return;
+        }
+
+        List<HistoryEntity> entityList = searchHistoryEntity(database, location);
+        new DaoMaster(database)
+                .newSession()
+                .getHistoryEntityDao()
+                .deleteInTx(entityList);
+    }
+
     private static void clearLocationHistory(SQLiteDatabase database, Weather weather) {
         if (weather == null) {
             return;
         }
 
         List<HistoryEntity> entityList = searchHistoryEntity(database, weather);
-        HistoryEntityDao dao = new DaoMaster(database)
+        new DaoMaster(database)
                 .newSession()
-                .getHistoryEntityDao();
-        for (int i = 0; i < entityList.size(); i ++) {
-            dao.delete(entityList.get(i));
-        }
+                .getHistoryEntityDao()
+                .deleteInTx(entityList);
     }
 
     private static void clearLocationHistory(SQLiteDatabase database, History history) {
@@ -119,12 +129,10 @@ public class HistoryEntity {
         }
 
         List<HistoryEntity> entityList = searchHistoryEntity(database, history);
-        HistoryEntityDao dao = new DaoMaster(database)
+        new DaoMaster(database)
                 .newSession()
-                .getHistoryEntityDao();
-        for (int i = 0; i < entityList.size(); i ++) {
-            dao.delete(entityList.get(i));
-        }
+                .getHistoryEntityDao()
+                .deleteInTx(entityList);
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -140,16 +148,15 @@ public class HistoryEntity {
             calendar.setTime(date);
             calendar.add(Calendar.DATE, -1);
 
-            HistoryEntityDao dao = new DaoMaster(database)
+            List<HistoryEntity> entityList = new DaoMaster(database)
                     .newSession()
-                    .getHistoryEntityDao();
+                    .getHistoryEntityDao()
+                    .queryBuilder()
+                    .where(
+                            HistoryEntityDao.Properties.Date.eq(format.format(calendar.getTime())),
+                            HistoryEntityDao.Properties.CityId.eq(weather.base.cityId))
+                    .list();
 
-            QueryBuilder<HistoryEntity> builder = dao.queryBuilder();
-            builder.where(
-                    HistoryEntityDao.Properties.CityId.eq(weather.base.cityId),
-                    HistoryEntityDao.Properties.Date.eq(format.format(calendar.getTime())));
-
-            List<HistoryEntity> entityList = builder.list();
             if (entityList == null || entityList.size() <= 0) {
                 return null;
             } else {
@@ -173,16 +180,14 @@ public class HistoryEntity {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
 
-            HistoryEntityDao dao = new DaoMaster(database)
+            List<HistoryEntity> entityList = new DaoMaster(database)
                     .newSession()
-                    .getHistoryEntityDao();
-
-            QueryBuilder<HistoryEntity> builder = dao.queryBuilder();
-            builder.where(
-                    HistoryEntityDao.Properties.CityId.eq(history.cityId),
-                    HistoryEntityDao.Properties.Date.eq(format.format(calendar.getTime())));
-
-            List<HistoryEntity> entityList = builder.list();
+                    .getHistoryEntityDao()
+                    .queryBuilder()
+                    .where(
+                            HistoryEntityDao.Properties.Date.eq(format.format(calendar.getTime())),
+                            HistoryEntityDao.Properties.CityId.eq(history.cityId))
+                    .list();
             if (entityList == null || entityList.size() <= 0) {
                 return null;
             } else {
@@ -194,11 +199,22 @@ public class HistoryEntity {
         }
     }
 
+    private static List<HistoryEntity> searchHistoryEntity(SQLiteDatabase database, Location location) {
+        if (location == null || TextUtils.isEmpty(location.cityId)) {
+            return new ArrayList<>();
+        }
+        return new DaoMaster(database)
+                .newSession()
+                .getHistoryEntityDao()
+                .queryBuilder()
+                .where(HistoryEntityDao.Properties.CityId.eq(location.cityId))
+                .list();
+    }
+
     private static List<HistoryEntity> searchHistoryEntity(SQLiteDatabase database, Weather weather) {
         if (weather == null) {
             return new ArrayList<>();
         }
-
         return new DaoMaster(database)
                 .newSession()
                 .getHistoryEntityDao()

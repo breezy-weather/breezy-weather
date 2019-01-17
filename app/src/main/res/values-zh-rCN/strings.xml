@@ -25,6 +25,9 @@
     <string name="exercise">运动指数</string>
     <string name="follow_system">跟随系统</string>
     <string name="background_information">后台信息</string>
+    <string name="pressure">气压</string>
+    <string name="visibility">能见度</string>
+    <string name="dew_point">露点</string>
 
     <string name="of_clock">时</string>
     <string name="yesterday">昨日</string>
@@ -59,9 +62,20 @@
     <string name="aqi_5">重度污染</string>
     <string name="aqi_6">严重污染</string>
 
+    <string name="phase_new">新月</string>
+    <string name="phase_waxing_crescent">蛾眉月</string>
+    <string name="phase_first">上弦月</string>
+    <string name="phase_waxing_gibbous">盈凸月</string>
+    <string name="phase_full">满月</string>
+    <string name="phase_waning_gibbous">亏凸月</string>
+    <string name="phase_third">下弦月</string>
+    <string name="phase_waning_crescent">残月</string>
+
     <string name="daily_overview">每日概览</string>
     <string name="hourly_overview">小时概览</string>
+    <string name="air_quality">空气质量</string>
     <string name="life_details">详情数据</string>
+    <string name="sunrise_sunset">日月升落</string>
 
     <string name="next">下一步</string>
     <string name="done">完成</string>

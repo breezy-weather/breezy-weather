@@ -1,12 +1,14 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 
@@ -51,7 +53,7 @@ public class PollingUpdateHelper {
             Weather old = DatabaseHelper.getInstance(context).readWeather(locationList.get(position));
             if (old != null && old.isValid(0.15F)) {
                 new RequestWeatherCallback(old, position)
-                        .requestWeatherSuccess(old, locationList.get(position));
+                        .requestWeatherSuccess(old, null, locationList.get(position));
                 return;
             }
             weatherHelper.requestWeather(
@@ -127,7 +129,7 @@ public class PollingUpdateHelper {
             Weather old = DatabaseHelper.getInstance(context).readWeather(locationList.get(position));
             if (old != null && old.isValid(0.15F) && !locationChanged) {
                 new RequestWeatherCallback(old, position)
-                        .requestWeatherSuccess(old, locationList.get(position));
+                        .requestWeatherSuccess(old, null, locationList.get(position));
                 return;
             }
 
@@ -157,8 +159,7 @@ public class PollingUpdateHelper {
 
     private class RequestWeatherCallback implements WeatherHelper.OnRequestWeatherListener {
 
-        @Nullable
-        private Weather old;
+        @Nullable private Weather old;
         private int position;
 
         RequestWeatherCallback(@Nullable Weather old, int position) {
@@ -167,13 +168,10 @@ public class PollingUpdateHelper {
         }
 
         @Override
-        public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+        public void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
+                                          @NonNull Location requestLocation) {
             int compareResult = compareWeatherData(weather, old);
             if (compareResult >= 0) {
-                if (compareResult > 0) {
-                    DatabaseHelper.getInstance(context).writeWeather(locationList.get(position), weather);
-                    DatabaseHelper.getInstance(context).writeHistory(weather);
-                }
                 if (listener != null) {
                     listener.onUpdateCompleted(locationList.get(position), weather, old, true);
                 }
@@ -188,7 +186,7 @@ public class PollingUpdateHelper {
         }
 
         @Override
-        public void requestWeatherFailed(Location requestLocation) {
+        public void requestWeatherFailed(@NonNull Location requestLocation) {
             if (listener != null) {
                 listener.onUpdateCompleted(requestLocation, old, old, false);
             }

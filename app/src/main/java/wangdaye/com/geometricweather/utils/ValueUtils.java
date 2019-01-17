@@ -28,8 +28,14 @@ public class ValueUtils {
             case "baidu":
                 return c.getResources().getStringArray(R.array.location_services)[0];
 
-            default:
+            case "baidu_ip":
                 return c.getResources().getStringArray(R.array.location_services)[1];
+
+            case "amap":
+                return c.getResources().getStringArray(R.array.location_services)[2];
+
+            default:
+                return c.getResources().getStringArray(R.array.location_services)[3];
         }
     }
 

@@ -61,7 +61,9 @@
 
     <string name="daily_overview">ежедневно</string>
     <string name="hourly_overview">почасовой</string>
+    <string name="air_quality">качество воздуха</string>
     <string name="life_details">Детали</string>
+    <string name="sunrise_sunset">Солнце &amp; луна</string>
 
     <string name="next">ДАЛЕЕ</string>
     <string name="done">ОК</string>

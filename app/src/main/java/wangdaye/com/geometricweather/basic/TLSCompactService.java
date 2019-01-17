@@ -24,7 +24,7 @@ import okhttp3.TlsVersion;
 
 public class TLSCompactService {
 
-    protected OkHttpClient.Builder getClientBuilder() {
+    public static OkHttpClient.Builder getClientBuilder() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)

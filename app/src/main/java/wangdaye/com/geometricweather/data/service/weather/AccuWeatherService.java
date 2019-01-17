@@ -1,11 +1,15 @@
 package wangdaye.com.geometricweather.data.service.weather;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.google.gson.GsonBuilder;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -16,6 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.data.api.AccuWeatherApi;
+import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Alert;
 import wangdaye.com.geometricweather.data.entity.model.weather.Daily;
@@ -26,6 +31,7 @@ import wangdaye.com.geometricweather.data.entity.result.accu.AccuAqiResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuLocationResult;
+import wangdaye.com.geometricweather.data.entity.result.accu.AccuMinuteResult;
 import wangdaye.com.geometricweather.data.entity.result.accu.AccuRealtimeResult;
 import wangdaye.com.geometricweather.utils.GzipInterceptor;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
@@ -36,12 +42,14 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public class AccuWeatherService extends WeatherService {
 
-    private AccuWeatherApi api;
+    private AccuWeatherApi weatherApi;
+    private AccuWeatherApi locationApi;
 
-    private Call[] weatherCalls = new Call[5];
+    private Call[] weatherCalls = new Call[6];
     private Call locationCall;
 
     private Weather weather;
+    private History history;
     private Location requestLocation;
 
     private int successTime;
@@ -53,12 +61,23 @@ public class AccuWeatherService extends WeatherService {
                 .addInterceptor(new GzipInterceptor())
                 // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
-        this.api = new Retrofit.Builder()
+        client.dispatcher().setMaxRequestsPerHost(1);
+        this.weatherApi = new Retrofit.Builder()
                 .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
-                .addConverterFactory(
-                        GsonConverterFactory.create(
-                                new GsonBuilder().setLenient().create()))
+                .addConverterFactory(GsonConverterFactory.create(
+                        new GsonBuilder().setLenient().create()))
                 .client(client)
+                .build()
+                .create((AccuWeatherApi.class));
+
+        this.locationApi = new Retrofit.Builder()
+                .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(
+                        new GsonBuilder().setLenient().create()))
+                .client(getClientBuilder()
+                        .addInterceptor(new GzipInterceptor())
+                        // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                        .build())
                 .build()
                 .create((AccuWeatherApi.class));
     }
@@ -66,6 +85,7 @@ public class AccuWeatherService extends WeatherService {
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
         this.weather = new Weather();
+        this.history = null;
         this.requestLocation = location;
         this.successTime = 0;
         this.languageCode = LanguageUtils.getLanguageCode(context);
@@ -73,6 +93,7 @@ public class AccuWeatherService extends WeatherService {
         requestRealtime(context, location, callback);
         requestDaily(context, location, callback);
         requestHourly(context, location, callback);
+        requestMinute(location, callback);
         requestAlert(context, location, callback);
         requestAqi(context, location, callback);
     }
@@ -81,7 +102,7 @@ public class AccuWeatherService extends WeatherService {
     public void requestLocation(Context context, final String query,
                                 @NonNull final RequestLocationCallback callback) {
         this.languageCode = LanguageUtils.getLanguageCode(context);
-        Call<List<AccuLocationResult>> getAccuLocation = api.getWeatherLocation(
+        Call<List<AccuLocationResult>> getAccuLocation = locationApi.getWeatherLocation(
                 "Always",
                 BuildConfig.ACCU_WEATHER_KEY,
                 query,
@@ -115,7 +136,7 @@ public class AccuWeatherService extends WeatherService {
     public void requestLocation(Context context, final String lat, final String lon,
                                 @NonNull final RequestLocationCallback callback) {
         this.languageCode = LanguageUtils.getLanguageCode(context);
-        Call<AccuLocationResult> getAccuLocationByGeoPosition = api.getWeatherLocationByGeoPosition(
+        Call<AccuLocationResult> getAccuLocationByGeoPosition = locationApi.getWeatherLocationByGeoPosition(
                 "Always",
                 BuildConfig.ACCU_WEATHER_KEY,
                 lat + "," + lon,
@@ -151,7 +172,7 @@ public class AccuWeatherService extends WeatherService {
     }
 
     private boolean isSucceed(Location location) {
-        return successTime == 5 && location.equals(requestLocation);
+        return successTime == 6 && location.equals(requestLocation);
     }
 
     private boolean isFailed(Location location) {
@@ -161,7 +182,7 @@ public class AccuWeatherService extends WeatherService {
     private void loadSucceed(Location location, RequestWeatherCallback callback) {
         successTime ++;
         if (isSucceed(location)) {
-            callback.requestWeatherSuccess(weather, requestLocation);
+            callback.requestWeatherSuccess(weather, history, requestLocation);
         }
     }
 
@@ -172,14 +193,14 @@ public class AccuWeatherService extends WeatherService {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void requestRealtime(final Context c, final Location location,
                                  final RequestWeatherCallback callback) {
-        Call<List<AccuRealtimeResult>> getAccuRealtime = api.getRealtime(
+        Call<List<AccuRealtimeResult>> getAccuRealtime = weatherApi.getRealtime(
                 location.cityId,
                 BuildConfig.ACCU_CURRENT_KEY,
                 languageCode,
-                true,
-                false);
+                true);
         getAccuRealtime.enqueue(new Callback<List<AccuRealtimeResult>>() {
             @Override
             public void onResponse(Call<List<AccuRealtimeResult>> call, Response<List<AccuRealtimeResult>> response) {
@@ -189,6 +210,26 @@ public class AccuWeatherService extends WeatherService {
                             weather.base.buildBase(c, location, response.body().get(0));
                             weather.realTime.buildRealTime(c, response.body().get(0));
                             weather.index.buildIndex(c, response.body().get(0));
+
+                            try {
+                                history = new History();
+                                history.cityId = location.cityId;
+                                history.city = weather.base.city;
+
+                                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                                Date date = format.parse(weather.base.date);
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.setTime(date);
+                                calendar.add(Calendar.DATE, -1);
+
+                                history.date = format.format(calendar.getTime());
+                                history.maxiTemp = (int) response.body().get(0)
+                                        .TemperatureSummary.Past24HourRange.Maximum.Metric.Value;
+                                history.miniTemp = (int) response.body().get(0)
+                                        .TemperatureSummary.Past24HourRange.Minimum.Metric.Value;
+                            } catch (Exception e) {
+                                history = null;
+                            }
                             loadSucceed(location, callback);
                         }
                     } else {
@@ -209,7 +250,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestDaily(final Context c, final Location location,
                               final RequestWeatherCallback callback) {
-        Call<AccuDailyResult> getAccuDaily = api.getDaily(
+        Call<AccuDailyResult> getAccuDaily = weatherApi.getDaily(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -246,7 +287,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestHourly(final Context c, final Location location,
                                final RequestWeatherCallback callback) {
-        Call<List<AccuHourlyResult>> getAccuHourly = api.getHourly(
+        Call<List<AccuHourlyResult>> getAccuHourly = weatherApi.getHourly(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -278,9 +319,41 @@ public class AccuWeatherService extends WeatherService {
         weatherCalls[2] = getAccuHourly;
     }
 
+    private void requestMinute(final Location location,
+                               final RequestWeatherCallback callback) {
+        Call<AccuMinuteResult> getAccuMinute = weatherApi.getMinute(
+                BuildConfig.ACCU_WEATHER_KEY,
+                languageCode,
+                true,
+                location.lat + "," + location.lon);
+        getAccuMinute.enqueue(new Callback<AccuMinuteResult>() {
+            @Override
+            public void onResponse(Call<AccuMinuteResult> call, Response<AccuMinuteResult> response) {
+                if (callback != null) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        if (!isFailed(location)) {
+                            weather.index.buildIndex(response.body());
+                            loadSucceed(location, callback);
+                        }
+                    } else {
+                        loadFailed(location, callback);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AccuMinuteResult> call, Throwable t) {
+                if (callback != null) {
+                    loadFailed(location, callback);
+                }
+            }
+        });
+        weatherCalls[3] = getAccuMinute;
+    }
+
     private void requestAlert(final Context c, final Location location,
                               final RequestWeatherCallback callback) {
-        Call<List<AccuAlertResult>> getAccuAlert = api.getAlert(
+        Call<List<AccuAlertResult>> getAccuAlert = weatherApi.getAlert(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -309,12 +382,12 @@ public class AccuWeatherService extends WeatherService {
                 }
             }
         });
-        weatherCalls[3] = getAccuAlert;
+        weatherCalls[4] = getAccuAlert;
     }
 
     private void requestAqi(final Context c, final Location location,
                             final RequestWeatherCallback callback) {
-        Call<AccuAqiResult> getAccuAqi = api.getAqi(
+        Call<AccuAqiResult> getAccuAqi = weatherApi.getAqi(
                 location.cityId,
                 BuildConfig.ACCU_AQI_KEY);
         getAccuAqi.enqueue(new Callback<AccuAqiResult>() {
@@ -324,7 +397,6 @@ public class AccuWeatherService extends WeatherService {
                     if (response.isSuccessful()) {
                         if (!isFailed(location)) {
                             weather.aqi.buildAqi(c, response.body());
-                            weather.index.buildIndex(c, response.body());
                             loadSucceed(location, callback);
                         }
                     } else {
@@ -340,6 +412,6 @@ public class AccuWeatherService extends WeatherService {
                 }
             }
         });
-        weatherCalls[4] = getAccuAqi;
+        weatherCalls[5] = getAccuAqi;
     }
 }

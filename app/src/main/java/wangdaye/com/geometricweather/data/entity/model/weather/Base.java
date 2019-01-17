@@ -23,23 +23,6 @@ public class Base {
 
     Base() {}
 
-/*
-    void buildBase(FWResult result) {
-        cityId = "CN" + result.cityid;
-        city = result.city;
-        date = result.realtime.time.split(" ")[0];
-        time = result.realtime.time.split(" ")[1].split(":")[0]
-                + ":" + result.realtime.time.split(" ")[1].split(":")[1];
-    }
-
-    void buildBase(HefengResult result, int p) {
-        cityId = result.heWeather.get(p).basic.id;
-        city = result.heWeather.get(p).basic.city;
-        date = result.heWeather.get(p).basic.updateRotation.loc.split(" ")[0];
-        time = result.heWeather.get(p).basic.updateRotation.loc.split(" ")[1];
-    }
-*/
-
     public void buildBase(Context c, Location location, AccuRealtimeResult result) {
         cityId = location.cityId;
         city = location.getCityName(c);
@@ -67,6 +50,7 @@ public class Base {
         city = location.getCityName(c);
         date = result.current.pubTime.split("T")[0];
         time = result.current.pubTime.split("T")[1].substring(0, 5);
+        time = buildTime(c, time.split(":")[0], time.split(":")[1]);
         timeStamp = System.currentTimeMillis();
     }
 

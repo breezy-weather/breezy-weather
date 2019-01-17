@@ -27,30 +27,6 @@ public class RealTime {
 
     RealTime() {}
 
-/*
-    void buildRealTime(FWResult result) {
-        weather = result.realtime.weather;
-        weatherKind = WeatherHelper.getFWeatherKind(weather);
-        temp = Integer.parseInt(result.realtime.temp.replace("°", ""));
-        sensibleTemp = Integer.parseInt(result.realtime.sendibleTemp.replace("°", ""));
-        windDir = result.realtime.wD;
-        windSpeed = "";
-        windLevel = result.realtime.wS;
-        simpleForecast = "";
-    }
-
-    void buildRealTime(HefengResult result, int p) {
-        weather = result.heWeather.get(p).now.cond.txt;
-        weatherKind = WeatherHelper.getHefengWeatherKind(result.heWeather.get(p).now.cond.code);
-        temp = Integer.parseInt(result.heWeather.get(p).now.tmp);
-        sensibleTemp = Integer.parseInt(result.heWeather.get(p).now.fl);
-        windDir = result.heWeather.get(p).now.wind.dir;
-        windSpeed = result.heWeather.get(p).now.wind.spd + "km/h";
-        windLevel = "#" + result.heWeather.get(p).now.wind.sc;
-        simpleForecast = "";
-    }
-*/
-
     public void buildRealTime(Context c, AccuRealtimeResult result) {
         weather = result.WeatherText;
         weatherKind = WeatherHelper.getAccuWeatherKind(result.WeatherIcon);

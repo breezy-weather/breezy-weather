@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.service;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
@@ -12,6 +13,7 @@ import cyanogenmod.weather.WeatherInfo;
 import cyanogenmod.weatherservice.ServiceRequest;
 import cyanogenmod.weatherservice.ServiceRequestResult;
 import cyanogenmod.weatherservice.WeatherProviderService;
+import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
@@ -144,9 +146,10 @@ public class CMWeatherProviderService extends WeatherProviderService
     // on request weather listener.
 
     @Override
-    public void requestWeatherSuccess(Weather weather, Location requestLocation) {
+    public void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
+                                      @NonNull Location requestLocation) {
         try {
-            if (request != null) {
+            if (request != null && weather != null) {
                 List<WeatherInfo.DayForecast> forecastList = new ArrayList<>();
                 for (int i = 0; i < weather.dailyList.size(); i ++) {
                     forecastList.add(
@@ -173,7 +176,7 @@ public class CMWeatherProviderService extends WeatherProviderService
                         .setTimestamp(weather.base.timeStamp)
                         .setHumidity(
                                 Double.parseDouble(
-                                        weather.index.humidities[1]
+                                        weather.index.humidity
                                                 .split(" : ")[1]
                                                 .split("%")[0]))
                         .setWind(
@@ -190,7 +193,7 @@ public class CMWeatherProviderService extends WeatherProviderService
     }
 
     @Override
-    public void requestWeatherFailed(Location requestLocation) {
+    public void requestWeatherFailed(@NonNull Location requestLocation) {
         if (request != null) {
             request.fail();
         }

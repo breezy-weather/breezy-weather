@@ -20,15 +20,7 @@ public class Alert implements Parcelable {
     public String description;
     public String content;
     public String publishTime;
-    
-/*
-    Alert buildAlert(FWResult.Alarms alarm) {
-        description = alarm.alarmDesc;
-        content = alarm.alarmContent;
-        publishTime = alarm.publishTime;
-        return this;
-    }
-*/
+
     public Alert buildAlert(Context c, AccuAlertResult result) {
         id = result.AlertID;
         description = result.Description.Localized;

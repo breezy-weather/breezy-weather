@@ -10,6 +10,8 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
+
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -49,8 +51,6 @@ public class HourlyEntity {
     public HourlyEntity() {
     }
 
-    /** <br> life cycle. */
-
     private static List<HourlyEntity> buildHourlyEntityList(Weather weather) {
         List<HourlyEntity> entityList = new ArrayList<>(weather.hourlyList.size());
         for (int i = 0; i < weather.hourlyList.size(); i ++) {
@@ -67,8 +67,6 @@ public class HourlyEntity {
         }
         return entityList;
     }
-
-    /** <br> database. */
 
     // insert.
 
@@ -89,6 +87,11 @@ public class HourlyEntity {
     }
 
     // delete.
+
+    public static void deleteHourlyList(SQLiteDatabase database, Location location) {
+        List<HourlyEntity> entityList = searchLocationHourlyEntity(database, location);
+        deleteHourlyEntityList(database, entityList);
+    }
 
     private static void deleteHourlyEntityList(SQLiteDatabase database, List<HourlyEntity> list) {
         new DaoMaster(database)

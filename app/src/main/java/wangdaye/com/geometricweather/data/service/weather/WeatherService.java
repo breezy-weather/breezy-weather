@@ -2,11 +2,13 @@ package wangdaye.com.geometricweather.data.service.weather;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.Size;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.basic.TLSCompactService;
+import wangdaye.com.geometricweather.data.entity.model.History;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 
@@ -31,8 +33,9 @@ public abstract class WeatherService extends TLSCompactService {
     public abstract void cancel();
 
     public interface RequestWeatherCallback {
-        void requestWeatherSuccess(Weather weather, Location requestLocation);
-        void requestWeatherFailed(Location requestLocation);
+        void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
+                                   @NonNull Location requestLocation);
+        void requestWeatherFailed(@NonNull Location requestLocation);
     }
 
     public interface RequestLocationCallback {

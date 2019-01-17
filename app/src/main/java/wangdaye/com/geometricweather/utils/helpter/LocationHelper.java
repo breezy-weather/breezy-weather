@@ -12,7 +12,9 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.data.service.location.AMapLocationService;
 import wangdaye.com.geometricweather.data.service.location.AndroidLocationService;
+import wangdaye.com.geometricweather.data.service.location.BaiduIPLocationService;
 import wangdaye.com.geometricweather.data.service.location.BaiduLocationService;
 import wangdaye.com.geometricweather.data.service.location.LocationService;
 import wangdaye.com.geometricweather.data.service.weather.AccuWeatherService;
@@ -31,8 +33,10 @@ public class LocationHelper {
     private WeatherService weatherService;
 
     private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
-    private static final String KEY_LAST_RESULT = "LAST_RESULT";
-    private static final String KEY_LAST_ACCU_KEY = "LAST_ACCU_KEY";
+    private static final String KEY_OLD_DISTRICT = "OLD_DISTRICT";
+    private static final String KEY_OLD_CITY = "OLD_CITY";
+    private static final String KEY_OLD_PROVINCE = "OLD_PROVINCE";
+    private static final String KEY_OLD_KEY = "OLD_KEY";
 
     private class RequestLocationListener implements LocationService.LocationCallback {
         // data
@@ -91,14 +95,12 @@ public class LocationHelper {
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (locationList.size() > 0) {
-
                 if (!TextUtils.isEmpty(locationList.get(0).cityId)) {
                     context.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
                             .edit()
-                            .putString(KEY_LAST_ACCU_KEY, locationList.get(0).cityId)
+                            .putString(KEY_OLD_KEY, locationList.get(0).cityId)
                             .apply();
                 }
-
                 listener.requestLocationSuccess(locationList.get(0).setLocal(), true);
             } else {
                 requestLocationFailed(query);
@@ -107,6 +109,13 @@ public class LocationHelper {
 
         @Override
         public void requestLocationFailed(String query) {
+            context.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
+                    .edit()
+                    .putString(KEY_OLD_DISTRICT, "")
+                    .putString(KEY_OLD_CITY, "")
+                    .putString(KEY_OLD_PROVINCE, "")
+                    .putString(KEY_OLD_KEY, "")
+                    .apply();
             listener.requestLocationFailed(location);
         }
     }
@@ -148,6 +157,14 @@ public class LocationHelper {
                 locationService = new BaiduLocationService(context);
                 break;
 
+            case "baidu_ip":
+                locationService = new BaiduIPLocationService();
+                break;
+
+            case "amap":
+                locationService = new AMapLocationService(context);
+                break;
+
             default:
                 locationService = new AndroidLocationService(context);
                 break;
@@ -178,24 +195,35 @@ public class LocationHelper {
             // use accu as weather service api.
             location.source = "accu";
 
-            String oldCity = sharedPreferences.getString(KEY_LAST_RESULT, "");
-            String oldKey = sharedPreferences.getString(KEY_LAST_ACCU_KEY, "");
+            String oldDistrict = sharedPreferences.getString(KEY_OLD_DISTRICT, "");
+            String oldCity = sharedPreferences.getString(KEY_OLD_CITY, "");
+            String oldProvince = sharedPreferences.getString(KEY_OLD_PROVINCE, "");
+            String oldKey = sharedPreferences.getString(KEY_OLD_KEY, "");
 
-            if (!TextUtils.isEmpty(location.city)) {
-                sharedPreferences.edit()
-                        .putString(KEY_LAST_RESULT, location.city)
-                        .apply();
-            }
-
-            if (!TextUtils.isEmpty(location.city) && location.city.equals(oldCity)
-                    && !TextUtils.isEmpty(location.cityId) && location.cityId.equals(oldKey)) {
+            if (queryEquals(location.district, oldDistrict)
+                    && queryEquals(location.city, oldCity)
+                    && queryEquals(location.province, oldProvince)
+                    && queryEquals(location.cityId, oldKey)) {
                 l.requestLocationSuccess(location, false);
                 return;
             }
 
+            sharedPreferences.edit()
+                    .putString(KEY_OLD_DISTRICT, location.district)
+                    .putString(KEY_OLD_CITY, location.city)
+                    .putString(KEY_OLD_PROVINCE, location.province)
+                    .apply();
+
             weatherService = new AccuWeatherService();
-            weatherService.requestLocation(
-                    c, location.lat, location.lon, new AccuLocationCallback(c, location, l));
+            if (GeometricWeather.getInstance().getLocationService().equals("baidu_ip")) {
+                weatherService.requestLocation(
+                        c,
+                        TextUtils.isEmpty(location.district) ? location.city : location.district,
+                        new AccuLocationCallback(c, location, l));
+            } else {
+                weatherService.requestLocation(
+                        c, location.lat, location.lon, new AccuLocationCallback(c, location, l));
+            }
         } else if (GeometricWeather.getInstance().getChineseSource().equals("cn")) {
             // use cn weather net as the weather service api.
             location.source = "cn";
@@ -222,6 +250,16 @@ public class LocationHelper {
         if (weatherService != null) {
             weatherService.cancel();
         }
+    }
+
+    private boolean queryEquals(String a, String b) {
+        if (TextUtils.isEmpty(a) && TextUtils.isEmpty(b)) {
+            return true;
+        }
+        if (!TextUtils.isEmpty(a) && !TextUtils.isEmpty(b)) {
+            return a.equals(b);
+        }
+        return false;
     }
 
     // interface.

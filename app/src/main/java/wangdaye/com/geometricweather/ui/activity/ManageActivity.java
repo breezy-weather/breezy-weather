@@ -17,6 +17,7 @@ import android.view.View;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.ui.activity.main.MainActivity;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -173,21 +174,24 @@ public class ManageActivity extends GeoActivity
     }
 
     private void deleteLocation(int position) {
-        Location item = adapter.itemList.get(position);
-        if (adapter.itemList.size() <= 1) {
-            adapter.removeData(position);
-            adapter.insertData(item, position);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_location_list_cannot_be_null));
-        } else {
-            Location location = adapter.itemList.get(position);
-            adapter.removeData(position);
-            DatabaseHelper.getInstance(ManageActivity.this).deleteLocation(item);
-            SnackbarUtils.showSnackbar(
-                    getString(R.string.feedback_delete_succeed),
-                    getString(R.string.cancel),
-                    new CancelDeleteListener(location));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                ShortcutsManager.refreshShortcuts(ManageActivity.this, adapter.itemList);
+        if (0 <= position && position < adapter.itemList.size()) {
+            Location item = adapter.itemList.get(position);
+            if (adapter.itemList.size() <= 1) {
+                adapter.removeData(position);
+                adapter.insertData(item, position);
+                SnackbarUtils.showSnackbar(getString(R.string.feedback_location_list_cannot_be_null));
+            } else {
+                Location location = adapter.itemList.get(position);
+                adapter.removeData(position);
+                DatabaseHelper.getInstance(ManageActivity.this).deleteLocation(item);
+                SnackbarUtils.showSnackbar(
+                        getString(R.string.feedback_delete_succeed),
+                        getString(R.string.cancel),
+                        new CancelDeleteListener(location),
+                        new DeleteSnackbarCallback(location));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                    ShortcutsManager.refreshShortcuts(ManageActivity.this, adapter.itemList);
+                }
             }
         }
     }
@@ -207,7 +211,7 @@ public class ManageActivity extends GeoActivity
 
     private class CancelDeleteListener
             implements View.OnClickListener {
-        // data
+
         private Location location;
 
         CancelDeleteListener(Location l) {
@@ -218,6 +222,22 @@ public class ManageActivity extends GeoActivity
         public void onClick(View view) {
             adapter.insertData(location, adapter.getItemCount());
             DatabaseHelper.getInstance(ManageActivity.this).writeLocation(location);
+        }
+    }
+
+    private class DeleteSnackbarCallback extends Snackbar.Callback {
+
+        private Location location;
+
+        DeleteSnackbarCallback(Location l) {
+            this.location = l;
+        }
+
+        @Override
+        public void onDismissed(Snackbar transientBottomBar, int event) {
+            if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {
+                DatabaseHelper.getInstance(ManageActivity.this).deleteWeather(location);
+            }
         }
     }
 

@@ -7,11 +7,13 @@
     tools:background="@android:color/black">
 
     <LinearLayout
+        android:id="@+id/widget_day_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_centerInParent="true"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        tools:ignore="UselessParent">
 
         <TextClock
             android:id="@+id/widget_day_title"
@@ -43,12 +45,5 @@
             tools:ignore="RelativeOverlap,RtlHardcoded" />
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/widget_day_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

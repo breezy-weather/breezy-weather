@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.ui.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +28,9 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.title = (TextView) itemView.findViewById(R.id.item_alert_title);
-            this.subtitle = (TextView) itemView.findViewById(R.id.item_alert_subtitle);
-            this.content = (TextView) itemView.findViewById(R.id.item_alert_content);
+            this.title = itemView.findViewById(R.id.item_alert_title);
+            this.subtitle = itemView.findViewById(R.id.item_alert_subtitle);
+            this.content = itemView.findViewById(R.id.item_alert_content);
         }
     }
 
@@ -37,14 +38,15 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
         this.alertList = list;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alert, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(alertList.get(position).description);
         holder.subtitle.setText(alertList.get(position).publishTime);
         holder.content.setText(alertList.get(position).content);

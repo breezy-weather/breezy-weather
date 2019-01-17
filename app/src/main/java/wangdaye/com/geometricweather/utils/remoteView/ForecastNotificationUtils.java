@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.utils.remoteView;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -18,12 +17,13 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
-/** <br> forecast notification utils. */
+/**
+ * Forecast notification utils.
+ * */
 
-public class ForecastNotificationUtils {
+public class ForecastNotificationUtils extends AbstractRemoteViewsUtils {
 
     public static void buildForecastAndSendIt(Context context, Weather weather, boolean today) {
         if (weather == null) {
@@ -49,7 +49,7 @@ public class ForecastNotificationUtils {
                 context.getString(R.string.key_notification_hide_icon), false);
         String textColor = sharedPreferences.getString(
                 context.getString(R.string.key_notification_text_color),
-                "grey");
+                "dark");
 
         int mainColor;
         int subColor;
@@ -202,9 +202,7 @@ public class ForecastNotificationUtils {
         builder.setContent(view);
 
         // set intent.
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                context, 0, IntentHelper.buildMainActivityIntent(context, null), 0);
-        builder.setContentIntent(pendingIntent);
+        builder.setContentIntent(getWeatherPendingIntent(context, null, 0));
 
         // set sound & vibrate.
         builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);

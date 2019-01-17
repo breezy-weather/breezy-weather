@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.data.entity.model.weather;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,54 +29,10 @@ public class Daily {
     public String[] windLevels;
     public int[] windDegrees;
     public String[] astros;
+    public String moonPhase;
     public int[] precipitations;
 
     public Daily() {}
-
-/*
-    Daily buildDaily(FWResult.Weathers weather) {
-        date = weather.date;
-        week = weather.week.replace("星期", "周");
-        weathers = new String[] {
-                weather.weather, weather.weather};
-        weatherKinds = new String[] {
-                WeatherHelper.getFWeatherKind(weathers[0]),
-                WeatherHelper.getFWeatherKind(weathers[1])};
-        temps = new int[] {
-                Integer.parseInt(weather.temp_day_c),
-                Integer.parseInt(weather.temp_night_c)};
-        windDirs = new String[] {weather.wd, weather.wd};
-        windSpeeds = new String[] {"", ""};
-        windLevels = new String[] {weather.ws, weather.ws};
-        astros = new String[] {
-                weather.sun_rise_time,
-                weather.sun_down_time};
-        precipitations = new int[] {-1, -1};
-        return this;
-    }
-    
-    Daily buildDaily(HefengResult.HeWeather.DailyForecast forecast) {
-        date = forecast.date;
-        week = HefengWeather.getWeek(forecast.date, true);
-        weathers = new String[] {
-                forecast.cond.txt_d,
-                forecast.cond.txt_n};
-        weatherKinds = new String[] {
-                WeatherHelper.getHefengWeatherKind(forecast.cond.code_d),
-                WeatherHelper.getHefengWeatherKind(forecast.cond.code_n)};
-        temps = new int[] {
-                Integer.parseInt(forecast.tmp.max),
-                Integer.parseInt(forecast.tmp.min)};
-        windDirs = new String[] {forecast.wind.dir, forecast.wind.dir};
-        windSpeeds = new String[] {forecast.wind.spd + "km/h", forecast.wind.spd + "km/h"};
-        windLevels = new String[] {forecast.wind.sc, forecast.wind.sc};
-        astros = new String[] {
-                forecast.astro.sr,
-                forecast.astro.ss};
-        precipitations = new int[] {-1, -1};
-        return this;
-    }
-*/
 
     public Daily buildDaily(Context c, AccuDailyResult.DailyForecasts forecast) {
         date = forecast.Date.split("T")[0];
@@ -101,11 +58,29 @@ public class Daily {
         windDegrees = new int[] {
                 forecast.Day.Wind.Direction.Degrees,
                 forecast.Night.Wind.Direction.Degrees};
-        astros = new String[] {
-                forecast.Sun.Rise.split("T")[1].split(":")[0]
-                        + ":" + forecast.Sun.Rise.split("T")[1].split(":")[1],
-                forecast.Sun.Set.split("T")[1].split(":")[0]
-                        + ":" + forecast.Sun.Set.split("T")[1].split(":")[1]};
+        if (!TextUtils.isEmpty(forecast.Moon.Rise) && !TextUtils.isEmpty(forecast.Moon.Set)
+                && !TextUtils.isEmpty(forecast.Moon.Rise) && !TextUtils.isEmpty(forecast.Moon.Set)) {
+            astros = new String[] {
+                    forecast.Sun.Rise.split("T")[1].split(":")[0]
+                            + ":" + forecast.Sun.Rise.split("T")[1].split(":")[1],
+                    forecast.Sun.Set.split("T")[1].split(":")[0]
+                            + ":" + forecast.Sun.Set.split("T")[1].split(":")[1],
+                    forecast.Moon.Rise.split("T")[1].split(":")[0]
+                            + ":" + forecast.Moon.Rise.split("T")[1].split(":")[1],
+                    forecast.Moon.Set.split("T")[1].split(":")[0]
+                            + ":" + forecast.Moon.Set.split("T")[1].split(":")[1]};
+        } else if (!TextUtils.isEmpty(forecast.Moon.Rise) && !TextUtils.isEmpty(forecast.Moon.Set)) {
+            astros = new String[] {
+                    forecast.Sun.Rise.split("T")[1].split(":")[0]
+                            + ":" + forecast.Sun.Rise.split("T")[1].split(":")[1],
+                    forecast.Sun.Set.split("T")[1].split(":")[0]
+                            + ":" + forecast.Sun.Set.split("T")[1].split(":")[1],
+                    "", ""};
+        } else {
+            astros = new String[] {"6:00", "18:00", "", ""};
+
+        }
+        moonPhase = forecast.Moon.Phase;
         precipitations = new int[] {forecast.Day.PrecipitationProbability, forecast.Night.PrecipitationProbability};
         return this;
     }
@@ -132,7 +107,9 @@ public class Daily {
         windDegrees = new int[] {-1, -1};
         astros = new String[] {
                 daily.info.day.get(5),
-                daily.info.night.get(5)};
+                daily.info.night.get(5),
+                "", ""};
+        moonPhase = "";
         precipitations = new int[] {-1, -1};
         return this;
     }
@@ -158,12 +135,18 @@ public class Daily {
         windSpeeds = new String[] {
                 result.forecastDaily.wind.speed.value.get(index).from,
                 result.forecastDaily.wind.speed.value.get(index).to};
-        windLevels = new String[] {
-                WeatherHelper.getWindSpeed(windSpeeds[0]),
-                WeatherHelper.getWindSpeed(windSpeeds[1])};
+        try {
+            windLevels = new String[] {
+                    WeatherHelper.getWindLevel(c, Double.parseDouble(windSpeeds[0])),
+                    WeatherHelper.getWindLevel(c, Double.parseDouble(windSpeeds[1]))};
+        } catch (Exception e) {
+            windLevels = new String[] {"", ""};
+        }
         astros = new String[] {
                 result.forecastDaily.sunRiseSet.value.get(index).from.split("T")[1].substring(0, 5),
-                result.forecastDaily.sunRiseSet.value.get(index).to.split("T")[1].substring(0, 5)};
+                result.forecastDaily.sunRiseSet.value.get(index).to.split("T")[1].substring(0, 5),
+                "", ""};
+        moonPhase = "";
         if (index < result.forecastDaily.precipitationProbability.value.size()) {
             precipitations = new int[] {
                     Integer.parseInt(result.forecastDaily.precipitationProbability.value.get(index)),
@@ -196,9 +179,8 @@ public class Daily {
         }
         windLevels = new String[] {entity.daytimeWindLevel, entity.nighttimeWindLevel};
         windDegrees = new int[] {entity.daytimeWindDegree, entity.nighttimeWindDegree};
-        astros = new String[] {
-                entity.sunrise,
-                entity.sunset};
+        astros = new String[] {entity.sunrise, entity.sunset, entity.moonrise, entity.moonset};
+        moonPhase = entity.moonPhase;
         precipitations = new int[] {entity.daytimePrecipitations, entity.nighttimePrecipitations};
         return this;
     }

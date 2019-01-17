@@ -2,14 +2,12 @@ package wangdaye.com.geometricweather.utils.remoteView;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -21,14 +19,13 @@ import wangdaye.com.geometricweather.utils.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 /**
  * Normal notification utils.
  * */
 
-public class NormalNotificationUtils {
+public class NormalNotificationUtils extends AbstractRemoteViewsUtils {
 
     public static void buildNotificationAndSendIt(Context context, Weather weather) {
         if (weather == null) {
@@ -61,7 +58,7 @@ public class NormalNotificationUtils {
         // get text color.
         String textColor = sharedPreferences.getString(
                 context.getString(R.string.key_notification_text_color),
-                "grey");
+                "dark");
         int mainColor;
         int subColor;
         switch (textColor) {
@@ -136,9 +133,7 @@ public class NormalNotificationUtils {
                         iconStyle, textColor,
                         backgroundColor, mainColor, subColor));
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                context, 0, IntentHelper.buildMainActivityIntent(context, null), 0);
-        builder.setContentIntent(pendingIntent);
+        builder.setContentIntent(getWeatherPendingIntent(context, null, 0));
 
         // build big view.
         if (hideBigView) {
@@ -192,11 +187,11 @@ public class NormalNotificationUtils {
                 R.id.notification_base_dailyTemp,
                 ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit));
 
-        if (weather.aqi != null && !TextUtils.isEmpty(weather.aqi.aqi)) {
+        if (weather.aqi != null && weather.aqi.aqi >= 0) {
             views.setTextViewText(
                     R.id.notification_base_aqi_wind,
                     "AQI " + weather.aqi.aqi);
-            int colorRes = WeatherHelper.getAqiColorResId(Integer.parseInt(weather.aqi.aqi));
+            int colorRes = WeatherHelper.getAqiColorResId(weather.aqi.aqi);
             if (colorRes == 0) {
                 views.setTextColor(R.id.notification_base_aqi_wind, subColor);
             } else {

@@ -12,6 +12,7 @@
         tools:ignore="ContentDescription" />
 
     <LinearLayout
+        android:id="@+id/widget_day_weather"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -95,12 +96,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/widget_day_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

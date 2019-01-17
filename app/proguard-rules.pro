@@ -121,6 +121,11 @@
     public static int e(...);
 }
 
+# AMap
+-keep class com.amap.api.location.**{*;}
+-keep class com.amap.api.fence.**{*;}
+-keep class com.autonavi.aps.amapapi.model.**{*;}
+
 # ButterKnife
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**

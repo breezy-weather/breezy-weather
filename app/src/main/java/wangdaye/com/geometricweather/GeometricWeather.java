@@ -63,18 +63,42 @@ public class GeometricWeather extends Application {
     public static final int NOTIFICATION_ID_ALERT_MAX = 1999;
     public static final int NOTIFICATION_ID_ALERT_GROUP = 2000;
 
-    public static final int WIDGET_DAY_PENDING_INTENT_CODE = 11;
-    public static final int WIDGET_WEEK_PENDING_INTENT_CODE = 21;
-    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE = 31;
-    public static final int WIDGET_CLOCK_DAY_VERTICAL_WEATHER_PENDING_INTENT_CODE = 41;
-    public static final int WIDGET_CLOCK_DAY_VERTICAL_CLOCK_PENDING_INTENT_CODE = 42;
-    public static final int WIDGET_CLOCK_DAY_HORIZONTAL_WEATHER_PENDING_INTENT_CODE = 51;
-    public static final int WIDGET_CLOCK_DAY_HORIZONTAL_CLOCK_PENDING_INTENT_CODE = 52;
-    public static final int WIDGET_CLOCK_DAY_DETAILS_WEATHER_PENDING_INTENT_CODE = 61;
-    public static final int WIDGET_CLOCK_DAY_DETAILS_CLOCK_PENDING_INTENT_CODE = 62;
-    public static final int WIDGET_CLOCK_DAY_WEEK_WEATHER_PENDING_INTENT_CODE = 71;
-    public static final int WIDGET_CLOCK_DAY_WEEK_CLOCK_PENDING_INTENT_CODE = 72;
-    public static final int WIDGET_TEXT_PENDING_INTENT_CODE = 81;
+    // day.
+    public static final int WIDGET_DAY_PENDING_INTENT_CODE_WEATHER = 11;
+    public static final int WIDGET_DAY_PENDING_INTENT_CODE_REFRESH = 12;
+    public static final int WIDGET_DAY_PENDING_INTENT_CODE_CALENDAR = 13;
+    // week.
+    public static final int WIDGET_WEEK_PENDING_INTENT_CODE_WEATHER = 21;
+    public static final int WIDGET_WEEK_PENDING_INTENT_CODE_REFRESH = 22;
+    // day + week.
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_WEATHER = 31;
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_REFRESH = 32;
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR = 33;
+    // clock + day (vertical).
+    public static final int WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_WEATHER = 41;
+    public static final int WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK = 42;
+    public static final int WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_1 = 43;
+    public static final int WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_2 = 44;
+    public static final int WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_REFRESH = 45;
+    // clock + day (horizontal).
+    public static final int WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_WEATHER = 51;
+    public static final int WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK = 52;
+    public static final int WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_REFRESH = 53;
+    public static final int WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CALENDAR = 54;
+    // clock + day + details.
+    public static final int WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_WEATHER = 61;
+    public static final int WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK = 62;
+    public static final int WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_REFRESH = 63;
+    public static final int WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CALENDAR = 64;
+    // clock + day + week.
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_WEATHER = 71;
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK = 72;
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_REFRESH = 73;
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR = 74;
+    // text.
+    public static final int WIDGET_TEXT_PENDING_INTENT_CODE_WEATHER = 81;
+    public static final int WIDGET_TEXT_PENDING_INTENT_CODE_REFRESH = 82;
+    public static final int WIDGET_TEXT_PENDING_INTENT_CODE_CALENDAR = 83;
 
     @Override
     public void onCreate() {

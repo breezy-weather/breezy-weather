@@ -1,0 +1,8 @@
+<!-- drawable/menu-up.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:width="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path android:fillColor="#5f6267" android:pathData="M7,15L12,10L17,15H7Z" />
+</vector>

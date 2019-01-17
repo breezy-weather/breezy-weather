@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.utils.remoteView;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,14 +14,12 @@ import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.receiver.widget.WidgetTextProvider;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.utils.helpter.ServiceHelper;
 
 /**
  * Widget text utils.
  * */
 
-public class WidgetTextUtils {
+public class WidgetTextUtils extends AbstractRemoteViewsUtils {
 
     public static void refreshWidgetView(Context context, Location location, Weather weather) {
         if (weather == null) {
@@ -44,21 +41,7 @@ public class WidgetTextUtils {
 
         RemoteViews views = buildWidgetView(context, weather, fahrenheit, blackText);
 
-        PendingIntent pendingIntent;
-        if (touchToRefresh) {
-            pendingIntent = PendingIntent.getService(
-                    context,
-                    GeometricWeather.WIDGET_TEXT_PENDING_INTENT_CODE,
-                    ServiceHelper.getAwakePollingUpdateServiceIntent(context),
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-        } else {
-            pendingIntent = PendingIntent.getActivity(
-                    context,
-                    GeometricWeather.WIDGET_TEXT_PENDING_INTENT_CODE,
-                    IntentHelper.buildMainActivityIntent(context, location),
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-        }
-        views.setOnClickPendingIntent(R.id.widget_text_button, pendingIntent);
+        setOnClickPendingIntent(context, views, location, touchToRefresh);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(
@@ -102,5 +85,24 @@ public class WidgetTextUtils {
 
     public static String getTemperature(Weather weather, boolean fahrenheit) {
         return ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit);
+    }
+
+    private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
+                                                boolean touchToRefresh) {
+        // container.
+        if (touchToRefresh) {
+            views.setOnClickPendingIntent(
+                    R.id.widget_text_container,
+                    getRefreshPendingIntent(context, GeometricWeather.WIDGET_TEXT_PENDING_INTENT_CODE_REFRESH));
+        } else {
+            views.setOnClickPendingIntent(
+                    R.id.widget_text_container,
+                    getWeatherPendingIntent(context, location, GeometricWeather.WIDGET_TEXT_PENDING_INTENT_CODE_WEATHER));
+        }
+
+        // date.
+        views.setOnClickPendingIntent(
+                R.id.widget_text_date,
+                getCalendarPendingIntent(context, GeometricWeather.WIDGET_TEXT_PENDING_INTENT_CODE_CALENDAR));
     }
 }

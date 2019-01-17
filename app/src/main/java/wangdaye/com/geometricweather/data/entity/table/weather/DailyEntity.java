@@ -10,6 +10,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.data.entity.table.DaoMaster;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -18,7 +19,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class DailyEntity {
-    // data
+
     @Id
     public Long id;
     public String cityId;
@@ -42,16 +43,19 @@ public class DailyEntity {
     public int nighttimeWindDegree;
     public String sunrise;
     public String sunset;
+    public String moonrise;
+    public String moonset;
+    public String moonPhase;
     public int daytimePrecipitations;
     public int nighttimePrecipitations;
 
-    @Generated(hash = 1398898456)
+    @Generated(hash = 551535440)
     public DailyEntity(Long id, String cityId, String city, String date, String week, String daytimeWeather,
             String nighttimeWeather, String daytimeWeatherKind, String nighttimeWeatherKind, int maxiTemp,
             int miniTemp, String daytimeWindDir, String nighttimeWindDir, String daytimeWindSpeed,
             String nighttimeWindSpeed, String daytimeWindLevel, String nighttimeWindLevel, int daytimeWindDegree,
-            int nighttimeWindDegree, String sunrise, String sunset, int daytimePrecipitations,
-            int nighttimePrecipitations) {
+            int nighttimeWindDegree, String sunrise, String sunset, String moonrise, String moonset,
+            String moonPhase, int daytimePrecipitations, int nighttimePrecipitations) {
         this.id = id;
         this.cityId = cityId;
         this.city = city;
@@ -73,6 +77,9 @@ public class DailyEntity {
         this.nighttimeWindDegree = nighttimeWindDegree;
         this.sunrise = sunrise;
         this.sunset = sunset;
+        this.moonrise = moonrise;
+        this.moonset = moonset;
+        this.moonPhase = moonPhase;
         this.daytimePrecipitations = daytimePrecipitations;
         this.nighttimePrecipitations = nighttimePrecipitations;
     }
@@ -80,8 +87,6 @@ public class DailyEntity {
     @Generated(hash = 1809948821)
     public DailyEntity() {
     }
-
-    /** <br> life cycle. */
 
     private static List<DailyEntity> buildDailyEntityList(Weather weather) {
         List<DailyEntity> entityList = new ArrayList<>(weather.dailyList.size());
@@ -107,14 +112,16 @@ public class DailyEntity {
             entity.nighttimeWindDegree = weather.dailyList.get(i).windDegrees[1];
             entity.sunrise = weather.dailyList.get(i).astros[0];
             entity.sunset = weather.dailyList.get(i).astros[1];
+            entity.moonrise = weather.dailyList.get(i).astros[2];
+            entity.moonset = weather.dailyList.get(i).astros[3];
+            entity.moonPhase = weather.dailyList.get(i).moonPhase;
+            entity.sunset = weather.dailyList.get(i).astros[1];
             entity.daytimePrecipitations = weather.dailyList.get(i).precipitations[0];
             entity.nighttimePrecipitations = weather.dailyList.get(i).precipitations[1];
             entityList.add(entity);
         }
         return entityList;
     }
-
-    /** <br> database. */
 
     // insert.
 
@@ -135,6 +142,11 @@ public class DailyEntity {
     }
 
     // delete.
+
+    public static void deleteDailyList(SQLiteDatabase database, Location location) {
+        List<DailyEntity> entityList = searchLocationDailyEntity(database, location);
+        deleteDailyEntityList(database, entityList);
+    }
 
     private static void deleteDailyEntityList(SQLiteDatabase database, List<DailyEntity> list) {
         new DaoMaster(database)
@@ -320,6 +332,30 @@ public class DailyEntity {
 
     public void setSunset(String sunset) {
         this.sunset = sunset;
+    }
+
+    public String getMoonrise() {
+        return this.moonrise;
+    }
+
+    public void setMoonrise(String moonrise) {
+        this.moonrise = moonrise;
+    }
+
+    public String getMoonset() {
+        return this.moonset;
+    }
+
+    public void setMoonset(String moonset) {
+        this.moonset = moonset;
+    }
+
+    public String getMoonPhase() {
+        return this.moonPhase;
+    }
+
+    public void setMoonPhase(String moonPhase) {
+        this.moonPhase = moonPhase;
     }
 
     public int getDaytimePrecipitations() {

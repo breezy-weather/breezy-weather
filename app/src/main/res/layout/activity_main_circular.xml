@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,31 +23,22 @@
 
             <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView
                 android:id="@+id/activity_main_scrollView"
-                android:scrollbars="none"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:scrollbars="none">
 
                 <LinearLayout
-                    android:id="@+id/activity_main_cardContainer"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:descendantFocusability="blocksDescendants">
+                    android:orientation="vertical">
 
-                    <include layout="@layout/container_main_base_view" />
-                    <include layout="@layout/container_main_trend_first_card" />
-                    <include layout="@layout/container_main_trend_second_card" />
-                    <include layout="@layout/container_main_details_card" />
-
-                    <TextView
-                        android:id="@+id/activity_main_footer_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/little_margin"
-                        android:textColor="@color/colorTextLight2nd"
-                        style="@style/content_text"
-                        tools:text="AccuWeather.com"/>
+                    <include layout="@layout/container_main_header" />
+                    <include layout="@layout/container_main_first_trend_card" />
+                    <include layout="@layout/container_main_second_trend_card" />
+                    <include layout="@layout/container_main_aqi" />
+                    <include layout="@layout/container_main_details" />
+                    <include layout="@layout/container_main_sun_moon" />
+                    <include layout="@layout/container_main_footer" />
 
                 </LinearLayout>
 
