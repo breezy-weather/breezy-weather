@@ -193,7 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/dialog_weather_sunContainer"
+                android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/normal_margin"
                 tools:ignore="RtlHardcoded">
 
@@ -219,15 +219,6 @@
                     tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>
-
-            <Button
-                android:id="@+id/dialog_weather_button"
-                android:text="@string/done"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/colorAccent"
-                style="@style/material_button"
-                tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
 

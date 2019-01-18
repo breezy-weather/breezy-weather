@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
@@ -30,6 +31,12 @@ public class LocationHelper {
 
     private LocationService locationService;
     private WeatherService weatherService;
+
+    private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
+    private static final String KEY_OLD_DISTRICT = "OLD_DISTRICT";
+    private static final String KEY_OLD_CITY = "OLD_CITY";
+    private static final String KEY_OLD_PROVINCE = "OLD_PROVINCE";
+    private static final String KEY_OLD_KEY = "OLD_KEY";
 
     private class RequestLocationListener implements LocationService.LocationCallback {
         // data
@@ -74,11 +81,13 @@ public class LocationHelper {
     }
 
     private class AccuLocationCallback implements WeatherService.RequestLocationCallback {
-
+        // data
+        private Context context;
         private Location location;
         private OnRequestLocationListener listener;
 
-        AccuLocationCallback(Location location, @NonNull OnRequestLocationListener l) {
+        AccuLocationCallback(Context c, Location location, @NonNull OnRequestLocationListener l) {
+            this.context = c;
             this.location = location;
             this.listener = l;
         }
@@ -86,6 +95,12 @@ public class LocationHelper {
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (locationList.size() > 0) {
+                if (!TextUtils.isEmpty(locationList.get(0).cityId)) {
+                    context.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
+                            .edit()
+                            .putString(KEY_OLD_KEY, locationList.get(0).cityId)
+                            .apply();
+                }
                 listener.requestLocationSuccess(locationList.get(0).setLocal());
             } else {
                 requestLocationFailed(query);
@@ -94,6 +109,13 @@ public class LocationHelper {
 
         @Override
         public void requestLocationFailed(String query) {
+            context.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
+                    .edit()
+                    .putString(KEY_OLD_DISTRICT, "")
+                    .putString(KEY_OLD_CITY, "")
+                    .putString(KEY_OLD_PROVINCE, "")
+                    .putString(KEY_OLD_KEY, "")
+                    .apply();
             listener.requestLocationFailed(location);
         }
     }
@@ -163,19 +185,41 @@ public class LocationHelper {
     private void requestAvailableWeatherLocation(Context c,
                                                  Location location,
                                                  @NonNull OnRequestLocationListener l) {
+        SharedPreferences sharedPreferences = c.getSharedPreferences(
+                PREFERENCE_LOCAL, Context.MODE_PRIVATE);
         if (!location.canUseChineseSource()
                 || GeometricWeather.getInstance().getChineseSource().equals("accu")) {
             // use accu as weather service api.
             location.source = "accu";
+
+            String oldDistrict = sharedPreferences.getString(KEY_OLD_DISTRICT, "");
+            String oldCity = sharedPreferences.getString(KEY_OLD_CITY, "");
+            String oldProvince = sharedPreferences.getString(KEY_OLD_PROVINCE, "");
+            String oldKey = sharedPreferences.getString(KEY_OLD_KEY, "");
+
+            if (queryEqualsIgnoreEmpty(location.district, oldDistrict)
+                    && queryEquals(location.city, oldCity)
+                    && queryEquals(location.province, oldProvince)
+                    && queryEquals(location.cityId, oldKey)) {
+                l.requestLocationSuccess(location);
+                return;
+            }
+
+            sharedPreferences.edit()
+                    .putString(KEY_OLD_DISTRICT, location.district)
+                    .putString(KEY_OLD_CITY, location.city)
+                    .putString(KEY_OLD_PROVINCE, location.province)
+                    .apply();
+
             weatherService = new AccuWeatherService();
             if (GeometricWeather.getInstance().getLocationService().equals("baidu_ip")) {
                 weatherService.requestLocation(
                         c,
                         TextUtils.isEmpty(location.district) ? location.city : location.district,
-                        new AccuLocationCallback(location, l));
+                        new AccuLocationCallback(c, location, l));
             } else {
                 weatherService.requestLocation(
-                        c, location.lat, location.lon, new AccuLocationCallback(location, l));
+                        c, location.lat, location.lon, new AccuLocationCallback(c, location, l));
             }
         } else if (GeometricWeather.getInstance().getChineseSource().equals("cn")) {
             // use cn weather net as the weather service api.
@@ -203,6 +247,23 @@ public class LocationHelper {
         if (weatherService != null) {
             weatherService.cancel();
         }
+    }
+
+    private boolean queryEquals(String a, String b) {
+        if (!TextUtils.isEmpty(a) && !TextUtils.isEmpty(b)) {
+            return a.equals(b);
+        }
+        return false;
+    }
+
+    private boolean queryEqualsIgnoreEmpty(String a, String b) {
+        if (TextUtils.isEmpty(a) && TextUtils.isEmpty(b)) {
+            return true;
+        }
+        if (!TextUtils.isEmpty(a) && !TextUtils.isEmpty(b)) {
+            return a.equals(b);
+        }
+        return false;
     }
 
     // interface.

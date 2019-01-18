@@ -35,6 +35,7 @@ public class CMWeatherProviderService extends WeatherProviderService
 
     private LocationHelper.OnRequestLocationListener locationListener
             = new LocationHelper.OnRequestLocationListener() {
+
         @Override
         public void requestLocationSuccess(Location requestLocation) {
             if (request != null) {

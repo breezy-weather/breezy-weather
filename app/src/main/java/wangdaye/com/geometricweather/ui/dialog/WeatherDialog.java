@@ -8,12 +8,10 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.GeometricWeather;
@@ -23,7 +21,6 @@ import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
 import wangdaye.com.geometricweather.ui.widget.MoonPhaseView;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
@@ -173,10 +170,14 @@ public class WeatherDialog extends GeoDialogFragment
                 view.findViewById(R.id.dialog_weather_moonrise_moonset)};
         if (daily) {
             sunMoonText[0].setText(
-                    weather.dailyList.get(position).astros[0] + " / " + weather.dailyList.get(position).astros[1]);
+                    weather.dailyList.get(position).astros[0] + "↑"
+                            + " / "
+                            + weather.dailyList.get(position).astros[1] + "↓");
             if (!TextUtils.isEmpty(weather.dailyList.get(position).astros[2])) {
                 sunMoonText[1].setText(
-                        weather.dailyList.get(position).astros[2] + " / " + weather.dailyList.get(position).astros[3]);
+                        weather.dailyList.get(position).astros[2] + "↑"
+                                + " / "
+                                + weather.dailyList.get(position).astros[3] + "↓");
             } else {
                 view.findViewById(R.id.dialog_weather_moonContainer).setVisibility(View.GONE);
             }
@@ -186,16 +187,6 @@ public class WeatherDialog extends GeoDialogFragment
             sunMoonText[0].setVisibility(View.GONE);
             sunMoonText[1].setVisibility(View.GONE);
         }
-
-        Button done = view.findViewById(R.id.dialog_weather_button);
-        boolean dayTime = daily
-                ? TimeManager.getInstance(getActivity()).isDayTime() : weather.hourlyList.get(position).dayTime;
-        if (dayTime) {
-            done.setTextColor(ContextCompat.getColor(getActivity(), R.color.lightPrimary_3));
-        } else {
-            done.setTextColor(ContextCompat.getColor(getActivity(), R.color.darkPrimary_1));
-        }
-        done.setOnClickListener(this);
 
         if (daily) {
             int[] daytimeAnimatorIds = WeatherHelper.getAnimatorId(
@@ -245,10 +236,6 @@ public class WeatherDialog extends GeoDialogFragment
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.dialog_weather_button:
-                dismiss();
-                break;
-
             case R.id.dialog_weather_weatherContainer_day:
                 for (AnimatorSet a : iconAnimatorSets[0]) {
                     if (a != null) {

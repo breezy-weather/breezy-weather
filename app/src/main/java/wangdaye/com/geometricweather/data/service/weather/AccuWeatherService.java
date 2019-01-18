@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,7 +59,7 @@ public class AccuWeatherService extends WeatherService {
     public AccuWeatherService() {
         OkHttpClient client = getClientBuilder()
                 .addInterceptor(new GzipInterceptor())
-                // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
         client.dispatcher().setMaxRequestsPerHost(1);
 
@@ -322,18 +323,17 @@ public class AccuWeatherService extends WeatherService {
                     if (response.isSuccessful() && response.body() != null) {
                         if (!isFailed(location)) {
                             weather.index.buildIndex(response.body());
-                            loadSucceed(location, callback);
+
                         }
-                    } else {
-                        loadFailed(location, callback);
                     }
+                    loadSucceed(location, callback);
                 }
             }
 
             @Override
             public void onFailure(Call<AccuMinuteResult> call, Throwable t) {
                 if (callback != null) {
-                    loadFailed(location, callback);
+                    loadSucceed(location, callback);
                 }
             }
         });
