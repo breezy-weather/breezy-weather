@@ -39,7 +39,7 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
                         PreferenceManager.getDefaultSharedPreferences(getActivity())
                                 .getString(
                                         getString(R.string.key_location_service),
-                                        "native")));
+                                        "baidu")));
         locationService.setOnPreferenceChangeListener(this);
     }
 

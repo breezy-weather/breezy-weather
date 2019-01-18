@@ -622,7 +622,7 @@ public class MainActivity extends GeoActivity
     // on request location listener.
 
     @Override
-    public void requestLocationSuccess(Location requestLocation, boolean locationChanged) {
+    public void requestLocationSuccess(Location requestLocation) {
         if (!requestLocation.isUsable()) {
             requestLocationFailed(requestLocation);
         } else if (locationNow.equals(requestLocation)) {

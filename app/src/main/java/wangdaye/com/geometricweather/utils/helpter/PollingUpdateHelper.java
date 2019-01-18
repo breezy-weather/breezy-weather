@@ -46,16 +46,16 @@ public class PollingUpdateHelper {
     }
 
     private void requestData(int position, boolean located) {
+        Weather old = DatabaseHelper.getInstance(context).readWeather(locationList.get(position));
+        if (old != null && old.isValid(0.15F)) {
+            new RequestWeatherCallback(old, position)
+                    .requestWeatherSuccess(old, null, locationList.get(position));
+            return;
+        }
         if (locationList.get(position).isLocal() && !located) {
             locationHelper.requestLocation(
                     context, locationList.get(position), new RequestLocationCallback(position));
         } else {
-            Weather old = DatabaseHelper.getInstance(context).readWeather(locationList.get(position));
-            if (old != null && old.isValid(0.15F)) {
-                new RequestWeatherCallback(old, position)
-                        .requestWeatherSuccess(old, null, locationList.get(position));
-                return;
-            }
             weatherHelper.requestWeather(
                     context, locationList.get(position), new RequestWeatherCallback(old, position));
         }
@@ -123,15 +123,8 @@ public class PollingUpdateHelper {
         }
 
         @Override
-        public void requestLocationSuccess(Location requestLocation, boolean locationChanged) {
+        public void requestLocationSuccess(Location requestLocation) {
             locationList.set(position, requestLocation);
-
-            Weather old = DatabaseHelper.getInstance(context).readWeather(locationList.get(position));
-            if (old != null && old.isValid(0.15F) && !locationChanged) {
-                new RequestWeatherCallback(old, position)
-                        .requestWeatherSuccess(old, null, locationList.get(position));
-                return;
-            }
 
             if (requestLocation.isUsable()) {
                 requestData(position, true);

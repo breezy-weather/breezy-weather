@@ -107,13 +107,17 @@ public class MaterialWeatherView extends SurfaceView
                 lastScrollRate = scrollRate;
             } else if (isRunning() && implementor != null && rotators != null) {
                 lastScrollRate = scrollRate;
-                canvas = holder.lockCanvas();
-                if (canvas != null) {
-                    implementor.draw(
-                            MaterialWeatherView.this, canvas,
-                            displayRate, scrollRate,
-                            (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
-                    holder.unlockCanvasAndPost(canvas);
+                try {
+                    canvas = holder.lockCanvas();
+                    if (canvas != null) {
+                        implementor.draw(
+                                MaterialWeatherView.this, canvas,
+                                displayRate, scrollRate,
+                                (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
+                        holder.unlockCanvasAndPost(canvas);
+                    }
+                } catch (Exception ignored) {
+                    // do nothing.
                 }
             }
         }

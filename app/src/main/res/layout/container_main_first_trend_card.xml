@@ -81,7 +81,9 @@
             android:id="@+id/container_main_first_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin" />
+            android:layout_marginTop="@dimen/normal_margin"
+            android:nestedScrollingEnabled="false"
+            tools:ignore="UnusedAttribute" />
 
     </LinearLayout>
 

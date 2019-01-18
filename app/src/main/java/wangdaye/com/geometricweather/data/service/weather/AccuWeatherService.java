@@ -42,8 +42,7 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public class AccuWeatherService extends WeatherService {
 
-    private AccuWeatherApi weatherApi;
-    private AccuWeatherApi locationApi;
+    private AccuWeatherApi api;
 
     private Call[] weatherCalls = new Call[6];
     private Call locationCall;
@@ -62,22 +61,12 @@ public class AccuWeatherService extends WeatherService {
                 // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
         client.dispatcher().setMaxRequestsPerHost(1);
-        this.weatherApi = new Retrofit.Builder()
+
+        this.api = new Retrofit.Builder()
                 .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(
                         new GsonBuilder().setLenient().create()))
                 .client(client)
-                .build()
-                .create((AccuWeatherApi.class));
-
-        this.locationApi = new Retrofit.Builder()
-                .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(
-                        new GsonBuilder().setLenient().create()))
-                .client(getClientBuilder()
-                        .addInterceptor(new GzipInterceptor())
-                        // .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                        .build())
                 .build()
                 .create((AccuWeatherApi.class));
     }
@@ -102,7 +91,7 @@ public class AccuWeatherService extends WeatherService {
     public void requestLocation(Context context, final String query,
                                 @NonNull final RequestLocationCallback callback) {
         this.languageCode = LanguageUtils.getLanguageCode(context);
-        Call<List<AccuLocationResult>> getAccuLocation = locationApi.getWeatherLocation(
+        Call<List<AccuLocationResult>> getAccuLocation = api.getWeatherLocation(
                 "Always",
                 BuildConfig.ACCU_WEATHER_KEY,
                 query,
@@ -136,7 +125,7 @@ public class AccuWeatherService extends WeatherService {
     public void requestLocation(Context context, final String lat, final String lon,
                                 @NonNull final RequestLocationCallback callback) {
         this.languageCode = LanguageUtils.getLanguageCode(context);
-        Call<AccuLocationResult> getAccuLocationByGeoPosition = locationApi.getWeatherLocationByGeoPosition(
+        Call<AccuLocationResult> getAccuLocationByGeoPosition = api.getWeatherLocationByGeoPosition(
                 "Always",
                 BuildConfig.ACCU_WEATHER_KEY,
                 lat + "," + lon,
@@ -196,7 +185,7 @@ public class AccuWeatherService extends WeatherService {
     @SuppressLint("SimpleDateFormat")
     private void requestRealtime(final Context c, final Location location,
                                  final RequestWeatherCallback callback) {
-        Call<List<AccuRealtimeResult>> getAccuRealtime = weatherApi.getRealtime(
+        Call<List<AccuRealtimeResult>> getAccuRealtime = api.getRealtime(
                 location.cityId,
                 BuildConfig.ACCU_CURRENT_KEY,
                 languageCode,
@@ -250,7 +239,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestDaily(final Context c, final Location location,
                               final RequestWeatherCallback callback) {
-        Call<AccuDailyResult> getAccuDaily = weatherApi.getDaily(
+        Call<AccuDailyResult> getAccuDaily = api.getDaily(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -287,7 +276,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestHourly(final Context c, final Location location,
                                final RequestWeatherCallback callback) {
-        Call<List<AccuHourlyResult>> getAccuHourly = weatherApi.getHourly(
+        Call<List<AccuHourlyResult>> getAccuHourly = api.getHourly(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -321,7 +310,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestMinute(final Location location,
                                final RequestWeatherCallback callback) {
-        Call<AccuMinuteResult> getAccuMinute = weatherApi.getMinute(
+        Call<AccuMinuteResult> getAccuMinute = api.getMinute(
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
                 true,
@@ -353,7 +342,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestAlert(final Context c, final Location location,
                               final RequestWeatherCallback callback) {
-        Call<List<AccuAlertResult>> getAccuAlert = weatherApi.getAlert(
+        Call<List<AccuAlertResult>> getAccuAlert = api.getAlert(
                 location.cityId,
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
@@ -387,7 +376,7 @@ public class AccuWeatherService extends WeatherService {
 
     private void requestAqi(final Context c, final Location location,
                             final RequestWeatherCallback callback) {
-        Call<AccuAqiResult> getAccuAqi = weatherApi.getAqi(
+        Call<AccuAqiResult> getAccuAqi = api.getAqi(
                 location.cityId,
                 BuildConfig.ACCU_AQI_KEY);
         getAccuAqi.enqueue(new Callback<AccuAqiResult>() {

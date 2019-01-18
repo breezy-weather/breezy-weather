@@ -53,7 +53,7 @@ public class Aqi {
             so2 = (int) result.SulfurDioxide;
             no2 = (int) result.NitrogenDioxide;
             o3 = (int) result.Ozone;
-            co = (int) result.CarbonMonoxide;
+            co = (float) result.CarbonMonoxide;
         }
     }
 
@@ -65,7 +65,11 @@ public class Aqi {
         so2 = result.pm25.so2;
         no2 = result.pm25.no2;
         o3 = result.pm25.o3;
-        co = Float.parseFloat(result.pm25.co);
+        try {
+            co = Float.parseFloat(result.pm25.co);
+        } catch (Exception e) {
+            co = -1;
+        }
     }
 
     public void buildAqi(Context c, CaiYunMainlyResult result) {

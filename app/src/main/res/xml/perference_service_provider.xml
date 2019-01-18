@@ -16,6 +16,6 @@
         android:entries="@array/location_services"
         android:entryValues="@array/location_service_values"
         android:dialogTitle="@string/settings_title_location_service"
-        android:defaultValue="native" />
+        android:defaultValue="baidu" />
 
 </PreferenceScreen>
