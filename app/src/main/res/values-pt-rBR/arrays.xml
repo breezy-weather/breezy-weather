@@ -11,7 +11,7 @@
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
-        <item>Automatico</item>
+        <item>Automático</item>
         <item>Sempre Claro</item>
         <item>Sempre Escuro</item>
     </string-array>
@@ -49,7 +49,7 @@
 
     <!-- widget style. -->
     <string-array name="widget_styles">
-        <item>Retamgular</item>
+        <item>Retangular</item>
         <item>Simétrico</item>
         <item>Tile</item>
         <item>Mini</item>
@@ -62,7 +62,7 @@
     <!-- icon style. -->
     <string-array name="icon_styles">
         <item>Material</item>
-        <item>Mínimonimo</item>
+        <item>Mínimo</item>
         <item>Pixel</item>
     </string-array>
 

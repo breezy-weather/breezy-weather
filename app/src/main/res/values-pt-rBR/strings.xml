@@ -1,32 +1,33 @@
 ﻿<resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- app. -->
     <string name="app_name">Clima</string>
     <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
-    <string name="default_location">location padrão</string>
+    <string name="default_location">localização padrão</string>
     <string name="live">Ao vivo</string>
     <string name="today">Hoje</string>
     <string name="refresh_at">atualizado em</string>
     <string name="precipitation">Precipitação</string>
-    <string name="maxi_temp">dia</string>
-    <string name="mini_temp">noite</string>
+    <string name="maxi_temp">Min</string>
+    <string name="mini_temp">Max</string>
     <string name="time">hora</string>
     <string name="day">dia</string>
     <string name="night">noite</string>
     <string name="wind">vento</string>
-    <string name="sensible_temp">sensação térmica</string>
+    <string name="sensible_temp">Sensação térmica</string>
     <string name="humidity">umidade</string>
-    <string name="uv_index">índice UV</string>
-    <string name="forecast">previsão</string>
-    <string name="briefings">Briefings</string>
+    <string name="uv_index">Índice UV</string>
+    <string name="forecast">Previsão</string>
+    <string name="briefings">Instruções</string>
     <string name="daytime">Dia</string>
     <string name="nighttime">Noite</string>
     <string name="publish_at">Publicado em</string>
     <string name="feels_like">Parece</string>
     <string name="follow_system">Igual ao sistema</string>
-    <string name="background_information">Informaçao em segundo plano</string>
+    <string name="background_information">Informação em segundo plano</string>
     <string name="pressure">Pressão Atmosférica</string>
     <string name="visibility">Visibilidade</string>
     <string name="dew_point">Ponto de Orvalho</string>
@@ -35,13 +36,13 @@
     <string name="yesterday">ontem</string>
     <string name="tomorrow">amanhã</string>
     <string name="week">semana</string>
-    <string name="week_1">SEG</string>
-    <string name="week_2">TER</string>
-    <string name="week_3">QUA</string>
-    <string name="week_4">QUI</string>
-    <string name="week_5">SEX</string>
-    <string name="week_6">SAB</string>
-    <string name="week_7">DOM</string>
+    <string name="week_1">Seg</string>
+    <string name="week_2">Ter</string>
+    <string name="week_3">Qua</string>
+    <string name="week_4">Qui</string>
+    <string name="week_5">Sex</string>
+    <string name="week_6">Sab</string>
+    <string name="week_7">Dom</string>
 
     <string name="wind_0">Calmo</string>
     <string name="wind_1">Fresco</string>
@@ -79,15 +80,15 @@
     <string name="life_details">Detalhes</string>
     <string name="sunrise_sunset">Sol &amp; Lua</string>
 
-    <string name="next">PRÓXIMO</string>
-    <string name="done">CONCLUÍDO</string>
-    <string name="cancel" tools:ignore="ButtonCase">CANCELAR</string>
-    <string name="on">LIGADO</string>
-    <string name="off">DESLIGADO</string>
-    <string name="go_to_set">FIXAR</string>
-    <string name="help">AJUDA</string>
+    <string name="next">Próximo</string>
+    <string name="done">Concluído</string>
+    <string name="cancel" tools:ignore="ButtonCase">Cancelar</string>
+    <string name="on">Ligado</string>
+    <string name="off">Desligado</string>
+    <string name="go_to_set">Configurar</string>
+    <string name="help">Ajuda</string>
 
-    <string name="about_app">SOBRE O APLICATIVO</string>
+    <string name="about_app">Sobre o Aplicativo</string>
     <string name="introduce">introdução</string>
     <string name="email">E-mail</string>
     <string name="donate">Doação (Alipay)</string>
@@ -104,7 +105,7 @@
     <!-- feedback. -->
     <string name="feedback_request_permission">Permissões</string>
     <string name="feedback_request_location">Localização</string>
-    <string name="feedback_request_location_in_background">localização em segundo plano.</string>
+    <string name="feedback_request_location_in_background">Localização em segundo plano.</string>
     <string name="feedback_request_location_permission_success">Pedido de localização realizado com sucesso.</string>
     <string name="feedback_request_location_permission_failed">Pedido de localização falhou.</string>
 
@@ -116,37 +117,37 @@
     <string name="feedback_select_location_provider">Selecione Provedor de Localização</string>
 
     <string name="feedback_view_style">Estilo de visão.</string>
-    <string name="feedback_show_widget_card">Plano de fundo de cartão.</string>
-    <string name="feedback_hide_subtitle">Ocultar Subtítulo.</string>
-    <string name="feedback_subtitle_data">Dados do subtítulo.</string>
-    <string name="feedback_black_text">Texto escuro.</string>
-    <string name="feedback_clock_font">Fonte do relógio.</string>
+    <string name="feedback_show_widget_card">Plano de fundo de cartão</string>
+    <string name="feedback_hide_subtitle">Ocultar Subtítulo</string>
+    <string name="feedback_subtitle_data">Dados do subtítulo</string>
+    <string name="feedback_black_text">Texto escuro</string>
+    <string name="feedback_clock_font">Fonte do relógio</string>
 
-    <string name="feedback_click_toggle">Toque no gráfico para alternar dados.</string>
-    <string name="feedback_no_data">SEM DADOS</string>
+    <string name="feedback_click_toggle">Toque no gráfico para alternar dados</string>
+    <string name="feedback_no_data">Sem dados</string>
 
-    <string name="feedback_collect_failed">Este local já existe.</string>
-    <string name="feedback_collect_succeed">Local adicionado com sucesso.</string>
-    <string name="feedback_delete_succeed">Local deletado com sucess.</string>
-    <string name="feedback_location_list_cannot_be_null">Lista de locais não pode estra vazia.</string>
+    <string name="feedback_collect_failed">Este local já existe</string>
+    <string name="feedback_collect_succeed">Local adicionado com sucesso</string>
+    <string name="feedback_delete_succeed">Local deletado com sucesso</string>
+    <string name="feedback_location_list_cannot_be_null">Lista de locais não pode estar vazia</string>
 
-    <string name="feedback_search_location">Pesquise um local…</string>
+    <string name="feedback_search_location">Pesquise um endereço ou \"local\"…</string>
     <string name="feedback_not_yet_location">Ainda não localizado…</string>
     <string name="feedback_search_nothing">Nenhum resultado…</string>
     <string name="feedback_initializing">Inicializando…</string>
 
     <string name="feedback_refresh_notification_after_back">Terá efeito quando retornar à página inicial.</string>
-    <string name="feedback_refresh_notification_now">Atualize agora.</string>
+    <string name="feedback_refresh_notification_now">Atualize agora</string>
     <string name="feedback_refresh_ui_after_refresh">Terá efeito quando atualizar dados.</string>
     <string name="feedback_restart">Terá efeito quando reiniciar.</string>
-    <string name="feedback_readd_location">Por favor, readicione locais.</string>
-    <string name="feedback_readd_location_after_changing_source">Por favor, readicione locais após alterar fonte de dados.</string>
+    <string name="feedback_readd_location">Por favor, re-adicione locais.</string>
+    <string name="feedback_readd_location_after_changing_source">Por favor, re-adicione locais após alterar fonte de dados.</string>
 
     <string name="feedback_running_in_background">Rodando em segundo plano para manter atualizado.</string>
-    <string name="feedback_updating_weather_data">Atualizano dados de clima.</string>
-    
+    <string name="feedback_updating_weather_data">Atualizando dados de clima.</string>
+
     <string name="feedback_interpret_background_notification_content">Em alguns dispositivos, após desativando \"livre de segundo plano\", uma notificação poderá permanexer fixa na central de notificações.</string>
-    <string name="feedback_interpret_notification_group_title">Bloquear grupo de notificações</string>
+    <string name="feedback_interpret_notification_group_title">Bloquear grupo de notificações.</string>
     <string name="feedback_interpret_notification_group_content">Após desativar  \"livre de segundo plano\", uma notificação que serviço de segundo plano esta rodando irá aparecer na central de notificações, você pode desativar o canal de notificação do aplicativo nas configurações do dispositivo.</string>
 
     <!-- action -->
@@ -173,7 +174,7 @@
     <string name="settings_title_background_free">Livre de Segundo Plano</string>
     <string name="settings_title_service_provider">Provedor de Serviço</string>
     <string name="settings_summary_service_provider">Selecione provedor de serviço de clima e dados de local.</string>
-    <string name="settings_title_chinese_source">Fonte de dados de clima Chinês</string>
+    <string name="settings_title_chinese_source">Fonte de dados de clima</string>
     <string name="settings_title_location_service">Serviço de Localização</string>
     <string name="settings_title_dark_mode">Modo Escuro</string>
     <string name="settings_title_ui_style">Estilo de Interface</string>
@@ -189,7 +190,7 @@
     <string name="settings_summary_unit">Selecione unidade de clima.</string>
     <string name="settings_title_fahrenheit">Fahrenheit</string>
     <string name="settings_title_imperial">Sistema Imperial</string>
-    <string name="settings_title_refresh_rate">Frequencia de atualização automática</string>
+    <string name="settings_title_refresh_rate">Frequência de atualização automática</string>
     <string name="settings_title_alert_notification_switch">Enviar notificação de alerta</string>
     <string name="settings_title_permanent_service">Serviço permanente</string>
     <string name="settings_category_forecast">Previsão do clima</string>
@@ -200,7 +201,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_icon_style">Estilo do ícone</string>
     <string name="settings_title_click_widget_to_refresh">Atualizar Widget quando clicado</string>
-    <string name="settings_category_notification">Notificaçao</string>
+    <string name="settings_category_notification">Notificação</string>
     <string name="settings_title_notification">Enviar Notificação</string>
     <string name="settings_title_notification_temp_icon">Mini ícone de temperatura</string>
     <string name="settings_title_notification_text_color">Cor do texto</string>
@@ -211,13 +212,13 @@
     <string name="settings_notification_can_be_cleared_on">Pode dispensar arrastando.</string>
     <string name="settings_notification_can_be_cleared_off">Não pode dispensar.</string>
     <string name="settings_title_notification_hide_icon">Ocultar ícone de notificação</string>
-    <string name="settings_notification_hide_icon_on">Ocultar</string>
-    <string name="settings_notification_hide_icon_off">Mostrar</string>
+    <string name="settings_notification_hide_icon_on">Oculto</string>
+    <string name="settings_notification_hide_icon_off">Mostrando</string>
     <string name="settings_title_notification_hide_in_lockScreen">Ocultar na tela de bloqueio</string>
     <string name="settings_notification_hide_in_lockScreen_on">Ocultar (precisa abrir nas configurações do sistema)</string>
-    <string name="settings_notification_hide_in_lockScreen_off">Mostrar</string>
-    <string name="settings_title_notification_hide_big_view">Ocultar visão extendida</string>
-    <string name="settings_notification_hide_big_view_on">Ocultar</string>
-    <string name="settings_notification_hide_big_view_off">Mostrar</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Mostrando</string>
+    <string name="settings_title_notification_hide_big_view">Ocultar visão estendida</string>
+    <string name="settings_notification_hide_big_view_on">Oculto</string>
+    <string name="settings_notification_hide_big_view_off">Mostrando</string>
 
 </resources>
