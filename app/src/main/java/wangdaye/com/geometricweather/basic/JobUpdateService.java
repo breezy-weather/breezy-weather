@@ -103,7 +103,7 @@ public abstract class JobUpdateService extends JobService
     @Override
     public void onPollingCompleted() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcuts(this, locationList);
+            ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setDelayTask(parameters, failed);

@@ -95,6 +95,7 @@ public class MainActivity extends GeoActivity
     public static final int MANAGE_ACTIVITY = 2;
 
     public static final int MESSAGE_WHAT_STARTUP_SERVICE = 1;
+    public static final int MESSAGE_REFRESH_REMOTE_VIEWS = 2;
 
     public static final String KEY_MAIN_ACTIVITY_LOCATION = "MAIN_ACTIVITY_LOCATION";
 
@@ -130,7 +131,6 @@ public class MainActivity extends GeoActivity
             initData();
             initWidget();
             reset();
-            startupService();
         } else {
             // reread cache and check if there are new data available through background service.
             Weather old = locationNow.weather;
@@ -421,6 +421,8 @@ public class MainActivity extends GeoActivity
 
                 indicator.setCurrentIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent));
                 indicator.setIndicatorColor(ContextCompat.getColor(this, R.color.colorTextSubtitle));
+
+                refreshBackgroundViews();
             }
         }
     }
@@ -434,13 +436,32 @@ public class MainActivity extends GeoActivity
         }
     }
 
+    private void refreshBackgroundViews() {
+        startupService();
+        if (locationNow.equals(locationList.get(0))) {
+            refreshRemoteViews();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
+        }
+    }
+
     private void startupService() {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 handler.obtainMessage(MESSAGE_WHAT_STARTUP_SERVICE).sendToTarget();
             }
-        }, 1500);
+        }, 2000);
+    }
+
+    private void refreshRemoteViews() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.obtainMessage(MESSAGE_REFRESH_REMOTE_VIEWS).sendToTarget();
+            }
+        }, 1000);
     }
 
     // permission.
@@ -465,6 +486,12 @@ public class MainActivity extends GeoActivity
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permission, @NonNull int[] grantResult) {
         super.onRequestPermissionsResult(requestCode, permission, grantResult);
+        if (grantResult.length == 0) {
+            if (locationNow.isLocal()) {
+                locationHelper.requestLocation(this, locationNow, this);
+            }
+            return;
+        }
         switch (requestCode) {
             case LOCATION_PERMISSIONS_REQUEST_CODE:
                 if (grantResult[0] == PackageManager.PERMISSION_GRANTED) {
@@ -668,12 +695,10 @@ public class MainActivity extends GeoActivity
                 }
                 refreshLocation(locationNow);
 
+                refreshBackgroundViews();
+
                 setRefreshing(false);
                 buildUI();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    ShortcutsManager.refreshShortcuts(this, locationList);
-                }
-                startupService();
             } else {
                 setRefreshing(false);
             }
@@ -707,14 +732,17 @@ public class MainActivity extends GeoActivity
     public void handleMessage(Message message) {
         switch (message.what) {
             case MESSAGE_WHAT_STARTUP_SERVICE:
-                WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
-                NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
                 ThreadManager.getInstance().execute(new Runnable() {
                     @Override
                     public void run() {
                         BackgroundManager.resetAllBackgroundTask(MainActivity.this, false);
                     }
                 });
+                break;
+
+            case MESSAGE_REFRESH_REMOTE_VIEWS:
+                WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
+                NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
                 break;
         }
     }

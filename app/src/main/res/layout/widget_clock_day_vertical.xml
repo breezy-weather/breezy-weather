@@ -19,26 +19,106 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <TextClock
-            android:id="@+id/widget_clock_day_clock_1"
-            android:textSize="64sp"
-            android:textAlignment="center"
-            android:format24Hour="HH"
-            android:format12Hour="hh"
-            android:layout_marginTop="-8dp"
-            style="@style/widget_text_clock"
-            tools:text="09" />
+        <RelativeLayout
+            android:id="@+id/widget_clock_day_clock_lightContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <TextClock
-            android:id="@+id/widget_clock_day_clock_2"
-            android:textSize="64sp"
-            android:textAlignment="center"
-            android:format24Hour="mm"
-            android:format12Hour="mm"
-            android:layout_marginTop="-16dp"
-            android:layout_marginBottom="-4dp"
-            style="@style/widget_text_clock"
-            tools:text="10" />
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_1_light"
+                android:textSize="64sp"
+                android:textAlignment="center"
+                android:format24Hour="HH"
+                android:format12Hour="hh"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginTop="-8dp"
+                android:layout_centerHorizontal="true"
+                style="@style/widget_text_clock"
+                tools:text="09" />
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_2_light"
+                android:textSize="64sp"
+                android:textAlignment="center"
+                android:format24Hour="mm"
+                android:format12Hour="mm"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginTop="-16dp"
+                android:layout_marginBottom="-4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/widget_clock_day_clock_1_light"
+                style="@style/widget_text_clock"
+                tools:text="10" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/widget_clock_day_clock_normalContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_1_normal"
+                android:textSize="64sp"
+                android:textAlignment="center"
+                android:format24Hour="HH"
+                android:format12Hour="hh"
+                android:layout_marginTop="-8dp"
+                android:layout_centerHorizontal="true"
+                style="@style/widget_text_clock"
+                tools:text="09" />
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_2_normal"
+                android:textSize="64sp"
+                android:textAlignment="center"
+                android:format24Hour="mm"
+                android:format12Hour="mm"
+                android:layout_marginTop="-16dp"
+                android:layout_marginBottom="-4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/widget_clock_day_clock_1_normal"
+                style="@style/widget_text_clock"
+                tools:text="10" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/widget_clock_day_clock_blackContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_1_black"
+                android:textSize="64sp"
+                android:textAlignment="center"
+                android:format24Hour="HH"
+                android:format12Hour="hh"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="-8dp"
+                android:layout_centerHorizontal="true"
+                style="@style/widget_text_clock"
+                tools:text="09" />
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_2_black"
+                android:textSize="64sp"
+                android:textAlignment="center"
+                android:format24Hour="mm"
+                android:format12Hour="mm"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="-16dp"
+                android:layout_marginBottom="-4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/widget_clock_day_clock_1_black"
+                style="@style/widget_text_clock"
+                tools:text="10" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

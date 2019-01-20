@@ -42,6 +42,7 @@
     <string-array name="icon_styles">
         <item>Material</item>
         <item>Minimal</item>
+        <item>Pixel</item>
     </string-array>
 
     <!-- Widget subtitle data. -->

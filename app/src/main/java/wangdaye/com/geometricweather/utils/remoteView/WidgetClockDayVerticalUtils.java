@@ -41,6 +41,7 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean hideSubtitle = sharedPreferences.getBoolean(context.getString(R.string.key_hide_subtitle), false);
         String subtitleData = sharedPreferences.getString(context.getString(R.string.key_subtitle_data), "time");
+        String clockFont = sharedPreferences.getString(context.getString(R.string.key_clock_font), "light");
         boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
                 SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -64,7 +65,7 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
         RemoteViews views = buildWidgetViewDayPart(
                 context, weather,
                 dayTime, textColor, fahrenheit,
-                iconStyle, blackText,
+                iconStyle, blackText, clockFont,
                 viewStyle,
                 hideSubtitle, subtitleData);
 
@@ -81,7 +82,7 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
 
     private static RemoteViews buildWidgetViewDayPart(Context context, Weather weather,
                                                       boolean dayTime, int textColor, boolean fahrenheit,
-                                                      String iconStyle, boolean blackText,
+                                                      String iconStyle, boolean blackText, String clockFont,
                                                       String viewStyle,
                                                       boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
@@ -120,14 +121,46 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
                 R.id.widget_clock_day_time,
                 getTimeText(context, weather, viewStyle, subtitleData));
 
-        views.setTextColor(R.id.widget_clock_day_clock, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_1, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_2, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_aa, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_light, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_normal, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_black, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_aa_light, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_aa_normal, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_aa_black, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_1_light, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_1_normal, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_1_black, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_2_light, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_2_normal, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_2_black, textColor);
         views.setTextColor(R.id.widget_clock_day_title, textColor);
         views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
         views.setTextColor(R.id.widget_clock_day_time, textColor);
+
         views.setViewVisibility(R.id.widget_clock_day_time, hideSubtitle ? View.GONE : View.VISIBLE);
+
+        if (clockFont == null) {
+            clockFont = "light";
+        }
+        switch (clockFont) {
+            case "light":
+                views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.VISIBLE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE);
+                break;
+
+            case "normal":
+                views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.VISIBLE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE);
+                break;
+
+            case "black":
+                views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.VISIBLE);
+                break;
+        }
 
         return views;
     }
@@ -248,17 +281,41 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
 
         // clock.
         views.setOnClickPendingIntent(
-                R.id.widget_clock_day_clock,
+                R.id.widget_clock_day_clock_light,
                 getAlarmPendingIntent(
-                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK));
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_LIGHT));
         views.setOnClickPendingIntent(
-                R.id.widget_clock_day_clock_1,
+                R.id.widget_clock_day_clock_normal,
                 getAlarmPendingIntent(
-                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_1));
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_NORMAL));
         views.setOnClickPendingIntent(
-                R.id.widget_clock_day_clock_2,
+                R.id.widget_clock_day_clock_black,
                 getAlarmPendingIntent(
-                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_2));
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_BLACK));
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_clock_1_light,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_1_LIGHT));
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_clock_1_normal,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_1_NORMAL));
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_clock_1_black,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_1_BLACK));
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_clock_2_light,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_2_LIGHT));
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_clock_2_normal,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_2_NORMAL));
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_clock_2_black,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_2_BLACK));
 
         // time.
         if (subtitleData.equals("lunar")) {

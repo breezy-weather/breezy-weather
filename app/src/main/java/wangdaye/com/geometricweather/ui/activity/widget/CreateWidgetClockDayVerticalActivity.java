@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -43,9 +44,10 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
     private View[] widgetViews;
     private ImageView widgetCard;
     private ImageView widgetIcon;
-    private TextClock widgetClock;
-    private TextClock widgetClockAA;
-    private TextClock[] widgetClockArray;
+    private RelativeLayout[] widgetClockContainers;
+    private TextClock[] widgetClocks;
+    private TextClock[] widgetClockAAs;
+    private TextClock[] widgetClockVerticals;
     private TextView widgetTitle;
     private TextView widgetSubtitle;
     private TextView widgetTime;
@@ -64,6 +66,10 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
     private String subtitleDataValueNow = "time";
     private String[] subtitleData;
     private String[] subtitleDataValues;
+
+    private String clockFontValueNow = "light";
+    private String[] clockFonts;
+    private String[] clockFontValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +106,8 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
             subtitleData[i] = data[i];
             subtitleDataValues[i] = dataValues[i];
         }
+        this.clockFonts = getResources().getStringArray(R.array.clock_font);
+        this.clockFontValues = getResources().getStringArray(R.array.clock_font_values);
     }
 
     @Override
@@ -127,6 +135,10 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
 
         this.blackTextSwitch = findViewById(R.id.activity_create_widget_clock_day_vertical_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
+
+        AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_create_widget_clock_day_vertical_clockFontSpinner);
+        clockFontSpinner.setOnItemSelectedListener(new ClockFontSpinnerSelectedListener());
+        clockFontSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, clockFonts));
 
         Button doneButton = findViewById(R.id.activity_create_widget_clock_day_vertical_doneButton);
         doneButton.setOnClickListener(this);
@@ -169,21 +181,34 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                             this, weather, viewTypeValueNow, subtitleDataValueNow));
         }
 
+        for (int i = 0; i < clockFontValues.length; i ++) {
+            if (clockFontValueNow.equals(clockFontValues[i])) {
+                widgetClockContainers[i].setVisibility(View.VISIBLE);
+            } else {
+                widgetClockContainers[i].setVisibility(View.GONE);
+            }
+        }
+
         if (showCardSwitch.isChecked() || blackTextSwitch.isChecked()) {
             if (showCardSwitch.isChecked()) {
                 widgetCard.setVisibility(View.VISIBLE);
             } else {
                 widgetCard.setVisibility(View.GONE);
             }
-            if (widgetClock != null) {
-                widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            if (widgetClocks != null) {
+                for (TextClock c : widgetClocks) {
+                    c.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             }
-            if (widgetClockAA != null) {
-                widgetClockAA.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            if (widgetClockAAs != null) {
+                for (TextClock c : widgetClockAAs) {
+                    c.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             }
-            if (widgetClockArray != null) {
-                widgetClockArray[0].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-                widgetClockArray[1].setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            if (widgetClockVerticals != null) {
+                for (TextClock c : widgetClockVerticals) {
+                    c.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+                }
             }
             widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
             if (widgetSubtitle != null) {
@@ -194,15 +219,21 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
             }
         } else {
             widgetCard.setVisibility(View.GONE);
-            if (widgetClock != null) {
-                widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+
+            if (widgetClocks != null) {
+                for (TextClock c : widgetClocks) {
+                    c.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                }
             }
-            if (widgetClockAA != null) {
-                widgetClockAA.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            if (widgetClockAAs != null) {
+                for (TextClock c : widgetClockAAs) {
+                    c.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                }
             }
-            if (widgetClockArray != null) {
-                widgetClockArray[0].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
-                widgetClockArray[1].setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            if (widgetClockVerticals != null) {
+                for (TextClock c : widgetClockVerticals) {
+                    c.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+                }
             }
             widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
             if (widgetSubtitle != null) {
@@ -245,9 +276,19 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetCard.setVisibility(View.GONE);
 
                 this.widgetIcon = widgetViews[0].findViewById(R.id.widget_clock_day_icon);
-                this.widgetClock = widgetViews[0].findViewById(R.id.widget_clock_day_clock);
-                this.widgetClockAA = widgetViews[0].findViewById(R.id.widget_clock_day_clock_aa);
-                this.widgetClockArray = null;
+                this.widgetClockContainers = new RelativeLayout[] {
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_lightContainer),
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_normalContainer),
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_blackContainer)};
+                this.widgetClocks = new TextClock[] {
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_light),
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_normal),
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_black)};
+                this.widgetClockAAs = new TextClock[] {
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_aa_light),
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_aa_normal),
+                        widgetViews[0].findViewById(R.id.widget_clock_day_clock_aa_black)};
+                this.widgetClockVerticals = null;
                 this.widgetTitle = widgetViews[0].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = widgetViews[0].findViewById(R.id.widget_clock_day_subtitle);
                 this.widgetTime = widgetViews[0].findViewById(R.id.widget_clock_day_time);
@@ -260,9 +301,19 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetCard.setVisibility(View.GONE);
 
                 this.widgetIcon = widgetViews[1].findViewById(R.id.widget_clock_day_icon);
-                this.widgetClock = widgetViews[1].findViewById(R.id.widget_clock_day_clock);
-                this.widgetClockAA = widgetViews[1].findViewById(R.id.widget_clock_day_clock_aa);
-                this.widgetClockArray = null;
+                this.widgetClockContainers = new RelativeLayout[] {
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_lightContainer),
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_normalContainer),
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_blackContainer)};
+                this.widgetClocks = new TextClock[] {
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_light),
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_normal),
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_black)};
+                this.widgetClockAAs = new TextClock[] {
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_aa_light),
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_aa_normal),
+                        widgetViews[1].findViewById(R.id.widget_clock_day_clock_aa_black)};
+                this.widgetClockVerticals = null;
                 this.widgetTitle = widgetViews[1].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = widgetViews[1].findViewById(R.id.widget_clock_day_subtitle);
                 this.widgetTime = widgetViews[1].findViewById(R.id.widget_clock_day_time);
@@ -275,9 +326,19 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetCard.setVisibility(View.GONE);
 
                 this.widgetIcon = widgetViews[2].findViewById(R.id.widget_clock_day_icon);
-                this.widgetClock = widgetViews[2].findViewById(R.id.widget_clock_day_clock);
-                this.widgetClockAA = widgetViews[2].findViewById(R.id.widget_clock_day_clock_aa);
-                this.widgetClockArray = null;
+                this.widgetClockContainers = new RelativeLayout[] {
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_lightContainer),
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_normalContainer),
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_blackContainer)};
+                this.widgetClocks = new TextClock[] {
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_light),
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_normal),
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_black)};
+                this.widgetClockAAs = new TextClock[] {
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_aa_light),
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_aa_normal),
+                        widgetViews[2].findViewById(R.id.widget_clock_day_clock_aa_black)};
+                this.widgetClockVerticals = null;
                 this.widgetTitle = widgetViews[2].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = widgetViews[2].findViewById(R.id.widget_clock_day_subtitle);
                 this.widgetTime = widgetViews[2].findViewById(R.id.widget_clock_day_time);
@@ -290,9 +351,19 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetCard.setVisibility(View.GONE);
 
                 this.widgetIcon = widgetViews[3].findViewById(R.id.widget_clock_day_icon);
-                this.widgetClock = widgetViews[3].findViewById(R.id.widget_clock_day_clock);
-                this.widgetClockAA = widgetViews[3].findViewById(R.id.widget_clock_day_clock_aa);
-                this.widgetClockArray = null;
+                this.widgetClockContainers = new RelativeLayout[] {
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_lightContainer),
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_normalContainer),
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_blackContainer)};
+                this.widgetClocks = new TextClock[] {
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_light),
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_normal),
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_black)};
+                this.widgetClockAAs = new TextClock[] {
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_aa_light),
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_aa_normal),
+                        widgetViews[3].findViewById(R.id.widget_clock_day_clock_aa_black)};
+                this.widgetClockVerticals = null;
                 this.widgetTitle = widgetViews[3].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = widgetViews[3].findViewById(R.id.widget_clock_day_subtitle);
                 this.widgetTime = null;
@@ -305,11 +376,20 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 widgetCard.setVisibility(View.GONE);
 
                 this.widgetIcon = widgetViews[4].findViewById(R.id.widget_clock_day_icon);
-                this.widgetClock = null;
-                this.widgetClockArray = new TextClock[] {
-                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_1),
-                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_2)};
-                this.widgetClockAA = null;
+
+                this.widgetClockContainers = new RelativeLayout[] {
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_lightContainer),
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_normalContainer),
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_blackContainer)};
+                this.widgetClocks = null;
+                this.widgetClockAAs = null;
+                this.widgetClockVerticals = new TextClock[] {
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_1_light),
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_2_light),
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_1_normal),
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_2_normal),
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_1_black),
+                        widgetViews[4].findViewById(R.id.widget_clock_day_clock_2_black)};
                 this.widgetTitle = widgetViews[4].findViewById(R.id.widget_clock_day_title);
                 this.widgetSubtitle = null;
                 this.widgetTime = widgetViews[4].findViewById(R.id.widget_clock_day_time);
@@ -334,6 +414,7 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
                 editor.putBoolean(getString(R.string.key_hide_subtitle), hideSubtitleSwitch.isChecked());
                 editor.putString(getString(R.string.key_subtitle_data), subtitleDataValueNow);
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
+                editor.putString(getString(R.string.key_clock_font), clockFontValueNow);
                 editor.apply();
 
                 Intent intent = getIntent();
@@ -377,6 +458,21 @@ public class CreateWidgetClockDayVerticalActivity extends GeoWidgetConfigActivit
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             if (!subtitleDataValueNow.equals(subtitleDataValues[i])) {
                 subtitleDataValueNow = subtitleDataValues[i];
+                refreshWidgetView(getLocationNow().weather);
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+            // do nothing.
+        }
+    }
+
+    private class ClockFontSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            if (!clockFontValueNow.equals(clockFontValues[i])) {
+                clockFontValueNow = clockFontValues[i];
                 refreshWidgetView(getLocationNow().weather);
             }
         }

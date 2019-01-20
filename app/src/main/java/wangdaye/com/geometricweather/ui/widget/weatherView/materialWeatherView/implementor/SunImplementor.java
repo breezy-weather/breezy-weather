@@ -32,9 +32,10 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, float rotation2D, float rotation3D) {
+    public void updateData(MaterialWeatherView view, long interval,
+                           float rotation2D, float rotation3D) {
         for (int i = 0; i < angles.length; i ++) {
-            angles[i] = (float) ((angles[i] + (90.0 / (3000 + 1000 * i) * REFRESH_INTERVAL)) % 90);
+            angles[i] = (float) ((angles[i] + (90.0 / (3000 + 1000 * i) * interval)) % 90);
         }
     }
 

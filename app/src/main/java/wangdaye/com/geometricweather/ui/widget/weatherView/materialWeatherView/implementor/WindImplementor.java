@@ -130,11 +130,10 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, float rotation2D, float rotation3D) {
+    public void updateData(MaterialWeatherView view, long interval,
+                           float rotation2D, float rotation3D) {
         for (Wind w : winds) {
-            w.move(
-                    REFRESH_INTERVAL,
-                    lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
+            w.move(interval, lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
         }
         lastRotation3D = rotation3D;
     }

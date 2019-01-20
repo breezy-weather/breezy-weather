@@ -200,15 +200,14 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, float rotation2D, float rotation3D) {
+    public void updateData(MaterialWeatherView view, long interval,
+                           float rotation2D, float rotation3D) {
 
         for (Meteor m : meteors) {
-            m.move(
-                    REFRESH_INTERVAL,
-                    lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
+            m.move(interval, lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
         }
         for (Star s : stars) {
-            s.shine(REFRESH_INTERVAL);
+            s.shine(interval);
         }
         lastRotation3D = rotation3D;
     }

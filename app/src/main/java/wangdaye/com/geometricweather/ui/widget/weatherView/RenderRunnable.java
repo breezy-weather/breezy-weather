@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView;
 
 import wangdaye.com.geometricweather.basic.FlagRunnable;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 
 public abstract class RenderRunnable extends FlagRunnable {
 
@@ -19,8 +18,7 @@ public abstract class RenderRunnable extends FlagRunnable {
             timestamp = System.currentTimeMillis();
             onRender(interval);
 
-            remaining = MaterialWeatherView.WeatherAnimationImplementor.REFRESH_INTERVAL
-                    - (System.currentTimeMillis() - timestamp);
+            remaining = getInterval() - (System.currentTimeMillis() - timestamp);
             if (remaining > 0) {
                 try {
                     Thread.sleep(remaining);
@@ -32,4 +30,6 @@ public abstract class RenderRunnable extends FlagRunnable {
     }
 
     protected abstract void onRender(long interval);
+
+    protected abstract long getInterval();
 }

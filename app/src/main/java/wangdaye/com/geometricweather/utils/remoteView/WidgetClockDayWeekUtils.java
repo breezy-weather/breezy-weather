@@ -38,6 +38,7 @@ public class WidgetClockDayWeekUtils extends AbstractRemoteViewsUtils {
                 Context.MODE_PRIVATE);
         boolean showCard = sharedPreferences.getBoolean(context.getString(R.string.key_show_card), false);
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
+        String clockFont = sharedPreferences.getString(context.getString(R.string.key_clock_font), "light");
         boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
 
         SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -118,8 +119,12 @@ public class WidgetClockDayWeekUtils extends AbstractRemoteViewsUtils {
                 R.id.widget_clock_day_week_icon_5,
                 getIconId(weather, dayTime, iconStyle, blackText, 4));
 
-        views.setTextColor(R.id.widget_clock_day_week_clock, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_clock_aa, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_clock_light, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_clock_normal, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_clock_black, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_clock_aa_light, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_clock_aa_normal, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_clock_aa_black, textColor);
         views.setTextColor(R.id.widget_clock_day_week_title, textColor);
         views.setTextColor(R.id.widget_clock_day_week_lunar, textColor);
         views.setTextColor(R.id.widget_clock_day_week_subtitle, textColor);
@@ -135,6 +140,29 @@ public class WidgetClockDayWeekUtils extends AbstractRemoteViewsUtils {
         views.setTextColor(R.id.widget_clock_day_week_temp_5, textColor);
 
         views.setViewVisibility(R.id.widget_clock_day_week_card, showCard ? View.VISIBLE : View.GONE);
+
+        if (clockFont == null) {
+            clockFont = "light";
+        }
+        switch (clockFont) {
+            case "light":
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_lightContainer, View.VISIBLE);
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_normalContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_blackContainer, View.GONE);
+                break;
+
+            case "normal":
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_lightContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_normalContainer, View.VISIBLE);
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_blackContainer, View.GONE);
+                break;
+
+            case "black":
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_lightContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_normalContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_week_clock_blackContainer, View.VISIBLE);
+                break;
+        }
 
         setOnClickPendingIntent(context, views, location, touchToRefresh);
 
@@ -230,9 +258,17 @@ public class WidgetClockDayWeekUtils extends AbstractRemoteViewsUtils {
 
         // clock.
         views.setOnClickPendingIntent(
-                R.id.widget_clock_day_week_clock,
+                R.id.widget_clock_day_week_clock_light,
                 getAlarmPendingIntent(
-                        context, GeometricWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK));
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_LIGHT));
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_week_clock_normal,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_NORMAL));
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_week_clock_black,
+                getAlarmPendingIntent(
+                        context, GeometricWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_BLACK));
 
         // title.
         views.setOnClickPendingIntent(

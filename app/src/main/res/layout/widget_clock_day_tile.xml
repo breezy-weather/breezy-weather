@@ -19,11 +19,13 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:id="@+id/widget_clock_day_clock_lightContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextClock
-                android:id="@+id/widget_clock_day_clock"
+                android:id="@+id/widget_clock_day_clock_light"
+                android:fontFamily="sans-serif-light"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="@dimen/little_margin"
                 android:layout_marginEnd="@dimen/little_margin"
@@ -32,9 +34,62 @@
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
 
             <TextClock
-                android:id="@+id/widget_clock_day_clock_aa"
-                android:layout_toEndOf="@id/widget_clock_day_clock"
-                android:layout_alignBaseline="@id/widget_clock_day_clock"
+                android:id="@+id/widget_clock_day_clock_aa_light"
+                android:layout_toEndOf="@id/widget_clock_day_clock_light"
+                android:layout_alignBaseline="@id/widget_clock_day_clock_light"
+                style="@style/widget_text_clock_aa"
+                tools:text="AM"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/widget_clock_day_clock_normalContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_normal"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin"
+                style="@style/widget_text_clock"
+                tools:text="9:10"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_aa_normal"
+                android:layout_toEndOf="@id/widget_clock_day_clock_normal"
+                android:layout_alignBaseline="@id/widget_clock_day_clock_normal"
+                style="@style/widget_text_clock_aa"
+                tools:text="AM"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/widget_clock_day_clock_blackContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_black"
+                android:fontFamily="sans-serif-black"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin"
+                style="@style/widget_text_clock"
+                tools:text="9:10"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+            <TextClock
+                android:id="@+id/widget_clock_day_clock_aa_black"
+                android:layout_toEndOf="@id/widget_clock_day_clock_black"
+                android:layout_alignBaseline="@id/widget_clock_day_clock_black"
                 style="@style/widget_text_clock_aa"
                 tools:text="AM"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />

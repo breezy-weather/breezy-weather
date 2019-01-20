@@ -138,11 +138,10 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, float rotation2D, float rotation3D) {
+    public void updateData(MaterialWeatherView view, long interval,
+                           float rotation2D, float rotation3D) {
         for (Hail h : hails) {
-            h.move(
-                    REFRESH_INTERVAL,
-                    lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
+            h.move(interval, lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
         }
         lastRotation3D = rotation3D;
     }

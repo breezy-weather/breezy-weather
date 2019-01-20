@@ -124,6 +124,7 @@
     <string name="feedback_hide_subtitle">隱藏副標題</string>
     <string name="feedback_subtitle_data">副標題數據</string>
     <string name="feedback_black_text">暗色字體</string>
+    <string name="feedback_clock_font">時鐘字體</string>
 
     <string name="feedback_click_toggle">點擊趨勢圖可切換數據</string>
     <string name="feedback_no_data">暫無數據</string>

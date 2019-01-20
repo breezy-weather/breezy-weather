@@ -47,7 +47,7 @@ public class PollingUpdateHelper {
 
     private void requestData(int position, boolean located) {
         Weather old = DatabaseHelper.getInstance(context).readWeather(locationList.get(position));
-        if (old != null && old.isValid(0.15F)) {
+        if (old != null && old.isValid(0.25F)) {
             new RequestWeatherCallback(old, position)
                     .requestWeatherSuccess(old, null, locationList.get(position));
             return;

@@ -27,8 +27,6 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.i
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.SnowImplementor;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.SunImplementor;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.WindImplementor;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.rotateController.BaseRotateController;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.rotateController.DecelerateRotateController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
@@ -70,17 +68,20 @@ public class MaterialWeatherView extends SurfaceView
     private float scrollRate;
 
     private static final int SWITCH_WEATHER_ANIMATION_DURATION = 150;
+    protected static long DATA_UPDATE_INTERVAL = 8;
+    protected static long DRAW_WEATHER_INTERVAL = 16;
+
 
     private class UpdateDataRunnable extends RenderRunnable {
 
         @Override
         protected void onRender(long interval) {
             if (implementor != null && rotators != null) {
-                rotators[0].updateRotation(rotation2D);
-                rotators[1].updateRotation(rotation3D);
+                rotators[0].updateRotation(rotation2D, interval);
+                rotators[1].updateRotation(rotation3D, interval);
 
                 implementor.updateData(
-                        MaterialWeatherView.this,
+                        MaterialWeatherView.this, interval,
                         (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
                 if (step == STEP_DISPLAY) {
                     displayRate = (float) Math.min(
@@ -93,6 +94,11 @@ public class MaterialWeatherView extends SurfaceView
                     setWeatherImplementor();
                 }
             }
+        }
+
+        @Override
+        protected long getInterval() {
+            return DATA_UPDATE_INTERVAL;
         }
     }
 
@@ -121,6 +127,11 @@ public class MaterialWeatherView extends SurfaceView
                 }
             }
         }
+
+        @Override
+        protected long getInterval() {
+            return DRAW_WEATHER_INTERVAL;
+        }
     }
 
     /**
@@ -128,9 +139,8 @@ public class MaterialWeatherView extends SurfaceView
      * */
     public static abstract class WeatherAnimationImplementor {
 
-        public static long REFRESH_INTERVAL = 16;
-
-        public abstract void updateData(MaterialWeatherView view, float rotation2D, float rotation3D);
+        public abstract void updateData(MaterialWeatherView view, long interval,
+                                 float rotation2D, float rotation3D);
 
         // return true if finish drawing.
         public abstract void draw(MaterialWeatherView view, Canvas canvas,
@@ -140,7 +150,7 @@ public class MaterialWeatherView extends SurfaceView
 
     public static abstract class RotateController {
 
-        public abstract void updateRotation(double rotation);
+        public abstract void updateRotation(double rotation, double interval);
 
         public abstract double getRotate();
     }
@@ -164,6 +174,10 @@ public class MaterialWeatherView extends SurfaceView
                 double cos3D = Math.max(Math.min(1, g2D * (aY >= 0 ? 1 : -1) / g3D), -1);
                 rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
                 rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
+
+                if (60 < Math.abs(rotation3D) && Math.abs(rotation3D) < 120) {
+                    rotation2D *= Math.abs(Math.abs(rotation3D) - 90) / 30.0;
+                }
             } else {
                 rotation2D = 0;
                 rotation3D = 0;
@@ -250,127 +264,127 @@ public class MaterialWeatherView extends SurfaceView
             case WeatherView.WEATHER_KIND_CLEAR_DAY:
                 implementor = new SunImplementor(this);
                 rotators = new RotateController[] {
-                        new DecelerateRotateController(rotation2D),
-                        new DecelerateRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_CLEAR_NIGHT:
                 implementor = new MeteorShowerImplementor(this);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_CLOUDY:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_CLOUDY);
                 rotators = new RotateController[] {
-                        new DecelerateRotateController(rotation2D),
-                        new DecelerateRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_CLOUD_DAY:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_CLOUD_DAY);
                 rotators = new RotateController[] {
-                        new DecelerateRotateController(rotation2D),
-                        new DecelerateRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_CLOUD_NIGHT:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_CLOUD_NIGHT);
                 rotators = new RotateController[] {
-                        new DecelerateRotateController(rotation2D),
-                        new DecelerateRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_FOG:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_FOG);
                 rotators = new RotateController[] {
-                        new DecelerateRotateController(rotation2D),
-                        new DecelerateRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_HAIL_DAY:
                 implementor = new HailImplementor(this, HailImplementor.TYPE_HAIL_DAY);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_HAIL_NIGHT:
                 implementor = new HailImplementor(this, HailImplementor.TYPE_HAIL_NIGHT);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_HAZE:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_HAZE);
                 rotators = new RotateController[] {
-                        new DecelerateRotateController(rotation2D),
-                        new DecelerateRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_RAINY_DAY:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_RAIN_DAY);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_RAINY_NIGHT:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_RAIN_NIGHT);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_SNOW_DAY:
                 implementor = new SnowImplementor(this, SnowImplementor.TYPE_SNOW_DAY);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_SNOW_NIGHT:
                 implementor = new SnowImplementor(this, SnowImplementor.TYPE_SNOW_NIGHT);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_THUNDERSTORM:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_THUNDERSTORM);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_THUNDER:
                 implementor = new CloudImplementor(this, CloudImplementor.TYPE_THUNDER);
                 rotators = new RotateController[] {
-                        new DecelerateRotateController(rotation2D),
-                        new DecelerateRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_WIND:
                 implementor = new WindImplementor(this);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_SLEET_DAY:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_SLEET_DAY);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KIND_SLEET_NIGHT:
                 implementor = new RainImplementor(this, RainImplementor.TYPE_SLEET_NIGHT);
                 rotators = new RotateController[] {
-                        new BaseRotateController(rotation2D),
-                        new BaseRotateController(rotation3D)};
+                        new DelayRotateController(rotation2D),
+                        new DelayRotateController(rotation3D)};
                 break;
 
             case WeatherView.WEATHER_KING_NULL:

@@ -22,7 +22,7 @@ public class AboutAppTranslator {
     }
 
     public static List<AboutAppTranslator> buildTranslatorList() {
-        List<AboutAppTranslator> list = new ArrayList<>(12);
+        List<AboutAppTranslator> list = new ArrayList<>(13);
         list.add(new AboutAppTranslator("Mehmet Saygin Yilmaz", "memcos@gmail.com", R.drawable.flag_tr));
         list.add(new AboutAppTranslator("Ali D.", "siyaha@gmail.com", R.drawable.flag_tr));
         list.add(new AboutAppTranslator("benjamin Tourrel", "polo_naref@hotmail.fr", R.drawable.flag_fr));
@@ -35,6 +35,7 @@ public class AboutAppTranslator {
         list.add(new AboutAppTranslator("Jurre Tas", "jurretas@gmail.com", R.drawable.flag_nl));
         list.add(new AboutAppTranslator("Jörg Meinhardt", "jorime@web.de", R.drawable.flag_de));
         list.add(new AboutAppTranslator("Olivér Paróczai", "oliver.paroczai@gmail.com", R.drawable.flag_hu));
+        list.add(new AboutAppTranslator("Fabio Raitz", "fabioraitz@outlook.com", R.drawable.flag_br));
         return list;
     }
 }

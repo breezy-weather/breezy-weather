@@ -78,6 +78,9 @@ public class LanguageUtils {
             case "hungarian":
                 return new Locale("hu");
 
+            case "portuguese":
+                return new Locale("pt", "BR");
+
             default:
                 return new Locale("en");
         }

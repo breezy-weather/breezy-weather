@@ -33,7 +33,7 @@ public class Weather {
     }
 
     public boolean isValid(float hours) {
-        return System.currentTimeMillis() - base.timeStamp < hours * 60 * 60 * 1000;
+        return Math.abs(System.currentTimeMillis() - base.timeStamp) < hours * 60 * 60 * 1000;
     }
 
     public static Weather buildWeatherPrimaryData(WeatherEntity entity) {

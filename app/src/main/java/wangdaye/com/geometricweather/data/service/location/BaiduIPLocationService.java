@@ -28,20 +28,24 @@ public class BaiduIPLocationService extends LocationService {
             @Override
             public void onResponse(Call<BaiduIPLocationResult> call, Response<BaiduIPLocationResult> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Result result = new Result();
+                    try {
+                        Result result = new Result();
 
-                    result.district = response.body().getContent().getAddress_detail().getDistrict();
-                    result.city = response.body().getContent().getAddress_detail().getCity();
-                    result.province = response.body().getContent().getAddress_detail().getProvince();
-                    result.country = "中国";
-                    result.latitude = response.body().getContent().getPoint().getY();
-                    result.longitude = response.body().getContent().getPoint().getX();
-                    result.inChina = true;
+                        result.district = response.body().getContent().getAddress_detail().getDistrict();
+                        result.city = response.body().getContent().getAddress_detail().getCity();
+                        result.province = response.body().getContent().getAddress_detail().getProvince();
+                        result.country = "中国";
+                        result.latitude = response.body().getContent().getPoint().getY();
+                        result.longitude = response.body().getContent().getPoint().getX();
+                        result.inChina = true;
 
-                    callback.onCompleted(result);
-                } else {
-                    callback.onCompleted(null);
+                        callback.onCompleted(result);
+                        return;
+                    } catch (Exception ignore) {
+                        // do nothing.
+                    }
                 }
+                callback.onCompleted(null);
             }
 
             @Override

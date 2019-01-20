@@ -429,15 +429,16 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, float rotation2D, float rotation3D) {
+    public void updateData(MaterialWeatherView view, long interval,
+                           float rotation2D, float rotation3D) {
         for (Cloud c : clouds) {
-            c.move(REFRESH_INTERVAL, rotation2D, rotation3D);
+            c.move(interval, rotation2D, rotation3D);
         }
         for (Star s : stars) {
-            s.shine(REFRESH_INTERVAL);
+            s.shine(interval);
         }
         if (thunder != null) {
-            thunder.shine(REFRESH_INTERVAL);
+            thunder.shine(interval);
         }
     }
 

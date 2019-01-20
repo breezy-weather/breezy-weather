@@ -32,9 +32,8 @@ public class ShortcutsManager {
 
     @TargetApi(25)
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)
-    public static void refreshShortcuts(final Context c, List<Location> locationList) {
-        final List<Location> list = new ArrayList<>(locationList.size());
-        list.addAll(locationList);
+    public static void refreshShortcutsInNewThread(final Context c, List<Location> locationList) {
+        final List<Location> list = new ArrayList<>(locationList);
 
         ThreadManager.getInstance().execute(new Runnable() {
             @Override
@@ -79,7 +78,7 @@ public class ShortcutsManager {
                         icon = Icon.createWithResource(c, R.drawable.ic_shortcut_sun_day);
                     }
 
-                    String title = list.get(i).isLocal() ? c.getString(R.string.local) : list.get(i).city;
+                    String title = list.get(i).isLocal() ? c.getString(R.string.local) : list.get(i).getCityName(c);
 
                     shortcutList.add(
                             new ShortcutInfo.Builder(c, list.get(i).cityId)
@@ -90,7 +89,11 @@ public class ShortcutsManager {
                                     .build());
                 }
 
-                shortcutManager.setDynamicShortcuts(shortcutList);
+                try {
+                    shortcutManager.setDynamicShortcuts(shortcutList);
+                } catch (Exception ignore) {
+                    // do nothing.
+                }
             }
         });
     }

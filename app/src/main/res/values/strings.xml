@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.231</string>
+    <string name="version_code">v2.233</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -138,6 +138,7 @@
     <string name="feedback_hide_subtitle">Hide Subtitle.</string>
     <string name="feedback_subtitle_data">Subtitle data.</string>
     <string name="feedback_black_text">Dark text.</string>
+    <string name="feedback_clock_font">Clock font.</string>
 
     <string name="feedback_click_toggle">Click chart to toggle data.</string>
     <string name="feedback_no_data">NO DATA</string>
@@ -251,6 +252,7 @@
     <string name="key_hide_subtitle">hide_refresh_time</string>
     <string name="key_subtitle_data">subtitle_data</string>
     <string name="key_black_text">black_text</string>
+    <string name="key_clock_font">clock_font</string>
 
     <string name="key_background_free">background_free_3</string>
     <string name="key_service_provider">service_provider</string>

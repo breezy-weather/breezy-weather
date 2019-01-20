@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -37,8 +41,9 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
 
     private ImageView widgetCard;
     private ImageView widgetIcon;
-    private TextClock widgetClock;
-    private TextClock widgetClockAA;
+    private RelativeLayout[] widgetClockContainers;
+    private TextClock[] widgetClocks;
+    private TextClock[] widgetClockAAs;
     private TextClock widgetTitle;
     private TextView widgetLunar;
     private TextView widgetSubtitle;
@@ -52,6 +57,10 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
     private Switch showCardSwitch;
     private Switch blackTextSwitch;
 
+    private String clockFontValueNow = "light";
+    private String[] clockFonts;
+    private String[] clockFontValues;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +70,13 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
     @Override
     public View getSnackbarContainer() {
         return container;
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        this.clockFonts = getResources().getStringArray(R.array.clock_font);
+        this.clockFontValues = getResources().getStringArray(R.array.clock_font_values);
     }
 
     @SuppressLint("InflateParams")
@@ -73,8 +89,18 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
         widgetCard.setVisibility(View.GONE);
 
         this.widgetIcon = widgetView.findViewById(R.id.widget_clock_day_icon);
-        this.widgetClock = widgetView.findViewById(R.id.widget_clock_day_clock);
-        this.widgetClockAA = widgetView.findViewById(R.id.widget_clock_day_clock_aa);
+        this.widgetClockContainers = new RelativeLayout[] {
+                widgetView.findViewById(R.id.widget_clock_day_clock_lightContainer),
+                widgetView.findViewById(R.id.widget_clock_day_clock_normalContainer),
+                widgetView.findViewById(R.id.widget_clock_day_clock_blackContainer)};
+        this.widgetClocks = new TextClock[] {
+                widgetView.findViewById(R.id.widget_clock_day_clock_light),
+                widgetView.findViewById(R.id.widget_clock_day_clock_normal),
+                widgetView.findViewById(R.id.widget_clock_day_clock_black)};
+        this.widgetClockAAs = new TextClock[] {
+                widgetView.findViewById(R.id.widget_clock_day_clock_aa_light),
+                widgetView.findViewById(R.id.widget_clock_day_clock_aa_normal),
+                widgetView.findViewById(R.id.widget_clock_day_clock_aa_black)};
         this.widgetTitle = widgetView.findViewById(R.id.widget_clock_day_title);
         this.widgetLunar = widgetView.findViewById(R.id.widget_clock_day_lunar);
         this.widgetSubtitle = widgetView.findViewById(R.id.widget_clock_day_subtitle);
@@ -93,6 +119,10 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
 
         this.blackTextSwitch = findViewById(R.id.activity_create_widget_clock_day_details_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
+
+        AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_create_widget_clock_day_details_clockFontSpinner);
+        clockFontSpinner.setOnItemSelectedListener(new ClockFontSpinnerSelectedListener());
+        clockFontSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, clockFonts));
 
         Button doneButton = findViewById(R.id.activity_create_widget_clock_day_details_doneButton);
         doneButton.setOnClickListener(this);
@@ -125,14 +155,26 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
         widgetAQIHumidity.setText(WidgetClockDayDetailsUtils.getAQIHumidityTempText(this, weather));
         widgetWind.setText(WidgetClockDayDetailsUtils.getWindText(this, weather));
 
+        for (int i = 0; i < clockFontValues.length; i ++) {
+            if (clockFontValueNow.equals(clockFontValues[i])) {
+                widgetClockContainers[i].setVisibility(View.VISIBLE);
+            } else {
+                widgetClockContainers[i].setVisibility(View.GONE);
+            }
+        }
+
         if (showCardSwitch.isChecked() || blackTextSwitch.isChecked()) {
             if (showCardSwitch.isChecked()) {
                 widgetCard.setVisibility(View.VISIBLE);
             } else {
                 widgetCard.setVisibility(View.GONE);
             }
-            widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
-            widgetClockAA.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            for (TextClock c : widgetClocks) {
+                c.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            }
+            for (TextClock c : widgetClockAAs) {
+                c.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
+            }
             widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
             widgetLunar.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
             widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
@@ -142,8 +184,12 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
             widgetWind.setTextColor(ContextCompat.getColor(this, R.color.colorTextDark));
         } else {
             widgetCard.setVisibility(View.GONE);
-            widgetClock.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
-            widgetClockAA.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            for (TextClock c : widgetClocks) {
+                c.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            }
+            for (TextClock c : widgetClockAAs) {
+                c.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
+            }
             widgetTitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
             widgetLunar.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
             widgetSubtitle.setTextColor(ContextCompat.getColor(this, R.color.colorTextLight));
@@ -168,6 +214,7 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
                         .edit();
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
+                editor.putString(getString(R.string.key_clock_font), clockFontValueNow);
                 editor.apply();
 
                 Intent intent = getIntent();
@@ -203,6 +250,23 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             refreshWidgetView(getLocationNow().weather);
+        }
+    }
+
+    // on item selected listener.
+
+    private class ClockFontSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            if (!clockFontValueNow.equals(clockFontValues[i])) {
+                clockFontValueNow = clockFontValues[i];
+                refreshWidgetView(getLocationNow().weather);
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+            // do nothing.
         }
     }
 }

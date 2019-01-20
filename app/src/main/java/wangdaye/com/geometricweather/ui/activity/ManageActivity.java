@@ -55,7 +55,7 @@ public class ManageActivity extends GeoActivity
             adapter.moveData(fromPosition, toPosition);
             DatabaseHelper.getInstance(ManageActivity.this).writeLocationList(adapter.itemList);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                ShortcutsManager.refreshShortcuts(ManageActivity.this, adapter.itemList);
+                ShortcutsManager.refreshShortcutsInNewThread(ManageActivity.this, adapter.itemList);
             }
 
             ((LocationAdapter.ViewHolder) viewHolder)
@@ -127,7 +127,7 @@ public class ManageActivity extends GeoActivity
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    ShortcutsManager.refreshShortcuts(this, adapter.itemList);
+                    ShortcutsManager.refreshShortcutsInNewThread(this, adapter.itemList);
                 }
                 break;
         }
@@ -190,7 +190,7 @@ public class ManageActivity extends GeoActivity
                         new CancelDeleteListener(location),
                         new DeleteSnackbarCallback(location));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    ShortcutsManager.refreshShortcuts(ManageActivity.this, adapter.itemList);
+                    ShortcutsManager.refreshShortcutsInNewThread(ManageActivity.this, adapter.itemList);
                 }
             }
         }

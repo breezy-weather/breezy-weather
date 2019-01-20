@@ -99,7 +99,7 @@ public abstract class UpdateService extends Service
     @Override
     public void onPollingCompleted() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcuts(this, locationList);
+            ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             setDelayTask(failed);
