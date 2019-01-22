@@ -1,11 +1,14 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 
 import java.util.List;
@@ -247,6 +250,14 @@ public class LocationHelper {
         if (weatherService != null) {
             weatherService.cancel();
         }
+    }
+
+    public boolean hasPermissions(Context context) {
+        return locationService.hasPermissions(context);
+    }
+
+    public String[] getPermissions() {
+        return locationService.getPermissions();
     }
 
     private boolean queryEquals(String a, String b) {

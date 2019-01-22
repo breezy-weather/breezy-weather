@@ -109,7 +109,9 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
                 .getString(
                         getString(R.string.key_widget_icon_style),
                         "material");
-        boolean dayTime = TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(this)
+                .getDayTime(this, weather, false)
+                .isDayTime();
 
         for (int i = 0; i < 5; i ++) {
             widgetWeeks[i].setText(WidgetWeekUtils.getWeek(this, weather, i));

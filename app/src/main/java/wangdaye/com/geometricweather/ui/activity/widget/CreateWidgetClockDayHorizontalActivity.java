@@ -133,7 +133,8 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
 
         int imageId = WidgetClockDayHorizontalUtils.getWeatherIconId(
                 weather,
-                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime(),
+                TimeManager.getInstance(this).getDayTime(
+                        this, weather, false).isDayTime(),
                 iconStyle,
                 blackTextSwitch.isChecked());
         Glide.with(this)

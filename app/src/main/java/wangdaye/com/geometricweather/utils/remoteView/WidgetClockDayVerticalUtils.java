@@ -42,7 +42,9 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
         boolean hideSubtitle = sharedPreferences.getBoolean(context.getString(R.string.key_hide_subtitle), false);
         String subtitleData = sharedPreferences.getString(context.getString(R.string.key_subtitle_data), "time");
         String clockFont = sharedPreferences.getString(context.getString(R.string.key_clock_font), "light");
-        boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(context)
+                .getDayTime(context, weather, false)
+                .isDayTime();
 
                 SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = defaultSharePreferences.getBoolean(

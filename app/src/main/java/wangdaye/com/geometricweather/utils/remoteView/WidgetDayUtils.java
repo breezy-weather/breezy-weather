@@ -41,7 +41,9 @@ public class WidgetDayUtils extends AbstractRemoteViewsUtils {
         boolean blackText = sharedPreferences.getBoolean(context.getString(R.string.key_black_text), false);
         boolean hideSubtitle = sharedPreferences.getBoolean(context.getString(R.string.key_hide_subtitle), false);
         String subtitleData = sharedPreferences.getString(context.getString(R.string.key_subtitle_data), "time");
-        boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(context)
+                .getDayTime(context, weather, false)
+                .isDayTime();
 
         SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = defaultSharePreferences.getBoolean(

@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.data.service.location;
 
+import android.Manifest;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -24,11 +24,11 @@ public class BaiduLocationService extends LocationService {
     private LocationCallback callback;
 
     private BDAbstractLocationListener listener = new BDAbstractLocationListener() {
+
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
             cancel();
             if (callback != null) {
-                Log.d("location", "location code = " + bdLocation.getLocType());
                 switch (bdLocation.getLocType()) {
                     case 61:
                     case 161:
@@ -96,5 +96,15 @@ public class BaiduLocationService extends LocationService {
             client.stop();
             client = null;
         }
+    }
+
+    @Override
+    public String[] getPermissions() {
+        return new String[] {
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE};
     }
 }

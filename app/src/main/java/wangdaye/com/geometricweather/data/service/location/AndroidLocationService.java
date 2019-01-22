@@ -4,7 +4,6 @@ package wangdaye.com.geometricweather.data.service.location;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -14,9 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -100,7 +97,7 @@ public class AndroidLocationService extends LocationService {
         ThreadManager.getInstance().execute(new Runnable() {
             @Override
             public void run() {
-                if (locationManager == null || !hasPermissions() || !bindProvider()) {
+                if (locationManager == null || !hasPermissions(context) || !bindProvider()) {
                     // can not get location manager.
                     // or can not get permissions.
                     // or can not bind a valid location provider.
@@ -146,6 +143,13 @@ public class AndroidLocationService extends LocationService {
         stop();
     }
 
+    @Override
+    public String[] getPermissions() {
+        return new String[] {
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION};
+    }
+
     private void stop() {
         working = false;
         if (locationManager != null) {
@@ -169,71 +173,57 @@ public class AndroidLocationService extends LocationService {
         return false;
     }
 
+    @Nullable
     private Result buildResult() {
-        Result result = null;
-        if (location != null && location.hasAccuracy()) {
-            Log.d("AndroidLocation", location.getLatitude() + ", " + location.getLongitude()
-                    + " / getAccuracy = " + location.getAccuracy());
+        if (location != null && location.hasAccuracy()
+                && Geocoder.isPresent()) {
 
-            result = new Result();
-
-            if (Geocoder.isPresent()) {
-                Log.d("AndroidLocation", "geocoder is enabled.");
-                Geocoder geocoder = new Geocoder(context);
-                List<Address> addressList = null;
-                try {
-                    addressList = geocoder.getFromLocation(
-                            location.getLatitude(), location.getLongitude(), 10);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (addressList != null && addressList.size() > 0) {
-                    Log.d("AndroidLocation", "geocoder returned " + addressList.size() + " results");
-                    result.district = addressList.get(0).getSubLocality();
-                    result.city = addressList.get(0).getLocality();
-                    if (TextUtils.isEmpty(result.city)) {
-                        result.city = addressList.get(0).getSubAdminArea();
-                    }
-                    result.province = addressList.get(0).getAdminArea();
-                    result.country = addressList.get(0).getCountryName();
-
-                    String countryCode = addressList.get(0).getCountryCode();
-                    if (TextUtils.isEmpty(countryCode)) {
-                        if (TextUtils.isEmpty(countryCode)) {
-                            result.inChina = false;
-                        } else {
-                            result.inChina = result.country.equals("中国")
-                                    || result.country.equals("香港")
-                                    || result.country.equals("澳门")
-                                    || result.country.equals("台湾")
-                                    || result.country.equals("China");
-                        }
-                    } else {
-                        result.inChina = countryCode.equals("CN")
-                                || addressList.get(0).getCountryCode().equals("cn")
-                                || addressList.get(0).getCountryCode().equals("HK")
-                                || addressList.get(0).getCountryCode().equals("hk")
-                                || addressList.get(0).getCountryCode().equals("TW")
-                                || addressList.get(0).getCountryCode().equals("tw");
-                    }
-                }
+            Geocoder geocoder = new Geocoder(context);
+            List<Address> addressList = null;
+            try {
+                addressList = geocoder.getFromLocation(
+                        location.getLatitude(), location.getLongitude(), 1);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            if (addressList != null && addressList.size() > 0) {
+                Result result = new Result();
 
-            result.latitude = String.valueOf(location.getLatitude());
-            result.longitude = String.valueOf(location.getLongitude());
-            Log.d(
-                    "AndroidLocation",
-                    "result location = " + result.province + " " + result.city + " " + result.district);
+                result.district = addressList.get(0).getSubLocality();
+                result.city = addressList.get(0).getLocality();
+                if (TextUtils.isEmpty(result.city)) {
+                    result.city = addressList.get(0).getSubAdminArea();
+                }
+                result.province = addressList.get(0).getAdminArea();
+                result.country = addressList.get(0).getCountryName();
+
+                String countryCode = addressList.get(0).getCountryCode();
+                if (TextUtils.isEmpty(countryCode)) {
+                    if (TextUtils.isEmpty(result.country)) {
+                        result.inChina = false;
+                    } else {
+                        result.inChina = result.country.equals("中国")
+                                || result.country.equals("香港")
+                                || result.country.equals("澳门")
+                                || result.country.equals("台湾")
+                                || result.country.equals("China");
+                    }
+                } else {
+                    result.inChina = countryCode.equals("CN")
+                            || countryCode.equals("cn")
+                            || countryCode.equals("HK")
+                            || countryCode.equals("hk")
+                            || countryCode.equals("TW")
+                            || countryCode.equals("tw");
+                }
+
+                result.latitude = String.valueOf(location.getLatitude());
+                result.longitude = String.valueOf(location.getLongitude());
+                return result;
+            }
         }
 
-        return result;
-    }
-
-    private boolean hasPermissions() {
-        return ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED
-                || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED;
+        return null;
     }
 
     private boolean bindProvider() {
@@ -259,7 +249,6 @@ public class AndroidLocationService extends LocationService {
     }
 
     private void postLocationUpdateRequestToMainThread() {
-        Log.d("AndroidLocation", provider);
         handler.post(new Runnable() {
             @Override
             public void run() {

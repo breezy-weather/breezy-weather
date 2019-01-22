@@ -137,13 +137,12 @@ public class CreateWidgetDayWeekActivity extends GeoWidgetConfigActivity
                 .getString(
                         getString(R.string.key_widget_icon_style),
                         "material");
-        boolean dayTime = TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(this)
+                .getDayTime(this, weather, false)
+                .isDayTime();
 
         int imageId = WidgetDayWeekUtils.getWeatherIconId(
-                weather,
-                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime(),
-                iconStyle,
-                blackTextSwitch.isChecked());
+                weather, dayTime, iconStyle, blackTextSwitch.isChecked());
         Glide.with(this)
                 .load(imageId)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)

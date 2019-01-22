@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.ui.activity.main;
 
-import android.Manifest;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
@@ -468,17 +467,10 @@ public class MainActivity extends GeoActivity
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void requestLocationPermission() {
-        if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            this.requestPermissions(
-                    new String[] {
-                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_FINE_LOCATION},
-                    LOCATION_PERMISSIONS_REQUEST_CODE);
-        } else {
+        if (locationHelper.hasPermissions(this)) {
             locationHelper.requestLocation(this, locationNow, this);
+        } else {
+            this.requestPermissions(locationHelper.getPermissions(), LOCATION_PERMISSIONS_REQUEST_CODE);
         }
     }
 
@@ -486,25 +478,21 @@ public class MainActivity extends GeoActivity
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permission, @NonNull int[] grantResult) {
         super.onRequestPermissionsResult(requestCode, permission, grantResult);
-        if (grantResult.length == 0) {
-            if (locationNow.isLocal()) {
-                locationHelper.requestLocation(this, locationNow, this);
-            }
-            return;
-        }
         switch (requestCode) {
             case LOCATION_PERMISSIONS_REQUEST_CODE:
-                if (grantResult[0] == PackageManager.PERMISSION_GRANTED) {
-                    SnackbarUtils.showSnackbar(getString(R.string.feedback_request_location_permission_success));
-                    if (locationNow.isLocal()) {
-                        locationHelper.requestLocation(this, locationNow, this);
+                for (int r : grantResult) {
+                    if (r != PackageManager.PERMISSION_GRANTED) {
+                        SnackbarUtils.showSnackbar(
+                                getString(R.string.feedback_request_location_permission_failed),
+                                getString(R.string.help),
+                                locationHelperListener);
+                        setRefreshing(false);
+                        return;
                     }
-                } else {
-                    SnackbarUtils.showSnackbar(
-                            getString(R.string.feedback_request_location_permission_failed),
-                            getString(R.string.help),
-                            locationHelperListener);
-                    setRefreshing(false);
+                }
+                SnackbarUtils.showSnackbar(getString(R.string.feedback_request_location_permission_success));
+                if (locationNow.isLocal()) {
+                    locationHelper.requestLocation(this, locationNow, this);
                 }
                 break;
         }

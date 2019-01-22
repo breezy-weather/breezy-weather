@@ -64,6 +64,16 @@ public class BaiduIPLocationService extends LocationService {
         call = null;
     }
 
+    @Override
+    public boolean hasPermissions(Context context) {
+        return true;
+    }
+
+    @Override
+    public String[] getPermissions() {
+        return new String[0];
+    }
+
     private BaiduLocationApi buildApi() {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.BAIDU_IP_LOCATION_BASE_URL)

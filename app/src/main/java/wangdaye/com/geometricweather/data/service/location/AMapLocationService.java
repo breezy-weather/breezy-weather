@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.data.service.location;
 
+import android.Manifest;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -30,7 +30,6 @@ public class AMapLocationService extends LocationService {
         public void onLocationChanged(AMapLocation aMapLocation) {
             cancel();
             if (callback != null) {
-                Log.d("location", "location code = " + aMapLocation.getErrorCode());
                 switch (aMapLocation.getErrorCode()) {
                     case 0:
                         Result result = new Result();
@@ -93,5 +92,15 @@ public class AMapLocationService extends LocationService {
             client.onDestroy();
             client = null;
         }
+    }
+
+    @Override
+    public String[] getPermissions() {
+        return new String[] {
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE};
     }
 }

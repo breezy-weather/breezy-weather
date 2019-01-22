@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,17 +38,17 @@ public class TimeManager {
         getLastDayTime(context);
     }
 
-    public TimeManager getDayTime(Context context, Weather weather, boolean writeToPreference) {
+    public TimeManager getDayTime(Context context, @Nullable Weather weather, boolean writeToPreference) {
         int time = 60 * Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
                 + Calendar.getInstance().get(Calendar.MINUTE);
 
         if (weather != null) {
-            int sr = 60 * Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[0])
+            int sunrise = 60 * Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[0])
                     + Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[1]);
-            int ss = 60 * Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[0])
+            int sunset = 60 * Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[0])
                     + Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[1]);
 
-            dayTime = sr < time && time <= ss;
+            dayTime = sunrise < time && time <= sunset;
         } else {
             int sr = 60 * 6;
             int ss = 60 * 18;

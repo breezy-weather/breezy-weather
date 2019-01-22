@@ -39,7 +39,9 @@ public class NormalNotificationUtils extends AbstractRemoteViewsUtils {
         boolean fahrenheit = sharedPreferences.getBoolean(context.getString(R.string.key_fahrenheit), false);
 
         // get time & background color.
-        boolean dayTime = TimeManager.getInstance(context).getDayTime(context, weather, false).isDayTime();
+        boolean dayTime = TimeManager.getInstance(context)
+                .getDayTime(context, weather, false)
+                .isDayTime();
         String iconStyle = sharedPreferences.getString(
                 context.getString(R.string.key_notification_icon_style),
                 "material");

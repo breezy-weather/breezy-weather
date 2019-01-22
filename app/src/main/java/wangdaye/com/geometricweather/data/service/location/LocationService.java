@@ -4,10 +4,12 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -33,6 +35,18 @@ public abstract class LocationService {
     public abstract void requestLocation(Context context, @NonNull LocationCallback callback);
 
     public abstract void cancel();
+
+    public boolean hasPermissions(Context context) {
+        String[] permissions = getPermissions();
+        for (String p : permissions) {
+            if (ActivityCompat.checkSelfPermission(context, p) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public abstract String[] getPermissions();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     NotificationChannel getLocationNotificationChannel(Context context) {

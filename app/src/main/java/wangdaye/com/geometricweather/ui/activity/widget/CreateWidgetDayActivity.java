@@ -131,7 +131,8 @@ public class CreateWidgetDayActivity extends GeoWidgetConfigActivity
 
         int imageId = WidgetDayUtils.getWeatherIconId(
                 weather,
-                TimeManager.getInstance(this).getDayTime(this, weather, false).isDayTime(),
+                TimeManager.getInstance(this).getDayTime(
+                        this, weather, false).isDayTime(),
                 iconStyle,
                 blackTextSwitch.isChecked());
         Glide.with(this)
