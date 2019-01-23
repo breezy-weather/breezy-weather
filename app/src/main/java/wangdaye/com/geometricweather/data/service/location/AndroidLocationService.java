@@ -178,10 +178,9 @@ public class AndroidLocationService extends LocationService {
         if (location != null && location.hasAccuracy()
                 && Geocoder.isPresent()) {
 
-            Geocoder geocoder = new Geocoder(context);
             List<Address> addressList = null;
             try {
-                addressList = geocoder.getFromLocation(
+                addressList = new Geocoder(context).getFromLocation(
                         location.getLatitude(), location.getLongitude(), 1);
             } catch (IOException e) {
                 e.printStackTrace();

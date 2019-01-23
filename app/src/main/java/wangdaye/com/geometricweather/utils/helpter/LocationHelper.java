@@ -1,19 +1,18 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.data.entity.model.Location;
 import wangdaye.com.geometricweather.data.service.location.AMapLocationService;
 import wangdaye.com.geometricweather.data.service.location.AndroidLocationService;
@@ -275,6 +274,23 @@ public class LocationHelper {
             return a.equals(b);
         }
         return false;
+    }
+
+    public static String getLocationServiceProvider(Context context, SharedPreferences sharedPreferences) {
+        String provider = sharedPreferences.getString(
+                context.getString(R.string.key_location_service),
+                "");
+        if (TextUtils.isEmpty(provider)) {
+            if (Geocoder.isPresent()) {
+                provider = "native";
+            } else {
+                provider = "baidu";
+            }
+        }
+        sharedPreferences.edit()
+                .putString(context.getString(R.string.key_location_service), provider)
+                .apply();
+        return provider;
     }
 
     // interface.

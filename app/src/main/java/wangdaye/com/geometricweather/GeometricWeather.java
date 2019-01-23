@@ -18,6 +18,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
@@ -130,7 +131,7 @@ public class GeometricWeather extends Application {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "accu");
-        locationService = sharedPreferences.getString(getString(R.string.key_location_service), "baidu");
+        locationService = LocationHelper.getLocationServiceProvider(this, sharedPreferences);
         darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
         cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);

@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.ui.fragment;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -26,20 +25,14 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
         chineseSource.setSummary(
                 ValueUtils.getWeatherSource(
                         getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(
-                                        getString(R.string.key_chinese_source),
-                                        "accu")));
+                        GeometricWeather.getInstance().getChineseSource()));
         chineseSource.setOnPreferenceChangeListener(this);
 
         Preference locationService = findPreference(getString(R.string.key_location_service));
         locationService.setSummary(
                 ValueUtils.getLocationService(
                         getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(
-                                        getString(R.string.key_location_service),
-                                        "baidu")));
+                        GeometricWeather.getInstance().getLocationService()));
         locationService.setOnPreferenceChangeListener(this);
     }
 
