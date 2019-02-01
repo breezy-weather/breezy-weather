@@ -5,13 +5,13 @@ import android.text.TextUtils;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.data.entity.model.CNCityList;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * CN city entity.
@@ -114,34 +114,41 @@ public class CNCityEntity {
 
         List<CNCityEntity> entityList;
 
-        entityList = dao.queryBuilder()
-                .where(
-                        CNCityEntityDao.Properties.District.eq(district),
-                        CNCityEntityDao.Properties.City.eq(city)).list();
+        // district, city.
+        try {
+            entityList = dao.queryBuilder()
+                    .where(
+                            CNCityEntityDao.Properties.District.eq(district),
+                            CNCityEntityDao.Properties.City.eq(city)).list();
+        } catch (Exception e) {
+            entityList = null;
+        }
         if (entityList != null && entityList.size() > 0) {
             return CNCityList.CNCity.buildCNCity(entityList.get(0));
         }
 
-        entityList = dao.queryBuilder()
-                .where(
-                        CNCityEntityDao.Properties.District.eq(district),
-                        CNCityEntityDao.Properties.Province.eq(province)).list();
+        // district, province.
+        try {
+            entityList = dao.queryBuilder()
+                    .where(
+                            CNCityEntityDao.Properties.District.eq(district),
+                            CNCityEntityDao.Properties.Province.eq(province)).list();
+        } catch (Exception e) {
+            entityList = null;
+        }
         if (entityList != null && entityList.size() > 0) {
             return CNCityList.CNCity.buildCNCity(entityList.get(0));
         }
 
-        entityList = dao.queryBuilder()
-                .where(
-                        CNCityEntityDao.Properties.City.eq(city),
-                        CNCityEntityDao.Properties.Province.eq(province)).list();
-        if (entityList != null && entityList.size() > 0) {
-            return CNCityList.CNCity.buildCNCity(entityList.get(0));
+        // city, province.
+        try {
+            entityList = dao.queryBuilder()
+                    .where(
+                            CNCityEntityDao.Properties.City.eq(city),
+                            CNCityEntityDao.Properties.Province.eq(province)).list();
+        } catch (Exception e) {
+            entityList = null;
         }
-
-        entityList = dao.queryBuilder()
-                .where(
-                        CNCityEntityDao.Properties.City.eq(district),
-                        CNCityEntityDao.Properties.Province.eq(city)).list();
         if (entityList != null && entityList.size() > 0) {
             return CNCityList.CNCity.buildCNCity(entityList.get(0));
         }

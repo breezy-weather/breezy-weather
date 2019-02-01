@@ -44,7 +44,7 @@ public class AccuWeatherService extends WeatherService {
 
     private AccuWeatherApi api;
 
-    private Call[] weatherCalls = new Call[6];
+    private Call[] weatherCalls;
     private Call locationCall;
 
     private Weather weather;
@@ -69,6 +69,7 @@ public class AccuWeatherService extends WeatherService {
                 .client(client)
                 .build()
                 .create((AccuWeatherApi.class));
+        this.weatherCalls = new Call[6];
     }
 
     @Override

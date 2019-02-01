@@ -8,8 +8,8 @@
         <CheckBoxPreference
             android:title="@string/settings_title_background_free"
             android:key="@string/key_background_free"
-            android:summaryOn="@string/on"
-            android:summaryOff="@string/off"
+            android:summaryOn="@string/settings_summary_background_free_on"
+            android:summaryOff="@string/settings_summary_background_free_off"
             android:defaultValue="true" />
 
         <CheckBoxPreference
@@ -80,13 +80,11 @@
     <PreferenceCategory
         android:title="@string/settings_category_widget">
 
-        <ListPreference
-            android:title="@string/settings_title_icon_style"
-            android:key="@string/key_widget_icon_style"
-            android:entries="@array/icon_styles"
-            android:entryValues="@array/icon_style_values"
-            android:dialogTitle="@string/settings_title_icon_style"
-            android:defaultValue="material" />
+        <CheckBoxPreference
+            android:title="@string/settings_title_minimal_icon"
+            android:key="@string/key_widget_minimal_icon"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
 
         <CheckBoxPreference
             android:title="@string/settings_title_click_widget_to_refresh"
@@ -105,13 +103,11 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 
-        <ListPreference
-            android:title="@string/settings_title_icon_style"
-            android:key="@string/key_notification_icon_style"
-            android:entries="@array/icon_styles"
-            android:entryValues="@array/icon_style_values"
-            android:dialogTitle="@string/settings_title_icon_style"
-            android:defaultValue="material" />
+        <CheckBoxPreference
+            android:title="@string/settings_title_minimal_icon"
+            android:key="@string/key_notification_minimal_icon"
+            android:summaryOn="@string/on"
+            android:summaryOff="@string/off" />
 
         <CheckBoxPreference
             android:title="@string/settings_title_notification_temp_icon"

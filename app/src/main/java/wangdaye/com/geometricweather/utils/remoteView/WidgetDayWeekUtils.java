@@ -49,9 +49,9 @@ public class WidgetDayWeekUtils extends AbstractRemoteViewsUtils {
         boolean fahrenheit = defaultSharePreferences.getBoolean(
                 context.getString(R.string.key_fahrenheit),
                 false);
-        String iconStyle = defaultSharePreferences.getString(
-                context.getString(R.string.key_widget_icon_style),
-                "material");
+        boolean minimalIcon = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_widget_minimal_icon),
+                false);
         boolean touchToRefresh = defaultSharePreferences.getBoolean(
                 context.getString(R.string.key_click_widget_to_refresh),
                 false);
@@ -67,7 +67,7 @@ public class WidgetDayWeekUtils extends AbstractRemoteViewsUtils {
         RemoteViews views = buildWidgetViewDayPart(
                 context, weather,
                 dayTime, textColor, fahrenheit,
-                iconStyle, blackText, viewStyle,
+                minimalIcon, blackText, viewStyle,
                 hideSubtitle, subtitleData);
 
         // set week part.
@@ -106,19 +106,19 @@ public class WidgetDayWeekUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_day_week_icon_1,
-                getIconId(weather, dayTime, iconStyle, blackText, 0));
+                getIconId(weather, dayTime, minimalIcon, blackText, 0));
         views.setImageViewResource(
                 R.id.widget_day_week_icon_2,
-                getIconId(weather, dayTime, iconStyle, blackText, 1));
+                getIconId(weather, dayTime, minimalIcon, blackText, 1));
         views.setImageViewResource(
                 R.id.widget_day_week_icon_3,
-                getIconId(weather, dayTime, iconStyle, blackText, 2));
+                getIconId(weather, dayTime, minimalIcon, blackText, 2));
         views.setImageViewResource(
                 R.id.widget_day_week_icon_4,
-                getIconId(weather, dayTime, iconStyle, blackText, 3));
+                getIconId(weather, dayTime, minimalIcon, blackText, 3));
         views.setImageViewResource(
                 R.id.widget_day_week_icon_5,
-                getIconId(weather, dayTime, iconStyle, blackText, 4));
+                getIconId(weather, dayTime, minimalIcon, blackText, 4));
 
         // set text color.
         views.setTextColor(R.id.widget_day_week_week_1, textColor);
@@ -147,7 +147,7 @@ public class WidgetDayWeekUtils extends AbstractRemoteViewsUtils {
 
     private static RemoteViews buildWidgetViewDayPart(Context context, Weather weather,
                                                       boolean dayTime, int textColor, boolean fahrenheit,
-                                                      String iconStyle, boolean blackText, String viewStyle,
+                                                      boolean minimalIcon, boolean blackText, String viewStyle,
                                                       boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
         switch (viewStyle) {
@@ -166,7 +166,7 @@ public class WidgetDayWeekUtils extends AbstractRemoteViewsUtils {
         
         views.setImageViewResource(
                 R.id.widget_day_week_icon, 
-                getWeatherIconId(weather, dayTime, iconStyle, blackText));
+                getWeatherIconId(weather, dayTime, minimalIcon, blackText));
         views.setTextViewText(
                 R.id.widget_day_week_title, 
                 getTitleText(weather, viewStyle, fahrenheit));
@@ -192,9 +192,9 @@ public class WidgetDayWeekUtils extends AbstractRemoteViewsUtils {
     }
 
     public static int getWeatherIconId(Weather weather,
-                                       boolean dayTime, String iconStyle, boolean blackText) {
+                                       boolean dayTime, boolean minimalIcon, boolean blackText) {
         return WeatherHelper.getWidgetNotificationIcon(
-                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
+                weather.realTime.weatherKind, dayTime, minimalIcon, blackText);
     }
 
     public static String getTitleText(Weather weather, String viewStyle, boolean fahrenheit) {
@@ -309,10 +309,10 @@ public class WidgetDayWeekUtils extends AbstractRemoteViewsUtils {
     }
 
     public static int getIconId(Weather weather,
-                                boolean dayTime, String iconStyle, boolean blackText, int index) {
+                                boolean dayTime, boolean minimalIcon, boolean blackText, int index) {
         return WeatherHelper.getWidgetNotificationIcon(
                 weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
-                dayTime, iconStyle, blackText);
+                dayTime, minimalIcon, blackText);
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,

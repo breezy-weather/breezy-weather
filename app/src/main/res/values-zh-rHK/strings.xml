@@ -175,6 +175,8 @@
     <!-- settings -->
     <string name="settings_category_basic">基礎</string>
     <string name="settings_title_background_free">後臺純净</string>
+    <string name="settings_summary_background_free_on">開啓\n若小部件和天氣通知無法自動更新，請關閉該選項</string>
+    <string name="settings_summary_background_free_off">關閉\n若不希望任何服務在後臺常駐，請開啓該選項</string>
     <string name="settings_title_service_provider">數據提供商</string>
     <string name="settings_summary_service_provider">選擇天氣數據和位置信息的數據提供商</string>
     <string name="settings_title_chinese_source">中國天氣源</string>
@@ -183,6 +185,7 @@
     <string name="settings_title_appearance">外觀</string>
     <string name="settings_summary_appearance">UI風格，卡片順序，語言等…</string>
     <string name="settings_title_ui_style">界面風格</string>
+    <string name="settings_title_icon_style">圖標風格</string>
     <string name="settings_title_card_order">卡片順序</string>
     <string name="settings_title_gravity_sensor_switch">開啓重力感應</string>
     <string name="settings_title_navigationBar_color">導航欄著色</string>
@@ -202,7 +205,7 @@
     <string name="settings_title_forecast_tomorrow">定時預報(明日天氣)</string>
     <string name="settings_title_forecast_tomorrow_time">設定預報時間(明日天氣)</string>
     <string name="settings_category_widget">小部件</string>
-    <string name="settings_title_icon_style">圖標風格</string>
+    <string name="settings_title_minimal_icon">Minimal圖標</string>
     <string name="settings_title_click_widget_to_refresh">點擊小部件時進行刷新</string>
     <string name="settings_category_notification">通知</string>
     <string name="settings_title_notification">開啓天氣通知</string>

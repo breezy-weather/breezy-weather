@@ -50,9 +50,9 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
         boolean fahrenheit = defaultSharePreferences.getBoolean(
                 context.getString(R.string.key_fahrenheit),
                 false);
-        String iconStyle = defaultSharePreferences.getString(
-                context.getString(R.string.key_widget_icon_style),
-                "material");
+        boolean minimalIcon = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_widget_minimal_icon),
+                false);
         boolean touchToRefresh = defaultSharePreferences.getBoolean(
                 context.getString(R.string.key_click_widget_to_refresh),
                 false);
@@ -67,7 +67,7 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
         RemoteViews views = buildWidgetViewDayPart(
                 context, weather,
                 dayTime, textColor, fahrenheit,
-                iconStyle, blackText, clockFont,
+                minimalIcon, blackText, clockFont,
                 viewStyle,
                 hideSubtitle, subtitleData);
 
@@ -84,7 +84,7 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
 
     private static RemoteViews buildWidgetViewDayPart(Context context, Weather weather,
                                                       boolean dayTime, int textColor, boolean fahrenheit,
-                                                      String iconStyle, boolean blackText, String clockFont,
+                                                      boolean minimalIcon, boolean blackText, String clockFont,
                                                       String viewStyle,
                                                       boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
@@ -112,7 +112,7 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_clock_day_icon,
-                getWeatherIconId(weather, dayTime, iconStyle, blackText));
+                getWeatherIconId(weather, dayTime, minimalIcon, blackText));
         views.setTextViewText(
                 R.id.widget_clock_day_title,
                 getTitleText(weather, viewStyle, fahrenheit));
@@ -174,9 +174,9 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
     }
 
     public static int getWeatherIconId(Weather weather,
-                                       boolean dayTime, String iconStyle, boolean blackText) {
+                                       boolean dayTime, boolean minimalIcon, boolean blackText) {
         return WeatherHelper.getWidgetNotificationIcon(
-                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
+                weather.realTime.weatherKind, dayTime, minimalIcon, blackText);
     }
 
     public static String getTitleText(Weather weather, String viewStyle, boolean fahrenheit) {

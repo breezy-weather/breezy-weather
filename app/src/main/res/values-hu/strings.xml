@@ -28,6 +28,9 @@
     <string name="exercise">Sport Szint</string>
     <string name="follow_system">Rendszerbeállítás Használata</string>
     <string name="background_information">Háttérinformáció</string>
+    <string name="pressure">Légköri Nyomás</string>
+    <string name="visibility">Látásviszony</string>
+    <string name="dew_point">Harmatpont</string>
 
     <string name="of_clock">:00</string>
     <string name="yesterday">Tegnap</string>
@@ -37,7 +40,7 @@
     <string name="week_2">KED</string>
     <string name="week_3">SZE</string>
     <string name="week_4">CSÜ</string>
-    <string name="week_5">PÁN</string>
+    <string name="week_5">PÉN</string>
     <string name="week_6">SZO</string>
     <string name="week_7">VAS</string>
 
@@ -61,6 +64,15 @@
     <string name="aqi_4">M-Szennyezés</string>
     <string name="aqi_5">H-Szennyezés</string>
     <string name="aqi_6">Veszélyes</string>
+
+    <string name="phase_new">Újhold</string>
+    <string name="phase_waxing_crescent">Növekvő Holdsarló</string>
+    <string name="phase_first">Első Negyed</string>
+    <string name="phase_waxing_gibbous">Növő Telihold</string>
+    <string name="phase_full">Telihold</string>
+    <string name="phase_waning_gibbous">Apadó Hold</string>
+    <string name="phase_third">Utolsó Negyed</string>
+    <string name="phase_waning_crescent">Csökkenő Sarló</string>
 
     <string name="daily_overview">Napi</string>
     <string name="hourly_overview">Óránkénti</string>

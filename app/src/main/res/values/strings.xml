@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.237</string>
+    <string name="version_code">v2.238</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -103,7 +103,7 @@
     <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d │ </string>
+    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- about. -->
     <string name="retrofit">Retrofit 2.0</string>
@@ -189,12 +189,15 @@
     <!-- settings -->
     <string name="settings_category_basic">Basic</string>
     <string name="settings_title_background_free">Background Free</string>
+    <string name="settings_summary_background_free_on">ON\nIf widgets and notification cannot refresh automatically, please turn off this option.</string>
+    <string name="settings_summary_background_free_off">OFF\nIf you do not want any services to continue working in background, please turn on this option.</string>
     <string name="settings_title_service_provider">Service Provider</string>
     <string name="settings_summary_service_provider">Select service provider of weather data and location information.</string>
     <string name="settings_title_chinese_source">Chinese Weather Source</string>
     <string name="settings_title_location_service">Location Service</string>
     <string name="settings_title_dark_mode">Dark Mode</string>
     <string name="settings_title_ui_style">UI Style</string>
+    <string name="settings_title_icon_style">Icon Style</string>
     <string name="settings_title_appearance">Appearance</string>
     <string name="settings_summary_appearance">UI style, Card order, Language…</string>
     <string name="settings_title_card_order">Card Order</string>
@@ -216,7 +219,7 @@
     <string name="settings_title_forecast_tomorrow">Forecast For Tomorrow</string>
     <string name="settings_title_forecast_tomorrow_time">Forecast Time For Tomorrow</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_icon_style">Icon Style</string>
+    <string name="settings_title_minimal_icon">Minimal Icon</string>
     <string name="settings_title_click_widget_to_refresh">Refresh Widget When Clicked</string>
     <string name="settings_category_notification">Notification</string>
     <string name="settings_title_notification">Send Notification</string>
@@ -260,6 +263,7 @@
     <string name="key_location_service">location_service</string>
     <string name="key_dark_mode">dark_mode</string>
     <string name="key_ui_style">ui_style</string>
+    <string name="key_icon_style">icon_style</string>
     <string name="key_appearance">appearance</string>
     <string name="key_card_order">card_order</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
@@ -274,10 +278,10 @@
     <string name="key_forecast_today_time">forecast_time_today</string>
     <string name="key_forecast_tomorrow">timing_forecast_switch_tomorrow</string>
     <string name="key_forecast_tomorrow_time">forecast_time_tomorrow</string>
-    <string name="key_widget_icon_style">widget_icon_style</string>
+    <string name="key_widget_minimal_icon">widget_minimal_icon</string>
     <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
     <string name="key_notification">notification_switch</string>
-    <string name="key_notification_icon_style">notification_icon_style</string>
+    <string name="key_notification_minimal_icon">notification_minimal_icon</string>
     <string name="key_notification_temp_icon">notification_temp_icon_switch</string>
     <string name="key_notification_text_color">notification_text_color</string>
     <string name="key_notification_background">notification_background_color_switch</string>

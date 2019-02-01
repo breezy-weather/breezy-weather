@@ -11,6 +11,14 @@
         android:defaultValue="material" />
 
     <ListPreference
+        android:title="@string/settings_title_icon_style"
+        android:key="@string/key_icon_style"
+        android:entries="@array/icon_styles"
+        android:entryValues="@array/icon_style_values"
+        android:dialogTitle="@string/settings_title_icon_style"
+        android:defaultValue="material" />
+
+    <ListPreference
         android:title="@string/settings_title_card_order"
         android:key="@string/key_card_order"
         android:entries="@array/card_orders"

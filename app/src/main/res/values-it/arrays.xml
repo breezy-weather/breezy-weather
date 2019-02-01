@@ -47,7 +47,6 @@
     <!-- icon style. -->
     <string-array name="icon_styles">
         <item>Material</item>
-        <item>Minimale</item>
         <item>Pixel</item>
     </string-array>
 

@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSpinner;
@@ -134,16 +133,11 @@ public class CreateWidgetClockDayDetailsActivity extends GeoWidgetConfigActivity
             return;
         }
 
-        String iconStyle = PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(
-                        getString(R.string.key_widget_icon_style),
-                        "material");
-
         int imageId = WidgetClockDayDetailsUtils.getWeatherIconId(
                 weather,
                 TimeManager.getInstance(this).getDayTime(
                         this, weather, false).isDayTime(),
-                iconStyle,
+                isMinimalIcon(),
                 blackTextSwitch.isChecked());
         Glide.with(this)
                 .load(imageId)

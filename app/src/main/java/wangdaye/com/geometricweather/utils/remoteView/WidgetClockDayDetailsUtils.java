@@ -48,9 +48,9 @@ public class WidgetClockDayDetailsUtils extends AbstractRemoteViewsUtils {
         boolean fahrenheit = defaultSharePreferences.getBoolean(
                 context.getString(R.string.key_fahrenheit),
                 false);
-        String iconStyle = defaultSharePreferences.getString(
-                context.getString(R.string.key_widget_icon_style),
-                "material");
+        boolean minimalIcon = defaultSharePreferences.getBoolean(
+                context.getString(R.string.key_widget_minimal_icon),
+                false);
         boolean touchToRefresh = defaultSharePreferences.getBoolean(
                 context.getString(R.string.key_click_widget_to_refresh),
                 false);
@@ -66,7 +66,7 @@ public class WidgetClockDayDetailsUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_clock_day_icon,
-                getWeatherIconId(weather, dayTime, iconStyle, blackText));
+                getWeatherIconId(weather, dayTime, minimalIcon, blackText));
 
         views.setTextViewText(
                 R.id.widget_clock_day_lunar,
@@ -146,9 +146,9 @@ public class WidgetClockDayDetailsUtils extends AbstractRemoteViewsUtils {
     }
 
     public static int getWeatherIconId(Weather weather,
-                                       boolean dayTime, String iconStyle, boolean blackText) {
+                                       boolean dayTime, boolean minimalIcon, boolean blackText) {
         return WeatherHelper.getWidgetNotificationIcon(
-                weather.realTime.weatherKind, dayTime, iconStyle, blackText);
+                weather.realTime.weatherKind, dayTime, minimalIcon, blackText);
     }
 
     public static String getLunarText(Context context) {

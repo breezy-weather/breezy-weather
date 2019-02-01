@@ -69,6 +69,10 @@ public class DatabaseHelper {
                 super.onUpgrade(db, oldVersion, newVersion);
                 return;
             }
+            if (newVersion >= 39 && oldVersion < 40) {
+                CNCityEntityDao.dropTable(db, true);
+                CNCityEntityDao.createTable(db, true);
+            }
             if (newVersion >= 35 && oldVersion < 39) {
                 WeatherEntityDao.dropTable(db, true);
                 WeatherEntityDao.createTable(db, true);

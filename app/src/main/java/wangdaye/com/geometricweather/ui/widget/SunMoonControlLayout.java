@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
 
 public class SunMoonControlLayout extends ViewGroup {
 
@@ -69,10 +70,10 @@ public class SunMoonControlLayout extends ViewGroup {
         this.indicators = new AppCompatImageView[] {
                 new AppCompatImageView(getContext()), new AppCompatImageView(getContext())};
         Glide.with(getContext())
-                .load(R.drawable.weather_sun_day)
+                .load(WeatherHelper.getWeatherIcon(WeatherHelper.KIND_CLEAR, true)[3])
                 .into(indicators[0]);
         Glide.with(getContext())
-                .load(R.drawable.weather_sun_night)
+                .load(WeatherHelper.getWeatherIcon(WeatherHelper.KIND_CLEAR, false)[3])
                 .into(indicators[1]);
         addView(indicators[1]);
         addView(indicators[0]);

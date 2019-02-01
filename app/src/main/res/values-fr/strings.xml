@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
     <string name="about_app">A PROPOS</string>
@@ -11,7 +10,7 @@
     <string name="action_manage">Manage</string>
     <string name="action_search">Recherche</string>
     <string name="action_settings">Réglages</string>
-    <string name="air_quality">qualité de l\'air</string>
+    <string name="air_quality">"qualité de l'air"</string>
     <string name="app_name">Weather</string>
     <string name="aqi_1">Bon</string>
     <string name="aqi_2">Moyen</string>
@@ -25,6 +24,7 @@
     <string name="day">jour</string>
     <string name="daytime">Jour</string>
     <string name="default_location">emplacement par défaut</string>
+    <string name="dew_point">Point de rosée</string>
     <string name="done">OK</string>
     <string name="ellipsis">…</string>
     <string name="email">E-mail</string>
@@ -34,6 +34,7 @@
     <string name="feedback_collect_succeed">Ville ajoutée avec succès.</string>
     <string name="feedback_delete_succeed">Ville supprimée avec succès.</string>
     <string name="feedback_get_weather_failed">Pas de données météo.</string>
+    <string name="feedback_hide_subtitle">Masquer sous-titre</string>
     <string name="feedback_initializing">Démarrage…</string>
     <string name="feedback_location_failed">Échec localisation.</string>
     <string name="feedback_location_list_cannot_be_null">La liste ne peut être vide.</string>
@@ -42,17 +43,20 @@
     <string name="feedback_refresh_notification_after_back">"Veuillez revenir à l'écran d'accueil."</string>
     <string name="feedback_refresh_notification_now">Mis à jour.</string>
     <string name="feedback_refresh_ui_after_refresh">Veuillez rafraîchir les données.</string>
+    <string name="feedback_request_location">Location</string>
     <string name="feedback_request_location_permission_failed">La localisation a échouée.</string>
     <string name="feedback_request_location_permission_success">Localisation réussie.</string>
     <string name="feedback_request_permission">Permissions</string>
-    <string name="feedback_request_location">Location</string>
     <string name="feedback_restart">"Veuillez redémarrer l'application."</string>
     <string name="feedback_search_location">"Tapez le nom d'une ville…"</string>
     <string name="feedback_search_nothing">Recherche nulle…</string>
     <string name="feedback_show_widget_card">Arrière-plan</string>
+    <string name="feedback_subtitle_data">Sous-titre</string>
     <string name="feedback_view_style">Apparence</string>
+    <string name="feels_like">Ressenti</string>
     <string name="follow_system">Par défaut</string>
     <string name="forecast">Prévisions</string>
+    <string name="geometric_weather">Geometric Weather</string>
     <string name="gitHub">GitHub</string>
     <string name="glide">Glide</string>
     <string name="greenDAO">GreenDAO</string>
@@ -72,6 +76,7 @@
     <string name="off">OFF</string>
     <string name="on">ON</string>
     <string name="precipitation">Précipitation</string>
+    <string name="pressure">Pression atmosphérique</string>
     <string name="publish_at">Mise à jour</string>
     <string name="refresh_at">mise à jour</string>
     <string name="retrofit">Retrofit 2.0</string>
@@ -93,11 +98,24 @@
     <string name="settings_notification_hide_icon_on">Masquer</string>
     <string name="settings_notification_hide_in_lockScreen_off">Montrer</string>
     <string name="settings_notification_hide_in_lockScreen_on">Masquer</string>
+    <string name="settings_summary_appearance">Style, Ordre des cartes, Language…</string>
+    <string name="settings_summary_service_provider">Sélectionner un fournisseur de service de données météo et Location service</string>
+    <string name="settings_summary_unit">Réglage des unités de données météo</string>
+    <string name="settings_title_background_free">"Pas d'arrière-plan"</string>
+    <string name="settings_title_click_widget_to_refresh">Rafraichir le widget en cliquant dessus</string>
     <string name="settings_title_fahrenheit">Fahrenheit</string>
+    <string name="settings_title_alert_notification_switch">Envoyer notification d\'alerte</string>
+    <string name="settings_title_appearance">Apparance</string>
+    <string name="settings_title_card_order">Ordre des cartes</string>
+    <string name="settings_title_dark_mode">Mode sombre</string>
+    <string name="settings_title_gravity_sensor_switch">Accéléromètre</string>
+    <string name="settings_title_imperial">Unités impériales</string>
+    <string name="settings_title_location_service">Location Service</string>
     <string name="settings_title_forecast_today">Prévisions du jour</string>
     <string name="settings_title_forecast_today_time">Heure de notification</string>
     <string name="settings_title_forecast_tomorrow">Prévisions pour demain</string>
     <string name="settings_title_forecast_tomorrow_time">Heure de notification</string>
+    <string name="settings_title_icon_style">"Style d'icône"</string>
     <string name="settings_title_navigationBar_color">Couleur barre de navigation</string>
     <string name="settings_title_notification">Activer notification</string>
     <string name="settings_title_notification_background">"Couleur de l'arrière-plan"</string>
@@ -105,9 +123,13 @@
     <string name="settings_title_notification_hide_big_view">Masquer vue large</string>
     <string name="settings_title_notification_hide_icon">"Masquer l'icône de notification"</string>
     <string name="settings_title_notification_hide_in_lockScreen">"Masquer sur l'écran de verrouillage"</string>
+    <string name="settings_title_notification_temp_icon">Temp. comme icône de notification</string>
     <string name="settings_title_notification_text_color">Couleur du texte</string>
     <string name="settings_title_permanent_service">Maintenir activé</string>
     <string name="settings_title_refresh_rate">Intervalle de mise à jour</string>
+    <string name="settings_title_service_provider">Service provider</string>
+    <string name="settings_title_unit">Unité</string>
+    <string name="settings_title_ui_style">UI style</string>
     <string name="sunrise_sunset">soleil &amp; lune</string>
     <string name="thanks">REMERCIEMENTS</string>
     <string name="time">heure</string>
@@ -115,6 +137,7 @@
     <string name="tomorrow">demain</string>
     <string name="translator">Traducteurs</string>
     <string name="uv_index">Index UV</string>
+    <string name="visibility">Visibilité</string>
     <string name="wait_refresh">patientez</string>
     <string name="week">semaine</string>
     <string name="week_1">LUN</string>
@@ -124,8 +147,8 @@
     <string name="week_5">VEN</string>
     <string name="week_6">SAM</string>
     <string name="week_7">DIM</string>
-    <string name="widget_clock_day_horizontal">Horloge + Jour (Horizontal style)</string>
     <string name="widget_clock_day_details">Horloge + Jour (Details)</string>
+    <string name="widget_clock_day_horizontal">Horloge + Jour (Horizontal style)</string>
     <string name="widget_clock_day_vertical">Horloge + Jour (Vertical style)</string>
     <string name="widget_clock_day_week">Horloge + Jour + Semaine</string>
     <string name="widget_day">Jour</string>
@@ -146,14 +169,13 @@
     <string name="wind_8">Coup de vent</string>
     <string name="wind_9">Fort coup de vent</string>
     <string name="yesterday">hier</string>
-    <string name="settings_title_background_free">Pas d\'arrière-plan</string>
-    <string name="geometric_weather">Geometric Weather</string>
-    <string name="settings_title_icon_style">Style d\'icône</string>
-    <string name="settings_title_notification_temp_icon">Temp. comme icône de notification</string>
-    <string name="feels_like">Ressenti</string>
-    <string name="feedback_hide_subtitle">Masquer sous-titre</string>
-    <string name="feedback_subtitle_data">Sous-titre</string>
-    <string name="settings_title_click_widget_to_refresh">Rafraichir le widget en cliquant dessus</string>
-    <string name="settings_title_ui_style">UI style</string>
+    <string name="phase_first">Premier quartier</string>
+    <string name="phase_full">Pleine lune</string>
+    <string name="phase_new">Nouvelle lune</string>
+    <string name="phase_third">Dernier quartier</string>
+    <string name="phase_waning_crescent">Dernier croissant</string>
+    <string name="phase_waning_gibbous">Lune gibbeuse décroissante</string>
+    <string name="phase_waxing_crescent">Premier croissant</string>
+    <string name="phase_waxing_gibbous">Lune gibbeuse croissante</string>
 
 </resources>

@@ -370,6 +370,14 @@ public class WeatherHelper {
 
     public static int[] getWeatherIcon(String weatherKind, boolean dayTime) {
         int[] imageId = new int[4];
+        if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
+            imageId[0] = getPixelWeatherIcon(weatherKind, dayTime);
+            imageId[1] = 0;
+            imageId[2] = 0;
+            imageId[3] = imageId[0];
+            return imageId;
+        }
+
         switch (weatherKind) {
             case KIND_CLEAR:
                 if(dayTime) {
@@ -474,6 +482,59 @@ public class WeatherHelper {
                 imageId[1] = R.drawable.weather_cloud_large;
                 imageId[2] = 0;
                 imageId[3] = R.drawable.weather_cloudy;
+                break;
+        }
+        return imageId;
+    }
+
+    private static int getPixelWeatherIcon(String weatherInfo, boolean dayTime) {
+        int imageId = R.drawable.weather_cloudy_pixel;
+        switch (weatherInfo) {
+            case KIND_CLEAR:
+                if(dayTime) {
+                    imageId = R.drawable.weather_sun_day_pixel;
+                } else {
+                    imageId = R.drawable.weather_sun_night_pixel;
+                }
+                break;
+
+            case KIND_PARTLY_CLOUDY:
+                if(dayTime) {
+                    imageId = R.drawable.weather_cloud_day_pixel;
+                } else {
+                    imageId = R.drawable.weather_cloud_night_pixel;
+                }
+                break;
+
+            case KIND_CLOUDY:
+                imageId = R.drawable.weather_cloudy_pixel;
+                break;
+
+            case KIND_RAIN:
+                imageId = R.drawable.weather_rain_pixel;
+                break;
+
+            case KIND_WIND:
+                imageId = R.drawable.weather_wind_pixel;
+                break;
+
+            case KIND_SNOW:
+            case KIND_HAIL:
+                imageId = R.drawable.weather_snow_pixel;
+                break;
+
+            case KIND_FOG:
+            case KIND_HAZE:
+                imageId = R.drawable.weather_fog_pixel;
+                break;
+
+            case KIND_SLEET:
+                imageId = R.drawable.weather_sleet_pixel;
+                break;
+
+            case KIND_THUNDERSTORM:
+            case KIND_THUNDER:
+                imageId = R.drawable.weather_thunderstorm_pixel;
                 break;
         }
         return imageId;
@@ -725,59 +786,6 @@ public class WeatherHelper {
         return imageId;
     }
 
-    private static int getPixelWeatherIcon(String weatherInfo, boolean dayTime) {
-        int imageId = R.drawable.weather_cloudy_pixel;
-        switch (weatherInfo) {
-            case KIND_CLEAR:
-                if(dayTime) {
-                    imageId = R.drawable.weather_sun_day_pixel;
-                } else {
-                    imageId = R.drawable.weather_sun_night_pixel;
-                }
-                break;
-
-            case KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    imageId = R.drawable.weather_cloud_day_pixel;
-                } else {
-                    imageId = R.drawable.weather_cloud_night_pixel;
-                }
-                break;
-
-            case KIND_CLOUDY:
-                imageId = R.drawable.weather_cloudy_pixel;
-                break;
-
-            case KIND_RAIN:
-                imageId = R.drawable.weather_rain_pixel;
-                break;
-
-            case KIND_WIND:
-                imageId = R.drawable.weather_wind_pixel;
-                break;
-
-            case KIND_SNOW:
-            case KIND_HAIL:
-                imageId = R.drawable.weather_snow_pixel;
-                break;
-
-            case KIND_FOG:
-            case KIND_HAZE:
-                imageId = R.drawable.weather_fog_pixel;
-                break;
-
-            case KIND_SLEET:
-                imageId = R.drawable.weather_sleet_pixel;
-                break;
-
-            case KIND_THUNDERSTORM:
-            case KIND_THUNDER:
-                imageId = R.drawable.weather_thunderstorm_pixel;
-                break;
-        }
-        return imageId;
-    }
-
     public static int getNotificationWeatherIcon(String weatherInfo, boolean dayTime) {
         switch (weatherInfo) {
             case KIND_CLEAR:
@@ -831,6 +839,9 @@ public class WeatherHelper {
 
     public static int[] getAnimatorId(String weatherKind, boolean dayTime) {
         int[] animatorId = new int[3];
+        if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
+            return animatorId;
+        }
 
         switch (weatherKind) {
             case KIND_CLEAR:
@@ -927,23 +938,16 @@ public class WeatherHelper {
     }
 
     public static int getWidgetNotificationIcon(String weatherInfo, boolean dayTime,
-                                                String iconStyle, String textColor) {
-        switch (iconStyle) {
-            case "minimal":
-                return getMiniWeatherIcon(weatherInfo, dayTime, textColor);
-
-            case "pixel":
-                return getPixelWeatherIcon(weatherInfo, dayTime);
-
-            case "material":
-            default:
-                return getWeatherIcon(weatherInfo, dayTime)[3];
+                                                boolean minimal, String textColor) {
+        if (minimal) {
+            return getMiniWeatherIcon(weatherInfo, dayTime, textColor);
         }
+        return getWeatherIcon(weatherInfo, dayTime)[3];
     }
 
     public static int getWidgetNotificationIcon(String weatherInfo, boolean dayTime,
-                                                String iconStyle, boolean darkText) {
-        return getWidgetNotificationIcon(weatherInfo, dayTime, iconStyle, darkText ? "dark" : "light");
+                                                boolean minimal, boolean darkText) {
+        return getWidgetNotificationIcon(weatherInfo, dayTime, minimal, darkText ? "dark" : "light");
     }
 
     public static int getShortcutIcon(String weatherInfo, boolean dayTime) {

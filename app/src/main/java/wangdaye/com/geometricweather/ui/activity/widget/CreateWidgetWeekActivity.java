@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -105,10 +104,6 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
             return;
         }
 
-        String iconStyle = PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(
-                        getString(R.string.key_widget_icon_style),
-                        "material");
         boolean dayTime = TimeManager.getInstance(this)
                 .getDayTime(this, weather, false)
                 .isDayTime();
@@ -119,7 +114,7 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
             Glide.with(this)
                     .load(
                             WidgetWeekUtils.getIconId(
-                                    weather, dayTime, iconStyle, blackTextSwitch.isChecked(), i))
+                                    weather, dayTime, isMinimalIcon(), blackTextSwitch.isChecked(), i))
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(widgetIcons[i]);
         }

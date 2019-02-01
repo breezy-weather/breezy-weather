@@ -86,23 +86,15 @@ public class DelayRotateController extends MaterialWeatherView.RotateController 
     }
 
     private double getRotateInScope(double rotate) {
+        rotate %= 180;
         if (Math.abs(rotate) <= 90) {
             return rotate;
-        } else if (Math.abs(rotate) <= 180) {
+        } else { // Math.abs(rotate) < 180
             if (rotate > 0) {
                 return 90 - (rotate - 90);
             } else {
                 return -90 - (rotate + 90);
             }
-        } else {
-            while (Math.abs(rotate) > 180) {
-                if (rotate > 0) {
-                    rotate -= 360;
-                } else {
-                    rotate += 360;
-                }
-            }
-            return getRotateInScope(rotate);
         }
     }
 }

@@ -37,6 +37,7 @@ public class GeometricWeather extends Application {
     private String chineseSource;
     private String locationService;
     private String darkMode;
+    private String iconStyle;
     private String cardOrder;
     private boolean colorNavigationBar;
     private boolean fahrenheit;
@@ -133,6 +134,7 @@ public class GeometricWeather extends Application {
         chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "accu");
         locationService = LocationHelper.getLocationServiceProvider(this, sharedPreferences);
         darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
+        iconStyle = sharedPreferences.getString(getString(R.string.key_icon_style), "material");
         cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
@@ -180,6 +182,14 @@ public class GeometricWeather extends Application {
 
     public void setDarkMode(String darkMode) {
         this.darkMode = darkMode;
+    }
+
+    public String getIconStyle() {
+        return iconStyle;
+    }
+
+    public void setIconStyle(String iconStyle) {
+        this.iconStyle = iconStyle;
     }
 
     public String getCardOrder() {

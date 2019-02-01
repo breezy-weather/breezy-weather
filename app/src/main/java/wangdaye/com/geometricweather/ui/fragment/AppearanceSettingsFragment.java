@@ -11,6 +11,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
+import wangdaye.com.geometricweather.utils.manager.BackgroundManager;
 
 /**
  * Appearance settings fragment.
@@ -34,14 +35,18 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
                                         "material")));
         uiStyle.setOnPreferenceChangeListener(this);
 
+        Preference iconStyle = findPreference(getString(R.string.key_icon_style));
+        iconStyle.setSummary(
+                ValueUtils.getIconStyle(
+                        getActivity(),
+                        GeometricWeather.getInstance().getIconStyle()));
+        iconStyle.setOnPreferenceChangeListener(this);
+
         Preference cardOrder = findPreference(getString(R.string.key_card_order));
         cardOrder.setSummary(
                 ValueUtils.getCardOrder(
                         getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(
-                                        getString(R.string.key_card_order),
-                                        "daily_first")));
+                        GeometricWeather.getInstance().getCardOrder()));
         cardOrder.setOnPreferenceChangeListener(this);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -54,8 +59,7 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         language.setSummary(
                 ValueUtils.getLanguage(
                         getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(getString(R.string.key_language), "follow_system")));
+                        GeometricWeather.getInstance().getLanguage()));
         language.setOnPreferenceChangeListener(this);
     }
 
@@ -81,6 +85,12 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         if (preference.getKey().equals(getString(R.string.key_ui_style))) {
             // UI style.
             preference.setSummary(ValueUtils.getUIStyle(getActivity(), (String) o));
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+        } else if (preference.getKey().equals(getString(R.string.key_icon_style))) {
+            // Icon style.
+            GeometricWeather.getInstance().setIconStyle((String) o);
+            preference.setSummary(ValueUtils.getIconStyle(getActivity(), (String) o));
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_card_order))) {
             // Card order.

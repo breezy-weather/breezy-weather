@@ -115,7 +115,7 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
             switch (view.getId()) {
                 case R.id.item_trend_daily:
                     GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
-                    if (activity != null) {
+                    if (activity != null && activity.isForeground()) {
                         WeatherDialog weatherDialog = new WeatherDialog();
                         weatherDialog.setData(weather, getAdapterPosition(), true);
                         weatherDialog.show(activity.getSupportFragmentManager(), null);

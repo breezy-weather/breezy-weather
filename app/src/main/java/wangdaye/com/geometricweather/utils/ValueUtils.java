@@ -173,7 +173,7 @@ public class ValueUtils {
             case "material":
                 return c.getResources().getStringArray(R.array.icon_styles)[0];
 
-            default:
+            default: // pixel.
                 return c.getResources().getStringArray(R.array.icon_styles)[1];
         }
     }

@@ -5,6 +5,6 @@
     <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d │ </string>
+    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
 </resources>

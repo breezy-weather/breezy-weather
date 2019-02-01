@@ -73,6 +73,7 @@
             android:id="@+id/container_main_first_trend_card_subtitle"
             android:layout_marginTop="2dp"
             android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
             style="@style/subtitle_text"
             tools:text="星期日天气宜人"
             tools:ignore="RtlHardcoded" />

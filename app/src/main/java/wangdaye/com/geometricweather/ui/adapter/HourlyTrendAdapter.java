@@ -94,7 +94,7 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
             switch (view.getId()) {
                 case R.id.item_trend_hourly:
                     GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
-                    if (activity != null) {
+                    if (activity != null && activity.isForeground()) {
                         WeatherDialog weatherDialog = new WeatherDialog();
                         weatherDialog.setData(weather, getAdapterPosition(), false);
                         weatherDialog.show(activity.getSupportFragmentManager(), null);

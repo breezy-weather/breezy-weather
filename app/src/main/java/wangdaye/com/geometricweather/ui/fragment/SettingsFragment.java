@@ -35,7 +35,6 @@ public class SettingsFragment extends PreferenceFragmentCompat
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         initBasicPart();
         initForecastPart(sharedPreferences);
-        initWidgetPart(sharedPreferences);
         initNotificationPart(sharedPreferences);
     }
 
@@ -49,10 +48,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
         darkMode.setSummary(
                 ValueUtils.getDarkMode(
                         getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(
-                                        getString(R.string.key_dark_mode),
-                                        "auto")));
+                        GeometricWeather.getInstance().getDarkMode()));
         darkMode.setOnPreferenceChangeListener(this);
 
         Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));
@@ -96,24 +92,9 @@ public class SettingsFragment extends PreferenceFragmentCompat
         }
     }
 
-    private void initWidgetPart(SharedPreferences sharedPreferences) {
-        // widget icon style.
-        ListPreference widgetIconStyle = (ListPreference) findPreference(getString(R.string.key_widget_icon_style));
-        widgetIconStyle.setSummary(
-                ValueUtils.getIconStyle(
-                        getActivity(),
-                        sharedPreferences.getString(getString(R.string.key_widget_icon_style), "material")));
-        widgetIconStyle.setOnPreferenceChangeListener(this);
-    }
-
     private void initNotificationPart(SharedPreferences sharedPreferences) {
-        // widget icon style.
-        ListPreference notificationIconStyle = (ListPreference) findPreference(getString(R.string.key_notification_icon_style));
-        notificationIconStyle.setSummary(
-                ValueUtils.getIconStyle(
-                        getActivity(),
-                        sharedPreferences.getString(getString(R.string.key_notification_icon_style), "material")));
-        notificationIconStyle.setOnPreferenceChangeListener(this);
+        // notification minimal icon.
+        CheckBoxPreference notificationMinimalIcon = (CheckBoxPreference) findPreference(getString(R.string.key_notification_minimal_icon));
 
         // notification temp icon.
         CheckBoxPreference notificationTempIcon = (CheckBoxPreference) findPreference(getString(R.string.key_notification_temp_icon));
@@ -143,7 +124,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
         if(sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
             // open notification.
-            notificationIconStyle.setEnabled(true);
+            notificationMinimalIcon.setEnabled(true);
             notificationTempIcon.setEnabled(true);
             notificationTextColor.setEnabled(true);
             notificationBackground.setEnabled(true);
@@ -157,7 +138,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             notificationHideBigView.setEnabled(true);
         } else {
             // close notification.
-            notificationIconStyle.setEnabled(false);
+            notificationMinimalIcon.setEnabled(false);
             notificationTempIcon.setEnabled(false);
             notificationTextColor.setEnabled(false);
             notificationBackground.setEnabled(false);
@@ -216,6 +197,10 @@ public class SettingsFragment extends PreferenceFragmentCompat
             dialog.setModel(false);
             dialog.setOnTimeChangedListener(this);
             dialog.show(getFragmentManager(), null);
+        } else if (preference.getKey().equals(getString(R.string.key_widget_minimal_icon))
+                || preference.getKey().equals(getString(R.string.key_notification_minimal_icon))) {
+            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_click_widget_to_refresh))) {
             // click widget to refresh.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
@@ -271,11 +256,6 @@ public class SettingsFragment extends PreferenceFragmentCompat
             editor.apply();
             preference.setSummary((String) o);
             BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
-        } else if (preference.getKey().equals(getString(R.string.key_widget_icon_style))
-                || preference.getKey().equals(getString(R.string.key_notification_icon_style))) {
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
-            preference.setSummary(ValueUtils.getIconStyle(getActivity(), (String) o));
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
             // notification text color.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);

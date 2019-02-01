@@ -33,6 +33,7 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
 
     private ImageView wallpaper;
 
+    private boolean minimalIcon;
     private boolean fahrenheit;
     private boolean destroyed;
 
@@ -74,6 +75,8 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
     public void initData() {
         this.locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
         this.weatherHelper = new WeatherHelper();
+        this.minimalIcon = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(getString(R.string.key_widget_minimal_icon), false);
         this.fahrenheit = PreferenceManager.getDefaultSharedPreferences(this)
                 .getBoolean(getString(R.string.key_fahrenheit), false);
         this.destroyed = false;
@@ -85,6 +88,10 @@ public abstract class GeoWidgetConfigActivity extends GeoActivity
 
     public Location getLocationNow() {
         return locationNow;
+    }
+
+    public boolean isMinimalIcon() {
+        return minimalIcon;
     }
 
     public boolean isFahrenheit() {

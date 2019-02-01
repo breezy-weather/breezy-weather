@@ -36,9 +36,9 @@ public class ForecastNotificationUtils extends AbstractRemoteViewsUtils {
         boolean fahrenheit = sharedPreferences.getBoolean(
                 context.getString(R.string.key_fahrenheit),
                 false);
-        String iconStyle = sharedPreferences.getString(
-                context.getString(R.string.key_notification_icon_style),
-                "material");
+        boolean minimalIcon = sharedPreferences.getBoolean(
+                context.getString(R.string.key_notification_minimal_icon),
+                false);
         boolean tempIcon = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_temp_icon),
                 false);
@@ -131,23 +131,23 @@ public class ForecastNotificationUtils extends AbstractRemoteViewsUtils {
             imageIds[0] = WeatherHelper.getWidgetNotificationIcon(
                     weather.dailyList.get(0).weatherKinds[0],
                     true,
-                    iconStyle,
+                    minimalIcon,
                     textColor);
             imageIds[1] = WeatherHelper.getWidgetNotificationIcon(
                     weather.dailyList.get(0).weatherKinds[1],
                     false,
-                    iconStyle,
+                    minimalIcon,
                     textColor);
         } else {
             imageIds[0] = WeatherHelper.getWidgetNotificationIcon(
                     weather.dailyList.get(0).weatherKinds[0],
                     true,
-                    iconStyle,
+                    minimalIcon,
                     textColor);
             imageIds[1] = WeatherHelper.getWidgetNotificationIcon(
                     weather.dailyList.get(1).weatherKinds[0],
                     true,
-                    iconStyle,
+                    minimalIcon,
                     textColor);
         }
         view.setImageViewResource(

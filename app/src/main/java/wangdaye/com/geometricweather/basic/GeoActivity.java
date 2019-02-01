@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,6 +26,7 @@ public abstract class GeoActivity extends AppCompatActivity {
 
     private List<GeoDialogFragment> dialogList;
     private boolean started;
+    private boolean foreground;
 
     private BroadcastReceiver localeChangedReceiver = new BroadcastReceiver() {
 
@@ -40,6 +42,7 @@ public abstract class GeoActivity extends AppCompatActivity {
         }
     };
 
+    @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,21 @@ public abstract class GeoActivity extends AppCompatActivity {
         this.started = false;
     }
 
+    @CallSuper
+    @Override
+    protected void onResume() {
+        super.onResume();
+        foreground = true;
+    }
+
+    @CallSuper
+    @Override
+    protected void onPause() {
+        super.onPause();
+        foreground = false;
+    }
+
+    @CallSuper
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -79,6 +97,10 @@ public abstract class GeoActivity extends AppCompatActivity {
 
     public void setStarted() {
         started = true;
+    }
+
+    public boolean isForeground() {
+        return foreground;
     }
 
     public List<GeoDialogFragment> getDialogList() {

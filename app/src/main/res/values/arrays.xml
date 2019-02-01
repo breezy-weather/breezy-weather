@@ -157,12 +157,10 @@
     <!-- icon style. -->
     <string-array name="icon_styles">
         <item>Material</item>
-        <item>Minimal</item>
         <item>Pixel</item>
     </string-array>
     <string-array name="icon_style_values">
         <item>material</item>
-        <item>minimal</item>
         <item>pixel</item>
     </string-array>
 

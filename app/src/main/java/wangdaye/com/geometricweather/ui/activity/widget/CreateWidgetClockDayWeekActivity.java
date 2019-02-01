@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSpinner;
@@ -149,16 +148,12 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
             return;
         }
 
-        String iconStyle = PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(
-                        getString(R.string.key_widget_icon_style),
-                        "material");
         boolean dayTime = TimeManager.getInstance(this)
                 .getDayTime(this, weather, false)
                 .isDayTime();
 
         int imageId = WidgetClockDayWeekUtils.getWeatherIconId(
-                weather, dayTime, iconStyle, blackTextSwitch.isChecked());
+                weather, dayTime, isMinimalIcon(), blackTextSwitch.isChecked());
         Glide.with(this)
                 .load(imageId)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -170,9 +165,10 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
             widgetWeeks[i].setText(WidgetClockDayWeekUtils.getWeek(this, weather, i));
             widgetTemps[i].setText(WidgetClockDayWeekUtils.getTemp(weather, isFahrenheit(), i));
             Glide.with(this)
-                    .load(
-                            WidgetClockDayWeekUtils.getIconId(
-                                    weather, dayTime, iconStyle, blackTextSwitch.isChecked(), i))
+                    .load(WidgetClockDayWeekUtils.getIconId(
+                            weather, dayTime,
+                            isMinimalIcon(), blackTextSwitch.isChecked(),
+                            i))
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(widgetIcons[i]);
         }

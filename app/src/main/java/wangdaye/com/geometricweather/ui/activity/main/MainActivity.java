@@ -519,8 +519,10 @@ public class MainActivity extends GeoActivity
     private View.OnClickListener locationHelperListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LocationHelpDialog dialog = new LocationHelpDialog();
-            dialog.show(getSupportFragmentManager(), null);
+            if (isForeground()) {
+                LocationHelpDialog dialog = new LocationHelpDialog();
+                dialog.show(getSupportFragmentManager(), null);
+            }
         }
     };
 

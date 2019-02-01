@@ -6,8 +6,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2237
-        versionName "2.237"
+        versionCode 2238
+        versionName "2.238"
     }
     buildTypes {
         release {
@@ -65,7 +65,7 @@ allprojects {
 
 apply plugin: 'org.greenrobot.greendao'
 greendao {
-    schemaVersion 39
+    schemaVersion 40
     generateTests false
 }
 dependencies {

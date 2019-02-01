@@ -35,7 +35,6 @@
     <!-- icon style. -->
     <string-array name="icon_styles">
         <item>Материјално</item>
-        <item>Минимално</item>
         <item>Pixel</item>
     </string-array>
 </resources>
