@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import wangdaye.com.geometricweather.R;
 
@@ -60,6 +61,40 @@ public class ValueUtils {
             default:
                 return c.getResources().getStringArray(R.array.dark_modes)[2];
         }
+    }
+
+    public static String getCardDislay(Context c, String[] values) {
+        String[] options = c.getResources().getStringArray(R.array.card_display_options);
+
+        StringBuilder builder = new StringBuilder();
+        for (String v : values) {
+            if (TextUtils.isEmpty(v)) {
+                continue;
+            }
+            switch (v) {
+                case "daily_overview":
+                    builder.append(options[0]);
+                    break;
+
+                case "hourly_overview":
+                    builder.append(options[1]);
+                    break;
+
+                case "air_quality":
+                    builder.append(options[2]);
+                    break;
+
+                case "life_details":
+                    builder.append(options[3]);
+                    break;
+
+                case "sunrise_sunset":
+                    builder.append(options[4]);
+                    break;
+            }
+            builder.append(" ");
+        }
+        return builder.toString();
     }
 
     public static String getCardOrder(Context c, String value) {

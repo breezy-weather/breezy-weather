@@ -6,8 +6,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2238
-        versionName "2.238"
+        versionCode 2239
+        versionName "2.239"
     }
     buildTypes {
         release {
@@ -60,12 +60,15 @@ allprojects {
         maven {
             url "https://jitpack.io"
         }
+        maven {
+            url "https://dl.bintray.com/qichuan/maven/"
+        }
     }
 }
 
 apply plugin: 'org.greenrobot.greendao'
 greendao {
-    schemaVersion 40
+    schemaVersion 42
     generateTests false
 }
 dependencies {
@@ -99,4 +102,6 @@ dependencies {
 
     implementation 'org.cyanogenmod:platform.sdk:5.0'
     implementation 'org.jetbrains:annotations-java5:15.0'
+
+    implementation 'com.zqc.opencc.android.lib:lib-opencc-android:0.8.0@aar'
 }

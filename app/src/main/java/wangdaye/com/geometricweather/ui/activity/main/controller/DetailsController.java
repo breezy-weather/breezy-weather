@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
@@ -34,6 +35,13 @@ public class DetailsController extends AbstractMainItemController {
 
     @Override
     public void onBindView(@NonNull Location location) {
+        if (!isDisplay("life_details")) {
+            view.setVisibility(View.GONE);
+            return;
+        } else {
+            view.setVisibility(View.VISIBLE);
+        }
+
         if (location.weather != null) {
             card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorRoot));
 

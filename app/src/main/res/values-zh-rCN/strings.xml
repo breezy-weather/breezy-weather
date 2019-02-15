@@ -186,6 +186,7 @@
     <string name="settings_summary_appearance">UI风格，卡片顺序，语言等…</string>
     <string name="settings_title_ui_style">界面风格</string>
     <string name="settings_title_icon_style">图标风格</string>
+    <string name="settings_title_card_display">卡片显示</string>
     <string name="settings_title_card_order">卡片顺序</string>
     <string name="settings_title_gravity_sensor_switch">开启重力感应</string>
     <string name="settings_title_navigationBar_color">导航栏着色</string>

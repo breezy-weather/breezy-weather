@@ -18,6 +18,14 @@
         android:dialogTitle="@string/settings_title_icon_style"
         android:defaultValue="material" />
 
+    <MultiSelectListPreference
+        android:title="@string/settings_title_card_display"
+        android:key="@string/key_card_display"
+        android:entries="@array/card_display_options"
+        android:entryValues="@array/card_display_values"
+        android:defaultValue="@array/card_display_values"
+        android:dialogTitle="@string/settings_title_card_display" />
+
     <ListPreference
         android:title="@string/settings_title_card_order"
         android:key="@string/key_card_order"

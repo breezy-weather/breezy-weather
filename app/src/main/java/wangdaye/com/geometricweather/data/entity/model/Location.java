@@ -119,17 +119,17 @@ public class Location
         List<Location> locationList = new ArrayList<>();
         for (int i = 0; i < cityList.size(); i ++) {
             Location location = new Location();
-            location.cityId = cityList.get(i).requestKey;
-            if (cityList.get(i).district.equals("无")) {
+            location.cityId = cityList.get(i).getCityId();
+            if (cityList.get(i).getDistrict().equals("无")) {
                 location.district = "";
             } else {
-                location.district = cityList.get(i).district;
+                location.district = cityList.get(i).getDistrict();
             }
-            location.city = cityList.get(i).city;
-            location.province = cityList.get(i).province;
+            location.city = cityList.get(i).getCity();
+            location.province = cityList.get(i).getProvince();
             location.country = "中国";
-            location.lat = cityList.get(i).lat;
-            location.lon = cityList.get(i).lon;
+            location.lat = cityList.get(i).getLatitude();
+            location.lon = cityList.get(i).getLongitude();
             location.source = GeometricWeather.getInstance().getChineseSource();
             if (location.source.equals("accu")) {
                 location.source = "cn";
@@ -167,17 +167,17 @@ public class Location
     public static List<Location> buildLocationList(CNCityList.CNCity city) {
         List<Location> locationList = new ArrayList<>();
         Location location = new Location();
-        location.cityId = city.requestKey;
-        if (city.district.equals("无")) {
+        location.cityId = city.getCityId();
+        if (city.getDistrict().equals("无")) {
             location.district = "";
         } else {
-            location.district = city.district;
+            location.district = city.getDistrict();
         }
-        location.city = city.city;
-        location.province = city.province;
+        location.city = city.getCity();
+        location.province = city.getProvince();
         location.country = "中国";
-        location.lat = city.lat;
-        location.lon = city.lon;
+        location.lat = city.getLatitude();
+        location.lon = city.getLongitude();
         location.source = GeometricWeather.getInstance().getChineseSource();
         if (location.source.equals("accu")) {
             location.source = "cn";

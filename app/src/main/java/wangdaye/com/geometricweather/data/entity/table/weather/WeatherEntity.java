@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.data.entity.table.weather;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import org.greenrobot.greendao.annotation.Entity;
 
@@ -205,6 +206,10 @@ public class WeatherEntity {
     }
 
     private static WeatherEntity searchWeatherEntity(SQLiteDatabase database, Location location) {
+        if (TextUtils.isEmpty(location.cityId)) {
+            return null;
+        }
+
         WeatherEntityDao dao = new DaoMaster(database)
                 .newSession()
                 .getWeatherEntityDao();

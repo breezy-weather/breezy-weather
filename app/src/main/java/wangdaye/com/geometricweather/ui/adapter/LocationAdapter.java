@@ -113,24 +113,26 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // title.
         if (itemList.get(position).isLocal()) {
             holder.title.setText(context.getString(R.string.local));
-            if (itemList.get(position).isUsable()) {
-                holder.subtitle.setText(itemList.get(position).country
-                        + " " + itemList.get(position).province
-                        + " " + itemList.get(position).city
-                        + " " + itemList.get(position).district);
-            } else {
-                holder.subtitle.setText(context.getString(R.string.feedback_not_yet_location));
-            }
         } else {
             holder.title.setText(itemList.get(position).getCityName(context));
-            holder.subtitle.setText(itemList.get(position).country
-                    + " " + itemList.get(position).province
-                    + " " + itemList.get(position).city
-                    + " " + itemList.get(position).district);
         }
 
+        // subtitle.
+        if (!itemList.get(position).isLocal() || itemList.get(position).isUsable()) {
+            holder.subtitle.setText(itemList.get(position).country
+                    + " " + itemList.get(position).province
+                    + (itemList.get(position).province.equals(itemList.get(position).city)
+                            ? "" : (" " + itemList.get(position).city))
+                    + (itemList.get(position).city.equals(itemList.get(position).district)
+                            ? "" : (" " + itemList.get(position).district)));
+        } else {
+            holder.subtitle.setText(context.getString(R.string.feedback_not_yet_location));
+        }
+
+        // source.
         if (itemList.get(position).isLocal() && !itemList.get(position).isUsable()) {
             holder.source.setText("...");
         } else {

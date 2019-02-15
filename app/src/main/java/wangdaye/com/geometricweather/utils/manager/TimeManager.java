@@ -43,16 +43,20 @@ public class TimeManager {
                 + Calendar.getInstance().get(Calendar.MINUTE);
 
         if (weather != null) {
-            int sunrise = 60 * Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[0])
-                    + Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[1]);
-            int sunset = 60 * Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[0])
-                    + Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[1]);
-
-            dayTime = sunrise < time && time <= sunset;
+            try {
+                int sunrise = 60 * Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[0])
+                        + Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[1]);
+                int sunset = 60 * Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[0])
+                        + Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[1]);
+                dayTime = sunrise < time && time <= sunset;
+            } catch (Exception e) {
+                int sr = 60 * 6;
+                int ss = 60 * 18;
+                dayTime = sr < time && time <= ss;
+            }
         } else {
             int sr = 60 * 6;
             int ss = 60 * 18;
-
             dayTime = sr < time && time <= ss;
         }
 

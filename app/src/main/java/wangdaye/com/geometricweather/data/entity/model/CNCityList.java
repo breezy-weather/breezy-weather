@@ -10,37 +10,90 @@ import wangdaye.com.geometricweather.data.entity.table.CNCityEntity;
 
 public class CNCityList {
 
-    public List<CNCity> citys;
+    private List<CNCity> cities;
+
+    public List<CNCity> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<CNCity> cities) {
+        this.cities = cities;
+    }
 
     public static class CNCity {
         /**
-         * id : 110101
-         * province : 北京市
-         * city : 东城区
-         * district : 无
-         * lat : 39.928353
-         * lon : 116.416357
-         * requestKey : 101011600
+         * cityId : 101010100
+         * province : 北京
+         * city : 北京
+         * district : 北京
+         * latitude : 39.904987
+         * longitude : 116.40529
          */
 
-        public String id;
-        public String province;
-        public String city;
-        public String district;
-        public String lat;
-        public String lon;
-        public String requestKey;
+        private String cityId;
+        private String province;
+        private String city;
+        private String district;
+        private String latitude;
+        private String longitude;
 
         public static CNCity buildCNCity(CNCityEntity entity) {
             CNCity city = new CNCity();
-            city.id = String.valueOf(entity.id);
-            city.province = entity.province;
-            city.city = entity.city;
-            city.district = entity.district;
-            city.lat = entity.lat;
-            city.lon = entity.lon;
-            city.requestKey = entity.requestKey;
+            city.setCityId(entity.requestKey);
+            city.setProvince(entity.province);
+            city.setCity(entity.city);
+            city.setDistrict(entity.district);
+            city.setLatitude(entity.lat);
+            city.setLongitude(entity.lon);
             return city;
+        }
+
+        public String getCityId() {
+            return cityId;
+        }
+
+        public void setCityId(String cityId) {
+            this.cityId = cityId;
+        }
+
+        public String getProvince() {
+            return province;
+        }
+
+        public void setProvince(String province) {
+            this.province = province;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public String getDistrict() {
+            return district;
+        }
+
+        public void setDistrict(String district) {
+            this.district = district;
+        }
+
+        public String getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(String latitude) {
+            this.latitude = latitude;
+        }
+
+        public String getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(String longitude) {
+            this.longitude = longitude;
         }
     }
 }

@@ -14,11 +14,10 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.activity.SettingsActivity;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundODialog;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.manager.BackgroundManager;
 import wangdaye.com.geometricweather.utils.remoteView.NormalNotificationUtils;
-import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
 
 /**
  * Settings fragment.
@@ -200,18 +199,15 @@ public class SettingsFragment extends PreferenceFragmentCompat
         } else if (preference.getKey().equals(getString(R.string.key_widget_minimal_icon))
                 || preference.getKey().equals(getString(R.string.key_notification_minimal_icon))) {
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_click_widget_to_refresh))) {
             // click widget to refresh.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification))) {
             // notification switch.
             initNotificationPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
                 // open notification.
                 BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             } else {
                 // close notification.
                 NormalNotificationUtils.cancelNotification(getActivity());
@@ -220,24 +216,18 @@ public class SettingsFragment extends PreferenceFragmentCompat
         } else if (preference.getKey().equals(getString(R.string.key_notification_temp_icon))) {
             // notification temp icon.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_background))) {
             // notification background.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_can_be_cleared))) {
             // notification clear flag.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_icon))) {
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_in_lockScreen))) {
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_big_view))) {
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
         }
         return super.onPreferenceTreeClick(preference);
     }
@@ -259,7 +249,6 @@ public class SettingsFragment extends PreferenceFragmentCompat
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
             // notification text color.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_notification_now));
             preference.setSummary(ValueUtils.getNotificationTextColor(getActivity(), (String) o));
         }
         return true;

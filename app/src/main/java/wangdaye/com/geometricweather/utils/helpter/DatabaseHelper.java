@@ -69,7 +69,7 @@ public class DatabaseHelper {
                 super.onUpgrade(db, oldVersion, newVersion);
                 return;
             }
-            if (newVersion >= 39 && oldVersion < 40) {
+            if (newVersion >= 39 && oldVersion < 42) {
                 CNCityEntityDao.dropTable(db, true);
                 CNCityEntityDao.createTable(db, true);
             }

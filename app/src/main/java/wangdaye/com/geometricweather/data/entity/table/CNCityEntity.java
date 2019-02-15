@@ -3,6 +3,9 @@ package wangdaye.com.geometricweather.data.entity.table;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import com.zqc.opencc.android.lib.ChineseConverter;
+import com.zqc.opencc.android.lib.ConversionType;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -10,8 +13,10 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.data.entity.model.CNCityList;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.query.WhereCondition;
 
 /**
  * CN city entity.
@@ -47,23 +52,140 @@ public class CNCityEntity {
 
     private static CNCityEntity buildCNCityEntity(CNCityList.CNCity city) {
         CNCityEntity entity = new CNCityEntity();
-        entity.province = city.province;
-        entity.city = city.city;
-        entity.district = city.district;
-        entity.lat = city.lat;
-        entity.lon = city.lon;
-        entity.requestKey = city.requestKey;
+        entity.province = city.getProvince();
+        entity.city = city.getCity();
+        entity.district = city.getDistrict();
+        entity.lat = city.getLatitude();
+        entity.lon = city.getLongitude();
+        entity.requestKey = city.getCityId();
         return entity;
     }
 
+    private static String formatDistrictString(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return "";
+        }
+
+        if (str.endsWith("地区")) {
+            return str.substring(0, str.length() - 2);
+        }
+        if (str.endsWith("区")
+                && !str.endsWith("新区")
+                && !str.endsWith("矿区")
+                && !str.endsWith("郊区")
+                && !str.endsWith("风景区")
+                && !str.endsWith("东区")
+                && !str.endsWith("西区")) {
+            return str.substring(0, str.length() - 1);
+        }
+        if (str.endsWith("县")
+                && str.length() != 2
+                && !str.endsWith("通化县")
+                && !str.endsWith("本溪县")
+                && !str.endsWith("辽阳县")
+                && !str.endsWith("建平县")
+                && !str.endsWith("承德县")
+                && !str.endsWith("大同县")
+                && !str.endsWith("五台县")
+                && !str.endsWith("乌鲁木齐县")
+                && !str.endsWith("伊宁县")
+                && !str.endsWith("南昌县")
+                && !str.endsWith("上饶县")
+                && !str.endsWith("吉安县")
+                && !str.endsWith("长沙县")
+                && !str.endsWith("衡阳县")
+                && !str.endsWith("邵阳县")
+                && !str.endsWith("宜宾县")) {
+            return str.substring(0, str.length() - 1);
+        }
+        return str;
+    }
+
+    private static String formatCityString(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return "";
+        }
+
+        if (str.endsWith("地区")) {
+            return str.substring(0, str.length() - 2);
+        }
+        if (str.endsWith("市")
+                && !str.endsWith("新市")
+                && !str.endsWith("沙市")
+                && !str.endsWith("津市")
+                && !str.endsWith("芒市")
+                && !str.endsWith("西市")
+                && !str.endsWith("峨眉山市")) {
+            return str.substring(0, str.length() - 1);
+        }
+        if (str.endsWith("回族自治州")
+                || str.endsWith("藏族自治州")
+                || str.endsWith("彝族自治州")
+                || str.endsWith("白族自治州")
+                || str.endsWith("傣族自治州")
+                || str.endsWith("蒙古自治州")) {
+            return str.substring(0, str.length() - 5);
+        }
+        if (str.endsWith("朝鲜族自治州")
+                || str.endsWith("哈萨克自治州")
+                || str.endsWith("傈僳族自治州")
+                || str.endsWith("蒙古族自治州")) {
+            return str.substring(0, str.length() - 6);
+        }
+        if (str.endsWith("哈萨克族自治州")
+                || str.endsWith("苗族侗族自治州")
+                || str.endsWith("藏族羌族自治州")
+                || str.endsWith("壮族苗族自治州")
+                || str.endsWith("柯尔克孜自治州")) {
+            return str.substring(0, str.length() - 7);
+        }
+        if (str.endsWith("布依族苗族自治州")
+                || str.endsWith("土家族苗族自治州")
+                || str.endsWith("蒙古族藏族自治州")
+                || str.endsWith("柯尔克孜族自治州")
+                || str.endsWith("傣族景颇族自治州")
+                || str.endsWith("哈尼族彝族自治州")) {
+            return str.substring(0, str.length() - 8);
+        }
+        if (str.endsWith("自治州")) {
+            return str.substring(0, str.length() - 3);
+        }
+
+        return str;
+    }
+
+    private static String formatProvinceString(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return "";
+        }
+
+        if (str.endsWith("省")) {
+            return str.substring(0, str.length() - 1);
+        }
+        if (str.endsWith("壮族自治区") || str.endsWith("回族自治区")) {
+            return str.substring(0, str.length() - 5);
+        }
+        if (str.endsWith("维吾尔自治区")) {
+            return str.substring(0, str.length() - 6);
+        }
+        if (str.endsWith("维吾尔族自治区")) {
+            return str.substring(0, str.length() - 7);
+        }
+        if (str.endsWith("自治区")) {
+            return str.substring(0, str.length() - 3);
+        }
+
+        return str;
+    }
+
     public static void insertCNCityList(SQLiteDatabase database, CNCityList list) {
-        if (list == null || list.citys == null || list.citys.size() == 0) {
+        if (list == null || list.getCities() == null || list.getCities().size() == 0) {
             return;
         }
 
-        List<CNCityEntity> entityList = new ArrayList<>(list.citys.size());
-        for (int i = 0; i < list.citys.size(); i ++) {
-            entityList.add(buildCNCityEntity(list.citys.get(i)));
+        List<CNCityEntity> entityList = new ArrayList<>(list.getCities().size());
+        for (int i = 0; i < list.getCities().size(); i ++) {
+            entityList.add(buildCNCityEntity(list.getCities().get(i)));
         }
 
         new DaoMaster(database)
@@ -84,6 +206,11 @@ public class CNCityEntity {
             return null;
         }
 
+        name = ChineseConverter.convert(name, ConversionType.T2S, GeometricWeather.getInstance());
+        name = formatDistrictString(name);
+        name = formatCityString(name);
+        name = formatProvinceString(name);
+
         CNCityEntityDao dao = new DaoMaster(database)
                 .newSession()
                 .getCNCityEntityDao();
@@ -103,54 +230,42 @@ public class CNCityEntity {
 
     public static CNCityList.CNCity searchCNCity(SQLiteDatabase database,
                                                  String district, String city, String province) {
-        if ((TextUtils.isEmpty(district) && TextUtils.isEmpty(city))
-                || TextUtils.isEmpty(province)) {
-            return null;
-        }
+        district = formatDistrictString(
+                ChineseConverter.convert(district, ConversionType.T2S, GeometricWeather.getInstance()));
+        city = formatCityString(
+                ChineseConverter.convert(city, ConversionType.T2S, GeometricWeather.getInstance()));
+        province = formatProvinceString(
+                ChineseConverter.convert(province, ConversionType.T2S, GeometricWeather.getInstance()));
 
         CNCityEntityDao dao = new DaoMaster(database)
                 .newSession()
                 .getCNCityEntityDao();
 
+        List<WhereCondition> conditionList = new ArrayList<>();
+        conditionList.add(
+                dao.queryBuilder().and(
+                        CNCityEntityDao.Properties.District.eq(district),
+                        CNCityEntityDao.Properties.City.eq(city)));
+        conditionList.add(
+                dao.queryBuilder().and(
+                        CNCityEntityDao.Properties.District.eq(district),
+                        CNCityEntityDao.Properties.Province.eq(province)));
+        conditionList.add(
+                dao.queryBuilder().and(
+                        CNCityEntityDao.Properties.City.eq(city),
+                        CNCityEntityDao.Properties.Province.eq(province)));
+        conditionList.add(CNCityEntityDao.Properties.City.eq(city));
+
         List<CNCityEntity> entityList;
-
-        // district, city.
-        try {
-            entityList = dao.queryBuilder()
-                    .where(
-                            CNCityEntityDao.Properties.District.eq(district),
-                            CNCityEntityDao.Properties.City.eq(city)).list();
-        } catch (Exception e) {
-            entityList = null;
-        }
-        if (entityList != null && entityList.size() > 0) {
-            return CNCityList.CNCity.buildCNCity(entityList.get(0));
-        }
-
-        // district, province.
-        try {
-            entityList = dao.queryBuilder()
-                    .where(
-                            CNCityEntityDao.Properties.District.eq(district),
-                            CNCityEntityDao.Properties.Province.eq(province)).list();
-        } catch (Exception e) {
-            entityList = null;
-        }
-        if (entityList != null && entityList.size() > 0) {
-            return CNCityList.CNCity.buildCNCity(entityList.get(0));
-        }
-
-        // city, province.
-        try {
-            entityList = dao.queryBuilder()
-                    .where(
-                            CNCityEntityDao.Properties.City.eq(city),
-                            CNCityEntityDao.Properties.Province.eq(province)).list();
-        } catch (Exception e) {
-            entityList = null;
-        }
-        if (entityList != null && entityList.size() > 0) {
-            return CNCityList.CNCity.buildCNCity(entityList.get(0));
+        for (WhereCondition c : conditionList) {
+            try {
+                entityList = dao.queryBuilder().where(c).list();
+            } catch (Exception e) {
+                entityList = null;
+            }
+            if (entityList != null && entityList.size() > 0) {
+                return CNCityList.CNCity.buildCNCity(entityList.get(0));
+            }
         }
 
         return null;
@@ -160,6 +275,11 @@ public class CNCityEntity {
         if (TextUtils.isEmpty(name)) {
             return null;
         }
+
+        name = ChineseConverter.convert(name, ConversionType.T2S, GeometricWeather.getInstance());
+        name = formatDistrictString(name);
+        name = formatCityString(name);
+        name = formatProvinceString(name);
 
         CNCityEntityDao dao = new DaoMaster(database)
                 .newSession()
@@ -172,11 +292,15 @@ public class CNCityEntity {
                 CNCityEntityDao.Properties.Province.like("%" + name + "%"));
 
         List<CNCityList.CNCity> cityList = new ArrayList<>();
-        List<CNCityEntity> entityList = builder.list();
-        if (entityList != null && entityList.size() > 0) {
-            for (int i = 0; i < entityList.size(); i ++) {
-                cityList.add(CNCityList.CNCity.buildCNCity(entityList.get(i)));
+        try {
+            List<CNCityEntity> entityList = builder.list();
+            if (entityList != null && entityList.size() > 0) {
+                for (int i = 0; i < entityList.size(); i ++) {
+                    cityList.add(CNCityList.CNCity.buildCNCity(entityList.get(i)));
+                }
             }
+        } catch (Exception ignore) {
+
         }
         return cityList;
     }

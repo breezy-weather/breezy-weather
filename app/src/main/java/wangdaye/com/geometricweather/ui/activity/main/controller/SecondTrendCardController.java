@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.GeometricWeather;
@@ -36,6 +37,22 @@ public class SecondTrendCardController extends AbstractMainItemController {
 
     @Override
     public void onBindView(@NonNull Location location) {
+        if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
+            if (!isDisplay("hourly_overview")) {
+                view.setVisibility(View.GONE);
+                return;
+            } else {
+                view.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (!isDisplay("daily_overview")) {
+                view.setVisibility(View.GONE);
+                return;
+            } else {
+                view.setVisibility(View.VISIBLE);
+            }
+        }
+
         if (location.weather != null) {
             card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorRoot));
 

@@ -17,7 +17,7 @@ import wangdaye.com.geometricweather.utils.helpter.PollingUpdateHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
- * Alarm update service.
+ * Update service.
  * */
 
 public abstract class UpdateService extends Service

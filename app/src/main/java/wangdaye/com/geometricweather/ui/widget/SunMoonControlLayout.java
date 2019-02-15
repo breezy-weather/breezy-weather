@@ -69,12 +69,6 @@ public class SunMoonControlLayout extends ViewGroup {
 
         this.indicators = new AppCompatImageView[] {
                 new AppCompatImageView(getContext()), new AppCompatImageView(getContext())};
-        Glide.with(getContext())
-                .load(WeatherHelper.getWeatherIcon(WeatherHelper.KIND_CLEAR, true)[3])
-                .into(indicators[0]);
-        Glide.with(getContext())
-                .load(WeatherHelper.getWeatherIcon(WeatherHelper.KIND_CLEAR, false)[3])
-                .into(indicators[1]);
         addView(indicators[1]);
         addView(indicators[0]);
 
@@ -126,6 +120,15 @@ public class SunMoonControlLayout extends ViewGroup {
     public void setLineColors(@Size(3) int[] colors) {
         this.lineColors = colors;
         invalidate();
+    }
+
+    public void loadIndicatorImage() {
+        Glide.with(getContext())
+                .load(WeatherHelper.getWeatherIcon(WeatherHelper.KIND_CLEAR, true)[3])
+                .into(indicators[0]);
+        Glide.with(getContext())
+                .load(WeatherHelper.getWeatherIcon(WeatherHelper.KIND_CLEAR, false)[3])
+                .into(indicators[1]);
     }
 
     public void setDayIndicatorRotation(int rotation) {

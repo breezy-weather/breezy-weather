@@ -122,6 +122,7 @@
                         android:layout_margin="@dimen/normal_margin"
                         android:layout_alignParentEnd="true"
                         android:text="@string/done"
+                        android:textColor="@color/colorAccent"
                         style="@style/material_button"
                         tools:ignore="RtlHardcoded" />
 

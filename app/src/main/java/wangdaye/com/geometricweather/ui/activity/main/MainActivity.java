@@ -392,6 +392,7 @@ public class MainActivity extends GeoActivity
 
         adapter = new MainControllerAdapter(this, weatherView, locationNow);
         adapter.bindView();
+        adapter.onScroll(0, 0);
 
         scrollView.setVisibility(View.VISIBLE);
 

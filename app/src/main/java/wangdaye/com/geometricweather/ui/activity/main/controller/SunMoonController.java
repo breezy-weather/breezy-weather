@@ -51,6 +51,7 @@ public class SunMoonController extends AbstractMainItemController {
     @Size(2) private int[] animCurrentTimes;
     private int phaseAngle;
 
+    private boolean enable;
     private boolean executeEnterAnimation;
     @Size(3) private AnimatorSet[] attachAnimatorSets;
 
@@ -74,6 +75,15 @@ public class SunMoonController extends AbstractMainItemController {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(@NonNull Location location) {
+        if (!isDisplay("sunrise_sunset")) {
+            enable = false;
+            view.setVisibility(View.GONE);
+            return;
+        } else {
+            enable = true;
+            view.setVisibility(View.VISIBLE);
+        }
+
         if (location.weather != null) {
             weather = location.weather;
 
@@ -95,6 +105,7 @@ public class SunMoonController extends AbstractMainItemController {
                 phaseView.setColor();
             }
 
+            controlView.loadIndicatorImage();
             if (executeEnterAnimation) {
                 controlView.setTime(startTimes, endTimes, startTimes);
                 controlView.setDayIndicatorRotation(0);
@@ -138,7 +149,7 @@ public class SunMoonController extends AbstractMainItemController {
 
     @Override
     public void onEnterScreen() {
-        if (executeEnterAnimation && weather != null) {
+        if (executeEnterAnimation && enable && weather != null) {
             executeEnterAnimation = false;
 
             ValueAnimator timeDay = ValueAnimator.ofObject(new IntEvaluator(), startTimes[0], currentTimes[0]);

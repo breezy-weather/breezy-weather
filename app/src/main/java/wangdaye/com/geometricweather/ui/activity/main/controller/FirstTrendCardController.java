@@ -56,6 +56,22 @@ public class FirstTrendCardController extends AbstractMainItemController
     @SuppressLint("RestrictedApi")
     @Override
     public void onBindView(@NonNull Location location) {
+        if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
+            if (!isDisplay("daily_overview")) {
+                view.setVisibility(View.GONE);
+                return;
+            } else {
+                view.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (!isDisplay("hourly_overview")) {
+                view.setVisibility(View.GONE);
+                return;
+            } else {
+                view.setVisibility(View.VISIBLE);
+            }
+        }
+
         if (location.weather != null) {
             weather = location.weather;
 

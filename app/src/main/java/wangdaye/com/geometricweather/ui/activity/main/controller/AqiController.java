@@ -54,6 +54,15 @@ public class AqiController extends AbstractMainItemController {
 
     @Override
     public void onBindView(@NonNull Location location) {
+        if (!isDisplay("air_quality")) {
+            enable = false;
+            view.setVisibility(View.GONE);
+            return;
+        } else {
+            enable = true;
+            view.setVisibility(View.VISIBLE);
+        }
+
         if (location.weather != null) {
             if (location.weather.aqi.aqi <= 0) {
                 enable = false;

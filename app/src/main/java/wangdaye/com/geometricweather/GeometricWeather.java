@@ -14,6 +14,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -38,6 +40,7 @@ public class GeometricWeather extends Application {
     private String locationService;
     private String darkMode;
     private String iconStyle;
+    private String[] cardDisplayValues;
     private String cardOrder;
     private boolean colorNavigationBar;
     private boolean fahrenheit;
@@ -135,6 +138,9 @@ public class GeometricWeather extends Application {
         locationService = LocationHelper.getLocationServiceProvider(this, sharedPreferences);
         darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
         iconStyle = sharedPreferences.getString(getString(R.string.key_icon_style), "material");
+        cardDisplayValues = sharedPreferences.getStringSet(
+                getString(R.string.key_card_display),
+                new HashSet<>(Arrays.asList(getResources().getStringArray(R.array.card_display_values)))).toArray(new String[] {});
         cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
@@ -190,6 +196,14 @@ public class GeometricWeather extends Application {
 
     public void setIconStyle(String iconStyle) {
         this.iconStyle = iconStyle;
+    }
+
+    public String[] getCardDisplayValues() {
+        return cardDisplayValues;
+    }
+
+    public void setCardDisplayValues(String[] cardDisplayValues) {
+        this.cardDisplayValues = cardDisplayValues;
     }
 
     public String getCardOrder() {

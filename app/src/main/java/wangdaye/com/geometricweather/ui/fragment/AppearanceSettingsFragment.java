@@ -6,6 +6,8 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 
+import java.util.HashSet;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -41,6 +43,13 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
                         getActivity(),
                         GeometricWeather.getInstance().getIconStyle()));
         iconStyle.setOnPreferenceChangeListener(this);
+
+        Preference cardDisplay = findPreference(getString(R.string.key_card_display));
+        cardDisplay.setSummary(
+                ValueUtils.getCardDislay(
+                        getActivity(),
+                        GeometricWeather.getInstance().getCardDisplayValues()));
+        cardDisplay.setOnPreferenceChangeListener(this);
 
         Preference cardOrder = findPreference(getString(R.string.key_card_order));
         cardOrder.setSummary(
@@ -91,12 +100,19 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
             GeometricWeather.getInstance().setIconStyle((String) o);
             preference.setSummary(ValueUtils.getIconStyle(getActivity(), (String) o));
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+        } else if (preference.getKey().equals(getString(R.string.key_card_display))) {
+            // Card display.
+            try {
+                String[] values = ((HashSet<String>) o).toArray(new String[] {});
+                GeometricWeather.getInstance().setCardDisplayValues(values);
+                preference.setSummary(ValueUtils.getCardDislay(getActivity(), values));
+            } catch (Exception ignore) {
+                // do nothing.
+            }
         } else if (preference.getKey().equals(getString(R.string.key_card_order))) {
             // Card order.
             GeometricWeather.getInstance().setCardOrder((String) o);
             preference.setSummary(ValueUtils.getCardOrder(getActivity(), (String) o));
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
         } else if (preference.getKey().equals(getString(R.string.key_language))) {
             // language.
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
