@@ -136,7 +136,6 @@ public class LocationHelper {
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (locationList.size() > 0) {
                 location.cityId = locationList.get(0).cityId;
-                location.city = locationList.get(0).city;
                 location.setLocal();
                 listener.requestLocationSuccess(location);
             } else {

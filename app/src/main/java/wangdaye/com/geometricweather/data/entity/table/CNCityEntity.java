@@ -59,7 +59,7 @@ public class CNCityEntity {
         return entity;
     }
 
-    private static String formatDistrictString(String str) {
+    private static String formatLocationString(String str) {
         if (TextUtils.isEmpty(str)) {
             return "";
         }
@@ -96,17 +96,7 @@ public class CNCityEntity {
                 && !str.endsWith("宜宾县")) {
             return str.substring(0, str.length() - 1);
         }
-        return str;
-    }
 
-    private static String formatCityString(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return "";
-        }
-
-        if (str.endsWith("地区")) {
-            return str.substring(0, str.length() - 2);
-        }
         if (str.endsWith("市")
                 && !str.endsWith("新市")
                 && !str.endsWith("沙市")
@@ -149,14 +139,6 @@ public class CNCityEntity {
             return str.substring(0, str.length() - 3);
         }
 
-        return str;
-    }
-
-    private static String formatProvinceString(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return "";
-        }
-
         if (str.endsWith("省")) {
             return str.substring(0, str.length() - 1);
         }
@@ -172,7 +154,6 @@ public class CNCityEntity {
         if (str.endsWith("自治区")) {
             return str.substring(0, str.length() - 3);
         }
-
         return str;
     }
 
@@ -204,10 +185,7 @@ public class CNCityEntity {
             return null;
         }
 
-        name = convertChinese(name);
-        name = formatDistrictString(name);
-        name = formatCityString(name);
-        name = formatProvinceString(name);
+        name = formatLocationString(convertChinese(name));
 
         CNCityEntityDao dao = new DaoMaster(database)
                 .newSession()
@@ -228,9 +206,9 @@ public class CNCityEntity {
 
     public static CNCityList.CNCity searchCNCity(SQLiteDatabase database,
                                                  String district, String city, String province) {
-        district = formatDistrictString(convertChinese(district));
-        city = formatCityString(convertChinese(city));
-        province = formatProvinceString(convertChinese(province));
+        district = formatLocationString(convertChinese(district));
+        city = formatLocationString(convertChinese(city));
+        province = formatLocationString(convertChinese(province));
 
         CNCityEntityDao dao = new DaoMaster(database)
                 .newSession()
@@ -253,7 +231,12 @@ public class CNCityEntity {
         conditionList.add(
                 dao.queryBuilder().and(
                         CNCityEntityDao.Properties.District.eq(city),
+                        CNCityEntityDao.Properties.Province.eq(province)));
+        conditionList.add(
+                dao.queryBuilder().and(
+                        CNCityEntityDao.Properties.District.eq(city),
                         CNCityEntityDao.Properties.City.eq(province)));
+        conditionList.add(CNCityEntityDao.Properties.District.eq(city));
         conditionList.add(CNCityEntityDao.Properties.City.eq(district));
 
         List<CNCityEntity> entityList;
@@ -276,10 +259,7 @@ public class CNCityEntity {
             return null;
         }
 
-        name = convertChinese(name);
-        name = formatDistrictString(name);
-        name = formatCityString(name);
-        name = formatProvinceString(name);
+        name = formatLocationString(convertChinese(name));
 
         CNCityEntityDao dao = new DaoMaster(database)
                 .newSession()
