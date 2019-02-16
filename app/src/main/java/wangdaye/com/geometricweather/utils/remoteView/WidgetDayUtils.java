@@ -126,7 +126,7 @@ public class WidgetDayUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_day_icon,
-                getWeatherIconId(weather, dayTime, minimalIcon, blackText));
+                getWeatherIconId(weather, dayTime, minimalIcon, blackText || showCard));
         if (!viewStyle.equals("oreo")) {
             views.setTextViewText(
                     R.id.widget_day_title,

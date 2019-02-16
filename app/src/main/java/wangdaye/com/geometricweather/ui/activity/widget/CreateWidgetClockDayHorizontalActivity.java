@@ -130,7 +130,7 @@ public class CreateWidgetClockDayHorizontalActivity extends GeoWidgetConfigActiv
                 TimeManager.getInstance(this).getDayTime(
                         this, weather, false).isDayTime(),
                 isMinimalIcon(),
-                blackTextSwitch.isChecked());
+                blackTextSwitch.isChecked() || showCardSwitch.isChecked());
         Glide.with(this)
                 .load(imageId)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)

@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Size;
 
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 
@@ -17,7 +18,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
     private float[] angles;
     private float[] unitSizes;
 
-    public SunImplementor(MaterialWeatherView view) {
+    public SunImplementor(@Size(2) int[] canvasSizes) {
         this.paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
@@ -26,13 +27,13 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
         this.angles = new float[3];
 
         this.unitSizes = new float[3];
-        unitSizes[0] = (float) (0.5 * 0.47 * view.getMeasuredWidth());
+        unitSizes[0] = (float) (0.5 * 0.47 * canvasSizes[0]);
         unitSizes[1] = (float) (1.7794 * unitSizes[0]);
         unitSizes[2] = (float) (3.0594 * unitSizes[0]);
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, long interval,
+    public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
         for (int i = 0; i < angles.length; i ++) {
             angles[i] = (float) ((angles[i] + (90.0 / (3000 + 1000 * i) * interval)) % 90);
@@ -40,18 +41,18 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
     }
 
     @Override
-    public void draw(MaterialWeatherView view, Canvas canvas,
+    public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
 
         canvas.drawColor(Color.argb((int) (displayRate * 255), 253, 188, 76));
 
         if (scrollRate < 1) {
-            float deltaX = (float) (Math.sin(rotation2D * Math.PI / 180.0) * 0.3 * view.getMeasuredWidth());
-            float deltaY = (float) (Math.sin(rotation3D * Math.PI / 180.0) * -0.3 * view.getMeasuredWidth());
+            float deltaX = (float) (Math.sin(rotation2D * Math.PI / 180.0) * 0.3 * canvasSizes[0]);
+            float deltaY = (float) (Math.sin(rotation3D * Math.PI / 180.0) * -0.3 * canvasSizes[0]);
 
             canvas.translate(
-                    view.getMeasuredWidth() + deltaX,
-                    (float) (0.0333 * view.getMeasuredWidth() + deltaY));
+                    canvasSizes[0] + deltaX,
+                    (float) (0.0333 * canvasSizes[0] + deltaY));
 
             paint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.40));
             canvas.rotate(angles[0]);

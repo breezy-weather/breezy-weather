@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
+import android.support.annotation.Size;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 
@@ -193,9 +194,9 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         }
     }
 
-    public CloudImplementor(MaterialWeatherView view, @TypeRule int type) {
-        int viewWidth = view.getMeasuredWidth();
-        int viewHeight = view.getMeasuredHeight();
+    public CloudImplementor(@Size(2) int[] canvasSizes, @TypeRule int type) {
+        int viewWidth = canvasSizes[0];
+        int viewHeight = canvasSizes[1];
         this.random = new Random();
 
         if (type == TYPE_FOG || type == TYPE_HAZE) {
@@ -429,7 +430,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, long interval,
+    public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
         for (Cloud c : clouds) {
             c.move(interval, rotation2D, rotation3D);
@@ -443,7 +444,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     }
 
     @Override
-    public void draw(MaterialWeatherView view, Canvas canvas,
+    public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
         if (displayRate >=1) {
             canvas.drawColor(backgroundColor);

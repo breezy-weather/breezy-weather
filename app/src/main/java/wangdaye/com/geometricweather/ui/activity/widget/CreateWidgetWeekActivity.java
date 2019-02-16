@@ -114,7 +114,9 @@ public class CreateWidgetWeekActivity extends GeoWidgetConfigActivity
             Glide.with(this)
                     .load(
                             WidgetWeekUtils.getIconId(
-                                    weather, dayTime, isMinimalIcon(), blackTextSwitch.isChecked(), i))
+                                    weather, dayTime, isMinimalIcon(),
+                                    blackTextSwitch.isChecked() || showCardSwitch.isChecked(),
+                                    i))
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(widgetIcons[i]);
         }

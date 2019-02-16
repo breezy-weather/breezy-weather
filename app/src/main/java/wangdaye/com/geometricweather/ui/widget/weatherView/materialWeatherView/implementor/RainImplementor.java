@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntDef;
+import android.support.annotation.Size;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 
@@ -168,7 +169,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
     }
 
-    public RainImplementor(MaterialWeatherView view, @TypeRule int type) {
+    public RainImplementor(@Size(2) int[] canvasSizes, @TypeRule int type) {
         this.paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
@@ -229,7 +230,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         float[] scales = new float[] {0.6F, 0.8F, 1};
         for (int i = 0; i < rains.length; i ++) {
             rains[i] = new Rain(
-                    view.getMeasuredWidth(), view.getMeasuredHeight(),
+                    canvasSizes[0], canvasSizes[1],
                     colors[i * 3 / rains.length], scales[i * 3 / rains.length]);
         }
 
@@ -238,7 +239,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, long interval,
+    public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
 
         for (Rain r : rains) {
@@ -251,7 +252,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @Override
-    public void draw(MaterialWeatherView view, Canvas canvas,
+    public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
 
         if (displayRate >= 1) {
@@ -267,8 +268,8 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             rotation2D += 8;
             canvas.rotate(
                     rotation2D,
-                    view.getMeasuredWidth() * 0.5F,
-                    view.getMeasuredHeight() * 0.5F);
+                    canvasSizes[0] * 0.5F,
+                    canvasSizes[1] * 0.5F);
 
             for (Rain r : rains) {
                 paint.setColor(r.color);

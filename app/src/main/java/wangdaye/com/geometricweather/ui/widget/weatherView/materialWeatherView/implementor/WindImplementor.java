@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Size;
 import android.support.v4.graphics.ColorUtils;
 
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
@@ -106,7 +107,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
     }
 
-    public WindImplementor(MaterialWeatherView view) {
+    public WindImplementor(@Size(2) int[] canvasSizes) {
         this.paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
@@ -121,7 +122,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         this.winds = new Wind[51];
         for (int i = 0; i < winds.length; i ++) {
             winds[i] = new Wind(
-                    view.getMeasuredWidth(), view.getMeasuredHeight(),
+                    canvasSizes[0], canvasSizes[1],
                     colors[i * 3 / winds.length], scales[i * 3 / winds.length]);
         }
 
@@ -130,7 +131,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, long interval,
+    public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
         for (Wind w : winds) {
             w.move(interval, lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
@@ -139,7 +140,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @Override
-    public void draw(MaterialWeatherView view, Canvas canvas,
+    public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
 
         if (displayRate >= 1) {
@@ -155,8 +156,8 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             rotation2D -= 16;
             canvas.rotate(
                     rotation2D,
-                    view.getMeasuredWidth() * 0.5F,
-                    view.getMeasuredHeight() * 0.5F);
+                    canvasSizes[0] * 0.5F,
+                    canvasSizes[1] * 0.5F);
 
             for (Wind w : winds) {
                 paint.setColor(w.color);

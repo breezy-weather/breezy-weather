@@ -65,7 +65,7 @@ public class WidgetClockDayWeekUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon,
-                getWeatherIconId(weather, dayTime, minimalIcon, blackText));
+                getWeatherIconId(weather, dayTime, minimalIcon, blackText || showCard));
         views.setTextViewText(
                 R.id.widget_clock_day_week_lunar,
                 getLunarText(context));
@@ -107,19 +107,19 @@ public class WidgetClockDayWeekUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_1,
-                getIconId(weather, dayTime, minimalIcon, blackText, 0));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 0));
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_2,
-                getIconId(weather, dayTime, minimalIcon, blackText, 1));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 1));
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_3,
-                getIconId(weather, dayTime, minimalIcon, blackText, 2));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 2));
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_4,
-                getIconId(weather, dayTime, minimalIcon, blackText, 3));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 3));
         views.setImageViewResource(
                 R.id.widget_clock_day_week_icon_5,
-                getIconId(weather, dayTime, minimalIcon, blackText, 4));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 4));
 
         views.setTextColor(R.id.widget_clock_day_week_clock_light, textColor);
         views.setTextColor(R.id.widget_clock_day_week_clock_normal, textColor);

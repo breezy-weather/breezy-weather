@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -148,6 +150,8 @@ public class GeometricWeather extends Application {
         language = sharedPreferences.getString(getString(R.string.key_language), "follow_system");
 
         LanguageUtils.setLanguage(this, language);
+
+        CrashReport.initCrashReport(getApplicationContext(), "148f1437d5", false);
     }
 
     public void addActivity(GeoActivity a) {

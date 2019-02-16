@@ -138,7 +138,7 @@ public class CNWeatherService extends WeatherService {
                     return;
                 }
 
-                if (DatabaseHelper.getInstance(context).countCNCity() < 2971) {
+                if (DatabaseHelper.getInstance(context).countCNCity() < 3216) {
                     DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
                 }
 

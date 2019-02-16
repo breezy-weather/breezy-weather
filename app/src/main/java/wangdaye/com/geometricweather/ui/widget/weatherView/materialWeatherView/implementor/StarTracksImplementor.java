@@ -1,10 +1,12 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Size;
 import android.support.v4.graphics.ColorUtils;
 
 import java.util.Random;
@@ -117,7 +119,7 @@ public class StarTracksImplementor extends MaterialWeatherView.WeatherAnimationI
         }
     }
 
-    public StarTracksImplementor(MaterialWeatherView view) {
+    public StarTracksImplementor(Context context, @Size(2) int[] canvasSizes) {
         this.starPaint = new Paint();
         starPaint.setStyle(Paint.Style.STROKE);
         starPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -128,10 +130,10 @@ public class StarTracksImplementor extends MaterialWeatherView.WeatherAnimationI
         polarisPaint.setAntiAlias(true);
 
         this.stars = new Star[STAR_NUM];
-        int centerX = view.getMeasuredWidth() / 2;
-        int centerY = (int) (view.getMeasuredHeight() / 5.5);
-        float maxRadius = view.getMeasuredHeight() / 2f;
-        float maxStrokeWidth = DisplayUtils.dpToPx(view.getContext(), 2);
+        int centerX = canvasSizes[0] / 2;
+        int centerY = (int) (canvasSizes[1] / 5.5);
+        float maxRadius = canvasSizes[1] / 2f;
+        float maxStrokeWidth = DisplayUtils.dpToPx(context, 2);
         /*
         int[] trackColors = new int[] {
                 Color.rgb(180, 182, 242),
@@ -170,7 +172,7 @@ public class StarTracksImplementor extends MaterialWeatherView.WeatherAnimationI
         }
 
         this.polaris = new Polaris(
-                centerX, centerY, DisplayUtils.dpToPx(view.getContext(), 1),
+                centerX, centerY, DisplayUtils.dpToPx(context, 1),
                 Color.rgb(240, 220, 151),
                 CENTER_STAR_SHINNING_DURATION);
 
@@ -178,19 +180,19 @@ public class StarTracksImplementor extends MaterialWeatherView.WeatherAnimationI
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, long interval,
+    public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
-        this.translateX = (float) (Math.sin(rotation2D * Math.PI / 180.0) * 0.33 * view.getMeasuredWidth());
-        this.translateY = (float) (Math.sin(rotation3D * Math.PI / 180.0) * -0.08 * view.getMeasuredHeight());
+        this.translateX = (float) (Math.sin(rotation2D * Math.PI / 180.0) * 0.33 * canvasSizes[0]);
+        this.translateY = (float) (Math.sin(rotation3D * Math.PI / 180.0) * -0.08 * canvasSizes[1]);
         for (Star s : stars) {
             s.rotate(ROTATE_SPEED, interval, MAX_ANGLE);
-            // s.setInDisplayArea(view.getMeasuredWidth(), view.getMeasuredHeight());
+            // s.setInDisplayArea(canvasSizes[0], canvasSizes[1]);
         }
         polaris.shine(interval);
     }
 
     @Override
-    public void draw(MaterialWeatherView view, Canvas canvas,
+    public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
 
         if (displayRate >= 1) {

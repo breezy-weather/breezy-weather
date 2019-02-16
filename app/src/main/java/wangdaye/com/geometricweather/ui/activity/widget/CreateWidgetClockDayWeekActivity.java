@@ -153,7 +153,8 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
                 .isDayTime();
 
         int imageId = WidgetClockDayWeekUtils.getWeatherIconId(
-                weather, dayTime, isMinimalIcon(), blackTextSwitch.isChecked());
+                weather, dayTime, isMinimalIcon(), blackTextSwitch.isChecked() || showCardSwitch.isChecked());
+
         Glide.with(this)
                 .load(imageId)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -167,7 +168,7 @@ public class CreateWidgetClockDayWeekActivity extends GeoWidgetConfigActivity
             Glide.with(this)
                     .load(WidgetClockDayWeekUtils.getIconId(
                             weather, dayTime,
-                            isMinimalIcon(), blackTextSwitch.isChecked(),
+                            isMinimalIcon(), blackTextSwitch.isChecked() || showCardSwitch.isChecked(),
                             i))
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(widgetIcons[i]);

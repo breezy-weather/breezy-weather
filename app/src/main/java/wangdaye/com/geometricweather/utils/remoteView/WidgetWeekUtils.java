@@ -100,19 +100,19 @@ public class WidgetWeekUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_week_icon_1,
-                getIconId(weather, dayTime, minimalIcon, blackText, 0));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 0));
         views.setImageViewResource(
                 R.id.widget_week_icon_2,
-                getIconId(weather, dayTime, minimalIcon, blackText, 1));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 1));
         views.setImageViewResource(
                 R.id.widget_week_icon_3,
-                getIconId(weather, dayTime, minimalIcon, blackText, 2));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 2));
         views.setImageViewResource(
                 R.id.widget_week_icon_4,
-                getIconId(weather, dayTime, minimalIcon, blackText, 3));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 3));
         views.setImageViewResource(
                 R.id.widget_week_icon_5,
-                getIconId(weather, dayTime, minimalIcon, blackText, 4));
+                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 4));
         
         // set text color.
         views.setTextColor(R.id.widget_week_week_1, textColor);

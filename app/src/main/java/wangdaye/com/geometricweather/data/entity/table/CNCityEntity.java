@@ -3,9 +3,6 @@ package wangdaye.com.geometricweather.data.entity.table;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.zqc.opencc.android.lib.ChineseConverter;
-import com.zqc.opencc.android.lib.ConversionType;
-
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -13,8 +10,9 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.data.entity.model.CNCityList;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
+
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.query.WhereCondition;
 
@@ -206,7 +204,7 @@ public class CNCityEntity {
             return null;
         }
 
-        name = ChineseConverter.convert(name, ConversionType.T2S, GeometricWeather.getInstance());
+        name = convertChinese(name);
         name = formatDistrictString(name);
         name = formatCityString(name);
         name = formatProvinceString(name);
@@ -230,12 +228,9 @@ public class CNCityEntity {
 
     public static CNCityList.CNCity searchCNCity(SQLiteDatabase database,
                                                  String district, String city, String province) {
-        district = formatDistrictString(
-                ChineseConverter.convert(district, ConversionType.T2S, GeometricWeather.getInstance()));
-        city = formatCityString(
-                ChineseConverter.convert(city, ConversionType.T2S, GeometricWeather.getInstance()));
-        province = formatProvinceString(
-                ChineseConverter.convert(province, ConversionType.T2S, GeometricWeather.getInstance()));
+        district = formatDistrictString(convertChinese(district));
+        city = formatCityString(convertChinese(city));
+        province = formatProvinceString(convertChinese(province));
 
         CNCityEntityDao dao = new DaoMaster(database)
                 .newSession()
@@ -255,6 +250,11 @@ public class CNCityEntity {
                         CNCityEntityDao.Properties.City.eq(city),
                         CNCityEntityDao.Properties.Province.eq(province)));
         conditionList.add(CNCityEntityDao.Properties.City.eq(city));
+        conditionList.add(
+                dao.queryBuilder().and(
+                        CNCityEntityDao.Properties.District.eq(city),
+                        CNCityEntityDao.Properties.City.eq(province)));
+        conditionList.add(CNCityEntityDao.Properties.City.eq(district));
 
         List<CNCityEntity> entityList;
         for (WhereCondition c : conditionList) {
@@ -276,7 +276,7 @@ public class CNCityEntity {
             return null;
         }
 
-        name = ChineseConverter.convert(name, ConversionType.T2S, GeometricWeather.getInstance());
+        name = convertChinese(name);
         name = formatDistrictString(name);
         name = formatCityString(name);
         name = formatProvinceString(name);
@@ -310,6 +310,14 @@ public class CNCityEntity {
                 .newSession()
                 .getCNCityEntityDao()
                 .count();
+    }
+
+    private static String convertChinese(String text) {
+        try {
+            return LanguageUtils.traditionalToSimplified(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 
     public Long getId() {

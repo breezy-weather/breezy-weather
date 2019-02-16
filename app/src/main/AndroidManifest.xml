@@ -19,6 +19,11 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INSTANT_APP_FOREGROUND_SERVICE"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-feature android:name="android.software.live_wallpaper"
+        android:required="true" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -212,6 +217,17 @@
             <meta-data
                 android:name="cyanogenmod.weatherservice"
                 android:resource="@xml/cm_weather_provider_options" />
+        </service>
+
+        <service
+            android:name=".service.LiveWallpaperService"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/live_wallpaper" />
         </service>
 
         <!-- receiver -->

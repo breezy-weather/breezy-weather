@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Size;
 import android.support.v4.graphics.ColorUtils;
 
 import java.util.Random;
@@ -148,15 +149,15 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
         }
     }
 
-    public MeteorShowerImplementor(MaterialWeatherView view) {
+    public MeteorShowerImplementor(@Size(2) int[] canvasSizes) {
         this.paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setAntiAlias(true);
 
         Random random = new Random();
-        int viewWidth = view.getMeasuredWidth();
-        int viewHeight = view.getMeasuredHeight();
+        int viewWidth = canvasSizes[0];
+        int viewHeight = canvasSizes[1];
         int[] colors = new int[] {
                 Color.rgb(210, 247, 255),
                 Color.rgb(208, 233, 255),
@@ -212,7 +213,7 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
     }
 
     @Override
-    public void updateData(MaterialWeatherView view, long interval,
+    public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
 
         for (Meteor m : meteors) {
@@ -225,7 +226,7 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
     }
 
     @Override
-    public void draw(MaterialWeatherView view, Canvas canvas,
+    public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
 
         if (displayRate >= 1) {
@@ -240,8 +241,8 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
         if (scrollRate < 1) {
             canvas.rotate(
                     rotation2D,
-                    view.getMeasuredWidth() * 0.5F,
-                    view.getMeasuredHeight() * 0.5F);
+                    canvasSizes[0] * 0.5F,
+                    canvasSizes[1] * 0.5F);
             for (Star s : stars) {
                 paint.setColor(s.color);
                 paint.setAlpha((int) (displayRate * (1 - scrollRate) * s.alpha * 255));
@@ -251,8 +252,8 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
 
             canvas.rotate(
                     60,
-                    view.getMeasuredWidth() * 0.5F,
-                    view.getMeasuredHeight() * 0.5F);
+                    canvasSizes[0] * 0.5F,
+                    canvasSizes[1] * 0.5F);
             for (Meteor m : meteors) {
                 paint.setColor(m.color);
                 paint.setStrokeWidth(m.rectF.width());

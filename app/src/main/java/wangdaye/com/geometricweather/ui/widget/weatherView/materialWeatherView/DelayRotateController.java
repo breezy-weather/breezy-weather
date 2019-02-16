@@ -22,7 +22,7 @@ public class DelayRotateController extends MaterialWeatherView.RotateController 
     private static double MIN_ROTATE_SPEED = 360 / 50000.0;
     private static double MAX_ACCELERATION = (MAX_ROTATE_SPEED - MIN_ROTATE_SPEED) / 650.0;
 
-    DelayRotateController(double rotate) {
+    public DelayRotateController(double rotate) {
         this.currentRotation = rotate;
         this.targetRotation = rotate;
         this.deltaRotation = 0;

@@ -6,8 +6,11 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2239
-        versionName "2.239"
+        versionCode 2241
+        versionName "2.241"
+        ndk {
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -103,5 +106,6 @@ dependencies {
     implementation 'org.cyanogenmod:platform.sdk:5.0'
     implementation 'org.jetbrains:annotations-java5:15.0'
 
-    implementation 'com.zqc.opencc.android.lib:lib-opencc-android:0.8.0@aar'
+    implementation 'com.tencent.bugly:crashreport:2.8.6.0'
+    implementation 'com.tencent.bugly:nativecrashreport:3.6.0.1'
 }

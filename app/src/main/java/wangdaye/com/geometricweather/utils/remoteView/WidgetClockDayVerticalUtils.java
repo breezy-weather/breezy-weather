@@ -67,8 +67,8 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
         RemoteViews views = buildWidgetViewDayPart(
                 context, weather,
                 dayTime, textColor, fahrenheit,
-                minimalIcon, blackText, clockFont,
-                viewStyle,
+                minimalIcon, showCard, blackText,
+                clockFont, viewStyle,
                 hideSubtitle, subtitleData);
 
         views.setViewVisibility(R.id.widget_clock_day_card, showCard ? View.VISIBLE : View.GONE);
@@ -84,8 +84,8 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
 
     private static RemoteViews buildWidgetViewDayPart(Context context, Weather weather,
                                                       boolean dayTime, int textColor, boolean fahrenheit,
-                                                      boolean minimalIcon, boolean blackText, String clockFont,
-                                                      String viewStyle,
+                                                      boolean minimalIcon, boolean showCard, boolean blackText,
+                                                      String clockFont, String viewStyle,
                                                       boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
         switch (viewStyle) {
@@ -112,7 +112,7 @@ public class WidgetClockDayVerticalUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_clock_day_icon,
-                getWeatherIconId(weather, dayTime, minimalIcon, blackText));
+                getWeatherIconId(weather, dayTime, minimalIcon, blackText || showCard));
         views.setTextViewText(
                 R.id.widget_clock_day_title,
                 getTitleText(weather, viewStyle, fahrenheit));

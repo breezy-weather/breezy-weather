@@ -65,7 +65,7 @@ public class WidgetClockDayHorizontalUtils extends AbstractRemoteViewsUtils {
 
         views.setImageViewResource(
                 R.id.widget_clock_day_icon,
-                getWeatherIconId(weather, dayTime, minimalIcon, blackText));
+                getWeatherIconId(weather, dayTime, minimalIcon, blackText || showCard));
 
         views.setTextViewText(
                 R.id.widget_clock_day_lunar,

@@ -205,3 +205,7 @@ public static java.lang.String TABLENAME;
 # Cyanogenmod
 -keep class cyanogenmod.** { *; }
 -dontwarn cyanogenmod.**
+
+# Bugly
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
