@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:foreground="@drawable/selectable_item_background">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_about_link_icon"
         android:layout_alignParentStart="true"
         style="@style/material_icon"

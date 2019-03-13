@@ -1,8 +1,8 @@
 package wangdaye.com.geometricweather.ui.widget.verticalScrollView;
 
 import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -14,7 +14,7 @@ import android.view.animation.Transformation;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 
 /**
  * Swipe switch layout.

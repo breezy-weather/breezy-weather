@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimaryDark" />
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_search_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.design.widget.AppBarLayout
+            <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/activity_search_searchBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -37,7 +37,7 @@
                     android:layout_height="match_parent"
                     android:alpha="0">
 
-                    <android.support.v7.widget.AppCompatImageButton
+                    <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/activity_search_backBtn"
                         android:src="@drawable/ic_back"
                         android:layout_alignParentStart="true"
@@ -45,7 +45,7 @@
                         style="@style/material_image_button"
                         tools:ignore="ContentDescription" />
 
-                    <android.support.v7.widget.AppCompatImageButton
+                    <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/activity_search_clearBtn"
                         android:src="@drawable/ic_close"
                         android:layout_alignParentEnd="true"
@@ -71,7 +71,7 @@
 
                 </RelativeLayout>
 
-            </android.support.design.widget.AppBarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                     app:cpv_color="@color/colorTextContent"
                     app:cpv_indeterminate="true" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/activity_search_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -95,6 +95,6 @@
 
         </LinearLayout>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

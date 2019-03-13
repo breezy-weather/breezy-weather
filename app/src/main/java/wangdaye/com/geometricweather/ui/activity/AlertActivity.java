@@ -1,17 +1,18 @@
 package wangdaye.com.geometricweather.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.data.entity.model.weather.Alert;
+import wangdaye.com.geometricweather.basic.model.weather.Alert;
 import wangdaye.com.geometricweather.ui.adapter.AlertAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 
@@ -43,6 +44,7 @@ public class AlertActivity extends GeoActivity
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // do nothing.
@@ -58,14 +60,14 @@ public class AlertActivity extends GeoActivity
     }
 
     private void initWidget() {
-        this.container = (CoordinatorLayout) findViewById(R.id.activity_alert_container);
+        this.container = findViewById(R.id.activity_alert_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_alert_toolbar);
+        Toolbar toolbar = findViewById(R.id.activity_alert_toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         toolbar.setNavigationOnClickListener(this);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.activity_alert_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        RecyclerView recyclerView = findViewById(R.id.activity_alert_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(new AlertAdapter(alarmList));
     }

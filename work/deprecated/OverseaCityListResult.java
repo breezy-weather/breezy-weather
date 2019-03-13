@@ -2,7 +2,7 @@ package wangdaye.com.geometricweather.basic.deprecated;
 /*
 import java.util.List;
 
-import wangdaye.com.geometricweather.data.entity.table.OverseaCityEntity;
+import wangdaye.com.geometricweather.db.entity.table.OverseaCityEntity;
 */
 /**
  * Oversea city result.

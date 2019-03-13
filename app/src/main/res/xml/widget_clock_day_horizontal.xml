@@ -8,5 +8,5 @@
     android:initialLayout="@layout/widget_clock_day_horizontal"
     android:previewImage="@drawable/widget_clock_day_horizontal"
     android:resizeMode="horizontal|vertical"
-    android:configure="wangdaye.com.geometricweather.ui.activity.widget.CreateWidgetClockDayHorizontalActivity"
+    android:configure="wangdaye.com.geometricweather.remote.ui.CreateWidgetClockDayHorizontalActivity"
     android:widgetCategory="home_screen|keyguard" />

@@ -1,16 +1,18 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
 import android.app.Activity;
+import android.app.WallpaperManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import android.view.View;
 
 import org.greenrobot.greendao.annotation.NotNull;
@@ -19,15 +21,16 @@ import java.util.ArrayList;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.background.service.LiveWallpaperService;
 import wangdaye.com.geometricweather.ui.activity.AboutActivity;
 import wangdaye.com.geometricweather.ui.activity.AlertActivity;
-import wangdaye.com.geometricweather.ui.activity.SelectProviderActivity;
-import wangdaye.com.geometricweather.ui.activity.main.MainActivity;
+import wangdaye.com.geometricweather.settings.activity.SelectProviderActivity;
+import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.ui.activity.ManageActivity;
 import wangdaye.com.geometricweather.ui.activity.SearcActivity;
-import wangdaye.com.geometricweather.ui.activity.SettingsActivity;
+import wangdaye.com.geometricweather.settings.activity.SettingsActivity;
 
 /**
  * Intent helper.
@@ -118,6 +121,14 @@ public class IntentHelper {
 
     public static void startLocationSettingsActivity(Context context) {
         Intent intent =  new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    public static void startLiveWallpaperActivity(Context context) {
+        Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+        intent.putExtra(
+                WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                new ComponentName(context, LiveWallpaperService.class));
         context.startActivity(intent);
     }
 }

@@ -1,7 +1,7 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView;
 
-import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Weather view controller.

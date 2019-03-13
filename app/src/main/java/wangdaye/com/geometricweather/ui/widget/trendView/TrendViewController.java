@@ -1,18 +1,18 @@
 package wangdaye.com.geometricweather.ui.widget.trendView;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.History;
-import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
-import wangdaye.com.geometricweather.ui.adapter.DailyTrendAdapter;
-import wangdaye.com.geometricweather.ui.adapter.HourlyTrendAdapter;
+import wangdaye.com.geometricweather.basic.model.History;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.adapter.DailyTrendAdapter;
+import wangdaye.com.geometricweather.main.adapter.HourlyTrendAdapter;
 
 /**
  * Trend view controller.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_weather_container"
@@ -39,7 +39,7 @@
 
             </LinearLayout>
 
-            <wangdaye.com.geometricweather.ui.widget.MoonPhaseView
+            <wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView
                 android:id="@+id/dialog_weather_phaseView"
                 android:layout_width="@dimen/material_icon_size"
                 android:layout_height="@dimen/material_icon_size"
@@ -64,7 +64,7 @@
             android:foreground="@drawable/selectable_item_background_borderless"
             tools:ignore="UnusedAttribute">
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_3_day"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -73,7 +73,7 @@
                 tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_2_day"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -82,7 +82,7 @@
                 tools:src="@drawable/weather_sun_day"
                 tools:ignore="ContentDescription" />
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_1_day"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -111,7 +111,7 @@
             android:foreground="@drawable/selectable_item_background_borderless"
             tools:ignore="UnusedAttribute">
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_3_night"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -120,7 +120,7 @@
                 tools:src="@drawable/weather_sun_night"
                 tools:ignore="ContentDescription" />
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_2_night"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -129,7 +129,7 @@
                 tools:src="@drawable/weather_sun_night"
                 tools:ignore="ContentDescription" />
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_weather_icon_1_night"
                 android:layout_width="@dimen/standard_weather_icon_size"
                 android:layout_height="@dimen/standard_weather_icon_size"
@@ -164,7 +164,7 @@
                 android:layout_margin="@dimen/normal_margin"
                 tools:ignore="RtlHardcoded">
 
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/dialog_weather_sun_icon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
@@ -197,7 +197,7 @@
                 android:layout_margin="@dimen/normal_margin"
                 tools:ignore="RtlHardcoded">
 
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/dialog_weather_moon_icon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
@@ -224,4 +224,4 @@
 
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

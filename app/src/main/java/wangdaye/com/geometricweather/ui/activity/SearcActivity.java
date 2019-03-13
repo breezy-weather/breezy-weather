@@ -8,10 +8,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -30,12 +30,12 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.data.entity.model.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
-import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.ui.adapter.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
-import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Search activity.

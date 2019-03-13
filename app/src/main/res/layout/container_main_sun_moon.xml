@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_main_sun_moon"
     style="@style/material_card">
@@ -23,7 +23,7 @@
                 android:layout_centerVertical="true"
                 style="@style/content_text" />
 
-            <wangdaye.com.geometricweather.ui.widget.MoonPhaseView
+            <wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView
                 android:id="@+id/container_main_sun_moon_phaseView"
                 android:layout_width="@dimen/material_icon_size"
                 android:layout_height="@dimen/material_icon_size"
@@ -41,7 +41,7 @@
 
         </RelativeLayout>
 
-        <wangdaye.com.geometricweather.ui.widget.SunMoonControlLayout
+        <wangdaye.com.geometricweather.ui.widget.moon.SunMoonControlLayout
             android:id="@+id/container_main_sun_moon_controlView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -60,7 +60,7 @@
                 android:layout_centerVertical="true"
                 tools:ignore="RtlHardcoded">
 
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/container_main_sun_moon_sun_icon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -92,7 +92,7 @@
                 android:layout_marginEnd="@dimen/normal_margin"
                 tools:ignore="RtlHardcoded">
 
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/container_main_sun_moon_moon_icon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -119,4 +119,4 @@
 
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

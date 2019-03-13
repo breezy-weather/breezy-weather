@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.241</string>
+    <string name="version_code">v2.244</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -191,6 +191,8 @@
     <string name="settings_title_background_free">Background Free</string>
     <string name="settings_summary_background_free_on">ON\nIf widgets and notification cannot refresh automatically, please turn off this option.</string>
     <string name="settings_summary_background_free_off">OFF\nIf you do not want any services to continue working in background, please turn on this option.</string>
+    <string name="settings_title_live_wallpaper">Live Wallpaper</string>
+    <string name="settings_summary_live_wallpaper">Set Material Weather Animation As Live Wallpaper</string>
     <string name="settings_title_service_provider">Service Provider</string>
     <string name="settings_summary_service_provider">Select service provider of weather data and location information.</string>
     <string name="settings_title_chinese_source">Chinese Weather Source</string>
@@ -259,6 +261,7 @@
     <string name="key_clock_font">clock_font</string>
 
     <string name="key_background_free">background_free_3</string>
+    <string name="key_live_wallpaper">live_wallpaper</string>
     <string name="key_service_provider">service_provider</string>
     <string name="key_chinese_source">chinese_source_2</string>
     <string name="key_location_service">location_service</string>

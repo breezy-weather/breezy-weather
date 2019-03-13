@@ -177,6 +177,8 @@
     <string name="settings_title_background_free">後臺純净</string>
     <string name="settings_summary_background_free_on">開啓\n若小部件和天氣通知無法自動更新，請關閉該選項</string>
     <string name="settings_summary_background_free_off">關閉\n若不希望任何服務在後臺常駐，請開啓該選項</string>
+    <string name="settings_title_live_wallpaper">動態壁紙</string>
+    <string name="settings_summary_live_wallpaper">將Material天氣動畫設置爲動態壁紙</string>
     <string name="settings_title_service_provider">數據提供商</string>
     <string name="settings_summary_service_provider">選擇天氣數據和位置信息的數據提供商</string>
     <string name="settings_title_chinese_source">中國天氣源</string>

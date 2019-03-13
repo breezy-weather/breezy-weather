@@ -1,8 +1,8 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.IntDef;
-import android.support.annotation.Size;
+import androidx.annotation.ColorInt;
+import androidx.annotation.IntDef;
+import androidx.annotation.Size;
 
 /**
  * Weather view.

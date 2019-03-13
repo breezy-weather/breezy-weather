@@ -34,7 +34,7 @@
         style="@style/content_text"
         tools:text="7-21" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_trend_daily_icon_day"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="144dp" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_trend_daily_icon_night"
         android:layout_width="48dp"
         android:layout_height="48dp"

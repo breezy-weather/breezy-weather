@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
-import android.support.annotation.Size;
+import androidx.annotation.Size;
 
 import com.xhinliang.lunarcalendar.LunarCalendar;
 

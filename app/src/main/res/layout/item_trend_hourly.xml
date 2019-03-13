@@ -22,7 +22,7 @@
         style="@style/content_text"
         tools:text="13时" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_trend_hourly_icon_day"
         android:layout_width="48dp"
         android:layout_height="48dp"

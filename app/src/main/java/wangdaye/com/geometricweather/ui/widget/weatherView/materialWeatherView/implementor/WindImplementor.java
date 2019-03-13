@@ -4,9 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Size;
-import android.support.v4.graphics.ColorUtils;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Size;
+import androidx.core.graphics.ColorUtils;
 
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 

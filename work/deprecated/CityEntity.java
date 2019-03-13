@@ -10,8 +10,8 @@ import org.greenrobot.greendao.annotation.Id;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.result.cityList.CityListResult;
+import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.network.result.cityList.CityListResult;
 */
 /**
  * City entity.

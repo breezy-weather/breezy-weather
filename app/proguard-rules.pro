@@ -16,7 +16,7 @@
 #   public *;
 #}
 
--keep class wangdaye.com.geometricweather.data.entity.** { *; }
+-keep class wangdaye.com.geometricweather.db.entity.** { *; }
 
 -dontskipnonpubliclibraryclassmembers
 -printconfiguration
@@ -198,6 +198,7 @@ public static java.lang.String TABLENAME;
 
 # Retrolambda
 -dontwarn java.lang.invoke.*
+-dontwarn **$$Lambda$*
 
 # CircularProgressView
 -keep class com.github.rahatarmanahmed.cpv.** { *; }
@@ -209,3 +210,21 @@ public static java.lang.String TABLENAME;
 # Bugly
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
+
+# RxJava, RxAndroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+-dontnote rx.internal.util.PlatformDependent
+
+## RxLifeCycle
+-keep class com.trello.rxlifecycle2.** { *; }
+-keep interface com.trello.rxlifecycle2.** { *; }

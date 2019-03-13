@@ -6,11 +6,13 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.service.quicksettings.Tile;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.utils.manager.BackgroundManager;
+import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.background.BackgroundManager;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 

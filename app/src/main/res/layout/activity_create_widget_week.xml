@@ -26,7 +26,7 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_create_widget_week_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -104,6 +104,6 @@
 
         </ScrollView>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

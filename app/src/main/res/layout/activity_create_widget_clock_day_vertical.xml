@@ -27,7 +27,7 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_create_widget_clock_day_vertical_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -54,7 +54,7 @@
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/activity_create_widget_clock_day_vertical_styleSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/activity_create_widget_clock_day_vertical_subtitleDataSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/activity_create_widget_clock_day_vertical_clockFontSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -208,6 +208,6 @@
 
         </ScrollView>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

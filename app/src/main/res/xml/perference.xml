@@ -36,6 +36,11 @@
             android:defaultValue="auto" />
 
         <Preference
+            android:title="@string/settings_title_live_wallpaper"
+            android:key="@string/key_live_wallpaper"
+            android:summary="@string/settings_summary_live_wallpaper" />
+
+        <Preference
             android:title="@string/settings_title_service_provider"
             android:key="@string/key_service_provider"
             android:summary="@string/settings_summary_service_provider" />

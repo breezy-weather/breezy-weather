@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.ColorInt;
-import android.support.annotation.IntDef;
-import android.support.annotation.Size;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.ColorUtils;
+import androidx.annotation.ColorInt;
+import androidx.annotation.IntDef;
+import androidx.annotation.Size;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;

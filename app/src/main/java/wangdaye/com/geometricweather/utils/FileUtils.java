@@ -9,7 +9,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import wangdaye.com.geometricweather.data.entity.model.CNCityList;
+import wangdaye.com.geometricweather.basic.model.CNCityList;
 
 /**
  * File utils.

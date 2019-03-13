@@ -8,7 +8,7 @@
     android:stateListAnimator="@animator/touch_raise"
     tools:ignore="UnusedAttribute">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_location_deleteIconLeft"
         android:src="@drawable/ic_delete"
         android:layout_width="56dp"
@@ -19,7 +19,7 @@
         android:tint="@android:color/white"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_location_deleteIconRight"
         android:src="@drawable/ic_delete"
         android:layout_width="56dp"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorRoot">
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/item_location_deleteBtn"
             android:src="@drawable/ic_close"
             android:layout_centerVertical="true"

@@ -3,8 +3,8 @@ package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Size;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 

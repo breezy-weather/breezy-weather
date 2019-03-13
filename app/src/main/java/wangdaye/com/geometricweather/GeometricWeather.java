@@ -5,8 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -20,9 +20,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.weather.TLSCompactHelper;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.helpter.LocationHelper;
+import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
@@ -32,12 +36,16 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 public class GeometricWeather extends Application {
 
     private static GeometricWeather instance;
-
     public static GeometricWeather getInstance() {
         return instance;
     }
 
     private List<GeoActivity> activityList;
+
+    private OkHttpClient okHttpClient;
+    private GsonConverterFactory gsonConverterFactory;
+    private RxJava2CallAdapterFactory rxJava2CallAdapterFactory;
+
     private String chineseSource;
     private String locationService;
     private String darkMode;
@@ -135,6 +143,10 @@ public class GeometricWeather extends Application {
         instance = this;
         activityList = new ArrayList<>();
 
+        okHttpClient = TLSCompactHelper.getClientBuilder().build();
+        gsonConverterFactory = GsonConverterFactory.create();
+        rxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create();
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "accu");
         locationService = LocationHelper.getLocationServiceProvider(this, sharedPreferences);
@@ -168,6 +180,18 @@ public class GeometricWeather extends Application {
             return null;
         }
         return activityList.get(activityList.size() - 1);
+    }
+
+    public OkHttpClient getOkHttpClient() {
+        return okHttpClient;
+    }
+
+    public GsonConverterFactory getGsonConverterFactory() {
+        return gsonConverterFactory;
+    }
+
+    public RxJava2CallAdapterFactory getRxJava2CallAdapterFactory() {
+        return rxJava2CallAdapterFactory;
     }
 
     public String getChineseSource() {

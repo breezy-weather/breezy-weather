@@ -9,8 +9,8 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import wangdaye.com.geometricweather.data.entity.result.cityList.CityListResult;
-import wangdaye.com.geometricweather.data.entity.result.cityList.OverseaCityListResult;
+import wangdaye.com.geometricweather.network.result.cityList.CityListResult;
+import wangdaye.com.geometricweather.network.result.cityList.OverseaCityListResult;
 import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
 import wangdaye.com.geometricweather.view.activity.MainActivity;
 */

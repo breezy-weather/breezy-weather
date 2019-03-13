@@ -8,18 +8,18 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import android.widget.ImageView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.data.entity.model.History;
-import wangdaye.com.geometricweather.data.entity.model.Location;
-import wangdaye.com.geometricweather.data.entity.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.History;
+import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
-import wangdaye.com.geometricweather.utils.helpter.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.helpter.WeatherHelper;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Geometric weather widget configuration activity.

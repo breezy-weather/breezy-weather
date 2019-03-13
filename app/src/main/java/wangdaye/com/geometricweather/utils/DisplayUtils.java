@@ -8,9 +8,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ColorInt;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -19,7 +19,7 @@ import android.view.animation.Transformation;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.activity.main.MainActivity;
+import wangdaye.com.geometricweather.main.MainActivity;
 
 /**
  * Display utils.

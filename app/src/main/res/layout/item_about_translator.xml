@@ -33,7 +33,7 @@
         tools:text="memcos@gmail.com"
         tools:ignore="RtlHardcoded" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_about_translator_flag"
         android:layout_alignTop="@id/item_about_translator_title"
         android:layout_toEndOf="@id/item_about_translator_title"

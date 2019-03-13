@@ -5,8 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.ColorInt;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ColorInt;
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
