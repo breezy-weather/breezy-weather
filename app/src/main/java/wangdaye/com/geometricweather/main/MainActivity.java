@@ -37,7 +37,7 @@ import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.ui.dialog.LocationHelpDialog;
+import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.ui.widget.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;

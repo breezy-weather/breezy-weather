@@ -24,7 +24,8 @@ public class RunningInBackgroundDialog extends GeoDialogFragment
     @SuppressLint("InflateParams")
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_running_in_background, null, false);
+        View view = LayoutInflater.from(getActivity())
+                .inflate(R.layout.dialog_running_in_background, null, false);
         this.initWidget(view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

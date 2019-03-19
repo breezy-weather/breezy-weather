@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.location.service;
+package wangdaye.com.geometricweather.location.service.ip;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -7,10 +7,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.location.BaiduIPLocationApi;
+import wangdaye.com.geometricweather.location.service.LocationService;
 import wangdaye.com.geometricweather.weather.GzipInterceptor;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
-import wangdaye.com.geometricweather.weather.json.location.BaiduIPLocationResult;
 import wangdaye.com.geometricweather.weather.observer.BaseObserver;
 import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
 

@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.weather.json.location;
+package wangdaye.com.geometricweather.location.service.ip;
 
 public class BaiduIPLocationResult {
 

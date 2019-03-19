@@ -128,7 +128,8 @@ public class IntentHelper {
         Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
         intent.putExtra(
                 WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                new ComponentName(context, LiveWallpaperService.class));
+                new ComponentName(context, LiveWallpaperService.class)
+        );
         context.startActivity(intent);
     }
 }

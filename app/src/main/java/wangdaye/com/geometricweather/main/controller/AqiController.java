@@ -115,12 +115,8 @@ public class AqiController extends AbstractMainItemController {
             ValueAnimator progressColor = ValueAnimator.ofObject(new ArgbEvaluator(),
                     ContextCompat.getColor(context, R.color.colorLevel_1),
                     aqiColor);
-            progressColor.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    progress.setProgressColor((Integer) animation.getAnimatedValue());
-                }
-            });
+            progressColor.addUpdateListener(animation ->
+                    progress.setProgressColor((Integer) animation.getAnimatedValue()));
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(new ArgbEvaluator(),
                     ContextCompat.getColor(context, R.color.colorLine),
@@ -129,20 +125,13 @@ public class AqiController extends AbstractMainItemController {
                             Color.red(aqiColor),
                             Color.green(aqiColor),
                             Color.blue(aqiColor)));
-            backgroundColor.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    progress.setArcBackgroundColor((Integer) animation.getAnimatedValue());
-                }
-            });
+            backgroundColor.addUpdateListener(animation ->
+                    progress.setArcBackgroundColor((Integer) animation.getAnimatedValue()));
 
             ValueAnimator aqiNumber = ValueAnimator.ofObject(new IntEvaluator(), 0, weather.aqi.aqi);
-            aqiNumber.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    progress.setProgress((Integer) animation.getAnimatedValue());
-                    progress.setText(String.valueOf(animation.getAnimatedValue()));
-                }
+            aqiNumber.addUpdateListener(animation -> {
+                progress.setProgress((Integer) animation.getAnimatedValue());
+                progress.setText(String.valueOf(animation.getAnimatedValue()));
             });
 
             attachAnimatorSet = new AnimatorSet();

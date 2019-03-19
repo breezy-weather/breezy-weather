@@ -1,9 +1,8 @@
-package wangdaye.com.geometricweather.location;
+package wangdaye.com.geometricweather.location.service.ip;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import wangdaye.com.geometricweather.weather.json.location.BaiduIPLocationResult;
 
 public interface BaiduIPLocationApi {
 

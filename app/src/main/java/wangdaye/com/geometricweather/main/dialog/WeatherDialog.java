@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.main;
+package wangdaye.com.geometricweather.main.dialog;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;

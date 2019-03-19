@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.dialog;
+package wangdaye.com.geometricweather.main.dialog;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -39,28 +39,15 @@ public class LocationHelpDialog extends GeoDialogFragment {
     private void initWidget(View view) {
         this.container = view.findViewById(R.id.dialog_location_help_container);
 
-        view.findViewById(R.id.dialog_location_help_permissionContainer)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        IntentHelper.startApplicationDetailsActivity(getActivity());
-                    }
-                });
+        if (getActivity() != null) {
+            view.findViewById(R.id.dialog_location_help_permissionContainer)
+                    .setOnClickListener(v -> IntentHelper.startApplicationDetailsActivity(getActivity()));
 
-        view.findViewById(R.id.dialog_location_help_locationContainer)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        IntentHelper.startLocationSettingsActivity(getActivity());
-                    }
-                });
+            view.findViewById(R.id.dialog_location_help_locationContainer)
+                    .setOnClickListener(v -> IntentHelper.startLocationSettingsActivity(getActivity()));
 
-        view.findViewById(R.id.dialog_location_help_providerContainer)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        IntentHelper.startSelectProviderActivity(getActivity());
-                    }
-                });
+            view.findViewById(R.id.dialog_location_help_providerContainer)
+                    .setOnClickListener(v -> IntentHelper.startSelectProviderActivity(getActivity()));
+        }
     }
 }

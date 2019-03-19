@@ -23,7 +23,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.WeatherDialog;
+import wangdaye.com.geometricweather.main.dialog.WeatherDialog;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 

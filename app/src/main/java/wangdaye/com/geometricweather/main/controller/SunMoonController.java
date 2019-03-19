@@ -154,23 +154,16 @@ public class SunMoonController extends AbstractMainItemController {
             executeEnterAnimation = false;
 
             ValueAnimator timeDay = ValueAnimator.ofObject(new IntEvaluator(), startTimes[0], currentTimes[0]);
-            timeDay.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    animCurrentTimes[0] = (Integer) animation.getAnimatedValue();
-                    controlView.setTime(startTimes, endTimes, animCurrentTimes);
-                }
+            timeDay.addUpdateListener(animation -> {
+                animCurrentTimes[0] = (Integer) animation.getAnimatedValue();
+                controlView.setTime(startTimes, endTimes, animCurrentTimes);
             });
 
             double totalRotationDay = 360.0 * 7 * (currentTimes[0] - startTimes[0]) / (endTimes[0] - startTimes[0]);
             ValueAnimator rotateDay = ValueAnimator.ofObject(
                     new IntEvaluator(), 0, (int) (totalRotationDay - totalRotationDay % 360));
-            rotateDay.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    controlView.setDayIndicatorRotation((Integer) animation.getAnimatedValue());
-                }
-            });
+            rotateDay.addUpdateListener(animation ->
+                    controlView.setDayIndicatorRotation((Integer) animation.getAnimatedValue()));
 
             attachAnimatorSets[0] = new AnimatorSet();
             attachAnimatorSets[0].playTogether(timeDay, rotateDay);
@@ -179,23 +172,16 @@ public class SunMoonController extends AbstractMainItemController {
             attachAnimatorSets[0].start();
 
             ValueAnimator timeNight = ValueAnimator.ofObject(new IntEvaluator(), startTimes[1], currentTimes[1]);
-            timeNight.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    animCurrentTimes[1] = (Integer) animation.getAnimatedValue();
-                    controlView.setTime(startTimes, endTimes, animCurrentTimes);
-                }
+            timeNight.addUpdateListener(animation -> {
+                animCurrentTimes[1] = (Integer) animation.getAnimatedValue();
+                controlView.setTime(startTimes, endTimes, animCurrentTimes);
             });
 
             double totalRotationNight = 360.0 * 4 * (currentTimes[1] - startTimes[1]) / (endTimes[1] - startTimes[1]);
             ValueAnimator rotateNight = ValueAnimator.ofObject(
                     new IntEvaluator(), 0, (int) (totalRotationNight - totalRotationNight % 360));
-            rotateNight.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    controlView.setNightIndicatorRotation(-1 * (Integer) animation.getAnimatedValue());
-                }
-            });
+            rotateNight.addUpdateListener(animation ->
+                    controlView.setNightIndicatorRotation(-1 * (Integer) animation.getAnimatedValue()));
 
             attachAnimatorSets[1] = new AnimatorSet();
             attachAnimatorSets[1].playTogether(timeNight, rotateNight);
@@ -205,12 +191,8 @@ public class SunMoonController extends AbstractMainItemController {
 
             if (phaseAngle > 0) {
                 ValueAnimator moonAngle = ValueAnimator.ofObject(new IntEvaluator(), 0, phaseAngle);
-                moonAngle.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        phaseView.setSurfaceAngle((Integer) animation.getAnimatedValue());
-                    }
-                });
+                moonAngle.addUpdateListener(animation ->
+                        phaseView.setSurfaceAngle((Integer) animation.getAnimatedValue()));
 
                 attachAnimatorSets[2] = new AnimatorSet();
                 attachAnimatorSets[2].playTogether(moonAngle);

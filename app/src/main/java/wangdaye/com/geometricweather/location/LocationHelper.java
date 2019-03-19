@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.location.service.AMapLocationService;
 import wangdaye.com.geometricweather.location.service.AndroidLocationService;
-import wangdaye.com.geometricweather.location.service.BaiduIPLocationService;
+import wangdaye.com.geometricweather.location.service.ip.BaiduIPLocationService;
 import wangdaye.com.geometricweather.location.service.BaiduLocationService;
 import wangdaye.com.geometricweather.location.service.LocationService;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;

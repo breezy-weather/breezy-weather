@@ -46,7 +46,7 @@ public class PollingService extends Service {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (!TextUtils.isEmpty(action)) {
-                switch (intent.getAction()) {
+                switch (action) {
                     case Intent.ACTION_TIME_TICK:
                         doRefreshWork();
                         break;

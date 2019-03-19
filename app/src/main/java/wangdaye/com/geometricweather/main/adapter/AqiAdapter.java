@@ -6,11 +6,13 @@ import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +29,7 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Aqi adapter.
- * */
+ */
 
 public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
@@ -101,12 +103,8 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                 ValueAnimator progressColor = ValueAnimator.ofObject(new ArgbEvaluator(),
                         ContextCompat.getColor(itemView.getContext(), R.color.colorLevel_1),
                         item.color);
-                progressColor.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        progress.setProgressColor((Integer) animation.getAnimatedValue());
-                    }
-                });
+                progressColor.addUpdateListener(animation ->
+                        progress.setProgressColor((Integer) animation.getAnimatedValue()));
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(new ArgbEvaluator(),
                         ContextCompat.getColor(itemView.getContext(), R.color.colorLine),
@@ -115,21 +113,12 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 Color.red(item.color),
                                 Color.green(item.color),
                                 Color.blue(item.color)));
-                backgroundColor.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        progress.setProgressBackgroundColor((Integer) animation.getAnimatedValue());
-                    }
-                });
+                backgroundColor.addUpdateListener(animation ->
+                        progress.setProgressBackgroundColor((Integer) animation.getAnimatedValue()));
 
                 ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, item.progress);
-                aqiNumber.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        progress.setProgress(
-                                (int) (100.0 * ((Float) animation.getAnimatedValue()) / item.max));
-                    }
-                });
+                aqiNumber.addUpdateListener(animation ->
+                        progress.setProgress((int) (100.0 * ((Float) animation.getAnimatedValue()) / item.max)));
 
                 attachAnimatorSet = new AnimatorSet();
                 attachAnimatorSet.playTogether(progressColor, backgroundColor, aqiNumber);
@@ -230,13 +219,13 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
     }
 
     public void executeAnimation() {
-        for (int i = 0; i < holderList.size(); i ++) {
+        for (int i = 0; i < holderList.size(); i++) {
             holderList.get(i).executeAnimation();
         }
     }
 
     public void cancelAnimation() {
-        for (int i = 0; i < holderList.size(); i ++) {
+        for (int i = 0; i < holderList.size(); i++) {
             holderList.get(i).cancelAnimation();
         }
         holderList.clear();

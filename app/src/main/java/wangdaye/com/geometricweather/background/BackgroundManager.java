@@ -7,8 +7,6 @@ import android.preference.PreferenceManager;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.background.PollingTaskHelper;
-import wangdaye.com.geometricweather.background.ServiceHelper;
 
 /**
  * Background manager.

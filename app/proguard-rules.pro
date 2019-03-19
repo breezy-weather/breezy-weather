@@ -16,7 +16,9 @@
 #   public *;
 #}
 
+-keep class wangdaye.com.geometricweather.weather.json.** { *; }
 -keep class wangdaye.com.geometricweather.db.entity.** { *; }
+-keep class wangdaye.com.geometricweather.location.service.ip.** { *; }
 
 -dontskipnonpubliclibraryclassmembers
 -printconfiguration
