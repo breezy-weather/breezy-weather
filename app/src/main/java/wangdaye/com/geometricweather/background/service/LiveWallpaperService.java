@@ -29,7 +29,6 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.i
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.SunImplementor;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.WindImplementor;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.LogUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class LiveWallpaperService extends WallpaperService {
@@ -80,13 +79,16 @@ public class LiveWallpaperService extends WallpaperService {
 
                     implementor.updateData(
                             sizes, interval,
-                            (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
+                            (float) rotators[0].getRotate(), (float) rotators[1].getRotate()
+                    );
                     if (step == STEP_DISPLAY) {
                         displayRate = (float) Math.min(
-                                1, displayRate + 1.0 * interval / SWITCH_WEATHER_ANIMATION_DURATION);
+                                1, displayRate + 1.0 * interval / SWITCH_WEATHER_ANIMATION_DURATION
+                        );
                     } else {
                         displayRate = (float) Math.max(
-                                0, displayRate - 1.0 * interval / SWITCH_WEATHER_ANIMATION_DURATION);
+                                0, displayRate - 1.0 * interval / SWITCH_WEATHER_ANIMATION_DURATION
+                        );
                     }
                     if (displayRate == 0) {
                         setWeatherImplementor();
@@ -115,7 +117,8 @@ public class LiveWallpaperService extends WallpaperService {
                             implementor.draw(
                                     sizes, canvas,
                                     displayRate, 0,
-                                    (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
+                                    (float) rotators[0].getRotate(), (float) rotators[1].getRotate()
+                            );
                             holder.unlockCanvasAndPost(canvas);
                         }
                     } catch (Exception ignored) {
@@ -388,16 +391,18 @@ public class LiveWallpaperService extends WallpaperService {
                     location.weather = DatabaseHelper.getInstance(LiveWallpaperService.this)
                             .readWeather(location);
                     if (location.weather != null) {
-                        LogUtils.log("read weather succeed");
                         setWeather(
                                 WeatherViewController.getWeatherViewWeatherKind(
                                         location.weather.realTime.weatherKind,
-                                        TimeManager.getInstance(LiveWallpaperService.this).isDayTime()));
+                                        TimeManager.getInstance(LiveWallpaperService.this).isDayTime()
+                                )
+                        );
                     }
                     setWeatherImplementor();
                     setOpenGravitySensor(
                             PreferenceManager.getDefaultSharedPreferences(LiveWallpaperService.this)
-                                    .getBoolean(getString(R.string.key_gravity_sensor_switch), true));
+                                    .getBoolean(getString(R.string.key_gravity_sensor_switch), true)
+                    );
 
                     if (updateDataRunnable == null || !updateDataRunnable.isRunning()) {
                         updateDataRunnable = new UpdateDataRunnable();

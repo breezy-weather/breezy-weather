@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -25,6 +26,8 @@ import android.widget.LinearLayout;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -224,8 +227,8 @@ public class MainActivity extends GeoActivity
             locationList.get(i).weather = DatabaseHelper.getInstance(this)
                     .readWeather(locationList.get(i));
             if (locationList.get(i).weather != null) {
-                locationList.get(i).history = DatabaseHelper.getInstance(this).readHistory(
-                        locationList.get(i).weather);
+                locationList.get(i).history = DatabaseHelper.getInstance(this)
+                        .readHistory(locationList.get(i).weather);
             }
         }
     }
@@ -282,12 +285,14 @@ public class MainActivity extends GeoActivity
             } else {
                 kind = WeatherViewController.getWeatherViewWeatherKind(
                         locationNow.weather.realTime.weatherKind,
-                        TimeManager.getInstance(this).isDayTime());
+                        TimeManager.getInstance(this).isDayTime()
+                );
             }
             weatherView.setWeather(kind);
             ((MaterialWeatherView) weatherView).setOpenGravitySensor(
                     PreferenceManager.getDefaultSharedPreferences(this)
-                            .getBoolean(getString(R.string.key_gravity_sensor_switch), true));
+                            .getBoolean(getString(R.string.key_gravity_sensor_switch), true)
+            );
         }
 
         this.appBar = findViewById(R.id.activity_main_appBar);
@@ -313,10 +318,15 @@ public class MainActivity extends GeoActivity
         switchLayout.setOnTouchListener(indicatorStateListener);
 
         this.refreshLayout = findViewById(R.id.activity_main_refreshView);
-        int startPosition = (int) (DisplayUtils.getStatusBarHeight(getResources())
-                + DisplayUtils.dpToPx(this, 16));
+        int startPosition = (int) (
+                DisplayUtils.getStatusBarHeight(getResources())
+                        + DisplayUtils.dpToPx(this, 16)
+        );
         refreshLayout.setProgressViewOffset(
-                false, startPosition, startPosition + refreshLayout.getProgressViewEndOffset());
+                false,
+                startPosition,
+                startPosition + refreshLayout.getProgressViewEndOffset()
+        );
         refreshLayout.setOnRefreshListener(this);
         if (weatherView instanceof MaterialWeatherView) {
             refreshLayout.setColorSchemeColors(weatherView.getThemeColors()[0]);
@@ -375,11 +385,15 @@ public class MainActivity extends GeoActivity
         if (locationNow.weather == null) {
             return;
         } else {
-            TimeManager.getInstance(this).getDayTime(this, locationNow.weather, true);
+            TimeManager.getInstance(this)
+                    .getDayTime(this, locationNow.weather, true);
         }
 
         WeatherViewController.setWeatherViewWeatherKind(
-                weatherView, locationNow.weather, TimeManager.getInstance(this).isDayTime());
+                weatherView,
+                locationNow.weather,
+                TimeManager.getInstance(this).isDayTime()
+        );
         setDarkMode(TimeManager.getInstance(this).isDayTime());
 
         DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors()[0]);
@@ -397,8 +411,7 @@ public class MainActivity extends GeoActivity
         if (initAnimator != null) {
             initAnimator.cancel();
         }
-        initAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(
-                MainActivity.this, R.animator.card_in);
+        initAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_in);
         initAnimator.setTarget(scrollView);
         initAnimator.setInterpolator(new DecelerateInterpolator());
         initAnimator.start();
@@ -438,9 +451,14 @@ public class MainActivity extends GeoActivity
         Observable.just(1)
                 .compose(RxLifecycleCompact.bind(this).disposeObservableWhen(LifecycleEvent.DESTROY))
                 .delay(1, TimeUnit.SECONDS)
-                .doOnNext(integer -> ThreadManager.getInstance().execute(() ->
-                        BackgroundManager.resetAllBackgroundTask(MainActivity.this, false)))
-                .subscribe();
+                .doOnNext(integer ->
+                        ThreadManager.getInstance().execute(() ->
+                                BackgroundManager.resetAllBackgroundTask(
+                                        MainActivity.this,
+                                        false
+                                )
+                        )
+                ).subscribe();
         if (locationNow.equals(locationList.get(0))) {
             Observable.just(1)
                     .compose(RxLifecycleCompact.bind(this).disposeObservableWhen(LifecycleEvent.DESTROY))
@@ -448,8 +466,7 @@ public class MainActivity extends GeoActivity
                     .doOnNext(integer -> {
                         WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));
                         NotificationUtils.refreshNotificationInNewThread(this, locationList.get(0));
-                    })
-                    .subscribe();
+                    }).subscribe();
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
@@ -460,10 +477,17 @@ public class MainActivity extends GeoActivity
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void requestLocationPermission() {
-        if (locationHelper.hasPermissions(this)) {
+        List<String> permissionList = new ArrayList<>(Arrays.asList(locationHelper.getPermissions()));
+        for (int i = permissionList.size() - 1; i >= 0; i --) {
+            if (ActivityCompat.checkSelfPermission(this, permissionList.get(i))
+                    == PackageManager.PERMISSION_GRANTED) {
+                permissionList.remove(i);
+            }
+        }
+        if (permissionList.size() == 0) { // has permissions.
             locationHelper.requestLocation(this, locationNow, this);
         } else {
-            this.requestPermissions(locationHelper.getPermissions(), LOCATION_PERMISSIONS_REQUEST_CODE);
+            requestPermissions(permissionList.toArray(new String[0]), LOCATION_PERMISSIONS_REQUEST_CODE);
         }
     }
 
@@ -474,9 +498,10 @@ public class MainActivity extends GeoActivity
         switch (requestCode) {
             case LOCATION_PERMISSIONS_REQUEST_CODE:
                 for (int i = 0; i < permission.length && i < grantResult.length; i ++) {
-                    if ((permission[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)
-                            || permission[i].equals(Manifest.permission.ACCESS_FINE_LOCATION))
-                            && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
+                    if ((
+                            permission[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)
+                                    || permission[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)
+                            ) && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
                         SnackbarUtils.showSnackbar(
                                 getString(R.string.feedback_request_location_permission_failed),
                                 getString(R.string.help),
@@ -484,7 +509,8 @@ public class MainActivity extends GeoActivity
                                     if (isForeground()) {
                                         new LocationHelpDialog().show(getSupportFragmentManager(), null);
                                     }
-                                });
+                                }
+                        );
                         setRefreshing(false);
                         return;
                     }
@@ -525,8 +551,7 @@ public class MainActivity extends GeoActivity
         switchLayout.setEnabled(false);
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(locationNow)) {
-                int position = direction == SwipeSwitchLayout.DIRECTION_LEFT ?
-                        i + 1 : i - 1;
+                int position = direction == SwipeSwitchLayout.DIRECTION_LEFT ? i + 1 : i - 1;
                 if (position < 0) {
                     position = locationList.size() - 1;
                 } else if (position > locationList.size() - 1) {
@@ -572,8 +597,7 @@ public class MainActivity extends GeoActivity
         OnScrollListener(int firstCardMarginTop) {
             super();
             this.firstCardMarginTop = firstCardMarginTop;
-            this.overlapTriggerDistance = firstCardMarginTop
-                    - DisplayUtils.getStatusBarHeight(getResources());
+            this.overlapTriggerDistance = firstCardMarginTop - DisplayUtils.getStatusBarHeight(getResources());
         }
 
         @Override

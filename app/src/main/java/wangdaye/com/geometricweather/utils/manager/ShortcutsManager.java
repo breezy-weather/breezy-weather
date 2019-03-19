@@ -50,10 +50,10 @@ public class ShortcutsManager {
                         try {
                             int size = Math.min((int) DisplayUtils.dpToPx(c, 108), 768);
                             Bitmap foreground = Glide.with(c)
-                                    .load(
-                                            WeatherHelper.getShortcutForeground(
-                                                    weather.realTime.weatherKind,
-                                                    TimeManager.getInstance(c).isDayTime()))
+                                    .load(WeatherHelper.getShortcutForeground(
+                                            weather.realTime.weatherKind,
+                                            TimeManager.isDaylight(weather)
+                                    ))
                                     .asBitmap()
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     .centerCrop()
@@ -64,13 +64,19 @@ public class ShortcutsManager {
                             icon = Icon.createWithResource(
                                     c,
                                     WeatherHelper.getShortcutIcon(
-                                            weather.realTime.weatherKind, TimeManager.getInstance(c).isDayTime()));
+                                            weather.realTime.weatherKind,
+                                            TimeManager.getInstance(c).isDayTime()
+                                    )
+                            );
                         }
                     } else {
                         icon = Icon.createWithResource(
                                 c,
                                 WeatherHelper.getShortcutIcon(
-                                        weather.realTime.weatherKind, TimeManager.getInstance(c).isDayTime()));
+                                        weather.realTime.weatherKind,
+                                        TimeManager.getInstance(c).isDayTime()
+                                )
+                        );
                     }
                 } else {
                     icon = Icon.createWithResource(c, R.drawable.ic_shortcut_sun_day);

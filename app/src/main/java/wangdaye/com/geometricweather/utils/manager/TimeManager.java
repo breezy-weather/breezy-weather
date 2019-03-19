@@ -1,15 +1,11 @@
 package wangdaye.com.geometricweather.utils.manager;
 
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import androidx.annotation.Nullable;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 
@@ -39,66 +35,20 @@ public class TimeManager {
     }
 
     public TimeManager getDayTime(Context context, @Nullable Weather weather, boolean writeToPreference) {
-        int time = 60 * Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-                + Calendar.getInstance().get(Calendar.MINUTE);
-
-        if (weather != null) {
-            try {
-                int sunrise = 60 * Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[0])
-                        + Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[1]);
-                int sunset = 60 * Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[0])
-                        + Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[1]);
-                dayTime = sunrise < time && time <= sunset;
-            } catch (Exception e) {
-                int sr = 60 * 6;
-                int ss = 60 * 18;
-                dayTime = sr < time && time <= ss;
-            }
-        } else {
-            int sr = 60 * 6;
-            int ss = 60 * 18;
-            dayTime = sr < time && time <= ss;
-        }
-
+        dayTime = isDaylight(weather);
         if (writeToPreference) {
             SharedPreferences.Editor editor = context.getSharedPreferences(
-                    PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+                    PREFERENCE_NAME, Context.MODE_PRIVATE
+            ).edit();
             editor.putBoolean(KEY_DAY_TIME, dayTime);
             editor.apply();
         }
-
         return this;
     }
 
     private void getLastDayTime(Context context) {
         dayTime = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
                 .getBoolean(KEY_DAY_TIME, true);
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    public static int compareDate(String d1, String d2) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date1 = null;
-        Date date2 = null;
-        try {
-            date1 = format.parse(d1);
-            date2 = format.parse(d2);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        if (date1 == null && date2 == null) {
-            return 0;
-        } else if (date1 == null) {
-            return -1;
-        } else if (date2 == null) {
-            return 1;
-        } else if (date1.getTime() > date2.getTime()) {
-            return 1;
-        } else if (date1.getTime() < date2.getTime()) {
-            return -1;
-        } else {
-            return 0;
-        }
     }
 
     public static boolean isDaylight(String hour, String sunrise, String sunset) {
@@ -109,6 +59,29 @@ public class TimeManager {
             return sunriseHour < targetHour && targetHour <= sunsetHour;
         } catch (Exception ignore) {
             return true;
+        }
+    }
+
+    public static boolean isDaylight(@Nullable Weather weather) {
+        int time = 60 * Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                + Calendar.getInstance().get(Calendar.MINUTE);
+
+        if (weather != null) {
+            try {
+                int sunrise = 60 * Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[0])
+                        + Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[1]);
+                int sunset = 60 * Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[0])
+                        + Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[1]);
+                return sunrise < time && time <= sunset;
+            } catch (Exception e) {
+                int sr = 60 * 6;
+                int ss = 60 * 18;
+                return sr < time && time <= ss;
+            }
+        } else {
+            int sr = 60 * 6;
+            int ss = 60 * 18;
+            return sr < time && time <= ss;
         }
     }
 
