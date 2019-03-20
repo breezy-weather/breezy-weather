@@ -10,9 +10,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.CNCityList;
-import wangdaye.com.geometricweather.db.entity.table.CNCityEntityDao;
-import wangdaye.com.geometricweather.db.entity.table.DaoMaster;
+import wangdaye.com.geometricweather.basic.model.CNCity;
 
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.query.WhereCondition;
@@ -49,8 +47,8 @@ public class CNCityEntity {
     public CNCityEntity() {
     }
 
-    private CNCityList.CNCity toCNCity() {
-        CNCityList.CNCity c = new CNCityList.CNCity();
+    private CNCity toCNCity() {
+        CNCity c = new CNCity();
         c.setCityId(requestKey);
         c.setProvince(province);
         c.setCity(city);
@@ -60,14 +58,14 @@ public class CNCityEntity {
         return c;
     }
 
-    public static void insertCNCityList(SQLiteDatabase database, CNCityList list) {
-        if (list == null || list.getCities() == null || list.getCities().size() == 0) {
+    public static void insertCNCityList(SQLiteDatabase database, List<CNCity> list) {
+        if (list == null || list.size() == 0) {
             return;
         }
 
-        List<CNCityEntity> entityList = new ArrayList<>(list.getCities().size());
-        for (int i = 0; i < list.getCities().size(); i ++) {
-            entityList.add(list.getCities().get(i).toCNCityEntity());
+        List<CNCityEntity> entityList = new ArrayList<>(list.size());
+        for (int i = 0; i < list.size(); i ++) {
+            entityList.add(list.get(i).toCNCityEntity());
         }
 
         new DaoMaster(database)
@@ -83,7 +81,7 @@ public class CNCityEntity {
                 .deleteAll();
     }
 
-    public static CNCityList.CNCity searchCNCity(SQLiteDatabase database, String name) {
+    public static CNCity searchCNCity(SQLiteDatabase database, String name) {
         if (TextUtils.isEmpty(name)) {
             return null;
         }
@@ -105,8 +103,8 @@ public class CNCityEntity {
         }
     }
 
-    public static CNCityList.CNCity searchCNCity(SQLiteDatabase database,
-                                                 String district, String city, String province) {
+    public static CNCity searchCNCity(SQLiteDatabase database,
+                                      String district, String city, String province) {
 
         CNCityEntityDao dao = new DaoMaster(database)
                 .newSession()
@@ -152,7 +150,7 @@ public class CNCityEntity {
         return null;
     }
 
-    public static List<CNCityList.CNCity> fuzzySearchCNCity(SQLiteDatabase database, String name) {
+    public static List<CNCity> fuzzySearchCNCity(SQLiteDatabase database, String name) {
         if (TextUtils.isEmpty(name)) {
             return null;
         }
@@ -167,7 +165,7 @@ public class CNCityEntity {
                 CNCityEntityDao.Properties.City.like("%" + name + "%"),
                 CNCityEntityDao.Properties.Province.like("%" + name + "%"));
 
-        List<CNCityList.CNCity> cityList = new ArrayList<>();
+        List<CNCity> cityList = new ArrayList<>();
         try {
             List<CNCityEntity> entityList = builder.list();
             if (entityList != null && entityList.size() > 0) {

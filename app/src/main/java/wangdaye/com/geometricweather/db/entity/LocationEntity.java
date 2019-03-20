@@ -5,8 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import org.greenrobot.greendao.annotation.Entity;
 
 import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.db.entity.table.DaoMaster;
-import wangdaye.com.geometricweather.db.entity.table.LocationEntityDao;
 
 import org.greenrobot.greendao.annotation.Id;
 

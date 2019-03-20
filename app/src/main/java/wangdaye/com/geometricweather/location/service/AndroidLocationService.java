@@ -144,7 +144,8 @@ public class AndroidLocationService extends LocationService {
     public String[] getPermissions() {
         return new String[] {
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION};
+                Manifest.permission.ACCESS_FINE_LOCATION
+        };
     }
 
     private void stop() {
@@ -218,7 +219,6 @@ public class AndroidLocationService extends LocationService {
                 return result;
             }
         }
-
         return null;
     }
 
@@ -254,11 +254,13 @@ public class AndroidLocationService extends LocationService {
     }
 
     private void dispatchResult(@Nullable Result r) {
-        for (int i = 0; i < callbackList.size(); i ++) {
-            if (callbackList.get(i) != null) {
-                callbackList.get(i).onCompleted(r);
+        handler.post(() -> {
+            for (int i = 0; i < callbackList.size(); i ++) {
+                if (callbackList.get(i) != null) {
+                    callbackList.get(i).onCompleted(r);
+                }
             }
-        }
-        callbackList.clear();
+            callbackList.clear();
+        });
     }
 }

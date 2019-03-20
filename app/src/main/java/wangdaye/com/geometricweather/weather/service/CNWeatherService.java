@@ -15,7 +15,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.api.CNWeatherApi;
-import wangdaye.com.geometricweather.basic.model.CNCityList;
+import wangdaye.com.geometricweather.basic.model.CNCity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
@@ -60,8 +60,8 @@ public class CNWeatherService extends WeatherService {
     }
 
     @Override
-    public void requestWeather(final Context context,
-                               final Location location, @NonNull final RequestWeatherCallback callback) {
+    public void requestWeather(Context context,
+                               Location location, @NonNull RequestWeatherCallback callback) {
         api.getWeather(location.cityId)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<CNWeatherResult>() {
@@ -224,8 +224,8 @@ public class CNWeatherService extends WeatherService {
         compositeDisposable.clear();
     }
 
-    private void searchInThread(final Context context, final String[] queries, final boolean fuzzy,
-                                final RequestLocationCallback callback) {
+    private void searchInThread(Context context, String[] queries, boolean fuzzy,
+                                RequestLocationCallback callback) {
         if (callback == null) {
             return;
         }
@@ -235,19 +235,19 @@ public class CNWeatherService extends WeatherService {
         }
 
         Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
+
             if (DatabaseHelper.getInstance(context).countCNCity() < 3216) {
                 DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
             }
 
             List<Location> locationList = new ArrayList<>();
-            List<CNCityList.CNCity> cityList;
-            CNCityList.CNCity city;
+            List<CNCity> cityList;
+            CNCity city;
 
             if (fuzzy) {
                 cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
                 if (cityList != null) {
-                    locationList = new ArrayList<>();
-                    for (CNCityList.CNCity c : cityList) {
+                    for (CNCity c : cityList) {
                         locationList.add(c.toLocation());
                     }
                 }
@@ -255,13 +255,11 @@ public class CNWeatherService extends WeatherService {
                 if (queries.length == 3) {
                     city = DatabaseHelper.getInstance(context).readCNCity(queries[0], queries[1], queries[2]);
                     if (city != null) {
-                        locationList = new ArrayList<>();
                         locationList.add(city.toLocation());
                     }
                 } else {
                     city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
                     if (city != null) {
-                        locationList = new ArrayList<>();
                         locationList.add(city.toLocation());
                     }
                 }

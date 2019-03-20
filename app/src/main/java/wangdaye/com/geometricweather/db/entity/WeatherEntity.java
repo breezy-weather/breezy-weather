@@ -8,8 +8,6 @@ import org.greenrobot.greendao.annotation.Entity;
 
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.db.entity.table.DaoMaster;
-import wangdaye.com.geometricweather.db.entity.weather.WeatherEntityDao;
 
 import org.greenrobot.greendao.annotation.Id;
 

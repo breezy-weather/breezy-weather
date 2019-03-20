@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -152,9 +153,10 @@ public class GeometricWeather extends Application {
         locationService = LocationHelper.getLocationServiceProvider(this, sharedPreferences);
         darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
         iconStyle = sharedPreferences.getString(getString(R.string.key_icon_style), "material");
-        cardDisplayValues = sharedPreferences.getStringSet(
+        cardDisplayValues = Objects.requireNonNull(sharedPreferences.getStringSet(
                 getString(R.string.key_card_display),
-                new HashSet<>(Arrays.asList(getResources().getStringArray(R.array.card_display_values)))).toArray(new String[] {});
+                new HashSet<>(Arrays.asList(getResources().getStringArray(R.array.card_display_values)))
+        )).toArray(new String[] {});
         cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);

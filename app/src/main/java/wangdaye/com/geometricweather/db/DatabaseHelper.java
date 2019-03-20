@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.CNCityList;
+import wangdaye.com.geometricweather.basic.model.CNCity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
@@ -22,20 +22,20 @@ import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Index;
 import wangdaye.com.geometricweather.basic.model.weather.RealTime;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.db.entity.AlarmEntityDao;
 import wangdaye.com.geometricweather.db.entity.CNCityEntity;
-import wangdaye.com.geometricweather.db.entity.table.CNCityEntityDao;
-import wangdaye.com.geometricweather.db.entity.table.DaoMaster;
+import wangdaye.com.geometricweather.db.entity.CNCityEntityDao;
+import wangdaye.com.geometricweather.db.entity.DailyEntityDao;
+import wangdaye.com.geometricweather.db.entity.DaoMaster;
 import wangdaye.com.geometricweather.db.entity.HistoryEntity;
+import wangdaye.com.geometricweather.db.entity.HourlyEntityDao;
 import wangdaye.com.geometricweather.db.entity.LocationEntity;
-import wangdaye.com.geometricweather.db.entity.table.LocationEntityDao;
 import wangdaye.com.geometricweather.db.entity.AlarmEntity;
-import wangdaye.com.geometricweather.db.entity.weather.AlarmEntityDao;
 import wangdaye.com.geometricweather.db.entity.DailyEntity;
-import wangdaye.com.geometricweather.db.entity.weather.DailyEntityDao;
 import wangdaye.com.geometricweather.db.entity.HourlyEntity;
-import wangdaye.com.geometricweather.db.entity.weather.HourlyEntityDao;
+import wangdaye.com.geometricweather.db.entity.LocationEntityDao;
 import wangdaye.com.geometricweather.db.entity.WeatherEntity;
-import wangdaye.com.geometricweather.db.entity.weather.WeatherEntityDao;
+import wangdaye.com.geometricweather.db.entity.WeatherEntityDao;
 
 /**
  * Database helper
@@ -232,7 +232,7 @@ public class DatabaseHelper {
 
     // cn city.
 
-    public void writeCityList(CNCityList list) {
+    public void writeCityList(List<CNCity> list) {
         if (!writingCityList) {
             synchronized (writingLock) {
                 if (!writingCityList) {
@@ -245,15 +245,15 @@ public class DatabaseHelper {
         }
     }
 
-    public CNCityList.CNCity readCNCity(String name) {
+    public CNCity readCNCity(String name) {
         return CNCityEntity.searchCNCity(getDatabase(), name);
     }
 
-    public CNCityList.CNCity readCNCity(String district, String city, String province) {
+    public CNCity readCNCity(String district, String city, String province) {
         return CNCityEntity.searchCNCity(getDatabase(), district, city, province);
     }
 
-    public List<CNCityList.CNCity> fuzzyReadCNCity(String name) {
+    public List<CNCity> fuzzyReadCNCity(String name) {
         return CNCityEntity.fuzzySearchCNCity(getDatabase(), name);
     }
 

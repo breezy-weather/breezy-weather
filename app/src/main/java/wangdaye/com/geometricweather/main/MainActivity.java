@@ -31,8 +31,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import cn.nekocode.rxlifecycle.LifecycleEvent;
-import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact;
 import io.reactivex.Observable;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -449,19 +447,14 @@ public class MainActivity extends GeoActivity
 
     private void refreshBackgroundViews() {
         Observable.just(1)
-                .compose(RxLifecycleCompact.bind(this).disposeObservableWhen(LifecycleEvent.DESTROY))
                 .delay(1, TimeUnit.SECONDS)
                 .doOnNext(integer ->
                         ThreadManager.getInstance().execute(() ->
-                                BackgroundManager.resetAllBackgroundTask(
-                                        MainActivity.this,
-                                        false
-                                )
+                                BackgroundManager.resetAllBackgroundTask(this, false)
                         )
                 ).subscribe();
         if (locationNow.equals(locationList.get(0))) {
             Observable.just(1)
-                    .compose(RxLifecycleCompact.bind(this).disposeObservableWhen(LifecycleEvent.DESTROY))
                     .delay(1, TimeUnit.SECONDS)
                     .doOnNext(integer -> {
                         WidgetUtils.refreshWidgetInNewThread(this, locationList.get(0));

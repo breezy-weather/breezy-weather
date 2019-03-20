@@ -9,8 +9,6 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.db.entity.table.DaoMaster;
-import wangdaye.com.geometricweather.db.entity.weather.DailyEntityDao;
 
 import org.greenrobot.greendao.annotation.Generated;
 

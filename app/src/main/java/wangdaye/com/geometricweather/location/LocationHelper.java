@@ -175,10 +175,6 @@ public class LocationHelper {
         }
     }
 
-    public boolean hasPermissions(Context context) {
-        return locationService.hasPermissions(context);
-    }
-
     public String[] getPermissions() {
         return locationService.getPermissions();
     }

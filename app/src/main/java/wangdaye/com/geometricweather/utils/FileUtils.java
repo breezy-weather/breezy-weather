@@ -3,13 +3,15 @@ package wangdaye.com.geometricweather.utils;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.CNCityList;
+import wangdaye.com.geometricweather.basic.model.CNCity;
 
 /**
  * File utils.
@@ -17,10 +19,11 @@ import wangdaye.com.geometricweather.basic.model.CNCityList;
 
 public class FileUtils {
 
-    public static CNCityList readCityList(Context context) {
+    public static List<CNCity> readCityList(Context context) {
         return new Gson().fromJson(
                 readAssetFileToString(context, "city_list.txt"),
-                CNCityList.class);
+                new TypeToken<List<CNCity>>() {}.getType()
+        );
     }
 
     private static String readAssetFileToString(Context context, String fileName) {
@@ -32,7 +35,9 @@ public class FileUtils {
             bufReader = new BufferedReader(inputReader);
             String line;
 
-            while ((line = bufReader.readLine()) != null) result.append(line);
+            while ((line = bufReader.readLine()) != null) {
+                result.append(line);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
