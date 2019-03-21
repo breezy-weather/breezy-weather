@@ -312,8 +312,10 @@ public class GeometricWeather extends Application {
         switch (darkMode) {
             case "auto":
                 AppCompatDelegate.setDefaultNightMode(
-                        TimeManager.getInstance(this).isDayTime() ?
-                                AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES);
+                        TimeManager.getInstance(this).isDayTime()
+                                ? AppCompatDelegate.MODE_NIGHT_NO
+                                : AppCompatDelegate.MODE_NIGHT_YES
+                );
                 break;
 
             case "light":

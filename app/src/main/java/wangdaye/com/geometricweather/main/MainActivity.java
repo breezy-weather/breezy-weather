@@ -418,8 +418,8 @@ public class MainActivity extends GeoActivity
     @SuppressLint("RestrictedApi")
     private void setDarkMode(boolean dayTime) {
         if (GeometricWeather.getInstance().getDarkMode().equals("auto")) {
-            boolean isDarkMode = DisplayUtils.isDarkMode(this);
-            if ((isDarkMode && dayTime) || (!isDarkMode && !dayTime)) {
+            boolean darkMode = DisplayUtils.isDarkMode(this);
+            if (darkMode == dayTime) {
                 // need switch theme.
                 int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
                 getDelegate().setLocalNightMode(mode);

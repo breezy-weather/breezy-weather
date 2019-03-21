@@ -37,7 +37,8 @@ public abstract class GeoActivity extends AppCompatActivity {
                     && intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
                 LanguageUtils.setLanguage(
                         GeoActivity.this,
-                        GeometricWeather.getInstance().getLanguage());
+                        GeometricWeather.getInstance().getLanguage()
+                );
             }
         }
     };

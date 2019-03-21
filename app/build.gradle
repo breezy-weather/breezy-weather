@@ -6,8 +6,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2249
-        versionName "2.249"
+        versionCode 2250
+        versionName "2.250"
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
@@ -83,7 +83,7 @@ dependencies {
 
     implementation 'com.amap.api:location:4.4.0'
 
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'com.google.android.material:material:1.1.0-alpha04'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.0-alpha04'
