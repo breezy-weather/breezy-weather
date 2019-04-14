@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.ui.widget.verticalScrollView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.core.widget.NestedScrollView;
 import android.util.AttributeSet;
@@ -73,6 +74,7 @@ public class VerticalNestedScrollView extends NestedScrollView {
         return result && !isHorizontalDragged;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         return super.onTouchEvent(ev) && !isHorizontalDragged;

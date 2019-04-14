@@ -60,8 +60,8 @@ public class LiveWallpaperService extends WallpaperService {
         private float rotation2D;
         private float rotation3D;
 
-        @WeatherView.WeatherKindRule
-        private int weatherKind;
+        @WeatherView.WeatherKindRule private int weatherKind;
+        private boolean daytime;
 
         private float displayRate;
 
@@ -168,11 +168,15 @@ public class LiveWallpaperService extends WallpaperService {
             }
         };
 
-        private void setWeather(@WeatherView.WeatherKindRule int weatherKind) {
-            if (this.weatherKind == weatherKind) {
+        private void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime) {
+            if (this.weatherKind == weatherKind
+                    && (isIgnoreDayNight(weatherKind) || this.daytime == daytime)) {
                 return;
             }
+
             this.weatherKind = weatherKind;
+            this.daytime = daytime;
+
             if (updateDataRunnable != null && updateDataRunnable.isRunning()
                     && drawableRunnable != null && drawableRunnable.isRunning()) {
                 // Set step to dismiss. The implementor will execute exit animation and call weather
@@ -181,23 +185,32 @@ public class LiveWallpaperService extends WallpaperService {
             }
         }
 
+        private boolean isIgnoreDayNight(@WeatherView.WeatherKindRule int weatherKind) {
+            return weatherKind == WeatherView.WEATHER_KIND_CLOUDY
+                    || weatherKind == WeatherView.WEATHER_KIND_FOG
+                    || weatherKind == WeatherView.WEATHER_KIND_HAZE
+                    || weatherKind == WeatherView.WEATHER_KIND_THUNDERSTORM
+                    || weatherKind == WeatherView.WEATHER_KIND_THUNDER
+                    || weatherKind == WeatherView.WEATHER_KIND_WIND;
+        }
+
         private void setWeatherImplementor() {
             step = STEP_DISPLAY;
             switch (weatherKind) {
-                case WeatherView.WEATHER_KIND_CLEAR_DAY:
-                    implementor = new SunImplementor(sizes);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                    break;
-
-                case WeatherView.WEATHER_KIND_CLEAR_NIGHT:
-                    implementor = new MeteorShowerImplementor(sizes);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
+                case WeatherView.WEATHER_KIND_CLEAR:
+                    if (daytime) {
+                        implementor = new SunImplementor(sizes);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    } else {
+                        implementor = new MeteorShowerImplementor(sizes);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    }
                     break;
 
                 case WeatherView.WEATHER_KIND_CLOUDY:
@@ -208,20 +221,20 @@ public class LiveWallpaperService extends WallpaperService {
                     };
                     break;
 
-                case WeatherView.WEATHER_KIND_CLOUD_DAY:
-                    implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_DAY);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                    break;
-
-                case WeatherView.WEATHER_KIND_CLOUD_NIGHT:
-                    implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_NIGHT);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
+                case WeatherView.WEATHER_KIND_CLOUD:
+                    if (daytime) {
+                        implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_DAY);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    } else {
+                        implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_NIGHT);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    }
                     break;
 
                 case WeatherView.WEATHER_KIND_FOG:
@@ -232,20 +245,20 @@ public class LiveWallpaperService extends WallpaperService {
                     };
                     break;
 
-                case WeatherView.WEATHER_KIND_HAIL_DAY:
-                    implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_DAY);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                    break;
-
-                case WeatherView.WEATHER_KIND_HAIL_NIGHT:
-                    implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_NIGHT);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
+                case WeatherView.WEATHER_KIND_HAIL:
+                    if (daytime) {
+                        implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_DAY);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    } else {
+                        implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_NIGHT);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    }
                     break;
 
                 case WeatherView.WEATHER_KIND_HAZE:
@@ -256,36 +269,36 @@ public class LiveWallpaperService extends WallpaperService {
                     };
                     break;
 
-                case WeatherView.WEATHER_KIND_RAINY_DAY:
-                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_DAY);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
+                case WeatherView.WEATHER_KIND_RAINY:
+                    if (daytime) {
+                        implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_DAY);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    } else {
+                        implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_NIGHT);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    }
                     break;
 
-                case WeatherView.WEATHER_KIND_RAINY_NIGHT:
-                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_NIGHT);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                    break;
-
-                case WeatherView.WEATHER_KIND_SNOW_DAY:
-                    implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_DAY);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                    break;
-
-                case WeatherView.WEATHER_KIND_SNOW_NIGHT:
-                    implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_NIGHT);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
+                case WeatherView.WEATHER_KIND_SNOW:
+                    if (daytime) {
+                        implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_DAY);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    } else {
+                        implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_NIGHT);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    }
                     break;
 
                 case WeatherView.WEATHER_KIND_THUNDERSTORM:
@@ -312,20 +325,20 @@ public class LiveWallpaperService extends WallpaperService {
                     };
                     break;
 
-                case WeatherView.WEATHER_KIND_SLEET_DAY:
-                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_DAY);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                    break;
-
-                case WeatherView.WEATHER_KIND_SLEET_NIGHT:
-                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_NIGHT);
-                    rotators = new MaterialWeatherView.RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
+                case WeatherView.WEATHER_KIND_SLEET:
+                    if (daytime) {
+                        implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_DAY);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    } else {
+                        implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_NIGHT);
+                        rotators = new MaterialWeatherView.RotateController[] {
+                                new DelayRotateController(rotation2D),
+                                new DelayRotateController(rotation3D)
+                        };
+                    }
                     break;
 
                 case WeatherView.WEATHER_KING_NULL:
@@ -371,7 +384,7 @@ public class LiveWallpaperService extends WallpaperService {
 
             this.step = STEP_DISPLAY;
             this.visible = false;
-            setWeather(WeatherView.WEATHER_KING_NULL);
+            setWeather(WeatherView.WEATHER_KING_NULL, true);
         }
 
         @Override
@@ -393,15 +406,15 @@ public class LiveWallpaperService extends WallpaperService {
                     if (location.weather != null) {
                         setWeather(
                                 WeatherViewController.getWeatherViewWeatherKind(
-                                        location.weather.realTime.weatherKind,
-                                        TimeManager.getInstance(LiveWallpaperService.this).isDayTime()
-                                )
+                                        location.weather.realTime.weatherKind
+                                ), TimeManager.isDaylight(location.weather)
                         );
                     }
                     setWeatherImplementor();
                     setOpenGravitySensor(
-                            PreferenceManager.getDefaultSharedPreferences(LiveWallpaperService.this)
-                                    .getBoolean(getString(R.string.key_gravity_sensor_switch), true)
+                            PreferenceManager.getDefaultSharedPreferences(
+                                    LiveWallpaperService.this
+                            ).getBoolean(getString(R.string.key_gravity_sensor_switch), true)
                     );
 
                     if (updateDataRunnable == null || !updateDataRunnable.isRunning()) {

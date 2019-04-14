@@ -14,40 +14,27 @@ import androidx.annotation.Size;
 public interface WeatherView {
 
     int WEATHER_KING_NULL = 0;
-    int WEATHER_KIND_CLEAR_DAY = 1;
-    int WEATHER_KIND_CLEAR_NIGHT = 2;
-    int WEATHER_KIND_CLOUD_DAY = 3;
-    int WEATHER_KIND_CLOUD_NIGHT = 4;
-    int WEATHER_KIND_CLOUDY = 5;
-    int WEATHER_KIND_RAINY_DAY = 6;
-    int WEATHER_KIND_RAINY_NIGHT = 7;
-    int WEATHER_KIND_SNOW_DAY = 8;
-    int WEATHER_KIND_SNOW_NIGHT = 9;
-    int WEATHER_KIND_SLEET_DAY = 10;
-    int WEATHER_KIND_SLEET_NIGHT = 11;
-    int WEATHER_KIND_HAIL_DAY = 12;
-    int WEATHER_KIND_HAIL_NIGHT = 13;
-    int WEATHER_KIND_FOG = 14;
-    int WEATHER_KIND_HAZE = 15;
-    int WEATHER_KIND_THUNDER = 16;
-    int WEATHER_KIND_THUNDERSTORM = 17;
-    int WEATHER_KIND_WIND = 18;
+    int WEATHER_KIND_CLEAR = 1;
+    int WEATHER_KIND_CLOUD = 2;
+    int WEATHER_KIND_CLOUDY = 3;
+    int WEATHER_KIND_RAINY = 4;
+    int WEATHER_KIND_SNOW = 5;
+    int WEATHER_KIND_SLEET = 6;
+    int WEATHER_KIND_HAIL = 7;
+    int WEATHER_KIND_FOG = 8;
+    int WEATHER_KIND_HAZE = 9;
+    int WEATHER_KIND_THUNDER = 10;
+    int WEATHER_KIND_THUNDERSTORM = 11;
+    int WEATHER_KIND_WIND = 12;
 
     @IntDef({
-            WEATHER_KING_NULL,
-            WEATHER_KIND_CLEAR_DAY, WEATHER_KIND_CLEAR_NIGHT,
-            WEATHER_KIND_CLOUD_DAY, WEATHER_KIND_CLOUD_NIGHT,
-            WEATHER_KIND_CLOUDY,
-            WEATHER_KIND_RAINY_DAY, WEATHER_KIND_RAINY_NIGHT,
-            WEATHER_KIND_SNOW_DAY, WEATHER_KIND_SNOW_NIGHT,
-            WEATHER_KIND_SLEET_DAY, WEATHER_KIND_SLEET_NIGHT,
-            WEATHER_KIND_HAIL_DAY, WEATHER_KIND_HAIL_NIGHT,
-            WEATHER_KIND_FOG, WEATHER_KIND_HAZE,
-            WEATHER_KIND_THUNDER, WEATHER_KIND_THUNDERSTORM,
-            WEATHER_KIND_WIND})
-    @interface WeatherKindRule {}
+            WEATHER_KING_NULL, WEATHER_KIND_CLEAR, WEATHER_KIND_CLOUD, WEATHER_KIND_CLOUDY,
+            WEATHER_KIND_RAINY, WEATHER_KIND_SNOW, WEATHER_KIND_SLEET, WEATHER_KIND_HAIL,
+            WEATHER_KIND_FOG, WEATHER_KIND_HAZE, WEATHER_KIND_THUNDER, WEATHER_KIND_THUNDERSTORM,
+            WEATHER_KIND_WIND
+    }) @interface WeatherKindRule {}
 
-    void setWeather(@WeatherView.WeatherKindRule int weatherKind);
+    void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime);
 
     void onClick();
 
@@ -56,9 +43,15 @@ public interface WeatherView {
     @WeatherView.WeatherKindRule
     int getWeatherKind();
 
-    // primary color * 1, chart colors * 2.
-    @ColorInt
-    @Size(3)
+    /**
+     * @return colors[] {
+     *     theme color,
+     *     color of daytime chart line,
+     *     color of nighttime chart line
+     * }
+     *
+     * */
+    @ColorInt @Size(3)
     int[] getThemeColors();
 
     @ColorInt

@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.250</string>
+    <string name="version_code">v2.252</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -167,6 +167,8 @@
     <string name="feedback_interpret_notification_group_title">Block Notification Group</string>
     <string name="feedback_interpret_notification_group_content">After turning off the background free, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in app\'s information page to block this notifications.</string>
 
+    <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview activity.</string>
+
     <!-- action -->
     <string name="action_alert">Alert</string>
     <string name="action_manage">Manage</string>
@@ -183,6 +185,8 @@
     <string name="widget_clock_day_vertical">Clock + Daily (Vertical style)</string>
     <string name="widget_clock_day_week">Clock + Daily + Weekly</string>
     <string name="widget_text">Text</string>
+    <string name="widget_trend_daily">Daily Trend</string>
+    <string name="widget_trend_hourly">Hourly Trend</string>
     <string name="wait_refresh">waiting</string>
     <string name="ellipsis">…</string>
 

@@ -153,6 +153,8 @@
     <string name="feedback_interpret_notification_group_title">關閉相應通知頻道</string>
     <string name="feedback_interpret_notification_group_content">關閉後臺純净后，會出現一個標示後臺服務正在運行的通知，你可以在app相關頁面中找到通知設置，在其中關閉“後臺信息”這個頻道來隱藏這個通知</string>
 
+    <string name="feedback_cannot_start_live_wallpaper_activity">無法啓動動態壁紙預覽程序</string>
+
     <!-- action -->
     <string name="action_alert">預警</string>
     <string name="action_manage">地址管理</string>
@@ -169,6 +171,8 @@
     <string name="widget_clock_day_vertical">時鐘 + 今日 (垂直排列)</string>
     <string name="widget_clock_day_week">時鐘 + 今日 + 一周</string>
     <string name="widget_text">純文字</string>
+    <string name="widget_trend_daily">每日趨勢</string>
+    <string name="widget_trend_hourly">小時趨勢</string>
     <string name="wait_refresh">等待更新</string>
     <string name="ellipsis">…</string>
 

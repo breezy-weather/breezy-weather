@@ -10,8 +10,10 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.location.LocationException;
 
 /**
  * Baidu location service.
@@ -44,6 +46,12 @@ public class BaiduLocationService extends LocationService {
                         break;
 
                     default:
+                        CrashReport.postCatchedException(
+                                new LocationException(
+                                        bdLocation.getLocType(),
+                                        bdLocation.getLocTypeDescription()
+                                )
+                        );
                         callback.onCompleted(null);
                         break;
                 }

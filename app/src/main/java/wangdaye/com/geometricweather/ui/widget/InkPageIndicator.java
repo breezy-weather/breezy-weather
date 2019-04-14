@@ -30,7 +30,7 @@ import wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLay
  * */
 
 public class InkPageIndicator extends View
-        implements SwipeSwitchLayout.OnSwipeListener, View.OnAttachStateChangeListener {
+        implements SwipeSwitchLayout.OnPagerSwipeListener, View.OnAttachStateChangeListener {
 
     // defaults
     private static final int DEFAULT_DOT_SIZE = 8;                      // dp
@@ -104,6 +104,8 @@ public class InkPageIndicator extends View
     float controlX2;
     float controlY2;
 
+    private static final float MAX_ALPHA = 0.7F;
+
     public InkPageIndicator(Context context) {
         this(context, null, 0);
     }
@@ -123,8 +125,8 @@ public class InkPageIndicator extends View
 
         dotDiameter = a.getDimensionPixelSize(R.styleable.InkPageIndicator_dotDiameter,
                 DEFAULT_DOT_SIZE * density);
-        dotRadius = dotDiameter / 2;
-        halfDotRadius = dotRadius / 2;
+        dotRadius = dotDiameter / 2f;
+        halfDotRadius = dotRadius / 2f;
         gap = a.getDimensionPixelSize(R.styleable.InkPageIndicator_dotGap,
                 DEFAULT_GAP * density);
         animDuration = (long) a.getInteger(R.styleable.InkPageIndicator_animationDuration,
@@ -154,11 +156,20 @@ public class InkPageIndicator extends View
 
         this.showing = false;
         setAlpha(0);
+
+        showAnimator = ObjectAnimator.ofFloat(
+                this, "alpha", 0, MAX_ALPHA
+        ).setDuration(100);
+
+        dismissAnimator = ObjectAnimator.ofFloat(
+                this, "alpha", MAX_ALPHA, 0
+        ).setDuration(200);
+        dismissAnimator.setStartDelay(600);
     }
 
     public void setSwitchView(SwipeSwitchLayout switchView) {
         this.switchView = switchView;
-        switchView.setOnSwipeListener(this);
+        switchView.setOnPageSwipeListener(this);
         setPageCount(switchView.getTotalCount());
         setCurrentPageImmediate();
     }
@@ -169,20 +180,15 @@ public class InkPageIndicator extends View
         }
 
         showing = show;
-        if (dismissAnimator != null) {
-            dismissAnimator.cancel();
-        }
+
+        dismissAnimator.cancel();
         if (show) {
-            if (showAnimator != null) {
-                showAnimator.cancel();
+            showAnimator.cancel();
+            if (getAlpha() != MAX_ALPHA) {
+                showAnimator.setFloatValues(getAlpha(), 0.7f);
+                showAnimator.start();
             }
-            showAnimator = ObjectAnimator.ofFloat(this, "alpha", getAlpha(), 0.7F)
-                    .setDuration(100);
-            showAnimator.start();
         } else {
-            dismissAnimator = ObjectAnimator.ofFloat(this, "alpha", getAlpha(), 0)
-                    .setDuration(200);
-            dismissAnimator.setStartDelay(600);
             dismissAnimator.start();
         }
     }
@@ -246,7 +252,7 @@ public class InkPageIndicator extends View
         int bottom = height - getPaddingBottom();
 
         int requiredWidth = getRequiredWidth();
-        float startLeft = left + ((right - left - requiredWidth) / 2) + dotRadius;
+        float startLeft = left + ((right - left - requiredWidth) / 2f) + dotRadius;
 
         dotCenterX = new float[pageCount];
         for (int i = 0; i < pageCount; i++) {

@@ -52,8 +52,8 @@ public class MaterialWeatherView extends SurfaceView
     private float rotation2D;
     private float rotation3D;
 
-    @WeatherView.WeatherKindRule
-    private int weatherKind;
+    @WeatherView.WeatherKindRule private int weatherKind;
+    private boolean daytime;
 
     private float displayRate;
 
@@ -218,7 +218,7 @@ public class MaterialWeatherView extends SurfaceView
         }
 
         this.step = STEP_DISPLAY;
-        setWeather(WeatherView.WEATHER_KING_NULL);
+        setWeather(WeatherView.WEATHER_KING_NULL, true);
 
         this.sizes = new int[] {getMeasuredWidth(), getMeasuredHeight()};
 
@@ -264,130 +264,148 @@ public class MaterialWeatherView extends SurfaceView
     private void setWeatherImplementor() {
         step = STEP_DISPLAY;
         switch (weatherKind) {
-            case WeatherView.WEATHER_KIND_CLEAR_DAY:
-                implementor = new SunImplementor(sizes);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
-                break;
-
-            case WeatherView.WEATHER_KIND_CLEAR_NIGHT:
-                implementor = new MeteorShowerImplementor(sizes);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+            case WeatherView.WEATHER_KIND_CLEAR:
+                if (daytime) {
+                    implementor = new SunImplementor(sizes);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                } else {
+                    implementor = new MeteorShowerImplementor(sizes);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                }
                 break;
 
             case WeatherView.WEATHER_KIND_CLOUDY:
                 implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUDY);
                 rotators = new RotateController[] {
                         new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+                        new DelayRotateController(rotation3D)
+                };
                 break;
 
-            case WeatherView.WEATHER_KIND_CLOUD_DAY:
-                implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_DAY);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
-                break;
-
-            case WeatherView.WEATHER_KIND_CLOUD_NIGHT:
-                implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_NIGHT);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+            case WeatherView.WEATHER_KIND_CLOUD:
+                if (daytime) {
+                    implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_DAY);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                } else {
+                    implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_NIGHT);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                }
                 break;
 
             case WeatherView.WEATHER_KIND_FOG:
                 implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_FOG);
                 rotators = new RotateController[] {
                         new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+                        new DelayRotateController(rotation3D)
+                };
                 break;
 
-            case WeatherView.WEATHER_KIND_HAIL_DAY:
-                implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_DAY);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
-                break;
-
-            case WeatherView.WEATHER_KIND_HAIL_NIGHT:
-                implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_NIGHT);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+            case WeatherView.WEATHER_KIND_HAIL:
+                if (daytime) {
+                    implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_DAY);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                } else {
+                    implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_NIGHT);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                }
                 break;
 
             case WeatherView.WEATHER_KIND_HAZE:
                 implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_HAZE);
                 rotators = new RotateController[] {
                         new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+                        new DelayRotateController(rotation3D)
+                };
                 break;
 
-            case WeatherView.WEATHER_KIND_RAINY_DAY:
-                implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_DAY);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+            case WeatherView.WEATHER_KIND_RAINY:
+                if (daytime) {
+                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_DAY);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                } else {
+                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_NIGHT);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                }
                 break;
 
-            case WeatherView.WEATHER_KIND_RAINY_NIGHT:
-                implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_NIGHT);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
-                break;
-
-            case WeatherView.WEATHER_KIND_SNOW_DAY:
-                implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_DAY);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
-                break;
-
-            case WeatherView.WEATHER_KIND_SNOW_NIGHT:
-                implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_NIGHT);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+            case WeatherView.WEATHER_KIND_SNOW:
+                if (daytime) {
+                    implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_DAY);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                } else {
+                    implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_NIGHT);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                }
                 break;
 
             case WeatherView.WEATHER_KIND_THUNDERSTORM:
                 implementor = new RainImplementor(sizes, RainImplementor.TYPE_THUNDERSTORM);
                 rotators = new RotateController[] {
                         new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+                        new DelayRotateController(rotation3D)
+                };
                 break;
 
             case WeatherView.WEATHER_KIND_THUNDER:
                 implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_THUNDER);
                 rotators = new RotateController[] {
                         new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+                        new DelayRotateController(rotation3D)
+                };
                 break;
 
             case WeatherView.WEATHER_KIND_WIND:
                 implementor = new WindImplementor(sizes);
                 rotators = new RotateController[] {
                         new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+                        new DelayRotateController(rotation3D)
+                };
                 break;
 
-            case WeatherView.WEATHER_KIND_SLEET_DAY:
-                implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_DAY);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
-                break;
-
-            case WeatherView.WEATHER_KIND_SLEET_NIGHT:
-                implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_NIGHT);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)};
+            case WeatherView.WEATHER_KIND_SLEET:
+                if (daytime) {
+                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_DAY);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                } else {
+                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_NIGHT);
+                    rotators = new RotateController[] {
+                            new DelayRotateController(rotation2D),
+                            new DelayRotateController(rotation3D)
+                    };
+                }
                 break;
 
             case WeatherView.WEATHER_KING_NULL:
@@ -414,16 +432,29 @@ public class MaterialWeatherView extends SurfaceView
         return Color.HSVToColor(hsv);
     }
 
+    private boolean isIgnoreDayNight(@WeatherView.WeatherKindRule int weatherKind) {
+        return weatherKind == WeatherView.WEATHER_KIND_CLOUDY
+                || weatherKind == WeatherView.WEATHER_KIND_FOG
+                || weatherKind == WeatherView.WEATHER_KIND_HAZE
+                || weatherKind == WeatherView.WEATHER_KIND_THUNDERSTORM
+                || weatherKind == WeatherView.WEATHER_KIND_THUNDER
+                || weatherKind == WeatherView.WEATHER_KIND_WIND;
+    }
+
     // interface.
 
     // weather view.
 
     @Override
-    public void setWeather(@WeatherView.WeatherKindRule int weatherKind) {
-        if (this.weatherKind == weatherKind) {
+    public void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime) {
+        if (this.weatherKind == weatherKind
+                && (isIgnoreDayNight(weatherKind) || this.daytime == daytime)) {
             return;
         }
+
         this.weatherKind = weatherKind;
+        this.daytime = daytime;
+
         if (updateDataRunnable != null && updateDataRunnable.isRunning()
                 && drawableRunnable != null && drawableRunnable.isRunning()) {
             // Set step to dismiss. The implementor will execute exit animation and call weather
@@ -462,64 +493,64 @@ public class MaterialWeatherView extends SurfaceView
     public int getBackgroundColor() {
         int color = ContextCompat.getColor(getContext(), R.color.colorPrimary);
         switch (weatherKind) {
-            case WeatherView.WEATHER_KIND_CLEAR_DAY:
-                color = SunImplementor.getThemeColor();
-                break;
-
-            case WeatherView.WEATHER_KIND_CLEAR_NIGHT:
-                color = MeteorShowerImplementor.getThemeColor();
+            case WeatherView.WEATHER_KIND_CLEAR:
+                if (daytime) {
+                    color = SunImplementor.getThemeColor();
+                } else {
+                    color = MeteorShowerImplementor.getThemeColor();
+                }
                 break;
 
             case WeatherView.WEATHER_KIND_CLOUDY:
                 color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_CLOUDY);
                 break;
 
-            case WeatherView.WEATHER_KIND_CLOUD_DAY:
-                color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_CLOUD_DAY);
-                break;
-
-            case WeatherView.WEATHER_KIND_CLOUD_NIGHT:
-                color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_CLOUD_NIGHT);
+            case WeatherView.WEATHER_KIND_CLOUD:
+                if (daytime) {
+                    color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_CLOUD_DAY);
+                } else {
+                    color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_CLOUD_NIGHT);
+                }
                 break;
 
             case WeatherView.WEATHER_KIND_FOG:
                 color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_FOG);
                 break;
 
-            case WeatherView.WEATHER_KIND_HAIL_DAY:
-                color = HailImplementor.getThemeColor(getContext(), HailImplementor.TYPE_HAIL_DAY);
-                break;
-
-            case WeatherView.WEATHER_KIND_HAIL_NIGHT:
-                color = HailImplementor.getThemeColor(getContext(), HailImplementor.TYPE_HAIL_NIGHT);
+            case WeatherView.WEATHER_KIND_HAIL:
+                if (daytime) {
+                    color = HailImplementor.getThemeColor(getContext(), HailImplementor.TYPE_HAIL_DAY);
+                } else {
+                    color = HailImplementor.getThemeColor(getContext(), HailImplementor.TYPE_HAIL_NIGHT);
+                }
                 break;
 
             case WeatherView.WEATHER_KIND_HAZE:
                 color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_HAZE);
                 break;
 
-            case WeatherView.WEATHER_KIND_RAINY_DAY:
-                color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_RAIN_DAY);
+            case WeatherView.WEATHER_KIND_RAINY:
+                if (daytime) {
+                    color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_RAIN_DAY);
+                } else {
+                    color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_RAIN_NIGHT);
+                }
                 break;
 
-            case WeatherView.WEATHER_KIND_RAINY_NIGHT:
-                color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_RAIN_NIGHT);
+            case WeatherView.WEATHER_KIND_SLEET:
+                if (daytime) {
+                    color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_SLEET_DAY);
+                } else {
+                    color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_SLEET_NIGHT);
+                }
                 break;
 
-            case WeatherView.WEATHER_KIND_SLEET_DAY:
-                color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_SLEET_DAY);
-                break;
-
-            case WeatherView.WEATHER_KIND_SLEET_NIGHT:
-                color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_SLEET_NIGHT);
-                break;
-
-            case WeatherView.WEATHER_KIND_SNOW_DAY:
-                color = SnowImplementor.getThemeColor(getContext(), SnowImplementor.TYPE_SNOW_DAY);
-                break;
-
-            case WeatherView.WEATHER_KIND_SNOW_NIGHT:
-                color = SnowImplementor.getThemeColor(getContext(), SnowImplementor.TYPE_SNOW_NIGHT);
+            case WeatherView.WEATHER_KIND_SNOW:
+                if (daytime) {
+                    color = SnowImplementor.getThemeColor(getContext(), SnowImplementor.TYPE_SNOW_DAY);
+                } else {
+                    color = SnowImplementor.getThemeColor(getContext(), SnowImplementor.TYPE_SNOW_NIGHT);
+                }
                 break;
 
             case WeatherView.WEATHER_KIND_THUNDERSTORM:

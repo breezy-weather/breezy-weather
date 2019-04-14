@@ -11,6 +11,7 @@ import android.graphics.Shader;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
@@ -77,17 +78,20 @@ public class TrendItemView extends View {
         this.lineColors = new int[] {
                 ContextCompat.getColor(getContext(), R.color.colorPrimary),
                 ContextCompat.getColor(getContext(), R.color.colorTextDark),
-                ContextCompat.getColor(getContext(), R.color.colorLine)};
+                ContextCompat.getColor(getContext(), R.color.colorLine)
+        };
         if (DisplayUtils.isDarkMode(getContext())) {
             this.shadowColors = new int[] {
                     Color.argb(20, 173, 173, 173),
                     Color.TRANSPARENT,
-                    Color.argb((int) (255 * 0.2), 0, 0, 0)};
+                    Color.argb((int) (255 * 0.2), 0, 0, 0)
+            };
         } else {
             this.shadowColors = new int[] {
                     Color.argb(50, 173, 173, 173),
                     Color.TRANSPARENT,
-                    Color.argb((int) (255 * 0.2), 0, 0, 0)};
+                    Color.argb((int) (255 * 0.2), 0, 0, 0)
+            };
         }
         this.textColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
         this.precipitationTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle);
@@ -104,7 +108,6 @@ public class TrendItemView extends View {
 
         this.paint = new Paint();
         paint.setAntiAlias(true);
-        paint.setStrokeCap(Paint.Cap.ROUND);
 
         this.path = new Path();
     }
@@ -113,7 +116,6 @@ public class TrendItemView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
         computeCoordinates();
 
         if (shader == null) {
@@ -121,10 +123,12 @@ public class TrendItemView extends View {
                     0, TREND_MARGIN_TOP,
                     0, getMeasuredHeight() - TREND_MARGIN_BOTTOM,
                     shadowColors[0], shadowColors[1],
-                    Shader.TileMode.CLAMP);
+                    Shader.TileMode.CLAMP
+            );
         }
 
         drawTimeLine(canvas);
+
         if (precipitation > 5) {
             drawPrecipitationData(canvas);
         }
@@ -143,7 +147,8 @@ public class TrendItemView extends View {
         canvas.drawLine(
                 (float) (getMeasuredWidth() / 2.0), TREND_MARGIN_TOP,
                 (float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN_BOTTOM,
-                paint);
+                paint
+        );
     }
 
     private void drawMaxiTemp(Canvas canvas) {
@@ -233,10 +238,13 @@ public class TrendItemView extends View {
         paint.setTextSize(WEATHER_TEXT_SIZE);
         paint.setShadowLayer(2, 0, 2, shadowColors[2]);
         canvas.drawText(
-                ValueUtils.buildAbbreviatedCurrentTemp((int) maxiTemps[1], GeometricWeather.getInstance().isFahrenheit()),
-                getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
+                ValueUtils.buildAbbreviatedCurrentTemp(
+                        (int) maxiTemps[1],
+                        GeometricWeather.getInstance().isFahrenheit()
+                ), getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
                 maxiTempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
-                paint);
+                paint
+        );
     }
 
     private void drawMiniTemp(Canvas canvas) {
@@ -283,10 +291,13 @@ public class TrendItemView extends View {
         paint.setTextSize(WEATHER_TEXT_SIZE);
         paint.setShadowLayer(2, 0, 2, shadowColors[2]);
         canvas.drawText(
-                ValueUtils.buildAbbreviatedCurrentTemp((int) miniTemps[1], GeometricWeather.getInstance().isFahrenheit()),
-                getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
+                ValueUtils.buildAbbreviatedCurrentTemp(
+                        (int) miniTemps[1],
+                        GeometricWeather.getInstance().isFahrenheit()
+                ), getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
                 miniTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
-                paint);
+                paint
+        );
     }
 
     private void drawPrecipitationData(Canvas canvas) {
@@ -305,9 +316,10 @@ public class TrendItemView extends View {
                         (float) (getMeasuredWidth() / 2.0 - TREND_LINE_SIZE * 1.5),
                         precipitationY,
                         (float) (getMeasuredWidth() / 2.0 + TREND_LINE_SIZE * 1.5),
-                        getMeasuredHeight() - TREND_MARGIN_BOTTOM),
-                TREND_LINE_SIZE * 3, TREND_LINE_SIZE * 3,
-                paint);
+                        getMeasuredHeight() - TREND_MARGIN_BOTTOM
+                ), TREND_LINE_SIZE * 3, TREND_LINE_SIZE * 3,
+                paint
+        );
 
         paint.setColor(precipitationTextColor);
         paint.setAlpha(255);
@@ -316,16 +328,22 @@ public class TrendItemView extends View {
         canvas.drawText(
                 precipitation + "%",
                 (float) (getMeasuredWidth() / 2.0),
-                (float) (getMeasuredHeight() - TREND_MARGIN_BOTTOM - paint.getFontMetrics().top + 2.0 * MARGIN_TEXT + WEATHER_TEXT_SIZE),
-                paint);
+                (float) (
+                        getMeasuredHeight()
+                                - TREND_MARGIN_BOTTOM
+                                - paint.getFontMetrics().top
+                                + 2.0 * MARGIN_TEXT
+                                + WEATHER_TEXT_SIZE
+                ), paint
+        );
 
         paint.setAlpha(255);
     }
 
     // control.
 
-    public void setData(@NonNull float[] maxiTemps, @Nullable float[] miniTemps, int precipitation,
-                        int highestTemp, int lowestTemp) {
+    public void setData(@NonNull @Size(3) float[] maxiTemps, @Nullable @Size(3) float[] miniTemps,
+                        int precipitation, int highestTemp, int lowestTemp) {
         this.maxiTemps = maxiTemps;
         if (miniTemps != null) {
             this.miniTemps = miniTemps;
@@ -340,7 +358,11 @@ public class TrendItemView extends View {
 
     public void setLineColors(@ColorInt int c1, @ColorInt int c2) {
         this.lineColors = new int[] {
-                c1, c2, ContextCompat.getColor(getContext(), R.color.colorLine)};
+                c1,
+                c2,
+                ContextCompat.getColor(getContext(), R.color.colorLine)
+        };
+        invalidate();
     }
 
     private void computeCoordinates() {
@@ -365,8 +387,12 @@ public class TrendItemView extends View {
 
     private int computeSingleCoordinate(float value, float max, float min) {
         float canvasHeight = getMeasuredHeight() - TREND_MARGIN_TOP - TREND_MARGIN_BOTTOM;
-        return (int) (getMeasuredHeight() - TREND_MARGIN_BOTTOM
-                - canvasHeight * (value - min) / (max - min));
+
+        return (int) (
+                getMeasuredHeight()
+                        - TREND_MARGIN_BOTTOM
+                        - canvasHeight * (value - min) / (max - min)
+        );
     }
 
     private float getRTLCompactX(float x) {

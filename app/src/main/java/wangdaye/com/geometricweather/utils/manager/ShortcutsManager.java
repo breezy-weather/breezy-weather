@@ -50,11 +50,12 @@ public class ShortcutsManager {
                         try {
                             int size = Math.min((int) DisplayUtils.dpToPx(c, 108), 768);
                             Bitmap foreground = Glide.with(c)
-                                    .load(WeatherHelper.getShortcutForeground(
-                                            weather.realTime.weatherKind,
-                                            TimeManager.isDaylight(weather)
-                                    ))
-                                    .asBitmap()
+                                    .load(
+                                            WeatherHelper.getShortcutForeground(
+                                                    weather.realTime.weatherKind,
+                                                    TimeManager.isDaylight(weather)
+                                            )
+                                    ).asBitmap()
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     .centerCrop()
                                     .into(size, size)
@@ -62,8 +63,7 @@ public class ShortcutsManager {
                             icon = Icon.createWithAdaptiveBitmap(foreground);
                         } catch (InterruptedException | ExecutionException e) {
                             icon = Icon.createWithResource(
-                                    c,
-                                    WeatherHelper.getShortcutIcon(
+                                    c, WeatherHelper.getShortcutIcon(
                                             weather.realTime.weatherKind,
                                             TimeManager.getInstance(c).isDayTime()
                                     )
@@ -71,8 +71,7 @@ public class ShortcutsManager {
                         }
                     } else {
                         icon = Icon.createWithResource(
-                                c,
-                                WeatherHelper.getShortcutIcon(
+                                c, WeatherHelper.getShortcutIcon(
                                         weather.realTime.weatherKind,
                                         TimeManager.getInstance(c).isDayTime()
                                 )
@@ -90,7 +89,8 @@ public class ShortcutsManager {
                                 .setShortLabel(title)
                                 .setLongLabel(title)
                                 .setIntent(IntentHelper.buildMainActivityIntent(c, list.get(i)))
-                                .build());
+                                .build()
+                );
             }
 
             try {

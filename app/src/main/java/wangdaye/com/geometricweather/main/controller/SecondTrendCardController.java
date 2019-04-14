@@ -69,4 +69,9 @@ public class SecondTrendCardController extends AbstractMainItemController {
             }
         }
     }
+
+    @Override
+    public void onDestroy() {
+        trendRecyclerView.setAdapter(null);
+    }
 }

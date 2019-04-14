@@ -1,10 +1,13 @@
 package wangdaye.com.geometricweather.ui.widget.verticalScrollView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ViewCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -12,37 +15,34 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import java.util.List;
-
-import wangdaye.com.geometricweather.basic.model.Location;
-
 /**
  * Swipe switch layout.
  * */
 
-public class SwipeSwitchLayout extends CoordinatorLayout
-        implements GestureDetector.OnGestureListener {
+public class SwipeSwitchLayout extends CoordinatorLayout {
 
     private View target;
 
-    private GestureDetector gestureDetector;
     private OnSwitchListener switchListener;
-    private OnSwipeListener swipeListener;
+    private OnPagerSwipeListener pageSwipeListener;
 
     private int totalCount = 1;
     private int position = 0;
 
-    private float swipeDistance;
-    private float swipeTrigger;
+    private int swipeDistance;
+    private int swipeTrigger;
 
     private float initialX, initialY;
     private int touchSlop;
 
-    private boolean isBeingDragged = false;
-    private boolean isHorizontalDragged = false;
+    private boolean isBeingDragged;
+    private boolean isHorizontalDragged;
+    private boolean isBeingNestedScrolling;
 
-    public static final int DIRECTION_LEFT = -1;
-    public static final int DIRECTION_RIGHT = 1;
+    private static final float SWIPE_RADIO = 0.4f;
+
+    public static final int SWIPE_DIRECTION_LEFT = -1;
+    public static final int SWIPE_DIRECTION_RIGHT = 1;
 
     private Animation resetAnimation = new Animation() {
 
@@ -53,62 +53,6 @@ public class SwipeSwitchLayout extends CoordinatorLayout
             notifySwipeListenerScrolled();
         }
     };
-
-    private class LeftExitAnimation extends Animation {
-        // data
-        private float startX;
-        private boolean notified;
-
-        LeftExitAnimation(float distanceNow) {
-            startX = distanceNow;
-            notified = false;
-        }
-
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            if (!notified) {
-                swipeDistance = startX + (-swipeTrigger - startX) * interpolatedTime;
-                setTranslation();
-                notifySwipeListenerScrolled();
-                if (interpolatedTime == 1) {
-                    notified = true;
-                    setPosition(DIRECTION_LEFT);
-                    switchListener.swipeTakeEffect(DIRECTION_LEFT);
-                    if (swipeListener != null) {
-                        swipeListener.onPageSelected(position);
-                    }
-                }
-            }
-        }
-    }
-
-    private class RightExitAnimation extends Animation {
-        // data
-        private float startX;
-        private boolean notified;
-
-        RightExitAnimation(float distanceNow) {
-            startX = distanceNow;
-            notified = false;
-        }
-
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            if (!notified) {
-                swipeDistance = startX + (swipeTrigger - startX) * interpolatedTime;
-                setTranslation();
-                notifySwipeListenerScrolled();
-                if (interpolatedTime == 1) {
-                    notified = true;
-                    setPosition(DIRECTION_RIGHT);
-                    switchListener.swipeTakeEffect(DIRECTION_RIGHT);
-                    if (swipeListener != null) {
-                        swipeListener.onPageSelected(position);
-                    }
-                }
-            }
-        }
-    }
 
     private Animation.AnimationListener animListener = new Animation.AnimationListener() {
         @Override
@@ -145,10 +89,8 @@ public class SwipeSwitchLayout extends CoordinatorLayout
     // init.
 
     private void initialize() {
-        this.gestureDetector = new GestureDetector(getContext(), this);
-
         this.swipeDistance = 0;
-        this.swipeTrigger = (int) (getContext().getResources().getDisplayMetrics().widthPixels / 2.0);
+        this.swipeTrigger = (int) (getContext().getResources().getDisplayMetrics().widthPixels / 3.0);
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
 
@@ -161,6 +103,11 @@ public class SwipeSwitchLayout extends CoordinatorLayout
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (!isEnabled()
+                || (ev.getAction() != MotionEvent.ACTION_DOWN && isBeingNestedScrolling)) {
+            return false;
+        }
+
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 isBeingDragged = false;
@@ -171,16 +118,16 @@ public class SwipeSwitchLayout extends CoordinatorLayout
                 break;
 
             case MotionEvent.ACTION_MOVE:
+                float x = ev.getX();
+                float y = ev.getY();
+
                 if (!isBeingDragged && !isHorizontalDragged) {
-                    if (Math.abs(ev.getX() - initialX) > touchSlop
-                            || Math.abs(ev.getY() - initialY) > touchSlop) {
+                    if (Math.abs(x - initialX) > touchSlop || Math.abs(y - initialY) > touchSlop) {
                         isBeingDragged = true;
-                        if (Math.abs(ev.getX() - initialX) > Math.abs(ev.getY() - initialY)) {
+                        if (Math.abs(x - initialX) > Math.abs(y - initialY)) {
+                            initialX += x > initialX ? touchSlop : -touchSlop;
                             isHorizontalDragged = true;
                         }
-                    } else {
-                        initialX = ev.getX();
-                        initialY = ev.getY();
                     }
                 }
                 break;
@@ -195,11 +142,13 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         return isBeingDragged && isHorizontalDragged;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (gestureDetector.onTouchEvent(ev)) {
-            return true;
+        if (!isEnabled() || isBeingNestedScrolling) {
+            return false;
         }
+
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 isBeingDragged = false;
@@ -211,7 +160,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout
 
             case MotionEvent.ACTION_MOVE:
                 if (isBeingDragged && isHorizontalDragged) {
-                    swipeDistance = ev.getX() - initialX;
+                    swipeDistance = (int) (ev.getX() - initialX);
                     setTranslation();
                     notifySwipeListenerScrolled();
                 }
@@ -219,22 +168,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                if (swipeDistance != 0) {
-                    if (Math.abs(swipeDistance) > Math.abs(swipeTrigger)) {
-                        setPosition(ev.getX() < initialX ? DIRECTION_LEFT : DIRECTION_RIGHT);
-                        switchListener.swipeTakeEffect(
-                                ev.getX() < initialX ? DIRECTION_LEFT : DIRECTION_RIGHT);
-                        if (swipeListener != null) {
-                            swipeListener.onPageSelected(position);
-                        }
-                    } else {
-                        resetAnimation.reset();
-                        resetAnimation.setDuration(300);
-                        resetAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-                        resetAnimation.setAnimationListener(animListener);
-                        startAnimation(resetAnimation);
-                    }
-                }
+                release();
                 break;
         }
 
@@ -265,51 +199,77 @@ public class SwipeSwitchLayout extends CoordinatorLayout
         this.getTarget();
 
         float realDistance = swipeDistance;
-        if (realDistance > swipeTrigger) {
-            realDistance = swipeTrigger;
-        } else if (realDistance < -swipeTrigger) {
-            realDistance = -swipeTrigger;
+        realDistance = Math.min(realDistance, swipeTrigger);
+        realDistance = Math.max(realDistance, -swipeTrigger);
+
+        int swipeDirection = swipeDistance < 0 ? SWIPE_DIRECTION_LEFT : SWIPE_DIRECTION_RIGHT;
+        float progress = (float) (1.0 * Math.abs(realDistance) / swipeTrigger);
+
+        target.setAlpha(1 - progress);
+        target.setTranslationX(
+                (float) (
+                        swipeDirection * SWIPE_RADIO * swipeTrigger * Math.log10(
+                                1 + 9.0 * Math.abs(swipeDistance) / swipeTrigger
+                        )
+                )
+        );
+
+        switchListener.onSwipeProgressChanged(swipeDirection, progress);
+    }
+
+    private void release() {
+        int swipeDirection = swipeDistance < 0 ? SWIPE_DIRECTION_LEFT : SWIPE_DIRECTION_RIGHT;
+        if (Math.abs(swipeDistance) > Math.abs(swipeTrigger)) {
+            setPosition(swipeDirection);
+            switchListener.onSwipeReleased(swipeDirection, true);
+            if (pageSwipeListener != null) {
+                pageSwipeListener.onPageSelected(position);
+            }
+        } else {
+            switchListener.onSwipeReleased(swipeDirection, false);
+            resetAnimation.reset();
+            resetAnimation.setDuration(300);
+            resetAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+            resetAnimation.setAnimationListener(animListener);
+            startAnimation(resetAnimation);
         }
-        target.setTranslationX(realDistance);
-        target.setAlpha(1 - Math.abs(realDistance) / swipeTrigger);
     }
 
     private void notifySwipeListenerScrolled() {
-        if (swipeListener != null) {
+        if (pageSwipeListener != null) {
             if (swipeDistance > 0) {
-                swipeListener.onPageScrolled(
+                pageSwipeListener.onPageScrolled(
                         position - 1,
-                        1 - Math.min(1, swipeDistance / swipeTrigger),
-                        (int) Math.max(0, swipeTrigger - swipeDistance));
+                        (float) (1 - Math.min(1, 1.0 * swipeDistance / swipeTrigger)),
+                        Math.max(0, swipeTrigger - swipeDistance)
+                );
             } else {
-                swipeListener.onPageScrolled(
+                pageSwipeListener.onPageScrolled(
                         position,
-                        Math.min(1, -swipeDistance / swipeTrigger),
-                        (int) Math.min(-swipeDistance, swipeTrigger));
+                        (float) Math.min(1, -1.0 * swipeDistance / swipeTrigger),
+                        Math.min(-swipeDistance, swipeTrigger)
+                );
             }
         }
     }
 
     // interface.
 
-    public void setData(List<Location> locationList, Location locationNow) {
-        this.totalCount = locationList.size();
-        position = 0;
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationNow.equals(locationList.get(i))) {
-                position = i;
-                return;
-            }
+    public void setData(int currentIndex, int pageCount) {
+        if (currentIndex < 0) {
+            throw new RuntimeException("Invalid current index.");
         }
+        position = currentIndex;
+        totalCount = pageCount;
     }
 
-    private void setPosition(int dir) {
-        switch (dir) {
-            case DIRECTION_LEFT:
+    private void setPosition(int swipeDirection) {
+        switch (swipeDirection) {
+            case SWIPE_DIRECTION_LEFT:
                 position ++;
                 break;
 
-            case DIRECTION_RIGHT:
+            case SWIPE_DIRECTION_RIGHT:
                 position --;
                 break;
         }
@@ -333,82 +293,73 @@ public class SwipeSwitchLayout extends CoordinatorLayout
     // on switch listener.
 
     public interface OnSwitchListener {
-        void swipeTakeEffect(int direction);
+        void onSwipeProgressChanged(int swipeDirection, float progress);
+        void onSwipeReleased(int swipeDirection, boolean doSwitch);
     }
 
     public void setOnSwitchListener(OnSwitchListener l) {
-        this.switchListener = l;
+        switchListener = l;
     }
 
     // on swipe listener.
 
-    public interface OnSwipeListener {
-
+    public interface OnPagerSwipeListener {
         void onPageScrolled(int position, float positionOffset, int positionOffsetPixels);
         void onPageSelected(int position);
     }
 
-    public void setOnSwipeListener(OnSwipeListener l) {
-        this.swipeListener = l;
+    public void setOnPageSwipeListener(OnPagerSwipeListener l) {
+        pageSwipeListener = l;
     }
 
-    // on gesture switchListener.
+    // nested scrolling parent.
 
     @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
+    public boolean onStartNestedScroll(@NonNull View child, @NonNull View target, int axes, int type) {
+        return (axes & ViewCompat.SCROLL_AXIS_HORIZONTAL) != 0
+                && switchListener != null
+                && type == ViewCompat.TYPE_TOUCH
+                && isEnabled();
     }
 
     @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        return false;
+    public void onNestedScrollAccepted(@NonNull View child, @NonNull View target, int axes, int type) {
+        isBeingNestedScrolling = true;
+        swipeDistance = 0;
     }
 
     @Override
-    public void onLongPress(MotionEvent motionEvent) {
-
+    public void onStopNestedScroll(@NonNull View target, int type) {
+        isBeingNestedScrolling = false;
+        release();
     }
 
     @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        if (Math.abs(swipeDistance) >= swipeTrigger) {
-            setPosition(swipeDistance < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT);
-            switchListener.swipeTakeEffect(swipeDistance < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT);
-            if (swipeListener != null) {
-                swipeListener.onPageSelected(position);
-            }
-        } else if (Math.abs(v) >= 2000 && Math.abs(swipeDistance) >= swipeTrigger / 3.0) {
-            if (v > 0) {
-                // to right.
-                RightExitAnimation animation = new RightExitAnimation(swipeDistance);
-                animation.setDuration((long) (1000.0 * (swipeTrigger - swipeDistance) / v));
-                animation.setAnimationListener(animListener);
-                clearAnimation();
-                startAnimation(animation);
+    public void onNestedPreScroll(@NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
+        if (swipeDistance != 0) {
+            if ((swipeDistance > 0 && swipeDistance - dx < 0)
+                    || (swipeDistance < 0 && swipeDistance - dx > 0)) {
+                consumed[0] = swipeDistance;
             } else {
-                // to left.
-                LeftExitAnimation animation = new LeftExitAnimation(swipeDistance);
-                animation.setDuration((long) (1000.0 * (-swipeTrigger - swipeDistance) / v));
-                animation.setAnimationListener(animListener);
-                clearAnimation();
-                startAnimation(animation);
+                consumed[0] = dx;
             }
-        } else {
-            resetAnimation.reset();
-            resetAnimation.setDuration(300);
-            resetAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-            resetAnimation.setAnimationListener(animListener);
-            startAnimation(resetAnimation);
+            onNestedScroll(target, 0, 0, consumed[0], dy, type);
         }
-        return true;
+    }
+
+    @Override
+    public void onNestedScroll(@NonNull View target,
+                               int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed,
+                               int type, @NonNull int[] consumed) {
+        onNestedScroll(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
+        consumed[0] += dxUnconsumed;
+    }
+
+    @Override
+    public void onNestedScroll(@NonNull View target,
+                               int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed,
+                               int type) {
+        swipeDistance -= dxUnconsumed;
+        setTranslation();
     }
 }

@@ -93,7 +93,8 @@ public class Location
         if (location.isLocal()) {
             return isLocal();
         } else {
-            return cityId.equals(location.cityId);
+            return cityId.equals(location.cityId)
+                    && source.equals(location.source);
         }
     }
 

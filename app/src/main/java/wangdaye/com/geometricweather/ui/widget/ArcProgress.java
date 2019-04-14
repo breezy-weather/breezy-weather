@@ -32,8 +32,8 @@ public class ArcProgress extends View {
     private RectF rectF = new RectF();
     private float arcBottomHeight;
 
-    private int progress;
-    private int max;
+    private float progress;
+    private float max;
     private float arcAngle;
     private float progressWidth;
     @ColorInt private int progressColor;
@@ -110,7 +110,7 @@ public class ArcProgress extends View {
         return progress;
     }
 
-    public void setProgress(int progress) {
+    public void setProgress(float progress) {
         this.progress = progress;
         if (this.progress > getMax()) {
             this.progress = getMax();
@@ -118,11 +118,11 @@ public class ArcProgress extends View {
         invalidate();
     }
 
-    public int getMax() {
+    public float getMax() {
         return max;
     }
 
-    public void setMax(int max) {
+    public void setMax(float max) {
         if (max > 0) {
             this.max = max;
             invalidate();
@@ -166,14 +166,16 @@ public class ArcProgress extends View {
                     0, rectF.bottom,
                     Color.argb(20, 173, 173, 173),
                     Color.TRANSPARENT,
-                    Shader.TileMode.CLAMP);
+                    Shader.TileMode.CLAMP
+            );
         } else {
             shadowShader = new LinearGradient(
                     0, rectF.top,
                     0, rectF.bottom,
                     Color.argb(50, 173, 173, 173),
                     Color.TRANSPARENT,
-                    Shader.TileMode.CLAMP);
+                    Shader.TileMode.CLAMP
+            );
         }
     }
 
@@ -198,7 +200,8 @@ public class ArcProgress extends View {
                 progressWidth / 2f + arcPadding,
                 progressWidth / 2f + arcPadding,
                 width - progressWidth / 2f - arcPadding,
-                MeasureSpec.getSize(heightMeasureSpec) - progressWidth / 2f - arcPadding);
+                MeasureSpec.getSize(heightMeasureSpec) - progressWidth / 2f - arcPadding
+        );
         float radius = (width - 2 * arcPadding) / 2f;
         float angle = (360 - arcAngle) / 2f;
         arcBottomHeight = radius * (float) (1 - Math.cos(angle / 180 * Math.PI));
@@ -225,14 +228,16 @@ public class ArcProgress extends View {
                         rectF.centerX(),
                         rectF.centerY(),
                         rectF.width() / 2,
-                        shadowPaint);
+                        shadowPaint
+                );
             } else if (progressEndAngle + deltaAngle > 180) {
                 canvas.drawArc(
                         rectF,
                         360 - progressEndAngle - deltaAngle,
                         360 - 2 * (360 - progressEndAngle - deltaAngle),
                         false,
-                        shadowPaint);
+                        shadowPaint
+                );
             }
         }
 
@@ -245,7 +250,8 @@ public class ArcProgress extends View {
                     2,
                     0,
                     2,
-                    Color.argb((int) (255 * 0.2), 0, 0, 0));
+                    Color.argb((int) (255 * 0.2), 0, 0, 0)
+            );
             canvas.drawArc(rectF, startAngle, progressSweepAngle, false, progressPaint);
         }
 
@@ -254,7 +260,12 @@ public class ArcProgress extends View {
             textPaint.setTextSize(textSize);
             float textHeight = textPaint.descent() + textPaint.ascent();
             float textBaseline = (getHeight() - textHeight) / 2.0f;
-            canvas.drawText(text, (getWidth() - textPaint.measureText(text)) / 2.0f, textBaseline, textPaint);
+            canvas.drawText(
+                    text,
+                    (getWidth() - textPaint.measureText(text)) / 2.0f,
+                    textBaseline,
+                    textPaint
+            );
         }
 
         if(arcBottomHeight == 0) {
@@ -266,12 +277,15 @@ public class ArcProgress extends View {
         if (!TextUtils.isEmpty(bottomText)) {
             textPaint.setColor(bottomTextColor);
             textPaint.setTextSize(bottomTextSize);
-            float bottomTextBaseline = getHeight() - arcBottomHeight - (textPaint.descent() + textPaint.ascent()) / 2;
+            float bottomTextBaseline = getHeight()
+                    - arcBottomHeight
+                    - (textPaint.descent() + textPaint.ascent()) / 2;
             canvas.drawText(
                     bottomText,
                     (getWidth() - textPaint.measureText(bottomText)) / 2.0f,
                     bottomTextBaseline,
-                    textPaint);
+                    textPaint
+            );
         }
     }
 }

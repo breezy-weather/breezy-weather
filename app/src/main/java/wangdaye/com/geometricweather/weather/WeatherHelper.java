@@ -6,6 +6,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
 import java.text.ParseException;
@@ -20,6 +22,10 @@ import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.ui.image.material.MaterialMoonDrawable;
+import wangdaye.com.geometricweather.ui.image.material.MaterialSunDrawable;
+import wangdaye.com.geometricweather.ui.image.pixel.PixelMoonDrawable;
+import wangdaye.com.geometricweather.ui.image.pixel.PixelSunDrawable;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
 import wangdaye.com.geometricweather.weather.service.CNWeatherService;
 import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
@@ -1083,6 +1089,22 @@ public class WeatherHelper {
                 break;
         }
         return imageId;
+    }
+
+    public static Drawable getSunDrawable() {
+        if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
+            return new PixelSunDrawable();
+        } else {
+            return new MaterialSunDrawable();
+        }
+    }
+
+    public static Drawable getMoonDrawable() {
+        if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
+            return new PixelMoonDrawable();
+        } else {
+            return new MaterialMoonDrawable();
+        }
     }
 
     @SuppressLint("SimpleDateFormat")

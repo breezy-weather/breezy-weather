@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -98,16 +100,8 @@ public class SearcActivity extends GeoActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (!isStarted()) {
-            setStarted();
-            initData();
-            initWidget();
-        }
+        initData();
+        initWidget();
     }
 
     @Override
@@ -126,7 +120,7 @@ public class SearcActivity extends GeoActivity
 
     @SuppressLint("MissingSuperCall")
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         // do nothing.
     }
 
@@ -174,18 +168,15 @@ public class SearcActivity extends GeoActivity
 
         this.editText = findViewById(R.id.activity_search_editText);
         editText.setOnEditorActionListener(this);
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                editText.setFocusable(true);
-                editText.requestFocus();
-                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.showSoftInput(editText, 0);
-            }
+        new Handler().post(() -> {
+            editText.setFocusable(true);
+            editText.requestFocus();
+            InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.showSoftInput(editText, 0);
         });
 
         this.recyclerView = findViewById(R.id.activity_search_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(adapter);
 

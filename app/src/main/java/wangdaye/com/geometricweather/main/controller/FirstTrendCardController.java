@@ -116,13 +116,20 @@ public class FirstTrendCardController extends AbstractMainItemController
             if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
                 TrendViewController.setDailyTrend(
                         context, title, subtitle, trendRecyclerView,
-                        weather, location.history, weatherView.getThemeColors());
+                        weather, location.history, weatherView.getThemeColors()
+                );
             } else {
                 TrendViewController.setHourlyTrend(
                         context, title, subtitle, trendRecyclerView,
-                        weather, location.history, weatherView.getThemeColors());
+                        weather, location.history, weatherView.getThemeColors()
+                );
             }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        trendRecyclerView.setAdapter(null);
     }
 
     // interface.

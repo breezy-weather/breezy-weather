@@ -3,12 +3,12 @@ package wangdaye.com.geometricweather.main.adapter;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
+import androidx.annotation.Size;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.dialog.WeatherDialog;
+import wangdaye.com.geometricweather.ui.widget.trendView.HourlyItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
@@ -29,50 +30,54 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.ViewHolder> {
 
-    private Context context;
-
     private Weather weather;
 
-    private float[] maxiTemps;
+    private float[] temps;
     private int highestTemp;
     private int lowestTemp;
 
     private int[] themeColors;
 
-    class ViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView text;
-        private AppCompatImageView dayIcon;
-        private TrendItemView trendItemView;
+        private HourlyItemView hourlyItem;
 
         ViewHolder(View itemView) {
             super(itemView);
-
-            this.text = itemView.findViewById(R.id.item_trend_hourly_txt);
-            this.dayIcon = itemView.findViewById(R.id.item_trend_hourly_icon_day);
-            this.trendItemView = itemView.findViewById(R.id.item_trend_hourly_trendItem);
-
-            itemView.findViewById(R.id.item_trend_hourly).setOnClickListener(this);
+            hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
         }
 
         void onBindView(int position) {
+            Context context = itemView.getContext();
             Hourly hourly = weather.hourlyList.get(position);
 
-            text.setText(hourly.time);
+            hourlyItem.setHourText(hourly.time);
+
             Glide.with(context)
                     .load(WeatherHelper.getWeatherIcon(hourly.weatherKind, hourly.dayTime)[3])
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(dayIcon);
-            trendItemView.setData(
-                    buildTempArrayForItem(maxiTemps, position),
+                    .into(hourlyItem.getIconTarget());
+
+            hourlyItem.getTrendItemView().setData(
+                    buildTempArrayForItem(temps, position),
                     null,
                     hourly.precipitation,
                     highestTemp,
-                    lowestTemp);
-            trendItemView.setLineColors(themeColors[1], themeColors[2]);
+                    lowestTemp
+            );
+            hourlyItem.getTrendItemView().setLineColors(themeColors[1], themeColors[2]);
+
+            hourlyItem.setOnClickListener(v -> {
+                GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
+                if (activity != null && activity.isForeground()) {
+                    WeatherDialog weatherDialog = new WeatherDialog();
+                    weatherDialog.setData(weather, getAdapterPosition(), false);
+                    weatherDialog.show(activity.getSupportFragmentManager(), null);
+                }
+            });
         }
 
+        @Size(3)
         private float[] buildTempArrayForItem(float[] temps, int adapterPosition) {
             float[] a = new float[3];
             a[1] = temps[2 * adapterPosition];
@@ -88,33 +93,18 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
             }
             return a;
         }
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.item_trend_hourly:
-                    GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
-                    if (activity != null && activity.isForeground()) {
-                        WeatherDialog weatherDialog = new WeatherDialog();
-                        weatherDialog.setData(weather, getAdapterPosition(), false);
-                        weatherDialog.show(activity.getSupportFragmentManager(), null);
-                    }
-                    break;
-            }
-        }
     }
 
-    public HourlyTrendAdapter(Context context, @NonNull Weather weather, @Nullable History history,
+    public HourlyTrendAdapter(@NonNull Weather weather, @Nullable History history,
                               int[] themeColors) {
-        this.context = context;
         this.weather = weather;
 
-        this.maxiTemps = new float[Math.max(0, weather.hourlyList.size() * 2 - 1)];
-        for (int i = 0; i < maxiTemps.length; i += 2) {
-            maxiTemps[i] = weather.hourlyList.get(i / 2).temp;
+        this.temps = new float[Math.max(0, weather.hourlyList.size() * 2 - 1)];
+        for (int i = 0; i < temps.length; i += 2) {
+            temps[i] = weather.hourlyList.get(i / 2).temp;
         }
-        for (int i = 1; i < maxiTemps.length; i += 2) {
-            maxiTemps[i] = (maxiTemps[i - 1] + maxiTemps[i + 1]) * 0.5F;
+        for (int i = 1; i < temps.length; i += 2) {
+            temps[i] = (temps[i - 1] + temps[i + 1]) * 0.5F;
         }
 
         highestTemp = history == null ? Integer.MIN_VALUE : history.maxiTemp;

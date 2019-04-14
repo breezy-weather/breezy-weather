@@ -11,8 +11,10 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.CoordinateConverter;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.location.LocationException;
 
 /**
  * A map location service.
@@ -44,6 +46,12 @@ public class AMapLocationService extends LocationService {
                         break;
 
                     default:
+                        CrashReport.postCatchedException(
+                                new LocationException(
+                                        aMapLocation.getErrorCode(),
+                                        aMapLocation.getErrorInfo()
+                                )
+                        );
                         callback.onCompleted(null);
                         break;
                 }

@@ -2,14 +2,17 @@ package wangdaye.com.geometricweather.background.service.polling;
 
 import android.app.Notification;
 import android.content.Context;
+
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.remote.utils.ForecastNotificationUtils;
+import wangdaye.com.geometricweather.remoteviews.presenter.ForecastNotificationIMP;
 
 /**
  * Polling Today forecast update service.
@@ -18,9 +21,9 @@ import wangdaye.com.geometricweather.remote.utils.ForecastNotificationUtils;
 public class PollingTomorrowForecastUpdateService extends PollingUpdateService {
 
     @Override
-    public void updateView(Context context, Location location, Weather weather) {
-        if (ForecastNotificationUtils.isEnable(this, false)) {
-            ForecastNotificationUtils.buildForecastAndSendIt(context, weather, false);
+    public void updateView(Context context, Location location, @Nullable Weather weather, @Nullable History history) {
+        if (ForecastNotificationIMP.isEnable(this, false)) {
+            ForecastNotificationIMP.buildForecastAndSendIt(context, weather, false);
         }
     }
 

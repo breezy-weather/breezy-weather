@@ -38,7 +38,7 @@ import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuMinuteResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuRealtimeResult;
-import wangdaye.com.geometricweather.weather.GzipInterceptor;
+import wangdaye.com.geometricweather.weather.interceptor.GzipInterceptor;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -103,12 +103,13 @@ public class AccuWeatherService extends WeatherService {
     public AccuWeatherService() {
         api = new Retrofit.Builder()
                 .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
-                .client(GeometricWeather.getInstance()
-                        .getOkHttpClient()
-                        .newBuilder()
-                        .addInterceptor(new GzipInterceptor())
-                        .build())
-                .addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
+                .client(
+                        GeometricWeather.getInstance()
+                                .getOkHttpClient()
+                                .newBuilder()
+                                .addInterceptor(new GzipInterceptor())
+                                .build()
+                ).addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
                 .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
                 .build()
                 .create((AccuWeatherApi.class));

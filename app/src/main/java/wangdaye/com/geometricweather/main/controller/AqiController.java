@@ -2,7 +2,7 @@ package wangdaye.com.geometricweather.main.controller;
 
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
-import android.animation.IntEvaluator;
+import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.graphics.Color;
@@ -112,26 +112,33 @@ public class AqiController extends AbstractMainItemController {
 
             int aqiColor = WeatherHelper.getAqiColor(progress.getContext(), weather.aqi.aqi);
 
-            ValueAnimator progressColor = ValueAnimator.ofObject(new ArgbEvaluator(),
+            ValueAnimator progressColor = ValueAnimator.ofObject(
+                    new ArgbEvaluator(),
                     ContextCompat.getColor(context, R.color.colorLevel_1),
-                    aqiColor);
+                    aqiColor
+            );
             progressColor.addUpdateListener(animation ->
-                    progress.setProgressColor((Integer) animation.getAnimatedValue()));
+                    progress.setProgressColor((Integer) animation.getAnimatedValue())
+            );
 
-            ValueAnimator backgroundColor = ValueAnimator.ofObject(new ArgbEvaluator(),
+            ValueAnimator backgroundColor = ValueAnimator.ofObject(
+                    new ArgbEvaluator(),
                     ContextCompat.getColor(context, R.color.colorLine),
                     Color.argb(
                             (int) (255 * 0.1),
                             Color.red(aqiColor),
                             Color.green(aqiColor),
-                            Color.blue(aqiColor)));
+                            Color.blue(aqiColor)
+                    )
+            );
             backgroundColor.addUpdateListener(animation ->
-                    progress.setArcBackgroundColor((Integer) animation.getAnimatedValue()));
+                    progress.setArcBackgroundColor((Integer) animation.getAnimatedValue())
+            );
 
-            ValueAnimator aqiNumber = ValueAnimator.ofObject(new IntEvaluator(), 0, weather.aqi.aqi);
+            ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, weather.aqi.aqi);
             aqiNumber.addUpdateListener(animation -> {
-                progress.setProgress((Integer) animation.getAnimatedValue());
-                progress.setText(String.valueOf(animation.getAnimatedValue()));
+                progress.setProgress((Float) animation.getAnimatedValue());
+                progress.setText(Integer.toString((int) progress.getProgress()));
             });
 
             attachAnimatorSet = new AnimatorSet();

@@ -24,8 +24,8 @@ public class RoundProgress extends View {
     private RectF backgroundRectF = new RectF();
     private RectF progressRectF = new RectF();
 
-    private int progress;
-    private int max;
+    private float progress;
+    private float max;
     @ColorInt private int progressColor;
     @ColorInt private int backgroundColor;
 
@@ -61,7 +61,7 @@ public class RoundProgress extends View {
         return progress;
     }
 
-    public void setProgress(int progress) {
+    public void setProgress(float progress) {
         this.progress = progress;
         if (this.progress > getMax()) {
             this.progress = getMax();
@@ -69,11 +69,11 @@ public class RoundProgress extends View {
         invalidate();
     }
 
-    public int getMax() {
+    public float getMax() {
         return max;
     }
 
-    public void setMax(int max) {
+    public void setMax(float max) {
         if (max > 0) {
             this.max = max;
             invalidate();
@@ -98,7 +98,8 @@ public class RoundProgress extends View {
                 padding,
                 padding,
                 getMeasuredWidth() - padding,
-                getMeasuredHeight() - padding);
+                getMeasuredHeight() - padding
+        );
     }
 
     @Override
@@ -113,19 +114,22 @@ public class RoundProgress extends View {
                 backgroundRectF.left,
                 backgroundRectF.top,
                 backgroundRectF.left + backgroundRectF.width() * progress / max,
-                backgroundRectF.bottom);
+                backgroundRectF.bottom
+        );
         progressPaint.setColor(progressColor);
         progressPaint.setShadowLayer(
                 1,
                 0,
                 1,
-                Color.argb((int) (255 * 0.1), 0, 0, 0));
+                Color.argb((int) (255 * 0.1), 0, 0, 0)
+        );
         if (progressRectF.width() < 2 * radius) {
             canvas.drawCircle(
                     progressRectF.left + radius,
                     progressRectF.top + radius,
                     radius,
-                    progressPaint);
+                    progressPaint
+            );
         } else {
             canvas.drawRoundRect(progressRectF, radius, radius, progressPaint);
         }

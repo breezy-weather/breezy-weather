@@ -24,7 +24,6 @@ public class BackgroundManager {
         if (backgroundFree) {
             ServiceHelper.stopPollingService(context);
 
-            String refreshRate = sharedPreferences.getString(context.getString(R.string.key_refresh_rate), "1:30");
             boolean openTodayForecast = sharedPreferences.getBoolean(
                     context.getString(R.string.key_forecast_today),
                     false);
@@ -39,7 +38,12 @@ public class BackgroundManager {
                     GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME);
 
             PollingTaskHelper.stopNormalPollingTask(context);
-            PollingTaskHelper.startNormalPollingTask(context, ValueUtils.getRefreshRateScale(refreshRate));
+            PollingTaskHelper.startNormalPollingTask(
+                    context,
+                    ValueUtils.getRefreshRateScale(
+                            GeometricWeather.getInstance().getUpdateInterval()
+                    )
+            );
 
             PollingTaskHelper.stopTodayForecastPollingTask(context);
             if (openTodayForecast) {
@@ -69,9 +73,13 @@ public class BackgroundManager {
         if (backgroundFree) {
             ServiceHelper.stopPollingService(context);
 
-            String refreshRate = sharedPreferences.getString(context.getString(R.string.key_refresh_rate), "1:30");
             PollingTaskHelper.stopNormalPollingTask(context);
-            PollingTaskHelper.startNormalPollingTask(context, ValueUtils.getRefreshRateScale(refreshRate));
+            PollingTaskHelper.startNormalPollingTask(
+                    context,
+                    ValueUtils.getRefreshRateScale(
+                            GeometricWeather.getInstance().getUpdateInterval()
+                    )
+            );
         } else {
             PollingTaskHelper.stopNormalPollingTask(context);
             PollingTaskHelper.stopTodayForecastPollingTask(context);

@@ -100,29 +100,39 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             if (executeAnimation && item != null) {
                 executeAnimation = false;
 
-                ValueAnimator progressColor = ValueAnimator.ofObject(new ArgbEvaluator(),
+                ValueAnimator progressColor = ValueAnimator.ofObject(
+                        new ArgbEvaluator(),
                         ContextCompat.getColor(itemView.getContext(), R.color.colorLevel_1),
-                        item.color);
+                        item.color
+                );
                 progressColor.addUpdateListener(animation ->
-                        progress.setProgressColor((Integer) animation.getAnimatedValue()));
+                        progress.setProgressColor((Integer) animation.getAnimatedValue())
+                );
 
-                ValueAnimator backgroundColor = ValueAnimator.ofObject(new ArgbEvaluator(),
+                ValueAnimator backgroundColor = ValueAnimator.ofObject(
+                        new ArgbEvaluator(),
                         ContextCompat.getColor(itemView.getContext(), R.color.colorLine),
                         Color.argb(
                                 (int) (255 * 0.1),
                                 Color.red(item.color),
                                 Color.green(item.color),
-                                Color.blue(item.color)));
+                                Color.blue(item.color)
+                        )
+                );
                 backgroundColor.addUpdateListener(animation ->
-                        progress.setProgressBackgroundColor((Integer) animation.getAnimatedValue()));
+                        progress.setProgressBackgroundColor((Integer) animation.getAnimatedValue())
+                );
 
                 ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, item.progress);
                 aqiNumber.addUpdateListener(animation ->
-                        progress.setProgress((int) (100.0 * ((Float) animation.getAnimatedValue()) / item.max)));
+                        progress.setProgress(
+                                100.0f * ((Float) animation.getAnimatedValue()) / item.max
+                        )
+                );
 
                 attachAnimatorSet = new AnimatorSet();
                 attachAnimatorSet.playTogether(progressColor, backgroundColor, aqiNumber);
-                attachAnimatorSet.setInterpolator(new DecelerateInterpolator());
+                attachAnimatorSet.setInterpolator(new DecelerateInterpolator(3));
                 attachAnimatorSet.setDuration((long) (item.progress / item.max * 5000));
                 attachAnimatorSet.start();
             }
@@ -140,58 +150,76 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         this.itemList = new ArrayList<>();
         if (weather != null && weather.aqi != null) {
             if (weather.aqi.pm25 >= 0) {
-                itemList.add(new AqiItem(
-                        WeatherHelper.getPm25Color(context, weather.aqi.pm25),
-                        weather.aqi.pm25,
-                        250,
-                        "PM2.5",
-                        weather.aqi.pm25 + " μg/m³",
-                        executeAnimation));
+                itemList.add(
+                        new AqiItem(
+                                WeatherHelper.getPm25Color(context, weather.aqi.pm25),
+                                weather.aqi.pm25,
+                                250,
+                                "PM2.5",
+                                weather.aqi.pm25 + " μg/m³",
+                                executeAnimation
+                        )
+                );
             }
             if (weather.aqi.pm10 >= 0) {
-                itemList.add(new AqiItem(
-                        WeatherHelper.getPm10Color(context, weather.aqi.pm10),
-                        weather.aqi.pm10,
-                        420,
-                        "PM10",
-                        weather.aqi.pm10 + " μg/m³",
-                        executeAnimation));
+                itemList.add(
+                        new AqiItem(
+                                WeatherHelper.getPm10Color(context, weather.aqi.pm10),
+                                weather.aqi.pm10,
+                                420,
+                                "PM10",
+                                weather.aqi.pm10 + " μg/m³",
+                                executeAnimation
+                        )
+                );
             }
             if (weather.aqi.so2 >= 0) {
-                itemList.add(new AqiItem(
-                        WeatherHelper.getSo2Color(context, weather.aqi.so2),
-                        weather.aqi.so2,
-                        1600,
-                        "SO2",
-                        weather.aqi.so2 + " μg/m³",
-                        executeAnimation));
+                itemList.add(
+                        new AqiItem(
+                                WeatherHelper.getSo2Color(context, weather.aqi.so2),
+                                weather.aqi.so2,
+                                1600,
+                                "SO2",
+                                weather.aqi.so2 + " μg/m³",
+                                executeAnimation
+                        )
+                );
             }
             if (weather.aqi.no2 >= 0) {
-                itemList.add(new AqiItem(
-                        WeatherHelper.getNo2Color(context, weather.aqi.no2),
-                        weather.aqi.no2,
-                        565,
-                        "NO2",
-                        weather.aqi.no2 + " μg/m³",
-                        executeAnimation));
+                itemList.add(
+                        new AqiItem(
+                                WeatherHelper.getNo2Color(context, weather.aqi.no2),
+                                weather.aqi.no2,
+                                565,
+                                "NO2",
+                                weather.aqi.no2 + " μg/m³",
+                                executeAnimation
+                        )
+                );
             }
             if (weather.aqi.o3 >= 0) {
-                itemList.add(new AqiItem(
-                        WeatherHelper.getO3Color(context, weather.aqi.o3),
-                        weather.aqi.o3,
-                        800,
-                        "O3",
-                        weather.aqi.o3 + " μg/m³",
-                        executeAnimation));
+                itemList.add(
+                        new AqiItem(
+                                WeatherHelper.getO3Color(context, weather.aqi.o3),
+                                weather.aqi.o3,
+                                800,
+                                "O3",
+                                weather.aqi.o3 + " μg/m³",
+                                executeAnimation
+                        )
+                );
             }
             if (weather.aqi.co >= 0) {
-                itemList.add(new AqiItem(
-                        WeatherHelper.getCOColor(context, weather.aqi.co),
-                        weather.aqi.co,
-                        90,
-                        "CO",
-                        weather.aqi.co + " μg/m³",
-                        executeAnimation));
+                itemList.add(
+                        new AqiItem(
+                                WeatherHelper.getCOColor(context, weather.aqi.co),
+                                weather.aqi.co,
+                                90,
+                                "CO",
+                                weather.aqi.co + " μg/m³",
+                                executeAnimation
+                        )
+                );
             }
         }
 

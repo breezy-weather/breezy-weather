@@ -1,7 +1,7 @@
 package wangdaye.com.geometricweather.main.controller;
 
 import android.animation.AnimatorSet;
-import android.animation.IntEvaluator;
+import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -20,12 +20,11 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
-import wangdaye.com.geometricweather.ui.widget.moon.SunMoonControlLayout;
+import wangdaye.com.geometricweather.ui.widget.moon.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -37,7 +36,7 @@ public class SunMoonController extends AbstractMainItemController {
     private TextView title;
     private TextView phaseText;
     private MoonPhaseView phaseView;
-    private SunMoonControlLayout controlView;
+    private SunMoonView sunMoonView;
 
     private TextView sunTxt;
     private RelativeLayout moonContainer;
@@ -46,10 +45,10 @@ public class SunMoonController extends AbstractMainItemController {
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
 
-    @Size(2) private int[] startTimes;
-    @Size(2) private int[] endTimes;
-    @Size(2) private int[] currentTimes;
-    @Size(2) private int[] animCurrentTimes;
+    @Size(2) private float[] startTimes;
+    @Size(2) private float[] endTimes;
+    @Size(2) private float[] currentTimes;
+    @Size(2) private float[] animCurrentTimes;
     private int phaseAngle;
 
     private boolean enable;
@@ -63,7 +62,7 @@ public class SunMoonController extends AbstractMainItemController {
         this.title = view.findViewById(R.id.container_main_sun_moon_title);
         this.phaseText = view.findViewById(R.id.container_main_sun_moon_phaseText);
         this.phaseView = view.findViewById(R.id.container_main_sun_moon_phaseView);
-        this.controlView = view.findViewById(R.id.container_main_sun_moon_controlView);
+        this.sunMoonView = view.findViewById(R.id.container_main_sun_moon_controlView);
         this.sunTxt = view.findViewById(R.id.container_main_sun_moon_sunrise_sunset);
         this.moonContainer = view.findViewById(R.id.container_main_sun_moon_moonContainer);
         this.moonTxt = view.findViewById(R.id.container_main_sun_moon_moonrise_moonset);
@@ -106,42 +105,46 @@ public class SunMoonController extends AbstractMainItemController {
                 phaseView.setColor();
             }
 
-            controlView.loadIndicatorImage(GeometricWeather.getInstance());
+            sunMoonView.setSunDrawable(WeatherHelper.getSunDrawable());
+            sunMoonView.setMoonDrawable(WeatherHelper.getMoonDrawable());
             if (executeEnterAnimation) {
-                controlView.setTime(startTimes, endTimes, startTimes);
-                controlView.setDayIndicatorRotation(0);
-                controlView.setNightIndicatorRotation(0);
+                sunMoonView.setTime(startTimes, endTimes, startTimes);
+                sunMoonView.setDayIndicatorRotation(0);
+                sunMoonView.setNightIndicatorRotation(0);
                 phaseView.setSurfaceAngle(0);
             } else {
-                controlView.setTime(startTimes, endTimes, currentTimes);
-                controlView.setDayIndicatorRotation(0);
-                controlView.setNightIndicatorRotation(0);
+                sunMoonView.setTime(startTimes, endTimes, currentTimes);
+                sunMoonView.setDayIndicatorRotation(0);
+                sunMoonView.setNightIndicatorRotation(0);
                 phaseView.setSurfaceAngle(phaseAngle);
             }
             int[] themeColors = weatherView.getThemeColors();
             if (DisplayUtils.isDarkMode(context)) {
-                controlView.setLineColors(new int[] {
+                sunMoonView.setColors(new int[] {
                         themeColors[1],
                         ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
-                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255))});
+                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255))
+                });
             } else {
-                controlView.setLineColors(new int[] {
+                sunMoonView.setColors(new int[] {
                         themeColors[1],
                         ColorUtils.setAlphaComponent(themeColors[1], (int) (0.5 * 255)),
-                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.2 * 255))});
+                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.2 * 255))
+                });
             }
-            controlView.ensureShader(context);
 
             sunTxt.setText(
                     weather.dailyList.get(0).astros[0] + "↑"
                             + " / "
-                            + weather.dailyList.get(0).astros[1] + "↓");
+                            + weather.dailyList.get(0).astros[1] + "↓"
+            );
             if (!TextUtils.isEmpty(weather.dailyList.get(0).astros[2])) {
                 moonContainer.setVisibility(View.VISIBLE);
                 moonTxt.setText(
                         weather.dailyList.get(0).astros[2] + "↑"
                                 + " / "
-                                + weather.dailyList.get(0).astros[3] + "↓");
+                                + weather.dailyList.get(0).astros[3] + "↓"
+                );
             } else {
                 moonContainer.setVisibility(View.GONE);
             }
@@ -153,17 +156,19 @@ public class SunMoonController extends AbstractMainItemController {
         if (executeEnterAnimation && enable && weather != null) {
             executeEnterAnimation = false;
 
-            ValueAnimator timeDay = ValueAnimator.ofObject(new IntEvaluator(), startTimes[0], currentTimes[0]);
+            ValueAnimator timeDay = ValueAnimator.ofObject(new FloatEvaluator(), startTimes[0], currentTimes[0]);
             timeDay.addUpdateListener(animation -> {
-                animCurrentTimes[0] = (Integer) animation.getAnimatedValue();
-                controlView.setTime(startTimes, endTimes, animCurrentTimes);
+                animCurrentTimes[0] = (Float) animation.getAnimatedValue();
+                sunMoonView.setTime(startTimes, endTimes, animCurrentTimes);
             });
 
             double totalRotationDay = 360.0 * 7 * (currentTimes[0] - startTimes[0]) / (endTimes[0] - startTimes[0]);
             ValueAnimator rotateDay = ValueAnimator.ofObject(
-                    new IntEvaluator(), 0, (int) (totalRotationDay - totalRotationDay % 360));
+                    new FloatEvaluator(), 0, (int) (totalRotationDay - totalRotationDay % 360)
+            );
             rotateDay.addUpdateListener(animation ->
-                    controlView.setDayIndicatorRotation((Integer) animation.getAnimatedValue()));
+                    sunMoonView.setDayIndicatorRotation((Float) animation.getAnimatedValue())
+            );
 
             attachAnimatorSets[0] = new AnimatorSet();
             attachAnimatorSets[0].playTogether(timeDay, rotateDay);
@@ -171,17 +176,19 @@ public class SunMoonController extends AbstractMainItemController {
             attachAnimatorSets[0].setDuration(getPathAnimatorDuration(0));
             attachAnimatorSets[0].start();
 
-            ValueAnimator timeNight = ValueAnimator.ofObject(new IntEvaluator(), startTimes[1], currentTimes[1]);
+            ValueAnimator timeNight = ValueAnimator.ofObject(new FloatEvaluator(), startTimes[1], currentTimes[1]);
             timeNight.addUpdateListener(animation -> {
-                animCurrentTimes[1] = (Integer) animation.getAnimatedValue();
-                controlView.setTime(startTimes, endTimes, animCurrentTimes);
+                animCurrentTimes[1] = (Float) animation.getAnimatedValue();
+                sunMoonView.setTime(startTimes, endTimes, animCurrentTimes);
             });
 
             double totalRotationNight = 360.0 * 4 * (currentTimes[1] - startTimes[1]) / (endTimes[1] - startTimes[1]);
             ValueAnimator rotateNight = ValueAnimator.ofObject(
-                    new IntEvaluator(), 0, (int) (totalRotationNight - totalRotationNight % 360));
+                    new FloatEvaluator(), 0, (int) (totalRotationNight - totalRotationNight % 360)
+            );
             rotateNight.addUpdateListener(animation ->
-                    controlView.setNightIndicatorRotation(-1 * (Integer) animation.getAnimatedValue()));
+                    sunMoonView.setNightIndicatorRotation(-1 * (Float) animation.getAnimatedValue())
+            );
 
             attachAnimatorSets[1] = new AnimatorSet();
             attachAnimatorSets[1].playTogether(timeNight, rotateNight);
@@ -190,9 +197,10 @@ public class SunMoonController extends AbstractMainItemController {
             attachAnimatorSets[1].start();
 
             if (phaseAngle > 0) {
-                ValueAnimator moonAngle = ValueAnimator.ofObject(new IntEvaluator(), 0, phaseAngle);
+                ValueAnimator moonAngle = ValueAnimator.ofObject(new FloatEvaluator(), 0, phaseAngle);
                 moonAngle.addUpdateListener(animation ->
-                        phaseView.setSurfaceAngle((Integer) animation.getAnimatedValue()));
+                        phaseView.setSurfaceAngle((Float) animation.getAnimatedValue())
+                );
 
                 attachAnimatorSets[2] = new AnimatorSet();
                 attachAnimatorSets[2].playTogether(moonAngle);
@@ -215,58 +223,66 @@ public class SunMoonController extends AbstractMainItemController {
 
     private void ensureTime(@NonNull Weather weather) {
         Calendar calendar = Calendar.getInstance();
-        int currentTime = SunMoonControlLayout.decodeTime(
+        int currentTime = SunMoonView.decodeTime(
                 calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
-        int sunriseTime = SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[0]);
+        int sunriseTime = SunMoonView.decodeTime(weather.dailyList.get(0).astros[0]);
 
         if (TextUtils.isEmpty(weather.dailyList.get(0).astros[2])
                 || TextUtils.isEmpty(weather.dailyList.get(0).astros[3])
                 || TextUtils.isEmpty(weather.dailyList.get(1).astros[2])
                 || TextUtils.isEmpty(weather.dailyList.get(1).astros[3])) {
             if (currentTime < sunriseTime) {
-                startTimes = new int[] {
+                startTimes = new float[] {
                         sunriseTime,
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[1]) - 24 * 60};
-                endTimes = new int[] {
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[1]),
-                        sunriseTime};
-                currentTimes = new int[] {currentTime, currentTime};
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]) - 24 * 60
+                };
+                endTimes = new float[] {
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]),
+                        sunriseTime
+                };
+                currentTimes = new float[] {currentTime, currentTime};
             } else {
-                startTimes = new int[] {
+                startTimes = new float[] {
                         sunriseTime,
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[1])};
-                endTimes = new int[] {
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[1]),
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(1).astros[0]) + 24 * 60};
-                currentTimes = new int[] {currentTime, currentTime};
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1])
+                };
+                endTimes = new float[] {
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]),
+                        SunMoonView.decodeTime(weather.dailyList.get(1).astros[0]) + 24 * 60
+                };
+                currentTimes = new float[] {currentTime, currentTime};
             }
         } else {
             if (currentTime < sunriseTime) {
-                startTimes = new int[] {
+                startTimes = new float[] {
                         sunriseTime,
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[2]) - 24 * 60};
-                endTimes = new int[] {
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[1]),
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[3])};
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[2]) - 24 * 60
+                };
+                endTimes = new float[] {
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]),
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[3])
+                };
                 if (endTimes[1] < startTimes[1]) {
                     endTimes[1] += 24 * 60;
                 }
-                currentTimes = new int[] {currentTime, currentTime};
+                currentTimes = new float[] {currentTime, currentTime};
             } else {
-                startTimes = new int[] {
+                startTimes = new float[] {
                         sunriseTime,
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[2])};
-                endTimes = new int[] {
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(0).astros[1]),
-                        SunMoonControlLayout.decodeTime(weather.dailyList.get(1).astros[3])};
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[2])
+                };
+                endTimes = new float[] {
+                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]),
+                        SunMoonView.decodeTime(weather.dailyList.get(1).astros[3])
+                };
                 if (endTimes[1] < startTimes[1]) {
                     endTimes[1] += 24 * 60;
                 }
-                currentTimes = new int[] {currentTime, currentTime};
+                currentTimes = new float[] {currentTime, currentTime};
             }
         }
 
-        animCurrentTimes = new int[] {currentTimes[0], currentTimes[1]};
+        animCurrentTimes = new float[] {currentTimes[0], currentTimes[1]};
     }
 
     private void ensurePhaseAngle(@NonNull Weather weather) {
@@ -275,8 +291,11 @@ public class SunMoonController extends AbstractMainItemController {
 
     private long getPathAnimatorDuration(int index) {
         long duration = (long) Math.max(
-                1000 + 3000.0 * (currentTimes[index] - startTimes[index]) / (endTimes[index] - startTimes[index]),
-                0);
+                1000 + 3000.0
+                        * (currentTimes[index] - startTimes[index])
+                        / (endTimes[index] - startTimes[index]),
+                0
+        );
         return Math.min(duration, 4000);
     }
 

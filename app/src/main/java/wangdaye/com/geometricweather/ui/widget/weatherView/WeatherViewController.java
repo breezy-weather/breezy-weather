@@ -10,42 +10,36 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public class WeatherViewController {
 
     public static void setWeatherViewWeatherKind(WeatherView view, Weather weather, boolean dayTime) {
-        view.setWeather(getWeatherViewWeatherKind(weather.realTime.weatherKind, dayTime));
+        view.setWeather(getWeatherViewWeatherKind(weather.realTime.weatherKind), dayTime);
     }
 
     public static String getEntityWeatherKind(@WeatherView.WeatherKindRule int weatherKind) {
         switch (weatherKind) {
-            case WeatherView.WEATHER_KIND_CLEAR_DAY:
-            case WeatherView.WEATHER_KIND_CLEAR_NIGHT:
+            case WeatherView.WEATHER_KIND_CLEAR:
                 return WeatherHelper.KIND_CLEAR;
 
             case WeatherView.WEATHER_KIND_CLOUDY:
                 return WeatherHelper.KIND_CLOUDY;
 
-            case WeatherView.WEATHER_KIND_CLOUD_DAY:
-            case WeatherView.WEATHER_KIND_CLOUD_NIGHT:
+            case WeatherView.WEATHER_KIND_CLOUD:
                 return WeatherHelper.KIND_PARTLY_CLOUDY;
 
             case WeatherView.WEATHER_KIND_FOG:
                 return WeatherHelper.KIND_FOG;
 
-            case WeatherView.WEATHER_KIND_HAIL_DAY:
-            case WeatherView.WEATHER_KIND_HAIL_NIGHT:
+            case WeatherView.WEATHER_KIND_HAIL:
                 return WeatherHelper.KIND_HAIL;
 
             case WeatherView.WEATHER_KIND_HAZE:
                 return WeatherHelper.KIND_HAZE;
 
-            case WeatherView.WEATHER_KIND_RAINY_DAY:
-            case WeatherView.WEATHER_KIND_RAINY_NIGHT:
+            case WeatherView.WEATHER_KIND_RAINY:
                 return WeatherHelper.KIND_RAIN;
 
-            case WeatherView.WEATHER_KIND_SLEET_DAY:
-            case WeatherView.WEATHER_KIND_SLEET_NIGHT:
+            case WeatherView.WEATHER_KIND_SLEET:
                 return WeatherHelper.KIND_SLEET;
 
-            case WeatherView.WEATHER_KIND_SNOW_DAY:
-            case WeatherView.WEATHER_KIND_SNOW_NIGHT:
+            case WeatherView.WEATHER_KIND_SNOW:
                 return WeatherHelper.KIND_SNOW;
 
             case WeatherView.WEATHER_KIND_THUNDERSTORM:
@@ -64,38 +58,22 @@ public class WeatherViewController {
     }
 
     @WeatherView.WeatherKindRule
-    public static int getWeatherViewWeatherKind(String weatherKind, boolean isDayTime) {
+    public static int getWeatherViewWeatherKind(String weatherKind) {
         switch (weatherKind) {
             case WeatherHelper.KIND_CLEAR:
-                if (isDayTime) {
-                    return WeatherView.WEATHER_KIND_CLEAR_DAY;
-                } else {
-                    return WeatherView.WEATHER_KIND_CLEAR_NIGHT;
-                }
+                return WeatherView.WEATHER_KIND_CLEAR;
 
             case WeatherHelper.KIND_PARTLY_CLOUDY:
-                if (isDayTime) {
-                    return WeatherView.WEATHER_KIND_CLOUD_DAY;
-                } else {
-                    return WeatherView.WEATHER_KIND_CLOUD_NIGHT;
-                }
+                return WeatherView.WEATHER_KIND_CLOUD;
 
             case WeatherHelper.KIND_CLOUDY:
                 return WeatherView.WEATHER_KIND_CLOUDY;
 
             case WeatherHelper.KIND_RAIN:
-                if (isDayTime) {
-                    return WeatherView.WEATHER_KIND_RAINY_DAY;
-                } else {
-                    return WeatherView.WEATHER_KIND_RAINY_NIGHT;
-                }
+                return WeatherView.WEATHER_KIND_RAINY;
 
             case WeatherHelper.KIND_SNOW:
-                if (isDayTime) {
-                    return WeatherView.WEATHER_KIND_SNOW_DAY;
-                } else {
-                    return WeatherView.WEATHER_KIND_SNOW_NIGHT;
-                }
+                return WeatherView.WEATHER_KIND_SNOW;
 
             case WeatherHelper.KIND_WIND:
                 return WeatherView.WEATHER_KIND_WIND;
@@ -107,18 +85,10 @@ public class WeatherViewController {
                 return WeatherView.WEATHER_KIND_HAZE;
 
             case WeatherHelper.KIND_SLEET:
-                if (isDayTime) {
-                    return WeatherView.WEATHER_KIND_RAINY_DAY;
-                } else {
-                    return WeatherView.WEATHER_KIND_RAINY_NIGHT;
-                }
+                return WeatherView.WEATHER_KIND_RAINY;
 
             case WeatherHelper.KIND_HAIL:
-                if (isDayTime) {
-                    return WeatherView.WEATHER_KIND_HAIL_DAY;
-                } else {
-                    return WeatherView.WEATHER_KIND_HAIL_NIGHT;
-                }
+                return WeatherView.WEATHER_KIND_HAIL;
 
             case WeatherHelper.KIND_THUNDER:
                 return WeatherView.WEATHER_KIND_THUNDER;
@@ -126,6 +96,6 @@ public class WeatherViewController {
             case WeatherHelper.KIND_THUNDERSTORM:
                 return WeatherView.WEATHER_KIND_THUNDERSTORM;
         }
-        return WeatherView.WEATHER_KIND_CLEAR_DAY;
+        return WeatherView.WEATHER_KIND_CLEAR;
     }
 }

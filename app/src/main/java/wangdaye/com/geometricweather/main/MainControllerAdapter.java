@@ -71,13 +71,13 @@ class MainControllerAdapter {
     }
 
     void onScroll(int oldScrollY, int scrollY) {
-        if (oldScrollY > scrollY) {
+        if (oldScrollY >= scrollY) {
             return;
         }
         for (int i = 0; i < controllerList.size(); i ++) {
-            if (controllerList.get(i).getTop() < screenHeight
-                    || (oldScrollY + screenHeight <= controllerList.get(i).getTop()
-                    && controllerList.get(i).getTop() < scrollY + screenHeight)) {
+            if ((oldScrollY + screenHeight <= controllerList.get(i).getTop()
+                    && controllerList.get(i).getTop() < scrollY + screenHeight)
+                    || controllerList.get(i).getTop() < screenHeight) {
                 controllerList.get(i).onEnterScreen();
             }
         }

@@ -18,7 +18,7 @@ public class MoonPhaseView extends View {
     private RectF foregroundRectF = new RectF();
     private RectF backgroundRectF = new RectF();
 
-    private int surfaceAngle; // head of light surface, clockwise.
+    private float surfaceAngle; // head of light surface, clockwise.
     @ColorInt private int lightColor;
     @ColorInt private int darkColor;
     @ColorInt private int strokeColor;
@@ -61,7 +61,7 @@ public class MoonPhaseView extends View {
         strokeColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
     }
 
-    public void setSurfaceAngle(int surfaceAngle) {
+    public void setSurfaceAngle(float surfaceAngle) {
         this.surfaceAngle = surfaceAngle;
         if (this.surfaceAngle >= 360) {
             this.surfaceAngle %= 360;
@@ -77,7 +77,8 @@ public class MoonPhaseView extends View {
                 padding,
                 padding,
                 getMeasuredWidth() - padding,
-                getMeasuredHeight() - padding);
+                getMeasuredHeight() - padding
+        );
     }
 
     @Override
@@ -92,12 +93,15 @@ public class MoonPhaseView extends View {
 
             paint.setColor(darkColor);
             canvas.drawArc(backgroundRectF, 90, 180, true, paint);
-            int halfWidth = (int) (backgroundRectF.width() / 2 * Math.cos(Math.toRadians(surfaceAngle)));
+            float halfWidth = (float) (
+                    backgroundRectF.width() / 2 * Math.cos(Math.toRadians(surfaceAngle))
+            );
             foregroundRectF.set(
                     backgroundRectF.centerX() - halfWidth,
                     backgroundRectF.top,
                     backgroundRectF.centerX() + halfWidth,
-                    backgroundRectF.bottom);
+                    backgroundRectF.bottom
+            );
             canvas.drawArc(foregroundRectF, 270, 180, true, paint);
         } else if (surfaceAngle == 90) { // 🌓
             drawDarkCircle(canvas);
@@ -108,12 +112,15 @@ public class MoonPhaseView extends View {
 
             paint.setColor(lightColor);
             canvas.drawArc(backgroundRectF, 270, 180, true, paint);
-            int halfWidth = (int) (backgroundRectF.width() / 2 * Math.sin(Math.toRadians(surfaceAngle - 90)));
+            float halfWidth = (float) (
+                    backgroundRectF.width() / 2 * Math.sin(Math.toRadians(surfaceAngle - 90))
+            );
             foregroundRectF.set(
                     backgroundRectF.centerX() - halfWidth,
                     backgroundRectF.top,
                     backgroundRectF.centerX() + halfWidth,
-                    backgroundRectF.bottom);
+                    backgroundRectF.bottom
+            );
             canvas.drawArc(foregroundRectF, 90, 180, true, paint);
         } else if (surfaceAngle == 180) { // 🌕
             drawLightCircle(canvas);
@@ -122,12 +129,15 @@ public class MoonPhaseView extends View {
 
             paint.setColor(lightColor);
             canvas.drawArc(backgroundRectF, 90, 180, true, paint);
-            int halfWidth = (int) (backgroundRectF.width() / 2 * Math.cos(Math.toRadians(surfaceAngle - 180)));
+            float halfWidth = (float) (
+                    backgroundRectF.width() / 2 * Math.cos(Math.toRadians(surfaceAngle - 180))
+            );
             foregroundRectF.set(
                     backgroundRectF.centerX() - halfWidth,
                     backgroundRectF.top,
                     backgroundRectF.centerX() + halfWidth,
-                    backgroundRectF.bottom);
+                    backgroundRectF.bottom
+            );
             canvas.drawArc(foregroundRectF, 270, 180, true, paint);
         } else if (surfaceAngle == 270) { // 🌗
             drawDarkCircle(canvas);
@@ -138,12 +148,15 @@ public class MoonPhaseView extends View {
 
             paint.setColor(darkColor);
             canvas.drawArc(backgroundRectF, 270, 180, true, paint);
-            int halfWidth = (int) (backgroundRectF.width() / 2 * Math.cos(Math.toRadians(360 - surfaceAngle)));
+            float halfWidth = (float) (
+                    backgroundRectF.width() / 2 * Math.cos(Math.toRadians(360 - surfaceAngle))
+            );
             foregroundRectF.set(
                     backgroundRectF.centerX() - halfWidth,
                     backgroundRectF.top,
                     backgroundRectF.centerX() + halfWidth,
-                    backgroundRectF.bottom);
+                    backgroundRectF.bottom
+            );
             canvas.drawArc(foregroundRectF, 90, 180, true, paint);
         }
 
@@ -154,20 +167,23 @@ public class MoonPhaseView extends View {
             canvas.drawLine(
                     backgroundRectF.centerX(), backgroundRectF.top,
                     backgroundRectF.centerX(), backgroundRectF.bottom,
-                    paint);
+                    paint
+            );
         } else if (90 < surfaceAngle && surfaceAngle < 270) {
             paint.setColor(lightColor);
             canvas.drawLine(
                     backgroundRectF.centerX(), backgroundRectF.top,
                     backgroundRectF.centerX(), backgroundRectF.bottom,
-                    paint);
+                    paint
+            );
         }
         paint.setColor(strokeColor);
         canvas.drawCircle(
                 backgroundRectF.centerX(),
                 backgroundRectF.centerY(),
                 backgroundRectF.width() / 2,
-                paint);
+                paint
+        );
     }
 
     private void drawLightCircle(Canvas canvas) {
@@ -176,7 +192,8 @@ public class MoonPhaseView extends View {
                 backgroundRectF.centerX(),
                 backgroundRectF.centerY(),
                 backgroundRectF.width() / 2,
-                paint);
+                paint
+        );
     }
 
     private void drawDarkCircle(Canvas canvas) {
@@ -185,6 +202,7 @@ public class MoonPhaseView extends View {
                 backgroundRectF.centerX(),
                 backgroundRectF.centerY(),
                 backgroundRectF.width() / 2,
-                paint);
+                paint
+        );
     }
 }

@@ -22,25 +22,17 @@ public class SelectProviderActivity extends GeoActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_settings);
+        initToolbar();
+        ServiceProviderSettingsFragment f = new ServiceProviderSettingsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.activity_settings_container, f)
+                .commit();
     }
 
     @Override
     public View getSnackbarContainer() {
         return findViewById(R.id.activity_settings_container);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (!isStarted()) {
-            setStarted();
-            initToolbar();
-            ServiceProviderSettingsFragment f = new ServiceProviderSettingsFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.activity_settings_container, f)
-                    .commit();
-        }
     }
 
     @SuppressLint("MissingSuperCall")

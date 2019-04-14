@@ -102,7 +102,7 @@
 
         <!-- create widget context -->
         <activity
-            android:name=".remote.ui.CreateWidgetDayActivity"
+            android:name=".remoteviews.ui.DayWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -111,7 +111,7 @@
         </activity>
 
         <activity
-            android:name=".remote.ui.CreateWidgetWeekActivity"
+            android:name=".remoteviews.ui.WeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -120,7 +120,7 @@
         </activity>
 
         <activity
-            android:name=".remote.ui.CreateWidgetDayWeekActivity"
+            android:name=".remoteviews.ui.DayWeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -129,7 +129,7 @@
         </activity>
 
         <activity
-            android:name=".remote.ui.CreateWidgetClockDayHorizontalActivity"
+            android:name=".remoteviews.ui.ClockDayHorizontalWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -138,7 +138,7 @@
         </activity>
 
         <activity
-            android:name=".remote.ui.CreateWidgetClockDayDetailsActivity"
+            android:name=".remoteviews.ui.ClockDayDetailsWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -147,7 +147,7 @@
         </activity>
 
         <activity
-            android:name=".remote.ui.CreateWidgetClockDayVerticalActivity"
+            android:name=".remoteviews.ui.ClockDayVerticalWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -156,7 +156,7 @@
         </activity>
 
         <activity
-            android:name=".remote.ui.CreateWidgetClockDayWeekActivity"
+            android:name=".remoteviews.ui.ClockDayWeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -164,7 +164,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".remote.ui.CreateWidgetTextActivity"
+            android:name=".remoteviews.ui.TextWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -329,6 +329,30 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_text" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".background.receiver.widget.WidgetTrendDailyProvider"
+            android:label="@string/widget_trend_daily">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_trend_daily" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".background.receiver.widget.WidgetTrendHourlyProvider"
+            android:label="@string/widget_trend_hourly">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_trend_hourly" />
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />

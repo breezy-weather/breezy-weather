@@ -8,7 +8,6 @@ import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.location.service.LocationService;
-import wangdaye.com.geometricweather.weather.GzipInterceptor;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.observer.BaseObserver;
 import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
@@ -21,12 +20,12 @@ public class BaiduIPLocationService extends LocationService {
     public BaiduIPLocationService() {
         api = new Retrofit.Builder()
                 .baseUrl(BuildConfig.BAIDU_IP_LOCATION_BASE_URL)
-                .client(GeometricWeather.getInstance()
-                        .getOkHttpClient()
-                        .newBuilder()
-                        .addInterceptor(new GzipInterceptor())
-                        .build())
-                .addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
+                .client(
+                        GeometricWeather.getInstance()
+                                .getOkHttpClient()
+                                .newBuilder()
+                                .build()
+                ).addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
                 .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
                 .build()
                 .create((BaiduIPLocationApi.class));

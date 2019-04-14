@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import android.app.Activity;
 import android.app.WallpaperManager;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +32,7 @@ import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.ui.activity.ManageActivity;
 import wangdaye.com.geometricweather.ui.activity.SearcActivity;
 import wangdaye.com.geometricweather.settings.activity.SettingsActivity;
+import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
 /**
  * Intent helper.
@@ -125,11 +127,19 @@ public class IntentHelper {
     }
 
     public static void startLiveWallpaperActivity(Context context) {
-        Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
-        intent.putExtra(
-                WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                new ComponentName(context, LiveWallpaperService.class)
-        );
-        context.startActivity(intent);
+        try {
+            context.startActivity(
+                    new Intent(
+                            WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER
+                    ).putExtra(
+                            WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                            new ComponentName(context, LiveWallpaperService.class)
+                    )
+            );
+        } catch (ActivityNotFoundException e) {
+            SnackbarUtils.showSnackbar(
+                    context.getString(R.string.feedback_cannot_start_live_wallpaper_activity)
+            );
+        }
     }
 }

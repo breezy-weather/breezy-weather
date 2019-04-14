@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 public abstract class GeoActivity extends AppCompatActivity {
 
     private List<GeoDialogFragment> dialogList;
-    private boolean started;
     private boolean foreground;
 
     private BroadcastReceiver localeChangedReceiver = new BroadcastReceiver() {
@@ -33,7 +31,7 @@ public abstract class GeoActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                    && !TextUtils.isEmpty(intent.getAction())
+                    && intent.getAction() != null
                     && intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
                 LanguageUtils.setLanguage(
                         GeoActivity.this,
@@ -57,7 +55,6 @@ public abstract class GeoActivity extends AppCompatActivity {
         DisplayUtils.setNavigationBarColor(this, 0);
 
         this.dialogList = new ArrayList<>();
-        this.started = false;
     }
 
     @CallSuper
@@ -91,14 +88,6 @@ public abstract class GeoActivity extends AppCompatActivity {
     }
 
     public abstract View getSnackbarContainer();
-
-    public boolean isStarted() {
-        return started;
-    }
-
-    public void setStarted() {
-        started = true;
-    }
 
     public boolean isForeground() {
         return foreground;

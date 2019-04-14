@@ -26,7 +26,7 @@ import wangdaye.com.geometricweather.basic.model.weather.RealTime;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunForecastResult;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunMainlyResult;
-import wangdaye.com.geometricweather.weather.GzipInterceptor;
+import wangdaye.com.geometricweather.weather.interceptor.GzipInterceptor;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.weather.observer.BaseObserver;
@@ -44,12 +44,13 @@ public class CaiYunWeatherService extends CNWeatherService {
     public CaiYunWeatherService() {
         this.api = new Retrofit.Builder()
                 .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
-                .client(GeometricWeather.getInstance()
-                        .getOkHttpClient()
-                        .newBuilder()
-                        .addInterceptor(new GzipInterceptor())
-                        .build())
-                .addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
+                .client(
+                        GeometricWeather.getInstance()
+                                .getOkHttpClient()
+                                .newBuilder()
+                                .addInterceptor(new GzipInterceptor())
+                                .build()
+                ).addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
                 .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
                 .build()
                 .create((CaiYunApi.class));

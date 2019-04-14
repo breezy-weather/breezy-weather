@@ -36,7 +36,8 @@ public class TimeSetterDialog extends GeoDialogFragment
     @SuppressLint("InflateParams")
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_time_setter, null, false);
+        View view = LayoutInflater.from(getActivity())
+                .inflate(R.layout.dialog_time_setter, null, false);
         this.initData();
         this.initWidget(view);
 
@@ -61,15 +62,15 @@ public class TimeSetterDialog extends GeoDialogFragment
     }
 
     private void initWidget(View view) {
-        this.container = (CoordinatorLayout) view.findViewById(R.id.dialog_time_setter_container);
+        this.container = view.findViewById(R.id.dialog_time_setter_container);
 
-        Button done = (Button) view.findViewById(R.id.dialog_time_setter_done);
+        Button done = view.findViewById(R.id.dialog_time_setter_done);
         done.setOnClickListener(this);
 
-        Button cancel = (Button) view.findViewById(R.id.dialog_time_setter_cancel);
+        Button cancel = view.findViewById(R.id.dialog_time_setter_cancel);
         cancel.setOnClickListener(this);
 
-        TimePicker timePicker = (TimePicker) view.findViewById(R.id.dialog_time_setter_time_picker);
+        TimePicker timePicker = view.findViewById(R.id.dialog_time_setter_time_picker);
         timePicker.setIs24HourView(true);
         timePicker.setOnTimeChangedListener(this);
     }

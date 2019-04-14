@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import androidx.annotation.Size;
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.xhinliang.lunarcalendar.LunarCalendar;
 
 import java.util.Calendar;
@@ -27,7 +28,13 @@ public class LunarHelper {
     }
 
     private static String getLunarDate(int year, int month, int day) {
-        LunarCalendar lunarCalendar = LunarCalendar.obtainCalendar(year, month, day);
-        return lunarCalendar.getFullLunarStr().split("年")[1];
+        try {
+            LunarCalendar lunarCalendar = LunarCalendar.obtainCalendar(year, month, day);
+            return lunarCalendar.getFullLunarStr().split("年")[1];
+        } catch (Exception e) {
+            e.printStackTrace();
+            CrashReport.postCatchedException(e);
+            return "";
+        }
     }
 }

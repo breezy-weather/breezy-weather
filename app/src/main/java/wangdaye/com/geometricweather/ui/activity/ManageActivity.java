@@ -97,16 +97,8 @@ public class ManageActivity extends GeoActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (!isStarted()) {
-            setStarted();
-            initData();
-            initWidget();
-        }
+        initData();
+        initWidget();
     }
 
     @Override
@@ -135,7 +127,7 @@ public class ManageActivity extends GeoActivity
 
     @SuppressLint("MissingSuperCall")
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         // do nothing.
     }
 
@@ -162,14 +154,18 @@ public class ManageActivity extends GeoActivity
         }
 
         this.recyclerView = findViewById(R.id.activity_manage_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        );
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(adapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new LocationSwipeCallback(
                         ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT));
+                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
+                )
+        );
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
@@ -188,7 +184,8 @@ public class ManageActivity extends GeoActivity
                         getString(R.string.feedback_delete_succeed),
                         getString(R.string.cancel),
                         new CancelDeleteListener(location),
-                        new DeleteSnackbarCallback(location));
+                        new DeleteSnackbarCallback(location)
+                );
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                     ShortcutsManager.refreshShortcutsInNewThread(ManageActivity.this, adapter.itemList);
                 }

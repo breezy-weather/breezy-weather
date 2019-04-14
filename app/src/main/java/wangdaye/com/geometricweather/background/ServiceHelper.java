@@ -31,7 +31,6 @@ public class ServiceHelper {
             intent.putExtra(PollingService.KEY_UPDATE_SETTINGS, updateSettings);
             intent.putExtra(PollingService.KEY_UPDATE_RESULT, updateResult);
             if (updateSettings) {
-                String refreshRate = sharedPreferences.getString(context.getString(R.string.key_refresh_rate), "1:30");
                 boolean openTodayForecast = sharedPreferences.getBoolean(
                         context.getString(R.string.key_forecast_today),
                         false);
@@ -44,9 +43,20 @@ public class ServiceHelper {
                 String tomorrowForecastTime = sharedPreferences.getString(
                         context.getString(R.string.key_forecast_tomorrow_time),
                         GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME);
-                intent.putExtra(PollingService.KEY_POLLING_RATE, ValueUtils.getRefreshRateScale(refreshRate));
-                intent.putExtra(PollingService.KEY_TODAY_FORECAST_TIME, openTodayForecast ? todayForecastTime : "");
-                intent.putExtra(PollingService.KEY_TOMORROW_FORECAST_TIME, openTomorrowForecast ? tomorrowForecastTime : "");
+                intent.putExtra(
+                        PollingService.KEY_POLLING_RATE,
+                        ValueUtils.getRefreshRateScale(
+                                GeometricWeather.getInstance().getUpdateInterval()
+                        )
+                );
+                intent.putExtra(
+                        PollingService.KEY_TODAY_FORECAST_TIME,
+                        openTodayForecast ? todayForecastTime : ""
+                );
+                intent.putExtra(
+                        PollingService.KEY_TOMORROW_FORECAST_TIME,
+                        openTomorrowForecast ? tomorrowForecastTime : ""
+                );
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 context.startForegroundService(intent);

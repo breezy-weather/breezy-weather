@@ -41,7 +41,7 @@
 
         </RelativeLayout>
 
-        <wangdaye.com.geometricweather.ui.widget.moon.SunMoonControlLayout
+        <wangdaye.com.geometricweather.ui.widget.moon.SunMoonView
             android:id="@+id/container_main_sun_moon_controlView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.background.BackgroundManager;
-import wangdaye.com.geometricweather.remote.utils.NormalNotificationUtils;
+import wangdaye.com.geometricweather.remoteviews.presenter.NormalNotificationIMP;
 
 /**
  * Settings fragment.
@@ -213,7 +213,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
             } else {
                 // close notification.
-                NormalNotificationUtils.cancelNotification(getActivity());
+                NormalNotificationIMP.cancelNotification(getActivity());
                 BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
             }
         } else if (preference.getKey().equals(getString(R.string.key_notification_temp_icon))) {
@@ -244,6 +244,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             GeometricWeather.getInstance().resetDayNightMode();
             GeometricWeather.getInstance().recreateAllActivities();
         } else if (preference.getKey().equals(getString(R.string.key_refresh_rate))) {
+            GeometricWeather.getInstance().setUpdateInterval((String) o);
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
             editor.putString(getString(R.string.key_refresh_rate), (String) o);
             editor.apply();

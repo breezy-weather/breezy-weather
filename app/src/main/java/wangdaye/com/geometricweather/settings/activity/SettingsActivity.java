@@ -25,25 +25,17 @@ public class SettingsActivity extends GeoActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_settings);
+        initToolbar();
+        SettingsFragment settingsFragment = new SettingsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.activity_settings_container, settingsFragment)
+                .commit();
     }
 
     @Override
     public View getSnackbarContainer() {
         return findViewById(R.id.activity_settings_container);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (!isStarted()) {
-            setStarted();
-            initToolbar();
-            SettingsFragment settingsFragment = new SettingsFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.activity_settings_container, settingsFragment)
-                    .commit();
-        }
     }
 
     @Override

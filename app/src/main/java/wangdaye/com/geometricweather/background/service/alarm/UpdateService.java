@@ -9,9 +9,10 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.remote.NotificationUtils;
+import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.background.PollingUpdateHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
@@ -69,7 +70,8 @@ public abstract class UpdateService extends Service
 
     // control.
 
-    public abstract void updateView(Context context, Location location, @Nullable Weather weather);
+    public abstract void updateView(Context context, Location location,
+                                    @Nullable Weather weather, @Nullable History history);
 
     public abstract void setDelayTask(boolean failed);
 
@@ -82,9 +84,10 @@ public abstract class UpdateService extends Service
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(location)) {
                 location.weather = weather;
+                location.history = DatabaseHelper.getInstance(this).readHistory(weather);
                 locationList.set(i, location);
                 if (i == 0) {
-                    updateView(this, location, weather);
+                    updateView(this, location, location.weather, location.history);
                     if (succeed) {
                         NotificationUtils.checkAndSendAlert(this, weather, old);
                     } else {

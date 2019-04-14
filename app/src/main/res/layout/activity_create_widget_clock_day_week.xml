@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/activity_create_widget_clock_day_week_widgetContainer"
         android:layout_width="match_parent"
         android:layout_height="300dp">
 
@@ -19,13 +20,13 @@
             android:src="@color/colorTextDark2nd"
             tools:ignore="contentDescription" />
 
-        <FrameLayout
-            android:id="@+id/activity_create_widget_clock_day_week_widgetContainer"
-            android:layout_centerInParent="true"
+        <wangdaye.com.geometricweather.ui.widget.StatusBarView
+            android:background="@android:color/black"
+            android:alpha="0.2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_create_widget_clock_day_week_container"

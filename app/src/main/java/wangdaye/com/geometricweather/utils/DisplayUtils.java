@@ -61,8 +61,7 @@ public class DisplayUtils {
 
     public static void setStatusBarTranslate(Window window) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
     }
 
@@ -93,16 +92,24 @@ public class DisplayUtils {
         if (color == 0) {
             ContextCompat.getColor(a, R.color.colorPrimary);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            int c = a instanceof MainActivity ?
-                    color : ContextCompat.getColor(a, R.color.colorPrimary);
 
-            ActivityManager.TaskDescription taskDescription;
+        int c = a instanceof MainActivity ?
+                color : ContextCompat.getColor(a, R.color.colorPrimary);
+        ActivityManager.TaskDescription taskDescription;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            taskDescription = new ActivityManager.TaskDescription(
+                    a.getString(R.string.geometric_weather),
+                    R.mipmap.ic_launcher,
+                    c
+            );
+            a.setTaskDescription(taskDescription);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Bitmap topIcon = BitmapFactory.decodeResource(a.getResources(), R.drawable.ic_launcher);
             taskDescription = new ActivityManager.TaskDescription(
                     a.getString(R.string.geometric_weather),
                     topIcon,
-                    c);
+                    c
+            );
             a.setTaskDescription(taskDescription);
             topIcon.recycle();
         }

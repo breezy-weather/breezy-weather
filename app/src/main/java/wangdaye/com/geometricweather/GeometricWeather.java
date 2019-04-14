@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.tencent.bugly.crashreport.CrashReport;
@@ -57,6 +56,7 @@ public class GeometricWeather extends Application {
     private boolean fahrenheit;
     private boolean imperial;
     private String language;
+    private String updateInterval;
 
     public static final String DEFAULT_TODAY_FORECAST_TIME = "07:00";
     public static final String DEFAULT_TOMORROW_FORECAST_TIME = "21:00";
@@ -127,6 +127,12 @@ public class GeometricWeather extends Application {
     public static final int WIDGET_TEXT_PENDING_INTENT_CODE_WEATHER = 91;
     public static final int WIDGET_TEXT_PENDING_INTENT_CODE_REFRESH = 92;
     public static final int WIDGET_TEXT_PENDING_INTENT_CODE_CALENDAR = 93;
+    // trend daily.
+    public static final int WIDGET_TREND_DAILY_PENDING_INTENT_CODE_WEATHER = 101;
+    public static final int WIDGET_TREND_DAILY_PENDING_INTENT_CODE_REFRESH = 102;
+    // trend hourly.
+    public static final int WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_WEATHER = 111;
+    public static final int WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_REFRESH = 112;
 
     @Override
     public void onCreate() {
@@ -134,8 +140,7 @@ public class GeometricWeather extends Application {
         initialize();
 
         String processName = getProcessName();
-        if (!TextUtils.isEmpty(processName)
-                && processName.equals(this.getPackageName())) {
+        if (processName != null && processName.equals(getPackageName())) {
             resetDayNightMode();
         }
     }
@@ -162,6 +167,7 @@ public class GeometricWeather extends Application {
         fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
         imperial = sharedPreferences.getBoolean(getString(R.string.key_imperial), false);
         language = sharedPreferences.getString(getString(R.string.key_language), "follow_system");
+        updateInterval = sharedPreferences.getString(getString(R.string.key_refresh_rate), "1:30");
 
         LanguageUtils.setLanguage(this, language);
 
@@ -274,6 +280,14 @@ public class GeometricWeather extends Application {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getUpdateInterval() {
+        return updateInterval;
+    }
+
+    public void setUpdateInterval(String updateInterval) {
+        this.updateInterval = updateInterval;
     }
 
     public static String getProcessName() {

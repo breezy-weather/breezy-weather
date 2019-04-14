@@ -45,18 +45,19 @@ public class PollingService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (!TextUtils.isEmpty(action)) {
-                switch (action) {
-                    case Intent.ACTION_TIME_TICK:
-                        doRefreshWork();
-                        break;
+            if (action == null) {
+                return;
+            }
+            switch (action) {
+                case Intent.ACTION_TIME_TICK:
+                    doRefreshWork();
+                    break;
 
-                    case Intent.ACTION_TIME_CHANGED:
-                    case Intent.ACTION_TIMEZONE_CHANGED:
-                        lastUpdateNormalViewTime = -1;
-                        doRefreshWork();
-                        break;
-                }
+                case Intent.ACTION_TIME_CHANGED:
+                case Intent.ACTION_TIMEZONE_CHANGED:
+                    lastUpdateNormalViewTime = -1;
+                    doRefreshWork();
+                    break;
             }
         }
     }

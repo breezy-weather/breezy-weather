@@ -33,9 +33,10 @@ public class TrendViewController {
             subtitle.setText(weather.index.simpleForecast);
         }
 
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new DailyTrendAdapter(context, weather, history, themeColors));
+        recyclerView.setAdapter(new DailyTrendAdapter(weather, history, themeColors));
 
         if (history == null) {
             recyclerView.setData(null, 0, 0, true);
@@ -68,9 +69,10 @@ public class TrendViewController {
             subtitle.setText(weather.index.briefing);
         }
 
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new HourlyTrendAdapter(context, weather, history, themeColors));
+        recyclerView.setAdapter(new HourlyTrendAdapter(weather, history, themeColors));
 
         if (history == null) {
             recyclerView.setData(null, 0, 0, false);

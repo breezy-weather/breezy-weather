@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.Nullable;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.PollingTaskHelper;
-import wangdaye.com.geometricweather.remote.utils.ForecastNotificationUtils;
+import wangdaye.com.geometricweather.remoteviews.presenter.ForecastNotificationIMP;
 
 /**
  * Alarm Today forecast update service.
@@ -18,9 +20,10 @@ import wangdaye.com.geometricweather.remote.utils.ForecastNotificationUtils;
 public class AlarmTodayForecastUpdateService extends UpdateService {
 
     @Override
-    public void updateView(Context context, Location location, Weather weather) {
-        if (ForecastNotificationUtils.isEnable(this, true)) {
-            ForecastNotificationUtils.buildForecastAndSendIt(context, weather, true);
+    public void updateView(Context context, Location location,
+                           @Nullable Weather weather, @Nullable History history) {
+        if (ForecastNotificationIMP.isEnable(this, true)) {
+            ForecastNotificationIMP.buildForecastAndSendIt(context, weather, true);
         }
     }
 

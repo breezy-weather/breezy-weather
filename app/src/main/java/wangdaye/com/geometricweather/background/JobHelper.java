@@ -30,8 +30,11 @@ class JobHelper {
     static void setJobForNormalView(Context context, float pollingRate) {
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_NORMAL_VIEW,
-                new ComponentName(context.getPackageName(), JobNormalUpdateService.class.getName()))
-                .setBackoffCriteria(15 * MINUTE, JobInfo.BACKOFF_POLICY_LINEAR)
+                new ComponentName(
+                        context.getPackageName(),
+                        JobNormalUpdateService.class.getName()
+                )
+        ).setBackoffCriteria(15 * MINUTE, JobInfo.BACKOFF_POLICY_LINEAR)
                 .setPeriodic((long) (pollingRate * HOUR))
                 .setPersisted(true);
         JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
@@ -50,8 +53,11 @@ class JobHelper {
     static void setJobForTodayForecast(Context context, String todayForecastTime) {
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_TODAY_FORECAST,
-                new ComponentName(context.getPackageName(), JobTodayForecastUpdateService.class.getName()))
-                .setMinimumLatency(getForecastAlarmDelay(todayForecastTime));
+                new ComponentName(
+                        context.getPackageName(),
+                        JobTodayForecastUpdateService.class.getName()
+                )
+        ).setMinimumLatency(getForecastAlarmDelay(todayForecastTime));
         JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         if (scheduler != null) {
             scheduler.schedule(builder.build());
@@ -68,8 +74,11 @@ class JobHelper {
     static void setJobForTomorrowForecast(Context context, String TomorrowForecastTime) {
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_TOMORROW_FORECAST,
-                new ComponentName(context.getPackageName(), JobTomorrowForecastUpdateService.class.getName()))
-                .setMinimumLatency(getForecastAlarmDelay(TomorrowForecastTime));
+                new ComponentName(
+                        context.getPackageName(),
+                        JobTomorrowForecastUpdateService.class.getName()
+                )
+        ).setMinimumLatency(getForecastAlarmDelay(TomorrowForecastTime));
         JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         if (scheduler != null) {
             scheduler.schedule(builder.build());
@@ -86,10 +95,12 @@ class JobHelper {
     private static long getForecastAlarmDelay(String time) {
         int realTimes[] = new int[] {
                 Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                Calendar.getInstance().get(Calendar.MINUTE)};
-        int setTimes[] = new int[]{
+                Calendar.getInstance().get(Calendar.MINUTE)
+        };
+        int setTimes[] = new int[] {
                 Integer.parseInt(time.split(":")[0]),
-                Integer.parseInt(time.split(":")[1])};
+                Integer.parseInt(time.split(":")[1])
+        };
         int duration = (setTimes[0] - realTimes[0]) * HOUR + (setTimes[1] - realTimes[1]) * MINUTE;
         if (duration <= 0) {
             duration += 24 * HOUR;

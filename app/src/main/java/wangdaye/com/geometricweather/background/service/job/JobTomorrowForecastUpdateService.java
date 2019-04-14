@@ -5,14 +5,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.PollingTaskHelper;
-import wangdaye.com.geometricweather.remote.utils.ForecastNotificationUtils;
+import wangdaye.com.geometricweather.remoteviews.presenter.ForecastNotificationIMP;
 
 /**
  * Job tomorrow forecast update service.
@@ -22,9 +25,9 @@ import wangdaye.com.geometricweather.remote.utils.ForecastNotificationUtils;
 public class JobTomorrowForecastUpdateService extends JobUpdateService {
 
     @Override
-    public void updateView(Context context, Location location, Weather weather) {
-        if (ForecastNotificationUtils.isEnable(this, false)) {
-            ForecastNotificationUtils.buildForecastAndSendIt(context, weather, false);
+    public void updateView(Context context, Location location, @Nullable Weather weather, @Nullable History history) {
+        if (ForecastNotificationIMP.isEnable(this, false)) {
+            ForecastNotificationIMP.buildForecastAndSendIt(context, weather, false);
         }
     }
 
