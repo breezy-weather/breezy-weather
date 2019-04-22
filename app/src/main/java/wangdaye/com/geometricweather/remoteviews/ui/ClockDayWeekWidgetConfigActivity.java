@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.appcompat.widget.AppCompatSpinner;
 import android.view.View;
@@ -63,10 +62,10 @@ public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivi
     @SuppressLint("InflateParams")
     @Override
     public void initView() {
-        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_week_widgetContainer);
-
         ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_week_wall);
         bindWallpaper(wallpaper);
+
+        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_week_widgetContainer);
 
         this.container = findViewById(R.id.activity_create_widget_clock_day_week_container);
 
@@ -91,7 +90,6 @@ public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivi
         return widgetContainer;
     }
 
-    @Nullable
     @Override
     public RemoteViews getRemoteViews() {
         return ClockDayWeekWidgetIMP.getRemoteViews(

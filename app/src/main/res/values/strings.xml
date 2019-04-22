@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.252</string>
+    <string name="version_code">v2.253</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -90,6 +90,7 @@
     <string name="off">OFF</string>
     <string name="go_to_set">SET</string>
     <string name="help">HELP</string>
+    <string name="learn_more">LEARN MORE</string>
 
     <string name="about_app">ABOUT APP</string>
     <string name="introduce">introduce</string>
@@ -168,6 +169,9 @@
     <string name="feedback_interpret_notification_group_content">After turning off the background free, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in app\'s information page to block this notifications.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview activity.</string>
+
+    <string name="feedback_unusable_geocoder">This device does not contain a valid geocoder, the location provider has been changed to Baidu Location.</string>
+    <string name="feedback_about_geocoder">Geocoder is a component that converts the locating result from lat-lon format to the format which likes \'XX city, XX province \'. In the absence of this component, you can only get weather data through AccuWeather when using the native API as location provider.</string>
 
     <!-- action -->
     <string name="action_alert">Alert</string>

@@ -6,10 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/activity_create_widget_week_widgetContainer"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="360dp">
 
         <ImageView
             android:id="@+id/activity_create_widget_week_wall"
@@ -20,12 +19,21 @@
             tools:ignore="contentDescription" />
 
         <wangdaye.com.geometricweather.ui.widget.StatusBarView
+            android:id="@+id/activity_create_widget_week_statusBar"
             android:background="@android:color/black"
             android:alpha="0.2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/activity_create_widget_week_widgetContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/little_margin"
+            android:layout_below="@id/activity_create_widget_week_statusBar" />
+
+    </RelativeLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_create_widget_week_container"

@@ -42,10 +42,12 @@ public class CNCity {
             source = "cn";
         }
         return new Location(
-                getCityId(), getDistrict().equals("无") ? "" : getDistrict(),
+                getCityId(),
+                getDistrict().equals("无") ? "" : getDistrict(),
                 getCity(), getProvince(), "中国",
                 getLatitude(), getLongitude(), source,
-                null, null, false, true);
+                null, null, false, true
+        );
     }
 
     public String getCityId() {

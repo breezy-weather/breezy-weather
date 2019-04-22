@@ -92,6 +92,10 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 dayTime, fahrenheit, minimalIcon,
                 viewStyle, showCard, blackText,
                 hideSubtitle, subtitleData);
+        if (weather == null) {
+            return views;
+        }
+
         views.setViewVisibility(R.id.widget_day_card, showCard ? View.VISIBLE : View.GONE);
 
         setOnClickPendingIntent(context, views, location, viewStyle, subtitleData, touchToRefresh);

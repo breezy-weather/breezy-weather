@@ -41,7 +41,7 @@ public class NotificationUtils {
         }
     }
 
-    public static void checkAndSendAlert(Context c, Weather weather, Weather oldResult) {
+    public static void checkAndSendAlert(Context c, Weather weather, @Nullable Weather oldResult) {
         if (!PreferenceManager.getDefaultSharedPreferences(c)
                 .getBoolean(c.getString(R.string.key_alert_notification_switch), true)) {
             return;

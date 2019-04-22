@@ -33,21 +33,23 @@ public class BaiduIPLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, @NonNull LocationCallback callback) {
+    public void requestLocation(Context context, @NonNull LocationCallback callback, boolean geocode) {
         api.getLocation(BuildConfig.BAIDU_IP_LOCATION_AK, "gcj02")
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<BaiduIPLocationResult>() {
                     @Override
                     public void onSucceed(BaiduIPLocationResult baiduIPLocationResult) {
                         try {
-                            Result result = new Result();
-
-                            result.district = baiduIPLocationResult.getContent().getAddress_detail().getDistrict();
-                            result.city = baiduIPLocationResult.getContent().getAddress_detail().getCity();
-                            result.province = baiduIPLocationResult.getContent().getAddress_detail().getProvince();
-                            result.country = "中国";
-                            result.latitude = baiduIPLocationResult.getContent().getPoint().getY();
-                            result.longitude = baiduIPLocationResult.getContent().getPoint().getX();
+                            Result result = new Result(
+                                    baiduIPLocationResult.getContent().getPoint().getY(),
+                                    baiduIPLocationResult.getContent().getPoint().getX()
+                            );
+                            result.setGeocodeInformation(
+                                    "中国",
+                                    baiduIPLocationResult.getContent().getAddress_detail().getProvince(),
+                                    baiduIPLocationResult.getContent().getAddress_detail().getCity(),
+                                    baiduIPLocationResult.getContent().getAddress_detail().getDistrict()
+                            );
                             result.inChina = true;
 
                             callback.onCompleted(result);

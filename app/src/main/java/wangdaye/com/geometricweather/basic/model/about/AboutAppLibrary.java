@@ -29,23 +29,28 @@ public class AboutAppLibrary {
         list.add(new AboutAppLibrary(
                 context.getString(R.string.retrofit),
                 context.getString(R.string.about_retrofit),
-                "https://github.com/square/retrofit"));
+                "https://github.com/square/retrofit"
+        ));
         list.add(new AboutAppLibrary(
                 context.getString(R.string.glide),
                 context.getString(R.string.about_glide),
-                "https://github.com/bumptech/glide"));
+                "https://github.com/bumptech/glide"
+        ));
         list.add(new AboutAppLibrary(
                 context.getString(R.string.greenDAO),
                 context.getString(R.string.about_greenDAO),
-                "https://github.com/greenrobot/greenDAO"));
+                "https://github.com/greenrobot/greenDAO"
+        ));
         list.add(new AboutAppLibrary(
                 context.getString(R.string.page_indicator),
                 context.getString(R.string.about_page_indicator),
-                "https://github.com/DavidPacioianu/InkPageIndicator"));
+                "https://github.com/DavidPacioianu/InkPageIndicator"
+        ));
         list.add(new AboutAppLibrary(
                 context.getString(R.string.circular_progress_view),
                 context.getString(R.string.about_circular_progress_view),
-                "https://github.com/rahatarmanahmed/CircularProgressView"));
+                "https://github.com/rahatarmanahmed/CircularProgressView"
+        ));
 
         return list;
     }

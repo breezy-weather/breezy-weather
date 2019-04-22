@@ -50,7 +50,6 @@
                 android:id="@+id/notification_base_dailyTemp"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/content_text_size"
-                android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/little_margin"
                 style="@style/large_title_text"
                 tools:text="10° / 15°"
@@ -64,7 +63,7 @@
                 android:textColor="@color/colorTextLight2nd"
                 android:textStyle="bold"
                 android:layout_toEndOf="@id/notification_base_dailyTemp"
-                android:layout_centerVertical="true"
+                android:layout_alignBaseline="@id/notification_base_dailyTemp"
                 tools:text="AQI 79"
                 tools:ignore="RtlHardcoded,SmallSp" />
 

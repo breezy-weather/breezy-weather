@@ -19,6 +19,4 @@ public class Base {
         this.time = time;
         this.timeStamp = timeStamp;
     }
-
-
 }

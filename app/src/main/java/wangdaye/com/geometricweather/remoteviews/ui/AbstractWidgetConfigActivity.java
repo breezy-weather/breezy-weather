@@ -25,7 +25,6 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -113,24 +112,14 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     public abstract void initView();
 
     public final void updateHostView() {
-        if (getWidgetContainer().getChildCount() > 2) {
-            getWidgetContainer().removeViewAt(2);
-        }
+        getWidgetContainer().removeAllViews();
 
         View view = getRemoteViews().apply(getApplicationContext(), getWidgetContainer());
-        ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         );
-        int margin = getResources().getDimensionPixelSize(R.dimen.little_margin);
-        params.setMargins(
-                margin,
-                DisplayUtils.getStatusBarHeight(getResources()) + margin,
-                margin,
-                margin
-        );
-        view.setLayoutParams(params);
-        getWidgetContainer().addView(view);
+        getWidgetContainer().addView(view, params);
     }
 
     public abstract ViewGroup getWidgetContainer();

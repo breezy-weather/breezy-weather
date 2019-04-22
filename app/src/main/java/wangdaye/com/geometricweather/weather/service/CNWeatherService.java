@@ -1,6 +1,8 @@
 package wangdaye.com.geometricweather.weather.service;
 
 import android.content.Context;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -68,31 +70,34 @@ public class CNWeatherService extends WeatherService {
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<CNWeatherResult>() {
                     @Override
                     public void onSucceed(CNWeatherResult cnWeatherResult) {
-                        if (cnWeatherResult != null) {
+                        try {
                             History history = new History(
                                     location.cityId,
                                     location.getCityName(context),
                                     cnWeatherResult.weather.get(0).date,
                                     Integer.parseInt(cnWeatherResult.weather.get(0).info.day.get(2)),
-                                    Integer.parseInt(cnWeatherResult.weather.get(0).info.night.get(2)));
+                                    Integer.parseInt(cnWeatherResult.weather.get(0).info.night.get(2))
+                            );
                             cnWeatherResult.weather.remove(0);
 
                             Base base = new Base(
                                     location.cityId, location.getCityName(context),
                                     cnWeatherResult.realtime.date,
                                     WeatherHelper.buildTime(context),
-                                    System.currentTimeMillis());
+                                    System.currentTimeMillis()
+                            );
 
                             RealTime realTime = new RealTime(
                                     cnWeatherResult.realtime.weather.info,
-                                    WeatherHelper.getCNWeatherKind(cnWeatherResult.realtime.weather.img),
+                                    getWeatherKind(cnWeatherResult.realtime.weather.img),
                                     Integer.parseInt(cnWeatherResult.realtime.weather.temperature),
                                     Integer.parseInt(cnWeatherResult.realtime.feelslike_c),
                                     cnWeatherResult.realtime.wind.direct,
                                     WeatherHelper.getWindSpeed(cnWeatherResult.realtime.wind.windspeed),
                                     cnWeatherResult.realtime.wind.power,
                                     -1,
-                                    "");
+                                    ""
+                            );
 
                             List<Daily> dailyList = new ArrayList<>();
                             for (CNWeatherResult.WeatherX w : cnWeatherResult.weather) {
@@ -102,8 +107,8 @@ public class CNWeatherService extends WeatherService {
                                                 w.info.day.get(1),
                                                 w.info.night.get(1)},
                                         new String[] {
-                                                WeatherHelper.getCNWeatherKind(w.info.day.get(0)),
-                                                WeatherHelper.getCNWeatherKind(w.info.night.get(0))},
+                                                getWeatherKind(w.info.day.get(0)),
+                                                getWeatherKind(w.info.night.get(0))},
                                         new int[] {
                                                 Integer.parseInt(w.info.day.get(2)),
                                                 Integer.parseInt(w.info.night.get(2))},
@@ -118,9 +123,12 @@ public class CNWeatherService extends WeatherService {
                                         new String[] {
                                                 w.info.day.get(5),
                                                 w.info.night.get(5),
-                                                "", ""},
+                                                "",
+                                                ""
+                                        },
                                         "",
-                                        new int[] {-1, -1});
+                                        new int[] {-1, -1}
+                                );
 
                                 dailyList.add(daily);
                             }
@@ -132,9 +140,10 @@ public class CNWeatherService extends WeatherService {
                                         TimeManager.isDaylight(
                                                 h.hour,
                                                 cnWeatherResult.weather.get(0).info.day.get(5),
-                                                cnWeatherResult.weather.get(0).info.night.get(5)),
+                                                cnWeatherResult.weather.get(0).info.night.get(5)
+                                        ),
                                         h.info,
-                                        WeatherHelper.getCNWeatherKind(h.img),
+                                        getWeatherKind(h.img),
                                         Integer.parseInt(h.temperature),
                                         -1);
                                 hourlyList.add(hourly);
@@ -187,14 +196,15 @@ public class CNWeatherService extends WeatherService {
                                         id,
                                         a.alarmTp1 + a.alarmTp2 + context.getString(R.string.action_alert),
                                         a.content,
-                                        context.getString(R.string.publish_at) + " " + a.pubTime);
+                                        context.getString(R.string.publish_at) + " " + a.pubTime
+                                );
                                 alertList.add(alert);
                             }
 
                             Weather weather = new Weather(base, realTime, dailyList, hourlyList, aqi, index, alertList);
 
                             callback.requestWeatherSuccess(weather, history, location);
-                        } else {
+                        } catch (Exception e) {
                             callback.requestWeatherFailed(location);
                         }
                     }
@@ -213,11 +223,15 @@ public class CNWeatherService extends WeatherService {
 
     @Override
     public void requestLocation(Context context, Location location, @NonNull RequestLocationCallback callback) {
+        if (!location.hasGeocodeInformation()) {
+            callback.requestLocationFailed(null);
+        }
         searchInThread(
                 context,
                 new String[] {location.district, location.city, location.province},
                 false,
-                callback);
+                callback
+        );
     }
 
     @Override
@@ -283,5 +297,88 @@ public class CNWeatherService extends WeatherService {
                         callback.requestLocationFailed(queries[0]);
                     }
                 }));
+    }
+
+    static String getWeatherKind(String icon) {
+        if (TextUtils.isEmpty(icon)) {
+            return Weather.KIND_CLOUDY;
+        }
+
+        switch (icon) {
+            case "0":
+            case "00":
+                return Weather.KIND_CLEAR;
+
+            case "1":
+            case "01":
+                return Weather.KIND_PARTLY_CLOUDY;
+
+            case "2":
+            case "02":
+                return Weather.KIND_CLOUDY;
+
+            case "3":
+            case "7":
+            case "8":
+            case "9":
+            case "03":
+            case "07":
+            case "08":
+            case "09":
+            case "10":
+            case "11":
+            case "12":
+            case "21":
+            case "22":
+            case "23":
+            case "24":
+            case "25":
+                return Weather.KIND_RAIN;
+
+            case "4":
+            case "04":
+                return Weather.KIND_THUNDERSTORM;
+
+            case "5":
+            case "05":
+                return Weather.KIND_HAIL;
+
+            case "6":
+            case "06":
+                return Weather.KIND_SLEET;
+
+            case "13":
+            case "14":
+            case "15":
+            case "16":
+            case "17":
+            case "26":
+            case "27":
+            case "28":
+                return Weather.KIND_SNOW;
+
+            case "18":
+            case "32":
+            case "49":
+            case "57":
+                return Weather.KIND_FOG;
+
+            case "19":
+                return Weather.KIND_SLEET;
+
+            case "20":
+            case "29":
+            case "30":
+                return Weather.KIND_WIND;
+
+            case "53":
+            case "54":
+            case "55":
+            case "56":
+                return Weather.KIND_HAZE;
+
+            default:
+                return Weather.KIND_CLOUDY;
+        }
     }
 }

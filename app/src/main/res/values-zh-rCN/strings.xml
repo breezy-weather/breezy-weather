@@ -84,6 +84,7 @@
     <string name="off">关闭</string>
     <string name="go_to_set">设置</string>
     <string name="help">帮助</string>
+    <string name="learn_more">了解更多</string>
 
     <string name="about_app">概览</string>
     <string name="introduce">介绍</string>
@@ -154,6 +155,9 @@
     <string name="feedback_interpret_notification_group_content">关闭后台纯净后，会出现一个标示后台服务正在运行的通知，你可以在app相关信息页面中找到通知设置，在其中关闭“后台信息”这个频道来隐藏这个通知</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">无法启动动态壁纸预览程序</string>
+
+    <string name="feedback_unusable_geocoder">本设备不包含有效的地址解析服务，已将位置提供商更改为百度定位</string>
+    <string name="feedback_about_geocoder">地址解析服务，是一种将Android原生定位结果从经纬度格式转换至XX省XX市XX区格式的服务组件。若缺少这项服务，在使用原生API作为位置提供商时，只能通过AccuWeather获取数据。</string>
 
     <!-- action -->
     <string name="action_alert">预警</string>

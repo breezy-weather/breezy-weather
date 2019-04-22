@@ -18,12 +18,15 @@ public class Location
         implements Parcelable {
 
     public String cityId;
+
+    public String lat;
+    public String lon;
+
     public String district;
     public String city;
     public String province;
     public String country;
-    public String lat;
-    public String lon;
+
     public String source;
 
     public Weather weather;
@@ -61,7 +64,8 @@ public class Location
                 "", "",
                 "accu",
                 null, null,
-                true, false);
+                true, false
+        );
     }
 
     public static Location buildDefaultLocation() {
@@ -71,7 +75,8 @@ public class Location
                 "39.904000", "116.391000",
                 "accu",
                 null, null,
-                true, true);
+                true, true
+        );
     }
 
     public LocationEntity toLocationEntity() {
@@ -131,6 +136,13 @@ public class Location
         } else {
             return "";
         }
+    }
+
+    public boolean hasGeocodeInformation() {
+        return !TextUtils.isEmpty(country)
+                || !TextUtils.isEmpty(province)
+                || !TextUtils.isEmpty(city)
+                || !TextUtils.isEmpty(district);
     }
 
     @Override

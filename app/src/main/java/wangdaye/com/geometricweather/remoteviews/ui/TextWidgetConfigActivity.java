@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,10 +44,10 @@ public class TextWidgetConfigActivity extends AbstractWidgetConfigActivity
 
     @Override
     public void initView() {
-        this.widgetContainer = findViewById(R.id.activity_create_widget_text_widgetContainer);
-
         ImageView wallpaper = findViewById(R.id.activity_create_widget_text_wall);
         bindWallpaper(wallpaper);
+
+        this.widgetContainer = findViewById(R.id.activity_create_widget_text_widgetContainer);
 
         this.container = findViewById(R.id.activity_create_widget_text_container);
         
@@ -64,7 +63,6 @@ public class TextWidgetConfigActivity extends AbstractWidgetConfigActivity
         return widgetContainer;
     }
 
-    @Nullable
     @Override
     public RemoteViews getRemoteViews() {
         return TextWidgetIMP.getRemoteViews(

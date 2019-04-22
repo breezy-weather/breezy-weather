@@ -154,15 +154,19 @@ public class AccuLocationResult {
 
     public Location toLocation() {
         return new Location(
-                Key, "", LocalizedName, AdministrativeArea.LocalizedName, Country.LocalizedName,
+                Key,
+                "", LocalizedName, AdministrativeArea.LocalizedName, Country.LocalizedName,
                 String.valueOf(GeoPosition.Latitude), String.valueOf(GeoPosition.Longitude),
-                "accu", null, null, false,
+                "accu",
+                null, null,
+                false,
                 !TextUtils.isEmpty(Country.ID)
                         && (Country.ID.equals("CN")
                         || Country.ID.equals("cn")
                         || Country.ID.equals("HK")
                         || Country.ID.equals("hk")
                         || Country.ID.equals("TW")
-                        || Country.ID.equals("tw")));
+                        || Country.ID.equals("tw"))
+        );
     }
 }

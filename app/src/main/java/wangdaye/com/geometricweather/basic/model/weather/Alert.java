@@ -3,6 +3,8 @@ package wangdaye.com.geometricweather.basic.model.weather;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import wangdaye.com.geometricweather.db.entity.AlarmEntity;
+
 /**
  * Alert.
  * */
@@ -19,6 +21,17 @@ public class Alert implements Parcelable {
         this.description = description;
         this.content = content;
         this.publishTime = publishTime;
+    }
+
+    public AlarmEntity toAlarmEntity(Base base) {
+        AlarmEntity entity = new AlarmEntity();
+        entity.cityId = base.cityId;
+        entity.city = base.city;
+        entity.alertId = id;
+        entity.content = content;
+        entity.description = description;
+        entity.publishTime = publishTime;
+        return entity;
     }
 
     @Override

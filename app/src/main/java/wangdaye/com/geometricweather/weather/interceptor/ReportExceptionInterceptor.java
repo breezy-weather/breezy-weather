@@ -3,11 +3,24 @@ package wangdaye.com.geometricweather.weather.interceptor;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import okhttp3.Interceptor;
+import okhttp3.Protocol;
+import okhttp3.Request;
+import okhttp3.Response;
 
-public abstract class ReportExceptionInterceptor implements Interceptor {
+abstract class ReportExceptionInterceptor implements Interceptor {
 
-    public void handleException(Exception e) {
+    void handleException(Exception e) {
         e.printStackTrace();
         CrashReport.postCatchedException(e);
+    }
+
+    Response nullResponse(Request request) {
+        return new Response.Builder()
+                .request(request)
+                .protocol(Protocol.HTTP_2)
+                .code(400)
+                .message("Handle an error in GeometricWeather.")
+                .body(null)
+                .build();
     }
 }

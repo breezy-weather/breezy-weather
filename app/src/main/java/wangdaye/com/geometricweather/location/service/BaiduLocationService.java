@@ -34,13 +34,16 @@ public class BaiduLocationService extends LocationService {
                 switch (bdLocation.getLocType()) {
                     case 61:
                     case 161:
-                        Result result = new Result();
-                        result.district = bdLocation.getDistrict();
-                        result.city = bdLocation.getCity();
-                        result.province = bdLocation.getProvince();
-                        result.country = bdLocation.getCountry();
-                        result.latitude = String.valueOf(bdLocation.getLatitude());
-                        result.longitude = String.valueOf(bdLocation.getLongitude());
+                        Result result = new Result(
+                                String.valueOf(bdLocation.getLatitude()),
+                                String.valueOf(bdLocation.getLongitude())
+                        );
+                        result.setGeocodeInformation(
+                                bdLocation.getCountry(),
+                                bdLocation.getProvince(),
+                                bdLocation.getCity(),
+                                bdLocation.getDistrict()
+                        );
                         result.inChina = bdLocation.getLocationWhere() == BDLocation.LOCATION_WHERE_IN_CN;
                         callback.onCompleted(result);
                         break;
@@ -64,7 +67,7 @@ public class BaiduLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, @NonNull LocationCallback callback){
+    public void requestLocation(Context context, @NonNull LocationCallback callback, boolean geocode){
         this.callback = callback;
 
         LocationClientOption option = new LocationClientOption();

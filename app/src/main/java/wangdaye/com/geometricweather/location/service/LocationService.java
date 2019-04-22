@@ -23,16 +23,42 @@ import wangdaye.com.geometricweather.R;
 public abstract class LocationService {
 
     public class Result {
+
+        @NonNull public String latitude;
+        @NonNull public String longitude;
+
         public String district;
         public String city;
         public String province;
         public String country;
-        public String latitude;
-        public String longitude;
+
         public boolean inChina;
+        public boolean hasGeocodeInformation;
+
+        public Result(@NonNull String lat, @NonNull String lon) {
+            latitude = lat;
+            longitude = lon;
+
+            district = "";
+            city = "";
+            province = "";
+            country = "";
+
+            inChina = false;
+            hasGeocodeInformation = false;
+        }
+
+        public void setGeocodeInformation(String country, String province, String city, String district) {
+            hasGeocodeInformation = true;
+            this.country = country;
+            this.province = province;
+            this.city = city;
+            this.district = district;
+        }
     }
 
-    public abstract void requestLocation(Context context, @NonNull LocationCallback callback);
+    public abstract void requestLocation(Context context, @NonNull LocationCallback callback,
+                                         boolean geocode);
 
     public abstract void cancel();
 

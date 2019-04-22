@@ -151,7 +151,8 @@ public class AccuWeatherService extends WeatherService {
                     accuHourlyResults,
                     accuMinuteResult instanceof EmptyMinuteResult ? null : accuMinuteResult,
                     accuAqiResult instanceof EmptyAqiResult ? null : accuAqiResult,
-                    accuAlertResults);
+                    accuAlertResults
+            );
             return location;
         }).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<Location>() {
@@ -176,8 +177,7 @@ public class AccuWeatherService extends WeatherService {
     public void requestLocation(Context context, final String query,
                                 @NonNull final RequestLocationCallback callback) {
         String languageCode = LanguageUtils.getLanguageCode(context);
-        api.getWeatherLocation(
-                "Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)
+        api.getWeatherLocation("Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
                     @Override
@@ -201,15 +201,19 @@ public class AccuWeatherService extends WeatherService {
     }
 
     @Override
-    public void requestLocation(Context context, Location location, @NonNull RequestLocationCallback callback) {
+    public void requestLocation(Context context, Location location,
+                                @NonNull RequestLocationCallback callback) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
-                PREFERENCE_LOCAL, Context.MODE_PRIVATE);
+                PREFERENCE_LOCAL,
+                Context.MODE_PRIVATE
+        );
         String oldDistrict = sharedPreferences.getString(KEY_OLD_DISTRICT, "");
         String oldCity = sharedPreferences.getString(KEY_OLD_CITY, "");
         String oldProvince = sharedPreferences.getString(KEY_OLD_PROVINCE, "");
         String oldKey = sharedPreferences.getString(KEY_OLD_KEY, "");
 
-        if (queryEqualsIgnoreEmpty(location.district, oldDistrict)
+        if (location.hasGeocodeInformation()
+                && queryEqualsIgnoreEmpty(location.district, oldDistrict)
                 && queryEquals(location.city, oldCity)
                 && queryEquals(location.province, oldProvince)
                 && queryEquals(location.cityId, oldKey)) {
@@ -231,9 +235,15 @@ public class AccuWeatherService extends WeatherService {
                     TextUtils.isEmpty(location.district)
                             ? formatLocationString(convertChinese(location.city))
                             : formatLocationString(convertChinese(location.district)),
-                    new CacheLocationRequestCallback(context, callback));
+                    new CacheLocationRequestCallback(context, callback)
+            );
         } else {
-            requestLocation(context, location.lat, location.lon, new CacheLocationRequestCallback(context, callback));
+            requestLocation(
+                    context,
+                    location.lat,
+                    location.lon,
+                    new CacheLocationRequestCallback(context, callback)
+            );
         }
     }
 
@@ -241,8 +251,11 @@ public class AccuWeatherService extends WeatherService {
                                 @NonNull final RequestLocationCallback callback) {
         String languageCode = LanguageUtils.getLanguageCode(context);
         api.getWeatherLocationByGeoPosition(
-                "Always", BuildConfig.ACCU_WEATHER_KEY, lat + "," + lon, languageCode)
-                .compose(SchedulerTransformer.create())
+                "Always",
+                BuildConfig.ACCU_WEATHER_KEY,
+                lat + "," + lon,
+                languageCode
+        ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<AccuLocationResult>() {
                     @Override
                     public void onSucceed(AccuLocationResult accuLocationResult) {
@@ -298,16 +311,20 @@ public class AccuWeatherService extends WeatherService {
                     location.cityId, location.getCityName(context),
                     realtimeResult.LocalObservationDateTime.split("T")[0],
                     WeatherHelper.buildTime(context),
-                    System.currentTimeMillis());
+                    System.currentTimeMillis()
+            );
 
             RealTime realTime = new RealTime(
-                    realtimeResult.WeatherText, WeatherHelper.getAccuWeatherKind(realtimeResult.WeatherIcon),
-                    (int) realtimeResult.Temperature.Metric.Value, (int) realtimeResult.RealFeelTemperature.Metric.Value,
+                    realtimeResult.WeatherText,
+                    getWeatherKind(realtimeResult.WeatherIcon),
+                    (int) realtimeResult.Temperature.Metric.Value,
+                    (int) realtimeResult.RealFeelTemperature.Metric.Value,
                     realtimeResult.Wind.Direction.Localized,
                     WeatherHelper.getWindSpeed(realtimeResult.Wind.Speed.Metric.Value),
                     WeatherHelper.getWindLevel(context, realtimeResult.Wind.Speed.Metric.Value),
                     realtimeResult.Wind.Direction.Degrees,
-                    dailyResult.Headline.Text);
+                    dailyResult.Headline.Text
+            );
 
             List<Daily> dailyList = new ArrayList<>();
             for (AccuDailyResult.DailyForecasts f : dailyResult.DailyForecasts) {
@@ -317,49 +334,64 @@ public class AccuWeatherService extends WeatherService {
                         && !TextUtils.isEmpty(f.Moon.Rise) && !TextUtils.isEmpty(f.Moon.Set)) {
                     astros = new String[] {
                             f.Sun.Rise.split("T")[1].split(":")[0]
-                                    + ":" + f.Sun.Rise.split("T")[1].split(":")[1],
+                                    + ":"
+                                    + f.Sun.Rise.split("T")[1].split(":")[1],
                             f.Sun.Set.split("T")[1].split(":")[0]
-                                    + ":" + f.Sun.Set.split("T")[1].split(":")[1],
+                                    + ":"
+                                    + f.Sun.Set.split("T")[1].split(":")[1],
                             f.Moon.Rise.split("T")[1].split(":")[0]
-                                    + ":" + f.Moon.Rise.split("T")[1].split(":")[1],
+                                    + ":"
+                                    + f.Moon.Rise.split("T")[1].split(":")[1],
                             f.Moon.Set.split("T")[1].split(":")[0]
-                                    + ":" + f.Moon.Set.split("T")[1].split(":")[1]};
+                                    + ":"
+                                    + f.Moon.Set.split("T")[1].split(":")[1]
+                    };
                 } else if (!TextUtils.isEmpty(f.Moon.Rise) && !TextUtils.isEmpty(f.Moon.Set)) {
                     astros = new String[] {
                             f.Sun.Rise.split("T")[1].split(":")[0]
-                                    + ":" + f.Sun.Rise.split("T")[1].split(":")[1],
+                                    + ":"
+                                    + f.Sun.Rise.split("T")[1].split(":")[1],
                             f.Sun.Set.split("T")[1].split(":")[0]
-                                    + ":" + f.Sun.Set.split("T")[1].split(":")[1],
-                            "", ""};
+                                    + ":"
+                                    + f.Sun.Set.split("T")[1].split(":")[1],
+                            "", ""
+                    };
                 } else {
                     astros = new String[] {"6:00", "18:00", "", ""};
 
                 }
                 Daily daily = new Daily(
-                        date, WeatherHelper.getWeek(context, date),
+                        date,
+                        WeatherHelper.getWeek(context, date),
                         new String[] {
                                 f.Day.IconPhrase,
-                                f.Night.IconPhrase},
-                        new String[] {
-                                WeatherHelper.getAccuWeatherKind(f.Day.Icon),
-                                WeatherHelper.getAccuWeatherKind(f.Night.Icon)},
-                        new int[] {
+                                f.Night.IconPhrase
+                        }, new String[] {
+                                getWeatherKind(f.Day.Icon),
+                                getWeatherKind(f.Night.Icon)
+                        }, new int[] {
                                 (int) f.Temperature.Maximum.Value,
-                                (int) f.Temperature.Minimum.Value},
-                        new String[] {
+                                (int) f.Temperature.Minimum.Value
+                        }, new String[] {
                                 f.Day.Wind.Direction.Localized,
-                                f.Night.Wind.Direction.Localized},
-                        new String[] {
+                                f.Night.Wind.Direction.Localized
+                        }, new String[] {
                                 WeatherHelper.getWindSpeed(f.Day.Wind.Speed.Value),
-                                WeatherHelper.getWindSpeed(f.Night.Wind.Speed.Value)},
-                        new String[] {
+                                WeatherHelper.getWindSpeed(f.Night.Wind.Speed.Value)
+                        }, new String[] {
                                 WeatherHelper.getWindLevel(context, f.Day.Wind.Speed.Value),
-                                WeatherHelper.getWindLevel(context, f.Night.Wind.Speed.Value)},
-                        new int[] {
+                                WeatherHelper.getWindLevel(context, f.Night.Wind.Speed.Value)
+                        }, new int[] {
                                 f.Day.Wind.Direction.Degrees,
-                                f.Night.Wind.Direction.Degrees},
-                        astros, f.Moon.Phase,
-                        new int[] {f.Day.PrecipitationProbability, f.Night.PrecipitationProbability});
+                                f.Night.Wind.Direction.Degrees
+                        },
+                        astros,
+                        f.Moon.Phase,
+                        new int[] {
+                                f.Day.PrecipitationProbability,
+                                f.Night.PrecipitationProbability
+                        }
+                );
 
                 dailyList.add(daily);
             }
@@ -367,11 +399,15 @@ public class AccuWeatherService extends WeatherService {
             List<Hourly> hourlyList = new ArrayList<>();
             for (AccuHourlyResult r : hourlyResultList) {
                 Hourly hourly = new Hourly(
-                        WeatherHelper.buildTime(context, r.DateTime.split("T")[1].split(":")[0]),
+                        WeatherHelper.buildTime(
+                                context,
+                                r.DateTime.split("T")[1].split(":")[0]
+                        ),
                         r.IsDaylight,
                         r.IconPhrase,
-                        WeatherHelper.getAccuWeatherKind(r.WeatherIcon),
-                        (int) r.Temperature.Value, r.PrecipitationProbability);
+                        getWeatherKind(r.WeatherIcon),
+                        (int) r.Temperature.Value, r.PrecipitationProbability
+                );
                 hourlyList.add(hourly);
             }
 
@@ -387,7 +423,8 @@ public class AccuWeatherService extends WeatherService {
                         (int) aqiResult.SulfurDioxide,
                         (int) aqiResult.NitrogenDioxide,
                         (int) aqiResult.Ozone,
-                        (float) aqiResult.CarbonMonoxide);
+                        (float) aqiResult.CarbonMonoxide
+                );
             }
 
             String briefing = "";
@@ -407,7 +444,8 @@ public class AccuWeatherService extends WeatherService {
                 visibility = realtimeResult.Visibility.Metric.Value + realtimeResult.Visibility.Metric.Unit;
             }
             Index index = new Index(
-                    dailyResult.Headline.Text, briefing,
+                    dailyResult.Headline.Text,
+                    briefing,
                     context.getString(R.string.live) + " : " + realtimeResult.Wind.Direction.Localized
                             + " " + WeatherHelper.getWindSpeed(realtimeResult.Wind.Speed.Metric.Value)
                             + " (" + WeatherHelper.getWindLevel(context, realtimeResult.Wind.Speed.Metric.Value) + ") "
@@ -422,24 +460,31 @@ public class AccuWeatherService extends WeatherService {
                             + WeatherHelper.getWindArrows(dailyResult.DailyForecasts.get(0).Night.Wind.Direction.Degrees),
                     context.getString(R.string.sensible_temp) + " : "
                             + ValueUtils.buildCurrentTemp(
-                            (int) realtimeResult.RealFeelTemperature.Metric.Value,
-                            false,
-                            GeometricWeather.getInstance().isFahrenheit()),
+                                    (int) realtimeResult.RealFeelTemperature.Metric.Value,
+                                    false,
+                                    GeometricWeather.getInstance().isFahrenheit()
+                            ),
                     context.getString(R.string.humidity) + " : " + realtimeResult.RelativeHumidity + "%",
                     realtimeResult.UVIndex + " / " + realtimeResult.UVIndexText,
-                    pressure, visibility,
+                    pressure,
+                    visibility,
                     ValueUtils.buildCurrentTemp(
                             (int) realtimeResult.DewPoint.Metric.Value,
                             false,
-                            GeometricWeather.getInstance().isFahrenheit()));
+                            GeometricWeather.getInstance().isFahrenheit()
+                    )
+            );
 
             List<Alert> alertList = new ArrayList<>();
             for (AccuAlertResult r : alertResultList) {
                 Alert alert = new Alert(
-                        r.AlertID, r.Description.Localized, r.Area.get(0).Text,
+                        r.AlertID,
+                        r.Description.Localized,
+                        r.Area.get(0).Text,
                         context.getString(R.string.publish_at) + " " + r.Area.get(0).StartTime.split("T")[0]
                                 + " " + r.Area.get(0).StartTime.split("T")[1].split(":")[0]
-                                + ":" + r.Area.get(0).StartTime.split("T")[1].split(":")[1]);
+                                + ":" + r.Area.get(0).StartTime.split("T")[1].split(":")[1]
+                );
                 alertList.add(alert);
             }
 
@@ -454,8 +499,42 @@ public class AccuWeatherService extends WeatherService {
             location.history = new History(
                     location.cityId, location.weather.base.city, format.format(calendar.getTime()),
                     (int) realtimeResult.TemperatureSummary.Past24HourRange.Maximum.Metric.Value,
-                    (int) realtimeResult.TemperatureSummary.Past24HourRange.Minimum.Metric.Value);
+                    (int) realtimeResult.TemperatureSummary.Past24HourRange.Minimum.Metric.Value
+            );
         } catch (Exception ignored) {
+            // do nothing.
+        }
+    }
+
+    private static String getWeatherKind(int icon) {
+        if (icon == 1 || icon == 2 || icon == 30
+                || icon == 33 || icon == 34) {
+            return Weather.KIND_CLEAR;
+        } else if (icon == 3 || icon == 4 || icon == 6 || icon == 7
+                || icon == 35 || icon == 36 || icon == 38) {
+            return Weather.KIND_PARTLY_CLOUDY;
+        } else if (icon == 5 || icon == 37) {
+            return Weather.KIND_HAZE;
+        } else if (icon == 8) {
+            return Weather.KIND_CLOUDY;
+        } else if (icon == 11) {
+            return Weather.KIND_FOG;
+        } else if (icon == 12 || icon == 13 || icon == 14 || icon == 18
+                || icon == 39 || icon == 40) {
+            return Weather.KIND_RAIN;
+        } else if (icon == 15 || icon == 16 || icon == 17 || icon == 41 || icon == 42) {
+            return Weather.KIND_THUNDERSTORM;
+        } else if (icon == 19 || icon == 20 || icon == 21 || icon == 22 || icon == 23 || icon == 24
+                || icon == 31 || icon == 43 || icon == 44) {
+            return Weather.KIND_SNOW;
+        } else if (icon == 25) {
+            return Weather.KIND_HAIL;
+        } else if (icon == 26 || icon == 29) {
+            return Weather.KIND_SLEET;
+        } else if (icon == 32) {
+            return Weather.KIND_WIND;
+        } else {
+            return Weather.KIND_CLOUDY;
         }
     }
 }

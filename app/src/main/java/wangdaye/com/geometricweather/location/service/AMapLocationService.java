@@ -33,15 +33,20 @@ public class AMapLocationService extends LocationService {
             if (callback != null) {
                 switch (aMapLocation.getErrorCode()) {
                     case 0:
-                        Result result = new Result();
-                        result.district = aMapLocation.getDistrict();
-                        result.city = aMapLocation.getCity();
-                        result.province = aMapLocation.getProvince();
-                        result.country = aMapLocation.getCountry();
-                        result.latitude = String.valueOf(aMapLocation.getLatitude());
-                        result.longitude = String.valueOf(aMapLocation.getLongitude());
+                        Result result = new Result(
+                                String.valueOf(aMapLocation.getLatitude()),
+                                String.valueOf(aMapLocation.getLongitude())
+                        );
+                        result.setGeocodeInformation(
+                                aMapLocation.getCountry(),
+                                aMapLocation.getProvince(),
+                                aMapLocation.getCity(),
+                                aMapLocation.getDistrict()
+                        );
                         result.inChina = CoordinateConverter.isAMapDataAvailable(
-                                aMapLocation.getLatitude(), aMapLocation.getLongitude());
+                                aMapLocation.getLatitude(),
+                                aMapLocation.getLongitude()
+                        );
                         callback.onCompleted(result);
                         break;
 
@@ -64,7 +69,7 @@ public class AMapLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, @NonNull LocationCallback callback){
+    public void requestLocation(Context context, @NonNull LocationCallback callback, boolean geocode){
         this.callback = callback;
 
         AMapLocationClientOption option = new AMapLocationClientOption();

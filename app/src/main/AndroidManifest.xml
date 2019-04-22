@@ -173,29 +173,29 @@
         </activity>
 
         <!-- service -->
-        <service android:name=".background.service.AwakePollingUpdateService" />
+        <service android:name=".background.service.polling.AwakeForegroundUpdateService" />
 
         <service
-            android:name=".background.service.polling.PollingService"
+            android:name=".background.service.polling.TimeObserverService"
             android:process=":polling" />
-        <service android:name=".background.service.FakeForegroundService"
+        <service android:name=".background.service.polling.FakeForegroundService"
             android:process=":polling" />
-        <service android:name=".background.service.polling.PollingNormalUpdateService" />
-        <service android:name=".background.service.polling.PollingTodayForecastUpdateService" />
-        <service android:name=".background.service.polling.PollingTomorrowForecastUpdateService" />
+        <service android:name=".background.service.polling.ForegroundNormalUpdateService" />
+        <service android:name=".background.service.polling.ForegroundTodayForecastUpdateService" />
+        <service android:name=".background.service.polling.ForegroundTomorrowForecastUpdateService" />
 
-        <service android:name=".background.service.alarm.AlarmNormalUpdateService" />
-        <service android:name=".background.service.alarm.AlarmTodayForecastUpdateService" />
-        <service android:name=".background.service.alarm.AlarmTomorrowForecastUpdateService" />
+        <service android:name=".background.polling.alarm.AlarmNormalUpdateService" />
+        <service android:name=".background.polling.alarm.AlarmTodayForecastUpdateService" />
+        <service android:name=".background.polling.alarm.AlarmTomorrowForecastUpdateService" />
 
         <service
-            android:name=".background.service.job.JobNormalUpdateService"
+            android:name=".background.polling.job.JobNormalUpdateService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name=".background.service.job.JobTodayForecastUpdateService"
+            android:name=".background.polling.job.JobTodayForecastUpdateService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name=".background.service.job.JobTomorrowForecastUpdateService"
+            android:name=".background.polling.job.JobTomorrowForecastUpdateService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <service

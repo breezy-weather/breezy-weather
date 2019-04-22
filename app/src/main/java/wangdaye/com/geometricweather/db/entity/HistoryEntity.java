@@ -79,8 +79,13 @@ public class HistoryEntity {
         }
         dao.insert(buildHistoryEntity(
                 new History(
-                        weather.base.cityId, weather.base.city, weather.base.date,
-                        weather.dailyList.get(0).temps[0], weather.dailyList.get(0).temps[1])));
+                        weather.base.cityId,
+                        weather.base.city,
+                        weather.base.date,
+                        weather.dailyList.get(0).temps[0],
+                        weather.dailyList.get(0).temps[1])
+                )
+        );
     }
 
     public static void insertYesterdayHistory(SQLiteDatabase database, History history) {
@@ -157,8 +162,8 @@ public class HistoryEntity {
                     .queryBuilder()
                     .where(
                             HistoryEntityDao.Properties.Date.eq(format.format(calendar.getTime())),
-                            HistoryEntityDao.Properties.CityId.eq(weather.base.cityId))
-                    .list();
+                            HistoryEntityDao.Properties.CityId.eq(weather.base.cityId)
+                    ).list();
 
             if (entityList == null || entityList.size() <= 0) {
                 return null;

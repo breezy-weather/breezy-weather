@@ -32,17 +32,20 @@ public class AboutAppLink {
                 R.drawable.ic_github,
                 context.getString(R.string.gitHub),
                 "https://github.com/WangDaYeeeeee/GeometricWeather",
-                false));
+                false
+        ));
         list.add(new AboutAppLink(
                 R.drawable.ic_email,
                 context.getString(R.string.email),
                 "mailto:wangdayeeeeee@gmail.com",
-                true));
+                true
+        ));
         list.add(new AboutAppLink(
                 R.drawable.ic_donate,
                 context.getString(R.string.donate),
                 "",
-                false));
+                false
+        ));
 
         return list;
     }

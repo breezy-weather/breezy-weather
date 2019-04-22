@@ -1,18 +1,14 @@
 package wangdaye.com.geometricweather.location;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import androidx.annotation.NonNull;
-import android.text.TextUtils;
 
 import java.util.List;
 
 import androidx.annotation.Nullable;
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.location.service.AMapLocationService;
 import wangdaye.com.geometricweather.location.service.AndroidLocationService;
@@ -126,18 +122,20 @@ public class LocationHelper {
                             return;
                         }
 
-                        location.local = true;
+                        location.lat = result.latitude;
+                        location.lon = result.longitude;
+
                         location.district = result.district;
                         location.city = result.city;
                         location.province = result.province;
                         location.country = result.country;
-                        location.lat = result.latitude;
-                        location.lon = result.longitude;
+
+                        location.local = true;
                         location.china = result.inChina;
 
                         requestAvailableWeatherLocation(c, location, l);
                     }
-                });
+                }, !GeometricWeather.getInstance().getChineseSource().equals("accu"));
                 return;
             }
         }
@@ -145,7 +143,7 @@ public class LocationHelper {
     }
 
     private void requestAvailableWeatherLocation(Context c,
-                                                 Location location,
+                                                 @NonNull Location location,
                                                  @NonNull OnRequestLocationListener l) {
         if (!location.canUseChineseSource()
                 || GeometricWeather.getInstance().getChineseSource().equals("accu")) {
@@ -177,23 +175,6 @@ public class LocationHelper {
 
     public String[] getPermissions() {
         return locationService.getPermissions();
-    }
-
-    public static String getLocationServiceProvider(Context context, SharedPreferences sharedPreferences) {
-        String provider = sharedPreferences.getString(
-                context.getString(R.string.key_location_service),
-                "");
-        if (TextUtils.isEmpty(provider)) {
-            if (Geocoder.isPresent()) {
-                provider = "native";
-            } else {
-                provider = "baidu";
-            }
-        }
-        sharedPreferences.edit()
-                .putString(context.getString(R.string.key_location_service), provider)
-                .apply();
-        return provider;
     }
 
     // interface.

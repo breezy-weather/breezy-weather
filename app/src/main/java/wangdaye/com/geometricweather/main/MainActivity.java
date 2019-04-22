@@ -152,7 +152,7 @@ public class MainActivity extends GeoActivity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (requestCode) {
             case SETTINGS_ACTIVITY:
                 DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
@@ -171,9 +171,7 @@ public class MainActivity extends GeoActivity
 
             case MANAGE_ACTIVITY:
                 readLocationList();
-                if (resultCode == RESULT_OK) {
-                    readLocationNow(data);
-                }
+                readLocationNow(data);
                 switchLayout.setData(indexLocation(locationNow), locationList.size());
                 reset();
                 break;

@@ -204,48 +204,48 @@ public class CMWeatherProviderService extends WeatherProviderService
 class WeatherConditionConvertHelper {
     static int getConditionCode(String weatherKind, boolean dayTime) {
         switch (weatherKind) {
-            case WeatherHelper.KIND_CLEAR:
+            case Weather.KIND_CLEAR:
                 if (dayTime) {
                     return WeatherContract.WeatherColumns.WeatherCode.SUNNY;
                 } else {
                     return WeatherContract.WeatherColumns.WeatherCode.CLEAR_NIGHT;
                 }
 
-            case WeatherHelper.KIND_PARTLY_CLOUDY:
+            case Weather.KIND_PARTLY_CLOUDY:
                 if (dayTime) {
                     return WeatherContract.WeatherColumns.WeatherCode.PARTLY_CLOUDY_DAY;
                 } else {
                     return WeatherContract.WeatherColumns.WeatherCode.PARTLY_CLOUDY_NIGHT;
                 }
 
-            case WeatherHelper.KIND_CLOUDY:
+            case Weather.KIND_CLOUDY:
                 return WeatherContract.WeatherColumns.WeatherCode.CLOUDY;
 
-            case WeatherHelper.KIND_RAIN:
+            case Weather.KIND_RAIN:
                 return WeatherContract.WeatherColumns.WeatherCode.SHOWERS;
 
-            case WeatherHelper.KIND_SNOW:
+            case Weather.KIND_SNOW:
                 return WeatherContract.WeatherColumns.WeatherCode.SNOW;
 
-            case WeatherHelper.KIND_WIND:
+            case Weather.KIND_WIND:
                 return WeatherContract.WeatherColumns.WeatherCode.WINDY;
 
-            case WeatherHelper.KIND_FOG:
+            case Weather.KIND_FOG:
                 return WeatherContract.WeatherColumns.WeatherCode.FOGGY;
 
-            case WeatherHelper.KIND_HAZE:
+            case Weather.KIND_HAZE:
                 return WeatherContract.WeatherColumns.WeatherCode.HAZE;
 
-            case WeatherHelper.KIND_SLEET:
+            case Weather.KIND_SLEET:
                 return WeatherContract.WeatherColumns.WeatherCode.SLEET;
 
-            case WeatherHelper.KIND_HAIL:
+            case Weather.KIND_HAIL:
                 return WeatherContract.WeatherColumns.WeatherCode.HAIL;
 
-            case WeatherHelper.KIND_THUNDER:
+            case Weather.KIND_THUNDER:
                 return WeatherContract.WeatherColumns.WeatherCode.THUNDERSTORMS;
 
-            case WeatherHelper.KIND_THUNDERSTORM:
+            case Weather.KIND_THUNDERSTORM:
                 return WeatherContract.WeatherColumns.WeatherCode.THUNDERSHOWER;
         }
         return WeatherContract.WeatherColumns.WeatherCode.NOT_AVAILABLE;

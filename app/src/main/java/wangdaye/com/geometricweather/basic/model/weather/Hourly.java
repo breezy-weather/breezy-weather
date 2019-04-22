@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
+import wangdaye.com.geometricweather.db.entity.HourlyEntity;
+
 /**
  * Hourly.
  * */
@@ -22,5 +24,18 @@ public class Hourly {
         this.weatherKind = weatherKind;
         this.temp = temp;
         this.precipitation = precipitation;
+    }
+
+    public HourlyEntity toHourlyEntity(Base base) {
+        HourlyEntity entity = new HourlyEntity();
+        entity.cityId = base.cityId;
+        entity.city = base.city;
+        entity.time = time;
+        entity.dayTime = dayTime;
+        entity.weather = weather;
+        entity.weatherKind = weatherKind;
+        entity.temp = temp;
+        entity.precipitation = precipitation;
+        return entity;
     }
 }

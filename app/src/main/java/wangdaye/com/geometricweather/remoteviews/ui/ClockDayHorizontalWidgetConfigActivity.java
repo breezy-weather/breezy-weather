@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.appcompat.widget.AppCompatSpinner;
 import android.view.View;
@@ -61,10 +60,10 @@ public class ClockDayHorizontalWidgetConfigActivity extends AbstractWidgetConfig
 
     @Override
     public void initView() {
-        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_horizontal_widgetContainer);
-
         ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_horizontal_wall);
         bindWallpaper(wallpaper);
+
+        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_horizontal_widgetContainer);
 
         this.container = findViewById(R.id.activity_create_widget_clock_day_horizontal_container);
 
@@ -89,7 +88,6 @@ public class ClockDayHorizontalWidgetConfigActivity extends AbstractWidgetConfig
         return widgetContainer;
     }
 
-    @Nullable
     @Override
     public RemoteViews getRemoteViews() {
         return ClockDayHorizontalWidgetIMP.getRemoteViews(

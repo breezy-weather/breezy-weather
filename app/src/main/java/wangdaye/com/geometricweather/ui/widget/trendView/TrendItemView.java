@@ -145,8 +145,8 @@ public class TrendItemView extends View {
         paint.setStrokeWidth(CHART_LINE_SIZE);
         paint.setColor(lineColors[2]);
         canvas.drawLine(
-                (float) (getMeasuredWidth() / 2.0), TREND_MARGIN_TOP,
-                (float) (getMeasuredWidth() / 2.0), getMeasuredHeight() - TREND_MARGIN_BOTTOM,
+                getMeasuredWidth() / 2.f, TREND_MARGIN_TOP,
+                getMeasuredWidth() / 2.f, getMeasuredHeight() - TREND_MARGIN_BOTTOM,
                 paint
         );
     }

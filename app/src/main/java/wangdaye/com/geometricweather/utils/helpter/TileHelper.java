@@ -29,7 +29,9 @@ public class TileHelper {
 
     public static void setEnable(Context context, boolean enable) {
         SharedPreferences.Editor editor = context.getSharedPreferences(
-                PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+                PREFERENCE_NAME,
+                Context.MODE_PRIVATE
+        ).edit();
         editor.putBoolean(KEY_ENABLE, enable);
         editor.apply();
 
@@ -37,8 +39,8 @@ public class TileHelper {
     }
 
     public static boolean isEnable(Context context) {
-        return context.getSharedPreferences(
-                PREFERENCE_NAME, Context.MODE_PRIVATE).getBoolean(KEY_ENABLE, false);
+        return context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+                .getBoolean(KEY_ENABLE, false);
     }
 
     /** <br> UI. */
@@ -55,15 +57,19 @@ public class TileHelper {
                     .getBoolean(context.getString(R.string.key_fahrenheit), false);
             tile.setIcon(
                     Icon.createWithResource(
-                            context,
-                            WeatherHelper.getNotificationWeatherIcon(
+                            context, WeatherHelper.getNotificationWeatherIcon(
                                     location.weather.realTime.weatherKind,
-                                    TimeManager.getInstance(context).isDayTime())));
+                                    TimeManager.getInstance(context).isDayTime()
+                            )
+                    )
+            );
             tile.setLabel(
                     ValueUtils.buildCurrentTemp(
                             location.weather.realTime.temp,
                             false,
-                            f));
+                            f
+                    )
+            );
             tile.updateTile();
         }
     }

@@ -1,6 +1,8 @@
 package wangdaye.com.geometricweather.weather.service;
 
 import android.content.Context;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -120,19 +122,21 @@ public class CaiYunWeatherService extends CNWeatherService {
                     location.cityId, location.getCityName(context),
                     mainlyResult.current.pubTime.split("T")[0],
                     WeatherHelper.buildTime(context),
-                    System.currentTimeMillis());
+                    System.currentTimeMillis()
+            );
 
             int windDegree = Integer.parseInt(mainlyResult.current.wind.direction.value);
             RealTime realTime = new RealTime(
-                    WeatherHelper.getCNWeatherName(mainlyResult.current.weather),
-                    WeatherHelper.getCNWeatherKind(mainlyResult.current.weather),
+                    getWeatherName(mainlyResult.current.weather),
+                    getWeatherKind(mainlyResult.current.weather),
                     Integer.parseInt(mainlyResult.current.temperature.value),
                     Integer.parseInt(mainlyResult.current.feelsLike.value),
                     WeatherHelper.getCNWindName(windDegree),
                     WeatherHelper.getWindSpeed(Double.parseDouble(mainlyResult.current.wind.speed.value)),
                     WeatherHelper.getWindLevel(context, Double.parseDouble(mainlyResult.current.wind.speed.value)),
                     windDegree,
-                    "");
+                    ""
+            );
 
             List<Daily> dailyList = new ArrayList<>();
             for (int i = 0; i < mainlyResult.forecastDaily.weather.value.size(); i ++) {
@@ -162,11 +166,11 @@ public class CaiYunWeatherService extends CNWeatherService {
                 Daily daily = new Daily(
                         date, WeatherHelper.getWeek(context, date),
                         new String[] {
-                                WeatherHelper.getCNWeatherName(mainlyResult.forecastDaily.weather.value.get(i).from),
-                                WeatherHelper.getCNWeatherName(mainlyResult.forecastDaily.weather.value.get(i).to)},
+                                getWeatherName(mainlyResult.forecastDaily.weather.value.get(i).from),
+                                getWeatherName(mainlyResult.forecastDaily.weather.value.get(i).to)},
                         new String[] {
-                                WeatherHelper.getCNWeatherKind(mainlyResult.forecastDaily.weather.value.get(i).from),
-                                WeatherHelper.getCNWeatherKind(mainlyResult.forecastDaily.weather.value.get(i).to)},
+                                getWeatherKind(mainlyResult.forecastDaily.weather.value.get(i).from),
+                                getWeatherKind(mainlyResult.forecastDaily.weather.value.get(i).to)},
                         new int[] {
                                 Integer.parseInt(mainlyResult.forecastDaily.temperature.value.get(i).from),
                                 Integer.parseInt(mainlyResult.forecastDaily.temperature.value.get(i).to)},
@@ -195,8 +199,8 @@ public class CaiYunWeatherService extends CNWeatherService {
                                 String.valueOf(hour),
                                 mainlyResult.forecastDaily.sunRiseSet.value.get(0).from.split("T")[1].substring(0, 5),
                                 mainlyResult.forecastDaily.sunRiseSet.value.get(0).to.split("T")[1].substring(0, 5)),
-                        WeatherHelper.getCNWeatherName(String.valueOf(mainlyResult.forecastHourly.weather.value.get(i))),
-                        WeatherHelper.getCNWeatherKind(String.valueOf(mainlyResult.forecastHourly.weather.value.get(i))),
+                        getWeatherName(String.valueOf(mainlyResult.forecastHourly.weather.value.get(i))),
+                        getWeatherKind(String.valueOf(mainlyResult.forecastHourly.weather.value.get(i))),
                         mainlyResult.forecastHourly.temperature.value.get(i), -1);
                 hourlyList.add(hourly);
             }
@@ -286,6 +290,129 @@ public class CaiYunWeatherService extends CNWeatherService {
                     Integer.parseInt(mainlyResult.yesterday.tempMax),
                     Integer.parseInt(mainlyResult.yesterday.tempMin));
         } catch (Exception ignored) {
+        }
+    }
+
+    private static String getWeatherName(String icon) {
+        if (TextUtils.isEmpty(icon)) {
+            return "未知";
+        }
+
+        switch (icon) {
+            case "0":
+            case "00":
+                return "晴";
+
+            case "1":
+            case "01":
+                return "多云";
+
+            case "2":
+            case "02":
+                return "阴";
+
+            case "3":
+            case "03":
+                return "阵雨";
+
+            case "4":
+            case "04":
+                return "雷阵雨";
+
+            case "5":
+            case "05":
+                return "雷阵雨伴有冰雹";
+
+            case "6":
+            case "06":
+                return "雨夹雪";
+
+            case "7":
+            case "07":
+                return "小雨";
+
+            case "8":
+            case "08":
+                return  "中雨";
+
+            case "9":
+            case "09":
+                return  "大雨";
+
+            case "10":
+                return  "暴雨";
+
+            case "11":
+                return  "大暴雨";
+
+            case "12":
+                return  "特大暴雨";
+
+            case "13":
+                return  "阵雪";
+
+            case "14":
+                return  "小雪";
+
+            case "15":
+                return  "中雪";
+
+            case "16":
+                return  "大雪";
+
+            case "17":
+                return  "暴雪";
+
+            case "18":
+                return  "雾";
+
+            case "19":
+                return  "冻雨";
+
+            case "20":
+                return  "沙尘暴";
+
+            case "21":
+                return  "小到中雨";
+
+            case "22":
+                return  "中到大雨";
+
+            case "23":
+                return  "大到暴雨";
+
+            case "24":
+                return  "暴雨到大暴雨";
+
+            case "25":
+                return  "大暴雨到特大暴雨";
+
+            case "26":
+                return  "小到中雪";
+
+            case "27":
+                return  "中到大雪";
+
+            case "28":
+                return  "大到暴雪";
+
+            case "29":
+                return  "浮尘";
+
+            case "30":
+                return  "扬沙";
+
+            case "31":
+                return  "强沙尘暴";
+
+            case "53":
+            case "54":
+            case "55":
+            case "56":
+                return  "霾";
+
+            default:
+                return "未知";
         }
     }
 }

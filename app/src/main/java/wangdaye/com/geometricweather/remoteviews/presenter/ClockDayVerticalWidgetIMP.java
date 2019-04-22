@@ -74,10 +74,6 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
     public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
                                              String viewStyle, boolean showCard, boolean blackText,
                                              boolean hideSubtitle, String subtitleData, String clockFont) {
-        if (weather == null) {
-            return null;
-        }
-
         boolean dayTime = TimeManager.getInstance(context)
                 .getDayTime(context, weather, false)
                 .isDayTime();
@@ -109,6 +105,9 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 minimalIcon, showCard, blackText,
                 clockFont, viewStyle,
                 hideSubtitle, subtitleData);
+        if (weather == null) {
+            return views;
+        }
 
         views.setViewVisibility(R.id.widget_clock_day_card, showCard ? View.VISIBLE : View.GONE);
 

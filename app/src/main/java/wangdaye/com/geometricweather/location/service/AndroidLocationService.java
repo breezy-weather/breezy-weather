@@ -85,7 +85,7 @@ public class AndroidLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, @NonNull LocationCallback callback) {
+    public void requestLocation(Context context, @NonNull LocationCallback callback, boolean geocode) {
         callbackList.add(callback);
 
         if (working) {
@@ -108,7 +108,7 @@ public class AndroidLocationService extends LocationService {
             postLocationUpdateRequestToMainThread();
 
             while (working) {
-                if (updateLocation()) {
+                if (updateLocation(geocode)) {
                     // call onCompleted(Result r) in updateLocation().
                     stop();
                 } else {
@@ -155,14 +155,14 @@ public class AndroidLocationService extends LocationService {
         }
     }
 
-    private boolean updateLocation() {
+    private boolean updateLocation(boolean geocode) {
         if (!TextUtils.isEmpty(provider)
                 && locationManager.getAllProviders().contains(provider)) {
             Location l = locationManager.getLastKnownLocation(provider);
             if (l != null) {
                 location = l;
             }
-            Result result = buildResult();
+            Result result = buildResult(geocode);
             if (result != null) {
                 dispatchResult(result);
                 return true;
@@ -172,54 +172,66 @@ public class AndroidLocationService extends LocationService {
     }
 
     @Nullable
-    private Result buildResult() {
-        if (location != null && location.hasAccuracy()
-                && Geocoder.isPresent()) {
-
-            List<Address> addressList = null;
-            try {
-                addressList = new Geocoder(context).getFromLocation(
-                        location.getLatitude(), location.getLongitude(), 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (addressList != null && addressList.size() > 0) {
-                Result result = new Result();
-
-                result.district = addressList.get(0).getSubLocality();
-                result.city = addressList.get(0).getLocality();
-                if (TextUtils.isEmpty(result.city)) {
-                    result.city = addressList.get(0).getSubAdminArea();
-                }
-                result.province = addressList.get(0).getAdminArea();
-                result.country = addressList.get(0).getCountryName();
-
-                String countryCode = addressList.get(0).getCountryCode();
-                if (TextUtils.isEmpty(countryCode)) {
-                    if (TextUtils.isEmpty(result.country)) {
-                        result.inChina = false;
-                    } else {
-                        result.inChina = result.country.equals("中国")
-                                || result.country.equals("香港")
-                                || result.country.equals("澳门")
-                                || result.country.equals("台湾")
-                                || result.country.equals("China");
-                    }
-                } else {
-                    result.inChina = countryCode.equals("CN")
-                            || countryCode.equals("cn")
-                            || countryCode.equals("HK")
-                            || countryCode.equals("hk")
-                            || countryCode.equals("TW")
-                            || countryCode.equals("tw");
-                }
-
-                result.latitude = String.valueOf(location.getLatitude());
-                result.longitude = String.valueOf(location.getLongitude());
-                return result;
-            }
+    private Result buildResult(boolean geocode) {
+        if (location == null || !location.hasAccuracy()) {
+            return null;
         }
-        return null;
+
+        Result result = new Result(
+                String.valueOf(location.getLatitude()),
+                String.valueOf(location.getLongitude())
+        );
+        result.hasGeocodeInformation = false;
+
+        if (!hasValidGeocoder() || !geocode) {
+            return result;
+        }
+
+        List<Address> addressList = null;
+        try {
+            addressList = new Geocoder(context).getFromLocation(
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    1
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (addressList == null || addressList.size() == 0) {
+            return result;
+        }
+
+        result.setGeocodeInformation(
+                addressList.get(0).getCountryName(),
+                addressList.get(0).getAdminArea(),
+                TextUtils.isEmpty(addressList.get(0).getLocality())
+                        ? addressList.get(0).getSubAdminArea()
+                        : addressList.get(0).getLocality(),
+                addressList.get(0).getSubLocality()
+        );
+
+        String countryCode = addressList.get(0).getCountryCode();
+        if (TextUtils.isEmpty(countryCode)) {
+            if (TextUtils.isEmpty(result.country)) {
+                result.inChina = false;
+            } else {
+                result.inChina = result.country.equals("中国")
+                        || result.country.equals("香港")
+                        || result.country.equals("澳门")
+                        || result.country.equals("台湾")
+                        || result.country.equals("China");
+            }
+        } else {
+            result.inChina = countryCode.equals("CN")
+                    || countryCode.equals("cn")
+                    || countryCode.equals("HK")
+                    || countryCode.equals("hk")
+                    || countryCode.equals("TW")
+                    || countryCode.equals("tw");
+        }
+
+        return result;
     }
 
     private boolean bindProvider() {
@@ -262,5 +274,9 @@ public class AndroidLocationService extends LocationService {
             }
             callbackList.clear();
         });
+    }
+
+    public static boolean hasValidGeocoder() {
+        return Geocoder.isPresent();
     }
 }

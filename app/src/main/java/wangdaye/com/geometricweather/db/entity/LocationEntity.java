@@ -144,11 +144,11 @@ public class LocationEntity {
                 .newSession()
                 .getLocationEntityDao()
                 .queryBuilder()
-                .where(location.isLocal() ?
-                        LocationEntityDao.Properties.Local.eq(location.local)
-                        :
-                        LocationEntityDao.Properties.CityId.eq(location.cityId))
-                .list();
+                .where(
+                        location.isLocal()
+                                ? LocationEntityDao.Properties.Local.eq(location.local)
+                                : LocationEntityDao.Properties.CityId.eq(location.cityId)
+                ).list();
         if (entityList == null || entityList.size() <= 0) {
             return null;
         } else {
@@ -174,7 +174,14 @@ public class LocationEntity {
     }
 
     private Location toLocation() {
-        return new Location(cityId, district, city, province, country, lat, lon, source, null, null, local, china);
+        return new Location(
+                cityId,
+                district, city, province, country,
+                lat, lon,
+                source,
+                null, null,
+                local, china
+        );
     }
 
     public Long getId() {

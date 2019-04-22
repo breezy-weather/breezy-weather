@@ -26,7 +26,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.weather.TLSCompactHelper;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
@@ -155,12 +154,14 @@ public class GeometricWeather extends Application {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "accu");
-        locationService = LocationHelper.getLocationServiceProvider(this, sharedPreferences);
+        locationService = sharedPreferences.getString(getString(R.string.key_location_service), "native");
         darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
         iconStyle = sharedPreferences.getString(getString(R.string.key_icon_style), "material");
         cardDisplayValues = Objects.requireNonNull(sharedPreferences.getStringSet(
                 getString(R.string.key_card_display),
-                new HashSet<>(Arrays.asList(getResources().getStringArray(R.array.card_display_values)))
+                new HashSet<>(Arrays.asList(
+                                getResources().getStringArray(R.array.card_display_values)
+                ))
         )).toArray(new String[] {});
         cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
         colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);

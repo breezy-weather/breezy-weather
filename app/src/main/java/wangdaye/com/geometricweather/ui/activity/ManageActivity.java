@@ -110,12 +110,14 @@ public class ManageActivity extends GeoActivity
                             this,
                             DatabaseHelper.getInstance(this).readLocationList(),
                             true,
-                            this);
+                            this
+                    );
                     recyclerView.setAdapter(adapter);
                     Snackbar.make(
                             getSnackbarContainer(),
                             R.string.feedback_collect_succeed,
-                            Snackbar.LENGTH_SHORT).show();
+                            Snackbar.LENGTH_SHORT
+                    ).show();
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
@@ -141,7 +143,8 @@ public class ManageActivity extends GeoActivity
                 this,
                 DatabaseHelper.getInstance(this).readLocationList(),
                 true,
-                this);
+                this
+        );
     }
 
     private void initWidget() {
@@ -242,12 +245,13 @@ public class ManageActivity extends GeoActivity
 
     @Override
     public void onClick(View view, int position) {
-        String locationName = adapter.itemList.get(position).isLocal() ?
-                getString(R.string.local) : adapter.itemList.get(position).city;
-
+        String locationName = adapter.itemList.get(position).isLocal()
+                ? getString(R.string.local)
+                : adapter.itemList.get(position).city;
         setResult(
                 RESULT_OK,
-                new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName));
+                new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName)
+        );
         finish();
     }
 

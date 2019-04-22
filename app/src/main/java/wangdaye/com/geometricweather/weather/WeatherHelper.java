@@ -41,19 +41,6 @@ public class WeatherHelper {
 
     private WeatherService weatherService;
 
-    public static final String KIND_CLEAR = "CLEAR";
-    public static final String KIND_PARTLY_CLOUDY = "PARTLY_CLOUDY";
-    public static final String KIND_CLOUDY = "CLOUDY";
-    public static final String KIND_RAIN = "RAIN";
-    public static final String KIND_SNOW = "SNOW";
-    public static final String KIND_WIND = "WIND";
-    public static final String KIND_FOG = "FOG";
-    public static final String KIND_HAZE = "HAZE";
-    public static final String KIND_SLEET = "SLEET";
-    public static final String KIND_HAIL = "HAIL";
-    public static final String KIND_THUNDER = "THUNDER";
-    public static final String KIND_THUNDERSTORM = "THUNDERSTORM";
-
     private void bindWeatherService(String source) {
         switch (source) {
             case "cn":
@@ -139,244 +126,6 @@ public class WeatherHelper {
         }
     }
 
-    public static String getAccuWeatherKind(int icon) {
-        if (icon == 1 || icon == 2 || icon == 30
-                || icon == 33 || icon == 34) {
-            return KIND_CLEAR;
-        } else if (icon == 3 || icon == 4 || icon == 6 || icon == 7
-                || icon == 35 || icon == 36 || icon == 38) {
-            return KIND_PARTLY_CLOUDY;
-        } else if (icon == 5 || icon == 37) {
-            return KIND_HAZE;
-        } else if (icon == 8) {
-            return KIND_CLOUDY;
-        } else if (icon == 11) {
-            return KIND_FOG;
-        } else if (icon == 12 || icon == 13 || icon == 14 || icon == 18
-                || icon == 39 || icon == 40) {
-            return KIND_RAIN;
-        } else if (icon == 15 || icon == 16 || icon == 17 || icon == 41 || icon == 42) {
-            return KIND_THUNDERSTORM;
-        } else if (icon == 19 || icon == 20 || icon == 21 || icon == 22 || icon == 23 || icon == 24
-                || icon == 31 || icon == 43 || icon == 44) {
-            return KIND_SNOW;
-        } else if (icon == 25) {
-            return KIND_HAIL;
-        } else if (icon == 26 || icon == 29) {
-            return KIND_SLEET;
-        } else if (icon == 32) {
-            return KIND_WIND;
-        } else {
-            return KIND_CLOUDY;
-        }
-    }
-
-    public static String getCNWeatherKind(String icon) {
-        if (TextUtils.isEmpty(icon)) {
-            return KIND_CLOUDY;
-        }
-
-        switch (icon) {
-            case "0":
-            case "00":
-                return KIND_CLEAR;
-
-            case "1":
-            case "01":
-                return KIND_PARTLY_CLOUDY;
-
-            case "2":
-            case "02":
-                return KIND_CLOUDY;
-
-            case "3":
-            case "7":
-            case "8":
-            case "9":
-            case "03":
-            case "07":
-            case "08":
-            case "09":
-            case "10":
-            case "11":
-            case "12":
-            case "21":
-            case "22":
-            case "23":
-            case "24":
-            case "25":
-                return KIND_RAIN;
-
-            case "4":
-            case "04":
-                return KIND_THUNDERSTORM;
-
-            case "5":
-            case "05":
-                return KIND_HAIL;
-
-            case "6":
-            case "06":
-                return KIND_SLEET;
-
-            case "13":
-            case "14":
-            case "15":
-            case "16":
-            case "17":
-            case "26":
-            case "27":
-            case "28":
-                return KIND_SNOW;
-
-            case "18":
-            case "32":
-            case "49":
-            case "57":
-                return KIND_FOG;
-
-            case "19":
-                return KIND_SLEET;
-
-            case "20":
-            case "29":
-            case "30":
-                return KIND_WIND;
-
-            case "53":
-            case "54":
-            case "55":
-            case "56":
-                return KIND_HAZE;
-
-            default:
-                return KIND_CLOUDY;
-        }
-    }
-
-    public static String getCNWeatherName(String icon) {
-        if (TextUtils.isEmpty(icon)) {
-            return "未知";
-        }
-
-        switch (icon) {
-            case "0":
-            case "00":
-                return "晴";
-
-            case "1":
-            case "01":
-                return "多云";
-
-            case "2":
-            case "02":
-                return "阴";
-
-            case "3":
-            case "03":
-                return "阵雨";
-
-            case "4":
-            case "04":
-                return "雷阵雨";
-
-            case "5":
-            case "05":
-                return "雷阵雨伴有冰雹";
-
-            case "6":
-            case "06":
-                return "雨夹雪";
-
-            case "7":
-            case "07":
-                return "小雨";
-
-            case "8":
-            case "08":
-                return  "中雨";
-
-            case "9":
-            case "09":
-                return  "大雨";
-
-            case "10":
-                return  "暴雨";
-
-            case "11":
-                return  "大暴雨";
-
-            case "12":
-                return  "特大暴雨";
-
-            case "13":
-                return  "阵雪";
-
-            case "14":
-                return  "小雪";
-
-            case "15":
-                return  "中雪";
-
-            case "16":
-                return  "大雪";
-
-            case "17":
-                return  "暴雪";
-
-            case "18":
-                return  "雾";
-
-            case "19":
-                return  "冻雨";
-
-            case "20":
-                return  "沙尘暴";
-
-            case "21":
-                return  "小到中雨";
-
-            case "22":
-                return  "中到大雨";
-
-            case "23":
-                return  "大到暴雨";
-
-            case "24":
-                return  "暴雨到大暴雨";
-
-            case "25":
-                return  "大暴雨到特大暴雨";
-
-            case "26":
-                return  "小到中雪";
-
-            case "27":
-                return  "中到大雪";
-
-            case "28":
-                return  "大到暴雪";
-
-            case "29":
-                return  "浮尘";
-
-            case "30":
-                return  "扬沙";
-
-            case "31":
-                return  "强沙尘暴";
-
-            case "53":
-            case "54":
-            case "55":
-            case "56":
-                return  "霾";
-
-            default:
-                return "未知";
-        }
-    }
-
     public static int[] getWeatherIcon(String weatherKind, boolean dayTime) {
         int[] imageId = new int[4];
         if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
@@ -388,7 +137,7 @@ public class WeatherHelper {
         }
 
         switch (weatherKind) {
-            case KIND_CLEAR:
+            case Weather.KIND_CLEAR:
                 if(dayTime) {
                     imageId[0] = R.drawable.weather_sun_circle;
                     imageId[1] = R.drawable.weather_sun_shine;
@@ -402,7 +151,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_PARTLY_CLOUDY:
+            case Weather.KIND_PARTLY_CLOUDY:
                 if(dayTime) {
                     imageId[0] = R.drawable.weather_cloud_right;
                     imageId[1] = R.drawable.weather_sun_circle;
@@ -416,70 +165,70 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_CLOUDY:
+            case Weather.KIND_CLOUDY:
                 imageId[0] = R.drawable.weather_cloud_top;
                 imageId[1] = R.drawable.weather_cloud_large;
                 imageId[2] = 0;
                 imageId[3] = R.drawable.weather_cloudy;
                 break;
 
-            case KIND_RAIN:
+            case Weather.KIND_RAIN:
                 imageId[0] = R.drawable.weather_cloud_large;
                 imageId[1] = R.drawable.weather_rain_left;
                 imageId[2] = R.drawable.weather_rain_right;
                 imageId[3] = R.drawable.weather_rain;
                 break;
 
-            case KIND_WIND:
+            case Weather.KIND_WIND:
                 imageId[0] = R.drawable.weather_wind;
                 imageId[1] = 0;
                 imageId[2] = 0;
                 imageId[3] = R.drawable.weather_wind;
                 break;
 
-            case KIND_SNOW:
+            case Weather.KIND_SNOW:
                 imageId[0] = R.drawable.weather_cloud_large;
                 imageId[1] = R.drawable.weather_snow_left;
                 imageId[2] = R.drawable.weather_snow_right;
                 imageId[3] = R.drawable.weather_snow;
                 break;
 
-            case KIND_FOG:
+            case Weather.KIND_FOG:
                 imageId[0] = R.drawable.weather_fog;
                 imageId[1] = R.drawable.weather_fog;
                 imageId[2] = R.drawable.weather_fog;
                 imageId[3] = R.drawable.weather_fog;
                 break;
 
-            case KIND_HAZE:
+            case Weather.KIND_HAZE:
                 imageId[0] = R.drawable.weather_haze_1;
                 imageId[1] = R.drawable.weather_haze_2;
                 imageId[2] = R.drawable.weather_haze_3;
                 imageId[3] = R.drawable.weather_haze;
                 break;
 
-            case KIND_SLEET:
+            case Weather.KIND_SLEET:
                 imageId[0] = R.drawable.weather_cloud_large;
                 imageId[1] = R.drawable.weather_snow_left;
                 imageId[2] = R.drawable.weather_rain_right;
                 imageId[3] = R.drawable.weather_sleet;
                 break;
 
-            case KIND_THUNDERSTORM:
+            case Weather.KIND_THUNDERSTORM:
                 imageId[0] = R.drawable.weather_cloud_large;
                 imageId[1] = R.drawable.weather_single_thunder;
                 imageId[2] = R.drawable.weather_rain_right;
                 imageId[3] = R.drawable.weather_thunderstorm;
                 break;
 
-            case KIND_THUNDER:
+            case Weather.KIND_THUNDER:
                 imageId[0] = R.drawable.weather_cloud_large;
                 imageId[1] = R.drawable.weather_single_thunder;
                 imageId[2] = 0;
                 imageId[3] = R.drawable.weather_thunder;
                 break;
 
-            case KIND_HAIL:
+            case Weather.KIND_HAIL:
                 imageId[0] = R.drawable.weather_cloud_large;
                 imageId[1] = R.drawable.weather_hail_left;
                 imageId[2] = R.drawable.weather_hail_right;
@@ -499,7 +248,7 @@ public class WeatherHelper {
     private static int getPixelWeatherIcon(String weatherInfo, boolean dayTime) {
         int imageId = R.drawable.weather_cloudy_pixel;
         switch (weatherInfo) {
-            case KIND_CLEAR:
+            case Weather.KIND_CLEAR:
                 if(dayTime) {
                     imageId = R.drawable.weather_sun_day_pixel;
                 } else {
@@ -507,7 +256,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_PARTLY_CLOUDY:
+            case Weather.KIND_PARTLY_CLOUDY:
                 if(dayTime) {
                     imageId = R.drawable.weather_cloud_day_pixel;
                 } else {
@@ -515,34 +264,34 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_CLOUDY:
+            case Weather.KIND_CLOUDY:
                 imageId = R.drawable.weather_cloudy_pixel;
                 break;
 
-            case KIND_RAIN:
+            case Weather.KIND_RAIN:
                 imageId = R.drawable.weather_rain_pixel;
                 break;
 
-            case KIND_WIND:
+            case Weather.KIND_WIND:
                 imageId = R.drawable.weather_wind_pixel;
                 break;
 
-            case KIND_SNOW:
-            case KIND_HAIL:
+            case Weather.KIND_SNOW:
+            case Weather.KIND_HAIL:
                 imageId = R.drawable.weather_snow_pixel;
                 break;
 
-            case KIND_FOG:
-            case KIND_HAZE:
+            case Weather.KIND_FOG:
+            case Weather.KIND_HAZE:
                 imageId = R.drawable.weather_fog_pixel;
                 break;
 
-            case KIND_SLEET:
+            case Weather.KIND_SLEET:
                 imageId = R.drawable.weather_sleet_pixel;
                 break;
 
-            case KIND_THUNDERSTORM:
-            case KIND_THUNDER:
+            case Weather.KIND_THUNDERSTORM:
+            case Weather.KIND_THUNDER:
                 imageId = R.drawable.weather_thunderstorm_pixel;
                 break;
         }
@@ -552,7 +301,7 @@ public class WeatherHelper {
     private static int getMiniWeatherIcon(String weatherInfo, boolean dayTime, String textColor) {
         int imageId = R.drawable.weather_cloudy_mini_light;
         switch (weatherInfo) {
-            case KIND_CLEAR:
+            case Weather.KIND_CLEAR:
                 if(dayTime) {
                     switch (textColor) {
                         case "light":
@@ -584,7 +333,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_PARTLY_CLOUDY:
+            case Weather.KIND_PARTLY_CLOUDY:
                 if(dayTime) {
                     switch (textColor) {
                         case "light":
@@ -616,7 +365,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_CLOUDY:
+            case Weather.KIND_CLOUDY:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_cloudy_mini_light;
@@ -632,7 +381,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_RAIN:
+            case Weather.KIND_RAIN:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_rain_mini_light;
@@ -648,7 +397,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_WIND:
+            case Weather.KIND_WIND:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_wind_mini_light;
@@ -664,7 +413,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_SNOW:
+            case Weather.KIND_SNOW:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_snow_mini_light;
@@ -680,7 +429,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_FOG:
+            case Weather.KIND_FOG:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_fog_mini_light;
@@ -696,7 +445,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_HAZE:
+            case Weather.KIND_HAZE:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_haze_mini_light;
@@ -712,7 +461,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_SLEET:
+            case Weather.KIND_SLEET:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_sleet_mini_light;
@@ -728,7 +477,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_THUNDERSTORM:
+            case Weather.KIND_THUNDERSTORM:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_thunderstorm_mini_light;
@@ -744,7 +493,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_THUNDER:
+            case Weather.KIND_THUNDER:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_thunder_mini_light;
@@ -760,7 +509,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_HAIL:
+            case Weather.KIND_HAIL:
                 switch (textColor) {
                     case "light":
                         imageId = R.drawable.weather_hail_mini_light;
@@ -797,48 +546,48 @@ public class WeatherHelper {
 
     public static int getNotificationWeatherIcon(String weatherInfo, boolean dayTime) {
         switch (weatherInfo) {
-            case KIND_CLEAR:
+            case Weather.KIND_CLEAR:
                 if(dayTime) {
                     return R.drawable.weather_sun_day_xml;
                 } else {
                     return R.drawable.weather_sun_night_xml;
                 }
 
-            case KIND_PARTLY_CLOUDY:
+            case Weather.KIND_PARTLY_CLOUDY:
                 if(dayTime) {
                     return R.drawable.weather_cloud_day_xml;
                 } else {
                     return R.drawable.weather_cloud_night_xml;
                 }
 
-            case KIND_CLOUDY:
+            case Weather.KIND_CLOUDY:
                 return R.drawable.weather_cloudy_xml;
 
-            case KIND_RAIN:
+            case Weather.KIND_RAIN:
                 return R.drawable.weather_rain_xml;
 
-            case KIND_WIND:
+            case Weather.KIND_WIND:
                 return R.drawable.weather_wind_xml;
 
-            case KIND_SNOW:
+            case Weather.KIND_SNOW:
                 return R.drawable.weather_snow_xml;
 
-            case KIND_FOG:
+            case Weather.KIND_FOG:
                 return R.drawable.weather_fog_xml;
 
-            case KIND_HAZE:
+            case Weather.KIND_HAZE:
                 return R.drawable.weather_haze_xml;
 
-            case KIND_SLEET:
+            case Weather.KIND_SLEET:
                 return R.drawable.weather_sleet_xml;
 
-            case KIND_THUNDERSTORM:
+            case Weather.KIND_THUNDERSTORM:
                 return R.drawable.weather_thunderstorm_xml;
 
-            case KIND_THUNDER:
+            case Weather.KIND_THUNDER:
                 return R.drawable.weather_thunder_xml;
 
-            case KIND_HAIL:
+            case Weather.KIND_HAIL:
                 return R.drawable.weather_hail_xml;
 
             default:
@@ -853,7 +602,7 @@ public class WeatherHelper {
         }
 
         switch (weatherKind) {
-            case KIND_CLEAR:
+            case Weather.KIND_CLEAR:
                 if(dayTime) {
                     animatorId[0] = R.animator.weather_sun_day_1;
                     animatorId[1] = R.animator.weather_sun_day_2;
@@ -865,7 +614,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_PARTLY_CLOUDY:
+            case Weather.KIND_PARTLY_CLOUDY:
                 if(dayTime) {
                     animatorId[0] = R.animator.weather_cloud_day_1;
                     animatorId[1] = R.animator.weather_cloud_day_2;
@@ -877,61 +626,61 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_CLOUDY:
+            case Weather.KIND_CLOUDY:
                 animatorId[0] = R.animator.weather_cloudy_1;
                 animatorId[1] = R.animator.weather_cloudy_2;
                 animatorId[2] = 0;
                 break;
 
-            case KIND_RAIN:
+            case Weather.KIND_RAIN:
                 animatorId[0] = R.animator.weather_rain_1;
                 animatorId[1] = R.animator.weather_rain_2;
                 animatorId[2] = R.animator.weather_rain_3;
                 break;
 
-            case KIND_WIND:
+            case Weather.KIND_WIND:
                 animatorId[0] = R.animator.weather_wind;
                 animatorId[1] = 0;
                 animatorId[2] = 0;
                 break;
 
-            case KIND_SNOW:
+            case Weather.KIND_SNOW:
                 animatorId[0] = R.animator.weather_snow_1;
                 animatorId[1] = R.animator.weather_snow_2;
                 animatorId[2] = R.animator.weather_snow_3;
                 break;
 
-            case KIND_FOG:
+            case Weather.KIND_FOG:
                 animatorId[0] = R.animator.weather_fog_1;
                 animatorId[1] = R.animator.weather_fog_2;
                 animatorId[2] = R.animator.weather_fog_3;
                 break;
 
-            case KIND_HAZE:
+            case Weather.KIND_HAZE:
                 animatorId[0] = R.animator.weather_haze_1;
                 animatorId[1] = R.animator.weather_haze_2;
                 animatorId[2] = R.animator.weather_haze_3;
                 break;
 
-            case KIND_SLEET:
+            case Weather.KIND_SLEET:
                 animatorId[0] = R.animator.weather_sleet_1;
                 animatorId[1] = R.animator.weather_sleet_2;
                 animatorId[2] = R.animator.weather_sleet_3;
                 break;
 
-            case KIND_THUNDERSTORM:
+            case Weather.KIND_THUNDERSTORM:
                 animatorId[0] = R.animator.weather_thunderstorm_1;
                 animatorId[1] = R.animator.weather_thunderstorm_2;
                 animatorId[2] = R.animator.weather_thunderstorm_3;
                 break;
 
-            case KIND_THUNDER:
+            case Weather.KIND_THUNDER:
                 animatorId[0] = R.animator.weather_thunder_1;
                 animatorId[1] = R.animator.weather_thunder_2;
                 animatorId[2] = R.animator.weather_thunder_2;
                 break;
 
-            case KIND_HAIL:
+            case Weather.KIND_HAIL:
                 animatorId[0] = R.animator.weather_hail_1;
                 animatorId[1] = R.animator.weather_hail_2;
                 animatorId[2] = R.animator.weather_hail_3;
@@ -962,7 +711,7 @@ public class WeatherHelper {
     public static int getShortcutIcon(String weatherInfo, boolean dayTime) {
         int imageId;
         switch (weatherInfo) {
-            case KIND_CLEAR:
+            case Weather.KIND_CLEAR:
                 if(dayTime) {
                     imageId = R.drawable.ic_shortcut_sun_day;
                 } else {
@@ -970,7 +719,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_PARTLY_CLOUDY:
+            case Weather.KIND_PARTLY_CLOUDY:
                 if(dayTime) {
                     imageId = R.drawable.ic_shortcut_cloud_day;
                 } else {
@@ -978,43 +727,43 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_CLOUDY:
+            case Weather.KIND_CLOUDY:
                 imageId = R.drawable.ic_shortcut_cloudy;
                 break;
 
-            case KIND_RAIN:
+            case Weather.KIND_RAIN:
                 imageId = R.drawable.ic_shortcut_rain;
                 break;
 
-            case KIND_WIND:
+            case Weather.KIND_WIND:
                 imageId = R.drawable.ic_shortcut_wind;
                 break;
 
-            case KIND_SNOW:
+            case Weather.KIND_SNOW:
                 imageId = R.drawable.ic_shortcut_snow;
                 break;
 
-            case KIND_FOG:
+            case Weather.KIND_FOG:
                 imageId = R.drawable.ic_shortcut_fog;
                 break;
 
-            case KIND_HAZE:
+            case Weather.KIND_HAZE:
                 imageId = R.drawable.ic_shortcut_haze;
                 break;
 
-            case KIND_SLEET:
+            case Weather.KIND_SLEET:
                 imageId = R.drawable.ic_shortcut_sleet;
                 break;
 
-            case KIND_THUNDERSTORM:
+            case Weather.KIND_THUNDERSTORM:
                 imageId = R.drawable.ic_shortcut_thunder;
                 break;
 
-            case KIND_THUNDER:
+            case Weather.KIND_THUNDER:
                 imageId = R.drawable.ic_shortcut_thunder;
                 break;
 
-            case KIND_HAIL:
+            case Weather.KIND_HAIL:
                 imageId = R.drawable.ic_shortcut_hail;
                 break;
 
@@ -1028,7 +777,7 @@ public class WeatherHelper {
     public static int getShortcutForeground(String weatherInfo, boolean dayTime) {
         int imageId;
         switch (weatherInfo) {
-            case KIND_CLEAR:
+            case Weather.KIND_CLEAR:
                 if(dayTime) {
                     imageId = R.drawable.ic_shortcut_sun_day_foreground;
                 } else {
@@ -1036,7 +785,7 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_PARTLY_CLOUDY:
+            case Weather.KIND_PARTLY_CLOUDY:
                 if(dayTime) {
                     imageId = R.drawable.ic_shortcut_cloud_day_foreground;
                 } else {
@@ -1044,43 +793,43 @@ public class WeatherHelper {
                 }
                 break;
 
-            case KIND_CLOUDY:
+            case Weather.KIND_CLOUDY:
                 imageId = R.drawable.ic_shortcut_cloudy_foreground;
                 break;
 
-            case KIND_RAIN:
+            case Weather.KIND_RAIN:
                 imageId = R.drawable.ic_shortcut_rain_foreground;
                 break;
 
-            case KIND_WIND:
+            case Weather.KIND_WIND:
                 imageId = R.drawable.ic_shortcut_wind_foreground;
                 break;
 
-            case KIND_SNOW:
+            case Weather.KIND_SNOW:
                 imageId = R.drawable.ic_shortcut_snow_foreground;
                 break;
 
-            case KIND_FOG:
+            case Weather.KIND_FOG:
                 imageId = R.drawable.ic_shortcut_fog_foreground;
                 break;
 
-            case KIND_HAZE:
+            case Weather.KIND_HAZE:
                 imageId = R.drawable.ic_shortcut_haze_foreground;
                 break;
 
-            case KIND_SLEET:
+            case Weather.KIND_SLEET:
                 imageId = R.drawable.ic_shortcut_sleet_foreground;
                 break;
 
-            case KIND_THUNDERSTORM:
+            case Weather.KIND_THUNDERSTORM:
                 imageId = R.drawable.ic_shortcut_thunder_foreground;
                 break;
 
-            case KIND_THUNDER:
+            case Weather.KIND_THUNDER:
                 imageId = R.drawable.ic_shortcut_thunder_foreground;
                 break;
 
-            case KIND_HAIL:
+            case Weather.KIND_HAIL:
                 imageId = R.drawable.ic_shortcut_hail_foreground;
                 break;
 

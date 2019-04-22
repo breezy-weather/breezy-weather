@@ -93,7 +93,8 @@ public class CNCityEntity {
         QueryBuilder<CNCityEntity> builder = dao.queryBuilder();
         builder.whereOr(
                 CNCityEntityDao.Properties.District.eq(name),
-                CNCityEntityDao.Properties.City.eq(name));
+                CNCityEntityDao.Properties.City.eq(name)
+        );
 
         List<CNCityEntity> entityList = builder.list();
         if (entityList == null || entityList.size() <= 0) {
@@ -114,24 +115,34 @@ public class CNCityEntity {
         conditionList.add(
                 dao.queryBuilder().and(
                         CNCityEntityDao.Properties.District.eq(district),
-                        CNCityEntityDao.Properties.City.eq(city)));
+                        CNCityEntityDao.Properties.City.eq(city)
+                )
+        );
         conditionList.add(
                 dao.queryBuilder().and(
                         CNCityEntityDao.Properties.District.eq(district),
-                        CNCityEntityDao.Properties.Province.eq(province)));
+                        CNCityEntityDao.Properties.Province.eq(province)
+                )
+        );
         conditionList.add(
                 dao.queryBuilder().and(
                         CNCityEntityDao.Properties.City.eq(city),
-                        CNCityEntityDao.Properties.Province.eq(province)));
+                        CNCityEntityDao.Properties.Province.eq(province)
+                )
+        );
         conditionList.add(CNCityEntityDao.Properties.City.eq(city));
         conditionList.add(
                 dao.queryBuilder().and(
                         CNCityEntityDao.Properties.District.eq(city),
-                        CNCityEntityDao.Properties.Province.eq(province)));
+                        CNCityEntityDao.Properties.Province.eq(province)
+                )
+        );
         conditionList.add(
                 dao.queryBuilder().and(
                         CNCityEntityDao.Properties.District.eq(city),
-                        CNCityEntityDao.Properties.City.eq(province)));
+                        CNCityEntityDao.Properties.City.eq(province)
+                )
+        );
         conditionList.add(CNCityEntityDao.Properties.District.eq(city));
         conditionList.add(CNCityEntityDao.Properties.City.eq(district));
 
@@ -163,7 +174,8 @@ public class CNCityEntity {
         builder.whereOr(
                 CNCityEntityDao.Properties.District.like("%" + name + "%"),
                 CNCityEntityDao.Properties.City.like("%" + name + "%"),
-                CNCityEntityDao.Properties.Province.like("%" + name + "%"));
+                CNCityEntityDao.Properties.Province.like("%" + name + "%")
+        );
 
         List<CNCity> cityList = new ArrayList<>();
         try {

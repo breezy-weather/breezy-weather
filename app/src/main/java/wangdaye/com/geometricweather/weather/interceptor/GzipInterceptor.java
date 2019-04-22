@@ -24,7 +24,8 @@ public class GzipInterceptor extends ReportExceptionInterceptor {
         try {
             return buildResponse(request, chain.proceed(request));
         } catch (Exception e) {
-            return new Response.Builder().build();
+            handleException(e);
+            return nullResponse(request);
         }
     }
 

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,10 +47,10 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity
     @SuppressLint("InflateParams")
     @Override
     public void initView() {
-        this.widgetContainer = findViewById(R.id.activity_create_widget_week_widgetContainer);
-
         ImageView wallpaper = findViewById(R.id.activity_create_widget_week_wall);
         bindWallpaper(wallpaper);
+
+        this.widgetContainer = findViewById(R.id.activity_create_widget_week_widgetContainer);
 
         this.container = findViewById(R.id.activity_create_widget_week_container);
 
@@ -70,7 +69,6 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity
         return widgetContainer;
     }
 
-    @Nullable
     @Override
     public RemoteViews getRemoteViews() {
         return WeekWidgetIMP.getRemoteViews(

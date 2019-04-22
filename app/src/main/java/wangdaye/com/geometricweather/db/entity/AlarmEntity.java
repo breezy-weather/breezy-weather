@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.basic.model.Location;
@@ -52,21 +53,25 @@ public class AlarmEntity {
             return;
         }
 
-        deleteAlarmEntityList(
-                database,
-                searchLocationAlarmEntity(database, location));
+        deleteAlarmList(database, location);
 
+        List<AlarmEntity> entityList = new ArrayList<>();
+        for (int i = 0; i < weather.alertList.size(); i ++) {
+            entityList.add(weather.alertList.get(i).toAlarmEntity(weather.base));
+        }
         new DaoMaster(database)
                 .newSession()
                 .getAlarmEntityDao()
-                .insertInTx(weather.toAlarmEntityList());
+                .insertInTx(entityList);
     }
 
     // delete.
 
     public static void deleteAlarmList(SQLiteDatabase database, Location location) {
-        List<AlarmEntity> entityList = searchLocationAlarmEntity(database, location);
-        deleteAlarmEntityList(database, entityList);
+        deleteAlarmEntityList(
+                database,
+                searchLocationAlarmEntity(database, location)
+        );
     }
 
     private static void deleteAlarmEntityList(SQLiteDatabase database, List<AlarmEntity> list) {

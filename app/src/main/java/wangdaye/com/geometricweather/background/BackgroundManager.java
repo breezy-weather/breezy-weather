@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.background.polling.PollingTaskHelper;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
@@ -26,16 +27,20 @@ public class BackgroundManager {
 
             boolean openTodayForecast = sharedPreferences.getBoolean(
                     context.getString(R.string.key_forecast_today),
-                    false);
+                    false
+            );
             boolean openTomorrowForecast = sharedPreferences.getBoolean(
                     context.getString(R.string.key_forecast_tomorrow),
-                    false);
+                    false
+            );
             String todayForecastTime = sharedPreferences.getString(
                     context.getString(R.string.key_forecast_today_time),
-                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME);
+                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME
+            );
             String tomorrowForecastTime = sharedPreferences.getString(
                     context.getString(R.string.key_forecast_tomorrow_time),
-                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME);
+                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME
+            );
 
             PollingTaskHelper.stopNormalPollingTask(context);
             PollingTaskHelper.startNormalPollingTask(
@@ -75,8 +80,7 @@ public class BackgroundManager {
 
             PollingTaskHelper.stopNormalPollingTask(context);
             PollingTaskHelper.startNormalPollingTask(
-                    context,
-                    ValueUtils.getRefreshRateScale(
+                    context, ValueUtils.getRefreshRateScale(
                             GeometricWeather.getInstance().getUpdateInterval()
                     )
             );
@@ -101,10 +105,12 @@ public class BackgroundManager {
 
             boolean openTodayForecast = sharedPreferences.getBoolean(
                     context.getString(R.string.key_forecast_today),
-                    false);
+                    false
+            );
             String todayForecastTime = sharedPreferences.getString(
                     context.getString(R.string.key_forecast_today_time),
-                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME);
+                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME
+            );
 
             PollingTaskHelper.stopTodayForecastPollingTask(context);
             if (openTodayForecast) {
@@ -131,10 +137,12 @@ public class BackgroundManager {
 
             boolean openTomorrowForecast = sharedPreferences.getBoolean(
                     context.getString(R.string.key_forecast_tomorrow),
-                    false);
+                    false
+            );
             String tomorrowForecastTime = sharedPreferences.getString(
                     context.getString(R.string.key_forecast_tomorrow_time),
-                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME);
+                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME
+            );
 
             PollingTaskHelper.stopTomorrowForecastPollingTask(context);
             if (openTomorrowForecast) {
