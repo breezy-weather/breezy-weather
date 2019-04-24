@@ -1,6 +1,5 @@
-package wangdaye.com.geometricweather.remoteviews.ui;
+package wangdaye.com.geometricweather.remoteviews.config;
 
-import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,13 +20,13 @@ import android.widget.Switch;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.BackgroundManager;
-import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayWeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayDetailsWidgetIMP;
 
 /**
- * Clock day week widget config activity.
+ * Clock day details widget config activity.
  * */
 
-public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivity
+public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigActivity
         implements View.OnClickListener {
 
     private FrameLayout widgetContainer;
@@ -43,12 +42,7 @@ public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivi
 
     @Override
     public void setContentView() {
-        setContentView(R.layout.activity_create_widget_clock_day_week);
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
+        setContentView(R.layout.activity_create_widget_clock_day_details);
     }
 
     @Override
@@ -59,29 +53,28 @@ public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivi
         this.clockFontValues = getResources().getStringArray(R.array.clock_font_values);
     }
 
-    @SuppressLint("InflateParams")
     @Override
     public void initView() {
-        ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_week_wall);
+        ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_details_wall);
         bindWallpaper(wallpaper);
 
-        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_week_widgetContainer);
+        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_details_widgetContainer);
 
-        this.container = findViewById(R.id.activity_create_widget_clock_day_week_container);
+        this.container = findViewById(R.id.activity_create_widget_clock_day_details_container);
 
-        this.showCardSwitch = findViewById(R.id.activity_create_widget_clock_day_week_showCardSwitch);
+        this.showCardSwitch = findViewById(R.id.activity_create_widget_clock_day_details_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
 
-        this.blackTextSwitch = findViewById(R.id.activity_create_widget_clock_day_week_blackTextSwitch);
+        this.blackTextSwitch = findViewById(R.id.activity_create_widget_clock_day_details_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
 
-        AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_create_widget_clock_day_week_clockFontSpinner);
+        AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_create_widget_clock_day_details_clockFontSpinner);
         clockFontSpinner.setOnItemSelectedListener(new ClockFontSpinnerSelectedListener());
         clockFontSpinner.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, clockFonts)
         );
 
-        Button doneButton = findViewById(R.id.activity_create_widget_clock_day_week_doneButton);
+        Button doneButton = findViewById(R.id.activity_create_widget_clock_day_details_doneButton);
         doneButton.setOnClickListener(this);
     }
 
@@ -92,10 +85,15 @@ public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivi
 
     @Override
     public RemoteViews getRemoteViews() {
-        return ClockDayWeekWidgetIMP.getRemoteViews(
+        return ClockDayDetailsWidgetIMP.getRemoteViews(
                 this, getLocationNow(), getLocationNow().weather,
                 showCardSwitch.isChecked(), blackTextSwitch.isChecked(), clockFontValueNow
         );
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return container;
     }
 
     // interface.
@@ -105,15 +103,16 @@ public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.activity_create_widget_clock_day_week_doneButton:
+            case R.id.activity_create_widget_clock_day_details_doneButton:
                 SharedPreferences.Editor editor = getSharedPreferences(
-                        getString(R.string.sp_widget_clock_day_week_setting),
+                        getString(R.string.sp_widget_clock_day_details_setting),
                         MODE_PRIVATE
                 ).edit();
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
                 editor.putString(getString(R.string.key_clock_font), clockFontValueNow);
                 editor.apply();
+
 
                 Intent intent = getIntent();
                 Bundle extras = intent.getExtras();

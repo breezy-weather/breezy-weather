@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.remoteviews.ui;
+package wangdaye.com.geometricweather.remoteviews.config;
 
 import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetManager;
@@ -7,8 +7,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.appcompat.widget.AppCompatSpinner;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -18,13 +21,13 @@ import android.widget.Switch;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.BackgroundManager;
-import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayWeekWidgetIMP;
 
 /**
- * Week widget config activity.
+ * Clock day week widget config activity.
  * */
 
-public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity
+public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivity
         implements View.OnClickListener {
 
     private FrameLayout widgetContainer;
@@ -34,9 +37,13 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity
     private Switch showCardSwitch;
     private Switch blackTextSwitch;
 
+    private String clockFontValueNow;
+    private String[] clockFonts;
+    private String[] clockFontValues;
+
     @Override
     public void setContentView() {
-        setContentView(R.layout.activity_create_widget_week);
+        setContentView(R.layout.activity_create_widget_clock_day_week);
     }
 
     @Override
@@ -44,23 +51,37 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity
         return container;
     }
 
+    @Override
+    public void initData() {
+        super.initData();
+        this.clockFontValueNow = "light";
+        this.clockFonts = getResources().getStringArray(R.array.clock_font);
+        this.clockFontValues = getResources().getStringArray(R.array.clock_font_values);
+    }
+
     @SuppressLint("InflateParams")
     @Override
     public void initView() {
-        ImageView wallpaper = findViewById(R.id.activity_create_widget_week_wall);
+        ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_week_wall);
         bindWallpaper(wallpaper);
 
-        this.widgetContainer = findViewById(R.id.activity_create_widget_week_widgetContainer);
+        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_week_widgetContainer);
 
-        this.container = findViewById(R.id.activity_create_widget_week_container);
+        this.container = findViewById(R.id.activity_create_widget_clock_day_week_container);
 
-        this.showCardSwitch = findViewById(R.id.activity_create_widget_week_showCardSwitch);
+        this.showCardSwitch = findViewById(R.id.activity_create_widget_clock_day_week_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
 
-        this.blackTextSwitch = findViewById(R.id.activity_create_widget_week_blackTextSwitch);
+        this.blackTextSwitch = findViewById(R.id.activity_create_widget_clock_day_week_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
 
-        Button doneButton = findViewById(R.id.activity_create_widget_week_doneButton);
+        AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_create_widget_clock_day_week_clockFontSpinner);
+        clockFontSpinner.setOnItemSelectedListener(new ClockFontSpinnerSelectedListener());
+        clockFontSpinner.setAdapter(
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, clockFonts)
+        );
+
+        Button doneButton = findViewById(R.id.activity_create_widget_clock_day_week_doneButton);
         doneButton.setOnClickListener(this);
     }
 
@@ -71,9 +92,9 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity
 
     @Override
     public RemoteViews getRemoteViews() {
-        return WeekWidgetIMP.getRemoteViews(
+        return ClockDayWeekWidgetIMP.getRemoteViews(
                 this, getLocationNow(), getLocationNow().weather,
-                showCardSwitch.isChecked(), blackTextSwitch.isChecked()
+                showCardSwitch.isChecked(), blackTextSwitch.isChecked(), clockFontValueNow
         );
     }
 
@@ -84,15 +105,15 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.activity_create_widget_week_doneButton:
+            case R.id.activity_create_widget_clock_day_week_doneButton:
                 SharedPreferences.Editor editor = getSharedPreferences(
-                        getString(R.string.sp_widget_week_setting),
+                        getString(R.string.sp_widget_clock_day_week_setting),
                         MODE_PRIVATE
                 ).edit();
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
+                editor.putString(getString(R.string.key_clock_font), clockFontValueNow);
                 editor.apply();
-
 
                 Intent intent = getIntent();
                 Bundle extras = intent.getExtras();
@@ -129,6 +150,23 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             updateHostView();
+        }
+    }
+
+    // on item selected listener.
+
+    private class ClockFontSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            if (!clockFontValueNow.equals(clockFontValues[i])) {
+                clockFontValueNow = clockFontValues[i];
+                updateHostView();
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+            // do nothing.
         }
     }
 }

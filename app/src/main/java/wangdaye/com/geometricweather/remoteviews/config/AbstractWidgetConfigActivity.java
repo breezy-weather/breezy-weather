@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.remoteviews.ui;
+package wangdaye.com.geometricweather.remoteviews.config;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.remoteviews.ui;
+package wangdaye.com.geometricweather.remoteviews.config;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
@@ -20,13 +20,13 @@ import android.widget.Switch;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.BackgroundManager;
-import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayDetailsWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayHorizontalWidgetIMP;
 
 /**
- * Clock day details widget config activity.
+ * Clock day horizontal widget config activity.
  * */
 
-public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigActivity
+public class ClockDayHorizontalWidgetConfigActivity extends AbstractWidgetConfigActivity
         implements View.OnClickListener {
 
     private FrameLayout widgetContainer;
@@ -42,7 +42,12 @@ public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigAct
 
     @Override
     public void setContentView() {
-        setContentView(R.layout.activity_create_widget_clock_day_details);
+        setContentView(R.layout.activity_create_widget_clock_day_horizontal);
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return container;
     }
 
     @Override
@@ -55,26 +60,26 @@ public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigAct
 
     @Override
     public void initView() {
-        ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_details_wall);
+        ImageView wallpaper = findViewById(R.id.activity_create_widget_clock_day_horizontal_wall);
         bindWallpaper(wallpaper);
 
-        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_details_widgetContainer);
+        this.widgetContainer = findViewById(R.id.activity_create_widget_clock_day_horizontal_widgetContainer);
 
-        this.container = findViewById(R.id.activity_create_widget_clock_day_details_container);
+        this.container = findViewById(R.id.activity_create_widget_clock_day_horizontal_container);
 
-        this.showCardSwitch = findViewById(R.id.activity_create_widget_clock_day_details_showCardSwitch);
+        this.showCardSwitch = findViewById(R.id.activity_create_widget_clock_day_horizontal_showCardSwitch);
         showCardSwitch.setOnCheckedChangeListener(new ShowCardSwitchCheckListener());
 
-        this.blackTextSwitch = findViewById(R.id.activity_create_widget_clock_day_details_blackTextSwitch);
+        this.blackTextSwitch = findViewById(R.id.activity_create_widget_clock_day_horizontal_blackTextSwitch);
         blackTextSwitch.setOnCheckedChangeListener(new BlackTextSwitchCheckListener());
 
-        AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_create_widget_clock_day_details_clockFontSpinner);
+        AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_create_widget_clock_day_horizontal_clockFontSpinner);
         clockFontSpinner.setOnItemSelectedListener(new ClockFontSpinnerSelectedListener());
         clockFontSpinner.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, clockFonts)
         );
 
-        Button doneButton = findViewById(R.id.activity_create_widget_clock_day_details_doneButton);
+        Button doneButton = findViewById(R.id.activity_create_widget_clock_day_horizontal_doneButton);
         doneButton.setOnClickListener(this);
     }
 
@@ -85,15 +90,10 @@ public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigAct
 
     @Override
     public RemoteViews getRemoteViews() {
-        return ClockDayDetailsWidgetIMP.getRemoteViews(
+        return ClockDayHorizontalWidgetIMP.getRemoteViews(
                 this, getLocationNow(), getLocationNow().weather,
                 showCardSwitch.isChecked(), blackTextSwitch.isChecked(), clockFontValueNow
         );
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
     }
 
     // interface.
@@ -103,16 +103,15 @@ public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigAct
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.activity_create_widget_clock_day_details_doneButton:
+            case R.id.activity_create_widget_clock_day_horizontal_doneButton:
                 SharedPreferences.Editor editor = getSharedPreferences(
-                        getString(R.string.sp_widget_clock_day_details_setting),
+                        getString(R.string.sp_widget_clock_day_horizontal_setting),
                         MODE_PRIVATE
                 ).edit();
                 editor.putBoolean(getString(R.string.key_show_card), showCardSwitch.isChecked());
                 editor.putBoolean(getString(R.string.key_black_text), blackTextSwitch.isChecked());
                 editor.putString(getString(R.string.key_clock_font), clockFontValueNow);
                 editor.apply();
-
 
                 Intent intent = getIntent();
                 Bundle extras = intent.getExtras();

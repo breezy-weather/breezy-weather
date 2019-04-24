@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
@@ -31,8 +32,8 @@ public class TrendItemView extends View {
     private Path path;
     private Shader shader;
 
-    private float maxiTemps[] = new float[3];
-    private float miniTemps[] = new float[3];
+    private float[] maxiTemps = new float[3];
+    private float[] miniTemps = new float[3];
     private int highestTemp;
     private int lowestTemp;
     private int precipitation;
@@ -46,7 +47,7 @@ public class TrendItemView extends View {
     private int textColor;
     private int precipitationTextColor;
 
-    private boolean darkMode;
+    private float precipitationAlpha;
 
     public static final int NONEXISTENT_VALUE = Integer.MAX_VALUE;
 
@@ -96,7 +97,7 @@ public class TrendItemView extends View {
         this.textColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
         this.precipitationTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle);
 
-        this.darkMode = DisplayUtils.isDarkMode(getContext());
+        this.precipitationAlpha = DisplayUtils.isDarkMode(getContext()) ? 0.5f : 0.2f;
 
         this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
         this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
@@ -304,11 +305,7 @@ public class TrendItemView extends View {
         paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
         paint.setColor(lineColors[1]);
-        if (darkMode) {
-            paint.setAlpha((int) (255 * 0.5));
-        } else {
-            paint.setAlpha((int) (255 * 0.2));
-        }
+        paint.setAlpha((int) (255 * precipitationAlpha));
         paint.setStyle(Paint.Style.FILL);
 
         canvas.drawRoundRect(
@@ -356,12 +353,29 @@ public class TrendItemView extends View {
         invalidate();
     }
 
-    public void setLineColors(@ColorInt int c1, @ColorInt int c2) {
+    public void setLineColors(@ColorInt int colorDay, @ColorInt int colorNight) {
         this.lineColors = new int[] {
-                c1,
-                c2,
+                colorDay,
+                colorNight,
                 ContextCompat.getColor(getContext(), R.color.colorLine)
         };
+        invalidate();
+    }
+
+    public void setLineColors(@ColorInt int colorDay, @ColorInt int colorNight,
+                              @ColorInt int colorSubLine) {
+        this.lineColors = new int[] {colorDay, colorNight, colorSubLine};
+        invalidate();
+    }
+
+    public void setTextColors(@ColorInt int textColor, @ColorInt int precipitationTextColor) {
+        this.textColor = textColor;
+        this.precipitationTextColor = precipitationTextColor;
+        invalidate();
+    }
+
+    public void setPrecipitationAlpha(@FloatRange(from = 0, to = 1) float precipitationAlpha) {
+        this.precipitationAlpha = precipitationAlpha;
         invalidate();
     }
 

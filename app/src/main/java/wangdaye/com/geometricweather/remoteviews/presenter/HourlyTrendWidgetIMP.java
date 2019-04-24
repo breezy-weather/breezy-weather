@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -143,8 +144,14 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             );
             items[i].getTrendItemView().setLineColors(
                     ContextCompat.getColor(context, R.color.lightPrimary_5),
-                    ContextCompat.getColor(context, R.color.darkPrimary_1)
+                    ContextCompat.getColor(context, R.color.darkPrimary_1),
+                    Color.parseColor("#f1f1f1")
             );
+            items[i].getTrendItemView().setTextColors(
+                    ContextCompat.getColor(context, R.color.colorTextDark2nd),
+                    ContextCompat.getColor(context, R.color.colorTextGrey2nd)
+            );
+            items[i].getTrendItemView().setPrecipitationAlpha(0.2f);
 
             items[i].setBottomIconDrawable(null);
         }
