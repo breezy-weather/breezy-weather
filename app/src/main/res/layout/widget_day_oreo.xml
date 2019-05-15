@@ -28,7 +28,7 @@
             android:id="@+id/widget_day_icon"
             android:layout_width="@dimen/widget_mini_weather_icon_size"
             android:layout_height="@dimen/widget_mini_weather_icon_size"
-            android:src="@drawable/weather_sun_day"
+            android:src="@drawable/weather_clear_day"
             tools:ignore="ContentDescription" />
 
         <TextView

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="weather_clear_night_1" value="weather_clear_night" />
+
+    <item name="weather_cloudy_day" value="weather_cloudy" />
+    <item name="weather_cloudy_day_1" value="weather_cloudy_1" />
+    <item name="weather_cloudy_day_2" value="weather_cloudy_2" />
+    <item name="weather_cloudy_day_mini_light" value="weather_cloudy_mini_light" />
+    <item name="weather_cloudy_day_mini_grey" value="weather_cloudy_mini_grey" />
+    <item name="weather_cloudy_day_mini_dark" value="weather_cloudy_mini_dark" />
+    <item name="weather_cloudy_day_mini_xml" value="weather_cloudy_mini_xml" />
+
+    <item name="weather_cloudy_night" value="weather_cloudy" />
+    <item name="weather_cloudy_night_1" value="weather_cloudy_1" />
+    <item name="weather_cloudy_night_2" value="weather_cloudy_2" />
+    <item name="weather_cloudy_night_mini_light" value="weather_cloudy_mini_light" />
+    <item name="weather_cloudy_night_mini_grey" value="weather_cloudy_mini_grey" />
+    <item name="weather_cloudy_night_mini_dark" value="weather_cloudy_mini_dark" />
+    <item name="weather_cloudy_night_mini_xml" value="weather_cloudy_mini_xml" />
+
+    <item name="weather_rain_day" value="weather_rain" />
+    <item name="weather_rain_day_1" value="weather_rain_1" />
+    <item name="weather_rain_day_2" value="weather_rain_2" />
+    <item name="weather_rain_day_3" value="weather_rain_3" />
+    <item name="weather_rain_day_mini_light" value="weather_rain_mini_light" />
+    <item name="weather_rain_day_mini_grey" value="weather_rain_mini_grey" />
+    <item name="weather_rain_day_mini_dark" value="weather_rain_mini_dark" />
+    <item name="weather_rain_day_mini_xml" value="weather_rain_mini_xml" />
+
+    <item name="weather_rain_night" value="weather_rain" />
+    <item name="weather_rain_night_1" value="weather_rain_1" />
+    <item name="weather_rain_night_2" value="weather_rain_2" />
+    <item name="weather_rain_night_3" value="weather_rain_3" />
+    <item name="weather_rain_night_mini_light" value="weather_rain_mini_light" />
+    <item name="weather_rain_night_mini_grey" value="weather_rain_mini_grey" />
+    <item name="weather_rain_night_mini_dark" value="weather_rain_mini_dark" />
+    <item name="weather_rain_night_mini_xml" value="weather_rain_mini_xml" />
+
+    <item name="weather_snow_day" value="weather_snow" />
+    <item name="weather_snow_day_1" value="weather_snow_1" />
+    <item name="weather_snow_day_2" value="weather_snow_2" />
+    <item name="weather_snow_day_3" value="weather_snow_3" />
+    <item name="weather_snow_day_mini_light" value="weather_snow_mini_light" />
+    <item name="weather_snow_day_mini_grey" value="weather_snow_mini_grey" />
+    <item name="weather_snow_day_mini_dark" value="weather_snow_mini_dark" />
+    <item name="weather_snow_day_mini_xml" value="weather_snow_mini_xml" />
+
+    <item name="weather_snow_night" value="weather_snow" />
+    <item name="weather_snow_night_1" value="weather_snow_1" />
+    <item name="weather_snow_night_2" value="weather_snow_2" />
+    <item name="weather_snow_night_3" value="weather_snow_3" />
+    <item name="weather_snow_night_mini_light" value="weather_snow_mini_light" />
+    <item name="weather_snow_night_mini_grey" value="weather_snow_mini_grey" />
+    <item name="weather_snow_night_mini_dark" value="weather_snow_mini_dark" />
+    <item name="weather_snow_night_mini_xml" value="weather_snow_mini_xml" />
+
+    <item name="weather_wind_day" value="weather_wind" />
+    <item name="weather_wind_day_1" value="weather_wind" />
+    <item name="weather_wind_day_mini_light" value="weather_wind_mini_light" />
+    <item name="weather_wind_day_mini_grey" value="weather_wind_mini_grey" />
+    <item name="weather_wind_day_mini_dark" value="weather_wind_mini_dark" />
+    <item name="weather_wind_day_mini_xml" value="weather_wind_mini_xml" />
+
+    <item name="weather_wind_night" value="weather_wind" />
+    <item name="weather_wind_night_1" value="weather_wind" />
+    <item name="weather_wind_night_mini_light" value="weather_wind_mini_light" />
+    <item name="weather_wind_night_mini_grey" value="weather_wind_mini_grey" />
+    <item name="weather_wind_night_mini_dark" value="weather_wind_mini_dark" />
+    <item name="weather_wind_night_mini_xml" value="weather_wind_mini_xml" />
+
+    <item name="weather_fog_day" value="weather_fog" />
+    <item name="weather_fog_day_1" value="weather_fog" />
+    <item name="weather_fog_day_2" value="weather_fog" />
+    <item name="weather_fog_day_3" value="weather_fog" />
+    <item name="weather_fog_day_mini_light" value="weather_fog_mini_light" />
+    <item name="weather_fog_day_mini_grey" value="weather_fog_mini_grey" />
+    <item name="weather_fog_day_mini_dark" value="weather_fog_mini_dark" />
+    <item name="weather_fog_day_mini_xml" value="weather_fog_mini_xml" />
+
+    <item name="weather_fog_night" value="weather_fog" />
+    <item name="weather_fog_night_1" value="weather_fog" />
+    <item name="weather_fog_night_2" value="weather_fog" />
+    <item name="weather_fog_night_3" value="weather_fog" />
+    <item name="weather_fog_night_mini_light" value="weather_fog_mini_light" />
+    <item name="weather_fog_night_mini_grey" value="weather_fog_mini_grey" />
+    <item name="weather_fog_night_mini_dark" value="weather_fog_mini_dark" />
+    <item name="weather_fog_night_mini_xml" value="weather_fog_mini_xml" />
+
+    <item name="weather_haze_day" value="weather_haze" />
+    <item name="weather_haze_day_1" value="weather_haze_1" />
+    <item name="weather_haze_day_2" value="weather_haze_2" />
+    <item name="weather_haze_day_3" value="weather_haze_3" />
+    <item name="weather_haze_day_mini_light" value="weather_haze_mini_light" />
+    <item name="weather_haze_day_mini_grey" value="weather_haze_mini_grey" />
+    <item name="weather_haze_day_mini_dark" value="weather_haze_mini_dark" />
+    <item name="weather_haze_day_mini_xml" value="weather_haze_mini_xml" />
+
+    <item name="weather_haze_night" value="weather_haze" />
+    <item name="weather_haze_night_1" value="weather_haze_1" />
+    <item name="weather_haze_night_2" value="weather_haze_2" />
+    <item name="weather_haze_night_3" value="weather_haze_3" />
+    <item name="weather_haze_night_mini_light" value="weather_haze_mini_light" />
+    <item name="weather_haze_night_mini_grey" value="weather_haze_mini_grey" />
+    <item name="weather_haze_night_mini_dark" value="weather_haze_mini_dark" />
+    <item name="weather_haze_night_mini_xml" value="weather_haze_mini_xml" />
+
+    <item name="weather_sleet_day" value="weather_sleet" />
+    <item name="weather_sleet_day_1" value="weather_sleet_1" />
+    <item name="weather_sleet_day_2" value="weather_sleet_2" />
+    <item name="weather_sleet_day_3" value="weather_sleet_3" />
+    <item name="weather_sleet_day_mini_light" value="weather_sleet_mini_light" />
+    <item name="weather_sleet_day_mini_grey" value="weather_sleet_mini_grey" />
+    <item name="weather_sleet_day_mini_dark" value="weather_sleet_mini_dark" />
+    <item name="weather_sleet_day_mini_xml" value="weather_sleet_mini_xml" />
+
+    <item name="weather_sleet_night" value="weather_sleet" />
+    <item name="weather_sleet_night_1" value="weather_sleet_1" />
+    <item name="weather_sleet_night_2" value="weather_sleet_2" />
+    <item name="weather_sleet_night_3" value="weather_sleet_3" />
+    <item name="weather_sleet_night_mini_light" value="weather_sleet_mini_light" />
+    <item name="weather_sleet_night_mini_grey" value="weather_sleet_mini_grey" />
+    <item name="weather_sleet_night_mini_dark" value="weather_sleet_mini_dark" />
+    <item name="weather_sleet_night_mini_xml" value="weather_sleet_mini_xml" />
+
+    <item name="weather_hail_day" value="weather_hail" />
+    <item name="weather_hail_day_1" value="weather_hail_1" />
+    <item name="weather_hail_day_2" value="weather_hail_2" />
+    <item name="weather_hail_day_3" value="weather_hail_3" />
+    <item name="weather_hail_day_mini_light" value="weather_hail_mini_light" />
+    <item name="weather_hail_day_mini_grey" value="weather_hail_mini_grey" />
+    <item name="weather_hail_day_mini_dark" value="weather_hail_mini_dark" />
+    <item name="weather_hail_day_mini_xml" value="weather_hail_mini_xml" />
+
+    <item name="weather_hail_night" value="weather_hail" />
+    <item name="weather_hail_night_1" value="weather_hail_1" />
+    <item name="weather_hail_night_2" value="weather_hail_2" />
+    <item name="weather_hail_night_3" value="weather_hail_3" />
+    <item name="weather_hail_night_mini_light" value="weather_hail_mini_light" />
+    <item name="weather_hail_night_mini_grey" value="weather_hail_mini_grey" />
+    <item name="weather_hail_night_mini_dark" value="weather_hail_mini_dark" />
+    <item name="weather_hail_night_mini_xml" value="weather_hail_mini_xml" />
+
+    <item name="weather_thunder_day" value="weather_thunder" />
+    <item name="weather_thunder_day_1" value="weather_thunder_1" />
+    <item name="weather_thunder_day_2" value="weather_thunder_2" />
+    <item name="weather_thunder_day_mini_light" value="weather_thunder_mini_light" />
+    <item name="weather_thunder_day_mini_grey" value="weather_thunder_mini_grey" />
+    <item name="weather_thunder_day_mini_dark" value="weather_thunder_mini_dark" />
+    <item name="weather_thunder_day_mini_xml" value="weather_thunder_mini_xml" />
+
+    <item name="weather_thunder_night" value="weather_thunder" />
+    <item name="weather_thunder_night_1" value="weather_thunder_1" />
+    <item name="weather_thunder_night_2" value="weather_thunder_2" />
+    <item name="weather_thunder_night_mini_light" value="weather_thunder_mini_light" />
+    <item name="weather_thunder_night_mini_grey" value="weather_thunder_mini_grey" />
+    <item name="weather_thunder_night_mini_dark" value="weather_thunder_mini_dark" />
+    <item name="weather_thunder_night_mini_xml" value="weather_thunder_mini_xml" />
+
+    <item name="weather_thunderstorm_day" value="weather_thunderstorm" />
+    <item name="weather_thunderstorm_day_1" value="weather_thunderstorm_1" />
+    <item name="weather_thunderstorm_day_2" value="weather_thunderstorm_2" />
+    <item name="weather_thunderstorm_day_3" value="weather_thunderstorm_3" />
+    <item name="weather_thunderstorm_day_mini_light" value="weather_thunderstorm_mini_light" />
+    <item name="weather_thunderstorm_day_mini_grey" value="weather_thunderstorm_mini_grey" />
+    <item name="weather_thunderstorm_day_mini_dark" value="weather_thunderstorm_mini_dark" />
+    <item name="weather_thunderstorm_day_mini_xml" value="weather_thunderstorm_mini_xml" />
+
+    <item name="weather_thunderstorm_night" value="weather_thunderstorm" />
+    <item name="weather_thunderstorm_night_1" value="weather_thunderstorm_1" />
+    <item name="weather_thunderstorm_night_2" value="weather_thunderstorm_2" />
+    <item name="weather_thunderstorm_night_3" value="weather_thunderstorm_3" />
+    <item name="weather_thunderstorm_night_mini_light" value="weather_thunderstorm_mini_light" />
+    <item name="weather_thunderstorm_night_mini_grey" value="weather_thunderstorm_mini_grey" />
+    <item name="weather_thunderstorm_night_mini_dark" value="weather_thunderstorm_mini_dark" />
+    <item name="weather_thunderstorm_night_mini_xml" value="weather_thunderstorm_mini_xml" />
+
+</resources>

@@ -8,13 +8,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
+import androidx.preference.PreferenceManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -39,6 +39,8 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.ui.widget.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -88,6 +90,7 @@ public class MainActivity extends GeoActivity
 
     private WeatherHelper weatherHelper;
     private LocationHelper locationHelper;
+    private ResourceProvider resourceProvider;
 
     private boolean started;
 
@@ -167,6 +170,7 @@ public class MainActivity extends GeoActivity
                 readLocationNow(data);
                 switchLayout.setData(indexLocation(locationNow), locationList.size());
                 reset();
+                refreshBackgroundViews();
                 break;
 
             case MANAGE_ACTIVITY:
@@ -282,7 +286,10 @@ public class MainActivity extends GeoActivity
                 kind = WeatherViewController.getWeatherViewWeatherKind(
                         locationNow.weather.realTime.weatherKind);
             }
-            weatherView.setWeather(kind, TimeManager.getInstance(this).isDayTime());
+
+            ensureResourceProvider();
+
+            weatherView.setWeather(kind, TimeManager.getInstance(this).isDayTime(), resourceProvider);
             ((MaterialWeatherView) weatherView).setOpenGravitySensor(
                     PreferenceManager.getDefaultSharedPreferences(this)
                             .getBoolean(getString(R.string.key_gravity_sensor_switch), true)
@@ -382,8 +389,14 @@ public class MainActivity extends GeoActivity
                     .getDayTime(this, locationNow.weather, true);
         }
 
+        ensureResourceProvider();
+
         WeatherViewController.setWeatherViewWeatherKind(
-                weatherView, locationNow.weather, TimeManager.getInstance(this).isDayTime());
+                weatherView,
+                locationNow.weather,
+                TimeManager.getInstance(this).isDayTime(),
+                resourceProvider
+        );
         setDarkMode(TimeManager.getInstance(this).isDayTime());
 
         DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors()[0]);
@@ -393,7 +406,7 @@ public class MainActivity extends GeoActivity
 
         refreshLayout.setColorSchemeColors(weatherView.getThemeColors()[0]);
 
-        adapter = new MainControllerAdapter(this, weatherView, locationNow);
+        adapter = new MainControllerAdapter(this, weatherView, locationNow, resourceProvider);
         adapter.bindView();
         adapter.onScroll(0, 0);
 
@@ -437,6 +450,14 @@ public class MainActivity extends GeoActivity
         }
     }
 
+    private void ensureResourceProvider() {
+        String iconProvider = GeometricWeather.getInstance().getIconProvider();
+        if (resourceProvider == null
+                || !resourceProvider.getPackageName().equals(iconProvider)) {
+            resourceProvider = ResourcesProviderFactory.getNewInstance();
+        }
+    }
+
     private void updateLocationList(Location location) {
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(location)) {
@@ -476,22 +497,19 @@ public class MainActivity extends GeoActivity
 
     private void refreshBackgroundViews() {
         Observable.create(emitter ->
-                BackgroundManager.resetAllBackgroundTask(MainActivity.this, false)
+                BackgroundManager.resetAllBackgroundTask(this, false)
         ).delay(1, TimeUnit.SECONDS).subscribe();
 
         if (locationNow.equals(locationList.get(0))) {
             Observable.create(emitter -> {
                 WidgetUtils.refreshWidgetIfNecessary(
-                        MainActivity.this,
+                        this,
                         locationList.get(0),
                         locationList.get(0).weather,
                         locationList.get(0).history
                 );
 
-                NotificationUtils.refreshNotificationIfNecessary(
-                        MainActivity.this,
-                        locationList.get(0).weather
-                );
+                NotificationUtils.refreshNotificationIfNecessary(this, locationList.get(0).weather);
             }).delay(1, TimeUnit.SECONDS).subscribe();
         }
 
@@ -523,29 +541,27 @@ public class MainActivity extends GeoActivity
                                            @NonNull String[] permission, @NonNull int[] grantResult) {
         super.onRequestPermissionsResult(requestCode, permission, grantResult);
 
-        switch (requestCode) {
-            case LOCATION_PERMISSIONS_REQUEST_CODE:
-                for (int i = 0; i < permission.length && i < grantResult.length; i ++) {
-                    if ((permission[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)
-                            || permission[i].equals(Manifest.permission.ACCESS_FINE_LOCATION))
-                            && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
-                        SnackbarUtils.showSnackbar(
-                                getString(R.string.feedback_request_location_permission_failed),
-                                getString(R.string.help),
-                                v -> {
-                                    if (isForeground()) {
-                                        new LocationHelpDialog().show(getSupportFragmentManager(), null);
-                                    }
+        if (requestCode == LOCATION_PERMISSIONS_REQUEST_CODE) {
+            for (int i = 0; i < permission.length && i < grantResult.length; i++) {
+                if ((permission[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)
+                        || permission[i].equals(Manifest.permission.ACCESS_FINE_LOCATION))
+                        && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
+                    SnackbarUtils.showSnackbar(
+                            getString(R.string.feedback_request_location_permission_failed),
+                            getString(R.string.help),
+                            v -> {
+                                if (isForeground()) {
+                                    new LocationHelpDialog().show(getSupportFragmentManager(), null);
                                 }
-                        );
-                        setRefreshing(false);
-                        return;
-                    }
+                            }
+                    );
+                    setRefreshing(false);
+                    return;
                 }
-                if (locationNow.isLocal()) {
-                    locationHelper.requestLocation(this, locationNow, this);
-                }
-                break;
+            }
+            if (locationNow.isLocal()) {
+                locationHelper.requestLocation(this, locationNow, this);
+            }
         }
     }
 
@@ -582,20 +598,30 @@ public class MainActivity extends GeoActivity
         public void onSwipeProgressChanged(int swipeDirection, float progress) {
             indicator.setDisplayState(progress != 0);
 
+            ensureResourceProvider();
+
             if (progress >= 1 && lastProgress < 0.5) {
                 Location location = getLocationFromList(
                         swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
                 setToolbarTitle(location);
                 if (location.weather != null) {
                     WeatherViewController.setWeatherViewWeatherKind(
-                            weatherView, location.weather, TimeManager.isDaylight(location.weather));
+                            weatherView,
+                            location.weather,
+                            TimeManager.isDaylight(location.weather),
+                            resourceProvider
+                    );
                 }
                 lastProgress = 1;
             } else if (progress < 0.5 && lastProgress >= 1) {
                 setToolbarTitle(locationNow);
                 if (locationNow.weather != null) {
                     WeatherViewController.setWeatherViewWeatherKind(
-                            weatherView, locationNow.weather, TimeManager.isDaylight(locationNow.weather));
+                            weatherView,
+                            locationNow.weather,
+                            TimeManager.isDaylight(locationNow.weather),
+                            resourceProvider
+                    );
                 }
                 lastProgress = 0;
             }

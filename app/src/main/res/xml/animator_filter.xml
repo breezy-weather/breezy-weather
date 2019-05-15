@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="weather_cloudy_day_1" value="weather_cloudy_1" />
+    <item name="weather_cloudy_day_2" value="weather_cloudy_2" />
+
+    <item name="weather_cloudy_night_1" value="weather_cloudy_1" />
+    <item name="weather_cloudy_night_2" value="weather_cloudy_2" />
+
+    <item name="weather_rain_day_1" value="weather_rain_1" />
+    <item name="weather_rain_day_2" value="weather_rain_2" />
+    <item name="weather_rain_day_3" value="weather_rain_3" />
+
+    <item name="weather_rain_night_1" value="weather_rain_1" />
+    <item name="weather_rain_night_2" value="weather_rain_2" />
+    <item name="weather_rain_night_3" value="weather_rain_3" />
+
+    <item name="weather_snow_day_1" value="weather_snow_1" />
+    <item name="weather_snow_day_2" value="weather_snow_2" />
+    <item name="weather_snow_day_3" value="weather_snow_3" />
+
+    <item name="weather_snow_night_1" value="weather_snow_1" />
+    <item name="weather_snow_night_2" value="weather_snow_2" />
+    <item name="weather_snow_night_3" value="weather_snow_3" />
+
+    <item name="weather_wind_day_1" value="weather_wind_1" />
+
+    <item name="weather_wind_night_1" value="weather_wind_1" />
+
+    <item name="weather_fog_day_1" value="weather_fog_1" />
+    <item name="weather_fog_day_2" value="weather_fog_2" />
+    <item name="weather_fog_day_3" value="weather_fog_3" />
+
+    <item name="weather_fog_night_1" value="weather_fog_1" />
+    <item name="weather_fog_night_2" value="weather_fog_2" />
+    <item name="weather_fog_night_3" value="weather_fog_3" />
+
+    <item name="weather_haze_day_1" value="weather_haze_1" />
+    <item name="weather_haze_day_2" value="weather_haze_2" />
+    <item name="weather_haze_day_3" value="weather_haze_3" />
+
+    <item name="weather_haze_night_1" value="weather_haze_1" />
+    <item name="weather_haze_night_2" value="weather_haze_2" />
+    <item name="weather_haze_night_3" value="weather_haze_3" />
+
+    <item name="weather_sleet_day_1" value="weather_sleet_1" />
+    <item name="weather_sleet_day_2" value="weather_sleet_2" />
+    <item name="weather_sleet_day_3" value="weather_sleet_3" />
+
+    <item name="weather_sleet_night_1" value="weather_sleet_1" />
+    <item name="weather_sleet_night_2" value="weather_sleet_2" />
+    <item name="weather_sleet_night_3" value="weather_sleet_3" />
+
+    <item name="weather_hail_day_1" value="weather_hail_1" />
+    <item name="weather_hail_day_2" value="weather_hail_2" />
+    <item name="weather_hail_day_3" value="weather_hail_3" />
+
+    <item name="weather_hail_night_1" value="weather_hail_1" />
+    <item name="weather_hail_night_2" value="weather_hail_2" />
+    <item name="weather_hail_night_3" value="weather_hail_3" />
+
+    <item name="weather_thunder_day_1" value="weather_thunder_1" />
+    <item name="weather_thunder_day_2" value="weather_thunder_2" />
+
+    <item name="weather_thunder_night_1" value="weather_thunder_1" />
+    <item name="weather_thunder_night_2" value="weather_thunder_2" />
+
+    <item name="weather_thunderstorm_day_1" value="weather_thunderstorm_1" />
+    <item name="weather_thunderstorm_day_2" value="weather_thunderstorm_2" />
+    <item name="weather_thunderstorm_day_3" value="weather_thunderstorm_3" />
+
+    <item name="weather_thunderstorm_night_1" value="weather_thunderstorm_1" />
+    <item name="weather_thunderstorm_night_2" value="weather_thunderstorm_2" />
+    <item name="weather_thunderstorm_night_3" value="weather_thunderstorm_3" />
+
+</resources>

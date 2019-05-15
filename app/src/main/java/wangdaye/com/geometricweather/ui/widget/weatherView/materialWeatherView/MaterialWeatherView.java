@@ -19,6 +19,7 @@ import android.view.SurfaceView;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.weatherView.RenderRunnable;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.CloudImplementor;
@@ -218,7 +219,7 @@ public class MaterialWeatherView extends SurfaceView
         }
 
         this.step = STEP_DISPLAY;
-        setWeather(WeatherView.WEATHER_KING_NULL, true);
+        setWeather(WeatherView.WEATHER_KING_NULL, true, null);
 
         this.sizes = new int[] {getMeasuredWidth(), getMeasuredHeight()};
 
@@ -446,7 +447,8 @@ public class MaterialWeatherView extends SurfaceView
     // weather view.
 
     @Override
-    public void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime) {
+    public void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime,
+                           @Nullable ResourceProvider provider) {
         if (this.weatherKind == weatherKind
                 && (isIgnoreDayNight(weatherKind) || this.daytime == daytime)) {
             return;

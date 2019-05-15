@@ -4,10 +4,10 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import android.view.View;
 import android.widget.RemoteViews;
@@ -19,6 +19,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetDayProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -145,6 +147,8 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
+
         int textColor;
         if (viewStyle.equals("pixel") || viewStyle.equals("nano")) {
             if (blackText) {
@@ -160,13 +164,16 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             }
         }
 
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_day_icon,
-                WeatherHelper.getWidgetNotificationIcon(
-                        weather.realTime.weatherKind,
-                        dayTime,
-                        minimalIcon,
-                        blackText || showCard
+                drawableToBitmap(
+                        WeatherHelper.getWidgetNotificationIcon(
+                                provider,
+                                weather.realTime.weatherKind,
+                                dayTime,
+                                minimalIcon,
+                                blackText || showCard
+                        )
                 )
         );
         if (!viewStyle.equals("oreo")) {

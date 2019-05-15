@@ -4,14 +4,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Icon;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.service.quicksettings.Tile;
 import androidx.annotation.RequiresApi;
+import androidx.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.background.BackgroundManager;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -56,18 +58,19 @@ public class TileHelper {
             boolean f = PreferenceManager.getDefaultSharedPreferences(context)
                     .getBoolean(context.getString(R.string.key_fahrenheit), false);
             tile.setIcon(
-                    Icon.createWithResource(
-                            context, WeatherHelper.getNotificationWeatherIcon(
-                                    location.weather.realTime.weatherKind,
-                                    TimeManager.getInstance(context).isDayTime()
+                    Icon.createWithBitmap(
+                            DisplayUtils.drawableToBitmap(
+                                    WeatherHelper.getMinimalXmlIcon(
+                                            ResourcesProviderFactory.getNewInstance(),
+                                            location.weather.realTime.weatherKind,
+                                            TimeManager.getInstance(context).isDayTime()
+                                    )
                             )
                     )
             );
             tile.setLabel(
                     ValueUtils.buildCurrentTemp(
-                            location.weather.realTime.temp,
-                            false,
-                            f
+                            location.weather.realTime.temp, false, f
                     )
             );
             tile.updateTile();

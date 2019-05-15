@@ -15,6 +15,7 @@ import wangdaye.com.geometricweather.main.controller.FooterController;
 import wangdaye.com.geometricweather.main.controller.HeaderController;
 import wangdaye.com.geometricweather.main.controller.SecondTrendCardController;
 import wangdaye.com.geometricweather.main.controller.SunMoonController;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 class MainControllerAdapter {
@@ -26,17 +27,18 @@ class MainControllerAdapter {
     private int screenHeight;
 
     MainControllerAdapter(@NonNull Activity activity,
-                          @NonNull WeatherView weatherView, @NonNull Location location) {
+                          @NonNull WeatherView weatherView, @NonNull Location location,
+                          @NonNull ResourceProvider provider) {
         this.location = location;
 
         this.controllerList = new ArrayList<>();
         if (location.weather != null) {
             controllerList.add(new HeaderController(activity, weatherView));
-            controllerList.add(new FirstTrendCardController(activity, weatherView));
-            controllerList.add(new SecondTrendCardController(activity, weatherView));
+            controllerList.add(new FirstTrendCardController(activity, weatherView, provider));
+            controllerList.add(new SecondTrendCardController(activity, weatherView, provider));
             controllerList.add(new AqiController(activity, weatherView));
             controllerList.add(new DetailsController(activity, weatherView));
-            controllerList.add(new SunMoonController(activity, weatherView));
+            controllerList.add(new SunMoonController(activity, weatherView, provider));
             controllerList.add(new FooterController(activity));
         }
 

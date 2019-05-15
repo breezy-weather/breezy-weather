@@ -170,16 +170,6 @@
         <item>oreo</item>
     </string-array>
 
-    <!-- icon style. -->
-    <string-array name="icon_styles">
-        <item>Material</item>
-        <item>Pixel</item>
-    </string-array>
-    <string-array name="icon_style_values">
-        <item>material</item>
-        <item>pixel</item>
-    </string-array>
-
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>Refresh time</item>

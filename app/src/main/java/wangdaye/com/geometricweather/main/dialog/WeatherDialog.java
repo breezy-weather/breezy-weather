@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.main.dialog;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -12,12 +12,15 @@ import androidx.appcompat.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
@@ -33,7 +36,7 @@ public class WeatherDialog extends GeoDialogFragment
 
     private CoordinatorLayout container;
 
-    private AnimatorSet[][] iconAnimatorSets;
+    private Animator[][] iconAnimators;
 
     private Weather weather;
     private int position;
@@ -59,6 +62,12 @@ public class WeatherDialog extends GeoDialogFragment
 
     @SuppressLint("SetTextI18n")
     private void initWidget(View view) {
+        if (getActivity() == null) {
+            return;
+        }
+
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
+
         this.container = view.findViewById(R.id.dialog_weather_container);
 
         TextView title = view.findViewById(R.id.dialog_weather_title);
@@ -71,7 +80,7 @@ public class WeatherDialog extends GeoDialogFragment
 
         TextView subtitle = view.findViewById(R.id.dialog_weather_subtitle);
         if (daily && LanguageUtils.getLanguageCode(getActivity()).startsWith("zh")) {
-            String dates[] = weather.dailyList.get(position).date.split("-");
+            String[] dates = weather.dailyList.get(position).date.split("-");
             subtitle.setText(LunarHelper.getLunarDate(dates));
         } else {
             subtitle.setVisibility(View.GONE);
@@ -100,33 +109,45 @@ public class WeatherDialog extends GeoDialogFragment
         weatherIcons[1][1] = view.findViewById(R.id.dialog_weather_icon_2_night);
         weatherIcons[1][2] = view.findViewById(R.id.dialog_weather_icon_3_night);
         if (daily) {
-            int[] daytimeImageIds = WeatherHelper.getWeatherIcon(
-                    weather.dailyList.get(position).weatherKinds[0], true);
+            Drawable[] daytimeDrawables = WeatherHelper.getWeatherIcons(
+                    provider,
+                    weather.dailyList.get(position).weatherKinds[0],
+                    true
+            );
             for (int i = 0; i < weatherIcons[0].length; i ++) {
-                if (daytimeImageIds[i] != 0) {
-                    weatherIcons[0][i].setImageResource(daytimeImageIds[i]);
+                if (daytimeDrawables[i] != null) {
+                    resetImageView(weatherIcons[0][i]);
+                    weatherIcons[0][i].setImageDrawable(daytimeDrawables[i]);
                     weatherIcons[0][i].setVisibility(View.VISIBLE);
                 } else {
                     weatherIcons[0][i].setVisibility(View.GONE);
                 }
             }
-            int[] nighttimeImageIds = WeatherHelper.getWeatherIcon(
-                    weather.dailyList.get(position).weatherKinds[1], false);
+
+            Drawable[] nighttimeDrawables = WeatherHelper.getWeatherIcons(
+                    provider,
+                    weather.dailyList.get(position).weatherKinds[1],
+                    false
+            );
             for (int i = 0; i < weatherIcons[0].length; i ++) {
-                if (nighttimeImageIds[i] != 0) {
-                    weatherIcons[1][i].setImageResource(nighttimeImageIds[i]);
+                if (nighttimeDrawables[i] != null) {
+                    resetImageView(weatherIcons[1][i]);
+                    weatherIcons[1][i].setImageDrawable(nighttimeDrawables[i]);
                     weatherIcons[1][i].setVisibility(View.VISIBLE);
                 } else {
                     weatherIcons[1][i].setVisibility(View.GONE);
                 }
             }
         } else {
-            int[] imageIds = WeatherHelper.getWeatherIcon(
+            Drawable[] drawables = WeatherHelper.getWeatherIcons(
+                    provider,
                     weather.hourlyList.get(position).weatherKind,
-                    weather.hourlyList.get(position).dayTime);
+                    weather.hourlyList.get(position).dayTime
+            );
             for (int i = 0; i < weatherIcons[0].length; i ++) {
-                if (imageIds[i] != 0) {
-                    weatherIcons[0][i].setImageResource(imageIds[i]);
+                if (drawables[i] != null) {
+                    resetImageView(weatherIcons[0][i]);
+                    weatherIcons[0][i].setImageDrawable(drawables[i]);
                     weatherIcons[0][i].setVisibility(View.VISIBLE);
                 } else {
                     weatherIcons[0][i].setVisibility(View.GONE);
@@ -142,42 +163,73 @@ public class WeatherDialog extends GeoDialogFragment
                 view.findViewById(R.id.dialog_weather_text_night)};
         if (daily) {
             String daytimeTxt = weather.dailyList.get(position).weathers[0] + "  "
-                    + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[0], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
+                    + ValueUtils.buildCurrentTemp(
+                            weather.dailyList.get(position).temps[0],
+                            false,
+                            GeometricWeather.getInstance().isFahrenheit()
+                    ) + "\n"
                     + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[0]
-                    + (TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[0]) ? "" : " " + weather.dailyList.get(position).windSpeeds[0])
+                    + (TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[0])
+                            ? ""
+                            : " " + weather.dailyList.get(position).windSpeeds[0])
                     + " (" + weather.dailyList.get(position).windLevels[0] + ") "
                     + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[0])
-                    + (weather.dailyList.get(position).precipitations[0] >= 0 ? "\n" + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[0] + "%" : "");
+                    + (
+                            weather.dailyList.get(position).precipitations[0] >= 0
+                                    ? "\n" + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[0] + "%"
+                                    : ""
+                    );
             weatherTexts[0].setText(daytimeTxt);
 
             String nighttimeTxt = weather.dailyList.get(position).weathers[1] + "  "
-                    + ValueUtils.buildCurrentTemp(weather.dailyList.get(position).temps[1], false, GeometricWeather.getInstance().isFahrenheit()) + "\n"
+                    + ValueUtils.buildCurrentTemp(
+                            weather.dailyList.get(position).temps[1],
+                            false,
+                            GeometricWeather.getInstance().isFahrenheit()
+                    ) + "\n"
                     + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[1]
-                    + (TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[1]) ? "" : " " + weather.dailyList.get(position).windSpeeds[1])
-                    + " (" + weather.dailyList.get(position).windLevels[1] + ") "
+                    + (
+                            TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[1])
+                                    ? ""
+                                    : " " + weather.dailyList.get(position).windSpeeds[1]
+                    ) + " (" + weather.dailyList.get(position).windLevels[1] + ") "
                     + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[1])
-                    + (weather.dailyList.get(position).precipitations[1] >= 0 ? "\n" + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[1] + "%" : "");
+                    + (
+                            weather.dailyList.get(position).precipitations[1] >= 0
+                                    ? "\n" + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[1] + "%"
+                                    : ""
+                    );
             weatherTexts[1].setText(nighttimeTxt);
         } else {
             String text = weather.hourlyList.get(position).weather + "  "
-                    + ValueUtils.buildCurrentTemp(weather.hourlyList.get(position).temp, false, GeometricWeather.getInstance().isFahrenheit())
-                    + (weather.hourlyList.get(position).precipitation >= 0 ? "\n" + getString(R.string.precipitation) + " : " + weather.hourlyList.get(position).precipitation + "%" : "");
+                    + ValueUtils.buildCurrentTemp(
+                            weather.hourlyList.get(position).temp,
+                            false,
+                            GeometricWeather.getInstance().isFahrenheit()
+                    ) + (
+                            weather.hourlyList.get(position).precipitation >= 0
+                                    ? "\n" + getString(R.string.precipitation) + " : " + weather.hourlyList.get(position).precipitation + "%"
+                                    : ""
+                    );
             weatherTexts[0].setText(text);
         }
         
         TextView[] sunMoonText = new TextView[] {
                 view.findViewById(R.id.dialog_weather_sunrise_sunset),
-                view.findViewById(R.id.dialog_weather_moonrise_moonset)};
+                view.findViewById(R.id.dialog_weather_moonrise_moonset)
+        };
         if (daily) {
             sunMoonText[0].setText(
                     weather.dailyList.get(position).astros[0] + "↑"
                             + " / "
-                            + weather.dailyList.get(position).astros[1] + "↓");
+                            + weather.dailyList.get(position).astros[1] + "↓"
+            );
             if (!TextUtils.isEmpty(weather.dailyList.get(position).astros[2])) {
                 sunMoonText[1].setText(
                         weather.dailyList.get(position).astros[2] + "↑"
                                 + " / "
-                                + weather.dailyList.get(position).astros[3] + "↓");
+                                + weather.dailyList.get(position).astros[3] + "↓"
+                );
             } else {
                 view.findViewById(R.id.dialog_weather_moonContainer).setVisibility(View.GONE);
             }
@@ -189,35 +241,35 @@ public class WeatherDialog extends GeoDialogFragment
         }
 
         if (daily) {
-            int[] daytimeAnimatorIds = WeatherHelper.getAnimatorId(
-                    weather.dailyList.get(position).weatherKinds[0], true);
-            int[] nighttimeAnimatorIds = WeatherHelper.getAnimatorId(
-                    weather.dailyList.get(position).weatherKinds[1], false);
-            this.iconAnimatorSets = new AnimatorSet[2][3];
-            for (int i = 0; i < iconAnimatorSets[0].length; i ++) {
-                if (daytimeAnimatorIds[i] != 0) {
-                    iconAnimatorSets[0][i] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), daytimeAnimatorIds[i]);
-                    iconAnimatorSets[0][i].setTarget(weatherIcons[0][i]);
-                } else {
-                    iconAnimatorSets[0][i] = null;
+            this.iconAnimators = new Animator[2][3];
+            iconAnimators[0] = WeatherHelper.getWeatherAnimators(
+                    provider,
+                    weather.dailyList.get(position).weatherKinds[0],
+                    true
+            );
+            iconAnimators[1] = WeatherHelper.getWeatherAnimators(
+                    provider,
+                    weather.dailyList.get(position).weatherKinds[1],
+                    false
+            );
+            for (int i = 0; i < iconAnimators[0].length; i ++) {
+                if (iconAnimators[0][i] != null) {
+                    iconAnimators[0][i].setTarget(weatherIcons[0][i]);
                 }
-                if (nighttimeAnimatorIds[i] != 0) {
-                    iconAnimatorSets[1][i] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), nighttimeAnimatorIds[i]);
-                    iconAnimatorSets[1][i].setTarget(weatherIcons[1][i]);
-                } else {
-                    iconAnimatorSets[1][i] = null;
+                if (iconAnimators[1][i] != null) {
+                    iconAnimators[1][i].setTarget(weatherIcons[1][i]);
                 }
             }
         } else {
-            int[] animatorIds = WeatherHelper.getAnimatorId(
-                    weather.hourlyList.get(position).weatherKind, weather.hourlyList.get(position).dayTime);
-            this.iconAnimatorSets = new AnimatorSet[2][3];
-            for (int i = 0; i < iconAnimatorSets[0].length; i ++) {
-                if (animatorIds[i] != 0) {
-                    iconAnimatorSets[0][i] = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), animatorIds[i]);
-                    iconAnimatorSets[0][i].setTarget(weatherIcons[0][i]);
-                } else {
-                    iconAnimatorSets[0][i] = null;
+            this.iconAnimators = new Animator[2][3];
+            iconAnimators[0] = WeatherHelper.getWeatherAnimators(
+                    provider,
+                    weather.hourlyList.get(position).weatherKind,
+                    weather.hourlyList.get(position).dayTime
+            );
+            for (int i = 0; i < iconAnimators[0].length; i ++) {
+                if (iconAnimators[0][i] != null) {
+                    iconAnimators[0][i].setTarget(weatherIcons[0][i]);
                 }
             }
         }
@@ -229,6 +281,15 @@ public class WeatherDialog extends GeoDialogFragment
         this.daily = daily;
     }
 
+    private void resetImageView(@NonNull ImageView view) {
+        view.setAlpha(1f);
+        view.setRotation(0f);
+        view.setTranslationX(0f);
+        view.setTranslationY(0f);
+        view.setScaleX(1f);
+        view.setScaleY(1f);
+    }
+
     // interface.
 
     // on click listener.
@@ -237,7 +298,7 @@ public class WeatherDialog extends GeoDialogFragment
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.dialog_weather_weatherContainer_day:
-                for (AnimatorSet a : iconAnimatorSets[0]) {
+                for (Animator a : iconAnimators[0]) {
                     if (a != null) {
                         a.start();
                     }
@@ -245,7 +306,7 @@ public class WeatherDialog extends GeoDialogFragment
                 break;
 
             case R.id.dialog_weather_weatherContainer_night:
-                for (AnimatorSet a : iconAnimatorSets[1]) {
+                for (Animator a : iconAnimators[1]) {
                     if (a != null) {
                         a.start();
                     }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_weather_icon_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:textSize="@dimen/content_text_size"
+    android:layout_margin="@dimen/normal_margin"
+    style="@style/title_text"
+    tools:text="@string/daytime"
+    tools:ignore="UnusedAttribute" />

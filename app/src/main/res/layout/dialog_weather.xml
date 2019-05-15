@@ -70,7 +70,7 @@
                 android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_sun_day"
+                tools:src="@drawable/weather_clear_day"
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -79,7 +79,7 @@
                 android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_sun_day"
+                tools:src="@drawable/weather_clear_day"
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -88,7 +88,7 @@
                 android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_sun_day"
+                tools:src="@drawable/weather_clear_day"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -117,7 +117,7 @@
                 android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_sun_night"
+                tools:src="@drawable/weather_clear_night"
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -126,7 +126,7 @@
                 android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_sun_night"
+                tools:src="@drawable/weather_clear_night"
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -135,7 +135,7 @@
                 android:layout_height="@dimen/standard_weather_icon_size"
                 android:layout_margin="@dimen/normal_margin"
                 android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_sun_night"
+                tools:src="@drawable/weather_clear_night"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -168,7 +168,7 @@
                     android:id="@+id/dialog_weather_sun_icon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:src="@drawable/weather_sun_day_xml"
+                    android:src="@drawable/weather_clear_day_mini_xml"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="0dp"
@@ -201,7 +201,7 @@
                     android:id="@+id/dialog_weather_moon_icon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:src="@drawable/weather_sun_night_xml"
+                    android:src="@drawable/weather_clear_night_mini_xml"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="0dp"

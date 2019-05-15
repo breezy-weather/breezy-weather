@@ -4,13 +4,18 @@ import android.app.PendingIntent;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.background.ServiceHelper;
 
@@ -50,5 +55,10 @@ abstract class AbstractRemoteViewsPresenter {
                 requestCode,
                 new Intent(Intent.ACTION_VIEW).setData(builder.build()),
                 PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    @NonNull
+    static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
+        return DisplayUtils.drawableToBitmap(drawable);
     }
 }

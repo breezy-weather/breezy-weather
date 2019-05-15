@@ -167,7 +167,7 @@
     <string name="settings_title_forecast_tomorrow">Voorspelling voor morgen.</string>
     <string name="settings_title_forecast_tomorrow_time">Tijd voor voorspelling van morgen.</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_icon_style">Icoonstijl.</string>
+    <string name="settings_title_icon_provider">Icoonstijl.</string>
     <string name="settings_title_click_widget_to_refresh">Vernieuw widget als je erop klikt.</string>
     <string name="settings_category_notification">Notificatie</string>
     <string name="settings_title_notification">Stuur notificatie.</string>

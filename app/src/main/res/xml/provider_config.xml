@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    hasWeatherIcons, default = true
+    hasWeatherAnimators, default = false
+    hasMinimalIcons, default = true
+    hasShortcutIcons, default = true
+    hasSunMoonDrawables, default = true
+-->
+<config
+    hasWeatherIcons="true"
+    hasWeatherAnimators="true"
+    hasMinimalIcons="true"
+    hasShortcutIcons="true"
+    hasSunMoonDrawables="true" />

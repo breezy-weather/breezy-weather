@@ -11,9 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,6 +20,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.main.dialog.WeatherDialog;
 import wangdaye.com.geometricweather.ui.widget.trendView.DailyItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
@@ -35,6 +33,7 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.ViewHolder> {
 
     private Weather weather;
+    private ResourceProvider provider;
 
     private float[] maxiTemps;
     private float[] miniTemps;
@@ -69,10 +68,9 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
                     daily.getDateInFormat(context.getString(R.string.date_format_short))
             );
 
-            Glide.with(context)
-                    .load(WeatherHelper.getWeatherIcon(daily.weatherKinds[0], true)[3])
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(dailyItem.getDayIconTarget());
+            dailyItem.setDayIconDrawable(
+                    WeatherHelper.getWeatherIcon(provider, daily.weatherKinds[0], true)
+            );
 
             dailyItem.getTrendItemView().setData(
                     buildTempArrayForItem(maxiTemps, position),
@@ -83,10 +81,9 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
             );
             dailyItem.getTrendItemView().setLineColors(themeColors[1], themeColors[2]);
 
-            Glide.with(context)
-                    .load(WeatherHelper.getWeatherIcon(daily.weatherKinds[1], false)[3])
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(dailyItem.getNightIconTarget());
+            dailyItem.setNightIconDrawable(
+                    WeatherHelper.getWeatherIcon(provider, daily.weatherKinds[1], false)
+            );
 
             dailyItem.setOnClickListener(v -> {
                 GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
@@ -118,8 +115,9 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
 
     @SuppressLint("SimpleDateFormat")
     public DailyTrendAdapter(@NonNull Weather weather, @Nullable History history,
-                             int[] themeColors) {
+                             int[] themeColors, ResourceProvider provider) {
         this.weather = weather;
+        this.provider = provider;
 
         this.maxiTemps = new float[weather.dailyList.size() * 2 - 1];
         for (int i = 0; i < maxiTemps.length; i += 2) {

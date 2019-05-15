@@ -59,12 +59,6 @@
         <item>Oreo</item>
     </string-array>
 
-    <!-- icon style. -->
-    <string-array name="icon_styles">
-        <item>Material</item>
-        <item>Pixel</item>
-    </string-array>
-
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>Última atualização</item>

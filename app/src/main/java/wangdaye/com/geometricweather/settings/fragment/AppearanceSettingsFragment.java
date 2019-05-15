@@ -10,10 +10,11 @@ import java.util.HashSet;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.dialog.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.background.BackgroundManager;
 
 /**
  * Appearance settings fragment.
@@ -32,30 +33,29 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
                 ValueUtils.getUIStyle(
                         getActivity(),
                         PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(
-                                        getString(R.string.key_ui_style),
-                                        "material")));
+                                .getString(getString(R.string.key_ui_style), "material")
+                )
+        );
         uiStyle.setOnPreferenceChangeListener(this);
 
-        Preference iconStyle = findPreference(getString(R.string.key_icon_style));
-        iconStyle.setSummary(
-                ValueUtils.getIconStyle(
-                        getActivity(),
-                        GeometricWeather.getInstance().getIconStyle()));
-        iconStyle.setOnPreferenceChangeListener(this);
+        initIconProviderPreference();
 
         Preference cardDisplay = findPreference(getString(R.string.key_card_display));
         cardDisplay.setSummary(
                 ValueUtils.getCardDislay(
                         getActivity(),
-                        GeometricWeather.getInstance().getCardDisplayValues()));
+                        GeometricWeather.getInstance().getCardDisplayValues()
+                )
+        );
         cardDisplay.setOnPreferenceChangeListener(this);
 
         Preference cardOrder = findPreference(getString(R.string.key_card_order));
         cardOrder.setSummary(
                 ValueUtils.getCardOrder(
                         getActivity(),
-                        GeometricWeather.getInstance().getCardOrder()));
+                        GeometricWeather.getInstance().getCardOrder()
+                )
+        );
         cardOrder.setOnPreferenceChangeListener(this);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -68,7 +68,9 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         language.setSummary(
                 ValueUtils.getLanguage(
                         getActivity(),
-                        GeometricWeather.getInstance().getLanguage()));
+                        GeometricWeather.getInstance().getLanguage()
+                )
+        );
         language.setOnPreferenceChangeListener(this);
     }
 
@@ -77,11 +79,28 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         // do nothing.
     }
 
+    private void initIconProviderPreference() {
+        Preference iconProvider = findPreference(getString(R.string.key_icon_provider));
+        iconProvider.setSummary(ResourcesProviderFactory.getNewInstance().getProviderName());
+    }
+
     // interface.
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
+        if (preference.getKey().equals(getString(R.string.key_icon_provider))) {
+            // icon provider.
+            ProvidersPreviewerDialog dialog = new ProvidersPreviewerDialog();
+            dialog.setOnIconProviderChangedListener(iconProvider -> {
+                GeometricWeather.getInstance().setIconProvider(iconProvider);
+                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                        .edit()
+                        .putString(getString(R.string.key_icon_provider), iconProvider)
+                        .apply();
+                initIconProviderPreference();
+            });
+            dialog.show(getFragmentManager(), null);
+        } else if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
             // navigation bar color.
             GeometricWeather.getInstance().setColorNavigationBar();
             DisplayUtils.setNavigationBarColor(getActivity(), 0);
@@ -95,11 +114,6 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
             // UI style.
             preference.setSummary(ValueUtils.getUIStyle(getActivity(), (String) o));
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
-        } else if (preference.getKey().equals(getString(R.string.key_icon_style))) {
-            // Icon style.
-            GeometricWeather.getInstance().setIconStyle((String) o);
-            preference.setSummary(ValueUtils.getIconStyle(getActivity(), (String) o));
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
         } else if (preference.getKey().equals(getString(R.string.key_card_display))) {
             // Card display.
             try {

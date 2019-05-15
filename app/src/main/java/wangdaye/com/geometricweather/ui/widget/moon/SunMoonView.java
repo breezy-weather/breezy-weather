@@ -54,6 +54,8 @@ public class SunMoonView extends View {
     private float dottedLineSize;
     private float margin;
 
+    int iconSize;
+
     private final static int ICON_SIZE_DIP = 24;
     private final static int LINE_SIZE_DIP = 2;
     private final static int DOTTED_LINE_SIZE_DIP = 1;
@@ -103,6 +105,8 @@ public class SunMoonView extends View {
         lineSize = DisplayUtils.dpToPx(getContext(), LINE_SIZE_DIP);
         dottedLineSize = DisplayUtils.dpToPx(getContext(), DOTTED_LINE_SIZE_DIP);
         margin = DisplayUtils.dpToPx(getContext(), MARGIN_DIP);
+
+        iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
 
         this.paint = new Paint();
         paint.setAntiAlias(true);
@@ -210,19 +214,11 @@ public class SunMoonView extends View {
 
         if (iconDrawables[index] != null) {
             if (progressEndAngle < 270) {
-                iconPositions[index][0] = rectF.centerX()
-                        - deltaWidth
-                        - iconDrawables[index].getIntrinsicWidth() / 2f;
-                iconPositions[index][1] = rectF.centerY()
-                        - deltaHeight
-                        - iconDrawables[index].getIntrinsicWidth() / 2f;
+                iconPositions[index][0] = rectF.centerX() - deltaWidth - iconSize / 2f;
+                iconPositions[index][1] = rectF.centerY() - deltaHeight - iconSize / 2f;
             } else {
-                iconPositions[index][0] = rectF.centerX()
-                        + deltaWidth
-                        - iconDrawables[index].getIntrinsicWidth() / 2f;
-                iconPositions[index][1] = rectF.centerY()
-                        - deltaHeight
-                        - iconDrawables[index].getIntrinsicWidth() / 2f;
+                iconPositions[index][0] = rectF.centerX() + deltaWidth - iconSize / 2f;
+                iconPositions[index][1] = rectF.centerY() - deltaHeight - iconSize / 2f;
             }
         }
     }
@@ -298,11 +294,7 @@ public class SunMoonView extends View {
             }
             restoreCount = canvas.save();
             canvas.translate(iconPositions[i][0], iconPositions[i][1]);
-            canvas.rotate(
-                    iconRotations[i],
-                    iconDrawables[i].getIntrinsicWidth() / 2f,
-                    iconDrawables[i].getIntrinsicHeight() / 2f
-            );
+            canvas.rotate(iconRotations[i], iconSize / 2f, iconSize / 2f);
             iconDrawables[i].draw(canvas);
             canvas.restoreToCount(restoreCount);
         }
@@ -359,16 +351,14 @@ public class SunMoonView extends View {
     }
 
     public void setSunDrawable(Drawable d) {
-        if (iconDrawables != null) {
-            int iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        if (d != null) {
             iconDrawables[0] = d;
             iconDrawables[0].setBounds(0, 0, iconSize, iconSize);
         }
     }
 
     public void setMoonDrawable(Drawable d) {
-        if (iconDrawables != null) {
-            int iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        if (d != null) {
             iconDrawables[1] = d;
             iconDrawables[1].setBounds(0, 0, iconSize, iconSize);
         }

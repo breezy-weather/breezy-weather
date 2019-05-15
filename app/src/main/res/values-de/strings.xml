@@ -153,7 +153,7 @@
     <string name="settings_title_forecast_tomorrow">Vorhersage für nächsten Tag</string>
     <string name="settings_title_forecast_tomorrow_time">Benachrichtigungszeit</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_icon_style">Icons</string>
+    <string name="settings_title_icon_provider">Icons</string>
     <string name="settings_category_notification">Benachrichtigung</string>
     <string name="settings_title_notification">Dauerhafte Benachrichtigung</string>
     <string name="settings_title_notification_temp_icon">Temperatur in der Statusleiste anzeigen</string>

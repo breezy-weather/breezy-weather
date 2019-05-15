@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.adapter;
 
-import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
@@ -10,15 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.main.dialog.WeatherDialog;
 import wangdaye.com.geometricweather.ui.widget.trendView.HourlyItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
@@ -31,6 +28,7 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.ViewHolder> {
 
     private Weather weather;
+    private ResourceProvider provider;
 
     private float[] temps;
     private int highestTemp;
@@ -48,15 +46,13 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
         }
 
         void onBindView(int position) {
-            Context context = itemView.getContext();
             Hourly hourly = weather.hourlyList.get(position);
 
             hourlyItem.setHourText(hourly.time);
 
-            Glide.with(context)
-                    .load(WeatherHelper.getWeatherIcon(hourly.weatherKind, hourly.dayTime)[3])
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(hourlyItem.getIconTarget());
+            hourlyItem.setIconDrawable(
+                    WeatherHelper.getWeatherIcon(provider, hourly.weatherKind, hourly.dayTime)
+            );
 
             hourlyItem.getTrendItemView().setData(
                     buildTempArrayForItem(temps, position),
@@ -96,8 +92,9 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
     }
 
     public HourlyTrendAdapter(@NonNull Weather weather, @Nullable History history,
-                              int[] themeColors) {
+                              int[] themeColors, ResourceProvider provider) {
         this.weather = weather;
+        this.provider = provider;
 
         this.temps = new float[Math.max(0, weather.hourlyList.size() * 2 - 1)];
         for (int i = 0; i < temps.length; i += 2) {

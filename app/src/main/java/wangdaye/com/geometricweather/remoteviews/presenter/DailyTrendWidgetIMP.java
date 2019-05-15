@@ -12,10 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,6 +26,8 @@ import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.TrendLinearLayout;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.WidgetItemView;
@@ -72,6 +70,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         if (weather == null) {
             return null;
         }
+
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
         int itemCount = 5;
         float[] maxiTemps;
@@ -139,21 +139,11 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                     daily.getDateInFormat(context.getString(R.string.date_format_short))
             );
 
-            try {
-                int resId = WeatherHelper.getWidgetNotificationIcon(
-                        daily.weatherKinds[0], true, minimalIcon, true);
-                items[i].setTopIconDrawable(new GlideBitmapDrawable(
-                        context.getResources(),
-                        Glide.with(context)
-                                .load(resId)
-                                .asBitmap()
-                                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                                .into(items[i].getIconSize(), items[i].getIconSize())
-                                .get()
-                ));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            items[i].setTopIconDrawable(
+                    WeatherHelper.getWidgetNotificationIcon(
+                            provider, daily.weatherKinds[0], true, minimalIcon, true
+                    )
+            );
 
             items[i].getTrendItemView().setData(
                     buildTempArrayForItem(maxiTemps, i),
@@ -173,21 +163,11 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             );
             items[i].getTrendItemView().setPrecipitationAlpha(0.2f);
 
-            try {
-                int resId = WeatherHelper.getWidgetNotificationIcon(
-                        daily.weatherKinds[1], false, minimalIcon, true);
-                items[i].setBottomIconDrawable(new GlideBitmapDrawable(
-                        context.getResources(),
-                        Glide.with(context)
-                                .load(resId)
-                                .asBitmap()
-                                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                                .into(items[i].getIconSize(), items[i].getIconSize())
-                                .get()
-                ));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            items[i].setBottomIconDrawable(
+                    WeatherHelper.getWidgetNotificationIcon(
+                            provider, daily.weatherKinds[1], false, minimalIcon, true
+                    )
+            );
         }
 
         return drawableView;

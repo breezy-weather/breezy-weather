@@ -50,7 +50,6 @@
             android:id="@+id/container_circular_sky_view_iconContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/normal_margin"
             tools:layout_width="80dp"
             tools:layout_height="80dp">
 
@@ -58,6 +57,7 @@
                 android:id="@+id/container_circular_sky_view_icon_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="@dimen/normal_margin"
                 tools:src="@drawable/weather_cloudy"
                 tools:ignore="ContentDescription" />
 
@@ -65,12 +65,14 @@
                 android:id="@+id/container_circular_sky_view_icon_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="@dimen/normal_margin"
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/container_circular_sky_view_icon_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="@dimen/normal_margin"
                 tools:ignore="ContentDescription" />
 
         </FrameLayout>

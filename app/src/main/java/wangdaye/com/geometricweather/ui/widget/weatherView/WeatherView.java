@@ -2,7 +2,10 @@ package wangdaye.com.geometricweather.ui.widget.weatherView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
 import androidx.annotation.Size;
+
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
 /**
  * Weather view.
@@ -34,7 +37,8 @@ public interface WeatherView {
             WEATHER_KIND_WIND
     }) @interface WeatherKindRule {}
 
-    void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime);
+    void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime,
+                    @Nullable ResourceProvider provider);
 
     void onClick();
 

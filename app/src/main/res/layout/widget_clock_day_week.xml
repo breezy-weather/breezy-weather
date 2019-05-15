@@ -417,7 +417,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:src="@drawable/weather_cloudy"
-                    tools:src="@drawable/weather_sun_day"
+                    tools:src="@drawable/weather_clear_day"
                     tools:ignore="ContentDescription" />
 
                 <TextView

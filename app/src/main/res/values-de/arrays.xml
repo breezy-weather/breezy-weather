@@ -32,10 +32,4 @@
         <item>Oreo</item>
     </string-array>
 
-    <!-- Icon Stil -->
-    <string-array name="icon_styles">
-        <item>Material</item>
-        <item>Pixel</item>
-    </string-array>
-
 </resources>

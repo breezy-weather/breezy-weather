@@ -32,9 +32,4 @@
         <item>Oreo</item>
     </string-array>
 
-    <!-- icon style. -->
-    <string-array name="icon_styles">
-        <item>Материјално</item>
-        <item>Pixel</item>
-    </string-array>
 </resources>

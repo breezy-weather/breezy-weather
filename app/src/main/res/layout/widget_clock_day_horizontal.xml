@@ -125,7 +125,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/little_margin"
                 android:layout_marginEnd="@dimen/normal_margin"
-                android:src="@drawable/weather_sun_day"
+                android:src="@drawable/weather_clear_day"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>

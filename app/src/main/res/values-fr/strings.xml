@@ -115,7 +115,7 @@
     <string name="settings_title_forecast_today_time">Heure de notification</string>
     <string name="settings_title_forecast_tomorrow">Prévisions pour demain</string>
     <string name="settings_title_forecast_tomorrow_time">Heure de notification</string>
-    <string name="settings_title_icon_style">"Style d'icône"</string>
+    <string name="settings_title_icon_provider">"Style d'icône"</string>
     <string name="settings_title_navigationBar_color">Couleur barre de navigation</string>
     <string name="settings_title_notification">Activer notification</string>
     <string name="settings_title_notification_background">"Couleur de l'arrière-plan"</string>

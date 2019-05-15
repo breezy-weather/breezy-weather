@@ -17,14 +17,16 @@ public class LunarHelper {
         return getLunarDate(
                 Integer.parseInt(dates[0]),
                 Integer.parseInt(dates[1]),
-                Integer.parseInt(dates[2]));
+                Integer.parseInt(dates[2])
+        );
     }
 
     public static String getLunarDate(Calendar calendar) {
         return getLunarDate(
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH) + 1,
-                calendar.get(Calendar.DAY_OF_MONTH));
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
     }
 
     private static String getLunarDate(int year, int month, int day) {

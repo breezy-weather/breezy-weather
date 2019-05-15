@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.image.material;
+package wangdaye.com.geometricweather.ui.image;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
-public class MaterialSunDrawable extends Drawable {
+public class SunDrawable extends Drawable {
 
     private Paint paint;
 
@@ -26,7 +26,7 @@ public class MaterialSunDrawable extends Drawable {
     private float radius;
     private float cx, cy;
 
-    public MaterialSunDrawable() {
+    public SunDrawable() {
         this.paint = new Paint();
         paint.setAntiAlias(true);
 

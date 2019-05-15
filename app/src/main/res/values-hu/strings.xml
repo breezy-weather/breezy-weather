@@ -193,7 +193,7 @@
     <string name="settings_title_forecast_tomorrow">Holnapi Előrejelzés</string>
     <string name="settings_title_forecast_tomorrow_time">Idő A Holnapi Előrejelzéshez</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_icon_style">Ikonstílus</string>
+    <string name="settings_title_icon_provider">Ikonstílus</string>
     <string name="settings_title_click_widget_to_refresh">Widget Frissítése Kattintásra</string>
     <string name="settings_category_notification">Értesítés</string>
     <string name="settings_title_notification">Értesítés Küldése</string>

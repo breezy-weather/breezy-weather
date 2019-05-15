@@ -172,7 +172,7 @@
     <string name="settings_title_forecast_tomorrow">Previsioni per domani</string>
     <string name="settings_title_forecast_tomorrow_time">Previsioni orarie per domani</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_icon_style">Stile icona.</string>
+    <string name="settings_title_icon_provider">Stile icona.</string>
     <string name="settings_title_click_widget_to_refresh">Aggiorna il widget toccandolo</string>
     <string name="settings_category_notification">Notifiche</string>
     <string name="settings_title_notification">Invia notifiche.</string>

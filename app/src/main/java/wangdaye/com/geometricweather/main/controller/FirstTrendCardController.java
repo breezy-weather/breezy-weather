@@ -15,6 +15,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -37,8 +38,10 @@ public class FirstTrendCardController extends AbstractMainItemController
     
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
+    @NonNull private ResourceProvider resourceProvider;
     
-    public FirstTrendCardController(@NonNull Activity activity, @NonNull WeatherView weatherView) {
+    public FirstTrendCardController(@NonNull Activity activity, @NonNull WeatherView weatherView,
+                                    @NonNull ResourceProvider provider) {
         super(activity, activity.findViewById(R.id.container_main_first_trend_card));
 
         this.card = view.findViewById(R.id.container_main_first_trend_card);
@@ -51,6 +54,7 @@ public class FirstTrendCardController extends AbstractMainItemController
         this.trendRecyclerView = view.findViewById(R.id.container_main_first_trend_card_trendRecyclerView);
         
         this.weatherView = weatherView;
+        this.resourceProvider = provider;
     }
 
     @SuppressLint("RestrictedApi")
@@ -115,12 +119,12 @@ public class FirstTrendCardController extends AbstractMainItemController
 
             if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
                 TrendViewController.setDailyTrend(
-                        context, title, subtitle, trendRecyclerView,
+                        context, title, subtitle, trendRecyclerView, resourceProvider,
                         weather, location.history, weatherView.getThemeColors()
                 );
             } else {
                 TrendViewController.setHourlyTrend(
-                        context, title, subtitle, trendRecyclerView,
+                        context, title, subtitle, trendRecyclerView, resourceProvider,
                         weather, location.history, weatherView.getThemeColors()
                 );
             }

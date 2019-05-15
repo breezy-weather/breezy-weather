@@ -181,18 +181,18 @@ public class TimeObserverService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForeground(
                     GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
-                    getForecastNotification(this, true)
+                    getForegroundNotification(this, true)
             );
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             startForeground(
                     GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
-                    getForecastNotification(this, false)
+                    getForegroundNotification(this, false)
             );
             startService(new Intent(this, FakeForegroundService.class));
         } else {
             startForeground(
                     GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
-                    getForecastNotification(this, true)
+                    getForegroundNotification(this, true)
             );
             startService(new Intent(this, FakeForegroundService.class));
         }
@@ -202,7 +202,7 @@ public class TimeObserverService extends Service {
         stopForeground(true);
     }
 
-    public static Notification getForecastNotification(Context context, boolean setIcon) {
+    public static Notification getForegroundNotification(Context context, boolean setIcon) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND)
                 .setSmallIcon(setIcon ? R.drawable.ic_running_in_background : 0)
                 .setContentTitle(context.getString(R.string.geometric_weather))
@@ -219,11 +219,11 @@ public class TimeObserverService extends Service {
     }
 
     private static boolean isForecastTime(String time) {
-        int realTimes[] = new int[] {
+        int[] realTimes = new int[]{
                 Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
                 Calendar.getInstance().get(Calendar.MINUTE)
         };
-        int setTimes[] = new int[]{
+        int[] setTimes = new int[]{
                 Integer.parseInt(time.split(":")[0]),
                 Integer.parseInt(time.split(":")[1])
         };

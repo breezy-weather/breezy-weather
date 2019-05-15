@@ -6,15 +6,18 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
+
 import android.view.View;
 import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -29,6 +32,8 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         if (weather == null) {
             return;
         }
+
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
         LanguageUtils.setLanguage(context, GeometricWeather.getInstance().getLanguage());
 
@@ -81,8 +86,15 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
             manager.createNotificationChannel(
                     new NotificationChannel(
                             GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST,
-                            GeometricWeather.getNotificationChannelName(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST),
-                            hideNotificationIcon ? NotificationManager.IMPORTANCE_MIN : NotificationManager.IMPORTANCE_DEFAULT));
+                            GeometricWeather.getNotificationChannelName(
+                                    context,
+                                    GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST
+                            ),
+                            hideNotificationIcon
+                                    ? NotificationManager.IMPORTANCE_MIN
+                                    : NotificationManager.IMPORTANCE_DEFAULT
+                    )
+            );
         }
 
         // get builder.
@@ -108,68 +120,91 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         // set small icon.
         int iconTemp = today ? weather.dailyList.get(0).temps[0] : weather.dailyList.get(1).temps[0];
         builder.setSmallIcon(
-                tempIcon ?
-                        ValueUtils.getTempIconId(
-                                fahrenheit ?
-                                        ValueUtils.calcFahrenheit(iconTemp)
-                                        :
-                                        iconTemp)
-                        :
-                        WeatherHelper.getNotificationWeatherIcon(
-                                today ?
-                                        weather.dailyList.get(0).weatherKinds[0]
-                                        :
-                                        weather.dailyList.get(1).weatherKinds[0],
-                                true));
+                tempIcon
+                        ? WeatherHelper.getTempIconId(
+                                context, fahrenheit
+                                        ? ValueUtils.calcFahrenheit(iconTemp)
+                                        : iconTemp
+                        ) : WeatherHelper.getMiniIconId(
+                                provider,
+                                today
+                                        ? weather.dailyList.get(0).weatherKinds[0]
+                                        : weather.dailyList.get(1).weatherKinds[0],
+                                true
+                        )
+        );
 
         // set view
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.notification_forecast);
 
         // set icon.
-        int[] imageIds = new int[2];
         if (today) {
-            imageIds[0] = WeatherHelper.getWidgetNotificationIcon(
-                    weather.dailyList.get(0).weatherKinds[0],
-                    true,
-                    minimalIcon,
-                    textColor);
-            imageIds[1] = WeatherHelper.getWidgetNotificationIcon(
-                    weather.dailyList.get(0).weatherKinds[1],
-                    false,
-                    minimalIcon,
-                    textColor);
+            view.setImageViewBitmap(
+                    R.id.notification_forecast_icon_1,
+                    drawableToBitmap(
+                            WeatherHelper.getWidgetNotificationIcon(
+                                    provider,
+                                    weather.dailyList.get(0).weatherKinds[0],
+                                    true,
+                                    minimalIcon,
+                                    textColor
+                            )
+                    )
+            );
+            view.setImageViewBitmap(
+                    R.id.notification_forecast_icon_2,
+                    drawableToBitmap(
+                            WeatherHelper.getWidgetNotificationIcon(
+                                    provider,
+                                    weather.dailyList.get(0).weatherKinds[1],
+                                    false,
+                                    minimalIcon,
+                                    textColor
+                            )
+                    )
+            );
         } else {
-            imageIds[0] = WeatherHelper.getWidgetNotificationIcon(
-                    weather.dailyList.get(0).weatherKinds[0],
-                    true,
-                    minimalIcon,
-                    textColor);
-            imageIds[1] = WeatherHelper.getWidgetNotificationIcon(
-                    weather.dailyList.get(1).weatherKinds[0],
-                    true,
-                    minimalIcon,
-                    textColor);
+            view.setImageViewBitmap(
+                    R.id.notification_forecast_icon_1,
+                    drawableToBitmap(
+                            WeatherHelper.getWidgetNotificationIcon(
+                                    provider,
+                                    weather.dailyList.get(0).weatherKinds[0],
+                                    true,
+                                    minimalIcon,
+                                    textColor
+                            )
+                    )
+            );
+            view.setImageViewBitmap(
+                    R.id.notification_forecast_icon_2,
+                    drawableToBitmap(
+                            WeatherHelper.getWidgetNotificationIcon(
+                                    provider,
+                                    weather.dailyList.get(1).weatherKinds[0],
+                                    true,
+                                    minimalIcon,
+                                    textColor
+                            )
+                    )
+            );
         }
-        view.setImageViewResource(
-                R.id.notification_forecast_icon_1,
-                imageIds[0]);
-        view.setImageViewResource(
-                R.id.notification_forecast_icon_2,
-                imageIds[1]);
 
         // set title.
         String[] titles = new String[2];
         if (today) {
-            titles[0] = context.getString(R.string.day) + " " + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[0], false, fahrenheit);
-            titles[1] = context.getString(R.string.night) + " " + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[1], false, fahrenheit);
+            titles[0] = context.getString(R.string.day) + " "
+                    + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[0], false, fahrenheit);
+            titles[1] = context.getString(R.string.night) + " "
+                    + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[1], false, fahrenheit);
         } else {
-            titles[0] = context.getString(R.string.today) + " " + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[0], false, fahrenheit);
-            titles[1] = context.getString(R.string.tomorrow) + " " + ValueUtils.buildCurrentTemp(weather.dailyList.get(1).temps[0], false, fahrenheit);
+            titles[0] = context.getString(R.string.today) + " "
+                    + ValueUtils.buildCurrentTemp(weather.dailyList.get(0).temps[0], false, fahrenheit);
+            titles[1] = context.getString(R.string.tomorrow) + " "
+                    + ValueUtils.buildCurrentTemp(weather.dailyList.get(1).temps[0], false, fahrenheit);
         }
-        view.setTextViewText(
-                R.id.notification_forecast_title_1, titles[0]);
-        view.setTextViewText(
-                R.id.notification_forecast_title_2, titles[1]);
+        view.setTextViewText(R.id.notification_forecast_title_1, titles[0]);
+        view.setTextViewText(R.id.notification_forecast_title_2, titles[1]);
 
         // set content.
         String[] contents = new String[2];
@@ -180,12 +215,8 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
             contents[0] = weather.dailyList.get(0).weathers[0];
             contents[1] = weather.dailyList.get(1).weathers[0];
         }
-        view.setTextViewText(
-                R.id.notification_forecast_content_1,
-                contents[0]);
-        view.setTextViewText(
-                R.id.notification_forecast_content_2,
-                contents[1]);
+        view.setTextViewText(R.id.notification_forecast_content_1, contents[0]);
+        view.setTextViewText(R.id.notification_forecast_content_2, contents[1]);
 
         // set background.
         if (backgroundColor) {
@@ -222,14 +253,10 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
     public static boolean isEnable(Context context, boolean today) {
         if (today) {
             return PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean(
-                            context.getString(R.string.key_forecast_today),
-                            false);
+                    .getBoolean(context.getString(R.string.key_forecast_today), false);
         } else {
             return PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean(
-                            context.getString(R.string.key_forecast_tomorrow),
-                            false);
+                    .getBoolean(context.getString(R.string.key_forecast_tomorrow), false);
         }
     }
 }

@@ -157,34 +157,37 @@ public class CMWeatherProviderService extends WeatherProviderService
                             new WeatherInfo.DayForecast.Builder(
                                     WeatherConditionConvertHelper.getConditionCode(
                                             weather.dailyList.get(i).weatherKinds[0],
-                                            true))
-                                    .setHigh(weather.dailyList.get(i).temps[0])
+                                            true)
+                            ).setHigh(weather.dailyList.get(i).temps[0])
                                     .setLow(weather.dailyList.get(i).temps[1])
-                                    .build());
+                                    .build()
+                    );
                 }
                 WeatherInfo.Builder builder = new WeatherInfo.Builder(
                         weather.base.city,
                         weather.realTime.temp,
-                        WeatherContract.WeatherColumns.TempUnit.CELSIUS)
-                        .setWeatherCondition(
+                        WeatherContract.WeatherColumns.TempUnit.CELSIUS
+                ).setWeatherCondition(
                                 WeatherConditionConvertHelper.getConditionCode(
                                         weather.realTime.weatherKind,
                                         TimeManager.getInstance(this)
                                                 .getDayTime(this, weather, false)
-                                                .isDayTime()))
-                        .setTodaysHigh(weather.dailyList.get(0).temps[0])
+                                                .isDayTime()
+                                )
+                ).setTodaysHigh(weather.dailyList.get(0).temps[0])
                         .setTodaysLow(weather.dailyList.get(0).temps[1])
                         .setTimestamp(weather.base.timeStamp)
                         .setHumidity(
                                 Double.parseDouble(
                                         weather.index.humidity
                                                 .split(" : ")[1]
-                                                .split("%")[0]))
-                        .setWind(
+                                                .split("%")[0]
+                                )
+                        ).setWind(
                                 Double.parseDouble(weather.realTime.windSpeed.split("km/h")[0]),
                                 weather.realTime.windDegree,
-                                WeatherContract.WeatherColumns.WindSpeedUnit.KPH)
-                        .setForecast(forecastList);
+                                WeatherContract.WeatherColumns.WindSpeedUnit.KPH
+                        ).setForecast(forecastList);
 
                 request.complete(new ServiceRequestResult.Builder(builder.build()).build());
             }

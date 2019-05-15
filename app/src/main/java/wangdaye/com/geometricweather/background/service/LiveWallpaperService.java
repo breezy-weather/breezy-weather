@@ -7,11 +7,12 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.preference.PreferenceManager;
 import android.service.wallpaper.WallpaperService;
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
+import androidx.preference.PreferenceManager;
+
 import android.view.SurfaceHolder;
 
 import wangdaye.com.geometricweather.R;

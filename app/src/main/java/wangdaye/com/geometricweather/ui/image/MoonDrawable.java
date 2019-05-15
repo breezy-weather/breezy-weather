@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.image.material;
+package wangdaye.com.geometricweather.ui.image;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,7 +15,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class MaterialMoonDrawable extends Drawable {
+public class MoonDrawable extends Drawable {
 
     private Paint paint;
     private Xfermode clearXfermode;
@@ -31,7 +31,7 @@ public class MaterialMoonDrawable extends Drawable {
     private float shaderRadius;
     private float shaderCenterX, shaderCenterY;
 
-    public MaterialMoonDrawable() {
+    public MoonDrawable() {
         this.paint = new Paint();
         paint.setAntiAlias(true);
 

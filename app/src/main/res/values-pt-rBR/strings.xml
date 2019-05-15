@@ -199,7 +199,7 @@
     <string name="settings_title_forecast_tomorrow">Previsão para amanhã</string>
     <string name="settings_title_forecast_tomorrow_time">Hora da previsão para amanhã</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_icon_style">Estilo do ícone</string>
+    <string name="settings_title_icon_provider">Estilo do ícone</string>
     <string name="settings_title_click_widget_to_refresh">Atualizar Widget quando clicado</string>
     <string name="settings_category_notification">Notificação</string>
     <string name="settings_title_notification">Enviar Notificação</string>

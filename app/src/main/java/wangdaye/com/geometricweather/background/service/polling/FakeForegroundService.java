@@ -32,11 +32,11 @@ public class FakeForegroundService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             startForeground(
                     GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
-                    TimeObserverService.getForecastNotification(this, false));
+                    TimeObserverService.getForegroundNotification(this, false));
         } else {
             startForeground(
                     GeometricWeather.NOTIFICATION_ID_RUNNING_IN_BACKGROUND,
-                    TimeObserverService.getForecastNotification(this, true));
+                    TimeObserverService.getForegroundNotification(this, true));
         }
         stopSelf();
     }

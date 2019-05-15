@@ -12,10 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
@@ -27,6 +23,8 @@ import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.TrendLinearLayout;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.WidgetItemView;
@@ -69,6 +67,8 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         if (weather == null) {
             return null;
         }
+
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
         int itemCount = 5;
         float[] temps;
@@ -119,21 +119,11 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             items[i].setTitleText(hourly.time);
             items[i].setSubtitleText(null);
 
-            try {
-                int resId = WeatherHelper.getWidgetNotificationIcon(
-                        hourly.weatherKind, hourly.dayTime, minimalIcon, true);
-                items[i].setTopIconDrawable(new GlideBitmapDrawable(
-                        context.getResources(),
-                        Glide.with(context)
-                                .load(resId)
-                                .asBitmap()
-                                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                                .into(items[i].getIconSize(), items[i].getIconSize())
-                                .get()
-                ));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            items[i].setTopIconDrawable(
+                    WeatherHelper.getWidgetNotificationIcon(
+                            provider, hourly.weatherKind, hourly.dayTime, minimalIcon, true
+                    )
+            );
 
             items[i].getTrendItemView().setData(
                     buildTempArrayForItem(temps, i),

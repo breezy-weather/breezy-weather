@@ -4,10 +4,10 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -20,6 +20,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayDetailsProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
@@ -64,6 +66,8 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
+
         boolean dayTime = TimeManager.getInstance(context)
                 .getDayTime(context, weather, false)
                 .isDayTime();
@@ -89,13 +93,16 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
             textColor = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_clock_day_icon,
-                WeatherHelper.getWidgetNotificationIcon(
-                        weather.realTime.weatherKind,
-                        dayTime,
-                        minimalIcon,
-                        blackText || showCard
+                drawableToBitmap(
+                        WeatherHelper.getWidgetNotificationIcon(
+                                provider,
+                                weather.realTime.weatherKind,
+                                dayTime,
+                                minimalIcon,
+                                blackText || showCard
+                        )
                 )
         );
 

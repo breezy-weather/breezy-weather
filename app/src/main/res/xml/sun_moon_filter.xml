@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="sun" value="wangdaye.com.geometricweather.ui.image.SunDrawable" />
+    <item name="moon" value="wangdaye.com.geometricweather.ui.image.MoonDrawable" />
+
+</resources>

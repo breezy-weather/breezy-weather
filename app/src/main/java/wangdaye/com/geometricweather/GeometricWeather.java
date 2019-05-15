@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.preference.PreferenceManager;
+
 import android.util.Log;
 
 import com.tencent.bugly.crashreport.CrashReport;
@@ -48,7 +49,7 @@ public class GeometricWeather extends Application {
     private String chineseSource;
     private String locationService;
     private String darkMode;
-    private String iconStyle;
+    private String iconProvider;
     private String[] cardDisplayValues;
     private String cardOrder;
     private boolean colorNavigationBar;
@@ -156,7 +157,7 @@ public class GeometricWeather extends Application {
         chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "accu");
         locationService = sharedPreferences.getString(getString(R.string.key_location_service), "native");
         darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
-        iconStyle = sharedPreferences.getString(getString(R.string.key_icon_style), "material");
+        iconProvider = sharedPreferences.getString(getString(R.string.key_icon_provider), getPackageName());
         cardDisplayValues = Objects.requireNonNull(sharedPreferences.getStringSet(
                 getString(R.string.key_card_display),
                 new HashSet<>(Arrays.asList(
@@ -227,12 +228,12 @@ public class GeometricWeather extends Application {
         this.darkMode = darkMode;
     }
 
-    public String getIconStyle() {
-        return iconStyle;
+    public String getIconProvider() {
+        return iconProvider;
     }
 
-    public void setIconStyle(String iconStyle) {
-        this.iconStyle = iconStyle;
+    public void setIconProvider(String iconProvider) {
+        this.iconProvider = iconProvider;
     }
 
     public String[] getCardDisplayValues() {

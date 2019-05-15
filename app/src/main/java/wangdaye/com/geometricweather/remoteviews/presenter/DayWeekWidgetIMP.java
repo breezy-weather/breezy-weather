@@ -4,10 +4,11 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.graphics.drawable.Drawable;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import android.view.View;
 import android.widget.RemoteViews;
@@ -19,6 +20,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetDayWeekProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -68,6 +71,8 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
                                              String viewStyle, boolean showCard, boolean blackText,
                                              boolean hideSubtitle, String subtitleData) {
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
+
         boolean dayTime = TimeManager.getInstance(context)
                 .getDayTime(context, weather, false)
                 .isDayTime();
@@ -95,7 +100,8 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         // build day part.
         RemoteViews views = buildWidgetViewDayPart(
-                context, weather,
+                context, provider,
+                weather,
                 dayTime, textColor, fahrenheit,
                 minimalIcon, showCard, blackText,
                 viewStyle, hideSubtitle, subtitleData);
@@ -147,25 +153,55 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 getTemp(weather, fahrenheit, 4)
         );
 
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_day_week_icon_1,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 0)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime,
+                                minimalIcon, blackText || showCard,
+                                0
+                        )
+                )
         );
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_day_week_icon_2,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 1)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime,
+                                minimalIcon, blackText || showCard,
+                                1
+                        )
+                )
         );
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_day_week_icon_3,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 2)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime,
+                                minimalIcon, blackText || showCard,
+                                2
+                        )
+                )
         );
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_day_week_icon_4,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 3)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime,
+                                minimalIcon, blackText || showCard,
+                                3
+                        )
+                )
         );
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_day_week_icon_5,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 4)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime,
+                                minimalIcon, blackText || showCard,
+                                4
+                        )
+                )
         );
 
         // set text color.
@@ -189,7 +225,8 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return views;
     }
 
-    private static RemoteViews buildWidgetViewDayPart(Context context, @Nullable Weather weather,
+    private static RemoteViews buildWidgetViewDayPart(Context context, ResourceProvider helper,
+                                                      @Nullable Weather weather,
                                                       boolean dayTime, int textColor, boolean fahrenheit,
                                                       boolean minimalIcon, boolean showCard, boolean blackText,
                                                       String viewStyle, boolean hideSubtitle, String subtitleData) {
@@ -211,13 +248,16 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_day_week_icon,
-                WeatherHelper.getWidgetNotificationIcon(
-                        weather.realTime.weatherKind,
-                        dayTime,
-                        minimalIcon,
-                        blackText || showCard
+                drawableToBitmap(
+                        WeatherHelper.getWidgetNotificationIcon(
+                                helper,
+                                weather.realTime.weatherKind,
+                                dayTime,
+                                minimalIcon,
+                                blackText || showCard
+                        )
                 )
         );
         views.setTextViewText(
@@ -360,11 +400,13 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return ValueUtils.buildDailyTemp(weather.dailyList.get(index).temps, false, fahrenheit);
     }
 
-    private static int getIconId(Weather weather,
-                                 boolean dayTime, boolean minimalIcon, boolean blackText, int index) {
+    private static Drawable getIconDrawable(ResourceProvider helper, Weather weather,
+                                            boolean dayTime, boolean minimalIcon, boolean blackText,
+                                            int index) {
         return WeatherHelper.getWidgetNotificationIcon(
-                weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
-                dayTime, minimalIcon, blackText);
+                helper, weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
+                dayTime, minimalIcon, blackText
+        );
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,

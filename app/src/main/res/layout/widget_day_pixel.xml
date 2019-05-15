@@ -28,7 +28,7 @@
                 android:layout_height="@dimen/widget_little_weather_icon_size"
                 android:layout_marginEnd="@dimen/little_margin"
                 android:src="@drawable/weather_cloudy"
-                tools:src="@drawable/weather_sun_day"
+                tools:src="@drawable/weather_clear_day"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <TextView

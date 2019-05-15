@@ -4,10 +4,11 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.graphics.drawable.Drawable;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import android.view.View;
 import android.widget.RemoteViews;
@@ -19,6 +20,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetWeekProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -58,6 +61,8 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         if (weather == null) {
             return views;
         }
+
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
         boolean dayTime = TimeManager.getInstance(context)
                 .getDayTime(context, weather, false)
@@ -118,21 +123,46 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_temp_5,
                 getTemp(weather, fahrenheit, 4));
 
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_week_icon_1,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 0));
-        views.setImageViewResource(
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                0)
+                )
+        );
+        views.setImageViewBitmap(
                 R.id.widget_week_icon_2,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 1));
-        views.setImageViewResource(
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                1)
+                )
+        );
+        views.setImageViewBitmap(
                 R.id.widget_week_icon_3,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 2));
-        views.setImageViewResource(
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                2)
+                )
+        );
+        views.setImageViewBitmap(
                 R.id.widget_week_icon_4,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 3));
-        views.setImageViewResource(
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                3)
+                )
+        );
+        views.setImageViewBitmap(
                 R.id.widget_week_icon_5,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 4));
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                4)
+                )
+        );
 
         // set text color.
         views.setTextColor(R.id.widget_week_week_1, textColor);
@@ -200,11 +230,13 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return ValueUtils.buildDailyTemp(weather.dailyList.get(index).temps, false, fahrenheit);
     }
 
-    private static int getIconId(Weather weather,
-                                 boolean dayTime, boolean minimalIcon, boolean blackText, int index) {
+    private static Drawable getIconDrawable(ResourceProvider helper, Weather weather,
+                                            boolean dayTime, boolean minimalIcon, boolean blackText,
+                                            int index) {
         return WeatherHelper.getWidgetNotificationIcon(
-                weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
-                dayTime, minimalIcon, blackText);
+                helper, weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
+                dayTime, minimalIcon, blackText
+        );
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,

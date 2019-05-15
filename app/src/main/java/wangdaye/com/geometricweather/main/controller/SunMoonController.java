@@ -23,6 +23,7 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
 import wangdaye.com.geometricweather.ui.widget.moon.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -44,6 +45,7 @@ public class SunMoonController extends AbstractMainItemController {
 
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
+    @NonNull private ResourceProvider resourceProvider;
 
     @Size(2) private float[] startTimes;
     @Size(2) private float[] endTimes;
@@ -55,7 +57,8 @@ public class SunMoonController extends AbstractMainItemController {
     private boolean executeEnterAnimation;
     @Size(3) private AnimatorSet[] attachAnimatorSets;
 
-    public SunMoonController(@NonNull Activity activity, @NonNull WeatherView weatherView) {
+    public SunMoonController(@NonNull Activity activity, @NonNull WeatherView weatherView,
+                             @NonNull ResourceProvider provider) {
         super(activity, activity.findViewById(R.id.container_main_sun_moon));
 
         this.card = view.findViewById(R.id.container_main_sun_moon);
@@ -70,6 +73,8 @@ public class SunMoonController extends AbstractMainItemController {
         this.weatherView = weatherView;
         this.executeEnterAnimation = true;
         this.attachAnimatorSets = new AnimatorSet[] {null, null, null};
+
+        this.resourceProvider = provider;
     }
 
     @SuppressLint("SetTextI18n")
@@ -105,8 +110,9 @@ public class SunMoonController extends AbstractMainItemController {
                 phaseView.setColor();
             }
 
-            sunMoonView.setSunDrawable(WeatherHelper.getSunDrawable());
-            sunMoonView.setMoonDrawable(WeatherHelper.getMoonDrawable());
+            sunMoonView.setSunDrawable(WeatherHelper.getSunDrawable(resourceProvider));
+            sunMoonView.setMoonDrawable(WeatherHelper.getMoonDrawable(resourceProvider));
+
             if (executeEnterAnimation) {
                 sunMoonView.setTime(startTimes, endTimes, startTimes);
                 sunMoonView.setDayIndicatorRotation(0);

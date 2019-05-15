@@ -1,26 +1,26 @@
 package wangdaye.com.geometricweather.utils.manager;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
@@ -28,10 +28,9 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
  * Shortcuts utils.
  * */
 
+@RequiresApi(api = Build.VERSION_CODES.N_MR1)
 public class ShortcutsManager {
 
-    @TargetApi(25)
-    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
     public static void refreshShortcutsInNewThread(final Context c, List<Location> locationList) {
         final List<Location> list = new ArrayList<>(locationList);
 
@@ -41,44 +40,24 @@ public class ShortcutsManager {
                 return;
             }
 
+            ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
+
             List<ShortcutInfo> shortcutList = new ArrayList<>();
             for (int i = 0; i < list.size() && i < 5; i ++) {
                 Icon icon;
                 Weather weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
                 if (weather != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        try {
-                            int size = Math.min((int) DisplayUtils.dpToPx(c, 108), 768);
-                            Bitmap foreground = Glide.with(c)
-                                    .load(
-                                            WeatherHelper.getShortcutForeground(
-                                                    weather.realTime.weatherKind,
-                                                    TimeManager.isDaylight(weather)
-                                            )
-                                    ).asBitmap()
-                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                    .centerCrop()
-                                    .into(size, size)
-                                    .get();
-                            icon = Icon.createWithAdaptiveBitmap(foreground);
-                        } catch (InterruptedException | ExecutionException e) {
-                            icon = Icon.createWithResource(
-                                    c, WeatherHelper.getShortcutIcon(
-                                            weather.realTime.weatherKind,
-                                            TimeManager.getInstance(c).isDayTime()
-                                    )
-                            );
-                        }
+                        icon = getAdaptiveIcon(
+                                provider, weather.realTime.weatherKind, TimeManager.isDaylight(weather)
+                        );
                     } else {
-                        icon = Icon.createWithResource(
-                                c, WeatherHelper.getShortcutIcon(
-                                        weather.realTime.weatherKind,
-                                        TimeManager.getInstance(c).isDayTime()
-                                )
+                        icon = getIcon(
+                                provider, weather.realTime.weatherKind, TimeManager.isDaylight(weather)
                         );
                     }
                 } else {
-                    icon = Icon.createWithResource(c, R.drawable.ic_shortcut_sun_day);
+                    icon = getIcon(provider, Weather.KIND_CLEAR, true);
                 }
 
                 String title = list.get(i).isLocal() ? c.getString(R.string.local) : list.get(i).getCityName(c);
@@ -99,5 +78,39 @@ public class ShortcutsManager {
                 // do nothing.
             }
         });
+    }
+
+    @NonNull
+    private static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
+        Bitmap bitmap = Bitmap.createBitmap(
+                drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(),
+                Bitmap.Config.ARGB_8888
+        );
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @NonNull
+    private static Icon getAdaptiveIcon(ResourceProvider helper, String weatherKind, boolean daytime) {
+        return Icon.createWithAdaptiveBitmap(
+                drawableToBitmap(
+                        WeatherHelper.getShortcutsForegroundIcon(helper, weatherKind, daytime)
+                )
+        );
+    }
+
+    @NonNull
+    private static Icon getIcon(ResourceProvider helper, String weatherKind, boolean daytime) {
+        return Icon.createWithBitmap(
+                drawableToBitmap(
+                        WeatherHelper.getShortcutsIcon(helper, weatherKind, daytime)
+                )
+        );
     }
 }

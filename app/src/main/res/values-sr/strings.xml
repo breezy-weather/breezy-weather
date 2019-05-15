@@ -153,7 +153,7 @@
     <string name="settings_title_forecast_tomorrow">Прогноза времена за сутра.</string>
     <string name="settings_title_forecast_tomorrow_time">Прогноза времена за сутра време.</string>
     <string name="settings_category_widget">Виџет</string>
-    <string name="settings_title_icon_style">Стил икона.</string>
+    <string name="settings_title_icon_provider">Стил икона.</string>
     <string name="settings_category_notification">Обавештење</string>
     <string name="settings_title_notification">Пошаљи обавештење.</string>
     <string name="settings_title_notification_temp_icon">Покажи температуру као мини икону.</string>

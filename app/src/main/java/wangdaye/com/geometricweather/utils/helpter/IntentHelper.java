@@ -30,6 +30,7 @@ import wangdaye.com.geometricweather.ui.activity.AlertActivity;
 import wangdaye.com.geometricweather.settings.activity.SelectProviderActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.ui.activity.ManageActivity;
+import wangdaye.com.geometricweather.ui.activity.PreviewIconActivity;
 import wangdaye.com.geometricweather.ui.activity.SearcActivity;
 import wangdaye.com.geometricweather.settings.activity.SettingsActivity;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
@@ -71,14 +72,16 @@ public class IntentHelper {
         Intent intent = new Intent(activity, AlertActivity.class);
         intent.putParcelableArrayListExtra(
                 AlertActivity.KEY_ALERT_ACTIVITY_ALERT_LIST,
-                (ArrayList<? extends Parcelable>) weather.alertList);
+                (ArrayList<? extends Parcelable>) weather.alertList
+        );
         activity.startActivity(intent);
     }
 
     public static void startManageActivityForResult(GeoActivity activity) {
         activity.startActivityForResult(
                 new Intent(activity, ManageActivity.class),
-                MainActivity.MANAGE_ACTIVITY);
+                MainActivity.MANAGE_ACTIVITY
+        );
     }
 
     public static void startSearchActivityForResult(GeoActivity geoActivity, View bar) {
@@ -91,23 +94,35 @@ public class IntentHelper {
             ActivityOptionsCompat options = ActivityOptionsCompat
                     .makeSceneTransitionAnimation(
                             geoActivity,
-                            Pair.create(bar, geoActivity.getString(R.string.transition_activity_search_bar)));
+                            Pair.create(bar, geoActivity.getString(R.string.transition_activity_search_bar))
+                    );
             ActivityCompat.startActivityForResult(
                     geoActivity,
                     intent,
                     ManageActivity.SEARCH_ACTIVITY,
-                    options.toBundle());
+                    options.toBundle()
+            );
         }
     }
 
     public static void startSettingsActivityForResult(GeoActivity activity) {
         activity.startActivityForResult(
                 new Intent(activity, SettingsActivity.class),
-                MainActivity.SETTINGS_ACTIVITY);
+                MainActivity.SETTINGS_ACTIVITY
+        );
     }
 
     public static void startSelectProviderActivity(Activity activity) {
         activity.startActivity(new Intent(activity, SelectProviderActivity.class));
+    }
+
+    public static void startPreviewIconActivity(Activity activity, String packageName) {
+        activity.startActivity(
+                new Intent(activity, PreviewIconActivity.class).putExtra(
+                        PreviewIconActivity.KEY_ICON_PREVIEW_ACTIVITY_PACKAGE_NAME,
+                        packageName
+                )
+        );
     }
 
     public static void startAboutActivity(GeoActivity activity) {
@@ -115,9 +130,13 @@ public class IntentHelper {
     }
 
     public static void startApplicationDetailsActivity(Context context) {
+        startApplicationDetailsActivity(context, context.getPackageName());
+    }
+
+    public static void startApplicationDetailsActivity(Context context, String pkgName) {
         Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.setData(Uri.fromParts("package", context.getPackageName(), null));
+        intent.setData(Uri.fromParts("package", pkgName, null));
         context.startActivity(intent);
     }
 
@@ -140,6 +159,36 @@ public class IntentHelper {
             SnackbarUtils.showSnackbar(
                     context.getString(R.string.feedback_cannot_start_live_wallpaper_activity)
             );
+        }
+    }
+
+    public static void startAppStoreDetailsActivity(Context context) {
+        startAppStoreDetailsActivity(context, context.getPackageName());
+    }
+
+    public static void startAppStoreDetailsActivity(Context context, String packageName) {
+        try {
+            context.startActivity(
+                    new Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=" + packageName)
+                    )
+            );
+        } catch (Exception e) {
+            SnackbarUtils.showSnackbar("Unavailable AppStore.");
+        }
+    }
+
+    public static void startAppStoreSearchActivity(Context context, String query) {
+        try {
+            context.startActivity(
+                    new Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("market://search?q=" + query)
+                    )
+            );
+        } catch (Exception e) {
+            SnackbarUtils.showSnackbar("Unavailable AppStore.");
         }
     }
 }

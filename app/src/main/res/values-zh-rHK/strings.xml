@@ -1,6 +1,7 @@
 <resources>
     <!-- app. -->
     <string name="app_name">幾何天氣</string>
+    <string name="geometric_weather">幾何天氣</string>
 
     <!-- keyword. -->
     <string name="local">本地</string>
@@ -28,6 +29,9 @@
     <string name="pressure">氣壓</string>
     <string name="visibility">能見度</string>
     <string name="dew_point">露點</string>
+    <string name="get_more">獲取更多</string>
+    <string name="get_more_store">從應用商店獲取更多</string>
+    <string name="get_more_github">從GitHub獲取更多</string>
 
     <string name="of_clock">時</string>
     <string name="yesterday">昨日</string>
@@ -165,7 +169,9 @@
     <string name="action_manage">地址管理</string>
     <string name="action_search">搜索</string>
     <string name="action_settings">設置</string>
+    <string name="action_preview">預覽</string>
     <string name="action_about">關於</string>
+    <string name="action_appStore">應用商店</string>
 
     <!-- widget -->
     <string name="widget_day">今日</string>
@@ -196,7 +202,7 @@
     <string name="settings_title_appearance">外觀</string>
     <string name="settings_summary_appearance">UI風格，卡片順序，語言等…</string>
     <string name="settings_title_ui_style">界面風格</string>
-    <string name="settings_title_icon_style">圖標風格</string>
+    <string name="settings_title_icon_provider">圖標風格</string>
     <string name="settings_title_card_display">卡片顯示</string>
     <string name="settings_title_card_order">卡片順序</string>
     <string name="settings_title_gravity_sensor_switch">開啓重力感應</string>

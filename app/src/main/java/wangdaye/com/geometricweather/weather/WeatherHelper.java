@@ -1,10 +1,12 @@
 package wangdaye.com.geometricweather.weather;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 
 import android.graphics.drawable.Drawable;
@@ -22,10 +24,7 @@ import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.ui.image.material.MaterialMoonDrawable;
-import wangdaye.com.geometricweather.ui.image.material.MaterialSunDrawable;
-import wangdaye.com.geometricweather.ui.image.pixel.PixelMoonDrawable;
-import wangdaye.com.geometricweather.ui.image.pixel.PixelSunDrawable;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
 import wangdaye.com.geometricweather.weather.service.CNWeatherService;
 import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
@@ -126,733 +125,98 @@ public class WeatherHelper {
         }
     }
 
-    public static int[] getWeatherIcon(String weatherKind, boolean dayTime) {
-        int[] imageId = new int[4];
-        if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
-            imageId[0] = getPixelWeatherIcon(weatherKind, dayTime);
-            imageId[1] = 0;
-            imageId[2] = 0;
-            imageId[3] = imageId[0];
-            return imageId;
-        }
-
-        switch (weatherKind) {
-            case Weather.KIND_CLEAR:
-                if(dayTime) {
-                    imageId[0] = R.drawable.weather_sun_circle;
-                    imageId[1] = R.drawable.weather_sun_shine;
-                    imageId[2] = 0;
-                    imageId[3] = R.drawable.weather_sun_day;
-                } else {
-                    imageId[0] = R.drawable.weather_sun_night;
-                    imageId[1] = 0;
-                    imageId[2] = 0;
-                    imageId[3] = R.drawable.weather_sun_night;
-                }
-                break;
-
-            case Weather.KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    imageId[0] = R.drawable.weather_cloud_right;
-                    imageId[1] = R.drawable.weather_sun_circle;
-                    imageId[2] = R.drawable.weather_sun_shine;
-                    imageId[3] = R.drawable.weather_cloud_day;
-                } else {
-                    imageId[0] = R.drawable.weather_cloud_left;
-                    imageId[1] = R.drawable.weather_moon;
-                    imageId[2] = 0;
-                    imageId[3] = R.drawable.weather_cloud_night;
-                }
-                break;
-
-            case Weather.KIND_CLOUDY:
-                imageId[0] = R.drawable.weather_cloud_top;
-                imageId[1] = R.drawable.weather_cloud_large;
-                imageId[2] = 0;
-                imageId[3] = R.drawable.weather_cloudy;
-                break;
-
-            case Weather.KIND_RAIN:
-                imageId[0] = R.drawable.weather_cloud_large;
-                imageId[1] = R.drawable.weather_rain_left;
-                imageId[2] = R.drawable.weather_rain_right;
-                imageId[3] = R.drawable.weather_rain;
-                break;
-
-            case Weather.KIND_WIND:
-                imageId[0] = R.drawable.weather_wind;
-                imageId[1] = 0;
-                imageId[2] = 0;
-                imageId[3] = R.drawable.weather_wind;
-                break;
-
-            case Weather.KIND_SNOW:
-                imageId[0] = R.drawable.weather_cloud_large;
-                imageId[1] = R.drawable.weather_snow_left;
-                imageId[2] = R.drawable.weather_snow_right;
-                imageId[3] = R.drawable.weather_snow;
-                break;
-
-            case Weather.KIND_FOG:
-                imageId[0] = R.drawable.weather_fog;
-                imageId[1] = R.drawable.weather_fog;
-                imageId[2] = R.drawable.weather_fog;
-                imageId[3] = R.drawable.weather_fog;
-                break;
-
-            case Weather.KIND_HAZE:
-                imageId[0] = R.drawable.weather_haze_1;
-                imageId[1] = R.drawable.weather_haze_2;
-                imageId[2] = R.drawable.weather_haze_3;
-                imageId[3] = R.drawable.weather_haze;
-                break;
-
-            case Weather.KIND_SLEET:
-                imageId[0] = R.drawable.weather_cloud_large;
-                imageId[1] = R.drawable.weather_snow_left;
-                imageId[2] = R.drawable.weather_rain_right;
-                imageId[3] = R.drawable.weather_sleet;
-                break;
-
-            case Weather.KIND_THUNDERSTORM:
-                imageId[0] = R.drawable.weather_cloud_large;
-                imageId[1] = R.drawable.weather_single_thunder;
-                imageId[2] = R.drawable.weather_rain_right;
-                imageId[3] = R.drawable.weather_thunderstorm;
-                break;
-
-            case Weather.KIND_THUNDER:
-                imageId[0] = R.drawable.weather_cloud_large;
-                imageId[1] = R.drawable.weather_single_thunder;
-                imageId[2] = 0;
-                imageId[3] = R.drawable.weather_thunder;
-                break;
-
-            case Weather.KIND_HAIL:
-                imageId[0] = R.drawable.weather_cloud_large;
-                imageId[1] = R.drawable.weather_hail_left;
-                imageId[2] = R.drawable.weather_hail_right;
-                imageId[3] = R.drawable.weather_hail;
-                break;
-
-            default:
-                imageId[0] = R.drawable.weather_cloud_top;
-                imageId[1] = R.drawable.weather_cloud_large;
-                imageId[2] = 0;
-                imageId[3] = R.drawable.weather_cloudy;
-                break;
-        }
-        return imageId;
+    @NonNull
+    public static Drawable getWeatherIcon(ResourceProvider provider,
+                                          String weatherKind, boolean dayTime) {
+        return provider.getWeatherIcon(weatherKind, dayTime);
     }
 
-    private static int getPixelWeatherIcon(String weatherInfo, boolean dayTime) {
-        int imageId = R.drawable.weather_cloudy_pixel;
-        switch (weatherInfo) {
-            case Weather.KIND_CLEAR:
-                if(dayTime) {
-                    imageId = R.drawable.weather_sun_day_pixel;
-                } else {
-                    imageId = R.drawable.weather_sun_night_pixel;
-                }
-                break;
-
-            case Weather.KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    imageId = R.drawable.weather_cloud_day_pixel;
-                } else {
-                    imageId = R.drawable.weather_cloud_night_pixel;
-                }
-                break;
-
-            case Weather.KIND_CLOUDY:
-                imageId = R.drawable.weather_cloudy_pixel;
-                break;
-
-            case Weather.KIND_RAIN:
-                imageId = R.drawable.weather_rain_pixel;
-                break;
-
-            case Weather.KIND_WIND:
-                imageId = R.drawable.weather_wind_pixel;
-                break;
-
-            case Weather.KIND_SNOW:
-            case Weather.KIND_HAIL:
-                imageId = R.drawable.weather_snow_pixel;
-                break;
-
-            case Weather.KIND_FOG:
-            case Weather.KIND_HAZE:
-                imageId = R.drawable.weather_fog_pixel;
-                break;
-
-            case Weather.KIND_SLEET:
-                imageId = R.drawable.weather_sleet_pixel;
-                break;
-
-            case Weather.KIND_THUNDERSTORM:
-            case Weather.KIND_THUNDER:
-                imageId = R.drawable.weather_thunderstorm_pixel;
-                break;
-        }
-        return imageId;
+    @Size(3)
+    public static Drawable[] getWeatherIcons(ResourceProvider provider,
+                                             String weatherKind, boolean dayTime) {
+        return provider.getWeatherIcons(weatherKind, dayTime);
     }
 
-    private static int getMiniWeatherIcon(String weatherInfo, boolean dayTime, String textColor) {
-        int imageId = R.drawable.weather_cloudy_mini_light;
-        switch (weatherInfo) {
-            case Weather.KIND_CLEAR:
-                if(dayTime) {
-                    switch (textColor) {
-                        case "light":
-                            imageId = R.drawable.weather_sun_day_mini_light;
-                            break;
-
-                        case "grey":
-                            imageId = R.drawable.weather_sun_day_mini_grey;
-                            break;
-
-                        case "dark":
-                            imageId = R.drawable.weather_sun_day_mini_dark;
-                            break;
-                    }
-                } else {
-                    switch (textColor) {
-                        case "light":
-                            imageId = R.drawable.weather_sun_night_mini_light;
-                            break;
-
-                        case "grey":
-                            imageId = R.drawable.weather_sun_night_mini_grey;
-                            break;
-
-                        case "dark":
-                            imageId = R.drawable.weather_sun_night_mini_dark;
-                            break;
-                    }
-                }
-                break;
-
-            case Weather.KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    switch (textColor) {
-                        case "light":
-                            imageId = R.drawable.weather_cloud_day_mini_light;
-                            break;
-
-                        case "grey":
-                            imageId = R.drawable.weather_cloud_day_mini_grey;
-                            break;
-
-                        case "dark":
-                            imageId = R.drawable.weather_cloud_day_mini_dark;
-                            break;
-                    }
-                } else {
-                    switch (textColor) {
-                        case "light":
-                            imageId = R.drawable.weather_cloud_night_mini_light;
-                            break;
-
-                        case "grey":
-                            imageId = R.drawable.weather_cloud_night_mini_grey;
-                            break;
-
-                        case "dark":
-                            imageId = R.drawable.weather_cloud_night_mini_dark;
-                            break;
-                    }
-                }
-                break;
-
-            case Weather.KIND_CLOUDY:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_cloudy_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_cloudy_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_cloudy_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_RAIN:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_rain_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_rain_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_rain_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_WIND:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_wind_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_wind_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_wind_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_SNOW:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_snow_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_snow_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_snow_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_FOG:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_fog_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_fog_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_fog_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_HAZE:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_haze_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_haze_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_haze_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_SLEET:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_sleet_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_sleet_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_sleet_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_THUNDERSTORM:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_thunderstorm_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_thunderstorm_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_thunderstorm_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_THUNDER:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_thunder_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_thunder_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_thunder_mini_dark;
-                        break;
-                }
-                break;
-
-            case Weather.KIND_HAIL:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_hail_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_hail_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_hail_mini_dark;
-                        break;
-                }
-                break;
-
-            default:
-                switch (textColor) {
-                    case "light":
-                        imageId = R.drawable.weather_cloudy_mini_light;
-                        break;
-
-                    case "grey":
-                        imageId = R.drawable.weather_cloudy_mini_grey;
-                        break;
-
-                    case "dark":
-                        imageId = R.drawable.weather_cloudy_mini_dark;
-                        break;
-                }
-                break;
-        }
-        return imageId;
+    @Size(3)
+    public static Animator[] getWeatherAnimators(ResourceProvider provider,
+                                                 String weatherKind, boolean dayTime) {
+        return provider.getWeatherAnimators(weatherKind, dayTime);
     }
 
-    public static int getNotificationWeatherIcon(String weatherInfo, boolean dayTime) {
-        switch (weatherInfo) {
-            case Weather.KIND_CLEAR:
-                if(dayTime) {
-                    return R.drawable.weather_sun_day_xml;
-                } else {
-                    return R.drawable.weather_sun_night_xml;
-                }
-
-            case Weather.KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    return R.drawable.weather_cloud_day_xml;
-                } else {
-                    return R.drawable.weather_cloud_night_xml;
-                }
-
-            case Weather.KIND_CLOUDY:
-                return R.drawable.weather_cloudy_xml;
-
-            case Weather.KIND_RAIN:
-                return R.drawable.weather_rain_xml;
-
-            case Weather.KIND_WIND:
-                return R.drawable.weather_wind_xml;
-
-            case Weather.KIND_SNOW:
-                return R.drawable.weather_snow_xml;
-
-            case Weather.KIND_FOG:
-                return R.drawable.weather_fog_xml;
-
-            case Weather.KIND_HAZE:
-                return R.drawable.weather_haze_xml;
-
-            case Weather.KIND_SLEET:
-                return R.drawable.weather_sleet_xml;
-
-            case Weather.KIND_THUNDERSTORM:
-                return R.drawable.weather_thunderstorm_xml;
-
-            case Weather.KIND_THUNDER:
-                return R.drawable.weather_thunder_xml;
-
-            case Weather.KIND_HAIL:
-                return R.drawable.weather_hail_xml;
-
-            default:
-                return R.drawable.weather_cloudy_xml;
-        }
-    }
-
-    public static int[] getAnimatorId(String weatherKind, boolean dayTime) {
-        int[] animatorId = new int[3];
-        if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
-            return animatorId;
-        }
-
-        switch (weatherKind) {
-            case Weather.KIND_CLEAR:
-                if(dayTime) {
-                    animatorId[0] = R.animator.weather_sun_day_1;
-                    animatorId[1] = R.animator.weather_sun_day_2;
-                    animatorId[2] = 0;
-                } else {
-                    animatorId[0] = R.animator.weather_sun_night;
-                    animatorId[1] = 0;
-                    animatorId[2] = 0;
-                }
-                break;
-
-            case Weather.KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    animatorId[0] = R.animator.weather_cloud_day_1;
-                    animatorId[1] = R.animator.weather_cloud_day_2;
-                    animatorId[2] = R.animator.weather_cloud_day_3;
-                } else {
-                    animatorId[0] = R.animator.weather_cloud_night_1;
-                    animatorId[1] = R.animator.weather_cloud_night_2;
-                    animatorId[2] = 0;
-                }
-                break;
-
-            case Weather.KIND_CLOUDY:
-                animatorId[0] = R.animator.weather_cloudy_1;
-                animatorId[1] = R.animator.weather_cloudy_2;
-                animatorId[2] = 0;
-                break;
-
-            case Weather.KIND_RAIN:
-                animatorId[0] = R.animator.weather_rain_1;
-                animatorId[1] = R.animator.weather_rain_2;
-                animatorId[2] = R.animator.weather_rain_3;
-                break;
-
-            case Weather.KIND_WIND:
-                animatorId[0] = R.animator.weather_wind;
-                animatorId[1] = 0;
-                animatorId[2] = 0;
-                break;
-
-            case Weather.KIND_SNOW:
-                animatorId[0] = R.animator.weather_snow_1;
-                animatorId[1] = R.animator.weather_snow_2;
-                animatorId[2] = R.animator.weather_snow_3;
-                break;
-
-            case Weather.KIND_FOG:
-                animatorId[0] = R.animator.weather_fog_1;
-                animatorId[1] = R.animator.weather_fog_2;
-                animatorId[2] = R.animator.weather_fog_3;
-                break;
-
-            case Weather.KIND_HAZE:
-                animatorId[0] = R.animator.weather_haze_1;
-                animatorId[1] = R.animator.weather_haze_2;
-                animatorId[2] = R.animator.weather_haze_3;
-                break;
-
-            case Weather.KIND_SLEET:
-                animatorId[0] = R.animator.weather_sleet_1;
-                animatorId[1] = R.animator.weather_sleet_2;
-                animatorId[2] = R.animator.weather_sleet_3;
-                break;
-
-            case Weather.KIND_THUNDERSTORM:
-                animatorId[0] = R.animator.weather_thunderstorm_1;
-                animatorId[1] = R.animator.weather_thunderstorm_2;
-                animatorId[2] = R.animator.weather_thunderstorm_3;
-                break;
-
-            case Weather.KIND_THUNDER:
-                animatorId[0] = R.animator.weather_thunder_1;
-                animatorId[1] = R.animator.weather_thunder_2;
-                animatorId[2] = R.animator.weather_thunder_2;
-                break;
-
-            case Weather.KIND_HAIL:
-                animatorId[0] = R.animator.weather_hail_1;
-                animatorId[1] = R.animator.weather_hail_2;
-                animatorId[2] = R.animator.weather_hail_3;
-                break;
-
-            default:
-                animatorId[0] = R.animator.weather_cloudy_1;
-                animatorId[1] = R.animator.weather_cloudy_2;
-                animatorId[2] = 0;
-                break;
-        }
-        return animatorId;
-    }
-
-    public static int getWidgetNotificationIcon(String weatherInfo, boolean dayTime,
-                                                boolean minimal, String textColor) {
+    @NonNull
+    public static Drawable getWidgetNotificationIcon(ResourceProvider provider,
+                                                     String weatherInfo, boolean dayTime,
+                                                     boolean minimal, String textColor) {
         if (minimal) {
-            return getMiniWeatherIcon(weatherInfo, dayTime, textColor);
+            switch (textColor) {
+                case "light":
+                    return provider.getMinimalLightIcon(weatherInfo, dayTime);
+
+                case "grey":
+                    return provider.getMinimalGreyIcon(weatherInfo, dayTime);
+
+                case "dark":
+                    return provider.getMinimalDarkIcon(weatherInfo, dayTime);
+            }
         }
-        return getWeatherIcon(weatherInfo, dayTime)[3];
+
+        return provider.getWeatherIcon(weatherInfo, dayTime);
     }
 
-    public static int getWidgetNotificationIcon(String weatherInfo, boolean dayTime,
-                                                boolean minimal, boolean darkText) {
-        return getWidgetNotificationIcon(weatherInfo, dayTime, minimal, darkText ? "dark" : "light");
+    @NonNull
+    public static Drawable getWidgetNotificationIcon(ResourceProvider provider,
+                                                     String weatherInfo, boolean dayTime,
+                                                     boolean minimal, boolean darkText) {
+        return getWidgetNotificationIcon(
+                provider, weatherInfo, dayTime, minimal, darkText ? "dark" : "light");
     }
 
-    public static int getShortcutIcon(String weatherInfo, boolean dayTime) {
-        int imageId;
-        switch (weatherInfo) {
-            case Weather.KIND_CLEAR:
-                if(dayTime) {
-                    imageId = R.drawable.ic_shortcut_sun_day;
-                } else {
-                    imageId = R.drawable.ic_shortcut_sun_night;
-                }
-                break;
-
-            case Weather.KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    imageId = R.drawable.ic_shortcut_cloud_day;
-                } else {
-                    imageId = R.drawable.ic_shortcut_cloudy;
-                }
-                break;
-
-            case Weather.KIND_CLOUDY:
-                imageId = R.drawable.ic_shortcut_cloudy;
-                break;
-
-            case Weather.KIND_RAIN:
-                imageId = R.drawable.ic_shortcut_rain;
-                break;
-
-            case Weather.KIND_WIND:
-                imageId = R.drawable.ic_shortcut_wind;
-                break;
-
-            case Weather.KIND_SNOW:
-                imageId = R.drawable.ic_shortcut_snow;
-                break;
-
-            case Weather.KIND_FOG:
-                imageId = R.drawable.ic_shortcut_fog;
-                break;
-
-            case Weather.KIND_HAZE:
-                imageId = R.drawable.ic_shortcut_haze;
-                break;
-
-            case Weather.KIND_SLEET:
-                imageId = R.drawable.ic_shortcut_sleet;
-                break;
-
-            case Weather.KIND_THUNDERSTORM:
-                imageId = R.drawable.ic_shortcut_thunder;
-                break;
-
-            case Weather.KIND_THUNDER:
-                imageId = R.drawable.ic_shortcut_thunder;
-                break;
-
-            case Weather.KIND_HAIL:
-                imageId = R.drawable.ic_shortcut_hail;
-                break;
-
-            default:
-                imageId = R.drawable.ic_shortcut_cloudy;
-                break;
-        }
-        return imageId;
+    @NonNull
+    public static Drawable getMinimalXmlIcon(ResourceProvider provider,
+                                             String weatherInfo, boolean dayTime) {
+        return provider.getMinimalXmlIcon(weatherInfo, dayTime);
     }
 
-    public static int getShortcutForeground(String weatherInfo, boolean dayTime) {
-        int imageId;
-        switch (weatherInfo) {
-            case Weather.KIND_CLEAR:
-                if(dayTime) {
-                    imageId = R.drawable.ic_shortcut_sun_day_foreground;
-                } else {
-                    imageId = R.drawable.ic_shortcut_sun_night_foreground;
-                }
-                break;
-
-            case Weather.KIND_PARTLY_CLOUDY:
-                if(dayTime) {
-                    imageId = R.drawable.ic_shortcut_cloud_day_foreground;
-                } else {
-                    imageId = R.drawable.ic_shortcut_cloudy_foreground;
-                }
-                break;
-
-            case Weather.KIND_CLOUDY:
-                imageId = R.drawable.ic_shortcut_cloudy_foreground;
-                break;
-
-            case Weather.KIND_RAIN:
-                imageId = R.drawable.ic_shortcut_rain_foreground;
-                break;
-
-            case Weather.KIND_WIND:
-                imageId = R.drawable.ic_shortcut_wind_foreground;
-                break;
-
-            case Weather.KIND_SNOW:
-                imageId = R.drawable.ic_shortcut_snow_foreground;
-                break;
-
-            case Weather.KIND_FOG:
-                imageId = R.drawable.ic_shortcut_fog_foreground;
-                break;
-
-            case Weather.KIND_HAZE:
-                imageId = R.drawable.ic_shortcut_haze_foreground;
-                break;
-
-            case Weather.KIND_SLEET:
-                imageId = R.drawable.ic_shortcut_sleet_foreground;
-                break;
-
-            case Weather.KIND_THUNDERSTORM:
-                imageId = R.drawable.ic_shortcut_thunder_foreground;
-                break;
-
-            case Weather.KIND_THUNDER:
-                imageId = R.drawable.ic_shortcut_thunder_foreground;
-                break;
-
-            case Weather.KIND_HAIL:
-                imageId = R.drawable.ic_shortcut_hail_foreground;
-                break;
-
-            default:
-                imageId = R.drawable.ic_shortcut_cloudy_foreground;
-                break;
-        }
-        return imageId;
+    @NonNull
+    public static Drawable getShortcutsIcon(ResourceProvider provider,
+                                            String weatherKind, boolean dayTime) {
+        return provider.getShortcutsIcon(weatherKind, dayTime);
     }
 
-    public static Drawable getSunDrawable() {
-        if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
-            return new PixelSunDrawable();
+    @NonNull
+    public static Drawable getShortcutsForegroundIcon(ResourceProvider provider,
+                                                      String weatherKind, boolean dayTime) {
+        return provider.getShortcutsForegroundIcon(weatherKind, dayTime);
+    }
+
+    public static Drawable getSunDrawable(ResourceProvider provider) {
+        return provider.getSunDrawable();
+    }
+
+    public static Drawable getMoonDrawable(ResourceProvider provider) {
+        return provider.getMoonDrawable();
+    }
+
+    public static int getTempIconId(Context context, int temp) {
+        int id = ResourceProvider.getResId(
+                context,
+                "notif_temp_" + temp,
+                "drawable"
+        );
+        if (id == 0) {
+            return R.drawable.notif_temp_0;
         } else {
-            return new MaterialSunDrawable();
+            return id;
         }
     }
 
-    public static Drawable getMoonDrawable() {
-        if (GeometricWeather.getInstance().getIconStyle().equals("pixel")) {
-            return new PixelMoonDrawable();
+    public static int getMiniIconId(ResourceProvider provider,
+                                    String weatherKind, boolean daytime) {
+        int id = provider.getMinimalXmlIconId(weatherKind, daytime);
+        if (id == 0) {
+            return R.drawable.weather_clear_day_mini_xml;
         } else {
-            return new MaterialMoonDrawable();
+            return id;
         }
     }
 
@@ -1274,25 +638,6 @@ public class WeatherHelper {
             return new SimpleDateFormat("h:mm aa").format(new Date(System.currentTimeMillis()));
         }
         return new SimpleDateFormat("HH:mm").format(new Date(System.currentTimeMillis()));
-    }
-
-    public static String buildTime(Context c, String hourString, String minuteString) {
-        if (TimeManager.is12Hour(c)) {
-            try {
-                int hour = Integer.parseInt(hourString);
-                if (hour == 0) {
-                    hour = 24;
-                }
-                String suffix = hour == 24 || hour < 13 ? "AM" : "PM";
-                if (hour > 12) {
-                    hour -= 12;
-                }
-                return hour + ":" + minuteString + " " + suffix;
-            } catch (Exception ignored) {
-                // do nothing.
-            }
-        }
-        return hourString + ":" + minuteString;
     }
 
     public static String buildTime(Context c, String hourString) {

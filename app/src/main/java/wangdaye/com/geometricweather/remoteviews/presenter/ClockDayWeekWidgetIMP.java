@@ -4,10 +4,11 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.graphics.drawable.Drawable;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import android.view.View;
 import android.widget.RemoteViews;
@@ -19,6 +20,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayWeekProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -63,6 +66,8 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
+        ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
+
         boolean dayTime = TimeManager.getInstance(context)
                 .getDayTime(context, weather, false)
                 .isDayTime();
@@ -88,13 +93,16 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
             textColor = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_clock_day_week_icon,
-                WeatherHelper.getWidgetNotificationIcon(
-                        weather.realTime.weatherKind,
-                        dayTime,
-                        minimalIcon,
-                        blackText || showCard
+                drawableToBitmap(
+                        WeatherHelper.getWidgetNotificationIcon(
+                                provider,
+                                weather.realTime.weatherKind,
+                                dayTime,
+                                minimalIcon,
+                                blackText || showCard
+                        )
                 )
         );
         views.setTextViewText(
@@ -152,25 +160,55 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 getTemp(weather, fahrenheit, 4)
         );
 
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_clock_day_week_icon_1,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 0)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather,
+                                dayTime, minimalIcon, blackText || showCard,
+                                0
+                        )
+                )
         );
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_clock_day_week_icon_2,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 1)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather,
+                                dayTime, minimalIcon, blackText || showCard,
+                                1
+                        )
+                )
         );
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_clock_day_week_icon_3,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 2)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather,
+                                dayTime, minimalIcon, blackText || showCard,
+                                2
+                        )
+                )
         );
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_clock_day_week_icon_4,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 3)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather,
+                                dayTime, minimalIcon, blackText || showCard,
+                                3
+                        )
+                )
         );
-        views.setImageViewResource(
+        views.setImageViewBitmap(
                 R.id.widget_clock_day_week_icon_5,
-                getIconId(weather, dayTime, minimalIcon, blackText || showCard, 4)
+                drawableToBitmap(
+                        getIconDrawable(
+                                provider, weather,
+                                dayTime, minimalIcon, blackText || showCard,
+                                4
+                        )
+                )
         );
 
         views.setTextColor(R.id.widget_clock_day_week_clock_light, textColor);
@@ -273,9 +311,11 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         );
     }
 
-    private static int getIconId(Weather weather,
-                                 boolean dayTime, boolean minimalIcon, boolean blackText, int index) {
+    private static Drawable getIconDrawable(ResourceProvider helper, Weather weather,
+                                            boolean dayTime, boolean minimalIcon, boolean blackText,
+                                            int index) {
         return WeatherHelper.getWidgetNotificationIcon(
+                helper,
                 weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
                 dayTime,
                 minimalIcon,
