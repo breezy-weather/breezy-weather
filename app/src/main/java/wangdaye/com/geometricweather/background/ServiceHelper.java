@@ -7,10 +7,10 @@ import android.os.Build;
 
 import androidx.preference.PreferenceManager;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.service.polling.AwakeForegroundUpdateService;
 import wangdaye.com.geometricweather.background.service.polling.TimeObserverService;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
@@ -42,16 +42,16 @@ public class ServiceHelper {
                 );
                 String todayForecastTime = sharedPreferences.getString(
                         context.getString(R.string.key_forecast_today_time),
-                        GeometricWeather.DEFAULT_TODAY_FORECAST_TIME
+                        SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME
                 );
                 String tomorrowForecastTime = sharedPreferences.getString(
                         context.getString(R.string.key_forecast_tomorrow_time),
-                        GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME
+                        SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME
                 );
                 intent.putExtra(
                         TimeObserverService.KEY_POLLING_RATE,
                         ValueUtils.getRefreshRateScale(
-                                GeometricWeather.getInstance().getUpdateInterval()
+                                SettingsOptionManager.getInstance(context).getUpdateInterval()
                         )
                 );
                 intent.putExtra(

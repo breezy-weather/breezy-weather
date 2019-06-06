@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.greenrobot.greendao.DbUtils;
 import org.greenrobot.greendao.database.Database;
 
 import java.util.ArrayList;
@@ -228,6 +229,8 @@ public class DatabaseHelper {
         HourlyEntity.deleteHourlyList(getDatabase(), location);
         AlarmEntity.deleteAlarmList(getDatabase(), location);
         HistoryEntity.clearLocationHistory(getDatabase(), location);
+
+        DbUtils.vacuum(new DaoMaster(getDatabase()).getDatabase());
     }
 
     // cn city.

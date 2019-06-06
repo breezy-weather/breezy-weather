@@ -174,7 +174,6 @@
     <string name="settings_title_notification_temp_icon">Laat temperatuur zien als klein icoon.</string>
     <string name="settings_title_notification_text_color">Tekstkleur.</string>
     <string name="settings_title_notification_background">Achtergrondkleur.</string>
-    <string name="settings_notification_background_on">Hetzelfde als snelle instellingen in AOSP.</string>
     <string name="settings_notification_background_off">Volg systeem.</string>
     <string name="settings_title_notification_can_be_cleared">Te verwijderen.</string>
     <string name="settings_notification_can_be_cleared_on">Kan verwijderd worden.</string>

@@ -18,6 +18,7 @@ import java.util.Date;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.preference.PreferenceManager;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -32,6 +33,7 @@ import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.TrendLinearLayout;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.WidgetItemView;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -49,16 +51,23 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         ThreadManager.getInstance().execute(() -> innerRefreshWidget(context, location, weather, history));
     }
 
+    @WorkerThread
     private static void innerRefreshWidget(Context context, Location location,
                                            @Nullable Weather weather, @Nullable History history) {
-        View drawableView = getDrawableView(context, weather, history);
+        WidgetConfig config = getWidgetConfig(
+                context,
+                context.getString(R.string.sp_widget_daily_trend_setting)
+        );
+        if (config.cardStyle.equals("none")) {
+            config.cardStyle = "light";
+        }
+
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetTrendDailyProvider.class),
                 getRemoteViews(
-                        context,
-                        drawableView,
-                        location,
-                        context.getResources().getDisplayMetrics().widthPixels
+                        context, location, weather, history,
+                        context.getResources().getDisplayMetrics().widthPixels,
+                        config.cardStyle, config.cardAlpha
                 )
         );
     }
@@ -66,7 +75,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     @WorkerThread @Nullable
     @SuppressLint("InflateParams, SimpleDateFormat")
     private static View getDrawableView(Context context,
-                                        @Nullable Weather weather, @Nullable History history) {
+                                        @Nullable Weather weather, @Nullable History history,
+                                        boolean lightTheme) {
         if (weather == null) {
             return null;
         }
@@ -114,9 +124,11 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         View drawableView = LayoutInflater.from(context)
                 .inflate(R.layout.widget_trend_daily, null, false);
         if (history != null) {
-            ((TrendLinearLayout) drawableView.findViewById(R.id.widget_trend_daily)).setData(
+            TrendLinearLayout trendParent = drawableView.findViewById(R.id.widget_trend_daily);
+            trendParent.setData(
                     new int[] {history.maxiTemp, history.miniTemp}, highestTemp, lowestTemp, true
             );
+            trendParent.setColor(lightTheme);
         }
         WidgetItemView[] items = new WidgetItemView[] {
                 drawableView.findViewById(R.id.widget_trend_daily_item_1),
@@ -155,19 +167,28 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             items[i].getTrendItemView().setLineColors(
                     ContextCompat.getColor(context, R.color.lightPrimary_5),
                     ContextCompat.getColor(context, R.color.darkPrimary_1),
-                    Color.parseColor("#f1f1f1")
+                    lightTheme
+                            ? ColorUtils.setAlphaComponent(Color.BLACK, (int) (255 * 0.05))
+                            : ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.1))
             );
+            items[i].getTrendItemView().setShadowColors(lightTheme);
             items[i].getTrendItemView().setTextColors(
-                    ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                    ContextCompat.getColor(context, R.color.colorTextGrey2nd)
+                    lightTheme
+                            ? ContextCompat.getColor(context, R.color.colorTextContent_light)
+                            : ContextCompat.getColor(context, R.color.colorTextContent_dark),
+                    lightTheme
+                            ? ContextCompat.getColor(context, R.color.colorTextSubtitle_light)
+                            : ContextCompat.getColor(context, R.color.colorTextSubtitle_dark)
             );
-            items[i].getTrendItemView().setPrecipitationAlpha(0.2f);
+            items[i].getTrendItemView().setPrecipitationAlpha(lightTheme ? 0.2f : 0.5f);
 
             items[i].setBottomIconDrawable(
                     WeatherHelper.getWidgetNotificationIcon(
                             provider, daily.weatherKinds[1], false, minimalIcon, true
                     )
             );
+
+            items[i].setColor(lightTheme);
         }
 
         return drawableView;
@@ -175,7 +196,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
     @WorkerThread
     private static RemoteViews getRemoteViews(Context context, @Nullable View drawableView,
-                                             Location location, int width) {
+                                             Location location, int width,
+                                              boolean darkCard, int cardAlpha) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_remote);
         if (drawableView == null) {
             return views;
@@ -213,6 +235,11 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         views.setImageViewBitmap(R.id.widget_remote_drawable, cache);
         views.setViewVisibility(R.id.widget_remote_progress, View.GONE);
 
+        views.setImageViewResource(
+                R.id.widget_remote_card,
+                getCardBackgroundId(context, darkCard, cardAlpha)
+        );
+
         boolean touchToRefresh = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.key_click_widget_to_refresh), false);
         setOnClickPendingIntent(context, views, location, touchToRefresh);
@@ -221,14 +248,29 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     @WorkerThread
-    private static RemoteViews getRemoteViews(Context context, Location location,
-                                              @Nullable Weather weather, @Nullable History history,
-                                              int width) {
+    public static RemoteViews getRemoteViews(Context context, Location location,
+                                             @Nullable Weather weather, @Nullable History history,
+                                             int width, String cardStyle, int cardAlpha) {
+        boolean lightTheme;
+        switch (cardStyle) {
+            case "light":
+                lightTheme = true;
+                break;
+
+            case "dark":
+                lightTheme = false;
+                break;
+
+            default:
+                lightTheme = TimeManager.isDaylight(weather);
+                break;
+        }
         return getRemoteViews(
                 context,
-                getDrawableView(context, weather, history),
+                getDrawableView(context, weather, history, lightTheme),
                 location,
-                width
+                width,
+                !lightTheme, cardAlpha
         );
     }
 

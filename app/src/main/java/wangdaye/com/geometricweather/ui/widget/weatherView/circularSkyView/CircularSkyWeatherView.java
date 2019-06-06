@@ -29,6 +29,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 import wangdaye.com.geometricweather.ui.widget.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
@@ -52,12 +53,10 @@ public class CircularSkyWeatherView extends FrameLayout
     private WeatherIconControlView controlView;
     private CircleView circleView;
     private FrameLayout starContainer;
-    @Size(3) private AppCompatImageView[] flagIcons;
+    private AnimatableIconView flagIcon;
 
     @Size(3) private Drawable[] iconDrawables;
-    private boolean animating = false;
-
-    @Size(3) private Animator[] iconTouchAnimators;
+    @Size(3) private Animator[] iconAnimators;
     @Size(2) private Animator[] starShineAnimators;
 
     private int firstCardMarginTop;
@@ -136,14 +135,11 @@ public class CircularSkyWeatherView extends FrameLayout
             starContainer.setAlpha(1);
         }
 
-        findViewById(R.id.container_circular_sky_view_iconContainer).setVisibility(GONE);
+        this.flagIcon = findViewById(R.id.container_circular_sky_view_icon);
+        flagIcon.setVisibility(GONE);
 
-        this.flagIcons = new AppCompatImageView[] {
-                findViewById(R.id.container_circular_sky_view_icon_1),
-                findViewById(R.id.container_circular_sky_view_icon_2),
-                findViewById(R.id.container_circular_sky_view_icon_3)};
-        iconDrawables = new Drawable[] {null, null, null};
-        iconTouchAnimators = new Animator[] {null, null, null};
+        this.iconDrawables = new Drawable[] {null, null, null};
+        this.iconAnimators = new Animator[] {null, null, null};
 
         AppCompatImageView[] starts = new AppCompatImageView[] {
                 findViewById(R.id.container_circular_sky_view_star_1),
@@ -189,23 +185,6 @@ public class CircularSkyWeatherView extends FrameLayout
         }
     }
 
-    private void setFlagIconsImage() {
-        for (int i = 0; i < flagIcons.length; i ++) {
-            if (iconDrawables[i] == null) {
-                flagIcons[i].setVisibility(GONE);
-            } else {
-                flagIcons[i].setAlpha(1f);
-                flagIcons[i].setRotation(0f);
-                flagIcons[i].setTranslationX(0f);
-                flagIcons[i].setTranslationY(0f);
-                flagIcons[i].setScaleX(1f);
-                flagIcons[i].setScaleY(1f);
-                flagIcons[i].setImageDrawable(iconDrawables[i]);
-                flagIcons[i].setVisibility(VISIBLE);
-            }
-        }
-    }
-
     private void changeStarAlPha() {
         starContainer.clearAnimation();
 
@@ -234,27 +213,8 @@ public class CircularSkyWeatherView extends FrameLayout
 
         String entityWeatherKind = WeatherViewController.getEntityWeatherKind(weatherKind);
 
-        iconTouchAnimators = WeatherHelper.getWeatherAnimators(provider, entityWeatherKind, daytime);
-        for (int i = 0; i < iconTouchAnimators.length; i ++) {
-            if (iconTouchAnimators[i] != null) {
-                iconTouchAnimators[i].addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        super.onAnimationStart(animation);
-                        animating = true;
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        animating = false;
-                    }
-                });
-                iconTouchAnimators[i].setTarget(flagIcons[i]);
-            }
-        }
-
         iconDrawables = WeatherHelper.getWeatherIcons(provider, entityWeatherKind, daytime);
+        iconAnimators = WeatherHelper.getWeatherAnimators(provider, entityWeatherKind, daytime);
 
         setStatusBarColor();
         controlView.showWeatherIcon();
@@ -283,13 +243,7 @@ public class CircularSkyWeatherView extends FrameLayout
     @Override
     public void onClick() {
         circleView.touchCircle();
-        if (!animating) {
-            for (int i = 0; i < flagIcons.length; i ++) {
-                if (iconDrawables[i] != null && iconTouchAnimators[i] != null) {
-                    iconTouchAnimators[i].start();
-                }
-            }
-        }
+        flagIcon.startAnimators();
     }
 
     @Override
@@ -309,7 +263,7 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     @Override
-    public int[] getThemeColors() {
+    public int[] getThemeColors(boolean lightTheme) {
         return new int[] {
                 daytime
                         ? ContextCompat.getColor(getContext(), R.color.lightPrimary_3)
@@ -334,12 +288,13 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     @Override
+    public void setDrawable(boolean drawable) {
+        // do nothing.
+    }
+
+    @Override
     public void OnWeatherIconChanging() {
-        setFlagIconsImage();
-        for (int i = 0; i < flagIcons.length; i ++) {
-            if (iconDrawables[i] != null && iconTouchAnimators[i] != null) {
-                iconTouchAnimators[i].start();
-            }
-        }
+        flagIcon.setAnimatableIcon(iconDrawables, iconAnimators);
+        flagIcon.startAnimators();
     }
 }

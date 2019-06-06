@@ -19,6 +19,7 @@ import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.api.AccuWeatherApi;
 import wangdaye.com.geometricweather.basic.model.History;
@@ -229,7 +230,7 @@ public class AccuWeatherService extends WeatherService {
                 .putString(KEY_OLD_PROVINCE, location.province)
                 .apply();
 
-        if (GeometricWeather.getInstance().getLocationService().equals("baidu_ip")) {
+        if (SettingsOptionManager.getInstance(context).getLocationService().equals("baidu_ip")) {
             requestLocation(
                     context,
                     TextUtils.isEmpty(location.district)
@@ -320,7 +321,7 @@ public class AccuWeatherService extends WeatherService {
                     (int) realtimeResult.Temperature.Metric.Value,
                     (int) realtimeResult.RealFeelTemperature.Metric.Value,
                     realtimeResult.Wind.Direction.Localized,
-                    WeatherHelper.getWindSpeed(realtimeResult.Wind.Speed.Metric.Value),
+                    WeatherHelper.getWindSpeed(context, realtimeResult.Wind.Speed.Metric.Value),
                     WeatherHelper.getWindLevel(context, realtimeResult.Wind.Speed.Metric.Value),
                     realtimeResult.Wind.Direction.Degrees,
                     dailyResult.Headline.Text
@@ -376,8 +377,8 @@ public class AccuWeatherService extends WeatherService {
                                 f.Day.Wind.Direction.Localized,
                                 f.Night.Wind.Direction.Localized
                         }, new String[] {
-                                WeatherHelper.getWindSpeed(f.Day.Wind.Speed.Value),
-                                WeatherHelper.getWindSpeed(f.Night.Wind.Speed.Value)
+                                WeatherHelper.getWindSpeed(context, f.Day.Wind.Speed.Value),
+                                WeatherHelper.getWindSpeed(context, f.Night.Wind.Speed.Value)
                         }, new String[] {
                                 WeatherHelper.getWindLevel(context, f.Day.Wind.Speed.Value),
                                 WeatherHelper.getWindLevel(context, f.Night.Wind.Speed.Value)
@@ -432,13 +433,13 @@ public class AccuWeatherService extends WeatherService {
                 briefing = minuteResult.getSummary().getLongPhrase();
             }
             String pressure;
-            if (GeometricWeather.getInstance().isImperial()) {
+            if (SettingsOptionManager.getInstance(context).isImperial()) {
                 pressure = realtimeResult.Pressure.Imperial.Value + realtimeResult.Pressure.Imperial.Unit;
             } else {
                 pressure = realtimeResult.Pressure.Metric.Value + realtimeResult.Pressure.Metric.Unit;
             }
             String visibility;
-            if (GeometricWeather.getInstance().isImperial()) {
+            if (SettingsOptionManager.getInstance(context).isImperial()) {
                 visibility = realtimeResult.Visibility.Imperial.Value + realtimeResult.Visibility.Imperial.Unit;
             } else {
                 visibility = realtimeResult.Visibility.Metric.Value + realtimeResult.Visibility.Metric.Unit;
@@ -447,22 +448,22 @@ public class AccuWeatherService extends WeatherService {
                     dailyResult.Headline.Text,
                     briefing,
                     context.getString(R.string.live) + " : " + realtimeResult.Wind.Direction.Localized
-                            + " " + WeatherHelper.getWindSpeed(realtimeResult.Wind.Speed.Metric.Value)
+                            + " " + WeatherHelper.getWindSpeed(context, realtimeResult.Wind.Speed.Metric.Value)
                             + " (" + WeatherHelper.getWindLevel(context, realtimeResult.Wind.Speed.Metric.Value) + ") "
                             + WeatherHelper.getWindArrows(realtimeResult.Wind.Direction.Degrees),
                     context.getString(R.string.daytime) + " : " + dailyResult.DailyForecasts.get(0).Day.Wind.Direction.Localized
-                            + " " + WeatherHelper.getWindSpeed(dailyResult.DailyForecasts.get(0).Day.Wind.Speed.Value)
+                            + " " + WeatherHelper.getWindSpeed(context, dailyResult.DailyForecasts.get(0).Day.Wind.Speed.Value)
                             + " (" + WeatherHelper.getWindLevel(context, dailyResult.DailyForecasts.get(0).Day.Wind.Speed.Value) + ") "
                             + WeatherHelper.getWindArrows(dailyResult.DailyForecasts.get(0).Day.Wind.Direction.Degrees) + "\n"
                             + context.getString(R.string.nighttime) + " : " + dailyResult.DailyForecasts.get(0).Night.Wind.Direction.Localized
-                            + " " + WeatherHelper.getWindSpeed(dailyResult.DailyForecasts.get(0).Night.Wind.Speed.Value)
+                            + " " + WeatherHelper.getWindSpeed(context, dailyResult.DailyForecasts.get(0).Night.Wind.Speed.Value)
                             + " (" + WeatherHelper.getWindLevel(context, dailyResult.DailyForecasts.get(0).Night.Wind.Speed.Value) + ") "
                             + WeatherHelper.getWindArrows(dailyResult.DailyForecasts.get(0).Night.Wind.Direction.Degrees),
                     context.getString(R.string.sensible_temp) + " : "
                             + ValueUtils.buildCurrentTemp(
                                     (int) realtimeResult.RealFeelTemperature.Metric.Value,
                                     false,
-                                    GeometricWeather.getInstance().isFahrenheit()
+                                    SettingsOptionManager.getInstance(context).isFahrenheit()
                             ),
                     context.getString(R.string.humidity) + " : " + realtimeResult.RelativeHumidity + "%",
                     realtimeResult.UVIndex + " / " + realtimeResult.UVIndexText,
@@ -471,7 +472,7 @@ public class AccuWeatherService extends WeatherService {
                     ValueUtils.buildCurrentTemp(
                             (int) realtimeResult.DewPoint.Metric.Value,
                             false,
-                            GeometricWeather.getInstance().isFahrenheit()
+                            SettingsOptionManager.getInstance(context).isFahrenheit()
                     )
             );
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/action_settings" >
+    android:title="@string/action_settings">
 
     <PreferenceCategory
         android:title="@string/settings_category_basic">
@@ -120,19 +120,9 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 
-        <ListPreference
-            android:title="@string/settings_title_notification_text_color"
-            android:key="@string/key_notification_text_color"
-            android:entries="@array/notification_text_colors"
-            android:entryValues="@array/notification_text_color_values"
-            android:dialogTitle="@string/settings_title_notification_text_color"
-            android:defaultValue="dark" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_notification_background"
-            android:key="@string/key_notification_background"
-            android:summaryOn="@string/settings_notification_background_on"
-            android:summaryOff="@string/settings_notification_background_off" />
+        <Preference
+            android:title="@string/settings_title_notification_color"
+            android:key="@string/key_notification_color" />
 
         <CheckBoxPreference
             android:title="@string/settings_title_notification_can_be_cleared"

@@ -34,32 +34,26 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                context.getString(R.string.sp_widget_clock_day_horizontal_setting),
-                Context.MODE_PRIVATE
-        );
-        boolean showCard = sharedPreferences.getBoolean(
-                context.getString(R.string.key_show_card),
-                false
-        );
-        boolean blackText = sharedPreferences.getBoolean(
-                context.getString(R.string.key_black_text),
-                false
-        );
-        String clockFont = sharedPreferences.getString(
-                context.getString(R.string.key_clock_font),
-                "light"
+        WidgetConfig config = getWidgetConfig(
+                context,
+                context.getString(R.string.sp_widget_clock_day_horizontal_setting)
         );
 
-        RemoteViews views = getRemoteViews(context, location, weather, showCard, blackText, clockFont);
+        RemoteViews views = getRemoteViews(
+                context, location, weather,
+                config.cardStyle, config.cardAlpha, config.textColor, config.clockFont
+        );
+
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetClockDayHorizontalProvider.class),
                 views
         );
     }
 
-    public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
-                                             boolean showCard, boolean blackText, String clockFont) {
+    public static RemoteViews getRemoteViews(Context context,
+                                             Location location, @Nullable Weather weather,
+                                             String cardStyle, int cardAlpha,
+                                             String textColor, String clockFont) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_horizontal);
         if (weather == null) {
             return views;
@@ -67,9 +61,7 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.getInstance(context)
-                .getDayTime(context, weather, false)
-                .isDayTime();
+        boolean dayTime = TimeManager.isDaylight(weather);
 
         SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = defaultSharePreferences.getBoolean(
@@ -85,11 +77,13 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
                 false
         );
 
-        int textColor;
-        if (blackText || showCard) {
-            textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
+
+        int textColorInt;
+        if (color.darkText) {
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
         } else {
-            textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
         views.setImageViewBitmap(
@@ -100,7 +94,7 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
                                 weather.realTime.weatherKind,
                                 dayTime,
                                 minimalIcon,
-                                blackText || showCard
+                                color.darkText
                         )
                 )
         );
@@ -119,17 +113,25 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
                         + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit)
         );
 
-        views.setTextColor(R.id.widget_clock_day_clock_light, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_normal, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_black, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_aa_light, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_aa_normal, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_aa_black, textColor);
-        views.setTextColor(R.id.widget_clock_day_title, textColor);
-        views.setTextColor(R.id.widget_clock_day_lunar, textColor);
-        views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
+        views.setTextColor(R.id.widget_clock_day_clock_light, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_clock_normal, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_clock_black, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_clock_aa_light, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_clock_aa_normal, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_clock_aa_black, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_title, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_lunar, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_subtitle, textColorInt);
 
-        views.setViewVisibility(R.id.widget_clock_day_card, showCard ? View.VISIBLE : View.GONE);
+        if (color.showCard) {
+            views.setImageViewResource(
+                    R.id.widget_clock_day_card,
+                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+            );
+            views.setViewVisibility(R.id.widget_clock_day_card, View.VISIBLE);
+        } else {
+            views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
+        }
 
         if (clockFont == null) {
             clockFont = "light";

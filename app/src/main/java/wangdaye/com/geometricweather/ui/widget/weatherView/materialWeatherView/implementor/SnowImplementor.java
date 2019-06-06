@@ -4,16 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
+import java.util.Random;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
-
-import java.util.Random;
 
 /**
  * Snow implementor.
@@ -70,7 +71,7 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             this.color = color;
             this.scale = scale;
 
-            this.speedY = (float) (viewHeight / 800.0);
+            this.speedY = viewWidth / 350f;
 
             this.init(true);
         }

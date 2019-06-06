@@ -121,6 +121,38 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/widget_clock_day_clock_analogContainer_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <AnalogClock
+                android:id="@+id/widget_clock_day_clock_analog_light"
+                android:layout_margin="@dimen/little_margin"
+                android:layout_centerInParent="true"
+                style="@style/widget_text_clock_analog.Light"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/widget_clock_day_clock_analogContainer_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <AnalogClock
+                android:id="@+id/widget_clock_day_clock_analog_dark"
+                android:layout_margin="@dimen/little_margin"
+                android:layout_centerInParent="true"
+                style="@style/widget_text_clock_analog.Dark"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

@@ -89,8 +89,7 @@ public class WidgetItemView extends ViewGroup {
         paint.setTextSize(getResources().getDimensionPixelSize(R.dimen.widget_content_text_size));
         paint.setTextAlign(Paint.Align.CENTER);
 
-        contentColor = ContextCompat.getColor(getContext(), R.color.colorTextDark2nd);
-        subtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd);
+        setColor(true);
 
         iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
     }
@@ -160,7 +159,7 @@ public class WidgetItemView extends ViewGroup {
                 0,
                 (int) trendViewTop,
                 trend.getMeasuredWidth(),
-                (int) trendViewTop + trend.getMeasuredHeight()
+                (int) (trendViewTop + trend.getMeasuredHeight())
         );
     }
 
@@ -194,6 +193,18 @@ public class WidgetItemView extends ViewGroup {
             canvas.translate(bottomIconLeft, bottomIconTop);
             bottomIconDrawable.draw(canvas);
             canvas.restoreToCount(restoreCount);
+        }
+    }
+
+    // control.
+
+    public void setColor(boolean daytime) {
+        if (daytime) {
+            contentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent_light);
+            subtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_light);
+        } else {
+            contentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent_dark);
+            subtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_dark);
         }
     }
 

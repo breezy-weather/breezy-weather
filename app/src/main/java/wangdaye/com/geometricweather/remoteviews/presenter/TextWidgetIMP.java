@@ -25,16 +25,13 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                context.getString(R.string.sp_widget_text_setting),
-                Context.MODE_PRIVATE
-        );
-        boolean blackText = sharedPreferences.getBoolean(
-                context.getString(R.string.key_black_text),
-                false
+        WidgetConfig config = getWidgetConfig(
+                context,
+                context.getString(R.string.sp_widget_text_setting)
         );
 
-        RemoteViews views = getRemoteViews(context, location, weather, blackText);
+        RemoteViews views = getRemoteViews(context, location, weather, config.textColor);
+
         if (views != null) {
             AppWidgetManager.getInstance(context).updateAppWidget(
                     new ComponentName(context, WidgetTextProvider.class),
@@ -44,7 +41,7 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
-                                             boolean blackText) {
+                                             String textColor) {
         SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = defaultSharePreferences.getBoolean(
                 context.getString(R.string.key_fahrenheit),
@@ -55,7 +52,7 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
                 false
         );
 
-        RemoteViews views = buildWidgetView(context, weather, fahrenheit, blackText);
+        RemoteViews views = buildWidgetView(context, weather, fahrenheit, textColor);
         if (weather == null) {
             return views;
         }
@@ -66,17 +63,20 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static RemoteViews buildWidgetView(Context context, @Nullable Weather weather,
-                                               boolean fahrenheit, boolean blackText) {
+                                               boolean fahrenheit, String textColor) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_text);
         if (weather == null) {
             return views;
         }
 
-        int textColor;
-        if (blackText) {
-            textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+        boolean darkText = textColor.equals("dark")
+                || (textColor.equals("auto") && !isLightWallpaper(context));
+
+        int textColorInt;
+        if (darkText) {
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
         } else {
-            textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
         views.setTextViewText(
@@ -88,9 +88,9 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
                 ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit)
         );
 
-        views.setTextColor(R.id.widget_text_date, textColor);
-        views.setTextColor(R.id.widget_text_weather, textColor);
-        views.setTextColor(R.id.widget_text_temperature, textColor);
+        views.setTextColor(R.id.widget_text_date, textColorInt);
+        views.setTextColor(R.id.widget_text_weather, textColorInt);
+        views.setTextColor(R.id.widget_text_temperature, textColorInt);
 
         return views;
     }

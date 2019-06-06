@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_icon_provider_get_more_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorRoot"
+    tools:ignore="UnusedAttribute">
+
+    <View
+        android:background="@color/colorLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:src="@drawable/ic_plus"
+            android:layout_margin="@dimen/normal_margin"
+            android:layout_gravity="center"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:text="@string/get_more"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_gravity="center"
+            style="@style/content_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        tools:ignore="UselessParent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_icon_provider_get_more_appStore"
+            android:layout_width="@dimen/material_icon_size"
+            android:layout_height="@dimen/material_icon_size"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/normal_margin"
+            android:background="@drawable/selectable_item_background_borderless"
+            tools:src="@drawable/ic_play_store"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_icon_provider_get_more_gitHub"
+            android:layout_width="@dimen/material_icon_size"
+            android:layout_height="@dimen/material_icon_size"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:background="@drawable/selectable_item_background_borderless"
+            tools:src="@drawable/ic_github_dark"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_icon_provider_get_more_chronus"
+            android:layout_width="@dimen/material_icon_size"
+            android:layout_height="@dimen/material_icon_size"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:background="@drawable/selectable_item_background_borderless"
+            tools:src="@drawable/ic_chronus"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -68,6 +68,11 @@ public class IntentHelper {
                 .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, cityName);
     }
 
+    public static Intent buildAwakeUpdateActivityIntent() {
+        return new Intent("com.wangdaye.geometricweather.UPDATE")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
     public static void startAlertActivity(GeoActivity activity, Weather weather) {
         Intent intent = new Intent(activity, AlertActivity.class);
         intent.putParcelableArrayListExtra(
@@ -190,5 +195,10 @@ public class IntentHelper {
         } catch (Exception e) {
             SnackbarUtils.showSnackbar("Unavailable AppStore.");
         }
+    }
+
+    public static void startWebViewActivity(Context context, String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        context.startActivity(intent);
     }
 }

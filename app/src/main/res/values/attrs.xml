@@ -34,4 +34,9 @@
         <attr name="bottom_text_color" format="color"/>
     </declare-styleable>
 
+    <!-- Animatable icon view. -->
+    <declare-styleable name="AnimatableIconView">
+        <attr name="inner_margins" format="dimension" />
+    </declare-styleable>
+
 </resources>

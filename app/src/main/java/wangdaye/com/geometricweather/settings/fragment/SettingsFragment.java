@@ -3,14 +3,15 @@ package wangdaye.com.geometricweather.settings.fragment;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.preference.CheckBoxPreference;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activity.SettingsActivity;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundODialog;
@@ -18,7 +19,7 @@ import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.background.BackgroundManager;
-import wangdaye.com.geometricweather.remoteviews.presenter.NormalNotificationIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.notification.NormalNotificationIMP;
 
 /**
  * Settings fragment.
@@ -48,7 +49,9 @@ public class SettingsFragment extends PreferenceFragmentCompat
         darkMode.setSummary(
                 ValueUtils.getDarkMode(
                         getActivity(),
-                        GeometricWeather.getInstance().getDarkMode()));
+                        SettingsOptionManager.getInstance(getActivity()).getDarkMode()
+                )
+        );
         darkMode.setOnPreferenceChangeListener(this);
 
         Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));
@@ -66,14 +69,14 @@ public class SettingsFragment extends PreferenceFragmentCompat
         todayForecastTime.setSummary(
                 sharedPreferences.getString(
                         getString(R.string.key_forecast_today_time),
-                        GeometricWeather.DEFAULT_TODAY_FORECAST_TIME));
+                        SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME));
 
         // set tomorrow forecast time & tomorrowForecastType.
         Preference tomorrowForecastTime = findPreference(getString(R.string.key_forecast_tomorrow_time));
         tomorrowForecastTime.setSummary(
                 sharedPreferences.getString(
                         getString(R.string.key_forecast_tomorrow_time),
-                        GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME));
+                        SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME));
 
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)) {
             // open today forecast.
@@ -94,40 +97,37 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
     private void initNotificationPart(SharedPreferences sharedPreferences) {
         // notification minimal icon.
-        CheckBoxPreference notificationMinimalIcon = (CheckBoxPreference) findPreference(getString(R.string.key_notification_minimal_icon));
+        CheckBoxPreference notificationMinimalIcon = findPreference(getString(R.string.key_notification_minimal_icon));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+            notificationMinimalIcon.setVisible(false);
+        }
 
         // notification temp icon.
-        CheckBoxPreference notificationTempIcon = (CheckBoxPreference) findPreference(getString(R.string.key_notification_temp_icon));
+        CheckBoxPreference notificationTempIcon = findPreference(getString(R.string.key_notification_temp_icon));
 
-        // notification text color.
-        ListPreference notificationTextColor = (ListPreference) findPreference(getString(R.string.key_notification_text_color));
-        notificationTextColor.setSummary(
-                ValueUtils.getNotificationTextColor(
-                        getActivity(),
-                        sharedPreferences.getString(getString(R.string.key_notification_text_color), "dark")));
-        notificationTextColor.setOnPreferenceChangeListener(this);
-
-        // notification background.
-        CheckBoxPreference notificationBackground = (CheckBoxPreference) findPreference(getString(R.string.key_notification_background));
+        // notification color.
+        Preference notificationColor = findPreference(getString(R.string.key_notification_color));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+            notificationColor.setVisible(false);
+        }
 
         // notification can be cleared.
-        CheckBoxPreference notificationClearFlag = (CheckBoxPreference) findPreference(getString(R.string.key_notification_can_be_cleared));
+        CheckBoxPreference notificationClearFlag = findPreference(getString(R.string.key_notification_can_be_cleared));
 
         // notification hide icon.
-        CheckBoxPreference notificationIconBehavior = (CheckBoxPreference) findPreference(getString(R.string.key_notification_hide_icon));
+        CheckBoxPreference notificationIconBehavior = findPreference(getString(R.string.key_notification_hide_icon));
 
         // notification hide in lock screen.
-        CheckBoxPreference notificationHideBehavior = (CheckBoxPreference) findPreference(getString(R.string.key_notification_hide_in_lockScreen));
+        CheckBoxPreference notificationHideBehavior = findPreference(getString(R.string.key_notification_hide_in_lockScreen));
 
         // notification hide big view.
-        CheckBoxPreference notificationHideBigView = (CheckBoxPreference) findPreference(getString(R.string.key_notification_hide_big_view));
+        CheckBoxPreference notificationHideBigView = findPreference(getString(R.string.key_notification_hide_big_view));
 
         if(sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
             // open notification.
             notificationMinimalIcon.setEnabled(true);
             notificationTempIcon.setEnabled(true);
-            notificationTextColor.setEnabled(true);
-            notificationBackground.setEnabled(true);
+            notificationColor.setEnabled(true);
             notificationClearFlag.setEnabled(true);
             notificationIconBehavior.setEnabled(true);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -140,8 +140,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             // close notification.
             notificationMinimalIcon.setEnabled(false);
             notificationTempIcon.setEnabled(false);
-            notificationTextColor.setEnabled(false);
-            notificationBackground.setEnabled(false);
+            notificationColor.setEnabled(false);
             notificationClearFlag.setEnabled(false);
             notificationIconBehavior.setEnabled(false);
             notificationHideBehavior.setEnabled(false);
@@ -159,15 +158,18 @@ public class SettingsFragment extends PreferenceFragmentCompat
         } else if (preference.getKey().equals(getString(R.string.key_service_provider))) {
             ((SettingsActivity) getActivity()).pushFragment(
                     new ServiceProviderSettingsFragment(),
-                    preference.getKey());
+                    preference.getKey()
+            );
         } else if (preference.getKey().equals(getString(R.string.key_unit))) {
             ((SettingsActivity) getActivity()).pushFragment(
                     new UnitSettingsFragment(),
-                    preference.getKey());
+                    preference.getKey()
+            );
         } else if (preference.getKey().equals(getString(R.string.key_appearance))) {
             ((SettingsActivity) getActivity()).pushFragment(
                     new AppearanceSettingsFragment(),
-                    preference.getKey());
+                    preference.getKey()
+            );
         } else if (preference.getKey().equals(getString(R.string.key_background_free))) {
             // background free.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
@@ -219,9 +221,12 @@ public class SettingsFragment extends PreferenceFragmentCompat
         } else if (preference.getKey().equals(getString(R.string.key_notification_temp_icon))) {
             // notification temp icon.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-        } else if (preference.getKey().equals(getString(R.string.key_notification_background))) {
-            // notification background.
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+        } else if (preference.getKey().equals(getString(R.string.key_notification_color))) {
+            // notification color.
+            ((SettingsActivity) getActivity()).pushFragment(
+                    new NotificationColorSettingsFragment(),
+                    preference.getKey()
+            );
         } else if (preference.getKey().equals(getString(R.string.key_notification_can_be_cleared))) {
             // notification clear flag.
             BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
@@ -240,20 +245,16 @@ public class SettingsFragment extends PreferenceFragmentCompat
         if (preference.getKey().equals(getString(R.string.key_dark_mode))) {
             // Dark mode.
             preference.setSummary(ValueUtils.getDarkMode(getActivity(), (String) o));
-            GeometricWeather.getInstance().setDarkMode((String) o);
+            SettingsOptionManager.getInstance(getActivity()).setDarkMode((String) o);
             GeometricWeather.getInstance().resetDayNightMode();
             GeometricWeather.getInstance().recreateAllActivities();
         } else if (preference.getKey().equals(getString(R.string.key_refresh_rate))) {
-            GeometricWeather.getInstance().setUpdateInterval((String) o);
+            SettingsOptionManager.getInstance(getActivity()).setUpdateInterval((String) o);
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
             editor.putString(getString(R.string.key_refresh_rate), (String) o);
             editor.apply();
             preference.setSummary((String) o);
             BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
-        } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
-            // notification text color.
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
-            preference.setSummary(ValueUtils.getNotificationTextColor(getActivity(), (String) o));
         }
         return true;
     }

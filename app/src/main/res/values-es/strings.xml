@@ -157,7 +157,6 @@
     <string name="settings_title_notification_temp_icon">Mostrar temperatura como mini icono.</string>
     <string name="settings_title_notification_text_color">Color del texto.</string>
     <string name="settings_title_notification_background">Color del fondo.</string>
-    <string name="settings_notification_background_on">Mismo como el control de AOSP.</string>
     <string name="settings_notification_background_off">Usar el mismo que el sistema.</string>
     <string name="settings_title_notification_can_be_cleared">Puede limpiarse.</string>
     <string name="settings_notification_can_be_cleared_on">Puede limpiarse.</string>

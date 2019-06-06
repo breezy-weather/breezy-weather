@@ -2,7 +2,10 @@ package wangdaye.com.geometricweather.ui.widget.trendView;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,8 +14,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
@@ -23,6 +26,7 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 public class TrendRecyclerView extends RecyclerView {
 
     private Paint paint;
+    @ColorInt private int lineColor;
 
     private int[] historyTemps;
     private int[] historyTempYs;
@@ -69,6 +73,8 @@ public class TrendRecyclerView extends RecyclerView {
         paint.setAntiAlias(true);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setTextSize(TEXT_SIZE);
+
+        setLineColor(Color.GRAY);
 
         this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
         this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
@@ -153,7 +159,7 @@ public class TrendRecyclerView extends RecyclerView {
 
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(CHART_LINE_SIZE);
-        paint.setColor(ContextCompat.getColor(getContext(), R.color.colorLine));
+        paint.setColor(lineColor);
         canvas.drawLine(
                 0, historyTempYs[0],
                 getMeasuredWidth(), historyTempYs[0],
@@ -173,7 +179,7 @@ public class TrendRecyclerView extends RecyclerView {
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         historyTemps[0],
-                        GeometricWeather.getInstance().isFahrenheit()
+                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
                 ),
                 2 * MARGIN_TEXT,
                 historyTempYs[0] - paint.getFontMetrics().bottom - MARGIN_TEXT,
@@ -182,7 +188,7 @@ public class TrendRecyclerView extends RecyclerView {
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         historyTemps[1],
-                        GeometricWeather.getInstance().isFahrenheit()
+                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
                 ),
                 2 * MARGIN_TEXT,
                 historyTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
@@ -218,6 +224,10 @@ public class TrendRecyclerView extends RecyclerView {
             this.BOTTOM_MARGIN = DisplayUtils.dpToPx(getContext(), 16);
         }
         invalidate();
+    }
+
+    public void setLineColor(@ColorInt int lineColor) {
+        this.lineColor = lineColor;
     }
 
     private void computeCoordinates() {

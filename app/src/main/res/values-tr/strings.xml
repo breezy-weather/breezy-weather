@@ -145,7 +145,6 @@
     <string name="settings_title_notification">Uyarı gönder.</string>
     <string name="settings_title_notification_text_color">Yazı rengi.</string>
     <string name="settings_title_notification_background">Arkaplan rengi.</string>
-    <string name="settings_notification_background_on">AOSP kontrol merkezi ile aynı.</string>
     <string name="settings_notification_background_off">Sistem varsayılanı.</string>
     <string name="settings_title_notification_can_be_cleared">Kaldırılabilir.</string>
     <string name="settings_notification_can_be_cleared_on">Kaldırılabilir.</string>

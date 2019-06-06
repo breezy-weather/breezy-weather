@@ -8,7 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 
-import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
@@ -139,9 +139,10 @@ public class WeatherIconControlView extends FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(
                 getChildAt(0).getMeasuredWidth(),
-                getChildAt(0).getMeasuredHeight());
+                getChildAt(0).getMeasuredHeight()
+        );
         for (int i = 0; i < getChildCount(); i ++) {
-            if (getChildAt(i).getId() == R.id.container_circular_sky_view_iconContainer) {
+            if (getChildAt(i) instanceof AnimatableIconView) {
                 getChildAt(i).measure(
                         MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY),
                         MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY));

@@ -19,6 +19,7 @@ import java.util.Calendar;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Time observer service.
@@ -92,8 +93,8 @@ public class TimeObserverService extends Service {
 
     private void initData() {
         pollingRate = 1.5F;
-        todayForecastTime = GeometricWeather.DEFAULT_TODAY_FORECAST_TIME;
-        tomorrowForecastTime = GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME;
+        todayForecastTime = SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME;
+        tomorrowForecastTime = SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME;
         lastUpdateNormalViewTime = System.currentTimeMillis();
     }
 

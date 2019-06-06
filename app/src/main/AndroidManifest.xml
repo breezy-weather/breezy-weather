@@ -42,19 +42,19 @@
 
         <meta-data
             android:name="com.wangdaye.geometricweather.PROVIDER_CONFIG"
-            android:resource="@xml/provider_config" />
+            android:resource="@xml/icon_provider_config" />
         <meta-data
             android:name="com.wangdaye.geometricweather.DRAWABLE_FILTER"
-            android:resource="@xml/drawable_filter" />
+            android:resource="@xml/icon_provider_drawable_filter" />
         <meta-data
             android:name="com.wangdaye.geometricweather.ANIMATOR_FILTER"
-            android:resource="@xml/animator_filter" />
+            android:resource="@xml/icon_provider_animator_filter" />
         <meta-data
             android:name="com.wangdaye.geometricweather.SHORTCUT_FILTER"
-            android:resource="@xml/shortcut_filter" />
+            android:resource="@xml/icon_provider_shortcut_filter" />
         <meta-data
             android:name="com.wangdaye.geometricweather.SUN_MOON_FILTER"
-            android:resource="@xml/sun_moon_filter" />
+            android:resource="@xml/icon_provider_sun_moon_filter" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -75,7 +75,7 @@
         <activity
             android:name=".main.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/GeometricWeatherTheme.Main"
             android:screenOrientation="portrait"
             android:configChanges="uiMode">
             <intent-filter>
@@ -126,7 +126,17 @@
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait" />
 
-        <!-- create widget context -->
+        <activity
+            android:name=".ui.activity.AwakeUpdateActivity"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="com.wangdaye.geometricweather.UPDATE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- widget config. -->
+
         <activity
             android:name=".remoteviews.config.DayWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
@@ -189,8 +199,27 @@
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".remoteviews.config.TextWidgetConfigActivity"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".remoteviews.config.DailyTrendWidgetConfigActivity"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".remoteviews.config.HourlyTrendWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -216,13 +245,16 @@
 
         <service
             android:name=".background.polling.job.JobNormalUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true" />
         <service
             android:name=".background.polling.job.JobTodayForecastUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true" />
         <service
             android:name=".background.polling.job.JobTomorrowForecastUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true" />
 
         <service
             android:name=".background.service.TileService"

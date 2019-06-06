@@ -7,12 +7,6 @@
     android:layout_height="match_parent"
     tools:layout_height="82dp">
 
-    <FrameLayout
-        android:id="@+id/notification_base_background"
-        android:background="@color/colorNotificationBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <ImageView
         android:id="@+id/notification_base_icon"
         android:scaleType="fitCenter"
@@ -29,7 +23,7 @@
         android:layout_toEndOf="@id/notification_base_icon"
         android:layout_centerVertical="true"
         android:textSize="@dimen/design_title_text_size"
-        style="@style/large_title_text"
+        style="@style/notification_large_title_text"
         tools:text="3°"
         tools:ignore="RelativeOverlap,RtlHardcoded" />
 
@@ -52,19 +46,15 @@
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/content_text_size"
                 android:layout_marginEnd="@dimen/little_margin"
-                style="@style/large_title_text"
-                tools:text="10° / 15°"
-                tools:textColor="@color/colorTextLight2nd" />
+                style="@style/notification_large_title_text"
+                tools:text="10° / 15°" />
 
             <TextView
                 android:id="@+id/notification_base_aqi_wind"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/subtitle_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:textStyle="bold"
                 android:layout_toEndOf="@id/notification_base_dailyTemp"
                 android:layout_alignBaseline="@id/notification_base_dailyTemp"
+                style="@style/notification_subtitle_text"
                 tools:text="AQI 79"
                 tools:ignore="RtlHardcoded,SmallSp" />
 
@@ -74,35 +64,31 @@
             android:id="@+id/notification_base_weather"
             android:text="@string/wait_refresh"
             android:textSize="@dimen/title_text_size"
-            style="@style/large_title_text"
-            tools:text="Partly Cloudy"
-            tools:textColor="@color/colorTextLight" />
+            style="@style/notification_content_text"
+            tools:text="Partly Cloudy" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/notification_base_lunar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text=""
         android:textSize="@dimen/widget_time_text_size"
         android:padding="@dimen/little_margin"
         android:textColor="@color/colorTextLight2nd"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        style="@style/notification_subtitle_text"
         tools:text="正月初六"
         tools:ignore="RelativeOverlap,RtlHardcoded,SmallSp" />
 
     <TextView
         android:id="@+id/notification_base_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/ellipsis"
         android:textSize="@dimen/widget_time_text_size"
         android:padding="@dimen/little_margin"
-        android:textColor="@color/colorTextLight2nd"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        style="@style/notification_subtitle_text"
         tools:text="青岛 周三 10:00"
         tools:ignore="RtlHardcoded,SmallSp" />
 

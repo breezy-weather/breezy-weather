@@ -159,7 +159,6 @@
     <string name="settings_title_notification_temp_icon">Temperatur in der Statusleiste anzeigen</string>
     <string name="settings_title_notification_text_color">Textfarbe</string>
     <string name="settings_title_notification_background">Hintergrund</string>
-    <string name="settings_notification_background_on">Globale Menüfarbe</string>
     <string name="settings_notification_background_off">Systemeinstellungen</string>
     <string name="settings_title_notification_can_be_cleared">Permanent?</string>
     <string name="settings_notification_can_be_cleared_on">Nein</string>

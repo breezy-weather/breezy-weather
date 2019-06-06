@@ -58,8 +58,7 @@ public class ManageActivity extends GeoActivity
                 ShortcutsManager.refreshShortcutsInNewThread(ManageActivity.this, adapter.itemList);
             }
 
-            ((LocationAdapter.ViewHolder) viewHolder)
-                    .drawDrag(ManageActivity.this, false);
+            ((LocationAdapter.ViewHolder) viewHolder).drawDrag(ManageActivity.this, false);
             return true;
         }
 

@@ -18,22 +18,18 @@
 
     </set>
 
-    <objectAnimator
-        android:propertyName="alpha"
-        android:duration="900"
-        android:valueFrom="0.7"
-        android:valueTo="0.7" />
-
-    <set android:ordering="together" >
+    <set android:ordering="together">
 
         <objectAnimator
             android:propertyName="translationX"
+            android:startOffset="900"
             android:duration="450"
             android:valueFrom="20"
             android:valueTo="0" />
 
         <objectAnimator
             android:propertyName="alpha"
+            android:startOffset="900"
             android:duration="450"
             android:valueFrom="0.7"
             android:valueTo="1.0" />

@@ -13,12 +13,11 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
@@ -30,7 +29,7 @@ public class TrendItemView extends View {
 
     private Paint paint;
     private Path path;
-    private Shader shader;
+    private DayNightShaderWrapper shaderWrapper;
 
     private float[] maxiTemps = new float[3];
     private float[] miniTemps = new float[3];
@@ -76,28 +75,11 @@ public class TrendItemView extends View {
     }
 
     private void initialize() {
-        this.lineColors = new int[] {
-                ContextCompat.getColor(getContext(), R.color.colorPrimary),
-                ContextCompat.getColor(getContext(), R.color.colorTextDark),
-                ContextCompat.getColor(getContext(), R.color.colorLine)
-        };
-        if (DisplayUtils.isDarkMode(getContext())) {
-            this.shadowColors = new int[] {
-                    Color.argb(20, 173, 173, 173),
-                    Color.TRANSPARENT,
-                    Color.argb((int) (255 * 0.2), 0, 0, 0)
-            };
-        } else {
-            this.shadowColors = new int[] {
-                    Color.argb(50, 173, 173, 173),
-                    Color.TRANSPARENT,
-                    Color.argb((int) (255 * 0.2), 0, 0, 0)
-            };
-        }
-        this.textColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
-        this.precipitationTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle);
+        lineColors = new int[] {Color.BLACK, Color.DKGRAY, Color.LTGRAY};
+        shadowColors = new int[] {Color.BLACK, Color.WHITE, Color.GRAY};
 
-        this.precipitationAlpha = DisplayUtils.isDarkMode(getContext()) ? 0.5f : 0.2f;
+        setTextColors(Color.BLACK, Color.GRAY);
+        setPrecipitationAlpha(0.33f);
 
         this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
         this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
@@ -111,22 +93,16 @@ public class TrendItemView extends View {
         paint.setAntiAlias(true);
 
         this.path = new Path();
+        this.shaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
+        setShadowColors(true);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        ensureShader(shaderWrapper.isLightTheme());
         computeCoordinates();
-
-        if (shader == null) {
-            this.shader = new LinearGradient(
-                    0, TREND_MARGIN_TOP,
-                    0, getMeasuredHeight() - TREND_MARGIN_BOTTOM,
-                    shadowColors[0], shadowColors[1],
-                    Shader.TileMode.CLAMP
-            );
-        }
 
         drawTimeLine(canvas);
 
@@ -155,7 +131,8 @@ public class TrendItemView extends View {
     private void drawMaxiTemp(Canvas canvas) {
         if (maxiTempYs[0] != NONEXISTENT_VALUE && maxiTempYs[2] != NONEXISTENT_VALUE) {
             // shadow.
-            paint.setShader(shader);
+            paint.setColor(Color.BLACK);
+            paint.setShader(shaderWrapper.getShader());
             paint.setStyle(Paint.Style.FILL);
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
@@ -182,7 +159,8 @@ public class TrendItemView extends View {
             canvas.drawPath(path, paint);
         } else if (maxiTempYs[0] == NONEXISTENT_VALUE) {
             // shadow.
-            paint.setShader(shader);
+            paint.setColor(Color.BLACK);
+            paint.setShader(shaderWrapper.getShader());
             paint.setStyle(Paint.Style.FILL);
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
@@ -207,7 +185,8 @@ public class TrendItemView extends View {
             canvas.drawPath(path, paint);
         } else {
             // shadow.
-            paint.setShader(shader);
+            paint.setColor(Color.BLACK);
+            paint.setShader(shaderWrapper.getShader());
             paint.setStyle(Paint.Style.FILL);
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
@@ -241,8 +220,9 @@ public class TrendItemView extends View {
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         (int) maxiTemps[1],
-                        GeometricWeather.getInstance().isFahrenheit()
-                ), getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
+                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
+                ),
+                getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
                 maxiTempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint
         );
@@ -294,7 +274,7 @@ public class TrendItemView extends View {
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         (int) miniTemps[1],
-                        GeometricWeather.getInstance().isFahrenheit()
+                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
                 ), getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
                 miniTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint
@@ -353,18 +333,22 @@ public class TrendItemView extends View {
         invalidate();
     }
 
-    public void setLineColors(@ColorInt int colorDay, @ColorInt int colorNight) {
-        this.lineColors = new int[] {
-                colorDay,
-                colorNight,
-                ContextCompat.getColor(getContext(), R.color.colorLine)
-        };
+    public void setLineColors(@ColorInt int colorDay, @ColorInt int colorNight,
+                              @ColorInt int colorSubLine) {
+        lineColors[0] = colorDay;
+        lineColors[1] = colorNight;
+        lineColors[2] = colorSubLine;
         invalidate();
     }
 
-    public void setLineColors(@ColorInt int colorDay, @ColorInt int colorNight,
-                              @ColorInt int colorSubLine) {
-        this.lineColors = new int[] {colorDay, colorNight, colorSubLine};
+    public void setShadowColors(boolean lightTheme) {
+        shadowColors[0] = lightTheme
+                ? Color.argb(50, 173, 173, 173)
+                : Color.argb(20, 173, 173, 173);
+        shadowColors[1] = Color.TRANSPARENT;
+        shadowColors[2] = Color.argb((int) (255 * 0.2), 0, 0, 0);
+
+        ensureShader(lightTheme);
         invalidate();
     }
 
@@ -377,6 +361,23 @@ public class TrendItemView extends View {
     public void setPrecipitationAlpha(@FloatRange(from = 0, to = 1) float precipitationAlpha) {
         this.precipitationAlpha = precipitationAlpha;
         invalidate();
+    }
+
+    private void ensureShader(boolean lightTheme) {
+        if (shaderWrapper.isDifferent(
+                getMeasuredWidth(), getMeasuredHeight(), lightTheme, shadowColors)) {
+            shaderWrapper.setShader(
+                    new LinearGradient(
+                            0, TREND_MARGIN_TOP,
+                            0, getMeasuredHeight() - TREND_MARGIN_BOTTOM,
+                            shadowColors[0], shadowColors[1],
+                            Shader.TileMode.CLAMP
+                    ),
+                    getMeasuredWidth(), getMeasuredHeight(),
+                    lightTheme,
+                    shadowColors
+            );
+        }
     }
 
     private void computeCoordinates() {

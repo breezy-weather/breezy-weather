@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Localização Baidu</item>
+        <item>Localização IP Baidu (China Somente)</item>
+        <item>Localização AMap</item>
+        <item>API Nativa</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automático</item>
+        <item>Sempre Claro</item>
+        <item>Sempre Escuro</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Céu Circular</item>
+        <item>Animação Material</item>
+    </string-array>
+
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>Diário primeiro</item>
+        <item>Por hora primeiro</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>00:30</item>
+        <item>01:00</item>
+        <item>01:30</item>
+        <item>02:00</item>
+        <item>02:30</item>
+        <item>03:00</item>
+        <item>03:30</item>
+        <item>04:00</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Escuro</item>
+        <item>Cinza</item>
+        <item>Claro</item>
+    </string-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Retangular</item>
+        <item>Simétrico</item>
+        <item>Tile</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+        <item>Vertical</item>
+        <item>Oreo</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Última atualização</item>
+        <item>AQI (Inválido em alguns locais.)</item>
+        <item>Vento</item>
+        <item>Sensação Térmica</item>
+        <item>Calendário Lunar</item>
+    </string-array>
+
+</resources>

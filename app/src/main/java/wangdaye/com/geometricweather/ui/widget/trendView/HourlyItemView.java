@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.ui.widget.trendView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.image.AbstractIconTarget;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -82,7 +82,7 @@ public class HourlyItemView extends ViewGroup {
         paint.setTextSize(getResources().getDimensionPixelSize(R.dimen.content_text_size));
         paint.setTextAlign(Paint.Align.CENTER);
 
-        contentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
+        setTextColor(Color.BLACK);
 
         iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
     }
@@ -176,6 +176,11 @@ public class HourlyItemView extends ViewGroup {
 
     public void setHourText(String hourText) {
         this.hourText = hourText;
+        invalidate();
+    }
+
+    public void setTextColor(@ColorInt int contentColor) {
+        this.contentColor = contentColor;
         invalidate();
     }
 

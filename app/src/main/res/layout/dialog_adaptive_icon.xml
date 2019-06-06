@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_adaptive_icon_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorRoot"
+    android:foreground="@drawable/selectable_item_background"
+    tools:ignore="UnusedAttribute">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_adaptive_icon_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextTitle"
+            android:textStyle="bold"
+            android:padding="@dimen/normal_margin"
+            style="@style/large_title_text"
+            tools:text="SHORTCUT_CLEAR_DAY" />
+
+        <james.adaptiveicon.AdaptiveIconView
+            android:id="@+id/dialog_adaptive_icon_icon"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_below="@id/dialog_adaptive_icon_title"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="40dp"
+            android:layout_centerHorizontal="true"
+            tools:background="@drawable/shortcuts_clear_day"/>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

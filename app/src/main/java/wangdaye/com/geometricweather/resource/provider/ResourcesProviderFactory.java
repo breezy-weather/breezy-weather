@@ -6,11 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public class ResourcesProviderFactory {
 
     public static ResourceProvider getNewInstance() {
-        return getNewInstance(GeometricWeather.getInstance().getIconProvider());
+        return getNewInstance(
+                SettingsOptionManager.getInstance(
+                        GeometricWeather.getInstance()
+                ).getIconProvider()
+        );
     }
 
     public static ResourceProvider getNewInstance(String packageName) {
@@ -33,7 +38,7 @@ public class ResourcesProviderFactory {
         return new IconPackResourcesProvider(context, packageName, defaultProvider);
     }
 
-    public static List<ResourceProvider> getResourceHelperList(Context context) {
+    public static List<ResourceProvider> getProviderList(Context context) {
         List<ResourceProvider> providerList = new ArrayList<>();
 
         DefaultResourceProvider defaultProvider = new DefaultResourceProvider();

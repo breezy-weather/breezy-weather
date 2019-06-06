@@ -8,10 +8,10 @@ import androidx.preference.PreferenceManager;
 
 import java.util.HashSet;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.dialog.ProvidersPreviewerDialog;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.dialog.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -44,7 +44,7 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         cardDisplay.setSummary(
                 ValueUtils.getCardDislay(
                         getActivity(),
-                        GeometricWeather.getInstance().getCardDisplayValues()
+                        SettingsOptionManager.getInstance(getActivity()).getCardDisplayValues()
                 )
         );
         cardDisplay.setOnPreferenceChangeListener(this);
@@ -53,7 +53,7 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         cardOrder.setSummary(
                 ValueUtils.getCardOrder(
                         getActivity(),
-                        GeometricWeather.getInstance().getCardOrder()
+                        SettingsOptionManager.getInstance(getActivity()).getCardOrder()
                 )
         );
         cardOrder.setOnPreferenceChangeListener(this);
@@ -68,7 +68,7 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         language.setSummary(
                 ValueUtils.getLanguage(
                         getActivity(),
-                        GeometricWeather.getInstance().getLanguage()
+                        SettingsOptionManager.getInstance(getActivity()).getLanguage()
                 )
         );
         language.setOnPreferenceChangeListener(this);
@@ -92,18 +92,21 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
             // icon provider.
             ProvidersPreviewerDialog dialog = new ProvidersPreviewerDialog();
             dialog.setOnIconProviderChangedListener(iconProvider -> {
-                GeometricWeather.getInstance().setIconProvider(iconProvider);
+                SettingsOptionManager.getInstance(getActivity()).setIconProvider(iconProvider);
                 PreferenceManager.getDefaultSharedPreferences(getActivity())
                         .edit()
                         .putString(getString(R.string.key_icon_provider), iconProvider)
                         .apply();
                 initIconProviderPreference();
+                SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
             });
             dialog.show(getFragmentManager(), null);
         } else if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
             // navigation bar color.
-            GeometricWeather.getInstance().setColorNavigationBar();
+            SettingsOptionManager.getInstance(getActivity()).setColorNavigationBar();
             DisplayUtils.setNavigationBarColor(getActivity(), 0);
+        } else if (preference.getKey().equals(getString(R.string.key_gravity_sensor_switch))) {
+            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         }
         return super.onPreferenceTreeClick(preference);
     }
@@ -118,19 +121,19 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
             // Card display.
             try {
                 String[] values = ((HashSet<String>) o).toArray(new String[] {});
-                GeometricWeather.getInstance().setCardDisplayValues(values);
+                SettingsOptionManager.getInstance(getActivity()).setCardDisplayValues(values);
                 preference.setSummary(ValueUtils.getCardDislay(getActivity(), values));
             } catch (Exception ignore) {
                 // do nothing.
             }
         } else if (preference.getKey().equals(getString(R.string.key_card_order))) {
             // Card order.
-            GeometricWeather.getInstance().setCardOrder((String) o);
+            SettingsOptionManager.getInstance(getActivity()).setCardOrder((String) o);
             preference.setSummary(ValueUtils.getCardOrder(getActivity(), (String) o));
         } else if (preference.getKey().equals(getString(R.string.key_language))) {
             // language.
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
-            GeometricWeather.getInstance().setLanguage((String) o);
+            SettingsOptionManager.getInstance(getActivity()).setLanguage((String) o);
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_gravity_sensor_switch))) {
             // sensor.

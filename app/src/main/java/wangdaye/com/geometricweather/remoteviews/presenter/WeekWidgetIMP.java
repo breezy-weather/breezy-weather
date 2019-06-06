@@ -33,20 +33,14 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                context.getString(R.string.sp_widget_week_setting),
-                Context.MODE_PRIVATE
-        );
-        boolean showCard = sharedPreferences.getBoolean(
-                context.getString(R.string.key_show_card),
-                false
-        );
-        boolean blackText = sharedPreferences.getBoolean(
-                context.getString(R.string.key_black_text),
-                false
+        WidgetConfig config = getWidgetConfig(
+                context,
+                context.getString(R.string.sp_widget_week_setting)
         );
 
-        RemoteViews views = getRemoteViews(context, location, weather, showCard, blackText);
+        RemoteViews views = getRemoteViews(
+                context, location, weather, config.cardStyle, config.cardAlpha, config.textColor);
+
         if (views != null) {
             AppWidgetManager.getInstance(context).updateAppWidget(
                     new ComponentName(context, WidgetWeekProvider.class),
@@ -56,7 +50,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
-                                             boolean showCard, boolean blackText) {
+                                             String cardStyle, int cardAlpha, String textColor) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_week);
         if (weather == null) {
             return views;
@@ -64,9 +58,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.getInstance(context)
-                .getDayTime(context, weather, false)
-                .isDayTime();
+        boolean dayTime = TimeManager.isDaylight(weather);
 
         SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = defaultSharePreferences.getBoolean(
@@ -82,12 +74,14 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 false
         );
 
+        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
+
         // get text color.
-        int textColor;
-        if (blackText || showCard) {
-            textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+        int textColorInt;
+        if (color.darkText) {
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
         } else {
-            textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
         // weather view.
@@ -127,7 +121,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_icon_1,
                 drawableToBitmap(
                         getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                provider, weather, dayTime, minimalIcon, color.darkText,
                                 0)
                 )
         );
@@ -135,7 +129,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_icon_2,
                 drawableToBitmap(
                         getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                provider, weather, dayTime, minimalIcon, color.darkText,
                                 1)
                 )
         );
@@ -143,7 +137,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_icon_3,
                 drawableToBitmap(
                         getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                provider, weather, dayTime, minimalIcon, color.darkText,
                                 2)
                 )
         );
@@ -151,7 +145,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_icon_4,
                 drawableToBitmap(
                         getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                provider, weather, dayTime, minimalIcon, color.darkText,
                                 3)
                 )
         );
@@ -159,25 +153,33 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_icon_5,
                 drawableToBitmap(
                         getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, blackText || showCard,
+                                provider, weather, dayTime, minimalIcon, color.darkText,
                                 4)
                 )
         );
 
         // set text color.
-        views.setTextColor(R.id.widget_week_week_1, textColor);
-        views.setTextColor(R.id.widget_week_week_2, textColor);
-        views.setTextColor(R.id.widget_week_week_3, textColor);
-        views.setTextColor(R.id.widget_week_week_4, textColor);
-        views.setTextColor(R.id.widget_week_week_5, textColor);
-        views.setTextColor(R.id.widget_week_temp_1, textColor);
-        views.setTextColor(R.id.widget_week_temp_2, textColor);
-        views.setTextColor(R.id.widget_week_temp_3, textColor);
-        views.setTextColor(R.id.widget_week_temp_4, textColor);
-        views.setTextColor(R.id.widget_week_temp_5, textColor);
+        views.setTextColor(R.id.widget_week_week_1, textColorInt);
+        views.setTextColor(R.id.widget_week_week_2, textColorInt);
+        views.setTextColor(R.id.widget_week_week_3, textColorInt);
+        views.setTextColor(R.id.widget_week_week_4, textColorInt);
+        views.setTextColor(R.id.widget_week_week_5, textColorInt);
+        views.setTextColor(R.id.widget_week_temp_1, textColorInt);
+        views.setTextColor(R.id.widget_week_temp_2, textColorInt);
+        views.setTextColor(R.id.widget_week_temp_3, textColorInt);
+        views.setTextColor(R.id.widget_week_temp_4, textColorInt);
+        views.setTextColor(R.id.widget_week_temp_5, textColorInt);
 
         // set card visibility.
-        views.setViewVisibility(R.id.widget_week_card, showCard ? View.VISIBLE : View.GONE);
+        if (color.showCard) {
+            views.setImageViewResource(
+                    R.id.widget_week_card,
+                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+            );
+            views.setViewVisibility(R.id.widget_week_card, View.VISIBLE);
+        } else {
+            views.setViewVisibility(R.id.widget_week_card, View.GONE);
+        }
 
         // set intent.
         setOnClickPendingIntent(context, views, location, touchToRefresh);

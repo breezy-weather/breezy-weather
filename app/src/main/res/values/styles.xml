@@ -11,6 +11,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
+        <item name="colorAccent">@android:color/transparent</item>
+    </style>
+
     <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
@@ -37,7 +41,7 @@
     <style name="widget_background_card">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:src">@drawable/widget_card_light</item>
+        <item name="android:src">@drawable/widget_card_light_100</item>
         <item name="android:visibility">gone</item>
     </style>
 
@@ -117,6 +121,30 @@
         <item name="android:textColor">@color/colorTextSubtitle</item>
     </style>
 
+    <style name="notification_large_title_text" parent="@style/TextAppearance.Compat.Notification.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/large_title_text_size</item>
+    </style>
+
+    <style name="notification_title_text" parent="@style/TextAppearance.Compat.Notification.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+    </style>
+
+    <style name="notification_content_text" parent="@style/TextAppearance.Compat.Notification.Info">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/content_text_size</item>
+    </style>
+
+    <style name="notification_subtitle_text" parent="@style/TextAppearance.Compat.Notification.Info">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/subtitle_text_size</item>
+    </style>
+
     <!-- spinner -->
     <style name="spinner_item" parent="Widget.AppCompat.DropDownItem.Spinner">
         <item name="android:textSize">@dimen/content_text_size</item>
@@ -181,6 +209,20 @@
         <item name="android:shadowDx">1</item>
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
+    </style>
+
+    <style name="widget_text_clock_analog">
+        <item name="android:layout_width">128dp</item>
+        <item name="android:layout_height">128dp</item>
+        <item name="android:hand_hour">@drawable/clock_hour_light</item>
+        <item name="android:hand_minute">@drawable/clock_minute_light</item>
+        <item name="android:dial">@drawable/clock_dial_light</item>
+    </style>
+    <style name="widget_text_clock_analog.Light" parent="widget_text_clock_analog" />
+    <style name="widget_text_clock_analog.Dark" parent="widget_text_clock_analog">
+        <item name="android:hand_hour">@drawable/clock_hour_dark</item>
+        <item name="android:hand_minute">@drawable/clock_minute_dark</item>
+        <item name="android:dial">@drawable/clock_dial_dark</item>
     </style>
 
     <!-- progress bar. -->

@@ -4,13 +4,8 @@
     android:id="@+id/notification_base"
     android:orientation="horizontal" 
     android:layout_width="match_parent"
-    android:layout_height="86dp">
-
-    <FrameLayout
-        android:id="@+id/notification_base_background"
-        android:background="@color/colorNotificationBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    android:layout_height="86dp"
+    tools:background="@color/notification_background_l">
 
     <ImageView
         android:id="@+id/notification_base_icon"

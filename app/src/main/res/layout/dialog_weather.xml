@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialog_weather_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -64,36 +64,18 @@
             android:foreground="@drawable/selectable_item_background_borderless"
             tools:ignore="UnusedAttribute">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/dialog_weather_icon_3_day"
-                android:layout_width="@dimen/standard_weather_icon_size"
-                android:layout_height="@dimen/standard_weather_icon_size"
-                android:layout_margin="@dimen/normal_margin"
+            <wangdaye.com.geometricweather.ui.widget.AnimatableIconView
+                android:id="@+id/dialog_weather_icon_day"
+                android:layout_width="@dimen/standard_weather_icon_container_size"
+                android:layout_height="@dimen/standard_weather_icon_container_size"
                 android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_clear_day"
-                tools:ignore="ContentDescription" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/dialog_weather_icon_2_day"
-                android:layout_width="@dimen/standard_weather_icon_size"
-                android:layout_height="@dimen/standard_weather_icon_size"
-                android:layout_margin="@dimen/normal_margin"
-                android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_clear_day"
-                tools:ignore="ContentDescription" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/dialog_weather_icon_1_day"
-                android:layout_width="@dimen/standard_weather_icon_size"
-                android:layout_height="@dimen/standard_weather_icon_size"
-                android:layout_margin="@dimen/normal_margin"
-                android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_clear_day"
+                app:inner_margins="@dimen/normal_margin"
+                tools:background="@drawable/weather_clear_day"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/dialog_weather_text_day"
-                android:layout_toEndOf="@id/dialog_weather_icon_1_day"
+                android:layout_toEndOf="@id/dialog_weather_icon_day"
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_centerVertical="true"
                 android:gravity="start"
@@ -111,36 +93,18 @@
             android:foreground="@drawable/selectable_item_background_borderless"
             tools:ignore="UnusedAttribute">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/dialog_weather_icon_3_night"
-                android:layout_width="@dimen/standard_weather_icon_size"
-                android:layout_height="@dimen/standard_weather_icon_size"
-                android:layout_margin="@dimen/normal_margin"
+            <wangdaye.com.geometricweather.ui.widget.AnimatableIconView
+                android:id="@+id/dialog_weather_icon_night"
+                android:layout_width="@dimen/standard_weather_icon_container_size"
+                android:layout_height="@dimen/standard_weather_icon_container_size"
                 android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_clear_night"
-                tools:ignore="ContentDescription" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/dialog_weather_icon_2_night"
-                android:layout_width="@dimen/standard_weather_icon_size"
-                android:layout_height="@dimen/standard_weather_icon_size"
-                android:layout_margin="@dimen/normal_margin"
-                android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_clear_night"
-                tools:ignore="ContentDescription" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/dialog_weather_icon_1_night"
-                android:layout_width="@dimen/standard_weather_icon_size"
-                android:layout_height="@dimen/standard_weather_icon_size"
-                android:layout_margin="@dimen/normal_margin"
-                android:layout_alignParentStart="true"
-                tools:src="@drawable/weather_clear_night"
+                app:inner_margins="@dimen/normal_margin"
+                tools:background="@drawable/weather_clear_night"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/dialog_weather_text_night"
-                android:layout_toEndOf="@id/dialog_weather_icon_1_night"
+                android:layout_toEndOf="@id/dialog_weather_icon_night"
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_centerVertical="true"
                 android:gravity="start"

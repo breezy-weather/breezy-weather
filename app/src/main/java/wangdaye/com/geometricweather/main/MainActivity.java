@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.preference.PreferenceManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -21,7 +20,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,7 +33,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
@@ -41,10 +41,12 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
+import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
@@ -91,6 +93,7 @@ public class MainActivity extends GeoActivity
     private WeatherHelper weatherHelper;
     private LocationHelper locationHelper;
     private ResourceProvider resourceProvider;
+    private MainColorPicker colorPicker;
 
     private boolean started;
 
@@ -104,15 +107,31 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         String uiStyle = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(getString(R.string.key_ui_style), "material");
-        if (uiStyle == null || uiStyle.equals("material")) {
-            setContentView(R.layout.activity_main_material);
-        } else {
-            setContentView(R.layout.activity_main_circular);
+        switch (uiStyle) {
+            case "material":
+                weatherView = new MaterialWeatherView(this);
+                break;
+
+            case "circular":
+                weatherView = new CircularSkyWeatherView(this);
+                break;
         }
+        ((FrameLayout) findViewById(R.id.activity_main_background)).addView(
+                (View) weatherView,
+                0,
+                new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                )
+        );
 
         started = false;
+        ensureResourceProvider();
+        ensureColorPicker();
     }
 
     @Override
@@ -129,6 +148,8 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onStart() {
         super.onStart();
+        weatherView.setDrawable(true);
+
         if (!started) {
             started = true;
 
@@ -156,9 +177,12 @@ public class MainActivity extends GeoActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SETTINGS_ACTIVITY:
-                DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
+                ensureResourceProvider();
+                ensureColorPicker();
+
                 ThreadManager.getInstance().execute(() ->
                         NotificationUtils.refreshNotificationIfNecessary(
                                 MainActivity.this,
@@ -191,6 +215,12 @@ public class MainActivity extends GeoActivity
         } else {
             indicator.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        weatherView.setDrawable(false);
     }
 
     @Override
@@ -277,7 +307,6 @@ public class MainActivity extends GeoActivity
     private void initWidget() {
         this.statusBar = findViewById(R.id.activity_main_statusBar);
 
-        this.weatherView = findViewById(R.id.activity_main_weatherView);
         if (weatherView instanceof MaterialWeatherView) {
             int kind;
             if (locationNow.weather == null) {
@@ -286,8 +315,6 @@ public class MainActivity extends GeoActivity
                 kind = WeatherViewController.getWeatherViewWeatherKind(
                         locationNow.weather.realTime.weatherKind);
             }
-
-            ensureResourceProvider();
 
             weatherView.setWeather(kind, TimeManager.getInstance(this).isDayTime(), resourceProvider);
             ((MaterialWeatherView) weatherView).setOpenGravitySensor(
@@ -329,7 +356,7 @@ public class MainActivity extends GeoActivity
         );
         refreshLayout.setOnRefreshListener(this);
         if (weatherView instanceof MaterialWeatherView) {
-            refreshLayout.setColorSchemeColors(weatherView.getThemeColors()[0]);
+            refreshLayout.setColorSchemeColors(weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
             refreshLayout.setProgressBackgroundColorSchemeResource(R.color.colorRoot);
         }
 
@@ -343,9 +370,9 @@ public class MainActivity extends GeoActivity
     // control.
 
     public void reset() {
-        DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors()[0]);
-        DisplayUtils.setStatusBarStyleWithScrolling(getWindow(), statusBar, false);
-        DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
+        DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
+        DisplayUtils.setStatusBarStyleWithScrolling(getWindow(), statusBar, false, colorPicker.isLightTheme());
+        DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
 
         setToolbarTitle(locationNow);
 
@@ -365,7 +392,7 @@ public class MainActivity extends GeoActivity
         } else {
             boolean valid = locationNow.weather.isValid(
                     ValueUtils.getRefreshRateScale(
-                            GeometricWeather.getInstance().getUpdateInterval()
+                            SettingsOptionManager.getInstance(this).getUpdateInterval()
                     )
             );
             setRefreshing(!valid);
@@ -384,33 +411,39 @@ public class MainActivity extends GeoActivity
     private void buildUI() {
         if (locationNow.weather == null) {
             return;
-        } else {
-            TimeManager.getInstance(this)
-                    .getDayTime(this, locationNow.weather, true);
         }
 
-        ensureResourceProvider();
+        boolean oldDaytime = TimeManager.getInstance(this).isDayTime();
+        boolean daytime = TimeManager.getInstance(this)
+                .getDayTime(this, locationNow.weather, true)
+                .isDayTime();
+
+        setDarkMode(daytime);
+        if (oldDaytime != daytime) {
+            refreshBackgroundViews();
+            ensureColorPicker();
+        }
 
         WeatherViewController.setWeatherViewWeatherKind(
-                weatherView,
-                locationNow.weather,
-                TimeManager.getInstance(this).isDayTime(),
-                resourceProvider
-        );
-        setDarkMode(TimeManager.getInstance(this).isDayTime());
+                weatherView, locationNow.weather, daytime, resourceProvider);
 
-        DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors()[0]);
-        DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors()[0]);
+        DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
+        DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
 
         setToolbarTitle(locationNow);
 
-        refreshLayout.setColorSchemeColors(weatherView.getThemeColors()[0]);
+        refreshLayout.setColorSchemeColors(weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
+        refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
 
-        adapter = new MainControllerAdapter(this, weatherView, locationNow, resourceProvider);
+        adapter = new MainControllerAdapter(
+                this, weatherView, locationNow, resourceProvider, colorPicker);
         adapter.bindView();
         adapter.onScroll(0, 0);
 
         scrollView.setVisibility(View.VISIBLE);
+
+        indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
+        indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));
 
         if (initAnimator != null) {
             initAnimator.cancel();
@@ -431,30 +464,28 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint("RestrictedApi")
     private void setDarkMode(boolean dayTime) {
-        if (GeometricWeather.getInstance().getDarkMode().equals("auto")) {
-            boolean darkMode = DisplayUtils.isDarkMode(this);
-            if (darkMode == dayTime) {
-                // need switch theme.
-                int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
-                getDelegate().setLocalNightMode(mode);
-                AppCompatDelegate.setDefaultNightMode(mode);
-
-                int rootColor = ContextCompat.getColor(this, R.color.colorRoot);
-                refreshLayout.setProgressBackgroundColorSchemeColor(rootColor);
-
-                indicator.setCurrentIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent));
-                indicator.setIndicatorColor(ContextCompat.getColor(this, R.color.colorTextSubtitle));
-
-                refreshBackgroundViews();
-            }
+        if (SettingsOptionManager.getInstance(this).getDarkMode().equals("auto")) {
+            int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
+            getDelegate().setLocalNightMode(mode);
+            AppCompatDelegate.setDefaultNightMode(mode);
         }
     }
 
     private void ensureResourceProvider() {
-        String iconProvider = GeometricWeather.getInstance().getIconProvider();
+        String iconProvider = SettingsOptionManager.getInstance(this).getIconProvider();
         if (resourceProvider == null
                 || !resourceProvider.getPackageName().equals(iconProvider)) {
             resourceProvider = ResourcesProviderFactory.getNewInstance();
+        }
+    }
+
+    private void ensureColorPicker() {
+        boolean daytime = TimeManager.getInstance(this).isDayTime();
+        String darkMode = SettingsOptionManager.getInstance(this).getDarkMode();
+        if (colorPicker == null
+                || colorPicker.isDaytime() != daytime
+                || !colorPicker.getDarkMode().equals(darkMode)) {
+            colorPicker = new MainColorPicker(daytime, darkMode);
         }
     }
 
@@ -518,6 +549,26 @@ public class MainActivity extends GeoActivity
         }
     }
 
+    private void locateFailed() {
+        if (locationNow.weather == null && locationNow.isUsable()) {
+            weatherHelper.requestWeather(this, locationNow, this);
+        } else {
+            setRefreshing(false);
+        }
+
+        SnackbarUtils.showSnackbar(
+                getString(R.string.feedback_location_failed),
+                getString(R.string.help),
+                v -> {
+                    if (isForeground()) {
+                        new LocationHelpDialog()
+                                .setColorPicker(colorPicker)
+                                .show(getSupportFragmentManager(), null);
+                    }
+                }
+        );
+    }
+
     // permission.
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -546,16 +597,7 @@ public class MainActivity extends GeoActivity
                 if ((permission[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)
                         || permission[i].equals(Manifest.permission.ACCESS_FINE_LOCATION))
                         && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
-                    SnackbarUtils.showSnackbar(
-                            getString(R.string.feedback_request_location_permission_failed),
-                            getString(R.string.help),
-                            v -> {
-                                if (isForeground()) {
-                                    new LocationHelpDialog().show(getSupportFragmentManager(), null);
-                                }
-                            }
-                    );
-                    setRefreshing(false);
+                    locateFailed();
                     return;
                 }
             }
@@ -597,8 +639,6 @@ public class MainActivity extends GeoActivity
         @Override
         public void onSwipeProgressChanged(int swipeDirection, float progress) {
             indicator.setDisplayState(progress != 0);
-
-            ensureResourceProvider();
 
             if (progress >= 1 && lastProgress < 0.5) {
                 Location location = getLocationFromList(
@@ -698,9 +738,11 @@ public class MainActivity extends GeoActivity
 
             // set status bar style.
             if (oldScrollY < overlapTriggerDistance && overlapTriggerDistance <= scrollY) {
-                DisplayUtils.setStatusBarStyleWithScrolling(getWindow(), statusBar, true);
+                DisplayUtils.setStatusBarStyleWithScrolling(
+                        getWindow(), statusBar, true, colorPicker.isLightTheme());
             } else if (oldScrollY >= overlapTriggerDistance && overlapTriggerDistance > scrollY) {
-                DisplayUtils.setStatusBarStyleWithScrolling(getWindow(), statusBar, false);
+                DisplayUtils.setStatusBarStyleWithScrolling(
+                        getWindow(), statusBar, false, colorPicker.isLightTheme());
             }
         }
     }
@@ -722,21 +764,7 @@ public class MainActivity extends GeoActivity
     @Override
     public void requestLocationFailed(Location requestLocation) {
         if (locationNow.equals(requestLocation)) {
-            if (locationNow.weather == null && locationNow.isUsable()) {
-                weatherHelper.requestWeather(this, locationNow, this);
-            } else {
-                setRefreshing(false);
-            }
-
-            SnackbarUtils.showSnackbar(
-                    getString(R.string.feedback_location_failed),
-                    getString(R.string.help),
-                    v -> {
-                        if (isForeground()) {
-                            new LocationHelpDialog().show(getSupportFragmentManager(), null);
-                        }
-                    }
-            );
+            locateFailed();
         }
     }
 

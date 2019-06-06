@@ -96,6 +96,9 @@ public class LanguageUtils {
                 return new Locale("hu");
 
             case "portuguese":
+                return new Locale("pt");
+
+            case "portuguese_brazilian":
                 return new Locale("pt", "BR");
 
             default:

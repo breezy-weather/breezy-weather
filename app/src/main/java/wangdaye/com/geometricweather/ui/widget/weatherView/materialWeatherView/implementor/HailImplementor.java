@@ -5,16 +5,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
+import java.util.Random;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
-
-import java.util.Random;
 
 /**
  * Hail implementor.
@@ -67,7 +68,7 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             this.canvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
 
             this.size = (float) (0.0324 * viewWidth);
-            this.speed = (float) (viewHeight / 200.0);
+            this.speed = viewWidth / 125f;
             this.color = color;
             this.scale = scale;
 
@@ -127,7 +128,7 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
-        this.hails = new Hail[21];
+        this.hails = new Hail[51];
         for (int i = 0; i < hails.length; i ++) {
             hails[i] = new Hail(
                     canvasSizes[0], canvasSizes[1],

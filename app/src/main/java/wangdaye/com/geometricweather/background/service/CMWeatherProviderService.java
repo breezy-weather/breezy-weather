@@ -170,9 +170,7 @@ public class CMWeatherProviderService extends WeatherProviderService
                 ).setWeatherCondition(
                                 WeatherConditionConvertHelper.getConditionCode(
                                         weather.realTime.weatherKind,
-                                        TimeManager.getInstance(this)
-                                                .getDayTime(this, weather, false)
-                                                .isDayTime()
+                                        TimeManager.isDaylight(weather)
                                 )
                 ).setTodaysHigh(weather.dailyList.get(0).temps[0])
                         .setTodaysLow(weather.dailyList.get(0).temps[1])

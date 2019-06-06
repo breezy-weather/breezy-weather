@@ -35,32 +35,26 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                context.getString(R.string.sp_widget_clock_day_week_setting),
-                Context.MODE_PRIVATE
-        );
-        boolean showCard = sharedPreferences.getBoolean(
-                context.getString(R.string.key_show_card),
-                false
-        );
-        boolean blackText = sharedPreferences.getBoolean(
-                context.getString(R.string.key_black_text),
-                false
-        );
-        String clockFont = sharedPreferences.getString(
-                context.getString(R.string.key_clock_font),
-                "light"
+        WidgetConfig config = getWidgetConfig(
+                context,
+                context.getString(R.string.sp_widget_clock_day_week_setting)
         );
 
-        RemoteViews views = getRemoteViews(context, location, weather, showCard, blackText, clockFont);
+        RemoteViews views = getRemoteViews(
+                context, location, weather,
+                config.cardStyle, config.cardAlpha, config.textColor, config.clockFont
+        );
+
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetClockDayWeekProvider.class),
                 views
         );
     }
 
-    public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
-                                             boolean showCard, boolean blackText, String clockFont) {
+    public static RemoteViews getRemoteViews(Context context,
+                                             Location location, @Nullable Weather weather,
+                                             String cardStyle, int cardAlpha,
+                                             String textColor, String clockFont) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_week);
         if (weather == null) {
             return views;
@@ -68,9 +62,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.getInstance(context)
-                .getDayTime(context, weather, false)
-                .isDayTime();
+        boolean dayTime = TimeManager.isDaylight(weather);
 
         SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = defaultSharePreferences.getBoolean(
@@ -86,11 +78,13 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 false
         );
 
-        int textColor;
-        if (blackText || showCard) {
-            textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
+
+        int textColorInt;
+        if (color.darkText) {
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
         } else {
-            textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
         views.setImageViewBitmap(
@@ -101,7 +95,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                                 weather.realTime.weatherKind,
                                 dayTime,
                                 minimalIcon,
-                                blackText || showCard
+                                color.darkText
                         )
                 )
         );
@@ -165,7 +159,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableToBitmap(
                         getIconDrawable(
                                 provider, weather,
-                                dayTime, minimalIcon, blackText || showCard,
+                                dayTime, minimalIcon, color.darkText,
                                 0
                         )
                 )
@@ -175,7 +169,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableToBitmap(
                         getIconDrawable(
                                 provider, weather,
-                                dayTime, minimalIcon, blackText || showCard,
+                                dayTime, minimalIcon, color.darkText,
                                 1
                         )
                 )
@@ -185,7 +179,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableToBitmap(
                         getIconDrawable(
                                 provider, weather,
-                                dayTime, minimalIcon, blackText || showCard,
+                                dayTime, minimalIcon, color.darkText,
                                 2
                         )
                 )
@@ -195,7 +189,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableToBitmap(
                         getIconDrawable(
                                 provider, weather,
-                                dayTime, minimalIcon, blackText || showCard,
+                                dayTime, minimalIcon, color.darkText,
                                 3
                         )
                 )
@@ -205,33 +199,41 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableToBitmap(
                         getIconDrawable(
                                 provider, weather,
-                                dayTime, minimalIcon, blackText || showCard,
+                                dayTime, minimalIcon, color.darkText,
                                 4
                         )
                 )
         );
 
-        views.setTextColor(R.id.widget_clock_day_week_clock_light, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_clock_normal, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_clock_black, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_clock_aa_light, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_clock_aa_normal, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_clock_aa_black, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_title, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_lunar, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_subtitle, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_week_1, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_week_2, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_week_3, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_week_4, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_week_5, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_temp_1, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_temp_2, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_temp_3, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_temp_4, textColor);
-        views.setTextColor(R.id.widget_clock_day_week_temp_5, textColor);
+        views.setTextColor(R.id.widget_clock_day_week_clock_light, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_clock_normal, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_clock_black, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_clock_aa_light, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_clock_aa_normal, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_clock_aa_black, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_title, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_lunar, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_subtitle, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_week_1, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_week_2, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_week_3, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_week_4, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_week_5, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_temp_1, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_temp_2, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_temp_3, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_temp_4, textColorInt);
+        views.setTextColor(R.id.widget_clock_day_week_temp_5, textColorInt);
 
-        views.setViewVisibility(R.id.widget_clock_day_week_card, showCard ? View.VISIBLE : View.GONE);
+        if (color.showCard) {
+            views.setImageViewResource(
+                    R.id.widget_clock_day_week_card,
+                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+            );
+            views.setViewVisibility(R.id.widget_clock_day_week_card, View.VISIBLE);
+        } else {
+            views.setViewVisibility(R.id.widget_clock_day_week_card, View.GONE);
+        }
 
         if (clockFont == null) {
             clockFont = "light";

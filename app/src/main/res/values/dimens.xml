@@ -6,7 +6,9 @@
     <dimen name="little_margin">8dp</dimen>
 
     <!-- image. -->
+    <dimen name="current_weather_icon_container_size">128dp</dimen>
     <dimen name="current_weather_icon_size">80dp</dimen>
+    <dimen name="standard_weather_icon_container_size">88dp</dimen>
     <dimen name="standard_weather_icon_size">56dp</dimen>
     <dimen name="little_weather_icon_size">42dp</dimen>
     <dimen name="material_icon_size">24dp</dimen>

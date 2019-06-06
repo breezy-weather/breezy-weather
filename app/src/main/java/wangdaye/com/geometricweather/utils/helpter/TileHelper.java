@@ -1,8 +1,6 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.service.quicksettings.Tile;
 import androidx.annotation.RequiresApi;
@@ -13,7 +11,6 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.background.BackgroundManager;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -30,12 +27,10 @@ public class TileHelper {
     /** <br> data */
 
     public static void setEnable(Context context, boolean enable) {
-        SharedPreferences.Editor editor = context.getSharedPreferences(
-                PREFERENCE_NAME,
-                Context.MODE_PRIVATE
-        ).edit();
-        editor.putBoolean(KEY_ENABLE, enable);
-        editor.apply();
+        context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean(KEY_ENABLE, enable)
+                .apply();
 
         BackgroundManager.resetNormalBackgroundTask(context, true);
     }
@@ -44,8 +39,6 @@ public class TileHelper {
         return context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
                 .getBoolean(KEY_ENABLE, false);
     }
-
-    /** <br> UI. */
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void refreshTile(Context context, Tile tile) {
@@ -58,14 +51,10 @@ public class TileHelper {
             boolean f = PreferenceManager.getDefaultSharedPreferences(context)
                     .getBoolean(context.getString(R.string.key_fahrenheit), false);
             tile.setIcon(
-                    Icon.createWithBitmap(
-                            DisplayUtils.drawableToBitmap(
-                                    WeatherHelper.getMinimalXmlIcon(
-                                            ResourcesProviderFactory.getNewInstance(),
-                                            location.weather.realTime.weatherKind,
-                                            TimeManager.getInstance(context).isDayTime()
-                                    )
-                            )
+                    WeatherHelper.getMinimalIcon(
+                            ResourcesProviderFactory.getNewInstance(),
+                            location.weather.realTime.weatherKind,
+                            TimeManager.getInstance(context).isDayTime()
                     )
             );
             tile.setLabel(

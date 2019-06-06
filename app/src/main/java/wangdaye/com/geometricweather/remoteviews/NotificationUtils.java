@@ -23,7 +23,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Alert;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.remoteviews.presenter.NormalNotificationIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.notification.NormalNotificationIMP;
 
 /**
  * Notification utils.
@@ -98,8 +98,9 @@ public class NotificationUtils {
 
     private static Notification buildSingleNotification(Context c,
                                                         String cityName, Alert alert, boolean inGroup) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(c, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
-                .setSmallIcon(R.drawable.ic_alert)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                c, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT
+        ).setSmallIcon(R.drawable.ic_alert)
                 .setLargeIcon(BitmapFactory.decodeResource(c.getResources(), R.drawable.ic_launcher))
                 .setContentTitle(c.getString(R.string.action_alert))
                 .setSubText(alert.publishTime)

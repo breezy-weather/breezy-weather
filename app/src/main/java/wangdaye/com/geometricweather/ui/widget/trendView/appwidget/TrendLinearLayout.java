@@ -7,10 +7,13 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import wangdaye.com.geometricweather.GeometricWeather;
+import androidx.core.graphics.ColorUtils;
+
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
@@ -28,6 +31,9 @@ public class TrendLinearLayout extends LinearLayout {
     private int highestTemp;
     private int lowestTemp;
 
+    @ColorInt private int lineColor;
+    @ColorInt private int textColor;
+
     private float TREND_ITEM_HEIGHT;
     private float BOTTOM_MARGIN;
     private float TREND_MARGIN_TOP = 24;
@@ -35,8 +41,6 @@ public class TrendLinearLayout extends LinearLayout {
     private float CHART_LINE_SIZE = 1;
     private float TEXT_SIZE = 10;
     private float MARGIN_TEXT = 2;
-
-    private static final String COLOR_LINE = "#f1f1f1";
 
     public TrendLinearLayout(Context context) {
         super(context);
@@ -61,6 +65,8 @@ public class TrendLinearLayout extends LinearLayout {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setTextSize(TEXT_SIZE);
 
+        setColor(true);
+
         this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
         this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
         this.TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) TEXT_SIZE);
@@ -79,7 +85,7 @@ public class TrendLinearLayout extends LinearLayout {
 
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(CHART_LINE_SIZE);
-        paint.setColor(Color.parseColor(COLOR_LINE));
+        paint.setColor(lineColor);
         canvas.drawLine(
                 0, historyTempYs[0],
                 getMeasuredWidth(), historyTempYs[0],
@@ -95,11 +101,11 @@ public class TrendLinearLayout extends LinearLayout {
         paint.setStyle(Paint.Style.FILL);
         paint.setTextSize(TEXT_SIZE);
         paint.setTextAlign(Paint.Align.LEFT);
-        paint.setColor(ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd));
+        paint.setColor(textColor);
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         historyTemps[0],
-                        GeometricWeather.getInstance().isFahrenheit()
+                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
                 ),
                 2 * MARGIN_TEXT,
                 historyTempYs[0] - paint.getFontMetrics().bottom - MARGIN_TEXT,
@@ -108,7 +114,7 @@ public class TrendLinearLayout extends LinearLayout {
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         historyTemps[1],
-                        GeometricWeather.getInstance().isFahrenheit()
+                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
                 ),
                 2 * MARGIN_TEXT,
                 historyTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
@@ -131,6 +137,16 @@ public class TrendLinearLayout extends LinearLayout {
     }
 
     // control.
+
+    public void setColor(boolean lightTheme) {
+        if (lightTheme) {
+            lineColor = ColorUtils.setAlphaComponent(Color.BLACK, (int) (255 * 0.05));
+            textColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_light);
+        } else {
+            lineColor = ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.1));
+            textColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_dark);
+        }
+    }
 
     public void setData(@Nullable int[] historyTemps, int highestTemp, int lowestTemp, boolean daily) {
         this.historyTemps = historyTemps;

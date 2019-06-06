@@ -5,9 +5,9 @@ import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingTaskHelper;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
@@ -36,18 +36,18 @@ public class BackgroundManager {
             );
             String todayForecastTime = sharedPreferences.getString(
                     context.getString(R.string.key_forecast_today_time),
-                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME
+                    SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME
             );
             String tomorrowForecastTime = sharedPreferences.getString(
                     context.getString(R.string.key_forecast_tomorrow_time),
-                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME
+                    SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME
             );
 
             PollingTaskHelper.stopNormalPollingTask(context);
             PollingTaskHelper.startNormalPollingTask(
                     context,
                     ValueUtils.getRefreshRateScale(
-                            GeometricWeather.getInstance().getUpdateInterval()
+                            SettingsOptionManager.getInstance(context).getUpdateInterval()
                     )
             );
 
@@ -81,8 +81,9 @@ public class BackgroundManager {
 
             PollingTaskHelper.stopNormalPollingTask(context);
             PollingTaskHelper.startNormalPollingTask(
-                    context, ValueUtils.getRefreshRateScale(
-                            GeometricWeather.getInstance().getUpdateInterval()
+                    context,
+                    ValueUtils.getRefreshRateScale(
+                            SettingsOptionManager.getInstance(context).getUpdateInterval()
                     )
             );
         } else {
@@ -110,7 +111,7 @@ public class BackgroundManager {
             );
             String todayForecastTime = sharedPreferences.getString(
                     context.getString(R.string.key_forecast_today_time),
-                    GeometricWeather.DEFAULT_TODAY_FORECAST_TIME
+                    SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME
             );
 
             PollingTaskHelper.stopTodayForecastPollingTask(context);
@@ -142,7 +143,7 @@ public class BackgroundManager {
             );
             String tomorrowForecastTime = sharedPreferences.getString(
                     context.getString(R.string.key_forecast_tomorrow_time),
-                    GeometricWeather.DEFAULT_TOMORROW_FORECAST_TIME
+                    SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME
             );
 
             PollingTaskHelper.stopTomorrowForecastPollingTask(context);

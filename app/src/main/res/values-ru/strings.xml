@@ -157,7 +157,6 @@
     <string name="key_notification_temp_icon">notification_temp_icon_switch</string>
     <string name="settings_title_notification_text_color">Цвет текста</string>
     <string name="settings_title_notification_background">Цвет фона</string>
-    <string name="settings_notification_background_on">Согласно настроек Android</string>
     <string name="settings_notification_background_off">По умолчанию</string>
     <string name="settings_title_notification_can_be_cleared">Статус уведомления</string>
     <string name="settings_notification_can_be_cleared_on">Стираемое уведомление</string>

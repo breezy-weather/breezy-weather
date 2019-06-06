@@ -93,6 +93,7 @@
         <item>Italiano</item>
         <item>Dutch</item>
         <item>Magyar</item>
+        <item>Português</item>
         <item>Português (Brasil)</item>
     </string-array>
     <string-array name="language_values">
@@ -112,6 +113,7 @@
         <item>dutch</item>
         <item>hungarian</item>
         <item>portuguese</item>
+        <item>portuguese_brazilian</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -147,6 +149,16 @@
         <item>grey</item>
         <item>light</item>
     </string-array>
+
+    <!-- notification background colors. -->
+    <integer-array name="notification_background_colors">
+        <item>@color/notification_background_l</item>
+        <item>@color/notification_background_m</item>
+        <item>@color/notification_background_o</item>
+        <item>@color/notification_background_rootLight</item>
+        <item>@color/notification_background_rootDark</item>
+        <item>@color/notification_background_primary</item>
+    </integer-array>
 
     <!-- widget style. -->
     <string-array name="widget_styles">
@@ -191,11 +203,39 @@
         <item>sans-serif-light</item>
         <item>sans-serif</item>
         <item>sans-serif-black</item>
+        <item>analog</item>
     </string-array>
     <string-array name="clock_font_values">
         <item>light</item>
         <item>normal</item>
         <item>black</item>
+        <item>analog</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_card_styles">
+        <item>None</item>
+        <item>Day Night Mode</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string-array name="widget_card_style_values">
+        <item>none</item>
+        <item>auto</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>Auto</item>
+    </string-array>
+    <string-array name="widget_text_color_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>auto</item>
     </string-array>
 
 </resources>

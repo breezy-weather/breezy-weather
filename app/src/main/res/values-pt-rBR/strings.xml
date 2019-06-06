@@ -206,7 +206,6 @@
     <string name="settings_title_notification_temp_icon">Mini ícone de temperatura</string>
     <string name="settings_title_notification_text_color">Cor do texto</string>
     <string name="settings_title_notification_background">Cor de plano de fundo</string>
-    <string name="settings_notification_background_on">Mesma cor que em AOSP.</string>
     <string name="settings_notification_background_off">Igual ao sistema</string>
     <string name="settings_title_notification_can_be_cleared">Pode dispensar</string>
     <string name="settings_notification_can_be_cleared_on">Pode dispensar arrastando.</string>

@@ -5,6 +5,8 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.res.ColorStateList;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainColorPicker;
 
 /**
  * Details adapter.
@@ -24,6 +27,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
     private List<Index> indexList;
+    private MainColorPicker colorPicker;
 
     private class Index {
         @DrawableRes int iconId;
@@ -51,13 +55,22 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
 
         void onBindView(Index index) {
+            Context context = itemView.getContext();
+
             icon.setImageResource(index.iconId);
+            icon.setSupportImageTintList(
+                    ColorStateList.valueOf(colorPicker.getTextContentColor(context))
+            );
+
             title.setText(index.title);
+            title.setTextColor(colorPicker.getTextContentColor(context));
+
             content.setText(index.content);
+            content.setTextColor(colorPicker.getTextSubtitleColor(context));
         }
     }
 
-    public DetailsAdapter(Context context, Weather weather) {
+    public DetailsAdapter(Context context, Weather weather, MainColorPicker colorPicker) {
         this.indexList = new ArrayList<>();
 
         indexList.add(new Index(
@@ -97,12 +110,15 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     context.getString(R.string.dew_point),
                     weather.index.dewPoint));
         }
+
+        this.colorPicker = colorPicker;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_details, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_details, parent, false);
         return new ViewHolder(view);
     }
 

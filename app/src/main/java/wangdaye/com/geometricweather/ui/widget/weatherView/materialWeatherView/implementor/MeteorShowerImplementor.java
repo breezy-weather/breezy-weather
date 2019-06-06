@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
@@ -61,7 +62,7 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
             this.width = (float) (viewWidth * 0.0088 * scale);
 
             this.rectF = new RectF();
-            this.speed = (float) (viewHeight / 500.0);
+            this.speed = viewWidth / 250f;
             this.color = color;
             this.scale = scale;
 

@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.253</string>
+    <string name="version_code">v2.255</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -37,10 +37,11 @@
     <string name="get_more">Get More</string>
     <string name="get_more_store">Get More From AppStore</string>
     <string name="get_more_github">Get More From GitHub</string>
+    <string name="refresh">Refresh</string>
 
     <string name="of_clock">:00</string>
     <string name="yesterday">yday</string>
-    <string name="tomorrow">twm</string>
+    <string name="tomorrow">tmw</string>
     <string name="week">week</string>
     <string name="week_1">MON</string>
     <string name="week_2">TUE</string>
@@ -139,6 +140,7 @@
 
     <string name="feedback_view_style">Style of view.</string>
     <string name="feedback_show_widget_card">Card background.</string>
+    <string name="feedback_show_widget_card_alpha">Card alpha.</string>
     <string name="feedback_hide_subtitle">Hide Subtitle.</string>
     <string name="feedback_subtitle_data">Subtitle data.</string>
     <string name="feedback_black_text">Dark text.</string>
@@ -240,9 +242,10 @@
     <string name="settings_category_notification">Notification</string>
     <string name="settings_title_notification">Send Notification</string>
     <string name="settings_title_notification_temp_icon">Temperature Mini Icon</string>
+    <string name="settings_title_notification_color">Notification Color</string>
+    <string name="settings_title_notification_custom_color">Custom Notification Color</string>
     <string name="settings_title_notification_text_color">Text Color</string>
     <string name="settings_title_notification_background">Background Color</string>
-    <string name="settings_notification_background_on">Same as control center in AOSP.</string>
     <string name="settings_notification_background_off">Follow System</string>
     <string name="settings_title_notification_can_be_cleared">Can Clear</string>
     <string name="settings_notification_can_be_cleared_on">Can be cleared by drag.</string>
@@ -266,11 +269,14 @@
     <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
     <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
     <string name="sp_widget_text_setting">widget_text_setting</string>
+    <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
+    <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
     <string name="key_view_type">view_type</string>
-    <string name="key_show_card">showCard</string>
+    <string name="key_card_style">card_style</string>
+    <string name="key_card_alpha">card_alpha_1</string>
     <string name="key_hide_subtitle">hide_refresh_time</string>
     <string name="key_subtitle_data">subtitle_data</string>
-    <string name="key_black_text">black_text</string>
+    <string name="key_text_color">text_color</string>
     <string name="key_clock_font">clock_font</string>
 
     <string name="key_background_free">background_free_3</string>
@@ -301,8 +307,10 @@
     <string name="key_notification">notification_switch</string>
     <string name="key_notification_minimal_icon">notification_minimal_icon</string>
     <string name="key_notification_temp_icon">notification_temp_icon_switch</string>
+    <string name="key_notification_color">notification_color</string>
+    <string name="key_notification_custom_color">notification_custom_color</string>
+    <string name="key_notification_background_color">notification_background_color</string>
     <string name="key_notification_text_color">notification_text_color</string>
-    <string name="key_notification_background">notification_background_color_switch</string>
     <string name="key_notification_can_be_cleared">notification_can_clear_switch</string>
     <string name="key_notification_hide_icon">hide_notification_icon</string>
     <string name="key_notification_hide_in_lockScreen">hide_notification_in_lockScreen</string>

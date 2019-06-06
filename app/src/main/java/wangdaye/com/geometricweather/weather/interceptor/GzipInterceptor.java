@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.weather.interceptor;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 
 import okhttp3.MediaType;
@@ -29,7 +28,7 @@ public class GzipInterceptor extends ReportExceptionInterceptor {
         }
     }
 
-    private Response buildResponse(Request request, Response response) throws IOException {
+    private Response buildResponse(Request request, Response response) throws Exception {
         // return response;
 
         ResponseBody body = response.body();

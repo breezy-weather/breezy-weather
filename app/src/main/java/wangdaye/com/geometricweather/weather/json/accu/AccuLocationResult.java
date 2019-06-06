@@ -155,7 +155,10 @@ public class AccuLocationResult {
     public Location toLocation() {
         return new Location(
                 Key,
-                "", LocalizedName, AdministrativeArea.LocalizedName, Country.LocalizedName,
+                "",
+                LocalizedName,
+                AdministrativeArea == null ? "" : AdministrativeArea.LocalizedName,
+                Country.LocalizedName,
                 String.valueOf(GeoPosition.Latitude), String.valueOf(GeoPosition.Longitude),
                 "accu",
                 null, null,

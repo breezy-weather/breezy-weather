@@ -11,9 +11,11 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
@@ -43,9 +45,34 @@ public class ShortcutsManager {
             ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
             List<ShortcutInfo> shortcutList = new ArrayList<>();
-            for (int i = 0; i < list.size() && i < 5; i ++) {
-                Icon icon;
-                Weather weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
+
+            // refresh button.
+            Icon icon;
+            String title = c.getString(R.string.refresh);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                icon = Icon.createWithAdaptiveBitmap(
+                        drawableToBitmap(
+                                Objects.requireNonNull(
+                                        ContextCompat.getDrawable(c, R.drawable.shortcuts_refresh_foreground)
+                                )
+                        )
+                );
+            } else {
+                icon = Icon.createWithResource(c, R.drawable.shortcuts_refresh);
+            }
+            shortcutList.add(
+                    new ShortcutInfo.Builder(c, "refresh_data")
+                            .setIcon(icon)
+                            .setShortLabel(title)
+                            .setLongLabel(title)
+                            .setIntent(IntentHelper.buildAwakeUpdateActivityIntent())
+                            .build()
+            );
+
+            // location list.
+            Weather weather;
+            for (int i = 0; i < list.size(); i ++) {
+                weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
                 if (weather != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         icon = getAdaptiveIcon(
@@ -60,7 +87,7 @@ public class ShortcutsManager {
                     icon = getIcon(provider, Weather.KIND_CLEAR, true);
                 }
 
-                String title = list.get(i).isLocal() ? c.getString(R.string.local) : list.get(i).getCityName(c);
+                title = list.get(i).isLocal() ? c.getString(R.string.local) : list.get(i).getCityName(c);
 
                 shortcutList.add(
                         new ShortcutInfo.Builder(c, list.get(i).cityId)

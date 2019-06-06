@@ -26,10 +26,7 @@ public class JobHelper {
     public static void setJobForNormalView(Context context, float pollingRate) {
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_NORMAL_VIEW,
-                new ComponentName(
-                        context.getPackageName(),
-                        JobNormalUpdateService.class.getName()
-                )
+                new ComponentName(context, JobNormalUpdateService.class)
         ).setBackoffCriteria(15 * MINUTE, JobInfo.BACKOFF_POLICY_LINEAR)
                 .setPeriodic((long) (pollingRate * HOUR))
                 .setPersisted(true);
@@ -49,10 +46,7 @@ public class JobHelper {
     public static void setJobForTodayForecast(Context context, String todayForecastTime) {
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_TODAY_FORECAST,
-                new ComponentName(
-                        context.getPackageName(),
-                        JobTodayForecastUpdateService.class.getName()
-                )
+                new ComponentName(context, JobTodayForecastUpdateService.class)
         ).setMinimumLatency(getForecastAlarmDelay(todayForecastTime));
         JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         if (scheduler != null) {
@@ -70,10 +64,7 @@ public class JobHelper {
     public static void setJobForTomorrowForecast(Context context, String TomorrowForecastTime) {
         JobInfo.Builder builder = new JobInfo.Builder(
                 JOB_ID_TOMORROW_FORECAST,
-                new ComponentName(
-                        context.getPackageName(),
-                        JobTomorrowForecastUpdateService.class.getName()
-                )
+                new ComponentName(context, JobTomorrowForecastUpdateService.class)
         ).setMinimumLatency(getForecastAlarmDelay(TomorrowForecastTime));
         JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         if (scheduler != null) {

@@ -4,13 +4,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
 
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
-
 import java.util.Random;
+
+import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 
 /**
  * Wind implementor.

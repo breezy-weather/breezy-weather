@@ -5,12 +5,12 @@ import android.animation.ArgbEvaluator;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -24,6 +24,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainColorPicker;
 import wangdaye.com.geometricweather.ui.widget.RoundProgress;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
@@ -35,6 +36,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
     private List<AqiItem> itemList;
     private List<ViewHolder> holderList;
+    private MainColorPicker colorPicker;
 
     private class AqiItem {
         @ColorInt int color;
@@ -73,26 +75,27 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
 
         void onBindView(AqiItem item) {
+            Context context = itemView.getContext();
+
             this.item = item;
             this.executeAnimation = item.executeAnimation;
 
             title.setText(item.title);
+            title.setTextColor(colorPicker.getTextContentColor(context));
+
             content.setText(item.content);
+            title.setTextColor(colorPicker.getTextSubtitleColor(context));
 
             if (executeAnimation) {
                 progress.setProgress(0);
-                progress.setProgressColor(
-                        ContextCompat.getColor(itemView.getContext(), R.color.colorLevel_1));
-                progress.setProgressBackgroundColor(
-                        ContextCompat.getColor(itemView.getContext(), R.color.colorLine));
+                progress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
+                progress.setProgressBackgroundColor(colorPicker.getLineColor(context));
             } else {
                 progress.setProgress((int) (100.0 * item.progress / item.max));
                 progress.setProgressColor(item.color);
-                progress.setProgressBackgroundColor(Color.argb(
-                        (int) (255 * 0.1),
-                        Color.red(item.color),
-                        Color.green(item.color),
-                        Color.blue(item.color)));
+                progress.setProgressBackgroundColor(
+                        ColorUtils.setAlphaComponent(item.color, (int) (255 * 0.1))
+                );
             }
         }
 
@@ -111,13 +114,8 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
-                        ContextCompat.getColor(itemView.getContext(), R.color.colorLine),
-                        Color.argb(
-                                (int) (255 * 0.1),
-                                Color.red(item.color),
-                                Color.green(item.color),
-                                Color.blue(item.color)
-                        )
+                        colorPicker.getLineColor(itemView.getContext()),
+                        ColorUtils.setAlphaComponent(item.color, (int) (255 * 0.1))
                 );
                 backgroundColor.addUpdateListener(animation ->
                         progress.setProgressBackgroundColor((Integer) animation.getAnimatedValue())
@@ -146,7 +144,8 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    public AqiAdapter(Context context, Weather weather, boolean executeAnimation) {
+    public AqiAdapter(Context context, Weather weather,
+                      MainColorPicker colorPicker, boolean executeAnimation) {
         this.itemList = new ArrayList<>();
         if (weather != null && weather.aqi != null) {
             if (weather.aqi.pm25 >= 0) {
@@ -224,6 +223,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
 
         this.holderList = new ArrayList<>();
+        this.colorPicker = colorPicker;
     }
 
     @NonNull

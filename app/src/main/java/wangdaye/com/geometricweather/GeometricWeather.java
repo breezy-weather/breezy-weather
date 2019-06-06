@@ -3,12 +3,8 @@ package wangdaye.com.geometricweather;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.preference.PreferenceManager;
-
-import android.util.Log;
 
 import com.tencent.bugly.crashreport.CrashReport;
 
@@ -16,15 +12,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.TLSCompactHelper;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -45,21 +39,6 @@ public class GeometricWeather extends Application {
     private OkHttpClient okHttpClient;
     private GsonConverterFactory gsonConverterFactory;
     private RxJava2CallAdapterFactory rxJava2CallAdapterFactory;
-
-    private String chineseSource;
-    private String locationService;
-    private String darkMode;
-    private String iconProvider;
-    private String[] cardDisplayValues;
-    private String cardOrder;
-    private boolean colorNavigationBar;
-    private boolean fahrenheit;
-    private boolean imperial;
-    private String language;
-    private String updateInterval;
-
-    public static final String DEFAULT_TODAY_FORECAST_TIME = "07:00";
-    public static final String DEFAULT_TOMORROW_FORECAST_TIME = "21:00";
 
     public static final String NOTIFICATION_CHANNEL_ID_NORMALLY = "normally";
     public static final String NOTIFICATION_CHANNEL_ID_ALERT = "alert";
@@ -153,25 +132,7 @@ public class GeometricWeather extends Application {
         gsonConverterFactory = GsonConverterFactory.create();
         rxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create();
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        chineseSource = sharedPreferences.getString(getString(R.string.key_chinese_source), "accu");
-        locationService = sharedPreferences.getString(getString(R.string.key_location_service), "native");
-        darkMode = sharedPreferences.getString(getString(R.string.key_dark_mode), "auto");
-        iconProvider = sharedPreferences.getString(getString(R.string.key_icon_provider), getPackageName());
-        cardDisplayValues = Objects.requireNonNull(sharedPreferences.getStringSet(
-                getString(R.string.key_card_display),
-                new HashSet<>(Arrays.asList(
-                                getResources().getStringArray(R.array.card_display_values)
-                ))
-        )).toArray(new String[] {});
-        cardOrder = sharedPreferences.getString(getString(R.string.key_card_order), "daily_first");
-        colorNavigationBar = sharedPreferences.getBoolean(getString(R.string.key_navigationBar_color), false);
-        fahrenheit = sharedPreferences.getBoolean(getString(R.string.key_fahrenheit), false);
-        imperial = sharedPreferences.getBoolean(getString(R.string.key_imperial), false);
-        language = sharedPreferences.getString(getString(R.string.key_language), "follow_system");
-        updateInterval = sharedPreferences.getString(getString(R.string.key_refresh_rate), "1:30");
-
-        LanguageUtils.setLanguage(this, language);
+        LanguageUtils.setLanguage(this, SettingsOptionManager.getInstance(this).getLanguage());
 
         CrashReport.initCrashReport(getApplicationContext(), "148f1437d5", false);
     }
@@ -202,94 +163,6 @@ public class GeometricWeather extends Application {
 
     public RxJava2CallAdapterFactory getRxJava2CallAdapterFactory() {
         return rxJava2CallAdapterFactory;
-    }
-
-    public String getChineseSource() {
-        return chineseSource;
-    }
-
-    public void setChineseSource(String chineseSource) {
-        this.chineseSource = chineseSource;
-    }
-
-    public String getLocationService() {
-        return locationService;
-    }
-
-    public void setLocationService(String locationService) {
-        this.locationService = locationService;
-    }
-
-    public String getDarkMode() {
-        return darkMode;
-    }
-
-    public void setDarkMode(String darkMode) {
-        this.darkMode = darkMode;
-    }
-
-    public String getIconProvider() {
-        return iconProvider;
-    }
-
-    public void setIconProvider(String iconProvider) {
-        this.iconProvider = iconProvider;
-    }
-
-    public String[] getCardDisplayValues() {
-        return cardDisplayValues;
-    }
-
-    public void setCardDisplayValues(String[] cardDisplayValues) {
-        this.cardDisplayValues = cardDisplayValues;
-    }
-
-    public String getCardOrder() {
-        return cardOrder;
-    }
-
-    public void setCardOrder(String cardOrder) {
-        this.cardOrder = cardOrder;
-    }
-
-    public boolean isColorNavigationBar() {
-        return colorNavigationBar;
-    }
-
-    public void setColorNavigationBar() {
-        this.colorNavigationBar = !colorNavigationBar;
-    }
-
-    public boolean isFahrenheit() {
-        return fahrenheit;
-    }
-
-    public void setFahrenheit(boolean fahrenheit) {
-        this.fahrenheit = fahrenheit;
-    }
-
-    public boolean isImperial() {
-        return imperial;
-    }
-
-    public void setImperial(boolean imperial) {
-        this.imperial = imperial;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getUpdateInterval() {
-        return updateInterval;
-    }
-
-    public void setUpdateInterval(String updateInterval) {
-        this.updateInterval = updateInterval;
     }
 
     public static String getProcessName() {
@@ -325,7 +198,7 @@ public class GeometricWeather extends Application {
     }
 
     public void resetDayNightMode() {
-        switch (darkMode) {
+        switch (SettingsOptionManager.getInstance(this).getDarkMode()) {
             case "auto":
                 AppCompatDelegate.setDefaultNightMode(
                         TimeManager.getInstance(this).isDayTime()
@@ -347,9 +220,6 @@ public class GeometricWeather extends Application {
     public void recreateAllActivities() {
         for (Activity a : activityList) {
             a.recreate();
-        }
-        for (Activity a : activityList) {
-            Log.d("GeoApp", a.getClass().toString());
         }
     }
 }

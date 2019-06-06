@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.background.polling.alarm;
 import android.content.Context;
 
 import androidx.annotation.Nullable;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.background.service.UpdateService;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
@@ -11,6 +10,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.polling.PollingTaskHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
@@ -29,12 +29,12 @@ public class AlarmNormalUpdateService extends UpdateService {
     @Override
     public void setDelayTask(boolean failed) {
         if (failed) {
-            PollingTaskHelper.startNormalPollingTask(this, 0.25F);
+            PollingTaskHelper.startNormalPollingTask(this, 0.25f);
         } else {
             PollingTaskHelper.startNormalPollingTask(
                     this,
                     ValueUtils.getRefreshRateScale(
-                            GeometricWeather.getInstance().getUpdateInterval()
+                            SettingsOptionManager.getInstance(this).getUpdateInterval()
                     )
             );
         }

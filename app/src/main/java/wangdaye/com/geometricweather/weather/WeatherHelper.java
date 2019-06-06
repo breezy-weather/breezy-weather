@@ -4,12 +4,16 @@ import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.text.TextUtils;
 
 import java.text.ParseException;
@@ -18,13 +22,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.resource.provider.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.utils.ResourceUtils;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
 import wangdaye.com.geometricweather.weather.service.CNWeatherService;
 import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
@@ -78,7 +84,7 @@ public class WeatherHelper {
 
     public void requestLocation(Context c, String query, @NonNull final OnRequestLocationListener l) {
         if (LanguageUtils.isChinese(query) 
-                && !GeometricWeather.getInstance().getChineseSource().equals("accu")) {
+                && !SettingsOptionManager.getInstance(c).getChineseSource().equals("accu")) {
             requestCNAndGlobalLocation(c, query, l);
         } else {
             requestGlobalLocation(c, query, l);
@@ -86,7 +92,7 @@ public class WeatherHelper {
     }
     
     private void requestCNAndGlobalLocation(final Context c, String query, @NonNull final OnRequestLocationListener l) {
-        bindWeatherService(GeometricWeather.getInstance().getChineseSource());
+        bindWeatherService(SettingsOptionManager.getInstance(c).getChineseSource());
         weatherService.requestLocation(c, query, new WeatherService.RequestLocationCallback() {
             @Override
             public void requestLocationSuccess(String query, List<Location> locationList) {
@@ -173,8 +179,25 @@ public class WeatherHelper {
 
     @NonNull
     public static Drawable getMinimalXmlIcon(ResourceProvider provider,
-                                             String weatherInfo, boolean dayTime) {
-        return provider.getMinimalXmlIcon(weatherInfo, dayTime);
+                                             String weatherKind, boolean daytime) {
+        return provider.getMinimalXmlIcon(weatherKind, daytime);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @NonNull
+    public static Icon getMinimalIcon(ResourceProvider provider,
+                                      String weatherKind, boolean daytime) {
+        return provider.getMinimalIcon(weatherKind, daytime);
+    }
+
+    @DrawableRes
+    public static int getDefaultMinimalXmlIconId(String weatherKind, boolean daytime) {
+        int id = new DefaultResourceProvider().getMinimalXmlIconId(weatherKind, daytime);
+        if (id == 0) {
+            return R.drawable.weather_clear_day_mini_xml;
+        } else {
+            return id;
+        }
     }
 
     @NonNull
@@ -189,32 +212,25 @@ public class WeatherHelper {
         return provider.getShortcutsForegroundIcon(weatherKind, dayTime);
     }
 
+    @NonNull
     public static Drawable getSunDrawable(ResourceProvider provider) {
         return provider.getSunDrawable();
     }
 
+    @NonNull
     public static Drawable getMoonDrawable(ResourceProvider provider) {
         return provider.getMoonDrawable();
     }
 
+    @DrawableRes
     public static int getTempIconId(Context context, int temp) {
-        int id = ResourceProvider.getResId(
+        int id = ResourceUtils.getResId(
                 context,
                 "notif_temp_" + temp,
                 "drawable"
         );
         if (id == 0) {
             return R.drawable.notif_temp_0;
-        } else {
-            return id;
-        }
-    }
-
-    public static int getMiniIconId(ResourceProvider provider,
-                                    String weatherKind, boolean daytime) {
-        int id = provider.getMinimalXmlIconId(weatherKind, daytime);
-        if (id == 0) {
-            return R.drawable.weather_clear_day_mini_xml;
         } else {
             return id;
         }
@@ -360,19 +376,30 @@ public class WeatherHelper {
     }
 
     @SuppressLint("DefaultLocale")
-    public static String getWindSpeed(double speed) {
-        return GeometricWeather.getInstance().isImperial()
-                ? (String.format("%.1f", speed * 0.621F) + "mi/h") : (speed + "km/h");
+    public static String getWindSpeed(Context context, double speed) {
+        return SettingsOptionManager.getInstance(context).isImperial()
+                ? (String.format("%.1f", speed * 0.621F) + "mi/h")
+                : (speed + "km/h");
     }
 
-    public static String getWindSpeed(String speed) {
+    public static String getWindSpeed(Context context, String speed) {
         if (speed.endsWith("km/h")) {
-            return getWindSpeed(Double.parseDouble(speed.replace("km/h", "")));
+            return getWindSpeed(
+                    context,
+                    Double.parseDouble(
+                            speed.replace("km/h", "")
+                    )
+            );
         } else if (speed.endsWith("mi/h")) {
-            return getWindSpeed(Double.parseDouble(speed.replace("mi/h", "")) * 1.6093);
+            return getWindSpeed(
+                    context,
+                    Double.parseDouble(
+                            speed.replace("mi/h", "")
+                    ) * 1.6093
+            );
         } else {
             try {
-                return getWindSpeed(Double.parseDouble(speed));
+                return getWindSpeed(context, Double.parseDouble(speed));
             } catch (Exception e) {
                 return speed;
             }

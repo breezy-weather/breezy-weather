@@ -5,11 +5,11 @@ import android.animation.ArgbEvaluator;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.graphics.Color;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.cardview.widget.CardView;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -19,7 +19,9 @@ import android.widget.TextView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainColorPicker;
 import wangdaye.com.geometricweather.main.adapter.AqiAdapter;
+import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.ArcProgress;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -40,8 +42,9 @@ public class AqiController extends AbstractMainItemController {
     private boolean executeEnterAnimation;
     @Nullable private AnimatorSet attachAnimatorSet;
 
-    public AqiController(@NonNull Activity activity,  @NonNull WeatherView weatherView) {
-        super(activity, activity.findViewById(R.id.container_main_aqi));
+    public AqiController(@NonNull Activity activity, @NonNull WeatherView weatherView,
+                         @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+        super(activity, activity.findViewById(R.id.container_main_aqi), provider, picker);
 
         this.card = view.findViewById(R.id.container_main_aqi);
         this.title = view.findViewById(R.id.container_main_aqi_title);
@@ -63,43 +66,40 @@ public class AqiController extends AbstractMainItemController {
             view.setVisibility(View.VISIBLE);
         }
 
-        if (location.weather != null) {
-            if (location.weather.aqi.aqi <= 0) {
+        weather = location.weather;
+        if (weather != null) {
+            if (weather.aqi.aqi <= 0) {
                 enable = false;
                 view.setVisibility(View.GONE);
                 return;
             }
 
             enable = true;
-            weather = location.weather;
             view.setVisibility(View.VISIBLE);
-            card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorRoot));
 
-            title.setTextColor(weatherView.getThemeColors()[0]);
+            card.setCardBackgroundColor(picker.getRootColor(context));
+            title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
             if (executeEnterAnimation) {
                 progress.setProgress(0);
                 progress.setText("0");
                 progress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
-                progress.setArcBackgroundColor(ContextCompat.getColor(context, R.color.colorLine));
+                progress.setArcBackgroundColor(picker.getLineColor(context));
             } else {
                 int aqiColor = WeatherHelper.getAqiColor(progress.getContext(), weather.aqi.aqi);
                 progress.setProgress(weather.aqi.aqi);
                 progress.setText(String.valueOf(weather.aqi.aqi));
                 progress.setProgressColor(aqiColor);
                 progress.setArcBackgroundColor(
-                        Color.argb(
-                                (int) (255 * 0.1),
-                                Color.red(aqiColor),
-                                Color.green(aqiColor),
-                                Color.blue(aqiColor)));
+                        ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
+                );
             }
-            progress.setTextColor(ContextCompat.getColor(context, R.color.colorTextContent));
+            progress.setTextColor(picker.getTextContentColor(context));
             progress.setBottomText(weather.aqi.quality);
-            progress.setBottomTextColor(ContextCompat.getColor(context, R.color.colorTextSubtitle));
-            progress.ensureShadowShader(context);
+            progress.setBottomTextColor(picker.getTextSubtitleColor(context));
+            progress.ensureShadowShader(picker.isLightTheme());
 
-            adapter = new AqiAdapter(context, weather, executeEnterAnimation);
+            adapter = new AqiAdapter(context, weather, picker, executeEnterAnimation);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
         }
@@ -123,13 +123,8 @@ public class AqiController extends AbstractMainItemController {
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    ContextCompat.getColor(context, R.color.colorLine),
-                    Color.argb(
-                            (int) (255 * 0.1),
-                            Color.red(aqiColor),
-                            Color.green(aqiColor),
-                            Color.blue(aqiColor)
-                    )
+                    picker.getLineColor(context),
+                    ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
             backgroundColor.addUpdateListener(animation ->
                     progress.setArcBackgroundColor((Integer) animation.getAnimatedValue())

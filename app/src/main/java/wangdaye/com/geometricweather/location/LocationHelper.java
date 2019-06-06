@@ -8,13 +8,13 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import androidx.annotation.Nullable;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.location.service.AMapLocationService;
 import wangdaye.com.geometricweather.location.service.AndroidLocationService;
 import wangdaye.com.geometricweather.location.service.ip.BaiduIPLocationService;
 import wangdaye.com.geometricweather.location.service.BaiduLocationService;
 import wangdaye.com.geometricweather.location.service.LocationService;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
 import wangdaye.com.geometricweather.weather.service.CNWeatherService;
 import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
@@ -81,7 +81,7 @@ public class LocationHelper {
     }
 
     public LocationHelper(Context context) {
-        switch (GeometricWeather.getInstance().getLocationService()) {
+        switch (SettingsOptionManager.getInstance(context).getLocationService()) {
             case "baidu":
                 locationService = new BaiduLocationService(context);
                 break;
@@ -107,35 +107,38 @@ public class LocationHelper {
         if (manager != null) {
             NetworkInfo info = manager.getActiveNetworkInfo();
             if (info != null && info.isAvailable()) {
-                locationService.requestLocation(c, new LocationService.LocationCallback() {
-                    boolean completed = false;
-                    @Override
-                    public void onCompleted(@Nullable LocationService.Result result) {
-                        if (completed) {
-                            return;
-                        }
+                locationService.requestLocation(
+                        c,
+                        new LocationService.LocationCallback() {
+                            boolean completed = false;
+                            @Override
+                            public void onCompleted(@Nullable LocationService.Result result) {
+                                if (completed) {
+                                    return;
+                                }
 
-                        completed = true;
-                        locationService.cancel();
-                        if (result == null) {
-                            l.requestLocationFailed(location);
-                            return;
-                        }
+                                completed = true;
+                                locationService.cancel();
+                                if (result == null) {
+                                    l.requestLocationFailed(location);
+                                    return;
+                                }
 
-                        location.lat = result.latitude;
-                        location.lon = result.longitude;
+                                location.lat = result.latitude;
+                                location.lon = result.longitude;
 
-                        location.district = result.district;
-                        location.city = result.city;
-                        location.province = result.province;
-                        location.country = result.country;
+                                location.district = result.district;
+                                location.city = result.city;
+                                location.province = result.province;
+                                location.country = result.country;
 
-                        location.local = true;
-                        location.china = result.inChina;
+                                location.local = true;
+                                location.china = result.inChina;
 
-                        requestAvailableWeatherLocation(c, location, l);
-                    }
-                }, !GeometricWeather.getInstance().getChineseSource().equals("accu"));
+                                requestAvailableWeatherLocation(c, location, l);
+                            }
+                        }, !SettingsOptionManager.getInstance(c).getChineseSource().equals("accu")
+                );
                 return;
             }
         }
@@ -145,13 +148,13 @@ public class LocationHelper {
     private void requestAvailableWeatherLocation(Context c,
                                                  @NonNull Location location,
                                                  @NonNull OnRequestLocationListener l) {
-        if (!location.canUseChineseSource()
-                || GeometricWeather.getInstance().getChineseSource().equals("accu")) {
+        String chineseSource = SettingsOptionManager.getInstance(c).getChineseSource();
+        if (!location.canUseChineseSource() || chineseSource.equals("accu")) {
             // use accu as weather service api.
             location.source = "accu";
             weatherService = new AccuWeatherService();
             weatherService.requestLocation(c, location, new AccuLocationCallback(location, l));
-        } else if (GeometricWeather.getInstance().getChineseSource().equals("cn")) {
+        } else if (chineseSource.equals("cn")) {
             // use cn weather net as the weather service api.
             location.source = "cn";
             weatherService = new CNWeatherService();

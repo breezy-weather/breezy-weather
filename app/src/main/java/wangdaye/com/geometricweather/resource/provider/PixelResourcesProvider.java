@@ -7,10 +7,9 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
-import androidx.core.content.res.ResourcesCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.Constants;
 import wangdaye.com.geometricweather.ui.image.pixel.PixelMoonDrawable;
 import wangdaye.com.geometricweather.ui.image.pixel.PixelSunDrawable;
@@ -43,11 +42,7 @@ public class PixelResourcesProvider extends IconPackResourcesProvider {
 
     @Override
     public Drawable getProviderIcon() {
-        return ResourcesCompat.getDrawable(
-                GeometricWeather.getInstance().getResources(),
-                R.drawable.weather_partly_cloudy_day_pixel,
-                null
-        );
+        return getWeatherIcon(Weather.KIND_PARTLY_CLOUDY, true);
     }
 
     // weather icon.

@@ -185,6 +185,9 @@ public class ValueUtils {
             case "portuguese":
                 return c.getResources().getStringArray(R.array.languages)[15];
 
+            case "portuguese_brazilian":
+                return c.getResources().getStringArray(R.array.languages)[16];
+
             default:
                 return null;
         }
@@ -217,6 +220,12 @@ public class ValueUtils {
         } else {
             return temp + "°";
         }
+    }
+
+    public static String buildAbsCurrentTemp(int temp, boolean f) {
+        return String.valueOf(
+                Math.abs(f ? calcFahrenheit(temp) : temp)
+        );
     }
 
     public static String buildDailyTemp(int[] temps, boolean space, boolean f) {

@@ -6,14 +6,14 @@ import android.content.SharedPreferences;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.service.UpdateService;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.polling.PollingTaskHelper;
-import wangdaye.com.geometricweather.remoteviews.presenter.ForecastNotificationIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.notification.ForecastNotificationIMP;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Alarm Today forecast update service.
@@ -35,7 +35,7 @@ public class AlarmTodayForecastUpdateService extends UpdateService {
         boolean openTodayForecast = sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false);
         String todayForecastTime = sharedPreferences.getString(
                 getString(R.string.key_forecast_today_time),
-                GeometricWeather.DEFAULT_TODAY_FORECAST_TIME);
+                SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME);
         if (openTodayForecast) {
             PollingTaskHelper.startTodayForecastPollingTask(this, todayForecastTime);
         }

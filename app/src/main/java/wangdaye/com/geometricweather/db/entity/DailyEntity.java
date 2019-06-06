@@ -97,7 +97,8 @@ public class DailyEntity {
 
         deleteDailyEntityList(
                 database, 
-                searchLocationDailyEntity(database, location));   
+                searchLocationDailyEntity(database, location)
+        );
 
         List<DailyEntity> entityList = new ArrayList<>();
         for (int i = 0; i < weather.dailyList.size(); i ++) {

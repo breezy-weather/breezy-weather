@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 
@@ -35,7 +36,7 @@ public abstract class GeoActivity extends AppCompatActivity {
                     && intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
                 LanguageUtils.setLanguage(
                         GeoActivity.this,
-                        GeometricWeather.getInstance().getLanguage()
+                        SettingsOptionManager.getInstance(context).getLanguage()
                 );
             }
         }
@@ -47,9 +48,13 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         registerReceiver(localeChangedReceiver, new IntentFilter(Intent.ACTION_LOCALE_CHANGED));
-        LanguageUtils.setLanguage(this, GeometricWeather.getInstance().getLanguage());
+        LanguageUtils.setLanguage(
+                this,
+                SettingsOptionManager.getInstance(this).getLanguage()
+        );
 
         GeometricWeather.getInstance().addActivity(this);
+
         DisplayUtils.setWindowTopColor(this, 0);
         DisplayUtils.setStatusBarTranslate(getWindow());
         DisplayUtils.setNavigationBarColor(this, 0);

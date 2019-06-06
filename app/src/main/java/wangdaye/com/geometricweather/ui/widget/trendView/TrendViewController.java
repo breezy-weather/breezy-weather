@@ -11,6 +11,7 @@ import android.widget.TextView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainColorPicker;
 import wangdaye.com.geometricweather.main.adapter.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.adapter.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
@@ -23,7 +24,7 @@ public class TrendViewController {
 
     public static void setDailyTrend(Context context, TextView title, TextView subtitle,
                                      TrendRecyclerView recyclerView,
-                                     @NonNull ResourceProvider provider,
+                                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                                      @NonNull Weather weather, @Nullable History history,
                                      int[] themeColors) {
         title.setText(context.getString(R.string.daily_overview));
@@ -38,8 +39,9 @@ public class TrendViewController {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new DailyTrendAdapter(weather, history, themeColors, provider));
+        recyclerView.setAdapter(new DailyTrendAdapter(weather, history, themeColors, provider, picker));
 
+        recyclerView.setLineColor(picker.getLineColor(context));
         if (history == null) {
             recyclerView.setData(null, 0, 0, true);
         } else {
@@ -60,7 +62,7 @@ public class TrendViewController {
 
     public static void setHourlyTrend(Context context, TextView title, TextView subtitle,
                                       TrendRecyclerView recyclerView,
-                                      @NonNull ResourceProvider provider,
+                                      @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                                       @NonNull Weather weather, @Nullable History history,
                                       int[] themeColors) {
         title.setText(context.getString(R.string.hourly_overview));
@@ -75,8 +77,9 @@ public class TrendViewController {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new HourlyTrendAdapter(weather, history, themeColors, provider));
+        recyclerView.setAdapter(new HourlyTrendAdapter(weather, history, themeColors, provider, picker));
 
+        recyclerView.setLineColor(picker.getLineColor(context));
         if (history == null) {
             recyclerView.setData(null, 0, 0, false);
         } else {

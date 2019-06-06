@@ -132,7 +132,7 @@ public class CaiYunWeatherService extends CNWeatherService {
                     Integer.parseInt(mainlyResult.current.temperature.value),
                     Integer.parseInt(mainlyResult.current.feelsLike.value),
                     WeatherHelper.getCNWindName(windDegree),
-                    WeatherHelper.getWindSpeed(Double.parseDouble(mainlyResult.current.wind.speed.value)),
+                    WeatherHelper.getWindSpeed(context, Double.parseDouble(mainlyResult.current.wind.speed.value)),
                     WeatherHelper.getWindLevel(context, Double.parseDouble(mainlyResult.current.wind.speed.value)),
                     windDegree,
                     ""
@@ -254,15 +254,15 @@ public class CaiYunWeatherService extends CNWeatherService {
                     "", forecastResult.precipitation.description,
                     context.getString(R.string.live) + " : "
                             + WeatherHelper.getCNWindName(Integer.parseInt(mainlyResult.current.wind.direction.value))
-                            + " " + WeatherHelper.getWindSpeed(mainlyResult.current.wind.speed.value)
+                            + " " + WeatherHelper.getWindSpeed(context, mainlyResult.current.wind.speed.value)
                             + " (" + WeatherHelper.getWindLevel(context, Double.parseDouble(mainlyResult.current.wind.speed.value)) + ")",
                     context.getString(R.string.daytime) + " : "
                             + WeatherHelper.getCNWindName(Integer.parseInt(mainlyResult.forecastDaily.wind.direction.value.get(0).from))
-                            + " " + WeatherHelper.getWindSpeed(mainlyResult.forecastDaily.wind.speed.value.get(0).from)
+                            + " " + WeatherHelper.getWindSpeed(context, mainlyResult.forecastDaily.wind.speed.value.get(0).from)
                             + " (" + WeatherHelper.getWindLevel(context, Double.parseDouble(mainlyResult.forecastDaily.wind.speed.value.get(0).from)) + ")" + "\n"
                             + context.getString(R.string.nighttime) + " : "
                             + WeatherHelper.getCNWindName(Integer.parseInt(mainlyResult.forecastDaily.wind.direction.value.get(0).to))
-                            + " " + WeatherHelper.getWindSpeed(mainlyResult.forecastDaily.wind.speed.value.get(0).to)
+                            + " " + WeatherHelper.getWindSpeed(context, mainlyResult.forecastDaily.wind.speed.value.get(0).to)
                             + " (" + WeatherHelper.getWindLevel(context, Double.parseDouble(mainlyResult.forecastDaily.wind.speed.value.get(0).to)) + ")",
                     context.getString(R.string.sensible_temp) + " : " + mainlyResult.current.feelsLike.value + "℃",
                     context.getString(R.string.humidity) + " : " + mainlyResult.current.humidity.value,

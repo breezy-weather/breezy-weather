@@ -35,7 +35,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/normal_margin"
-        android:textColor="@color/colorTextGrey"
+        android:textColor="@color/colorTextSubtitle"
         android:lineSpacingMultiplier="1.15"
         android:gravity="start"
         android:textAlignment="gravity"

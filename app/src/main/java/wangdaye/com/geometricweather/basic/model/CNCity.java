@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.basic.model;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.db.entity.CNCityEntity;
 
 /**
@@ -36,8 +35,7 @@ public class CNCity {
         return entity;
     }
 
-    public Location toLocation() {
-        String source = GeometricWeather.getInstance().getChineseSource();
+    public Location toLocation(String source) {
         if (source.equals("accu")) {
             source = "cn";
         }

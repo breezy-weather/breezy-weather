@@ -15,8 +15,7 @@ import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 /**
  * Learn more about geocoder dialog.
  * */
-public class LearnMoreAboutGeocoderDialog extends GeoDialogFragment
-        implements View.OnClickListener {
+public class LearnMoreAboutGeocoderDialog extends GeoDialogFragment {
 
     private CoordinatorLayout container;
 
@@ -36,20 +35,11 @@ public class LearnMoreAboutGeocoderDialog extends GeoDialogFragment
     private void initWidget(View view) {
         this.container = view.findViewById(R.id.dialog_learn_more_about_geocoder_container);
 
-        view.findViewById(R.id.dialog_learn_more_about_geocoder_doneBtn).setOnClickListener(this);
+        view.findViewById(R.id.dialog_learn_more_about_geocoder_doneBtn).setOnClickListener(v -> dismiss());
     }
 
     @Override
     public View getSnackbarContainer() {
         return container;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.dialog_learn_more_about_geocoder_doneBtn:
-                dismiss();
-                break;
-        }
     }
 }

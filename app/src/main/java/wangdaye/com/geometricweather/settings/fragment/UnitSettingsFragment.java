@@ -4,8 +4,8 @@ import android.os.Bundle;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
 /**
@@ -31,11 +31,15 @@ public class UnitSettingsFragment extends PreferenceFragmentCompat {
     public boolean onPreferenceTreeClick(Preference preference) {
         if (preference.getKey().equals(getString(R.string.key_fahrenheit))) {
             // ℉
-            GeometricWeather.getInstance().setFahrenheit(!GeometricWeather.getInstance().isFahrenheit());
+            SettingsOptionManager.getInstance(getActivity()).setFahrenheit(
+                    !SettingsOptionManager.getInstance(getActivity()).isFahrenheit()
+            );
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_imperial))) {
             // imperial units.
-            GeometricWeather.getInstance().setImperial(!GeometricWeather.getInstance().isImperial());
+            SettingsOptionManager.getInstance(getActivity()).setImperial(
+                    !SettingsOptionManager.getInstance(getActivity()).isImperial()
+            );
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         }
         return super.onPreferenceTreeClick(preference);

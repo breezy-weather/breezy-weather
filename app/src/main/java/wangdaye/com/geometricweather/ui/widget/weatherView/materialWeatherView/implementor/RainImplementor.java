@@ -5,16 +5,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
+import java.util.Random;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
-
-import java.util.Random;
 
 /**
  * Rain implementor.
@@ -74,7 +75,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             this.canvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
 
             this.rectF = new RectF();
-            this.speed = (float) (viewHeight / 300.0);
+            this.speed = viewWidth / 175f;
             this.color = color;
             this.scale = scale;
 

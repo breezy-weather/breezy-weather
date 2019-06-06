@@ -7,9 +7,9 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import androidx.preference.PreferenceManager;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.location.service.AndroidLocationService;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.dialog.LearnMoreAboutGeocoderDialog;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -38,18 +38,20 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
         chineseSource.setSummary(
                 ValueUtils.getWeatherSource(
                         getActivity(),
-                        GeometricWeather.getInstance().getChineseSource()
+                        SettingsOptionManager.getInstance(getActivity()).getChineseSource()
                 )
         );
         chineseSource.setOnPreferenceChangeListener(this);
 
         Preference locationService = findPreference(getString(R.string.key_location_service));
         if (locationService != null) {
-            ((ListPreference) locationService).setValue(GeometricWeather.getInstance().getLocationService());
+            ((ListPreference) locationService).setValue(
+                    SettingsOptionManager.getInstance(getActivity()).getLocationService()
+            );
             locationService.setSummary(
                     ValueUtils.getLocationService(
                             getActivity(),
-                            GeometricWeather.getInstance().getLocationService()
+                            SettingsOptionManager.getInstance(getActivity()).getLocationService()
                     )
             );
             locationService.setOnPreferenceChangeListener(this);
@@ -62,13 +64,13 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
     public boolean onPreferenceChange(Preference preference, Object o) {
         if (preference.getKey().equals(getString(R.string.key_chinese_source))) {
             // Chinese source.
-            GeometricWeather.getInstance().setChineseSource((String) o);
+            SettingsOptionManager.getInstance(getActivity()).setChineseSource((String) o);
             preference.setSummary(ValueUtils.getWeatherSource(getActivity(), (String) o));
 
-            if (!GeometricWeather.getInstance().getChineseSource().equals("accu")
-                    && GeometricWeather.getInstance().getLocationService().equals("native")
+            if (!SettingsOptionManager.getInstance(getActivity()).getChineseSource().equals("accu")
+                    && SettingsOptionManager.getInstance(getActivity()).getLocationService().equals("native")
                     && !AndroidLocationService.hasValidGeocoder()) {
-                GeometricWeather.getInstance().setLocationService("baidu");
+                SettingsOptionManager.getInstance(getActivity()).setLocationService("baidu");
                 PreferenceManager.getDefaultSharedPreferences(getActivity())
                         .edit()
                         .putString(getString(R.string.key_location_service), "baidu")
@@ -84,7 +86,7 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
             }
         } else if (preference.getKey().equals(getString(R.string.key_location_service))) {
             // Location service.
-            GeometricWeather.getInstance().setLocationService((String) o);
+            SettingsOptionManager.getInstance(getActivity()).setLocationService((String) o);
             preference.setSummary(ValueUtils.getLocationService(getActivity(), (String) o));
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         }

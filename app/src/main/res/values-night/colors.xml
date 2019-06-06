@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorAccent">#fafafa</color>
+    <color name="colorAccent">@color/colorAccent_dark</color>
     
-    <color name="colorLine">#363636</color>
-    <color name="colorRoot">#292929</color>
-    <color name="colorTextTitle">@color/colorTextLight</color>
-    <color name="colorTextContent">@color/colorTextLight2nd</color>
-    <color name="colorTextSubtitle">@color/colorTextGrey</color>
+    <color name="colorLine">@color/colorLine_dark</color>
+    <color name="colorRoot">@color/colorRoot_dark</color>
+    <color name="colorTextTitle">@color/colorTextTitle_dark</color>
+    <color name="colorTextContent">@color/colorTextContent_dark</color>
+    <color name="colorTextSubtitle">@color/colorTextSubtitle_dark</color>
 
-    <color name="colorSearchBarBackground">#424242</color>
+    <color name="colorSearchBarBackground">@color/colorRoot_dark</color>
 
 </resources>

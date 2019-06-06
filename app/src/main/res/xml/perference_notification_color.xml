@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/settings_title_notification_color">
+
+    <CheckBoxPreference
+        android:title="@string/settings_title_notification_custom_color"
+        android:key="@string/key_notification_custom_color"
+        android:defaultValue="false"
+        android:summaryOn="@string/on"
+        android:summaryOff="@string/settings_notification_background_off" />
+
+    <com.jaredrummler.android.colorpicker.ColorPreferenceCompat
+        android:title="@string/settings_title_notification_background"
+        android:key="@string/key_notification_background_color"
+        android:defaultValue="@color/notification_background_l"
+        app:cpv_dialogType="preset"
+        app:cpv_showAlphaSlider="false"
+        app:cpv_colorShape="circle"
+        app:cpv_colorPresets="@array/notification_background_colors"
+        app:cpv_dialogTitle="@string/settings_title_notification_background"
+        app:cpv_showColorShades="false"
+        app:cpv_allowCustom="true"
+        app:cpv_allowPresets="true"
+        app:cpv_showDialog="true" />
+
+    <ListPreference
+        android:title="@string/settings_title_notification_text_color"
+        android:key="@string/key_notification_text_color"
+        android:entries="@array/notification_text_colors"
+        android:entryValues="@array/notification_text_color_values"
+        android:dialogTitle="@string/settings_title_notification_text_color"
+        android:defaultValue="dark" />
+
+</PreferenceScreen>

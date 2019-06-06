@@ -14,7 +14,7 @@
     <RelativeLayout
         android:id="@+id/widget_day_weather"
         android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
@@ -30,8 +30,40 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             style="@style/content_text"
-            tools:text=" 21°"
+            tools:text="21"
             tools:ignore="RtlHardcoded,SpUsage" />
+
+        <TextView
+            android:id="@+id/widget_day_sign"
+            android:text="-"
+            android:textSize="@dimen/widget_current_weather_icon_size"
+            android:textColor="@color/colorTextLight"
+            android:shadowColor="@color/colorTextDark2nd"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@id/widget_day_title"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            style="@style/content_text"
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+        <TextView
+            android:id="@+id/widget_day_symbol"
+            android:text="°"
+            android:textSize="@dimen/widget_current_weather_icon_size"
+            android:textColor="@color/colorTextLight"
+            android:shadowColor="@color/colorTextDark2nd"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/widget_day_title"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            style="@style/content_text"
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
         <ImageView
             android:id="@+id/widget_day_icon"

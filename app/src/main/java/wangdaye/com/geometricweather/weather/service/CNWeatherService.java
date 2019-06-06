@@ -15,6 +15,7 @@ import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.api.CNWeatherApi;
 import wangdaye.com.geometricweather.basic.model.CNCity;
@@ -93,7 +94,7 @@ public class CNWeatherService extends WeatherService {
                                     Integer.parseInt(cnWeatherResult.realtime.weather.temperature),
                                     Integer.parseInt(cnWeatherResult.realtime.feelslike_c),
                                     cnWeatherResult.realtime.wind.direct,
-                                    WeatherHelper.getWindSpeed(cnWeatherResult.realtime.wind.windspeed),
+                                    WeatherHelper.getWindSpeed(context, cnWeatherResult.realtime.wind.windspeed),
                                     cnWeatherResult.realtime.wind.power,
                                     -1,
                                     ""
@@ -169,12 +170,12 @@ public class CNWeatherService extends WeatherService {
                                     "",
                                     cnWeatherResult.life.info.daisan.get(1),
                                     context.getString(R.string.live) + " : " + cnWeatherResult.realtime.wind.direct
-                                            + " " + WeatherHelper.getWindSpeed(cnWeatherResult.realtime.wind.windspeed)
+                                            + " " + WeatherHelper.getWindSpeed(context, cnWeatherResult.realtime.wind.windspeed)
                                             + " (" + cnWeatherResult.realtime.wind.power + ")",
                                     context.getString(R.string.daytime) + " : " + cnWeatherResult.weather.get(0).info.day.get(3)
-                                            + " " + WeatherHelper.getWindSpeed(cnWeatherResult.weather.get(0).info.day.get(4)) + "\n"
+                                            + " " + WeatherHelper.getWindSpeed(context, cnWeatherResult.weather.get(0).info.day.get(4)) + "\n"
                                             + context.getString(R.string.nighttime) + " : " + cnWeatherResult.weather.get(0).info.night.get(3)
-                                            + " " + WeatherHelper.getWindSpeed(cnWeatherResult.weather.get(0).info.night.get(4)),
+                                            + " " + WeatherHelper.getWindSpeed(context, cnWeatherResult.weather.get(0).info.night.get(4)),
                                     context.getString(R.string.sensible_temp) + " : " + cnWeatherResult.realtime.feelslike_c + "℃",
                                     context.getString(R.string.humidity) + " : " + cnWeatherResult.realtime.weather.humidity,
                                     cnWeatherResult.life.info.ziwaixian.get(0) + "。" + cnWeatherResult.life.info.ziwaixian.get(1),
@@ -263,19 +264,31 @@ public class CNWeatherService extends WeatherService {
                 cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
                 if (cityList != null) {
                     for (CNCity c : cityList) {
-                        locationList.add(c.toLocation());
+                        locationList.add(
+                                c.toLocation(
+                                        SettingsOptionManager.getInstance(context).getChineseSource()
+                                )
+                        );
                     }
                 }
             } else {
                 if (queries.length == 3) {
                     city = DatabaseHelper.getInstance(context).readCNCity(queries[0], queries[1], queries[2]);
                     if (city != null) {
-                        locationList.add(city.toLocation());
+                        locationList.add(
+                                city.toLocation(
+                                        SettingsOptionManager.getInstance(context).getChineseSource()
+                                )
+                        );
                     }
                 } else {
                     city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
                     if (city != null) {
-                        locationList.add(city.toLocation());
+                        locationList.add(
+                                city.toLocation(
+                                        SettingsOptionManager.getInstance(context).getChineseSource()
+                                )
+                        );
                     }
                 }
             }

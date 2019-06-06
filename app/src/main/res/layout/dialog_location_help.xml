@@ -13,8 +13,10 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/dialog_location_help_title"
             android:text="@string/feedback_location_help_title"
             android:textSize="@dimen/large_title_text_size"
+            android:textStyle="bold"
             android:layout_margin="@dimen/normal_margin"
             style="@style/title_text" />
 

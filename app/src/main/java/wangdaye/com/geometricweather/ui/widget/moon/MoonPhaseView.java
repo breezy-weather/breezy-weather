@@ -2,14 +2,13 @@ package wangdaye.com.geometricweather.ui.widget.moon;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import androidx.annotation.ColorInt;
-import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class MoonPhaseView extends View {
@@ -40,7 +39,7 @@ public class MoonPhaseView extends View {
     }
 
     private void initialize() {
-        setColor();
+        setColor(Color.WHITE, Color.BLACK, Color.GRAY);
         setSurfaceAngle(0); // from 0 -> phase : 🌑 (new)
 
         foregroundRectF = new RectF();
@@ -55,10 +54,11 @@ public class MoonPhaseView extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
-    public void setColor() {
-        lightColor = ContextCompat.getColor(getContext(), R.color.colorTextLight2nd);
-        darkColor = ContextCompat.getColor(getContext(), R.color.colorTextDark2nd);
-        strokeColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
+    public void setColor(@ColorInt int lightColor, @ColorInt int darkColor,
+                         @ColorInt int strokeColor) {
+        this.lightColor = lightColor;
+        this.darkColor = darkColor;
+        this.strokeColor = strokeColor;
     }
 
     public void setSurfaceAngle(float surfaceAngle) {

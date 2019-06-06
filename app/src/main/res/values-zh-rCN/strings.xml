@@ -32,6 +32,7 @@
     <string name="get_more">获取更多</string>
     <string name="get_more_store">从应用商店获取更多</string>
     <string name="get_more_github">从GitHub获取更多</string>
+    <string name="refresh">刷新数据</string>
 
     <string name="of_clock">时</string>
     <string name="yesterday">昨日</string>
@@ -227,9 +228,10 @@
     <string name="settings_category_notification">通知</string>
     <string name="settings_title_notification">开启天气通知</string>
     <string name="settings_title_notification_temp_icon">将温度作为通知小图标</string>
+    <string name="settings_title_notification_color">通知颜色</string>
+    <string name="settings_title_notification_custom_color">自定义通知颜色</string>
     <string name="settings_title_notification_text_color">天气通知字体颜色</string>
-    <string name="settings_title_notification_background">天气通知背景着色</string>
-    <string name="settings_notification_background_on">与原生ROM下拉菜单同色</string>
+    <string name="settings_title_notification_background">天气通知背景颜色</string>
     <string name="settings_notification_background_off">跟随系统默认</string>
     <string name="settings_title_notification_can_be_cleared">天气通知可被清除</string>
     <string name="settings_notification_can_be_cleared_on">可被清除</string>

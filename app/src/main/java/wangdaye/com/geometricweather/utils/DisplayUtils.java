@@ -8,6 +8,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import androidx.annotation.ColorInt;
@@ -20,9 +22,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Display utils.
@@ -79,7 +81,7 @@ public class DisplayUtils {
             ContextCompat.getColor(a, R.color.colorPrimary);
         }
         Window w = a.getWindow();
-        if (GeometricWeather.getInstance().isColorNavigationBar()
+        if (SettingsOptionManager.getInstance(a).isColorNavigationBar()
                 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (a instanceof MainActivity) {
                 w.setNavigationBarColor(color);
@@ -123,9 +125,10 @@ public class DisplayUtils {
                 & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
-    public static void setStatusBarStyleWithScrolling(Window window, View statusBar, boolean overlap) {
+    public static void setStatusBarStyleWithScrolling(Window window, View statusBar,
+                                                      boolean overlap, boolean lightTheme) {
         if (overlap) {
-            if (isDarkMode(window.getContext())) {
+            if (!lightTheme) {
                 // dark mode.
                 statusBar.clearAnimation();
                 statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
@@ -145,7 +148,7 @@ public class DisplayUtils {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (overlap && !isDarkMode(window.getContext())) {
+            if (overlap && lightTheme) {
                 setDarkTextStatusBar(window);
             } else {
                 setStatusBarTranslate(window);
@@ -171,5 +174,25 @@ public class DisplayUtils {
         drawable.draw(canvas);
 
         return bitmap;
+    }
+
+    @ColorInt
+    public static int bitmapToColorInt(@NonNull Bitmap bitmap) {
+        Matrix matrix = new Matrix();
+        matrix.setScale((float) (1.0 / bitmap.getWidth()), (float) (1.0 / 2.0));
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), 2, matrix, false);
+        return bitmap.getPixel(0, 0);
+    }
+
+    public static boolean isLightColor(Context context, @ColorInt int color) {
+        int alpha = 0xFF << 24;
+        int grey = color;
+        int red = ((grey & 0x00FF0000) >> 16);
+        int green = ((grey & 0x0000FF00) >> 8);
+        int blue = (grey & 0x000000FF);
+
+        grey = (int) (red * 0.3 + green * 0.59 + blue * 0.11);
+        grey = alpha | (grey << 16) | (grey << 8) | grey;
+        return context != null && grey < Color.LTGRAY;
     }
 }

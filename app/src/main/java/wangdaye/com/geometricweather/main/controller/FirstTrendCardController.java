@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
+
+import android.content.res.ColorStateList;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,7 +16,9 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -38,11 +41,10 @@ public class FirstTrendCardController extends AbstractMainItemController
     
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
-    @NonNull private ResourceProvider resourceProvider;
-    
+
     public FirstTrendCardController(@NonNull Activity activity, @NonNull WeatherView weatherView,
-                                    @NonNull ResourceProvider provider) {
-        super(activity, activity.findViewById(R.id.container_main_first_trend_card));
+                                    @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+        super(activity, activity.findViewById(R.id.container_main_first_trend_card), provider, picker);
 
         this.card = view.findViewById(R.id.container_main_first_trend_card);
         this.timeIcon = view.findViewById(R.id.container_main_first_trend_card_timeIcon);
@@ -54,13 +56,12 @@ public class FirstTrendCardController extends AbstractMainItemController
         this.trendRecyclerView = view.findViewById(R.id.container_main_first_trend_card_trendRecyclerView);
         
         this.weatherView = weatherView;
-        this.resourceProvider = provider;
     }
 
     @SuppressLint("RestrictedApi")
     @Override
     public void onBindView(@NonNull Location location) {
-        if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
+        if (SettingsOptionManager.getInstance(context).getCardOrder().equals("daily_first")) {
             if (!isDisplay("daily_overview")) {
                 view.setVisibility(View.GONE);
                 return;
@@ -79,7 +80,7 @@ public class FirstTrendCardController extends AbstractMainItemController
         if (location.weather != null) {
             weather = location.weather;
 
-            card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorRoot));
+            card.setCardBackgroundColor(picker.getRootColor(context));
 
             view.findViewById(R.id.container_main_first_trend_card_timeContainer).setOnClickListener(this);
             if (weather.alertList.size() == 0) {
@@ -89,11 +90,13 @@ public class FirstTrendCardController extends AbstractMainItemController
                 timeIcon.setEnabled(true);
                 timeIcon.setImageResource(R.drawable.ic_alert);
             }
-            timeIcon.setSupportImageTintList(context.getResources().getColorStateList(R.color.colorTextContent));
+            timeIcon.setSupportImageTintList(
+                    ColorStateList.valueOf(picker.getTextContentColor(context))
+            );
             timeIcon.setOnClickListener(this);
             
             refreshTime.setText(weather.base.time);
-            refreshTime.setTextColor(ContextCompat.getColor(context, R.color.colorTextContent));
+            refreshTime.setTextColor(picker.getTextContentColor(context));
 
             if (weather.alertList.size() == 0) {
                 alert.setVisibility(View.GONE);
@@ -110,22 +113,24 @@ public class FirstTrendCardController extends AbstractMainItemController
                     }
                 }
                 alert.setText(builder.toString());
+                alert.setTextColor(picker.getTextSubtitleColor(context));
+
                 line.setVisibility(View.VISIBLE);
-                line.setBackgroundColor(ContextCompat.getColor(context, R.color.colorLine));
+                line.setBackgroundColor(picker.getLineColor(context));
             }
             alert.setOnClickListener(this);
 
-            title.setTextColor(weatherView.getThemeColors()[0]);
+            title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
-            if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
+            if (SettingsOptionManager.getInstance(context).getCardOrder().equals("daily_first")) {
                 TrendViewController.setDailyTrend(
-                        context, title, subtitle, trendRecyclerView, resourceProvider,
-                        weather, location.history, weatherView.getThemeColors()
+                        context, title, subtitle, trendRecyclerView, provider, picker,
+                        weather, location.history, weatherView.getThemeColors(picker.isLightTheme())
                 );
             } else {
                 TrendViewController.setHourlyTrend(
-                        context, title, subtitle, trendRecyclerView, resourceProvider,
-                        weather, location.history, weatherView.getThemeColors()
+                        context, title, subtitle, trendRecyclerView, provider, picker,
+                        weather, location.history, weatherView.getThemeColors(picker.isLightTheme())
                 );
             }
         }

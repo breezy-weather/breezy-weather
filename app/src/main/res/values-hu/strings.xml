@@ -200,7 +200,6 @@
     <string name="settings_title_notification_temp_icon">Hőmérséklet Mutatása Az Ikonon</string>
     <string name="settings_title_notification_text_color">Szövegszín</string>
     <string name="settings_title_notification_background">Háttérszín</string>
-    <string name="settings_notification_background_on">Bekapcsolás</string>
     <string name="settings_notification_background_off">Kikapcsolás</string>
     <string name="settings_title_notification_can_be_cleared">Törölhető</string>
     <string name="settings_notification_can_be_cleared_on">Legyen Törölhető</string>

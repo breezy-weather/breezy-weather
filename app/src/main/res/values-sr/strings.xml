@@ -159,7 +159,6 @@
     <string name="settings_title_notification_temp_icon">Покажи температуру као мини икону.</string>
     <string name="settings_title_notification_text_color">Боја текста.</string>
     <string name="settings_title_notification_background">Боја позадине.</string>
-    <string name="settings_notification_background_on">Исто као контролни центар у AOSP.</string>
     <string name="settings_notification_background_off">Прати систем.</string>
     <string name="settings_title_notification_can_be_cleared">Може да се очисти.</string>
     <string name="settings_notification_can_be_cleared_on">Може да се очисти.</string>

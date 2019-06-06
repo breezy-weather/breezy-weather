@@ -7,9 +7,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class ChronusResourceProvider extends ResourceProvider {
 
     private Context context;
     private String providerName;
+    @Nullable private Drawable iconDrawable;
 
     ChronusResourceProvider(@NonNull Context c, @NonNull String pkgName,
                             @NonNull ResourceProvider defaultProvider) {
@@ -38,6 +42,8 @@ public class ChronusResourceProvider extends ResourceProvider {
             PackageManager manager = context.getPackageManager();
             ApplicationInfo info = manager.getApplicationInfo(pkgName, PackageManager.GET_META_DATA);
             providerName = manager.getApplicationLabel(info).toString();
+
+            iconDrawable = context.getApplicationInfo().loadIcon(context.getPackageManager());
         } catch (Exception e) {
             buildDefaultInstance(c);
         }
@@ -46,6 +52,7 @@ public class ChronusResourceProvider extends ResourceProvider {
     private void buildDefaultInstance(@NonNull Context c) {
         context = c.getApplicationContext();
         providerName = c.getString(R.string.geometric_weather);
+        iconDrawable = defaultProvider.getProviderIcon();
     }
 
     @NonNull
@@ -97,11 +104,10 @@ public class ChronusResourceProvider extends ResourceProvider {
 
     @Override
     public Drawable getProviderIcon() {
-        try {
-            return context.getPackageManager()
-                    .getApplicationIcon(context.getPackageName());
-        } catch (Exception e) {
+        if (iconDrawable == null) {
             return getWeatherIcon(Weather.KIND_CLEAR, true);
+        } else {
+            return iconDrawable;
         }
     }
 
@@ -218,9 +224,11 @@ public class ChronusResourceProvider extends ResourceProvider {
         return defaultProvider.getMinimalXmlIcon(weatherKind, dayTime);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @NonNull
     @Override
-    public int getMinimalXmlIconId(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalXmlIconId(weatherKind, dayTime);
+    public Icon getMinimalIcon(String weatherKind, boolean dayTime) {
+        return defaultProvider.getMinimalIcon(weatherKind, dayTime);
     }
 
     // shortcut.

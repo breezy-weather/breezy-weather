@@ -21,6 +21,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetDayProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -34,46 +35,29 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                context.getString(R.string.sp_widget_day_setting),
-                Context.MODE_PRIVATE
-        );
-        String viewStyle = sharedPreferences.getString(
-                context.getString(R.string.key_view_type),
-                "rectangle"
-        );
-        boolean showCard = sharedPreferences.getBoolean(
-                context.getString(R.string.key_show_card),
-                false
-        );
-        boolean blackText = sharedPreferences.getBoolean(
-                context.getString(R.string.key_black_text),
-                false
-        );
-        boolean hideSubtitle = sharedPreferences.getBoolean(
-                context.getString(R.string.key_hide_subtitle),
-                false
-        );
-        String subtitleData = sharedPreferences.getString(
-                context.getString(R.string.key_subtitle_data),
-                "time"
+        WidgetConfig config = getWidgetConfig(
+                context,
+                context.getString(R.string.sp_widget_day_setting)
         );
 
         RemoteViews views = getRemoteViews(
-                context, location, weather, viewStyle, showCard, blackText, hideSubtitle, subtitleData);
+                context, location, weather,
+                config.viewStyle, config.cardStyle, config.cardAlpha,
+                config.textColor, config.hideSubtitle, config.subtitleData
+        );
+
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetDayProvider.class),
                 views
         );
     }
 
-    public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
-                                             String viewStyle, boolean showCard, boolean blackText,
+    public static RemoteViews getRemoteViews(Context context,
+                                             Location location, @Nullable Weather weather,
+                                             String viewStyle, String cardStyle, int cardAlpha, String textColor,
                                              boolean hideSubtitle, String subtitleData) {
 
-        boolean dayTime = TimeManager.getInstance(context)
-                .getDayTime(context, weather, false)
-                .isDayTime();
+        boolean dayTime = TimeManager.isDaylight(weather);
 
         SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = defaultSharePreferences.getBoolean(
@@ -89,16 +73,31 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 false
         );
 
+        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
+        if (viewStyle.equals("pixel") || viewStyle.equals("nano") || viewStyle.equals("oreo")) {
+            color.showCard = false;
+            color.darkText = textColor.equals("dark")
+                    || (textColor.equals("auto") && !isLightWallpaper(context));
+        }
+
         RemoteViews views = buildWidgetView(
                 context, weather,
                 dayTime, fahrenheit, minimalIcon,
-                viewStyle, showCard, blackText,
+                viewStyle, color,
                 hideSubtitle, subtitleData);
         if (weather == null) {
             return views;
         }
 
-        views.setViewVisibility(R.id.widget_day_card, showCard ? View.VISIBLE : View.GONE);
+        if (color.showCard) {
+            views.setImageViewResource(
+                    R.id.widget_day_card,
+                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+            );
+            views.setViewVisibility(R.id.widget_day_card, View.VISIBLE);
+        } else {
+            views.setViewVisibility(R.id.widget_day_card, View.GONE);
+        }
 
         setOnClickPendingIntent(context, views, location, viewStyle, subtitleData, touchToRefresh);
 
@@ -107,7 +106,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
     private static RemoteViews buildWidgetView(Context context, @Nullable Weather weather,
                                                boolean dayTime, boolean fahrenheit, boolean minimalIcon,
-                                               String viewStyle, boolean showCard, boolean blackText,
+                                               String viewStyle, WidgetColor color,
                                                boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_symmetry);
         switch (viewStyle) {
@@ -149,19 +148,11 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        int textColor;
-        if (viewStyle.equals("pixel") || viewStyle.equals("nano")) {
-            if (blackText) {
-                textColor = ContextCompat.getColor(context, R.color.colorTextDark);
-            } else {
-                textColor = ContextCompat.getColor(context, R.color.colorTextLight);
-            }
+        int textColorInt;
+        if (color.darkText) {
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
         } else {
-            if (blackText || showCard) {
-                textColor = ContextCompat.getColor(context, R.color.colorTextDark);
-            } else {
-                textColor = ContextCompat.getColor(context, R.color.colorTextLight);
-            }
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
         views.setImageViewBitmap(
@@ -172,7 +163,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                                 weather.realTime.weatherKind,
                                 dayTime,
                                 minimalIcon,
-                                blackText || showCard
+                                color.darkText
                         )
                 )
         );
@@ -180,6 +171,15 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             views.setTextViewText(
                     R.id.widget_day_title,
                     getTitleText(weather, viewStyle, fahrenheit)
+            );
+        }
+        if (viewStyle.equals("vertical")) {
+            boolean negative = fahrenheit
+                    ? ValueUtils.calcFahrenheit(weather.realTime.temp) < 0
+                    : weather.realTime.temp < 0;
+            views.setViewVisibility(
+                    R.id.widget_day_sign,
+                    negative ? View.VISIBLE : View.GONE
             );
         }
         views.setTextViewText(
@@ -193,9 +193,11 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
-        views.setTextColor(R.id.widget_day_title, textColor);
-        views.setTextColor(R.id.widget_day_subtitle, textColor);
-        views.setTextColor(R.id.widget_day_time, textColor);
+        views.setTextColor(R.id.widget_day_title, textColorInt);
+        views.setTextColor(R.id.widget_day_sign, textColorInt);
+        views.setTextColor(R.id.widget_day_symbol, textColorInt);
+        views.setTextColor(R.id.widget_day_subtitle, textColorInt);
+        views.setTextColor(R.id.widget_day_time, textColorInt);
         views.setViewVisibility(R.id.widget_day_time, hideSubtitle ? View.GONE : View.VISIBLE);
 
         return views;
@@ -228,8 +230,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 return ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
 
             case "vertical":
-                return (weather.realTime.temp < 0 ? "" : " ")
-                        + ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit);
+                return ValueUtils.buildAbsCurrentTemp(weather.realTime.temp, fahrenheit);
         }
         return "";
     }
@@ -313,7 +314,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 return context.getString(R.string.feels_like) + " "
                         + ValueUtils.buildAbbreviatedCurrentTemp(
                                 weather.realTime.sensibleTemp,
-                                GeometricWeather.getInstance().isFahrenheit()
+                                SettingsOptionManager.getInstance(context).isFahrenheit()
                         );
         }
         return "";

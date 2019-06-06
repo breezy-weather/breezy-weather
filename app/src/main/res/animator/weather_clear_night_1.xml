@@ -3,51 +3,51 @@
     android:ordering="sequentially" >
 
     <objectAnimator
-        android:propertyName="rotation"
-        android:duration="500"
-        android:valueFrom="0"
-        android:valueTo="-90" />
+    android:propertyName="rotation"
+    android:duration="480"
+    android:valueFrom="0"
+    android:valueTo="-84" />
 
     <objectAnimator
         android:propertyName="rotation"
-        android:duration="400"
-        android:valueFrom="-95"
-        android:valueTo="75" />
+        android:duration="420"
+        android:valueFrom="-84"
+        android:valueTo="72" />
 
     <objectAnimator
         android:propertyName="rotation"
-        android:duration="300"
-        android:valueFrom="75"
+        android:duration="360"
+        android:valueFrom="72"
         android:valueTo="-60" />
 
     <objectAnimator
         android:propertyName="rotation"
-        android:duration="200"
+        android:duration="300"
         android:valueFrom="-60"
-        android:valueTo="45" />
+        android:valueTo="48" />
 
     <objectAnimator
         android:propertyName="rotation"
-        android:duration="100"
-        android:valueFrom="45"
-        android:valueTo="-30" />
+        android:duration="240"
+        android:valueFrom="48"
+        android:valueTo="-36" />
 
     <objectAnimator
         android:propertyName="rotation"
-        android:duration="100"
-        android:valueFrom="-30"
-        android:valueTo="20" />
+        android:duration="180"
+        android:valueFrom="-36"
+        android:valueTo="24" />
 
     <objectAnimator
         android:propertyName="rotation"
-        android:duration="100"
-        android:valueFrom="20"
-        android:valueTo="-10" />
+        android:duration="120"
+        android:valueFrom="24"
+        android:valueTo="-12" />
 
     <objectAnimator
         android:propertyName="rotation"
-        android:duration="100"
-        android:valueFrom="-10"
+        android:duration="60"
+        android:valueFrom="-12"
         android:valueTo="0" />
 
 </set>

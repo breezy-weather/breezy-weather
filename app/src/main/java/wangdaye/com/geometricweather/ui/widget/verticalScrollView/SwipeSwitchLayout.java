@@ -35,6 +35,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
     private float initialX, initialY;
     private int touchSlop;
 
+    private boolean isBeingTouched;
     private boolean isBeingDragged;
     private boolean isHorizontalDragged;
     private boolean isBeingNestedScrolling;
@@ -110,6 +111,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
 
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                isBeingTouched = true;
                 isBeingDragged = false;
                 isHorizontalDragged = false;
                 initialX = ev.getX();
@@ -118,6 +120,12 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
                 break;
 
             case MotionEvent.ACTION_MOVE:
+                if (!isBeingTouched) {
+                    isBeingTouched = true;
+                    initialX = ev.getX();
+                    initialY = ev.getY();
+                }
+
                 float x = ev.getX();
                 float y = ev.getY();
 
@@ -134,6 +142,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+                isBeingTouched = false;
                 isBeingDragged = false;
                 isHorizontalDragged = false;
                 break;
@@ -151,6 +160,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
 
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                isBeingTouched = true;
                 isBeingDragged = false;
                 isHorizontalDragged = false;
                 initialX = ev.getX();
@@ -168,6 +178,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+                isBeingTouched = false;
                 release();
                 break;
         }

@@ -179,7 +179,6 @@
     <string name="settings_title_notification_temp_icon">Mostra temperatura come piccola icona.</string>
     <string name="settings_title_notification_text_color">Colore del testo.</string>
     <string name="settings_title_notification_background">Colore sfondo.</string>
-    <string name="settings_notification_background_on">Stile AOSP.</string>
     <string name="settings_notification_background_off">Come il sistema operativo</string>
     <string name="settings_title_notification_can_be_cleared">Obliterazione notifica.</string>
     <string name="settings_notification_can_be_cleared_on">Puo\' essere nascosta</string>

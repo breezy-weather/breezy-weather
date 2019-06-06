@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.ui.widget.trendView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.image.AbstractIconTarget;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -91,8 +91,7 @@ public class DailyItemView extends ViewGroup {
         paint.setTextSize(getResources().getDimensionPixelSize(R.dimen.content_text_size));
         paint.setTextAlign(Paint.Align.CENTER);
 
-        contentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent);
-        subTitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle);
+        setTextColor(Color.BLACK, Color.GRAY);
 
         iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
     }
@@ -220,6 +219,12 @@ public class DailyItemView extends ViewGroup {
 
     public void setDateText(String dateText) {
         this.dateText = dateText;
+        invalidate();
+    }
+
+    public void setTextColor(@ColorInt int contentColor, @ColorInt int subTitleColor) {
+        this.contentColor = contentColor;
+        this.subTitleColor = subTitleColor;
         invalidate();
     }
 

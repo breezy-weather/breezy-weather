@@ -56,10 +56,12 @@ public interface WeatherView {
      *
      * */
     @ColorInt @Size(3)
-    int[] getThemeColors();
+    int[] getThemeColors(boolean lightTheme);
 
     @ColorInt
     int getBackgroundColor();
 
     int getFirstCardMarginTop();
+
+    void setDrawable(boolean drawable);
 }

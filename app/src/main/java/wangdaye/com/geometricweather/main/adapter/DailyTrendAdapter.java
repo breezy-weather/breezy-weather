@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.main.dialog.WeatherDialog;
 import wangdaye.com.geometricweather.ui.widget.trendView.DailyItemView;
@@ -34,6 +35,7 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
 
     private Weather weather;
     private ResourceProvider provider;
+    private MainColorPicker picker;
 
     private float[] maxiTemps;
     private float[] miniTemps;
@@ -68,6 +70,11 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
                     daily.getDateInFormat(context.getString(R.string.date_format_short))
             );
 
+            dailyItem.setTextColor(
+                    picker.getTextContentColor(context),
+                    picker.getTextSubtitleColor(context)
+            );
+
             dailyItem.setDayIconDrawable(
                     WeatherHelper.getWeatherIcon(provider, daily.weatherKinds[0], true)
             );
@@ -79,7 +86,15 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
                     highestTemp,
                     lowestTemp
             );
-            dailyItem.getTrendItemView().setLineColors(themeColors[1], themeColors[2]);
+            dailyItem.getTrendItemView().setLineColors(
+                    themeColors[1], themeColors[2], picker.getLineColor(context)
+            );
+            dailyItem.getTrendItemView().setShadowColors(picker.isLightTheme());
+            dailyItem.getTrendItemView().setTextColors(
+                    picker.getTextContentColor(context),
+                    picker.getTextSubtitleColor(context)
+            );
+            dailyItem.getTrendItemView().setPrecipitationAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
 
             dailyItem.setNightIconDrawable(
                     WeatherHelper.getWeatherIcon(provider, daily.weatherKinds[1], false)
@@ -90,6 +105,7 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
                 if (activity != null && activity.isForeground()) {
                     WeatherDialog weatherDialog = new WeatherDialog();
                     weatherDialog.setData(weather, getAdapterPosition(), true);
+                    weatherDialog.setColorPicker(picker);
                     weatherDialog.show(activity.getSupportFragmentManager(), null);
                 }
             });
@@ -115,11 +131,12 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
 
     @SuppressLint("SimpleDateFormat")
     public DailyTrendAdapter(@NonNull Weather weather, @Nullable History history,
-                             int[] themeColors, ResourceProvider provider) {
+                             int[] themeColors, ResourceProvider provider, MainColorPicker picker) {
         this.weather = weather;
         this.provider = provider;
+        this.picker = picker;
 
-        this.maxiTemps = new float[weather.dailyList.size() * 2 - 1];
+        this.maxiTemps = new float[Math.max(0, weather.dailyList.size() * 2 - 1)];
         for (int i = 0; i < maxiTemps.length; i += 2) {
             maxiTemps[i] = weather.dailyList.get(i / 2).temps[0];
         }
@@ -127,7 +144,7 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
             maxiTemps[i] = (maxiTemps[i - 1] + maxiTemps[i + 1]) * 0.5F;
         }
 
-        this.miniTemps = new float[weather.dailyList.size() * 2 - 1];
+        this.miniTemps = new float[Math.max(0, weather.dailyList.size() * 2 - 1)];
         for (int i = 0; i < miniTemps.length; i += 2) {
             miniTemps[i] = weather.dailyList.get(i / 2).temps[1];
         }

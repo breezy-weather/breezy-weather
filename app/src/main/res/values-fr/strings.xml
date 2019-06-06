@@ -89,7 +89,6 @@
     <string name="settings_navigationBar_color_off">Noir</string>
     <string name="settings_navigationBar_color_on">Par défaut</string>
     <string name="settings_notification_background_off">Par défaut</string>
-    <string name="settings_notification_background_on">Noir</string>
     <string name="settings_notification_can_be_cleared_off">On</string>
     <string name="settings_notification_can_be_cleared_on">Off</string>
     <string name="settings_notification_hide_big_view_off">Montrer</string>

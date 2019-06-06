@@ -3,44 +3,32 @@ package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.PixelFormat;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.AttributeSet;
+import android.view.View;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
-import android.util.AttributeSet;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.ui.widget.weatherView.RenderRunnable;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.CloudImplementor;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.HailImplementor;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.MeteorShowerImplementor;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.RainImplementor;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.SnowImplementor;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.SunImplementor;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.WindImplementor;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Material Weather view.
  * */
 
-public class MaterialWeatherView extends SurfaceView
-        implements WeatherView, SurfaceHolder.Callback {
+public class MaterialWeatherView extends View implements WeatherView {
 
-    private SurfaceHolder holder;
-    @Nullable private UpdateDataRunnable updateDataRunnable;
-    @Nullable private DrawableRunnable drawableRunnable;
+    @Nullable private RenderRunnable updateDataRunnable;
 
     @Nullable private WeatherAnimationImplementor implementor;
     @Nullable private RotateController[] rotators;
@@ -53,8 +41,9 @@ public class MaterialWeatherView extends SurfaceView
     private float rotation2D;
     private float rotation3D;
 
-    @WeatherView.WeatherKindRule private int weatherKind;
+    @WeatherKindRule private int weatherKind;
     private boolean daytime;
+    @ColorInt private int backgroundColor;
 
     private float displayRate;
 
@@ -68,73 +57,14 @@ public class MaterialWeatherView extends SurfaceView
 
     private int firstCardMarginTop;
     private int scrollTransparentTriggerDistance;
+
+    private float lastScrollRate;
     private float scrollRate;
 
-    private static final int SWITCH_WEATHER_ANIMATION_DURATION = 150;
+    private boolean drawable;
+
+    private static final int SWITCH_ANIMATION_DURATION = 150;
     protected static long DATA_UPDATE_INTERVAL = 8;
-    protected static long DRAW_WEATHER_INTERVAL = 16;
-
-    private class UpdateDataRunnable extends RenderRunnable {
-
-        @Override
-        protected void onRender(long interval) {
-            if (implementor != null && rotators != null) {
-                rotators[0].updateRotation(rotation2D, interval);
-                rotators[1].updateRotation(rotation3D, interval);
-
-                implementor.updateData(
-                        sizes, interval,
-                        (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
-                if (step == STEP_DISPLAY) {
-                    displayRate = (float) Math.min(
-                            1, displayRate + 1.0 * interval / SWITCH_WEATHER_ANIMATION_DURATION);
-                } else {
-                    displayRate = (float) Math.max(
-                            0, displayRate - 1.0 * interval / SWITCH_WEATHER_ANIMATION_DURATION);
-                }
-                if (displayRate == 0) {
-                    setWeatherImplementor();
-                }
-            }
-        }
-
-        @Override
-        protected long getInterval() {
-            return DATA_UPDATE_INTERVAL;
-        }
-    }
-
-    private class DrawableRunnable extends RenderRunnable {
-
-        @Nullable private Canvas canvas;
-        private float lastScrollRate;
-
-        @Override
-        protected void onRender(long interval) {
-            if (lastScrollRate >= 1 && scrollRate >= 1) {
-                lastScrollRate = scrollRate;
-            } else if (isRunning() && implementor != null && rotators != null) {
-                lastScrollRate = scrollRate;
-                try {
-                    canvas = holder.lockCanvas();
-                    if (canvas != null) {
-                        implementor.draw(
-                                sizes, canvas,
-                                displayRate, scrollRate,
-                                (float) rotators[0].getRotate(), (float) rotators[1].getRotate());
-                        holder.unlockCanvasAndPost(canvas);
-                    }
-                } catch (Exception ignored) {
-                    // do nothing.
-                }
-            }
-        }
-
-        @Override
-        protected long getInterval() {
-            return DRAW_WEATHER_INTERVAL;
-        }
-    }
 
     /**
      * This class is used to implement different kinds of weather animations.
@@ -208,10 +138,6 @@ public class MaterialWeatherView extends SurfaceView
     }
 
     private void initialize() {
-        this.holder = getHolder();
-        holder.addCallback(this);
-        holder.setFormat(PixelFormat.RGBA_8888);
-
         this.sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
             this.openGravitySensor = true;
@@ -221,9 +147,10 @@ public class MaterialWeatherView extends SurfaceView
         this.step = STEP_DISPLAY;
         setWeather(WeatherView.WEATHER_KING_NULL, true, null);
 
-        this.sizes = new int[] {getMeasuredWidth(), getMeasuredHeight()};
+        this.sizes = new int[] {0, 0};
 
-        if (GeometricWeather.getInstance().getCardOrder().equals("daily_first")) {
+        String cardOrder = SettingsOptionManager.getInstance(getContext()).getCardOrder();
+        if (cardOrder.equals("daily_first")) {
             this.firstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels
                     + getResources().getDimensionPixelSize(R.dimen.little_margin)
                     - DisplayUtils.dpToPx(
@@ -259,166 +186,53 @@ public class MaterialWeatherView extends SurfaceView
                 - getResources().getDimension(R.dimen.design_title_text_size)
                 - getResources().getDimension(R.dimen.normal_margin));
 
+        this.lastScrollRate = 0;
         this.scrollRate = 0;
+
+        this.drawable = false;
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        this.sizes[0] = getMeasuredWidth();
+        this.sizes[1] = getMeasuredHeight();
+        setWeatherImplementor();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+        canvas.drawColor(backgroundColor);
+        if (implementor != null && rotators != null) {
+            implementor.draw(
+                    sizes, canvas,
+                    displayRate, scrollRate,
+                    (float) rotators[0].getRotate(), (float) rotators[1].getRotate()
+            );
+        }
+        if (lastScrollRate >= 1 && scrollRate >= 1) {
+            lastScrollRate = scrollRate;
+            return;
+        }
+
+        lastScrollRate = scrollRate;
+
+        postInvalidate();
     }
 
     private void setWeatherImplementor() {
-        step = STEP_DISPLAY;
-        switch (weatherKind) {
-            case WeatherView.WEATHER_KIND_CLEAR:
-                if (daytime) {
-                    implementor = new SunImplementor(sizes);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                } else {
-                    implementor = new MeteorShowerImplementor(sizes);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_CLOUDY:
-                implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUDY);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)
-                };
-                break;
-
-            case WeatherView.WEATHER_KIND_CLOUD:
-                if (daytime) {
-                    implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_DAY);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                } else {
-                    implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_NIGHT);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_FOG:
-                implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_FOG);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)
-                };
-                break;
-
-            case WeatherView.WEATHER_KIND_HAIL:
-                if (daytime) {
-                    implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_DAY);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                } else {
-                    implementor = new HailImplementor(sizes, HailImplementor.TYPE_HAIL_NIGHT);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_HAZE:
-                implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_HAZE);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)
-                };
-                break;
-
-            case WeatherView.WEATHER_KIND_RAINY:
-                if (daytime) {
-                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_DAY);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                } else {
-                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_RAIN_NIGHT);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_SNOW:
-                if (daytime) {
-                    implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_DAY);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                } else {
-                    implementor = new SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_NIGHT);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_THUNDERSTORM:
-                implementor = new RainImplementor(sizes, RainImplementor.TYPE_THUNDERSTORM);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)
-                };
-                break;
-
-            case WeatherView.WEATHER_KIND_THUNDER:
-                implementor = new CloudImplementor(sizes, CloudImplementor.TYPE_THUNDER);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)
-                };
-                break;
-
-            case WeatherView.WEATHER_KIND_WIND:
-                implementor = new WindImplementor(sizes);
-                rotators = new RotateController[] {
-                        new DelayRotateController(rotation2D),
-                        new DelayRotateController(rotation3D)
-                };
-                break;
-
-            case WeatherView.WEATHER_KIND_SLEET:
-                if (daytime) {
-                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_DAY);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                } else {
-                    implementor = new RainImplementor(sizes, RainImplementor.TYPE_SLEET_NIGHT);
-                    rotators = new RotateController[] {
-                            new DelayRotateController(rotation2D),
-                            new DelayRotateController(rotation3D)
-                    };
-                }
-                break;
-
-            case WeatherView.WEATHER_KING_NULL:
-                implementor = null;
-                rotators = null;
-                break;
+        if (implementor != null) {
+            backgroundColor = getBackgroundColor();
         }
-    }
 
-    private void initSensorData() {
-        this.rotation2D = 0;
-        this.rotation3D = 0;
+        step = STEP_DISPLAY;
+        implementor = WeatherImplementorFactory.getWeatherImplementor(weatherKind, daytime, sizes);
+        rotators = new RotateController[] {
+                new DelayRotateController(rotation2D),
+                new DelayRotateController(rotation3D)
+        };
     }
 
     public void setOpenGravitySensor(boolean openGravitySensor) {
@@ -433,7 +247,7 @@ public class MaterialWeatherView extends SurfaceView
         return Color.HSVToColor(hsv);
     }
 
-    private boolean isIgnoreDayNight(@WeatherView.WeatherKindRule int weatherKind) {
+    private boolean isIgnoreDayNight(@WeatherKindRule int weatherKind) {
         return weatherKind == WeatherView.WEATHER_KIND_CLOUDY
                 || weatherKind == WeatherView.WEATHER_KIND_FOG
                 || weatherKind == WeatherView.WEATHER_KIND_HAZE
@@ -447,7 +261,7 @@ public class MaterialWeatherView extends SurfaceView
     // weather view.
 
     @Override
-    public void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime,
+    public void setWeather(@WeatherKindRule int weatherKind, boolean daytime,
                            @Nullable ResourceProvider provider) {
         if (this.weatherKind == weatherKind
                 && (isIgnoreDayNight(weatherKind) || this.daytime == daytime)) {
@@ -456,9 +270,9 @@ public class MaterialWeatherView extends SurfaceView
 
         this.weatherKind = weatherKind;
         this.daytime = daytime;
+        this.backgroundColor = getBackgroundColor();
 
-        if (updateDataRunnable != null && updateDataRunnable.isRunning()
-                && drawableRunnable != null && drawableRunnable.isRunning()) {
+        if (updateDataRunnable != null && updateDataRunnable.isRunning()) {
             // Set step to dismiss. The implementor will execute exit animation and call weather
             // view to reset it.
             step = STEP_DISMISS;
@@ -473,6 +287,9 @@ public class MaterialWeatherView extends SurfaceView
     @Override
     public void onScroll(int scrollY) {
         scrollRate = (float) (Math.min(1, 1.0 * scrollY / scrollTransparentTriggerDistance));
+        if (lastScrollRate >= 1 && scrollRate < 1) {
+            postInvalidate();
+        }
     }
 
     @Override
@@ -481,9 +298,9 @@ public class MaterialWeatherView extends SurfaceView
     }
 
     @Override
-    public int[] getThemeColors() {
+    public int[] getThemeColors(boolean lightTheme) {
         int color = getBackgroundColor();
-        if (DisplayUtils.isDarkMode(getContext())) {
+        if (!lightTheme) {
             color = getBrighterColor(color);
             return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
         } else {
@@ -493,84 +310,7 @@ public class MaterialWeatherView extends SurfaceView
 
     @Override
     public int getBackgroundColor() {
-        int color = ContextCompat.getColor(getContext(), R.color.colorPrimary);
-        switch (weatherKind) {
-            case WeatherView.WEATHER_KIND_CLEAR:
-                if (daytime) {
-                    color = SunImplementor.getThemeColor();
-                } else {
-                    color = MeteorShowerImplementor.getThemeColor();
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_CLOUDY:
-                color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_CLOUDY);
-                break;
-
-            case WeatherView.WEATHER_KIND_CLOUD:
-                if (daytime) {
-                    color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_CLOUD_DAY);
-                } else {
-                    color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_CLOUD_NIGHT);
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_FOG:
-                color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_FOG);
-                break;
-
-            case WeatherView.WEATHER_KIND_HAIL:
-                if (daytime) {
-                    color = HailImplementor.getThemeColor(getContext(), HailImplementor.TYPE_HAIL_DAY);
-                } else {
-                    color = HailImplementor.getThemeColor(getContext(), HailImplementor.TYPE_HAIL_NIGHT);
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_HAZE:
-                color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_HAZE);
-                break;
-
-            case WeatherView.WEATHER_KIND_RAINY:
-                if (daytime) {
-                    color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_RAIN_DAY);
-                } else {
-                    color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_RAIN_NIGHT);
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_SLEET:
-                if (daytime) {
-                    color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_SLEET_DAY);
-                } else {
-                    color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_SLEET_NIGHT);
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_SNOW:
-                if (daytime) {
-                    color = SnowImplementor.getThemeColor(getContext(), SnowImplementor.TYPE_SNOW_DAY);
-                } else {
-                    color = SnowImplementor.getThemeColor(getContext(), SnowImplementor.TYPE_SNOW_NIGHT);
-                }
-                break;
-
-            case WeatherView.WEATHER_KIND_THUNDERSTORM:
-                color = RainImplementor.getThemeColor(getContext(), RainImplementor.TYPE_THUNDERSTORM);
-                break;
-
-            case WeatherView.WEATHER_KIND_THUNDER:
-                color = CloudImplementor.getThemeColor(getContext(), CloudImplementor.TYPE_THUNDER);
-                break;
-
-            case WeatherView.WEATHER_KIND_WIND:
-                color = WindImplementor.getThemeColor();
-                break;
-
-            case WeatherView.WEATHER_KING_NULL:
-                break;
-        }
-        return color;
+        return WeatherImplementorFactory.getWeatherThemeColor(getContext(), weatherKind, daytime);
     }
 
     @Override
@@ -578,51 +318,61 @@ public class MaterialWeatherView extends SurfaceView
         return firstCardMarginTop;
     }
 
-    // callback.
-
     @Override
-    public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        initSensorData();
-        if (sensorManager != null) {
-            sensorManager.registerListener(gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+    public void setDrawable(boolean drawable) {
+        if (this.drawable == drawable) {
+            return;
         }
+        this.drawable = drawable;
 
-        setWeatherImplementor();
+        if (drawable) {
+            rotation2D = 0;
+            rotation3D = 0;
+            if (sensorManager != null) {
+                sensorManager.registerListener(
+                        gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+            }
 
-        if (updateDataRunnable == null || !updateDataRunnable.isRunning()) {
-            updateDataRunnable = new UpdateDataRunnable();
-            new Thread(updateDataRunnable).start();
-        }
-        if (drawableRunnable == null || !drawableRunnable.isRunning()) {
-            drawableRunnable = new DrawableRunnable();
-            new Thread(drawableRunnable).start();
-        }
-    }
+            setWeatherImplementor();
 
-    @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-        // do nothing.
-    }
+            if (updateDataRunnable == null || !updateDataRunnable.isRunning()) {
 
-    @Override
-    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        if (sensorManager != null) {
-            sensorManager.unregisterListener(gravityListener, gravitySensor);
-        }
-        if (updateDataRunnable != null) {
-            updateDataRunnable.setRunning(false);
-            updateDataRunnable = null;
-        }
-        if (drawableRunnable != null) {
-            drawableRunnable.setRunning(false);
-            drawableRunnable = null;
-        }
-    }
+                updateDataRunnable = new RenderRunnable(DATA_UPDATE_INTERVAL) {
+                    @Override
+                    protected void onRender(long interval) {
+                        if (implementor == null || rotators == null) {
+                            return;
+                        }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        this.sizes[0] = getMeasuredWidth();
-        this.sizes[1] = getMeasuredHeight();
+                        rotators[0].updateRotation(rotation2D, interval);
+                        rotators[1].updateRotation(rotation3D, interval);
+
+                        implementor.updateData(
+                                sizes, interval,
+                                (float) rotators[0].getRotate(), (float) rotators[1].getRotate()
+                        );
+
+                        displayRate = displayRate
+                                + (step == STEP_DISPLAY ? 1f : -1f) * interval / SWITCH_ANIMATION_DURATION;
+                        displayRate = Math.max(0, displayRate);
+                        displayRate = Math.min(1, displayRate);
+
+                        if (displayRate == 0) {
+                            setWeatherImplementor();
+                        }
+                    }
+                };
+                new Thread(updateDataRunnable).start();
+            }
+        } else {
+            // !drawable
+            if (sensorManager != null) {
+                sensorManager.unregisterListener(gravityListener, gravitySensor);
+            }
+            if (updateDataRunnable != null) {
+                updateDataRunnable.setRunning(false);
+                updateDataRunnable = null;
+            }
+        }
     }
 }

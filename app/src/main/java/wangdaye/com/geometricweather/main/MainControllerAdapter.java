@@ -28,18 +28,18 @@ class MainControllerAdapter {
 
     MainControllerAdapter(@NonNull Activity activity,
                           @NonNull WeatherView weatherView, @NonNull Location location,
-                          @NonNull ResourceProvider provider) {
+                          @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
         this.location = location;
 
         this.controllerList = new ArrayList<>();
         if (location.weather != null) {
-            controllerList.add(new HeaderController(activity, weatherView));
-            controllerList.add(new FirstTrendCardController(activity, weatherView, provider));
-            controllerList.add(new SecondTrendCardController(activity, weatherView, provider));
-            controllerList.add(new AqiController(activity, weatherView));
-            controllerList.add(new DetailsController(activity, weatherView));
-            controllerList.add(new SunMoonController(activity, weatherView, provider));
-            controllerList.add(new FooterController(activity));
+            controllerList.add(new HeaderController(activity, weatherView, provider, picker));
+            controllerList.add(new FirstTrendCardController(activity, weatherView, provider, picker));
+            controllerList.add(new SecondTrendCardController(activity, weatherView, provider, picker));
+            controllerList.add(new AqiController(activity, weatherView, provider, picker));
+            controllerList.add(new DetailsController(activity, weatherView, provider, picker));
+            controllerList.add(new SunMoonController(activity, weatherView, provider, picker));
+            controllerList.add(new FooterController(activity, provider, picker));
         }
 
         this.headerCurrentTemperatureTextHeight = -1;

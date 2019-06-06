@@ -63,4 +63,19 @@
         <item>農曆</item>
     </string-array>
 
+    <!-- widget clock font. -->
+    <string-array name="widget_card_styles">
+        <item>無卡片</item>
+        <item>日間夜間模式</item>
+        <item>亮色卡片</item>
+        <item>暗色卡片</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>白色文字</item>
+        <item>暗色文字</item>
+        <item>自動著色</item>
+    </string-array>
+
 </resources>

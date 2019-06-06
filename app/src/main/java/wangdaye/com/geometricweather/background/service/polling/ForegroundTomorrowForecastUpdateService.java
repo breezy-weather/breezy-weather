@@ -12,7 +12,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.presenter.ForecastNotificationIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.notification.ForecastNotificationIMP;
 
 /**
  * Foreground Today forecast update service.

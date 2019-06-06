@@ -23,11 +23,11 @@ import java.util.Calendar;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
 import wangdaye.com.geometricweather.ui.widget.moon.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class SunMoonController extends AbstractMainItemController {
@@ -45,7 +45,6 @@ public class SunMoonController extends AbstractMainItemController {
 
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
-    @NonNull private ResourceProvider resourceProvider;
 
     @Size(2) private float[] startTimes;
     @Size(2) private float[] endTimes;
@@ -58,8 +57,8 @@ public class SunMoonController extends AbstractMainItemController {
     @Size(3) private AnimatorSet[] attachAnimatorSets;
 
     public SunMoonController(@NonNull Activity activity, @NonNull WeatherView weatherView,
-                             @NonNull ResourceProvider provider) {
-        super(activity, activity.findViewById(R.id.container_main_sun_moon));
+                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+        super(activity, activity.findViewById(R.id.container_main_sun_moon), provider, picker);
 
         this.card = view.findViewById(R.id.container_main_sun_moon);
         this.title = view.findViewById(R.id.container_main_sun_moon_title);
@@ -73,8 +72,6 @@ public class SunMoonController extends AbstractMainItemController {
         this.weatherView = weatherView;
         this.executeEnterAnimation = true;
         this.attachAnimatorSets = new AnimatorSet[] {null, null, null};
-
-        this.resourceProvider = provider;
     }
 
     @SuppressLint("SetTextI18n")
@@ -89,29 +86,35 @@ public class SunMoonController extends AbstractMainItemController {
             view.setVisibility(View.VISIBLE);
         }
 
-        if (location.weather != null) {
+        if (location.weather != null && location.weather.dailyList.size() != 0) {
             weather = location.weather;
 
             ensureTime(weather);
             ensurePhaseAngle(weather);
 
-            card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorRoot));
+            card.setCardBackgroundColor(picker.getRootColor(context));
 
-            title.setTextColor(weatherView.getThemeColors()[0]);
+            title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
             if (TextUtils.isEmpty(weather.dailyList.get(0).moonPhase)) {
                 phaseText.setVisibility(View.GONE);
                 phaseView.setVisibility(View.GONE);
             } else {
                 phaseText.setVisibility(View.VISIBLE);
-                phaseText.setTextColor(ContextCompat.getColor(context, R.color.colorTextContent));
-                phaseText.setText(WeatherHelper.getMoonPhaseName(context, weather.dailyList.get(0).moonPhase));
+                phaseText.setTextColor(picker.getTextContentColor(context));
+                phaseText.setText(
+                        WeatherHelper.getMoonPhaseName(context, weather.dailyList.get(0).moonPhase)
+                );
                 phaseView.setVisibility(View.VISIBLE);
-                phaseView.setColor();
+                phaseView.setColor(
+                        ContextCompat.getColor(context, R.color.colorTextContent_dark),
+                        ContextCompat.getColor(context, R.color.colorTextContent_light),
+                        picker.getTextContentColor(context)
+                );
             }
 
-            sunMoonView.setSunDrawable(WeatherHelper.getSunDrawable(resourceProvider));
-            sunMoonView.setMoonDrawable(WeatherHelper.getMoonDrawable(resourceProvider));
+            sunMoonView.setSunDrawable(WeatherHelper.getSunDrawable(provider));
+            sunMoonView.setMoonDrawable(WeatherHelper.getMoonDrawable(provider));
 
             if (executeEnterAnimation) {
                 sunMoonView.setTime(startTimes, endTimes, startTimes);
@@ -124,19 +127,23 @@ public class SunMoonController extends AbstractMainItemController {
                 sunMoonView.setNightIndicatorRotation(0);
                 phaseView.setSurfaceAngle(phaseAngle);
             }
-            int[] themeColors = weatherView.getThemeColors();
-            if (DisplayUtils.isDarkMode(context)) {
-                sunMoonView.setColors(new int[] {
+            int[] themeColors = weatherView.getThemeColors(picker.isLightTheme());
+            if (picker.isLightTheme()) {
+                sunMoonView.setColors(
                         themeColors[1],
                         ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
-                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255))
-                });
+                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
+                        picker.getRootColor(context),
+                        true
+                );
             } else {
-                sunMoonView.setColors(new int[] {
+                sunMoonView.setColors(
                         themeColors[1],
                         ColorUtils.setAlphaComponent(themeColors[1], (int) (0.5 * 255)),
-                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.2 * 255))
-                });
+                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.2 * 255)),
+                        picker.getRootColor(context),
+                        false
+                );
             }
 
             sunTxt.setText(

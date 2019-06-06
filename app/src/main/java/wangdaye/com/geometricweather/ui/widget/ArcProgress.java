@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import androidx.annotation.ColorInt;
+import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -27,7 +28,8 @@ public class ArcProgress extends View {
     private Paint progressPaint;
     private Paint shadowPaint;
     private Paint textPaint;
-    private Shader shadowShader;
+
+    private DayNightShaderWrapper shaderWrapper;
 
     private RectF rectF = new RectF();
     private float arcBottomHeight;
@@ -42,6 +44,7 @@ public class ArcProgress extends View {
     private String text;
     private float textSize;
     @ColorInt private int textColor;
+    @Size(2) private int[] shaderColors;
 
     private String bottomText;
     private float bottomTextSize;
@@ -64,6 +67,10 @@ public class ArcProgress extends View {
         attributes.recycle();
 
         initPaint();
+
+        shaderColors = new int[] {Color.BLACK, Color.WHITE};
+        shaderWrapper = new DayNightShaderWrapper(
+                null, getMeasuredWidth(), getMeasuredHeight(), true, shaderColors);
     }
 
     private void initialize(TypedArray attributes) {
@@ -159,22 +166,24 @@ public class ArcProgress extends View {
         this.invalidate();
     }
 
-    public void ensureShadowShader(Context context) {
-        if (DisplayUtils.isDarkMode(context)) {
-            shadowShader = new LinearGradient(
-                    0, rectF.top,
-                    0, rectF.bottom,
-                    Color.argb(20, 173, 173, 173),
-                    Color.TRANSPARENT,
-                    Shader.TileMode.CLAMP
-            );
-        } else {
-            shadowShader = new LinearGradient(
-                    0, rectF.top,
-                    0, rectF.bottom,
-                    Color.argb(50, 173, 173, 173),
-                    Color.TRANSPARENT,
-                    Shader.TileMode.CLAMP
+    public void ensureShadowShader(boolean lightTheme) {
+        shaderColors[0] = lightTheme
+                ? Color.argb(50, 173, 173, 173)
+                : Color.argb(20, 173, 173, 173);
+        shaderColors[1] = Color.TRANSPARENT;
+
+        if (shaderWrapper.isDifferent(
+                getMeasuredWidth(), getMeasuredHeight(), lightTheme, shaderColors)) {
+            shaderWrapper.setShader(
+                    new LinearGradient(
+                            0, rectF.top,
+                            0, rectF.bottom,
+                            shaderColors[0], shaderColors[1],
+                            Shader.TileMode.CLAMP
+                    ),
+                    getMeasuredWidth(), getMeasuredHeight(),
+                    lightTheme,
+                    shaderColors
             );
         }
     }
@@ -194,8 +203,6 @@ public class ArcProgress extends View {
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int arcPadding = (int) DisplayUtils.dpToPx(getContext(), 4);
-        float lastRectWidth = rectF.width();
-        float lastRectHeight = rectF.height();
         rectF.set(
                 progressWidth / 2f + arcPadding,
                 progressWidth / 2f + arcPadding,
@@ -206,11 +213,7 @@ public class ArcProgress extends View {
         float angle = (360 - arcAngle) / 2f;
         arcBottomHeight = radius * (float) (1 - Math.cos(angle / 180 * Math.PI));
 
-        if (shadowShader == null
-                || rectF.width() != lastRectWidth
-                || rectF.height() != lastRectHeight) {
-            ensureShadowShader(getContext());
-        }
+        ensureShadowShader(shaderWrapper.isLightTheme());
     }
 
     @Override
@@ -222,7 +225,7 @@ public class ArcProgress extends View {
         float deltaAngle = (float) (progressWidth / 2 / Math.PI / (rectF.width() / 2) * 180);
 
         if (progress > 0) {
-            shadowPaint.setShader(shadowShader);
+            shadowPaint.setShader(shaderWrapper.getShader());
             if (progressEndAngle + deltaAngle >= 360) {
                 canvas.drawCircle(
                         rectF.centerX(),

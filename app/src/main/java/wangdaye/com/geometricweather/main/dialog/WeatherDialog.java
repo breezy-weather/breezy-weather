@@ -1,26 +1,28 @@
 package wangdaye.com.geometricweather.main.dialog;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.graphics.drawable.Drawable;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
@@ -35,8 +37,8 @@ public class WeatherDialog extends GeoDialogFragment
         implements View.OnClickListener {
 
     private CoordinatorLayout container;
-
-    private Animator[][] iconAnimators;
+    private AnimatableIconView[] weatherIcons;
+    private MainColorPicker colorPicker;
 
     private Weather weather;
     private int position;
@@ -69,6 +71,7 @@ public class WeatherDialog extends GeoDialogFragment
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
         this.container = view.findViewById(R.id.dialog_weather_container);
+        container.setBackgroundColor(colorPicker.getRootColor(getActivity()));
 
         TextView title = view.findViewById(R.id.dialog_weather_title);
         if (daily) {
@@ -77,6 +80,7 @@ public class WeatherDialog extends GeoDialogFragment
         } else {
             title.setText(weather.hourlyList.get(position).time);
         }
+        title.setTextColor(colorPicker.getTextContentColor(getActivity()));
 
         TextView subtitle = view.findViewById(R.id.dialog_weather_subtitle);
         if (daily && LanguageUtils.getLanguageCode(getActivity()).startsWith("zh")) {
@@ -85,9 +89,18 @@ public class WeatherDialog extends GeoDialogFragment
         } else {
             subtitle.setVisibility(View.GONE);
         }
+        subtitle.setTextColor(colorPicker.getTextSubtitleColor(getActivity()));
 
         TextView phaseTitle = view.findViewById(R.id.dialog_weather_phaseText);
+        phaseTitle.setTextColor(colorPicker.getTextContentColor(getActivity()));
+
         MoonPhaseView phaseView = view.findViewById(R.id.dialog_weather_phaseView);
+        phaseView.setColor(
+                ContextCompat.getColor(getActivity(), R.color.colorTextContent_dark),
+                ContextCompat.getColor(getActivity(), R.color.colorTextContent_light),
+                colorPicker.getTextContentColor(getActivity())
+        );
+
         if (daily && !TextUtils.isEmpty(weather.dailyList.get(position).moonPhase)) {
             phaseTitle.setText(WeatherHelper.getMoonPhaseName(
                     getActivity(), weather.dailyList.get(position).moonPhase));
@@ -101,72 +114,46 @@ public class WeatherDialog extends GeoDialogFragment
         view.findViewById(R.id.dialog_weather_weatherContainer_day).setOnClickListener(this);
         view.findViewById(R.id.dialog_weather_weatherContainer_night).setOnClickListener(this);
 
-        AppCompatImageView[][] weatherIcons = new AppCompatImageView[2][3];
-        weatherIcons[0][0] = view.findViewById(R.id.dialog_weather_icon_1_day);
-        weatherIcons[0][1] = view.findViewById(R.id.dialog_weather_icon_2_day);
-        weatherIcons[0][2] = view.findViewById(R.id.dialog_weather_icon_3_day);
-        weatherIcons[1][0] = view.findViewById(R.id.dialog_weather_icon_1_night);
-        weatherIcons[1][1] = view.findViewById(R.id.dialog_weather_icon_2_night);
-        weatherIcons[1][2] = view.findViewById(R.id.dialog_weather_icon_3_night);
+        this.weatherIcons = new AnimatableIconView[] {
+                view.findViewById(R.id.dialog_weather_icon_day),
+                view.findViewById(R.id.dialog_weather_icon_night)
+        };
+        String weatherKind;
         if (daily) {
-            Drawable[] daytimeDrawables = WeatherHelper.getWeatherIcons(
-                    provider,
-                    weather.dailyList.get(position).weatherKinds[0],
-                    true
+            weatherKind = weather.dailyList.get(position).weatherKinds[0];
+            weatherIcons[0].setAnimatableIcon(
+                    WeatherHelper.getWeatherIcons(provider, weatherKind, true),
+                    WeatherHelper.getWeatherAnimators(provider, weatherKind, true)
             );
-            for (int i = 0; i < weatherIcons[0].length; i ++) {
-                if (daytimeDrawables[i] != null) {
-                    resetImageView(weatherIcons[0][i]);
-                    weatherIcons[0][i].setImageDrawable(daytimeDrawables[i]);
-                    weatherIcons[0][i].setVisibility(View.VISIBLE);
-                } else {
-                    weatherIcons[0][i].setVisibility(View.GONE);
-                }
-            }
 
-            Drawable[] nighttimeDrawables = WeatherHelper.getWeatherIcons(
-                    provider,
-                    weather.dailyList.get(position).weatherKinds[1],
-                    false
+            weatherKind = weather.dailyList.get(position).weatherKinds[1];
+            weatherIcons[1].setAnimatableIcon(
+                    WeatherHelper.getWeatherIcons(provider, weatherKind, false),
+                    WeatherHelper.getWeatherAnimators(provider, weatherKind, false)
             );
-            for (int i = 0; i < weatherIcons[0].length; i ++) {
-                if (nighttimeDrawables[i] != null) {
-                    resetImageView(weatherIcons[1][i]);
-                    weatherIcons[1][i].setImageDrawable(nighttimeDrawables[i]);
-                    weatherIcons[1][i].setVisibility(View.VISIBLE);
-                } else {
-                    weatherIcons[1][i].setVisibility(View.GONE);
-                }
-            }
         } else {
-            Drawable[] drawables = WeatherHelper.getWeatherIcons(
-                    provider,
-                    weather.hourlyList.get(position).weatherKind,
-                    weather.hourlyList.get(position).dayTime
+            weatherKind = weather.hourlyList.get(position).weatherKind;
+            boolean daytime = weather.hourlyList.get(position).dayTime;
+            weatherIcons[0].setAnimatableIcon(
+                    WeatherHelper.getWeatherIcons(provider, weatherKind, daytime),
+                    WeatherHelper.getWeatherAnimators(provider, weatherKind, daytime)
             );
-            for (int i = 0; i < weatherIcons[0].length; i ++) {
-                if (drawables[i] != null) {
-                    resetImageView(weatherIcons[0][i]);
-                    weatherIcons[0][i].setImageDrawable(drawables[i]);
-                    weatherIcons[0][i].setVisibility(View.VISIBLE);
-                } else {
-                    weatherIcons[0][i].setVisibility(View.GONE);
-                }
-            }
-            weatherIcons[1][0].setVisibility(View.GONE);
-            weatherIcons[1][1].setVisibility(View.GONE);
-            weatherIcons[1][2].setVisibility(View.GONE);
+
+            view.findViewById(R.id.dialog_weather_weatherContainer_night).setVisibility(View.GONE);
         }
 
         TextView[] weatherTexts = new TextView[] {
                 view.findViewById(R.id.dialog_weather_text_day),
-                view.findViewById(R.id.dialog_weather_text_night)};
+                view.findViewById(R.id.dialog_weather_text_night)
+        };
+        weatherTexts[0].setTextColor(colorPicker.getTextContentColor(getActivity()));
+        weatherTexts[1].setTextColor(colorPicker.getTextContentColor(getActivity()));
         if (daily) {
             String daytimeTxt = weather.dailyList.get(position).weathers[0] + "  "
                     + ValueUtils.buildCurrentTemp(
                             weather.dailyList.get(position).temps[0],
                             false,
-                            GeometricWeather.getInstance().isFahrenheit()
+                            SettingsOptionManager.getInstance(getActivity()).isFahrenheit()
                     ) + "\n"
                     + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[0]
                     + (TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[0])
@@ -185,7 +172,7 @@ public class WeatherDialog extends GeoDialogFragment
                     + ValueUtils.buildCurrentTemp(
                             weather.dailyList.get(position).temps[1],
                             false,
-                            GeometricWeather.getInstance().isFahrenheit()
+                            SettingsOptionManager.getInstance(getActivity()).isFahrenheit()
                     ) + "\n"
                     + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[1]
                     + (
@@ -205,7 +192,7 @@ public class WeatherDialog extends GeoDialogFragment
                     + ValueUtils.buildCurrentTemp(
                             weather.hourlyList.get(position).temp,
                             false,
-                            GeometricWeather.getInstance().isFahrenheit()
+                            SettingsOptionManager.getInstance(getActivity()).isFahrenheit()
                     ) + (
                             weather.hourlyList.get(position).precipitation >= 0
                                     ? "\n" + getString(R.string.precipitation) + " : " + weather.hourlyList.get(position).precipitation + "%"
@@ -213,11 +200,20 @@ public class WeatherDialog extends GeoDialogFragment
                     );
             weatherTexts[0].setText(text);
         }
-        
+
+        ((AppCompatImageView) view.findViewById(R.id.dialog_weather_sun_icon)).setSupportImageTintList(
+                ColorStateList.valueOf(colorPicker.getTextSubtitleColor(getActivity()))
+        );
+        ((AppCompatImageView) view.findViewById(R.id.dialog_weather_moon_icon)).setSupportImageTintList(
+                ColorStateList.valueOf(colorPicker.getTextSubtitleColor(getActivity()))
+        );
+
         TextView[] sunMoonText = new TextView[] {
                 view.findViewById(R.id.dialog_weather_sunrise_sunset),
                 view.findViewById(R.id.dialog_weather_moonrise_moonset)
         };
+        sunMoonText[0].setTextColor(colorPicker.getTextSubtitleColor(getActivity()));
+        sunMoonText[1].setTextColor(colorPicker.getTextSubtitleColor(getActivity()));
         if (daily) {
             sunMoonText[0].setText(
                     weather.dailyList.get(position).astros[0] + "↑"
@@ -239,40 +235,6 @@ public class WeatherDialog extends GeoDialogFragment
             sunMoonText[0].setVisibility(View.GONE);
             sunMoonText[1].setVisibility(View.GONE);
         }
-
-        if (daily) {
-            this.iconAnimators = new Animator[2][3];
-            iconAnimators[0] = WeatherHelper.getWeatherAnimators(
-                    provider,
-                    weather.dailyList.get(position).weatherKinds[0],
-                    true
-            );
-            iconAnimators[1] = WeatherHelper.getWeatherAnimators(
-                    provider,
-                    weather.dailyList.get(position).weatherKinds[1],
-                    false
-            );
-            for (int i = 0; i < iconAnimators[0].length; i ++) {
-                if (iconAnimators[0][i] != null) {
-                    iconAnimators[0][i].setTarget(weatherIcons[0][i]);
-                }
-                if (iconAnimators[1][i] != null) {
-                    iconAnimators[1][i].setTarget(weatherIcons[1][i]);
-                }
-            }
-        } else {
-            this.iconAnimators = new Animator[2][3];
-            iconAnimators[0] = WeatherHelper.getWeatherAnimators(
-                    provider,
-                    weather.hourlyList.get(position).weatherKind,
-                    weather.hourlyList.get(position).dayTime
-            );
-            for (int i = 0; i < iconAnimators[0].length; i ++) {
-                if (iconAnimators[0][i] != null) {
-                    iconAnimators[0][i].setTarget(weatherIcons[0][i]);
-                }
-            }
-        }
     }
 
     public void setData(Weather weather, int position, boolean daily) {
@@ -281,13 +243,8 @@ public class WeatherDialog extends GeoDialogFragment
         this.daily = daily;
     }
 
-    private void resetImageView(@NonNull ImageView view) {
-        view.setAlpha(1f);
-        view.setRotation(0f);
-        view.setTranslationX(0f);
-        view.setTranslationY(0f);
-        view.setScaleX(1f);
-        view.setScaleY(1f);
+    public void setColorPicker(@NonNull MainColorPicker colorPicker) {
+        this.colorPicker = colorPicker;
     }
 
     // interface.
@@ -298,19 +255,11 @@ public class WeatherDialog extends GeoDialogFragment
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.dialog_weather_weatherContainer_day:
-                for (Animator a : iconAnimators[0]) {
-                    if (a != null) {
-                        a.start();
-                    }
-                }
+                weatherIcons[0].startAnimators();
                 break;
 
             case R.id.dialog_weather_weatherContainer_night:
-                for (Animator a : iconAnimators[1]) {
-                    if (a != null) {
-                        a.start();
-                    }
-                }
+                weatherIcons[1].startAnimators();
                 break;
         }
     }

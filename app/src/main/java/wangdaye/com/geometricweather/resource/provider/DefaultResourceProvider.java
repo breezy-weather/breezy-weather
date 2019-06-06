@@ -5,10 +5,14 @@ import android.animation.AnimatorInflater;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -18,7 +22,6 @@ import java.util.Objects;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.Constants;
 import wangdaye.com.geometricweather.resource.XmlHelper;
 import wangdaye.com.geometricweather.ui.image.MoonDrawable;
@@ -28,20 +31,22 @@ public class DefaultResourceProvider extends ResourceProvider {
 
     private Context context;
     private String providerName;
+    @Nullable private Drawable iconDrawable;
 
     private Map<String, String> drawableFilter;
     private Map<String, String> animatorFilter;
     private Map<String, String> shortcutFilter;
 
-    DefaultResourceProvider() {
+    public DefaultResourceProvider() {
         context = GeometricWeather.getInstance();
         providerName = context.getString(R.string.geometric_weather);
+        iconDrawable = context.getApplicationInfo().loadIcon(context.getPackageManager());
 
         Resources res = context.getResources();
         try {
-            drawableFilter = XmlHelper.getFilterMap(res.getXml(R.xml.drawable_filter));
-            animatorFilter = XmlHelper.getFilterMap(res.getXml(R.xml.animator_filter));
-            shortcutFilter = XmlHelper.getFilterMap(res.getXml(R.xml.shortcut_filter));
+            drawableFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_drawable_filter));
+            animatorFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_animator_filter));
+            shortcutFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_shortcut_filter));
         } catch (Exception e) {
             drawableFilter = new HashMap<>();
             animatorFilter = new HashMap<>();
@@ -75,12 +80,7 @@ public class DefaultResourceProvider extends ResourceProvider {
 
     @Override
     public Drawable getProviderIcon() {
-        try {
-            return context.getPackageManager()
-                    .getApplicationIcon(context.getPackageName());
-        } catch (Exception e) {
-            return getWeatherIcon(Weather.KIND_CLEAR, true);
-        }
+        return iconDrawable;
     }
 
     // weather icon.
@@ -207,13 +207,21 @@ public class DefaultResourceProvider extends ResourceProvider {
         );
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @NonNull
     @Override
+    public Icon getMinimalIcon(String weatherKind, boolean dayTime) {
+        return Objects.requireNonNull(
+                Icon.createWithResource(
+                        context,
+                        getMinimalXmlIconId(weatherKind, dayTime)
+                )
+        );
+    }
+
+    @DrawableRes
     public int getMinimalXmlIconId(String weatherKind, boolean dayTime) {
-        try {
-            return getResId(context, getMiniXmlIconName(weatherKind, dayTime), "drawable");
-        } catch (Exception e) {
-            return 0;
-        }
+        return getResId(context, getMiniXmlIconName(weatherKind, dayTime), "drawable");
     }
 
     private String getMiniLightIconName(String weatherKind, boolean daytime) {

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_animatable_icon_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorRoot"
+    android:foreground="@drawable/selectable_item_background"
+    tools:ignore="UnusedAttribute">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_animatable_icon_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextTitle"
+            android:textStyle="bold"
+            android:padding="@dimen/normal_margin"
+            style="@style/large_title_text"
+            tools:text="CLEAR_DAY" />
+
+        <wangdaye.com.geometricweather.ui.widget.AnimatableIconView
+            android:id="@+id/dialog_animatable_icon_icon"
+            android:layout_width="@dimen/current_weather_icon_container_size"
+            android:layout_height="@dimen/current_weather_icon_container_size"
+            android:layout_below="@id/dialog_animatable_icon_title"
+            android:layout_marginBottom="@dimen/material_icon_size"
+            android:layout_centerHorizontal="true"
+            app:inner_margins="@dimen/normal_margin"
+            tools:background="@drawable/weather_clear_day"/>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

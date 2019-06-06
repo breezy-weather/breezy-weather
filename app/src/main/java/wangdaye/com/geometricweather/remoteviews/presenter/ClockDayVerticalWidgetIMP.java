@@ -21,6 +21,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayVerticalProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -34,39 +35,17 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                context.getString(R.string.sp_widget_clock_day_vertical_setting),
-                Context.MODE_PRIVATE
-        );
-        String viewStyle = sharedPreferences.getString(
-                context.getString(R.string.key_view_type),
-                "rectangle"
-        );
-        boolean showCard = sharedPreferences.getBoolean(
-                context.getString(R.string.key_show_card),
-                false
-        );
-        boolean blackText = sharedPreferences.getBoolean(
-                context.getString(R.string.key_black_text),
-                false
-        );
-        boolean hideSubtitle = sharedPreferences.getBoolean(
-                context.getString(R.string.key_hide_subtitle),
-                false
-        );
-        String subtitleData = sharedPreferences.getString(
-                context.getString(R.string.key_subtitle_data),
-                "time"
-        );
-        String clockFont = sharedPreferences.getString(
-                context.getString(R.string.key_clock_font),
-                "light"
+        WidgetConfig config = getWidgetConfig(
+                context,
+                context.getString(R.string.sp_widget_clock_day_vertical_setting)
         );
 
         RemoteViews views = getRemoteViews(
                 context, location, weather,
-                viewStyle, showCard, blackText, hideSubtitle, subtitleData, clockFont
+                config.viewStyle, config.cardStyle, config.cardAlpha, config.textColor,
+                config.hideSubtitle, config.subtitleData, config.clockFont
         );
+
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetClockDayVerticalProvider.class),
                 views
@@ -74,11 +53,9 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
-                                             String viewStyle, boolean showCard, boolean blackText,
+                                             String viewStyle, String cardStyle, int cardAlpha, String textColor,
                                              boolean hideSubtitle, String subtitleData, String clockFont) {
-        boolean dayTime = TimeManager.getInstance(context)
-                .getDayTime(context, weather, false)
-                .isDayTime();
+        boolean dayTime = TimeManager.isDaylight(weather);
 
         SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean fahrenheit = defaultSharePreferences.getBoolean(
@@ -94,24 +71,34 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 false
         );
 
-        int textColor;
-        if (blackText || showCard) {
-            textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
+
+        int textColorInt;
+        if (color.darkText) {
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
         } else {
-            textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
         RemoteViews views = buildWidgetViewDayPart(
                 context, weather,
-                dayTime, textColor, fahrenheit,
-                minimalIcon, showCard, blackText,
+                dayTime, textColorInt, fahrenheit,
+                minimalIcon, color.showCard, color.darkText,
                 clockFont, viewStyle,
                 hideSubtitle, subtitleData);
         if (weather == null) {
             return views;
         }
 
-        views.setViewVisibility(R.id.widget_clock_day_card, showCard ? View.VISIBLE : View.GONE);
+        if (color.showCard) {
+            views.setImageViewResource(
+                    R.id.widget_clock_day_card,
+                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+            );
+            views.setViewVisibility(R.id.widget_clock_day_card, View.VISIBLE);
+        } else {
+            views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
+        }
 
         setOnClickPendingIntent(context, views, location, subtitleData, touchToRefresh);
 
@@ -202,18 +189,38 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.VISIBLE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE);
                 break;
 
             case "normal":
                 views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.VISIBLE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE);
                 break;
 
             case "black":
                 views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.VISIBLE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE);
+                break;
+
+            case "analog":
+                views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE);
+                views.setViewVisibility(
+                        R.id.widget_clock_day_clock_analogContainer_light,
+                        blackText ? View.GONE : View.VISIBLE
+                );
+                views.setViewVisibility(
+                        R.id.widget_clock_day_clock_analogContainer_dark,
+                        blackText ? View.VISIBLE : View.GONE
+                );
                 break;
         }
 
@@ -325,7 +332,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 return context.getString(R.string.feels_like) + " "
                         + ValueUtils.buildAbbreviatedCurrentTemp(
                                 weather.realTime.sensibleTemp,
-                                GeometricWeather.getInstance().isFahrenheit()
+                                SettingsOptionManager.getInstance(context).isFahrenheit()
                         );
         }
         return "";

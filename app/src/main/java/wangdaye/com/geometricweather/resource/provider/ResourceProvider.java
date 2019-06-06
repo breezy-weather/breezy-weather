@@ -3,21 +3,19 @@ package wangdaye.com.geometricweather.resource.provider;
 import android.animation.Animator;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
+
+import wangdaye.com.geometricweather.utils.ResourceUtils;
 
 public abstract class ResourceProvider {
 
-    public static int getResId(Context context, String resName, String type) {
-        try {
-            return context.getClassLoader()
-                    .loadClass(context.getPackageName() + ".R$" + type)
-                    .getField(resName)
-                    .getInt(null);
-        } catch (Exception e) {
-            return 0;
-        }
+    protected static int getResId(Context context, String resName, String type) {
+        return ResourceUtils.getResId(context, resName, type);
     }
 
     public abstract String getPackageName();
@@ -53,7 +51,9 @@ public abstract class ResourceProvider {
     @NonNull
     public abstract Drawable getMinimalXmlIcon(String weatherKind, boolean dayTime);
 
-    public abstract int getMinimalXmlIconId(String weatherKind, boolean dayTime);
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @NonNull
+    public abstract Icon getMinimalIcon(String weatherKind, boolean dayTime);
 
     // shortcut.
 

@@ -1,32 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- theme. -->
+
     <color name="colorPrimary">#212121</color>
     <color name="colorPrimaryDark">#1a1a1a</color>
-    <color name="colorAccent">#212121</color>
-    
+    <color name="colorAccent">@color/colorAccent_light</color>
+
+    <color name="colorLine">@color/colorLine_light</color>
+    <color name="colorRoot">@color/colorRoot_light</color>
+    <color name="colorTextTitle">@color/colorTextTitle_light</color>
+    <color name="colorTextContent">@color/colorTextContent_light</color>
+    <color name="colorTextSubtitle">@color/colorTextSubtitle_light</color>
+
+    <color name="colorSearchBarBackground">@color/colorRoot_light</color>
+
+    <!-- repository. -->
+
+    <color name="colorAccent_light">#212121</color>
+    <color name="colorAccent_dark">#fafafa</color>
+
     <color name="lightPrimary_1">#cfebf0</color>
     <color name="lightPrimary_2">#b6e3e7</color>
     <color name="lightPrimary_3">#96d6db</color>
     <color name="lightPrimary_4">#7ac7d3</color>
     <color name="lightPrimary_5">#75becb</color>
-    
+
     <color name="darkPrimary_1">#4b5073</color>
     <color name="darkPrimary_2">#343851</color>
     <color name="darkPrimary_3">#2c2f43</color>
     <color name="darkPrimary_4">#20222f</color>
     <color name="darkPrimary_5">#1a1b22</color>
 
-    <color name="colorNotificationBackground">#263238</color>
-    
-    <color name="colorLine">#f1f1f1</color>
-    <color name="colorRoot">#fafafa</color>
-    <color name="colorTextTitle">@color/colorTextDark</color>
-    <color name="colorTextContent">@color/colorTextDark2nd</color>
-    <color name="colorTextSubtitle">@color/colorTextGrey2nd</color>
-    <color name="colorTextAlert">#fcc96b</color>
+    <color name="colorLine_light">#f1f1f1</color>
+    <color name="colorLine_dark">#363636</color>
 
-    <color name="colorSearchBarBackground">@color/colorRoot</color>
+    <color name="colorRoot_light">#fafafa</color>
+    <color name="colorRoot_dark">#292929</color>
+
+    <color name="colorTextTitle_light">@color/colorTextDark</color>
+    <color name="colorTextTitle_dark">@color/colorTextLight</color>
+
+    <color name="colorTextContent_light">@color/colorTextDark2nd</color>
+    <color name="colorTextContent_dark">@color/colorTextLight2nd</color>
+
+    <color name="colorTextSubtitle_light">@color/colorTextGrey2nd</color>
+    <color name="colorTextSubtitle_dark">@color/colorTextGrey</color>
+
+    <color name="colorTextAlert">#fcc96b</color>
 
     <color name="colorRipple">#40808080</color>
 
@@ -43,7 +64,14 @@
     <color name="colorLevel_4">#e52f35</color>
     <color name="colorLevel_5">#99004c</color>
     <color name="colorLevel_6">#7e0023</color>
-    
+
     <color name="striking_red">@color/colorLevel_4</color>
+
+    <color name="notification_background_l">#263238</color>
+    <color name="notification_background_m">#273137</color>
+    <color name="notification_background_o">#e2e3e4</color>
+    <color name="notification_background_rootLight">#f1f1f1</color>
+    <color name="notification_background_rootDark">#292929</color>
+    <color name="notification_background_primary">#212121</color>
 
 </resources>

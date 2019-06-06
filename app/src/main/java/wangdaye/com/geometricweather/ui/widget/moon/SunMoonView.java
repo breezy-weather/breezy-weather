@@ -11,10 +11,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
 
 import android.graphics.Xfermode;
 import android.graphics.drawable.Drawable;
@@ -22,7 +23,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.core.view.ViewCompat;
-import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class SunMoonView extends View {
@@ -32,8 +33,8 @@ public class SunMoonView extends View {
 
     private Paint paint;
     private Xfermode clearXfermode;
-    private Shader x1Shader;
-    private Shader x2Shader;
+    private DayNightShaderWrapper x1ShaderWrapper;
+    private DayNightShaderWrapper x2ShaderWrapper;
     private PathEffect effect;
     private RectF rectF;
 
@@ -48,7 +49,10 @@ public class SunMoonView extends View {
     @Size(2) private float[] maxes;
 
     @Size(3) private int[] lineColors;
-    @Size(3)private int[] shadowColors;
+    @Size(3) private int[] shadowColors;
+    @Size(2) private int[] x1ShaderColors;
+    @Size(2) private int[] x2ShaderColors;
+    @ColorInt private int rootColor;
 
     private float lineSize;
     private float dottedLineSize;
@@ -91,16 +95,16 @@ public class SunMoonView extends View {
         this.progresses = new float[] {-1, -1};
         this.maxes = new float[] {100, 100};
 
-        this.lineColors = new int[] {
-                ContextCompat.getColor(getContext(), R.color.colorPrimaryDark),
-                ContextCompat.getColor(getContext(), R.color.colorPrimary),
-                ContextCompat.getColor(getContext(), R.color.colorLine)
-        };
+        this.lineColors = new int[] {Color.BLACK, Color.GRAY, Color.LTGRAY};
         this.shadowColors = new int[] {
                 Color.argb(33, 176, 176, 176),
                 Color.argb(0, 176, 176, 176),
                 Color.argb((int) (255 * 0.2), 0, 0, 0)
         };
+
+        this.x1ShaderColors = new int[] {Color.GRAY, Color.WHITE};
+        this.x2ShaderColors = new int[] {Color.BLACK, Color.WHITE};
+        this.rootColor = Color.WHITE;
 
         lineSize = DisplayUtils.dpToPx(getContext(), LINE_SIZE_DIP);
         dottedLineSize = DisplayUtils.dpToPx(getContext(), DOTTED_LINE_SIZE_DIP);
@@ -113,6 +117,8 @@ public class SunMoonView extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
 
         this.clearXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
+        this.x1ShaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
+        this.x2ShaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
 
         this.effect = new DashPathEffect(
                 new float[] {
@@ -139,9 +145,11 @@ public class SunMoonView extends View {
         ViewCompat.postInvalidateOnAnimation(this);
     }
 
-    public void setColors(@Size(3) int[] colors) {
-        this.lineColors = colors;
-        ensureShader();
+    public void setColors(@ColorInt int sunLineColor, @ColorInt int moonLineColor,
+                          @ColorInt int backgroundLineColor, @ColorInt int rootColor,
+                          boolean lightTheme) {
+        this.lineColors = new int[] {sunLineColor, moonLineColor, backgroundLineColor};
+        ensureShader(rootColor, lightTheme);
         ViewCompat.postInvalidateOnAnimation(this);
     }
 
@@ -155,37 +163,45 @@ public class SunMoonView extends View {
         ViewCompat.postInvalidateOnAnimation(this);
     }
 
-    private void ensureShader() {
-        int rootColor = ContextCompat.getColor(getContext(), R.color.colorRoot);
-        if (DisplayUtils.isDarkMode(getContext())) {
-            x1Shader = new LinearGradient(
-                    0, rectF.top,
-                    0, getMeasuredHeight() - margin,
-                    Color.rgb(51, 51, 51),
-                    rootColor,
-                    Shader.TileMode.CLAMP
+    private void ensureShader(@ColorInt int rootColor, boolean lightTheme) {
+        x1ShaderColors[0] = lightTheme
+                ? Color.rgb(235, 235, 235)
+                : Color.rgb(51, 51, 51);
+        x1ShaderColors[1] = rootColor;
+
+        x2ShaderColors[0] = lightTheme
+                ? Color.rgb(223, 223, 223)
+                : Color.rgb(61, 61, 61);
+        x2ShaderColors[1] = rootColor;
+
+        this.rootColor = rootColor;
+
+        if (x1ShaderWrapper.isDifferent(
+                getMeasuredWidth(), getMeasuredHeight(), lightTheme, x1ShaderColors)) {
+            x1ShaderWrapper.setShader(
+                    new LinearGradient(
+                            0, rectF.top,
+                            0, getMeasuredHeight() - margin,
+                            x1ShaderColors[0], x1ShaderColors[1],
+                            Shader.TileMode.CLAMP
+                    ),
+                    getMeasuredWidth(), getMeasuredHeight(),
+                    lightTheme,
+                    x1ShaderColors
             );
-            x2Shader = new LinearGradient(
-                    0, rectF.top,
-                    0, getMeasuredHeight() - margin,
-                    Color.rgb(61, 61, 61),
-                    rootColor,
-                    Shader.TileMode.CLAMP
-            );
-        } else {
-            x1Shader = new LinearGradient(
-                    0, rectF.top,
-                    0, getMeasuredHeight() - margin,
-                    Color.rgb(235, 235, 235),
-                    rootColor,
-                    Shader.TileMode.CLAMP
-            );
-            x2Shader = new LinearGradient(
-                    0, rectF.top,
-                    0, getMeasuredHeight() - margin,
-                    Color.rgb(223, 223, 223),
-                    rootColor,
-                    Shader.TileMode.CLAMP
+        }
+        if (x2ShaderWrapper.isDifferent(
+                getMeasuredWidth(), getMeasuredHeight(), lightTheme, x2ShaderColors)) {
+            x2ShaderWrapper.setShader(
+                    new LinearGradient(
+                            0, rectF.top,
+                            0, getMeasuredHeight() - margin,
+                            x2ShaderColors[0], x2ShaderColors[1],
+                            Shader.TileMode.CLAMP
+                    ),
+                    getMeasuredWidth(), getMeasuredHeight(),
+                    lightTheme,
+                    x2ShaderColors
             );
         }
     }
@@ -243,7 +259,7 @@ public class SunMoonView extends View {
                 centerY + radius
         );
 
-        ensureShader();
+        ensureShader(rootColor, x1ShaderWrapper.isLightTheme());
     }
 
     @Override
@@ -257,13 +273,13 @@ public class SunMoonView extends View {
         float progressSweepAngleNight = (float) (1.0 * progresses[1] / maxes[1] * ARC_ANGLE);
         float progressEndAngleNight = startAngle + progressSweepAngleNight;
         if (progressEndAngleDay == progressEndAngleNight) {
-            drawShadow(canvas, 0, progressEndAngleDay, x2Shader);
+            drawShadow(canvas, 0, progressEndAngleDay, x2ShaderWrapper.getShader());
         } else if (progressEndAngleDay > progressEndAngleNight) {
-            drawShadow(canvas, 0, progressEndAngleDay, x1Shader);
-            drawShadow(canvas, 1, progressEndAngleNight, x2Shader);
+            drawShadow(canvas, 0, progressEndAngleDay, x1ShaderWrapper.getShader());
+            drawShadow(canvas, 1, progressEndAngleNight, x2ShaderWrapper.getShader());
         } else { // progressEndAngleDay < progressEndAngleNight
-            drawShadow(canvas, 1, progressEndAngleNight, x1Shader);
-            drawShadow(canvas, 0, progressEndAngleDay, x2Shader);
+            drawShadow(canvas, 1, progressEndAngleNight, x1ShaderWrapper.getShader());
+            drawShadow(canvas, 0, progressEndAngleDay, x2ShaderWrapper.getShader());
         }
 
         // sub line.
