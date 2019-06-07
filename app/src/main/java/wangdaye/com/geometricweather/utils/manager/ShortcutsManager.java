@@ -124,19 +124,19 @@ public class ShortcutsManager {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @NonNull
-    private static Icon getAdaptiveIcon(ResourceProvider helper, String weatherKind, boolean daytime) {
+    private static Icon getAdaptiveIcon(ResourceProvider provider, String weatherKind, boolean daytime) {
         return Icon.createWithAdaptiveBitmap(
                 drawableToBitmap(
-                        WeatherHelper.getShortcutsForegroundIcon(helper, weatherKind, daytime)
+                        WeatherHelper.getShortcutsForegroundIcon(provider, weatherKind, daytime)
                 )
         );
     }
 
     @NonNull
-    private static Icon getIcon(ResourceProvider helper, String weatherKind, boolean daytime) {
+    private static Icon getIcon(ResourceProvider provider, String weatherKind, boolean daytime) {
         return Icon.createWithBitmap(
                 drawableToBitmap(
-                        WeatherHelper.getShortcutsIcon(helper, weatherKind, daytime)
+                        WeatherHelper.getShortcutsIcon(provider, weatherKind, daytime)
                 )
         );
     }
