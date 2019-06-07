@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.resource.provider;
 
 import android.animation.Animator;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.annotation.Size;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.Constants;
+import wangdaye.com.geometricweather.resource.ResourceUtils;
 import wangdaye.com.geometricweather.ui.image.pixel.PixelMoonDrawable;
 import wangdaye.com.geometricweather.ui.image.pixel.PixelSunDrawable;
 
@@ -28,6 +30,11 @@ public class PixelResourcesProvider extends IconPackResourcesProvider {
         return packageName.equals(
                 GeometricWeather.getInstance().getPackageName() + ".Pixel"
         );
+    }
+
+    @NonNull
+    protected Uri getDrawableUri(String resName) {
+        return ResourceUtils.getDrawableUri(super.getPackageName(), "drawable", resName);
     }
 
     @Override
