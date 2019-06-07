@@ -176,9 +176,6 @@
     <string name="settings_summary_appearance">UI stílus, Kártya sorrend, Nyelv…</string>
     <string name="settings_title_card_order">Kártya Sorrend</string>
     <string name="settings_title_gravity_sensor_switch">Gravitációs Érzékelő Használata</string>
-    <string name="settings_title_navigationBar_color">Navigációs Sáv Színezése</string>
-    <string name="settings_navigationBar_color_on">Bekapcsolás</string>
-    <string name="settings_navigationBar_color_off">Kikapcsolás</string>
     <string name="settings_language">Nyelv</string>
     <string name="settings_title_unit">Mértékegység</string>
     <string name="settings_summary_unit">Időjárásadatok mértékegységének beállítása.</string>

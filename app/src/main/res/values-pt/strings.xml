@@ -182,9 +182,6 @@
     <string name="settings_summary_appearance">Estilo de Interface, Ordem de cartões, Idioma…</string>
     <string name="settings_title_card_order">Ordem de cartões</string>
     <string name="settings_title_gravity_sensor_switch">Sensor Open Gravity</string>
-    <string name="settings_title_navigationBar_color">Cor da Barra de Navegação</string>
-    <string name="settings_navigationBar_color_on">Cor do Tema</string>
-    <string name="settings_navigationBar_color_off">Escuro</string>
     <string name="settings_language">Idioma</string>
     <string name="settings_title_unit">Unidade</string>
     <string name="settings_summary_unit">Selecione unidade de clima.</string>

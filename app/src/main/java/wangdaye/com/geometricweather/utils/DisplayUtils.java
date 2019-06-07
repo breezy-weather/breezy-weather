@@ -10,21 +10,24 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Display utils.
@@ -64,33 +67,89 @@ public class DisplayUtils {
         return r.getDimensionPixelSize(resourceId);
     }
 
-    public static void setStatusBarTranslate(Window window) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+    public static int getNavigationBarHeight(Resources r) {
+        if (!isNavigationBarShow()){
+            return 0;
+        }
+        int result = 0;
+        int resourceId = r.getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = r.getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    private static boolean isNavigationBarShow(){
+        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
+        if (activity != null) {
+            Display display = activity.getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            Point realSize = new Point();
+            display.getSize(size);
+            display.getRealSize(realSize);
+            return realSize.y != size.y;
+        } else {
+            return false;
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private static void setDarkTextStatusBar(Window window) {
-        window.getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    public static void setSystemBarStyle(Window window,
+                                         boolean lightStatusBar,
+                                         boolean transparentNavigationBar, boolean lightNavigationBar) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return;
+        }
+
+        int visibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+        if (lightStatusBar && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            visibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        }
+        if (transparentNavigationBar) {
+            visibility |= View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        }
+        if (lightNavigationBar && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            visibility |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+        }
+        window.getDecorView().setSystemUiVisibility(visibility);
     }
 
     public static void setNavigationBarColor(Activity a, @ColorInt int color) {
-        if (color == 0) {
-            ContextCompat.getColor(a, R.color.colorPrimary);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            a.getWindow().setNavigationBarColor(color);
         }
-        Window w = a.getWindow();
-        if (SettingsOptionManager.getInstance(a).isColorNavigationBar()
-                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (a instanceof MainActivity) {
-                w.setNavigationBarColor(color);
+    }
+
+    public static void setSystemBarStyleWithScrolling(Activity activity, View statusBar,
+                                                      boolean topChanged, boolean topOverlap,
+                                                      boolean bottomChanged, boolean bottomOverlap,
+                                                      boolean lightTheme) {
+        float alpha;
+
+        if (topChanged) {
+            if (topOverlap) {
+                alpha = 0.2f;
             } else {
-                w.setNavigationBarColor(ContextCompat.getColor(a, R.color.colorPrimary));
+                alpha = 0.1f;
             }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            w.setNavigationBarColor(ContextCompat.getColor(a, android.R.color.black));
+            statusBar.clearAnimation();
+            statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), alpha));
         }
+
+        if (bottomChanged) {
+            if (bottomOverlap) {
+                alpha = 0.2f;
+            } else {
+                alpha = 0.1f;
+            }
+            setNavigationBarColor(activity, Color.argb((int) (255 * alpha), 0, 0, 0));
+        }
+
+        setSystemBarStyle(
+                activity.getWindow(),
+                topOverlap && lightTheme,
+                true, bottomOverlap && lightTheme
+        );
     }
 
     public static void setWindowTopColor(Activity a, @ColorInt int color) {
@@ -123,37 +182,6 @@ public class DisplayUtils {
     public static boolean isTabletDevice(Context context) {
         return (context.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-    }
-
-    public static void setStatusBarStyleWithScrolling(Window window, View statusBar,
-                                                      boolean overlap, boolean lightTheme) {
-        if (overlap) {
-            if (!lightTheme) {
-                // dark mode.
-                statusBar.clearAnimation();
-                statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
-            } else {
-                // light mode.
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                    statusBar.clearAnimation();
-                    statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.2F));
-                } else {
-                    statusBar.clearAnimation();
-                    statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.1F));
-                }
-            }
-        } else {
-            statusBar.clearAnimation();
-            statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), 0.05F));
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (overlap && lightTheme) {
-                setDarkTextStatusBar(window);
-            } else {
-                setStatusBarTranslate(window);
-            }
-        }
     }
 
     public static boolean isDarkMode(Context context) {

@@ -207,9 +207,6 @@
     <string name="settings_title_card_display">卡片顯示</string>
     <string name="settings_title_card_order">卡片順序</string>
     <string name="settings_title_gravity_sensor_switch">開啓重力感應</string>
-    <string name="settings_title_navigationBar_color">導航欄著色</string>
-    <string name="settings_navigationBar_color_on">導航欄顯示主題色</string>
-    <string name="settings_navigationBar_color_off">導航欄顯示黑色</string>
     <string name="settings_title_alert_notification_switch">推送預警通知</string>
     <string name="settings_language">語言</string>
     <string name="settings_title_unit">單位</string>

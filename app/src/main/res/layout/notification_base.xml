@@ -74,7 +74,6 @@
         android:text=""
         android:textSize="@dimen/widget_time_text_size"
         android:padding="@dimen/little_margin"
-        android:textColor="@color/colorTextLight2nd"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         style="@style/notification_subtitle_text"

@@ -9,6 +9,7 @@
 
     <color name="colorLine">@color/colorLine_light</color>
     <color name="colorRoot">@color/colorRoot_light</color>
+    <color name="colorRootDark">@color/colorRootDark_light</color>
     <color name="colorTextTitle">@color/colorTextTitle_light</color>
     <color name="colorTextContent">@color/colorTextContent_light</color>
     <color name="colorTextSubtitle">@color/colorTextSubtitle_light</color>
@@ -37,6 +38,9 @@
 
     <color name="colorRoot_light">#fafafa</color>
     <color name="colorRoot_dark">#292929</color>
+
+    <color name="colorRootDark_light">#f5f5f5</color>
+    <color name="colorRootDark_dark">#212121</color>
 
     <color name="colorTextTitle_light">@color/colorTextDark</color>
     <color name="colorTextTitle_dark">@color/colorTextLight</color>

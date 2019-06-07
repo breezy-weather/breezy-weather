@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.255</string>
+    <string name="version_code">v2.300</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -220,9 +220,6 @@
     <string name="settings_title_card_display">Card Display</string>
     <string name="settings_title_card_order">Card Order</string>
     <string name="settings_title_gravity_sensor_switch">Open Gravity Sensor</string>
-    <string name="settings_title_navigationBar_color">Navigation Bar Color</string>
-    <string name="settings_navigationBar_color_on">Theme Color</string>
-    <string name="settings_navigationBar_color_off">Dark</string>
     <string name="settings_language">Language</string>
     <string name="settings_title_unit">Unit</string>
     <string name="settings_summary_unit">Set the unit of weather data.</string>
@@ -291,7 +288,6 @@
     <string name="key_card_display">card_display</string>
     <string name="key_card_order">card_order</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
-    <string name="key_navigationBar_color">navigation_bar_color_switch</string>
     <string name="key_language">language</string>
     <string name="key_fahrenheit">fahrenheit</string>
     <string name="key_unit">unit</string>

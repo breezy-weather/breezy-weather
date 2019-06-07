@@ -140,9 +140,6 @@
     <!-- settings -->
     <string name="settings_category_basic">Allgemein</string>
     <string name="settings_title_background_free">Hintergrund</string>
-    <string name="settings_title_navigationBar_color">Farbe der Navigationsleiste</string>
-    <string name="settings_navigationBar_color_on">Standard</string>
-    <string name="settings_navigationBar_color_off">Dunkel</string>
     <string name="settings_language">Sprache</string>
     <string name="settings_title_fahrenheit">Fahrenheit</string>
     <string name="settings_title_refresh_rate">Aktualisierungsintervall</string>

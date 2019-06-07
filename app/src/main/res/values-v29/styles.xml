@@ -1,5 +1,5 @@
 <resources>
-
+    
     <style name="notification_large_title_text" parent="@style/TextAppearance.Compat.Notification.Title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

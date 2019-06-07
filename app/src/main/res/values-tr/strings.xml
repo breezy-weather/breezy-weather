@@ -129,9 +129,6 @@
 
     <!-- settings -->
     <string name="settings_category_basic">Temel</string>
-    <string name="settings_title_navigationBar_color">Gezinme çubuğu rengi.</string>
-    <string name="settings_navigationBar_color_on">Tema rengi.</string>
-    <string name="settings_navigationBar_color_off">Koyu.</string>
     <string name="settings_language">Dil.</string>
     <string name="settings_title_fahrenheit">Fahrenheit.</string>
     <string name="settings_title_permanent_service">kalıcı servis.</string>

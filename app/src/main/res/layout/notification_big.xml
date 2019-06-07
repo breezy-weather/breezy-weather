@@ -4,8 +4,7 @@
     android:id="@+id/notification_big"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:background="@color/notification_background_l">
+    android:layout_height="wrap_content">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -29,21 +28,19 @@
             <TextView
                 android:id="@+id/notification_big_week_1"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="周二" />
 
             <TextView
                 android:id="@+id/notification_big_temp_1"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="3/9°" />
 
             <ImageView
@@ -67,21 +64,19 @@
             <TextView
                 android:id="@+id/notification_big_week_2"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="周二" />
 
             <TextView
                 android:id="@+id/notification_big_temp_2"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="3/9°" />
 
             <ImageView
@@ -105,21 +100,19 @@
             <TextView
                 android:id="@+id/notification_big_week_3"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="周二" />
 
             <TextView
                 android:id="@+id/notification_big_temp_3"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="3/9°" />
 
             <ImageView
@@ -143,21 +136,19 @@
             <TextView
                 android:id="@+id/notification_big_week_4"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="周二" />
 
             <TextView
                 android:id="@+id/notification_big_temp_4"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="3/9°" />
 
             <ImageView
@@ -181,21 +172,19 @@
             <TextView
                 android:id="@+id/notification_big_week_5"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="周二" />
 
             <TextView
                 android:id="@+id/notification_big_temp_5"
                 android:textSize="@dimen/content_text_size"
-                android:textColor="@color/colorTextLight2nd"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
-                style="@style/content_text"
+                style="@style/notification_content_text"
                 tools:text="3/9°" />
 
             <ImageView

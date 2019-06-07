@@ -8,12 +8,15 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
@@ -55,9 +58,15 @@ public abstract class GeoActivity extends AppCompatActivity {
 
         GeometricWeather.getInstance().addActivity(this);
 
+        boolean darkMode = DisplayUtils.isDarkMode(this);
+
         DisplayUtils.setWindowTopColor(this, 0);
-        DisplayUtils.setStatusBarTranslate(getWindow());
-        DisplayUtils.setNavigationBarColor(this, 0);
+        DisplayUtils.setSystemBarStyle(
+                getWindow(), false, false, !darkMode);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            DisplayUtils.setNavigationBarColor(
+                    this, ContextCompat.getColor(this, R.color.colorRootDark));
+        }
 
         this.dialogList = new ArrayList<>();
     }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -83,6 +84,7 @@ public class MainActivity extends GeoActivity
     private SwipeSwitchLayout switchLayout;
     private VerticalSwipeRefreshLayout refreshLayout;
     private VerticalNestedScrollView scrollView;
+    private LinearLayout scrollContainer;
 
     private MainControllerAdapter adapter;
     private AnimatorSet initAnimator;
@@ -364,6 +366,8 @@ public class MainActivity extends GeoActivity
         scrollView.setOnTouchListener(indicatorStateListener);
         scrollView.setOnScrollChangeListener(new OnScrollListener(weatherView.getFirstCardMarginTop()));
 
+        this.scrollContainer = findViewById(R.id.activity_main_scrollContainer);
+
         this.indicator = findViewById(R.id.activity_main_indicator);
     }
 
@@ -371,8 +375,11 @@ public class MainActivity extends GeoActivity
 
     public void reset() {
         DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
-        DisplayUtils.setStatusBarStyleWithScrolling(getWindow(), statusBar, false, colorPicker.isLightTheme());
-        DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
+        DisplayUtils.setSystemBarStyleWithScrolling(
+                this, statusBar,
+                true, false, true, false,
+                colorPicker.isLightTheme()
+        );
 
         setToolbarTitle(locationNow);
 
@@ -428,7 +435,11 @@ public class MainActivity extends GeoActivity
                 weatherView, locationNow.weather, daytime, resourceProvider);
 
         DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
-        DisplayUtils.setNavigationBarColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
+        DisplayUtils.setSystemBarStyleWithScrolling(
+                this, statusBar,
+                true, false, true, true,
+                colorPicker.isLightTheme()
+        );
 
         setToolbarTitle(locationNow);
 
@@ -702,13 +713,27 @@ public class MainActivity extends GeoActivity
 
     private class OnScrollListener implements NestedScrollView.OnScrollChangeListener {
 
+        private View footer;
+
+        private boolean topChanged;
+        private boolean topOverlap;
+        private boolean bottomChanged;
+        private boolean bottomOverlap;
+
         private int firstCardMarginTop;
-        private int overlapTriggerDistance;
+        private int topOverlapTrigger;
 
         OnScrollListener(int firstCardMarginTop) {
             super();
+            footer = findViewById(R.id.container_main_footer);
+
+            topChanged = false;
+            topOverlap = false;
+            bottomChanged = false;
+            bottomOverlap = false;
+
             this.firstCardMarginTop = firstCardMarginTop;
-            this.overlapTriggerDistance = firstCardMarginTop - DisplayUtils.getStatusBarHeight(getResources());
+            this.topOverlapTrigger = firstCardMarginTop - DisplayUtils.getStatusBarHeight(getResources());
         }
 
         @Override
@@ -736,14 +761,31 @@ public class MainActivity extends GeoActivity
                 }
             }
 
-            // set status bar style.
-            if (oldScrollY < overlapTriggerDistance && overlapTriggerDistance <= scrollY) {
-                DisplayUtils.setStatusBarStyleWithScrolling(
-                        getWindow(), statusBar, true, colorPicker.isLightTheme());
-            } else if (oldScrollY >= overlapTriggerDistance && overlapTriggerDistance > scrollY) {
-                DisplayUtils.setStatusBarStyleWithScrolling(
-                        getWindow(), statusBar, false, colorPicker.isLightTheme());
+            // set system bar style.
+            if (scrollY >= topOverlapTrigger) {
+                topChanged = oldScrollY < topOverlapTrigger;
+                topOverlap = true;
+            } else {
+                topChanged = oldScrollY >= topOverlapTrigger;
+                topOverlap = false;
             }
+
+            if (scrollY + scrollView.getMeasuredHeight()
+                    <= scrollContainer.getMeasuredHeight() - footer.getMeasuredHeight()) {
+                bottomChanged = oldScrollY + scrollView.getMeasuredHeight()
+                        > scrollContainer.getMeasuredHeight() - footer.getMeasuredHeight();
+                bottomOverlap = true;
+            } else {
+                bottomChanged = oldScrollY + scrollView.getMeasuredHeight()
+                        <= scrollContainer.getMeasuredHeight() - footer.getMeasuredHeight();
+                bottomOverlap = false;
+            }
+
+            DisplayUtils.setSystemBarStyleWithScrolling(
+                    MainActivity.this, statusBar,
+                    topChanged, topOverlap, bottomChanged, bottomOverlap,
+                    colorPicker.isLightTheme()
+            );
         }
     }
 

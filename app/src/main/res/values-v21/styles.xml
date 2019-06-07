@@ -8,7 +8,13 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
+        <item name="colorAccent">@android:color/transparent</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
     <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">

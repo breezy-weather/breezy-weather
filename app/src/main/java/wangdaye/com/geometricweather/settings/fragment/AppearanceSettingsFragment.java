@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.settings.fragment;
 
-import android.os.Build;
 import android.os.Bundle;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -12,7 +11,6 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.dialog.ProvidersPreviewerDialog;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
@@ -58,12 +56,6 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         );
         cardOrder.setOnPreferenceChangeListener(this);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            findPreference(getString(R.string.key_navigationBar_color)).setEnabled(false);
-        } else {
-            findPreference(getString(R.string.key_navigationBar_color)).setEnabled(true);
-        }
-
         Preference language = findPreference(getString(R.string.key_language));
         language.setSummary(
                 ValueUtils.getLanguage(
@@ -101,10 +93,6 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
                 SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
             });
             dialog.show(getFragmentManager(), null);
-        } else if (preference.getKey().equals(getString(R.string.key_navigationBar_color))) {
-            // navigation bar color.
-            SettingsOptionManager.getInstance(getActivity()).setColorNavigationBar();
-            DisplayUtils.setNavigationBarColor(getActivity(), 0);
         } else if (preference.getKey().equals(getString(R.string.key_gravity_sensor_switch))) {
             SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         }

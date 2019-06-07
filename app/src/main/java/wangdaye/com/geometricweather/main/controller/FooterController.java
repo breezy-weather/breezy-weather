@@ -18,7 +18,7 @@ public class FooterController extends AbstractMainItemController {
     public FooterController(@NonNull Activity activity,
                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
         super(activity, activity.findViewById(R.id.container_main_footer), provider, picker);
-        this.text = view.findViewById(R.id.container_main_footer);
+        this.text = view.findViewById(R.id.container_main_footer_title);
     }
 
     @SuppressLint("SetTextI18n")

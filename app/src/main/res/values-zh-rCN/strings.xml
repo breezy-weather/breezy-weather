@@ -206,9 +206,6 @@
     <string name="settings_title_card_display">卡片显示</string>
     <string name="settings_title_card_order">卡片顺序</string>
     <string name="settings_title_gravity_sensor_switch">开启重力感应</string>
-    <string name="settings_title_navigationBar_color">导航栏着色</string>
-    <string name="settings_navigationBar_color_on">导航栏显示主题颜色</string>
-    <string name="settings_navigationBar_color_off">导航栏显示黑色</string>
     <string name="settings_language">语言</string>
     <string name="settings_title_unit">单位</string>
     <string name="settings_summary_unit">设置天气数据的单位</string>

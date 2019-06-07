@@ -139,9 +139,6 @@
     <!-- settings -->
     <string name="settings_category_basic">Основные</string>
     <string name="settings_title_background_free">Background free</string>
-    <string name="settings_title_navigationBar_color">Цвет панели навигации</string>
-    <string name="settings_navigationBar_color_on">Цвет темы</string>
-    <string name="settings_navigationBar_color_off">Темный</string>
     <string name="settings_language">Язык</string>
     <string name="settings_title_fahrenheit">Градусы по Фаренгейту</string>
     <string name="settings_title_refresh_rate">Частота обновления</string>

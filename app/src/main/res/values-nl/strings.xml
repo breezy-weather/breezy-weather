@@ -152,9 +152,6 @@
     <string name="settings_title_ui_style">UI stijl.</string>
     <string name="settings_title_card_order">Kaartvolgorde.</string>
     <string name="settings_title_gravity_sensor_switch">Gebruik sensoren.</string>
-    <string name="settings_title_navigationBar_color">Gekleurde navigatiebalk.</string>
-    <string name="settings_navigationBar_color_on">Laat themakleur zien.</string>
-    <string name="settings_navigationBar_color_off">Donker.</string>
     <string name="settings_language">Taal.</string>
     <string name="settings_title_fahrenheit">Fahrenheit.</string>
     <string name="settings_title_imperial">Imperial units.</string>

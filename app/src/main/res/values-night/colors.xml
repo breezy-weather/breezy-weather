@@ -5,6 +5,7 @@
     
     <color name="colorLine">@color/colorLine_dark</color>
     <color name="colorRoot">@color/colorRoot_dark</color>
+    <color name="colorRootDark">@color/colorRootDark_dark</color>
     <color name="colorTextTitle">@color/colorTextTitle_dark</color>
     <color name="colorTextContent">@color/colorTextContent_dark</color>
     <color name="colorTextSubtitle">@color/colorTextSubtitle_dark</color>

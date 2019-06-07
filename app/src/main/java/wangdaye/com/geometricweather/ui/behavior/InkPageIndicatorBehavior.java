@@ -21,7 +21,10 @@ public class InkPageIndicatorBehavior<V extends InkPageIndicator> extends Coordi
 
     @Override
     public boolean onLayoutChild(CoordinatorLayout parent, V child, int layoutDirection) {
-        int marginBottom = (int) DisplayUtils.dpToPx(parent.getContext(), 16);
+        int marginBottom = (int) (
+                DisplayUtils.dpToPx(parent.getContext(), 16)
+                        + DisplayUtils.getNavigationBarHeight(parent.getResources())
+        );
         child.layout(0,
                 parent.getMeasuredHeight() - child.getMeasuredHeight() - marginBottom,
                 parent.getMeasuredWidth(),

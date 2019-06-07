@@ -157,9 +157,6 @@
     <string name="settings_title_ui_style">Stile interfaccia</string>
     <string name="settings_title_card_order">Ordine schede.</string>
     <string name="settings_title_gravity_sensor_switch">Apri il sensore di gravità</string>
-    <string name="settings_title_navigationBar_color">Colore barra navigazione.</string>
-    <string name="settings_navigationBar_color_on">Mostra colore tema</string>
-    <string name="settings_navigationBar_color_off">Scuro.</string>
     <string name="settings_language">Lingua.</string>
     <string name="settings_title_fahrenheit">Fahrenheit.</string>
     <string name="settings_title_imperial">Unita\' Imperiali.</string>

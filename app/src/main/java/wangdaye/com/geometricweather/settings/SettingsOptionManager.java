@@ -32,7 +32,6 @@ public class SettingsOptionManager {
     private String iconProvider;
     private String[] cardDisplayValues;
     private String cardOrder;
-    private boolean colorNavigationBar;
     private boolean fahrenheit;
     private boolean imperial;
     private String language;
@@ -71,10 +70,6 @@ public class SettingsOptionManager {
         cardOrder = sharedPreferences.getString(
                 context.getString(R.string.key_card_order),
                 "daily_first"
-        );
-        colorNavigationBar = sharedPreferences.getBoolean(
-                context.getString(R.string.key_navigationBar_color),
-                false
         );
         fahrenheit = sharedPreferences.getBoolean(
                 context.getString(R.string.key_fahrenheit),
@@ -140,14 +135,6 @@ public class SettingsOptionManager {
 
     public void setCardOrder(String cardOrder) {
         this.cardOrder = cardOrder;
-    }
-
-    public boolean isColorNavigationBar() {
-        return colorNavigationBar;
-    }
-
-    public void setColorNavigationBar() {
-        this.colorNavigationBar = !colorNavigationBar;
     }
 
     public boolean isFahrenheit() {

@@ -62,7 +62,7 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
             this.width = (float) (viewWidth * 0.0088 * scale);
 
             this.rectF = new RectF();
-            this.speed = viewWidth / 250f;
+            this.speed = viewWidth / 200f;
             this.color = color;
             this.scale = scale;
 

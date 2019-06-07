@@ -37,12 +37,6 @@
         android:summaryOff="@string/off"
         android:defaultValue="true" />
 
-    <CheckBoxPreference
-        android:title="@string/settings_title_navigationBar_color"
-        android:key="@string/key_navigationBar_color"
-        android:summaryOn="@string/settings_navigationBar_color_on"
-        android:summaryOff="@string/settings_navigationBar_color_off" />
-
     <ListPreference
         android:title="@string/settings_language"
         android:key="@string/key_language"

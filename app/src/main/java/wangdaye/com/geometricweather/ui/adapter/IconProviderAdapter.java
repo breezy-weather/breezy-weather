@@ -113,7 +113,7 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     ).diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(gitHub);
             gitHub.setOnClickListener(v ->
-                    listener.onGitHubItemClicked("")); // TODO: 2019/6/2 url.
+                    listener.onGitHubItemClicked("https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather"));
 
             Glide.with(itemView.getContext())
                     .load(R.drawable.ic_chronus)
