@@ -83,9 +83,10 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
         RemoteViews views = buildWidgetViewDayPart(
                 context, weather,
                 dayTime, textColorInt, fahrenheit,
-                minimalIcon, color.showCard, color.darkText,
+                minimalIcon, color.darkText,
                 clockFont, viewStyle,
-                hideSubtitle, subtitleData);
+                hideSubtitle, subtitleData
+        );
         if (weather == null) {
             return views;
         }
@@ -107,7 +108,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
 
     private static RemoteViews buildWidgetViewDayPart(Context context, @Nullable Weather weather,
                                                       boolean dayTime, int textColor, boolean fahrenheit,
-                                                      boolean minimalIcon, boolean showCard, boolean blackText,
+                                                      boolean minimalIcon, boolean blackText,
                                                       String clockFont, String viewStyle,
                                                       boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
@@ -138,16 +139,14 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        views.setImageViewBitmap(
+        views.setImageViewUri(
                 R.id.widget_clock_day_icon,
-                drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon(
-                                provider,
-                                weather.realTime.weatherKind,
-                                dayTime,
-                                minimalIcon,
-                                blackText || showCard
-                        )
+                WeatherHelper.getWidgetNotificationIconUri(
+                        provider,
+                        weather.realTime.weatherKind,
+                        dayTime,
+                        minimalIcon,
+                        blackText
                 )
         );
         views.setTextViewText(

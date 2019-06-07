@@ -4,12 +4,12 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import android.net.Uri;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -117,45 +117,35 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_temp_5,
                 getTemp(weather, fahrenheit, 4));
 
-        views.setImageViewBitmap(
+        views.setImageViewUri(
                 R.id.widget_week_icon_1,
-                drawableToBitmap(
-                        getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, color.darkText,
-                                0)
-                )
+                getIconDrawableUri(
+                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        0)
         );
-        views.setImageViewBitmap(
+        views.setImageViewUri(
                 R.id.widget_week_icon_2,
-                drawableToBitmap(
-                        getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, color.darkText,
-                                1)
-                )
+                getIconDrawableUri(
+                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        1)
         );
-        views.setImageViewBitmap(
+        views.setImageViewUri(
                 R.id.widget_week_icon_3,
-                drawableToBitmap(
-                        getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, color.darkText,
-                                2)
-                )
+                getIconDrawableUri(
+                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        2)
         );
-        views.setImageViewBitmap(
+        views.setImageViewUri(
                 R.id.widget_week_icon_4,
-                drawableToBitmap(
-                        getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, color.darkText,
-                                3)
-                )
+                getIconDrawableUri(
+                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        3)
         );
-        views.setImageViewBitmap(
+        views.setImageViewUri(
                 R.id.widget_week_icon_5,
-                drawableToBitmap(
-                        getIconDrawable(
-                                provider, weather, dayTime, minimalIcon, color.darkText,
-                                4)
-                )
+                getIconDrawableUri(
+                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        4)
         );
 
         // set text color.
@@ -232,10 +222,10 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return ValueUtils.buildDailyTemp(weather.dailyList.get(index).temps, false, fahrenheit);
     }
 
-    private static Drawable getIconDrawable(ResourceProvider helper, Weather weather,
-                                            boolean dayTime, boolean minimalIcon, boolean blackText,
-                                            int index) {
-        return WeatherHelper.getWidgetNotificationIcon(
+    private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,
+                                          boolean dayTime, boolean minimalIcon, boolean blackText,
+                                          int index) {
+        return WeatherHelper.getWidgetNotificationIconUri(
                 helper, weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
                 dayTime, minimalIcon, blackText
         );

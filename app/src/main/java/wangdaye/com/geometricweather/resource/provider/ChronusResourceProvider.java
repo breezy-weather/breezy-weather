@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -127,6 +128,18 @@ public class ChronusResourceProvider extends ResourceProvider {
         return defaultProvider.getWeatherIcon(weatherKind, dayTime);
     }
 
+    @NonNull
+    @Override
+    public Uri getWeatherIconUri(String weatherKind, boolean dayTime) {
+        String resName = getWeatherIconName(weatherKind, dayTime);
+        int resId = getResId(context, resName, "drawable");
+        if (resId != 0) {
+            return getDrawableUri(resName);
+        } else {
+            return defaultProvider.getWeatherIconUri(weatherKind, dayTime);
+        }
+    }
+
     @Override
     public Drawable[] getWeatherIcons(String weatherKind, boolean dayTime) {
         return new Drawable[] {getWeatherIcon(weatherKind, dayTime), null, null};
@@ -208,14 +221,32 @@ public class ChronusResourceProvider extends ResourceProvider {
 
     @NonNull
     @Override
+    public Uri getMinimalLightIconUri(String weatherKind, boolean dayTime) {
+        return defaultProvider.getMinimalLightIconUri(weatherKind, dayTime);
+    }
+
+    @NonNull
+    @Override
     public Drawable getMinimalGreyIcon(String weatherKind, boolean dayTime) {
         return defaultProvider.getMinimalGreyIcon(weatherKind, dayTime);
     }
 
     @NonNull
     @Override
+    public Uri getMinimalGreyIconUri(String weatherKind, boolean dayTime) {
+        return defaultProvider.getMinimalGreyIconUri(weatherKind, dayTime);
+    }
+
+    @NonNull
+    @Override
     public Drawable getMinimalDarkIcon(String weatherKind, boolean dayTime) {
         return defaultProvider.getMinimalDarkIcon(weatherKind, dayTime);
+    }
+
+    @NonNull
+    @Override
+    public Uri getMinimalDarkIconUri(String weatherKind, boolean dayTime) {
+        return defaultProvider.getMinimalDarkIconUri(weatherKind, dayTime);
     }
 
     @NonNull

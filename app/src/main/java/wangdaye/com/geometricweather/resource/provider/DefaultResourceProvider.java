@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.DrawableRes;
@@ -90,6 +91,14 @@ public class DefaultResourceProvider extends ResourceProvider {
     public Drawable getWeatherIcon(String weatherKind, boolean dayTime) {
         return Objects.requireNonNull(
                 getDrawable(getWeatherIconName(weatherKind, dayTime))
+        );
+    }
+
+    @NonNull
+    @Override
+    public Uri getWeatherIconUri(String weatherKind, boolean dayTime) {
+        return Objects.requireNonNull(
+                getDrawableUri(getWeatherIconName(weatherKind, dayTime))
         );
     }
 
@@ -185,6 +194,14 @@ public class DefaultResourceProvider extends ResourceProvider {
 
     @NonNull
     @Override
+    public Uri getMinimalLightIconUri(String weatherKind, boolean dayTime) {
+        return Objects.requireNonNull(
+                getDrawableUri(getMiniLightIconName(weatherKind, dayTime))
+        );
+    }
+
+    @NonNull
+    @Override
     public Drawable getMinimalGreyIcon(String weatherKind, boolean dayTime) {
         return Objects.requireNonNull(
                 getDrawable(getMiniGreyIconName(weatherKind, dayTime))
@@ -193,9 +210,25 @@ public class DefaultResourceProvider extends ResourceProvider {
 
     @NonNull
     @Override
+    public Uri getMinimalGreyIconUri(String weatherKind, boolean dayTime) {
+        return Objects.requireNonNull(
+                getDrawableUri(getMiniGreyIconName(weatherKind, dayTime))
+        );
+    }
+
+    @NonNull
+    @Override
     public Drawable getMinimalDarkIcon(String weatherKind, boolean dayTime) {
         return Objects.requireNonNull(
                 getDrawable(getMiniDarkIconName(weatherKind, dayTime))
+        );
+    }
+
+    @NonNull
+    @Override
+    public Uri getMinimalDarkIconUri(String weatherKind, boolean dayTime) {
+        return Objects.requireNonNull(
+                getDrawableUri(getMiniDarkIconName(weatherKind, dayTime))
         );
     }
 

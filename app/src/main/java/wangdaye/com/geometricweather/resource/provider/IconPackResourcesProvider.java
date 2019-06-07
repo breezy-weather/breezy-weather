@@ -10,6 +10,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.IntRange;
@@ -200,6 +201,20 @@ public class IconPackResourcesProvider extends ResourceProvider {
         return defaultProvider.getWeatherIcon(weatherKind, dayTime);
     }
 
+    @NonNull
+    @Override
+    public Uri getWeatherIconUri(String weatherKind, boolean dayTime) {
+        if (config.hasWeatherIcons) {
+            String resName = getWeatherIconName(weatherKind, dayTime);
+            int resId = getResId(context, resName, "drawable");
+            if (resId != 0) {
+                return getDrawableUri(resName);
+            }
+        }
+
+        return defaultProvider.getWeatherIconUri(weatherKind, dayTime);
+    }
+
     @Override
     @Size(3)
     public Drawable[] getWeatherIcons(String weatherKind, boolean dayTime) {
@@ -315,6 +330,20 @@ public class IconPackResourcesProvider extends ResourceProvider {
         return defaultProvider.getMinimalLightIcon(weatherKind, dayTime);
     }
 
+    @NonNull
+    @Override
+    public Uri getMinimalLightIconUri(String weatherKind, boolean dayTime) {
+        if (config.hasMinimalIcons) {
+            String resName = getMiniLightIconName(weatherKind, dayTime);
+            int resId = getResId(context, resName, "drawable");
+            if (resId != 0) {
+                return getDrawableUri(resName);
+            }
+        }
+
+        return defaultProvider.getMinimalLightIconUri(weatherKind, dayTime);
+    }
+
     @Override
     @NonNull
     public Drawable getMinimalGreyIcon(String weatherKind, boolean dayTime) {
@@ -331,6 +360,20 @@ public class IconPackResourcesProvider extends ResourceProvider {
         return defaultProvider.getMinimalGreyIcon(weatherKind, dayTime);
     }
 
+    @NonNull
+    @Override
+    public Uri getMinimalGreyIconUri(String weatherKind, boolean dayTime) {
+        if (config.hasMinimalIcons) {
+            String resName = getMiniGreyIconName(weatherKind, dayTime);
+            int resId = getResId(context, resName, "drawable");
+            if (resId != 0) {
+                return getDrawableUri(resName);
+            }
+        }
+
+        return defaultProvider.getMinimalGreyIconUri(weatherKind, dayTime);
+    }
+
     @Override
     @NonNull
     public Drawable getMinimalDarkIcon(String weatherKind, boolean dayTime) {
@@ -345,6 +388,20 @@ public class IconPackResourcesProvider extends ResourceProvider {
         }
 
         return defaultProvider.getMinimalDarkIcon(weatherKind, dayTime);
+    }
+
+    @NonNull
+    @Override
+    public Uri getMinimalDarkIconUri(String weatherKind, boolean dayTime) {
+        if (config.hasMinimalIcons) {
+            String resName = getMiniDarkIconName(weatherKind, dayTime);
+            int resId = getResId(context, resName, "drawable");
+            if (resId != 0) {
+                return getDrawableUri(resName);
+            }
+        }
+
+        return defaultProvider.getMinimalDarkIconUri(weatherKind, dayTime);
     }
 
     @Override

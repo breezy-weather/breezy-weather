@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.ResourceUtils;
+import wangdaye.com.geometricweather.resource.ResourceUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.background.ServiceHelper;
 

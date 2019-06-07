@@ -70,7 +70,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     @WorkerThread @Nullable
-    @SuppressLint("InflateParams, SimpleDateFormat")
+    @SuppressLint({"InflateParams, SimpleDateFormat", "WrongThread"})
     private static View getDrawableView(Context context,
                                         @Nullable Weather weather, @Nullable History history,
                                         boolean lightTheme) {
@@ -133,7 +133,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
             items[i].setTopIconDrawable(
                     WeatherHelper.getWidgetNotificationIcon(
-                            provider, hourly.weatherKind, hourly.dayTime, minimalIcon, true
+                            provider, hourly.weatherKind, hourly.dayTime, minimalIcon, lightTheme
                     )
             );
 
@@ -170,6 +170,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         return drawableView;
     }
 
+    @SuppressLint("WrongThread")
     @WorkerThread
     private static RemoteViews getRemoteViews(Context context, @Nullable View drawableView,
                                               Location location, int width,

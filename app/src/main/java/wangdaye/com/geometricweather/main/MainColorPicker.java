@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
 
-import wangdaye.com.geometricweather.utils.ResourceUtils;
+import wangdaye.com.geometricweather.resource.ResourceUtils;
 
 public class MainColorPicker {
 

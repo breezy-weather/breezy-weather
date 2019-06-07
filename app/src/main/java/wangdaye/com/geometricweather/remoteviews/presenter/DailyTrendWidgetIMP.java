@@ -73,7 +73,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     @WorkerThread @Nullable
-    @SuppressLint("InflateParams, SimpleDateFormat")
+    @SuppressLint({"InflateParams, SimpleDateFormat", "WrongThread"})
     private static View getDrawableView(Context context,
                                         @Nullable Weather weather, @Nullable History history,
                                         boolean lightTheme) {
@@ -153,7 +153,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
             items[i].setTopIconDrawable(
                     WeatherHelper.getWidgetNotificationIcon(
-                            provider, daily.weatherKinds[0], true, minimalIcon, true
+                            provider, daily.weatherKinds[0], true, minimalIcon, lightTheme
                     )
             );
 
@@ -184,7 +184,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
             items[i].setBottomIconDrawable(
                     WeatherHelper.getWidgetNotificationIcon(
-                            provider, daily.weatherKinds[1], false, minimalIcon, true
+                            provider, daily.weatherKinds[1], false, minimalIcon, lightTheme
                     )
             );
 
@@ -194,6 +194,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         return drawableView;
     }
 
+    @SuppressLint("WrongThread")
     @WorkerThread
     private static RemoteViews getRemoteViews(Context context, @Nullable View drawableView,
                                              Location location, int width,

@@ -71,7 +71,11 @@ public class ShortcutsManager {
 
             // location list.
             Weather weather;
-            for (int i = 0; i < list.size(); i ++) {
+            int count = Math.min(
+                    shortcutManager.getMaxShortcutCountPerActivity() - 1,
+                    list.size()
+            );
+            for (int i = 0; i < count; i ++) {
                 weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
                 if (weather != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

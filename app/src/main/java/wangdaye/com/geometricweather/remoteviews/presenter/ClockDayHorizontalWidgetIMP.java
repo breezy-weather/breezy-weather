@@ -86,16 +86,14 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
             textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
-        views.setImageViewBitmap(
+        views.setImageViewUri(
                 R.id.widget_clock_day_icon,
-                drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon(
-                                provider,
-                                weather.realTime.weatherKind,
-                                dayTime,
-                                minimalIcon,
-                                color.darkText
-                        )
+                WeatherHelper.getWidgetNotificationIconUri(
+                        provider,
+                        weather.realTime.weatherKind,
+                        dayTime,
+                        minimalIcon,
+                        color.darkText
                 )
         );
 

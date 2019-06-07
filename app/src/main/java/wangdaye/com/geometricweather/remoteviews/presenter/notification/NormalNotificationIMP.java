@@ -238,11 +238,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                                              boolean customColor, int backgroundColor,
                                              int mainColor, int subColor) {
         minimalIcon &= Build.VERSION.SDK_INT <= Build.VERSION_CODES.P;
-        views.setImageViewBitmap(
+        views.setImageViewUri(
                 R.id.notification_base_icon,
-                drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon(
-                                helper, weather.realTime.weatherKind, dayTime, minimalIcon, textColor)
+                WeatherHelper.getWidgetNotificationIconUri(
+                        helper, weather.realTime.weatherKind, dayTime, minimalIcon, textColor
                 )
         );
 
@@ -349,16 +348,14 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_temp_1,
                 ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit)
         );
-        views.setImageViewBitmap( // set icon 1.
+        views.setImageViewUri( // set icon 1.
                 R.id.notification_big_icon_1,
-                drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon(
-                                helper,
-                                dayTime
-                                        ? weather.dailyList.get(0).weatherKinds[0]
-                                        : weather.dailyList.get(0).weatherKinds[1],
-                                dayTime, minimalIcon, textColor
-                        )
+                WeatherHelper.getWidgetNotificationIconUri(
+                        helper,
+                        dayTime
+                                ? weather.dailyList.get(0).weatherKinds[0]
+                                : weather.dailyList.get(0).weatherKinds[1],
+                        dayTime, minimalIcon, textColor
                 )
         );
         // 2
@@ -370,16 +367,14 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_temp_2,
                 ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit)
         );
-        views.setImageViewBitmap( // set icon 2.
+        views.setImageViewUri( // set icon 2.
                 R.id.notification_big_icon_2,
-                drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon( // get icon 2 resource id.
-                                helper,
-                                dayTime
-                                        ? weather.dailyList.get(1).weatherKinds[0]
-                                        : weather.dailyList.get(1).weatherKinds[1],
-                                dayTime, minimalIcon, textColor
-                        )
+                WeatherHelper.getWidgetNotificationIconUri( // get icon 2 resource id.
+                        helper,
+                        dayTime
+                                ? weather.dailyList.get(1).weatherKinds[0]
+                                : weather.dailyList.get(1).weatherKinds[1],
+                        dayTime, minimalIcon, textColor
                 )
         );
         // 3
@@ -391,16 +386,14 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_temp_3,
                 ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit)
         );
-        views.setImageViewBitmap( // set icon 3.
+        views.setImageViewUri( // set icon 3.
                 R.id.notification_big_icon_3,
-                drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon( // get icon 3 resource id.
-                                helper,
-                                dayTime
-                                        ? weather.dailyList.get(2).weatherKinds[0]
-                                        : weather.dailyList.get(2).weatherKinds[1],
-                                dayTime, minimalIcon, textColor
-                        )
+                WeatherHelper.getWidgetNotificationIconUri( // get icon 3 resource id.
+                        helper,
+                        dayTime
+                                ? weather.dailyList.get(2).weatherKinds[0]
+                                : weather.dailyList.get(2).weatherKinds[1],
+                        dayTime, minimalIcon, textColor
                 )
         );
         // 4
@@ -412,16 +405,14 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_temp_4,
                 ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit)
         );
-        views.setImageViewBitmap( // set icon 4.
+        views.setImageViewUri( // set icon 4.
                 R.id.notification_big_icon_4,
-                drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon( // get icon 4 resource id.
-                                helper,
-                                dayTime
-                                        ? weather.dailyList.get(3).weatherKinds[0]
-                                        : weather.dailyList.get(3).weatherKinds[1],
-                                dayTime, minimalIcon, textColor
-                        )
+                WeatherHelper.getWidgetNotificationIconUri( // get icon 4 resource id.
+                        helper,
+                        dayTime
+                                ? weather.dailyList.get(3).weatherKinds[0]
+                                : weather.dailyList.get(3).weatherKinds[1],
+                        dayTime, minimalIcon, textColor
                 )
         );
         // 5
@@ -433,16 +424,14 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_temp_5,
                 ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit)
         );
-        views.setImageViewBitmap( // set icon 5.
+        views.setImageViewUri( // set icon 5.
                 R.id.notification_big_icon_5,
-                drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon( // get icon 5 resource id.
-                                helper,
-                                dayTime
-                                        ? weather.dailyList.get(4).weatherKinds[0]
-                                        : weather.dailyList.get(4).weatherKinds[1],
-                                dayTime, minimalIcon, textColor
-                        )
+                WeatherHelper.getWidgetNotificationIconUri( // get icon 5 resource id.
+                        helper,
+                        dayTime
+                                ? weather.dailyList.get(4).weatherKinds[0]
+                                : weather.dailyList.get(4).weatherKinds[1],
+                        dayTime, minimalIcon, textColor
                 )
         );
 

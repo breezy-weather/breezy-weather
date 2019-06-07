@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -30,7 +31,7 @@ import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.provider.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.ResourceUtils;
+import wangdaye.com.geometricweather.resource.ResourceUtils;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
 import wangdaye.com.geometricweather.weather.service.CNWeatherService;
 import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
@@ -174,6 +175,34 @@ public class WeatherHelper {
                                                      String weatherInfo, boolean dayTime,
                                                      boolean minimal, boolean darkText) {
         return getWidgetNotificationIcon(
+                provider, weatherInfo, dayTime, minimal, darkText ? "dark" : "light");
+    }
+
+    @NonNull
+    public static Uri getWidgetNotificationIconUri(ResourceProvider provider,
+                                                   String weatherInfo, boolean dayTime,
+                                                   boolean minimal, String textColor) {
+        if (minimal) {
+            switch (textColor) {
+                case "light":
+                    return provider.getMinimalLightIconUri(weatherInfo, dayTime);
+
+                case "grey":
+                    return provider.getMinimalGreyIconUri(weatherInfo, dayTime);
+
+                case "dark":
+                    return provider.getMinimalDarkIconUri(weatherInfo, dayTime);
+            }
+        }
+
+        return provider.getWeatherIconUri(weatherInfo, dayTime);
+    }
+
+    @NonNull
+    public static Uri getWidgetNotificationIconUri(ResourceProvider provider,
+                                                   String weatherInfo, boolean dayTime,
+                                                   boolean minimal, boolean darkText) {
+        return getWidgetNotificationIconUri(
                 provider, weatherInfo, dayTime, minimal, darkText ? "dark" : "light");
     }
 
