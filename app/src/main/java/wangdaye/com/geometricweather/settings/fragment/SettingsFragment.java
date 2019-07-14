@@ -265,8 +265,10 @@ public class SettingsFragment extends PreferenceFragmentCompat
         this.initForecastPart(sharedPreferences);
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)
                 || sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-            PollingManager.resetTodayForecastBackgroundTask(getActivity(), false);
-            PollingManager.resetTomorrowForecastBackgroundTask(getActivity(), false);
+            PollingManager.resetTodayForecastBackgroundTask(
+                    getActivity(), false, false);
+            PollingManager.resetTomorrowForecastBackgroundTask(
+                    getActivity(), false, false);
         }
     }
 }

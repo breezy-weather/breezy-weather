@@ -32,6 +32,7 @@ public class TomorrowForecastUpdateWorker extends AsyncUpdateWorker {
     @Override
     public void handleUpdateResult(SettableFuture<Result> future, boolean failed) {
         future.set(failed ? Result.failure() : Result.success());
-        PollingManager.resetTomorrowForecastBackgroundTask(getApplicationContext(), false);
+        PollingManager.resetTomorrowForecastBackgroundTask(
+                getApplicationContext(), false, true);
     }
 }

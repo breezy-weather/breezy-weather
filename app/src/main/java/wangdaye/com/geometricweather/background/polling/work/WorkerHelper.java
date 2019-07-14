@@ -51,10 +51,10 @@ public class WorkerHelper {
         WorkManager.getInstance().cancelUniqueWork(WORK_NAME_NORMAL_VIEW);
     }
 
-    public static void setTodayForecastUpdateWork(String todayForecastTime) {
+    public static void setTodayForecastUpdateWork(String todayForecastTime, boolean nextDay) {
         OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(TodayForecastUpdateWorker.class)
                 .setInitialDelay(
-                        getForecastAlarmDelayInMinutes(todayForecastTime),
+                        getForecastAlarmDelayInMinutes(todayForecastTime, nextDay),
                         TimeUnit.MINUTES
                 ).setConstraints(
                         new Constraints.Builder()
@@ -73,10 +73,10 @@ public class WorkerHelper {
         WorkManager.getInstance().cancelUniqueWork(WORK_NAME_TODAY_FORECAST);
     }
 
-    public static void setTomorrowForecastUpdateWork(String tomorrowForecastTime) {
+    public static void setTomorrowForecastUpdateWork(String tomorrowForecastTime, boolean nextDay) {
         OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(TomorrowForecastUpdateWorker.class)
                 .setInitialDelay(
-                        getForecastAlarmDelayInMinutes(tomorrowForecastTime),
+                        getForecastAlarmDelayInMinutes(tomorrowForecastTime, nextDay),
                         TimeUnit.MINUTES
                 ).setConstraints(
                         new Constraints.Builder()
@@ -95,7 +95,7 @@ public class WorkerHelper {
         WorkManager.getInstance().cancelUniqueWork(WORK_NAME_TOMORROW_FORECAST);
     }
 
-    private static long getForecastAlarmDelayInMinutes(String time) {
+    private static long getForecastAlarmDelayInMinutes(String time, boolean nextDay) {
         int[] realTimes = new int[]{
                 Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
                 Calendar.getInstance().get(Calendar.MINUTE)
@@ -105,7 +105,7 @@ public class WorkerHelper {
                 Integer.parseInt(time.split(":")[1])
         };
         int delay = (setTimes[0] - realTimes[0]) * 60 + (setTimes[1] - realTimes[1]);
-        if (delay <= 0) {
+        if (delay <= 0 || nextDay) {
             delay += 24 * 60;
         }
         return delay;

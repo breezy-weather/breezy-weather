@@ -52,13 +52,13 @@ public class PollingManager {
             );
 
             if (openTodayForecast) {
-                WorkerHelper.setTodayForecastUpdateWork(todayForecastTime);
+                WorkerHelper.setTodayForecastUpdateWork(todayForecastTime, false);
             } else {
                 WorkerHelper.cancelTodayForecastUpdateWork();
             }
 
             if (openTomorrowForecast) {
-                WorkerHelper.setTomorrowForecastUpdateWork(tomorrowForecastTime);
+                WorkerHelper.setTomorrowForecastUpdateWork(tomorrowForecastTime, false);
             } else {
                 WorkerHelper.cancelTomorrowForecastUpdateWork();
             }
@@ -96,7 +96,8 @@ public class PollingManager {
         }
     }
 
-    public static void resetTodayForecastBackgroundTask(Context context, boolean forceRefresh) {
+    public static void resetTodayForecastBackgroundTask(Context context, boolean forceRefresh,
+                                                        boolean nextDay) {
         if (forceRefresh) {
             IntentHelper.startAwakeForegroundUpdateService(context);
             return;
@@ -117,7 +118,7 @@ public class PollingManager {
             );
 
             if (openTodayForecast) {
-                WorkerHelper.setTodayForecastUpdateWork(todayForecastTime);
+                WorkerHelper.setTodayForecastUpdateWork(todayForecastTime, nextDay);
             } else {
                 WorkerHelper.cancelTodayForecastUpdateWork();
             }
@@ -130,7 +131,8 @@ public class PollingManager {
         }
     }
 
-    public static void resetTomorrowForecastBackgroundTask(Context context, boolean forceRefresh) {
+    public static void resetTomorrowForecastBackgroundTask(Context context, boolean forceRefresh,
+                                                           boolean nextDay) {
         if (forceRefresh) {
             IntentHelper.startAwakeForegroundUpdateService(context);
             return;
@@ -151,7 +153,7 @@ public class PollingManager {
             );
 
             if (openTomorrowForecast) {
-                WorkerHelper.setTomorrowForecastUpdateWork(tomorrowForecastTime);
+                WorkerHelper.setTomorrowForecastUpdateWork(tomorrowForecastTime, nextDay);
             } else {
                 WorkerHelper.cancelTomorrowForecastUpdateWork();
             }
