@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import android.net.Uri;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -26,10 +27,6 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
-/**
- * Widget week utils.
- */
-
 public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
@@ -39,7 +36,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         );
 
         RemoteViews views = getRemoteViews(
-                context, location, weather, config.cardStyle, config.cardAlpha, config.textColor);
+                context, location, weather, config.cardStyle, config.cardAlpha, config.textColor, config.textSize);
 
         if (views != null) {
             AppWidgetManager.getInstance(context).updateAppWidget(
@@ -50,7 +47,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
-                                             String cardStyle, int cardAlpha, String textColor) {
+                                             String cardStyle, int cardAlpha, String textColor, int textSize) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_week);
         if (weather == null) {
             return views;
@@ -159,6 +156,22 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         views.setTextColor(R.id.widget_week_temp_3, textColorInt);
         views.setTextColor(R.id.widget_week_temp_4, textColorInt);
         views.setTextColor(R.id.widget_week_temp_5, textColorInt);
+
+        // set text size.
+        if (textSize != 100) {
+            float contentSize = context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size)
+                    * textSize / 100f;
+            views.setTextViewTextSize(R.id.widget_week_week_1, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_week_2, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_week_3, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_week_4, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_week_5, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_temp_1, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_temp_2, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_temp_3, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_temp_4, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_week_temp_5, TypedValue.COMPLEX_UNIT_PX, contentSize);
+        }
 
         // set card visibility.
         if (color.showCard) {

@@ -171,7 +171,6 @@ public class TrendRecyclerView extends RecyclerView {
                 paint
         );
 
-
         paint.setStyle(Paint.Style.FILL);
         paint.setTextSize(TEXT_SIZE);
         paint.setTextAlign(Paint.Align.LEFT);

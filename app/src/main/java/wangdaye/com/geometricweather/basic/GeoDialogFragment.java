@@ -1,12 +1,10 @@
 package wangdaye.com.geometricweather.basic;
 
-import android.app.Dialog;
-import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import android.view.View;
-
-import wangdaye.com.geometricweather.GeometricWeather;
 
 /**
  * Geometric weather dialog fragment.
@@ -14,22 +12,21 @@ import wangdaye.com.geometricweather.GeometricWeather;
 
 public abstract class GeoDialogFragment extends DialogFragment {
 
-    @NonNull
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
-        if (activity != null) {
-            activity.getDialogList().add(this);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Activity activity = getActivity();
+        if (activity instanceof GeoActivity) {
+            ((GeoActivity) activity).getDialogList().add(this);
         }
-        return super.onCreateDialog(savedInstanceState);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
-        if (activity != null) {
-            activity.getDialogList().remove(this);
+        Activity activity = getActivity();
+        if (activity instanceof GeoActivity) {
+            ((GeoActivity) activity).getDialogList().remove(this);
         }
     }
 

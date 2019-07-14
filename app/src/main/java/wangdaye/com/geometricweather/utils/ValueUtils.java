@@ -3,6 +3,8 @@ package wangdaye.com.geometricweather.utils;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.annotation.Nullable;
+
 import wangdaye.com.geometricweather.R;
 
 /**
@@ -107,7 +109,7 @@ public class ValueUtils {
         }
     }
 
-    public static float getRefreshRateScale(String value) {
+    public static float getPollingRateScale(String value) {
         switch (value) {
             case "0:30":
                 return 0.5f;
@@ -238,5 +240,33 @@ public class ValueUtils {
 
     public static int calcFahrenheit(int temp) {
         return (int) (9.0 / 5.0 * temp + 32);
+    }
+
+    public static <T> T nonNull(@Nullable T obj) throws NullException {
+        if (obj == null) {
+            throw new NullException();
+        }
+        return obj;
+    }
+
+    public static int nonNull(int resId) throws NullResourceIdException {
+        if (resId == 0) {
+            throw new NullResourceIdException();
+        }
+        return resId;
+    }
+
+    public static class NullException extends Exception {
+
+        public NullException() {
+            super("Null Object.");
+        }
+    }
+
+    public static class NullResourceIdException extends Exception {
+
+        public NullResourceIdException() {
+            super("Null Resource.");
+        }
     }
 }

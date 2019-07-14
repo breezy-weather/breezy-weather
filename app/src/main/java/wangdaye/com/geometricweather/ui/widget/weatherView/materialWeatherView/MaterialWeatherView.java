@@ -33,7 +33,7 @@ public class MaterialWeatherView extends View implements WeatherView {
     @Nullable private WeatherAnimationImplementor implementor;
     @Nullable private RotateController[] rotators;
 
-    private boolean openGravitySensor;
+    private boolean gravitySensorEnabled;
     @Nullable private SensorManager sensorManager;
     @Nullable private Sensor gravitySensor;
 
@@ -96,7 +96,7 @@ public class MaterialWeatherView extends View implements WeatherView {
             // z : (+) look down / (-) look up.
             // rotation2D : (+) anticlockwise / (-) clockwise.
             // rotation3D : (+) look down / (-) look up.
-            if (openGravitySensor) {
+            if (gravitySensorEnabled) {
                 float aX = ev.values[0];
                 float aY = ev.values[1];
                 float aZ = ev.values[2];
@@ -140,7 +140,7 @@ public class MaterialWeatherView extends View implements WeatherView {
     private void initialize() {
         this.sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
-            this.openGravitySensor = true;
+            this.gravitySensorEnabled = true;
             this.gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
         }
 
@@ -235,10 +235,6 @@ public class MaterialWeatherView extends View implements WeatherView {
         };
     }
 
-    public void setOpenGravitySensor(boolean openGravitySensor) {
-        this.openGravitySensor = openGravitySensor;
-    }
-
     private int getBrighterColor(int color){
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
@@ -274,7 +270,7 @@ public class MaterialWeatherView extends View implements WeatherView {
 
         if (updateDataRunnable != null && updateDataRunnable.isRunning()) {
             // Set step to dismiss. The implementor will execute exit animation and call weather
-            // view to reset it.
+            // view to resetWidget it.
             step = STEP_DISMISS;
         }
     }
@@ -374,5 +370,10 @@ public class MaterialWeatherView extends View implements WeatherView {
                 updateDataRunnable = null;
             }
         }
+    }
+
+    @Override
+    public void setGravitySensorEnabled(boolean enabled) {
+        this.gravitySensorEnabled = enabled;
     }
 }

@@ -41,12 +41,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
-            android:scrollbars="none"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/activity_widget_config_scrollView"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/activity_widget_config_scrollContainer"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -135,6 +137,10 @@
                         app:bsb_section_count="5"
                         app:bsb_seek_by_section="true"
                         app:bsb_bubble_text_color="@color/colorRoot"
+                        app:bsb_show_section_text="true"
+                        app:bsb_section_text_position="below_section_mark"
+                        app:bsb_section_text_color="@color/colorTextSubtitle"
+                        app:bsb_section_text_size="@dimen/subtitle_text_size"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
@@ -219,6 +225,42 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/activity_widget_config_textSizeContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_widget_config_textSizeTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_text_size"
+                        android:layout_alignParentStart="true"
+                        style="@style/content_text" />
+
+                    <com.xw.repo.BubbleSeekBar
+                        android:id="@+id/activity_widget_config_textSizeSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/activity_widget_config_textSizeTitle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        app:bsb_min="0"
+                        app:bsb_max="300"
+                        app:bsb_progress="100"
+                        app:bsb_section_count="3"
+                        app:bsb_bubble_text_color="@color/colorRoot"
+                        app:bsb_show_section_text="true"
+                        app:bsb_section_text_position="below_section_mark"
+                        app:bsb_section_text_color="@color/colorTextSubtitle"
+                        app:bsb_section_text_size="@dimen/subtitle_text_size"
+                        app:bsb_show_thumb_text="true"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/activity_widget_config_clockFontContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -263,7 +305,67 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/activity_widget_config_custom_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorRoot"
+            app:behavior_hideable="true"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/activity_widget_config_subtitle_inputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/normal_margin">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/activity_widget_config_subtitle_inputter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textFilter"
+                            android:hint="@string/feedback_subtitle_data"
+                            android:textColorHint="@color/colorTextSubtitle"
+                            android:textColorHighlight="@color/colorTextSubtitle"
+                            android:textSize="@dimen/content_text_size"
+                            android:textColor="@color/colorTextContent"
+                            android:layout_margin="@dimen/little_margin"
+                            android:maxLines="1"
+                            tools:ignore="Autofill" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:text="@string/feedback_custom_subtitle_explanation"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        style="@style/content_text" />
+
+                    <TextView
+                        android:text="@string/feedback_custom_subtitle_keywords"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:textIsSelectable="true"
+                        style="@style/content_text" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

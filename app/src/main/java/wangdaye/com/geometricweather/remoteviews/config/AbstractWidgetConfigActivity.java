@@ -19,7 +19,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,16 +32,20 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.Switch;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.xw.repo.BubbleSeekBar;
 
 import org.jetbrains.annotations.NotNull;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.background.BackgroundManager;
+import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
@@ -59,13 +66,19 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected FrameLayout widgetContainer;
 
     protected CoordinatorLayout container;
+    protected NestedScrollView scrollView;
     protected RelativeLayout viewTypeContainer;
     protected RelativeLayout cardStyleContainer;
     protected RelativeLayout cardAlphaContainer;
     protected RelativeLayout hideSubtitleContainer;
     protected RelativeLayout subtitleDataContainer;
     protected RelativeLayout textColorContainer;
+    protected RelativeLayout textSizeContainer;
     protected RelativeLayout clockFontContainer;
+
+    private BottomSheetBehavior bottomSheetBehavior;
+    private TextInputLayout subtitleInputLayout;
+    private TextInputEditText subtitleInputter;
 
     protected Location locationNow;
 
@@ -91,6 +104,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected String textColorValueNow;
     protected String[] textColors;
     protected String[] textColorValues;
+
+    protected int textSize;
 
     protected String clockFontValueNow;
     protected String[] clockFonts;
@@ -180,7 +195,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.hideSubtitle = false;
 
         this.subtitleDataValueNow = "time";
-        int length = LanguageUtils.getLanguageCode(this).startsWith("zh") ? 5 : 4;
+        int length = LanguageUtils.getLanguageCode(this).startsWith("zh") ? 6 : 5;
         this.subtitleData = new String[length];
         this.subtitleDataValues = new String[length];
         String[] data = res.getStringArray(R.array.subtitle_data);
@@ -193,6 +208,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.textColorValueNow = "light";
         this.textColors = res.getStringArray(R.array.widget_text_colors);
         this.textColorValues = res.getStringArray(R.array.widget_text_color_values);
+
+        this.textSize = 100;
 
         this.clockFontValueNow = "light";
         this.clockFonts = res.getStringArray(R.array.clock_font);
@@ -208,6 +225,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         this.container = findViewById(R.id.activity_widget_config_container);
 
+        this.scrollView = findViewById(R.id.activity_widget_config_scrollView);
+
         this.viewTypeContainer = findViewById(R.id.activity_widget_config_viewStyleContainer);
         AppCompatSpinner viewTypeSpinner = findViewById(R.id.activity_widget_config_styleSpinner);
         viewTypeSpinner.setOnItemSelectedListener(new ViewTypeSpinnerSelectedListener());
@@ -221,8 +240,18 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         );
 
         this.cardAlphaContainer = findViewById(R.id.activity_widget_config_cardAlphaContainer);
-        BubbleSeekBar seekBar = findViewById(R.id.activity_widget_config_cardAlphaSeekBar);
-        seekBar.setOnProgressChangedListener(new CardAlphaChangedListener());
+        BubbleSeekBar cardAlphaSeekBar = findViewById(R.id.activity_widget_config_cardAlphaSeekBar);
+        cardAlphaSeekBar.setCustomSectionTextArray((sectionCount, array) -> {
+            array.clear();
+            array.put(0, "0%");
+            array.put(1, "20%");
+            array.put(2, "40%");
+            array.put(3, "60%");
+            array.put(4, "80%");
+            array.put(5, "100%");
+            return array;
+        });
+        cardAlphaSeekBar.setOnProgressChangedListener(new CardAlphaChangedListener());
 
         this.hideSubtitleContainer = findViewById(R.id.activity_widget_config_hideSubtitleContainer);
         Switch hideSubtitleSwitch = findViewById(R.id.activity_widget_config_hideSubtitleSwitch);
@@ -241,6 +270,18 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textStyleSpinner.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, textColors)
         );
+
+        this.textSizeContainer = findViewById(R.id.activity_widget_config_textSizeContainer);
+        BubbleSeekBar textSizeSeekBar = findViewById(R.id.activity_widget_config_textSizeSeekBar);
+        textSizeSeekBar.setCustomSectionTextArray((sectionCount, array) -> {
+            array.clear();
+            array.put(0, "0%");
+            array.put(1, "100%");
+            array.put(2, "200%");
+            array.put(3, "300%");
+            return array;
+        });
+        textSizeSeekBar.setOnProgressChangedListener(new TextSizeChangedListener());
 
         this.clockFontContainer = findViewById(R.id.activity_widget_config_clockFontContainer);
         AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_widget_config_clockFontSpinner);
@@ -261,6 +302,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             editor.putBoolean(getString(R.string.key_hide_subtitle), hideSubtitle);
             editor.putString(getString(R.string.key_subtitle_data), subtitleDataValueNow);
             editor.putString(getString(R.string.key_text_color), textColorValueNow);
+            editor.putInt(getString(R.string.key_text_size), textSize);
             editor.putString(getString(R.string.key_clock_font), clockFontValueNow);
             editor.apply();
 
@@ -278,9 +320,42 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             setResult(RESULT_OK, resultValue);
 
-            BackgroundManager.resetNormalBackgroundTask(this, true);
+            PollingManager.resetNormalBackgroundTask(this, true);
             finish();
         });
+
+        bottomSheetBehavior = BottomSheetBehavior.from(
+                findViewById(R.id.activity_widget_config_custom_subtitle));
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+        subtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout);
+
+        subtitleInputter = findViewById(R.id.activity_widget_config_subtitle_inputter);
+        subtitleInputter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // do nothing.
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // do nothing.
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable != null) {
+                    subtitleDataValueNow = editable.toString();
+                } else {
+                    subtitleDataValueNow = "";
+                }
+                updateHostView();
+            }
+        });
+
+        LinearLayout scrollContainer = findViewById(R.id.activity_widget_config_scrollContainer);
+        scrollContainer.post(() -> scrollContainer.setPaddingRelative(
+                0, 0, 0, subtitleInputLayout.getMeasuredHeight()));
     }
 
     public final void updateHostView() {
@@ -327,7 +402,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
         locationNow.weather = DatabaseHelper.getInstance(this).readWeather(requestLocation);
         updateHostView();
-        SnackbarUtils.showSnackbar(getString(R.string.feedback_get_weather_failed));
+        SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
     }
 
     public void bindWallpaper(ImageView imageView) {
@@ -421,8 +496,26 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     private class SubtitleDataSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            if (subtitleDataValues[i].equals("custom")) {
+                bottomSheetBehavior.setPeekHeight(subtitleInputLayout.getMeasuredHeight(), true);
+                bottomSheetBehavior.setHideable(false);
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            } else {
+                bottomSheetBehavior.setPeekHeight(0);
+                bottomSheetBehavior.setHideable(true);
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
             if (!subtitleDataValueNow.equals(subtitleDataValues[i])) {
-                subtitleDataValueNow = subtitleDataValues[i];
+                if (subtitleDataValues[i].equals("custom")) {
+                    Editable editable = subtitleInputter.getText();
+                    if (editable != null) {
+                        subtitleDataValueNow = editable.toString();
+                    } else {
+                        subtitleDataValueNow = "";
+                    }
+                } else {
+                    subtitleDataValueNow = subtitleDataValues[i];
+                }
                 updateHostView();
             }
         }
@@ -468,6 +561,16 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         public void getProgressOnActionUp(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
             if (cardAlpha != progress) {
                 cardAlpha = progress;
+                updateHostView();
+            }
+        }
+    }
+
+    private class TextSizeChangedListener extends BubbleSeekBar.OnProgressChangedListenerAdapter {
+        @Override
+        public void getProgressOnActionUp(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
+            if (textSize != progress) {
+                textSize = progress;
                 updateHostView();
             }
         }

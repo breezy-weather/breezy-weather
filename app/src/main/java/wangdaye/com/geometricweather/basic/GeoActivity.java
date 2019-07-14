@@ -1,12 +1,11 @@
 package wangdaye.com.geometricweather.basic;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -30,36 +29,21 @@ public abstract class GeoActivity extends AppCompatActivity {
     private List<GeoDialogFragment> dialogList;
     private boolean foreground;
 
-    private BroadcastReceiver localeChangedReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                    && intent.getAction() != null
-                    && intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
-                LanguageUtils.setLanguage(
-                        GeoActivity.this,
-                        SettingsOptionManager.getInstance(context).getLanguage()
-                );
-            }
-        }
-    };
+    @Nullable private OnRequestPermissionsResultListener permissionsListener;
 
     @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        registerReceiver(localeChangedReceiver, new IntentFilter(Intent.ACTION_LOCALE_CHANGED));
+        GeometricWeather.getInstance().addActivity(this);
+
         LanguageUtils.setLanguage(
                 this,
                 SettingsOptionManager.getInstance(this).getLanguage()
         );
 
-        GeometricWeather.getInstance().addActivity(this);
-
         boolean darkMode = DisplayUtils.isDarkMode(this);
-
         DisplayUtils.setWindowTopColor(this, 0);
         DisplayUtils.setSystemBarStyle(
                 getWindow(), false, false, !darkMode);
@@ -90,7 +74,6 @@ public abstract class GeoActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         GeometricWeather.getInstance().removeActivity(this);
-        unregisterReceiver(localeChangedReceiver);
     }
 
     public View provideSnackbarContainer() {
@@ -109,5 +92,27 @@ public abstract class GeoActivity extends AppCompatActivity {
 
     public List<GeoDialogFragment> getDialogList() {
         return dialogList;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void requestPermissions(@NonNull String[] permissions, int requestCode,
+                                   @Nullable OnRequestPermissionsResultListener l) {
+        permissionsListener = l;
+        requestPermissions(permissions, requestCode);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permission, @NonNull int[] grantResult) {
+        super.onRequestPermissionsResult(requestCode, permission, grantResult);
+        if (permissionsListener != null) {
+            permissionsListener.onRequestPermissionsResult(requestCode, permission, grantResult);
+            permissionsListener = null;
+        }
+    }
+
+    public interface OnRequestPermissionsResultListener {
+        void onRequestPermissionsResult(int requestCode,
+                                        @NonNull String[] permission, @NonNull int[] grantResult);
     }
 }

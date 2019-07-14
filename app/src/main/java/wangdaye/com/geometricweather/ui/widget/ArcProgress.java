@@ -11,6 +11,8 @@ import android.graphics.Shader;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
+
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -39,6 +41,8 @@ public class ArcProgress extends View {
     private float arcAngle;
     private float progressWidth;
     @ColorInt private int progressColor;
+    @ColorInt private int shadowColor;
+    @ColorInt private int shaderColor;
     @ColorInt private int backgroundColor;
 
     private String text;
@@ -49,6 +53,9 @@ public class ArcProgress extends View {
     private String bottomText;
     private float bottomTextSize;
     @ColorInt private int bottomTextColor;
+
+    private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.1f;
+    private static final float SHADOW_ALPHA_FACTOR_DARK = 0.1f;
 
     public ArcProgress(Context context) {
         this(context, null);
@@ -81,6 +88,8 @@ public class ArcProgress extends View {
                 R.styleable.ArcProgress_progress_width, DisplayUtils.dpToPx(getContext(), 8));
         progressColor = attributes.getColor(
                 R.styleable.ArcProgress_progress_color, ContextCompat.getColor(getContext(), R.color.colorAccent));
+        shadowColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
+        shaderColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
         backgroundColor = attributes.getColor(
                 R.styleable.ArcProgress_background_color, ContextCompat.getColor(getContext(), R.color.colorLine));
 
@@ -136,9 +145,22 @@ public class ArcProgress extends View {
         }
     }
 
-    public void setProgressColor(@ColorInt int progressColor) {
+    public void setProgressColor(@ColorInt int progressColor, boolean lightTheme) {
         this.progressColor = progressColor;
+        this.shadowColor = getDarkerColor(progressColor);
+        this.shaderColor = ColorUtils.setAlphaComponent(
+                progressColor,
+                (int) (255 * (lightTheme ? SHADOW_ALPHA_FACTOR_LIGHT : SHADOW_ALPHA_FACTOR_DARK))
+        );
         this.invalidate();
+    }
+
+    private int getDarkerColor(@ColorInt int color){
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[1] = hsv[1] + 0.15f;
+        hsv[2] = hsv[2] - 0.15f;
+        return Color.HSVToColor(hsv);
     }
 
     public void setArcBackgroundColor(@ColorInt int backgroundColor) {
@@ -166,14 +188,12 @@ public class ArcProgress extends View {
         this.invalidate();
     }
 
-    public void ensureShadowShader(boolean lightTheme) {
-        shaderColors[0] = lightTheme
-                ? Color.argb(50, 173, 173, 173)
-                : Color.argb(20, 173, 173, 173);
+    private void ensureShadowShader() {
+        shaderColors[0] = shaderColor;
         shaderColors[1] = Color.TRANSPARENT;
 
         if (shaderWrapper.isDifferent(
-                getMeasuredWidth(), getMeasuredHeight(), lightTheme, shaderColors)) {
+                getMeasuredWidth(), getMeasuredHeight(), false, shaderColors)) {
             shaderWrapper.setShader(
                     new LinearGradient(
                             0, rectF.top,
@@ -182,7 +202,7 @@ public class ArcProgress extends View {
                             Shader.TileMode.CLAMP
                     ),
                     getMeasuredWidth(), getMeasuredHeight(),
-                    lightTheme,
+                    false,
                     shaderColors
             );
         }
@@ -213,7 +233,7 @@ public class ArcProgress extends View {
         float angle = (360 - arcAngle) / 2f;
         arcBottomHeight = radius * (float) (1 - Math.cos(angle / 180 * Math.PI));
 
-        ensureShadowShader(shaderWrapper.isLightTheme());
+        ensureShadowShader();
     }
 
     @Override
@@ -225,6 +245,7 @@ public class ArcProgress extends View {
         float deltaAngle = (float) (progressWidth / 2 / Math.PI / (rectF.width() / 2) * 180);
 
         if (progress > 0) {
+            ensureShadowShader();
             shadowPaint.setShader(shaderWrapper.getShader());
             if (progressEndAngle + deltaAngle >= 360) {
                 canvas.drawCircle(
@@ -249,12 +270,7 @@ public class ArcProgress extends View {
         canvas.drawArc(rectF, startAngle, arcAngle, false, progressPaint);
         if (progress > 0) {
             progressPaint.setColor(progressColor);
-            progressPaint.setShadowLayer(
-                    2,
-                    0,
-                    2,
-                    Color.argb((int) (255 * 0.2), 0, 0, 0)
-            );
+            progressPaint.setShadowLayer(1, 0, 1, shadowColor);
             canvas.drawArc(rectF, startAngle, progressSweepAngle, false, progressPaint);
         }
 

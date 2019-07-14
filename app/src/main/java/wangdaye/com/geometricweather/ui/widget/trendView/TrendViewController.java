@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.ui.widget.trendView;
 
-import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,11 +8,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainColorPicker;
-import wangdaye.com.geometricweather.main.adapter.DailyTrendAdapter;
-import wangdaye.com.geometricweather.main.adapter.HourlyTrendAdapter;
+import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.main.ui.adapter.DailyTrendAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
 /**
@@ -22,12 +22,12 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
 public class TrendViewController {
 
-    public static void setDailyTrend(Context context, TextView title, TextView subtitle,
+    public static void setDailyTrend(GeoActivity activity, TextView title, TextView subtitle,
                                      TrendRecyclerView recyclerView,
                                      @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                                      @NonNull Weather weather, @Nullable History history,
                                      int[] themeColors) {
-        title.setText(context.getString(R.string.daily_overview));
+        title.setText(activity.getString(R.string.daily_overview));
 
         if (TextUtils.isEmpty(weather.index.simpleForecast)) {
             subtitle.setVisibility(View.GONE);
@@ -38,10 +38,10 @@ public class TrendViewController {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
-                new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new DailyTrendAdapter(weather, history, themeColors, provider, picker));
+                new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(new DailyTrendAdapter(activity, weather, history, themeColors, provider, picker));
 
-        recyclerView.setLineColor(picker.getLineColor(context));
+        recyclerView.setLineColor(picker.getLineColor(activity));
         if (history == null) {
             recyclerView.setData(null, 0, 0, true);
         } else {
@@ -60,12 +60,12 @@ public class TrendViewController {
         }
     }
 
-    public static void setHourlyTrend(Context context, TextView title, TextView subtitle,
+    public static void setHourlyTrend(GeoActivity activity, TextView title, TextView subtitle,
                                       TrendRecyclerView recyclerView,
                                       @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                                       @NonNull Weather weather, @Nullable History history,
                                       int[] themeColors) {
-        title.setText(context.getString(R.string.hourly_overview));
+        title.setText(activity.getString(R.string.hourly_overview));
 
         if (TextUtils.isEmpty(weather.index.briefing)) {
             subtitle.setVisibility(View.GONE);
@@ -76,10 +76,10 @@ public class TrendViewController {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
-                new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new HourlyTrendAdapter(weather, history, themeColors, provider, picker));
+                new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(new HourlyTrendAdapter(activity, weather, history, themeColors, provider, picker));
 
-        recyclerView.setLineColor(picker.getLineColor(context));
+        recyclerView.setLineColor(picker.getLineColor(activity));
         if (history == null) {
             recyclerView.setData(null, 0, 0, false);
         } else {

@@ -94,10 +94,13 @@
     <string name="about_app">概覽</string>
     <string name="introduce">介紹</string>
     <string name="email">E-mail</string>
-    <string name="donate">捐贈 (支付寶)</string>
+    <string name="donate">捐贈</string>
     <string name="gitHub">GitHub</string>
     <string name="translator">譯者</string>
     <string name="thanks">鳴謝</string>
+
+    <string name="alipay">支付寶</string>
+    <string name="wechat">微信</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">M月d日</string>
@@ -127,11 +130,62 @@
 
     <string name="feedback_view_style">界面風格</string>
     <string name="feedback_show_widget_card">卡片背景</string>
+    <string name="feedback_show_widget_card_alpha">卡片透明度</string>
     <string name="feedback_hide_subtitle">隱藏副標題</string>
     <string name="feedback_subtitle_data">副標題數據</string>
     <string name="feedback_black_text">暗色字體</string>
+    <string name="feedback_text_size">文字尺寸</string>
     <string name="feedback_clock_font">時鐘字體</string>
-
+    <string name="feedback_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。\n\n例如：若鍵入\"天氣為$cw$\"，副標題將顯示爲\"天氣為晴\"。</string>
+    <string name="feedback_custom_subtitle_keywords">
+        \n
+        $cw$ : 當天天氣\n
+        $ct$ : 當前溫度 (℃/℉)\n
+        $ctd$ : 當前溫度 (°)\n
+        $at$ : 體感溫度（℃/℉）\n
+        $atd$ : 體感溫度（°）\n
+        $cp$ : 當前降水概率 (%)\n
+        $cwd$ : 當前風況\n
+        \n
+        $l$ : 地址\n
+        $lat$ : 緯度\n
+        $lon$ : 經度\n
+        $ut$ : 更新時間\n
+        $dd$ : 每日概覽\n
+        $hd$ : 小時概覽\n
+        $h$ : 濕度\n
+        \n
+        $0dw$, $1dw$, …, $4dw$ : \n今日白天天氣，明日，……，4天后\n
+        \n
+        $0nw$, $1nw$, …, $4nw$ : \n今日夜間天氣，明日，……，4天后\n
+        \n
+        $0dt$, $1dt$, …, $4dt$ : \n今日白天溫度，明日，……，4天后（℃/℉）\n
+        \n
+        $0nt$, $1nt$, …, $4nt$ : \n今日夜間溫度，明日，……，4天后（℃/℉）\n
+        \n
+        $0dtd$, $1dtd$, …, $4dtd$ : \n今日白天溫度，明日，……，4天后（°）\n
+        \n
+        $0ntd$, $1ntd$, …, $4ntd$ : \n今日夜間溫度，明日，……，4天后（°）\n
+        \n
+        $0dp$, $1dp$, …, $4dp$ : \n今日白天降水概率，明日，……，4天后（%）\n
+        \n
+        $0np$, $1np$, …, $4np$ : \n今日夜間降水概率，明日，……，4天后（%）\n
+        \n
+        $0dwd$, $1dwd$, …, $4dwd$ : \n今日白天風況，明日，……，4天后\n
+        \n
+        $0nwd$, $1nwd$, …, $4nwd$ : \n今日夜間風況，明日，……，4天后\n
+        \n
+        $0sr$, $1sr$, …, $4sr$ : \n今日日出時間，明日，……，4天后\n
+        \n
+        $0ss$, $1ss$, …, $4ss$ : \n今日日落時間，明日，……，4天后\n
+        \n
+        $0mr$, $1mr$, …, $4mr$ : \n今日月出時間，明日，……，4天后\n
+        \n
+        $0ms$, $1ms$, …, $4ms$ : \n今日月落時間，明日，……，4天后\n
+        \n
+        $0mp$, $1mp$, …, $4mp$ : \n今日月相，明日，……，4天后\n
+    </string>
+    
     <string name="feedback_click_toggle">點擊趨勢圖可切換數據</string>
     <string name="feedback_no_data">暫無數據</string>
 
@@ -154,6 +208,7 @@
 
     <string name="feedback_running_in_background">正在後臺運行以保持更新數據</string>
     <string name="feedback_updating_weather_data">正在更新天氣數據</string>
+    <string name="feedback_updated_in_background">已在後臺完成更新</string>
 
     <string name="feedback_interpret_background_notification_content">關閉後臺純净后，部分設備的通知欄中可能會出現一個無法清除的通知</string>
     <string name="feedback_interpret_notification_group_title">關閉相應通知頻道</string>

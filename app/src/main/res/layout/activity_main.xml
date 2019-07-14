@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorRoot">
 
-    <wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout
+    <wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout
         android:id="@+id/activity_main_switchView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -72,7 +72,7 @@
             app:dotGap="8dp"
             app:animationDuration="300" />
         
-    </wangdaye.com.geometricweather.ui.widget.verticalScrollView.SwipeSwitchLayout>
+    </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
 
     <wangdaye.com.geometricweather.ui.widget.StatusBarView
         android:id="@+id/activity_main_statusBar"

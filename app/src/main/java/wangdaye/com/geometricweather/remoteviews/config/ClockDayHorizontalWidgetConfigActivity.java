@@ -38,7 +38,7 @@ public class ClockDayHorizontalWidgetConfigActivity extends AbstractWidgetConfig
                 this,
                 getLocationNow(), getLocationNow().weather,
                 cardStyleValueNow, cardAlpha,
-                textColorValueNow, clockFontValueNow
+                textColorValueNow, textSize, clockFontValueNow
         );
     }
 

@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.302</string>
+    <string name="version_code">v2.303</string>
 
     <!-- keyword. -->
     <string name="local">local</string>
@@ -99,10 +99,13 @@
     <string name="about_app">ABOUT APP</string>
     <string name="introduce">introduce</string>
     <string name="email">E-mail</string>
-    <string name="donate">Donate (Alipay)</string>
+    <string name="donate">Donate</string>
     <string name="gitHub">GitHub</string>
     <string name="translator">Translators</string>
     <string name="thanks">THX</string>
+
+    <string name="alipay">Alipay</string>
+    <string name="wechat">Wechat</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>
@@ -144,7 +147,57 @@
     <string name="feedback_hide_subtitle">Hide Subtitle.</string>
     <string name="feedback_subtitle_data">Subtitle data.</string>
     <string name="feedback_black_text">Dark text.</string>
+    <string name="feedback_text_size">Text size.</string>
     <string name="feedback_clock_font">Clock font.</string>
+    <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
+    <string name="feedback_custom_subtitle_keywords">
+        \n
+        $cw$ : Current Weather\n
+        $ct$ : Current Temperature (℃/℉)\n
+        $ctd$ : Current Temperature (°)\n
+        $at$ : Apparent Temperature (℃/℉)\n
+        $atd$ : Apparent Temperature (°)\n
+        $cp$ : Current Precipitation (%)\n
+        $cwd$ : Current Wind\n
+        \n
+        $l$ : Location\n
+        $lat$ : Latitude\n
+        $lon$ : Longitude\n
+        $ut$ : Update Time\n
+        $dd$ : Daily Description\n
+        $hd$ : Hourly Description\n
+        $h$ : Humidity\n
+        \n
+        $0dw$, $1dw$, …, $4dw$ : \nDaytime Weather of Today, Tmw, …, 4 days later\n
+        \n
+        $0nw$, $1nw$, …, $4nw$ : \nNighttime Weather of Today, Tmw, …, 4 days later\n
+        \n
+        $0dt$, $1dt$, …, $4dt$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n
+        \n
+        $0nt$, $1nt$, …, $4nt$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n
+        \n
+        $0dtd$, $1dtd$, …, $4dtd$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (°)\n
+        \n
+        $0ntd$, $1ntd$, …, $4ntd$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (°)\n
+        \n
+        $0dp$, $1dp$, …, $4dp$ : \nDaytime Precipitation of Today, Tmw, …, 4 days later (%)\n
+        \n
+        $0np$, $1np$, …, $4np$ : \nNighttime Precipitation of Today, Tmw, …, 4 days later (%)\n
+        \n
+        $0dwd$, $1dwd$, …, $4dwd$ : \nDaytime Wind of Today, Tmw, …, 4 days later\n
+        \n
+        $0nwd$, $1nwd$, …, $4nwd$ : \nNighttime Wind of Today, Tmw, …, 4 days later\n
+        \n
+        $0sr$, $1sr$, …, $4sr$ : \nSunrise of Today, Tmw, …, 4 days later\n
+        \n
+        $0ss$, $1ss$, …, $4ss$ : \nSunset of Today, Tmw, …, 4 days later\n
+        \n
+        $0mr$, $1mr$, …, $4mr$ : \nMoonrise of Today, Tmw, …, 4 days later\n
+        \n
+        $0ms$, $1ms$, …, $4ms$ : \nMoonset of Today, Tmw, …, 4 days later\n
+        \n
+        $0mp$, $1mp$, …, $4mp$ : \nMoon Phase of Today, Tmw, …, 4 days later\n
+    </string>
 
     <string name="feedback_click_toggle">Click chart to toggle data.</string>
     <string name="feedback_no_data">NO DATA</string>
@@ -168,6 +221,7 @@
 
     <string name="feedback_running_in_background">Running in background for keep updating.</string>
     <string name="feedback_updating_weather_data">Updating weather data.</string>
+    <string name="feedback_updated_in_background">Updated in background.</string>
     
     <string name="feedback_interpret_background_notification_content">In some devices, after turning off the background free, there might be a notification that cannot be cleared in the notification bar.</string>
     <string name="feedback_interpret_notification_group_title">Block Notification Group</string>
@@ -274,6 +328,7 @@
     <string name="key_hide_subtitle">hide_refresh_time</string>
     <string name="key_subtitle_data">subtitle_data</string>
     <string name="key_text_color">text_color</string>
+    <string name="key_text_size">text_size</string>
     <string name="key_clock_font">clock_font</string>
 
     <string name="key_background_free">background_free_3</string>

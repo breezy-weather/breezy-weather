@@ -8,6 +8,7 @@ import androidx.preference.PreferenceManager;
 import java.util.HashSet;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.dialog.ProvidersPreviewerDialog;
@@ -56,6 +57,9 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         );
         cardOrder.setOnPreferenceChangeListener(this);
 
+        findPreference(getString(R.string.key_gravity_sensor_switch))
+                .setOnPreferenceChangeListener(this);
+
         Preference language = findPreference(getString(R.string.key_language));
         language.setSummary(
                 ValueUtils.getLanguage(
@@ -90,11 +94,9 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
                         .putString(getString(R.string.key_icon_provider), iconProvider)
                         .apply();
                 initIconProviderPreference();
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
+                SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
             });
             dialog.show(getFragmentManager(), null);
-        } else if (preference.getKey().equals(getString(R.string.key_gravity_sensor_switch))) {
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
         }
         return super.onPreferenceTreeClick(preference);
     }
@@ -104,7 +106,7 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
         if (preference.getKey().equals(getString(R.string.key_ui_style))) {
             // UI style.
             preference.setSummary(ValueUtils.getUIStyle(getActivity(), (String) o));
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+            SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_card_display))) {
             // Card display.
             try {
@@ -122,10 +124,10 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
             // language.
             preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
             SettingsOptionManager.getInstance(getActivity()).setLanguage((String) o);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+            SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_gravity_sensor_switch))) {
             // sensor.
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+            SettingsOptionManager.getInstance(getActivity()).setGravitySensorEnabled((Boolean) o);
         }
         return true;
     }

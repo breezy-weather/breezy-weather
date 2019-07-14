@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/dialog_donate_wechat"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <wangdaye.com.geometricweather.ui.widget.DonateImageView
+        android:id="@+id/dialog_donate_wechat_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/donate_wechat"
+        tools:ignore="ContentDescription" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

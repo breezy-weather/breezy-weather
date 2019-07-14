@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.snackbar.Snackbar;
+
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +17,7 @@ import android.view.View;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.main.ui.MainActivity;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -30,7 +30,7 @@ import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
  * */
 
 public class ManageActivity extends GeoActivity
-        implements View.OnClickListener, LocationAdapter.OnLocationItemClickListener {
+        implements LocationAdapter.OnLocationItemClickListener {
 
     private CoordinatorLayout container;
     private CardView cardView;
@@ -96,12 +96,12 @@ public class ManageActivity extends GeoActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage);
-        initData();
         initWidget();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SEARCH_ACTIVITY:
                 if (resultCode == RESULT_OK) {
@@ -112,11 +112,8 @@ public class ManageActivity extends GeoActivity
                             this
                     );
                     recyclerView.setAdapter(adapter);
-                    Snackbar.make(
-                            getSnackbarContainer(),
-                            R.string.feedback_collect_succeed,
-                            Snackbar.LENGTH_SHORT
-                    ).show();
+
+                    SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_succeed));
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
@@ -137,20 +134,12 @@ public class ManageActivity extends GeoActivity
         return container;
     }
 
-    private void initData() {
-        this.adapter = new LocationAdapter(
-                this,
-                DatabaseHelper.getInstance(this).readLocationList(),
-                true,
-                this
-        );
-    }
-
     private void initWidget() {
         this.container = findViewById(R.id.activity_manage_container);
 
         this.cardView = findViewById(R.id.activity_manage_searchBar);
-        cardView.setOnClickListener(this);
+        cardView.setOnClickListener(view ->
+                IntentHelper.startSearchActivityForResult(ManageActivity.this, cardView));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             cardView.setTransitionName(getString(R.string.transition_activity_search_bar));
         }
@@ -160,6 +149,13 @@ public class ManageActivity extends GeoActivity
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         );
         recyclerView.addItemDecoration(new ListDecoration(this));
+
+        this.adapter = new LocationAdapter(
+                this,
+                DatabaseHelper.getInstance(this).readLocationList(),
+                true,
+                this
+        );
         recyclerView.setAdapter(adapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
@@ -173,20 +169,25 @@ public class ManageActivity extends GeoActivity
 
     private void deleteLocation(int position) {
         if (0 <= position && position < adapter.itemList.size()) {
-            Location item = adapter.itemList.get(position);
+            Location location = adapter.itemList.get(position);
             if (adapter.itemList.size() <= 1) {
                 adapter.removeData(position);
-                adapter.insertData(item, position);
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_location_list_cannot_be_null));
-            } else {
-                Location location = adapter.itemList.get(position);
-                adapter.removeData(position);
-                DatabaseHelper.getInstance(ManageActivity.this).deleteLocation(item);
+                adapter.insertData(location, position);
                 SnackbarUtils.showSnackbar(
+                        this, getString(R.string.feedback_location_list_cannot_be_null));
+            } else {
+                adapter.removeData(position);
+
+                location.weather = DatabaseHelper.getInstance(this).readWeather(location);
+                location.history = DatabaseHelper.getInstance(this).readHistory(location.weather);
+
+                DatabaseHelper.getInstance(this).deleteLocation(location);
+                DatabaseHelper.getInstance(this).deleteWeather(location);
+                SnackbarUtils.showSnackbar(
+                        this,
                         getString(R.string.feedback_delete_succeed),
                         getString(R.string.cancel),
-                        new CancelDeleteListener(location),
-                        new DeleteSnackbarCallback(location)
+                        new CancelDeleteListener(location)
                 );
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                     ShortcutsManager.refreshShortcutsInNewThread(ManageActivity.this, adapter.itemList);
@@ -198,15 +199,6 @@ public class ManageActivity extends GeoActivity
     // interface.
 
     // on click listener.
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.activity_manage_searchBar:
-                IntentHelper.startSearchActivityForResult(this, cardView);
-                break;
-        }
-    }
 
     private class CancelDeleteListener
             implements View.OnClickListener {
@@ -221,22 +213,9 @@ public class ManageActivity extends GeoActivity
         public void onClick(View view) {
             adapter.insertData(location, adapter.getItemCount());
             DatabaseHelper.getInstance(ManageActivity.this).writeLocation(location);
-        }
-    }
-
-    private class DeleteSnackbarCallback extends Snackbar.Callback {
-
-        private Location location;
-
-        DeleteSnackbarCallback(Location l) {
-            this.location = l;
-        }
-
-        @Override
-        public void onDismissed(Snackbar transientBottomBar, int event) {
-            if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {
-                DatabaseHelper.getInstance(ManageActivity.this).deleteWeather(location);
-            }
+            DatabaseHelper.getInstance(ManageActivity.this).writeWeather(location, location.weather);
+            DatabaseHelper.getInstance(ManageActivity.this).writeTodayHistory(location.weather);
+            DatabaseHelper.getInstance(ManageActivity.this).writeYesterdayHistory(location.history);
         }
     }
 
@@ -244,13 +223,10 @@ public class ManageActivity extends GeoActivity
 
     @Override
     public void onClick(View view, int position) {
-        String locationName = adapter.itemList.get(position).isLocal()
-                ? getString(R.string.local)
-                : adapter.itemList.get(position).city;
-        setResult(
-                RESULT_OK,
-                new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName)
-        );
+        String formattedId = adapter.itemList.get(position).getFormattedId();
+        Intent intent = new Intent().putExtra(
+                MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId);
+        setResult(RESULT_OK, intent);
         finish();
     }
 

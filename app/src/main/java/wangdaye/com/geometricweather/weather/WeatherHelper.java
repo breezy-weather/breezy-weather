@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.History;
@@ -270,7 +271,11 @@ public class WeatherHelper {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         try {
-            calendar.setTime(simpleDateFormat.parse(dateTxt));
+            calendar.setTime(
+                    Objects.requireNonNull(
+                            simpleDateFormat.parse(dateTxt)
+                    )
+            );
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -602,7 +607,6 @@ public class WeatherHelper {
         if (TextUtils.isEmpty(phase)) {
             return context.getString(R.string.phase_new);
         }
-        assert phase != null;
         switch (phase.toLowerCase()) {
             case "waxingcrescent":
             case "waxing crescent":
@@ -647,7 +651,6 @@ public class WeatherHelper {
         if (TextUtils.isEmpty(phase)) {
             return 0;
         }
-        assert phase != null;
         switch (phase.toLowerCase()) {
             case "waxingcrescent":
             case "waxing crescent":

@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/activity_manage_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.ui.widget.StatusBarView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryDark" />
+        android:layout_height="match_parent">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/activity_manage_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorRoot">
-
-        <LinearLayout
-            android:orientation="vertical"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary">
 
-            <com.google.android.material.appbar.AppBarLayout
+            <wangdaye.com.geometricweather.ui.widget.StatusBarView
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary">
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimaryDark" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/activity_manage_searchBar"
@@ -65,15 +64,16 @@
 
                 </androidx.cardview.widget.CardView>
 
-            </com.google.android.material.appbar.AppBarLayout>
+            </FrameLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/activity_manage_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_manage_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorRoot"/>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

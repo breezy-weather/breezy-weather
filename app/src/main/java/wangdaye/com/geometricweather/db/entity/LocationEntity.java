@@ -2,6 +2,9 @@ package wangdaye.com.geometricweather.db.entity;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.greenrobot.greendao.annotation.Entity;
 
 import wangdaye.com.geometricweather.basic.model.Location;
@@ -128,7 +131,7 @@ public class LocationEntity {
                 .deleteAll();
     }
 
-    // updateRotation
+    // update
 
     private static void updateLocation(SQLiteDatabase database, LocationEntity entity) {
         new DaoMaster(database)
@@ -139,6 +142,7 @@ public class LocationEntity {
 
     // search.
 
+    @Nullable
     private static LocationEntity searchLocationEntity(SQLiteDatabase database, Location location) {
         List<LocationEntity> entityList = new DaoMaster(database)
                 .newSession()
@@ -156,6 +160,17 @@ public class LocationEntity {
         }
     }
 
+    @Nullable
+    public static Location readLocation(SQLiteDatabase database, Location location) {
+        LocationEntity entity = searchLocationEntity(database, location);
+        if (entity == null) {
+            return null;
+        } else {
+            return entity.toLocation();
+        }
+    }
+
+    @NonNull
     public static List<Location> readLocationList(SQLiteDatabase database) {
         List<LocationEntity> entityList = new DaoMaster(database)
                 .newSession()
@@ -173,6 +188,15 @@ public class LocationEntity {
         return locationList;
     }
 
+    public static int countLocation(SQLiteDatabase database) {
+        return (int) new DaoMaster(database)
+                .newSession()
+                .getLocationEntityDao()
+                .queryBuilder()
+                .count();
+    }
+
+    @NonNull
     private Location toLocation() {
         return new Location(
                 cityId,

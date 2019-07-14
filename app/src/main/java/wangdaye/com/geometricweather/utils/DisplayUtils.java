@@ -20,14 +20,13 @@ import androidx.core.content.ContextCompat;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.main.ui.MainActivity;
 
 /**
  * Display utils.
@@ -58,8 +57,11 @@ public class DisplayUtils {
     }
 
     public static float dpToPx(Context context, int dp) {
-        int dpi = context.getResources().getDisplayMetrics().densityDpi;
-        return (float) (dp * (dpi / 160.0));
+        return dp * (context.getResources().getDisplayMetrics().densityDpi / 160f);
+    }
+
+    public static float spToPx(Context context, int sp) {
+        return sp * (context.getResources().getDisplayMetrics().scaledDensity);
     }
 
     public static int getStatusBarHeight(Resources r) {
@@ -67,30 +69,31 @@ public class DisplayUtils {
         return r.getDimensionPixelSize(resourceId);
     }
 
-    public static int getNavigationBarHeight(Resources r) {
-        if (!isNavigationBarShow()){
+    public static int getNavigationBarHeight(Context context) {
+        if (!isNavigationBarShow(context)){
             return 0;
         }
         int result = 0;
-        int resourceId = r.getIdentifier("navigation_bar_height", "dimen", "android");
+        int resourceId = context.getResources().getIdentifier(
+                "navigation_bar_height", "dimen", "android");
         if (resourceId > 0) {
-            result = r.getDimensionPixelSize(resourceId);
+            result = context.getResources().getDimensionPixelSize(resourceId);
         }
         return result;
     }
 
-    private static boolean isNavigationBarShow(){
-        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
-        if (activity != null) {
-            Display display = activity.getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            Point realSize = new Point();
-            display.getSize(size);
-            display.getRealSize(realSize);
-            return realSize.y != size.y;
-        } else {
+    private static boolean isNavigationBarShow(Context context){
+        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (manager == null) {
             return false;
         }
+
+        Display display = manager.getDefaultDisplay();
+        Point size = new Point();
+        Point realSize = new Point();
+        display.getSize(size);
+        display.getRealSize(realSize);
+        return realSize.y != size.y;
     }
 
     public static void setSystemBarStyle(Window window,
@@ -128,9 +131,9 @@ public class DisplayUtils {
 
         if (topChanged) {
             if (topOverlap) {
-                alpha = 0.2f;
-            } else {
                 alpha = 0.1f;
+            } else {
+                alpha = 0.05f;
             }
             statusBar.clearAnimation();
             statusBar.startAnimation(new AlphaAnimation(statusBar, statusBar.getAlpha(), alpha));
@@ -138,7 +141,7 @@ public class DisplayUtils {
 
         if (bottomChanged) {
             if (bottomOverlap) {
-                alpha = 0.2f;
+                alpha = 0.15f;
             } else {
                 alpha = 0.1f;
             }

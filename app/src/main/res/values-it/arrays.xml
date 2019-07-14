@@ -51,6 +51,7 @@
         <item>Vento</item>
         <item>Temperatura risentita</item>
         <item>Calendario Lunare</item>
+        <item>Custom</item>
     </string-array>
 
 </resources>

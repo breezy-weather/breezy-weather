@@ -66,6 +66,7 @@
         <item>Vento</item>
         <item>Sensação Térmica</item>
         <item>Calendário Lunar</item>
+        <item>Custom</item>
     </string-array>
 
 </resources>

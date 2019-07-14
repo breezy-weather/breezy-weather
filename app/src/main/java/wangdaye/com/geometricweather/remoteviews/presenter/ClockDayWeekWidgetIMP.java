@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import android.net.Uri;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -28,10 +29,6 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
-/**
- * Widget clock day week utils.
- */
-
 public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
@@ -42,7 +39,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         RemoteViews views = getRemoteViews(
                 context, location, weather,
-                config.cardStyle, config.cardAlpha, config.textColor, config.clockFont
+                config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont
         );
 
         AppWidgetManager.getInstance(context).updateAppWidget(
@@ -54,7 +51,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     public static RemoteViews getRemoteViews(Context context,
                                              Location location, @Nullable Weather weather,
                                              String cardStyle, int cardAlpha,
-                                             String textColor, String clockFont) {
+                                             String textColor, int textSize, String clockFont) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_week);
         if (weather == null) {
             return views;
@@ -212,6 +209,35 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         views.setTextColor(R.id.widget_clock_day_week_temp_3, textColorInt);
         views.setTextColor(R.id.widget_clock_day_week_temp_4, textColorInt);
         views.setTextColor(R.id.widget_clock_day_week_temp_5, textColorInt);
+
+        if (textSize != 100) {
+            float clockSize = context.getResources().getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
+                    * textSize / 100f;
+            float clockAASize = context.getResources().getDimensionPixelSize(R.dimen.widget_aa_text_size)
+                    * textSize / 100f;
+            float contentSize = context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size)
+                    * textSize / 100f;
+
+            views.setTextViewTextSize(R.id.widget_clock_day_week_clock_light, TypedValue.COMPLEX_UNIT_PX, clockSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_clock_normal, TypedValue.COMPLEX_UNIT_PX, clockSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_clock_black, TypedValue.COMPLEX_UNIT_PX, clockSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_clock_aa_light, TypedValue.COMPLEX_UNIT_PX, clockAASize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_clock_aa_normal, TypedValue.COMPLEX_UNIT_PX, clockAASize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_clock_aa_black, TypedValue.COMPLEX_UNIT_PX, clockAASize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_title, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_lunar, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_week_1, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_week_2, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_week_3, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_week_4, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_week_5, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_temp_1, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_temp_2, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_temp_3, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_temp_4, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_week_temp_5, TypedValue.COMPLEX_UNIT_PX, contentSize);
+        }
 
         if (color.showCard) {
             views.setImageViewResource(

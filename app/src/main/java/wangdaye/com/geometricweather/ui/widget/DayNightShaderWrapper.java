@@ -5,6 +5,8 @@ import android.graphics.Shader;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Arrays;
+
 public class DayNightShaderWrapper {
 
     @Nullable private Shader shader;
@@ -49,7 +51,7 @@ public class DayNightShaderWrapper {
         this.targetWidth = targetWidth;
         this.targetHeight = targetHeight;
         this.lightTheme = lightTheme;
-        this.colors = colors;
+        this.colors = Arrays.copyOf(colors, colors.length);
     }
 
     @Nullable

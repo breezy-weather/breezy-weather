@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.Collections;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -149,26 +148,18 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     }
 
     public void insertData(Location item, int adapterPosition) {
-        this.itemList.add(adapterPosition, item);
-        this.notifyItemInserted(adapterPosition);
+        itemList.add(adapterPosition, item);
+        notifyItemInserted(adapterPosition);
     }
 
     public void removeData(int adapterPosition) {
-        this.itemList.remove(adapterPosition);
-        this.notifyItemRemoved(adapterPosition);
+        itemList.remove(adapterPosition);
+        notifyItemRemoved(adapterPosition);
     }
 
     public void moveData(int fromPosition, int toPosition) {
-        if (fromPosition < toPosition) {
-            for (int i = fromPosition; i < toPosition; i++) {
-                Collections.swap(this.itemList, i, i + 1);
-            }
-        } else {
-            for (int i = fromPosition; i > toPosition; i--) {
-                Collections.swap(this.itemList, i, i - 1);
-            }
-        }
-        this.notifyItemMoved(fromPosition, toPosition);
+        itemList.add(toPosition, itemList.remove(fromPosition));
+        notifyItemMoved(fromPosition, toPosition);
     }
 
     // interface.

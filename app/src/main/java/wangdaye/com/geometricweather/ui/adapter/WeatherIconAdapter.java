@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 
 public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private GeoActivity activity;
     private List<Item> itemList;
 
     // item.
@@ -36,7 +38,7 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public abstract Drawable getDrawable();
 
-        public abstract void onItemClicked();
+        public abstract void onItemClicked(GeoActivity activity);
     }
 
     public static class Line implements Item {}
@@ -73,7 +75,7 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
             WeatherIcon icon = (WeatherIcon) itemList.get(getAdapterPosition());
             imageView.setImageDrawable(icon.getDrawable());
-            itemView.setOnClickListener(v -> icon.onItemClicked());
+            itemView.setOnClickListener(v -> icon.onItemClicked(activity));
         }
     }
 
@@ -86,7 +88,8 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     // adapter.
 
-    public WeatherIconAdapter(List<Item> itemList) {
+    public WeatherIconAdapter(GeoActivity activity, List<Item> itemList) {
+        this.activity = activity;
         this.itemList = itemList;
     }
 

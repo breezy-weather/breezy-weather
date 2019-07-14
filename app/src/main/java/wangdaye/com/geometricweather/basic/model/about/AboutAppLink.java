@@ -18,6 +18,9 @@ public class AboutAppLink {
     public String url;
     public boolean email;
 
+    public static final String LINK_ALIPAY = "ALIPAY";
+    public static final String LINK_WECHAT = "WECHAT";
+
     private AboutAppLink(int iconRes, String title, String url, boolean email) {
         this.iconRes = iconRes;
         this.title = title;
@@ -26,7 +29,7 @@ public class AboutAppLink {
     }
 
     public static List<AboutAppLink> buildLinkList(Context context) {
-        List<AboutAppLink> list = new ArrayList<>(3);
+        List<AboutAppLink> list = new ArrayList<>(2);
 
         list.add(new AboutAppLink(
                 R.drawable.ic_github,
@@ -40,10 +43,23 @@ public class AboutAppLink {
                 "mailto:wangdayeeeeee@gmail.com",
                 true
         ));
+
+        return list;
+    }
+
+    public static List<AboutAppLink> buildDonateLinkList(Context context) {
+        List<AboutAppLink> list = new ArrayList<>(2);
+
         list.add(new AboutAppLink(
-                R.drawable.ic_donate,
-                context.getString(R.string.donate),
-                "",
+                R.drawable.ic_alipay,
+                context.getString(R.string.alipay),
+                LINK_ALIPAY,
+                false
+        ));
+        list.add(new AboutAppLink(
+                R.drawable.ic_wechat_pay,
+                context.getString(R.string.wechat),
+                LINK_WECHAT,
                 false
         ));
 

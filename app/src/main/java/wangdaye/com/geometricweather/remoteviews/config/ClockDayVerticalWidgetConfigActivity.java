@@ -39,7 +39,7 @@ public class ClockDayVerticalWidgetConfigActivity extends AbstractWidgetConfigAc
     public RemoteViews getRemoteViews() {
         return ClockDayVerticalWidgetIMP.getRemoteViews(
                 this, getLocationNow(), getLocationNow().weather,
-                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow,
+                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
                 hideSubtitle, subtitleDataValueNow, clockFontValueNow
         );
     }

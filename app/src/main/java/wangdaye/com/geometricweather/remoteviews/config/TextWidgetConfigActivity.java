@@ -26,7 +26,7 @@ public class TextWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public RemoteViews getRemoteViews() {
         return TextWidgetIMP.getRemoteViews(
-                this, getLocationNow(), getLocationNow().weather, textColorValueNow);
+                this, getLocationNow(), getLocationNow().weather, textColorValueNow, textSize);
     }
 
     @Override

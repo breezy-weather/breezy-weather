@@ -57,8 +57,7 @@ public abstract class LocationService {
         }
     }
 
-    public abstract void requestLocation(Context context, @NonNull LocationCallback callback,
-                                         boolean geocode);
+    public abstract void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback);
 
     public abstract void cancel();
 

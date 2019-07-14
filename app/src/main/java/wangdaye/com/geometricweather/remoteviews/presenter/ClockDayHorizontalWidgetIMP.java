@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -27,10 +28,6 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
-/**
- * Widget clock day horizontal utils.
- * */
-
 public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
@@ -41,7 +38,7 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
 
         RemoteViews views = getRemoteViews(
                 context, location, weather,
-                config.cardStyle, config.cardAlpha, config.textColor, config.clockFont
+                config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont
         );
 
         AppWidgetManager.getInstance(context).updateAppWidget(
@@ -53,7 +50,7 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
     public static RemoteViews getRemoteViews(Context context,
                                              Location location, @Nullable Weather weather,
                                              String cardStyle, int cardAlpha,
-                                             String textColor, String clockFont) {
+                                             String textColor, int textSize, String clockFont) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_horizontal);
         if (weather == null) {
             return views;
@@ -120,6 +117,26 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
         views.setTextColor(R.id.widget_clock_day_title, textColorInt);
         views.setTextColor(R.id.widget_clock_day_lunar, textColorInt);
         views.setTextColor(R.id.widget_clock_day_subtitle, textColorInt);
+
+        if (textSize != 100) {
+            float clockSize = context.getResources().getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
+                    * textSize / 100f;
+            float clockAASize = context.getResources().getDimensionPixelSize(R.dimen.widget_aa_text_size)
+                    * textSize / 100f;
+            float contentSize = context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size)
+                    * textSize / 100f;
+
+            views.setTextViewTextSize(R.id.widget_clock_day_clock_light, TypedValue.COMPLEX_UNIT_PX, clockSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_clock_normal, TypedValue.COMPLEX_UNIT_PX, clockSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_clock_black, TypedValue.COMPLEX_UNIT_PX, clockSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_clock_aa_light, TypedValue.COMPLEX_UNIT_PX, clockAASize);
+            views.setTextViewTextSize(R.id.widget_clock_day_clock_aa_normal, TypedValue.COMPLEX_UNIT_PX, clockAASize);
+            views.setTextViewTextSize(R.id.widget_clock_day_clock_aa_black, TypedValue.COMPLEX_UNIT_PX, clockAASize);
+
+            views.setTextViewTextSize(R.id.widget_clock_day_title, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_lunar, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_clock_day_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize);
+        }
 
         if (color.showCard) {
             views.setImageViewResource(

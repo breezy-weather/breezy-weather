@@ -14,20 +14,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" tools:ignore="ProtectedPermissions" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.INSTANT_APP_FOREGROUND_SERVICE"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.READ_LOGS"
-        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.INSTANT_APP_FOREGROUND_SERVICE" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions" />
 
-    <uses-feature android:name="android.software.live_wallpaper"
-        android:required="true" />
+    <uses-feature android:name="android.software.live_wallpaper" android:required="true" />
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.location.network" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -38,6 +36,7 @@
         android:theme="@style/GeometricWeatherTheme"
         android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource,RtlEnabled"
+        tools:replace="android:label"
         tools:targetApi="n">
 
         <meta-data
@@ -73,7 +72,7 @@
             android:networkSecurityConfig="@xml/network_security_config" />
 
         <activity
-            android:name=".main.MainActivity"
+            android:name=".main.ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/GeometricWeatherTheme.Main"
             android:screenOrientation="portrait"
@@ -228,33 +227,16 @@
         </activity>
 
         <!-- service -->
-        <service android:name=".background.service.polling.AwakeForegroundUpdateService" />
+        <service android:name=".background.polling.basic.AwakeForegroundUpdateService" />
 
         <service
-            android:name=".background.service.polling.TimeObserverService"
+            android:name=".background.polling.permanent.observer.TimeObserverService"
             android:process=":polling" />
-        <service android:name=".background.service.polling.FakeForegroundService"
+        <service android:name=".background.polling.permanent.observer.FakeForegroundService"
             android:process=":polling" />
-        <service android:name=".background.service.polling.ForegroundNormalUpdateService" />
-        <service android:name=".background.service.polling.ForegroundTodayForecastUpdateService" />
-        <service android:name=".background.service.polling.ForegroundTomorrowForecastUpdateService" />
-
-        <service android:name=".background.polling.alarm.AlarmNormalUpdateService" />
-        <service android:name=".background.polling.alarm.AlarmTodayForecastUpdateService" />
-        <service android:name=".background.polling.alarm.AlarmTomorrowForecastUpdateService" />
-
-        <service
-            android:name=".background.polling.job.JobNormalUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true" />
-        <service
-            android:name=".background.polling.job.JobTodayForecastUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true" />
-        <service
-            android:name=".background.polling.job.JobTomorrowForecastUpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true" />
+        <service android:name=".background.polling.permanent.update.ForegroundNormalUpdateService" />
+        <service android:name=".background.polling.permanent.update.ForegroundTodayForecastUpdateService" />
+        <service android:name=".background.polling.permanent.update.ForegroundTomorrowForecastUpdateService" />
 
         <service
             android:name=".background.service.TileService"

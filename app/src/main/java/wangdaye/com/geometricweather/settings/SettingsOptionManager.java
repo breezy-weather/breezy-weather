@@ -32,6 +32,7 @@ public class SettingsOptionManager {
     private String iconProvider;
     private String[] cardDisplayValues;
     private String cardOrder;
+    private boolean gravitySensorEnabled;
     private boolean fahrenheit;
     private boolean imperial;
     private String language;
@@ -70,6 +71,10 @@ public class SettingsOptionManager {
         cardOrder = sharedPreferences.getString(
                 context.getString(R.string.key_card_order),
                 "daily_first"
+        );
+        gravitySensorEnabled = sharedPreferences.getBoolean(
+                context.getString(R.string.key_gravity_sensor_switch),
+                true
         );
         fahrenheit = sharedPreferences.getBoolean(
                 context.getString(R.string.key_fahrenheit),
@@ -135,6 +140,14 @@ public class SettingsOptionManager {
 
     public void setCardOrder(String cardOrder) {
         this.cardOrder = cardOrder;
+    }
+
+    public boolean isGravitySensorEnabled() {
+        return gravitySensorEnabled;
+    }
+
+    public void setGravitySensorEnabled(boolean gravitySensorEnabled) {
+        this.gravitySensorEnabled = gravitySensorEnabled;
     }
 
     public boolean isFahrenheit() {

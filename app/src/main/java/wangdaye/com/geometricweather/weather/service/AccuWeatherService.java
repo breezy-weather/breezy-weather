@@ -281,6 +281,11 @@ public class AccuWeatherService extends WeatherService {
         compositeDisposable.clear();
     }
 
+    @Override
+    public boolean needGeocodeInformation() {
+        return false;
+    }
+
     private boolean queryEquals(String a, String b) {
         if (!TextUtils.isEmpty(a) && !TextUtils.isEmpty(b)) {
             return a.equals(b);

@@ -1,11 +1,21 @@
 package wangdaye.com.geometricweather.background.service;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
+import android.service.quicksettings.Tile;
 
+import androidx.annotation.RequiresApi;
+import androidx.preference.PreferenceManager;
+
+import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.utils.helpter.TileHelper;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Geo tile service.
@@ -16,23 +26,22 @@ public class TileService extends android.service.quicksettings.TileService {
 
     @Override
     public void onTileAdded() {
-        TileHelper.setEnable(this, true);
-        TileHelper.refreshTile(this, getQsTile());
+        refreshTile(this, getQsTile());
     }
 
     @Override
     public void onTileRemoved() {
-        TileHelper.setEnable(this, false);
+        // do nothing.
     }
 
     @Override
     public void onStartListening () {
-        TileHelper.refreshTile(this, getQsTile());
+        refreshTile(this, getQsTile());
     }
 
     @Override
     public void onStopListening () {
-        TileHelper.refreshTile(this, getQsTile());
+        refreshTile(this, getQsTile());
     }
 
     @SuppressLint("WrongConstant")
@@ -50,5 +59,31 @@ public class TileService extends android.service.quicksettings.TileService {
 
         }
         IntentHelper.startMainActivity(this);
+    }
+
+    private static void refreshTile(Context context, Tile tile) {
+        if (tile == null) {
+            return;
+        }
+        Location location = DatabaseHelper.getInstance(context).readLocationList().get(0);
+        location.weather = DatabaseHelper.getInstance(context).readWeather(location);
+        if (location.weather != null) {
+            boolean f = PreferenceManager.getDefaultSharedPreferences(context)
+                    .getBoolean(context.getString(R.string.key_fahrenheit), false);
+            tile.setIcon(
+                    WeatherHelper.getMinimalIcon(
+                            ResourcesProviderFactory.getNewInstance(),
+                            location.weather.realTime.weatherKind,
+                            TimeManager.getInstance(context).isDayTime()
+                    )
+            );
+            tile.setLabel(
+                    ValueUtils.buildCurrentTemp(
+                            location.weather.realTime.temp, false, f
+                    )
+            );
+            tile.setState(Tile.STATE_INACTIVE);
+            tile.updateTile();
+        }
     }
 }

@@ -8,6 +8,7 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import androidx.preference.PreferenceManager;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.location.service.AndroidLocationService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.dialog.LearnMoreAboutGeocoderDialog;
@@ -69,7 +70,7 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
 
             if (!SettingsOptionManager.getInstance(getActivity()).getChineseSource().equals("accu")
                     && SettingsOptionManager.getInstance(getActivity()).getLocationService().equals("native")
-                    && !AndroidLocationService.hasValidGeocoder()) {
+                    && !AndroidLocationService.geocoderEnabled()) {
                 SettingsOptionManager.getInstance(getActivity()).setLocationService("baidu");
                 PreferenceManager.getDefaultSharedPreferences(getActivity())
                         .edit()
@@ -79,6 +80,7 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
                 initPreferences();
 
                 SnackbarUtils.showSnackbar(
+                        (GeoActivity) getActivity(),
                         getString(R.string.feedback_unusable_geocoder),
                         getString(R.string.learn_more),
                         v -> new LearnMoreAboutGeocoderDialog().show(getFragmentManager(), null)
@@ -88,7 +90,7 @@ public class ServiceProviderSettingsFragment extends PreferenceFragmentCompat
             // Location service.
             SettingsOptionManager.getInstance(getActivity()).setLocationService((String) o);
             preference.setSummary(ValueUtils.getLocationService(getActivity(), (String) o));
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+            SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_restart));
         }
         return true;
     }

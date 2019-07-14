@@ -13,6 +13,8 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
+import androidx.core.graphics.ColorUtils;
+
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -44,20 +46,24 @@ public class TrendItemView extends View {
     private int[] lineColors;
     private int[] shadowColors;
     private int textColor;
+    private int textShadowColor;
     private int precipitationTextColor;
 
     private float precipitationAlpha;
 
     public static final int NONEXISTENT_VALUE = Integer.MAX_VALUE;
 
-    // dp size.
     private float TREND_MARGIN_TOP = 24;
     private float TREND_MARGIN_BOTTOM = 36;
     private float WEATHER_TEXT_SIZE = 13;
     private float POP_TEXT_SIZE = 11;
-    private float TREND_LINE_SIZE = 2;
+    private float TREND_LINE_SIZE = 3;
+    private float PRECIPITATION_BAR_SIZE = 3;
     private float CHART_LINE_SIZE = 1;
     private float MARGIN_TEXT = 2;
+
+    private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.1f;
+    private static final float SHADOW_ALPHA_FACTOR_DARK = 0.1f;
 
     public TrendItemView(Context context) {
         super(context);
@@ -86,15 +92,17 @@ public class TrendItemView extends View {
         this.WEATHER_TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) WEATHER_TEXT_SIZE);
         this.POP_TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) POP_TEXT_SIZE);
         this.TREND_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) TREND_LINE_SIZE);
+        this.PRECIPITATION_BAR_SIZE = DisplayUtils.dpToPx(getContext(), (int) PRECIPITATION_BAR_SIZE);
         this.CHART_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE);
         this.MARGIN_TEXT = DisplayUtils.dpToPx(getContext(), (int) MARGIN_TEXT);
 
         this.paint = new Paint();
+        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setAntiAlias(true);
 
         this.path = new Path();
         this.shaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
-        setShadowColors(true);
+        setShadowColors(Color.BLACK, Color.GRAY, true);
     }
 
     @Override
@@ -121,6 +129,8 @@ public class TrendItemView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(CHART_LINE_SIZE);
         paint.setColor(lineColors[2]);
+        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+
         canvas.drawLine(
                 getMeasuredWidth() / 2.f, TREND_MARGIN_TOP,
                 getMeasuredWidth() / 2.f, getMeasuredHeight() - TREND_MARGIN_BOTTOM,
@@ -150,7 +160,7 @@ public class TrendItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setColor(lineColors[0]);
-            paint.setShadowLayer(2, 0, 2, shadowColors[2]);
+            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
@@ -177,7 +187,7 @@ public class TrendItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setColor(lineColors[0]);
-            paint.setShadowLayer(2, 0, 2, shadowColors[2]);
+            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
@@ -203,7 +213,7 @@ public class TrendItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setColor(lineColors[0]);
-            paint.setShadowLayer(2, 0, 2, shadowColors[2]);
+            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
@@ -216,7 +226,7 @@ public class TrendItemView extends View {
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(WEATHER_TEXT_SIZE);
-        paint.setShadowLayer(2, 0, 2, shadowColors[2]);
+        paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         (int) maxiTemps[1],
@@ -234,7 +244,7 @@ public class TrendItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setColor(lineColors[1]);
-            paint.setShadowLayer(2, 0, 2, shadowColors[2]);
+            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), miniTempYs[0]);
@@ -246,7 +256,7 @@ public class TrendItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setColor(lineColors[1]);
-            paint.setShadowLayer(2, 0, 2, shadowColors[2]);
+            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), miniTempYs[1]);
@@ -257,7 +267,7 @@ public class TrendItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(TREND_LINE_SIZE);
             paint.setColor(lineColors[1]);
-            paint.setShadowLayer(2, 0, 2, shadowColors[2]);
+            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), miniTempYs[0]);
@@ -270,7 +280,7 @@ public class TrendItemView extends View {
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(WEATHER_TEXT_SIZE);
-        paint.setShadowLayer(2, 0, 2, shadowColors[2]);
+        paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
                 ValueUtils.buildAbbreviatedCurrentTemp(
                         (int) miniTemps[1],
@@ -290,11 +300,12 @@ public class TrendItemView extends View {
 
         canvas.drawRoundRect(
                 new RectF(
-                        (float) (getMeasuredWidth() / 2.0 - TREND_LINE_SIZE * 1.5),
+                        (float) (getMeasuredWidth() / 2.0 - PRECIPITATION_BAR_SIZE),
                         precipitationY,
-                        (float) (getMeasuredWidth() / 2.0 + TREND_LINE_SIZE * 1.5),
+                        (float) (getMeasuredWidth() / 2.0 + PRECIPITATION_BAR_SIZE),
                         getMeasuredHeight() - TREND_MARGIN_BOTTOM
-                ), TREND_LINE_SIZE * 3, TREND_LINE_SIZE * 3,
+                ),
+                PRECIPITATION_BAR_SIZE, PRECIPITATION_BAR_SIZE,
                 paint
         );
 
@@ -341,19 +352,28 @@ public class TrendItemView extends View {
         invalidate();
     }
 
-    public void setShadowColors(boolean lightTheme) {
+    public void setShadowColors(@ColorInt int colorDay, @ColorInt int colorNight, boolean lightTheme) {
         shadowColors[0] = lightTheme
-                ? Color.argb(50, 173, 173, 173)
-                : Color.argb(20, 173, 173, 173);
+                ? ColorUtils.setAlphaComponent(colorDay, (int) (255 * SHADOW_ALPHA_FACTOR_LIGHT))
+                : ColorUtils.setAlphaComponent(colorNight, (int) (255 * SHADOW_ALPHA_FACTOR_DARK));
         shadowColors[1] = Color.TRANSPARENT;
-        shadowColors[2] = Color.argb((int) (255 * 0.2), 0, 0, 0);
+        shadowColors[2] = getDarkerColor(lightTheme ? colorDay : colorNight);
 
         ensureShader(lightTheme);
         invalidate();
     }
 
+    private int getDarkerColor(@ColorInt int color){
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[1] = hsv[1] + 0.15f;
+        hsv[2] = hsv[2] - 0.15f;
+        return Color.HSVToColor(hsv);
+    }
+
     public void setTextColors(@ColorInt int textColor, @ColorInt int precipitationTextColor) {
         this.textColor = textColor;
+        this.textShadowColor = Color.argb((int) (255 * 0.2), 0, 0, 0);
         this.precipitationTextColor = precipitationTextColor;
         invalidate();
     }

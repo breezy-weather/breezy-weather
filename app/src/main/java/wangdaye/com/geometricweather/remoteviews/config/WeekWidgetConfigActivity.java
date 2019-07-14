@@ -25,7 +25,7 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
     public RemoteViews getRemoteViews() {
         return WeekWidgetIMP.getRemoteViews(
                 this, getLocationNow(), getLocationNow().weather,
-                cardStyleValueNow, cardAlpha, textColorValueNow
+                cardStyleValueNow, cardAlpha, textColorValueNow, textSize
         );
     }
 

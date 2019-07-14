@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.greenrobot.greendao.DbUtils;
 import org.greenrobot.greendao.database.Database;
 
@@ -128,8 +131,18 @@ public class DatabaseHelper {
         LocationEntity.deleteLocation(getDatabase(), location);
     }
 
+    @Nullable
+    public Location readLocation(Location location) {
+        return LocationEntity.readLocation(getDatabase(), location);
+    }
+
+    @NonNull
     public List<Location> readLocationList() {
         return LocationEntity.readLocationList(getDatabase());
+    }
+
+    public int countLocation() {
+        return LocationEntity.countLocation(getDatabase());
     }
 
     // history.

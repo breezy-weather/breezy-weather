@@ -5,6 +5,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
@@ -34,13 +35,13 @@ public class UnitSettingsFragment extends PreferenceFragmentCompat {
             SettingsOptionManager.getInstance(getActivity()).setFahrenheit(
                     !SettingsOptionManager.getInstance(getActivity()).isFahrenheit()
             );
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+            SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_restart));
         } else if (preference.getKey().equals(getString(R.string.key_imperial))) {
             // imperial units.
             SettingsOptionManager.getInstance(getActivity()).setImperial(
                     !SettingsOptionManager.getInstance(getActivity()).isImperial()
             );
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_restart));
+            SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_restart));
         }
         return super.onPreferenceTreeClick(preference);
     }

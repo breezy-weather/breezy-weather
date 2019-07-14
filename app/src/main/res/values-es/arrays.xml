@@ -45,6 +45,7 @@
         <item>Viento</item>
         <item>Sensación de la temperatura</item>
         <item>Calendario lunar</item>
+        <item>Custom</item>
     </string-array>
 
 </resources>

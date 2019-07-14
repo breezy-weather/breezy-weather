@@ -33,7 +33,7 @@ public class BaiduIPLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, @NonNull LocationCallback callback, boolean geocode) {
+    public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback) {
         api.getLocation(BuildConfig.BAIDU_IP_LOCATION_AK, "gcj02")
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<BaiduIPLocationResult>() {

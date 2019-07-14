@@ -6,8 +6,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 2302
-        versionName "2.302"
+        versionCode 2303
+        versionName "2.303"
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
@@ -83,10 +83,19 @@ dependencies {
 
     implementation 'com.amap.api:location:4.4.0'
 
-    implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
-    implementation 'com.google.android.material:material:1.1.0-alpha07'
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'com.google.android.material:material:1.1.0-alpha08'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0-beta01'
+    implementation 'androidx.preference:preference:1.1.0-rc01'
+
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation "android.arch.lifecycle:viewmodel:1.1.1"
+    implementation "android.arch.lifecycle:livedata:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
+    implementation "android.arch.work:work-runtime:1.0.1"
+
+    implementation "com.google.android.gms:play-services-location:17.0.0"
 
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
@@ -119,4 +128,6 @@ dependencies {
     implementation 'com.xw.repo:bubbleseekbar:3.20-lite'
 
     implementation 'me.jfenn:AdaptiveIconView:0.0.1'
+
+    implementation 'com.github.didikee:AndroidDonate:0.1.0'
 }

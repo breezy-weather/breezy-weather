@@ -110,6 +110,7 @@ public class ProvidersPreviewerDialog extends GeoDialogFragment {
 
     private void bindAdapter(List<ResourceProvider> providerList) {
         list.setAdapter(new IconProviderAdapter(
+                getActivity(),
                 providerList,
                 new IconProviderAdapter.OnItemClickedListener() {
                     @Override

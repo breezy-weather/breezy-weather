@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import android.net.Uri;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -29,10 +30,6 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
-/**
- * Widget day week utils.
- */
-
 public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
@@ -44,7 +41,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         RemoteViews views = getRemoteViews(
                 context, location, weather,
                 config.viewStyle, config.cardStyle, config.cardAlpha,
-                config.textColor, config.hideSubtitle, config.subtitleData
+                config.textColor, config.textSize, config.hideSubtitle, config.subtitleData
         );
 
         AppWidgetManager.getInstance(context).updateAppWidget(
@@ -54,7 +51,8 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
-                                             String viewStyle, String cardStyle, int cardAlpha, String textColor,
+                                             String viewStyle, String cardStyle, int cardAlpha,
+                                             String textColor, int textSize,
                                              boolean hideSubtitle, String subtitleData) {
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
@@ -86,8 +84,8 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         // build day part.
         RemoteViews views = buildWidgetViewDayPart(
                 context, provider,
-                weather,
-                dayTime, textColorInt, fahrenheit,
+                location, weather,
+                dayTime, textColorInt, textSize, fahrenheit,
                 minimalIcon, color.darkText,
                 viewStyle, hideSubtitle, subtitleData);
         if (weather == null) {
@@ -191,6 +189,22 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         views.setTextColor(R.id.widget_day_week_temp_4, textColorInt);
         views.setTextColor(R.id.widget_day_week_temp_5, textColorInt);
 
+        // set text size.
+        if (textSize != 100) {
+            float contentSize = context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size)
+                    * textSize / 100f;
+            views.setTextViewTextSize(R.id.widget_day_week_week_1, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_week_2, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_week_3, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_week_4, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_week_5, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_temp_1, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_temp_2, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_temp_3, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_temp_4, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_temp_5, TypedValue.COMPLEX_UNIT_PX, contentSize);
+        }
+
         // set card visibility.
         if (color.showCard) {
             views.setImageViewResource(
@@ -209,9 +223,9 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static RemoteViews buildWidgetViewDayPart(Context context, ResourceProvider helper,
-                                                      @Nullable Weather weather,
-                                                      boolean dayTime, int textColor, boolean fahrenheit,
-                                                      boolean minimalIcon, boolean blackText,
+                                                      Location location, @Nullable Weather weather,
+                                                      boolean dayTime, int textColor, int textSize,
+                                                      boolean fahrenheit, boolean minimalIcon, boolean blackText,
                                                       String viewStyle, boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
         switch (viewStyle) {
@@ -251,12 +265,23 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         );
         views.setTextViewText(
                 R.id.widget_day_week_time,
-                getTimeText(context, weather, viewStyle, subtitleData)
+                getTimeText(context, location, weather, viewStyle, subtitleData)
         );
 
         views.setTextColor(R.id.widget_day_week_title, textColor);
         views.setTextColor(R.id.widget_day_week_subtitle, textColor);
         views.setTextColor(R.id.widget_day_week_time, textColor);
+
+        if (textSize != 100) {
+            float contentSize = context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size)
+                    * textSize / 100f;
+            float timeSize = context.getResources().getDimensionPixelSize(R.dimen.widget_time_text_size)
+                    * textSize / 100f;
+            views.setTextViewTextSize(R.id.widget_day_week_title, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize);
+            views.setTextViewTextSize(R.id.widget_day_week_time, TypedValue.COMPLEX_UNIT_PX, timeSize);
+        }
+
         views.setViewVisibility(R.id.widget_day_week_time, hideSubtitle ? View.GONE : View.VISIBLE);
 
         return views;
@@ -298,7 +323,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return "";
     }
 
-    private static String getTimeText(Context context, Weather weather, String viewStyle, String subtitleData) {
+    private static String getTimeText(Context context, Location location, Weather weather, String viewStyle, String subtitleData) {
         switch (subtitleData) {
             case "time":
                 switch (viewStyle) {
@@ -335,14 +360,14 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 }
                 break;
 
-            default:
+            case "sensible_time":
                 return context.getString(R.string.feels_like) + " "
                         + ValueUtils.buildAbbreviatedCurrentTemp(
                                 weather.realTime.sensibleTemp,
                                 SettingsOptionManager.getInstance(context).isFahrenheit()
                         );
         }
-        return "";
+        return getCustomSubtitle(context, subtitleData, location, weather);
     }
 
     private static String getWeek(Context context, Weather weather, int index) {

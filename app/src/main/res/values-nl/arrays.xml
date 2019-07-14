@@ -51,6 +51,7 @@
         <item>Wind</item>
         <item>Gevoelstemperatuur</item>
         <item>Maankalender</item>
+        <item>Custom</item>
     </string-array>
 
 </resources>

@@ -240,6 +240,11 @@ public class CNWeatherService extends WeatherService {
         compositeDisposable.clear();
     }
 
+    @Override
+    public boolean needGeocodeInformation() {
+        return true;
+    }
+
     private void searchInThread(Context context, String[] queries, boolean fuzzy,
                                 RequestLocationCallback callback) {
         if (callback == null) {

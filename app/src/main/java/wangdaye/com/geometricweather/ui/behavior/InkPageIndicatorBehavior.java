@@ -1,6 +1,8 @@
 package wangdaye.com.geometricweather.ui.behavior;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.snackbar.Snackbar;
 import android.util.AttributeSet;
@@ -20,10 +22,11 @@ public class InkPageIndicatorBehavior<V extends InkPageIndicator> extends Coordi
     }
 
     @Override
-    public boolean onLayoutChild(CoordinatorLayout parent, V child, int layoutDirection) {
+    public boolean onLayoutChild(@NonNull CoordinatorLayout parent, @NonNull V child,
+                                 int layoutDirection) {
         int marginBottom = (int) (
                 DisplayUtils.dpToPx(parent.getContext(), 16)
-                        + DisplayUtils.getNavigationBarHeight(parent.getResources())
+                        + DisplayUtils.getNavigationBarHeight(parent.getContext())
         );
         child.layout(0,
                 parent.getMeasuredHeight() - child.getMeasuredHeight() - marginBottom,
@@ -33,12 +36,14 @@ public class InkPageIndicatorBehavior<V extends InkPageIndicator> extends Coordi
     }
 
     @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, V child, View dependency) {
+    public boolean layoutDependsOn(@NonNull CoordinatorLayout parent, @NonNull V child,
+                                   @NonNull View dependency) {
         return dependency instanceof Snackbar.SnackbarLayout;
     }
 
     @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, V child, View dependency) {
+    public boolean onDependentViewChanged(@NonNull CoordinatorLayout parent, @NonNull V child,
+                                          @NonNull View dependency) {
         child.setTranslationY(dependency.getY() - parent.getMeasuredHeight());
         return false;
     }

@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
@@ -11,9 +12,9 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
 public class WeatherViewController {
 
-    public static void setWeatherViewWeatherKind(@NonNull WeatherView view, @NonNull Weather weather,
+    public static void setWeatherViewWeatherKind(@NonNull WeatherView view, @Nullable Weather weather,
                                                  boolean dayTime, @NonNull ResourceProvider provider) {
-        view.setWeather(getWeatherViewWeatherKind(weather.realTime.weatherKind), dayTime, provider);
+        view.setWeather(getWeatherViewWeatherKind(weather), dayTime, provider);
     }
 
     public static String getEntityWeatherKind(@WeatherView.WeatherKindRule int weatherKind) {
@@ -61,8 +62,11 @@ public class WeatherViewController {
     }
 
     @WeatherView.WeatherKindRule
-    public static int getWeatherViewWeatherKind(String weatherKind) {
-        switch (weatherKind) {
+    public static int getWeatherViewWeatherKind(@Nullable Weather weather) {
+        if (weather == null) {
+            return WeatherView.WEATHER_KIND_CLEAR;
+        }
+        switch (weather.realTime.weatherKind) {
             case Weather.KIND_CLEAR:
                 return WeatherView.WEATHER_KIND_CLEAR;
 

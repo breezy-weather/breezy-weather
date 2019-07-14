@@ -64,4 +64,6 @@ public interface WeatherView {
     int getFirstCardMarginTop();
 
     void setDrawable(boolean drawable);
+
+    void setGravitySensorEnabled(boolean enabled);
 }

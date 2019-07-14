@@ -293,6 +293,11 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     @Override
+    public void setGravitySensorEnabled(boolean enabled) {
+        // do nothing.
+    }
+
+    @Override
     public void OnWeatherIconChanging() {
         flagIcon.setAnimatableIcon(iconDrawables, iconAnimators);
         flagIcon.startAnimators();

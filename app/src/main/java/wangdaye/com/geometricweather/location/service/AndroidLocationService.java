@@ -17,10 +17,21 @@ import androidx.annotation.WorkerThread;
 
 import android.text.TextUtils;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+
 import java.io.IOException;
 import java.util.List;
 
-import wangdaye.com.geometricweather.utils.manager.ThreadManager;
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 /**
  * Android Location service.
@@ -30,20 +41,19 @@ import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 public class AndroidLocationService extends LocationService {
 
     private Context context;
-    private Handler delayedExecutor;
-    private Handler poster;
+    private Handler timer;
 
     @Nullable private LocationManager locationManager;
-    @Nullable private LocationListener locationListener;
+    @Nullable private FusedLocationProviderClient gmsLocationClient;
+
+    @Nullable private LocationListener networkListener;
+    @Nullable private LocationListener gpsListener;
+    @Nullable private GMSLocationListener gmsListener;
+
     @Nullable private LocationCallback locationCallback;
+    @Nullable private Location lastKnownLocation;
 
-    private long workingFlag;
-
-    private static final long NULL_WORKING_FLAG = -1;
-    private static final long POLLING_INTERVAL = 300;
-
-    private static final long TIMEOUT_NETWORK = 10000;
-    private static final long TIMEOUT_GPS = 60000;
+    private static final long TIMEOUT_MILLIS = 10 * 1000;
 
     private class LocationListener implements android.location.LocationListener {
 
@@ -56,6 +66,7 @@ public class AndroidLocationService extends LocationService {
         @Override
         public void onLocationChanged(Location location) {
             if (location != null) {
+                stopLocationUpdates();
                 handleLocation(location, geocode);
             }
         }
@@ -76,67 +87,124 @@ public class AndroidLocationService extends LocationService {
         }
     }
 
+    private class GMSLocationListener extends com.google.android.gms.location.LocationCallback {
+
+        private boolean geocode;
+
+        GMSLocationListener(boolean geocode) {
+            this.geocode = geocode;
+        }
+
+        public void onLocationResult(LocationResult locationResult) {
+            if (locationResult != null && locationResult.getLocations().size() > 0) {
+                stopLocationUpdates();
+                handleLocation(locationResult.getLocations().get(0), geocode);
+            }
+        }
+    }
+
     public AndroidLocationService(Context c) {
         context = c;
-        delayedExecutor = new Handler(Looper.getMainLooper());
-        poster = new Handler(Looper.getMainLooper());
+        timer = new Handler(Looper.getMainLooper());
 
-        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        locationListener = null;
+        networkListener = null;
+        gpsListener = null;
+        gmsListener = null;
+
         locationCallback = null;
-
-        workingFlag = NULL_WORKING_FLAG;
+        lastKnownLocation = null;
     }
 
     @Override
-    public void requestLocation(Context context, @NonNull LocationCallback callback, boolean geocode) {
-        stop();
+    public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback){
+        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        gmsLocationClient = gmsEnabled(context)
+                ? LocationServices.getFusedLocationProviderClient(context)
+                : null;
 
-        String provider = getProvider();
-        if (locationManager == null
-                || !hasPermissions(context)
-                || TextUtils.isEmpty(provider)
-                || !locationManager.getAllProviders().contains(provider)) {
-            dispatchResult(callback, null);
+        if ((locationManager == null && gmsLocationClient == null)
+                || !hasPermissions(context)) {
+            callback.onCompleted(null);
             return;
         }
 
-        long flag = System.currentTimeMillis();
-        workingFlag = flag;
+        networkListener = new LocationListener(geocode);
+        gpsListener = new LocationListener(geocode);
+        gmsListener = new GMSLocationListener(geocode);
 
         locationCallback = callback;
-
-        Location latest = locationManager.getLastKnownLocation(provider);
-        if (latest != null) {
-            handleLocation(latest, geocode);
-            return;
+        lastKnownLocation = getLastKnownLocation();
+        if (lastKnownLocation == null && gmsLocationClient != null) {
+            gmsLocationClient.getLastLocation()
+                    .addOnSuccessListener(location -> lastKnownLocation = location);
         }
 
-        locationListener = new LocationListener(geocode);
-        locationManager.requestSingleUpdate(provider, locationListener, Looper.getMainLooper());
+        if (locationManager != null) {
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                    0, 0, networkListener, Looper.getMainLooper());
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                    0, 0, gpsListener, Looper.getMainLooper());
+        }
+        if (gmsLocationClient != null) {
+            gmsLocationClient.requestLocationUpdates(
+                    LocationRequest.create()
+                            .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+                            .setNumUpdates(1),
+                    gmsListener,
+                    Looper.getMainLooper()
+            );
+        }
 
-        ThreadManager.getInstance().execute(() -> {
-            Location l;
-            while (workingFlag == flag) {
-                l = locationManager.getLastKnownLocation(provider);
-                if (l != null) {
-                    handleLocation(l, geocode);
-                    return;
-                }
+        timer.postDelayed(() -> {
+            stopLocationUpdates();
+            handleLocation(lastKnownLocation, geocode);
+        }, TIMEOUT_MILLIS);
+    }
 
-                try {
-                    Thread.sleep(POLLING_INTERVAL);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        delayedExecutor.postDelayed(this::stop, getTimeOut(provider));
+    @Nullable
+    private Location getLastKnownLocation() {
+        if (locationManager == null) {
+            return null;
+        }
+
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location != null) {
+            return location;
+        }
+        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if (location != null) {
+            return location;
+        }
+        location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        if (location != null) {
+            return location;
+        }
+
+        return null;
     }
 
     @Override
     public void cancel() {
-        stop();
+        stopLocationUpdates();
+        locationCallback = null;
+        timer.removeCallbacksAndMessages(null);
+    }
+
+    private void stopLocationUpdates() {
+        if (locationManager != null) {
+            if (networkListener != null) {
+                locationManager.removeUpdates(networkListener);
+                networkListener = null;
+            }
+            if (gpsListener != null) {
+                locationManager.removeUpdates(gpsListener);
+                gpsListener = null;
+            }
+        }
+        if (gmsLocationClient != null && gmsListener != null) {
+            gmsLocationClient.removeLocationUpdates(gmsListener);
+            gmsListener = null;
+        }
     }
 
     @Override
@@ -147,32 +215,25 @@ public class AndroidLocationService extends LocationService {
         };
     }
 
-    private void stop() {
-        if (locationManager != null && locationListener != null) {
-            locationManager.removeUpdates(locationListener);
-            locationListener = null;
+    private void handleLocation(@Nullable Location location, boolean geocode) {
+        if (location == null) {
+            handleResultIfNecessary(null);
+            return;
         }
 
-        LocationCallback c = locationCallback;
-        if (locationCallback != null) {
-            locationCallback = null;
-            dispatchResult(c, null);
-        }
-
-        delayedExecutor.removeCallbacksAndMessages(null);
-
-        workingFlag = NULL_WORKING_FLAG;
+        Observable.create((ObservableOnSubscribe<Result>) emitter ->
+                emitter.onNext(buildResult(location, geocode))
+        ).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(this::handleResultIfNecessary)
+                .subscribe();
     }
 
-    private void handleLocation(@NonNull Location location, boolean geocode) {
-        LocationCallback c = locationCallback;
+    private void handleResultIfNecessary(@Nullable Result result) {
         if (locationCallback != null) {
+            locationCallback.onCompleted(result);
             locationCallback = null;
-            ThreadManager.getInstance().execute(() ->
-                    dispatchResult(c, buildResult(location, geocode))
-            );
         }
-        stop();
     }
 
     @WorkerThread
@@ -188,17 +249,18 @@ public class AndroidLocationService extends LocationService {
         );
         result.hasGeocodeInformation = false;
 
-        if (!hasValidGeocoder() || !geocode) {
+        if (!geocoderEnabled() || !geocode) {
             return result;
         }
 
         List<Address> addressList = null;
         try {
-            addressList = new Geocoder(context).getFromLocation(
-                    location.getLatitude(),
-                    location.getLongitude(),
-                    1
-            );
+            addressList = new Geocoder(context, LanguageUtils.getCurrentLocale(context))
+                    .getFromLocation(
+                            location.getLatitude(),
+                            location.getLongitude(),
+                            1
+                    );
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -239,40 +301,12 @@ public class AndroidLocationService extends LocationService {
         return result;
     }
 
-    @Nullable
-    private String getProvider() {
-        if (locationManager == null) {
-            return null;
-        } else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            return LocationManager.NETWORK_PROVIDER;
-        } else if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            return LocationManager.GPS_PROVIDER;
-        } else {
-            return null;
-        }
-    }
-
-    private long getTimeOut(@Nullable String provider) {
-        if (provider == null) {
-            return 0;
-        }
-
-        switch (provider) {
-            case LocationManager.NETWORK_PROVIDER:
-                return TIMEOUT_NETWORK;
-
-            case LocationManager.GPS_PROVIDER:
-                return TIMEOUT_GPS;
-        }
-
-        return 0;
-    }
-
-    private void dispatchResult(@NonNull LocationCallback callback, @Nullable Result r) {
-        poster.post(() -> callback.onCompleted(r));
-    }
-
-    public static boolean hasValidGeocoder() {
+    public static boolean geocoderEnabled() {
         return Geocoder.isPresent();
+    }
+
+    public static boolean gmsEnabled(Context context) {
+        return GoogleApiAvailability.getInstance()
+                .isGooglePlayServicesAvailable(context) == ConnectionResult.SUCCESS;
     }
 }

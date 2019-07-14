@@ -189,6 +189,7 @@
         <item>Wind</item>
         <item>Sensible temp</item>
         <item>Lunar Calendar</item>
+        <item>Custom</item>
     </string-array>
     <string-array name="subtitle_data_values">
         <item>time</item>
@@ -196,6 +197,7 @@
         <item>wind</item>
         <item>sensible_time</item>
         <item>lunar</item>
+        <item>custom</item>
     </string-array>
 
     <!-- widget clock font. -->

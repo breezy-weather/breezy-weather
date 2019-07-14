@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -28,10 +29,6 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
-/**
- * Widget day utils.
- */
-
 public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
@@ -43,7 +40,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         RemoteViews views = getRemoteViews(
                 context, location, weather,
                 config.viewStyle, config.cardStyle, config.cardAlpha,
-                config.textColor, config.hideSubtitle, config.subtitleData
+                config.textColor, config.textSize, config.hideSubtitle, config.subtitleData
         );
 
         AppWidgetManager.getInstance(context).updateAppWidget(
@@ -54,7 +51,8 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static RemoteViews getRemoteViews(Context context,
                                              Location location, @Nullable Weather weather,
-                                             String viewStyle, String cardStyle, int cardAlpha, String textColor,
+                                             String viewStyle, String cardStyle, int cardAlpha,
+                                             String textColor, int textSize,
                                              boolean hideSubtitle, String subtitleData) {
 
         boolean dayTime = TimeManager.isDaylight(weather);
@@ -81,9 +79,9 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         }
 
         RemoteViews views = buildWidgetView(
-                context, weather,
+                context, location, weather,
                 dayTime, fahrenheit, minimalIcon,
-                viewStyle, color,
+                viewStyle, color, textSize,
                 hideSubtitle, subtitleData);
         if (weather == null) {
             return views;
@@ -104,9 +102,9 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         return views;
     }
 
-    private static RemoteViews buildWidgetView(Context context, @Nullable Weather weather,
+    private static RemoteViews buildWidgetView(Context context, Location location, @Nullable Weather weather,
                                                boolean dayTime, boolean fahrenheit, boolean minimalIcon,
-                                               String viewStyle, WidgetColor color,
+                                               String viewStyle, WidgetColor color, int textSize,
                                                boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_symmetry);
         switch (viewStyle) {
@@ -187,7 +185,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         if (!viewStyle.equals("pixel")) {
             views.setTextViewText(
                     R.id.widget_day_time,
-                    getTimeText(context, weather, viewStyle, subtitleData)
+                    getTimeText(context, location, weather, viewStyle, subtitleData)
             );
         }
 
@@ -196,6 +194,24 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         views.setTextColor(R.id.widget_day_symbol, textColorInt);
         views.setTextColor(R.id.widget_day_subtitle, textColorInt);
         views.setTextColor(R.id.widget_day_time, textColorInt);
+
+        if (textSize != 100) {
+            float signSymbolSize = context.getResources().getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
+                    * textSize / 100f;
+
+            views.setTextViewTextSize(R.id.widget_day_title, TypedValue.COMPLEX_UNIT_PX,
+                    getTitleSize(context, viewStyle) * textSize / 100f);
+
+            views.setTextViewTextSize(R.id.widget_day_sign, TypedValue.COMPLEX_UNIT_PX, signSymbolSize);
+            views.setTextViewTextSize(R.id.widget_day_symbol, TypedValue.COMPLEX_UNIT_PX, signSymbolSize);
+
+            views.setTextViewTextSize(R.id.widget_day_subtitle, TypedValue.COMPLEX_UNIT_PX,
+                    getSubtitleSize(context, viewStyle) * textSize / 100f);
+
+            views.setTextViewTextSize(R.id.widget_day_time, TypedValue.COMPLEX_UNIT_PX,
+                    getTimeSize(context, viewStyle) * textSize / 100f);
+        }
+
         views.setViewVisibility(R.id.widget_day_time, hideSubtitle ? View.GONE : View.VISIBLE);
 
         return views;
@@ -257,8 +273,8 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         return "";
     }
 
-    private static String getTimeText(Context context,
-                                      Weather weather, String viewStyle, String subtitleData) {
+    private static String getTimeText(Context context, Location location, Weather weather,
+                                      String viewStyle, String subtitleData) {
         switch (subtitleData) {
             case "time":
                 switch (viewStyle) {
@@ -308,14 +324,66 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 }
                 break;
 
-            default:
+            case "sensible_time":
                 return context.getString(R.string.feels_like) + " "
                         + ValueUtils.buildAbbreviatedCurrentTemp(
                                 weather.realTime.sensibleTemp,
                                 SettingsOptionManager.getInstance(context).isFahrenheit()
                         );
         }
-        return "";
+        return getCustomSubtitle(context, subtitleData, location, weather);
+    }
+
+    private static float getTitleSize(Context context, String viewStyle) {
+        switch (viewStyle) {
+            case "rectangle":
+            case "symmetry":
+            case "tile":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size);
+
+            case "mini":
+            case "nano":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_subtitle_text_size);
+
+            case "pixel":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_design_title_text_size);
+
+            case "vertical":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_current_weather_icon_size);
+
+            case "oreo":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_large_title_text_size);
+        }
+        return 0;
+    }
+
+    private static float getSubtitleSize(Context context, String viewStyle) {
+        switch (viewStyle) {
+            case "rectangle":
+            case "symmetry":
+            case "tile":
+            case "vertical":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size);
+
+            case "oreo":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_large_title_text_size);
+        }
+        return 0;
+    }
+
+    private static float getTimeSize(Context context, String viewStyle) {
+        switch (viewStyle) {
+            case "rectangle":
+            case "symmetry":
+            case "tile":
+            case "vertical":
+            case "mini":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_time_text_size);
+
+            case "pixel":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_subtitle_text_size);
+        }
+        return 0;
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,

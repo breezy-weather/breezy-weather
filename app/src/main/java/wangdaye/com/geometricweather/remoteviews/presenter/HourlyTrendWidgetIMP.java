@@ -33,9 +33,6 @@ import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
-/**
- * Hourly trend widget utils.
- * */
 public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static void refreshWidgetView(Context context, Location location,
@@ -151,7 +148,11 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                             ? ColorUtils.setAlphaComponent(Color.BLACK, (int) (255 * 0.05))
                             : ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.1))
             );
-            items[i].getTrendItemView().setShadowColors(lightTheme);
+            items[i].getTrendItemView().setShadowColors(
+                    ContextCompat.getColor(context, R.color.lightPrimary_5),
+                    ContextCompat.getColor(context, R.color.darkPrimary_1),
+                    lightTheme
+            );
             items[i].getTrendItemView().setTextColors(
                     lightTheme
                             ? ContextCompat.getColor(context, R.color.colorTextContent_light)

@@ -1,20 +1,19 @@
 package wangdaye.com.geometricweather.location;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import androidx.annotation.NonNull;
 
 import java.util.List;
 
-import androidx.annotation.Nullable;
 import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.service.AMapLocationService;
 import wangdaye.com.geometricweather.location.service.AndroidLocationService;
 import wangdaye.com.geometricweather.location.service.ip.BaiduIPLocationService;
 import wangdaye.com.geometricweather.location.service.BaiduLocationService;
 import wangdaye.com.geometricweather.location.service.LocationService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.utils.NetworkUtils;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
 import wangdaye.com.geometricweather.weather.service.CNWeatherService;
 import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
@@ -30,10 +29,13 @@ public class LocationHelper {
     private WeatherService weatherService;
 
     private class AccuLocationCallback implements WeatherService.RequestLocationCallback {
+        private Context context;
         private Location location;
         private OnRequestLocationListener listener;
 
-        AccuLocationCallback(Location location, @NonNull OnRequestLocationListener l) {
+        AccuLocationCallback(Context context, Location location,
+                             @NonNull OnRequestLocationListener l) {
+            this.context = context;
             this.location = location;
             this.listener = l;
         }
@@ -41,7 +43,9 @@ public class LocationHelper {
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (locationList.size() > 0) {
-                listener.requestLocationSuccess(locationList.get(0).setLocal());
+                Location location = locationList.get(0).setLocal();
+                DatabaseHelper.getInstance(context).writeLocation(location);
+                listener.requestLocationSuccess(location);
             } else {
                 requestLocationFailed(query);
             }
@@ -54,11 +58,13 @@ public class LocationHelper {
     }
 
     private class CNLocationCallback implements WeatherService.RequestLocationCallback {
-        // data
+        private Context context;
         private Location location;
         private OnRequestLocationListener listener;
 
-        CNLocationCallback(Location location, @NonNull OnRequestLocationListener l) {
+        CNLocationCallback(Context context, Location location,
+                           @NonNull OnRequestLocationListener l) {
+            this.context = context;
             this.location = location;
             this.listener = l;
         }
@@ -68,6 +74,7 @@ public class LocationHelper {
             if (locationList.size() > 0) {
                 location.cityId = locationList.get(0).cityId;
                 location.setLocal();
+                DatabaseHelper.getInstance(context).writeLocation(location);
                 listener.requestLocationSuccess(location);
             } else {
                 requestLocationFailed(query);
@@ -100,70 +107,70 @@ public class LocationHelper {
         }
     }
 
-    public void requestLocation(Context c, Location location, @NonNull OnRequestLocationListener l) {
+    public void requestLocation(Context context, Location location,
+                                @NonNull OnRequestLocationListener l) {
+        if (!NetworkUtils.isAvailable(context)) {
+            l.requestLocationFailed(location);
+            return;
+        }
+
         // 1. get location by location service.
         // 2. get available location by weather service.
-        ConnectivityManager manager = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (manager != null) {
-            NetworkInfo info = manager.getActiveNetworkInfo();
-            if (info != null && info.isAvailable()) {
-                locationService.requestLocation(
-                        c,
-                        new LocationService.LocationCallback() {
-                            boolean completed = false;
-                            @Override
-                            public void onCompleted(@Nullable LocationService.Result result) {
-                                if (completed) {
-                                    return;
-                                }
 
-                                completed = true;
-                                locationService.cancel();
-                                if (result == null) {
-                                    l.requestLocationFailed(location);
-                                    return;
-                                }
-
-                                location.lat = result.latitude;
-                                location.lon = result.longitude;
-
-                                location.district = result.district;
-                                location.city = result.city;
-                                location.province = result.province;
-                                location.country = result.country;
-
-                                location.local = true;
-                                location.china = result.inChina;
-
-                                requestAvailableWeatherLocation(c, location, l);
-                            }
-                        }, !SettingsOptionManager.getInstance(c).getChineseSource().equals("accu")
-                );
-                return;
-            }
+        String chineseSource = SettingsOptionManager.getInstance(context).getChineseSource();
+        WeatherService service;
+        if (chineseSource.equals("accu")) {
+            service = new AccuWeatherService();
+        } else if (chineseSource.equals("cn")) {
+            service = new CNWeatherService();
+        } else {
+            service = new CaiYunWeatherService();
         }
-        l.requestLocationFailed(location);
+
+        locationService.requestLocation(
+                context,
+                service.needGeocodeInformation(),
+                result -> {
+                    if (result == null) {
+                        l.requestLocationFailed(location);
+                        return;
+                    }
+
+                    location.lat = result.latitude;
+                    location.lon = result.longitude;
+
+                    location.district = result.district;
+                    location.city = result.city;
+                    location.province = result.province;
+                    location.country = result.country;
+
+                    location.local = true;
+                    location.china = result.inChina;
+
+                    requestAvailableWeatherLocation(context, location, l);
+                }
+        );
     }
 
-    private void requestAvailableWeatherLocation(Context c,
+    private void requestAvailableWeatherLocation(Context context,
                                                  @NonNull Location location,
                                                  @NonNull OnRequestLocationListener l) {
-        String chineseSource = SettingsOptionManager.getInstance(c).getChineseSource();
+        String chineseSource = SettingsOptionManager.getInstance(context).getChineseSource();
         if (!location.canUseChineseSource() || chineseSource.equals("accu")) {
             // use accu as weather service api.
             location.source = "accu";
             weatherService = new AccuWeatherService();
-            weatherService.requestLocation(c, location, new AccuLocationCallback(location, l));
+            weatherService.requestLocation(context, location, new AccuLocationCallback(context, location, l));
         } else if (chineseSource.equals("cn")) {
             // use cn weather net as the weather service api.
             location.source = "cn";
             weatherService = new CNWeatherService();
-            weatherService.requestLocation(c, location, new CNLocationCallback(location, l));
+            weatherService.requestLocation(context, location, new CNLocationCallback(context, location, l));
         } else {
             // caiyun.
             location.source = "caiyun";
             weatherService = new CaiYunWeatherService();
-            weatherService.requestLocation(c, location, new CNLocationCallback(location, l));
+            weatherService.requestLocation(context, location, new CNLocationCallback(context, location, l));
         }
     }
 

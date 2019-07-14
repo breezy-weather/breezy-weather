@@ -22,7 +22,7 @@ public class DayWidgetConfigActivity extends AbstractWidgetConfigActivity {
     public RemoteViews getRemoteViews() {
         return DayWidgetIMP.getRemoteViews(
                 this, getLocationNow(), getLocationNow().weather,
-                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow,
+                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
                 hideSubtitle, subtitleDataValueNow
         );
     }

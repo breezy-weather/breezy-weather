@@ -106,20 +106,24 @@ public class LanguageUtils {
         }
     }
 
-    public static String getLanguageCode(Context c) {
-        Locale locale;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            locale = c.getResources().getConfiguration().getLocales().get(0);
-        } else {
-            locale = c.getResources().getConfiguration().locale;
-        }
+    public static String getLanguageCode(Context context) {
+        Locale locale = getCurrentLocale(context);
         String language = locale.getLanguage();
         String country = locale.getCountry();
+
         if (!TextUtils.isEmpty(country)
                 && (country.toLowerCase().equals("tw") || country.toLowerCase().equals("hk"))) {
             return language.toLowerCase() + "-" + country.toLowerCase();
         } else {
             return language.toLowerCase();
+        }
+    }
+
+    public static Locale getCurrentLocale(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return context.getResources().getConfiguration().getLocales().get(0);
+        } else {
+            return context.getResources().getConfiguration().locale;
         }
     }
 

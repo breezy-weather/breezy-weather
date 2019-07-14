@@ -106,6 +106,7 @@ public class SearcActivity extends GeoActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SEARCH_ACTIVITY:
                 this.adapter = new LocationAdapter(
@@ -172,7 +173,9 @@ public class SearcActivity extends GeoActivity
             editText.setFocusable(true);
             editText.requestFocus();
             InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.showSoftInput(editText, 0);
+            if (inputManager != null) {
+                inputManager.showSoftInput(editText, 0);
+            }
         });
 
         this.recyclerView = findViewById(R.id.activity_search_recyclerView);
@@ -254,7 +257,7 @@ public class SearcActivity extends GeoActivity
     public void onClick(View view, int position) {
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(adapter.itemList.get(position))) {
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_collect_failed));
+                SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_failed));
                 return;
             }
         }
@@ -282,7 +285,7 @@ public class SearcActivity extends GeoActivity
             if (query.equals(getString(R.string.local))) {
                 for (int j = 0; j < locationList.size(); j ++) {
                     if (locationList.get(j).isLocal()) {
-                        SnackbarUtils.showSnackbar(getString(R.string.feedback_collect_failed));
+                        SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_failed));
                         editText.setText("");
                         return true;
                     }
@@ -307,7 +310,7 @@ public class SearcActivity extends GeoActivity
             adapter.notifyDataSetChanged();
             setState(STATE_SHOWING);
             if (locationList.size() <= 0) {
-                SnackbarUtils.showSnackbar(getString(R.string.feedback_search_nothing));
+                SnackbarUtils.showSnackbar(this, getString(R.string.feedback_search_nothing));
             }
         }
     }
@@ -316,10 +319,9 @@ public class SearcActivity extends GeoActivity
     public void requestLocationFailed(String query) {
         if (this.query.equals(query)) {
             adapter.itemList.clear();
-            adapter.itemList.addAll(locationList);
             adapter.notifyDataSetChanged();
             setState(STATE_SHOWING);
-            SnackbarUtils.showSnackbar(getString(R.string.feedback_search_nothing));
+            SnackbarUtils.showSnackbar(this, getString(R.string.feedback_search_nothing));
         }
     }
 }

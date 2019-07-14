@@ -24,13 +24,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.Config;
 import wangdaye.com.geometricweather.resource.Constants;
 import wangdaye.com.geometricweather.resource.XmlHelper;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class IconPackResourcesProvider extends ResourceProvider {
 
@@ -147,7 +147,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     private static String getFilterResource(Map<String, String> filter, String key) {
         try {
-            return Objects.requireNonNull(filter.get(key));
+            return ValueUtils.nonNull(filter.get(key));
         } catch (Exception e) {
             return key;
         }
@@ -190,7 +190,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getWeatherIcon(String weatherKind, boolean dayTime) {
         try {
             if (config.hasWeatherIcons) {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getDrawable(getWeatherIconName(weatherKind, dayTime))
                 );
             }
@@ -238,8 +238,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
         try {
             return ResourcesCompat.getDrawable(
                     context.getResources(),
-                    getResId(context, resName, "drawable"),
-                    // res.getIdentifier(resName, "drawable", context.getPackageName()),
+                    ValueUtils.nonNull(getResId(context, resName, "drawable")),
                     null
             );
         } catch (Exception e) {
@@ -292,7 +291,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
         try {
             return AnimatorInflater.loadAnimator(
                     context,
-                    getResId(context, resName, "animator")
+                    ValueUtils.nonNull(getResId(context, resName, "animator"))
             );
         } catch (Exception e) {
             return null;
@@ -319,7 +318,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getMinimalLightIcon(String weatherKind, boolean dayTime) {
         try {
             if (config.hasMinimalIcons) {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getDrawable(getMiniLightIconName(weatherKind, dayTime))
                 );
             }
@@ -349,7 +348,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getMinimalGreyIcon(String weatherKind, boolean dayTime) {
         try {
             if (config.hasMinimalIcons) {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getDrawable(getMiniGreyIconName(weatherKind, dayTime))
                 );
             }
@@ -379,7 +378,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getMinimalDarkIcon(String weatherKind, boolean dayTime) {
         try {
             if (config.hasMinimalIcons) {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getDrawable(getMiniDarkIconName(weatherKind, dayTime))
                 );
             }
@@ -409,7 +408,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getMinimalXmlIcon(String weatherKind, boolean dayTime) {
         try {
             if (config.hasMinimalIcons) {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getDrawable(getMiniXmlIconName(weatherKind, dayTime))
                 );
             }
@@ -426,10 +425,14 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Icon getMinimalIcon(String weatherKind, boolean dayTime) {
         try {
             if (config.hasMinimalIcons) {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         Icon.createWithResource(
                                 context,
-                                getResId(context, getMiniXmlIconName(weatherKind, dayTime), "drawable")
+                                ValueUtils.nonNull(getResId(
+                                        context,
+                                        getMiniXmlIconName(weatherKind, dayTime),
+                                        "drawable"
+                                ))
                         )
                 );
             }
@@ -480,7 +483,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getShortcutsIcon(String weatherKind, boolean dayTime) {
         try {
             if (config.hasShortcutIcons) {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getDrawable(getShortcutsIconName(weatherKind, dayTime))
                 );
             }
@@ -496,7 +499,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getShortcutsForegroundIcon(String weatherKind, boolean dayTime) {
         try {
             if (config.hasShortcutIcons) {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getDrawable(getShortcutsForegroundIconName(weatherKind, dayTime))
                 );
             }
@@ -533,7 +536,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getSunDrawable() {
         if (config.hasSunMoonDrawables) {
             try {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getReflectDrawable(getSunDrawableClassName())
                 );
             } catch (Exception e) {
@@ -549,7 +552,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     public Drawable getMoonDrawable() {
         if (config.hasSunMoonDrawables) {
             try {
-                return Objects.requireNonNull(
+                return ValueUtils.nonNull(
                         getReflectDrawable(getMoonDrawableClassName())
                 );
             } catch (Exception e) {

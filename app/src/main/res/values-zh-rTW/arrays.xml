@@ -61,6 +61,7 @@
         <item>風況</item>
         <item>體感溫度</item>
         <item>農曆</item>
+        <item>自定義</item>
     </string-array>
 
     <!-- widget clock font. -->

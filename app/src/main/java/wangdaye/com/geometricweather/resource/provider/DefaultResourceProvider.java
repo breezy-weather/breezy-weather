@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntRange;
@@ -27,6 +28,7 @@ import wangdaye.com.geometricweather.resource.Constants;
 import wangdaye.com.geometricweather.resource.XmlHelper;
 import wangdaye.com.geometricweather.ui.image.MoonDrawable;
 import wangdaye.com.geometricweather.ui.image.SunDrawable;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class DefaultResourceProvider extends ResourceProvider {
 
@@ -62,10 +64,11 @@ public class DefaultResourceProvider extends ResourceProvider {
 
     @NonNull
     private static String getFilterResource(Map<String, String> filter, String key) {
-        try {
-            return Objects.requireNonNull(filter.get(key));
-        } catch (Exception e) {
+        String value = filter.get(key);
+        if (TextUtils.isEmpty(value)) {
             return key;
+        } else {
+            return value;
         }
     }
 
@@ -117,7 +120,7 @@ public class DefaultResourceProvider extends ResourceProvider {
         try {
             return ResourcesCompat.getDrawable(
                     context.getResources(),
-                    getResId(context, resName, "drawable"),
+                    ValueUtils.nonNull(getResId(context, resName, "drawable")),
                     null
             );
         } catch (Exception e) {
@@ -162,7 +165,7 @@ public class DefaultResourceProvider extends ResourceProvider {
         try {
             return AnimatorInflater.loadAnimator(
                     context,
-                    getResId(context, resName, "animator")
+                    ValueUtils.nonNull(getResId(context, resName, "animator"))
             );
         } catch (Exception e) {
             return null;

@@ -31,6 +31,8 @@ public abstract class WeatherService {
 
     public abstract void cancel();
 
+    public abstract boolean needGeocodeInformation();
+
     protected static String formatLocationString(String str) {
         if (TextUtils.isEmpty(str)) {
             return "";

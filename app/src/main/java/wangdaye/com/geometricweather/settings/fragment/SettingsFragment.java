@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.background.BackgroundManager;
+import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.remoteviews.presenter.notification.NormalNotificationIMP;
 
 /**
@@ -172,7 +172,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             );
         } else if (preference.getKey().equals(getString(R.string.key_background_free))) {
             // background free.
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
+            PollingManager.resetNormalBackgroundTask(getActivity(), false);
             boolean backgroundFree = sharedPreferences.getBoolean(getString(R.string.key_background_free), true);
             if (!backgroundFree) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -184,7 +184,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today))) {
             // forecast today.
             initForecastPart(sharedPreferences);
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
+            PollingManager.resetNormalBackgroundTask(getActivity(), false);
         } else if (preference.getKey().equals(getString(R.string.key_forecast_today_time))) {
             // set today forecast time.
             TimeSetterDialog dialog = new TimeSetterDialog();
@@ -194,7 +194,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
         } else if (preference.getKey().equals(getString(R.string.key_forecast_tomorrow))) {
             // forecast tomorrow.
             initForecastPart(sharedPreferences);
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
+            PollingManager.resetNormalBackgroundTask(getActivity(), false);
         } else if (preference.getKey().equals(getString(R.string.key_forecast_tomorrow_time))) {
             // set tomorrow forecast time.
             TimeSetterDialog dialog = new TimeSetterDialog();
@@ -203,24 +203,24 @@ public class SettingsFragment extends PreferenceFragmentCompat
             dialog.show(getFragmentManager(), null);
         } else if (preference.getKey().equals(getString(R.string.key_widget_minimal_icon))
                 || preference.getKey().equals(getString(R.string.key_notification_minimal_icon))) {
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         } else if (preference.getKey().equals(getString(R.string.key_click_widget_to_refresh))) {
             // click widget to refresh.
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         } else if (preference.getKey().equals(getString(R.string.key_notification))) {
             // notification switch.
             initNotificationPart(sharedPreferences);
             if (sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
                 // open notification.
-                BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+                PollingManager.resetNormalBackgroundTask(getActivity(), true);
             } else {
                 // close notification.
                 NormalNotificationIMP.cancelNotification(getActivity());
-                BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
+                PollingManager.resetNormalBackgroundTask(getActivity(), false);
             }
         } else if (preference.getKey().equals(getString(R.string.key_notification_temp_icon))) {
             // notification temp icon.
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         } else if (preference.getKey().equals(getString(R.string.key_notification_color))) {
             // notification color.
             ((SettingsActivity) getActivity()).pushFragment(
@@ -229,13 +229,13 @@ public class SettingsFragment extends PreferenceFragmentCompat
             );
         } else if (preference.getKey().equals(getString(R.string.key_notification_can_be_cleared))) {
             // notification clear flag.
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_icon))) {
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_in_lockScreen))) {
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         } else if (preference.getKey().equals(getString(R.string.key_notification_hide_big_view))) {
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         }
         return super.onPreferenceTreeClick(preference);
     }
@@ -254,7 +254,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             editor.putString(getString(R.string.key_refresh_rate), (String) o);
             editor.apply();
             preference.setSummary((String) o);
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), false);
+            PollingManager.resetNormalBackgroundTask(getActivity(), false);
         }
         return true;
     }
@@ -265,8 +265,8 @@ public class SettingsFragment extends PreferenceFragmentCompat
         this.initForecastPart(sharedPreferences);
         if (sharedPreferences.getBoolean(getString(R.string.key_forecast_today), false)
                 || sharedPreferences.getBoolean(getString(R.string.key_forecast_tomorrow), false)) {
-            BackgroundManager.resetTodayForecastBackgroundTask(getActivity(), false);
-            BackgroundManager.resetTomorrowForecastBackgroundTask(getActivity(), false);
+            PollingManager.resetTodayForecastBackgroundTask(getActivity(), false);
+            PollingManager.resetTomorrowForecastBackgroundTask(getActivity(), false);
         }
     }
 }

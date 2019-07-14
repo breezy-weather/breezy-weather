@@ -69,7 +69,7 @@ public class AMapLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, @NonNull LocationCallback callback, boolean geocode){
+    public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback){
         this.callback = callback;
 
         AMapLocationClientOption option = new AMapLocationClientOption();

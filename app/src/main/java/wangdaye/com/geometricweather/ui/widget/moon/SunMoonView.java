@@ -22,6 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -49,7 +50,7 @@ public class SunMoonView extends View {
     @Size(2) private float[] maxes;
 
     @Size(3) private int[] lineColors;
-    @Size(3) private int[] shadowColors;
+    @Size(2) private int[] shadowColors;
     @Size(2) private int[] x1ShaderColors;
     @Size(2) private int[] x2ShaderColors;
     @ColorInt private int rootColor;
@@ -61,11 +62,14 @@ public class SunMoonView extends View {
     int iconSize;
 
     private final static int ICON_SIZE_DIP = 24;
-    private final static int LINE_SIZE_DIP = 2;
+    private final static int LINE_SIZE_DIP = 3;
     private final static int DOTTED_LINE_SIZE_DIP = 1;
     private final static int MARGIN_DIP = 16;
 
     private static final int ARC_ANGLE = 135;
+
+    private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.05f;
+    private static final float SHADOW_ALPHA_FACTOR_DARK = 0.05f;
 
     public SunMoonView(@NonNull Context context) {
         super(context);
@@ -97,8 +101,7 @@ public class SunMoonView extends View {
 
         this.lineColors = new int[] {Color.BLACK, Color.GRAY, Color.LTGRAY};
         this.shadowColors = new int[] {
-                Color.argb(33, 176, 176, 176),
-                Color.argb(0, 176, 176, 176),
+                Color.argb((int) (255 * 0.2), 0, 0, 0),
                 Color.argb((int) (255 * 0.2), 0, 0, 0)
         };
 
@@ -149,8 +152,17 @@ public class SunMoonView extends View {
                           @ColorInt int backgroundLineColor, @ColorInt int rootColor,
                           boolean lightTheme) {
         this.lineColors = new int[] {sunLineColor, moonLineColor, backgroundLineColor};
-        ensureShader(rootColor, lightTheme);
+        this.shadowColors = new int[] {getDarkerColor(sunLineColor), getDarkerColor(moonLineColor)};
+        ensureShader(rootColor, sunLineColor, moonLineColor, lightTheme);
         ViewCompat.postInvalidateOnAnimation(this);
+    }
+
+    private int getDarkerColor(@ColorInt int color){
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[1] = hsv[1] + 0.15f;
+        hsv[2] = hsv[2] - 0.15f;
+        return Color.HSVToColor(hsv);
     }
 
     public void setDayIndicatorRotation(float rotation) {
@@ -163,15 +175,17 @@ public class SunMoonView extends View {
         ViewCompat.postInvalidateOnAnimation(this);
     }
 
-    private void ensureShader(@ColorInt int rootColor, boolean lightTheme) {
-        x1ShaderColors[0] = lightTheme
-                ? Color.rgb(235, 235, 235)
-                : Color.rgb(51, 51, 51);
+    private void ensureShader(@ColorInt int rootColor,
+                              @ColorInt int sunLineColor, @ColorInt int moonLineColor,
+                              boolean lightTheme) {
+        int lineShadowShader = lightTheme
+                ? ColorUtils.setAlphaComponent(sunLineColor, (int) (255 * SHADOW_ALPHA_FACTOR_LIGHT))
+                : ColorUtils.setAlphaComponent(moonLineColor, (int) (255 * SHADOW_ALPHA_FACTOR_DARK));
+
+        x1ShaderColors[0] = blendColor(lineShadowShader, rootColor);
         x1ShaderColors[1] = rootColor;
 
-        x2ShaderColors[0] = lightTheme
-                ? Color.rgb(223, 223, 223)
-                : Color.rgb(61, 61, 61);
+        x2ShaderColors[0] = blendColor(lineShadowShader, x1ShaderColors[0]);
         x2ShaderColors[1] = rootColor;
 
         this.rootColor = rootColor;
@@ -204,6 +218,21 @@ public class SunMoonView extends View {
                     x2ShaderColors
             );
         }
+    }
+
+    @ColorInt
+    public int blendColor(@ColorInt int foreground, @ColorInt int background) {
+        int scr = Color.red(foreground);
+        int scg = Color.green(foreground);
+        int scb = Color.blue(foreground);
+        int sa = foreground >>> 24;
+        int dcr = Color.red(background);
+        int dcg = Color.green(background);
+        int dcb = Color.blue(background);
+        int color_r = dcr * (0xff - sa) / 0xff + scr * sa / 0xff;
+        int color_g = dcg * (0xff - sa) / 0xff + scg * sa / 0xff;
+        int color_b = dcb * (0xff - sa) / 0xff + scb * sa / 0xff;
+        return ((color_r << 16) + (color_g << 8) + color_b) | (0xff000000);
     }
 
     private void ensureProgress(int index) {
@@ -259,7 +288,7 @@ public class SunMoonView extends View {
                 centerY + radius
         );
 
-        ensureShader(rootColor, x1ShaderWrapper.isLightTheme());
+        ensureShader(rootColor, lineColors[0], lineColors[1], x1ShaderWrapper.isLightTheme());
     }
 
     @Override
@@ -356,12 +385,7 @@ public class SunMoonView extends View {
             paint.setColor(lineColors[index]);
             paint.setStrokeWidth(lineSize);
             paint.setPathEffect(null);
-            paint.setShadowLayer(
-                    2,
-                    0,
-                    2,
-                    shadowColors[2]
-            );
+            paint.setShadowLayer(1, 0, 1, shadowColors[index]);
             canvas.drawArc(rectF, startAngle, progressSweepAngle, false, paint);
         }
     }

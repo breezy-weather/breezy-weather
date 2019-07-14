@@ -98,7 +98,7 @@ public class ShortcutsManager {
                                 .setIcon(icon)
                                 .setShortLabel(title)
                                 .setLongLabel(title)
-                                .setIntent(IntentHelper.buildMainActivityIntent(c, list.get(i)))
+                                .setIntent(IntentHelper.buildMainActivityIntent(list.get(i)))
                                 .build()
                 );
             }

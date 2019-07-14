@@ -154,7 +154,7 @@ public class LiveWallpaperService extends WallpaperService {
 
             if (drawableRunnable != null && drawableRunnable.isRunning()) {
                 // Set step to dismiss. The implementor will execute exit animation and call weather
-                // view to reset it.
+                // view to resetWidget it.
                 step = STEP_DISMISS;
             }
         }
@@ -235,9 +235,8 @@ public class LiveWallpaperService extends WallpaperService {
                             .readWeather(location);
                     if (location.weather != null) {
                         setWeather(
-                                WeatherViewController.getWeatherViewWeatherKind(
-                                        location.weather.realTime.weatherKind
-                                ), TimeManager.isDaylight(location.weather)
+                                WeatherViewController.getWeatherViewWeatherKind(location.weather),
+                                TimeManager.isDaylight(location.weather)
                         );
                     }
                     setWeatherImplementor();

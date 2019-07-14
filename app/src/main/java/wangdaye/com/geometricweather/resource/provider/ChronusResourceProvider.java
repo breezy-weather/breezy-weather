@@ -18,11 +18,11 @@ import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.Constants;
+import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class ChronusResourceProvider extends ResourceProvider {
 
@@ -118,7 +118,7 @@ public class ChronusResourceProvider extends ResourceProvider {
     @Override
     public Drawable getWeatherIcon(String weatherKind, boolean dayTime) {
         try {
-            return Objects.requireNonNull(
+            return ValueUtils.nonNull(
                     getDrawable(getWeatherIconName(weatherKind, dayTime))
             );
         } catch (Exception ignore) {
@@ -150,8 +150,7 @@ public class ChronusResourceProvider extends ResourceProvider {
         try {
             return ResourcesCompat.getDrawable(
                     context.getResources(),
-                    getResId(context, resName, "drawable"),
-                    // res.getIdentifier(resName, "drawable", context.getPackageName()),
+                    ValueUtils.nonNull(getResId(context, resName, "drawable")),
                     null
             );
         } catch (Exception e) {

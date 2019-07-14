@@ -10,17 +10,17 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.provider.Settings;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import android.view.View;
 
-import org.greenrobot.greendao.annotation.NotNull;
-
 import java.util.ArrayList;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.background.polling.basic.AwakeForegroundUpdateService;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.background.service.LiveWallpaperService;
 import wangdaye.com.geometricweather.ui.activity.AboutActivity;
 import wangdaye.com.geometricweather.ui.activity.AlertActivity;
 import wangdaye.com.geometricweather.settings.activity.SelectProviderActivity;
-import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.main.ui.MainActivity;
 import wangdaye.com.geometricweather.ui.activity.ManageActivity;
 import wangdaye.com.geometricweather.ui.activity.PreviewIconActivity;
 import wangdaye.com.geometricweather.ui.activity.SearcActivity;
@@ -48,24 +48,16 @@ public class IntentHelper {
         context.startActivity(intent);
     }
 
-    public static Intent buildMainActivityIntent(Context context, @Nullable Location location) {
-        String locationName;
-        if (location == null) {
-            locationName = "";
-        } else {
-            locationName= location.isLocal() ? context.getString(R.string.local) : location.city;
+    public static Intent buildMainActivityIntent(@Nullable Location location) {
+        String formattedId = "";
+        if (location != null) {
+            formattedId = location.getFormattedId();
         }
-        return new Intent("com.wangdaye.geometricweather.Main")
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, locationName);
-    }
 
-    public static Intent buildMainActivityIntent(@NotNull String cityName) {
         return new Intent("com.wangdaye.geometricweather.Main")
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION, cityName);
+                .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId);
     }
 
     public static Intent buildAwakeUpdateActivityIntent() {
@@ -200,5 +192,24 @@ public class IntentHelper {
     public static void startWebViewActivity(Context context, String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         context.startActivity(intent);
+    }
+
+    public static void sendBackgroundUpdateBroadcast(Context context, Location location) {
+        context.sendBroadcast(
+                new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND)
+                        .putExtra(MainActivity.KEY_LOCATION_FORMATTED_ID, location.getFormattedId())
+        );
+    }
+
+    public static void startAwakeForegroundUpdateService(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(getAwakeForegroundUpdateServiceIntent(context));
+        } else {
+            context.startService(getAwakeForegroundUpdateServiceIntent(context));
+        }
+    }
+
+    public static Intent getAwakeForegroundUpdateServiceIntent(Context context) {
+        return new Intent(context, AwakeForegroundUpdateService.class);
     }
 }

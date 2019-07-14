@@ -38,7 +38,7 @@ public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivi
                 this,
                 getLocationNow(), getLocationNow().weather,
                 cardStyleValueNow, cardAlpha,
-                textColorValueNow, clockFontValueNow
+                textColorValueNow, textSize, clockFontValueNow
         );
     }
 

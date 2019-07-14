@@ -5,6 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+import androidx.annotation.Nullable;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.entity.LocationEntity;
@@ -29,19 +31,20 @@ public class Location
 
     public String source;
 
-    public Weather weather;
-    public History history;
+    @Nullable public Weather weather;
+    @Nullable public History history;
 
     public boolean local;
     public boolean china;
 
     private static final String NULL_ID = "NULL_ID";
+    public static final String LOCAL_INTENT_ID = "LOCAL";
 
     public Location(String cityId,
                     String district, String city, String province, String country,
                     String lat, String lon,
                     String source,
-                    Weather weather, History history,
+                    @Nullable Weather weather, @Nullable History history,
                     boolean local, boolean china) {
         this.cityId = cityId;
         this.district = district;
@@ -103,6 +106,10 @@ public class Location
         }
     }
 
+    public String getFormattedId() {
+        return isLocal() ? LOCAL_INTENT_ID : cityId;
+    }
+
     public Location setLocal() {
         local = true;
         return this;
@@ -110,6 +117,10 @@ public class Location
 
     public boolean isLocal() {
         return local;
+    }
+
+    public static boolean isLocal(String formattedId) {
+        return LOCAL_INTENT_ID.equals(formattedId);
     }
 
     public boolean isUsable() {

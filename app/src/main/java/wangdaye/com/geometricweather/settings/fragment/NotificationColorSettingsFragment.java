@@ -11,7 +11,7 @@ import androidx.preference.PreferenceManager;
 import com.jaredrummler.android.colorpicker.ColorPreferenceCompat;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.background.BackgroundManager;
+import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
@@ -67,7 +67,7 @@ public class NotificationColorSettingsFragment extends PreferenceFragmentCompat
         if (preference.getKey().equals(getString(R.string.key_notification_custom_color))) {
             // custom color.
             initNotificationPart(sharedPreferences);
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         }
         return super.onPreferenceTreeClick(preference);
     }
@@ -76,10 +76,10 @@ public class NotificationColorSettingsFragment extends PreferenceFragmentCompat
     public boolean onPreferenceChange(Preference preference, Object o) {
         if (preference.getKey().equals(getString(R.string.key_notification_background_color))) {
             // notification background.
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
             // notification text color.
-            BackgroundManager.resetNormalBackgroundTask(getActivity(), true);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
             preference.setSummary(ValueUtils.getNotificationTextColor(getActivity(), (String) o));
         }
         return true;

@@ -19,6 +19,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -41,7 +42,7 @@ public class NotificationUtils {
         }
     }
 
-    public static void checkAndSendAlert(Context c, Weather weather, @Nullable Weather oldResult) {
+    public static void checkAndSendAlert(Context c, Location location, Weather weather, @Nullable Weather oldResult) {
         if (!PreferenceManager.getDefaultSharedPreferences(c)
                 .getBoolean(c.getString(R.string.key_alert_notification_switch), true)) {
             return;
@@ -67,12 +68,12 @@ public class NotificationUtils {
 
         for (int i = 0; i < alertList.size(); i ++) {
             sendAlertNotification(
-                    c, weather.base.city, alertList.get(i), alertList.size() > 1);
+                    c, location, alertList.get(i), alertList.size() > 1);
         }
     }
 
     private static void sendAlertNotification(Context c,
-                                              String cityName, Alert alert, boolean inGroup) {
+                                              Location location, Alert alert, boolean inGroup) {
         NotificationManager manager = ((NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE));
         if (manager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -88,16 +89,20 @@ public class NotificationUtils {
             }
             manager.notify(
                     getNotificationId(c),
-                    buildSingleNotification(c, cityName, alert, inGroup));
+                    buildSingleNotification(c, location, alert, inGroup)
+            );
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
-                manager.notify(GeometricWeather.NOTIFICATION_ID_ALERT_GROUP, buildGroupSummaryNotification(c, cityName, alert));
+                manager.notify(
+                        GeometricWeather.NOTIFICATION_ID_ALERT_GROUP,
+                        buildGroupSummaryNotification(c, location, alert)
+                );
             }
         }
     }
 
     private static Notification buildSingleNotification(Context c,
-                                                        String cityName, Alert alert, boolean inGroup) {
+                                                        Location location, Alert alert, boolean inGroup) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
                 c, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT
         ).setSmallIcon(R.drawable.ic_alert)
@@ -112,7 +117,7 @@ public class NotificationUtils {
                 )).setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setContentIntent(buildIntent(c, cityName));
+                .setContentIntent(buildIntent(c, location));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             builder.setGroup(NOTIFICATION_GROUP_KEY);
@@ -120,7 +125,7 @@ public class NotificationUtils {
         return builder.build();
     }
 
-    private static Notification buildGroupSummaryNotification(Context c, String cityName, Alert alert) {
+    private static Notification buildGroupSummaryNotification(Context c, Location location, Alert alert) {
         return new NotificationCompat.Builder(c, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
                 .setContentTitle(alert.description)
@@ -131,7 +136,7 @@ public class NotificationUtils {
                                 : R.color.darkPrimary_5
                 )).setGroupSummary(true)
                 .setOnlyAlertOnce(true)
-                .setContentIntent(buildIntent(c, cityName))
+                .setContentIntent(buildIntent(c, location))
                 .build();
     }
 
@@ -152,8 +157,8 @@ public class NotificationUtils {
         return id;
     }
 
-    private static PendingIntent buildIntent(Context c, String cityName) {
+    private static PendingIntent buildIntent(Context c, Location location) {
         return PendingIntent.getActivity(
-                c, 0, IntentHelper.buildMainActivityIntent(cityName), 0);
+                c, 0, IntentHelper.buildMainActivityIntent(location), 0);
     }
 }

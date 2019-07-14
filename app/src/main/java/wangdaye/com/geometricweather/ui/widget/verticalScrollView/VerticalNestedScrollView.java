@@ -71,12 +71,21 @@ public class VerticalNestedScrollView extends NestedScrollView {
                 break;
         }
 
-        return result && !isHorizontalDragged;
+        if (isBeingDragged) {
+            return result && !isHorizontalDragged;
+        } else {
+            return result;
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return super.onTouchEvent(ev) && !isHorizontalDragged;
+        boolean result = super.onTouchEvent(ev);
+        if (isBeingDragged) {
+            return result && !isHorizontalDragged;
+        } else {
+            return result;
+        }
     }
 }

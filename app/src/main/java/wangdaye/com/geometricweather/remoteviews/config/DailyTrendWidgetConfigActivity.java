@@ -31,6 +31,7 @@ public class DailyTrendWidgetConfigActivity extends AbstractWidgetConfigActivity
         hideSubtitleContainer.setVisibility(View.GONE);
         subtitleDataContainer.setVisibility(View.GONE);
         textColorContainer.setVisibility(View.GONE);
+        textSizeContainer.setVisibility(View.GONE);
         clockFontContainer.setVisibility(View.GONE);
     }
 

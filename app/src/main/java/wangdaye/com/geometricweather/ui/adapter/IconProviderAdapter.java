@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.ui.adapter;
 
+import android.app.Activity;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -22,7 +23,6 @@ import java.util.List;
 
 import james.adaptiveicon.AdaptiveIcon;
 import james.adaptiveicon.AdaptiveIconView;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -30,6 +30,7 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private Activity activity;
     private List<ResourceProvider> providerList;
     private OnItemClickedListener listener;
 
@@ -71,14 +72,8 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             title.setText(provider.getProviderName());
 
-            previewButton.setOnClickListener(v -> {
-                if (GeometricWeather.getInstance().getTopActivity() != null) {
-                    IntentHelper.startPreviewIconActivity(
-                            GeometricWeather.getInstance().getTopActivity(),
-                            provider.getPackageName()
-                    );
-                }
-            });
+            previewButton.setOnClickListener(v ->
+                    IntentHelper.startPreviewIconActivity(activity, provider.getPackageName()));
         }
     }
 
@@ -126,8 +121,10 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     // adapter.
 
-    public IconProviderAdapter(@NonNull List<ResourceProvider> providerList,
+    public IconProviderAdapter(Activity activity,
+                               @NonNull List<ResourceProvider> providerList,
                                @Nullable OnItemClickedListener l) {
+        this.activity = activity;
         this.providerList = providerList;
         this.listener = l;
     }
