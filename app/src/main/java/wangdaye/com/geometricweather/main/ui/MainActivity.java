@@ -161,7 +161,7 @@ public class MainActivity extends GeoActivity
                 ensureColorPicker();
 
                 ThreadManager.getInstance().execute(() ->
-                        NotificationUtils.refreshNotificationIfNecessary(
+                        NotificationUtils.updateNotificationIfNecessary(
                                 MainActivity.this,
                                 viewModel.getDefaultLocation().weather
                         )
@@ -341,7 +341,7 @@ public class MainActivity extends GeoActivity
 
         boolean oldDaytime = TimeManager.getInstance(this).isDayTime();
         boolean daytime = TimeManager.getInstance(this)
-                .getDayTime(this, location.weather, true)
+                .update(this, location.weather)
                 .isDayTime();
 
         setDarkMode(daytime);
@@ -456,8 +456,8 @@ public class MainActivity extends GeoActivity
         if (refreshRemoteViews) {
             Observable.create(emitter -> {
                 Location location = viewModel.getDefaultLocation();
-                WidgetUtils.refreshWidgetIfNecessary(this, location, location.weather, location.history);
-                NotificationUtils.refreshNotificationIfNecessary(this, location.weather);
+                WidgetUtils.updateWidgetIfNecessary(this, location, location.weather, location.history);
+                NotificationUtils.updateNotificationIfNecessary(this, location.weather);
             }).delay(1, TimeUnit.SECONDS).subscribe();
         }
 

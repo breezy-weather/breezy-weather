@@ -36,7 +36,7 @@ public class NotificationUtils {
     private static final String PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE";
     private static final String KEY_NOTIFICATION_ID = "NOTIFICATION_ID";
 
-    public static void refreshNotificationIfNecessary(Context c, @Nullable Weather weather) {
+    public static void updateNotificationIfNecessary(Context c, @Nullable Weather weather) {
         if (NormalNotificationIMP.isEnable(c)) {
             NormalNotificationIMP.buildNotificationAndSendIt(c, weather);
         }

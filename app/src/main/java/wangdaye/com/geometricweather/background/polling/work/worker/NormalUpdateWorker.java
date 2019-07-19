@@ -23,8 +23,8 @@ public class NormalUpdateWorker extends AsyncUpdateWorker {
     @Override
     public void updateView(Context context, Location location,
                            @Nullable Weather weather, @Nullable History history) {
-        WidgetUtils.refreshWidgetIfNecessary(context, location, weather, history);
-        NotificationUtils.refreshNotificationIfNecessary(context, weather);
+        WidgetUtils.updateWidgetIfNecessary(context, location, weather, history);
+        NotificationUtils.updateNotificationIfNecessary(context, weather);
     }
 
     @SuppressLint("RestrictedApi")

@@ -32,7 +32,7 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
-    public static void refreshWidgetView(Context context, Location location, @Nullable Weather weather) {
+    public static void updateWidgetView(Context context, Location location, @Nullable Weather weather) {
         WidgetConfig config = getWidgetConfig(
                 context,
                 context.getString(R.string.sp_widget_day_week_setting)

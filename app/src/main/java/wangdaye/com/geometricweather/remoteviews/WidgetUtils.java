@@ -28,37 +28,37 @@ import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
 
 public class WidgetUtils {
 
-    public static void refreshWidgetIfNecessary(Context context, Location location,
-                                                @Nullable Weather weather, @Nullable History history) {
+    public static void updateWidgetIfNecessary(Context context, Location location,
+                                               @Nullable Weather weather, @Nullable History history) {
         if (DayWidgetIMP.isEnable(context)) {
-            DayWidgetIMP.refreshWidgetView(context, location, weather);
+            DayWidgetIMP.updateWidgetView(context, location, weather);
         }
         if (WeekWidgetIMP.isEnable(context)) {
-            WeekWidgetIMP.refreshWidgetView(context, location, weather);
+            WeekWidgetIMP.updateWidgetView(context, location, weather);
         }
         if (DayWeekWidgetIMP.isEnable(context)) {
-            DayWeekWidgetIMP.refreshWidgetView(context, location, weather);
+            DayWeekWidgetIMP.updateWidgetView(context, location, weather);
         }
         if (ClockDayHorizontalWidgetIMP.isEnable(context)) {
-            ClockDayHorizontalWidgetIMP.refreshWidgetView(context, location, weather);
+            ClockDayHorizontalWidgetIMP.updateWidgetView(context, location, weather);
         }
         if (ClockDayVerticalWidgetIMP.isEnable(context)) {
-            ClockDayVerticalWidgetIMP.refreshWidgetView(context, location, weather);
+            ClockDayVerticalWidgetIMP.updateWidgetView(context, location, weather);
         }
         if (ClockDayWeekWidgetIMP.isEnable(context)) {
-            ClockDayWeekWidgetIMP.refreshWidgetView(context, location, weather);
+            ClockDayWeekWidgetIMP.updateWidgetView(context, location, weather);
         }
         if (ClockDayDetailsWidgetIMP.isEnable(context)) {
-            ClockDayDetailsWidgetIMP.refreshWidgetView(context, location, weather);
+            ClockDayDetailsWidgetIMP.updateWidgetView(context, location, weather);
         }
         if (TextWidgetIMP.isEnable(context)) {
-            TextWidgetIMP.refreshWidgetView(context, location, weather);
+            TextWidgetIMP.updateWidgetView(context, location, weather);
         }
         if (DailyTrendWidgetIMP.isEnable(context)) {
-            DailyTrendWidgetIMP.refreshWidgetView(context, location, weather, history);
+            DailyTrendWidgetIMP.updateWidgetView(context, location, weather, history);
         }
         if (HourlyTrendWidgetIMP.isEnable(context)) {
-            HourlyTrendWidgetIMP.refreshWidgetView(context, location, weather, history);
+            HourlyTrendWidgetIMP.updateWidgetView(context, location, weather, history);
         }
     }
 
@@ -107,7 +107,7 @@ public class WidgetUtils {
             int n = 0;
             for (boolean flag : flags) {
                 if (flag) {
-                    n++;
+                    n ++;
                 }
             }
             if (n == 4) {

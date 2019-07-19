@@ -27,28 +27,28 @@ public class TimeManager {
     }
 
     private boolean dayTime;
+
     private static final String PREFERENCE_NAME = "time_preference";
     private static final String KEY_DAY_TIME = "day_time";
 
     private TimeManager(Context context) {
-        getLastDayTime(context);
-    }
-
-    public TimeManager getDayTime(Context context, @Nullable Weather weather, boolean writeToPreference) {
-        dayTime = isDaylight(weather);
-        if (writeToPreference) {
-            SharedPreferences.Editor editor = context.getSharedPreferences(
-                    PREFERENCE_NAME, Context.MODE_PRIVATE
-            ).edit();
-            editor.putBoolean(KEY_DAY_TIME, dayTime);
-            editor.apply();
-        }
-        return this;
-    }
-
-    private void getLastDayTime(Context context) {
         dayTime = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
                 .getBoolean(KEY_DAY_TIME, true);
+    }
+
+    public boolean isDayTime() {
+        return dayTime;
+    }
+
+    public TimeManager update(Context context, @Nullable Weather weather) {
+        dayTime = isDaylight(weather);
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(
+                PREFERENCE_NAME, Context.MODE_PRIVATE
+        ).edit();
+        editor.putBoolean(KEY_DAY_TIME, dayTime);
+        editor.apply();
+        return this;
     }
 
     public static boolean isDaylight(String hour, String sunrise, String sunset) {
@@ -83,10 +83,6 @@ public class TimeManager {
             int ss = 60 * 18;
             return sr < time && time <= ss;
         }
-    }
-
-    public boolean isDayTime() {
-        return dayTime;
     }
 
     public static boolean is12Hour(Context context) {

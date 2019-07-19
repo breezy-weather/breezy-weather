@@ -24,8 +24,8 @@ public class AwakeForegroundUpdateService extends ForegroundUpdateService {
     @Override
     public void updateView(Context context, Location location,
                            @Nullable Weather weather, @Nullable History history) {
-        WidgetUtils.refreshWidgetIfNecessary(context, location, weather, history);
-        NotificationUtils.refreshNotificationIfNecessary(context, weather);
+        WidgetUtils.updateWidgetIfNecessary(context, location, weather, history);
+        NotificationUtils.updateNotificationIfNecessary(context, weather);
     }
 
     @Override

@@ -38,19 +38,19 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
-    public static void refreshWidgetView(Context context, Location location,
-                                         @Nullable Weather weather, @Nullable History history) {
+    public static void updateWidgetView(Context context, Location location,
+                                        @Nullable Weather weather, @Nullable History history) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            innerRefreshWidget(context, location, weather, history);
+            innerUpdateWidget(context, location, weather, history);
             return;
         }
 
-        ThreadManager.getInstance().execute(() -> innerRefreshWidget(context, location, weather, history));
+        ThreadManager.getInstance().execute(() -> innerUpdateWidget(context, location, weather, history));
     }
 
     @WorkerThread
-    private static void innerRefreshWidget(Context context, Location location,
-                                           @Nullable Weather weather, @Nullable History history) {
+    private static void innerUpdateWidget(Context context, Location location,
+                                          @Nullable Weather weather, @Nullable History history) {
         WidgetConfig config = getWidgetConfig(
                 context,
                 context.getString(R.string.sp_widget_daily_trend_setting)
@@ -135,7 +135,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableView.findViewById(R.id.widget_trend_daily_item_5)
         };
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        int[] colors = getWeatherColors(context, weather, lightTheme, provider);
+        int[] colors = getWeatherColors(context, weather, TimeManager.isDaylight(weather), provider);
         for (int i = 0; i < items.length; i ++) {
             Daily daily = weather.dailyList.get(i);
 
