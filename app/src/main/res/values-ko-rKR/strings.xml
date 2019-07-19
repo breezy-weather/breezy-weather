@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- keyword. -->
+    <string name="date_format_short">M-d</string>
+    <string name="date_format_long">M월d일</string>
+    <string name="date_format_widget_short">MM-dd EEE</string>
+    <string name="date_format_widget_long">M월d일 EEEE</string>
+    <string name="date_format_widget_oreo_style">M월d일EEEE │ </string>
+
+</resources>

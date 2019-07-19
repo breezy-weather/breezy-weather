@@ -56,7 +56,7 @@ public class PollingUpdateHelper {
                     .requestWeatherSuccess(old, null, locationList.get(position));
             return;
         }
-        if (locationList.get(position).isLocal() && !located) {
+        if (locationList.get(position).isCurrentPosition() && !located) {
             locationHelper.requestLocation(
                     context, locationList.get(position),
                     new RequestLocationCallback(position, locationList.size())

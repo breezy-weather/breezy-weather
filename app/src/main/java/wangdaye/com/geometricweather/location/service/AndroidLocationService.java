@@ -8,6 +8,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import android.provider.Settings;
 import android.text.TextUtils;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -32,6 +34,7 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.utils.LogUtils;
 
 /**
  * Android Location service.
@@ -122,7 +125,8 @@ public class AndroidLocationService extends LocationService {
                 ? LocationServices.getFusedLocationProviderClient(context)
                 : null;
 
-        if ((locationManager == null && gmsLocationClient == null)
+        if (locationManager == null
+                || !locationEnabled(context, locationManager)
                 || !hasPermissions(context)) {
             callback.onCompleted(null);
             return;
@@ -139,9 +143,11 @@ public class AndroidLocationService extends LocationService {
                     .addOnSuccessListener(location -> lastKnownLocation = location);
         }
 
-        if (locationManager != null) {
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
                     0, 0, networkListener, Looper.getMainLooper());
+        }
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                     0, 0, gpsListener, Looper.getMainLooper());
         }
@@ -305,8 +311,31 @@ public class AndroidLocationService extends LocationService {
         return Geocoder.isPresent();
     }
 
-    public static boolean gmsEnabled(Context context) {
+    private static boolean gmsEnabled(Context context) {
         return GoogleApiAvailability.getInstance()
                 .isGooglePlayServicesAvailable(context) == ConnectionResult.SUCCESS;
+    }
+
+    private static boolean locationEnabled(Context context, @NonNull LocationManager manager) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            if (!manager.isLocationEnabled()) {
+                return false;
+            }
+        } else {
+            int locationMode = -1;
+            try {
+                locationMode = Settings.Secure.getInt(
+                        context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+            }
+            if (locationMode == Settings.Secure.LOCATION_MODE_OFF) {
+                LogUtils.log("LOCATION_MODE_OFF");
+                return false;
+            }
+        }
+
+        return manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                || manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 }

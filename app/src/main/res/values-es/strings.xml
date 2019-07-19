@@ -1,10 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
-    <string name="app_name">Weather</string>
-    <string name="geometric_weather">Geometric Weather</string>
+    <string name="app_name">Tiempo</string>
 
     <!-- keyword. -->
-    <string name="local">local</string>
+    <string name="current_location">Ubicación actual</string>
     <string name="default_location">Localización por defecto</string>
     <string name="live">Ahora</string>
     <string name="today">Hoy</string>
@@ -16,7 +15,7 @@
     <string name="day">día</string>
     <string name="night">noche</string>
     <string name="wind">Viento</string>
-    <string name="sensible_temp">Sensación de la temperatura</string>
+    <string name="sensible_temp">Sensación térmica</string>
     <string name="humidity">Humedad</string>
     <string name="uv_index">Índice UV</string>
     <string name="forecast">Pronóstico</string>
@@ -24,20 +23,31 @@
     <string name="daytime">Día</string>
     <string name="nighttime">Noche</string>
     <string name="publish_at">Publicar en</string>
-    <string name="feels_like">Se siente como</string>
+    <string name="feels_like">Sensación de</string>
     <string name="follow_system">Usar el mismo que el sistema</string>
+    <string name="background_information">Información en segundo plano</string>
+    <string name="dew_point">Punto de rocío</string>
+    <string name="pressure">Presión atmosférica</string>
+    <string name="refresh">Refrescar</string>
+    <string name="visibility">Visibilidad</string>
+
+    <string name="date_format_long">d MMM</string>
+    <string name="date_format_short">dd/MM</string>
+    <string name="date_format_widget_long">d MMM EEEE</string>
+    <string name="date_format_widget_oreo_style">d MMM EEEE|</string>
+    <string name="date_format_widget_short">d MMM EEEE</string>
 
     <string name="of_clock">:00</string>
     <string name="yesterday">ayer</string>
     <string name="tomorrow">mñn</string>
     <string name="week">sem</string>
-    <string name="week_1">LUN</string>
-    <string name="week_2">MAR</string>
-    <string name="week_3">MIÉ</string>
-    <string name="week_4">JUE</string>
-    <string name="week_5">VIE</string>
-    <string name="week_6">SÁB</string>
-    <string name="week_7">DOM</string>
+    <string name="week_1">Lun</string>
+    <string name="week_2">Mar</string>
+    <string name="week_3">Mié</string>
+    <string name="week_4">Jue</string>
+    <string name="week_5">Vie</string>
+    <string name="week_6">Sáb</string>
+    <string name="week_7">Dom</string>
 
     <string name="wind_0">Calma</string>
     <string name="wind_1">Aire ligero</string>
@@ -55,63 +65,104 @@
 
     <string name="aqi_1">Aire fresco</string>
     <string name="aqi_2">Aire limpio</string>
-    <string name="aqi_3">P-contaminación</string>
-    <string name="aqi_4">M-contaminación</string>
-    <string name="aqi_5">A-contaminación</string>
-    <string name="aqi_6">Peligroso</string>
+    <string name="aqi_3">Polución ligera</string>
+    <string name="aqi_4">Polución moderada</string>
+    <string name="aqi_5">Polución densa</string>
+    <string name="aqi_6">Polución severa</string>
 
-    <string name="daily_overview">diariamente</string>
-    <string name="hourly_overview">cada hora</string>
+    <string name="phase_full">Luna llena</string>
+    <string name="phase_new">Luna nueva</string>
+    <string name="phase_third">Cuarto menguante</string>
+    <string name="phase_first">Cuarto creciente</string>
+    <string name="phase_waning_crescent">Menguante cóncava</string>
+    <string name="phase_waning_gibbous">Menguante convexa</string>
+    <string name="phase_waxing_crescent">Creciente cóncava</string>
+    <string name="phase_waxing_gibbous">Creciente convexa</string>
+
+    <string name="daily_overview">Previsión diaria</string>
+    <string name="hourly_overview">Pronóstico por horas</string>
     <string name="air_quality">calidad del aire</string>
-    <string name="life_details">detalles</string>
-    <string name="sunrise_sunset">sol &amp; luna</string>
+    <string name="life_details">Detalles</string>
+    <string name="sunrise_sunset">Posición solar/lunar</string>
 
     <string name="next">SIGUIENTE</string>
     <string name="done">HECHO</string>
     <string name="cancel" tools:ignore="ButtonCase">CANCELAR</string>
-    <string name="on">ON</string>
-    <string name="off">OFF</string>
+    <string name="on">Activado</string>
+    <string name="off">Desactivado</string>
+    <string name="help">AYUDA</string>
 
     <string name="about_app">ACERCA DE LA APP</string>
     <string name="introduce">introducir</string>
     <string name="email">E-mail</string>
-    <string name="donate">Donar</string>
+    <string name="donate">Donar (Alipay)</string>
     <string name="gitHub">GitHub</string>
     <string name="translator">Traductores</string>
     <string name="thanks">Gracias</string>
 
+    <string name="get_more">Consiga más</string>
+    <string name="get_more_github">Consiga más desde GitHub</string>
+    <string name="get_more_store">Consiga más desde la tienda de apps</string>
+
+    <!-- about. -->
+    <string name="about_circular_progress_view">Barra de progreso circular para Android de estilo Material</string>
+    <string name="about_glide">Una libreria para Android de carga y cacheo de imágenes centrada en un scrolling suave</string>
+    <string name="about_greenDAO">greenDAO is euna solución ORM para Android rápida y ligera que mapea objetos a bases de datos SQLite</string>
+    <string name="about_gson">Una librería Java de serialización/deserialización que puede convertir objetos Java a JSON y viceversa</string>
+    <string name="about_page_indicator">InkPageIndicater creada por @nickbutcher para Plaid https://github.com/nickbutcher/plaid y portada por David Pacioianu para API 14+ (4.0+)</string>
+    <string name="about_retrofit">Cliente HTTP Type-safe para Android y Java por Square, Inc.</string>
+
     <!-- feedback. -->
     <string name="feedback_request_permission">Permisos</string>
-    <string name="feedback_request_location">Localización</string>
-    <string name="feedback_request_location_permission_success">Solicitud del permiso de localización exitosa.</string>
-    <string name="feedback_request_location_permission_failed">Solicitud del permiso de localización fallida.</string>
+    <string name="feedback_request_location">Ubicación</string>
+    <string name="feedback_request_location_permission_success">Solicitud del permiso de localización exitosa</string>
+    <string name="feedback_request_location_permission_failed">Solicitud del permiso de localización fallida</string>
 
     <string name="feedback_location_failed">Localización fallida.</string>
     <string name="feedback_get_weather_failed">Solicitud del clima fallida.</string>
 
-    <string name="feedback_view_style">Estilo de la vista.</string>
-    <string name="feedback_show_widget_card">Fondo.</string>
-    <string name="feedback_hide_subtitle">Ocultar subtítulo.</string>
-    <string name="feedback_subtitle_data">Datos del subtítulo.</string>
-    <string name="feedback_black_text">Texto oscuro.</string>
+    <string name="feedback_view_style">Estilo</string>
+    <string name="feedback_show_widget_card">Color de fondo</string>
+    <string name="feedback_hide_subtitle">Ocultar subtítulo</string>
+    <string name="feedback_subtitle_data">Datos en subtítulo</string>
+    <string name="feedback_black_text">Color del texto</string>
 
-    <string name="feedback_click_toggle">Haga clic en la tabla para alternar datos.</string>
+    <string name="feedback_click_toggle">Pulse en la tabla para alternar datos</string>
     <string name="feedback_no_data">SIN DATOS</string>
 
-    <string name="feedback_collect_failed">Esta ubicación ya existe.</string>
-    <string name="feedback_collect_succeed">Ubicación añadida exitosamente.</string>
-    <string name="feedback_delete_succeed">Ubicación eliminada exisosamente.</string>
-    <string name="feedback_location_list_cannot_be_null">La lista de ubicaciones no puede ser nula.</string>
+    <string name="feedback_collect_failed">Esta ubicación ya existe</string>
+    <string name="feedback_collect_succeed">Ubicación añadida con éxito</string>
+    <string name="feedback_delete_succeed">Ubicación eliminada con éxito</string>
+    <string name="feedback_location_list_cannot_be_null">La lista de ubicaciones no puede estar vacía</string>
 
-    <string name="feedback_search_location">Buscar una ubicación o \"local\"…</string>
-    <string name="feedback_not_yet_location">Sin ubicación aún…</string>
-    <string name="feedback_search_nothing">Buscando nada…</string>
+    <string name="feedback_search_location">Busque una ubicación…</string>
+    <string name="feedback_not_yet_location">Aún sin ubicación…</string>
+    <string name="feedback_search_nothing">No se encontraron resultados</string>
     <string name="feedback_initializing">Inicializando…</string>
 
-    <string name="feedback_refresh_notification_after_back">Tendrá efecto cuando regrese a la página de inicio.</string>
-    <string name="feedback_refresh_notification_now">Refrescar ahora.</string>
-    <string name="feedback_refresh_ui_after_refresh">Tendrá efecto cuando se refresquen los datos.</string>
-    <string name="feedback_restart">Tendrá efecto cuando reinicie.</string>
+    <string name="feedback_refresh_notification_after_back">Los cambios tendrán efecto cuando regrese a la página de inicio.</string>
+    <string name="feedback_refresh_notification_now">Refrescar ahora</string>
+    <string name="feedback_refresh_ui_after_refresh">Los cambios tendrán efecto cuando se refresquen los datos</string>
+    <string name="feedback_restart">Los cambión tendrán efecto después de reiniciar.</string>
+
+    <string name="feedback_about_geocoder">Geocoder es un componente que convierte el resultado de localización de un formato latitud-longitud a un formato estilo \'ciudad XX, provincia YY\'. En ausencia de este componente, solo podrá obtener datos meteorológicos a través de AccuWeather cuando se utilice la API nativa como proveedor de localización</string>
+
+    <string name="feedback_cannot_start_live_wallpaper_activity">Incapaz de iniciar la actividad de vista previa del fondo animado</string>
+    <string name="feedback_check_location_permission">Comprobar permisos de localización</string>
+    <string name="feedback_clock_font">Fuente del reloj</string>
+    <string name="feedback_enable_location_information">Activar información de localización</string>
+    <string name="feedback_interpret_background_notification_content">En algunos dispositivos, después de desacticar \"Liberar segundo plano\", puede haber una notificación que no puede ser quitada en la barra de notificaciones</string>
+    <string name="feedback_interpret_notification_group_content">Después de desactivar \"Liberar segundo plano\", una notificación indicando que el servicio en segundo plano se está ejecutando aparecerá en la barra de notificaciones. Puede desactivar el canal de información en segundo plano en la página de información de la app para bloquear esta notificación.</string>
+    <string name="feedback_interpret_notification_group_title">Bloquear grupo de notificaciones</string>
+    <string name="feedback_location_help_title">¿No puede obtener la localización correcta?</string>
+    <string name="feedback_readd_location">Por favor, vuelva a añadir las ubicaciones</string>
+    <string name="feedback_readd_location_after_changing_source">Por favor, vuelva a añadir las ubicaciones después de cambiar la fuente de datos</string>
+    <string name="feedback_request_location_in_background">Localizando en segundo plano</string>
+    <string name="feedback_running_in_background">Ejecutandose en segundo plano para continuar actualizándose</string>
+    <string name="feedback_select_location_provider">Seleccione proveedor de localización</string>
+    <string name="feedback_show_widget_card_alpha">Transparencia del fondo</string>
+    <string name="feedback_unusable_geocoder">Este dispositivo no dispone de un geocoder válido. El proveedor de localización ha sido cambiado a Baidu.</string>
+    <string name="feedback_updating_weather_data">Actualizando datos meteorológicos</string>
 
     <!-- action -->
     <string name="action_alert">Alerta</string>
@@ -119,6 +170,8 @@
     <string name="action_search">Buscar</string>
     <string name="action_settings">Configuración</string>
     <string name="action_about">Acerca de</string>
+    <string name="action_appStore">Tienda de apps</string>
+    <string name="action_preview">Vista previa</string>
 
     <!-- widget -->
     <string name="widget_day">Día</string>
@@ -128,44 +181,66 @@
     <string name="widget_clock_day_details">Reloj + Día (Detalles)</string>
     <string name="widget_clock_day_vertical">Reloj + Día (Estilo vertical)</string>
     <string name="widget_clock_day_week">Reloj + Día + Semana</string>
+    <string name="widget_text">Texto</string>
+    <string name="widget_trend_daily">Tendencia diaria</string>
+    <string name="widget_trend_hourly">Tendencia por horas</string>
     <string name="wait_refresh">esperando</string>
     <string name="ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Básico</string>
-    <string name="settings_title_background_free">Background libre.</string>
-    <string name="settings_title_ui_style">Estilo de la IU.</string>
-    <string name="settings_title_gravity_sensor_switch">Abrir sensor de gravedad.</string>
-    <string name="settings_language">Idioma.</string>
-    <string name="settings_title_fahrenheit">Fahrenheit.</string>
-    <string name="settings_title_refresh_rate">Rango automático de refresco</string>
-    <string name="settings_title_alert_notification_switch">Enviar notificación de alerta.</string>
-    <string name="settings_title_permanent_service">Servicio permanente.</string>
+    <string name="settings_title_background_free">Liberar segundo plano</string>
+    <string name="settings_title_ui_style">Estilo de la IU</string>
+    <string name="settings_title_gravity_sensor_switch">Sensor de gravedad</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_title_fahrenheit">Fahrenheit</string>
+    <string name="settings_title_refresh_rate">Intervalo automático de refresco</string>
+    <string name="settings_title_alert_notification_switch">Enviar notificación de alerta</string>
+    <string name="settings_title_permanent_service">Servicio permanente</string>
     <string name="settings_category_forecast">Pronóstico</string>
-    <string name="settings_title_forecast_today">Pronóstico de hoy.</string>
-    <string name="settings_title_forecast_today_time">Pronóstico por hora de hoy.</string>
-    <string name="settings_title_forecast_tomorrow">Pronóstico para mañana.</string>
-    <string name="settings_title_forecast_tomorrow_time">Pronóstico por hora para mañana.</string>
+    <string name="settings_title_forecast_today">Pronóstico para hoy</string>
+    <string name="settings_title_forecast_today_time">Hora del pronóstico para hoy</string>
+    <string name="settings_title_forecast_tomorrow">Pronóstico para mañana</string>
+    <string name="settings_title_forecast_tomorrow_time">Hora del pronóstico para mañana</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_icon_provider">Estilo de los iconos.</string>
-    <string name="settings_title_click_widget_to_refresh">Actualización del widget al hacer click.</string>
+    <string name="settings_title_icon_provider">Paquete de iconos</string>
+    <string name="settings_title_click_widget_to_refresh">Actualizar widget al pulsar en él</string>
     <string name="settings_category_notification">Notificación</string>
-    <string name="settings_title_notification">Enviar notificación.</string>
-    <string name="settings_title_notification_temp_icon">Mostrar temperatura como mini icono.</string>
-    <string name="settings_title_notification_text_color">Color del texto.</string>
-    <string name="settings_title_notification_background">Color del fondo.</string>
-    <string name="settings_notification_background_off">Usar el mismo que el sistema.</string>
-    <string name="settings_title_notification_can_be_cleared">Puede limpiarse.</string>
-    <string name="settings_notification_can_be_cleared_on">Puede limpiarse.</string>
-    <string name="settings_notification_can_be_cleared_off">No se puede limpiar.</string>
-    <string name="settings_title_notification_hide_icon">Ocultar el icono de la notificación.</string>
-    <string name="settings_notification_hide_icon_on">Ocultar.</string>
-    <string name="settings_notification_hide_icon_off">Mostrar.</string>
-    <string name="settings_title_notification_hide_in_lockScreen">Ocultar en bloqueo de pantalla.</string>
-    <string name="settings_notification_hide_in_lockScreen_on">Oculto (se necesita abrir en la configuración del sistema).</string>
-    <string name="settings_notification_hide_in_lockScreen_off">Mostrar.</string>
-    <string name="settings_title_notification_hide_big_view">Ocultar vista grande.</string>
-    <string name="settings_notification_hide_big_view_on">Ocultar.</string>
-    <string name="settings_notification_hide_big_view_off">Mostrar.</string>
+    <string name="settings_title_notification">Mostrar notificación</string>
+    <string name="settings_title_notification_temp_icon">Temperatura en la barra de estado</string>
+    <string name="settings_title_notification_text_color">Color del texto</string>
+    <string name="settings_title_notification_background">Color del fondo</string>
+    <string name="settings_notification_background_off">Usar el mismo que el sistema</string>
+    <string name="settings_title_notification_can_be_cleared">Descartable</string>
+    <string name="settings_notification_can_be_cleared_on">Puede descartarse</string>
+    <string name="settings_notification_can_be_cleared_off">No puede descartarse</string>
+    <string name="settings_title_notification_hide_icon">Ocultar el icono de la notificación</string>
+    <string name="settings_notification_hide_icon_on">Ocultar</string>
+    <string name="settings_notification_hide_icon_off">Mostrar</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Ocultar en pantalla de bloqueo</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Oculto (se necesita abrir la configuración del sistema).</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Mostrar</string>
+    <string name="settings_title_notification_hide_big_view">Diseño extendido</string>
+    <string name="settings_notification_hide_big_view_on">Ocultar</string>
+    <string name="settings_notification_hide_big_view_off">Mostrar</string>
+    <string name="settings_summary_appearance">Estilo de la interfaz, orden de las tarjetas, idioma…</string>
+    <string name="settings_summary_background_free_on">Activado\nSi los widgets o las notificaciones no se actualizan automáticamente, por favor desactive esta opción</string>
+    <string name="settings_summary_background_free_off">Desactivado\nSi no desea que un servicio continúe trabajando en segundo plano, por favor active esta opción</string>
+    <string name="settings_summary_live_wallpaper">Establecer animaciones meteorológicas Material como fondo de pantalla animado</string>
+    <string name="settings_summary_service_provider">Seleccione proveedor de datos meteorológicos e información de localización</string>
+    <string name="settings_summary_unit">Seleccione las unidades de la información meteorológica</string>
+    <string name="settings_title_appearance">Apariencia</string>
+    <string name="settings_title_card_display">Tarjetas mostradas</string>
+    <string name="settings_title_card_order">Orden de las tarjetas</string>
+    <string name="settings_title_chinese_source">Servicio meteorológico</string>
+    <string name="settings_title_dark_mode">Tema oscuro</string>
+    <string name="settings_title_imperial">Unidades imperiales</string>
+    <string name="settings_title_live_wallpaper">Fondo de pantalla animado</string>
+    <string name="settings_title_location_service">Servicio de ubicación</string>
+    <string name="settings_title_minimal_icon">Iconos minimalistas</string>
+    <string name="settings_title_notification_color">Color de la notificación</string>
+    <string name="settings_title_notification_custom_color">Color personalizado de la notificación</string>
+    <string name="settings_title_service_provider">Proveedor de servicio</string>
+    <string name="settings_title_unit">Unidades</string>
 
 </resources>

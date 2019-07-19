@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.main.ui.controller.SunMoonController;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
-class MainControllerAdapter {
+public class MainControllerAdapter {
 
     @NonNull private Location location;
     private List<AbstractMainItemController> controllerList;
@@ -26,7 +26,7 @@ class MainControllerAdapter {
     private int headerCurrentTemperatureTextHeight;
     private int screenHeight;
 
-    MainControllerAdapter(@NonNull Activity activity,
+    public MainControllerAdapter(@NonNull Activity activity,
                           @NonNull WeatherView weatherView, @NonNull Location location,
                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
         this.location = location;
@@ -46,20 +46,20 @@ class MainControllerAdapter {
         this.screenHeight = activity.getResources().getDisplayMetrics().heightPixels;
     }
 
-    void bindView() {
+    public void bindView() {
         for (int i = 0; i < controllerList.size(); i ++) {
             controllerList.get(i).onBindView(location);
         }
     }
 
-    void destroy() {
+    public void destroy() {
         for (int i = 0; i < controllerList.size(); i ++) {
             controllerList.get(i).onDestroy();
         }
         controllerList.clear();
     }
 
-    int getCurrentTemperatureTextHeight() {
+    public int getCurrentTemperatureTextHeight() {
         if (headerCurrentTemperatureTextHeight < 0) {
             if (controllerList.size() > 0) {
                 AbstractMainItemController controller = controllerList.get(0);
@@ -72,7 +72,7 @@ class MainControllerAdapter {
         return headerCurrentTemperatureTextHeight;
     }
 
-    void onScroll(int oldScrollY, int scrollY) {
+    public void onScroll(int oldScrollY, int scrollY) {
         if (oldScrollY >= scrollY) {
             return;
         }

@@ -43,7 +43,7 @@ public class LocationHelper {
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (locationList.size() > 0) {
-                Location location = locationList.get(0).setLocal();
+                Location location = locationList.get(0).setCurrentPosition();
                 DatabaseHelper.getInstance(context).writeLocation(location);
                 listener.requestLocationSuccess(location);
             } else {
@@ -73,7 +73,7 @@ public class LocationHelper {
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (locationList.size() > 0) {
                 location.cityId = locationList.get(0).cityId;
-                location.setLocal();
+                location.setCurrentPosition();
                 DatabaseHelper.getInstance(context).writeLocation(location);
                 listener.requestLocationSuccess(location);
             } else {
@@ -144,7 +144,7 @@ public class LocationHelper {
                     location.province = result.province;
                     location.country = result.country;
 
-                    location.local = true;
+                    location.currentPosition = true;
                     location.china = result.inChina;
 
                     requestAvailableWeatherLocation(context, location, l);

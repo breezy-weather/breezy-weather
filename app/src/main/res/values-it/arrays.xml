@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Localizzazione Baidu</item>
+        <item>Localizzazione IP Baidu (Cina)</item>
+        <item>Localizzazione AMAP</item>
+        <item>API Nativa</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automatico</item>
+        <item>Chiaro</item>
+        <item>Scuro</item>
+    </string-array>
+
     <!-- UI style. -->
     <string-array name="ui_styles">
-        <item>Rotazioni</item>
-        <item>Material design</item>
+        <item>Orbita</item>
+        <item>Material</item>
     </string-array>
 
     <!-- card order. -->
     <string-array name="card_orders">
         <item>Giornaliero</item>
-        <item>Ogni ora</item>
+        <item>Ad ore</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -36,7 +51,7 @@
     <string-array name="widget_styles">
         <item>Rettangolo</item>
         <item>Simmetrico</item>
-        <item>Piastrella</item>
+        <item>Ordinato</item>
         <item>Mini</item>
         <item>Nano</item>
         <item>Pixel</item>
@@ -46,12 +61,27 @@
 
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
-        <item>Frequenza di aggiornamento</item>
-        <item>Qualità dell\'aria</item>
+        <item>Ultimo aggiornamento</item>
+        <item>Qualità aria</item>
         <item>Vento</item>
-        <item>Temperatura risentita</item>
+        <item>Temperatura percepita</item>
         <item>Calendario Lunare</item>
         <item>Custom</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_card_styles">
+        <item>Nessuno</item>
+        <item>Giorno - Notte</item>
+        <item>Chiaro</item>
+        <item>Scuro</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Chiaro</item>
+        <item>Scuro</item>
+        <item>Automatico</item>
     </string-array>
 
 </resources>

@@ -109,9 +109,9 @@ public class MainActivityViewModel extends ViewModel {
         }
 
         for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).isLocal() && Location.isLocal(formattedId)) {
+            if (locationList.get(i).isCurrentPosition() && Location.isLocal(formattedId)) {
                 return i;
-            } else if (!locationList.get(i).isLocal() && formattedId.equals(locationList.get(i).cityId)) {
+            } else if (!locationList.get(i).isCurrentPosition() && formattedId.equals(locationList.get(i).cityId)) {
                 return i;
             }
         }
@@ -176,7 +176,7 @@ public class MainActivityViewModel extends ViewModel {
 
         currentLocation.setValue(LocationResource.loading(location));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && location.isLocal()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && location.isCurrentPosition()) {
             // check permissions.
             List<String> permissionList = repository.getLocatePermissionList();
             for (int i = permissionList.size() - 1; i >= 0; i --) {

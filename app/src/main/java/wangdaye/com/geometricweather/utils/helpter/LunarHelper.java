@@ -32,7 +32,9 @@ public class LunarHelper {
     private static String getLunarDate(int year, int month, int day) {
         try {
             LunarCalendar lunarCalendar = LunarCalendar.obtainCalendar(year, month, day);
-            return lunarCalendar.getFullLunarStr().split("年")[1];
+            return lunarCalendar.getFullLunarStr().split("年")[1]
+                    .replace("廿十", "二十")
+                    .replace("卅十", "三十");
         } catch (Exception e) {
             e.printStackTrace();
             CrashReport.postCatchedException(e);

@@ -35,6 +35,12 @@
         <item>小時數據在上</item>
     </string-array>
 
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>原生</item>
+        <item>@string/geometric_weather</item>
+    </string-array>
+
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
         <item>暗色</item>

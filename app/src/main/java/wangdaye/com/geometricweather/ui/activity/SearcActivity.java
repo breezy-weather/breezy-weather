@@ -4,7 +4,6 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -64,8 +63,6 @@ public class SearcActivity extends GeoActivity
     private static final int STATE_SHOWING = 1;
     private static final int STATE_LOADING = 2;
 
-    public static final int SEARCH_ACTIVITY = 1;
-
     private class ShowAnimation extends Animation {
         // widget
         private View v;
@@ -102,21 +99,6 @@ public class SearcActivity extends GeoActivity
         setContentView(R.layout.activity_search);
         initData();
         initWidget();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case SEARCH_ACTIVITY:
-                this.adapter = new LocationAdapter(
-                        this,
-                        DatabaseHelper.getInstance(this).readLocationList(),
-                        false,
-                        this);
-                recyclerView.setAdapter(adapter);
-                break;
-        }
     }
 
     @SuppressLint("MissingSuperCall")
@@ -170,7 +152,6 @@ public class SearcActivity extends GeoActivity
         this.editText = findViewById(R.id.activity_search_editText);
         editText.setOnEditorActionListener(this);
         new Handler().post(() -> {
-            editText.setFocusable(true);
             editText.requestFocus();
             InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             if (inputManager != null) {
@@ -282,20 +263,8 @@ public class SearcActivity extends GeoActivity
             }
 
             query = textView.getText().toString();
-            if (query.equals(getString(R.string.local))) {
-                for (int j = 0; j < locationList.size(); j ++) {
-                    if (locationList.get(j).isLocal()) {
-                        SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_failed));
-                        editText.setText("");
-                        return true;
-                    }
-                }
-                DatabaseHelper.getInstance(this).writeLocation(Location.buildLocal());
-                finishSelf(true);
-            } else {
-                setState(STATE_LOADING);
-                weatherHelper.requestLocation(this, query, this);
-            }
+            setState(STATE_LOADING);
+            weatherHelper.requestLocation(this, query, this);
         }
         return true;
     }

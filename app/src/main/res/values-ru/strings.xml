@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
 
     <!-- keyword. -->
-    <string name="local">Местоположение</string>
+    <string name="current_location">Местоположение по текущий</string>
     <string name="default_location">Местоположение по умолчанию</string>
     <string name="live">Сейчас</string>
     <string name="today">Сегодня</string>
@@ -109,7 +109,7 @@
     <string name="feedback_delete_succeed">Место успешно удалено</string>
     <string name="feedback_location_list_cannot_be_null">Список мест не можеть быть пустым</string>
 
-    <string name="feedback_search_location">Поиск места или \"Местоположение\"…</string>
+    <string name="feedback_search_location">Поиск места…</string>
     <string name="feedback_not_yet_location">Место еще не задано…</string>
     <string name="feedback_search_nothing">Поиск не дал результатов</string>
     <string name="feedback_initializing">Инициализация…</string>

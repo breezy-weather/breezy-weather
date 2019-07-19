@@ -122,7 +122,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         initView();
         updateHostView();
 
-        if (locationNow.isLocal()) {
+        if (locationNow.isCurrentPosition()) {
             if (locationNow.isUsable()) {
                 weatherHelper.requestWeather(this, locationNow, this);
             } else {

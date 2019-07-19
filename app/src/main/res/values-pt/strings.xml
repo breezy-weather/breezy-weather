@@ -2,10 +2,9 @@
 
     <!-- app. -->
     <string name="app_name">Clima</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
-    <string name="local">local</string>
+    <string name="current_location">localização atual</string>
     <string name="default_location">localização padrão</string>
     <string name="live">Ao vivo</string>
     <string name="today">Hoje</string>
@@ -126,12 +125,12 @@
     <string name="feedback_click_toggle">Toque no gráfico para alternar dados</string>
     <string name="feedback_no_data">Sem dados</string>
 
-    <string name="feedback_collect_failed">Este local já existe</string>
+    <string name="feedback_collect_failed">Este currentPosition já existe</string>
     <string name="feedback_collect_succeed">Local adicionado com sucesso</string>
     <string name="feedback_delete_succeed">Local deletado com sucesso</string>
     <string name="feedback_location_list_cannot_be_null">Lista de locais não pode estar vazia</string>
 
-    <string name="feedback_search_location">Pesquise um endereço ou \"local\"…</string>
+    <string name="feedback_search_location">Pesquise um endereço…</string>
     <string name="feedback_not_yet_location">Ainda não localizado…</string>
     <string name="feedback_search_nothing">Nenhum resultado…</string>
     <string name="feedback_initializing">Inicializando…</string>
@@ -173,7 +172,7 @@
     <string name="settings_category_basic">Básico</string>
     <string name="settings_title_background_free">Livre de Segundo Plano</string>
     <string name="settings_title_service_provider">Provedor de Serviço</string>
-    <string name="settings_summary_service_provider">Selecione provedor de serviço de clima e dados de local.</string>
+    <string name="settings_summary_service_provider">Selecione provedor de serviço de clima e dados de currentPosition.</string>
     <string name="settings_title_chinese_source">Fonte de dados de clima</string>
     <string name="settings_title_location_service">Serviço de Localização</string>
     <string name="settings_title_dark_mode">Modo Escuro</string>

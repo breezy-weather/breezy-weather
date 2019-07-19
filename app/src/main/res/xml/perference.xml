@@ -108,6 +108,14 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 
+        <ListPreference
+            android:title="@string/settings_title_notification_style"
+            android:key="@string/key_notification_style"
+            android:entries="@array/notification_styles"
+            android:entryValues="@array/notification_style_values"
+            android:dialogTitle="@string/settings_title_notification_style"
+            android:defaultValue="geometric" />
+
         <CheckBoxPreference
             android:title="@string/settings_title_minimal_icon"
             android:key="@string/key_notification_minimal_icon"

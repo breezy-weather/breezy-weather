@@ -34,18 +34,18 @@ public class Location
     @Nullable public Weather weather;
     @Nullable public History history;
 
-    public boolean local;
+    public boolean currentPosition;
     public boolean china;
 
     private static final String NULL_ID = "NULL_ID";
-    public static final String LOCAL_INTENT_ID = "LOCAL";
+    public static final String CURRENT_POSITION_ID = "CURRENT_POSITION";
 
     public Location(String cityId,
                     String district, String city, String province, String country,
                     String lat, String lon,
                     String source,
                     @Nullable Weather weather, @Nullable History history,
-                    boolean local, boolean china) {
+                    boolean currentPosition, boolean china) {
         this.cityId = cityId;
         this.district = district;
         this.city = city;
@@ -56,7 +56,7 @@ public class Location
         this.source = source;
         this.weather = weather;
         this.history = history;
-        this.local = local;
+        this.currentPosition = currentPosition;
         this.china = china;
     }
 
@@ -92,14 +92,14 @@ public class Location
         entity.lat = lat;
         entity.lon = lon;
         entity.source = source;
-        entity.local = local;
+        entity.local = currentPosition;
         entity.china = china;
         return entity;
     }
 
     public boolean equals(Location location) {
-        if (location.isLocal()) {
-            return isLocal();
+        if (location.isCurrentPosition()) {
+            return isCurrentPosition();
         } else {
             return cityId.equals(location.cityId)
                     && source.equals(location.source);
@@ -107,20 +107,20 @@ public class Location
     }
 
     public String getFormattedId() {
-        return isLocal() ? LOCAL_INTENT_ID : cityId;
+        return isCurrentPosition() ? CURRENT_POSITION_ID : cityId;
     }
 
-    public Location setLocal() {
-        local = true;
+    public Location setCurrentPosition() {
+        currentPosition = true;
         return this;
     }
 
-    public boolean isLocal() {
-        return local;
+    public boolean isCurrentPosition() {
+        return currentPosition;
     }
 
     public static boolean isLocal(String formattedId) {
-        return LOCAL_INTENT_ID.equals(formattedId);
+        return CURRENT_POSITION_ID.equals(formattedId);
     }
 
     public boolean isUsable() {
@@ -142,8 +142,8 @@ public class Location
             return city;
         } else if (!TextUtils.isEmpty(province)) {
             return province;
-        } else if (local) {
-            return context.getString(R.string.local);
+        } else if (currentPosition) {
+            return context.getString(R.string.current_location);
         } else {
             return "";
         }
@@ -171,7 +171,7 @@ public class Location
         dest.writeString(this.lat);
         dest.writeString(this.lon);
         dest.writeString(this.source);
-        dest.writeByte(this.local ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.currentPosition ? (byte) 1 : (byte) 0);
         dest.writeByte(this.china ? (byte) 1 : (byte) 0);
     }
 
@@ -184,7 +184,7 @@ public class Location
         this.lat = in.readString();
         this.lon = in.readString();
         this.source = in.readString();
-        this.local = in.readByte() != 0;
+        this.currentPosition = in.readByte() != 0;
         this.china = in.readByte() != 0;
     }
 

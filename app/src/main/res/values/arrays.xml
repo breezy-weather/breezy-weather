@@ -138,6 +138,16 @@
         <item>4:00</item>
     </string-array>
 
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Native</item>
+        <item>@string/geometric_weather</item>
+    </string-array>
+    <string-array name="notification_style_values">
+        <item>native</item>
+        <item>geometric</item>
+    </string-array>
+
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
         <item>Dark</item>
@@ -214,7 +224,7 @@
         <item>analog</item>
     </string-array>
 
-    <!-- widget clock font. -->
+    <!-- widget card style. -->
     <string-array name="widget_card_styles">
         <item>None</item>
         <item>Day Night Mode</item>
@@ -232,7 +242,7 @@
     <string-array name="widget_text_colors">
         <item>Light</item>
         <item>Dark</item>
-        <item>Auto</item>
+        <item>Automatic</item>
     </string-array>
     <string-array name="widget_text_color_values">
         <item>light</item>

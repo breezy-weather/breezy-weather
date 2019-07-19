@@ -65,7 +65,7 @@ public class CaiYunWeatherService extends CNWeatherService {
         Observable<CaiYunMainlyResult> mainly = api.getMainlyWeather(
                 location.lat,
                 location.lon,
-                location.isLocal(),
+                location.isCurrentPosition(),
                 "weathercn%3A" + location.cityId,
                 15,
                 "weather20151024",

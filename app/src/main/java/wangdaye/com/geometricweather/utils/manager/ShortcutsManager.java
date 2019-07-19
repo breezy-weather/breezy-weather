@@ -91,7 +91,7 @@ public class ShortcutsManager {
                     icon = getIcon(provider, Weather.KIND_CLEAR, true);
                 }
 
-                title = list.get(i).isLocal() ? c.getString(R.string.local) : list.get(i).getCityName(c);
+                title = list.get(i).isCurrentPosition() ? c.getString(R.string.current_location) : list.get(i).getCityName(c);
 
                 shortcutList.add(
                         new ShortcutInfo.Builder(c, list.get(i).cityId)

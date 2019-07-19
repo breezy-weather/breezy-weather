@@ -1,10 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Időjárás</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
-    <string name="local">helyi</string>
+    <string name="current_location">Jelenlegi hely</string>
     <string name="default_location">Alapértelmezett Hely</string>
     <string name="live">Élő</string>
     <string name="today">Ma</string>
@@ -125,7 +124,7 @@
     <string name="feedback_delete_succeed">Sikeres terület törlés.</string>
     <string name="feedback_location_list_cannot_be_null">A területlista nem lehet üres.</string>
 
-    <string name="feedback_search_location">Keressen egy területre vagy \"helyi\"…</string>
+    <string name="feedback_search_location">Keressen egy területre…</string>
     <string name="feedback_not_yet_location">Még nincs meghatározva a hely…</string>
     <string name="feedback_search_nothing">Nem találhatóm semmi…</string>
     <string name="feedback_initializing">Keresés indítása…</string>

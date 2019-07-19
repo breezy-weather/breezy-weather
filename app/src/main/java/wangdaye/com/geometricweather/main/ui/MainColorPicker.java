@@ -14,7 +14,7 @@ public class MainColorPicker {
 
     private boolean lightTheme;
 
-    MainColorPicker(boolean daytime, String darkMode) {
+    public MainColorPicker(boolean daytime, String darkMode) {
         this.daytime = daytime;
         this.darkMode = darkMode;
 

@@ -46,7 +46,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_marginEnd="@dimen/little_margin"
                 style="@style/notification_large_title_text"
-                tools:text="10° / 15°" />
+                tools:text="10°/15°" />
 
             <TextView
                 android:id="@+id/notification_base_aqi_wind"

@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.preference.PreferenceManager;
 
@@ -28,7 +30,7 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
 
-    public static void buildForecastAndSendIt(Context context, Weather weather, boolean today) {
+    public static void buildForecastAndSendIt(Context context, @Nullable Weather weather, boolean today) {
         if (weather == null) {
             return;
         }
@@ -134,8 +136,18 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
+        builder.setColor(getWeatherColors(context, weather, daytime, provider)[0]);
+
         // set intent.
-        builder.setContentIntent(getWeatherPendingIntent(context, null, 0));
+        builder.setContentIntent(
+                getWeatherPendingIntent(
+                        context,
+                        null,
+                        today
+                                ? GeometricWeather.NOTIFICATION_ID_TODAY_FORECAST
+                                : GeometricWeather.NOTIFICATION_ID_TOMORROW_FORECAST
+                )
+        );
 
         // set sound & vibrate.
         builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);

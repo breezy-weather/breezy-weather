@@ -4,7 +4,7 @@
     <string name="geometric_weather">几何天气</string>
 
     <!-- keyword. -->
-    <string name="local">本地</string>
+    <string name="current_location">当前位置</string>
     <string name="default_location">默认位置</string>
     <string name="live">实时</string>
     <string name="today">今日</string>
@@ -194,7 +194,7 @@
     <string name="feedback_delete_succeed">删除成功</string>
     <string name="feedback_location_list_cannot_be_null">收藏地址不能为空</string>
 
-    <string name="feedback_search_location">搜索一个地址或搜索\"本地\"…</string>
+    <string name="feedback_search_location">输入一个地址…</string>
     <string name="feedback_not_yet_location">尚未进行定位…</string>
     <string name="feedback_search_nothing">搜索结果为空…</string>
     <string name="feedback_initializing">初始化中…</string>
@@ -279,6 +279,7 @@
     <string name="settings_title_click_widget_to_refresh">点击小部件时进行刷新</string>
     <string name="settings_category_notification">通知</string>
     <string name="settings_title_notification">开启天气通知</string>
+    <string name="settings_title_notification_style">通知风格</string>
     <string name="settings_title_notification_temp_icon">将温度作为通知小图标</string>
     <string name="settings_title_notification_color">通知颜色</string>
     <string name="settings_title_notification_custom_color">自定义通知颜色</string>

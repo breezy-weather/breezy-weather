@@ -40,15 +40,15 @@
     <string name="feedback_location_list_cannot_be_null">La liste ne peut être vide.</string>
     <string name="feedback_no_data">PAS DE DONNÉES</string>
     <string name="feedback_not_yet_location">Pas encore localisé…</string>
-    <string name="feedback_refresh_notification_after_back">"Veuillez revenir à l'écran d'accueil."</string>
+    <string name="feedback_refresh_notification_after_back">Veuillez revenir à l\'écran d\'accueil.</string>
     <string name="feedback_refresh_notification_now">Mis à jour.</string>
     <string name="feedback_refresh_ui_after_refresh">Veuillez rafraîchir les données.</string>
     <string name="feedback_request_location">Location</string>
     <string name="feedback_request_location_permission_failed">La localisation a échouée.</string>
     <string name="feedback_request_location_permission_success">Localisation réussie.</string>
     <string name="feedback_request_permission">Permissions</string>
-    <string name="feedback_restart">"Veuillez redémarrer l'application."</string>
-    <string name="feedback_search_location">"Tapez le nom d'une ville…"</string>
+    <string name="feedback_restart">Veuillez redémarrer l\'application.</string>
+    <string name="feedback_search_location">Tapez le nom d\'une ville…</string>
     <string name="feedback_search_nothing">Recherche nulle…</string>
     <string name="feedback_show_widget_card">Arrière-plan</string>
     <string name="feedback_subtitle_data">Sous-titre</string>
@@ -56,7 +56,6 @@
     <string name="feels_like">Ressenti</string>
     <string name="follow_system">Par défaut</string>
     <string name="forecast">Prévisions</string>
-    <string name="geometric_weather">Geometric Weather</string>
     <string name="gitHub">GitHub</string>
     <string name="glide">Glide</string>
     <string name="greenDAO">GreenDAO</string>
@@ -66,7 +65,7 @@
     <string name="introduce">présentation</string>
     <string name="life_details">détails</string>
     <string name="live">Vent</string>
-    <string name="local">emplacement actuel</string>
+    <string name="current_location">emplacement actuel</string>
     <string name="maxi_temp">jour</string>
     <string name="mini_temp">nuit</string>
     <string name="next">SUIVANT</string>

@@ -148,6 +148,7 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        resetUIUpdateFlag();
         viewModel.init(this, getLocationId(intent));
     }
 
@@ -172,6 +173,7 @@ public class MainActivity extends GeoActivity
                 break;
 
             case MANAGE_ACTIVITY:
+                resetUIUpdateFlag();
                 viewModel.init(this, getLocationId(data));
                 break;
         }
@@ -321,6 +323,13 @@ public class MainActivity extends GeoActivity
                 ? location.weather.base.timeStamp
                 : INVALID_CURRENT_WEATHER_TIME_STAMP;
 
+        DisplayUtils.setSystemBarStyleWithScrolling(
+                this, statusBar,
+                true, false,
+                true, location.weather != null,
+                colorPicker.isLightTheme()
+        );
+
         if (location.weather == null) {
             resetUI(location);
             return;
@@ -380,12 +389,6 @@ public class MainActivity extends GeoActivity
         }
         weatherView.setGravitySensorEnabled(
                 SettingsOptionManager.getInstance(this).isGravitySensorEnabled());
-
-        DisplayUtils.setSystemBarStyleWithScrolling(
-                this, statusBar,
-                true, false, true, true,
-                colorPicker.isLightTheme()
-        );
 
         setToolbarTitle(location);
 

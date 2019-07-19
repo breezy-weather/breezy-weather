@@ -68,7 +68,7 @@ public class LocationEntity {
         entity.lat = location.lat;
         entity.lon = location.lon;
         entity.source = location.source;
-        entity.local = location.local;
+        entity.local = location.currentPosition;
         entity.china = location.china;
         return entity;
     }
@@ -149,8 +149,8 @@ public class LocationEntity {
                 .getLocationEntityDao()
                 .queryBuilder()
                 .where(
-                        location.isLocal()
-                                ? LocationEntityDao.Properties.Local.eq(location.local)
+                        location.isCurrentPosition()
+                                ? LocationEntityDao.Properties.Local.eq(location.currentPosition)
                                 : LocationEntityDao.Properties.CityId.eq(location.cityId)
                 ).list();
         if (entityList == null || entityList.size() <= 0) {

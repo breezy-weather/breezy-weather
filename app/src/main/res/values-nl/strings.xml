@@ -3,11 +3,10 @@
 
     <!-- app. -->
     <string name="app_name">Weer</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
-    <string name="local">Lokaal</string>
-    <string name="default_location">Standaardlocatie</string>
+    <string name="current_location">Huidige locatie</string>
+    <string name="default_location">Standaard locatie</string>
     <string name="live">Live</string>
     <string name="today">Vandaag</string>
     <string name="refresh_at">Vernieuwd om</string>
@@ -115,7 +114,7 @@
     <string name="feedback_collect_succeed">Locatie toevoegen gelukt.</string>
     <string name="feedback_delete_succeed">Verwijderen locatie gelukt.</string>
     <string name="feedback_location_list_cannot_be_null">Er moet één locatie in de lijst staan.</string>
-    <string name="feedback_search_location">Zoek een locatie of \"local\"…</string>
+    <string name="feedback_search_location">Zoek een locatie…</string>
     <string name="feedback_not_yet_location">Nog geen locatie…</string>
     <string name="feedback_search_nothing">Zoek niets…</string>
     <string name="feedback_initializing">Initialiseren…</string>

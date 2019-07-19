@@ -61,6 +61,8 @@
                         android:textSize="@dimen/title_text_size"
                         android:textColor="@color/colorTextContent"
                         android:textColorHint="@android:color/darker_gray"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:inputType="text"
                         android:imeOptions="actionSearch"
                         android:background="@android:color/transparent"

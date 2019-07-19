@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import androidx.cardview.widget.CardView;
@@ -34,6 +35,7 @@ public class ManageActivity extends GeoActivity
 
     private CoordinatorLayout container;
     private CardView cardView;
+    private AppCompatImageButton currentLocationButton;
     private RecyclerView recyclerView;
 
     private LocationAdapter adapter;
@@ -104,21 +106,7 @@ public class ManageActivity extends GeoActivity
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SEARCH_ACTIVITY:
-                if (resultCode == RESULT_OK) {
-                    this.adapter = new LocationAdapter(
-                            this,
-                            DatabaseHelper.getInstance(this).readLocationList(),
-                            true,
-                            this
-                    );
-                    recyclerView.setAdapter(adapter);
-
-                    SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_succeed));
-                }
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    ShortcutsManager.refreshShortcutsInNewThread(this, adapter.itemList);
-                }
+                resetLocationList(true, resultCode == RESULT_OK);
                 break;
         }
     }
@@ -144,19 +132,19 @@ public class ManageActivity extends GeoActivity
             cardView.setTransitionName(getString(R.string.transition_activity_search_bar));
         }
 
+        this.currentLocationButton = findViewById(R.id.activity_manage_currentLocationButton);
+        currentLocationButton.setOnClickListener(view -> {
+            DatabaseHelper.getInstance(this).writeLocation(Location.buildLocal());
+            resetLocationList(true, true);
+        });
+
         this.recyclerView = findViewById(R.id.activity_manage_recyclerView);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         );
         recyclerView.addItemDecoration(new ListDecoration(this));
 
-        this.adapter = new LocationAdapter(
-                this,
-                DatabaseHelper.getInstance(this).readLocationList(),
-                true,
-                this
-        );
-        recyclerView.setAdapter(adapter);
+        resetLocationList(false, false);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new LocationSwipeCallback(
@@ -165,6 +153,37 @@ public class ManageActivity extends GeoActivity
                 )
         );
         itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    private void resetLocationList(boolean updateShortcuts, boolean added) {
+        this.adapter = new LocationAdapter(
+                this,
+                DatabaseHelper.getInstance(this).readLocationList(),
+                true,
+                this
+        );
+        recyclerView.setAdapter(adapter);
+
+        setCurrentLocationButtonEnabled();
+
+        if (updateShortcuts && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            ShortcutsManager.refreshShortcutsInNewThread(this, adapter.itemList);
+        }
+        if (added) {
+            SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_succeed));
+        }
+    }
+
+    private void setCurrentLocationButtonEnabled() {
+        boolean hasCurrentLocation = false;
+        for (int i = 0; i < adapter.itemList.size(); i ++) {
+            if (adapter.itemList.get(i).isCurrentPosition()) {
+                hasCurrentLocation = true;
+                break;
+            }
+        }
+        currentLocationButton.setEnabled(!hasCurrentLocation);
+        currentLocationButton.setAlpha(hasCurrentLocation ? 0.5f : 1);
     }
 
     private void deleteLocation(int position) {
@@ -193,6 +212,7 @@ public class ManageActivity extends GeoActivity
                     ShortcutsManager.refreshShortcutsInNewThread(ManageActivity.this, adapter.itemList);
                 }
             }
+            setCurrentLocationButtonEnabled();
         }
     }
 

@@ -195,6 +195,16 @@ public class ValueUtils {
         }
     }
 
+    public static String getNotificationStyle(Context c, String value) {
+        switch (value) {
+            case "native":
+                return c.getResources().getStringArray(R.array.notification_styles)[0];
+
+            default:
+                return c.getResources().getStringArray(R.array.notification_styles)[1];
+        }
+    }
+
     public static String getNotificationTextColor(Context c, String value) {
         switch (value) {
             case "dark":

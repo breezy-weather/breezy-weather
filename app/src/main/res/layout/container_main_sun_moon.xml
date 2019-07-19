@@ -12,16 +12,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin">
-
-            <TextView
-                android:id="@+id/container_main_sun_moon_title"
-                android:text="@string/sunrise_sunset"
-                android:textSize="@dimen/title_text_size"
-                android:layout_centerVertical="true"
-                style="@style/content_text" />
+            android:layout_margin="@dimen/normal_margin">
 
             <wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView
                 android:id="@+id/container_main_sun_moon_phaseView"
@@ -38,6 +29,17 @@
                 style="@style/content_text"
                 tools:text="上弦月"
                 tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/container_main_sun_moon_title"
+                android:text="@string/sunrise_sunset"
+                android:textSize="@dimen/title_text_size"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/container_main_sun_moon_phaseText"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/content_text" />
 
         </RelativeLayout>
 

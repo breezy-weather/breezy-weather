@@ -135,6 +135,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableView.findViewById(R.id.widget_trend_daily_item_5)
         };
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        int[] colors = getWeatherColors(context, weather, lightTheme, provider);
         for (int i = 0; i < items.length; i ++) {
             Daily daily = weather.dailyList.get(i);
 
@@ -162,17 +163,12 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                     lowestTemp
             );
             items[i].getTrendItemView().setLineColors(
-                    ContextCompat.getColor(context, R.color.lightPrimary_5),
-                    ContextCompat.getColor(context, R.color.darkPrimary_1),
+                    colors[1], colors[2],
                     lightTheme
                             ? ColorUtils.setAlphaComponent(Color.BLACK, (int) (255 * 0.05))
                             : ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.1))
             );
-            items[i].getTrendItemView().setShadowColors(
-                    ContextCompat.getColor(context, R.color.lightPrimary_5),
-                    ContextCompat.getColor(context, R.color.darkPrimary_1),
-                    lightTheme
-            );
+            items[i].getTrendItemView().setShadowColors(colors[1], colors[2], lightTheme);
             items[i].getTrendItemView().setTextColors(
                     lightTheme
                             ? ContextCompat.getColor(context, R.color.colorTextContent_light)

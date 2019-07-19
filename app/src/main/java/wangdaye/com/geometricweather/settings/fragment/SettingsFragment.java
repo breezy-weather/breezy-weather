@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.preference.CheckBoxPreference;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
@@ -102,6 +103,19 @@ public class SettingsFragment extends PreferenceFragmentCompat
             notificationMinimalIcon.setVisible(false);
         }
 
+        // notification style.
+        ListPreference notificationStyle = findPreference(getString(R.string.key_notification_style));
+        notificationStyle.setSummary(
+                ValueUtils.getNotificationStyle(
+                        getActivity(),
+                        sharedPreferences.getString(
+                                getString(R.string.key_notification_style),
+                                "geometric"
+                        )
+                )
+        );
+        notificationStyle.setOnPreferenceChangeListener(this);
+
         // notification temp icon.
         CheckBoxPreference notificationTempIcon = findPreference(getString(R.string.key_notification_temp_icon));
 
@@ -115,37 +129,27 @@ public class SettingsFragment extends PreferenceFragmentCompat
         CheckBoxPreference notificationClearFlag = findPreference(getString(R.string.key_notification_can_be_cleared));
 
         // notification hide icon.
-        CheckBoxPreference notificationIconBehavior = findPreference(getString(R.string.key_notification_hide_icon));
+        CheckBoxPreference hideNotificationIcon = findPreference(getString(R.string.key_notification_hide_icon));
 
         // notification hide in lock screen.
-        CheckBoxPreference notificationHideBehavior = findPreference(getString(R.string.key_notification_hide_in_lockScreen));
+        CheckBoxPreference hideNotificationInLockScreen = findPreference(getString(R.string.key_notification_hide_in_lockScreen));
 
         // notification hide big view.
         CheckBoxPreference notificationHideBigView = findPreference(getString(R.string.key_notification_hide_big_view));
 
-        if(sharedPreferences.getBoolean(getString(R.string.key_notification), false)) {
-            // open notification.
-            notificationMinimalIcon.setEnabled(true);
-            notificationTempIcon.setEnabled(true);
-            notificationColor.setEnabled(true);
-            notificationClearFlag.setEnabled(true);
-            notificationIconBehavior.setEnabled(true);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                notificationHideBehavior.setEnabled(true);
-            } else {
-                notificationHideBehavior.setEnabled(false);
-            }
-            notificationHideBigView.setEnabled(true);
-        } else {
-            // close notification.
-            notificationMinimalIcon.setEnabled(false);
-            notificationTempIcon.setEnabled(false);
-            notificationColor.setEnabled(false);
-            notificationClearFlag.setEnabled(false);
-            notificationIconBehavior.setEnabled(false);
-            notificationHideBehavior.setEnabled(false);
-            notificationHideBigView.setEnabled(false);
-        }
+        boolean sendNotification = sharedPreferences.getBoolean(
+                getString(R.string.key_notification), false);
+        boolean nativeNotification = sharedPreferences.getString(
+                getString(R.string.key_notification_style), "geometric").equals("native");
+        notificationStyle.setEnabled(sendNotification);
+        notificationMinimalIcon.setEnabled(sendNotification && nativeNotification);
+        notificationTempIcon.setEnabled(sendNotification);
+        notificationColor.setEnabled(sendNotification && nativeNotification);
+        notificationClearFlag.setEnabled(sendNotification);
+        hideNotificationIcon.setEnabled(sendNotification);
+        hideNotificationInLockScreen.setEnabled(
+                sendNotification && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
+        notificationHideBigView.setEnabled(sendNotification && nativeNotification);
     }
 
     // interface.
@@ -255,6 +259,13 @@ public class SettingsFragment extends PreferenceFragmentCompat
             editor.apply();
             preference.setSummary((String) o);
             PollingManager.resetNormalBackgroundTask(getActivity(), false);
+        } else if (preference.getKey().equals(getString(R.string.key_notification_style))) {
+            // notification style.
+            initNotificationPart(PreferenceManager.getDefaultSharedPreferences(getActivity()));
+            preference.setSummary(
+                    ValueUtils.getNotificationStyle(getActivity(), (String) o));
+
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
         }
         return true;
     }

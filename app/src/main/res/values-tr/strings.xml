@@ -4,7 +4,7 @@
     <string name="geometric_weather">Geometrik Hava Durumu</string>
 
     <!-- keyword. -->
-    <string name="local">konum</string>
+    <string name="current_location">Bulunduğunuz konumu</string>
     <string name="default_location">varsayılan konum</string>
     <string name="live">Rüzgar</string>
     <string name="today">Bugün</string>
@@ -100,7 +100,7 @@
     <string name="feedback_delete_succeed">Konum kaldırma başarılı.</string>
     <string name="feedback_location_list_cannot_be_null">Konum listesi boş olamaz.</string>
 
-    <string name="feedback_search_location">Konum ara \"local\"…</string>
+    <string name="feedback_search_location">Konum ara…</string>
     <string name="feedback_not_yet_location">Henüz konum yok…</string>
     <string name="feedback_search_nothing">Hiçbir şey aranmadı…</string>
     <string name="feedback_initializing">Başlatılıyor…</string>

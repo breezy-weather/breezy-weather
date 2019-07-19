@@ -7,7 +7,7 @@
     <string name="version_code">v2.303</string>
 
     <!-- keyword. -->
-    <string name="local">local</string>
+    <string name="current_location">Current location</string>
     <string name="default_location">default location</string>
     <string name="live">Live</string>
     <string name="today">Today</string>
@@ -21,7 +21,7 @@
     <string name="wind">Wind</string>
     <string name="sensible_temp">Sensible temp</string>
     <string name="humidity">Humidity</string>
-    <string name="uv_index">Uv index</string>
+    <string name="uv_index">UV index</string>
     <string name="forecast">Forecast</string>
     <string name="briefings">Briefings</string>
     <string name="daytime">Daytime</string>
@@ -30,26 +30,26 @@
     <string name="feels_like">Feels like</string>
     <string name="exercise">运动指数</string>
     <string name="follow_system">Follow system</string>
-    <string name="background_information">Background Information</string>
-    <string name="pressure">Atmospheric Pressure</string>
+    <string name="background_information">Background information</string>
+    <string name="pressure">Atmospheric pressure</string>
     <string name="visibility">Visibility</string>
-    <string name="dew_point">Dew Point</string>
-    <string name="get_more">Get More</string>
-    <string name="get_more_store">Get More From AppStore</string>
-    <string name="get_more_github">Get More From GitHub</string>
+    <string name="dew_point">Dew point</string>
+    <string name="get_more">Get more</string>
+    <string name="get_more_store">Get more from app store</string>
+    <string name="get_more_github">Get more from GitHub</string>
     <string name="refresh">Refresh</string>
 
     <string name="of_clock">:00</string>
     <string name="yesterday">yday</string>
     <string name="tomorrow">tmw</string>
     <string name="week">week</string>
-    <string name="week_1">MON</string>
-    <string name="week_2">TUE</string>
-    <string name="week_3">WED</string>
-    <string name="week_4">THU</string>
-    <string name="week_5">FRI</string>
-    <string name="week_6">SAT</string>
-    <string name="week_7">SUN</string>
+    <string name="week_1">Mon</string>
+    <string name="week_2">Tue</string>
+    <string name="week_3">Wed</string>
+    <string name="week_4">Thu</string>
+    <string name="week_5">Fri</string>
+    <string name="week_6">Sat</string>
+    <string name="week_7">Sun</string>
 
     <string name="wind_0">Calm</string>
     <string name="wind_1">Light air</string>
@@ -67,31 +67,31 @@
 
     <string name="aqi_1">Fresh air</string>
     <string name="aqi_2">Clear air</string>
-    <string name="aqi_3">S-polluted</string>
-    <string name="aqi_4">M-pollution</string>
-    <string name="aqi_5">H-pollution</string>
-    <string name="aqi_6">Dangerous</string>
+    <string name="aqi_3">Slight polluted</string>
+    <string name="aqi_4">Moderate pollution</string>
+    <string name="aqi_5">Heavy pollution</string>
+    <string name="aqi_6">Severe pollution</string>
 
-    <string name="phase_new">New</string>
-    <string name="phase_waxing_crescent">Waxing Crescent</string>
-    <string name="phase_first">First Quarter</string>
-    <string name="phase_waxing_gibbous">Waxing Gibbous</string>
-    <string name="phase_full">Full</string>
-    <string name="phase_waning_gibbous">Waning Gibbous</string>
-    <string name="phase_third">Third Quarter</string>
-    <string name="phase_waning_crescent">Waning Crescent</string>
+    <string name="phase_new">New moon</string>
+    <string name="phase_waxing_crescent">Waxing crescent</string>
+    <string name="phase_first">First quarter</string>
+    <string name="phase_waxing_gibbous">Waxing gibbous</string>
+    <string name="phase_full">Full moon</string>
+    <string name="phase_waning_gibbous">Waning gibbous</string>
+    <string name="phase_third">Third quarter</string>
+    <string name="phase_waning_crescent">Waning crescent</string>
 
-    <string name="daily_overview">Daily</string>
-    <string name="hourly_overview">Hourly</string>
-    <string name="air_quality">Air Quality</string>
+    <string name="daily_overview">Daily forecast</string>
+    <string name="hourly_overview">Hourly forecast</string>
+    <string name="air_quality">Air quality</string>
     <string name="life_details">Details</string>
-    <string name="sunrise_sunset">Sun &amp; Moon</string>
+    <string name="sunrise_sunset">Sun &amp; moon</string>
 
     <string name="next">NEXT</string>
     <string name="done">DONE</string>
     <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
-    <string name="on">ON</string>
-    <string name="off">OFF</string>
+    <string name="on">Enabled</string>
+    <string name="off">Disabled</string>
     <string name="go_to_set">SET</string>
     <string name="help">HELP</string>
     <string name="learn_more">LEARN MORE</string>
@@ -102,7 +102,7 @@
     <string name="donate">Donate</string>
     <string name="gitHub">GitHub</string>
     <string name="translator">Translators</string>
-    <string name="thanks">THX</string>
+    <string name="thanks">Thanks</string>
 
     <string name="alipay">Alipay</string>
     <string name="wechat">Wechat</string>
@@ -130,25 +130,25 @@
     <!-- feedback. -->
     <string name="feedback_request_permission">Permissions</string>
     <string name="feedback_request_location">Location</string>
-    <string name="feedback_request_location_in_background">Locating in background.</string>
-    <string name="feedback_request_location_permission_success">Request location permission success.</string>
-    <string name="feedback_request_location_permission_failed">Request location permission failed.</string>
+    <string name="feedback_request_location_in_background">Locating in background</string>
+    <string name="feedback_request_location_permission_success">Location permissions request success</string>
+    <string name="feedback_request_location_permission_failed">Location permissions request failed</string>
 
-    <string name="feedback_location_failed">Location failed.</string>
-    <string name="feedback_get_weather_failed">Request weather data failed.</string>
+    <string name="feedback_location_failed">Location failed</string>
+    <string name="feedback_get_weather_failed">Request weather data failed</string>
     <string name="feedback_location_help_title">Cannot get location correctly?</string>
-    <string name="feedback_check_location_permission">Check Location Permissions</string>
+    <string name="feedback_check_location_permission">Check location permissions</string>
     <string name="feedback_enable_location_information">Enable Location Information</string>
     <string name="feedback_select_location_provider">Select Location Provider</string>
 
-    <string name="feedback_view_style">Style of view.</string>
-    <string name="feedback_show_widget_card">Card background.</string>
-    <string name="feedback_show_widget_card_alpha">Card alpha.</string>
-    <string name="feedback_hide_subtitle">Hide Subtitle.</string>
-    <string name="feedback_subtitle_data">Subtitle data.</string>
-    <string name="feedback_black_text">Dark text.</string>
-    <string name="feedback_text_size">Text size.</string>
-    <string name="feedback_clock_font">Clock font.</string>
+    <string name="feedback_view_style">View style</string>
+    <string name="feedback_show_widget_card">Background color</string>
+    <string name="feedback_show_widget_card_alpha">Transparency</string>
+    <string name="feedback_hide_subtitle">Hide subtitle</string>
+    <string name="feedback_subtitle_data">Subtitle data</string>
+    <string name="feedback_black_text">Text color</string>
+    <string name="feedback_text_size">Text size</string>
+    <string name="feedback_clock_font">Clock font</string>
     <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
     <string name="feedback_custom_subtitle_keywords">
         \n
@@ -199,38 +199,38 @@
         $0mp$, $1mp$, …, $4mp$ : \nMoon Phase of Today, Tmw, …, 4 days later\n
     </string>
 
-    <string name="feedback_click_toggle">Click chart to toggle data.</string>
+    <string name="feedback_click_toggle">Press chart to toggle data</string>
     <string name="feedback_no_data">NO DATA</string>
 
-    <string name="feedback_collect_failed">This location already exists.</string>
-    <string name="feedback_collect_succeed">Add location success.</string>
-    <string name="feedback_delete_succeed">Delete location success.</string>
-    <string name="feedback_location_list_cannot_be_null">The location list can not be null.</string>
+    <string name="feedback_collect_failed">This location already exists</string>
+    <string name="feedback_collect_succeed">Add location success</string>
+    <string name="feedback_delete_succeed">Delete location success</string>
+    <string name="feedback_location_list_cannot_be_null">The location list cannot be empty</string>
 
-    <string name="feedback_search_location">Search a location or \"local\"…</string>
-    <string name="feedback_not_yet_location">Not yet location…</string>
-    <string name="feedback_search_nothing">Search nothing…</string>
+    <string name="feedback_search_location">Search a location…</string>
+    <string name="feedback_not_yet_location">No location yet…</string>
+    <string name="feedback_search_nothing">No locations found</string>
     <string name="feedback_initializing">Initializing…</string>
 
-    <string name="feedback_refresh_notification_after_back">Take effect when back to home page.</string>
-    <string name="feedback_refresh_notification_now">Refresh now.</string>
-    <string name="feedback_refresh_ui_after_refresh">Take effect when refresh data.</string>
-    <string name="feedback_restart">Take effect when restart.</string>
-    <string name="feedback_readd_location">Please re-add locations.</string>
-    <string name="feedback_readd_location_after_changing_source">Please re-add locations after changing data source.</string>
+    <string name="feedback_refresh_notification_after_back">Changes will take effect when you return to the home page</string>
+    <string name="feedback_refresh_notification_now">Refresh now</string>
+    <string name="feedback_refresh_ui_after_refresh">Changes will take effect when data is refreshed</string>
+    <string name="feedback_restart">Changes will take effect after restart</string>
+    <string name="feedback_readd_location">Please re-add locations</string>
+    <string name="feedback_readd_location_after_changing_source">Please re-add locations after changing data source</string>
 
-    <string name="feedback_running_in_background">Running in background for keep updating.</string>
-    <string name="feedback_updating_weather_data">Updating weather data.</string>
-    <string name="feedback_updated_in_background">Updated in background.</string>
-    
-    <string name="feedback_interpret_background_notification_content">In some devices, after turning off the background free, there might be a notification that cannot be cleared in the notification bar.</string>
-    <string name="feedback_interpret_notification_group_title">Block Notification Group</string>
-    <string name="feedback_interpret_notification_group_content">After turning off the background free, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in app\'s information page to block this notifications.</string>
+    <string name="feedback_running_in_background">Running in background to keep updating</string>
+    <string name="feedback_updating_weather_data">Updating weather data</string>
+    <string name="feedback_updated_in_background">Updated in background</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview activity.</string>
+    <string name="feedback_interpret_background_notification_content">In some devices, after turning off \'Background free\', there might be a notification that cannot be cleared in the notification bar.</string>
+    <string name="feedback_interpret_notification_group_title">Block notification group</string>
+    <string name="feedback_interpret_notification_group_content">After turning off \"Free background\", a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app\'s information page to block this notifications.</string>
 
-    <string name="feedback_unusable_geocoder">This device does not contain a valid geocoder, the location provider has been changed to Baidu Location.</string>
-    <string name="feedback_about_geocoder">Geocoder is a component that converts the locating result from lat-lon format to the format which likes \'XX city, XX province \'. In the absence of this component, you can only get weather data through AccuWeather when using the native API as location provider.</string>
+    <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview activity</string>
+
+    <string name="feedback_unusable_geocoder">This device does not contain a valid geocoder. The location provider has been changed to Baidu Location.</string>
+    <string name="feedback_about_geocoder">Geocoder is a component that converts the location result from lat-lon format to a format like \'XX city, YY province \'. In the absence of this component, you can only get weather data through AccuWeather when using the native API as location provider.</string>
 
     <!-- action -->
     <string name="action_alert">Alert</string>
@@ -258,58 +258,60 @@
     <!-- settings -->
     <string name="settings_category_basic">Basic</string>
     <string name="settings_title_background_free">Background Free</string>
-    <string name="settings_summary_background_free_on">ON\nIf widgets and notification cannot refresh automatically, please turn off this option.</string>
-    <string name="settings_summary_background_free_off">OFF\nIf you do not want any services to continue working in background, please turn on this option.</string>
-    <string name="settings_title_live_wallpaper">Live Wallpaper</string>
-    <string name="settings_summary_live_wallpaper">Set Material Weather Animation As Live Wallpaper</string>
-    <string name="settings_title_service_provider">Service Provider</string>
-    <string name="settings_summary_service_provider">Select service provider of weather data and location information.</string>
-    <string name="settings_title_chinese_source">Chinese Weather Source</string>
-    <string name="settings_title_location_service">Location Service</string>
-    <string name="settings_title_dark_mode">Dark Mode</string>
-    <string name="settings_title_ui_style">UI Style</string>
-    <string name="settings_title_icon_provider">Icon Provider</string>
+    <string name="settings_summary_background_free_on">Enabled\nIf widgets and notification cannot refresh automatically, please turn off this option.</string>
+    <string name="settings_summary_background_free_off">Disabled\nIf you do not want any services to continue working in background, please turn on this option.</string>
+    <string name="settings_title_live_wallpaper">Live wallpaper</string>
+    <string name="settings_summary_live_wallpaper">Set Material weather animation as live wallpaper</string>
+    <string name="settings_title_service_provider">Service provider</string>
+    <string name="settings_summary_service_provider">Select service provider of weather data and location information</string>
+    <string name="settings_title_chinese_source">Chinese weather source</string>
+    <string name="settings_title_location_service">Location service</string>
+    <string name="settings_title_dark_mode">Dark mode</string>
+    <string name="settings_title_ui_style">Interface style</string>
+    <string name="settings_title_icon_provider">Icon pack</string>
     <string name="settings_title_appearance">Appearance</string>
-    <string name="settings_summary_appearance">UI style, Card order, Language…</string>
-    <string name="settings_title_card_display">Card Display</string>
-    <string name="settings_title_card_order">Card Order</string>
-    <string name="settings_title_gravity_sensor_switch">Open Gravity Sensor</string>
+    <string name="settings_summary_appearance">Interface style, card order, language…</string>
+    <string name="settings_title_card_display">Displayed cards</string>
+    <string name="settings_title_card_order">Card order</string>
+    <string name="settings_title_gravity_sensor_switch">Gravity sensor</string>
     <string name="settings_language">Language</string>
-    <string name="settings_title_unit">Unit</string>
-    <string name="settings_summary_unit">Set the unit of weather data.</string>
+    <string name="settings_title_unit">Units</string>
+    <string name="settings_summary_unit">Set the unit of weather data</string>
     <string name="settings_title_fahrenheit">Fahrenheit</string>
-    <string name="settings_title_imperial">Imperial Unit</string>
-    <string name="settings_title_refresh_rate">Automatic Refresh Rate</string>
+    <string name="settings_title_imperial">Imperial unit</string>
+    <string name="settings_title_refresh_rate">Automatic refresh rate</string>
     <string name="settings_title_alert_notification_switch">Send Alert Notification</string>
-    <string name="settings_title_permanent_service">Permanent Service</string>
+    <string name="settings_title_permanent_service">Permanent service</string>
     <string name="settings_category_forecast">Forecast</string>
-    <string name="settings_title_forecast_today">Forecast For Today</string>
-    <string name="settings_title_forecast_today_time">Forecast Time For Today</string>
-    <string name="settings_title_forecast_tomorrow">Forecast For Tomorrow</string>
-    <string name="settings_title_forecast_tomorrow_time">Forecast Time For Tomorrow</string>
+    <string name="settings_title_forecast_today">Forecast for today</string>
+    <string name="settings_title_forecast_today_time">Forecast time for today</string>
+    <string name="settings_title_forecast_tomorrow">Forecast for tomorrow</string>
+    <string name="settings_title_forecast_tomorrow_time">Forecast time for tomorrow</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_minimal_icon">Minimal Icon</string>
-    <string name="settings_title_click_widget_to_refresh">Refresh Widget When Clicked</string>
+    <string name="settings_title_minimal_icon">Minimalistic icons</string>
+    <string name="settings_title_click_widget_to_refresh">Refresh widget when clicked</string>
     <string name="settings_category_notification">Notification</string>
     <string name="settings_title_notification">Send Notification</string>
-    <string name="settings_title_notification_temp_icon">Temperature Mini Icon</string>
-    <string name="settings_title_notification_color">Notification Color</string>
+    <string name="settings_title_notification_style">Notification style</string>
+    <string name="settings_title_notification_temp_icon">Temperature as status bar icon</string>
+    <string name="settings_title_notification_color">Notification color</string>
     <string name="settings_title_notification_custom_color">Custom Notification Color</string>
-    <string name="settings_title_notification_text_color">Text Color</string>
-    <string name="settings_title_notification_background">Background Color</string>
+    <string name="settings_title_notification_text_color">Text color</string>
+    <string name="settings_title_notification_background">Background color</string>
     <string name="settings_notification_background_off">Follow System</string>
-    <string name="settings_title_notification_can_be_cleared">Can Clear</string>
-    <string name="settings_notification_can_be_cleared_on">Can be cleared by drag.</string>
-    <string name="settings_notification_can_be_cleared_off">Can not be cleared.</string>
-    <string name="settings_title_notification_hide_icon">Hide Notification Icon</string>
+    <string name="settings_title_notification_can_be_cleared">Can be cleared</string>
+    <string name="settings_notification_can_be_cleared_on">Can be cleared by dragging</string>
+    <string name="settings_notification_can_be_cleared_off">Cannot be cleared</string>
+    <string name="settings_title_notification_hide_icon">Hide notification icon</string>
     <string name="settings_notification_hide_icon_on">Hide</string>
     <string name="settings_notification_hide_icon_off">Show</string>
-    <string name="settings_title_notification_hide_in_lockScreen">Hide In LockScreen</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Hide in lock screen</string>
     <string name="settings_notification_hide_in_lockScreen_on">Hide (need to open in the system settings)</string>
     <string name="settings_notification_hide_in_lockScreen_off">Show</string>
-    <string name="settings_title_notification_hide_big_view">Hide Big View</string>
+    <string name="settings_title_notification_hide_big_view">Extended style</string>
     <string name="settings_notification_hide_big_view_on">Hide</string>
     <string name="settings_notification_hide_big_view_off">Show</string>
+
 
     <!--share preference-->
     <string name="sp_widget_day_setting">widget_day_setting</string>
@@ -356,6 +358,7 @@
     <string name="key_widget_minimal_icon">widget_minimal_icon</string>
     <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
     <string name="key_notification">notification_switch</string>
+    <string name="key_notification_style">notification_style</string>
     <string name="key_notification_minimal_icon">notification_minimal_icon</string>
     <string name="key_notification_temp_icon">notification_temp_icon_switch</string>
     <string name="key_notification_color">notification_color</string>

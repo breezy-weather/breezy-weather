@@ -1,10 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Weather</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
-    <string name="local">Lokal</string>
+    <string name="current_location">Aktueller Standort</string>
     <string name="default_location">Standard Standort</string>
     <string name="live">Jetzt</string>
     <string name="today">Heute</string>
@@ -109,7 +108,7 @@
     <string name="feedback_delete_succeed">Ort entfernt.</string>
     <string name="feedback_location_list_cannot_be_null">Die Ortsliste darf nicht leer sein.</string>
 
-    <string name="feedback_search_location">Suche einen Ort oder \"Standort\"…</string>
+    <string name="feedback_search_location">Suche einen Ort…</string>
     <string name="feedback_not_yet_location">Noch kein Ort…</string>
     <string name="feedback_search_nothing">Nichts gefunden…</string>
     <string name="feedback_initializing">Initialisiere…</string>

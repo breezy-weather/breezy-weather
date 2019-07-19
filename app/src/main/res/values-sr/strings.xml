@@ -4,7 +4,7 @@
     <string name="geometric_weather">Геометријско време</string>
 
     <!-- keyword. -->
-    <string name="local">локално</string>
+    <string name="current_location">Тренутну локацију</string>
     <string name="default_location">подразумевана локација</string>
     <string name="live">Уживо</string>
     <string name="today">Данас</string>
@@ -110,7 +110,7 @@
     <string name="feedback_delete_succeed">Успешно обрисана локација.</string>
     <string name="feedback_location_list_cannot_be_null">Листа локација не може бити празна.</string>
 
-    <string name="feedback_search_location">Потражите локацију или \"локално\"…</string>
+    <string name="feedback_search_location">Потражите локацију…</string>
     <string name="feedback_not_yet_location">Још увек није успела локација…</string>
     <string name="feedback_search_nothing">Ништа није пронађено…</string>
     <string name="feedback_initializing">Иницијализација…</string>

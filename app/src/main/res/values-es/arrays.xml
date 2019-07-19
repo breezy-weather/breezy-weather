@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Baidu Location</item>
+        <item>Baidu IP Location (Sólo para China)</item>
+        <item>AMap Location</item>
+        <item>API Nativa</item>
+    </string-array>
+
     <!-- UI style. -->
     <string-array name="ui_styles">
         <item>Cielo circular</item>
         <item>Animación estilo Material</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automático</item>
+        <item>Siempre claro</item>
+        <item>Siempre oscuro</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -17,6 +32,12 @@
         <item>3 horas</item>
         <item>3.5 horas</item>
         <item>4 horas</item>
+    </string-array>
+
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>Pronóstico diario primero</item>
+        <item>Pronóstico por horas primero</item>
     </string-array>
 
     <!-- notification text color. -->
@@ -44,8 +65,23 @@
         <item>AQI (No disponible en algunas regiones).</item>
         <item>Viento</item>
         <item>Sensación de la temperatura</item>
-        <item>Calendario lunar</item>
+        <item>Fase lunar</item>
         <item>Custom</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Ninguno</item>
+        <item>Modo día/noche</item>
+        <item>Claro</item>
+        <item>Oscuro</item>
+    </string-array>
+
+    <!-- widget text colors -->
+    <string-array name="widget_text_colors">
+        <item>Claro</item>
+        <item>Oscuro</item>
+        <item>Automático</item>
     </string-array>
 
 </resources>

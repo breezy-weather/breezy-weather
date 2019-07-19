@@ -113,14 +113,14 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // title.
-        if (itemList.get(position).isLocal()) {
-            holder.title.setText(context.getString(R.string.local));
+        if (itemList.get(position).isCurrentPosition()) {
+            holder.title.setText(context.getString(R.string.current_location));
         } else {
             holder.title.setText(itemList.get(position).getCityName(context));
         }
 
         // subtitle.
-        if (!itemList.get(position).isLocal() || itemList.get(position).isUsable()) {
+        if (!itemList.get(position).isCurrentPosition() || itemList.get(position).isUsable()) {
             holder.subtitle.setText(itemList.get(position).country
                     + " " + itemList.get(position).province
                     + (itemList.get(position).province.equals(itemList.get(position).city)
@@ -132,7 +132,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         }
 
         // source.
-        if (itemList.get(position).isLocal() && !itemList.get(position).isUsable()) {
+        if (itemList.get(position).isCurrentPosition() && !itemList.get(position).isUsable()) {
             holder.source.setText("...");
         } else {
             holder.source.setText("Powered by " + ValueUtils.getWeatherSource(context, itemList.get(position).source));

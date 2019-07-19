@@ -38,7 +38,7 @@ public class MainActivityRepository {
         Location data = currentLocation.getValue().data;
         List<Location> dataList = locationList.getValue().dataList;
 
-        if (data.local) {
+        if (data.currentPosition) {
             locationHelper.requestLocation(context, currentLocation.getValue().data,
                     new LocationHelper.OnRequestLocationListener() {
                         @Override

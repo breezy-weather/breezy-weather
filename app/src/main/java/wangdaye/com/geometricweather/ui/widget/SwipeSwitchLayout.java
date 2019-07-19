@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -23,8 +24,8 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
 
     private View target;
 
-    private OnSwitchListener switchListener;
-    private OnPagerSwipeListener pageSwipeListener;
+    @Nullable private OnSwitchListener switchListener;
+    @Nullable private OnPagerSwipeListener pageSwipeListener;
 
     private int totalCount = 1;
     private int position = 0;
@@ -93,11 +94,6 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
     // touch.
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return switchListener != null && super.dispatchTouchEvent(ev);
-    }
-
-    @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (!isEnabled()
                 || (ev.getAction() != MotionEvent.ACTION_DOWN && isBeingNestedScrolling)) {
@@ -118,7 +114,6 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
             case MotionEvent.ACTION_MOVE:
                 if (!isBeingTouched) {
                     isBeingTouched = true;
-                    lastX = ev.getX();
                     lastY= ev.getY();
                 }
 
@@ -226,19 +221,25 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
                 )
         );
 
-        switchListener.onSwipeProgressChanged(swipeDirection, progress);
+        if (switchListener != null) {
+            switchListener.onSwipeProgressChanged(swipeDirection, progress);
+        }
     }
 
     private void release(int triggerDistance, float translateRatio) {
         int swipeDirection = swipeDistance < 0 ? SWIPE_DIRECTION_LEFT : SWIPE_DIRECTION_RIGHT;
         if (Math.abs(swipeDistance) > Math.abs(triggerDistance)) {
             setPosition(swipeDirection);
-            switchListener.onSwipeReleased(swipeDirection, true);
+            if (switchListener != null) {
+                switchListener.onSwipeReleased(swipeDirection, true);
+            }
             if (pageSwipeListener != null) {
                 pageSwipeListener.onPageSelected(position);
             }
         } else {
-            switchListener.onSwipeReleased(swipeDirection, false);
+            if (switchListener != null) {
+                switchListener.onSwipeReleased(swipeDirection, false);
+            }
 
             ResetAnimation resetAnimation = new ResetAnimation(triggerDistance, translateRatio);
             resetAnimation.setDuration(300);
