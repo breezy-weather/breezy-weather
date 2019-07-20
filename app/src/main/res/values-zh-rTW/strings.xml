@@ -186,6 +186,9 @@
         $0mp$, $1mp$, …, $4mp$ : \n今日月相，明日，……，4天后\n
     </string>
 
+    <string name="feedback_live_wallpaper_weather_kind">天氣</string>
+    <string name="feedback_live_wallpaper_day_night_type">時間</string>
+
     <string name="feedback_click_toggle">點擊趨勢圖可切換數據</string>
     <string name="feedback_no_data">暫無數據</string>
 

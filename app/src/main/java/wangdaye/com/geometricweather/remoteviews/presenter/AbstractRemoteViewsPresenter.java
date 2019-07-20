@@ -61,7 +61,7 @@ public abstract class AbstractRemoteViewsPresenter {
 
             darkText = showCard
                     ? !darkCard
-                    : textColor.equals("dark") || (textColor.equals("auto") && !isLightWallpaper(context));
+                    : textColor.equals("dark") || (textColor.equals("auto") && isLightWallpaper(context));
         }
     }
 
@@ -109,15 +109,24 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     public static boolean isLightWallpaper(Context context) {
-        Drawable drawable = WallpaperManager.getInstance(context).getDrawable();
-        if (!(drawable instanceof BitmapDrawable)) {
+        try {
+            WallpaperManager manager = WallpaperManager.getInstance(context);
+            if (manager == null) {
+                return false;
+            }
+
+            Drawable drawable = manager.getDrawable();
+            if (!(drawable instanceof BitmapDrawable)) {
+                return false;
+            }
+
+            return DisplayUtils.isLightColor(
+                    context,
+                    DisplayUtils.bitmapToColorInt(((BitmapDrawable) drawable).getBitmap())
+            );
+        } catch (Exception ignore) {
             return false;
         }
-
-        return DisplayUtils.isLightColor(
-                context,
-                DisplayUtils.bitmapToColorInt(((BitmapDrawable) drawable).getBitmap())
-        );
     }
 
     @DrawableRes

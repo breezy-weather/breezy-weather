@@ -134,7 +134,14 @@
             </intent-filter>
         </activity>
 
-        <!-- widget config. -->
+        <activity
+            android:name=".wallpaper.LiveWallpaperConfigActivity"
+            android:label="@string/settings_title_live_wallpaper"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+
+        <!-- widget -->
 
         <activity
             android:name=".remoteviews.config.DayWidgetConfigActivity"
@@ -260,7 +267,7 @@
         </service>
 
         <service
-            android:name=".background.service.LiveWallpaperService"
+            android:name=".wallpaper.material.MaterialLiveWallpaperService"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />

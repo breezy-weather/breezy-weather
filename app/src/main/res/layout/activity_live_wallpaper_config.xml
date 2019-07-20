@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_live_wallpaper_config"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <wangdaye.com.geometricweather.ui.widget.StatusBarView
+            android:id="@+id/activity_live_wallpaper_config_statusBar"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/activity_live_wallpaper_config_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:title="@string/settings_title_live_wallpaper" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/activity_live_wallpaper_config_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/activity_live_wallpaper_config_scrollView"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/activity_live_wallpaper_config_scrollContainer"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/activity_live_wallpaper_config_weatherKindContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_live_wallpaper_config_weatherKindTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_live_wallpaper_weather_kind"
+                        android:layout_alignParentStart="true"
+                        style="@style/content_text" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/activity_live_wallpaper_config_weatherKindSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown"
+                        android:layout_toEndOf="@id/activity_live_wallpaper_config_weatherKindTitle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        app:theme="@style/spinner_item"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/activity_live_wallpaper_config_dayNightTypeContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_live_wallpaper_config_dayNightTypeTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_live_wallpaper_day_night_type"
+                        android:layout_alignParentStart="true"
+                        style="@style/content_text" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/activity_live_wallpaper_config_dayNightTypeSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown"
+                        android:layout_toEndOf="@id/activity_live_wallpaper_config_dayNightTypeTitle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        app:theme="@style/spinner_item"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <Button
+                        android:id="@+id/activity_live_wallpaper_config_doneButton"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/done"
+                        android:textColor="@color/colorAccent"
+                        style="@style/material_button"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>

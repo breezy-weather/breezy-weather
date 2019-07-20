@@ -250,4 +250,48 @@
         <item>auto</item>
     </string-array>
 
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automatic</item>
+        <item>Clear</item>
+        <item>Partly Cloudy</item>
+        <item>Cloudy</item>
+        <item>Rain</item>
+        <item>Snow</item>
+        <item>Sleet</item>
+        <item>Hail</item>
+        <item>Fog</item>
+        <item>Haze</item>
+        <item>Thunder</item>
+        <item>Thunderstorm</item>
+        <item>Wind</item>
+    </string-array>
+    <string-array name="live_wallpaper_weather_kind_values">
+        <item>auto</item>
+        <item>CLEAR</item>
+        <item>PARTLY_CLOUDY</item>
+        <item>CLOUDY</item>
+        <item>RAIN</item>
+        <item>SNOW</item>
+        <item>SLEET</item>
+        <item>HAIL</item>
+        <item>FOG</item>
+        <item>HAZE</item>
+        <item>THUNDER</item>
+        <item>THUNDERSTORM</item>
+        <item>WIND</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automatic</item>
+        <item>Always daytime</item>
+        <item>Always nighttime</item>
+    </string-array>
+    <string-array name="live_wallpaper_day_night_type_values">
+        <item>auto</item>
+        <item>day</item>
+        <item>night</item>
+    </string-array>
+
 </resources>

@@ -85,4 +85,28 @@
         <item>自動著色</item>
     </string-array>
 
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>自動</item>
+        <item>晴</item>
+        <item>多雲</item>
+        <item>陰</item>
+        <item>雨</item>
+        <item>雪</item>
+        <item>凍雨</item>
+        <item>冰雹</item>
+        <item>霧</item>
+        <item>霾</item>
+        <item>雷暴</item>
+        <item>雷雨</item>
+        <item>風</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>自動</item>
+        <item>白晝</item>
+        <item>夜晚</item>
+    </string-array>
+
 </resources>

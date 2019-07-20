@@ -42,8 +42,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.xw.repo.BubbleSeekBar;
 
-import org.jetbrains.annotations.NotNull;
-
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -111,8 +109,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected String[] clockFonts;
     protected String[] clockFontValues;
 
-    private final int READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE = 0;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,7 +163,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     @SuppressLint("MissingSuperCall")
     @Override
-    protected void onSaveInstanceState(@NotNull Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         // do nothing.
     }
 
@@ -218,8 +214,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     @CallSuper
     public void initView() {
-        ImageView wallpaper = findViewById(R.id.activity_widget_config_wall);
-        bindWallpaper(wallpaper);
+        this.wallpaper = findViewById(R.id.activity_widget_config_wall);
+        bindWallpaper(true);
 
         this.widgetContainer = findViewById(R.id.activity_widget_config_widgetContainer);
 
@@ -266,7 +262,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         this.textColorContainer = findViewById(R.id.activity_widget_config_blackTextContainer);
         AppCompatSpinner textStyleSpinner = findViewById(R.id.activity_widget_config_blackTextSpinner);
-        textStyleSpinner.setOnItemSelectedListener(new TextStyleSpinnerSelectedListener());
+        textStyleSpinner.setOnItemSelectedListener(new TextColorSpinnerSelectedListener());
         textStyleSpinner.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, textColors)
         );
@@ -405,49 +401,40 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
     }
 
-    public void bindWallpaper(ImageView imageView) {
-        bindWallpaper(imageView, true);
-    }
-
-    private void bindWallpaper(ImageView imageView, boolean requestPermissionIfFailed) {
+    private void bindWallpaper(boolean checkPermissions) {
         try {
             WallpaperManager manager = WallpaperManager.getInstance(this);
             if (manager != null) {
                 Drawable drawable = manager.getDrawable();
                 if (drawable != null) {
-                    imageView.setImageDrawable(drawable);
+                    wallpaper.setImageDrawable(drawable);
                 }
             }
         } catch (Exception ignore) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && requestPermissionIfFailed) {
-                requestReadExternalStoragePermission(imageView);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
+                checkPermissions((requestCode, permission, grantResult) -> {
+                    bindWallpaper(false);
+                    if (textColorValueNow.equals("auto")) {
+                        updateHostView();
+                    }
+                });
             }
         }
     }
 
-    // permission.
-
+    /**
+     * @return true : already got permissions.
+     *         false: request permissions.
+     * */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void requestReadExternalStoragePermission(ImageView imageView) {
+    private boolean checkPermissions(@NonNull OnRequestPermissionsResultListener l) {
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            wallpaper = imageView;
-            this.requestPermissions(
-                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
-                    READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE
-            );
-        } else {
-            bindWallpaper(imageView, false);
+            requestPermissions(
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0, l);
+            return false;
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permission, @NonNull int[] grantResult) {
-        super.onRequestPermissionsResult(requestCode, permission, grantResult);
-        if (requestCode == READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE) {
-            bindWallpaper(wallpaper, false);
-        }
+        return true;
     }
 
     // on check changed listener(switch).
@@ -526,12 +513,26 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
     }
 
-    private class TextStyleSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
+    private class TextColorSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             if (!textColorValueNow.equals(textColorValues[i])) {
                 textColorValueNow = textColorValues[i];
-                updateHostView();
+                if (!textColorValueNow.equals("auto")) {
+                    updateHostView();
+                    return;
+                }
+
+                boolean hasPermission = true;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    hasPermission = checkPermissions((requestCode, permission, grantResult) -> {
+                        bindWallpaper(false);
+                        updateHostView();
+                    });
+                }
+                if (hasPermission) {
+                    updateHostView();
+                }
             }
         }
 

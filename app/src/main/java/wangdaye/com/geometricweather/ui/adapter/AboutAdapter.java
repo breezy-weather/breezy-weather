@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.ui.adapter;
 
-import android.content.Intent;
 import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -22,6 +21,7 @@ import wangdaye.com.geometricweather.basic.model.about.AboutAppLibrary;
 import wangdaye.com.geometricweather.basic.model.about.AboutAppLink;
 import wangdaye.com.geometricweather.basic.model.about.AboutAppTranslator;
 import wangdaye.com.geometricweather.utils.helpter.DonateHelper;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * About adapter.
@@ -72,28 +72,34 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
             if (((Integer) model) == 1) {
                 return new HeaderHolder(
                         activity,
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_about_header, parent, false));
+                        LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.item_about_header, parent, false));
             } else {
                 return new ViewHolder(
                         activity,
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_about_line, parent, false));
+                        LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.item_about_line, parent, false));
             }
         } else if (model instanceof String) {
             return new TitleHolder(
                     activity,
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_about_title, parent, false));
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.item_about_title, parent, false));
         } else if (model instanceof AboutAppLink) {
             return new LinkHolder(
                     activity,
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_about_link, parent, false));
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.item_about_link, parent, false));
         } else if (model instanceof AboutAppTranslator) {
             return new TranslatorHolder(
                     activity,
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_about_translator, parent, false));
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.item_about_translator, parent, false));
         } else {
             return new LibraryHolder(
                     activity,
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_about_library, parent, false));
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.item_about_library, parent, false));
         }
     }
 
@@ -177,15 +183,9 @@ class LinkHolder extends AboutAdapter.ViewHolder
         } else if (url.equals(AboutAppLink.LINK_WECHAT)) {
             DonateHelper.donateByWechat(activity);
         } else if (email) {
-            activity.startActivity(
-                    new Intent(
-                            Intent.ACTION_SENDTO,
-                            Uri.parse(url)));
+            IntentHelper.startWebViewActivity(activity, url);
         } else {
-            activity.startActivity(
-                    new Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse(url)));
+            IntentHelper.startWebViewActivity(activity, url);
         }
     }
 }
@@ -217,15 +217,12 @@ class TranslatorHolder extends AboutAdapter.ViewHolder implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (isEmail(content.getText().toString())) {
-            activity.startActivity(
-                    new Intent(
-                            Intent.ACTION_SENDTO,
-                            Uri.parse("mailto:" + content.getText().toString())));
+            IntentHelper.startEmailActivity(
+                    activity,
+                    Uri.parse("mailto:" + content.getText()).toString()
+            );
         } else {
-            activity.startActivity(
-                    new Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse(content.getText().toString())));
+            IntentHelper.startWebViewActivity(activity, content.getText().toString());
         }
     }
 
@@ -263,9 +260,6 @@ class LibraryHolder extends AboutAdapter.ViewHolder implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        activity.startActivity(
-                new Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse(url)));
+        IntentHelper.startWebViewActivity(activity, url);
     }
 }

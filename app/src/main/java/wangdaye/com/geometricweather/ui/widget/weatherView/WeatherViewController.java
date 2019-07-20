@@ -66,7 +66,15 @@ public class WeatherViewController {
         if (weather == null) {
             return WeatherView.WEATHER_KIND_CLEAR;
         }
-        switch (weather.realTime.weatherKind) {
+        return getWeatherViewWeatherKind(weather.realTime.weatherKind);
+    }
+
+    @WeatherView.WeatherKindRule
+    public static int getWeatherViewWeatherKind(@Nullable String weatherKind) {
+        if (weatherKind == null) {
+            return WeatherView.WEATHER_KIND_CLEAR;
+        }
+        switch (weatherKind) {
             case Weather.KIND_CLEAR:
                 return WeatherView.WEATHER_KIND_CLEAR;
 

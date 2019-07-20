@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.303</string>
+    <string name="version_code">v2.304</string>
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -198,6 +198,9 @@
         \n
         $0mp$, $1mp$, …, $4mp$ : \nMoon Phase of Today, Tmw, …, 4 days later\n
     </string>
+
+    <string name="feedback_live_wallpaper_weather_kind">Weather</string>
+    <string name="feedback_live_wallpaper_day_night_type">Time</string>
 
     <string name="feedback_click_toggle">Press chart to toggle data</string>
     <string name="feedback_no_data">NO DATA</string>

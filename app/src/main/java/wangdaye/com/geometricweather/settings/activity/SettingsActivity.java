@@ -19,7 +19,7 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
  * */
 
 public class SettingsActivity extends GeoActivity
-        implements View.OnClickListener, Toolbar.OnMenuItemClickListener {
+        implements Toolbar.OnMenuItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class SettingsActivity extends GeoActivity
         Toolbar toolbar = findViewById(R.id.activity_settings_toolbar);
         toolbar.setTitle(getString(R.string.action_settings));
         toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
-        toolbar.setNavigationOnClickListener(this);
+        toolbar.setNavigationOnClickListener(view -> finish());
         toolbar.inflateMenu(R.menu.activity_settings);
         toolbar.setOnMenuItemClickListener(this);
     }
@@ -69,15 +69,6 @@ public class SettingsActivity extends GeoActivity
                 .replace(R.id.activity_settings_container, f)
                 .addToBackStack(tag)
                 .commit();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case -1:
-                finish();
-                break;
-        }
     }
 
     @Override
