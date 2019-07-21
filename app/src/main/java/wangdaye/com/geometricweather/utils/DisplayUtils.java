@@ -9,9 +9,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.media.ThumbnailUtils;
 import android.os.Build;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -209,13 +209,11 @@ public class DisplayUtils {
 
     @ColorInt
     public static int bitmapToColorInt(@NonNull Bitmap bitmap) {
-        Matrix matrix = new Matrix();
-        matrix.setScale((float) (1.0 / bitmap.getWidth()), (float) (1.0 / 2.0));
-        bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), 2, matrix, false);
-        return bitmap.getPixel(0, 0);
+        return ThumbnailUtils.extractThumbnail(bitmap, 1, 1)
+                .getPixel(0, 0);
     }
 
-    public static boolean isLightColor(Context context, @ColorInt int color) {
+    public static boolean isLightColor(@ColorInt int color) {
         int alpha = 0xFF << 24;
         int grey = color;
         int red = ((grey & 0x00FF0000) >> 16);
@@ -224,6 +222,6 @@ public class DisplayUtils {
 
         grey = (int) (red * 0.3 + green * 0.59 + blue * 0.11);
         grey = alpha | (grey << 16) | (grey << 8) | grey;
-        return context != null && grey < Color.LTGRAY;
+        return grey > 0xffbdbdbd;
     }
 }

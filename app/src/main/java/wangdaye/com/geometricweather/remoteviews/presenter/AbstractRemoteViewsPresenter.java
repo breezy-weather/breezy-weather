@@ -129,7 +129,6 @@ public abstract class AbstractRemoteViewsPresenter {
             }
 
             return DisplayUtils.isLightColor(
-                    context,
                     DisplayUtils.bitmapToColorInt(((BitmapDrawable) drawable).getBitmap())
             );
         } catch (Exception ignore) {

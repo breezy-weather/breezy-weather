@@ -9,7 +9,8 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
 
         <wangdaye.com.geometricweather.ui.widget.StatusBarView
             android:id="@+id/activity_live_wallpaper_config_statusBar"
