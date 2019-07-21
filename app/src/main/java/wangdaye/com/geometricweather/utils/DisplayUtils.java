@@ -26,7 +26,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.main.ui.MainActivity;
+import wangdaye.com.geometricweather.main.MainActivity;
 
 /**
  * Display utils.

@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -78,9 +79,8 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         }
 
         // set small icon.
-        builder.setSmallIcon(
-                tempIcon
-                        ? WeatherHelper.getTempIconId(
+        builder.setSmallIcon(tempIcon
+                ? WeatherHelper.getTempIconId(
                         context,
                         fahrenheit
                                 ? ValueUtils.calcFahrenheit(weather.realTime.temp)
@@ -109,11 +109,10 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         contentText.append(context.getString(R.string.feels_like))
                 .append(" ")
                 .append(ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.sensibleTemp, fahrenheit));
-        contentText.append(", ");
         if (weather.aqi == null) {
-            contentText.append(weather.realTime.windLevel);
-        } else {
-            contentText.append(weather.aqi.quality);
+            contentText.append(", ").append(weather.realTime.windLevel);
+        } else if (!TextUtils.isEmpty(weather.aqi.quality)) {
+            contentText.append(", ").append(weather.aqi.quality);
         }
         builder.setContentText(contentText.toString());
 

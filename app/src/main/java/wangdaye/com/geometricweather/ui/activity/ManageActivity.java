@@ -18,7 +18,7 @@ import android.view.View;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.main.ui.MainActivity;
+import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;

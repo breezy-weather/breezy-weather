@@ -56,7 +56,7 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
         }
 
         boolean darkText = textColor.equals("dark")
-                || (textColor.equals("auto") && !isLightWallpaper(context));
+                || (textColor.equals("auto") && isLightWallpaper(context));
 
         int textColorInt;
         if (darkText) {

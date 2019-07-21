@@ -29,7 +29,7 @@ import wangdaye.com.geometricweather.wallpaper.material.MaterialLiveWallpaperSer
 import wangdaye.com.geometricweather.ui.activity.AboutActivity;
 import wangdaye.com.geometricweather.ui.activity.AlertActivity;
 import wangdaye.com.geometricweather.settings.activity.SelectProviderActivity;
-import wangdaye.com.geometricweather.main.ui.MainActivity;
+import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.ui.activity.ManageActivity;
 import wangdaye.com.geometricweather.ui.activity.PreviewIconActivity;
 import wangdaye.com.geometricweather.ui.activity.SearcActivity;

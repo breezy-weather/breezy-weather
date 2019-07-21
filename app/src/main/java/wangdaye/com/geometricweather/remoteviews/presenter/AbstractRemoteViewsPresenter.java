@@ -1,11 +1,13 @@
 package wangdaye.com.geometricweather.remoteviews.presenter;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -19,6 +21,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
+import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.R;
@@ -60,7 +63,7 @@ public abstract class AbstractRemoteViewsPresenter {
             darkCard = cardStyle.equals("dark") || (cardStyle.equals("auto") && !dayTime);
 
             darkText = showCard
-                    ? !darkCard
+                    ? !darkCard // light card.
                     : textColor.equals("dark") || (textColor.equals("auto") && isLightWallpaper(context));
         }
     }
@@ -109,6 +112,11 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     public static boolean isLightWallpaper(Context context) {
+        if (ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+
         try {
             WallpaperManager manager = WallpaperManager.getInstance(context);
             if (manager == null) {

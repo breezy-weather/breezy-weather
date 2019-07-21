@@ -75,7 +75,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         if (viewStyle.equals("pixel") || viewStyle.equals("nano") || viewStyle.equals("oreo")) {
             color.showCard = false;
             color.darkText = textColor.equals("dark")
-                    || (textColor.equals("auto") && !isLightWallpaper(context));
+                    || (textColor.equals("auto") && isLightWallpaper(context));
         }
 
         RemoteViews views = buildWidgetView(

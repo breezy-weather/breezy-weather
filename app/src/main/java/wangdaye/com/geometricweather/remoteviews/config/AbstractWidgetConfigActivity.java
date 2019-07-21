@@ -402,6 +402,18 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     }
 
     private void bindWallpaper(boolean checkPermissions) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
+            boolean hasPermission = checkPermissions((requestCode, permission, grantResult) -> {
+                bindWallpaper(false);
+                if (textColorValueNow.equals("auto")) {
+                    updateHostView();
+                }
+            });
+            if (!hasPermission) {
+                return;
+            }
+        }
+
         try {
             WallpaperManager manager = WallpaperManager.getInstance(this);
             if (manager != null) {
@@ -411,14 +423,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                 }
             }
         } catch (Exception ignore) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
-                checkPermissions((requestCode, permission, grantResult) -> {
-                    bindWallpaper(false);
-                    if (textColorValueNow.equals("auto")) {
-                        updateHostView();
-                    }
-                });
-            }
+            // do nothing.
         }
     }
 

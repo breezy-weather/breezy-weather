@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.main.ui;
+package wangdaye.com.geometricweather.main;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
@@ -32,7 +32,8 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.resource.Resource;
-import wangdaye.com.geometricweather.main.MainActivityViewModel;
+import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.main.ui.MainControllerAdapter;
 import wangdaye.com.geometricweather.main.ui.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
