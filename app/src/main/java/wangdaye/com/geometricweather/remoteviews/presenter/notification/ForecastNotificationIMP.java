@@ -19,6 +19,7 @@ import wangdaye.com.geometricweather.remoteviews.presenter.AbstractRemoteViewsPr
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -136,7 +137,7 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
-        builder.setColor(getWeatherColors(context, weather, daytime, provider)[0]);
+        builder.setColor(WeatherViewController.getThemeColors(context, weather, daytime)[0]);
 
         // set intent.
         builder.setContentIntent(

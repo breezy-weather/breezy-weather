@@ -1,10 +1,18 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView;
 
+import android.content.Context;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Size;
+import androidx.preference.PreferenceManager;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView;
+import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 
 /**
  * Weather view controller.
@@ -112,5 +120,26 @@ public class WeatherViewController {
                 return WeatherView.WEATHER_KIND_THUNDERSTORM;
         }
         return WeatherView.WEATHER_KIND_CLEAR;
+    }/**
+     * @return colors[] {
+     *     theme color,
+     *     color of daytime chart line,
+     *     color of nighttime chart line
+     * }
+     *
+     * */
+    @ColorInt
+    @Size(3)
+    public static int[] getThemeColors(Context context, @NonNull Weather weather, boolean lightTheme) {
+        String uiStyle = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.key_ui_style), "material");
+        switch (uiStyle) {
+            case "material":
+                return MaterialWeatherView.getThemeColors(
+                        context, getWeatherViewWeatherKind(weather), lightTheme);
+
+            default: // circular
+                return CircularSkyWeatherView.getThemeColors(context, lightTheme);
+        }
     }
 }

@@ -16,23 +16,15 @@ import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Size;
 import androidx.core.app.ActivityCompat;
-import androidx.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
-import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -377,24 +369,5 @@ public abstract class AbstractRemoteViewsPresenter {
             subtitle = subtitle.replace("$" + i + "mp$", weather.dailyList.get(i).moonPhase);
         }
         return subtitle;
-    }
-
-    @NonNull @Size(3) @ColorInt
-    protected static int[] getWeatherColors(Context context, @NonNull Weather weather, boolean dayTime,
-                                         ResourceProvider provider) {
-        WeatherView weatherView;
-        String uiStyle = PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.key_ui_style), "material");
-        switch (uiStyle) {
-            case "material":
-                weatherView = new MaterialWeatherView(context);
-                break;
-
-            default: // circular
-                weatherView = new CircularSkyWeatherView(context);
-                break;
-        }
-        WeatherViewController.setWeatherViewWeatherKind(weatherView, weather, dayTime, provider);
-        return weatherView.getThemeColors(dayTime);
     }
 }

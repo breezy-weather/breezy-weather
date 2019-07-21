@@ -235,7 +235,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         };
     }
 
-    private int getBrighterColor(int color){
+    private static int getBrighterColor(int color){
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
         hsv[1] = hsv[1] - 0.25F;
@@ -243,7 +243,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         return Color.HSVToColor(hsv);
     }
 
-    private boolean isIgnoreDayNight(@WeatherKindRule int weatherKind) {
+    private static boolean isIgnoreDayNight(@WeatherKindRule int weatherKind) {
         return weatherKind == WeatherView.WEATHER_KIND_CLOUDY
                 || weatherKind == WeatherView.WEATHER_KIND_FOG
                 || weatherKind == WeatherView.WEATHER_KIND_HAZE
@@ -304,9 +304,25 @@ public class MaterialWeatherView extends View implements WeatherView {
         }
     }
 
+    public static int[] getThemeColors(Context context,
+                                       @WeatherKindRule int weatherKind, boolean lightTheme) {
+        int color = innerGetBackgroundColor(context, weatherKind, lightTheme);
+        if (!lightTheme) {
+            color = getBrighterColor(color);
+            return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
+        } else {
+            return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
+        }
+    }
+
     @Override
     public int getBackgroundColor() {
-        return WeatherImplementorFactory.getWeatherThemeColor(getContext(), weatherKind, daytime);
+        return innerGetBackgroundColor(getContext(), weatherKind, daytime);
+    }
+
+    private static int innerGetBackgroundColor(Context context,
+                                               @WeatherKindRule int weatherKind, boolean daytime) {
+        return WeatherImplementorFactory.getWeatherThemeColor(context, weatherKind, daytime);
     }
 
     @Override

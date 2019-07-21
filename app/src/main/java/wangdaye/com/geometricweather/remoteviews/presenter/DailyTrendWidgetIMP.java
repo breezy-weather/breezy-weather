@@ -32,6 +32,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.TrendLinearLayout;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.WidgetItemView;
+import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -135,7 +136,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableView.findViewById(R.id.widget_trend_daily_item_5)
         };
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        int[] colors = getWeatherColors(context, weather, TimeManager.isDaylight(weather), provider);
+        int[] colors = WeatherViewController.getThemeColors(context, weather, TimeManager.isDaylight(weather));
         for (int i = 0; i < items.length; i ++) {
             Daily daily = weather.dailyList.get(i);
 

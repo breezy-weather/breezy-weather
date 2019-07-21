@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.AppCompatImageView;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -264,12 +265,16 @@ public class CircularSkyWeatherView extends FrameLayout
 
     @Override
     public int[] getThemeColors(boolean lightTheme) {
+        return getThemeColors(getContext(), daytime);
+    }
+
+    public static int[] getThemeColors(Context context, boolean lightTheme) {
         return new int[] {
-                daytime
-                        ? ContextCompat.getColor(getContext(), R.color.lightPrimary_3)
-                        : ContextCompat.getColor(getContext(), R.color.darkPrimary_1),
-                ContextCompat.getColor(getContext(), R.color.lightPrimary_5),
-                ContextCompat.getColor(getContext(), R.color.darkPrimary_1)
+                lightTheme
+                        ? ContextCompat.getColor(context, R.color.lightPrimary_3)
+                        : ContextCompat.getColor(context, R.color.darkPrimary_1),
+                ContextCompat.getColor(context, R.color.lightPrimary_5),
+                ContextCompat.getColor(context, R.color.darkPrimary_1)
         };
     }
 
