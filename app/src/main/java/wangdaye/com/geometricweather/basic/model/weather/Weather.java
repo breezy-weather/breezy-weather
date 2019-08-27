@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 /**
@@ -29,10 +31,10 @@ public class Weather {
     public static final String KIND_THUNDER = "THUNDER";
     public static final String KIND_THUNDERSTORM = "THUNDERSTORM";
 
-    public Weather(Base base, RealTime realTime,
-                   List<Daily> dailyList, List<Hourly> hourlyList,
-                   Aqi aqi, Index index,
-                   List<Alert> alertList) {
+    private Weather(Base base, RealTime realTime,
+                    List<Daily> dailyList, List<Hourly> hourlyList,
+                    Aqi aqi, Index index,
+                    List<Alert> alertList) {
         this.base = base;
         this.realTime = realTime;
         this.dailyList = dailyList;
@@ -40,6 +42,19 @@ public class Weather {
         this.aqi = aqi;
         this.index = index;
         this.alertList = alertList;
+    }
+
+    @Nullable
+    public static Weather buildWeather(Base base, RealTime realTime,
+                                       List<Daily> dailyList, List<Hourly> hourlyList,
+                                       Aqi aqi, Index index,
+                                       List<Alert> alertList) {
+        if (dailyList == null || dailyList.size() == 0
+                || hourlyList == null || hourlyList.size() == 0) {
+            return null;
+        }
+
+        return new Weather(base, realTime, dailyList, hourlyList, aqi, index, alertList);
     }
 
     public boolean isValid(float hours) {

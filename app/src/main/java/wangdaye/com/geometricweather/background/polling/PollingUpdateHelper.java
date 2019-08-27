@@ -52,13 +52,16 @@ public class PollingUpdateHelper {
     private void requestData(int position, boolean located) {
         Weather old = DatabaseHelper.getInstance(context).readWeather(locationList.get(position));
         if (old != null && old.isValid(0.25F)) {
-            new RequestWeatherCallback(old, position, locationList.size())
-                    .requestWeatherSuccess(old, null, locationList.get(position));
+            new RequestWeatherCallback(old, position, locationList.size()).requestWeatherSuccess(
+                    old,
+                    DatabaseHelper.getInstance(context).readHistory(old),
+                    locationList.get(position)
+            );
             return;
         }
         if (locationList.get(position).isCurrentPosition() && !located) {
             locationHelper.requestLocation(
-                    context, locationList.get(position),
+                    context, locationList.get(position), true,
                     new RequestLocationCallback(position, locationList.size())
             );
         } else {

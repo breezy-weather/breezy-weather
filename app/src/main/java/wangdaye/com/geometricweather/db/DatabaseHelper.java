@@ -230,7 +230,7 @@ public class DatabaseHelper {
                                 alarmEntity.publishTime));
             }
 
-            return new Weather(base, realTime, dailyList, hourlyList, aqi, index, alertList);
+            return Weather.buildWeather(base, realTime, dailyList, hourlyList, aqi, index, alertList);
         } else {
             return null;
         }

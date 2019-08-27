@@ -3,9 +3,11 @@ package wangdaye.com.geometricweather.utils;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.annotation.ArrayRes;
 import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Value utils.
@@ -13,59 +15,37 @@ import wangdaye.com.geometricweather.R;
 
 public class ValueUtils {
 
-    public static String getWeatherSource(Context c, String value) {
-        switch (value) {
-            case "cn":
-                return c.getResources().getStringArray(R.array.chinese_sources)[0];
+    @Nullable
+    public static String getNameByValue(Context context, String value,
+                                        @ArrayRes int nameArrayId, @ArrayRes int valueArrayId) {
+        String[] names = context.getResources().getStringArray(nameArrayId);
+        String[] values = context.getResources().getStringArray(valueArrayId);
 
-            case "caiyun":
-                return c.getResources().getStringArray(R.array.chinese_sources)[1];
-
-            default:
-                return c.getResources().getStringArray(R.array.chinese_sources)[2];
+        for (int i = 0; i < values.length; i ++) {
+            if (values[i].equals(value)) {
+                return names[i];
+            }
         }
+
+        return null;
     }
 
-    public static String getLocationService(Context c, String value) {
+    @Nullable
+    public static String getWeatherSourceName(Context context, String value) {
         switch (value) {
-            case "baidu":
-                return c.getResources().getStringArray(R.array.location_services)[0];
+            case SettingsOptionManager.WEATHER_SOURCE_CN:
+                return context.getResources().getStringArray(R.array.chinese_sources)[0];
 
-            case "baidu_ip":
-                return c.getResources().getStringArray(R.array.location_services)[1];
+            case SettingsOptionManager.WEATHER_SOURCE_CAIYUN:
+                return context.getResources().getStringArray(R.array.chinese_sources)[1];
 
-            case "amap":
-                return c.getResources().getStringArray(R.array.location_services)[2];
-
-            default:
-                return c.getResources().getStringArray(R.array.location_services)[3];
+            case SettingsOptionManager.WEATHER_SOURCE_ACCU:
+                return context.getResources().getStringArray(R.array.chinese_sources)[2];
         }
+        return null;
     }
 
-    public static String getUIStyle(Context c, String value) {
-        switch (value) {
-            case "circular":
-                return c.getResources().getStringArray(R.array.ui_styles)[0];
-
-            default:
-                return c.getResources().getStringArray(R.array.ui_styles)[1];
-        }
-    }
-
-    public static String getDarkMode(Context c, String value) {
-        switch (value) {
-            case "auto":
-                return c.getResources().getStringArray(R.array.dark_modes)[0];
-
-            case "light":
-                return c.getResources().getStringArray(R.array.dark_modes)[1];
-
-            default:
-                return c.getResources().getStringArray(R.array.dark_modes)[2];
-        }
-    }
-
-    public static String getCardDislay(Context c, String[] values) {
+    public static String getCardDisplay(Context c, String[] values) {
         String[] options = c.getResources().getStringArray(R.array.card_display_options);
 
         StringBuilder builder = new StringBuilder();
@@ -74,23 +54,23 @@ public class ValueUtils {
                 continue;
             }
             switch (v) {
-                case "daily_overview":
+                case SettingsOptionManager.CARD_DAILY_OVERVIEW:
                     builder.append(options[0]);
                     break;
 
-                case "hourly_overview":
+                case SettingsOptionManager.CARD_HOURLY_OVERVIEW:
                     builder.append(options[1]);
                     break;
 
-                case "air_quality":
+                case SettingsOptionManager.CARD_AIR_QUALITY:
                     builder.append(options[2]);
                     break;
 
-                case "life_details":
+                case SettingsOptionManager.CARD_LIFE_DETAILS:
                     builder.append(options[3]);
                     break;
 
-                case "sunrise_sunset":
+                case SettingsOptionManager.CARD_SUNRISE_SUNSET:
                     builder.append(options[4]);
                     break;
             }
@@ -99,122 +79,31 @@ public class ValueUtils {
         return builder.toString();
     }
 
-    public static String getCardOrder(Context c, String value) {
+    public static float getUpdateIntervalInHour(String value) {
         switch (value) {
-            case "daily_first":
-                return c.getResources().getStringArray(R.array.card_orders)[0];
-
-            default:
-                return c.getResources().getStringArray(R.array.card_orders)[1];
-        }
-    }
-
-    public static float getPollingRateScale(String value) {
-        switch (value) {
-            case "0:30":
+            case SettingsOptionManager.UPDATE_INTERVAL_0_30:
                 return 0.5f;
 
-            case "1:00":
+            case SettingsOptionManager.UPDATE_INTERVAL_1_00:
                 return 1.0f;
 
-            case "2:00":
+            case SettingsOptionManager.UPDATE_INTERVAL_2_00:
                 return 2.0f;
 
-            case "2:30":
+            case SettingsOptionManager.UPDATE_INTERVAL_2_30:
                 return 2.5f;
 
-            case "3:00":
+            case SettingsOptionManager.UPDATE_INTERVAL_3_00:
                 return 3.0f;
 
-            case "3:30":
-                return 3.0f;
+            case SettingsOptionManager.UPDATE_INTERVAL_3_30:
+                return 3.5f;
 
-            case "4:00":
+            case SettingsOptionManager.UPDATE_INTERVAL_4_00:
                 return 4.0f;
 
             default:
                 return 1.5f;
-        }
-    }
-
-    public static String getLanguage(Context c, String value) {
-        switch (value) {
-            case "follow_system":
-                return c.getResources().getStringArray(R.array.languages)[0];
-
-            case "chinese":
-                return c.getResources().getStringArray(R.array.languages)[1];
-
-            case "unsimplified_chinese":
-                return c.getResources().getStringArray(R.array.languages)[2];
-
-            case "english_america":
-                return c.getResources().getStringArray(R.array.languages)[3];
-
-            case "english_britain":
-                return c.getResources().getStringArray(R.array.languages)[4];
-
-            case "english_australia":
-                return c.getResources().getStringArray(R.array.languages)[5];
-
-            case "turkish":
-                return c.getResources().getStringArray(R.array.languages)[6];
-
-            case "french":
-                return c.getResources().getStringArray(R.array.languages)[7];
-
-            case "russian":
-                return c.getResources().getStringArray(R.array.languages)[8];
-
-            case "german":
-                return c.getResources().getStringArray(R.array.languages)[9];
-
-            case "serbian":
-                return c.getResources().getStringArray(R.array.languages)[10];
-
-            case "spanish":
-                return c.getResources().getStringArray(R.array.languages)[11];
-
-            case "italian":
-                return c.getResources().getStringArray(R.array.languages)[12];
-
-            case "dutch":
-                return c.getResources().getStringArray(R.array.languages)[13];
-
-            case "hungarian":
-                return c.getResources().getStringArray(R.array.languages)[14];
-
-            case "portuguese":
-                return c.getResources().getStringArray(R.array.languages)[15];
-
-            case "portuguese_brazilian":
-                return c.getResources().getStringArray(R.array.languages)[16];
-
-            default:
-                return null;
-        }
-    }
-
-    public static String getNotificationStyle(Context c, String value) {
-        switch (value) {
-            case "native":
-                return c.getResources().getStringArray(R.array.notification_styles)[0];
-
-            default:
-                return c.getResources().getStringArray(R.array.notification_styles)[1];
-        }
-    }
-
-    public static String getNotificationTextColor(Context c, String value) {
-        switch (value) {
-            case "dark":
-                return c.getResources().getStringArray(R.array.notification_text_colors)[0];
-
-            case "grey":
-                return c.getResources().getStringArray(R.array.notification_text_colors)[1];
-
-            default:
-                return c.getResources().getStringArray(R.array.notification_text_colors)[2];
         }
     }
 

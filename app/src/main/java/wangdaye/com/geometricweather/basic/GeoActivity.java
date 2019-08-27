@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.widget.windowInsets.ApplyWindowInsetsLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 
@@ -29,6 +31,7 @@ public abstract class GeoActivity extends AppCompatActivity {
     private List<GeoDialogFragment> dialogList;
     private boolean foreground;
 
+    @Nullable private ApplyWindowInsetsLayout applyWindowInsetsLayout;
     @Nullable private OnRequestPermissionsResultListener permissionsListener;
 
     @CallSuper
@@ -51,8 +54,29 @@ public abstract class GeoActivity extends AppCompatActivity {
             DisplayUtils.setNavigationBarColor(
                     this, ContextCompat.getColor(this, R.color.colorRootDark));
         }
+    }
 
-        this.dialogList = new ArrayList<>();
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        bindApplyWindowInsetsLayout();
+    }
+
+    protected void bindApplyWindowInsetsLayout() {
+        applyWindowInsetsLayout = new ApplyWindowInsetsLayout(this);
+
+        ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
+        ViewGroup contentView = (ViewGroup) decorView.getChildAt(0);
+
+        decorView.removeView(contentView);
+        applyWindowInsetsLayout.addView(contentView);
+
+        decorView.addView(applyWindowInsetsLayout, 0);
+    }
+
+    @Nullable
+    protected ApplyWindowInsetsLayout getApplyWindowInsetsLayout() {
+        return applyWindowInsetsLayout;
     }
 
     @CallSuper
@@ -77,8 +101,8 @@ public abstract class GeoActivity extends AppCompatActivity {
     }
 
     public View provideSnackbarContainer() {
-        if (dialogList.size() > 0) {
-            return dialogList.get(dialogList.size() - 1).getSnackbarContainer();
+        if (getDialogList().size() > 0) {
+            return getDialogList().get(getDialogList().size() - 1).getSnackbarContainer();
         } else {
             return getSnackbarContainer();
         }
@@ -91,6 +115,9 @@ public abstract class GeoActivity extends AppCompatActivity {
     }
 
     public List<GeoDialogFragment> getDialogList() {
+        if (dialogList == null) {
+            dialogList = new ArrayList<>();
+        }
         return dialogList;
     }
 

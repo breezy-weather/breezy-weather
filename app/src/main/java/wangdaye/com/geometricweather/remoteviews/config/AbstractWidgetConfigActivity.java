@@ -6,7 +6,6 @@ import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -288,19 +287,17 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         Button doneButton = findViewById(R.id.activity_widget_config_doneButton);
         doneButton.setOnClickListener(v -> {
-            SharedPreferences.Editor editor = getSharedPreferences(
-                    getSharedPreferencesName(),
-                    MODE_PRIVATE
-            ).edit();
-            editor.putString(getString(R.string.key_view_type), viewTypeValueNow);
-            editor.putString(getString(R.string.key_card_style), cardStyleValueNow);
-            editor.putInt(getString(R.string.key_card_alpha), cardAlpha);
-            editor.putBoolean(getString(R.string.key_hide_subtitle), hideSubtitle);
-            editor.putString(getString(R.string.key_subtitle_data), subtitleDataValueNow);
-            editor.putString(getString(R.string.key_text_color), textColorValueNow);
-            editor.putInt(getString(R.string.key_text_size), textSize);
-            editor.putString(getString(R.string.key_clock_font), clockFontValueNow);
-            editor.apply();
+            getSharedPreferences(getSharedPreferencesName(), MODE_PRIVATE)
+                    .edit()
+                    .putString(getString(R.string.key_view_type), viewTypeValueNow)
+                    .putString(getString(R.string.key_card_style), cardStyleValueNow)
+                    .putInt(getString(R.string.key_card_alpha), cardAlpha)
+                    .putBoolean(getString(R.string.key_hide_subtitle), hideSubtitle)
+                    .putString(getString(R.string.key_subtitle_data), subtitleDataValueNow)
+                    .putString(getString(R.string.key_text_color), textColorValueNow)
+                    .putInt(getString(R.string.key_text_size), textSize)
+                    .putString(getString(R.string.key_clock_font), clockFontValueNow)
+                    .apply();
 
             Intent intent = getIntent();
             Bundle extras = intent.getExtras();

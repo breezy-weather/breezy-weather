@@ -144,6 +144,20 @@ public class IconPackResourcesProvider extends ResourceProvider {
         return providerList;
     }
 
+    static boolean isIconPackIconProvider(@NonNull Context context, @NonNull String packageName) {
+        List<ResolveInfo> infoList = context.getPackageManager().queryIntentActivities(
+                new Intent(Constants.ACTION_ICON_PROVIDER),
+                PackageManager.GET_RESOLVED_FILTER
+        );
+        for (ResolveInfo info : infoList) {
+            if (packageName.equals(info.activityInfo.applicationInfo.packageName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @NonNull
     private static String getFilterResource(Map<String, String> filter, String key) {
         try {

@@ -25,6 +25,7 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
 import wangdaye.com.geometricweather.ui.widget.moon.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -77,7 +78,7 @@ public class SunMoonController extends AbstractMainItemController {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(@NonNull Location location) {
-        if (!isDisplay("sunrise_sunset")) {
+        if (!isDisplay(SettingsOptionManager.CARD_SUNRISE_SUNSET)) {
             enable = false;
             view.setVisibility(View.GONE);
             return;

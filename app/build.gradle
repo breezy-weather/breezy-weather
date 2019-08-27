@@ -6,8 +6,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 2305
-        versionName "2.305"
+        versionCode 2307
+        versionName "2.307"
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
@@ -80,53 +80,64 @@ dependencies {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation 'com.amap.api:location:4.4.0'
-
+    // android x.
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
-    implementation 'com.google.android.material:material:1.1.0-alpha08'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.0-rc01'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
+    // android architect.
+    implementation "android.arch.work:work-runtime:1.0.1"
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "android.arch.lifecycle:viewmodel:1.1.1"
     implementation "android.arch.lifecycle:livedata:1.1.1"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
 
-    implementation "android.arch.work:work-runtime:1.0.1"
+    // a map.
+    implementation 'com.amap.api:location:4.4.0'
 
+    // play.
     implementation "com.google.android.gms:play-services-location:17.0.0"
 
+    // glide.
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
 
+    // retrofit.
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 
+    // green DAO.
     implementation 'org.greenrobot:greendao:3.2.0'
 
+    // gson.
     implementation 'com.google.code.gson:gson:2.8.2'
 
-    implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
-
-    implementation 'com.github.XhinLiang:LunarCalendar:3.0.0'
-
+    // cm.
     implementation 'org.cyanogenmod:platform.sdk:5.0'
-    implementation 'org.jetbrains:annotations-java5:15.0'
 
+    // bugly.
     implementation 'com.tencent.bugly:crashreport:2.8.6.0'
     implementation 'com.tencent.bugly:nativecrashreport:3.6.0.1'
 
+    // rx java.
     implementation "io.reactivex.rxjava2:rxjava:2.2.7"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle:2.0'
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0'
 
+    // UI.
+    implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     implementation 'com.jaredrummler:colorpicker:1.1.0'
     implementation 'com.xw.repo:bubbleseekbar:3.20-lite'
-
     implementation 'me.jfenn:AdaptiveIconView:0.0.1'
+    implementation 'com.github.turing-tech:MaterialScrollBar:13.3.2'
 
+    // utils.
+    implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation 'com.github.XhinLiang:LunarCalendar:3.0.0'
     implementation 'com.github.didikee:AndroidDonate:0.1.0'
 }

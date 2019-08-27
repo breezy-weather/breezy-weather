@@ -10,6 +10,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -41,11 +42,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         );
 
         // create channel.
-        NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
-        if (manager == null) {
-            return;
-        }
-
+        NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY,
@@ -58,6 +55,10 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                             : NotificationManager.IMPORTANCE_LOW
             );
             channel.setShowBadge(false);
+            channel.setImportance(hideNotificationIcon
+                    ? NotificationManager.IMPORTANCE_UNSPECIFIED : NotificationManager.IMPORTANCE_HIGH);
+            channel.setLockscreenVisibility(hideNotificationInLockScreen
+                    ? NotificationCompat.VISIBILITY_SECRET : NotificationCompat.VISIBILITY_PUBLIC);
             manager.createNotificationChannel(channel);
         }
 
@@ -66,18 +67,12 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 context, GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY);
 
         // set notification level.
-        if (hideNotificationIcon) {
-            builder.setPriority(NotificationCompat.PRIORITY_MIN);
-        } else {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+        builder.setPriority(hideNotificationIcon
+                ? NotificationCompat.PRIORITY_MIN : NotificationCompat.PRIORITY_MAX);
 
         // set notification visibility.
-        if (hideNotificationInLockScreen) {
-            builder.setVisibility(NotificationCompat.VISIBILITY_SECRET);
-        } else {
-            builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        }
+        builder.setVisibility(hideNotificationInLockScreen
+                ? NotificationCompat.VISIBILITY_SECRET : NotificationCompat.VISIBILITY_PUBLIC);
 
         // set small icon.
         builder.setSmallIcon(tempIcon
@@ -120,20 +115,14 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         builder.setColor(WeatherViewController.getThemeColors(context, weather, daytime)[0]);
 
         // set clear flag
-        if (canBeCleared) {
-            // the notification can be cleared
-            builder.setAutoCancel(true);
-        } else {
-            // the notification can not be cleared
-            builder.setOngoing(true);
-        }
+        builder.setOngoing(!canBeCleared);
 
         builder.setContentIntent(
                 getWeatherPendingIntent(context, null, GeometricWeather.NOTIFICATION_ID_NORMALLY)
         );
 
         Notification notification = builder.build();
-        if (!tempIcon && Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+        if (!tempIcon && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
                 notification.getClass()
                         .getMethod("setSmallIcon", Icon.class)

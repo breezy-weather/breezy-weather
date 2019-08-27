@@ -13,10 +13,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.preference.PreferenceManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,6 +27,7 @@ import android.widget.LinearLayout;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.R;
@@ -38,7 +38,7 @@ import wangdaye.com.geometricweather.main.ui.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.StatusBarView;
+import wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
@@ -112,14 +112,12 @@ public class MainActivity extends GeoActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String uiStyle = PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(getString(R.string.key_ui_style), "material");
-        switch (uiStyle) {
-            case "material":
+        switch (SettingsOptionManager.getInstance(this).getUiStyle()) {
+            case SettingsOptionManager.UI_STYLE_MATERIAL:
                 weatherView = new MaterialWeatherView(this);
                 break;
 
-            case "circular":
+            case SettingsOptionManager.UI_STYLE_CIRCULAR:
                 weatherView = new CircularSkyWeatherView(this);
                 break;
         }
@@ -436,7 +434,9 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint("RestrictedApi")
     private void setDarkMode(boolean dayTime) {
-        if (SettingsOptionManager.getInstance(this).getDarkMode().equals("auto")) {
+        if (SettingsOptionManager.getInstance(this)
+                .getDarkMode()
+                .equals(SettingsOptionManager.DARK_MODE_AUTO)) {
             int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
             getDelegate().setLocalNightMode(mode);
             AppCompatDelegate.setDefaultNightMode(mode);
@@ -450,6 +450,8 @@ public class MainActivity extends GeoActivity
     private void refreshBackgroundViews(boolean resetBackground, boolean refreshRemoteViews) {
         if (resetBackground) {
             Observable.create(emitter -> PollingManager.resetAllBackgroundTask(this, false))
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .delay(1, TimeUnit.SECONDS)
                     .subscribe();
         }
@@ -459,11 +461,14 @@ public class MainActivity extends GeoActivity
                 Location location = viewModel.getDefaultLocation();
                 WidgetUtils.updateWidgetIfNecessary(this, location, location.weather, location.history);
                 NotificationUtils.updateNotificationIfNecessary(this, location.weather);
-            }).delay(1, TimeUnit.SECONDS).subscribe();
+            }).subscribeOn(AndroidSchedulers.mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .delay(1, TimeUnit.SECONDS)
+                    .subscribe();
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            assert viewModel.getLocationList().getValue() != null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1
+                && viewModel.getLocationList().getValue() != null) {
             ShortcutsManager.refreshShortcutsInNewThread(
                     this, viewModel.getLocationList().getValue().dataList);
         }

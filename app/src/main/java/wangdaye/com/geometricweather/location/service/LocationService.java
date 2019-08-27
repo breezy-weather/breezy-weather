@@ -77,7 +77,8 @@ public abstract class LocationService {
     NotificationChannel getLocationNotificationChannel(Context context) {
         NotificationChannel channel = new NotificationChannel(
                 GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION,
-                GeometricWeather.getNotificationChannelName(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION),
+                GeometricWeather.getNotificationChannelName(
+                        context, GeometricWeather.NOTIFICATION_CHANNEL_ID_LOCATION),
                 NotificationManager.IMPORTANCE_MIN);
         channel.setShowBadge(false);
         channel.setLightColor(ContextCompat.getColor(context, R.color.colorPrimary));

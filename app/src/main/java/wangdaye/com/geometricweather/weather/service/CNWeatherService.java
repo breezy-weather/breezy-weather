@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.api.CNWeatherApi;
 import wangdaye.com.geometricweather.basic.model.CNCity;
@@ -202,9 +203,13 @@ public class CNWeatherService extends WeatherService {
                                 alertList.add(alert);
                             }
 
-                            Weather weather = new Weather(base, realTime, dailyList, hourlyList, aqi, index, alertList);
-
-                            callback.requestWeatherSuccess(weather, history, location);
+                            Weather weather = Weather.buildWeather(
+                                    base, realTime, dailyList, hourlyList, aqi, index, alertList);
+                            if (weather != null) {
+                                callback.requestWeatherSuccess(weather, history, location);
+                            } else {
+                                callback.requestWeatherFailed(location);
+                            }
                         } catch (Exception e) {
                             callback.requestWeatherFailed(location);
                         }
@@ -217,9 +222,13 @@ public class CNWeatherService extends WeatherService {
                 }));
     }
 
+    @NonNull
     @Override
-    public void requestLocation(Context context, String query, @NonNull RequestLocationCallback callback) {
-        searchInThread(context, new String[] {query}, true, callback);
+    public List<Location> requestLocation(Context context, String query) {
+        if (!LanguageUtils.isChinese(query)) {
+            return new ArrayList<>();
+        }
+        return searchLocations(context, new String[] {query}, true);
     }
 
     @Override
@@ -227,7 +236,7 @@ public class CNWeatherService extends WeatherService {
         if (!location.hasGeocodeInformation()) {
             callback.requestLocationFailed(null);
         }
-        searchInThread(
+        searchLocationsInThread(
                 context,
                 new String[] {location.district, location.city, location.province},
                 false,
@@ -235,18 +244,43 @@ public class CNWeatherService extends WeatherService {
         );
     }
 
-    @Override
-    public void cancel() {
-        compositeDisposable.clear();
+    @NonNull
+    @WorkerThread
+    private List<Location> searchLocations(Context context, String[] queries, boolean fuzzy) {
+        if (DatabaseHelper.getInstance(context).countCNCity() < 3216) {
+            DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
+        }
+
+        List<Location> locationList = new ArrayList<>();
+        List<CNCity> cityList;
+        CNCity city;
+
+        if (fuzzy) {
+            cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
+            if (cityList != null) {
+                for (CNCity c : cityList) {
+                    locationList.add(c.toLocation(getSource()));
+                }
+            }
+        } else {
+            if (queries.length == 3) {
+                city = DatabaseHelper.getInstance(context).readCNCity(queries[0], queries[1], queries[2]);
+                if (city != null) {
+                    locationList.add(city.toLocation(getSource()));
+                }
+            } else {
+                city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
+                if (city != null) {
+                    locationList.add(city.toLocation(getSource()));
+                }
+            }
+        }
+
+        return locationList;
     }
 
-    @Override
-    public boolean needGeocodeInformation() {
-        return true;
-    }
-
-    private void searchInThread(Context context, String[] queries, boolean fuzzy,
-                                RequestLocationCallback callback) {
+    private void searchLocationsInThread(Context context, String[] queries, boolean fuzzy,
+                                         RequestLocationCallback callback) {
         if (callback == null) {
             return;
         }
@@ -255,51 +289,9 @@ public class CNWeatherService extends WeatherService {
             queries[i] = formatLocationString(convertChinese(queries[i]));
         }
 
-        Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
-
-            if (DatabaseHelper.getInstance(context).countCNCity() < 3216) {
-                DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
-            }
-
-            List<Location> locationList = new ArrayList<>();
-            List<CNCity> cityList;
-            CNCity city;
-
-            if (fuzzy) {
-                cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
-                if (cityList != null) {
-                    for (CNCity c : cityList) {
-                        locationList.add(
-                                c.toLocation(
-                                        SettingsOptionManager.getInstance(context).getChineseSource()
-                                )
-                        );
-                    }
-                }
-            } else {
-                if (queries.length == 3) {
-                    city = DatabaseHelper.getInstance(context).readCNCity(queries[0], queries[1], queries[2]);
-                    if (city != null) {
-                        locationList.add(
-                                city.toLocation(
-                                        SettingsOptionManager.getInstance(context).getChineseSource()
-                                )
-                        );
-                    }
-                } else {
-                    city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
-                    if (city != null) {
-                        locationList.add(
-                                city.toLocation(
-                                        SettingsOptionManager.getInstance(context).getChineseSource()
-                                )
-                        );
-                    }
-                }
-            }
-
-            emitter.onNext(locationList);
-        }).compose(SchedulerTransformer.create())
+        Observable.create((ObservableOnSubscribe<List<Location>>) emitter ->
+                emitter.onNext(searchLocations(context, queries, fuzzy))
+        ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<Location>>() {
                     @Override
                     public void onSucceed(List<Location> locations) {
@@ -315,6 +307,16 @@ public class CNWeatherService extends WeatherService {
                         callback.requestLocationFailed(queries[0]);
                     }
                 }));
+    }
+
+    @Override
+    public void cancel() {
+        compositeDisposable.clear();
+    }
+
+    @Override
+    public boolean needGeocodeInformation() {
+        return true;
     }
 
     static String getWeatherKind(String icon) {
@@ -398,5 +400,10 @@ public class CNWeatherService extends WeatherService {
             default:
                 return Weather.KIND_CLOUDY;
         }
+    }
+
+    @CNCity.CNCityWeatherSourceRule
+    protected String getSource() {
+        return Location.WEATHER_SOURCE_CN;
     }
 }

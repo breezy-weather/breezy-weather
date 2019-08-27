@@ -17,7 +17,7 @@
         tools:background="@color/colorAccent"
         tools:text="AccuWeather.com" />
 
-    <wangdaye.com.geometricweather.ui.widget.NavigationBarView
+    <wangdaye.com.geometricweather.ui.widget.windowInsets.NavigationBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

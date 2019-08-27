@@ -13,20 +13,26 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.turingtechnologies.materialscrollbar.ICustomAdapter;
+
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * Location adapter.
  * */
 
-public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHolder> {
+public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHolder>
+        implements ICustomAdapter {
 
-    private Context context;
+    private GeoActivity activity;
+    private int requestCode;
     private OnLocationItemClickListener listener = null;
 
     public List<Location> itemList;
@@ -42,6 +48,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         TextView title;
         TextView subtitle;
         TextView source;
+        AppCompatImageButton settingsButton;
         AppCompatImageButton deleteButton;
 
         private OnLocationItemClickListener listener;
@@ -55,15 +62,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             this.title = itemView.findViewById(R.id.item_location_title);
             this.subtitle = itemView.findViewById(R.id.item_location_subtitle);
             this.source = itemView.findViewById(R.id.item_location_source);
+            this.settingsButton = itemView.findViewById(R.id.item_location_settingsBtn);
             this.deleteButton = itemView.findViewById(R.id.item_location_deleteBtn);
             this.listener = listener;
 
             locationItemContainer.setOnClickListener(this);
-
+            settingsButton.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
-            if (!manage) {
-                deleteButton.setVisibility(View.GONE);
-            }
         }
 
         public ViewHolder drawDrag(Context context, boolean elevate) {
@@ -88,6 +93,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                     listener.onClick(v,getAdapterPosition());
                     break;
 
+                case R.id.item_location_settingsBtn:
+                    IntentHelper.startSelectProviderActivityForResult(activity, requestCode);
+                    break;
+
                 case R.id.item_location_deleteBtn:
                     listener.onDelete(v,getAdapterPosition());
                     break;
@@ -95,8 +104,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         }
     }
 
-    public LocationAdapter(Context context, List<Location> itemList, boolean manage, OnLocationItemClickListener l) {
-        this.context = context;
+    public LocationAdapter(GeoActivity activity, int requestCode, List<Location> itemList,
+                           boolean manage, OnLocationItemClickListener l) {
+        this.activity = activity;
+        this.requestCode = requestCode;
         this.itemList = itemList;
         this.manage = manage;
         setOnLocationItemClickListener(l);
@@ -105,8 +116,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_location, parent, false);
-        return new ViewHolder(view, listener);
+        return new ViewHolder(
+                LayoutInflater.from(activity).inflate(R.layout.item_location, parent, false),
+                listener
+        );
     }
 
     @SuppressLint("SetTextI18n")
@@ -114,9 +127,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // title.
         if (itemList.get(position).isCurrentPosition()) {
-            holder.title.setText(context.getString(R.string.current_location));
+            holder.title.setText(activity.getString(R.string.current_location));
         } else {
-            holder.title.setText(itemList.get(position).getCityName(context));
+            holder.title.setText(itemList.get(position).getCityName(activity));
         }
 
         // subtitle.
@@ -128,18 +141,25 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                     + (itemList.get(position).city.equals(itemList.get(position).district)
                             ? "" : (" " + itemList.get(position).district)));
         } else {
-            holder.subtitle.setText(context.getString(R.string.feedback_not_yet_location));
+            holder.subtitle.setText(activity.getString(R.string.feedback_not_yet_location));
         }
 
         // source.
         if (itemList.get(position).isCurrentPosition() && !itemList.get(position).isUsable()) {
             holder.source.setText("...");
         } else {
-            holder.source.setText("Powered by " + ValueUtils.getWeatherSource(context, itemList.get(position).source));
+            holder.source.setText("Powered by "
+                    + ValueUtils.getWeatherSourceName(activity, itemList.get(position).source));
         }
 
+        // swipe icon.
+        holder.settingsButton.setVisibility(
+                itemList.get(position).isCurrentPosition() ? View.VISIBLE : View.GONE);
+        holder.deleteButton.setVisibility(
+                manage ? View.VISIBLE : View.GONE);
+
         holder.drawSwipe(0);
-        holder.drawDrag(context, false);
+        holder.drawDrag(activity, false);
     }
 
     @Override
@@ -171,5 +191,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
     private void setOnLocationItemClickListener(OnLocationItemClickListener l){
         this.listener = l;
+    }
+
+    // I custom adapter.
+
+    @Override
+    public String getCustomStringForElement(int element) {
+        if (itemList == null || itemList.size() == 0) {
+            return "";
+        }
+        return ValueUtils.getWeatherSourceName(activity, itemList.get(element).source);
     }
 }

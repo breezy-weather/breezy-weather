@@ -282,14 +282,21 @@ public class CaiYunWeatherService extends CNWeatherService {
                 alertList.add(alert);
             }
 
-            location.weather = new Weather(base, realTime, dailyList, hourlyList, aqi, index, alertList);
+            location.weather = Weather.buildWeather(
+                    base, realTime, dailyList, hourlyList, aqi, index, alertList);
 
-            location.history = new History(
-                    location.cityId, location.weather.base.city,
-                    mainlyResult.yesterday.date.split("T")[0],
-                    Integer.parseInt(mainlyResult.yesterday.tempMax),
-                    Integer.parseInt(mainlyResult.yesterday.tempMin));
+            if (location.weather != null) {
+                location.history = new History(
+                        location.cityId, location.weather.base.city,
+                        mainlyResult.yesterday.date.split("T")[0],
+                        Integer.parseInt(mainlyResult.yesterday.tempMax),
+                        Integer.parseInt(mainlyResult.yesterday.tempMin));
+            } else {
+                location.history = null;
+            }
         } catch (Exception ignored) {
+            location.weather = null;
+            location.history = null;
         }
     }
 
@@ -414,5 +421,10 @@ public class CaiYunWeatherService extends CNWeatherService {
             default:
                 return "未知";
         }
+    }
+
+    @Override
+    protected String getSource() {
+        return Location.WEATHER_SOURCE_CAIYUN;
     }
 }

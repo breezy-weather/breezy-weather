@@ -1,7 +1,12 @@
 package wangdaye.com.geometricweather.location;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import java.util.List;
 
@@ -107,9 +112,16 @@ public class LocationHelper {
         }
     }
 
-    public void requestLocation(Context context, Location location,
+    public void requestLocation(Context context, Location location, boolean runInBackground,
                                 @NonNull OnRequestLocationListener l) {
-        if (!NetworkUtils.isAvailable(context)) {
+        if (!NetworkUtils.isAvailable(context)
+                || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                || (runInBackground
+                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                != PackageManager.PERMISSION_GRANTED)) {
             l.requestLocationFailed(location);
             return;
         }
@@ -184,7 +196,17 @@ public class LocationHelper {
     }
 
     public String[] getPermissions() {
-        return locationService.getPermissions();
+        String[] permissions = locationService.getPermissions();
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            return permissions;
+        }
+
+        String[] qPermissions = new String[permissions.length + 1];
+        System.arraycopy(permissions, 0, qPermissions, 0, permissions.length);
+        qPermissions[qPermissions.length - 1] = Manifest.permission.ACCESS_BACKGROUND_LOCATION;
+
+        return qPermissions;
     }
 
     // interface.

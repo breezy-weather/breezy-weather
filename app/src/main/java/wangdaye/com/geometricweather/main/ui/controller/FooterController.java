@@ -24,6 +24,6 @@ public class FooterController extends AbstractMainItemController {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(@NonNull Location location) {
-        text.setText("Powered by " + ValueUtils.getWeatherSource(context, location.source));
+        text.setText("Powered by " + ValueUtils.getWeatherSourceName(context, location.source));
     }
 }

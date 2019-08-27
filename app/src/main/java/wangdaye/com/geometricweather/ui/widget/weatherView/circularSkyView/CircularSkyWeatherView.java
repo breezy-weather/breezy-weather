@@ -31,7 +31,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
-import wangdaye.com.geometricweather.ui.widget.StatusBarView;
+import wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -208,6 +208,8 @@ public class CircularSkyWeatherView extends FrameLayout
             return;
         }
 
+        boolean firstTime = this.weatherKind == WEATHER_KING_NULL;
+
         this.weatherKind = weatherKind;
         this.iconProvider = provider.getPackageName();
         this.daytime = daytime;
@@ -221,7 +223,7 @@ public class CircularSkyWeatherView extends FrameLayout
         controlView.showWeatherIcon();
 
         int newColor = getBackgroundColor();
-        if (showCircles() || newColor != backgroundColor) {
+        if ((showCircles() || newColor != backgroundColor) && !firstTime) {
             backgroundColor = newColor;
             Drawable drawable = container.getBackground();
             if (drawable instanceof ColorDrawable) {

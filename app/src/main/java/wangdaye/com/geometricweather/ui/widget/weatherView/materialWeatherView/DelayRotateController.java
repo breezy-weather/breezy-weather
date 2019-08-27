@@ -1,99 +1,81 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView;
 
 /**
- * Base Rotate controller.
+ * Delay Rotate controller.
  * */
 
 public class DelayRotateController extends MaterialWeatherView.RotateController {
 
-    private double currentRotation;
     private double targetRotation;
-    private double deltaRotation;
+    private double currentRotation;
+    private double velocity;
+    private double acceleration;
 
-    private double currentSpeed;
-    private double targetSpeed;
+    private static final double DEFAULT_ABS_ACCELERATION = 90.0 / 200.0 / 800.0;
 
-    private boolean rotating;
-
-    private static double ROTATE_SLOP = 1;
-
-    private static double MAX_SPEED_TRIGGER_ROTATION = 45;
-    private static double MAX_ROTATE_SPEED = 360 / 2000.0;
-    private static double MIN_ROTATE_SPEED = 360 / 50000.0;
-    private static double MAX_ACCELERATION = (MAX_ROTATE_SPEED - MIN_ROTATE_SPEED) / 650.0;
-
-    public DelayRotateController(double rotate) {
-        this.currentRotation = rotate;
-        this.targetRotation = rotate;
-        this.deltaRotation = 0;
-
-        this.currentSpeed = 0;
-        this.targetSpeed = 0;
-
-        this.rotating = false;
+    public DelayRotateController(double initRotation) {
+        targetRotation = getRotationInScope(initRotation);
+        currentRotation = targetRotation;
+        velocity = 0;
+        acceleration = 0;
     }
 
     @Override
-    public void updateRotation(double rotate, double interval) {
-        rotate = getRotateInScope(rotate);
-        if ((rotating && Math.abs(this.targetRotation - rotate) > ROTATE_SLOP)
-                || (!rotating && Math.abs(this.targetRotation - rotate) > ROTATE_SLOP)) {
-            this.targetRotation = rotate;
-        }
+    public void updateRotation(double rotation, double interval) {
+        targetRotation = getRotationInScope(rotation);
 
         if (targetRotation == currentRotation) {
-            currentSpeed = 0;
-            targetSpeed = 0;
-            rotating = false;
+            // no need to move.
+            acceleration = 0;
+            velocity = 0;
             return;
         }
 
-        deltaRotation = Math.abs(targetRotation - currentRotation);
-        if (deltaRotation >= MAX_SPEED_TRIGGER_ROTATION) {
-            targetSpeed = MAX_ROTATE_SPEED;
+        double d;
+        if (velocity == 0 || (targetRotation - currentRotation) * velocity < 0) {
+            // start or turn around.
+            acceleration = (targetRotation > currentRotation ? 1 : -1) * DEFAULT_ABS_ACCELERATION;
+            d = acceleration * Math.pow(interval, 2) / 2.0;
+            velocity = acceleration * interval;
+
+        } else if (Math.pow(Math.abs(velocity), 2) / (2 * DEFAULT_ABS_ACCELERATION)
+                < Math.abs(targetRotation - currentRotation)) {
+            // speed up.
+            acceleration = (targetRotation > currentRotation ? 1 : -1) * DEFAULT_ABS_ACCELERATION;
+            d = velocity * interval + acceleration * Math.pow(interval, 2) / 2.0;
+            velocity += acceleration * interval;
+
         } else {
-            targetSpeed = deltaRotation / MAX_SPEED_TRIGGER_ROTATION * MAX_ROTATE_SPEED;
+            // slow down.
+            acceleration = (targetRotation > currentRotation ? -1 : 1)
+                    * Math.pow(velocity, 2) / (2.0 * Math.abs(targetRotation - currentRotation));
+            d = velocity * interval + acceleration * Math.pow(interval, 2) / 2.0;
+            velocity += acceleration * interval;
         }
 
-        if (targetSpeed > currentSpeed) {
-            currentSpeed += MAX_ACCELERATION * interval;
-            currentSpeed = Math.min(MAX_ROTATE_SPEED, currentSpeed);
-        } else if (targetSpeed < currentSpeed) {
-            currentSpeed -= MAX_ACCELERATION * interval;
-            currentSpeed = Math.max(MIN_ROTATE_SPEED, currentSpeed);
-        }
-
-        if (targetRotation > currentRotation) {
-            rotating = true;
-            currentRotation += currentSpeed * interval;
-            if (currentRotation > targetRotation) {
-                rotating = false;
-                currentRotation = targetRotation;
-            }
-        } else if (targetRotation < currentRotation) {
-            rotating = true;
-            currentRotation -= currentSpeed * interval;
-            if (currentRotation < targetRotation) {
-                rotating = false;
-                currentRotation = targetRotation;
-            }
+        if (Math.abs(d) > Math.abs(targetRotation - currentRotation)) {
+            acceleration = 0;
+            currentRotation = targetRotation;
+            velocity = 0;
+        } else {
+            currentRotation += d;
         }
     }
 
     @Override
-    public double getRotate() {
+    public double getRotation() {
         return currentRotation;
     }
 
-    private double getRotateInScope(double rotate) {
-        rotate %= 180;
-        if (Math.abs(rotate) <= 90) {
-            return rotate;
-        } else { // Math.abs(rotate) < 180
-            if (rotate > 0) {
-                return 90 - (rotate - 90);
+    private double getRotationInScope(double rotation) {
+        rotation %= 180;
+        if (Math.abs(rotation) <= 90) {
+            return rotation;
+        } else { // Math.abs(rotation) < 180
+            if (rotation > 0) {
+                return 90 - (rotation - 90);
             } else {
-                return -90 - (rotate + 90);
+                return -90 - (rotation + 90);
             }
         }
     }

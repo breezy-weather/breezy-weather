@@ -1,33 +1,25 @@
 package wangdaye.com.geometricweather.settings.fragment;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 import com.jaredrummler.android.colorpicker.ColorPreferenceCompat;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Notification color settings fragment.
  * */
 
-public class NotificationColorSettingsFragment extends PreferenceFragmentCompat
-        implements Preference.OnPreferenceChangeListener {
+public class NotificationColorSettingsFragment extends AbstractSettingsFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.perference_notification_color);
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        initNotificationPart(sharedPreferences);
+        initNotificationPart();
     }
 
     @Override
@@ -35,53 +27,43 @@ public class NotificationColorSettingsFragment extends PreferenceFragmentCompat
         // do nothing.
     }
 
-    private void initNotificationPart(SharedPreferences sharedPreferences) {
+    private void initNotificationPart() {
+        // notification custom color.
+        findPreference(getString(R.string.key_notification_custom_color)).setOnPreferenceChangeListener((p, newValue) -> {
+            getSettingsOptionManager().setNotificationCustomColorEnabled((Boolean) newValue);
+            initNotificationPart();
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
+            return true;
+        });
+
         // notification background.
         ColorPreferenceCompat notificationBackgroundColor = findPreference(getString(R.string.key_notification_background_color));
-        notificationBackgroundColor.setOnPreferenceChangeListener(this);
+        notificationBackgroundColor.setEnabled(getSettingsOptionManager().isNotificationCustomColorEnabled());
+        notificationBackgroundColor.setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setNotificationBackgroundColor((Integer) newValue);
+            PollingManager.resetNormalBackgroundTask(getActivity(), true);
+            return true;
+        });
 
         // notification text color.
         ListPreference notificationTextColor = findPreference(getString(R.string.key_notification_text_color));
         notificationTextColor.setSummary(
-                ValueUtils.getNotificationTextColor(
-                        getActivity(),
-                        sharedPreferences.getString(getString(R.string.key_notification_text_color), "dark")
+                getNameByValue(
+                        getSettingsOptionManager().getNotificationTextColor(),
+                        R.array.notification_text_colors,
+                        R.array.notification_text_color_values
                 )
         );
-        notificationTextColor.setOnPreferenceChangeListener(this);
-
-        if(sharedPreferences.getBoolean(getString(R.string.key_notification_custom_color), false)) {
-            // custom color.
-            notificationBackgroundColor.setEnabled(true);
-        } else {
-            // follow system.
-            notificationBackgroundColor.setEnabled(false);
-        }
-    }
-
-    // interface.
-
-    @Override
-    public boolean onPreferenceTreeClick(Preference preference) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (preference.getKey().equals(getString(R.string.key_notification_custom_color))) {
-            // custom color.
-            initNotificationPart(sharedPreferences);
+        notificationTextColor.setOnPreferenceChangeListener((preference, newValue) -> {
             PollingManager.resetNormalBackgroundTask(getActivity(), true);
-        }
-        return super.onPreferenceTreeClick(preference);
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object o) {
-        if (preference.getKey().equals(getString(R.string.key_notification_background_color))) {
-            // notification background.
-            PollingManager.resetNormalBackgroundTask(getActivity(), true);
-        } else if (preference.getKey().equals(getString(R.string.key_notification_text_color))) {
-            // notification text color.
-            PollingManager.resetNormalBackgroundTask(getActivity(), true);
-            preference.setSummary(ValueUtils.getNotificationTextColor(getActivity(), (String) o));
-        }
-        return true;
+            preference.setSummary(
+                    getNameByValue(
+                            (String) newValue,
+                            R.array.notification_text_colors,
+                            R.array.notification_text_color_values
+                    )
+            );
+            return true;
+        });
     }
 }

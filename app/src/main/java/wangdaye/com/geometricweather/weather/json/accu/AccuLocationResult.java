@@ -160,7 +160,7 @@ public class AccuLocationResult {
                 AdministrativeArea == null ? "" : AdministrativeArea.LocalizedName,
                 Country.LocalizedName,
                 String.valueOf(GeoPosition.Latitude), String.valueOf(GeoPosition.Longitude),
-                "accu",
+                Location.WEATHER_SOURCE_ACCU,
                 null, null,
                 false,
                 !TextUtils.isEmpty(Country.ID)

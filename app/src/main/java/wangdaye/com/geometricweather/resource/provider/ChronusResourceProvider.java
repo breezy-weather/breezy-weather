@@ -89,7 +89,6 @@ public class ChronusResourceProvider extends ResourceProvider {
             }
         }
 
-
         return false;
     }
 

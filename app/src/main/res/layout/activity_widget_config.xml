@@ -19,7 +19,7 @@
             android:src="@color/colorTextDark2nd"
             tools:ignore="contentDescription" />
 
-        <wangdaye.com.geometricweather.ui.widget.StatusBarView
+        <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
             android:id="@+id/activity_widget_config_statusBar"
             android:background="@android:color/black"
             android:alpha="0.2"

@@ -6,11 +6,10 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
-import androidx.preference.PreferenceManager;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 
@@ -131,10 +130,8 @@ public class WeatherViewController {
     @ColorInt
     @Size(3)
     public static int[] getThemeColors(Context context, @NonNull Weather weather, boolean lightTheme) {
-        String uiStyle = PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.key_ui_style), "material");
-        switch (uiStyle) {
-            case "material":
+        switch (SettingsOptionManager.getInstance(context).getUiStyle()) {
+            case SettingsOptionManager.UI_STYLE_MATERIAL:
                 return MaterialWeatherView.getThemeColors(
                         context, getWeatherViewWeatherKind(weather), lightTheme);
 

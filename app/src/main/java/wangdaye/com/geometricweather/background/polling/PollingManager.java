@@ -1,11 +1,7 @@
 package wangdaye.com.geometricweather.background.polling;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
-import androidx.preference.PreferenceManager;
-
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -23,42 +19,24 @@ public class PollingManager {
             return;
         }
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), true);
-        if (backgroundFree) {
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
-            boolean openTodayForecast = sharedPreferences.getBoolean(
-                    context.getString(R.string.key_forecast_today),
-                    false
-            );
-            boolean openTomorrowForecast = sharedPreferences.getBoolean(
-                    context.getString(R.string.key_forecast_tomorrow),
-                    false
-            );
-            String todayForecastTime = sharedPreferences.getString(
-                    context.getString(R.string.key_forecast_today_time),
-                    SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME
-            );
-            String tomorrowForecastTime = sharedPreferences.getString(
-                    context.getString(R.string.key_forecast_tomorrow_time),
-                    SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME
-            );
-
             WorkerHelper.setNormalPollingWork(
-                    ValueUtils.getPollingRateScale(
+                    ValueUtils.getUpdateIntervalInHour(
                             SettingsOptionManager.getInstance(context).getUpdateInterval()
                     )
             );
 
-            if (openTodayForecast) {
-                WorkerHelper.setTodayForecastUpdateWork(todayForecastTime, false);
+            if (settings.isTodayForecastEnabled()) {
+                WorkerHelper.setTodayForecastUpdateWork(settings.getTodayForecastTime(), false);
             } else {
                 WorkerHelper.cancelTodayForecastUpdateWork();
             }
 
-            if (openTomorrowForecast) {
-                WorkerHelper.setTomorrowForecastUpdateWork(tomorrowForecastTime, false);
+            if (settings.isTomorrowForecastEnabled()) {
+                WorkerHelper.setTomorrowForecastUpdateWork(settings.getTomorrowForecastTime(), false);
             } else {
                 WorkerHelper.cancelTomorrowForecastUpdateWork();
             }
@@ -77,13 +55,11 @@ public class PollingManager {
             return;
         }
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), true);
-        if (backgroundFree) {
+        if (SettingsOptionManager.getInstance(context).isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
             WorkerHelper.setNormalPollingWork(
-                    ValueUtils.getPollingRateScale(
+                    ValueUtils.getUpdateIntervalInHour(
                             SettingsOptionManager.getInstance(context).getUpdateInterval()
                     )
             );
@@ -103,22 +79,12 @@ public class PollingManager {
             return;
         }
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), true);
-        if (backgroundFree) {
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
-            boolean openTodayForecast = sharedPreferences.getBoolean(
-                    context.getString(R.string.key_forecast_today),
-                    false
-            );
-            String todayForecastTime = sharedPreferences.getString(
-                    context.getString(R.string.key_forecast_today_time),
-                    SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME
-            );
-
-            if (openTodayForecast) {
-                WorkerHelper.setTodayForecastUpdateWork(todayForecastTime, nextDay);
+            if (settings.isTodayForecastEnabled()) {
+                WorkerHelper.setTodayForecastUpdateWork(settings.getTodayForecastTime(), nextDay);
             } else {
                 WorkerHelper.cancelTodayForecastUpdateWork();
             }
@@ -138,22 +104,12 @@ public class PollingManager {
             return;
         }
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean backgroundFree = sharedPreferences.getBoolean(context.getString(R.string.key_background_free), true);
-        if (backgroundFree) {
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
-            boolean openTomorrowForecast = sharedPreferences.getBoolean(
-                    context.getString(R.string.key_forecast_tomorrow),
-                    false
-            );
-            String tomorrowForecastTime = sharedPreferences.getString(
-                    context.getString(R.string.key_forecast_tomorrow_time),
-                    SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME
-            );
-
-            if (openTomorrowForecast) {
-                WorkerHelper.setTomorrowForecastUpdateWork(tomorrowForecastTime, nextDay);
+            if (settings.isTomorrowForecastEnabled()) {
+                WorkerHelper.setTomorrowForecastUpdateWork(settings.getTomorrowForecastTime(), nextDay);
             } else {
                 WorkerHelper.cancelTomorrowForecastUpdateWork();
             }

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Chinese source. -->
+    <string-array name="chinese_sources">
+        <item>weather.com.cn</item>
+        <item>caiyun.com</item>
+        <item>accuweather.com</item>
+    </string-array>
+
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Baidu Lokacija</item>
+        <item>Baidu IP Lokacija (Samo za Kitajsko)</item>
+        <item>AMap Lokacija</item>
+        <item>Nativen API</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automatsko</item>
+        <item>Vedno svetel</item>
+        <item>Vedno temen</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Krožno nebo</item>
+        <item>Materialna animacija</item>
+    </string-array>
+
+    <!-- card display. -->
+    <string-array name="card_display_options">
+        <item>@string/daily_overview</item>
+        <item>@string/hourly_overview</item>
+        <item>@string/air_quality</item>
+        <item>@string/life_details</item>
+        <item>@string/sunrise_sunset</item>
+    </string-array>
+
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>Najprej dnevno</item>
+        <item>Najprej urno</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>0:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Privzet</item>
+        <item>@string/geometric_weather</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Temen</item>
+        <item>Siv</item>
+        <item>Svetel</item>
+    </string-array>
+
+    <!-- notification background colors. -->
+    <integer-array name="notification_background_colors">
+        <item>@color/notification_background_l</item>
+        <item>@color/notification_background_m</item>
+        <item>@color/notification_background_o</item>
+        <item>@color/notification_background_rootLight</item>
+        <item>@color/notification_background_rootDark</item>
+        <item>@color/notification_background_primary</item>
+    </integer-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Pravokotnik</item>
+        <item>Simetrija</item>
+        <item>Ploščice</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Piksel</item>
+        <item>Navpično</item>
+        <item>Oreo</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Čas osvežitev</item>
+        <item>AQI (Neveljaven na nekaterih področjih.)</item>
+        <item>Veter</item>
+        <item>Senzibilna temperatura</item>
+        <item>Lunarni koledar</item>
+        <item>Po meri</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="clock_font">
+        <item>sans-serif-light</item>
+        <item>sans-serif</item>
+        <item>sans-serif-black</item>
+        <item>analog</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Brez</item>
+        <item>Dnevno nočni način</item>
+        <item>Svetel</item>
+        <item>Temen</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Svetel</item>
+        <item>Temen</item>
+        <item>Avtomatsko</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Avtomatsko</item>
+        <item>Čisto</item>
+        <item>Delno oblačno</item>
+        <item>Oblačno</item>
+        <item>Dež</item>
+        <item>Sneg</item>
+        <item>Ledeni dež</item>
+        <item>Toča</item>
+        <item>Megla</item>
+        <item>Meglica</item>
+        <item>Grmenje</item>
+        <item>Nevihta</item>
+        <item>Veter</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Avtomatsko</item>
+        <item>Vedno dnevni čas</item>
+        <item>Vedno nočni čas</item>
+    </string-array>
+
+</resources>

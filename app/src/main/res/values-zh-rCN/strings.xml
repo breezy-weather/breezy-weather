@@ -151,6 +151,10 @@
         $lat$ : 纬度\n
         $lon$ : 经度\n
         $ut$ : 更新时间\n
+        $d$ : 日期\n
+        $lc$ : 农历\n
+        $w$ : 星期\n
+        $ws$ : 星期（短）\n
         $dd$ : 每日概览\n
         $hd$ : 小时概览\n
         $h$ : 湿度\n
@@ -222,6 +226,8 @@
     <string name="feedback_unusable_geocoder">本设备不包含有效的地址解析服务，已将位置提供商更改为百度定位</string>
     <string name="feedback_about_geocoder">地址解析服务，是一种将Android原生定位结果从经纬度格式转换至XX省XX市XX区格式的服务组件。若缺少这项服务，在使用原生API作为位置提供商时，只能通过AccuWeather获取数据。</string>
 
+    <string name="feedback_precipitation_alert_content">未来$d$小时内，$l$可能会出现降水</string>
+
     <!-- action -->
     <string name="action_alert">预警</string>
     <string name="action_manage">地址管理</string>
@@ -271,6 +277,7 @@
     <string name="settings_title_imperial">英制单位</string>
     <string name="settings_title_refresh_rate">自动刷新频率</string>
     <string name="settings_title_alert_notification_switch">推送预警通知</string>
+    <string name="settings_title_precipitation_notification_switch">推送降水预报</string>
     <string name="settings_title_permanent_service">后台服务常驻</string>
     <string name="settings_category_forecast">预报</string>
     <string name="settings_title_forecast_today">定时预报(今日天气)</string>

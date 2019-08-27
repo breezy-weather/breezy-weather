@@ -41,6 +41,7 @@ public class ManageActivity extends GeoActivity
     private LocationAdapter adapter;
 
     public static final int SEARCH_ACTIVITY = 1;
+    public static final int SELECT_PROVIDER_ACTIVITY = 2;
 
     private class LocationSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
@@ -108,6 +109,10 @@ public class ManageActivity extends GeoActivity
             case SEARCH_ACTIVITY:
                 resetLocationList(true, resultCode == RESULT_OK);
                 break;
+
+            case SELECT_PROVIDER_ACTIVITY:
+                resetLocationList(false, false);
+                break;
         }
     }
 
@@ -158,6 +163,7 @@ public class ManageActivity extends GeoActivity
     private void resetLocationList(boolean updateShortcuts, boolean added) {
         this.adapter = new LocationAdapter(
                 this,
+                SELECT_PROVIDER_ACTIVITY,
                 DatabaseHelper.getInstance(this).readLocationList(),
                 true,
                 this

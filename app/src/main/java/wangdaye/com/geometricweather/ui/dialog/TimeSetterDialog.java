@@ -110,18 +110,19 @@ public class TimeSetterDialog extends GeoDialogFragment
                 String minuteText;
 
                 if (hour < 10) {
-                    hourText = "0" + Integer.toString(hour);
+                    hourText = "0" + hour;
                 } else {
                     hourText = Integer.toString(hour);
                 }
 
                 if (minute < 10) {
-                    minuteText = "0" + Integer.toString(minute);
+                    minuteText = "0" + minute;
                 } else {
                     minuteText = Integer.toString(minute);
                 }
 
-                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+                SharedPreferences.Editor editor
+                        = PreferenceManager.getDefaultSharedPreferences(requireActivity()).edit();
                 if (today) {
                     editor.putString(getString(R.string.key_forecast_today_time), hourText + ":" + minuteText);
                 } else {

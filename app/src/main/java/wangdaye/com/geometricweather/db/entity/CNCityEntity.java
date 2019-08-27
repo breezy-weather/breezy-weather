@@ -173,8 +173,7 @@ public class CNCityEntity {
         QueryBuilder<CNCityEntity> builder = dao.queryBuilder();
         builder.whereOr(
                 CNCityEntityDao.Properties.District.like("%" + name + "%"),
-                CNCityEntityDao.Properties.City.like("%" + name + "%"),
-                CNCityEntityDao.Properties.Province.like("%" + name + "%")
+                CNCityEntityDao.Properties.City.like("%" + name + "%")
         );
 
         List<CNCity> cityList = new ArrayList<>();

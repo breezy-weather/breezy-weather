@@ -1,14 +1,13 @@
 package wangdaye.com.geometricweather.background.polling.permanent.update;
 
-import android.app.Notification;
 import android.content.Context;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.background.polling.basic.ForegroundUpdateService;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -28,21 +27,14 @@ public class ForegroundTomorrowForecastUpdateService extends ForegroundUpdateSer
     }
 
     @Override
-    public void setDelayTask(boolean failed) {
+    public void handlePollingResult(boolean failed) {
         // do nothing.
     }
 
     @Override
-    public Notification getForegroundNotification(int index, int total) {
-        return new NotificationCompat.Builder(this, GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND)
-                .setSmallIcon(R.drawable.ic_running_in_background)
-                .setContentTitle(getString(R.string.geometric_weather) + " " + getString(R.string.forecast))
-                .setContentText(getString(R.string.feedback_updating_weather_data) + " (" + index + "/" + total + ")")
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
-                .setPriority(NotificationCompat.PRIORITY_MIN)
-                .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                .setAutoCancel(false)
-                .build();
+    public NotificationCompat.Builder getForegroundNotification(int index, int total) {
+        return super.getForegroundNotification(index, total)
+                .setContentTitle(getString(R.string.geometric_weather) + " " + getString(R.string.forecast));
     }
 
     @Override

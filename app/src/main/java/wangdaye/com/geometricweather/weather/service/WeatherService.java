@@ -5,11 +5,11 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.weather.TLSCompactHelper;
 import wangdaye.com.geometricweather.basic.model.History;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -23,8 +23,9 @@ public abstract class WeatherService {
     public abstract void requestWeather(Context context, Location location,
                                         @NonNull RequestWeatherCallback callback);
 
-    public abstract void requestLocation(Context context, String query,
-                                         @NonNull RequestLocationCallback callback);
+    @WorkerThread
+    @NonNull
+    public abstract List<Location> requestLocation(Context context, String query);
 
     public abstract void requestLocation(Context context, Location location,
                                          @NonNull RequestLocationCallback callback);

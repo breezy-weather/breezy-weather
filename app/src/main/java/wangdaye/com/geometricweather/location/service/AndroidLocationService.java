@@ -34,7 +34,6 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.LogUtils;
 
 /**
  * Android Location service.
@@ -330,7 +329,6 @@ public class AndroidLocationService extends LocationService {
                 e.printStackTrace();
             }
             if (locationMode == Settings.Secure.LOCATION_MODE_OFF) {
-                LogUtils.log("LOCATION_MODE_OFF");
                 return false;
             }
         }

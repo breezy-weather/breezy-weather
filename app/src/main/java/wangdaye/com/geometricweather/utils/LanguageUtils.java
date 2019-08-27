@@ -12,6 +12,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+
 /**
  * Language utils.
  * */
@@ -33,7 +35,7 @@ public class LanguageUtils {
         }
     }
 
-    public static void setLanguage(Context c, String language) {
+    public static void setLanguage(Context c, @SettingsOptionManager.LanguageRule String language) {
         Locale target = buildLocale(language);
         if (!c.getResources().getConfiguration().locale.equals(target)) {
             Resources resources = c.getResources();
@@ -44,62 +46,65 @@ public class LanguageUtils {
         }
     }
 
-    public static Locale buildLocale(String language) {
+    public static Locale buildLocale(@SettingsOptionManager.LanguageRule String language) {
         switch (language) {
-            case "follow_system":
+            case SettingsOptionManager.LANGUAGE_SYSTEM:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     return Resources.getSystem().getConfiguration().getLocales().get(0);
                 } else {
                     return Resources.getSystem().getConfiguration().locale;
                 }
 
-            case "chinese":
+            case SettingsOptionManager.LANGUAGE_CHINESE:
                 return new Locale("zh", "CN");
 
-            case "unsimplified_chinese":
+            case SettingsOptionManager.LANGUAGE_UNSIMPLIFIED_CHINESE:
                 return new Locale("zh", "TW");
 
-            case "english_america":
+            case SettingsOptionManager.LANGUAGE_ENGLISH_US:
                 return new Locale("en", "US");
 
-            case "english_britain":
+            case SettingsOptionManager.LANGUAGE_ENGLISH_Uk:
                 return new Locale("en", "GB");
 
-            case "english_australia":
+            case SettingsOptionManager.LANGUAGE_ENGLISH_AU:
                 return new Locale("en", "AU");
 
-            case "turkish":
+            case SettingsOptionManager.LANGUAGE_TURKISH:
                 return new Locale("tr");
 
-            case "french":
+            case SettingsOptionManager.LANGUAGE_FRENCH:
                 return new Locale("fr");
 
-            case "russian":
+            case SettingsOptionManager.LANGUAGE_RUSSIAN:
                 return new Locale("ru");
 
-            case "german":
+            case SettingsOptionManager.LANGUAGE_GERMAN:
                 return new Locale("de");
 
-            case "serbian":
+            case SettingsOptionManager.LANGUAGE_SERBIAN:
                 return new Locale("sr");
 
-            case "spanish":
+            case SettingsOptionManager.LANGUAGE_SPANISH:
                 return new Locale("es");
 
-            case "italian":
+            case SettingsOptionManager.LANGUAGE_ITALIAN:
                 return new Locale("it");
 
-            case "dutch":
+            case SettingsOptionManager.LANGUAGE_DUTCH:
                 return new Locale("nl");
 
-            case "hungarian":
+            case SettingsOptionManager.LANGUAGE_HUNGARIAN:
                 return new Locale("hu");
 
-            case "portuguese":
+            case SettingsOptionManager.LANGUAGE_PORTUGUESE:
                 return new Locale("pt");
 
-            case "portuguese_brazilian":
+            case SettingsOptionManager.LANGUAGE_PORTUGUESE_BR:
                 return new Locale("pt", "BR");
+
+            case SettingsOptionManager.LANGUAGE_SLOVENIAN:
+                return new Locale("sl", "SI");
 
             default:
                 return new Locale("en");

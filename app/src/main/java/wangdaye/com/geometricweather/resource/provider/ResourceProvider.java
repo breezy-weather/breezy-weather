@@ -30,6 +30,14 @@ public abstract class ResourceProvider {
 
     public abstract Drawable getProviderIcon();
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ResourceProvider) {
+            return ((ResourceProvider) obj).getPackageName().equals(getPackageName());
+        }
+        return false;
+    }
+
     // weather icon.
 
     @NonNull

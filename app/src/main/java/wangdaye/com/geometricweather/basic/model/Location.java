@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.StringDef;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -29,7 +30,12 @@ public class Location
     public String province;
     public String country;
 
-    public String source;
+    @WeatherSourceRule public String source;
+    public static final String WEATHER_SOURCE_CN = "cn";
+    public static final String WEATHER_SOURCE_CAIYUN = "caiyun";
+    public static final String WEATHER_SOURCE_ACCU = "accu";
+    @StringDef({WEATHER_SOURCE_CN, WEATHER_SOURCE_CAIYUN, WEATHER_SOURCE_ACCU})
+    public @interface WeatherSourceRule {}
 
     @Nullable public Weather weather;
     @Nullable public History history;
@@ -43,7 +49,7 @@ public class Location
     public Location(String cityId,
                     String district, String city, String province, String country,
                     String lat, String lon,
-                    String source,
+                    @WeatherSourceRule String source,
                     @Nullable Weather weather, @Nullable History history,
                     boolean currentPosition, boolean china) {
         this.cityId = cityId;
@@ -65,7 +71,7 @@ public class Location
                 NULL_ID,
                 "", "", "", "",
                 "", "",
-                "accu",
+                WEATHER_SOURCE_ACCU,
                 null, null,
                 true, false
         );
@@ -76,7 +82,7 @@ public class Location
                 "101924",
                 "", "北京", "直辖市", "中国",
                 "39.904000", "116.391000",
-                "accu",
+                WEATHER_SOURCE_ACCU,
                 null, null,
                 true, true
         );

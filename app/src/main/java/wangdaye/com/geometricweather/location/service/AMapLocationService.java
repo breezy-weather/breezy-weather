@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.location.service;
 
 import android.Manifest;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.location.LocationException;
 public class AMapLocationService extends LocationService {
 
     private AMapLocationClient client;
-    private NotificationManager manager;
+    private NotificationManagerCompat manager;
     private LocationCallback callback;
 
     private AMapLocationListener listener = new AMapLocationListener () {
@@ -65,7 +65,7 @@ public class AMapLocationService extends LocationService {
     };
 
     public AMapLocationService(Context context) {
-        manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+        manager = NotificationManagerCompat.from(context);
     }
 
     @Override
@@ -84,9 +84,7 @@ public class AMapLocationService extends LocationService {
         client.setLocationListener(listener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (manager != null) {
-                manager.createNotificationChannel(getLocationNotificationChannel(context));
-            }
+            manager.createNotificationChannel(getLocationNotificationChannel(context));
             client.enableBackgroundLocation(
                     GeometricWeather.NOTIFICATION_ID_LOCATION,
                     getLocationNotification(context));
@@ -97,7 +95,7 @@ public class AMapLocationService extends LocationService {
     @Override
     public void cancel() {
         if (client != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && manager != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 client.disableBackgroundLocation(true);
             }
             client.stopLocation();
@@ -113,6 +111,7 @@ public class AMapLocationService extends LocationService {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
     }
 }

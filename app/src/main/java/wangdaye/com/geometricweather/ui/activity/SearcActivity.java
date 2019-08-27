@@ -25,6 +25,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
+import com.turingtechnologies.materialscrollbar.CustomIndicator;
+import com.turingtechnologies.materialscrollbar.DragScrollBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,9 +129,11 @@ public class SearcActivity extends GeoActivity
     private void initData() {
         this.adapter = new LocationAdapter(
                 this,
+                0,
                 new ArrayList<>(),
                 false,
-                this);
+                this
+        );
         this.locationList = DatabaseHelper.getInstance(this).readLocationList();
 
         this.weatherHelper = new WeatherHelper();
@@ -163,6 +167,9 @@ public class SearcActivity extends GeoActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(adapter);
+
+        DragScrollBar scrollBar = findViewById(R.id.activity_search_scrollBar);
+        scrollBar.setIndicator(new CustomIndicator(this).setTextSize(16), true);
 
         this.progressView = findViewById(R.id.activity_search_progress);
         progressView.setAlpha(0);

@@ -13,6 +13,7 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.DetailsAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 public class DetailsController extends AbstractMainItemController {
@@ -37,7 +38,7 @@ public class DetailsController extends AbstractMainItemController {
 
     @Override
     public void onBindView(@NonNull Location location) {
-        if (!isDisplay("life_details")) {
+        if (!isDisplay(SettingsOptionManager.CARD_LIFE_DETAILS)) {
             view.setVisibility(View.GONE);
             return;
         } else {

@@ -3,11 +3,9 @@ package wangdaye.com.geometricweather.remoteviews.presenter;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
 
 import android.util.TypedValue;
 import android.view.View;
@@ -56,19 +54,10 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                                              boolean hideSubtitle, String subtitleData, String clockFont) {
         boolean dayTime = TimeManager.isDaylight(weather);
 
-        SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean fahrenheit = defaultSharePreferences.getBoolean(
-                context.getString(R.string.key_fahrenheit),
-                false
-        );
-        boolean minimalIcon = defaultSharePreferences.getBoolean(
-                context.getString(R.string.key_widget_minimal_icon),
-                false
-        );
-        boolean touchToRefresh = defaultSharePreferences.getBoolean(
-                context.getString(R.string.key_click_widget_to_refresh),
-                false
-        );
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        boolean fahrenheit = settings.isFahrenheit();
+        boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
+        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
 

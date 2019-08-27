@@ -3,11 +3,9 @@ package wangdaye.com.geometricweather.remoteviews.presenter;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
 
 import android.util.TypedValue;
 import android.widget.RemoteViews;
@@ -17,6 +15,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTextProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 
@@ -40,15 +39,9 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
                                              String textColor, int textSize) {
-        SharedPreferences defaultSharePreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean fahrenheit = defaultSharePreferences.getBoolean(
-                context.getString(R.string.key_fahrenheit),
-                false
-        );
-        boolean touchToRefresh = defaultSharePreferences.getBoolean(
-                context.getString(R.string.key_click_widget_to_refresh),
-                false
-        );
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        boolean fahrenheit = settings.isFahrenheit();
+        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_text);
         if (weather == null) {

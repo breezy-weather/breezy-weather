@@ -40,15 +40,17 @@ public class SecondTrendCardController extends AbstractMainItemController {
 
     @Override
     public void onBindView(@NonNull Location location) {
-        if (SettingsOptionManager.getInstance(context).getCardOrder().equals("daily_first")) {
-            if (!isDisplay("hourly_overview")) {
+        if (SettingsOptionManager.getInstance(context)
+                .getCardOrder()
+                .equals(SettingsOptionManager.CARD_ORDER_DAILY_FIRST)) {
+            if (!isDisplay(SettingsOptionManager.CARD_HOURLY_OVERVIEW)) {
                 view.setVisibility(View.GONE);
                 return;
             } else {
                 view.setVisibility(View.VISIBLE);
             }
         } else {
-            if (!isDisplay("daily_overview")) {
+            if (!isDisplay(SettingsOptionManager.CARD_DAILY_OVERVIEW)) {
                 view.setVisibility(View.GONE);
                 return;
             } else {
@@ -61,7 +63,9 @@ public class SecondTrendCardController extends AbstractMainItemController {
 
             title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
-            if (SettingsOptionManager.getInstance(context).getCardOrder().equals("daily_first")) {
+            if (SettingsOptionManager.getInstance(context)
+                    .getCardOrder()
+                    .equals(SettingsOptionManager.CARD_ORDER_DAILY_FIRST)) {
                 TrendViewController.setHourlyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
                         location.weather, location.history, weatherView.getThemeColors(picker.isLightTheme()));

@@ -125,7 +125,7 @@ public class CMWeatherProviderService extends WeatherProviderService
     // control.
 
     private void requestLocation() {
-        locationHelper.requestLocation(this, Location.buildLocal(), locationListener);
+        locationHelper.requestLocation(this, Location.buildLocal(), true, locationListener);
     }
 
     private void requestWeather(String cityName) {

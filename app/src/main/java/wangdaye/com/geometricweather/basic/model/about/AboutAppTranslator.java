@@ -88,6 +88,11 @@ public class AboutAppTranslator {
                 "fabioraitz@outlook.com",
                 R.drawable.flag_br
         ));
+        list.add(new AboutAppTranslator(
+                "Gregor",
+                "glakner@gmail.com",
+                R.drawable.flag_si
+        ));
         return list;
     }
 }

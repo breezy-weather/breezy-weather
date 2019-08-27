@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
@@ -175,30 +177,28 @@ public class AccuWeatherService extends WeatherService {
     }
 
     @Override
-    public void requestLocation(Context context, final String query,
-                                @NonNull final RequestLocationCallback callback) {
+    @NonNull
+    public List<Location> requestLocation(Context context, String query) {
         String languageCode = LanguageUtils.getLanguageCode(context);
-        api.getWeatherLocation("Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)
-                .compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
-                    @Override
-                    public void onSucceed(List<AccuLocationResult> accuLocationResults) {
-                        if (accuLocationResults != null && accuLocationResults.size() != 0) {
-                            List<Location> locationList = new ArrayList<>();
-                            for (AccuLocationResult r : accuLocationResults) {
-                                locationList.add(r.toLocation());
-                            }
-                            callback.requestLocationSuccess(query, locationList);
-                        } else {
-                            callback.requestLocationFailed(query);
-                        }
-                    }
+        List<AccuLocationResult> resultList = null;
+        try {
+            resultList = api.callWeatherLocation(
+                    "Always",
+                    BuildConfig.ACCU_WEATHER_KEY,
+                    query,
+                    languageCode
+            ).execute().body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-                    @Override
-                    public void onFailed() {
-                        callback.requestLocationFailed(query);
-                    }
-                }));
+        List<Location> locationList = new ArrayList<>();
+        if (resultList != null && resultList.size() != 0) {
+            for (AccuLocationResult r : resultList) {
+                locationList.add(r.toLocation());
+            }
+        }
+        return locationList;
     }
 
     @Override
@@ -230,7 +230,9 @@ public class AccuWeatherService extends WeatherService {
                 .putString(KEY_OLD_PROVINCE, location.province)
                 .apply();
 
-        if (SettingsOptionManager.getInstance(context).getLocationService().equals("baidu_ip")) {
+        if (SettingsOptionManager.getInstance(context)
+                .getLocationService()
+                .equals(SettingsOptionManager.LOCATION_SERIVCE_BAIDU_IP)) {
             requestLocation(
                     context,
                     TextUtils.isEmpty(location.district)
@@ -248,8 +250,34 @@ public class AccuWeatherService extends WeatherService {
         }
     }
 
-    public void requestLocation(Context context, final String lat, final String lon,
-                                @NonNull final RequestLocationCallback callback) {
+    public void requestLocation(Context context, String query,
+                                @NonNull RequestLocationCallback callback) {
+        String languageCode = LanguageUtils.getLanguageCode(context);
+        api.getWeatherLocation("Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)
+                .compose(SchedulerTransformer.create())
+                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
+                    @Override
+                    public void onSucceed(List<AccuLocationResult> accuLocationResults) {
+                        if (accuLocationResults != null && accuLocationResults.size() != 0) {
+                            List<Location> locationList = new ArrayList<>();
+                            for (AccuLocationResult r : accuLocationResults) {
+                                locationList.add(r.toLocation());
+                            }
+                            callback.requestLocationSuccess(query, locationList);
+                        } else {
+                            callback.requestLocationFailed(query);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed() {
+                        callback.requestLocationFailed(query);
+                    }
+                }));
+    }
+
+    public void requestLocation(Context context, String lat, String lon,
+                                @NonNull RequestLocationCallback callback) {
         String languageCode = LanguageUtils.getLanguageCode(context);
         api.getWeatherLocationByGeoPosition(
                 "Always",
@@ -494,21 +522,27 @@ public class AccuWeatherService extends WeatherService {
                 alertList.add(alert);
             }
 
-            location.weather = new Weather(base, realTime, dailyList, hourlyList, aqi, index, alertList);
+            location.weather = Weather.buildWeather(
+                    base, realTime, dailyList, hourlyList, aqi, index, alertList);
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = format.parse(location.weather.base.date);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.DATE, -1);
+            if (location.weather != null) {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = format.parse(location.weather.base.date);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(Objects.requireNonNull(date));
+                calendar.add(Calendar.DATE, -1);
 
-            location.history = new History(
-                    location.cityId, location.weather.base.city, format.format(calendar.getTime()),
-                    (int) realtimeResult.TemperatureSummary.Past24HourRange.Maximum.Metric.Value,
-                    (int) realtimeResult.TemperatureSummary.Past24HourRange.Minimum.Metric.Value
-            );
+                location.history = new History(
+                        location.cityId, location.weather.base.city, format.format(calendar.getTime()),
+                        (int) realtimeResult.TemperatureSummary.Past24HourRange.Maximum.Metric.Value,
+                        (int) realtimeResult.TemperatureSummary.Past24HourRange.Minimum.Metric.Value
+                );
+            } else {
+                location.history = null;
+            }
         } catch (Exception ignored) {
-            // do nothing.
+            location.weather = null;
+            location.history = null;
         }
     }
 

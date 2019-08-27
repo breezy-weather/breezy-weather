@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.remoteviews.presenter;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.content.ContentUris;
@@ -21,6 +22,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -29,6 +34,7 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
+import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 
 public abstract class AbstractRemoteViewsPresenter {
 
@@ -195,13 +201,15 @@ public abstract class AbstractRemoteViewsPresenter {
         return DisplayUtils.drawableToBitmap(drawable);
     }
 
+    @SuppressLint("SimpleDateFormat")
     public static String getCustomSubtitle(Context context, @Nullable String subtitle,
-                                    @NonNull Location location, @NonNull Weather weather) {
+                                           @NonNull Location location, @NonNull Weather weather) {
         if (TextUtils.isEmpty(subtitle)) {
             return "";
         }
         boolean fahrenheit = SettingsOptionManager.getInstance(context).isFahrenheit();
-        subtitle = subtitle.replace("$cw$", weather.realTime.weather)
+        subtitle = subtitle
+                .replace("$cw$", weather.realTime.weather)
                 .replace("$ct$", ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit))
                 .replace("$ctd$", ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit))
                 .replace("$at$", ValueUtils.buildCurrentTemp(weather.realTime.sensibleTemp, false, fahrenheit))
@@ -215,7 +223,18 @@ public abstract class AbstractRemoteViewsPresenter {
                 .replace("$lat$", location.lat)
                 .replace("$lon$", location.lon)
                 .replace("$ut$", weather.base.time)
-                .replace("$dd$", weather.index.simpleForecast)
+                .replace(
+                        "$d$",
+                        new SimpleDateFormat(context.getString(R.string.date_format_long))
+                                .format(new Date(System.currentTimeMillis()))
+                ).replace("$lc$", LunarHelper.getLunarDate(Calendar.getInstance()))
+                .replace(
+                        "$w$",
+                        new SimpleDateFormat("EEEE").format(new Date(System.currentTimeMillis()))
+                ).replace(
+                        "$ws$",
+                        new SimpleDateFormat("EEE").format(new Date(System.currentTimeMillis()))
+                ).replace("$dd$", weather.index.simpleForecast)
                 .replace("$hd$", weather.index.briefing)
                 .replace("$h$", weather.index.humidity.replaceAll( "[^\\d]", "") + "%");
         subtitle = replaceDaytimeWeatherSubtitle(subtitle, weather);

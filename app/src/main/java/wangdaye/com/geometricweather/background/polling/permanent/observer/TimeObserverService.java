@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 
@@ -169,18 +170,17 @@ public class TimeObserverService extends Service {
     }
 
     private void startForeground() {
-        NotificationManager manager = ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
-        if (manager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND,
                     GeometricWeather.getNotificationChannelName(
-                            this,
-                            GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND
-                    ), NotificationManager.IMPORTANCE_MIN
+                            this, GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND),
+                    NotificationManager.IMPORTANCE_MIN
             );
             channel.setShowBadge(false);
             channel.setLightColor(ContextCompat.getColor(this, R.color.colorPrimary));
-            manager.createNotificationChannel(channel);
+
+            NotificationManagerCompat.from(this).createNotificationChannel(channel);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForeground(

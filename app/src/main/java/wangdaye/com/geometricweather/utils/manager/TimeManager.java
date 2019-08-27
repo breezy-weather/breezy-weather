@@ -1,8 +1,9 @@
 package wangdaye.com.geometricweather.utils.manager;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.format.DateFormat;
+
 import androidx.annotation.Nullable;
 
 import java.util.Calendar;
@@ -15,7 +16,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 
 public class TimeManager {
 
-    private static TimeManager instance;
+    private static volatile TimeManager instance;
 
     public static synchronized TimeManager getInstance(Context context) {
         synchronized (TimeManager.class) {
@@ -86,9 +87,6 @@ public class TimeManager {
     }
 
     public static boolean is12Hour(Context context) {
-        ContentResolver resolver = context.getContentResolver();
-        String strTimeFormat = android.provider.Settings.System.getString(
-                resolver, android.provider.Settings.System.TIME_12_24);
-        return strTimeFormat != null && strTimeFormat.equals("12");
+        return !DateFormat.is24HourFormat(context);
     }
 }

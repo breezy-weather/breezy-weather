@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.settings.fragment;
 
 import android.os.Bundle;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import java.util.HashSet;
@@ -10,7 +9,6 @@ import java.util.HashSet;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.dialog.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -19,55 +17,107 @@ import wangdaye.com.geometricweather.utils.ValueUtils;
  * Appearance settings fragment.
  * */
 
-public class AppearanceSettingsFragment extends PreferenceFragmentCompat
-        implements Preference.OnPreferenceChangeListener {
+public class AppearanceSettingsFragment extends AbstractSettingsFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.perference_appearance);
 
+        // ui style.
         Preference uiStyle = findPreference(getString(R.string.key_ui_style));
         uiStyle.setSummary(
-                ValueUtils.getUIStyle(
-                        getActivity(),
-                        PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                .getString(getString(R.string.key_ui_style), "material")
+                getNameByValue(
+                        getSettingsOptionManager().getUiStyle(),
+                        R.array.ui_styles,
+                        R.array.ui_style_values
                 )
         );
-        uiStyle.setOnPreferenceChangeListener(this);
+        uiStyle.setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setUiStyle((String) newValue);
+            preference.setSummary(
+                    getNameByValue(
+                            (String) newValue,
+                            R.array.ui_styles,
+                            R.array.ui_style_values
+                    )
+            );
+            SnackbarUtils.showSnackbar(
+                    (GeoActivity) requireActivity(), getString(R.string.feedback_restart));
+            return true;
+        });
 
+        // icon provider.
         initIconProviderPreference();
 
+        // card display.
         Preference cardDisplay = findPreference(getString(R.string.key_card_display));
         cardDisplay.setSummary(
-                ValueUtils.getCardDislay(
-                        getActivity(),
-                        SettingsOptionManager.getInstance(getActivity()).getCardDisplayValues()
+                ValueUtils.getCardDisplay(
+                        requireActivity(),
+                        getSettingsOptionManager().getCardDisplayValues()
                 )
         );
-        cardDisplay.setOnPreferenceChangeListener(this);
+        cardDisplay.setOnPreferenceChangeListener((preference, newValue) -> {
+            try {
+                String[] values = ((HashSet<String>) newValue).toArray(new String[] {});
+                getSettingsOptionManager().setCardDisplayValues(values);
+                preference.setSummary(ValueUtils.getCardDisplay(requireActivity(), values));
+            } catch (Exception ignore) {
+                // do nothing.
+            }
+            return true;
+        });
 
+        // card order.
         Preference cardOrder = findPreference(getString(R.string.key_card_order));
         cardOrder.setSummary(
-                ValueUtils.getCardOrder(
-                        getActivity(),
-                        SettingsOptionManager.getInstance(getActivity()).getCardOrder()
+                getNameByValue(
+                        getSettingsOptionManager().getCardOrder(),
+                        R.array.card_orders,
+                        R.array.card_order_values
                 )
         );
-        cardOrder.setOnPreferenceChangeListener(this);
+        cardOrder.setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setCardOrder((String) newValue);
+            preference.setSummary(
+                    getNameByValue(
+                            (String) newValue,
+                            R.array.card_orders,
+                            R.array.card_order_values
+                    )
+            );
+            return true;
+        });
 
-        findPreference(getString(R.string.key_gravity_sensor_switch))
-                .setOnPreferenceChangeListener(this);
+        // sensor.
+        findPreference(getString(R.string.key_gravity_sensor_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setGravitySensorEnabled((Boolean) newValue);
+            return true;
+        });
 
+        // language.
         Preference language = findPreference(getString(R.string.key_language));
         language.setSummary(
-                ValueUtils.getLanguage(
-                        getActivity(),
-                        SettingsOptionManager.getInstance(getActivity()).getLanguage()
+                getNameByValue(
+                        getSettingsOptionManager().getLanguage(),
+                        R.array.languages,
+                        R.array.language_values
                 )
         );
-        language.setOnPreferenceChangeListener(this);
+        language.setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setLanguage((String) newValue);
+            preference.setSummary(
+                    getNameByValue(
+                            (String) newValue,
+                            R.array.languages,
+                            R.array.language_values
+                    )
+            );
+            SnackbarUtils.showSnackbar(
+                    (GeoActivity) requireActivity(), getString(R.string.feedback_restart));
+            return true;
+        });
     }
 
     @Override
@@ -78,57 +128,23 @@ public class AppearanceSettingsFragment extends PreferenceFragmentCompat
     private void initIconProviderPreference() {
         Preference iconProvider = findPreference(getString(R.string.key_icon_provider));
         iconProvider.setSummary(ResourcesProviderFactory.getNewInstance().getProviderName());
-    }
-
-    // interface.
-
-    @Override
-    public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference.getKey().equals(getString(R.string.key_icon_provider))) {
-            // icon provider.
+        
+        iconProvider.setOnPreferenceClickListener(preference -> {
             ProvidersPreviewerDialog dialog = new ProvidersPreviewerDialog();
-            dialog.setOnIconProviderChangedListener(iconProvider -> {
-                SettingsOptionManager.getInstance(getActivity()).setIconProvider(iconProvider);
-                PreferenceManager.getDefaultSharedPreferences(getActivity())
+            dialog.setOnIconProviderChangedListener(iconProvider1 -> {
+                getSettingsOptionManager().setIconProvider(iconProvider1);
+                PreferenceManager.getDefaultSharedPreferences(requireActivity())
                         .edit()
-                        .putString(getString(R.string.key_icon_provider), iconProvider)
+                        .putString(getString(R.string.key_icon_provider), iconProvider1)
                         .apply();
                 initIconProviderPreference();
-                SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+                SnackbarUtils.showSnackbar(
+                        (GeoActivity) requireActivity(), 
+                        getString(R.string.feedback_refresh_ui_after_refresh)
+                );
             });
-            dialog.show(getFragmentManager(), null);
-        }
-        return super.onPreferenceTreeClick(preference);
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object o) {
-        if (preference.getKey().equals(getString(R.string.key_ui_style))) {
-            // UI style.
-            preference.setSummary(ValueUtils.getUIStyle(getActivity(), (String) o));
-            SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_restart));
-        } else if (preference.getKey().equals(getString(R.string.key_card_display))) {
-            // Card display.
-            try {
-                String[] values = ((HashSet<String>) o).toArray(new String[] {});
-                SettingsOptionManager.getInstance(getActivity()).setCardDisplayValues(values);
-                preference.setSummary(ValueUtils.getCardDislay(getActivity(), values));
-            } catch (Exception ignore) {
-                // do nothing.
-            }
-        } else if (preference.getKey().equals(getString(R.string.key_card_order))) {
-            // Card order.
-            SettingsOptionManager.getInstance(getActivity()).setCardOrder((String) o);
-            preference.setSummary(ValueUtils.getCardOrder(getActivity(), (String) o));
-        } else if (preference.getKey().equals(getString(R.string.key_language))) {
-            // language.
-            preference.setSummary(ValueUtils.getLanguage(getActivity(), (String) o));
-            SettingsOptionManager.getInstance(getActivity()).setLanguage((String) o);
-            SnackbarUtils.showSnackbar((GeoActivity) getActivity(), getString(R.string.feedback_restart));
-        } else if (preference.getKey().equals(getString(R.string.key_gravity_sensor_switch))) {
-            // sensor.
-            SettingsOptionManager.getInstance(getActivity()).setGravitySensorEnabled((Boolean) o);
-        }
-        return true;
+            dialog.show(requireFragmentManager(), null);
+            return true;
+        });
     }
 }

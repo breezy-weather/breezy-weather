@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 import android.util.AttributeSet;
 import android.view.View;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 
@@ -26,7 +27,7 @@ public class InkPageIndicatorBehavior<V extends InkPageIndicator> extends Coordi
                                  int layoutDirection) {
         int marginBottom = (int) (
                 DisplayUtils.dpToPx(parent.getContext(), 16)
-                        + DisplayUtils.getNavigationBarHeight(parent.getContext())
+                        + GeometricWeather.getInstance().getWindowInsets().bottom
         );
         child.layout(0,
                 parent.getMeasuredHeight() - child.getMeasuredHeight() - marginBottom,

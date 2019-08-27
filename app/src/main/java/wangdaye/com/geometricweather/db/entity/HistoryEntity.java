@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -153,7 +155,7 @@ public class HistoryEntity {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date date = format.parse(weather.base.date);
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
+            calendar.setTime(Objects.requireNonNull(date));
             calendar.add(Calendar.DATE, -1);
 
             List<HistoryEntity> entityList = new DaoMaster(database)
@@ -186,7 +188,7 @@ public class HistoryEntity {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date date = format.parse(history.date);
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
+            calendar.setTime(Objects.requireNonNull(date));
 
             List<HistoryEntity> entityList = new DaoMaster(database)
                     .newSession()

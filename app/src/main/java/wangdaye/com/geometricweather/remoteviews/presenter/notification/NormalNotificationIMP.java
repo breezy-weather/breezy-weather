@@ -4,15 +4,14 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
 
 import android.widget.RemoteViews;
 
@@ -49,62 +48,39 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         );
 
         // get sp & realTimeWeather.
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean fahrenheit = sharedPreferences.getBoolean(context.getString(R.string.key_fahrenheit), false);
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
 
-        // get time & background color.
+        boolean fahrenheit = settings.isFahrenheit();
+
         boolean dayTime = TimeManager.isDaylight(weather);
 
-        String style = sharedPreferences.getString(
-                context.getString(R.string.key_notification_style),
-                "geometric"
-        );
-        boolean minimalIcon = sharedPreferences.getBoolean(
-                context.getString(R.string.key_notification_minimal_icon),
-                false
-        ) && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P;
-        boolean tempIcon = sharedPreferences.getBoolean(
-                context.getString(R.string.key_notification_temp_icon),
-                false
-        );
-        boolean customColor = sharedPreferences.getBoolean(
-                context.getString(R.string.key_notification_custom_color),
-                false
-        );
-        boolean hideBigView = sharedPreferences.getBoolean(
-                context.getString(R.string.key_notification_hide_big_view),
-                false
-        );
-        boolean hideNotificationIcon = sharedPreferences.getBoolean(
-                context.getString(R.string.key_notification_hide_icon),
-                false
-        );
-        boolean hideNotificationInLockScreen = sharedPreferences.getBoolean(
-                context.getString(R.string.key_notification_hide_in_lockScreen),
-                false
-        );
-        boolean canBeCleared = sharedPreferences.getBoolean(
-                context.getString(R.string.key_notification_can_be_cleared),
-                false
-        );
+        boolean minimalIcon = settings.isNotificationMinimalIconEnabled()
+                && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P;
 
-        if (style.equals("native")) {
+        boolean tempIcon = settings.isNotificationTemperatureIconEnabled();
+
+        boolean customColor = settings.isNotificationCustomColorEnabled();
+
+        boolean hideBigView = settings.isNotificationHideBigViewEnabled();
+
+        boolean hideNotificationIcon = settings.isNotificationHideIconEnabled();
+
+        boolean hideNotificationInLockScreen = settings.isNotificationHideInLockScreenEnabled();
+
+        boolean canBeCleared = settings.isNotificationCanBeClearedEnabled();
+
+        if (settings.getNotificationStyle().equals(SettingsOptionManager.NOTIFICATION_STYLE_NATIVE)) {
             NativeNormalNotificationIMP.buildNotificationAndSendIt(context, weather, dayTime,
                     fahrenheit, tempIcon, hideNotificationIcon, hideNotificationInLockScreen, canBeCleared);
             return;
         }
 
         // background color.
-        int backgroundColor = sharedPreferences.getInt(
-                context.getString(R.string.key_notification_background_color),
-                ContextCompat.getColor(context, R.color.notification_background_l)
-        );
+        int backgroundColor = settings.getNotificationBackgroundColor();
 
         // get text color.
-        String textColor = sharedPreferences.getString(
-                context.getString(R.string.key_notification_text_color),
-                "dark"
-        );
+        String textColor = settings.getNotificationTextColor();
+
         int mainColor;
         int subColor;
         switch (textColor) {
@@ -124,11 +100,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         }
 
         // build channel.
-        NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
-        if (manager == null) {
-            return;
-        }
-
+        NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY,
@@ -141,6 +113,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                             : NotificationManager.IMPORTANCE_LOW
             );
             channel.setShowBadge(false);
+            channel.setImportance(hideNotificationIcon
+                    ? NotificationManager.IMPORTANCE_UNSPECIFIED : NotificationManager.IMPORTANCE_HIGH);
+            channel.setLockscreenVisibility(hideNotificationInLockScreen
+                    ? NotificationCompat.VISIBILITY_SECRET : NotificationCompat.VISIBILITY_PUBLIC);
             manager.createNotificationChannel(channel);
         }
 
@@ -149,18 +125,12 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 context, GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY);
 
         // set notification level.
-        if (hideNotificationIcon) {
-            builder.setPriority(NotificationCompat.PRIORITY_MIN);
-        } else {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+        builder.setPriority(hideNotificationIcon
+                ? NotificationCompat.PRIORITY_MIN : NotificationCompat.PRIORITY_MAX);
 
         // set notification visibility.
-        if (hideNotificationInLockScreen) {
-            builder.setVisibility(NotificationCompat.VISIBILITY_SECRET);
-        } else {
-            builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        }
+        builder.setVisibility(hideNotificationInLockScreen
+                ? NotificationCompat.VISIBILITY_SECRET : NotificationCompat.VISIBILITY_PUBLIC);
 
         // set small icon.
         builder.setSmallIcon(
@@ -218,13 +188,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         }
 
         // set clear flag
-        if (canBeCleared) {
-            // the notification can be cleared
-            builder.setAutoCancel(true);
-        } else {
-            // the notification can not be cleared
-            builder.setOngoing(true);
-        }
+        builder.setOngoing(!canBeCleared);
 
         Notification notification = builder.build();
         if (!tempIcon && Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -470,17 +434,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static void cancelNotification(Context context) {
-        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (manager != null) {
-            manager.cancel(GeometricWeather.NOTIFICATION_ID_NORMALLY);
-        }
+        NotificationManagerCompat.from(context).cancel(GeometricWeather.NOTIFICATION_ID_NORMALLY);
     }
 
     public static boolean isEnable(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(
-                        context.getString(R.string.key_notification),
-                        false
-                );
+        return SettingsOptionManager.getInstance(context).isNotificationEnabled();
     }
 }

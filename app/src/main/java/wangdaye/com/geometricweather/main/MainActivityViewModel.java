@@ -90,7 +90,7 @@ public class MainActivityViewModel extends ViewModel {
 
         Location current = dataList.get(index);
 
-        float pollingRateScale = ValueUtils.getPollingRateScale(
+        float pollingRateScale = ValueUtils.getUpdateIntervalInHour(
                 SettingsOptionManager.getInstance(activity).getUpdateInterval());
         if (current.isUsable()
                 && current.weather != null
@@ -194,8 +194,7 @@ public class MainActivityViewModel extends ViewModel {
                         if (isPivotalPermission(permission[i])
                                 && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
                             if (location.isUsable()) {
-                                repository.getWeatherWithValidLocationInformation(
-                                        activity, currentLocation, locationList);
+                                repository.getWeather(activity, currentLocation, locationList, false);
                             } else {
                                 currentLocation.setValue(
                                         LocationResource.error(location, true));
@@ -203,13 +202,13 @@ public class MainActivityViewModel extends ViewModel {
                             return;
                         }
                     }
-                    repository.getWeather(activity, currentLocation, locationList);
+                    repository.getWeather(activity, currentLocation, locationList, true);
                 });
                 return;
             }
         }
 
-        repository.getWeather(activity, currentLocation, locationList);
+        repository.getWeather(activity, currentLocation, locationList, location.isCurrentPosition());
     }
 
     private boolean isPivotalPermission(String permission) {

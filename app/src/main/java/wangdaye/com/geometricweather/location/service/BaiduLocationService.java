@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.location.service;
 
 import android.Manifest;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.location.LocationException;
 public class BaiduLocationService extends LocationService {
 
     private LocationClient client;
-    private NotificationManager manager;
+    private NotificationManagerCompat manager;
     private LocationCallback callback;
 
     private BDAbstractLocationListener listener = new BDAbstractLocationListener() {
@@ -63,7 +63,7 @@ public class BaiduLocationService extends LocationService {
     };
 
     public BaiduLocationService(Context context) {
-        manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+        manager = NotificationManagerCompat.from(context);
     }
 
     @Override
@@ -88,9 +88,7 @@ public class BaiduLocationService extends LocationService {
         client.registerLocationListener(listener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (manager != null) {
-                manager.createNotificationChannel(getLocationNotificationChannel(context));
-            }
+            manager.createNotificationChannel(getLocationNotificationChannel(context));
             client.enableLocInForeground(
                     GeometricWeather.NOTIFICATION_ID_LOCATION,
                     getLocationNotification(context));
@@ -101,7 +99,7 @@ public class BaiduLocationService extends LocationService {
     @Override
     public void cancel() {
         if (client != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && manager != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 client.disableLocInForeground(true);
             }
             client.stop();
@@ -116,6 +114,7 @@ public class BaiduLocationService extends LocationService {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
     }
 }

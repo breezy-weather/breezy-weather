@@ -31,6 +31,10 @@ public class ResourcesProviderFactory {
             return new PixelResourcesProvider(defaultProvider);
         }
 
+        if (IconPackResourcesProvider.isIconPackIconProvider(context, packageName)) {
+            return new IconPackResourcesProvider(context, packageName, defaultProvider);
+        }
+
         if (ChronusResourceProvider.isChronusIconProvider(context, packageName)) {
             return new ChronusResourceProvider(context, packageName, defaultProvider);
         }
@@ -50,7 +54,17 @@ public class ResourcesProviderFactory {
         providerList.addAll(IconPackResourcesProvider.getProviderList(context, defaultProvider));
 
         // chronus icon pack.
-        providerList.addAll(ChronusResourceProvider.getProviderList(context, defaultProvider));
+        List<ChronusResourceProvider> chronusIconPackList
+                = ChronusResourceProvider.getProviderList(context, defaultProvider);
+        for (int i = chronusIconPackList.size() - 1; i >= 0; i --) {
+            for (int j = 0; j < providerList.size(); j ++) {
+                if (chronusIconPackList.get(i).equals(providerList.get(j))) {
+                    chronusIconPackList.remove(i);
+                    break;
+                }
+            }
+        }
+        providerList.addAll(chronusIconPackList);
 
         return providerList;
     }

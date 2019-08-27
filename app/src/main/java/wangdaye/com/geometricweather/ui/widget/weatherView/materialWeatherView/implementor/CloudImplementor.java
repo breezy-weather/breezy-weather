@@ -403,9 +403,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
             } else {
                 Star[] stars = new Star[30];
                 Random r = new Random();
-                int canvasSize = (int) Math.pow(
-                        Math.pow(viewWidth, 2) + Math.pow(viewHeight, 2),
-                        0.5);
+                int canvasSize = (int) Math.sqrt(Math.pow(viewWidth, 2) + Math.pow(viewHeight, 2));
                 int width = (int) (1.0 * canvasSize);
                 int height = (int) ((canvasSize - viewHeight) * 0.5 + viewWidth * 1.1111);
                 float radius = (float) (0.0028 * viewWidth);

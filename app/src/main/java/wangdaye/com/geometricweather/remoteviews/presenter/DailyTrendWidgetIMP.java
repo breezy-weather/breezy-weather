@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
-import androidx.preference.PreferenceManager;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendDailyProvider;
@@ -29,6 +28,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.TrendLinearLayout;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.WidgetItemView;
@@ -87,10 +87,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         int highestTemp;
         int lowestTemp;
 
-        boolean minimalIcon = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                context.getString(R.string.key_widget_minimal_icon),
-                false
-        );
+        boolean minimalIcon = SettingsOptionManager.getInstance(context).isWidgetMinimalIconEnabled();
 
         maxiTemps = new float[itemCount * 2 - 1];
         for (int i = 0; i < maxiTemps.length; i += 2) {
@@ -239,9 +236,12 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 getCardBackgroundId(context, darkCard, cardAlpha)
         );
 
-        boolean touchToRefresh = PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.key_click_widget_to_refresh), false);
-        setOnClickPendingIntent(context, views, location, touchToRefresh);
+        setOnClickPendingIntent(
+                context,
+                views,
+                location,
+                SettingsOptionManager.getInstance(context).isWidgetClickToRefreshEnabled()
+        );
 
         return views;
     }

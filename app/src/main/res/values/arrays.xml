@@ -95,6 +95,7 @@
         <item>Magyar</item>
         <item>Português</item>
         <item>Português (Brasil)</item>
+        <item>Slovenščina</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -114,6 +115,7 @@
         <item>hungarian</item>
         <item>portuguese</item>
         <item>portuguese_brazilian</item>
+        <item>slovenian</item>
     </string-array>
 
     <!-- automatic refresh rate. -->

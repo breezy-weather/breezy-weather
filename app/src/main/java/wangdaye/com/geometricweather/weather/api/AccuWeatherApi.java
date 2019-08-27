@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.weather.api;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -21,10 +22,16 @@ import wangdaye.com.geometricweather.weather.json.accu.AccuRealtimeResult;
 public interface AccuWeatherApi {
 
     @GET("locations/v1/cities/search.json")
+    Call<List<AccuLocationResult>> callWeatherLocation(@Query("alias") String alias,
+                                                       @Query("apikey") String apikey,
+                                                       @Query("q") String q,
+                                                       @Query("language") String language);
+
+    @GET("locations/v1/cities/search.json")
     Observable<List<AccuLocationResult>> getWeatherLocation(@Query("alias") String alias,
-                                                            @Query("apikey") String apikey,
-                                                            @Query("q") String q,
-                                                            @Query("language") String language);
+                                                      @Query("apikey") String apikey,
+                                                      @Query("q") String q,
+                                                      @Query("language") String language);
 
     @GET("locations/v1/cities/geoposition/search.json")
     Observable<AccuLocationResult> getWeatherLocationByGeoPosition(@Query("alias") String alias,

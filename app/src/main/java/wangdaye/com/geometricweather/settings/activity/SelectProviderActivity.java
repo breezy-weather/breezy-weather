@@ -15,8 +15,7 @@ import wangdaye.com.geometricweather.settings.fragment.ServiceProviderSettingsFr
  * Select provider activity.
  * */
 
-public class SelectProviderActivity extends GeoActivity
-        implements View.OnClickListener {
+public class SelectProviderActivity extends GeoActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +44,6 @@ public class SelectProviderActivity extends GeoActivity
         Toolbar toolbar = findViewById(R.id.activity_settings_toolbar);
         toolbar.setTitle(getString(R.string.settings_title_service_provider));
         toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
-        toolbar.setNavigationOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case -1:
-                finish();
-                break;
-        }
+        toolbar.setNavigationOnClickListener(view -> finish());
     }
 }

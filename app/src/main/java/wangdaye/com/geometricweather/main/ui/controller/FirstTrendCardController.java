@@ -60,15 +60,17 @@ public class FirstTrendCardController extends AbstractMainItemController
     @SuppressLint("RestrictedApi")
     @Override
     public void onBindView(@NonNull Location location) {
-        if (SettingsOptionManager.getInstance(context).getCardOrder().equals("daily_first")) {
-            if (!isDisplay("daily_overview")) {
+        if (SettingsOptionManager.getInstance(context)
+                .getCardOrder()
+                .equals(SettingsOptionManager.CARD_ORDER_DAILY_FIRST)) {
+            if (!isDisplay(SettingsOptionManager.CARD_DAILY_OVERVIEW)) {
                 view.setVisibility(View.GONE);
                 return;
             } else {
                 view.setVisibility(View.VISIBLE);
             }
         } else {
-            if (!isDisplay("hourly_overview")) {
+            if (!isDisplay(SettingsOptionManager.CARD_HOURLY_OVERVIEW)) {
                 view.setVisibility(View.GONE);
                 return;
             } else {
@@ -121,7 +123,9 @@ public class FirstTrendCardController extends AbstractMainItemController
 
             title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
-            if (SettingsOptionManager.getInstance(context).getCardOrder().equals("daily_first")) {
+            if (SettingsOptionManager.getInstance(context)
+                    .getCardOrder()
+                    .equals(SettingsOptionManager.CARD_ORDER_DAILY_FIRST)) {
                 TrendViewController.setDailyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
                         weather, location.history, weatherView.getThemeColors(picker.isLightTheme())

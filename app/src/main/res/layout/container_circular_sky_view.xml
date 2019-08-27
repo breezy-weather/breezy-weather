@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@color/darkPrimary_4">
 
-    <wangdaye.com.geometricweather.ui.widget.StatusBarView
+    <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
         android:id="@+id/container_circular_sky_view_statusBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

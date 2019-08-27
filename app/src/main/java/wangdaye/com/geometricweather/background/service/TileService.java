@@ -6,12 +6,11 @@ import android.os.Build;
 import android.service.quicksettings.Tile;
 
 import androidx.annotation.RequiresApi;
-import androidx.preference.PreferenceManager;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -68,8 +67,6 @@ public class TileService extends android.service.quicksettings.TileService {
         Location location = DatabaseHelper.getInstance(context).readLocationList().get(0);
         location.weather = DatabaseHelper.getInstance(context).readWeather(location);
         if (location.weather != null) {
-            boolean f = PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean(context.getString(R.string.key_fahrenheit), false);
             tile.setIcon(
                     WeatherHelper.getMinimalIcon(
                             ResourcesProviderFactory.getNewInstance(),
@@ -79,7 +76,9 @@ public class TileService extends android.service.quicksettings.TileService {
             );
             tile.setLabel(
                     ValueUtils.buildCurrentTemp(
-                            location.weather.realTime.temp, false, f
+                            location.weather.realTime.temp,
+                            false,
+                            SettingsOptionManager.getInstance(context).isFahrenheit()
                     )
             );
             tile.setState(Tile.STATE_INACTIVE);

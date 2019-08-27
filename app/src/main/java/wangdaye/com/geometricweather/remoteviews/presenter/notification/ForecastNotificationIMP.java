@@ -4,13 +4,12 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.preference.PreferenceManager;
+import androidx.core.app.NotificationManagerCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -43,27 +42,21 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
                 SettingsOptionManager.getInstance(context).getLanguage()
         );
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean fahrenheit = sharedPreferences.getBoolean(
-                context.getString(R.string.key_fahrenheit),
-                false);
+        boolean fahrenheit = SettingsOptionManager.getInstance(context).isFahrenheit();
 
         // create channel.
-        NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
-        if (manager == null) {
-            return;
-        }
+        NotificationManagerCompat manager = NotificationManagerCompat.from(context);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            manager.createNotificationChannel(
-                    new NotificationChannel(
-                            GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST,
-                            GeometricWeather.getNotificationChannelName(
-                                    context,
-                                    GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST
-                            ), NotificationManager.IMPORTANCE_DEFAULT
-                    )
+            NotificationChannel channel = new NotificationChannel(
+                    GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST,
+                    GeometricWeather.getNotificationChannelName(
+                            context, GeometricWeather.NOTIFICATION_CHANNEL_ID_FORECAST),
+                    NotificationManager.IMPORTANCE_DEFAULT
             );
+            channel.setImportance(NotificationManager.IMPORTANCE_HIGH);
+            channel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+            manager.createNotificationChannel(channel);
         }
 
         // get builder.
@@ -74,9 +67,7 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         builder.setPriority(NotificationCompat.PRIORITY_MAX);
 
         // set notification visibility.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        }
+        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
         String weatherKind;
         boolean daytime;
@@ -183,11 +174,9 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
 
     public static boolean isEnable(Context context, boolean today) {
         if (today) {
-            return PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean(context.getString(R.string.key_forecast_today), false);
+            return SettingsOptionManager.getInstance(context).isTodayForecastEnabled();
         } else {
-            return PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean(context.getString(R.string.key_forecast_tomorrow), false);
+            return SettingsOptionManager.getInstance(context).isTomorrowForecastEnabled();
         }
     }
 }

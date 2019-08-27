@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.ui.widget.StatusBarView
+    <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
         android:id="@+id/activity_search_statusBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,10 +88,29 @@
                     app:cpv_color="@color/colorTextContent"
                     app:cpv_indeterminate="true" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/activity_search_recyclerView"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/activity_search_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <com.turingtechnologies.materialscrollbar.DragScrollBar
+                        android:id="@+id/activity_search_scrollBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        app:msb_recyclerView="@id/activity_search_recyclerView"
+                        app:msb_lightOnTouch="true"
+                        app:msb_scrollMode="firstVisible"
+                        app:msb_barColor="@color/colorTextSubtitle"
+                        app:msb_handleColor="@color/colorPrimary"
+                        app:msb_handleOffColor="@color/colorPrimary"
+                        app:msb_textColor="@color/colorRoot" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 

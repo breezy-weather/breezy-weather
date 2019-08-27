@@ -43,10 +43,11 @@ import wangdaye.com.geometricweather.utils.SnackbarUtils;
 public class IntentHelper {
 
     public static void startMainActivity(Context context) {
-        Intent intent = new Intent("com.wangdaye.geometricweather.Main")
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        context.startActivity(intent);
+        context.startActivity(
+                new Intent("com.wangdaye.geometricweather.Main")
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        );
     }
 
     public static Intent buildMainActivityIntent(@Nullable Location location) {
@@ -82,23 +83,21 @@ public class IntentHelper {
         );
     }
 
-    public static void startSearchActivityForResult(GeoActivity geoActivity, View bar) {
-        Intent intent = new Intent(geoActivity, SearcActivity.class);
+    public static void startSearchActivityForResult(GeoActivity activity, View bar) {
+        Intent intent = new Intent(activity, SearcActivity.class);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            geoActivity.startActivityForResult(intent, ManageActivity.SEARCH_ACTIVITY);
-            geoActivity.overridePendingTransition(R.anim.activity_search_in, 0);
+            activity.startActivityForResult(intent, ManageActivity.SEARCH_ACTIVITY);
+            activity.overridePendingTransition(R.anim.activity_search_in, 0);
         } else {
-            ActivityOptionsCompat options = ActivityOptionsCompat
-                    .makeSceneTransitionAnimation(
-                            geoActivity,
-                            Pair.create(bar, geoActivity.getString(R.string.transition_activity_search_bar))
-                    );
             ActivityCompat.startActivityForResult(
-                    geoActivity,
+                    activity,
                     intent,
                     ManageActivity.SEARCH_ACTIVITY,
-                    options.toBundle()
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            activity,
+                            Pair.create(bar, activity.getString(R.string.transition_activity_search_bar))
+                    ).toBundle()
             );
         }
     }
@@ -112,6 +111,10 @@ public class IntentHelper {
 
     public static void startSelectProviderActivity(Activity activity) {
         activity.startActivity(new Intent(activity, SelectProviderActivity.class));
+    }
+
+    public static void startSelectProviderActivityForResult(Activity activity, int requestCode) {
+        activity.startActivityForResult(new Intent(activity, SelectProviderActivity.class), requestCode);
     }
 
     public static void startPreviewIconActivity(Activity activity, String packageName) {
@@ -132,21 +135,18 @@ public class IntentHelper {
     }
 
     public static void startApplicationDetailsActivity(Context context, String pkgName) {
-        Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.setData(Uri.fromParts("package", pkgName, null));
-        context.startActivity(intent);
+        context.startActivity(
+                new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        .setData(Uri.fromParts("package", pkgName, null))
+        );
     }
 
     public static void startLocationSettingsActivity(Context context) {
-        Intent intent =  new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        context.startActivity(intent);
+        context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
     }
 
     public static void startLiveWallpaperActivity(Context context) {
-        Intent intent = new Intent(
-                WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER
-        ).putExtra(
+        Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER).putExtra(
                 WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
                 new ComponentName(context, MaterialLiveWallpaperService.class)
         );

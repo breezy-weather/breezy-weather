@@ -44,6 +44,14 @@
             style="@style/material_image_button"
             tools:ignore="ContentDescription" />
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/item_location_settingsBtn"
+            android:src="@drawable/ic_settings"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/item_location_deleteBtn"
+            style="@style/material_image_button"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:id="@+id/item_location_title"
             android:layout_width="wrap_content"
@@ -51,7 +59,7 @@
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginBottom="2dp"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/item_location_deleteBtn"
+            android:layout_toStartOf="@id/item_location_settingsBtn"
             android:maxLines="1"
             android:gravity="start"
             android:textAlignment="gravity"
@@ -65,7 +73,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@id/item_location_title"
             android:layout_marginStart="@dimen/normal_margin"
-            android:layout_toStartOf="@id/item_location_deleteBtn"
+            android:layout_toStartOf="@id/item_location_settingsBtn"
             android:gravity="start"
             android:textAlignment="gravity"
             style="@style/subtitle_text"
@@ -79,7 +87,7 @@
             android:layout_below="@id/item_location_subtitle"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
-            android:layout_toStartOf="@id/item_location_deleteBtn"
+            android:layout_toStartOf="@id/item_location_settingsBtn"
             android:gravity="start"
             android:textStyle="bold"
             android:textSize="10sp"

@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.basic.model;
 
+import androidx.annotation.StringDef;
+
 import wangdaye.com.geometricweather.db.entity.CNCityEntity;
 
 /**
@@ -24,6 +26,9 @@ public class CNCity {
     private String latitude;
     private String longitude;
 
+    @StringDef({Location.WEATHER_SOURCE_CN, Location.WEATHER_SOURCE_CAIYUN})
+    public @interface CNCityWeatherSourceRule {}
+
     public CNCityEntity toCNCityEntity() {
         CNCityEntity entity = new CNCityEntity();
         entity.province = getProvince();
@@ -35,10 +40,7 @@ public class CNCity {
         return entity;
     }
 
-    public Location toLocation(String source) {
-        if (source.equals("accu")) {
-            source = "cn";
-        }
+    public Location toLocation(@CNCityWeatherSourceRule String source) {
         return new Location(
                 getCityId(),
                 getDistrict().equals("无") ? "" : getDistrict(),

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
 
-            <wangdaye.com.geometricweather.ui.widget.StatusBarView
+            <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
                 android:background="?attr/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.305</string>
+    <string name="version_code">v2.307</string>
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -164,6 +164,10 @@
         $lat$ : Latitude\n
         $lon$ : Longitude\n
         $ut$ : Update Time\n
+        $d$ : Date\n
+        $lc$ : Lunar Calendar\n
+        $w$ : Week\n
+        $ws$ : Week (Short)\n
         $dd$ : Daily Description\n
         $hd$ : Hourly Description\n
         $h$ : Humidity\n
@@ -235,6 +239,8 @@
     <string name="feedback_unusable_geocoder">This device does not contain a valid geocoder. The location provider has been changed to Baidu Location.</string>
     <string name="feedback_about_geocoder">Geocoder is a component that converts the location result from lat-lon format to a format like \'XX city, YY province \'. In the absence of this component, you can only get weather data through AccuWeather when using the native API as location provider.</string>
 
+    <string name="feedback_precipitation_alert_content">Precipitation may occur in $l$ within the next $d$ hours</string>
+
     <!-- action -->
     <string name="action_alert">Alert</string>
     <string name="action_manage">Manage</string>
@@ -284,6 +290,7 @@
     <string name="settings_title_imperial">Imperial unit</string>
     <string name="settings_title_refresh_rate">Automatic refresh rate</string>
     <string name="settings_title_alert_notification_switch">Send Alert Notification</string>
+    <string name="settings_title_precipitation_notification_switch">Send Precipitation Forecast</string>
     <string name="settings_title_permanent_service">Permanent service</string>
     <string name="settings_category_forecast">Forecast</string>
     <string name="settings_title_forecast_today">Forecast for today</string>
@@ -354,6 +361,7 @@
     <string name="key_imperial">imperial</string>
     <string name="key_refresh_rate">refresh_rate</string>
     <string name="key_alert_notification_switch">alert_notification_switch</string>
+    <string name="key_precipitation_notification_switch">precipitation_notification_switch</string>
     <string name="key_forecast_today">timing_forecast_switch_today</string>
     <string name="key_forecast_today_time">forecast_time_today</string>
     <string name="key_forecast_tomorrow">timing_forecast_switch_tomorrow</string>

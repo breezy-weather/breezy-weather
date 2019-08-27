@@ -1,10 +1,10 @@
-package wangdaye.com.geometricweather.ui.widget;
+package wangdaye.com.geometricweather.ui.widget.windowInsets;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.GeometricWeather;
 
 /**
  * Navigation bar view.
@@ -29,7 +29,7 @@ public class NavigationBarView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(
                 MeasureSpec.getSize(widthMeasureSpec),
-                DisplayUtils.getNavigationBarHeight(getContext())
+                GeometricWeather.getInstance().getWindowInsets().bottom
         );
     }
 }

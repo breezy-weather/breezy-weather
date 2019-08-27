@@ -27,33 +27,21 @@ public abstract class UpdateService extends Service
     private PollingUpdateHelper helper;
     private List<Location> locationList;
 
-    private boolean refreshing;
     private boolean failed;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        this.refreshing = false;
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        super.onStartCommand(intent, flags, startId);
-        if (!refreshing) {
-            refreshing = true;
-            failed = false;
-            locationList = DatabaseHelper.getInstance(this).readLocationList();
-            helper = new PollingUpdateHelper(this, locationList);
-            helper.setOnPollingUpdateListener(this);
-            helper.pollingUpdate();
-        }
-        return START_NOT_STICKY;
+        failed = false;
+        locationList = DatabaseHelper.getInstance(this).readLocationList();
+        helper = new PollingUpdateHelper(this, locationList);
+        helper.setOnPollingUpdateListener(this);
+        helper.pollingUpdate();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        refreshing = false;
         if (helper != null) {
             helper.setOnPollingUpdateListener(null);
             helper.cancel();
@@ -72,11 +60,13 @@ public abstract class UpdateService extends Service
     public abstract void updateView(Context context, Location location,
                                     @Nullable Weather weather, @Nullable History history);
 
-    public abstract void setDelayTask(boolean failed);
+    public abstract void handlePollingResult(boolean failed);
+
+    public abstract void stopService();
 
     // interface.
 
-    // on polling updateRotation listener.
+    // on polling update listener.
 
     @Override
     public void onUpdateCompleted(Location location, Weather weather, Weather old,
@@ -89,7 +79,10 @@ public abstract class UpdateService extends Service
                 if (i == 0) {
                     updateView(this, location, location.weather, location.history);
                     if (succeed) {
-                        NotificationUtils.checkAndSendAlert(this, location, weather, old);
+                        NotificationUtils.checkAndSendAlert(
+                                this, location, weather, old);
+                        NotificationUtils.checkAndSendPrecipitationForecast(
+                                this, location, weather, old);
                     } else {
                         failed = true;
                     }
@@ -104,7 +97,7 @@ public abstract class UpdateService extends Service
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
         }
-        setDelayTask(failed);
-        stopSelf();
+        handlePollingResult(failed);
+        stopService();
     }
 }

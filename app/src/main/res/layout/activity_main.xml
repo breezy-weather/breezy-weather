@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <wangdaye.com.geometricweather.ui.widget.StatusBarView
+            <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -74,7 +74,7 @@
         
     </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
 
-    <wangdaye.com.geometricweather.ui.widget.StatusBarView
+    <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
         android:id="@+id/activity_main_statusBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

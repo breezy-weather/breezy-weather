@@ -33,13 +33,14 @@ public class MainActivityRepository {
 
     public void getWeather(Context context,
                            @NonNull MutableLiveData<LocationResource> currentLocation,
-                           @NonNull MutableLiveData<ListResource<Location>> locationList) {
+                           @NonNull MutableLiveData<ListResource<Location>> locationList,
+                           boolean locate) {
         assert currentLocation.getValue() != null && locationList.getValue() != null;
         Location data = currentLocation.getValue().data;
         List<Location> dataList = locationList.getValue().dataList;
 
-        if (data.currentPosition) {
-            locationHelper.requestLocation(context, currentLocation.getValue().data,
+        if (locate) {
+            locationHelper.requestLocation(context, currentLocation.getValue().data, false,
                     new LocationHelper.OnRequestLocationListener() {
                         @Override
                         public void requestLocationSuccess(Location requestLocation) {
@@ -86,7 +87,7 @@ public class MainActivityRepository {
         }
     }
 
-    public void getWeatherWithValidLocationInformation(Context context,
+    private void getWeatherWithValidLocationInformation(Context context,
                                                         @NonNull MutableLiveData<LocationResource> currentLocation,
                                                         @NonNull MutableLiveData<ListResource<Location>> locationList) {
         assert currentLocation.getValue() != null && locationList.getValue() != null;

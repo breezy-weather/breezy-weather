@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -28,7 +29,7 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class MaterialWeatherView extends View implements WeatherView {
 
-    @Nullable private RenderRunnable updateDataRunnable;
+    @Nullable private IntervalComputer intervalComputer;
 
     @Nullable private WeatherAnimationImplementor implementor;
     @Nullable private RotateController[] rotators;
@@ -64,7 +65,6 @@ public class MaterialWeatherView extends View implements WeatherView {
     private boolean drawable;
 
     private static final int SWITCH_ANIMATION_DURATION = 150;
-    protected static long DATA_UPDATE_INTERVAL = 8;
 
     /**
      * This class is used to implement different kinds of weather animations.
@@ -84,7 +84,7 @@ public class MaterialWeatherView extends View implements WeatherView {
 
         public abstract void updateRotation(double rotation, double interval);
 
-        public abstract double getRotate();
+        public abstract double getRotation();
     }
 
     private SensorEventListener gravityListener = new SensorEventListener() {
@@ -147,7 +147,8 @@ public class MaterialWeatherView extends View implements WeatherView {
         this.step = STEP_DISPLAY;
         setWeather(WeatherView.WEATHER_KING_NULL, true, null);
 
-        this.sizes = new int[] {0, 0};
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        this.sizes = new int[] {metrics.widthPixels, metrics.heightPixels};
 
         String cardOrder = SettingsOptionManager.getInstance(getContext()).getCardOrder();
         if (cardOrder.equals("daily_first")) {
@@ -180,11 +181,13 @@ public class MaterialWeatherView extends View implements WeatherView {
         firstCardMarginTop = (int) Math.max(
                 firstCardMarginTop,
                 getResources().getDisplayMetrics().heightPixels * 0.6);
-        scrollTransparentTriggerDistance = (int) (firstCardMarginTop
-                - DisplayUtils.getStatusBarHeight(getResources())
-                - DisplayUtils.dpToPx(getContext(), 56)
-                - getResources().getDimension(R.dimen.design_title_text_size)
-                - getResources().getDimension(R.dimen.normal_margin));
+        scrollTransparentTriggerDistance = (int) (
+                firstCardMarginTop
+                        - DisplayUtils.getStatusBarHeight(getResources())
+                        - DisplayUtils.dpToPx(getContext(), 56)
+                        - getResources().getDimension(R.dimen.design_title_text_size)
+                        - getResources().getDimension(R.dimen.normal_margin)
+        );
 
         this.lastScrollRate = 0;
         this.scrollRate = 0;
@@ -195,8 +198,10 @@ public class MaterialWeatherView extends View implements WeatherView {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        this.sizes[0] = getMeasuredWidth();
-        this.sizes[1] = getMeasuredHeight();
+        if (getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
+            sizes[0] = getMeasuredWidth();
+            sizes[1] = getMeasuredHeight();
+        }
         setWeatherImplementor();
     }
 
@@ -204,12 +209,40 @@ public class MaterialWeatherView extends View implements WeatherView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        if (intervalComputer == null || rotators == null || implementor == null) {
+            canvas.drawColor(getBackgroundColor());
+            return;
+        }
+
+        intervalComputer.invalidate();
+
+        rotators[0].updateRotation(rotation2D, intervalComputer.getInterval());
+        rotators[1].updateRotation(rotation3D, intervalComputer.getInterval());
+
+        implementor.updateData(
+                sizes, (long) intervalComputer.getInterval(),
+                (float) rotators[0].getRotation(), (float) rotators[1].getRotation()
+        );
+
+        displayRate = (float) (
+                displayRate
+                        + (step == STEP_DISPLAY ? 1f : -1f)
+                        * intervalComputer.getInterval()
+                        / SWITCH_ANIMATION_DURATION
+        );
+        displayRate = Math.max(0, displayRate);
+        displayRate = Math.min(1, displayRate);
+
+        if (displayRate == 0) {
+            setWeatherImplementor();
+        }
+
         canvas.drawColor(backgroundColor);
         if (implementor != null && rotators != null) {
             implementor.draw(
                     sizes, canvas,
                     displayRate, scrollRate,
-                    (float) rotators[0].getRotate(), (float) rotators[1].getRotate()
+                    (float) rotators[0].getRotation(), (float) rotators[1].getRotation()
             );
         }
         if (lastScrollRate >= 1 && scrollRate >= 1) {
@@ -268,7 +301,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         this.daytime = daytime;
         this.backgroundColor = getBackgroundColor();
 
-        if (updateDataRunnable != null && updateDataRunnable.isRunning()) {
+        if (drawable) {
             // Set step to dismiss. The implementor will execute exit animation and call weather
             // view to resetWidget it.
             step = STEP_DISMISS;
@@ -330,7 +363,6 @@ public class MaterialWeatherView extends View implements WeatherView {
         return firstCardMarginTop;
     }
 
-    @Override
     public void setDrawable(boolean drawable) {
         if (this.drawable == drawable) {
             return;
@@ -338,8 +370,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         this.drawable = drawable;
 
         if (drawable) {
-            rotation2D = 0;
-            rotation3D = 0;
+            rotation2D = rotation3D = 0;
             if (sensorManager != null) {
                 sensorManager.registerListener(
                         gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
@@ -347,43 +378,15 @@ public class MaterialWeatherView extends View implements WeatherView {
 
             setWeatherImplementor();
 
-            if (updateDataRunnable == null || !updateDataRunnable.isRunning()) {
-
-                updateDataRunnable = new RenderRunnable(DATA_UPDATE_INTERVAL) {
-                    @Override
-                    protected void onRender(long interval) {
-                        if (implementor == null || rotators == null) {
-                            return;
-                        }
-
-                        rotators[0].updateRotation(rotation2D, interval);
-                        rotators[1].updateRotation(rotation3D, interval);
-
-                        implementor.updateData(
-                                sizes, interval,
-                                (float) rotators[0].getRotate(), (float) rotators[1].getRotate()
-                        );
-
-                        displayRate = displayRate
-                                + (step == STEP_DISPLAY ? 1f : -1f) * interval / SWITCH_ANIMATION_DURATION;
-                        displayRate = Math.max(0, displayRate);
-                        displayRate = Math.min(1, displayRate);
-
-                        if (displayRate == 0) {
-                            setWeatherImplementor();
-                        }
-                    }
-                };
-                new Thread(updateDataRunnable).start();
+            if (intervalComputer == null) {
+                intervalComputer = new IntervalComputer();
+            } else {
+                intervalComputer.reset();
             }
         } else {
             // !drawable
             if (sensorManager != null) {
                 sensorManager.unregisterListener(gravityListener, gravitySensor);
-            }
-            if (updateDataRunnable != null) {
-                updateDataRunnable.setRunning(false);
-                updateDataRunnable = null;
             }
         }
     }
