@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
@@ -705,6 +706,22 @@ public class WeatherHelper {
             default:
                 return 360;
         }
+    }
+
+    @ColorInt
+    public static int getWeatherSourceThemeColor(Context context,
+                                                 @Location.WeatherSourceRule String source) {
+        switch (source) {
+            case Location.WEATHER_SOURCE_ACCU:
+                return ContextCompat.getColor(context, R.color.weather_source_accu);
+
+            case Location.WEATHER_SOURCE_CN:
+                return ContextCompat.getColor(context, R.color.weather_source_cn);
+
+            case Location.WEATHER_SOURCE_CAIYUN:
+                return ContextCompat.getColor(context, R.color.weather_source_caiyun);
+        }
+        return Color.TRANSPARENT;
     }
 
     @SuppressLint("SimpleDateFormat")

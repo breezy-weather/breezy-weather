@@ -93,6 +93,11 @@ public class AboutAppTranslator {
                 "glakner@gmail.com",
                 R.drawable.flag_si
         ));
+        list.add(new AboutAppTranslator(
+                "Paróczai Olivér",
+                "https://github.com/OliverParoczai",
+                R.drawable.flag_hu
+        ));
         return list;
     }
 }

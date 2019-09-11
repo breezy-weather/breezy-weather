@@ -6,6 +6,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Location adapter.
@@ -146,8 +148,11 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
         // source.
         if (itemList.get(position).isCurrentPosition() && !itemList.get(position).isUsable()) {
+            holder.source.setTextColor(ContextCompat.getColor(activity, R.color.colorTextSubtitle));
             holder.source.setText("...");
         } else {
+            holder.source.setTextColor(
+                    WeatherHelper.getWeatherSourceThemeColor(activity, itemList.get(position).source));
             holder.source.setText("Powered by "
                     + ValueUtils.getWeatherSourceName(activity, itemList.get(position).source));
         }
