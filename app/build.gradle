@@ -41,9 +41,9 @@ android {
         it.buildConfigField 'String', 'BAIDU_IP_LOCATION_BASE_URL', BAIDU_IP_LOCATION_BASE_URL
         it.buildConfigField 'String', 'BAIDU_IP_LOCATION_AK', BAIDU_IP_LOCATION_AK
     }
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
+    sourceSets{
+        main{
+            jniLibs.srcDir 'libs'
             jni.srcDirs = []
         }
     }
@@ -81,10 +81,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // android x.
-    implementation 'com.google.android.material:material:1.1.0-alpha09'
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0-rc01'
+    implementation 'androidx.preference:preference:1.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
     // android architect.
@@ -92,10 +92,11 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "android.arch.lifecycle:viewmodel:1.1.1"
     implementation "android.arch.lifecycle:livedata:1.1.1"
+    //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
 
     // a map.
-    implementation 'com.amap.api:location:4.4.0'
+    implementation 'com.amap.api:location:4.7.0'
 
     // play.
     implementation "com.google.android.gms:play-services-location:17.0.0"
@@ -114,7 +115,7 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.0'
 
     // gson.
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     // cm.
     implementation 'org.cyanogenmod:platform.sdk:5.0'
