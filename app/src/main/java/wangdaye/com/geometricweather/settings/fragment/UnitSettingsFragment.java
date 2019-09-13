@@ -21,7 +21,7 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
         findPreference(getString(R.string.key_fahrenheit)).setOnPreferenceChangeListener((p, newValue) -> {
             getSettingsOptionManager().setFahrenheit((Boolean) newValue);
             SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_restart));
+                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
             return true;
         });
 
@@ -29,7 +29,7 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
         findPreference(getString(R.string.key_imperial)).setOnPreferenceChangeListener((p, newValue) -> {
             getSettingsOptionManager().setImperial((Boolean) newValue);
             SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_restart));
+                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
             return true;
         });
     }

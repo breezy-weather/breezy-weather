@@ -1,17 +1,16 @@
 package wangdaye.com.geometricweather.weather.interceptor;
 
-import com.tencent.bugly.crashreport.CrashReport;
-
 import okhttp3.Interceptor;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.Response;
+import wangdaye.com.geometricweather.utils.helpter.BuglyHelper;
 
 abstract class ReportExceptionInterceptor implements Interceptor {
 
     void handleException(Exception e) {
         e.printStackTrace();
-        CrashReport.postCatchedException(e);
+        BuglyHelper.report(e);
     }
 
     Response nullResponse(Request request) {

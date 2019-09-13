@@ -57,14 +57,14 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             );
 
             if (!getSettingsOptionManager().getChineseSource().equals(SettingsOptionManager.WEATHER_SOURCE_ACCU)
-                    && getSettingsOptionManager().getLocationService().equals(SettingsOptionManager.LOCATION_SERIVCE_NATIVE)
+                    && getSettingsOptionManager().getLocationService().equals(SettingsOptionManager.LOCATION_SERVICE_NATIVE)
                     && !AndroidLocationService.geocoderEnabled()) {
-                getSettingsOptionManager().setLocationService(SettingsOptionManager.LOCATION_SERIVCE_BAIDU);
+                getSettingsOptionManager().setLocationService(SettingsOptionManager.LOCATION_SERVICE_BAIDU);
                 PreferenceManager.getDefaultSharedPreferences(requireActivity())
                         .edit()
                         .putString(
                                 getString(R.string.key_location_service),
-                                SettingsOptionManager.LOCATION_SERIVCE_BAIDU
+                                SettingsOptionManager.LOCATION_SERVICE_BAIDU
                         ).apply();
 
                 initPreferences();

@@ -10,10 +10,10 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.location.LocationException;
+import wangdaye.com.geometricweather.utils.helpter.BuglyHelper;
 
 /**
  * Baidu location service.
@@ -49,7 +49,7 @@ public class BaiduLocationService extends LocationService {
                         break;
 
                     default:
-                        CrashReport.postCatchedException(
+                        BuglyHelper.report(
                                 new LocationException(
                                         bdLocation.getLocType(),
                                         bdLocation.getLocTypeDescription()

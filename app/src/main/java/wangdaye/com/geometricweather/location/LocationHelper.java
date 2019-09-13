@@ -94,19 +94,18 @@ public class LocationHelper {
 
     public LocationHelper(Context context) {
         switch (SettingsOptionManager.getInstance(context).getLocationService()) {
-            case "baidu":
+            case SettingsOptionManager.LOCATION_SERVICE_BAIDU:
                 locationService = new BaiduLocationService(context);
                 break;
 
-            case "baidu_ip":
+            case SettingsOptionManager.LOCATION_SERVICE_BAIDU_IP:
                 locationService = new BaiduIPLocationService();
                 break;
 
-            case "amap":
+            case SettingsOptionManager.LOCATION_SERVICE_AMAP:
                 locationService = new AMapLocationService(context);
                 break;
-
-            default:
+            default: // SettingsOptionManager.LOCATION_SERVICE_NATIVE
                 locationService = new AndroidLocationService(context);
                 break;
         }

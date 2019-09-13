@@ -69,13 +69,13 @@ public class SettingsOptionManager {
     public @interface WeatherSourceRule {}
 
     private String locationService;
-    public static final String LOCATION_SERIVCE_BAIDU = "baidu";
-    public static final String LOCATION_SERIVCE_BAIDU_IP = "baidu_ip";
-    public static final String LOCATION_SERIVCE_AMAP = "amap";
-    public static final String LOCATION_SERIVCE_NATIVE = "native";
+    public static final String LOCATION_SERVICE_BAIDU = "baidu";
+    public static final String LOCATION_SERVICE_BAIDU_IP = "baidu_ip";
+    public static final String LOCATION_SERVICE_AMAP = "amap";
+    public static final String LOCATION_SERVICE_NATIVE = "native";
     @StringDef({
-            LOCATION_SERIVCE_BAIDU, LOCATION_SERIVCE_BAIDU_IP,
-            LOCATION_SERIVCE_AMAP, LOCATION_SERIVCE_NATIVE
+            LOCATION_SERVICE_BAIDU, LOCATION_SERVICE_BAIDU_IP,
+            LOCATION_SERVICE_AMAP, LOCATION_SERVICE_NATIVE
     }) public @interface LocationSourceRule {}
 
     // unit.
@@ -216,7 +216,7 @@ public class SettingsOptionManager {
                 context.getString(R.string.key_chinese_source), WEATHER_SOURCE_ACCU);
 
         locationService = sharedPreferences.getString(
-                context.getString(R.string.key_location_service), LOCATION_SERIVCE_NATIVE);
+                context.getString(R.string.key_location_service), LOCATION_SERVICE_NATIVE);
 
         // unit.
 

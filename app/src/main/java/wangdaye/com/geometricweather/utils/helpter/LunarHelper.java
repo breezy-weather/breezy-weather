@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.utils.helpter;
 
 import androidx.annotation.Size;
 
-import com.tencent.bugly.crashreport.CrashReport;
 import com.xhinliang.lunarcalendar.LunarCalendar;
 
 import java.util.Calendar;
@@ -37,7 +36,7 @@ public class LunarHelper {
                     .replace("卅十", "三十");
         } catch (Exception e) {
             e.printStackTrace();
-            CrashReport.postCatchedException(e);
+            BuglyHelper.report(e);
             return "";
         }
     }

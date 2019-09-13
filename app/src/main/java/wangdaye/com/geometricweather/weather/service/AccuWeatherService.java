@@ -232,7 +232,7 @@ public class AccuWeatherService extends WeatherService {
 
         if (SettingsOptionManager.getInstance(context)
                 .getLocationService()
-                .equals(SettingsOptionManager.LOCATION_SERIVCE_BAIDU_IP)) {
+                .equals(SettingsOptionManager.LOCATION_SERVICE_BAIDU_IP)) {
             requestLocation(
                     context,
                     TextUtils.isEmpty(location.district)

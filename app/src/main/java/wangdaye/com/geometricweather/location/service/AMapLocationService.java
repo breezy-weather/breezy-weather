@@ -63,10 +63,10 @@ public class AMapLocationService extends LocationService {
             }
         }
     };
-
     public AMapLocationService(Context context) {
         manager = NotificationManagerCompat.from(context);
     }
+
 
     @Override
     public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback){

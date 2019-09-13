@@ -8,8 +8,6 @@ import android.graphics.Rect;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.tencent.bugly.crashreport.CrashReport;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -21,6 +19,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.utils.helpter.BuglyHelper;
 import wangdaye.com.geometricweather.weather.TLSCompactHelper;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -140,7 +139,7 @@ public class GeometricWeather extends Application {
 
         LanguageUtils.setLanguage(this, SettingsOptionManager.getInstance(this).getLanguage());
 
-        CrashReport.initCrashReport(getApplicationContext(), "148f1437d5", false);
+        BuglyHelper.init(this);
     }
 
     public void addActivity(GeoActivity a) {
