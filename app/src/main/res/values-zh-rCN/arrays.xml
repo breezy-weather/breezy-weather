@@ -2,16 +2,16 @@
 <resources>
 
     <!-- Chinese source. -->
-    <string-array name="chinese_sources">
-        <item>中国天气网</item>
-        <item>彩云天气</item>
+    <string-array name="weather_sources">
+        <item>中国天气网（仅中国地区）</item>
+        <item>彩云天气（仅中国地区）</item>
         <item>Accu Weather</item>
     </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
         <item>百度定位</item>
-        <item>百度IP定位（仅对中国地区有效）</item>
+        <item>百度IP定位（仅中国地区）</item>
         <item>高德定位</item>
         <item>原生接口</item>
     </string-array>

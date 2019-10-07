@@ -29,6 +29,8 @@
     <string name="pressure">气压</string>
     <string name="visibility">能见度</string>
     <string name="dew_point">露点</string>
+    <string name="cloud_cover">云量</string>
+    <string name="ceiling">云高</string>
     <string name="get_more">获取更多</string>
     <string name="get_more_store">从应用商店获取更多</string>
     <string name="get_more_github">从GitHub获取更多</string>
@@ -60,8 +62,8 @@
     <string name="wind_11">十一级</string>
     <string name="wind_12">灾害级</string>
 
-    <string name="aqi_1">空气 优</string>
-    <string name="aqi_2">空气 良</string>
+    <string name="aqi_1">优</string>
+    <string name="aqi_2">良</string>
     <string name="aqi_3">轻度污染</string>
     <string name="aqi_4">中度污染</string>
     <string name="aqi_5">重度污染</string>
@@ -260,7 +262,7 @@
     <string name="settings_summary_live_wallpaper">将Material天气动画设置为动态壁纸</string>
     <string name="settings_title_service_provider">数据提供商</string>
     <string name="settings_summary_service_provider">选择天气数据及位置信息的数据提供商</string>
-    <string name="settings_title_chinese_source">中国天气源</string>
+    <string name="settings_title_weather_source">天气源</string>
     <string name="settings_title_location_service">位置服务</string>
     <string name="settings_title_dark_mode">暗色模式</string>
     <string name="settings_title_appearance">外观</string>
@@ -273,8 +275,11 @@
     <string name="settings_language">语言</string>
     <string name="settings_title_unit">单位</string>
     <string name="settings_summary_unit">设置天气数据的单位</string>
-    <string name="settings_title_fahrenheit">华氏度</string>
-    <string name="settings_title_imperial">英制单位</string>
+    <string name="settings_title_temperature_unit">温度单位</string>
+    <string name="settings_title_distance_unit">距离单位</string>
+    <string name="settings_title_precipitation_unit">降水单位</string>
+    <string name="settings_title_pressure_unit">压力单位</string>
+    <string name="settings_title_speed_unit">速度单位</string>
     <string name="settings_title_refresh_rate">自动刷新频率</string>
     <string name="settings_title_alert_notification_switch">推送预警通知</string>
     <string name="settings_title_precipitation_notification_switch">推送降水预报</string>

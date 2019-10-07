@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.Constants;
-import wangdaye.com.geometricweather.utils.ValueUtils;
+import wangdaye.com.geometricweather.resource.ResourceUtils;
 
 public class ChronusResourceProvider extends ResourceProvider {
 
@@ -105,7 +105,7 @@ public class ChronusResourceProvider extends ResourceProvider {
     @Override
     public Drawable getProviderIcon() {
         if (iconDrawable == null) {
-            return getWeatherIcon(Weather.KIND_CLEAR, true);
+            return getWeatherIcon(WeatherCode.CLEAR, true);
         } else {
             return iconDrawable;
         }
@@ -115,33 +115,33 @@ public class ChronusResourceProvider extends ResourceProvider {
 
     @NonNull
     @Override
-    public Drawable getWeatherIcon(String weatherKind, boolean dayTime) {
+    public Drawable getWeatherIcon(WeatherCode code, boolean dayTime) {
         try {
-            return ValueUtils.nonNull(
-                    getDrawable(getWeatherIconName(weatherKind, dayTime))
+            return ResourceUtils.nonNull(
+                    getDrawable(getWeatherIconName(code, dayTime))
             );
         } catch (Exception ignore) {
 
         }
 
-        return defaultProvider.getWeatherIcon(weatherKind, dayTime);
+        return defaultProvider.getWeatherIcon(code, dayTime);
     }
 
     @NonNull
     @Override
-    public Uri getWeatherIconUri(String weatherKind, boolean dayTime) {
-        String resName = getWeatherIconName(weatherKind, dayTime);
+    public Uri getWeatherIconUri(WeatherCode code, boolean dayTime) {
+        String resName = getWeatherIconName(code, dayTime);
         int resId = getResId(context, resName, "drawable");
         if (resId != 0) {
             return getDrawableUri(resName);
         } else {
-            return defaultProvider.getWeatherIconUri(weatherKind, dayTime);
+            return defaultProvider.getWeatherIconUri(code, dayTime);
         }
     }
 
     @Override
-    public Drawable[] getWeatherIcons(String weatherKind, boolean dayTime) {
-        return new Drawable[] {getWeatherIcon(weatherKind, dayTime), null, null};
+    public Drawable[] getWeatherIcons(WeatherCode code, boolean dayTime) {
+        return new Drawable[] {getWeatherIcon(code, dayTime), null, null};
     }
 
     @Nullable
@@ -149,7 +149,7 @@ public class ChronusResourceProvider extends ResourceProvider {
         try {
             return ResourcesCompat.getDrawable(
                     context.getResources(),
-                    ValueUtils.nonNull(getResId(context, resName, "drawable")),
+                    ResourceUtils.nonNull(getResId(context, resName, "drawable")),
                     null
             );
         } catch (Exception e) {
@@ -157,46 +157,46 @@ public class ChronusResourceProvider extends ResourceProvider {
         }
     }
 
-    String getWeatherIconName(String weatherKind, boolean daytime) {
-        return "weather" + Constants.SEPARATOR + getWeatherIconCode(weatherKind, daytime);
+    String getWeatherIconName(WeatherCode code, boolean daytime) {
+        return "weather" + Constants.SEPARATOR + getWeatherIconCode(code, daytime);
     }
 
-    private String getWeatherIconCode(String weatherKind, boolean daytime) {
-        switch (weatherKind) {
-            case Weather.KIND_CLEAR:
+    private String getWeatherIconCode(WeatherCode code, boolean daytime) {
+        switch (code) {
+            case CLEAR:
                 return daytime ? "32" : "31";
 
-            case Weather.KIND_PARTLY_CLOUDY:
+            case PARTLY_CLOUDY:
                 return daytime ? "30" : "29";
 
-            case Weather.KIND_CLOUDY:
+            case CLOUDY:
                 return "26";
 
-            case Weather.KIND_RAIN:
+            case RAIN:
                 return "11";
 
-            case Weather.KIND_SNOW:
+            case SNOW:
                 return "16";
 
-            case Weather.KIND_WIND:
+            case WIND:
                 return "24";
 
-            case Weather.KIND_FOG:
+            case FOG:
                 return "20";
 
-            case Weather.KIND_HAZE:
+            case HAZE:
                 return "19";
 
-            case Weather.KIND_SLEET:
+            case SLEET:
                 return "5";
 
-            case Weather.KIND_HAIL:
+            case HAIL:
                 return "17";
 
-            case Weather.KIND_THUNDER:
+            case THUNDER:
                 return daytime ? "37" : "47";
 
-            case Weather.KIND_THUNDERSTORM:
+            case THUNDERSTORM:
                 return daytime ? "38" : "45";
         }
         return "na";
@@ -205,7 +205,7 @@ public class ChronusResourceProvider extends ResourceProvider {
     // animator.
 
     @Override
-    public Animator[] getWeatherAnimators(String weatherKind, boolean dayTime) {
+    public Animator[] getWeatherAnimators(WeatherCode code, boolean dayTime) {
         return new Animator[] {null, null, null};
     }
 
@@ -213,76 +213,76 @@ public class ChronusResourceProvider extends ResourceProvider {
 
     @NonNull
     @Override
-    public Drawable getMinimalLightIcon(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalLightIcon(weatherKind, dayTime);
+    public Drawable getMinimalLightIcon(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getMinimalLightIcon(code, dayTime);
     }
 
     @NonNull
     @Override
-    public Uri getMinimalLightIconUri(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalLightIconUri(weatherKind, dayTime);
+    public Uri getMinimalLightIconUri(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getMinimalLightIconUri(code, dayTime);
     }
 
     @NonNull
     @Override
-    public Drawable getMinimalGreyIcon(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalGreyIcon(weatherKind, dayTime);
+    public Drawable getMinimalGreyIcon(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getMinimalGreyIcon(code, dayTime);
     }
 
     @NonNull
     @Override
-    public Uri getMinimalGreyIconUri(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalGreyIconUri(weatherKind, dayTime);
+    public Uri getMinimalGreyIconUri(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getMinimalGreyIconUri(code, dayTime);
     }
 
     @NonNull
     @Override
-    public Drawable getMinimalDarkIcon(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalDarkIcon(weatherKind, dayTime);
+    public Drawable getMinimalDarkIcon(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getMinimalDarkIcon(code, dayTime);
     }
 
     @NonNull
     @Override
-    public Uri getMinimalDarkIconUri(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalDarkIconUri(weatherKind, dayTime);
+    public Uri getMinimalDarkIconUri(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getMinimalDarkIconUri(code, dayTime);
     }
 
     @NonNull
     @Override
-    public Drawable getMinimalXmlIcon(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalXmlIcon(weatherKind, dayTime);
+    public Drawable getMinimalXmlIcon(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getMinimalXmlIcon(code, dayTime);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @NonNull
     @Override
-    public Icon getMinimalIcon(String weatherKind, boolean dayTime) {
-        return defaultProvider.getMinimalIcon(weatherKind, dayTime);
+    public Icon getMinimalIcon(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getMinimalIcon(code, dayTime);
     }
 
     // shortcut.
 
     @NonNull
     @Override
-    public Drawable getShortcutsIcon(String weatherKind, boolean dayTime) {
-        return defaultProvider.getShortcutsIcon(weatherKind, dayTime);
+    public Drawable getShortcutsIcon(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getShortcutsIcon(code, dayTime);
     }
 
     @NonNull
     @Override
-    public Drawable getShortcutsForegroundIcon(String weatherKind, boolean dayTime) {
-        return defaultProvider.getShortcutsForegroundIcon(weatherKind, dayTime);
+    public Drawable getShortcutsForegroundIcon(WeatherCode code, boolean dayTime) {
+        return defaultProvider.getShortcutsForegroundIcon(code, dayTime);
     }
 
     @NonNull
     @Override
     public Drawable getSunDrawable() {
-        return getWeatherIcon(Weather.KIND_CLEAR, true);
+        return getWeatherIcon(WeatherCode.CLEAR, true);
     }
 
     @NonNull
     @Override
     public Drawable getMoonDrawable() {
-        return getWeatherIcon(Weather.KIND_CLEAR, false);
+        return getWeatherIcon(WeatherCode.CLEAR, false);
     }
 }

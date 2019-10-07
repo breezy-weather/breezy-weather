@@ -21,7 +21,7 @@ public class DayWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public RemoteViews getRemoteViews() {
         return DayWidgetIMP.getRemoteViews(
-                this, getLocationNow(), getLocationNow().weather,
+                this, getLocationNow(),
                 viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
                 hideSubtitle, subtitleDataValueNow
         );

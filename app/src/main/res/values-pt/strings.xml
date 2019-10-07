@@ -173,7 +173,6 @@
     <string name="settings_title_background_free">Livre de Segundo Plano</string>
     <string name="settings_title_service_provider">Provedor de Serviço</string>
     <string name="settings_summary_service_provider">Selecione provedor de serviço de clima e dados de currentPosition.</string>
-    <string name="settings_title_chinese_source">Fonte de dados de clima</string>
     <string name="settings_title_location_service">Serviço de Localização</string>
     <string name="settings_title_dark_mode">Modo Escuro</string>
     <string name="settings_title_ui_style">Estilo de Interface</string>
@@ -184,8 +183,6 @@
     <string name="settings_language">Idioma</string>
     <string name="settings_title_unit">Unidade</string>
     <string name="settings_summary_unit">Selecione unidade de clima.</string>
-    <string name="settings_title_fahrenheit">Fahrenheit</string>
-    <string name="settings_title_imperial">Sistema Imperial</string>
     <string name="settings_title_refresh_rate">Frequência de atualização automática</string>
     <string name="settings_title_alert_notification_switch">Enviar notificação de alerta</string>
     <string name="settings_title_permanent_service">Serviço permanente</string>

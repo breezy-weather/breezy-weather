@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.basic.AwakeForegroundUpdateService;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.wallpaper.material.MaterialLiveWallpaperService;
 import wangdaye.com.geometricweather.ui.activity.AboutActivity;
@@ -71,7 +71,7 @@ public class IntentHelper {
         Intent intent = new Intent(activity, AlertActivity.class);
         intent.putParcelableArrayListExtra(
                 AlertActivity.KEY_ALERT_ACTIVITY_ALERT_LIST,
-                (ArrayList<? extends Parcelable>) weather.alertList
+                (ArrayList<? extends Parcelable>) weather.getAlertList()
         );
         activity.startActivity(intent);
     }

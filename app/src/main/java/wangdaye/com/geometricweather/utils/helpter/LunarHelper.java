@@ -1,10 +1,9 @@
 package wangdaye.com.geometricweather.utils.helpter;
 
-import androidx.annotation.Size;
-
 import com.xhinliang.lunarcalendar.LunarCalendar;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Lunar helper.
@@ -12,15 +11,13 @@ import java.util.Calendar;
 
 public class LunarHelper {
 
-    public static String getLunarDate(@Size(3) String[] dates) {
-        return getLunarDate(
-                Integer.parseInt(dates[0]),
-                Integer.parseInt(dates[1]),
-                Integer.parseInt(dates[2])
-        );
+    public static String getLunarDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return getLunarDate(calendar);
     }
 
-    public static String getLunarDate(Calendar calendar) {
+    private static String getLunarDate(Calendar calendar) {
         return getLunarDate(
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH) + 1,

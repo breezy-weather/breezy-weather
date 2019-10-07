@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.weather.service;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
@@ -15,27 +14,17 @@ import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.api.CNWeatherApi;
-import wangdaye.com.geometricweather.basic.model.CNCity;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Alert;
-import wangdaye.com.geometricweather.basic.model.weather.Aqi;
-import wangdaye.com.geometricweather.basic.model.weather.Base;
-import wangdaye.com.geometricweather.basic.model.weather.Daily;
-import wangdaye.com.geometricweather.basic.model.weather.Hourly;
-import wangdaye.com.geometricweather.basic.model.weather.Index;
-import wangdaye.com.geometricweather.basic.model.weather.RealTime;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.location.ChineseCity;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.weather.converter.CNResultConverter;
 import wangdaye.com.geometricweather.weather.json.cn.CNWeatherResult;
 import wangdaye.com.geometricweather.utils.FileUtils;
 import wangdaye.com.geometricweather.weather.interceptor.GzipInterceptor;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.weather.observer.BaseObserver;
 import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
 
@@ -67,151 +56,17 @@ public class CNWeatherService extends WeatherService {
     @Override
     public void requestWeather(Context context,
                                Location location, @NonNull RequestWeatherCallback callback) {
-        api.getWeather(location.cityId)
+        api.getWeather(location.getCityId())
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<CNWeatherResult>() {
                     @Override
                     public void onSucceed(CNWeatherResult cnWeatherResult) {
-                        try {
-                            History history = new History(
-                                    location.cityId,
-                                    location.getCityName(context),
-                                    cnWeatherResult.weather.get(0).date,
-                                    Integer.parseInt(cnWeatherResult.weather.get(0).info.day.get(2)),
-                                    Integer.parseInt(cnWeatherResult.weather.get(0).info.night.get(2))
-                            );
-                            cnWeatherResult.weather.remove(0);
-
-                            Base base = new Base(
-                                    location.cityId, location.getCityName(context),
-                                    cnWeatherResult.realtime.date,
-                                    WeatherHelper.buildTime(context),
-                                    System.currentTimeMillis()
-                            );
-
-                            RealTime realTime = new RealTime(
-                                    cnWeatherResult.realtime.weather.info,
-                                    getWeatherKind(cnWeatherResult.realtime.weather.img),
-                                    Integer.parseInt(cnWeatherResult.realtime.weather.temperature),
-                                    Integer.parseInt(cnWeatherResult.realtime.feelslike_c),
-                                    cnWeatherResult.realtime.wind.direct,
-                                    WeatherHelper.getWindSpeed(context, cnWeatherResult.realtime.wind.windspeed),
-                                    cnWeatherResult.realtime.wind.power,
-                                    -1,
-                                    ""
-                            );
-
-                            List<Daily> dailyList = new ArrayList<>();
-                            for (CNWeatherResult.WeatherX w : cnWeatherResult.weather) {
-                                Daily daily = new Daily(
-                                        w.date, WeatherHelper.getWeek(context, w.date),
-                                        new String[] {
-                                                w.info.day.get(1),
-                                                w.info.night.get(1)},
-                                        new String[] {
-                                                getWeatherKind(w.info.day.get(0)),
-                                                getWeatherKind(w.info.night.get(0))},
-                                        new int[] {
-                                                Integer.parseInt(w.info.day.get(2)),
-                                                Integer.parseInt(w.info.night.get(2))},
-                                        new String[] {
-                                                w.info.day.get(3),
-                                                w.info.night.get(3)},
-                                        new String[] {null, null},
-                                        new String[] {
-                                                w.info.day.get(4),
-                                                w.info.night.get(4)},
-                                        new int[] {-1, -1},
-                                        new String[] {
-                                                w.info.day.get(5),
-                                                w.info.night.get(5),
-                                                "",
-                                                ""
-                                        },
-                                        "",
-                                        new int[] {-1, -1}
-                                );
-
-                                dailyList.add(daily);
-                            }
-
-                            List<Hourly> hourlyList = new ArrayList<>();
-                            for (CNWeatherResult.HourlyForecast h : cnWeatherResult.hourly_forecast) {
-                                Hourly hourly = new Hourly(
-                                        WeatherHelper.buildTime(context, h.hour),
-                                        TimeManager.isDaylight(
-                                                h.hour,
-                                                cnWeatherResult.weather.get(0).info.day.get(5),
-                                                cnWeatherResult.weather.get(0).info.night.get(5)
-                                        ),
-                                        h.info,
-                                        getWeatherKind(h.img),
-                                        Integer.parseInt(h.temperature),
-                                        -1);
-                                hourlyList.add(hourly);
-                            }
-
-                            float co;
-                            try {
-                                co = Float.parseFloat(cnWeatherResult.pm25.co);
-                            } catch (Exception e) {
-                                co = -1;
-                            }
-                            Aqi aqi = new Aqi(
-                                    WeatherHelper.getAqiQuality(context, cnWeatherResult.pm25.aqi),
-                                    cnWeatherResult.pm25.aqi,
-                                    cnWeatherResult.pm25.pm25,
-                                    cnWeatherResult.pm25.pm10,
-                                    cnWeatherResult.pm25.so2,
-                                    cnWeatherResult.pm25.no2,
-                                    cnWeatherResult.pm25.o3,
-                                    co);
-
-                            Index index = new Index(
-                                    "",
-                                    cnWeatherResult.life.info.daisan.get(1),
-                                    context.getString(R.string.live) + " : " + cnWeatherResult.realtime.wind.direct
-                                            + " " + WeatherHelper.getWindSpeed(context, cnWeatherResult.realtime.wind.windspeed)
-                                            + " (" + cnWeatherResult.realtime.wind.power + ")",
-                                    context.getString(R.string.daytime) + " : " + cnWeatherResult.weather.get(0).info.day.get(3)
-                                            + " " + WeatherHelper.getWindSpeed(context, cnWeatherResult.weather.get(0).info.day.get(4)) + "\n"
-                                            + context.getString(R.string.nighttime) + " : " + cnWeatherResult.weather.get(0).info.night.get(3)
-                                            + " " + WeatherHelper.getWindSpeed(context, cnWeatherResult.weather.get(0).info.night.get(4)),
-                                    context.getString(R.string.sensible_temp) + " : " + cnWeatherResult.realtime.feelslike_c + "℃",
-                                    context.getString(R.string.humidity) + " : " + cnWeatherResult.realtime.weather.humidity,
-                                    cnWeatherResult.life.info.ziwaixian.get(0) + "。" + cnWeatherResult.life.info.ziwaixian.get(1),
-                                    cnWeatherResult.realtime.pressure + "hPa",
-                                    "",
-                                    "");
-
-                            List<Alert> alertList = new ArrayList<>();
-                            for (CNWeatherResult.Alert a : cnWeatherResult.alert) {
-                                int id;
-                                try {
-                                    String[] dates = a.pubTime.split(" ")[0].split("-");
-                                    String[] times = a.pubTime.split(" ")[1].split(":");
-                                    id = Integer.parseInt(a.alarmPic2 + a.alarmPic1 + dates[2] + times[0]);
-                                } catch (Exception e) {
-                                    id = 0;
-                                }
-                                Alert alert = new Alert(
-                                        id,
-                                        a.alarmTp1 + a.alarmTp2 + context.getString(R.string.action_alert),
-                                        a.content,
-                                        context.getString(R.string.publish_at) + " " + a.pubTime
-                                );
-                                alertList.add(alert);
-                            }
-
-                            Weather weather = Weather.buildWeather(
-                                    base, realTime, dailyList, hourlyList, aqi, index, alertList);
-                            if (weather != null) {
-                                callback.requestWeatherSuccess(weather, history, location);
-                            } else {
-                                callback.requestWeatherFailed(location);
-                            }
-                        } catch (Exception e) {
-                            callback.requestWeatherFailed(location);
+                        Weather weather = CNResultConverter.convert(context, location, cnWeatherResult);
+                        if (weather != null) {
+                            location.setWeather(weather);
+                            callback.requestWeatherSuccess(location);
+                        } else {
+                            onFailed();
                         }
                     }
 
@@ -228,7 +83,16 @@ public class CNWeatherService extends WeatherService {
         if (!LanguageUtils.isChinese(query)) {
             return new ArrayList<>();
         }
-        return searchLocations(context, new String[] {query}, true);
+
+        ensureChineseCityDatabase(context);
+
+        List<Location> locationList = new ArrayList<>();
+        List<ChineseCity> cityList = DatabaseHelper.getInstance(context).readChineseCityList(query);
+        for (ChineseCity c : cityList) {
+            locationList.add(c.toLocation(getSource()));
+        }
+
+        return locationList;
     }
 
     @Override
@@ -236,77 +100,103 @@ public class CNWeatherService extends WeatherService {
         if (!location.hasGeocodeInformation()) {
             callback.requestLocationFailed(null);
         }
-        searchLocationsInThread(
-                context,
-                new String[] {location.district, location.city, location.province},
-                false,
-                callback
-        );
-    }
-
-    @NonNull
-    @WorkerThread
-    private List<Location> searchLocations(Context context, String[] queries, boolean fuzzy) {
-        if (DatabaseHelper.getInstance(context).countCNCity() < 3216) {
-            DatabaseHelper.getInstance(context).writeCityList(FileUtils.readCityList(context));
-        }
-
-        List<Location> locationList = new ArrayList<>();
-        List<CNCity> cityList;
-        CNCity city;
-
-        if (fuzzy) {
-            cityList = DatabaseHelper.getInstance(context).fuzzyReadCNCity(queries[0]);
-            if (cityList != null) {
-                for (CNCity c : cityList) {
-                    locationList.add(c.toLocation(getSource()));
-                }
-            }
+        if (location.hasGeocodeInformation()) {
+            searchLocationsInThread(
+                    context,
+                    location.getProvince(),
+                    location.getCity(),
+                    location.getDistrict(),
+                    callback
+            );
         } else {
-            if (queries.length == 3) {
-                city = DatabaseHelper.getInstance(context).readCNCity(queries[0], queries[1], queries[2]);
-                if (city != null) {
-                    locationList.add(city.toLocation(getSource()));
-                }
-            } else {
-                city = DatabaseHelper.getInstance(context).readCNCity(queries[0]);
-                if (city != null) {
-                    locationList.add(city.toLocation(getSource()));
-                }
-            }
+            searchLocationsInThread(
+                    context,
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    callback
+            );
         }
-
-        return locationList;
     }
 
-    private void searchLocationsInThread(Context context, String[] queries, boolean fuzzy,
+    private void searchLocationsInThread(Context context,
+                                         String province, String city, String district,
                                          RequestLocationCallback callback) {
         if (callback == null) {
             return;
         }
 
-        for (int i = 0; i < queries.length; i ++) {
-            queries[i] = formatLocationString(convertChinese(queries[i]));
-        }
+        final String finalProvince = formatLocationString(convertChinese(province));
+        final String finalCity = formatLocationString(convertChinese(city));
+        final String finalDistrict = formatLocationString(convertChinese(district));
 
-        Observable.create((ObservableOnSubscribe<List<Location>>) emitter ->
-                emitter.onNext(searchLocations(context, queries, fuzzy))
-        ).compose(SchedulerTransformer.create())
+        Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
+            ensureChineseCityDatabase(context);
+
+            List<Location> locationList = new ArrayList<>();
+            ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(
+                    finalProvince, finalCity, finalDistrict);
+            if (chineseCity != null) {
+                locationList.add(chineseCity.toLocation(getSource()));
+            }
+
+            emitter.onNext(locationList);
+        }).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<Location>>() {
                     @Override
                     public void onSucceed(List<Location> locations) {
                         if (locations.size() > 0) {
-                            callback.requestLocationSuccess(queries[0], locations);
+                            callback.requestLocationSuccess(finalDistrict, locations);
                         } else {
-                            callback.requestLocationFailed(queries[0]);
+                            onFailed();
                         }
                     }
 
                     @Override
                     public void onFailed() {
-                        callback.requestLocationFailed(queries[0]);
+                        callback.requestLocationFailed(finalDistrict);
                     }
                 }));
+    }
+
+    private void searchLocationsInThread(Context context, float latitude, float longitude,
+                                         RequestLocationCallback callback) {
+        if (callback == null) {
+            return;
+        }
+
+        Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
+            ensureChineseCityDatabase(context);
+
+            List<Location> locationList = new ArrayList<>();
+            ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(latitude, longitude);
+            if (chineseCity != null) {
+                locationList.add(chineseCity.toLocation(getSource()));
+            }
+
+            emitter.onNext(locationList);
+        }).compose(SchedulerTransformer.create())
+                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<Location>>() {
+                    @Override
+                    public void onSucceed(List<Location> locations) {
+                        if (locations.size() > 0) {
+                            callback.requestLocationSuccess(latitude + "," + longitude, locations);
+                        } else {
+                            onFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onFailed() {
+                        callback.requestLocationFailed(latitude + "," + longitude);
+                    }
+                }));
+    }
+
+    @WorkerThread
+    private static void ensureChineseCityDatabase(Context context) {
+        if (DatabaseHelper.getInstance(context).countChineseCity() < 3216) {
+            DatabaseHelper.getInstance(context).writeChineseCityList(FileUtils.readCityList(context));
+        }
     }
 
     @Override
@@ -314,96 +204,7 @@ public class CNWeatherService extends WeatherService {
         compositeDisposable.clear();
     }
 
-    @Override
-    public boolean needGeocodeInformation() {
-        return true;
-    }
-
-    static String getWeatherKind(String icon) {
-        if (TextUtils.isEmpty(icon)) {
-            return Weather.KIND_CLOUDY;
-        }
-
-        switch (icon) {
-            case "0":
-            case "00":
-                return Weather.KIND_CLEAR;
-
-            case "1":
-            case "01":
-                return Weather.KIND_PARTLY_CLOUDY;
-
-            case "2":
-            case "02":
-                return Weather.KIND_CLOUDY;
-
-            case "3":
-            case "7":
-            case "8":
-            case "9":
-            case "03":
-            case "07":
-            case "08":
-            case "09":
-            case "10":
-            case "11":
-            case "12":
-            case "21":
-            case "22":
-            case "23":
-            case "24":
-            case "25":
-                return Weather.KIND_RAIN;
-
-            case "4":
-            case "04":
-                return Weather.KIND_THUNDERSTORM;
-
-            case "5":
-            case "05":
-                return Weather.KIND_HAIL;
-
-            case "6":
-            case "06":
-                return Weather.KIND_SLEET;
-
-            case "13":
-            case "14":
-            case "15":
-            case "16":
-            case "17":
-            case "26":
-            case "27":
-            case "28":
-                return Weather.KIND_SNOW;
-
-            case "18":
-            case "32":
-            case "49":
-            case "57":
-                return Weather.KIND_FOG;
-
-            case "19":
-                return Weather.KIND_SLEET;
-
-            case "20":
-            case "29":
-            case "30":
-                return Weather.KIND_WIND;
-
-            case "53":
-            case "54":
-            case "55":
-            case "56":
-                return Weather.KIND_HAZE;
-
-            default:
-                return Weather.KIND_CLOUDY;
-        }
-    }
-
-    @CNCity.CNCityWeatherSourceRule
-    protected String getSource() {
-        return Location.WEATHER_SOURCE_CN;
+    public ChineseCity.CNWeatherSource getSource() {
+        return ChineseCity.CNWeatherSource.CN;
     }
 }

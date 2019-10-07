@@ -1,63 +1,77 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.List;
 
-/**
- * Weather
- * */
-
 public class Weather {
 
-    public Base base;
-    public RealTime realTime;
-    public List<Daily> dailyList;
-    public List<Hourly> hourlyList;
-    public Aqi aqi;
-    public Index index;
-    public List<Alert> alertList;
+    @NonNull private Base base;
+    @NonNull private Current current;
+    @Nullable private History yesterday;
+    @NonNull private List<Daily> dailyForecast;
+    @NonNull private List<Hourly> hourlyForecast;
+    @NonNull private List<Minutely> minutelyForecast;
+    @NonNull private List<Alert> alertList;
 
-    public static final String KIND_CLEAR = "CLEAR";
-    public static final String KIND_PARTLY_CLOUDY = "PARTLY_CLOUDY";
-    public static final String KIND_CLOUDY = "CLOUDY";
-    public static final String KIND_RAIN = "RAIN";
-    public static final String KIND_SNOW = "SNOW";
-    public static final String KIND_WIND = "WIND";
-    public static final String KIND_FOG = "FOG";
-    public static final String KIND_HAZE = "HAZE";
-    public static final String KIND_SLEET = "SLEET";
-    public static final String KIND_HAIL = "HAIL";
-    public static final String KIND_THUNDER = "THUNDER";
-    public static final String KIND_THUNDERSTORM = "THUNDERSTORM";
-
-    private Weather(Base base, RealTime realTime,
-                    List<Daily> dailyList, List<Hourly> hourlyList,
-                    Aqi aqi, Index index,
-                    List<Alert> alertList) {
+    public Weather(@NonNull Base base, @NonNull Current current, @Nullable History yesterday,
+                   @NonNull List<Daily> dailyForecast,
+                   @NonNull List<Hourly> hourlyForecast,
+                   @NonNull List<Minutely> minutelyForecast,
+                   @NonNull List<Alert> alertList) {
         this.base = base;
-        this.realTime = realTime;
-        this.dailyList = dailyList;
-        this.hourlyList = hourlyList;
-        this.aqi = aqi;
-        this.index = index;
+        this.current = current;
+        this.yesterday = yesterday;
+        this.dailyForecast = dailyForecast;
+        this.hourlyForecast = hourlyForecast;
+        this.minutelyForecast = minutelyForecast;
         this.alertList = alertList;
     }
 
-    @Nullable
-    public static Weather buildWeather(Base base, RealTime realTime,
-                                       List<Daily> dailyList, List<Hourly> hourlyList,
-                                       Aqi aqi, Index index,
-                                       List<Alert> alertList) {
-        if (dailyList == null || dailyList.size() == 0
-                || hourlyList == null || hourlyList.size() == 0) {
-            return null;
-        }
-
-        return new Weather(base, realTime, dailyList, hourlyList, aqi, index, alertList);
+    @NonNull
+    public Base getBase() {
+        return base;
     }
 
-    public boolean isValid(float hours) {
-        return Math.abs(System.currentTimeMillis() - base.timeStamp) < hours * 60 * 60 * 1000;
+    @NonNull
+    public Current getCurrent() {
+        return current;
+    }
+
+    public void setYesterday(@Nullable History yesterday) {
+        this.yesterday = yesterday;
+    }
+
+    @Nullable
+    public History getYesterday() {
+        return yesterday;
+    }
+
+    @NonNull
+    public List<Daily> getDailyForecast() {
+        return dailyForecast;
+    }
+
+    @NonNull
+    public List<Hourly> getHourlyForecast() {
+        return hourlyForecast;
+    }
+
+    @NonNull
+    public List<Minutely> getMinutelyForecast() {
+        return minutelyForecast;
+    }
+
+    @NonNull
+    public List<Alert> getAlertList() {
+        return alertList;
+    }
+
+    public boolean isValid(float hour) {
+        long updateTime = base.getUpdateTime();
+        long currentTime = System.currentTimeMillis();
+        return currentTime >= updateTime
+                && currentTime - updateTime < hour * 60 * 60 * 1000;
     }
 }

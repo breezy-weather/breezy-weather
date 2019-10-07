@@ -1,10 +1,12 @@
 package wangdaye.com.geometricweather.weather.json.accu;
 
+import java.util.Date;
+
 /**
  * Accu realtime result.
  * */
 
-public class AccuRealtimeResult {
+public class AccuCurrentResult {
 
     /**
      * LocalObservationDateTime : 2016-12-22T11:48:00+08:00
@@ -39,8 +41,8 @@ public class AccuRealtimeResult {
      * Link : http://www.accuweather.com/zh/cn/qingdao/1-106573_13_al/current-weather/1-106573_13_al?lang=zh-cn
      */
 
-    public String LocalObservationDateTime;
-    public int EpochTime;
+    public Date LocalObservationDateTime;
+    public long EpochTime;
     public String WeatherText;
     public int WeatherIcon;
     /**

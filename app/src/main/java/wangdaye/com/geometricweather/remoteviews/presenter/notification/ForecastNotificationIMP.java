@@ -7,22 +7,23 @@ import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.remoteviews.presenter.AbstractRemoteViewsPresenter;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Forecast notification utils.
@@ -30,7 +31,8 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
 
-    public static void buildForecastAndSendIt(Context context, @Nullable Weather weather, boolean today) {
+    public static void buildForecastAndSendIt(Context context, Location location, boolean today) {
+        Weather weather = location.getWeather();
         if (weather == null) {
             return;
         }
@@ -39,11 +41,9 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
 
         LanguageUtils.setLanguage(
                 context,
-                SettingsOptionManager.getInstance(context).getLanguage()
+                SettingsOptionManager.getInstance(context).getLanguage().getLocale()
         );
-
-        boolean fahrenheit = SettingsOptionManager.getInstance(context).isFahrenheit();
-
+        
         // create channel.
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
 
@@ -69,24 +69,26 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         // set notification visibility.
         builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
-        String weatherKind;
+        WeatherCode weatherCode;
         boolean daytime;
         if (today) {
-            daytime = TimeManager.isDaylight(weather);
-            weatherKind = weather.dailyList.get(0).weatherKinds[daytime ? 0 : 1];
+            daytime = TimeManager.isDaylight(location);
+            weatherCode = daytime 
+                    ? weather.getDailyForecast().get(0).day().getWeatherCode() 
+                    : weather.getDailyForecast().get(0).night().getWeatherCode();
         } else {
             daytime = true;
-            weatherKind = weather.dailyList.get(1).weatherKinds[0];
+            weatherCode = weather.getDailyForecast().get(1).day().getWeatherCode() ;
         }
 
         // set small icon.
         builder.setSmallIcon(
-                WeatherHelper.getDefaultMinimalXmlIconId(weatherKind, daytime));
+                ResourceHelper.getDefaultMinimalXmlIconId(weatherCode, daytime));
 
         // large icon.
         builder.setLargeIcon(
                 drawableToBitmap(
-                        WeatherHelper.getWeatherIcon(provider, weatherKind, daytime)
+                        ResourceHelper.getWeatherIcon(provider, weatherCode, daytime)
                 )
         );
 
@@ -97,34 +99,24 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
             builder.setSubText(context.getString(R.string.tomorrow));
         }
 
+        TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+
         // title and content.
         if (today) {
-            builder.setContentTitle(
-                    context.getString(R.string.day)
-                            + " " + weather.dailyList.get(0).weathers[0]
-                            + " " + ValueUtils.buildCurrentTemp(
-                                    weather.dailyList.get(0).temps[0], false, fahrenheit
-                            )
-            ).setContentText(
-                    context.getString(R.string.night)
-                            + " " + weather.dailyList.get(0).weathers[1]
-                            + " " + ValueUtils.buildCurrentTemp(
-                                    weather.dailyList.get(0).temps[1], false, fahrenheit
-                            )
+            builder.setContentTitle(context.getString(R.string.day)
+                    + " " + weather.getDailyForecast().get(0).day().getWeatherText()
+                    + " " + weather.getDailyForecast().get(0).day().getTemperature().getTemperature(temperatureUnit)
+            ).setContentText(context.getString(R.string.night)
+                    + " " + weather.getDailyForecast().get(0).night().getWeatherText()
+                    + " " + weather.getDailyForecast().get(0).night().getTemperature().getTemperature(temperatureUnit)
             );
         } else {
-            builder.setContentTitle(
-                    context.getString(R.string.day)
-                            + " " + weather.dailyList.get(1).weathers[0]
-                            + " " + ValueUtils.buildCurrentTemp(
-                                    weather.dailyList.get(1).temps[0], false, fahrenheit
-                            )
-            ).setContentText(
-                    context.getString(R.string.night)
-                            + " " + weather.dailyList.get(1).weathers[1]
-                            + " " + ValueUtils.buildCurrentTemp(
-                                    weather.dailyList.get(1).temps[1], false, fahrenheit
-                            )
+            builder.setContentTitle(context.getString(R.string.day)
+                    + " " + weather.getDailyForecast().get(1).day().getWeatherText()
+                    + " " + weather.getDailyForecast().get(0).day().getTemperature().getTemperature(temperatureUnit)
+            ).setContentText(context.getString(R.string.night)
+                    + " " + weather.getDailyForecast().get(1).night().getWeatherText()
+                    + " " + weather.getDailyForecast().get(1).night().getTemperature().getTemperature(temperatureUnit)
             );
         }
 
@@ -155,8 +147,8 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
                         .getMethod("setSmallIcon", Icon.class)
                         .invoke(
                                 notification,
-                                WeatherHelper.getMinimalIcon(
-                                        provider, weather.realTime.weatherKind, daytime)
+                                ResourceHelper.getMinimalIcon(
+                                        provider, weather.getCurrent().getWeatherCode(), daytime)
                         );
             } catch (Exception ignore) {
                 // do nothing.

@@ -4,14 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.work.WorkerParameters;
 import androidx.work.impl.utils.futures.SettableFuture;
 
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.remoteviews.presenter.notification.ForecastNotificationIMP;
 
 public class TomorrowForecastUpdateWorker extends AsyncUpdateWorker {
@@ -21,10 +18,9 @@ public class TomorrowForecastUpdateWorker extends AsyncUpdateWorker {
     }
 
     @Override
-    public void updateView(Context context, Location location,
-                           @Nullable Weather weather, @Nullable History history) {
+    public void updateView(Context context, Location location) {
         if (ForecastNotificationIMP.isEnable(context, false)) {
-            ForecastNotificationIMP.buildForecastAndSendIt(context, weather, false);
+            ForecastNotificationIMP.buildForecastAndSendIt(context, location, false);
         }
     }
 

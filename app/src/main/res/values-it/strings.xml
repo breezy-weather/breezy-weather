@@ -206,7 +206,7 @@
     <string name="settings_summary_live_wallpaper">Imposta l\'animazione meteo come sfondo</string>
     <string name="settings_title_service_provider">Fonte meteo</string>
     <string name="settings_summary_service_provider">Seleziona fonte per il meteo e servizi di localizzazione.</string>
-    <string name="settings_title_chinese_source">Fonte meteo (cina)</string>
+    <string name="settings_title_weather_source">Fonte meteo</string>
     <string name="settings_title_location_service">Servizio Localizzazione</string>
     <string name="settings_title_dark_mode">Tema</string>
     <string name="settings_title_ui_style">Stile interfaccia</string>
@@ -219,8 +219,6 @@
     <string name="settings_language">Lingua</string>
     <string name="settings_title_unit">Unità di misura</string>
     <string name="settings_summary_unit">Imposta unità di misura meteo.</string>
-    <string name="settings_title_fahrenheit">Fahrenheit</string>
-    <string name="settings_title_imperial">Imperiali</string>
     <string name="settings_title_refresh_rate">Frequenza aggiornamento</string>
     <string name="settings_title_alert_notification_switch">Invia notifiche</string>
     <string name="settings_title_permanent_service">Servizio permanente</string>

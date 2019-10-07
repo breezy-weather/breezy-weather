@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -29,14 +31,17 @@ public class ListDecoration extends RecyclerView.ItemDecoration {
         paint.setStrokeWidth(decorationHeight);
     }
 
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    @Override
+    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         for (int i = 0; i < parent.getChildCount(); i++){
             View child = parent.getChildAt(i);
             c.drawLine(child.getLeft(), child.getBottom(), child.getRight(), child.getBottom(), paint);
         }
     }
 
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    @Override
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
+                               @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         outRect.set(0, 0, 0, decorationHeight);
     }
 }

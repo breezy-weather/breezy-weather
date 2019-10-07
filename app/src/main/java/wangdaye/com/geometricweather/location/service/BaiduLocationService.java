@@ -35,8 +35,8 @@ public class BaiduLocationService extends LocationService {
                     case 61:
                     case 161:
                         Result result = new Result(
-                                String.valueOf(bdLocation.getLatitude()),
-                                String.valueOf(bdLocation.getLongitude())
+                                (float) bdLocation.getLatitude(),
+                                (float) bdLocation.getLongitude()
                         );
                         result.setGeocodeInformation(
                                 bdLocation.getCountry(),
@@ -45,6 +45,9 @@ public class BaiduLocationService extends LocationService {
                                 bdLocation.getDistrict()
                         );
                         result.inChina = bdLocation.getLocationWhere() == BDLocation.LOCATION_WHERE_IN_CN;
+                        if (result.inChina) {
+                            result.GMTOffset = 8;
+                        }
                         callback.onCompleted(result);
                         break;
 
@@ -67,7 +70,7 @@ public class BaiduLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback){
+    public void requestLocation(Context context, @NonNull LocationCallback callback){
         this.callback = callback;
 
         LocationClientOption option = new LocationClientOption();

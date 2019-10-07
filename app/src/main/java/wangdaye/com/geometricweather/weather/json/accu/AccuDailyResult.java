@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.weather.json.accu;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,20 +43,20 @@ public class AccuDailyResult {
     public List<DailyForecasts> DailyForecasts;
 
     public static class Headline {
-        public String EffectiveDate;
-        public int EffectiveEpochDate;
+        public Date EffectiveDate;
+        public long EffectiveEpochDate;
         public int Severity;
         public String Text;
         public String Category;
-        public String EndDate;
-        public int EndEpochDate;
+        public Date EndDate;
+        public long EndEpochDate;
         public String MobileLink;
         public String Link;
     }
 
     public static class DailyForecasts {
-        public String Date;
-        public int EpochDate;
+        public Date Date;
+        public long EpochDate;
         /**
          * Rise : 2016-12-22T07:06:00+08:00
          * EpochRise : 1482361560
@@ -163,17 +164,17 @@ public class AccuDailyResult {
         public List<String> Sources;
 
         public static class Sun {
-            public String Rise;
-            public int EpochRise;
-            public String Set;
-            public int EpochSet;
+            public Date Rise;
+            public long EpochRise;
+            public Date Set;
+            public long EpochSet;
         }
 
         public static class Moon {
-            public String Rise;
-            public int EpochRise;
-            public String Set;
-            public int EpochSet;
+            public Date Rise;
+            public long EpochRise;
+            public Date Set;
+            public long EpochSet;
             public String Phase;
             public int Age;
         }

@@ -3,36 +3,74 @@ package wangdaye.com.geometricweather.basic.model.weather;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import wangdaye.com.geometricweather.db.entity.AlarmEntity;
+import androidx.annotation.ColorInt;
+
+import java.util.Date;
 
 /**
  * Alert.
+ *
+ * All properties are {@link androidx.annotation.NonNull}.
  * */
-
 public class Alert implements Parcelable {
 
-    public int id;
-    public String description;
-    public String content;
-    public String publishTime;
+    private long alertId;
+    private Date date;
+    private long time;
 
-    public Alert(int id, String description, String content, String publishTime) {
-        this.id = id;
+    private String description;
+    private String content;
+
+    private String type;
+    private int priority;
+    @ColorInt private int color;
+
+    public Alert(long alertId, Date date, long time,
+                 String description, String content,
+                 String type, int priority, int color) {
+        this.alertId = alertId;
+        this.date = date;
+        this.time = time;
         this.description = description;
         this.content = content;
-        this.publishTime = publishTime;
+        this.type = type;
+        this.priority = priority;
+        this.color = color;
     }
 
-    public AlarmEntity toAlarmEntity(Base base) {
-        AlarmEntity entity = new AlarmEntity();
-        entity.cityId = base.cityId;
-        entity.city = base.city;
-        entity.alertId = id;
-        entity.content = content;
-        entity.description = description;
-        entity.publishTime = publishTime;
-        return entity;
+    public long getAlertId() {
+        return alertId;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    // parcelable.
 
     @Override
     public int describeContents() {
@@ -41,23 +79,29 @@ public class Alert implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeLong(this.alertId);
+        dest.writeLong(this.date != null ? this.date.getTime() : -1);
+        dest.writeLong(this.time);
         dest.writeString(this.description);
         dest.writeString(this.content);
-        dest.writeString(this.publishTime);
-    }
-
-    public Alert() {
+        dest.writeString(this.type);
+        dest.writeInt(this.priority);
+        dest.writeInt(this.color);
     }
 
     protected Alert(Parcel in) {
-        this.id = in.readInt();
+        this.alertId = in.readLong();
+        long tmpDate = in.readLong();
+        this.date = tmpDate == -1 ? null : new Date(tmpDate);
+        this.time = in.readLong();
         this.description = in.readString();
         this.content = in.readString();
-        this.publishTime = in.readString();
+        this.type = in.readString();
+        this.priority = in.readInt();
+        this.color = in.readInt();
     }
 
-    public static final Parcelable.Creator<Alert> CREATOR = new Parcelable.Creator<Alert>() {
+    public static final Creator<Alert> CREATOR = new Creator<Alert>() {
         @Override
         public Alert createFromParcel(Parcel source) {
             return new Alert(source);

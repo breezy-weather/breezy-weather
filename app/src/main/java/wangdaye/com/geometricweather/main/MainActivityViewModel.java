@@ -15,13 +15,12 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.resource.ListResource;
 import wangdaye.com.geometricweather.basic.model.resource.LocationResource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class MainActivityViewModel extends ViewModel {
 
@@ -61,8 +60,7 @@ public class MainActivityViewModel extends ViewModel {
 
         List<Location> dataList = databaseHelper.readLocationList();
         for (int i = 0; i < dataList.size(); i ++) {
-            dataList.get(i).weather = databaseHelper.readWeather(dataList.get(i));
-            dataList.get(i).history = databaseHelper.readHistory(dataList.get(i).weather);
+            dataList.get(i).setWeather(databaseHelper.readWeather(dataList.get(i)));
         }
         locationList.setValue(new ListResource<>(dataList));
         locationCount = dataList.size();
@@ -90,11 +88,12 @@ public class MainActivityViewModel extends ViewModel {
 
         Location current = dataList.get(index);
 
-        float pollingRateScale = ValueUtils.getUpdateIntervalInHour(
-                SettingsOptionManager.getInstance(activity).getUpdateInterval());
+        float pollingIntervalInHour = SettingsOptionManager.getInstance(activity)
+                .getUpdateInterval()
+                .getIntervalInHour();
         if (current.isUsable()
-                && current.weather != null
-                && current.weather.isValid(pollingRateScale)) {
+                && current.getWeather() != null
+                && current.getWeather().isValid(pollingIntervalInHour)) {
             repository.cancel();
             currentLocation.setValue(LocationResource.success(current, updatedInBackground));
         } else {
@@ -111,7 +110,8 @@ public class MainActivityViewModel extends ViewModel {
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).isCurrentPosition() && Location.isLocal(formattedId)) {
                 return i;
-            } else if (!locationList.get(i).isCurrentPosition() && formattedId.equals(locationList.get(i).cityId)) {
+            } else if (!locationList.get(i).isCurrentPosition()
+                    && locationList.get(i).getCityId().equals(formattedId)) {
                 return i;
             }
         }
@@ -136,8 +136,7 @@ public class MainActivityViewModel extends ViewModel {
             return;
         }
 
-        location.weather = DatabaseHelper.getInstance(activity).readWeather(location);
-        location.history = DatabaseHelper.getInstance(activity).readHistory(location.weather);
+        location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
 
         locationList.setValue(ListResource.changeItem(resource, location, index));
         if (index == currentIndex) {

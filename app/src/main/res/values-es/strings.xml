@@ -193,7 +193,6 @@
     <string name="settings_title_ui_style">Estilo de la IU</string>
     <string name="settings_title_gravity_sensor_switch">Sensor de gravedad</string>
     <string name="settings_language">Idioma</string>
-    <string name="settings_title_fahrenheit">Fahrenheit</string>
     <string name="settings_title_refresh_rate">Intervalo automático de refresco</string>
     <string name="settings_title_alert_notification_switch">Enviar notificación de alerta</string>
     <string name="settings_title_permanent_service">Servicio permanente</string>
@@ -232,9 +231,7 @@
     <string name="settings_title_appearance">Apariencia</string>
     <string name="settings_title_card_display">Tarjetas mostradas</string>
     <string name="settings_title_card_order">Orden de las tarjetas</string>
-    <string name="settings_title_chinese_source">Servicio meteorológico</string>
     <string name="settings_title_dark_mode">Tema oscuro</string>
-    <string name="settings_title_imperial">Unidades imperiales</string>
     <string name="settings_title_live_wallpaper">Fondo de pantalla animado</string>
     <string name="settings_title_location_service">Servicio de ubicación</string>
     <string name="settings_title_minimal_icon">Iconos minimalistas</string>

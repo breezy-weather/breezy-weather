@@ -15,9 +15,9 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Trend recycler view.
@@ -33,6 +33,7 @@ public class TrendRecyclerView extends RecyclerView {
 
     private int highestTemp;
     private int lowestTemp;
+    private TemperatureUnit unit;
 
     private int pointerId;
     private float initialX;
@@ -68,6 +69,8 @@ public class TrendRecyclerView extends RecyclerView {
 
     private void initialize() {
         setWillNotDraw(false);
+
+        this.unit = TemperatureUnit.C;
 
         this.paint = new Paint();
         paint.setAntiAlias(true);
@@ -176,19 +179,13 @@ public class TrendRecyclerView extends RecyclerView {
         paint.setTextAlign(Paint.Align.LEFT);
         paint.setColor(ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd));
         canvas.drawText(
-                ValueUtils.buildAbbreviatedCurrentTemp(
-                        historyTemps[0],
-                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
-                ),
+                Temperature.getShortTemperature(historyTemps[0], unit),
                 2 * MARGIN_TEXT,
                 historyTempYs[0] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint
         );
         canvas.drawText(
-                ValueUtils.buildAbbreviatedCurrentTemp(
-                        historyTemps[1],
-                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
-                ),
+                Temperature.getShortTemperature(historyTemps[1], unit),
                 2 * MARGIN_TEXT,
                 historyTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint
@@ -211,10 +208,13 @@ public class TrendRecyclerView extends RecyclerView {
 
     // control.
 
-    public void setData(@Nullable int[] historyTemps, int highestTemp, int lowestTemp, boolean daily) {
+    public void setData(@Nullable int[] historyTemps,
+                        int highestTemp, int lowestTemp, TemperatureUnit unit,
+                        boolean daily) {
         this.historyTemps = historyTemps;
         this.highestTemp = highestTemp;
         this.lowestTemp = lowestTemp;
+        this.unit = unit;
         if (daily) {
             this.TREND_ITEM_HEIGHT = DisplayUtils.dpToPx(getContext(), 144);
             this.BOTTOM_MARGIN = DisplayUtils.dpToPx(getContext(), 48 + 16);

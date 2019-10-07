@@ -1,95 +1,140 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+
+import androidx.annotation.Size;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
-import wangdaye.com.geometricweather.db.entity.DailyEntity;
+import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 
 /**
  * Daily.
+ *
+ * All properties are {@link androidx.annotation.NonNull}.
  * */
-
 public class Daily {
 
-    public String date;
-    public String week;
-    public String[] weathers;
-    public String[] weatherKinds;
-    public int[] temps;
-    public String[] windDirs;
-    public String[] windSpeeds;
-    public String[] windLevels;
-    public int[] windDegrees;
-    public String[] astros;
-    public String moonPhase;
-    public int[] precipitations;
+    private Date date;
+    private long time;
 
-    public Daily(String date, String week,
-                 String[] weathers, String[] weatherKinds, int[] temps,
-                 String[] windDirs, String[] windSpeeds, String[] windLevels, int[] windDegrees,
-                 String[] astros, String moonPhase,
-                 int[] precipitations) {
+    @Size(2) private HalfDay[] halfDays;
+    @Size(2) private Astro[] astros;
+    private MoonPhase moonPhase;
+    private AirQuality airQuality;
+    private Pollen pollen;
+    private UV uv;
+    private float hoursOfSun;
+
+    public Daily(Date date, long time,
+                 HalfDay day, HalfDay night, Astro sun, Astro moon,
+                 MoonPhase moonPhase, AirQuality airQuality, Pollen pollen, UV uv,
+                 float hoursOfSun) {
         this.date = date;
-        this.week = week;
-        this.weathers = weathers;
-        this.weatherKinds = weatherKinds;
-        this.temps = temps;
-        this.windDirs = windDirs;
-        this.windSpeeds = windSpeeds;
-        this.windLevels = windLevels;
-        this.windDegrees = windDegrees;
-        this.astros = astros;
+        this.time = time;
+        this.halfDays = new HalfDay[] {day, night};
+        this.astros = new Astro[] {sun, moon};
         this.moonPhase = moonPhase;
-        this.precipitations = precipitations;
+        this.airQuality = airQuality;
+        this.pollen = pollen;
+        this.uv = uv;
+        this.hoursOfSun = hoursOfSun;
     }
 
-    public DailyEntity toDailyEntity(Base base) {
-        DailyEntity entity = new DailyEntity();
-        entity.cityId = base.cityId;
-        entity.city = base.city;
-        entity.date = date;
-        entity.week = week;
-        entity.daytimeWeather = weathers[0];
-        entity.nighttimeWeather = weathers[1];
-        entity.daytimeWeatherKind = weatherKinds[0];
-        entity.nighttimeWeatherKind = weatherKinds[1];
-        entity.maxiTemp = temps[0];
-        entity.miniTemp = temps[1];
-        entity.daytimeWindDir = windDirs[0];
-        entity.nighttimeWindDir = windDirs[1];
-        entity.daytimeWindSpeed = windSpeeds[0];
-        entity.nighttimeWindSpeed = windSpeeds[1];
-        entity.daytimeWindLevel = windLevels[0];
-        entity.nighttimeWindLevel = windLevels[1];
-        entity.daytimeWindDegree = windDegrees[0];
-        entity.nighttimeWindDegree = windDegrees[1];
-        entity.sunrise = astros[0];
-        entity.sunset = astros[1];
-        entity.moonrise = astros[2];
-        entity.moonset = astros[3];
-        entity.moonPhase = moonPhase;
-        entity.daytimePrecipitations = precipitations[0];
-        entity.nighttimePrecipitations = precipitations[1];
-        return entity;
+    public HalfDay day() {
+        return halfDays[0];
+    }
+
+    public HalfDay night() {
+        return halfDays[1];
+    }
+
+    public Astro sun() {
+        return astros[0];
+    }
+
+    public Astro moon() {
+        return astros[1];
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public MoonPhase getMoonPhase() {
+        return moonPhase;
+    }
+
+    public AirQuality getAirQuality() {
+        return airQuality;
+    }
+
+    public Pollen getPollen() {
+        return pollen;
+    }
+
+    public UV getUV() {
+        return uv;
+    }
+
+    public float getHoursOfSun() {
+        return hoursOfSun;
+    }
+
+    public String getLongDate(Context context) {
+        return getDate(context.getString(R.string.date_format_long));
+    }
+
+    public String getShortDate(Context context) {
+        return getDate(context.getString(R.string.date_format_short));
     }
 
     @SuppressLint("SimpleDateFormat")
-    public String getDateInFormat(String format) {
+    public String getDate(String format) {
+        return new SimpleDateFormat(format).format(date);
+    }
+
+    public String getWeek(Context context) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(
-                Calendar.YEAR,
-                Integer.parseInt(date.split("-")[0])
-        );
-        calendar.set(
-                Calendar.MONTH,
-                Integer.parseInt(date.split("-")[1]) - 1
-        );
-        calendar.set(
-                Calendar.DAY_OF_MONTH,
-                Integer.parseInt(date.split("-")[2])
-        );
-        return new SimpleDateFormat(format).format(calendar.getTime());
+        calendar.setTime(date);
+
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        if (day == 1){
+            return context.getString(R.string.week_7);
+        } else if (day == 2) {
+            return context.getString(R.string.week_1);
+        } else if (day == 3) {
+            return context.getString(R.string.week_2);
+        } else if (day == 4) {
+            return context.getString(R.string.week_3);
+        } else if (day == 5) {
+            return context.getString(R.string.week_4);
+        } else if (day == 6) {
+            return context.getString(R.string.week_5);
+        } else {
+            return context.getString(R.string.week_6);
+        }
+    }
+
+    public String getLunar() {
+        return LunarHelper.getLunarDate(date);
+    }
+
+    public boolean isToday() {
+        Calendar current = Calendar.getInstance();
+
+        Calendar thisDay = Calendar.getInstance();
+        thisDay.setTime(date);
+
+        return current.get(Calendar.YEAR) == thisDay.get(Calendar.YEAR)
+                && current.get(Calendar.DAY_OF_YEAR) == thisDay.get(Calendar.DAY_OF_YEAR);
     }
 }

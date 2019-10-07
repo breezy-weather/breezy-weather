@@ -11,7 +11,6 @@ import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.cardview.widget.CardView;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
@@ -19,17 +18,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
 import wangdaye.com.geometricweather.ui.widget.moon.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class SunMoonController extends AbstractMainItemController {
 
@@ -40,6 +41,7 @@ public class SunMoonController extends AbstractMainItemController {
     private MoonPhaseView phaseView;
     private SunMoonView sunMoonView;
 
+    private RelativeLayout sunContainer;
     private TextView sunTxt;
     private RelativeLayout moonContainer;
     private TextView moonTxt;
@@ -66,6 +68,7 @@ public class SunMoonController extends AbstractMainItemController {
         this.phaseText = view.findViewById(R.id.container_main_sun_moon_phaseText);
         this.phaseView = view.findViewById(R.id.container_main_sun_moon_phaseView);
         this.sunMoonView = view.findViewById(R.id.container_main_sun_moon_controlView);
+        this.sunContainer = view.findViewById(R.id.container_main_sun_moon_sunContainer);
         this.sunTxt = view.findViewById(R.id.container_main_sun_moon_sunrise_sunset);
         this.moonContainer = view.findViewById(R.id.container_main_sun_moon_moonContainer);
         this.moonTxt = view.findViewById(R.id.container_main_sun_moon_moonrise_moonset);
@@ -87,8 +90,12 @@ public class SunMoonController extends AbstractMainItemController {
             view.setVisibility(View.VISIBLE);
         }
 
-        if (location.weather != null && location.weather.dailyList.size() != 0) {
-            weather = location.weather;
+        if (location.getWeather() != null && location.getWeather().getDailyForecast().size() != 0) {
+            weather = location.getWeather();
+
+            if (!weather.getDailyForecast().get(0).sun().isValid()) {
+                return;
+            }
 
             ensureTime(weather);
             ensurePhaseAngle(weather);
@@ -97,15 +104,13 @@ public class SunMoonController extends AbstractMainItemController {
 
             title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
-            if (TextUtils.isEmpty(weather.dailyList.get(0).moonPhase)) {
+            if (!weather.getDailyForecast().get(0).getMoonPhase().isValid()) {
                 phaseText.setVisibility(View.GONE);
                 phaseView.setVisibility(View.GONE);
             } else {
                 phaseText.setVisibility(View.VISIBLE);
                 phaseText.setTextColor(picker.getTextContentColor(context));
-                phaseText.setText(
-                        WeatherHelper.getMoonPhaseName(context, weather.dailyList.get(0).moonPhase)
-                );
+                phaseText.setText(weather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
                 phaseView.setVisibility(View.VISIBLE);
                 phaseView.setColor(
                         ContextCompat.getColor(context, R.color.colorTextContent_dark),
@@ -114,8 +119,8 @@ public class SunMoonController extends AbstractMainItemController {
                 );
             }
 
-            sunMoonView.setSunDrawable(WeatherHelper.getSunDrawable(provider));
-            sunMoonView.setMoonDrawable(WeatherHelper.getMoonDrawable(provider));
+            sunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider));
+            sunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider));
 
             if (executeEnterAnimation) {
                 sunMoonView.setTime(startTimes, endTimes, startTimes);
@@ -147,17 +152,22 @@ public class SunMoonController extends AbstractMainItemController {
                 );
             }
 
-            sunTxt.setText(
-                    weather.dailyList.get(0).astros[0] + "↑"
-                            + " / "
-                            + weather.dailyList.get(0).astros[1] + "↓"
-            );
-            if (!TextUtils.isEmpty(weather.dailyList.get(0).astros[2])) {
+            if (weather.getDailyForecast().get(0).sun().isValid()) {
+                sunContainer.setVisibility(View.VISIBLE);
+                sunTxt.setText(
+                        weather.getDailyForecast().get(0).sun().getRiseTime(context) + "↑"
+                                + " / "
+                                + weather.getDailyForecast().get(0).sun().getSetTime(context) + "↓"
+                );
+            } else {
+                sunContainer.setVisibility(View.GONE);
+            }
+            if (weather.getDailyForecast().get(0).moon().isValid()) {
                 moonContainer.setVisibility(View.VISIBLE);
                 moonTxt.setText(
-                        weather.dailyList.get(0).astros[2] + "↑"
+                        weather.getDailyForecast().get(0).moon().getRiseTime(context) + "↑"
                                 + " / "
-                                + weather.dailyList.get(0).astros[3] + "↓"
+                                + weather.getDailyForecast().get(0).moon().getSetTime(context) + "↓"
                 );
             } else {
                 moonContainer.setVisibility(View.GONE);
@@ -236,63 +246,78 @@ public class SunMoonController extends AbstractMainItemController {
     }
 
     private void ensureTime(@NonNull Weather weather) {
-        Calendar calendar = Calendar.getInstance();
-        int currentTime = SunMoonView.decodeTime(
-                calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
-        int sunriseTime = SunMoonView.decodeTime(weather.dailyList.get(0).astros[0]);
+        Daily today = weather.getDailyForecast().get(0);
+        Daily tomorrow = weather.getDailyForecast().get(1);
 
-        if (TextUtils.isEmpty(weather.dailyList.get(0).astros[2])
-                || TextUtils.isEmpty(weather.dailyList.get(0).astros[3])
-                || TextUtils.isEmpty(weather.dailyList.get(1).astros[2])
-                || TextUtils.isEmpty(weather.dailyList.get(1).astros[3])) {
+        Calendar calendar = Calendar.getInstance();
+        int currentTime = SunMoonView.decodeTime(calendar);
+
+        calendar.setTime(Objects.requireNonNull(today.sun().getRiseDate()));
+        int sunriseTime = SunMoonView.decodeTime(calendar);
+        
+        calendar.setTime(Objects.requireNonNull(today.sun().getSetDate()));
+        int sunsetTime = SunMoonView.decodeTime(calendar);
+
+        startTimes = new float[2];
+        endTimes = new float[2];
+        currentTimes = new float[] {currentTime, currentTime};
+
+        // sun.
+        startTimes[0] = sunriseTime;
+        endTimes[0] = sunsetTime;
+        
+        // moon.
+        if (!today.moon().isValid() || !tomorrow.moon().isValid()) {
+            // do not have moonrise and moonset data.
             if (currentTime < sunriseTime) {
-                startTimes = new float[] {
-                        sunriseTime,
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]) - 24 * 60
-                };
-                endTimes = new float[] {
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]),
-                        sunriseTime
-                };
-                currentTimes = new float[] {currentTime, currentTime};
+                // predawn. --> moon move from [sunset of yesterday] to [sunrise of today].
+                calendar.setTime(Objects.requireNonNull(
+                        today.sun().getSetDate()
+                ));
+                startTimes[1] = SunMoonView.decodeTime(calendar) - 24 * 60;
+                endTimes[1] = sunriseTime;
             } else {
-                startTimes = new float[] {
-                        sunriseTime,
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1])
-                };
-                endTimes = new float[] {
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]),
-                        SunMoonView.decodeTime(weather.dailyList.get(1).astros[0]) + 24 * 60
-                };
-                currentTimes = new float[] {currentTime, currentTime};
+                // moon move from [sunset of today] to [sunrise of tomorrow]
+                calendar.setTime(Objects.requireNonNull(
+                        today.sun().getSetDate()
+                ));
+                startTimes[1] = SunMoonView.decodeTime(calendar);
+
+                calendar.setTime(Objects.requireNonNull(
+                        tomorrow.sun().getRiseDate()
+                ));
+                endTimes[1] = SunMoonView.decodeTime(calendar) + 24 * 60;
             }
         } else {
+            // have moonrise and moonset data.
             if (currentTime < sunriseTime) {
-                startTimes = new float[] {
-                        sunriseTime,
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[2]) - 24 * 60
-                };
-                endTimes = new float[] {
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]),
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[3])
-                };
+                // predawn. --> moon move from [moonrise of yesterday] to [moonset of today].
+                calendar.setTime(Objects.requireNonNull(
+                        today.moon().getRiseDate()
+                ));
+                startTimes[1] = SunMoonView.decodeTime(calendar) - 24 * 60;
+
+                calendar.setTime(Objects.requireNonNull(
+                        today.moon().getSetDate()
+                ));
+                endTimes[1] = SunMoonView.decodeTime(calendar);
                 if (endTimes[1] < startTimes[1]) {
                     endTimes[1] += 24 * 60;
                 }
-                currentTimes = new float[] {currentTime, currentTime};
             } else {
-                startTimes = new float[] {
-                        sunriseTime,
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[2])
-                };
-                endTimes = new float[] {
-                        SunMoonView.decodeTime(weather.dailyList.get(0).astros[1]),
-                        SunMoonView.decodeTime(weather.dailyList.get(1).astros[3])
-                };
+                // moon move from [moonrise of today] to [moonset of tomorrow].
+                calendar.setTime(Objects.requireNonNull(
+                        today.moon().getRiseDate()
+                ));
+                startTimes[1] = SunMoonView.decodeTime(calendar);
+
+                calendar.setTime(Objects.requireNonNull(
+                        tomorrow.moon().getSetDate()
+                ));
+                endTimes[1] = SunMoonView.decodeTime(calendar);
                 if (endTimes[1] < startTimes[1]) {
                     endTimes[1] += 24 * 60;
                 }
-                currentTimes = new float[] {currentTime, currentTime};
             }
         }
 
@@ -300,7 +325,8 @@ public class SunMoonController extends AbstractMainItemController {
     }
 
     private void ensurePhaseAngle(@NonNull Weather weather) {
-        phaseAngle = WeatherHelper.getMoonPhaseAngle(weather.dailyList.get(0).moonPhase);
+        Integer angle = weather.getDailyForecast().get(0).getMoonPhase().getAngle();
+        phaseAngle = angle == null ? 0 : angle;
     }
 
     private long getPathAnimatorDuration(int index) {

@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.resource;
 
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 
 public class Constants {
 
@@ -63,83 +63,83 @@ public class Constants {
     static final String CONFIG_HAS_SHORTCUT_ICONS = "hasShortcutIcons";
     static final String CONFIG_HAS_SUN_MOON_DRAWABLES = "hasSunMoonDrawables";
 
-    public static String getResourcesName(String weatherKind) {
-        switch (weatherKind) {
-            case Weather.KIND_CLEAR:
+    public static String getResourcesName(WeatherCode code) {
+        switch (code) {
+            case CLEAR:
                 return RESOURCES_CLEAR;
 
-            case Weather.KIND_PARTLY_CLOUDY:
+            case PARTLY_CLOUDY:
                 return RESOURCES_PARTLY_CLOUDY;
 
-            case Weather.KIND_CLOUDY:
+            case CLOUDY:
                 return RESOURCES_CLOUDY;
 
-            case Weather.KIND_RAIN:
+            case RAIN:
                 return RESOURCES_RAIN;
 
-            case Weather.KIND_SNOW:
+            case SNOW:
                 return RESOURCES_SNOW;
 
-            case Weather.KIND_WIND:
+            case WIND:
                 return RESOURCES_WIND;
 
-            case Weather.KIND_FOG:
+            case FOG:
                 return RESOURCES_FOG;
 
-            case Weather.KIND_HAZE:
+            case HAZE:
                 return RESOURCES_HAZE;
 
-            case Weather.KIND_SLEET:
+            case SLEET:
                 return RESOURCES_SLEET;
 
-            case Weather.KIND_HAIL:
+            case HAIL:
                 return RESOURCES_HAIL;
 
-            case Weather.KIND_THUNDER:
+            case THUNDER:
                 return RESOURCES_THUNDER;
 
-            case Weather.KIND_THUNDERSTORM:
+            case THUNDERSTORM:
                 return RESOURCES_THUNDERSTORM;
         }
         return RESOURCES_CLOUDY;
     }
 
-    public static String getShortcutsName(String weatherKind) {
-        switch (weatherKind) {
-            case Weather.KIND_CLEAR:
+    public static String getShortcutsName(WeatherCode code) {
+        switch (code) {
+            case CLEAR:
                 return SHORTCUTS_CLEAR;
 
-            case Weather.KIND_PARTLY_CLOUDY:
+            case PARTLY_CLOUDY:
                 return SHORTCUTS_PARTLY_CLOUDY;
 
-            case Weather.KIND_CLOUDY:
+            case CLOUDY:
                 return SHORTCUTS_CLOUDY;
 
-            case Weather.KIND_RAIN:
+            case RAIN:
                 return SHORTCUTS_RAIN;
 
-            case Weather.KIND_SNOW:
+            case SNOW:
                 return SHORTCUTS_SNOW;
 
-            case Weather.KIND_WIND:
+            case WIND:
                 return SHORTCUTS_WIND;
 
-            case Weather.KIND_FOG:
+            case FOG:
                 return SHORTCUTS_FOG;
 
-            case Weather.KIND_HAZE:
+            case HAZE:
                 return SHORTCUTS_HAZE;
 
-            case Weather.KIND_SLEET:
+            case SLEET:
                 return SHORTCUTS_SLEET;
 
-            case Weather.KIND_HAIL:
+            case HAIL:
                 return SHORTCUTS_HAIL;
 
-            case Weather.KIND_THUNDER:
+            case THUNDER:
                 return SHORTCUTS_THUNDER;
 
-            case Weather.KIND_THUNDERSTORM:
+            case THUNDERSTORM:
                 return SHORTCUTS_THUNDERSTORM;
         }
         return SHORTCUTS_CLOUDY;

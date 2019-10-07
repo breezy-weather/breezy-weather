@@ -4,7 +4,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import android.util.TypedValue;
@@ -12,22 +11,22 @@ import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTextProvider;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
 
-    public static void updateWidgetView(Context context, Location location, @Nullable Weather weather) {
+    public static void updateWidgetView(Context context, Location location) {
         WidgetConfig config = getWidgetConfig(
                 context,
                 context.getString(R.string.sp_widget_text_setting)
         );
 
-        RemoteViews views = getRemoteViews(context, location, weather, config.textColor, config.textSize);
+        RemoteViews views = getRemoteViews(context, location, config.textColor, config.textSize);
 
         if (views != null) {
             AppWidgetManager.getInstance(context).updateAppWidget(
@@ -37,13 +36,14 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
         }
     }
 
-    public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
+    public static RemoteViews getRemoteViews(Context context, Location location,
                                              String textColor, int textSize) {
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
-        boolean fahrenheit = settings.isFahrenheit();
+        TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_text);
+        Weather weather = location.getWeather();
         if (weather == null) {
             return views;
         }
@@ -60,11 +60,11 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setTextViewText(
                 R.id.widget_text_weather,
-                weather.realTime.weather
+                weather.getCurrent().getWeatherText()
         );
         views.setTextViewText(
                 R.id.widget_text_temperature,
-                ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit)
+                weather.getCurrent().getTemperature().getShortTemperature(temperatureUnit)
         );
 
         views.setTextColor(R.id.widget_text_date, textColorInt);

@@ -17,7 +17,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.AqiAdapter;
@@ -25,7 +25,6 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.ArcProgress;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class AqiController extends AbstractMainItemController {
 
@@ -38,6 +37,7 @@ public class AqiController extends AbstractMainItemController {
 
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
+    private int aqiIndex;
 
     private boolean enable;
     private boolean executeEnterAnimation;
@@ -67,13 +67,17 @@ public class AqiController extends AbstractMainItemController {
             view.setVisibility(View.VISIBLE);
         }
 
-        weather = location.weather;
+        weather = location.getWeather();
         if (weather != null) {
-            if (weather.aqi.aqi <= 0) {
+            if (weather.getCurrent().getAirQuality().isValid()) {
                 enable = false;
                 view.setVisibility(View.GONE);
                 return;
             }
+
+            aqiIndex = weather.getCurrent().getAirQuality().getAqiIndex() == null
+                    ? 0
+                    : weather.getCurrent().getAirQuality().getAqiIndex();
 
             enable = true;
             view.setVisibility(View.VISIBLE);
@@ -90,16 +94,16 @@ public class AqiController extends AbstractMainItemController {
                 );
                 progress.setArcBackgroundColor(picker.getLineColor(context));
             } else {
-                int aqiColor = WeatherHelper.getAqiColor(progress.getContext(), weather.aqi.aqi);
-                progress.setProgress(weather.aqi.aqi);
-                progress.setText(String.valueOf(weather.aqi.aqi));
+                int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(progress.getContext());
+                progress.setProgress(aqiIndex);
+                progress.setText(String.valueOf(aqiIndex));
                 progress.setProgressColor(aqiColor, picker.isLightTheme());
                 progress.setArcBackgroundColor(
                         ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
                 );
             }
             progress.setTextColor(picker.getTextContentColor(context));
-            progress.setBottomText(weather.aqi.quality);
+            progress.setBottomText(weather.getCurrent().getAirQuality().getAqiText());
             progress.setBottomTextColor(picker.getTextSubtitleColor(context));
 
             adapter = new AqiAdapter(context, weather, picker, executeEnterAnimation);
@@ -113,7 +117,7 @@ public class AqiController extends AbstractMainItemController {
         if (executeEnterAnimation && enable && weather != null) {
             executeEnterAnimation = false;
 
-            int aqiColor = WeatherHelper.getAqiColor(progress.getContext(), weather.aqi.aqi);
+            int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(progress.getContext());
 
             ValueAnimator progressColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
@@ -132,7 +136,7 @@ public class AqiController extends AbstractMainItemController {
                     progress.setArcBackgroundColor((Integer) animation.getAnimatedValue())
             );
 
-            ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, weather.aqi.aqi);
+            ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, aqiIndex);
             aqiNumber.addUpdateListener(animation -> {
                 progress.setProgress((Float) animation.getAnimatedValue());
                 progress.setText(Integer.toString((int) progress.getProgress()));
@@ -141,7 +145,7 @@ public class AqiController extends AbstractMainItemController {
             attachAnimatorSet = new AnimatorSet();
             attachAnimatorSet.playTogether(progressColor, backgroundColor, aqiNumber);
             attachAnimatorSet.setInterpolator(new DecelerateInterpolator());
-            attachAnimatorSet.setDuration((long) (1500 + weather.aqi.aqi / 400f * 1500));
+            attachAnimatorSet.setDuration((long) (1500 + aqiIndex / 400f * 1500));
             attachAnimatorSet.start();
 
             adapter.executeAnimation();

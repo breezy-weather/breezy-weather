@@ -1,14 +1,12 @@
-package wangdaye.com.geometricweather.basic.model;
+package wangdaye.com.geometricweather.basic.model.location;
 
-import androidx.annotation.StringDef;
-
-import wangdaye.com.geometricweather.db.entity.CNCityEntity;
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 
 /**
- * CN city.
+ * Chinese city.
  * */
 
-public class CNCity {
+public class ChineseCity {
 
     /**
      * cityId : 101010100
@@ -26,27 +24,40 @@ public class CNCity {
     private String latitude;
     private String longitude;
 
-    @StringDef({Location.WEATHER_SOURCE_CN, Location.WEATHER_SOURCE_CAIYUN})
-    public @interface CNCityWeatherSourceRule {}
-
-    public CNCityEntity toCNCityEntity() {
-        CNCityEntity entity = new CNCityEntity();
-        entity.province = getProvince();
-        entity.city = getCity();
-        entity.district = getDistrict();
-        entity.lat = getLatitude();
-        entity.lon = getLongitude();
-        entity.requestKey = getCityId();
-        return entity;
+    public ChineseCity(String cityId,
+                       String province, String city, String district,
+                       String latitude, String longitude) {
+        this.cityId = cityId;
+        this.province = province;
+        this.city = city;
+        this.district = district;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public Location toLocation(@CNCityWeatherSourceRule String source) {
+    public enum CNWeatherSource {
+
+        CN(WeatherSource.CN),
+        CAIYUN(WeatherSource.CAIYUN);
+
+        CNWeatherSource(WeatherSource source) {
+            this.source = source;
+        }
+
+        private WeatherSource source;
+
+        private WeatherSource getSource() {
+            return source;
+        }
+    }
+
+    public Location toLocation(CNWeatherSource source) {
         return new Location(
                 getCityId(),
-                getDistrict().equals("无") ? "" : getDistrict(),
-                getCity(), getProvince(), "中国",
-                getLatitude(), getLongitude(), source,
-                null, null, false, true
+                Float.parseFloat(getLatitude()), Float.parseFloat(getLongitude()), 8,
+                "中国", getProvince(), getCity(), getDistrict().equals("无") ? "" : getDistrict(),
+                null, source.getSource(),
+                false, true
         );
     }
 

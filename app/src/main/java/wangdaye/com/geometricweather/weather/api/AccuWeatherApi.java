@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuMinuteResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuRealtimeResult;
+import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 
 /**
  * Accu api.
@@ -40,10 +40,10 @@ public interface AccuWeatherApi {
                                                                    @Query("language") String language);
 
     @GET("currentconditions/v1/{city_key}.json")
-    Observable<List<AccuRealtimeResult>> getRealtime(@Path("city_key") String city_key,
-                                                     @Query("apikey") String apikey,
-                                                     @Query("language") String language,
-                                                     @Query("details") boolean details);
+    Observable<List<AccuCurrentResult>> getRealtime(@Path("city_key") String city_key,
+                                                    @Query("apikey") String apikey,
+                                                    @Query("language") String language,
+                                                    @Query("details") boolean details);
 
     @GET("forecasts/v1/daily/15day/{city_key}.json")
     Observable<AccuDailyResult> getDaily(@Path("city_key") String city_key,

@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.format.DateFormat;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 
 /**
@@ -41,8 +44,8 @@ public class TimeManager {
         return dayTime;
     }
 
-    public TimeManager update(Context context, @Nullable Weather weather) {
-        dayTime = isDaylight(weather);
+    public TimeManager update(Context context, @NonNull Location location) {
+        dayTime = isDaylight(location);
 
         SharedPreferences.Editor editor = context.getSharedPreferences(
                 PREFERENCE_NAME, Context.MODE_PRIVATE
@@ -52,38 +55,31 @@ public class TimeManager {
         return this;
     }
 
-    public static boolean isDaylight(String hour, String sunrise, String sunset) {
-        try {
-            int targetHour = Integer.parseInt(hour);
-            int sunriseHour = Integer.parseInt(sunrise.split(":")[0]);
-            int sunsetHour = Integer.parseInt(sunset.split(":")[0]);
-            return sunriseHour < targetHour && targetHour <= sunsetHour;
-        } catch (Exception ignore) {
-            return true;
-        }
-    }
+    public static boolean isDaylight(@NonNull Location location) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(location.getTimeZone());
+        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
 
-    public static boolean isDaylight(@Nullable Weather weather) {
-        int time = 60 * Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-                + Calendar.getInstance().get(Calendar.MINUTE);
+        Weather weather = location.getWeather();
+        if (weather != null ) {
+            Date riseDate = weather.getDailyForecast().get(0).sun().getRiseDate();
+            Date setDate = weather.getDailyForecast().get(0).sun().getSetDate();
+            if (riseDate != null && setDate != null) {
+                calendar.setTimeZone(TimeZone.getDefault());
 
-        if (weather != null) {
-            try {
-                int sunrise = 60 * Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[0])
-                        + Integer.parseInt(weather.dailyList.get(0).astros[0].split(":")[1]);
-                int sunset = 60 * Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[0])
-                        + Integer.parseInt(weather.dailyList.get(0).astros[1].split(":")[1]);
-                return sunrise < time && time <= sunset;
-            } catch (Exception e) {
-                int sr = 60 * 6;
-                int ss = 60 * 18;
-                return sr < time && time <= ss;
+                calendar.setTime(riseDate);
+                int sunrise = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+
+                calendar.setTime(setDate);
+                int sunset = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+
+                return sunrise < time && time < sunset;
             }
-        } else {
-            int sr = 60 * 6;
-            int ss = 60 * 18;
-            return sr < time && time <= ss;
         }
+
+        int sr = 60 * 6;
+        int ss = 60 * 18;
+        return sr < time && time < ss;
     }
 
     public static boolean is12Hour(Context context) {

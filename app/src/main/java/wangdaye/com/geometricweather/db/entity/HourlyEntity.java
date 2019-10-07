@@ -1,171 +1,241 @@
 package wangdaye.com.geometricweather.db.entity;
 
-import android.database.sqlite.SQLiteDatabase;
-
+import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
-
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherCodeConverter;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Hourly entity.
+ *
+ * {@link wangdaye.com.geometricweather.basic.model.weather.Hourly}.
  * */
-
 @Entity
 public class HourlyEntity {
-    // data
-    @Id
-    public Long id;
-    public String cityId;
-    public String city;
-    
-    public String time;
-    public boolean dayTime;
-    public String weather;
-    public String weatherKind;
-    public int temp;
-    public int precipitation;
 
-    @Generated(hash = 88370744)
-    public HourlyEntity(Long id, String cityId, String city, String time, boolean dayTime, String weather, String weatherKind,
-            int temp, int precipitation) {
+    @Id public Long id;
+    public String cityId;
+
+    public Date date;
+    public long time;
+    public boolean daylight;
+
+    public String weatherText;
+    @Convert(converter = WeatherCodeConverter.class, columnType = String.class)
+    public WeatherCode weatherCode;
+
+    public int temperature;
+    public Integer realFeelTemperature;
+    public Integer realFeelShaderTemperature;
+    public Integer apparentTemperature;
+    public Integer windChillTemperature;
+    public Integer wetBulbTemperature;
+    public Integer degreeDayTemperature;
+
+    public Float totalPrecipitation;
+    public Float thunderstormPrecipitation;
+    public Float rainPrecipitation;
+    public Float snowPrecipitation;
+    public Float icePrecipitation;
+
+    public Float totalPrecipitationProbability;
+    public Float thunderstormPrecipitationProbability;
+    public Float rainPrecipitationProbability;
+    public Float snowPrecipitationProbability;
+    public Float icePrecipitationProbability;
+
+    @Generated(hash = 1338968111)
+    public HourlyEntity(Long id, String cityId, Date date, long time,
+            boolean daylight, String weatherText, WeatherCode weatherCode,
+            int temperature, Integer realFeelTemperature,
+            Integer realFeelShaderTemperature, Integer apparentTemperature,
+            Integer windChillTemperature, Integer wetBulbTemperature,
+            Integer degreeDayTemperature, Float totalPrecipitation,
+            Float thunderstormPrecipitation, Float rainPrecipitation,
+            Float snowPrecipitation, Float icePrecipitation,
+            Float totalPrecipitationProbability,
+            Float thunderstormPrecipitationProbability,
+            Float rainPrecipitationProbability, Float snowPrecipitationProbability,
+            Float icePrecipitationProbability) {
         this.id = id;
         this.cityId = cityId;
-        this.city = city;
+        this.date = date;
         this.time = time;
-        this.dayTime = dayTime;
-        this.weather = weather;
-        this.weatherKind = weatherKind;
-        this.temp = temp;
-        this.precipitation = precipitation;
+        this.daylight = daylight;
+        this.weatherText = weatherText;
+        this.weatherCode = weatherCode;
+        this.temperature = temperature;
+        this.realFeelTemperature = realFeelTemperature;
+        this.realFeelShaderTemperature = realFeelShaderTemperature;
+        this.apparentTemperature = apparentTemperature;
+        this.windChillTemperature = windChillTemperature;
+        this.wetBulbTemperature = wetBulbTemperature;
+        this.degreeDayTemperature = degreeDayTemperature;
+        this.totalPrecipitation = totalPrecipitation;
+        this.thunderstormPrecipitation = thunderstormPrecipitation;
+        this.rainPrecipitation = rainPrecipitation;
+        this.snowPrecipitation = snowPrecipitation;
+        this.icePrecipitation = icePrecipitation;
+        this.totalPrecipitationProbability = totalPrecipitationProbability;
+        this.thunderstormPrecipitationProbability = thunderstormPrecipitationProbability;
+        this.rainPrecipitationProbability = rainPrecipitationProbability;
+        this.snowPrecipitationProbability = snowPrecipitationProbability;
+        this.icePrecipitationProbability = icePrecipitationProbability;
     }
-
     @Generated(hash = 617074574)
     public HourlyEntity() {
     }
-
-    // insert.
-
-    public static void insertDailyList(SQLiteDatabase database, Location location, Weather weather) {
-        if (weather == null) {
-            return;
-        }
-
-        deleteHourlyEntityList(
-                database,
-                searchLocationHourlyEntity(database, location)
-        );
-
-        List<HourlyEntity> entityList = new ArrayList<>();
-        for (int i = 0; i < weather.hourlyList.size(); i ++) {
-            entityList.add(weather.hourlyList.get(i).toHourlyEntity(weather.base));
-        }
-        new DaoMaster(database)
-                .newSession()
-                .getHourlyEntityDao()
-                .insertInTx(entityList);
-    }
-
-    // delete.
-
-    public static void deleteHourlyList(SQLiteDatabase database, Location location) {
-        List<HourlyEntity> entityList = searchLocationHourlyEntity(database, location);
-        deleteHourlyEntityList(database, entityList);
-    }
-
-    private static void deleteHourlyEntityList(SQLiteDatabase database, List<HourlyEntity> list) {
-        new DaoMaster(database)
-                .newSession()
-                .getHourlyEntityDao()
-                .deleteInTx(list);
-    }
-
-    // search.
-
-    public static List<HourlyEntity> searchLocationHourlyEntity(SQLiteDatabase database, Location location) {
-        return new DaoMaster(database)
-                .newSession()
-                .getHourlyEntityDao()
-                .queryBuilder()
-                .where(HourlyEntityDao.Properties.CityId.eq(location.cityId))
-                .list();
-    }
-
     public Long getId() {
         return this.id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getCityId() {
         return this.cityId;
     }
-
     public void setCityId(String cityId) {
         this.cityId = cityId;
     }
-
-    public String getCity() {
-        return this.city;
+    public Date getDate() {
+        return this.date;
     }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setDate(Date date) {
+        this.date = date;
     }
-
-    public String getTime() {
+    public long getTime() {
         return this.time;
     }
-
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
-
-    public boolean getDayTime() {
-        return this.dayTime;
+    public boolean getDaylight() {
+        return this.daylight;
     }
-
-    public void setDayTime(boolean dayTime) {
-        this.dayTime = dayTime;
+    public void setDaylight(boolean daylight) {
+        this.daylight = daylight;
     }
-
-    public String getWeather() {
-        return this.weather;
+    public String getWeatherText() {
+        return this.weatherText;
     }
-
-    public void setWeather(String weather) {
-        this.weather = weather;
+    public void setWeatherText(String weatherText) {
+        this.weatherText = weatherText;
     }
-
-    public String getWeatherKind() {
-        return this.weatherKind;
+    public WeatherCode getWeatherCode() {
+        return this.weatherCode;
     }
-
-    public void setWeatherKind(String weatherKind) {
-        this.weatherKind = weatherKind;
+    public void setWeatherCode(WeatherCode weatherCode) {
+        this.weatherCode = weatherCode;
     }
-
-    public int getTemp() {
-        return this.temp;
+    public int getTemperature() {
+        return this.temperature;
     }
-
-    public void setTemp(int temp) {
-        this.temp = temp;
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
     }
-
-    public int getPrecipitation() {
-        return this.precipitation;
+    public Integer getRealFeelTemperature() {
+        return this.realFeelTemperature;
     }
-
-    public void setPrecipitation(int precipitation) {
-        this.precipitation = precipitation;
+    public void setRealFeelTemperature(Integer realFeelTemperature) {
+        this.realFeelTemperature = realFeelTemperature;
+    }
+    public Integer getRealFeelShaderTemperature() {
+        return this.realFeelShaderTemperature;
+    }
+    public void setRealFeelShaderTemperature(Integer realFeelShaderTemperature) {
+        this.realFeelShaderTemperature = realFeelShaderTemperature;
+    }
+    public Integer getApparentTemperature() {
+        return this.apparentTemperature;
+    }
+    public void setApparentTemperature(Integer apparentTemperature) {
+        this.apparentTemperature = apparentTemperature;
+    }
+    public Integer getWindChillTemperature() {
+        return this.windChillTemperature;
+    }
+    public void setWindChillTemperature(Integer windChillTemperature) {
+        this.windChillTemperature = windChillTemperature;
+    }
+    public Integer getWetBulbTemperature() {
+        return this.wetBulbTemperature;
+    }
+    public void setWetBulbTemperature(Integer wetBulbTemperature) {
+        this.wetBulbTemperature = wetBulbTemperature;
+    }
+    public Integer getDegreeDayTemperature() {
+        return this.degreeDayTemperature;
+    }
+    public void setDegreeDayTemperature(Integer degreeDayTemperature) {
+        this.degreeDayTemperature = degreeDayTemperature;
+    }
+    public Float getTotalPrecipitation() {
+        return this.totalPrecipitation;
+    }
+    public void setTotalPrecipitation(Float totalPrecipitation) {
+        this.totalPrecipitation = totalPrecipitation;
+    }
+    public Float getThunderstormPrecipitation() {
+        return this.thunderstormPrecipitation;
+    }
+    public void setThunderstormPrecipitation(Float thunderstormPrecipitation) {
+        this.thunderstormPrecipitation = thunderstormPrecipitation;
+    }
+    public Float getRainPrecipitation() {
+        return this.rainPrecipitation;
+    }
+    public void setRainPrecipitation(Float rainPrecipitation) {
+        this.rainPrecipitation = rainPrecipitation;
+    }
+    public Float getSnowPrecipitation() {
+        return this.snowPrecipitation;
+    }
+    public void setSnowPrecipitation(Float snowPrecipitation) {
+        this.snowPrecipitation = snowPrecipitation;
+    }
+    public Float getIcePrecipitation() {
+        return this.icePrecipitation;
+    }
+    public void setIcePrecipitation(Float icePrecipitation) {
+        this.icePrecipitation = icePrecipitation;
+    }
+    public Float getTotalPrecipitationProbability() {
+        return this.totalPrecipitationProbability;
+    }
+    public void setTotalPrecipitationProbability(
+            Float totalPrecipitationProbability) {
+        this.totalPrecipitationProbability = totalPrecipitationProbability;
+    }
+    public Float getThunderstormPrecipitationProbability() {
+        return this.thunderstormPrecipitationProbability;
+    }
+    public void setThunderstormPrecipitationProbability(
+            Float thunderstormPrecipitationProbability) {
+        this.thunderstormPrecipitationProbability = thunderstormPrecipitationProbability;
+    }
+    public Float getRainPrecipitationProbability() {
+        return this.rainPrecipitationProbability;
+    }
+    public void setRainPrecipitationProbability(
+            Float rainPrecipitationProbability) {
+        this.rainPrecipitationProbability = rainPrecipitationProbability;
+    }
+    public Float getSnowPrecipitationProbability() {
+        return this.snowPrecipitationProbability;
+    }
+    public void setSnowPrecipitationProbability(
+            Float snowPrecipitationProbability) {
+        this.snowPrecipitationProbability = snowPrecipitationProbability;
+    }
+    public Float getIcePrecipitationProbability() {
+        return this.icePrecipitationProbability;
+    }
+    public void setIcePrecipitationProbability(Float icePrecipitationProbability) {
+        this.icePrecipitationProbability = icePrecipitationProbability;
     }
 }

@@ -6,7 +6,6 @@ import android.os.Build;
 
 import wangdaye.com.geometricweather.background.polling.permanent.observer.TimeObserverService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Service helper.
@@ -21,7 +20,7 @@ public class PermanentServiceHelper {
                     .putExtra(TimeObserverService.KEY_CONFIG_CHANGED, true)
                     .putExtra(
                             TimeObserverService.KEY_POLLING_RATE,
-                            ValueUtils.getUpdateIntervalInHour(settings.getUpdateInterval())
+                            settings.getUpdateInterval().getIntervalInHour()
                     ).putExtra(
                             TimeObserverService.KEY_TODAY_FORECAST_TIME,
                             settings.isTodayForecastEnabled()

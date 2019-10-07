@@ -4,40 +4,40 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayDetailsProvider;
+import wangdaye.com.geometricweather.basic.model.option.unit.RelativeHumidityUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
 
-    public static void updateWidgetView(Context context, Location location, @Nullable Weather weather) {
+    public static void updateWidgetView(Context context, Location location) {
         WidgetConfig config = getWidgetConfig(
                 context,
                 context.getString(R.string.sp_widget_clock_day_details_setting)
         );
 
         RemoteViews views = getRemoteViews(
-                context, location, weather,
+                context, location,
                 config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont
         );
 
@@ -48,20 +48,21 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static RemoteViews getRemoteViews(Context context,
-                                             Location location, @Nullable Weather weather,
+                                             Location location,
                                              String cardStyle, int cardAlpha,
                                              String textColor, int textSize, String clockFont) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_details);
+        Weather weather = location.getWeather();
         if (weather == null) {
             return views;
         }
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.isDaylight(weather);
+        boolean dayTime = TimeManager.isDaylight(location);
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
-        boolean fahrenheit = settings.isFahrenheit();
+        TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
@@ -76,9 +77,9 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setImageViewUri(
                 R.id.widget_clock_day_icon,
-                WeatherHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                         provider,
-                        weather.realTime.weatherKind,
+                        weather.getCurrent().getWeatherCode(),
                         dayTime,
                         minimalIcon,
                         color.darkText
@@ -87,30 +88,32 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setTextViewText(
                 R.id.widget_clock_day_lunar,
-                LanguageUtils.getLanguageCode(context).startsWith("zh")
-                        ? (" - " + LunarHelper.getLunarDate(Calendar.getInstance()))
+                settings.getLanguage().getCode().startsWith("zh")
+                        ? (" - " + LunarHelper.getLunarDate(new Date()))
                         : ""
         );
 
         views.setTextViewText(
                 R.id.widget_clock_day_subtitle,
-                weather.base.city
+                location.getCityName(context)
                         + " "
-                        + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit)
+                        + weather.getCurrent().getTemperature().getTemperature(temperatureUnit)
         );
 
         views.setTextViewText(
                 R.id.widget_clock_day_todayTemp,
-                context.getString(R.string.today)
-                        + " "
-                        + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit)
+                context.getString(R.string.today) + " " + Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                        temperatureUnit
+                )
         );
 
         views.setTextViewText(
                 R.id.widget_clock_day_sensibleTemp,
                 context.getString(R.string.feels_like)
                         + " "
-                        + ValueUtils.buildCurrentTemp(weather.realTime.sensibleTemp, false, fahrenheit)
+                        + weather.getCurrent().getTemperature().getRealFeelTemperature(temperatureUnit)
         );
 
         views.setTextViewText(
@@ -120,7 +123,7 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setTextViewText(
                 R.id.widget_clock_day_wind,
-                context.getString(R.string.wind) + " " + weather.realTime.windLevel
+                context.getString(R.string.wind) + " " + weather.getCurrent().getWind().getLevel()
         );
 
         views.setTextColor(R.id.widget_clock_day_clock_light, textColorInt);
@@ -207,12 +210,16 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static String getAQIHumidityTempText(Context context, Weather weather) {
-        if (weather.aqi != null
-                && weather.aqi.aqi >= 0
-                && !TextUtils.isEmpty(weather.aqi.quality)) {
-            return "AQI " + weather.aqi.aqi + " (" + weather.aqi.quality + ")";
+        if (weather.getCurrent().getAirQuality().getAqiIndex() != null
+                && weather.getCurrent().getAirQuality().getAqiText() != null) {
+            return "AQI "
+                    + weather.getCurrent().getAirQuality().getAqiIndex()
+                    + " ("
+                    + weather.getCurrent().getAirQuality().getAqiText()
+                    + ")";
         } else {
-            return context.getString(R.string.humidity) + " " + weather.index.humidity.split(":")[1];
+            return context.getString(R.string.humidity) + " " + RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
+                    WidgetUtils.getNonNullValue(weather.getCurrent().getRelativeHumidity(), 0));
         }
     }
 

@@ -8,8 +8,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
@@ -52,21 +51,16 @@ public class PollingUpdateHelper {
     private void requestData(int position, boolean located) {
         Weather old = DatabaseHelper.getInstance(context).readWeather(locationList.get(position));
         if (old != null && old.isValid(0.25F)) {
+            locationList.get(position).setWeather(old);
             new RequestWeatherCallback(old, position, locationList.size()).requestWeatherSuccess(
-                    old,
-                    DatabaseHelper.getInstance(context).readHistory(old),
-                    locationList.get(position)
-            );
+                    locationList.get(position));
             return;
         }
         if (locationList.get(position).isCurrentPosition() && !located) {
-            locationHelper.requestLocation(
-                    context, locationList.get(position), true,
-                    new RequestLocationCallback(position, locationList.size())
-            );
+            locationHelper.requestLocation(context, locationList.get(position),
+                    new RequestLocationCallback(position, locationList.size()));
         } else {
-            weatherHelper.requestWeather(
-                    context, locationList.get(position),
+            weatherHelper.requestWeather(context, locationList.get(position),
                     new RequestWeatherCallback(old, position, locationList.size())
             );
         }
@@ -75,7 +69,7 @@ public class PollingUpdateHelper {
     // interface.
 
     public interface OnPollingUpdateListener {
-        void onUpdateCompleted(Location location, Weather weather, Weather old,
+        void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                boolean succeed, int index, int total);
         void onPollingCompleted();
     }
@@ -137,18 +131,19 @@ public class PollingUpdateHelper {
         }
 
         @Override
-        public void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
-                                          @NonNull Location requestLocation) {
+        public void requestWeatherSuccess(@NonNull Location requestLocation) {
+            locationList.set(index, requestLocation);
+
+            Weather weather = requestLocation.getWeather();
             if (weather != null
                     && (old == null
-                    || weather.base.timeStamp != old.base.timeStamp)) {
+                    || weather.getBase().getTimeStamp() != old.getBase().getTimeStamp())) {
                 if (listener != null) {
-                    listener.onUpdateCompleted(
-                            locationList.get(index), weather, old, true, index, total);
+                    listener.onUpdateCompleted(requestLocation, old, true, index, total);
                 }
-                IntentHelper.sendBackgroundUpdateBroadcast(context, locationList.get(index));
+                IntentHelper.sendBackgroundUpdateBroadcast(context, requestLocation);
 
-                if (index + 1 < locationList.size()) {
+                if (index + 1 < total) {
                     requestData(index + 1, false);
                 } else if (listener != null) {
                     listener.onPollingCompleted();
@@ -160,10 +155,12 @@ public class PollingUpdateHelper {
 
         @Override
         public void requestWeatherFailed(@NonNull Location requestLocation) {
+            locationList.set(index, requestLocation);
+
             if (listener != null) {
-                listener.onUpdateCompleted(requestLocation, old, old, false, index, total);
+                listener.onUpdateCompleted(requestLocation, old, false, index, total);
             }
-            if (index + 1 < locationList.size()) {
+            if (index + 1 < total) {
                 requestData(index + 1, false);
             } else if (listener != null) {
                 listener.onPollingCompleted();

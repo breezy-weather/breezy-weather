@@ -140,7 +140,6 @@
     <string name="settings_category_basic">Allgemein</string>
     <string name="settings_title_background_free">Hintergrund</string>
     <string name="settings_language">Sprache</string>
-    <string name="settings_title_fahrenheit">Fahrenheit</string>
     <string name="settings_title_refresh_rate">Aktualisierungsintervall</string>
     <string name="settings_title_permanent_service">Dienst</string>
     <string name="settings_category_forecast">Vorhersagebenachrichtigung</string>

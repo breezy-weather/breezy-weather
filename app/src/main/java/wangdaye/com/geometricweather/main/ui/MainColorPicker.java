@@ -5,25 +5,26 @@ import android.content.Context;
 import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
 
+import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
 
 public class MainColorPicker {
 
     private boolean daytime;
-    private String darkMode;
+    private DarkMode darkMode;
 
     private boolean lightTheme;
 
-    public MainColorPicker(boolean daytime, String darkMode) {
+    public MainColorPicker(boolean daytime, DarkMode darkMode) {
         this.daytime = daytime;
         this.darkMode = darkMode;
 
         switch (darkMode) {
-            case "light":
+            case LIGHT:
                 this.lightTheme = true;
                 break;
 
-            case "dark":
+            case DARK:
                 this.lightTheme = false;
                 break;
 
@@ -37,7 +38,7 @@ public class MainColorPicker {
         return daytime;
     }
 
-    public String getDarkMode() {
+    public DarkMode getDarkMode() {
         return darkMode;
     }
 

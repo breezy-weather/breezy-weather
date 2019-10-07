@@ -4,7 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import android.view.View;
 
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;

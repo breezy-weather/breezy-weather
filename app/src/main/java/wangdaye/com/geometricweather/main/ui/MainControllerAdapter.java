@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.controller.AbstractMainItemController;
 import wangdaye.com.geometricweather.main.ui.controller.AqiController;
 import wangdaye.com.geometricweather.main.ui.controller.DetailsController;
@@ -27,12 +27,12 @@ public class MainControllerAdapter {
     private int screenHeight;
 
     public MainControllerAdapter(@NonNull Activity activity,
-                          @NonNull WeatherView weatherView, @NonNull Location location,
-                          @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+                                 @NonNull WeatherView weatherView, @NonNull Location location,
+                                 @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
         this.location = location;
 
         this.controllerList = new ArrayList<>();
-        if (location.weather != null) {
+        if (location.getWeather() != null) {
             controllerList.add(new HeaderController(activity, weatherView, provider, picker));
             controllerList.add(new FirstTrendCardController(activity, weatherView, provider, picker));
             controllerList.add(new SecondTrendCardController(activity, weatherView, provider, picker));

@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.weather.json.accu;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class AccuAlertResult {
      * Class : null
      * Level : 黄色
      * Color : {"Name":"Yellow","Red":255,"Green":255,"Blue":0,"Hex":"#FFFF00"}
-     * Source : 中国气象局公共气象服务中心
+     * SettingsWeatherSource : 中国气象局公共气象服务中心
      * SourceId : 5
      * Disclaimer : null
      * Area : [{"Name":"青岛市","StartTime":"2016-12-21T14:50:00+08:00","EpochStartTime":1482303000,"EndTime":null,"EpochEndTime":null,"LastAction":{"Localized":"新建","English":"New"},"Text":"青岛市气象台2016年12月21日14时50分继续发布霾黄色预警信号：预计今天下午到夜间，气象扩散条件一般，我市大部分地区仍有中度霾天气，短时可能出现重度霾，请注意防范。","LanguageCode":"zh-cn","Summary":"霾黄色预警 生效。来源：中国气象局公共气象服务中心"}]
@@ -39,7 +40,6 @@ public class AccuAlertResult {
     public int Priority;
     public String Type;
     public String TypeID;
-    public Object Class;
     public String Level;
     /**
      * Name : Yellow
@@ -52,7 +52,6 @@ public class AccuAlertResult {
     public Color Color;
     public String Source;
     public int SourceId;
-    public Object Disclaimer;
     public String MobileLink;
     public String Link;
     /**
@@ -84,10 +83,10 @@ public class AccuAlertResult {
 
     public static class Area {
         public String Name;
-        public String StartTime;
-        public int EpochStartTime;
-        public Object EndTime;
-        public Object EpochEndTime;
+        public Date StartTime;
+        public long EpochStartTime;
+        public Date EndTime;
+        public long EpochEndTime;
         /**
          * Localized : 新建
          * English : New

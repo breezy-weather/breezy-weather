@@ -7,17 +7,17 @@ import android.service.quicksettings.Tile;
 
 import androidx.annotation.RequiresApi;
 
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
- * Geo tile service.
+ * Tile service.
  * */
 
 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -65,21 +65,18 @@ public class TileService extends android.service.quicksettings.TileService {
             return;
         }
         Location location = DatabaseHelper.getInstance(context).readLocationList().get(0);
-        location.weather = DatabaseHelper.getInstance(context).readWeather(location);
-        if (location.weather != null) {
+        Weather weather = DatabaseHelper.getInstance(context).readWeather(location);
+        if (weather != null) {
             tile.setIcon(
-                    WeatherHelper.getMinimalIcon(
+                    ResourceHelper.getMinimalIcon(
                             ResourcesProviderFactory.getNewInstance(),
-                            location.weather.realTime.weatherKind,
+                            weather.getCurrent().getWeatherCode(),
                             TimeManager.getInstance(context).isDayTime()
                     )
             );
             tile.setLabel(
-                    ValueUtils.buildCurrentTemp(
-                            location.weather.realTime.temp,
-                            false,
-                            SettingsOptionManager.getInstance(context).isFahrenheit()
-                    )
+                    weather.getCurrent().getTemperature().getTemperature(
+                            SettingsOptionManager.getInstance(context).getTemperatureUnit())
             );
             tile.setState(Tile.STATE_INACTIVE);
             tile.updateTile();

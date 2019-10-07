@@ -8,7 +8,8 @@ import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.CardOrder;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -40,9 +41,7 @@ public class SecondTrendCardController extends AbstractMainItemController {
 
     @Override
     public void onBindView(@NonNull Location location) {
-        if (SettingsOptionManager.getInstance(context)
-                .getCardOrder()
-                .equals(SettingsOptionManager.CARD_ORDER_DAILY_FIRST)) {
+        if (SettingsOptionManager.getInstance(context).getCardOrder() == CardOrder.DAILY_FIRST) {
             if (!isDisplay(SettingsOptionManager.CARD_HOURLY_OVERVIEW)) {
                 view.setVisibility(View.GONE);
                 return;
@@ -58,21 +57,19 @@ public class SecondTrendCardController extends AbstractMainItemController {
             }
         }
 
-        if (location.weather != null) {
+        if (location.getWeather() != null) {
             card.setCardBackgroundColor(picker.getRootColor(context));
 
             title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
-            if (SettingsOptionManager.getInstance(context)
-                    .getCardOrder()
-                    .equals(SettingsOptionManager.CARD_ORDER_DAILY_FIRST)) {
+            if (SettingsOptionManager.getInstance(context).getCardOrder() == CardOrder.DAILY_FIRST) {
                 TrendViewController.setHourlyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
-                        location.weather, location.history, weatherView.getThemeColors(picker.isLightTheme()));
+                        location.getWeather(), weatherView.getThemeColors(picker.isLightTheme()));
             } else {
                 TrendViewController.setDailyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
-                        location.weather, location.history, weatherView.getThemeColors(picker.isLightTheme()));
+                        location.getWeather(), weatherView.getThemeColors(picker.isLightTheme()));
             }
         }
     }

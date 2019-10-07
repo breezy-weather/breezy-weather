@@ -4,16 +4,15 @@ import android.content.Context;
 import android.text.TextPaint;
 
 import java.util.Calendar;
+import java.util.Date;
 
-import androidx.annotation.Nullable;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayDetailsWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenter.DailyTrendWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenter.HourlyTrendWidgetIMP;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayHorizontalWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayVerticalWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayWeekWidgetIMP;
@@ -28,46 +27,45 @@ import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
 
 public class WidgetUtils {
 
-    public static void updateWidgetIfNecessary(Context context, Location location,
-                                               @Nullable Weather weather, @Nullable History history) {
+    public static void updateWidgetIfNecessary(Context context, Location location) {
         if (DayWidgetIMP.isEnable(context)) {
-            DayWidgetIMP.updateWidgetView(context, location, weather);
+            DayWidgetIMP.updateWidgetView(context, location);
         }
         if (WeekWidgetIMP.isEnable(context)) {
-            WeekWidgetIMP.updateWidgetView(context, location, weather);
+            WeekWidgetIMP.updateWidgetView(context, location);
         }
         if (DayWeekWidgetIMP.isEnable(context)) {
-            DayWeekWidgetIMP.updateWidgetView(context, location, weather);
+            DayWeekWidgetIMP.updateWidgetView(context, location);
         }
         if (ClockDayHorizontalWidgetIMP.isEnable(context)) {
-            ClockDayHorizontalWidgetIMP.updateWidgetView(context, location, weather);
+            ClockDayHorizontalWidgetIMP.updateWidgetView(context, location);
         }
         if (ClockDayVerticalWidgetIMP.isEnable(context)) {
-            ClockDayVerticalWidgetIMP.updateWidgetView(context, location, weather);
+            ClockDayVerticalWidgetIMP.updateWidgetView(context, location);
         }
         if (ClockDayWeekWidgetIMP.isEnable(context)) {
-            ClockDayWeekWidgetIMP.updateWidgetView(context, location, weather);
+            ClockDayWeekWidgetIMP.updateWidgetView(context, location);
         }
         if (ClockDayDetailsWidgetIMP.isEnable(context)) {
-            ClockDayDetailsWidgetIMP.updateWidgetView(context, location, weather);
+            ClockDayDetailsWidgetIMP.updateWidgetView(context, location);
         }
         if (TextWidgetIMP.isEnable(context)) {
-            TextWidgetIMP.updateWidgetView(context, location, weather);
+            TextWidgetIMP.updateWidgetView(context, location);
         }
         if (DailyTrendWidgetIMP.isEnable(context)) {
-            DailyTrendWidgetIMP.updateWidgetView(context, location, weather, history);
+            DailyTrendWidgetIMP.updateWidgetView(context, location);
         }
         if (HourlyTrendWidgetIMP.isEnable(context)) {
-            HourlyTrendWidgetIMP.updateWidgetView(context, location, weather, history);
+            HourlyTrendWidgetIMP.updateWidgetView(context, location);
         }
     }
 
-    public static String[] buildWidgetDayStyleText(Weather weather, boolean fahrenheit) {
+    public static String[] buildWidgetDayStyleText(Weather weather, TemperatureUnit unit) {
         String[] texts = new String[] {
-                weather.realTime.weather,
-                ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit),
-                ValueUtils.buildAbbreviatedCurrentTemp(weather.dailyList.get(0).temps[0], fahrenheit),
-                ValueUtils.buildAbbreviatedCurrentTemp(weather.dailyList.get(0).temps[1], fahrenheit)
+                weather.getCurrent().getWeatherText(),
+                weather.getCurrent().getTemperature().getTemperature(unit),
+                weather.getDailyForecast().get(0).day().getTemperature().getShortTemperature(unit),
+                weather.getDailyForecast().get(0).night().getTemperature().getShortTemperature(unit)
         };
 
         TextPaint paint = new TextPaint();
@@ -149,5 +147,43 @@ public class WidgetUtils {
             default:
                 return "";
         }
+    }
+
+    public static String getDailyWeek(Context context, Weather weather, int index) {
+        if (index > 1) {
+            return weather.getDailyForecast().get(index).getWeek(context);
+        }
+
+        String firstDay;
+        String secondDay;
+
+        Calendar today = Calendar.getInstance();
+        today.setTime(new Date());
+
+        Calendar publish = Calendar.getInstance();
+        publish.setTime(weather.getBase().getPublishDate());
+
+        if (today.get(Calendar.YEAR) == publish.get(Calendar.YEAR)
+                && today.get(Calendar.DAY_OF_YEAR) == publish.get(Calendar.DAY_OF_YEAR)) {
+            firstDay = context.getString(R.string.today);
+            secondDay = weather.getDailyForecast().get(1).getWeek(context);
+        } else if (today.get(Calendar.YEAR) == publish.get(Calendar.YEAR)
+                && today.get(Calendar.DAY_OF_YEAR) == publish.get(Calendar.DAY_OF_YEAR) + 1) {
+            firstDay = context.getString(R.string.yesterday);
+            secondDay = context.getString(R.string.today);
+        } else {
+            firstDay = weather.getDailyForecast().get(0).getWeek(context);
+            secondDay = weather.getDailyForecast().get(1).getWeek(context);
+        }
+
+        if (index == 0) {
+            return firstDay;
+        } else {
+            return secondDay;
+        }
+    }
+
+    public static float getNonNullValue(Float value, float defaultValue) {
+        return value == null ? defaultValue : value;
     }
 }

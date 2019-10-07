@@ -13,9 +13,9 @@ import cyanogenmod.weather.WeatherInfo;
 import cyanogenmod.weatherservice.ServiceRequest;
 import cyanogenmod.weatherservice.ServiceRequestResult;
 import cyanogenmod.weatherservice.WeatherProviderService;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -125,7 +125,7 @@ public class CMWeatherProviderService extends WeatherProviderService
     // control.
 
     private void requestLocation() {
-        locationHelper.requestLocation(this, Location.buildLocal(), true, locationListener);
+        locationHelper.requestLocation(this, Location.buildLocal(), locationListener);
     }
 
     private void requestWeather(String cityName) {
@@ -147,45 +147,45 @@ public class CMWeatherProviderService extends WeatherProviderService
     // on request weather listener.
 
     @Override
-    public void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
-                                      @NonNull Location requestLocation) {
+    public void requestWeatherSuccess(@NonNull Location requestLocation) {
         try {
+            Weather weather = requestLocation.getWeather();
             if (request != null && weather != null) {
                 List<WeatherInfo.DayForecast> forecastList = new ArrayList<>();
-                for (int i = 0; i < weather.dailyList.size(); i ++) {
+                for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
                     forecastList.add(
                             new WeatherInfo.DayForecast.Builder(
                                     WeatherConditionConvertHelper.getConditionCode(
-                                            weather.dailyList.get(i).weatherKinds[0],
-                                            true)
-                            ).setHigh(weather.dailyList.get(i).temps[0])
-                                    .setLow(weather.dailyList.get(i).temps[1])
+                                            weather.getDailyForecast().get(i).day().getWeatherCode(),
+                                            true
+                                    ))
+                                    .setHigh(weather.getDailyForecast().get(i).day().getTemperature().getTemperature())
+                                    .setHigh(weather.getDailyForecast().get(i).night().getTemperature().getTemperature())
                                     .build()
                     );
                 }
                 WeatherInfo.Builder builder = new WeatherInfo.Builder(
-                        weather.base.city,
-                        weather.realTime.temp,
+                        requestLocation.getCityName(getApplicationContext()),
+                        weather.getCurrent().getTemperature().getTemperature(),
                         WeatherContract.WeatherColumns.TempUnit.CELSIUS
                 ).setWeatherCondition(
                                 WeatherConditionConvertHelper.getConditionCode(
-                                        weather.realTime.weatherKind,
-                                        TimeManager.isDaylight(weather)
-                                )
-                ).setTodaysHigh(weather.dailyList.get(0).temps[0])
-                        .setTodaysLow(weather.dailyList.get(0).temps[1])
-                        .setTimestamp(weather.base.timeStamp)
-                        .setHumidity(
-                                Double.parseDouble(
-                                        weather.index.humidity
-                                                .split(" : ")[1]
-                                                .split("%")[0]
-                                )
-                        ).setWind(
-                                Double.parseDouble(weather.realTime.windSpeed.split("km/h")[0]),
-                                weather.realTime.windDegree,
-                                WeatherContract.WeatherColumns.WindSpeedUnit.KPH
-                        ).setForecast(forecastList);
+                                        weather.getCurrent().getWeatherCode(),
+                                        TimeManager.isDaylight(requestLocation)
+                                ))
+                        .setTodaysHigh(weather.getDailyForecast().get(0).day().getTemperature().getTemperature())
+                        .setTodaysLow(weather.getDailyForecast().get(0).night().getTemperature().getTemperature())
+                        .setTimestamp(weather.getBase().getTimeStamp());
+                if (weather.getCurrent().getRelativeHumidity() != null) {
+                    builder.setHumidity(weather.getCurrent().getRelativeHumidity());
+                }
+                if (weather.getCurrent().getWind().getSpeed() != null) {
+                    builder.setWind(
+                            weather.getCurrent().getWind().getSpeed(),
+                            weather.getCurrent().getWind().getDegree().getDegree(),
+                            WeatherContract.WeatherColumns.WindSpeedUnit.KPH
+                    ).setForecast(forecastList);
+                }
 
                 request.complete(new ServiceRequestResult.Builder(builder.build()).build());
             }
@@ -203,50 +203,50 @@ public class CMWeatherProviderService extends WeatherProviderService
 }
 
 class WeatherConditionConvertHelper {
-    static int getConditionCode(String weatherKind, boolean dayTime) {
-        switch (weatherKind) {
-            case Weather.KIND_CLEAR:
+    static int getConditionCode(WeatherCode code, boolean dayTime) {
+        switch (code) {
+            case CLEAR:
                 if (dayTime) {
                     return WeatherContract.WeatherColumns.WeatherCode.SUNNY;
                 } else {
                     return WeatherContract.WeatherColumns.WeatherCode.CLEAR_NIGHT;
                 }
 
-            case Weather.KIND_PARTLY_CLOUDY:
+            case PARTLY_CLOUDY:
                 if (dayTime) {
                     return WeatherContract.WeatherColumns.WeatherCode.PARTLY_CLOUDY_DAY;
                 } else {
                     return WeatherContract.WeatherColumns.WeatherCode.PARTLY_CLOUDY_NIGHT;
                 }
 
-            case Weather.KIND_CLOUDY:
+            case CLOUDY:
                 return WeatherContract.WeatherColumns.WeatherCode.CLOUDY;
 
-            case Weather.KIND_RAIN:
+            case RAIN:
                 return WeatherContract.WeatherColumns.WeatherCode.SHOWERS;
 
-            case Weather.KIND_SNOW:
+            case SNOW:
                 return WeatherContract.WeatherColumns.WeatherCode.SNOW;
 
-            case Weather.KIND_WIND:
+            case WIND:
                 return WeatherContract.WeatherColumns.WeatherCode.WINDY;
 
-            case Weather.KIND_FOG:
+            case FOG:
                 return WeatherContract.WeatherColumns.WeatherCode.FOGGY;
 
-            case Weather.KIND_HAZE:
+            case HAZE:
                 return WeatherContract.WeatherColumns.WeatherCode.HAZE;
 
-            case Weather.KIND_SLEET:
+            case SLEET:
                 return WeatherContract.WeatherColumns.WeatherCode.SLEET;
 
-            case Weather.KIND_HAIL:
+            case HAIL:
                 return WeatherContract.WeatherColumns.WeatherCode.HAIL;
 
-            case Weather.KIND_THUNDER:
+            case THUNDER:
                 return WeatherContract.WeatherColumns.WeatherCode.THUNDERSTORMS;
 
-            case Weather.KIND_THUNDERSTORM:
+            case THUNDERSTORM:
                 return WeatherContract.WeatherColumns.WeatherCode.THUNDERSHOWER;
         }
         return WeatherContract.WeatherColumns.WeatherCode.NOT_AVAILABLE;

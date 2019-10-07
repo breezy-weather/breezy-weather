@@ -18,10 +18,10 @@ import androidx.core.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Trend item view.
@@ -38,6 +38,7 @@ public class TrendItemView extends View {
     private int highestTemp;
     private int lowestTemp;
     private int precipitation;
+    private TemperatureUnit unit;
 
     private int[] maxiTempYs = new int[3];
     private int[] miniTempYs = new int[3];
@@ -103,6 +104,8 @@ public class TrendItemView extends View {
         this.path = new Path();
         this.shaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
         setShadowColors(Color.BLACK, Color.GRAY, true);
+
+        this.unit = TemperatureUnit.C;
     }
 
     @Override
@@ -228,10 +231,7 @@ public class TrendItemView extends View {
         paint.setTextSize(WEATHER_TEXT_SIZE);
         paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
-                ValueUtils.buildAbbreviatedCurrentTemp(
-                        (int) maxiTemps[1],
-                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
-                ),
+                Temperature.getShortTemperature((int) maxiTemps[1], unit),
                 getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
                 maxiTempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint
@@ -282,10 +282,8 @@ public class TrendItemView extends View {
         paint.setTextSize(WEATHER_TEXT_SIZE);
         paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
-                ValueUtils.buildAbbreviatedCurrentTemp(
-                        (int) miniTemps[1],
-                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
-                ), getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
+                Temperature.getShortTemperature((int) miniTemps[1], unit),
+                getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
                 miniTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint
         );
@@ -331,7 +329,7 @@ public class TrendItemView extends View {
     // control.
 
     public void setData(@NonNull @Size(3) float[] maxiTemps, @Nullable @Size(3) float[] miniTemps,
-                        int precipitation, int highestTemp, int lowestTemp) {
+                        int precipitation, int highestTemp, int lowestTemp, TemperatureUnit unit) {
         this.maxiTemps = maxiTemps;
         if (miniTemps != null) {
             this.miniTemps = miniTemps;
@@ -341,6 +339,7 @@ public class TrendItemView extends View {
         this.precipitation = precipitation;
         this.highestTemp = highestTemp;
         this.lowestTemp = lowestTemp;
+        this.unit = unit;
         invalidate();
     }
 

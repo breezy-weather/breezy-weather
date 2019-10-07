@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.309</string>
+    <string name="version_code">v2.400</string>
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -34,6 +34,8 @@
     <string name="pressure">Atmospheric pressure</string>
     <string name="visibility">Visibility</string>
     <string name="dew_point">Dew point</string>
+    <string name="cloud_cover">Cloud cover</string>
+    <string name="ceiling">Ceiling</string>
     <string name="get_more">Get more</string>
     <string name="get_more_store">Get more from app store</string>
     <string name="get_more_github">Get more from GitHub</string>
@@ -273,7 +275,7 @@
     <string name="settings_summary_live_wallpaper">Set Material weather animation as live wallpaper</string>
     <string name="settings_title_service_provider">Service provider</string>
     <string name="settings_summary_service_provider">Select service provider of weather data and location information</string>
-    <string name="settings_title_chinese_source">Chinese weather source</string>
+    <string name="settings_title_weather_source">Weather source</string>
     <string name="settings_title_location_service">Location service</string>
     <string name="settings_title_dark_mode">Dark mode</string>
     <string name="settings_title_ui_style">Interface style</string>
@@ -286,8 +288,11 @@
     <string name="settings_language">Language</string>
     <string name="settings_title_unit">Units</string>
     <string name="settings_summary_unit">Set the unit of weather data</string>
-    <string name="settings_title_fahrenheit">Fahrenheit</string>
-    <string name="settings_title_imperial">Imperial unit</string>
+    <string name="settings_title_temperature_unit">Temperature unit</string>
+    <string name="settings_title_distance_unit">Distance unit</string>
+    <string name="settings_title_precipitation_unit">Precipitation unit</string>
+    <string name="settings_title_pressure_unit">Pressure unit</string>
+    <string name="settings_title_speed_unit">Speed unit</string>
     <string name="settings_title_refresh_rate">Automatic refresh rate</string>
     <string name="settings_title_alert_notification_switch">Send Alert Notification</string>
     <string name="settings_title_precipitation_notification_switch">Send Precipitation Forecast</string>
@@ -346,7 +351,7 @@
     <string name="key_background_free">background_free_3</string>
     <string name="key_live_wallpaper">live_wallpaper</string>
     <string name="key_service_provider">service_provider</string>
-    <string name="key_chinese_source">chinese_source_2</string>
+    <string name="key_weather_source">weather_source</string>
     <string name="key_location_service">location_service</string>
     <string name="key_dark_mode">dark_mode</string>
     <string name="key_ui_style">ui_style</string>
@@ -356,9 +361,12 @@
     <string name="key_card_order">card_order</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
     <string name="key_language">language</string>
-    <string name="key_fahrenheit">fahrenheit</string>
     <string name="key_unit">unit</string>
-    <string name="key_imperial">imperial</string>
+    <string name="key_temperature_unit">temperature_unit</string>
+    <string name="key_distance_unit">distance_unit</string>
+    <string name="key_precipitation_unit">precipitation_unit</string>
+    <string name="key_pressure_unit">pressure_unit</string>
+    <string name="key_speed_unit">speed_unit</string>
     <string name="key_refresh_rate">refresh_rate</string>
     <string name="key_alert_notification_switch">alert_notification_switch</string>
     <string name="key_precipitation_notification_switch">precipitation_notification_switch</string>

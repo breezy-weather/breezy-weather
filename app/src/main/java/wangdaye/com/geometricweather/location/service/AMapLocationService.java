@@ -34,8 +34,8 @@ public class AMapLocationService extends LocationService {
                 switch (aMapLocation.getErrorCode()) {
                     case 0:
                         Result result = new Result(
-                                String.valueOf(aMapLocation.getLatitude()),
-                                String.valueOf(aMapLocation.getLongitude())
+                                (float) aMapLocation.getLatitude(),
+                                (float) aMapLocation.getLongitude()
                         );
                         result.setGeocodeInformation(
                                 aMapLocation.getCountry(),
@@ -47,6 +47,9 @@ public class AMapLocationService extends LocationService {
                                 aMapLocation.getLatitude(),
                                 aMapLocation.getLongitude()
                         );
+                        if (result.inChina) {
+                            result.GMTOffset = 8;
+                        }
                         callback.onCompleted(result);
                         break;
 
@@ -69,7 +72,7 @@ public class AMapLocationService extends LocationService {
 
 
     @Override
-    public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback){
+    public void requestLocation(Context context, @NonNull LocationCallback callback){
         this.callback = callback;
 
         AMapLocationClientOption option = new AMapLocationClientOption();

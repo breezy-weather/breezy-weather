@@ -18,6 +18,7 @@ import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.option.CardOrder;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -150,8 +151,8 @@ public class MaterialWeatherView extends View implements WeatherView {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         this.sizes = new int[] {metrics.widthPixels, metrics.heightPixels};
 
-        String cardOrder = SettingsOptionManager.getInstance(getContext()).getCardOrder();
-        if (cardOrder.equals("daily_first")) {
+        CardOrder cardOrder = SettingsOptionManager.getInstance(getContext()).getCardOrder();
+        if (cardOrder == CardOrder.DAILY_FIRST) {
             this.firstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels
                     + getResources().getDimensionPixelSize(R.dimen.little_margin)
                     - DisplayUtils.dpToPx(

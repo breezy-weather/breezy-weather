@@ -8,17 +8,25 @@ import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import android.widget.RemoteViews;
 
+import java.util.Date;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
+import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Base;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenter.AbstractRemoteViewsPresenter;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -26,8 +34,6 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Normal notification utils.
@@ -35,7 +41,8 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
-    public static void buildNotificationAndSendIt(Context context, @Nullable Weather weather) {
+    public static void buildNotificationAndSendIt(Context context, Location location) {
+        Weather weather = location.getWeather();
         if (weather == null) {
             return;
         }
@@ -44,15 +51,15 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         LanguageUtils.setLanguage(
                 context,
-                SettingsOptionManager.getInstance(context).getLanguage()
+                SettingsOptionManager.getInstance(context).getLanguage().getLocale()
         );
 
         // get sp & realTimeWeather.
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
 
-        boolean fahrenheit = settings.isFahrenheit();
+        TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
 
-        boolean dayTime = TimeManager.isDaylight(weather);
+        boolean dayTime = TimeManager.isDaylight(location);
 
         boolean minimalIcon = settings.isNotificationMinimalIconEnabled()
                 && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P;
@@ -69,9 +76,9 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         boolean canBeCleared = settings.isNotificationCanBeClearedEnabled();
 
-        if (settings.getNotificationStyle().equals(SettingsOptionManager.NOTIFICATION_STYLE_NATIVE)) {
-            NativeNormalNotificationIMP.buildNotificationAndSendIt(context, weather, dayTime,
-                    fahrenheit, tempIcon, hideNotificationIcon, hideNotificationInLockScreen, canBeCleared);
+        if (settings.getNotificationStyle() == NotificationStyle.NATIVE) {
+            NativeNormalNotificationIMP.buildNotificationAndSendIt(context, location, temperatureUnit,
+                    dayTime, tempIcon, hideNotificationIcon, hideNotificationInLockScreen, canBeCleared);
             return;
         }
 
@@ -79,25 +86,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         int backgroundColor = settings.getNotificationBackgroundColor();
 
         // get text color.
-        String textColor = settings.getNotificationTextColor();
+        NotificationTextColor textColor = settings.getNotificationTextColor();
 
-        int mainColor;
-        int subColor;
-        switch (textColor) {
-            case "dark":
-                mainColor = ContextCompat.getColor(context, R.color.colorTextDark);
-                subColor = ContextCompat.getColor(context, R.color.colorTextDark2nd);
-                break;
-            case "grey":
-                mainColor = ContextCompat.getColor(context, R.color.colorTextGrey);
-                subColor = ContextCompat.getColor(context, R.color.colorTextGrey2nd);
-                break;
-            case "light":
-            default:
-                mainColor = ContextCompat.getColor(context, R.color.colorTextLight);
-                subColor = ContextCompat.getColor(context, R.color.colorTextLight2nd);
-                break;
-        }
+        int mainColor = ContextCompat.getColor(context, textColor.getMainTextColorResId());
+        int subColor = ContextCompat.getColor(context, textColor.getSubTextColorResId());
 
         // build channel.
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
@@ -134,24 +126,24 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         // set small icon.
         builder.setSmallIcon(
-                tempIcon
-                        ? WeatherHelper.getTempIconId(
-                                context,
-                                fahrenheit
-                                        ? ValueUtils.calcFahrenheit(weather.realTime.temp)
-                                        : weather.realTime.temp
-                        ) : WeatherHelper.getDefaultMinimalXmlIconId(
-                                weather.realTime.weatherKind,
-                                dayTime
+                tempIcon ? ResourceHelper.getTempIconId(
+                        context,
+                        temperatureUnit.getTemperature(
+                                weather.getCurrent().getTemperature().getTemperature()
+
                         )
+                ) : ResourceHelper.getDefaultMinimalXmlIconId(
+                        weather.getCurrent().getWeatherCode(),
+                        dayTime
+                )
         );
 
         // build base view.
         builder.setContent(
                 buildBaseView(
                         context, new RemoteViews(context.getPackageName(), R.layout.notification_base),
-                        provider, weather,
-                        dayTime, fahrenheit,
+                        provider, location,
+                        temperatureUnit, dayTime,
                         minimalIcon, textColor,
                         customColor, backgroundColor,
                         mainColor, subColor
@@ -167,8 +159,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             builder.setCustomBigContentView(
                     buildBaseView(
                             context, new RemoteViews(context.getPackageName(), R.layout.notification_base_big),
-                            provider, weather,
-                            dayTime, fahrenheit,
+                            provider, location,
+                            temperatureUnit, dayTime,
                             minimalIcon, textColor,
                             customColor, backgroundColor,
                             mainColor, subColor
@@ -178,8 +170,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             builder.setCustomBigContentView(
                     buildBigView(
                             context, new RemoteViews(context.getPackageName(), R.layout.notification_big),
-                            provider, weather,
-                            dayTime, fahrenheit,
+                            provider, location,
+                            temperatureUnit, dayTime,
                             minimalIcon, textColor,
                             customColor, backgroundColor,
                             mainColor, subColor
@@ -197,8 +189,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                         .getMethod("setSmallIcon", Icon.class)
                         .invoke(
                                 notification,
-                                WeatherHelper.getMinimalIcon(
-                                        provider, weather.realTime.weatherKind, dayTime)
+                                ResourceHelper.getMinimalIcon(
+                                        provider, weather.getCurrent().getWeatherCode(), dayTime)
                         );
             } catch (Exception ignore) {
                 // do nothing.
@@ -210,34 +202,47 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static RemoteViews buildBaseView(Context context, RemoteViews views,
-                                             ResourceProvider provider, Weather weather,
-                                             boolean dayTime, boolean fahrenheit,
-                                             boolean minimalIcon, String textColor,
+                                             ResourceProvider provider, Location location,
+                                             TemperatureUnit temperatureUnit,
+                                             boolean dayTime, boolean minimalIcon,
+                                             NotificationTextColor textColor,
                                              boolean customColor, int backgroundColor,
                                              int mainColor, int subColor) {
+        Weather weather = location.getWeather();
+        if (weather == null) {
+            return views;
+        }
+
         views.setImageViewUri(
                 R.id.notification_base_icon,
-                WeatherHelper.getWidgetNotificationIconUri(
-                        provider, weather.realTime.weatherKind, dayTime, minimalIcon, textColor
+                ResourceHelper.getWidgetNotificationIconUri(
+                        provider, weather.getCurrent().getWeatherCode(), dayTime, minimalIcon, textColor
                 )
         );
 
         views.setTextViewText(
                 R.id.notification_base_realtimeTemp,
-                ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit)
+                Temperature.getShortTemperature(
+                        weather.getCurrent().getTemperature().getTemperature(),
+                        temperatureUnit
+                )
         );
 
         views.setTextViewText(
                 R.id.notification_base_dailyTemp,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit)
+                Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                        temperatureUnit
+                )
         );
 
-        if (weather.aqi != null && weather.aqi.aqi >= 0) {
+        if (weather.getCurrent().getAirQuality().getAqiIndex() != null) {
             views.setTextViewText(
                     R.id.notification_base_aqi_wind,
-                    "AQI " + weather.aqi.aqi
+                    "AQI " + weather.getCurrent().getAirQuality().getAqiIndex()
             );
-            int colorRes = WeatherHelper.getAqiColorResId(weather.aqi.aqi);
+            int colorRes = weather.getCurrent().getAirQuality().getAqiColorResId();
             if (colorRes == 0) {
                 views.setTextColor(R.id.notification_base_aqi_wind, subColor);
             } else {
@@ -247,19 +252,18 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 );
             }
 
-            String[] dates = weather.base.date.split("-");
             views.setTextViewText(
                     R.id.notification_base_lunar,
-                    LanguageUtils.getLanguageCode(context).startsWith("zh")
-                            ? LunarHelper.getLunarDate(dates)
-                            : weather.base.city
+                    SettingsOptionManager.getInstance(context).getLanguage().getCode().startsWith("zh")
+                            ? LunarHelper.getLunarDate(new Date())
+                            : location.getCityName(context)
             );
         } else {
             views.setTextViewText(
                     R.id.notification_base_aqi_wind,
-                    weather.realTime.windLevel
+                    weather.getCurrent().getWind().getLevel()
             );
-            int colorRes = WeatherHelper.getWindColorResId(weather.realTime.windSpeed);
+            int colorRes = weather.getCurrent().getWind().getWindColorResId();
             if (colorRes == 0) {
                 views.setTextColor(R.id.notification_base_aqi_wind, subColor);
             } else {
@@ -272,14 +276,15 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         views.setTextViewText(
                 R.id.notification_base_weather,
-                weather.realTime.weather
+                weather.getCurrent().getWeatherText()
         );
 
         views.setTextViewText(
                 R.id.notification_base_time,
-                (LanguageUtils.getLanguageCode(context).startsWith("zh")
-                        ? (weather.base.city + " ")
-                        : "") + WidgetUtils.getWeek(context) + " " + weather.base.time
+                (SettingsOptionManager.getInstance(context).getLanguage().getCode().startsWith("zh")
+                        ? (location.getCityName(context) + " ")
+                        : ""
+                ) + WidgetUtils.getWeek(context) + " " + Base.getTime(context, weather.getBase().getUpdateDate())
         );
 
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
@@ -300,15 +305,21 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static RemoteViews buildBigView(Context context, RemoteViews views,
-                                            ResourceProvider provider, Weather weather,
-                                            boolean dayTime, boolean fahrenheit,
-                                            boolean minimalIcon, String textColor,
+                                            ResourceProvider provider, Location location,
+                                            TemperatureUnit temperatureUnit,
+                                            boolean dayTime, boolean minimalIcon,
+                                            NotificationTextColor textColor,
                                             boolean customColor, int backgroundColor,
                                             int mainColor, int subColor) {
+        Weather weather = location.getWeather();
+        if (weather == null) {
+            return views;
+        }
+
         // today
         views = buildBaseView(
-                context, views, provider, weather,
-                dayTime, fahrenheit,
+                context, views, provider, location,
+                temperatureUnit, dayTime,
                 minimalIcon, textColor,
                 customColor, backgroundColor,
                 mainColor, subColor
@@ -322,91 +333,111 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         );
         views.setTextViewText( // set temps 1.
                 R.id.notification_big_temp_1,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, false, fahrenheit)
+                Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                        temperatureUnit
+                )
         );
         views.setImageViewUri( // set icon 1.
                 R.id.notification_big_icon_1,
-                WeatherHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                         provider,
                         dayTime
-                                ? weather.dailyList.get(0).weatherKinds[0]
-                                : weather.dailyList.get(0).weatherKinds[1],
+                                ? weather.getDailyForecast().get(0).day().getWeatherCode()
+                                : weather.getDailyForecast().get(0).night().getWeatherCode(),
                         dayTime, minimalIcon, textColor
                 )
         );
         // 2
         views.setTextViewText( // set week 2.
                 R.id.notification_big_week_2,
-                weather.dailyList.get(1).week
+                weather.getDailyForecast().get(1).getWeek(context)
         );
         views.setTextViewText( // set temps 2.
                 R.id.notification_big_temp_2,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(1).temps, false, fahrenheit)
+                Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(1).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(1).day().getTemperature().getTemperature(),
+                        temperatureUnit
+                )
         );
         views.setImageViewUri( // set icon 2.
                 R.id.notification_big_icon_2,
-                WeatherHelper.getWidgetNotificationIconUri( // get icon 2 resource id.
+                ResourceHelper.getWidgetNotificationIconUri( // get icon 2 resource id.
                         provider,
                         dayTime
-                                ? weather.dailyList.get(1).weatherKinds[0]
-                                : weather.dailyList.get(1).weatherKinds[1],
+                                ? weather.getDailyForecast().get(1).day().getWeatherCode()
+                                : weather.getDailyForecast().get(1).night().getWeatherCode(),
                         dayTime, minimalIcon, textColor
                 )
         );
         // 3
         views.setTextViewText( // set week 3.
                 R.id.notification_big_week_3,
-                weather.dailyList.get(2).week
+                weather.getDailyForecast().get(2).getWeek(context)
         );
         views.setTextViewText( // set temps 3.
                 R.id.notification_big_temp_3,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(2).temps, false, fahrenheit)
+                Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(2).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(2).day().getTemperature().getTemperature(),
+                        temperatureUnit
+                )
         );
         views.setImageViewUri( // set icon 3.
                 R.id.notification_big_icon_3,
-                WeatherHelper.getWidgetNotificationIconUri( // get icon 3 resource id.
+                ResourceHelper.getWidgetNotificationIconUri( // get icon 3 resource id.
                         provider,
                         dayTime
-                                ? weather.dailyList.get(2).weatherKinds[0]
-                                : weather.dailyList.get(2).weatherKinds[1],
+                                ? weather.getDailyForecast().get(2).day().getWeatherCode()
+                                : weather.getDailyForecast().get(2).night().getWeatherCode(),
                         dayTime, minimalIcon, textColor
                 )
         );
         // 4
         views.setTextViewText( // set week 4.
                 R.id.notification_big_week_4,
-                weather.dailyList.get(3).week
+                weather.getDailyForecast().get(3).getWeek(context)
         );
         views.setTextViewText( // set temps 4.
                 R.id.notification_big_temp_4,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(3).temps, false, fahrenheit)
+                Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(3).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(3).day().getTemperature().getTemperature(),
+                        temperatureUnit
+                )
         );
         views.setImageViewUri( // set icon 4.
                 R.id.notification_big_icon_4,
-                WeatherHelper.getWidgetNotificationIconUri( // get icon 4 resource id.
+                ResourceHelper.getWidgetNotificationIconUri( // get icon 4 resource id.
                         provider,
                         dayTime
-                                ? weather.dailyList.get(3).weatherKinds[0]
-                                : weather.dailyList.get(3).weatherKinds[1],
+                                ? weather.getDailyForecast().get(3).day().getWeatherCode()
+                                : weather.getDailyForecast().get(3).night().getWeatherCode(),
                         dayTime, minimalIcon, textColor
                 )
         );
         // 5
         views.setTextViewText( // set week 5.
                 R.id.notification_big_week_5,
-                weather.dailyList.get(4).week
+                weather.getDailyForecast().get(4).getWeek(context)
         );
         views.setTextViewText( // set temps 5.
                 R.id.notification_big_temp_5,
-                ValueUtils.buildDailyTemp(weather.dailyList.get(4).temps, false, fahrenheit)
+                Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(4).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(4).day().getTemperature().getTemperature(),
+                        temperatureUnit
+                )
         );
         views.setImageViewUri( // set icon 5.
                 R.id.notification_big_icon_5,
-                WeatherHelper.getWidgetNotificationIconUri( // get icon 5 resource id.
+                ResourceHelper.getWidgetNotificationIconUri( // get icon 5 resource id.
                         provider,
                         dayTime
-                                ? weather.dailyList.get(4).weatherKinds[0]
-                                : weather.dailyList.get(4).weatherKinds[1],
+                                ? weather.getDailyForecast().get(4).day().getWeatherCode()
+                                : weather.getDailyForecast().get(4).night().getWeatherCode(),
                         dayTime, minimalIcon, textColor
                 )
         );

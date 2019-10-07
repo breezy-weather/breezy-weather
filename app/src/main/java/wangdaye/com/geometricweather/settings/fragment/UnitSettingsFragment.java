@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.settings.OptionMapper;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
 /**
@@ -17,17 +18,41 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.perference_unit);
 
-        // ℉.
-        findPreference(getString(R.string.key_fahrenheit)).setOnPreferenceChangeListener((p, newValue) -> {
-            getSettingsOptionManager().setFahrenheit((Boolean) newValue);
+        // temperature.
+        findPreference(getString(R.string.key_temperature_unit)).setOnPreferenceChangeListener((p, newValue) -> {
+            getSettingsOptionManager().setTemperatureUnit(OptionMapper.getTemperatureUnit((String) newValue));
             SnackbarUtils.showSnackbar(
                     (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
             return true;
         });
 
-        // imperial.
-        findPreference(getString(R.string.key_imperial)).setOnPreferenceChangeListener((p, newValue) -> {
-            getSettingsOptionManager().setImperial((Boolean) newValue);
+        // distance.
+        findPreference(getString(R.string.key_distance_unit)).setOnPreferenceChangeListener((p, newValue) -> {
+            getSettingsOptionManager().setDistanceUnit(OptionMapper.getDistanceUnit((String) newValue));
+            SnackbarUtils.showSnackbar(
+                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+            return true;
+        });
+
+        // precipitation.
+        findPreference(getString(R.string.key_precipitation_unit)).setOnPreferenceChangeListener((p, newValue) -> {
+            getSettingsOptionManager().setPrecipitationUnit(OptionMapper.getPrecipitationUnit((String) newValue));
+            SnackbarUtils.showSnackbar(
+                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+            return true;
+        });
+
+        // pressure.
+        findPreference(getString(R.string.key_pressure_unit)).setOnPreferenceChangeListener((p, newValue) -> {
+            getSettingsOptionManager().setPressureUnit(OptionMapper.getPressureUnit((String) newValue));
+            SnackbarUtils.showSnackbar(
+                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+            return true;
+        });
+
+        // speed.
+        findPreference(getString(R.string.key_speed_unit)).setOnPreferenceChangeListener((p, newValue) -> {
+            getSettingsOptionManager().setSpeedUnit(OptionMapper.getSpeedUnit((String) newValue));
             SnackbarUtils.showSnackbar(
                     (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
             return true;

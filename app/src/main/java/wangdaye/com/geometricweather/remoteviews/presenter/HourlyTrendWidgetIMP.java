@@ -19,10 +19,11 @@ import androidx.core.graphics.ColorUtils;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendHourlyProvider;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -32,23 +33,20 @@ import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.WidgetItemVie
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
-    public static void updateWidgetView(Context context, Location location,
-                                        @Nullable Weather weather, @Nullable History history) {
+    public static void updateWidgetView(Context context, Location location) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            innerUpdateWidget(context, location, weather, history);
+            innerUpdateWidget(context, location);
             return;
         }
 
-        ThreadManager.getInstance().execute(() -> innerUpdateWidget(context, location, weather, history));
+        ThreadManager.getInstance().execute(() -> innerUpdateWidget(context, location));
     }
 
     @WorkerThread
-    private static void innerUpdateWidget(Context context, Location location,
-                                          @Nullable Weather weather, @Nullable History history) {
+    private static void innerUpdateWidget(Context context, Location location) {
         WidgetConfig config = getWidgetConfig(
                 context,
                 context.getString(R.string.sp_widget_hourly_trend_setting)
@@ -60,7 +58,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetTrendHourlyProvider.class),
                 getRemoteViews(
-                        context, location, weather, history,
+                        context, location,
                         context.getResources().getDisplayMetrics().widthPixels,
                         config.cardStyle, config.cardAlpha
                 )
@@ -69,9 +67,8 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
     @WorkerThread @Nullable
     @SuppressLint({"InflateParams, SimpleDateFormat", "WrongThread"})
-    private static View getDrawableView(Context context,
-                                        @Nullable Weather weather, @Nullable History history,
-                                        boolean lightTheme) {
+    private static View getDrawableView(Context context, Location location, boolean lightTheme) {
+        Weather weather = location.getWeather();
         if (weather == null) {
             return null;
         }
@@ -84,32 +81,44 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         int lowestTemp;
 
         boolean minimalIcon = SettingsOptionManager.getInstance(context).isWidgetMinimalIconEnabled();
+        TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
 
         temps = new float[Math.max(0, itemCount * 2 - 1)];
         for (int i = 0; i < temps.length; i += 2) {
-            temps[i] = weather.hourlyList.get(i / 2).temp;
+            temps[i] = weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature();
         }
         for (int i = 1; i < temps.length; i += 2) {
             temps[i] = (temps[i - 1] + temps[i + 1]) * 0.5F;
         }
 
-        highestTemp = history == null ? Integer.MIN_VALUE : history.maxiTemp;
-        lowestTemp = history == null ? Integer.MAX_VALUE : history.miniTemp;
+        highestTemp = weather.getYesterday() == null
+                ? Integer.MIN_VALUE
+                : weather.getYesterday().getDaytimeTemperature();
+        lowestTemp = weather.getYesterday() == null
+                ? Integer.MAX_VALUE
+                : weather.getYesterday().getNighttimeTemperature();
         for (int i = 0; i < itemCount; i ++) {
-            if (weather.hourlyList.get(i).temp > highestTemp) {
-                highestTemp = weather.hourlyList.get(i).temp;
+            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() > highestTemp) {
+                highestTemp = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
             }
-            if (weather.hourlyList.get(i).temp < lowestTemp) {
-                lowestTemp = weather.hourlyList.get(i).temp;
+            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() < lowestTemp) {
+                lowestTemp = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
             }
         }
 
         View drawableView = LayoutInflater.from(context)
                 .inflate(R.layout.widget_trend_hourly, null, false);
-        if (history != null) {
+        if (weather.getYesterday() != null) {
             TrendLinearLayout trendParent = drawableView.findViewById(R.id.widget_trend_hourly);
             trendParent.setData(
-                    new int[] {history.maxiTemp, history.miniTemp}, highestTemp, lowestTemp, false
+                    new int[] {
+                            weather.getYesterday().getDaytimeTemperature(),
+                            weather.getYesterday().getNighttimeTemperature()
+                    },
+                    highestTemp,
+                    lowestTemp,
+                    temperatureUnit,
+                    false
             );
             trendParent.setColor(lightTheme);
         }
@@ -120,25 +129,28 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableView.findViewById(R.id.widget_trend_hourly_item_4),
                 drawableView.findViewById(R.id.widget_trend_hourly_item_5),
         };
-        int[] colors = WeatherViewController.getThemeColors(context, weather, TimeManager.isDaylight(weather));
+        int[] colors = WeatherViewController.getThemeColors(context, weather, TimeManager.isDaylight(location));
         for (int i = 0; i < items.length; i ++) {
-            Hourly hourly = weather.hourlyList.get(i);
+            Hourly hourly = weather.getHourlyForecast().get(i);
 
-            items[i].setTitleText(hourly.time);
+            items[i].setTitleText(hourly.getHour(context));
             items[i].setSubtitleText(null);
 
             items[i].setTopIconDrawable(
-                    WeatherHelper.getWidgetNotificationIcon(
-                            provider, hourly.weatherKind, hourly.dayTime, minimalIcon, lightTheme
+                    ResourceHelper.getWidgetNotificationIcon(
+                            provider, hourly.getWeatherCode(), hourly.isDaylight(), minimalIcon, lightTheme
                     )
             );
 
+            Float precipitationProbability = hourly.getPrecipitationProbability().getTotal();
+            float intProbability = precipitationProbability == null ? 0 : precipitationProbability;
             items[i].getTrendItemView().setData(
                     buildTempArrayForItem(temps, i),
                     null,
-                    hourly.precipitation,
+                    (int) intProbability,
                     highestTemp,
-                    lowestTemp
+                    lowestTemp,
+                    temperatureUnit
             );
             items[i].getTrendItemView().setLineColors(
                     colors[1], colors[2],
@@ -224,7 +236,6 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
     @WorkerThread
     public static RemoteViews getRemoteViews(Context context, Location location,
-                                             @Nullable Weather weather, @Nullable History history,
                                              int width, String cardStyle, int cardAlpha) {
         boolean lightTheme;
         switch (cardStyle) {
@@ -237,12 +248,12 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 break;
 
             default:
-                lightTheme = TimeManager.isDaylight(weather);
+                lightTheme = TimeManager.isDaylight(location);
                 break;
         }
         return getRemoteViews(
                 context,
-                getDrawableView(context, weather, history, lightTheme),
+                getDrawableView(context, location, lightTheme),
                 location,
                 width,
                 !lightTheme, cardAlpha

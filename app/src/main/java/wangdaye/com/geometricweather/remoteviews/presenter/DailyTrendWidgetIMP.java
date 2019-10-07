@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import androidx.annotation.Nullable;
@@ -22,10 +21,11 @@ import androidx.core.graphics.ColorUtils;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendDailyProvider;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -35,23 +35,20 @@ import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.WidgetItemVie
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
-    public static void updateWidgetView(Context context, Location location,
-                                        @Nullable Weather weather, @Nullable History history) {
+    public static void updateWidgetView(Context context, Location location) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            innerUpdateWidget(context, location, weather, history);
+            innerUpdateWidget(context, location);
             return;
         }
 
-        ThreadManager.getInstance().execute(() -> innerUpdateWidget(context, location, weather, history));
+        ThreadManager.getInstance().execute(() -> innerUpdateWidget(context, location));
     }
 
     @WorkerThread
-    private static void innerUpdateWidget(Context context, Location location,
-                                          @Nullable Weather weather, @Nullable History history) {
+    private static void innerUpdateWidget(Context context, Location location) {
         WidgetConfig config = getWidgetConfig(
                 context,
                 context.getString(R.string.sp_widget_daily_trend_setting)
@@ -63,7 +60,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetTrendDailyProvider.class),
                 getRemoteViews(
-                        context, location, weather, history,
+                        context, location,
                         context.getResources().getDisplayMetrics().widthPixels,
                         config.cardStyle, config.cardAlpha
                 )
@@ -71,10 +68,10 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     @WorkerThread @Nullable
-    @SuppressLint({"InflateParams, SimpleDateFormat", "WrongThread"})
-    private static View getDrawableView(Context context,
-                                        @Nullable Weather weather, @Nullable History history,
+    @SuppressLint({"InflateParams", "WrongThread"})
+    private static View getDrawableView(Context context, Location location,
                                         boolean lightTheme) {
+        Weather weather = location.getWeather();
         if (weather == null) {
             return null;
         }
@@ -88,10 +85,11 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         int lowestTemp;
 
         boolean minimalIcon = SettingsOptionManager.getInstance(context).isWidgetMinimalIconEnabled();
+        TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
 
         maxiTemps = new float[itemCount * 2 - 1];
         for (int i = 0; i < maxiTemps.length; i += 2) {
-            maxiTemps[i] = weather.dailyList.get(i / 2).temps[0];
+            maxiTemps[i] = weather.getDailyForecast().get(i / 2).day().getTemperature().getTemperature();
         }
         for (int i = 1; i < maxiTemps.length; i += 2) {
             maxiTemps[i] = (maxiTemps[i - 1] + maxiTemps[i + 1]) * 0.5F;
@@ -99,29 +97,40 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
         miniTemps = new float[itemCount * 2 - 1];
         for (int i = 0; i < miniTemps.length; i += 2) {
-            miniTemps[i] = weather.dailyList.get(i / 2).temps[1];
+            miniTemps[i] = weather.getDailyForecast().get(i / 2).night().getTemperature().getTemperature();
         }
         for (int i = 1; i < miniTemps.length; i += 2) {
             miniTemps[i] = (miniTemps[i - 1] + miniTemps[i + 1]) * 0.5F;
         }
 
-        highestTemp = history == null ? Integer.MIN_VALUE : history.maxiTemp;
-        lowestTemp = history == null ? Integer.MAX_VALUE : history.miniTemp;
+        highestTemp = weather.getYesterday() == null
+                ? Integer.MIN_VALUE
+                : weather.getYesterday().getDaytimeTemperature();
+        lowestTemp = weather.getYesterday() == null
+                ? Integer.MAX_VALUE
+                : weather.getYesterday().getNighttimeTemperature();
         for (int i = 0; i < itemCount; i ++) {
-            if (weather.dailyList.get(i).temps[0] > highestTemp) {
-                highestTemp = weather.dailyList.get(i).temps[0];
+            if (weather.getDailyForecast().get(i).day().getTemperature().getTemperature() > highestTemp) {
+                highestTemp = weather.getDailyForecast().get(i).day().getTemperature().getTemperature();
             }
-            if (weather.dailyList.get(i).temps[1] < lowestTemp) {
-                lowestTemp = weather.dailyList.get(i).temps[1];
+            if (weather.getDailyForecast().get(i).night().getTemperature().getTemperature() < lowestTemp) {
+                lowestTemp = weather.getDailyForecast().get(i).night().getTemperature().getTemperature();
             }
         }
 
         View drawableView = LayoutInflater.from(context)
                 .inflate(R.layout.widget_trend_daily, null, false);
-        if (history != null) {
+        if (weather.getYesterday() != null) {
             TrendLinearLayout trendParent = drawableView.findViewById(R.id.widget_trend_daily);
             trendParent.setData(
-                    new int[] {history.maxiTemp, history.miniTemp}, highestTemp, lowestTemp, true
+                    new int[] {
+                            weather.getYesterday().getDaytimeTemperature(),
+                            weather.getYesterday().getNighttimeTemperature()
+                    },
+                    highestTemp,
+                    lowestTemp,
+                    temperatureUnit,
+                    true
             );
             trendParent.setColor(lightTheme);
         }
@@ -132,33 +141,35 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableView.findViewById(R.id.widget_trend_daily_item_4),
                 drawableView.findViewById(R.id.widget_trend_daily_item_5)
         };
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        int[] colors = WeatherViewController.getThemeColors(context, weather, TimeManager.isDaylight(weather));
+        int[] colors = WeatherViewController.getThemeColors(context, weather, TimeManager.isDaylight(location));
         for (int i = 0; i < items.length; i ++) {
-            Daily daily = weather.dailyList.get(i);
+            Daily daily = weather.getDailyForecast().get(i);
 
-            if (daily.date.equals(format.format(new Date()))) {
+            if (daily.getDate().equals(new Date())) {
                 items[i].setTitleText(context.getString(R.string.today));
             } else {
-                items[i].setTitleText(daily.week);
+                items[i].setTitleText(daily.getWeek(context));
             }
 
-            items[i].setSubtitleText(
-                    daily.getDateInFormat(context.getString(R.string.date_format_short))
-            );
+            items[i].setSubtitleText(daily.getShortDate(context));
 
             items[i].setTopIconDrawable(
-                    WeatherHelper.getWidgetNotificationIcon(
-                            provider, daily.weatherKinds[0], true, minimalIcon, lightTheme
-                    )
+                    ResourceHelper.getWidgetNotificationIcon(
+                            provider, daily.day().getWeatherCode(), true, minimalIcon, lightTheme)
             );
 
+            Float daytimePrecipitationProbability = daily.day().getPrecipitationProbability().getTotal();
+            Float nighttimePrecipitationProbability = daily.night().getPrecipitationProbability().getTotal();
             items[i].getTrendItemView().setData(
                     buildTempArrayForItem(maxiTemps, i),
                     buildTempArrayForItem(miniTemps, i),
-                    Math.max(daily.precipitations[0], daily.precipitations[1]),
+                    (int) Math.max(
+                            daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
+                            nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
+                    ),
                     highestTemp,
-                    lowestTemp
+                    lowestTemp,
+                    temperatureUnit
             );
             items[i].getTrendItemView().setLineColors(
                     colors[1], colors[2],
@@ -178,8 +189,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             items[i].getTrendItemView().setPrecipitationAlpha(lightTheme ? 0.2f : 0.5f);
 
             items[i].setBottomIconDrawable(
-                    WeatherHelper.getWidgetNotificationIcon(
-                            provider, daily.weatherKinds[1], false, minimalIcon, lightTheme
+                    ResourceHelper.getWidgetNotificationIcon(
+                            provider, daily.night().getWeatherCode(), false, minimalIcon, lightTheme
                     )
             );
 
@@ -248,7 +259,6 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
     @WorkerThread
     public static RemoteViews getRemoteViews(Context context, Location location,
-                                             @Nullable Weather weather, @Nullable History history,
                                              int width, String cardStyle, int cardAlpha) {
         boolean lightTheme;
         switch (cardStyle) {
@@ -261,12 +271,12 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 break;
 
             default:
-                lightTheme = TimeManager.isDaylight(weather);
+                lightTheme = TimeManager.isDaylight(location);
                 break;
         }
         return getRemoteViews(
                 context,
-                getDrawableView(context, weather, history, lightTheme),
+                getDrawableView(context, location, lightTheme),
                 location,
                 width,
                 !lightTheme, cardAlpha

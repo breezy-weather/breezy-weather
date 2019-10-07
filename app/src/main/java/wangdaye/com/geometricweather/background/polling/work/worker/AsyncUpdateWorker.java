@@ -12,8 +12,7 @@ import androidx.work.impl.utils.futures.SettableFuture;
 import java.util.List;
 
 import wangdaye.com.geometricweather.background.polling.PollingUpdateHelper;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
@@ -47,8 +46,7 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
 
     // control.
 
-    public abstract void updateView(Context context, Location location,
-                                    @Nullable Weather weather, @Nullable History history);
+    public abstract void updateView(Context context, Location location);
 
     /**
      * Call {@link SettableFuture#set(Object)} here.
@@ -60,20 +58,18 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
     // on polling update listener.
 
     @Override
-    public void onUpdateCompleted(Location location, Weather weather, Weather old,
+    public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                   boolean succeed, int index, int total) {
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(location)) {
-                location.weather = weather;
-                location.history = DatabaseHelper.getInstance(getApplicationContext()).readHistory(weather);
                 locationList.set(i, location);
                 if (i == 0) {
-                    updateView(getApplicationContext(), location, location.weather, location.history);
+                    updateView(getApplicationContext(), location);
                     if (succeed) {
                         NotificationUtils.checkAndSendAlert(
-                                getApplicationContext(), location, weather, old);
+                                getApplicationContext(), location, old);
                         NotificationUtils.checkAndSendPrecipitationForecast(
-                                getApplicationContext(), location, weather, old);
+                                getApplicationContext(), location, old);
                     } else {
                         failed = true;
                     }

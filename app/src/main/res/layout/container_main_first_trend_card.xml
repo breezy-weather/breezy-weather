@@ -41,6 +41,26 @@
                     tools:text="09:00"
                     tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/container_main_first_trend_card_localTimeIcon"
+                    android:layout_width="@dimen/standard_weather_icon_size"
+                    android:layout_height="@dimen/standard_weather_icon_size"
+                    android:padding="@dimen/normal_margin"
+                    android:src="@drawable/ic_map_clock"
+                    android:tint="@color/colorTextContent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <TextClock
+                    android:id="@+id/container_main_first_trend_card_localTimeText"
+                    android:layout_toStartOf="@id/container_main_first_trend_card_localTimeIcon"
+                    android:layout_centerVertical="true"
+                    android:format12Hour="aa h:mm"
+                    android:format24Hour="HH:mm"
+                    style="@style/content_text"
+                    tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
+
             </RelativeLayout>
 
             <TextView

@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.weather.json.accu;
 
+import java.util.Date;
+
 /**
  * Accu hourly result.
  * */
@@ -18,8 +20,8 @@ public class AccuHourlyResult {
      * Link : http://www.accuweather.com/zh/cn/qingdao/106573/hourly-weather-forecast/106573?day=1&hbhhour=10&unit=c&lang=zh-cn
      */
 
-    public String DateTime;
-    public int EpochDateTime;
+    public Date DateTime;
+    public long EpochDateTime;
     public int WeatherIcon;
     public String IconPhrase;
     public boolean IsDaylight;

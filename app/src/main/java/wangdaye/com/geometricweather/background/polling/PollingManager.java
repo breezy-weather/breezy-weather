@@ -5,7 +5,6 @@ import android.content.Context;
 import wangdaye.com.geometricweather.background.polling.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
@@ -24,10 +23,7 @@ public class PollingManager {
             PermanentServiceHelper.stopPollingService(context);
 
             WorkerHelper.setNormalPollingWork(
-                    ValueUtils.getUpdateIntervalInHour(
-                            SettingsOptionManager.getInstance(context).getUpdateInterval()
-                    )
-            );
+                    SettingsOptionManager.getInstance(context).getUpdateInterval().getIntervalInHour());
 
             if (settings.isTodayForecastEnabled()) {
                 WorkerHelper.setTodayForecastUpdateWork(settings.getTodayForecastTime(), false);
@@ -59,10 +55,7 @@ public class PollingManager {
             PermanentServiceHelper.stopPollingService(context);
 
             WorkerHelper.setNormalPollingWork(
-                    ValueUtils.getUpdateIntervalInHour(
-                            SettingsOptionManager.getInstance(context).getUpdateInterval()
-                    )
-            );
+                    SettingsOptionManager.getInstance(context).getUpdateInterval().getIntervalInHour());
         } else {
             WorkerHelper.cancelNormalPollingWork();
             WorkerHelper.cancelTodayForecastUpdateWork();

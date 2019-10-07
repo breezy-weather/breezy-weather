@@ -6,23 +6,23 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.os.Build;
-import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenter.AbstractRemoteViewsPresenter;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Forecast notification utils.
@@ -30,15 +30,20 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
-    static void buildNotificationAndSendIt(Context context, @NonNull Weather weather,
-                                           boolean daytime, boolean fahrenheit, boolean tempIcon,
+    static void buildNotificationAndSendIt(Context context, Location location,
+                                           TemperatureUnit temperatureUnit, boolean daytime, boolean tempIcon,
                                            boolean hideNotificationIcon, boolean hideNotificationInLockScreen,
                                            boolean canBeCleared) {
+        Weather weather = location.getWeather();
+        if (weather == null) {
+            return;
+        }
+
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
         LanguageUtils.setLanguage(
                 context,
-                SettingsOptionManager.getInstance(context).getLanguage()
+                SettingsOptionManager.getInstance(context).getLanguage().getLocale()
         );
 
         // create channel.
@@ -75,14 +80,14 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 ? NotificationCompat.VISIBILITY_SECRET : NotificationCompat.VISIBILITY_PUBLIC);
 
         // set small icon.
-        builder.setSmallIcon(tempIcon
-                ? WeatherHelper.getTempIconId(
+        builder.setSmallIcon(
+                tempIcon ? ResourceHelper.getTempIconId(
                         context,
-                        fahrenheit
-                                ? ValueUtils.calcFahrenheit(weather.realTime.temp)
-                                : weather.realTime.temp
-                ) : WeatherHelper.getDefaultMinimalXmlIconId(
-                        weather.realTime.weatherKind,
+                        temperatureUnit.getTemperature(
+                                weather.getCurrent().getTemperature().getTemperature()
+                        )
+                ) : ResourceHelper.getDefaultMinimalXmlIconId(
+                        weather.getCurrent().getWeatherCode(),
                         daytime
                 )
         );
@@ -90,25 +95,30 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         // large icon.
         builder.setLargeIcon(
                 drawableToBitmap(
-                        WeatherHelper.getWidgetNotificationIcon(
-                                provider, weather.realTime.weatherKind, daytime, false, false)
+                        ResourceHelper.getWidgetNotificationIcon(
+                                provider, weather.getCurrent().getWeatherCode(),
+                                daytime, false, false
+                        )
                 )
         );
 
-        builder.setSubText(weather.base.city + " " + weather.base.time);
+        builder.setSubText(
+                location.getCityName(context) + " " + Base.getTime(context, weather.getBase().getUpdateDate())
+        );
         builder.setContentTitle(
-                ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit) + " "
-                        + weather.realTime.weather
+                weather.getCurrent().getTemperature().getTemperature(temperatureUnit)
+                        + " "
+                        + weather.getCurrent().getWeatherText()
         );
 
         StringBuilder contentText = new StringBuilder();
         contentText.append(context.getString(R.string.feels_like))
                 .append(" ")
-                .append(ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.sensibleTemp, fahrenheit));
-        if (weather.aqi == null) {
-            contentText.append(", ").append(weather.realTime.windLevel);
-        } else if (!TextUtils.isEmpty(weather.aqi.quality)) {
-            contentText.append(", ").append(weather.aqi.quality);
+                .append(weather.getCurrent().getTemperature().getShortRealFeeTemperature(temperatureUnit));
+        if (weather.getCurrent().getAirQuality().getAqiText() == null) {
+            contentText.append(", ").append(weather.getCurrent().getWind().getLevel());
+        } else {
+            contentText.append(", ").append(weather.getCurrent().getAirQuality().getAqiText());
         }
         builder.setContentText(contentText.toString());
 
@@ -128,8 +138,8 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                         .getMethod("setSmallIcon", Icon.class)
                         .invoke(
                                 notification,
-                                WeatherHelper.getMinimalIcon(
-                                        provider, weather.realTime.weatherKind, daytime)
+                                ResourceHelper.getMinimalIcon(
+                                        provider, weather.getCurrent().getWeatherCode(), daytime)
                         );
             } catch (Exception ignore) {
                 // do nothing.

@@ -23,14 +23,11 @@ public class GzipInterceptor extends ReportExceptionInterceptor {
         try {
             return buildResponse(request, chain.proceed(request));
         } catch (Exception e) {
-            handleException(e);
             return nullResponse(request);
         }
     }
 
     private Response buildResponse(Request request, Response response) throws Exception {
-        // return response;
-
         ResponseBody body = response.body();
         if (body == null) {
             return response;

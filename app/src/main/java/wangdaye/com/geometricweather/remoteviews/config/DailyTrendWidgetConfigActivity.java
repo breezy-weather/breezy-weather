@@ -38,7 +38,7 @@ public class DailyTrendWidgetConfigActivity extends AbstractWidgetConfigActivity
     @Override
     public RemoteViews getRemoteViews() {
         return DailyTrendWidgetIMP.getRemoteViews(
-                this, locationNow, locationNow.weather, locationNow.history,
+                this, locationNow,
                 getResources().getDisplayMetrics().widthPixels,
                 cardStyleValueNow, cardAlpha
         );

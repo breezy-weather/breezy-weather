@@ -20,11 +20,9 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Location adapter.
@@ -136,12 +134,16 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
         // subtitle.
         if (!itemList.get(position).isCurrentPosition() || itemList.get(position).isUsable()) {
-            holder.subtitle.setText(itemList.get(position).country
-                    + " " + itemList.get(position).province
-                    + (itemList.get(position).province.equals(itemList.get(position).city)
-                            ? "" : (" " + itemList.get(position).city))
-                    + (itemList.get(position).city.equals(itemList.get(position).district)
-                            ? "" : (" " + itemList.get(position).district)));
+            StringBuilder builder = new StringBuilder(
+                    itemList.get(position).getCountry() + " " + itemList.get(position).getProvince()
+            );
+            if (!itemList.get(position).getProvince().equals(itemList.get(position).getCity())) {
+                builder.append(" ").append(itemList.get(position).getCity());
+            }
+            if (!itemList.get(position).getCity().equals(itemList.get(position).getDistrict())) {
+                builder.append(" ").append(itemList.get(position).getDistrict());
+            }
+            holder.subtitle.setText(builder.toString());
         } else {
             holder.subtitle.setText(activity.getString(R.string.feedback_not_yet_location));
         }
@@ -151,10 +153,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             holder.source.setTextColor(ContextCompat.getColor(activity, R.color.colorTextSubtitle));
             holder.source.setText("...");
         } else {
-            holder.source.setTextColor(
-                    WeatherHelper.getWeatherSourceThemeColor(activity, itemList.get(position).source));
-            holder.source.setText("Powered by "
-                    + ValueUtils.getWeatherSourceName(activity, itemList.get(position).source));
+            holder.source.setTextColor(itemList.get(position).getWeatherSource().getSourceColor());
+            holder.source.setText("Powered by " + itemList.get(position).getWeatherSource().getSourceUrl());
         }
 
         // swipe icon.
@@ -205,6 +205,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         if (itemList == null || itemList.size() == 0) {
             return "";
         }
-        return ValueUtils.getWeatherSourceName(activity, itemList.get(element).source);
+        return itemList.get(element).getWeatherSource().getSourceUrl();
     }
 }

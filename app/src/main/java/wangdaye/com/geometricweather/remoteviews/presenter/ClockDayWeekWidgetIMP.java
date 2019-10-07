@@ -4,7 +4,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import android.net.Uri;
@@ -12,32 +11,33 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayWeekProvider;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.LanguageUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
-    public static void updateWidgetView(Context context, Location location, @Nullable Weather weather) {
+    public static void updateWidgetView(Context context, Location location) {
         WidgetConfig config = getWidgetConfig(
                 context,
                 context.getString(R.string.sp_widget_clock_day_week_setting)
         );
 
         RemoteViews views = getRemoteViews(
-                context, location, weather,
+                context, location,
                 config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont
         );
 
@@ -48,20 +48,21 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static RemoteViews getRemoteViews(Context context,
-                                             Location location, @Nullable Weather weather,
+                                             Location location,
                                              String cardStyle, int cardAlpha,
                                              String textColor, int textSize, String clockFont) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_week);
+        Weather weather = location.getWeather();
         if (weather == null) {
             return views;
         }
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.isDaylight(weather);
+        boolean dayTime = TimeManager.isDaylight(location);
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
-        boolean fahrenheit = settings.isFahrenheit();
+        TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
@@ -76,9 +77,9 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setImageViewUri(
                 R.id.widget_clock_day_week_icon,
-                WeatherHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                         provider,
-                        weather.realTime.weatherKind,
+                        weather.getCurrent().getWeatherCode(),
                         dayTime,
                         minimalIcon,
                         color.darkText
@@ -86,57 +87,57 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_lunar,
-                LanguageUtils.getLanguageCode(context).startsWith("zh")
-                        ? (" - " + LunarHelper.getLunarDate(Calendar.getInstance()))
+                settings.getLanguage().getCode().startsWith("zh")
+                        ? (" - " + LunarHelper.getLunarDate(new Date()))
                         : ""
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_subtitle,
-                weather.base.city
+                location.getCityName(context)
                         + " "
-                        + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit)
+                        + weather.getCurrent().getTemperature().getTemperature(temperatureUnit)
         );
 
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_1,
-                getWeek(context, weather, 0)
+                WidgetUtils.getDailyWeek(context, weather, 0)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_2,
-                getWeek(context, weather, 1)
+                WidgetUtils.getDailyWeek(context, weather, 1)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_3,
-                getWeek(context, weather, 2)
+                WidgetUtils.getDailyWeek(context, weather, 2)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_4,
-                getWeek(context, weather, 3)
+                WidgetUtils.getDailyWeek(context, weather, 3)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_5,
-                getWeek(context, weather, 4)
+                WidgetUtils.getDailyWeek(context, weather, 4)
         );
 
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_1,
-                getTemp(weather, fahrenheit, 0)
+                getTemp(weather, 0, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_2,
-                getTemp(weather, fahrenheit, 1)
+                getTemp(weather, 1, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_3,
-                getTemp(weather, fahrenheit, 2)
+                getTemp(weather, 2, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_4,
-                getTemp(weather, fahrenheit, 3)
+                getTemp(weather, 3, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_temp_5,
-                getTemp(weather, fahrenheit, 4)
+                getTemp(weather, 4, temperatureUnit)
         );
 
         views.setImageViewUri(
@@ -275,54 +276,22 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return widgetIds != null && widgetIds.length > 0;
     }
 
-    private static String getWeek(Context context, Weather weather, int index) {
-        if (index > 1) {
-            return weather.dailyList.get(index).week;
-        }
-
-        String firstWeekDay;
-        String secondWeekDay;
-        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        String[] weatherDates = weather.base.date.split("-");
-        if (Integer.parseInt(weatherDates[0]) == year
-                && Integer.parseInt(weatherDates[1]) == month + 1
-                && Integer.parseInt(weatherDates[2]) == day) {
-            firstWeekDay = context.getString(R.string.today);
-            secondWeekDay = weather.dailyList.get(1).week;
-        } else if (Integer.parseInt(weatherDates[0]) == year
-                && Integer.parseInt(weatherDates[1]) == month + 1
-                && Integer.parseInt(weatherDates[2]) == day - 1) {
-            firstWeekDay = context.getString(R.string.yesterday);
-            secondWeekDay = context.getString(R.string.today);
-        } else {
-            firstWeekDay = weather.dailyList.get(0).week;
-            secondWeekDay = weather.dailyList.get(1).week;
-        }
-
-        if (index == 0) {
-            return firstWeekDay;
-        } else {
-            return secondWeekDay;
-        }
-    }
-
-    private static String getTemp(Weather weather, boolean fahrenheit, int index) {
-        return ValueUtils.buildDailyTemp(
-                weather.dailyList.get(index).temps,
-                false,
-                fahrenheit
+    private static String getTemp(Weather weather, int index, TemperatureUnit unit) {
+        return Temperature.getTrendTemperature(
+                weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
+                weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
+                unit
         );
     }
 
     private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,
                                           boolean dayTime, boolean minimalIcon, boolean blackText,
                                           int index) {
-        return WeatherHelper.getWidgetNotificationIconUri(
+        return ResourceHelper.getWidgetNotificationIconUri(
                 helper,
-                weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
+                dayTime
+                        ? weather.getDailyForecast().get(index).day().getWeatherCode()
+                        : weather.getDailyForecast().get(index).night().getWeatherCode(),
                 dayTime,
                 minimalIcon,
                 blackText

@@ -44,15 +44,9 @@ public class GMSLocationService extends LocationService {
 
     private class GMSLocationListener extends com.google.android.gms.location.LocationCallback {
 
-        private boolean geocode;
-
-        GMSLocationListener(boolean geocode) {
-            this.geocode = geocode;
-        }
-
         public void onLocationResult(LocationResult locationResult) {
             if (locationResult != null && locationResult.getLocations().size() > 0) {
-                handleLocation(locationResult.getLocations().get(0), geocode);
+                handleLocation(locationResult.getLocations().get(0));
             }
         }
     }
@@ -69,13 +63,13 @@ public class GMSLocationService extends LocationService {
 
     @SuppressLint("MissingPermission")
     @Override
-    public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback) {
+    public void requestLocation(Context context, @NonNull LocationCallback callback) {
         if (!hasPermissions(context)) {
             callback.onCompleted(null);
             return;
         }
 
-        locationListener = new GMSLocationListener(geocode);
+        locationListener = new GMSLocationListener();
         locationCallback = callback;
         lastKnownLocation = null;
 
@@ -92,7 +86,7 @@ public class GMSLocationService extends LocationService {
                 client.removeLocationUpdates(locationListener);
                 locationListener = null;
             }
-            handleLocation(lastKnownLocation, geocode);
+            handleLocation(lastKnownLocation);
         }, TIMEOUT_MILLIS);
     }
 
@@ -116,14 +110,14 @@ public class GMSLocationService extends LocationService {
         };
     }
 
-    private void handleLocation(@Nullable Location location, boolean geocode) {
+    private void handleLocation(@Nullable Location location) {
         if (location == null) {
             handleResultIfNecessary(null);
             return;
         }
 
         Observable.create((ObservableOnSubscribe<Result>) emitter ->
-                emitter.onNext(buildResult(location, geocode))
+                emitter.onNext(buildResult(location))
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(this::handleResultIfNecessary)
@@ -139,18 +133,15 @@ public class GMSLocationService extends LocationService {
 
     @WorkerThread
     @Nullable
-    private Result buildResult(@NonNull Location location, boolean geocode) {
+    private Result buildResult(@NonNull Location location) {
         if (!location.hasAccuracy()) {
             return null;
         }
 
-        Result result = new Result(
-                String.valueOf(location.getLatitude()),
-                String.valueOf(location.getLongitude())
-        );
+        Result result = new Result((float) location.getLatitude(), (float) location.getLongitude());
         result.hasGeocodeInformation = false;
 
-        if (!geocoderEnabled() || !geocode) {
+        if (!Geocoder.isPresent()) {
             return result;
         }
 
@@ -198,12 +189,11 @@ public class GMSLocationService extends LocationService {
                     || countryCode.equals("TW")
                     || countryCode.equals("tw");
         }
+        if (result.inChina) {
+            result.GMTOffset = 8;
+        }
 
         return result;
-    }
-
-    public static boolean geocoderEnabled() {
-        return Geocoder.isPresent();
     }
 
     public static boolean isEnabled(Context context) {

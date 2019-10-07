@@ -130,7 +130,6 @@
     <!-- settings -->
     <string name="settings_category_basic">Temel</string>
     <string name="settings_language">Dil.</string>
-    <string name="settings_title_fahrenheit">Fahrenheit.</string>
     <string name="settings_title_permanent_service">kalıcı servis.</string>
     <string name="settings_category_forecast">Tahmin</string>
     <string name="settings_title_forecast_today">Bugün için tahmin.</string>

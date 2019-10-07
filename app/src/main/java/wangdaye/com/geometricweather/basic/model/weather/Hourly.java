@@ -1,41 +1,89 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
-import wangdaye.com.geometricweather.db.entity.HourlyEntity;
+import android.content.Context;
+
+import java.util.Calendar;
+import java.util.Date;
+
+import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
  * Hourly.
+ *
+ * All properties are {@link androidx.annotation.NonNull}.
  * */
-
 public class Hourly {
 
-    public String time;
-    public boolean dayTime;
-    public String weather;
-    public String weatherKind;
-    public int temp;
-    public int precipitation;
+    private Date date;
+    private long time;
+    private boolean daylight;
 
-    public Hourly(String time, boolean dayTime,
-                  String weather, String weatherKind,
-                  int temp, int precipitation) {
+    private String weatherText;
+    private WeatherCode weatherCode;
+
+    private Temperature temperature;
+    private Precipitation precipitation;
+    private PrecipitationProbability precipitationProbability;
+
+    public Hourly(Date date, long time, boolean daylight,
+                  String weatherText, WeatherCode weatherCode,
+                  Temperature temperature,
+                  Precipitation precipitation, PrecipitationProbability precipitationProbability) {
+        this.date = date;
         this.time = time;
-        this.dayTime = dayTime;
-        this.weather = weather;
-        this.weatherKind = weatherKind;
-        this.temp = temp;
+        this.daylight = daylight;
+        this.weatherText = weatherText;
+        this.weatherCode = weatherCode;
+        this.temperature = temperature;
         this.precipitation = precipitation;
+        this.precipitationProbability = precipitationProbability;
     }
 
-    public HourlyEntity toHourlyEntity(Base base) {
-        HourlyEntity entity = new HourlyEntity();
-        entity.cityId = base.cityId;
-        entity.city = base.city;
-        entity.time = time;
-        entity.dayTime = dayTime;
-        entity.weather = weather;
-        entity.weatherKind = weatherKind;
-        entity.temp = temp;
-        entity.precipitation = precipitation;
-        return entity;
+    public Date getDate() {
+        return date;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public boolean isDaylight() {
+        return daylight;
+    }
+
+    public String getWeatherText() {
+        return weatherText;
+    }
+
+    public WeatherCode getWeatherCode() {
+        return weatherCode;
+    }
+
+    public Temperature getTemperature() {
+        return temperature;
+    }
+
+    public Precipitation getPrecipitation() {
+        return precipitation;
+    }
+
+    public PrecipitationProbability getPrecipitationProbability() {
+        return precipitationProbability;
+    }
+
+    public String getHour(Context c) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        if (TimeManager.is12Hour(c)) {
+            int hour = calendar.get(Calendar.HOUR);
+            if (hour == 0) {
+                hour = 12;
+            }
+            return hour + c.getString(R.string.of_clock);
+        } else {
+            return calendar.get(Calendar.HOUR_OF_DAY) + c.getString(R.string.of_clock);
+        }
     }
 }

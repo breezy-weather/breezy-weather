@@ -23,16 +23,20 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.RelativeHumidityUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Base;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 
@@ -207,107 +211,167 @@ public abstract class AbstractRemoteViewsPresenter {
         if (TextUtils.isEmpty(subtitle)) {
             return "";
         }
-        boolean fahrenheit = SettingsOptionManager.getInstance(context).isFahrenheit();
+        TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
         subtitle = subtitle
-                .replace("$cw$", weather.realTime.weather)
-                .replace("$ct$", ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit))
-                .replace("$ctd$", ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.temp, fahrenheit))
-                .replace("$at$", ValueUtils.buildCurrentTemp(weather.realTime.sensibleTemp, false, fahrenheit))
-                .replace("$atd$", ValueUtils.buildAbbreviatedCurrentTemp(weather.realTime.sensibleTemp, fahrenheit))
-                .replace("$cp$", weather.hourlyList.get(0).precipitation + "%")
+                .replace("$cw$", weather.getCurrent().getWeatherText())
                 .replace(
+                        "$ct$",
+                        weather.getCurrent()
+                                .getTemperature()
+                                .getTemperature(temperatureUnit) + ""
+                ).replace(
+                        "$ctd$",
+                        weather.getCurrent()
+                                .getTemperature()
+                                .getShortTemperature(temperatureUnit) + ""
+                ).replace(
+                        "$at$",
+                        weather.getCurrent()
+                                .getTemperature()
+                                .getRealFeelTemperature(temperatureUnit) + ""
+                ).replace(
+                        "$atd$",
+                        weather.getCurrent()
+                                .getTemperature()
+                                .getShortRealFeeTemperature(temperatureUnit) + ""
+                ).replace(
+                        "$cp$",
+                        ProbabilityUnit.PERCENT.getProbabilityText(
+                                WidgetUtils.getNonNullValue(
+                                        weather.getHourlyForecast()
+                                                .get(0)
+                                                .getPrecipitationProbability()
+                                                .getTotal(),
+                                        0
+                                )
+                        )
+                ).replace(
                         "$cwd$",
-                        weather.realTime.windLevel
-                                + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")"
-                ).replace("$l$", weather.base.city)
-                .replace("$lat$", location.lat)
-                .replace("$lon$", location.lon)
-                .replace("$ut$", weather.base.time)
+                        weather.getCurrent().getWind().getLevel()
+                                + " ("
+                                + weather.getCurrent().getWind().getDirection()
+                                + ")"
+                ).replace("$l$", location.getCityName(context))
+                .replace("$lat$", String.valueOf(location.getLatitude()))
+                .replace("$lon$", String.valueOf(location.getLongitude()))
+                .replace("$ut$", Base.getTime(context, weather.getBase().getUpdateDate()))
                 .replace(
                         "$d$",
-                        new SimpleDateFormat(context.getString(R.string.date_format_long))
-                                .format(new Date(System.currentTimeMillis()))
-                ).replace("$lc$", LunarHelper.getLunarDate(Calendar.getInstance()))
-                .replace(
+                        new SimpleDateFormat(context.getString(R.string.date_format_long)).format(new Date())
+                ).replace(
+                        "$lc$",
+                        LunarHelper.getLunarDate(new Date())
+                ).replace(
                         "$w$",
-                        new SimpleDateFormat("EEEE").format(new Date(System.currentTimeMillis()))
+                        new SimpleDateFormat("EEEE").format(new Date())
                 ).replace(
                         "$ws$",
-                        new SimpleDateFormat("EEE").format(new Date(System.currentTimeMillis()))
-                ).replace("$dd$", weather.index.simpleForecast)
-                .replace("$hd$", weather.index.briefing)
-                .replace("$h$", weather.index.humidity.replaceAll( "[^\\d]", "") + "%");
+                        new SimpleDateFormat("EEE").format(new Date())
+                ).replace("$dd$", weather.getCurrent().getDailyForecast() + "")
+                .replace("$hd$", weather.getCurrent().getHourlyForecast() + "")
+                .replace(
+                        "$h$",
+                        RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
+                                WidgetUtils.getNonNullValue(
+                                        weather.getCurrent().getRelativeHumidity(),
+                                        0
+                                )
+                        )
+                );
         subtitle = replaceDaytimeWeatherSubtitle(subtitle, weather);
         subtitle = replaceNighttimeWeatherSubtitle(subtitle, weather);
-        subtitle = replaceDaytimeTemperatureSubtitle(subtitle, weather, fahrenheit);
-        subtitle = replaceNighttimeTemperatureSubtitle(subtitle, weather, fahrenheit);
-        subtitle = replaceDaytimeDegreeTemperatureSubtitle(subtitle, weather, fahrenheit);
-        subtitle = replaceNighttimeDegreeTemperatureSubtitle(subtitle, weather, fahrenheit);
+        subtitle = replaceDaytimeTemperatureSubtitle(subtitle, weather, temperatureUnit);
+        subtitle = replaceNighttimeTemperatureSubtitle(subtitle, weather, temperatureUnit);
+        subtitle = replaceDaytimeDegreeTemperatureSubtitle(subtitle, weather, temperatureUnit);
+        subtitle = replaceNighttimeDegreeTemperatureSubtitle(subtitle, weather, temperatureUnit);
         subtitle = replaceDaytimePrecipitationSubtitle(subtitle, weather);
         subtitle = replaceNighttimePrecipitationSubtitle(subtitle, weather);
         subtitle = replaceDaytimeWindSubtitle(subtitle, weather);
         subtitle = replaceNighttimeWindSubtitle(subtitle, weather);
-        subtitle = replaceSunriseSubtitle(subtitle, weather);
-        subtitle = replaceSunsetSubtitle(subtitle, weather);
-        subtitle = replaceMoonriseSubtitle(subtitle, weather);
-        subtitle = replaceMoonsetSubtitle(subtitle, weather);
-        subtitle = replaceMoonPhaseSubtitle(subtitle, weather);
+        subtitle = replaceSunriseSubtitle(context, subtitle, weather);
+        subtitle = replaceSunsetSubtitle(context, subtitle, weather);
+        subtitle = replaceMoonriseSubtitle(context, subtitle, weather);
+        subtitle = replaceMoonsetSubtitle(context, subtitle, weather);
+        subtitle = replaceMoonPhaseSubtitle(context, subtitle, weather);
         return subtitle;
     }
 
     private static String replaceDaytimeWeatherSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
-            subtitle = subtitle.replace("$" + i + "dw$", weather.dailyList.get(i).weathers[0]);
+            subtitle = subtitle.replace(
+                    "$" + i + "dw$",
+                    weather.getDailyForecast().get(i).day().getWeatherText()
+            );
         }
         return subtitle;
     }
 
     private static String replaceNighttimeWeatherSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
-            subtitle = subtitle.replace("$" + i + "nw$", weather.dailyList.get(i).weathers[1]);
+            subtitle = subtitle.replace(
+                    "$" + i + "nw$",
+                    weather.getDailyForecast().get(i).night().getWeatherText()
+            );
         }
         return subtitle;
     }
 
     private static String replaceDaytimeTemperatureSubtitle(@NonNull String subtitle, @NonNull Weather weather,
-                                                     boolean fahrenheit) {
+                                                            TemperatureUnit unit) {
+
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "dt$",
-                    ValueUtils.buildCurrentTemp(weather.dailyList.get(i).temps[0], false, fahrenheit)
+                    weather.getDailyForecast()
+                            .get(i)
+                            .day()
+                            .getTemperature()
+                            .getTemperature(unit) + ""
             );
         }
         return subtitle;
     }
 
     private static String replaceNighttimeTemperatureSubtitle(@NonNull String subtitle, @NonNull Weather weather,
-                                                       boolean fahrenheit) {
+                                                              TemperatureUnit unit) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "nt$",
-                    ValueUtils.buildCurrentTemp(weather.dailyList.get(i).temps[1], false, fahrenheit)
+                    weather.getDailyForecast()
+                            .get(i)
+                            .night()
+                            .getTemperature()
+                            .getTemperature(unit) + ""
             );
         }
         return subtitle;
     }
 
     private static String replaceDaytimeDegreeTemperatureSubtitle(@NonNull String subtitle, @NonNull Weather weather,
-                                                           boolean fahrenheit) {
+                                                                  TemperatureUnit unit) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "dtd$",
-                    ValueUtils.buildAbbreviatedCurrentTemp(weather.dailyList.get(i).temps[0], fahrenheit)
+                    weather.getDailyForecast()
+                            .get(i)
+                            .day()
+                            .getTemperature()
+                            .getShortTemperature(unit) + ""
             );
         }
         return subtitle;
     }
 
     private static String replaceNighttimeDegreeTemperatureSubtitle(@NonNull String subtitle, @NonNull Weather weather,
-                                                             boolean fahrenheit) {
+                                                                    TemperatureUnit unit) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "ntd$",
-                    ValueUtils.buildAbbreviatedCurrentTemp(weather.dailyList.get(i).temps[1], fahrenheit)
+                    weather.getDailyForecast()
+                            .get(i)
+                            .night()
+                            .getTemperature()
+                            .getShortTemperature(unit) + ""
             );
         }
         return subtitle;
@@ -317,7 +381,16 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "dp$",
-                    weather.dailyList.get(i).precipitations[0] + "%"
+                    ProbabilityUnit.PERCENT.getProbabilityText(
+                            WidgetUtils.getNonNullValue(
+                                    weather.getDailyForecast()
+                                            .get(i)
+                                            .day()
+                                            .getPrecipitationProbability()
+                                            .getTotal(),
+                                    0
+                            )
+                    )
             );
         }
         return subtitle;
@@ -327,7 +400,16 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "np$",
-                    weather.dailyList.get(i).precipitations[1] + "%"
+                    ProbabilityUnit.PERCENT.getProbabilityText(
+                            WidgetUtils.getNonNullValue(
+                                    weather.getDailyForecast()
+                                            .get(i)
+                                            .night()
+                                            .getPrecipitationProbability()
+                                            .getTotal(),
+                                    0
+                            )
+                    )
             );
         }
         return subtitle;
@@ -337,8 +419,10 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "dwd$",
-                    weather.dailyList.get(i).windLevels[0]
-                            + " (" + weather.dailyList.get(i).windDirs[0] + weather.dailyList.get(i).windSpeeds[0] + ")"
+                    weather.getDailyForecast().get(i).day().getWind().getLevel()
+                            + " ("
+                            + weather.getDailyForecast().get(i).day().getWind().getDirection()
+                            + ")"
             );
         }
         return subtitle;
@@ -348,44 +432,61 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "nwd$",
-                    weather.dailyList.get(i).windLevels[1]
-                            + " (" + weather.dailyList.get(i).windDirs[1] + weather.dailyList.get(i).windSpeeds[1] + ")"
+                    weather.getDailyForecast().get(i).night().getWind().getLevel()
+                            + " ("
+                            + weather.getDailyForecast().get(i).night().getWind().getDirection()
+                            + ")"
             );
         }
         return subtitle;
     }
 
-    private static String replaceSunriseSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceSunriseSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
-            subtitle = subtitle.replace("$" + i + "sr$", weather.dailyList.get(i).astros[0]);
+            subtitle = subtitle.replace(
+                    "$" + i + "sr$",
+                    weather.getDailyForecast().get(i).sun().getRiseTime(context) + ""
+            );
         }
         return subtitle;
     }
 
-    private static String replaceSunsetSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceSunsetSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
-            subtitle = subtitle.replace("$" + i + "ss$", weather.dailyList.get(i).astros[1]);
+            subtitle = subtitle.replace(
+                    "$" + i + "ss$",
+                    weather.getDailyForecast().get(i).sun().getSetTime(context) + ""
+            );
         }
         return subtitle;
     }
 
-    private static String replaceMoonriseSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceMoonriseSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
-            subtitle = subtitle.replace("$" + i + "mr$", weather.dailyList.get(i).astros[2]);
+            subtitle = subtitle.replace(
+                    "$" + i + "mr$",
+                    weather.getDailyForecast().get(i).moon().getRiseTime(context) + ""
+            );
         }
         return subtitle;
     }
 
-    private static String replaceMoonsetSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceMoonsetSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
-            subtitle = subtitle.replace("$" + i + "ms$", weather.dailyList.get(i).astros[3]);
+            subtitle = subtitle.replace(
+                    "$" + i + "ms$",
+                    weather.getDailyForecast().get(i).moon().getSetTime(context) + ""
+            );
         }
         return subtitle;
     }
 
-    private static String replaceMoonPhaseSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceMoonPhaseSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
-            subtitle = subtitle.replace("$" + i + "mp$", weather.dailyList.get(i).moonPhase);
+            subtitle = subtitle.replace(
+                    "$" + i + "mp$",
+                    weather.getDailyForecast().get(i).getMoonPhase().getMoonPhase(context) + ""
+            );
         }
         return subtitle;
     }

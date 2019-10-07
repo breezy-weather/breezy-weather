@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.ui.widget.trendView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,12 +8,13 @@ import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.History;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.ui.adapter.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Trend view controller.
@@ -25,76 +25,94 @@ public class TrendViewController {
     public static void setDailyTrend(GeoActivity activity, TextView title, TextView subtitle,
                                      TrendRecyclerView recyclerView,
                                      @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                     @NonNull Weather weather, @Nullable History history,
-                                     int[] themeColors) {
+                                     @NonNull Weather weather, int[] themeColors) {
+        TemperatureUnit unit = SettingsOptionManager.getInstance(activity).getTemperatureUnit();
+
         title.setText(activity.getString(R.string.daily_overview));
 
-        if (TextUtils.isEmpty(weather.index.simpleForecast)) {
+        if (TextUtils.isEmpty(weather.getCurrent().getDailyForecast())) {
             subtitle.setVisibility(View.GONE);
         } else {
             subtitle.setVisibility(View.VISIBLE);
-            subtitle.setText(weather.index.simpleForecast);
+            subtitle.setText(weather.getCurrent().getDailyForecast());
         }
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new DailyTrendAdapter(activity, weather, history, themeColors, provider, picker));
+        recyclerView.setAdapter(new DailyTrendAdapter(activity, weather, themeColors, provider, picker, unit));
 
         recyclerView.setLineColor(picker.getLineColor(activity));
-        if (history == null) {
-            recyclerView.setData(null, 0, 0, true);
+        if (weather.getYesterday() == null) {
+            recyclerView.setData(null, 0, 0, unit, true);
         } else {
-            int highest = history.maxiTemp;
-            int lowest = history.miniTemp;
-            for (int i = 0; i < weather.dailyList.size(); i ++) {
-                if (weather.dailyList.get(i).temps[0] > highest) {
-                    highest = weather.dailyList.get(i).temps[0];
+            int highest = weather.getYesterday().getDaytimeTemperature();
+            int lowest = weather.getYesterday().getNighttimeTemperature();
+            for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
+                if (weather.getDailyForecast().get(i).day().getTemperature().getTemperature() > highest) {
+                    highest = weather.getDailyForecast().get(i).day().getTemperature().getTemperature();
                 }
-                if (weather.dailyList.get(i).temps[1] < lowest) {
-                    lowest = weather.dailyList.get(i).temps[1];
+                if (weather.getDailyForecast().get(i).night().getTemperature().getTemperature() < lowest) {
+                    lowest = weather.getDailyForecast().get(i).night().getTemperature().getTemperature();
                 }
             }
             recyclerView.setData(
-                    new int[] {history.maxiTemp, history.miniTemp}, highest, lowest, true);
+                    new int[] {
+                            weather.getYesterday().getDaytimeTemperature(),
+                            weather.getYesterday().getNighttimeTemperature()
+                    },
+                    highest,
+                    lowest,
+                    unit,
+                    true
+            );
         }
     }
 
     public static void setHourlyTrend(GeoActivity activity, TextView title, TextView subtitle,
                                       TrendRecyclerView recyclerView,
                                       @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                      @NonNull Weather weather, @Nullable History history,
-                                      int[] themeColors) {
+                                      @NonNull Weather weather, int[] themeColors) {
+        TemperatureUnit unit = SettingsOptionManager.getInstance(activity).getTemperatureUnit();
+
         title.setText(activity.getString(R.string.hourly_overview));
 
-        if (TextUtils.isEmpty(weather.index.briefing)) {
+        if (TextUtils.isEmpty(weather.getCurrent().getHourlyForecast())) {
             subtitle.setVisibility(View.GONE);
         } else {
             subtitle.setVisibility(View.VISIBLE);
-            subtitle.setText(weather.index.briefing);
+            subtitle.setText(weather.getCurrent().getHourlyForecast());
         }
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new HourlyTrendAdapter(activity, weather, history, themeColors, provider, picker));
+        recyclerView.setAdapter(new HourlyTrendAdapter(activity, weather, themeColors, provider, picker, unit));
 
         recyclerView.setLineColor(picker.getLineColor(activity));
-        if (history == null) {
-            recyclerView.setData(null, 0, 0, false);
+        if (weather.getYesterday() == null) {
+            recyclerView.setData(null, 0, 0, unit, false);
         } else {
-            int highest = history.maxiTemp;
-            int lowest = history.miniTemp;
-            for (int i = 0; i < weather.hourlyList.size(); i ++) {
-                if (weather.hourlyList.get(i).temp > highest) {
-                    highest = weather.hourlyList.get(i).temp;
+            int highest = weather.getYesterday().getDaytimeTemperature();
+            int lowest = weather.getYesterday().getNighttimeTemperature();
+            for (int i = 0; i < weather.getHourlyForecast().size(); i ++) {
+                if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() > highest) {
+                    highest = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
                 }
-                if (weather.hourlyList.get(i).temp < lowest) {
-                    lowest = weather.hourlyList.get(i).temp;
+                if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() < lowest) {
+                    lowest = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
                 }
             }
             recyclerView.setData(
-                    new int[] {history.maxiTemp, history.miniTemp}, highest, lowest, false);
+                    new int[] {
+                            weather.getYesterday().getDaytimeTemperature(),
+                            weather.getYesterday().getNighttimeTemperature()
+                    },
+                    highest,
+                    lowest,
+                    unit,
+                    false
+            );
         }
     }
 }

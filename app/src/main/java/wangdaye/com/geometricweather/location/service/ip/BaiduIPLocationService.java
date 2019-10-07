@@ -33,7 +33,7 @@ public class BaiduIPLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback) {
+    public void requestLocation(Context context, @NonNull LocationCallback callback) {
         api.getLocation(BuildConfig.BAIDU_IP_LOCATION_AK, "gcj02")
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<BaiduIPLocationResult>() {
@@ -41,8 +41,9 @@ public class BaiduIPLocationService extends LocationService {
                     public void onSucceed(BaiduIPLocationResult baiduIPLocationResult) {
                         try {
                             Result result = new Result(
-                                    baiduIPLocationResult.getContent().getPoint().getY(),
-                                    baiduIPLocationResult.getContent().getPoint().getX()
+                                    Float.parseFloat(baiduIPLocationResult.getContent().getPoint().getY()),
+                                    Float.parseFloat(baiduIPLocationResult.getContent().getPoint().getX()),
+                                    8
                             );
                             result.setGeocodeInformation(
                                     "中国",

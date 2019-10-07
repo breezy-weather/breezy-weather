@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -48,9 +49,13 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(alertList.get(position).description);
-        holder.subtitle.setText(alertList.get(position).publishTime);
-        holder.content.setText(alertList.get(position).content);
+        holder.title.setText(alertList.get(position).getDescription());
+        holder.subtitle.setText(
+                DateFormat.getDateTimeInstance(
+                        DateFormat.LONG, DateFormat.DEFAULT
+                ).format(alertList.get(position).getDate())
+        );
+        holder.content.setText(alertList.get(position).getContent());
     }
 
     @Override

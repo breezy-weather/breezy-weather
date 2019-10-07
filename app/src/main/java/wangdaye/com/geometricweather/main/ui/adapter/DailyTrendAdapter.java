@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.main.ui.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,20 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.History;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
 import wangdaye.com.geometricweather.ui.widget.trendView.DailyItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Daily trend adapter.
@@ -37,6 +33,7 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
     private Weather weather;
     private ResourceProvider provider;
     private MainColorPicker picker;
+    private TemperatureUnit unit;
 
     private float[] maxiTemps;
     private float[] miniTemps;
@@ -44,8 +41,6 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
     private int lowestTemp;
 
     private int[] themeColors;
-
-    private SimpleDateFormat format;
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -59,17 +54,15 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
         @SuppressLint("SetTextI18n, InflateParams")
         void onBindView(int position) {
             Context context = itemView.getContext();
-            Daily daily = weather.dailyList.get(position);
+            Daily daily = weather.getDailyForecast().get(position);
 
-            if (daily.date.equals(format.format(new Date()))) {
+            if (daily.isToday()) {
                 dailyItem.setWeekText(context.getString(R.string.today));
             } else {
-                dailyItem.setWeekText(daily.week);
+                dailyItem.setWeekText(daily.getWeek(context));
             }
 
-            dailyItem.setDateText(
-                    daily.getDateInFormat(context.getString(R.string.date_format_short))
-            );
+            dailyItem.setDateText(daily.getShortDate(context));
 
             dailyItem.setTextColor(
                     picker.getTextContentColor(context),
@@ -77,15 +70,20 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
             );
 
             dailyItem.setDayIconDrawable(
-                    WeatherHelper.getWeatherIcon(provider, daily.weatherKinds[0], true)
-            );
+                    ResourceHelper.getWeatherIcon(provider, daily.day().getWeatherCode(), true));
 
+            Float daytimePrecipitationProbability = daily.day().getPrecipitationProbability().getTotal();
+            Float nighttimePrecipitationProbability = daily.night().getPrecipitationProbability().getTotal();
             dailyItem.getTrendItemView().setData(
                     buildTempArrayForItem(maxiTemps, position),
                     buildTempArrayForItem(miniTemps, position),
-                    Math.max(daily.precipitations[0], daily.precipitations[1]),
+                    (int) Math.max(
+                            daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
+                            nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
+                    ),
                     highestTemp,
-                    lowestTemp
+                    lowestTemp,
+                    unit
             );
             dailyItem.getTrendItemView().setLineColors(
                     themeColors[1], themeColors[2], picker.getLineColor(context)
@@ -99,8 +97,7 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
             dailyItem.getTrendItemView().setPrecipitationAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
 
             dailyItem.setNightIconDrawable(
-                    WeatherHelper.getWeatherIcon(provider, daily.weatherKinds[1], false)
-            );
+                    ResourceHelper.getWeatherIcon(provider, daily.night().getWeatherCode(), false));
 
             dailyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
@@ -131,45 +128,47 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyTrendAdapter(GeoActivity activity,
-                             @NonNull Weather weather, @Nullable History history,
-                             int[] themeColors, ResourceProvider provider, MainColorPicker picker) {
+    public DailyTrendAdapter(GeoActivity activity, @NonNull Weather weather, int[] themeColors,
+                             ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
         this.activity = activity;
 
         this.weather = weather;
         this.provider = provider;
         this.picker = picker;
+        this.unit = unit;
 
-        this.maxiTemps = new float[Math.max(0, weather.dailyList.size() * 2 - 1)];
+        this.maxiTemps = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
         for (int i = 0; i < maxiTemps.length; i += 2) {
-            maxiTemps[i] = weather.dailyList.get(i / 2).temps[0];
+            maxiTemps[i] = weather.getDailyForecast().get(i / 2).day().getTemperature().getTemperature();
         }
         for (int i = 1; i < maxiTemps.length; i += 2) {
             maxiTemps[i] = (maxiTemps[i - 1] + maxiTemps[i + 1]) * 0.5F;
         }
 
-        this.miniTemps = new float[Math.max(0, weather.dailyList.size() * 2 - 1)];
+        this.miniTemps = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
         for (int i = 0; i < miniTemps.length; i += 2) {
-            miniTemps[i] = weather.dailyList.get(i / 2).temps[1];
+            miniTemps[i] = weather.getDailyForecast().get(i / 2).night().getTemperature().getTemperature();
         }
         for (int i = 1; i < miniTemps.length; i += 2) {
             miniTemps[i] = (miniTemps[i - 1] + miniTemps[i + 1]) * 0.5F;
         }
 
-        highestTemp = history == null ? Integer.MIN_VALUE : history.maxiTemp;
-        lowestTemp = history == null ? Integer.MAX_VALUE : history.miniTemp;
-        for (int i = 0; i < weather.dailyList.size(); i ++) {
-            if (weather.dailyList.get(i).temps[0] > highestTemp) {
-                highestTemp = weather.dailyList.get(i).temps[0];
+        highestTemp = weather.getYesterday() == null
+                ? Integer.MIN_VALUE
+                : weather.getYesterday().getDaytimeTemperature();
+        lowestTemp = weather.getYesterday() == null
+                ? Integer.MAX_VALUE
+                : weather.getYesterday().getNighttimeTemperature();
+        for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
+            if (weather.getDailyForecast().get(i).day().getTemperature().getTemperature() > highestTemp) {
+                highestTemp = weather.getDailyForecast().get(i).day().getTemperature().getTemperature();
             }
-            if (weather.dailyList.get(i).temps[1] < lowestTemp) {
-                lowestTemp = weather.dailyList.get(i).temps[1];
+            if (weather.getDailyForecast().get(i).night().getTemperature().getTemperature() < lowestTemp) {
+                lowestTemp = weather.getDailyForecast().get(i).night().getTemperature().getTemperature();
             }
         }
 
         this.themeColors = themeColors;
-
-        this.format = new SimpleDateFormat("yyyy-MM-dd");
     }
 
     @NonNull
@@ -187,6 +186,6 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return weather.dailyList.size();
+        return weather.getDailyForecast().size();
     }
 }

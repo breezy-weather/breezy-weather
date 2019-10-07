@@ -48,19 +48,15 @@ public class NotificationColorSettingsFragment extends AbstractSettingsFragment 
         // notification text color.
         ListPreference notificationTextColor = findPreference(getString(R.string.key_notification_text_color));
         notificationTextColor.setSummary(
-                getNameByValue(
-                        getSettingsOptionManager().getNotificationTextColor(),
-                        R.array.notification_text_colors,
-                        R.array.notification_text_color_values
+                getSettingsOptionManager().getNotificationTextColor().getNotificationTextColorName(
+                        getActivity()
                 )
         );
         notificationTextColor.setOnPreferenceChangeListener((preference, newValue) -> {
             PollingManager.resetNormalBackgroundTask(getActivity(), true);
             preference.setSummary(
-                    getNameByValue(
-                            (String) newValue,
-                            R.array.notification_text_colors,
-                            R.array.notification_text_color_values
+                    getSettingsOptionManager().getNotificationTextColor().getNotificationTextColorName(
+                            getActivity()
                     )
             );
             return true;

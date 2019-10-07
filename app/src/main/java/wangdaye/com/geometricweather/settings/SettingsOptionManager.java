@@ -13,7 +13,20 @@ import java.util.HashSet;
 import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.option.CardOrder;
+import wangdaye.com.geometricweather.basic.model.option.Language;
+import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
+import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
+import wangdaye.com.geometricweather.basic.model.option.UIStyle;
+import wangdaye.com.geometricweather.basic.model.option.provider.LocationProvider;
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.model.option.DarkMode;
+import wangdaye.com.geometricweather.basic.model.option.UpdateInterval;
+import wangdaye.com.geometricweather.basic.model.option.unit.DistanceUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.PressureUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 
 public class SettingsOptionManager {
 
@@ -31,66 +44,25 @@ public class SettingsOptionManager {
     }
 
     // basic.
-
     private boolean backgroundFree;
-
     private boolean alertPushEnabled;
-
     private boolean precipitationPushEnabled;
-
-    private String updateInterval;
-    public static final String UPDATE_INTERVAL_0_30 = "0:30";
-    public static final String UPDATE_INTERVAL_1_00 = "1:00";
-    public static final String UPDATE_INTERVAL_1_30 = "1:30";
-    public static final String UPDATE_INTERVAL_2_00 = "2:00";
-    public static final String UPDATE_INTERVAL_2_30 = "2:30";
-    public static final String UPDATE_INTERVAL_3_00 = "3:00";
-    public static final String UPDATE_INTERVAL_3_30 = "3:30";
-    public static final String UPDATE_INTERVAL_4_00 = "4:00";
-    @StringDef({
-            UPDATE_INTERVAL_0_30, UPDATE_INTERVAL_1_00, UPDATE_INTERVAL_1_30, UPDATE_INTERVAL_2_00,
-            UPDATE_INTERVAL_2_30, UPDATE_INTERVAL_3_00, UPDATE_INTERVAL_3_30, UPDATE_INTERVAL_4_00
-    }) public @interface UpdateIntervalRule {}
-
-    private String darkMode;
-    public static final String DARK_MODE_AUTO = "auto";
-    public static final String DARK_MODE_LIGHT = "light";
-    public static final String DARK_MODE_DARK = "dark";
-    @StringDef({DARK_MODE_AUTO, DARK_MODE_LIGHT, DARK_MODE_DARK})
-    public @interface DarkModeRule {}
+    private UpdateInterval updateInterval;
+    private DarkMode darkMode;
 
     // service provider.
-
-    private String chineseSource;
-    public static final String WEATHER_SOURCE_CN = Location.WEATHER_SOURCE_CN;
-    public static final String WEATHER_SOURCE_CAIYUN = Location.WEATHER_SOURCE_CAIYUN;
-    public static final String WEATHER_SOURCE_ACCU = Location.WEATHER_SOURCE_ACCU;
-    @StringDef({WEATHER_SOURCE_CN, WEATHER_SOURCE_CAIYUN, WEATHER_SOURCE_ACCU})
-    public @interface WeatherSourceRule {}
-
-    private String locationService;
-    public static final String LOCATION_SERVICE_BAIDU = "baidu";
-    public static final String LOCATION_SERVICE_BAIDU_IP = "baidu_ip";
-    public static final String LOCATION_SERVICE_AMAP = "amap";
-    public static final String LOCATION_SERVICE_NATIVE = "native";
-    @StringDef({
-            LOCATION_SERVICE_BAIDU, LOCATION_SERVICE_BAIDU_IP,
-            LOCATION_SERVICE_AMAP, LOCATION_SERVICE_NATIVE
-    }) public @interface LocationSourceRule {}
+    private WeatherSource weatherSource;
+    private LocationProvider locationProvider;
 
     // unit.
-
-    private boolean fahrenheit;
-    private boolean imperial;
+    private TemperatureUnit temperatureUnit;
+    private DistanceUnit distanceUnit;
+    private PrecipitationUnit precipitationUnit;
+    private PressureUnit pressureUnit;
+    private SpeedUnit speedUnit;
 
     // appearance.
-
-    private String uiStyle;
-    public static final String UI_STYLE_CIRCULAR = "circular";
-    public static final String UI_STYLE_MATERIAL = "material";
-    @StringDef({UI_STYLE_CIRCULAR, UI_STYLE_MATERIAL})
-    public @interface UiStyleRule {}
-
+    private UIStyle uiStyle;
     private String iconProvider;
 
     private String[] cardDisplayValues;
@@ -104,43 +76,11 @@ public class SettingsOptionManager {
             CARD_AIR_QUALITY, CARD_LIFE_DETAILS, CARD_SUNRISE_SUNSET
     }) public @interface CardDisplayValueRule {}
 
-    private String cardOrder;
-    public static final String CARD_ORDER_DAILY_FIRST = "daily_first";
-    public static final String CARD_ORDER_HOURLY_FIRST = "hourly_first";
-    @StringDef({CARD_ORDER_DAILY_FIRST, CARD_ORDER_HOURLY_FIRST})
-    public @interface CardOrderRule {}
-
+    private CardOrder cardOrder;
     private boolean gravitySensorEnabled;
-
-    private String language;
-    public static final String LANGUAGE_SYSTEM = "follow_system";
-    public static final String LANGUAGE_CHINESE = "chinese";
-    public static final String LANGUAGE_UNSIMPLIFIED_CHINESE = "unsimplified_chinese";
-    public static final String LANGUAGE_ENGLISH_US = "english_america";
-    public static final String LANGUAGE_ENGLISH_Uk = "english_britain";
-    public static final String LANGUAGE_ENGLISH_AU = "english_australia";
-    public static final String LANGUAGE_TURKISH = "turkish";
-    public static final String LANGUAGE_FRENCH = "french";
-    public static final String LANGUAGE_RUSSIAN = "russian";
-    public static final String LANGUAGE_GERMAN = "german";
-    public static final String LANGUAGE_SERBIAN = "serbian";
-    public static final String LANGUAGE_SPANISH = "spanish";
-    public static final String LANGUAGE_ITALIAN = "italian";
-    public static final String LANGUAGE_DUTCH = "dutch";
-    public static final String LANGUAGE_HUNGARIAN = "hungarian";
-    public static final String LANGUAGE_PORTUGUESE = "portuguese";
-    public static final String LANGUAGE_PORTUGUESE_BR = "portuguese_brazilian";
-    public static final String LANGUAGE_SLOVENIAN = "slovenian";
-    @StringDef({
-            LANGUAGE_SYSTEM, LANGUAGE_CHINESE, LANGUAGE_UNSIMPLIFIED_CHINESE,
-            LANGUAGE_ENGLISH_US, LANGUAGE_ENGLISH_Uk, LANGUAGE_ENGLISH_AU,
-            LANGUAGE_TURKISH, LANGUAGE_FRENCH, LANGUAGE_RUSSIAN, LANGUAGE_GERMAN,
-            LANGUAGE_SERBIAN, LANGUAGE_SPANISH, LANGUAGE_ITALIAN, LANGUAGE_DUTCH,
-            LANGUAGE_HUNGARIAN, LANGUAGE_PORTUGUESE, LANGUAGE_PORTUGUESE_BR, LANGUAGE_SLOVENIAN
-    }) public @interface LanguageRule {}
+    private Language language;
 
     // forecast.
-
     private boolean todayForecastEnabled;
     private String todayForecastTime;
     public static final String DEFAULT_TODAY_FORECAST_TIME = "07:00";
@@ -150,51 +90,27 @@ public class SettingsOptionManager {
     public static final String DEFAULT_TOMORROW_FORECAST_TIME = "21:00";
 
     // widget.
-
     private boolean widgetMinimalIconEnabled;
     private boolean widgetClickToRefreshEnabled;
 
     // notification.
-
     private boolean notificationEnabled;
-
-    private String notificationStyle;
-    public static final String NOTIFICATION_STYLE_NATIVE = "native";
-    public static final String NOTIFICATION_STYLE_CUSTOM = "geometric";
-    @StringDef({NOTIFICATION_STYLE_NATIVE, NOTIFICATION_STYLE_CUSTOM})
-    public @interface NotificationStyleRule {}
-
+    private NotificationStyle notificationStyle;
     private boolean notificationMinimalIconEnabled;
-
     private boolean notificationTemperatureIconEnabled;
-
     private boolean notificationCustomColorEnabled;
-
-    @ColorInt
-    private int notificationBackgroundColor;
-
-    private String notificationTextColor;
-    public static final String NOTIFICATION_TEXT_COLOR_DARK = "dark";
-    public static final String NOTIFICATION_TEXT_COLOR_GREY = "grey";
-    public static final String NOTIFICATION_TEXT_COLOR_LIGHT = "light";
-    @StringDef({
-            NOTIFICATION_TEXT_COLOR_DARK,
-            NOTIFICATION_TEXT_COLOR_GREY,
-            NOTIFICATION_TEXT_COLOR_LIGHT
-    }) public @interface NotificationTextColorRule {}
-
+    @ColorInt private int notificationBackgroundColor;
+    private NotificationTextColor notificationTextColor;
     private boolean notificationCanBeClearedEnabled;
-
     private boolean notificationHideIconEnabled;
-
     private boolean notificationHideInLockScreenEnabled;
-
     private boolean notificationHideBigViewEnabled;
 
     private SettingsOptionManager(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // basic.
+
         backgroundFree = sharedPreferences.getBoolean(
                 context.getString(R.string.key_background_free), true);
 
@@ -204,32 +120,57 @@ public class SettingsOptionManager {
         precipitationPushEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_precipitation_notification_switch), true);
 
-        updateInterval = sharedPreferences.getString(
-                context.getString(R.string.key_refresh_rate), UPDATE_INTERVAL_1_30);
+        updateInterval = OptionMapper.getUpdateInterval(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_refresh_rate), "1:30")
+        );
 
-        darkMode = sharedPreferences.getString(
-                context.getString(R.string.key_dark_mode), DARK_MODE_AUTO);
+        darkMode = OptionMapper.getDarkMode(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_dark_mode), "auto")
+        );
 
         // service provider.
 
-        chineseSource = sharedPreferences.getString(
-                context.getString(R.string.key_chinese_source), WEATHER_SOURCE_ACCU);
+        weatherSource = OptionMapper.getWeatherSource(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_weather_source), "accu")
+        );
 
-        locationService = sharedPreferences.getString(
-                context.getString(R.string.key_location_service), LOCATION_SERVICE_NATIVE);
+        locationProvider = OptionMapper.getLocationProvider(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_location_service), "native")
+        );
 
         // unit.
 
-        fahrenheit = sharedPreferences.getBoolean(
-                context.getString(R.string.key_fahrenheit), false);
-
-        imperial = sharedPreferences.getBoolean(
-                context.getString(R.string.key_imperial), false);
+        temperatureUnit = OptionMapper.getTemperatureUnit(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_temperature_unit), "c")
+        );
+        distanceUnit = OptionMapper.getDistanceUnit(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_distance_unit), "km")
+        );
+        precipitationUnit = OptionMapper.getPrecipitationUnit(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_precipitation_unit), "mm")
+        );
+        pressureUnit = OptionMapper.getPressureUnit(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_pressure_unit), "mb")
+        );
+        speedUnit = OptionMapper.getSpeedUnit(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_speed_unit), "kph")
+        );
 
         // appearance.
 
-        uiStyle = sharedPreferences.getString(
-                context.getString(R.string.key_ui_style), UI_STYLE_MATERIAL);
+        uiStyle = OptionMapper.getUIStyle(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_ui_style), "material")
+        );
 
         iconProvider = sharedPreferences.getString(
                 context.getString(R.string.key_icon_provider),
@@ -245,14 +186,18 @@ public class SettingsOptionManager {
                 )
         ).toArray(new String[] {});
 
-        cardOrder = sharedPreferences.getString(
-                context.getString(R.string.key_card_order), CARD_ORDER_DAILY_FIRST);
+        cardOrder = OptionMapper.getCardOrder(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_card_order), "daily_first")
+        );
 
         gravitySensorEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_gravity_sensor_switch), true);
 
-        language = sharedPreferences.getString(
-                context.getString(R.string.key_language), LANGUAGE_SYSTEM);
+        language = OptionMapper.getLanguage(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_language), "follow_system")
+        );
 
         // forecast.
 
@@ -281,8 +226,10 @@ public class SettingsOptionManager {
         notificationEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification), false);
 
-        notificationStyle = sharedPreferences.getString(
-                context.getString(R.string.key_notification_style), NOTIFICATION_STYLE_CUSTOM);
+        notificationStyle = OptionMapper.getNotificationStyle(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_notification_style), "geometric")
+        );
 
         notificationMinimalIconEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification_minimal_icon), false);
@@ -295,12 +242,11 @@ public class SettingsOptionManager {
 
         notificationBackgroundColor = sharedPreferences.getInt(
                 context.getString(R.string.key_notification_background_color),
-                ContextCompat.getColor(context, R.color.notification_background_l)
-        );
+                ContextCompat.getColor(context, R.color.notification_background_l));
 
-        notificationTextColor = sharedPreferences.getString(
-                context.getString(R.string.key_notification_text_color),
-                NOTIFICATION_TEXT_COLOR_DARK
+        notificationTextColor = OptionMapper.getNotificationTextColor(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_notification_text_color), "dark")
         );
 
         notificationCanBeClearedEnabled = sharedPreferences.getBoolean(
@@ -340,64 +286,83 @@ public class SettingsOptionManager {
         this.precipitationPushEnabled = precipitationPushEnabled;
     }
 
-    @UpdateIntervalRule
-    public String getUpdateInterval() {
+    public UpdateInterval getUpdateInterval() {
         return updateInterval;
     }
 
-    public void setUpdateInterval(@UpdateIntervalRule String updateInterval) {
+    public void setUpdateInterval(UpdateInterval updateInterval) {
         this.updateInterval = updateInterval;
     }
 
-    @DarkModeRule
-    public String getDarkMode() {
+    public DarkMode getDarkMode() {
         return darkMode;
     }
 
-    public void setDarkMode(@DarkModeRule String darkMode) {
+    public void setDarkMode(DarkMode darkMode) {
         this.darkMode = darkMode;
     }
 
-    @WeatherSourceRule
-    public String getChineseSource() {
-        return chineseSource;
+    public WeatherSource getWeatherSource() {
+        return weatherSource;
     }
 
-    public void setChineseSource(@WeatherSourceRule String chineseSource) {
-        this.chineseSource = chineseSource;
+    public void setWeatherSource(WeatherSource weatherSource) {
+        this.weatherSource = weatherSource;
     }
 
-    @LocationSourceRule
-    public String getLocationService() {
-        return locationService;
+    public LocationProvider getLocationProvider() {
+        return locationProvider;
     }
 
-    public void setLocationService(@LocationSourceRule String locationService) {
-        this.locationService = locationService;
+    public void setLocationProvider(LocationProvider locationProvider) {
+        this.locationProvider = locationProvider;
     }
 
-    public boolean isFahrenheit() {
-        return fahrenheit;
+    public TemperatureUnit getTemperatureUnit() {
+        return temperatureUnit;
     }
 
-    public void setFahrenheit(boolean fahrenheit) {
-        this.fahrenheit = fahrenheit;
+    public void setTemperatureUnit(TemperatureUnit temperatureUnit) {
+        this.temperatureUnit = temperatureUnit;
     }
 
-    public boolean isImperial() {
-        return imperial;
+    public DistanceUnit getDistanceUnit() {
+        return distanceUnit;
     }
 
-    public void setImperial(boolean imperial) {
-        this.imperial = imperial;
+    public void setDistanceUnit(DistanceUnit distanceUnit) {
+        this.distanceUnit = distanceUnit;
     }
 
-    @UiStyleRule
-    public String getUiStyle() {
+    public PrecipitationUnit getPrecipitationUnit() {
+        return precipitationUnit;
+    }
+
+    public void setPrecipitationUnit(PrecipitationUnit precipitationUnit) {
+        this.precipitationUnit = precipitationUnit;
+    }
+
+    public PressureUnit getPressureUnit() {
+        return pressureUnit;
+    }
+
+    public void setPressureUnit(PressureUnit pressureUnit) {
+        this.pressureUnit = pressureUnit;
+    }
+
+    public SpeedUnit getSpeedUnit() {
+        return speedUnit;
+    }
+
+    public void setSpeedUnit(SpeedUnit speedUnit) {
+        this.speedUnit = speedUnit;
+    }
+
+    public UIStyle getUiStyle() {
         return uiStyle;
     }
 
-    public void setUiStyle(@UiStyleRule String uiStyle) {
+    public void setUiStyle(UIStyle uiStyle) {
         this.uiStyle = uiStyle;
     }
 
@@ -417,12 +382,11 @@ public class SettingsOptionManager {
         this.cardDisplayValues = cardDisplayValues;
     }
 
-    @CardOrderRule
-    public String getCardOrder() {
+    public CardOrder getCardOrder() {
         return cardOrder;
     }
 
-    public void setCardOrder(@CardOrderRule String cardOrder) {
+    public void setCardOrder(CardOrder cardOrder) {
         this.cardOrder = cardOrder;
     }
 
@@ -434,12 +398,11 @@ public class SettingsOptionManager {
         this.gravitySensorEnabled = gravitySensorEnabled;
     }
 
-    @LanguageRule
-    public String getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(@LanguageRule String language) {
+    public void setLanguage(Language language) {
         this.language = language;
     }
 
@@ -499,12 +462,11 @@ public class SettingsOptionManager {
         this.notificationEnabled = notificationEnabled;
     }
 
-    @NotificationStyleRule
-    public String getNotificationStyle() {
+    public NotificationStyle getNotificationStyle() {
         return notificationStyle;
     }
 
-    public void setNotificationStyle(@NotificationStyleRule String notificationStyle) {
+    public void setNotificationStyle(NotificationStyle notificationStyle) {
         this.notificationStyle = notificationStyle;
     }
 
@@ -532,21 +494,19 @@ public class SettingsOptionManager {
         this.notificationCustomColorEnabled = notificationCustomColorEnabled;
     }
 
-    @ColorInt
     public int getNotificationBackgroundColor() {
         return notificationBackgroundColor;
     }
 
-    public void setNotificationBackgroundColor(@ColorInt int notificationBackgroundColor) {
+    public void setNotificationBackgroundColor(int notificationBackgroundColor) {
         this.notificationBackgroundColor = notificationBackgroundColor;
     }
 
-    @NotificationTextColorRule
-    public String getNotificationTextColor() {
+    public NotificationTextColor getNotificationTextColor() {
         return notificationTextColor;
     }
 
-    public void setNotificationTextColor(@NotificationTextColorRule String notificationTextColor) {
+    public void setNotificationTextColor(NotificationTextColor notificationTextColor) {
         this.notificationTextColor = notificationTextColor;
     }
 

@@ -12,32 +12,34 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetDayWeekProvider;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Base;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
-    public static void updateWidgetView(Context context, Location location, @Nullable Weather weather) {
+    public static void updateWidgetView(Context context, Location location) {
         WidgetConfig config = getWidgetConfig(
                 context,
                 context.getString(R.string.sp_widget_day_week_setting)
         );
 
         RemoteViews views = getRemoteViews(
-                context, location, weather,
+                context, location,
                 config.viewStyle, config.cardStyle, config.cardAlpha,
                 config.textColor, config.textSize, config.hideSubtitle, config.subtitleData
         );
@@ -48,16 +50,16 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         );
     }
 
-    public static RemoteViews getRemoteViews(Context context, Location location, @Nullable Weather weather,
+    public static RemoteViews getRemoteViews(Context context, Location location,
                                              String viewStyle, String cardStyle, int cardAlpha,
                                              String textColor, int textSize,
                                              boolean hideSubtitle, String subtitleData) {
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.isDaylight(weather);
+        boolean dayTime = TimeManager.isDaylight(location);
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
-        boolean fahrenheit = settings.isFahrenheit();
+        TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
@@ -73,10 +75,11 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         // build day part.
         RemoteViews views = buildWidgetViewDayPart(
                 context, provider,
-                location, weather,
-                dayTime, textColorInt, textSize, fahrenheit,
+                location, temperatureUnit,
+                dayTime, textColorInt, textSize,
                 minimalIcon, color.darkText,
                 viewStyle, hideSubtitle, subtitleData);
+        Weather weather = location.getWeather();
         if (weather == null) {
             return views;
         }
@@ -85,44 +88,44 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setTextViewText(
                 R.id.widget_day_week_week_1,
-                getWeek(context, weather, 0)
+                WidgetUtils.getDailyWeek(context, weather, 0)
         );
         views.setTextViewText(
                 R.id.widget_day_week_week_2,
-                getWeek(context, weather, 1)
+                WidgetUtils.getDailyWeek(context, weather, 1)
         );
         views.setTextViewText(
                 R.id.widget_day_week_week_3,
-                getWeek(context, weather, 2)
+                WidgetUtils.getDailyWeek(context, weather, 2)
         );
         views.setTextViewText(
                 R.id.widget_day_week_week_4,
-                getWeek(context, weather, 3)
+                WidgetUtils.getDailyWeek(context, weather, 3)
         );
         views.setTextViewText(
                 R.id.widget_day_week_week_5,
-                getWeek(context, weather, 4)
+                WidgetUtils.getDailyWeek(context, weather, 4)
         );
 
         views.setTextViewText(
                 R.id.widget_day_week_temp_1,
-                getTemp(weather, fahrenheit, 0)
+                getTemp(weather, 0, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_temp_2,
-                getTemp(weather, fahrenheit, 1)
+                getTemp(weather, 1, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_temp_3,
-                getTemp(weather, fahrenheit, 2)
+                getTemp(weather, 2, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_temp_4,
-                getTemp(weather, fahrenheit, 3)
+                getTemp(weather, 3, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_temp_5,
-                getTemp(weather, fahrenheit, 4)
+                getTemp(weather, 4, temperatureUnit)
         );
 
         views.setImageViewUri(
@@ -212,9 +215,9 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static RemoteViews buildWidgetViewDayPart(Context context, ResourceProvider helper,
-                                                      Location location, @Nullable Weather weather,
+                                                      Location location, TemperatureUnit temperatureUnit,
                                                       boolean dayTime, int textColor, int textSize,
-                                                      boolean fahrenheit, boolean minimalIcon, boolean blackText,
+                                                      boolean minimalIcon, boolean blackText,
                                                       String viewStyle, boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
         switch (viewStyle) {
@@ -230,15 +233,16 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_tile);
                 break;
         }
+        Weather weather = location.getWeather();
         if (weather == null) {
             return views;
         }
 
         views.setImageViewUri(
                 R.id.widget_day_week_icon,
-                WeatherHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                         helper,
-                        weather.realTime.weatherKind,
+                        weather.getCurrent().getWeatherCode(),
                         dayTime,
                         minimalIcon,
                         blackText
@@ -246,15 +250,15 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         );
         views.setTextViewText(
                 R.id.widget_day_week_title,
-                getTitleText(weather, viewStyle, fahrenheit)
+                getTitleText(context, location, viewStyle, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_subtitle,
-                getSubtitleText(weather, viewStyle, fahrenheit)
+                getSubtitleText(weather, viewStyle, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_time,
-                getTimeText(context, location, weather, viewStyle, subtitleData)
+                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit)
         );
 
         views.setTextColor(R.id.widget_day_week_title, textColor);
@@ -284,124 +288,140 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return widgetIds != null && widgetIds.length > 0;
     }
 
-    private static String getTitleText(Weather weather, String viewStyle, boolean fahrenheit) {
+    @Nullable
+    private static String getTitleText(Context context, Location location,
+                                       String viewStyle, TemperatureUnit unit) {
+        Weather weather = location.getWeather();
+        if (weather == null) {
+            return null;
+        }
         switch (viewStyle) {
             case "rectangle":
-                return WidgetUtils.buildWidgetDayStyleText(weather, fahrenheit)[0];
+                return WidgetUtils.buildWidgetDayStyleText(weather, unit)[0];
 
             case "symmetry":
-                return weather.base.city + "\n" + ValueUtils.buildCurrentTemp(weather.realTime.temp, true, fahrenheit);
+                return location.getCityName(context)
+                        + "\n"
+                        + weather.getCurrent().getTemperature().getTemperature(unit);
 
             case "tile":
-                return weather.realTime.weather + " " + ValueUtils.buildCurrentTemp(weather.realTime.temp, false, fahrenheit);
+                return weather.getCurrent().getWeatherText()
+                        + " "
+                        + weather.getCurrent().getTemperature().getTemperature(unit);
         }
         return "";
     }
 
-    private static String getSubtitleText(Weather weather, String viewStyle, boolean fahrenheit) {
+    private static String getSubtitleText(Weather weather, String viewStyle, TemperatureUnit unit) {
         switch (viewStyle) {
             case "rectangle":
-                return WidgetUtils.buildWidgetDayStyleText(weather, fahrenheit)[1];
-
-            case "symmetry":
-                return weather.realTime.weather + "\n" + ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit);
+                return WidgetUtils.buildWidgetDayStyleText(weather, unit)[1];
 
             case "tile":
-                return ValueUtils.buildDailyTemp(weather.dailyList.get(0).temps, true, fahrenheit);
+                return Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                        unit
+                );
+
+            case "symmetry":
+                return weather.getCurrent().getWeatherText() + "\n" + Temperature.getTrendTemperature(
+                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                        unit
+                );
         }
         return "";
     }
 
-    private static String getTimeText(Context context, Location location, Weather weather, String viewStyle, String subtitleData) {
+    @Nullable
+    private static String getTimeText(Context context, Location location,
+                                      String viewStyle, String subtitleData, TemperatureUnit unit) {
+        Weather weather = location.getWeather();
+        if (weather == null) {
+            return null;
+        }
         switch (subtitleData) {
             case "time":
                 switch (viewStyle) {
                     case "rectangle":
-                        return weather.base.city + " " + weather.base.time;
+                        return location.getCityName(context)
+                                + " "
+                                + Base.getTime(context, weather.getBase().getUpdateDate());
 
                     case "symmetry":
-                        return WidgetUtils.getWeek(context) + " " + weather.base.time;
+                        return WidgetUtils.getWeek(context)
+                                + " "
+                                + Base.getTime(context, weather.getBase().getUpdateDate());
 
                     case "tile":
-                        return weather.base.city + " " + WidgetUtils.getWeek(context) + " " + weather.base.time;
+                        return location.getCityName(context)
+                                + " "
+                                + WidgetUtils.getWeek(context)
+                                + " "
+                                + Base.getTime(context, weather.getBase().getUpdateDate());
                 }
                 break;
 
             case "aqi":
-                if (weather.aqi != null) {
-                    return weather.aqi.quality + " (" + weather.aqi.aqi + ")";
+                if (weather.getCurrent().getAirQuality().getAqiIndex() != null
+                        && weather.getCurrent().getAirQuality().getAqiText() != null) {
+                    return weather.getCurrent().getAirQuality().getAqiText()
+                            + " ("
+                            + weather.getCurrent().getAirQuality().getAqiIndex()
+                            + ")";
                 }
                 break;
 
             case "wind":
-                return weather.realTime.windLevel + " (" + weather.realTime.windDir + weather.realTime.windSpeed + ")";
+                return weather.getCurrent().getWind().getDirection()
+                        + " "
+                        + weather.getCurrent().getWind().getLevel();
 
             case "lunar":
                 switch (viewStyle) {
                     case "rectangle":
-                        return weather.base.city + " " + LunarHelper.getLunarDate(Calendar.getInstance());
+                        return location.getCityName(context)
+                                + " "
+                                + LunarHelper.getLunarDate(new Date());
 
                     case "symmetry":
-                        return WidgetUtils.getWeek(context) + " " + LunarHelper.getLunarDate(Calendar.getInstance());
+                        return WidgetUtils.getWeek(context)
+                                + " "
+                                + LunarHelper.getLunarDate(new Date());
 
                     case "tile":
-                        return weather.base.city + " " + WidgetUtils.getWeek(context) + " " + LunarHelper.getLunarDate(Calendar.getInstance());
+                        return location.getCityName(context)
+                                + " "
+                                + WidgetUtils.getWeek(context)
+                                + " "
+                                + LunarHelper.getLunarDate(new Date());
                 }
                 break;
 
             case "sensible_time":
                 return context.getString(R.string.feels_like) + " "
-                        + ValueUtils.buildAbbreviatedCurrentTemp(
-                                weather.realTime.sensibleTemp,
-                                SettingsOptionManager.getInstance(context).isFahrenheit()
-                        );
+                        + weather.getCurrent().getTemperature().getShortRealFeeTemperature(unit);
         }
         return getCustomSubtitle(context, subtitleData, location, weather);
     }
 
-    private static String getWeek(Context context, Weather weather, int index) {
-        if (index > 1) {
-            return weather.dailyList.get(index).week;
-        }
-
-        String firstWeekDay;
-        String secondWeekDay;
-        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        String[] weatherDates = weather.base.date.split("-");
-        if (Integer.parseInt(weatherDates[0]) == year
-                && Integer.parseInt(weatherDates[1]) == month + 1
-                && Integer.parseInt(weatherDates[2]) == day) {
-            firstWeekDay = context.getString(R.string.today);
-            secondWeekDay = weather.dailyList.get(1).week;
-        } else if (Integer.parseInt(weatherDates[0]) == year
-                && Integer.parseInt(weatherDates[1]) == month + 1
-                && Integer.parseInt(weatherDates[2]) == day - 1) {
-            firstWeekDay = context.getString(R.string.yesterday);
-            secondWeekDay = context.getString(R.string.today);
-        } else {
-            firstWeekDay = weather.dailyList.get(0).week;
-            secondWeekDay = weather.dailyList.get(1).week;
-        }
-
-        if (index == 0) {
-            return firstWeekDay;
-        } else {
-            return secondWeekDay;
-        }
-    }
-
-    private static String getTemp(Weather weather, boolean fahrenheit, int index) {
-        return ValueUtils.buildDailyTemp(weather.dailyList.get(index).temps, false, fahrenheit);
+    private static String getTemp(Weather weather, int index, TemperatureUnit unit) {
+        return Temperature.getTrendTemperature(
+                weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
+                weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
+                unit
+        );
     }
 
     private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,
                                           boolean dayTime, boolean minimalIcon, boolean blackText,
                                           int index) {
-        return WeatherHelper.getWidgetNotificationIconUri(
-                helper, weather.dailyList.get(index).weatherKinds[dayTime ? 0 : 1],
+        return ResourceHelper.getWidgetNotificationIconUri(
+                helper,
+                dayTime
+                        ? weather.getDailyForecast().get(index).day().getWeatherCode()
+                        : weather.getDailyForecast().get(index).night().getWeatherCode() ,
                 dayTime, minimalIcon, blackText
         );
     }

@@ -9,11 +9,17 @@ import androidx.cardview.widget.CardView;
 
 import android.content.res.ColorStateList;
 import android.view.View;
+import android.widget.TextClock;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.CardOrder;
+import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
@@ -30,6 +36,8 @@ public class FirstTrendCardController extends AbstractMainItemController
     
     private AppCompatImageView timeIcon;
     private TextView refreshTime;
+    private AppCompatImageView localTimeIcon;
+    private TextClock localTime;
 
     private TextView alert;
     private View line;
@@ -48,6 +56,8 @@ public class FirstTrendCardController extends AbstractMainItemController
         this.card = view.findViewById(R.id.container_main_first_trend_card);
         this.timeIcon = view.findViewById(R.id.container_main_first_trend_card_timeIcon);
         this.refreshTime = view.findViewById(R.id.container_main_first_trend_card_timeText);
+        this.localTimeIcon = view.findViewById(R.id.container_main_first_trend_card_localTimeIcon);
+        this.localTime = view.findViewById(R.id.container_main_first_trend_card_localTimeText);
         this.alert = view.findViewById(R.id.container_main_first_trend_card_alert);
         this.line = view.findViewById(R.id.container_main_first_trend_card_line);
         this.title = view.findViewById(R.id.container_main_first_trend_card_title);
@@ -60,9 +70,7 @@ public class FirstTrendCardController extends AbstractMainItemController
     @SuppressLint("RestrictedApi")
     @Override
     public void onBindView(@NonNull Location location) {
-        if (SettingsOptionManager.getInstance(context)
-                .getCardOrder()
-                .equals(SettingsOptionManager.CARD_ORDER_DAILY_FIRST)) {
+        if (SettingsOptionManager.getInstance(context).getCardOrder() == CardOrder.DAILY_FIRST) {
             if (!isDisplay(SettingsOptionManager.CARD_DAILY_OVERVIEW)) {
                 view.setVisibility(View.GONE);
                 return;
@@ -78,13 +86,13 @@ public class FirstTrendCardController extends AbstractMainItemController
             }
         }
 
-        if (location.weather != null) {
-            weather = location.weather;
+        if (location.getWeather() != null) {
+            weather = location.getWeather();
 
             card.setCardBackgroundColor(picker.getRootColor(context));
 
             view.findViewById(R.id.container_main_first_trend_card_timeContainer).setOnClickListener(this);
-            if (weather.alertList.size() == 0) {
+            if (weather.getAlertList().size() == 0) {
                 timeIcon.setEnabled(false);
                 timeIcon.setImageResource(R.drawable.ic_time);
             } else {
@@ -96,20 +104,41 @@ public class FirstTrendCardController extends AbstractMainItemController
             );
             timeIcon.setOnClickListener(this);
             
-            refreshTime.setText(weather.base.time);
+            refreshTime.setText(Base.getTime(context, weather.getBase().getUpdateDate()));
             refreshTime.setTextColor(picker.getTextContentColor(context));
 
-            if (weather.alertList.size() == 0) {
+            if (TimeZone.getDefault().getOffset(System.currentTimeMillis()) / 1000 / 60 / 60
+                    == location.getGMTOffset()) {
+                // same time zone.
+                localTimeIcon.setVisibility(View.GONE);
+                localTime.setVisibility(View.GONE);
+            } else {
+                localTimeIcon.setVisibility(View.VISIBLE);
+                localTime.setVisibility(View.VISIBLE);
+
+                localTimeIcon.setSupportImageTintList(
+                        ColorStateList.valueOf(picker.getTextContentColor(context))
+                );
+                localTime.setTimeZone(location.getTimeZone().getID());
+                localTime.setTextColor(picker.getTextContentColor(context));
+            }
+
+            if (weather.getAlertList().size() == 0) {
                 alert.setVisibility(View.GONE);
                 line.setVisibility(View.GONE);
             } else {
                 alert.setVisibility(View.VISIBLE);
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < weather.alertList.size(); i ++) {
-                    builder.append(weather.alertList.get(i).description)
+                for (int i = 0; i < weather.getAlertList().size(); i ++) {
+                    builder.append(weather.getAlertList().get(i).getDescription())
                             .append(", ")
-                            .append(weather.alertList.get(i).publishTime);
-                    if (i != weather.alertList.size() - 1) {
+                            .append(
+                                    DateFormat.getDateTimeInstance(
+                                            DateFormat.LONG,
+                                            DateFormat.DEFAULT
+                                    ).format(weather.getAlertList().get(i).getDate())
+                            );
+                    if (i != weather.getAlertList().size() - 1) {
                         builder.append("\n");
                     }
                 }
@@ -123,17 +152,15 @@ public class FirstTrendCardController extends AbstractMainItemController
 
             title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
-            if (SettingsOptionManager.getInstance(context)
-                    .getCardOrder()
-                    .equals(SettingsOptionManager.CARD_ORDER_DAILY_FIRST)) {
+            if (SettingsOptionManager.getInstance(context).getCardOrder() == CardOrder.DAILY_FIRST) {
                 TrendViewController.setDailyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
-                        weather, location.history, weatherView.getThemeColors(picker.isLightTheme())
+                        weather, weatherView.getThemeColors(picker.isLightTheme())
                 );
             } else {
                 TrendViewController.setHourlyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
-                        weather, location.history, weatherView.getThemeColors(picker.isLightTheme())
+                        weather, weatherView.getThemeColors(picker.isLightTheme())
                 );
             }
         }

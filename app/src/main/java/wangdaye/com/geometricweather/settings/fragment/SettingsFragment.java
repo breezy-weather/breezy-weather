@@ -9,7 +9,8 @@ import androidx.preference.Preference;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
+import wangdaye.com.geometricweather.settings.OptionMapper;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.ui.dialog.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.ui.dialog.TimeSetterDialog;
@@ -71,44 +72,20 @@ public class SettingsFragment extends AbstractSettingsFragment {
 
         // update interval.
         Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));
-        refreshRate.setSummary(
-                getNameByValue(
-                        getSettingsOptionManager().getUpdateInterval(),
-                        R.array.automatic_refresh_rates,
-                        R.array.automatic_refresh_rate_values
-                )
-        );
+        refreshRate.setSummary(getSettingsOptionManager().getUpdateInterval().getUpdateIntervalName(getActivity()));
         refreshRate.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setUpdateInterval((String) newValue);
-            preference.setSummary(
-                    getNameByValue(
-                            (String) newValue,
-                            R.array.automatic_refresh_rates,
-                            R.array.automatic_refresh_rate_values
-                    )
-            );
+            getSettingsOptionManager().setUpdateInterval(OptionMapper.getUpdateInterval((String) newValue));
+            preference.setSummary(getSettingsOptionManager().getUpdateInterval().getUpdateIntervalName(getActivity()));
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             return true;
         });
 
         // dark mode.
         Preference darkMode = findPreference(getString(R.string.key_dark_mode));
-        darkMode.setSummary(
-                getNameByValue(
-                        getSettingsOptionManager().getDarkMode(),
-                        R.array.dark_modes,
-                        R.array.dark_mode_values
-                )
-        );
+        darkMode.setSummary(getSettingsOptionManager().getDarkMode().getDarkModeName(getActivity()));
         darkMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setDarkMode((String) newValue);
-            preference.setSummary(
-                    getNameByValue(
-                            (String) newValue,
-                            R.array.dark_modes,
-                            R.array.dark_mode_values
-                    )
-            );
+            getSettingsOptionManager().setDarkMode(OptionMapper.getDarkMode((String) newValue));
+            preference.setSummary(getSettingsOptionManager().getDarkMode().getDarkModeName(getActivity()));
             GeometricWeather.getInstance().resetDayNightMode();
             GeometricWeather.getInstance().recreateAllActivities();
             return true;
@@ -228,21 +205,13 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // notification style.
         ListPreference notificationStyle = findPreference(getString(R.string.key_notification_style));
         notificationStyle.setSummary(
-                getNameByValue(
-                        getSettingsOptionManager().getNotificationStyle(),
-                        R.array.notification_styles,
-                        R.array.notification_style_values
-                )
+                getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(getActivity())
         );
         notificationStyle.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationStyle((String) newValue);
+            getSettingsOptionManager().setNotificationStyle(OptionMapper.getNotificationStyle((String) newValue));
             initNotificationPart();
             preference.setSummary(
-                    getNameByValue(
-                            (String) newValue,
-                            R.array.notification_styles,
-                            R.array.notification_style_values
-                    )
+                    getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(getActivity())
             );
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
@@ -310,8 +279,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         });
 
         boolean sendNotification = getSettingsOptionManager().isNotificationEnabled();
-        boolean nativeNotification = getSettingsOptionManager().getNotificationStyle().equals(
-                SettingsOptionManager.NOTIFICATION_STYLE_NATIVE);
+        boolean nativeNotification = getSettingsOptionManager().getNotificationStyle() == NotificationStyle.NATIVE;
         boolean androidL = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
         notificationStyle.setEnabled(sendNotification);
         notificationMinimalIcon.setEnabled(sendNotification && !nativeNotification);

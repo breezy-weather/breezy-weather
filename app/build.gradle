@@ -6,8 +6,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 2309
-        versionName "2.309"
+        versionCode 2400
+        versionName "2.400"
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
@@ -55,10 +55,8 @@ android {
 
 allprojects {
     repositories {
+        google()
         jcenter()
-        maven {
-            url "https://maven.google.com"
-        }
         maven {
             url "https://jitpack.io"
         }
@@ -70,7 +68,7 @@ allprojects {
 
 apply plugin: 'org.greenrobot.greendao'
 greendao {
-    schemaVersion 42
+    schemaVersion 43
     generateTests false
 }
 dependencies {
@@ -106,12 +104,12 @@ dependencies {
     implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
 
     // retrofit.
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 
-    // green DAO.
+    // db.
     implementation 'org.greenrobot:greendao:3.2.0'
 
     // gson.

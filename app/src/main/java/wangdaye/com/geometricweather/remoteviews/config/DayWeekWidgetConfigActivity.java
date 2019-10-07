@@ -41,7 +41,7 @@ public class DayWeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public RemoteViews getRemoteViews() {
         return DayWeekWidgetIMP.getRemoteViews(
-                this, getLocationNow(), getLocationNow().weather,
+                this, getLocationNow(),
                 viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
                 hideSubtitle, subtitleDataValueNow
         );

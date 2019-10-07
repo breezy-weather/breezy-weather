@@ -1,211 +1,62 @@
 package wangdaye.com.geometricweather.db.entity;
 
-import android.database.sqlite.SQLiteDatabase;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
+import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 import org.greenrobot.greendao.annotation.Id;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Location entity.
+ *
+ * {@link wangdaye.com.geometricweather.basic.model.location.Location}.
  * */
 
 @Entity
 public class LocationEntity {
 
-    @Id
-    public Long id;
+    @Id public Long id;
 
     public String cityId;
-    public String district;
-    public String city;
-    public String province;
+
+    public float latitude;
+    public float longitude;
+    public int GMTOffset;
+
     public String country;
-    public String lat;
-    public String lon;
-    public String source;
+    public String province;
+    public String city;
+    public String district;
 
-    public boolean local;
+    @Convert(converter = WeatherSourceConverter.class, columnType = String.class)
+    public WeatherSource weatherSource;
+
+    public boolean currentPosition;
     public boolean china;
-
-    @Generated(hash = 2018059014)
-    public LocationEntity(Long id, String cityId, String district, String city, String province,
-            String country, String lat, String lon, String source, boolean local, boolean china) {
+    @Generated(hash = 495343798)
+    public LocationEntity(Long id, String cityId, float latitude, float longitude, int GMTOffset,
+            String country, String province, String city, String district, WeatherSource weatherSource,
+            boolean currentPosition, boolean china) {
         this.id = id;
         this.cityId = cityId;
-        this.district = district;
-        this.city = city;
-        this.province = province;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.GMTOffset = GMTOffset;
         this.country = country;
-        this.lat = lat;
-        this.lon = lon;
-        this.source = source;
-        this.local = local;
+        this.province = province;
+        this.city = city;
+        this.district = district;
+        this.weatherSource = weatherSource;
+        this.currentPosition = currentPosition;
         this.china = china;
     }
 
     @Generated(hash = 1723987110)
     public LocationEntity() {
-    }
-
-    private static LocationEntity buildLocationEntity(long id, Location location) {
-        LocationEntity entity = new LocationEntity();
-        entity.id = id;
-        entity.cityId = location.cityId;
-        entity.district = location.district;
-        entity.city = location.city;
-        entity.province = location.province;
-        entity.country = location.country;
-        entity.lat = location.lat;
-        entity.lon = location.lon;
-        entity.source = location.source;
-        entity.local = location.currentPosition;
-        entity.china = location.china;
-        return entity;
-    }
-
-    // insert.
-
-    public static void insertLocation(SQLiteDatabase database, Location location) {
-        if (location == null) {
-            return;
-        }
-
-        LocationEntity entity = searchLocationEntity(database, location);
-
-        if (entity == null) {
-            new DaoMaster(database)
-                    .newSession()
-                    .getLocationEntityDao()
-                    .insert(location.toLocationEntity());
-        } else {
-            updateLocation(database, buildLocationEntity(entity.id, location));
-        }
-    }
-
-    public static void writeLocationList(SQLiteDatabase database, List<Location> list) {
-        if (list == null || list.size() == 0) {
-            return;
-        }
-
-        clearLocation(database);
-        List<LocationEntity> entityList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i ++) {
-            entityList.add(list.get(i).toLocationEntity());
-        }
-        new DaoMaster(database)
-                .newSession()
-                .getLocationEntityDao()
-                .insertInTx(entityList);
-    }
-
-    // delete.
-
-    public static void deleteLocation(SQLiteDatabase database, Location location) {
-        if (location == null) {
-            return;
-        }
-
-        LocationEntity entity = searchLocationEntity(database, location);
-        if (entity != null) {
-            new DaoMaster(database)
-                    .newSession()
-                    .getLocationEntityDao()
-                    .delete(entity);
-        }
-    }
-
-    public static void clearLocation(SQLiteDatabase database) {
-        new DaoMaster(database)
-                .newSession()
-                .getLocationEntityDao()
-                .deleteAll();
-    }
-
-    // update
-
-    private static void updateLocation(SQLiteDatabase database, LocationEntity entity) {
-        new DaoMaster(database)
-                .newSession()
-                .getLocationEntityDao()
-                .update(entity);
-    }
-
-    // search.
-
-    @Nullable
-    private static LocationEntity searchLocationEntity(SQLiteDatabase database, Location location) {
-        List<LocationEntity> entityList = new DaoMaster(database)
-                .newSession()
-                .getLocationEntityDao()
-                .queryBuilder()
-                .where(
-                        location.isCurrentPosition()
-                                ? LocationEntityDao.Properties.Local.eq(location.currentPosition)
-                                : LocationEntityDao.Properties.CityId.eq(location.cityId)
-                ).list();
-        if (entityList == null || entityList.size() <= 0) {
-            return null;
-        } else {
-            return entityList.get(0);
-        }
-    }
-
-    @Nullable
-    public static Location readLocation(SQLiteDatabase database, Location location) {
-        LocationEntity entity = searchLocationEntity(database, location);
-        if (entity == null) {
-            return null;
-        } else {
-            return entity.toLocation();
-        }
-    }
-
-    @NonNull
-    public static List<Location> readLocationList(SQLiteDatabase database) {
-        List<LocationEntity> entityList = new DaoMaster(database)
-                .newSession()
-                .getLocationEntityDao()
-                .queryBuilder()
-                .list();
-        List<Location> locationList = new ArrayList<>();
-        for (int i = 0; i < entityList.size(); i ++) {
-            locationList.add(entityList.get(i).toLocation());
-        }
-        if (locationList.size() <= 0) {
-            locationList.add(Location.buildLocal());
-            insertLocation(database, locationList.get(0));
-        }
-        return locationList;
-    }
-
-    public static int countLocation(SQLiteDatabase database) {
-        return (int) new DaoMaster(database)
-                .newSession()
-                .getLocationEntityDao()
-                .queryBuilder()
-                .count();
-    }
-
-    @NonNull
-    private Location toLocation() {
-        return new Location(
-                cityId,
-                district, city, province, country,
-                lat, lon,
-                source,
-                null, null,
-                local, china
-        );
     }
 
     public Long getId() {
@@ -224,28 +75,28 @@ public class LocationEntity {
         this.cityId = cityId;
     }
 
-    public String getDistrict() {
-        return this.district;
+    public float getLatitude() {
+        return this.latitude;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
     }
 
-    public String getCity() {
-        return this.city;
+    public float getLongitude() {
+        return this.longitude;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 
-    public String getProvince() {
-        return this.province;
+    public int getGMTOffset() {
+        return this.GMTOffset;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setGMTOffset(int GMTOffset) {
+        this.GMTOffset = GMTOffset;
     }
 
     public String getCountry() {
@@ -256,36 +107,44 @@ public class LocationEntity {
         this.country = country;
     }
 
-    public String getLat() {
-        return this.lat;
+    public String getProvince() {
+        return this.province;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
-    public String getLon() {
-        return this.lon;
+    public String getCity() {
+        return this.city;
     }
 
-    public void setLon(String lon) {
-        this.lon = lon;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getSource() {
-        return this.source;
+    public String getDistrict() {
+        return this.district;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
-    public boolean getLocal() {
-        return this.local;
+    public WeatherSource getWeatherSource() {
+        return this.weatherSource;
     }
 
-    public void setLocal(boolean local) {
-        this.local = local;
+    public void setWeatherSource(WeatherSource weatherSource) {
+        this.weatherSource = weatherSource;
+    }
+
+    public boolean getCurrentPosition() {
+        return this.currentPosition;
+    }
+
+    public void setCurrentPosition(boolean currentPosition) {
+        this.currentPosition = currentPosition;
     }
 
     public boolean getChina() {

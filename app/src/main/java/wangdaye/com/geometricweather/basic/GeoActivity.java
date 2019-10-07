@@ -43,7 +43,7 @@ public abstract class GeoActivity extends AppCompatActivity {
 
         LanguageUtils.setLanguage(
                 this,
-                SettingsOptionManager.getInstance(this).getLanguage()
+                SettingsOptionManager.getInstance(this).getLanguage().getLocale()
         );
 
         boolean darkMode = DisplayUtils.isDarkMode(this);

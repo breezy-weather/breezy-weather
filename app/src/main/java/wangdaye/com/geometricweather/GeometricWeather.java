@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.gson.GsonBuilder;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -134,10 +136,13 @@ public class GeometricWeather extends Application {
         windowInsets = new Rect(0, 0, 0, 0);
 
         okHttpClient = TLSCompactHelper.getClientBuilder().build();
-        gsonConverterFactory = GsonConverterFactory.create();
+        gsonConverterFactory = GsonConverterFactory.create(
+                new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create());
+                // new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").create());
         rxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create();
 
-        LanguageUtils.setLanguage(this, SettingsOptionManager.getInstance(this).getLanguage());
+        LanguageUtils.setLanguage(
+                this, SettingsOptionManager.getInstance(this).getLanguage().getLocale());
 
         BuglyHelper.init(this);
     }
@@ -215,7 +220,7 @@ public class GeometricWeather extends Application {
 
     public void resetDayNightMode() {
         switch (SettingsOptionManager.getInstance(this).getDarkMode()) {
-            case "auto":
+            case AUTO:
                 AppCompatDelegate.setDefaultNightMode(
                         TimeManager.getInstance(this).isDayTime()
                                 ? AppCompatDelegate.MODE_NIGHT_NO
@@ -223,11 +228,11 @@ public class GeometricWeather extends Application {
                 );
                 break;
 
-            case "light":
+            case LIGHT:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 break;
 
-            case "dark":
+            case DARK:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 break;
         }

@@ -24,8 +24,9 @@ public abstract class LocationService {
 
     public class Result {
 
-        @NonNull public String latitude;
-        @NonNull public String longitude;
+        public float latitude;
+        public float longitude;
+        public int GMTOffset;
 
         public String district;
         public String city;
@@ -35,9 +36,14 @@ public abstract class LocationService {
         public boolean inChina;
         public boolean hasGeocodeInformation;
 
-        public Result(@NonNull String lat, @NonNull String lon) {
+        public Result(float lat, float lon) {
+            this(lat, lon, getTimeZone(lon));
+        }
+
+        public Result(float lat, float lon, int offset) {
             latitude = lat;
             longitude = lon;
+            GMTOffset = offset;
 
             district = "";
             city = "";
@@ -57,7 +63,7 @@ public abstract class LocationService {
         }
     }
 
-    public abstract void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback);
+    public abstract void requestLocation(Context context, @NonNull LocationCallback callback);
 
     public abstract void cancel();
 
@@ -96,6 +102,16 @@ public abstract class LocationService {
                 .setAutoCancel(true)
                 .setProgress(0, 0, true)
                 .build();
+    }
+
+    public static int getTimeZone(float longitude) {
+        int quotient = (int) (longitude / 15);
+        double residue = Math.abs(longitude % 15);
+        if (residue <= 7.5) {
+            return quotient;
+        } else {
+            return quotient + (longitude > 0 ?  1 : -1);
+        }
     }
 
     // interface.

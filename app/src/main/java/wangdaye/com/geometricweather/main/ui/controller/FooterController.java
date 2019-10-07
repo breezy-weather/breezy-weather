@@ -6,10 +6,9 @@ import androidx.annotation.NonNull;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class FooterController extends AbstractMainItemController {
 
@@ -24,6 +23,6 @@ public class FooterController extends AbstractMainItemController {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(@NonNull Location location) {
-        text.setText("Powered by " + ValueUtils.getWeatherSourceName(context, location.source));
+        text.setText("Powered by " + location.getWeatherSource().getSourceUrl());
     }
 }

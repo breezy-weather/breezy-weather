@@ -44,10 +44,8 @@ import com.xw.repo.BubbleSeekBar;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -169,9 +167,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     @CallSuper
     public void initData() {
         locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
-        locationNow.weather = DatabaseHelper.getInstance(this).readWeather(locationNow);
-        locationNow.history = DatabaseHelper.getInstance(this).readHistory(locationNow.weather);
-        
+        locationNow.setWeather(DatabaseHelper.getInstance(this).readWeather(locationNow));
+
         weatherHelper = new WeatherHelper();
         destroyed = false;
         
@@ -190,7 +187,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.hideSubtitle = false;
 
         this.subtitleDataValueNow = "time";
-        int length = LanguageUtils.getLanguageCode(this).startsWith("zh") ? 6 : 5;
+        int length = SettingsOptionManager.getInstance(this).getLanguage().getCode().startsWith("zh") ? 6 : 5;
         this.subtitleData = new String[length];
         this.subtitleDataValues = new String[length];
         String[] data = res.getStringArray(R.array.subtitle_data);
@@ -375,15 +372,15 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     // on request weather listener.
 
     @Override
-    public void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
-                                      @NonNull Location requestLocation) {
+    public void requestWeatherSuccess(@NonNull Location requestLocation) {
         if (destroyed) {
             return;
         }
-        if (weather == null) {
+
+        locationNow = requestLocation;
+        if (requestLocation.getWeather() == null) {
             requestWeatherFailed(requestLocation);
         } else {
-            locationNow.weather = weather;
             updateHostView();
         }
     }
@@ -393,7 +390,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         if (destroyed) {
             return;
         }
-        locationNow.weather = DatabaseHelper.getInstance(this).readWeather(requestLocation);
+        locationNow = requestLocation;
         updateHostView();
         SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
     }

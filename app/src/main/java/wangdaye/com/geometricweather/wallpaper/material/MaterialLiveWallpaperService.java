@@ -23,7 +23,8 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
@@ -243,22 +244,24 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     Location location = DatabaseHelper.getInstance(MaterialLiveWallpaperService.this)
                             .readLocationList()
                             .get(0);
-                    location.weather = DatabaseHelper.getInstance(MaterialLiveWallpaperService.this)
-                            .readWeather(location);
+                    location.setWeather(
+                            DatabaseHelper.getInstance(MaterialLiveWallpaperService.this)
+                                    .readWeather(location)
+                    );
 
                     LiveWallpaperConfigManager configManager
                             = LiveWallpaperConfigManager.getInstance(MaterialLiveWallpaperService.this);
                     String weatherKind = configManager.getWeatherKind();
                     if (weatherKind.equals("auto")) {
-                        weatherKind = location.weather != null
-                                ? location.weather.realTime.weatherKind
+                        weatherKind = location.getWeather() != null
+                                ? location.getWeather().getCurrent().getWeatherCode().name()
                                 : null;
                     }
                     String dayNightType = configManager.getDayNightType();
                     boolean daytime = true;
                     switch (dayNightType) {
                         case "auto":
-                            daytime = TimeManager.isDaylight(location.weather);
+                            daytime = TimeManager.isDaylight(location);
                             break;
 
                         case "day":
@@ -271,7 +274,12 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     }
 
                     if (!TextUtils.isEmpty(weatherKind)) {
-                        setWeather(WeatherViewController.getWeatherViewWeatherKind(weatherKind), daytime);
+                        setWeather(
+                                WeatherViewController.getWeatherKind(
+                                        WeatherCode.valueOf(weatherKind)
+                                ),
+                                daytime
+                        );
                     }
                     setWeatherImplementor();
                     setOpenGravitySensor(

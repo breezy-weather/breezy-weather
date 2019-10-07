@@ -99,13 +99,11 @@
     <string name="settings_summary_unit">Réglage des unités de données météo</string>
     <string name="settings_title_background_free">"Pas d'arrière-plan"</string>
     <string name="settings_title_click_widget_to_refresh">Rafraichir le widget en cliquant dessus</string>
-    <string name="settings_title_fahrenheit">Fahrenheit</string>
     <string name="settings_title_alert_notification_switch">Envoyer notification d\'alerte</string>
     <string name="settings_title_appearance">Apparance</string>
     <string name="settings_title_card_order">Ordre des cartes</string>
     <string name="settings_title_dark_mode">Mode sombre</string>
     <string name="settings_title_gravity_sensor_switch">Accéléromètre</string>
-    <string name="settings_title_imperial">Unités impériales</string>
     <string name="settings_title_location_service">Location Service</string>
     <string name="settings_title_forecast_today">Prévisions du jour</string>
     <string name="settings_title_forecast_today_time">Heure de notification</string>

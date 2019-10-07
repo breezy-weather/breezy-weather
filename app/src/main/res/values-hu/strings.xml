@@ -255,7 +255,6 @@
     <string name="settings_summary_live_wallpaper">Beállítja a Material időjárás animációt élő háttérképként.</string>
     <string name="settings_title_service_provider">Időjárás Szolgáltató</string>
     <string name="settings_summary_service_provider">Válassza ki az időjárás és a helymeghatározás szolgáltatóját.</string>
-    <string name="settings_title_chinese_source">Időjárás Forrása</string>
     <string name="settings_title_location_service">Helymeghatározó szolgáltatás</string>
     <string name="settings_title_dark_mode">Sötét Mód</string>
     <string name="settings_title_ui_style">Felület Stílus</string>
@@ -267,8 +266,6 @@
     <string name="settings_language">Nyelv</string>
     <string name="settings_title_unit">Mértékegységek</string>
     <string name="settings_summary_unit">Időjárásadatok mértékegységének beállítása.</string>
-    <string name="settings_title_fahrenheit">Fahrenheit</string>
-    <string name="settings_title_imperial">Imperiális</string>
     <string name="settings_title_refresh_rate">Automatikus Frissítés Ideje</string>
     <string name="settings_title_alert_notification_switch">Riasztási Értesítések Küldése</string>
     <string name="settings_title_precipitation_notification_switch">Küldjön Csapadékelőrejelzést</string>

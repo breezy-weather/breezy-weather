@@ -1,227 +1,191 @@
 package wangdaye.com.geometricweather.db.entity;
 
-import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.Nullable;
-import android.text.TextUtils;
-
+import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
-
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
 
 import org.greenrobot.greendao.annotation.Id;
 
+import java.util.Date;
 import java.util.List;
+
+import org.greenrobot.greendao.annotation.JoinProperty;
+import org.greenrobot.greendao.annotation.OrderBy;
+import org.greenrobot.greendao.annotation.ToMany;
+
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.basic.model.weather.WindDegree;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherCodeConverter;
+import wangdaye.com.geometricweather.db.propertyConverter.WindDegreeConverter;
+
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.DaoException;
 
 /**
  * Weather entity.
+ *
+ * {@link wangdaye.com.geometricweather.basic.model.weather.Weather}.
  * */
-
 @Entity
 public class WeatherEntity {
-    // data
+
     @Id public Long id;
-    public long timeStamp;
 
     // base.
     public String cityId;
-    public String city;
-    public String date;
-    public String time;
+    public long timeStamp;
+    public Date publishDate;
+    public long publishTime;
+    public Date updateDate;
+    public long updateTime;
 
-    // realTime.
-    public String realTimeWeather;
-    public String realTimeWeatherKind;
-    public int realTimeTemp;
-    public int realTimeSensibleTemp;
-    public String realTimeWindDir;
-    public String realTimeWindSpeed;
-    public String realTimeWindLevel;
-    public int realTimeWindDegree;
-    public String realTimeSimpleForecast;
+    // current.
+    public String weatherText;
+    @Convert(converter = WeatherCodeConverter.class, columnType = String.class)
+    public WeatherCode weatherCode;
 
-    // aqi.
-    public String aqiQuality;
-    public int aqiAqi;
-    public int aqiPm25;
-    public int aqiPm10;
-    public int aqiSo2;
-    public int aqiNo2;
-    public int aqiO3;
-    public float aqiCo;
+    public int temperature;
+    public Integer realFeelTemperature;
+    public Integer realFeelShaderTemperature;
+    public Integer apparentTemperature;
+    public Integer windChillTemperature;
+    public Integer wetBulbTemperature;
+    public Integer degreeDayTemperature;
 
-    //life.
-    public String indexSimpleForecast;
-    public String indexBriefing;
-    public String indexCurrentWind;
-    public String indexDailyWind;
-    public String indexSensibleTemp;
-    public String indexHumidity;
-    public String indexUv;
-    public String indexPressure;
-    public String indexVisibility;
-    public String indexDewPoint;
+    public Float totalPrecipitation;
+    public Float thunderstormPrecipitation;
+    public Float rainPrecipitation;
+    public Float snowPrecipitation;
+    public Float icePrecipitation;
 
-    @Generated(hash = 677751435)
-    public WeatherEntity(Long id, long timeStamp, String cityId, String city, String date, String time,
-            String realTimeWeather, String realTimeWeatherKind, int realTimeTemp, int realTimeSensibleTemp,
-            String realTimeWindDir, String realTimeWindSpeed, String realTimeWindLevel, int realTimeWindDegree,
-            String realTimeSimpleForecast, String aqiQuality, int aqiAqi, int aqiPm25, int aqiPm10, int aqiSo2,
-            int aqiNo2, int aqiO3, float aqiCo, String indexSimpleForecast, String indexBriefing,
-            String indexCurrentWind, String indexDailyWind, String indexSensibleTemp, String indexHumidity,
-            String indexUv, String indexPressure, String indexVisibility, String indexDewPoint) {
+    public Float totalPrecipitationProbability;
+    public Float thunderstormPrecipitationProbability;
+    public Float rainPrecipitationProbability;
+    public Float snowPrecipitationProbability;
+    public Float icePrecipitationProbability;
+
+    public String windDirection;
+    @Convert(converter = WindDegreeConverter.class, columnType = Float.class)
+    public WindDegree windDegree;
+    public Float windSpeed;
+    public String windLevel;
+
+    public Integer uvIndex;
+    public String uvLevel;
+    public String uvDescription;
+
+    public String aqiText;
+    public Integer aqiIndex;
+    public Float pm25;
+    public Float pm10;
+    public Float so2;
+    public Float no2;
+    public Float o3;
+    public Float co;
+
+    public Float relativeHumidity;
+    public Float pressure;
+    public Float visibility;
+    public Integer dewPoint;
+    public Integer cloudCover;
+    public Float ceiling;
+
+    public String dailyForecast;
+    public String hourlyForecast;
+
+    @ToMany(joinProperties = {@JoinProperty(name = "cityId", referencedName = "cityId")})
+    @OrderBy("date ASC")
+    public List<DailyEntity> dailyEntityList;
+
+    @ToMany(joinProperties = {@JoinProperty(name = "cityId", referencedName = "cityId")})
+    @OrderBy("date ASC")
+    public List<HourlyEntity> hourlyEntityList;
+
+    @ToMany(joinProperties = {@JoinProperty(name = "cityId", referencedName = "cityId")})
+    @OrderBy("date ASC")
+    public List<MinutelyEntity> minutelyEntityList;
+
+    @ToMany(joinProperties = {@JoinProperty(name = "cityId", referencedName = "cityId")})
+    @OrderBy("date ASC")
+    public List<AlertEntity> alertEntityList;
+
+    /** Used to resolve relations */
+    @Generated(hash = 2040040024)
+    private transient DaoSession daoSession;
+
+    /** Used for active entity operations. */
+    @Generated(hash = 428286643)
+    private transient WeatherEntityDao myDao;
+
+    @Generated(hash = 1720178913)
+    public WeatherEntity(Long id, String cityId, long timeStamp, Date publishDate,
+            long publishTime, Date updateDate, long updateTime, String weatherText,
+            WeatherCode weatherCode, int temperature, Integer realFeelTemperature,
+            Integer realFeelShaderTemperature, Integer apparentTemperature,
+            Integer windChillTemperature, Integer wetBulbTemperature,
+            Integer degreeDayTemperature, Float totalPrecipitation,
+            Float thunderstormPrecipitation, Float rainPrecipitation, Float snowPrecipitation,
+            Float icePrecipitation, Float totalPrecipitationProbability,
+            Float thunderstormPrecipitationProbability, Float rainPrecipitationProbability,
+            Float snowPrecipitationProbability, Float icePrecipitationProbability,
+            String windDirection, WindDegree windDegree, Float windSpeed, String windLevel,
+            Integer uvIndex, String uvLevel, String uvDescription, String aqiText,
+            Integer aqiIndex, Float pm25, Float pm10, Float so2, Float no2, Float o3,
+            Float co, Float relativeHumidity, Float pressure, Float visibility,
+            Integer dewPoint, Integer cloudCover, Float ceiling, String dailyForecast,
+            String hourlyForecast) {
         this.id = id;
-        this.timeStamp = timeStamp;
         this.cityId = cityId;
-        this.city = city;
-        this.date = date;
-        this.time = time;
-        this.realTimeWeather = realTimeWeather;
-        this.realTimeWeatherKind = realTimeWeatherKind;
-        this.realTimeTemp = realTimeTemp;
-        this.realTimeSensibleTemp = realTimeSensibleTemp;
-        this.realTimeWindDir = realTimeWindDir;
-        this.realTimeWindSpeed = realTimeWindSpeed;
-        this.realTimeWindLevel = realTimeWindLevel;
-        this.realTimeWindDegree = realTimeWindDegree;
-        this.realTimeSimpleForecast = realTimeSimpleForecast;
-        this.aqiQuality = aqiQuality;
-        this.aqiAqi = aqiAqi;
-        this.aqiPm25 = aqiPm25;
-        this.aqiPm10 = aqiPm10;
-        this.aqiSo2 = aqiSo2;
-        this.aqiNo2 = aqiNo2;
-        this.aqiO3 = aqiO3;
-        this.aqiCo = aqiCo;
-        this.indexSimpleForecast = indexSimpleForecast;
-        this.indexBriefing = indexBriefing;
-        this.indexCurrentWind = indexCurrentWind;
-        this.indexDailyWind = indexDailyWind;
-        this.indexSensibleTemp = indexSensibleTemp;
-        this.indexHumidity = indexHumidity;
-        this.indexUv = indexUv;
-        this.indexPressure = indexPressure;
-        this.indexVisibility = indexVisibility;
-        this.indexDewPoint = indexDewPoint;
+        this.timeStamp = timeStamp;
+        this.publishDate = publishDate;
+        this.publishTime = publishTime;
+        this.updateDate = updateDate;
+        this.updateTime = updateTime;
+        this.weatherText = weatherText;
+        this.weatherCode = weatherCode;
+        this.temperature = temperature;
+        this.realFeelTemperature = realFeelTemperature;
+        this.realFeelShaderTemperature = realFeelShaderTemperature;
+        this.apparentTemperature = apparentTemperature;
+        this.windChillTemperature = windChillTemperature;
+        this.wetBulbTemperature = wetBulbTemperature;
+        this.degreeDayTemperature = degreeDayTemperature;
+        this.totalPrecipitation = totalPrecipitation;
+        this.thunderstormPrecipitation = thunderstormPrecipitation;
+        this.rainPrecipitation = rainPrecipitation;
+        this.snowPrecipitation = snowPrecipitation;
+        this.icePrecipitation = icePrecipitation;
+        this.totalPrecipitationProbability = totalPrecipitationProbability;
+        this.thunderstormPrecipitationProbability = thunderstormPrecipitationProbability;
+        this.rainPrecipitationProbability = rainPrecipitationProbability;
+        this.snowPrecipitationProbability = snowPrecipitationProbability;
+        this.icePrecipitationProbability = icePrecipitationProbability;
+        this.windDirection = windDirection;
+        this.windDegree = windDegree;
+        this.windSpeed = windSpeed;
+        this.windLevel = windLevel;
+        this.uvIndex = uvIndex;
+        this.uvLevel = uvLevel;
+        this.uvDescription = uvDescription;
+        this.aqiText = aqiText;
+        this.aqiIndex = aqiIndex;
+        this.pm25 = pm25;
+        this.pm10 = pm10;
+        this.so2 = so2;
+        this.no2 = no2;
+        this.o3 = o3;
+        this.co = co;
+        this.relativeHumidity = relativeHumidity;
+        this.pressure = pressure;
+        this.visibility = visibility;
+        this.dewPoint = dewPoint;
+        this.cloudCover = cloudCover;
+        this.ceiling = ceiling;
+        this.dailyForecast = dailyForecast;
+        this.hourlyForecast = hourlyForecast;
     }
 
     @Generated(hash = 1598697471)
     public WeatherEntity() {
-    }
-
-    /** <br> life cycle. */
-
-    private static WeatherEntity buildWeatherEntity(Weather weather) {
-        WeatherEntity entity = new WeatherEntity();
-
-        // base.
-        entity.cityId = weather.base.cityId;
-        entity.city = weather.base.city;
-        entity.date = weather.base.date;
-        entity.time = weather.base.time;
-        entity.timeStamp = weather.base.timeStamp;
-
-        // realTime.
-        entity.realTimeWeather = weather.realTime.weather;
-        entity.realTimeWeatherKind = weather.realTime.weatherKind;
-        entity.realTimeTemp = weather.realTime.temp;
-        entity.realTimeSensibleTemp = weather.realTime.sensibleTemp;
-        entity.realTimeWindDir = weather.realTime.windDir;
-        entity.realTimeWindSpeed = weather.realTime.windSpeed;
-        entity.realTimeWindLevel = weather.realTime.windLevel;
-        entity.realTimeWindDegree = weather.realTime.windDegree;
-        entity.realTimeSimpleForecast = weather.realTime.simpleForecast;
-
-        // aqi.
-        entity.aqiQuality = weather.aqi.quality;
-        entity.aqiAqi = weather.aqi.aqi;
-        entity.aqiPm25 = weather.aqi.pm25;
-        entity.aqiPm10 = weather.aqi.pm10;
-        entity.aqiSo2 = weather.aqi.so2;
-        entity.aqiNo2 = weather.aqi.no2;
-        entity.aqiO3 = weather.aqi.o3;
-        entity.aqiCo = weather.aqi.co;
-
-        //life.
-        entity.indexSimpleForecast = weather.index.simpleForecast;
-        entity.indexBriefing = weather.index.briefing;
-        entity.indexCurrentWind = weather.index.currentWind;
-        entity.indexDailyWind = weather.index.dailyWind;
-        entity.indexSensibleTemp = weather.index.sensibleTemp;
-        entity.indexHumidity = weather.index.humidity;
-        entity.indexUv = weather.index.uv;
-        entity.indexPressure = weather.index.pressure;
-        entity.indexVisibility = weather.index.visibility;
-        entity.indexDewPoint = weather.index.dewPoint;
-
-        return entity;
-    }
-
-    // insert.
-
-    public static void insertWeather(SQLiteDatabase database, Location location, Weather weather) {
-        if (weather == null) {
-            return;
-        }
-
-        List<WeatherEntity> entityList = searchWeatherEntityList(database, location);
-        for (int i = 0; i < entityList.size(); i ++) {
-            deleteWeather(database, entityList.get(i));
-        }
-        new DaoMaster(database)
-                .newSession()
-                .getWeatherEntityDao()
-                .insert(buildWeatherEntity(weather));
-    }
-
-    // delete.
-
-    public static void deleteWeather(SQLiteDatabase database, Location location) {
-        List<WeatherEntity> entityList = searchWeatherEntityList(database, location);
-        new DaoMaster(database)
-                .newSession()
-                .getWeatherEntityDao()
-                .deleteInTx(entityList);
-    }
-
-    private static void deleteWeather(SQLiteDatabase database, WeatherEntity entity) {
-        new DaoMaster(database)
-                .newSession()
-                .getWeatherEntityDao()
-                .delete(entity);
-    }
-
-    // search.
-
-    @Nullable
-    public static WeatherEntity searchWeatherEntity(SQLiteDatabase database, Location location) {
-        if (TextUtils.isEmpty(location.cityId)) {
-            return null;
-        }
-
-        WeatherEntityDao dao = new DaoMaster(database)
-                .newSession()
-                .getWeatherEntityDao();
-
-        List<WeatherEntity> entityList = dao
-                .queryBuilder()
-                .where(WeatherEntityDao.Properties.CityId.eq(location.cityId))
-                .list();
-        if (entityList == null || entityList.size() <= 0) {
-            return null;
-        } else {
-            return entityList.get(0);
-        }
-    }
-
-    private static List<WeatherEntity> searchWeatherEntityList(SQLiteDatabase database, Location location) {
-        WeatherEntityDao dao = new DaoMaster(database)
-                .newSession()
-                .getWeatherEntityDao();
-        return dao.queryBuilder()
-                .where(WeatherEntityDao.Properties.CityId.eq(location.cityId))
-                .list();
     }
 
     public Long getId() {
@@ -232,14 +196,6 @@ public class WeatherEntity {
         this.id = id;
     }
 
-    public long getTimeStamp() {
-        return this.timeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-
     public String getCityId() {
         return this.cityId;
     }
@@ -248,243 +204,539 @@ public class WeatherEntity {
         this.cityId = cityId;
     }
 
-    public String getCity() {
-        return this.city;
+    public long getTimeStamp() {
+        return this.timeStamp;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
-    public String getDate() {
-        return this.date;
+    public Date getPublishDate() {
+        return this.publishDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
     }
 
-    public String getTime() {
-        return this.time;
+    public long getPublishTime() {
+        return this.publishTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setPublishTime(long publishTime) {
+        this.publishTime = publishTime;
     }
 
-    public String getRealTimeWeather() {
-        return this.realTimeWeather;
+    public Date getUpdateDate() {
+        return this.updateDate;
     }
 
-    public void setRealTimeWeather(String realTimeWeather) {
-        this.realTimeWeather = realTimeWeather;
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
-    public String getRealTimeWeatherKind() {
-        return this.realTimeWeatherKind;
+    public long getUpdateTime() {
+        return this.updateTime;
     }
 
-    public void setRealTimeWeatherKind(String realTimeWeatherKind) {
-        this.realTimeWeatherKind = realTimeWeatherKind;
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public int getRealTimeTemp() {
-        return this.realTimeTemp;
+    public String getWeatherText() {
+        return this.weatherText;
     }
 
-    public void setRealTimeTemp(int realTimeTemp) {
-        this.realTimeTemp = realTimeTemp;
+    public void setWeatherText(String weatherText) {
+        this.weatherText = weatherText;
     }
 
-    public int getRealTimeSensibleTemp() {
-        return this.realTimeSensibleTemp;
+    public WeatherCode getWeatherCode() {
+        return this.weatherCode;
     }
 
-    public void setRealTimeSensibleTemp(int realTimeSensibleTemp) {
-        this.realTimeSensibleTemp = realTimeSensibleTemp;
+    public void setWeatherCode(WeatherCode weatherCode) {
+        this.weatherCode = weatherCode;
     }
 
-    public String getRealTimeWindDir() {
-        return this.realTimeWindDir;
+    public int getTemperature() {
+        return this.temperature;
     }
 
-    public void setRealTimeWindDir(String realTimeWindDir) {
-        this.realTimeWindDir = realTimeWindDir;
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
     }
 
-    public String getRealTimeWindSpeed() {
-        return this.realTimeWindSpeed;
+    public Integer getRealFeelTemperature() {
+        return this.realFeelTemperature;
     }
 
-    public void setRealTimeWindSpeed(String realTimeWindSpeed) {
-        this.realTimeWindSpeed = realTimeWindSpeed;
+    public void setRealFeelTemperature(Integer realFeelTemperature) {
+        this.realFeelTemperature = realFeelTemperature;
     }
 
-    public String getRealTimeWindLevel() {
-        return this.realTimeWindLevel;
+    public Integer getRealFeelShaderTemperature() {
+        return this.realFeelShaderTemperature;
     }
 
-    public void setRealTimeWindLevel(String realTimeWindLevel) {
-        this.realTimeWindLevel = realTimeWindLevel;
+    public void setRealFeelShaderTemperature(Integer realFeelShaderTemperature) {
+        this.realFeelShaderTemperature = realFeelShaderTemperature;
     }
 
-    public int getRealTimeWindDegree() {
-        return this.realTimeWindDegree;
+    public Integer getApparentTemperature() {
+        return this.apparentTemperature;
     }
 
-    public void setRealTimeWindDegree(int realTimeWindDegree) {
-        this.realTimeWindDegree = realTimeWindDegree;
+    public void setApparentTemperature(Integer apparentTemperature) {
+        this.apparentTemperature = apparentTemperature;
     }
 
-    public String getRealTimeSimpleForecast() {
-        return this.realTimeSimpleForecast;
+    public Integer getWindChillTemperature() {
+        return this.windChillTemperature;
     }
 
-    public void setRealTimeSimpleForecast(String realTimeSimpleForecast) {
-        this.realTimeSimpleForecast = realTimeSimpleForecast;
+    public void setWindChillTemperature(Integer windChillTemperature) {
+        this.windChillTemperature = windChillTemperature;
     }
 
-    public String getAqiQuality() {
-        return this.aqiQuality;
+    public Integer getWetBulbTemperature() {
+        return this.wetBulbTemperature;
     }
 
-    public void setAqiQuality(String aqiQuality) {
-        this.aqiQuality = aqiQuality;
+    public void setWetBulbTemperature(Integer wetBulbTemperature) {
+        this.wetBulbTemperature = wetBulbTemperature;
     }
 
-    public int getAqiAqi() {
-        return this.aqiAqi;
+    public Integer getDegreeDayTemperature() {
+        return this.degreeDayTemperature;
     }
 
-    public void setAqiAqi(int aqiAqi) {
-        this.aqiAqi = aqiAqi;
+    public void setDegreeDayTemperature(Integer degreeDayTemperature) {
+        this.degreeDayTemperature = degreeDayTemperature;
     }
 
-    public int getAqiPm25() {
-        return this.aqiPm25;
+    public Float getTotalPrecipitation() {
+        return this.totalPrecipitation;
     }
 
-    public void setAqiPm25(int aqiPm25) {
-        this.aqiPm25 = aqiPm25;
+    public void setTotalPrecipitation(Float totalPrecipitation) {
+        this.totalPrecipitation = totalPrecipitation;
     }
 
-    public int getAqiPm10() {
-        return this.aqiPm10;
+    public Float getThunderstormPrecipitation() {
+        return this.thunderstormPrecipitation;
     }
 
-    public void setAqiPm10(int aqiPm10) {
-        this.aqiPm10 = aqiPm10;
+    public void setThunderstormPrecipitation(Float thunderstormPrecipitation) {
+        this.thunderstormPrecipitation = thunderstormPrecipitation;
     }
 
-    public int getAqiSo2() {
-        return this.aqiSo2;
+    public Float getRainPrecipitation() {
+        return this.rainPrecipitation;
     }
 
-    public void setAqiSo2(int aqiSo2) {
-        this.aqiSo2 = aqiSo2;
+    public void setRainPrecipitation(Float rainPrecipitation) {
+        this.rainPrecipitation = rainPrecipitation;
     }
 
-    public int getAqiNo2() {
-        return this.aqiNo2;
+    public Float getSnowPrecipitation() {
+        return this.snowPrecipitation;
     }
 
-    public void setAqiNo2(int aqiNo2) {
-        this.aqiNo2 = aqiNo2;
+    public void setSnowPrecipitation(Float snowPrecipitation) {
+        this.snowPrecipitation = snowPrecipitation;
     }
 
-    public int getAqiO3() {
-        return this.aqiO3;
+    public Float getIcePrecipitation() {
+        return this.icePrecipitation;
     }
 
-    public void setAqiO3(int aqiO3) {
-        this.aqiO3 = aqiO3;
+    public void setIcePrecipitation(Float icePrecipitation) {
+        this.icePrecipitation = icePrecipitation;
     }
 
-    public float getAqiCo() {
-        return this.aqiCo;
+    public Float getTotalPrecipitationProbability() {
+        return this.totalPrecipitationProbability;
     }
 
-    public void setAqiCo(float aqiCo) {
-        this.aqiCo = aqiCo;
+    public void setTotalPrecipitationProbability(Float totalPrecipitationProbability) {
+        this.totalPrecipitationProbability = totalPrecipitationProbability;
     }
 
-    public String getIndexSimpleForecast() {
-        return this.indexSimpleForecast;
+    public Float getThunderstormPrecipitationProbability() {
+        return this.thunderstormPrecipitationProbability;
     }
 
-    public void setIndexSimpleForecast(String indexSimpleForecast) {
-        this.indexSimpleForecast = indexSimpleForecast;
+    public void setThunderstormPrecipitationProbability(
+            Float thunderstormPrecipitationProbability) {
+        this.thunderstormPrecipitationProbability = thunderstormPrecipitationProbability;
     }
 
-    public String getIndexBriefing() {
-        return this.indexBriefing;
+    public Float getRainPrecipitationProbability() {
+        return this.rainPrecipitationProbability;
     }
 
-    public void setIndexBriefing(String indexBriefing) {
-        this.indexBriefing = indexBriefing;
+    public void setRainPrecipitationProbability(Float rainPrecipitationProbability) {
+        this.rainPrecipitationProbability = rainPrecipitationProbability;
     }
 
-    public String getIndexCurrentWind() {
-        return this.indexCurrentWind;
+    public Float getSnowPrecipitationProbability() {
+        return this.snowPrecipitationProbability;
     }
 
-    public void setIndexCurrentWind(String indexCurrentWind) {
-        this.indexCurrentWind = indexCurrentWind;
+    public void setSnowPrecipitationProbability(Float snowPrecipitationProbability) {
+        this.snowPrecipitationProbability = snowPrecipitationProbability;
     }
 
-    public String getIndexDailyWind() {
-        return this.indexDailyWind;
+    public Float getIcePrecipitationProbability() {
+        return this.icePrecipitationProbability;
     }
 
-    public void setIndexDailyWind(String indexDailyWind) {
-        this.indexDailyWind = indexDailyWind;
+    public void setIcePrecipitationProbability(Float icePrecipitationProbability) {
+        this.icePrecipitationProbability = icePrecipitationProbability;
     }
 
-    public String getIndexSensibleTemp() {
-        return this.indexSensibleTemp;
+    public String getWindDirection() {
+        return this.windDirection;
     }
 
-    public void setIndexSensibleTemp(String indexSensibleTemp) {
-        this.indexSensibleTemp = indexSensibleTemp;
+    public void setWindDirection(String windDirection) {
+        this.windDirection = windDirection;
     }
 
-    public String getIndexHumidity() {
-        return this.indexHumidity;
+    public WindDegree getWindDegree() {
+        return this.windDegree;
     }
 
-    public void setIndexHumidity(String indexHumidity) {
-        this.indexHumidity = indexHumidity;
+    public void setWindDegree(WindDegree windDegree) {
+        this.windDegree = windDegree;
     }
 
-    public String getIndexUv() {
-        return this.indexUv;
+    public Float getWindSpeed() {
+        return this.windSpeed;
     }
 
-    public void setIndexUv(String indexUv) {
-        this.indexUv = indexUv;
+    public void setWindSpeed(Float windSpeed) {
+        this.windSpeed = windSpeed;
     }
 
-    public String getIndexPressure() {
-        return this.indexPressure;
+    public String getWindLevel() {
+        return this.windLevel;
     }
 
-    public void setIndexPressure(String indexPressure) {
-        this.indexPressure = indexPressure;
+    public void setWindLevel(String windLevel) {
+        this.windLevel = windLevel;
     }
 
-    public String getIndexVisibility() {
-        return this.indexVisibility;
+    public Integer getUvIndex() {
+        return this.uvIndex;
     }
 
-    public void setIndexVisibility(String indexVisibility) {
-        this.indexVisibility = indexVisibility;
+    public void setUvIndex(Integer uvIndex) {
+        this.uvIndex = uvIndex;
     }
 
-    public String getIndexDewPoint() {
-        return this.indexDewPoint;
+    public String getUvLevel() {
+        return this.uvLevel;
     }
 
-    public void setIndexDewPoint(String indexDewPoint) {
-        this.indexDewPoint = indexDewPoint;
+    public void setUvLevel(String uvLevel) {
+        this.uvLevel = uvLevel;
+    }
+
+    public String getUvDescription() {
+        return this.uvDescription;
+    }
+
+    public void setUvDescription(String uvDescription) {
+        this.uvDescription = uvDescription;
+    }
+
+    public String getAqiText() {
+        return this.aqiText;
+    }
+
+    public void setAqiText(String aqiText) {
+        this.aqiText = aqiText;
+    }
+
+    public Integer getAqiIndex() {
+        return this.aqiIndex;
+    }
+
+    public void setAqiIndex(Integer aqiIndex) {
+        this.aqiIndex = aqiIndex;
+    }
+
+    public Float getPm25() {
+        return this.pm25;
+    }
+
+    public void setPm25(Float pm25) {
+        this.pm25 = pm25;
+    }
+
+    public Float getPm10() {
+        return this.pm10;
+    }
+
+    public void setPm10(Float pm10) {
+        this.pm10 = pm10;
+    }
+
+    public Float getSo2() {
+        return this.so2;
+    }
+
+    public void setSo2(Float so2) {
+        this.so2 = so2;
+    }
+
+    public Float getNo2() {
+        return this.no2;
+    }
+
+    public void setNo2(Float no2) {
+        this.no2 = no2;
+    }
+
+    public Float getO3() {
+        return this.o3;
+    }
+
+    public void setO3(Float o3) {
+        this.o3 = o3;
+    }
+
+    public Float getCo() {
+        return this.co;
+    }
+
+    public void setCo(Float co) {
+        this.co = co;
+    }
+
+    public Float getRelativeHumidity() {
+        return this.relativeHumidity;
+    }
+
+    public void setRelativeHumidity(Float relativeHumidity) {
+        this.relativeHumidity = relativeHumidity;
+    }
+
+    public Float getPressure() {
+        return this.pressure;
+    }
+
+    public void setPressure(Float pressure) {
+        this.pressure = pressure;
+    }
+
+    public Float getVisibility() {
+        return this.visibility;
+    }
+
+    public void setVisibility(Float visibility) {
+        this.visibility = visibility;
+    }
+
+    public Integer getDewPoint() {
+        return this.dewPoint;
+    }
+
+    public void setDewPoint(Integer dewPoint) {
+        this.dewPoint = dewPoint;
+    }
+
+    public Integer getCloudCover() {
+        return this.cloudCover;
+    }
+
+    public void setCloudCover(Integer cloudCover) {
+        this.cloudCover = cloudCover;
+    }
+
+    public Float getCeiling() {
+        return this.ceiling;
+    }
+
+    public void setCeiling(Float ceiling) {
+        this.ceiling = ceiling;
+    }
+
+    public String getDailyForecast() {
+        return this.dailyForecast;
+    }
+
+    public void setDailyForecast(String dailyForecast) {
+        this.dailyForecast = dailyForecast;
+    }
+
+    public String getHourlyForecast() {
+        return this.hourlyForecast;
+    }
+
+    public void setHourlyForecast(String hourlyForecast) {
+        this.hourlyForecast = hourlyForecast;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1934578175)
+    public List<DailyEntity> getDailyEntityList() {
+        if (dailyEntityList == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            DailyEntityDao targetDao = daoSession.getDailyEntityDao();
+            List<DailyEntity> dailyEntityListNew = targetDao
+                    ._queryWeatherEntity_DailyEntityList(cityId);
+            synchronized (this) {
+                if (dailyEntityList == null) {
+                    dailyEntityList = dailyEntityListNew;
+                }
+            }
+        }
+        return dailyEntityList;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1145290907)
+    public synchronized void resetDailyEntityList() {
+        dailyEntityList = null;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1779375326)
+    public List<HourlyEntity> getHourlyEntityList() {
+        if (hourlyEntityList == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            HourlyEntityDao targetDao = daoSession.getHourlyEntityDao();
+            List<HourlyEntity> hourlyEntityListNew = targetDao
+                    ._queryWeatherEntity_HourlyEntityList(cityId);
+            synchronized (this) {
+                if (hourlyEntityList == null) {
+                    hourlyEntityList = hourlyEntityListNew;
+                }
+            }
+        }
+        return hourlyEntityList;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1603476353)
+    public synchronized void resetHourlyEntityList() {
+        hourlyEntityList = null;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1838673078)
+    public List<MinutelyEntity> getMinutelyEntityList() {
+        if (minutelyEntityList == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            MinutelyEntityDao targetDao = daoSession.getMinutelyEntityDao();
+            List<MinutelyEntity> minutelyEntityListNew = targetDao
+                    ._queryWeatherEntity_MinutelyEntityList(cityId);
+            synchronized (this) {
+                if (minutelyEntityList == null) {
+                    minutelyEntityList = minutelyEntityListNew;
+                }
+            }
+        }
+        return minutelyEntityList;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1906829833)
+    public synchronized void resetMinutelyEntityList() {
+        minutelyEntityList = null;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 622731054)
+    public List<AlertEntity> getAlertEntityList() {
+        if (alertEntityList == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            AlertEntityDao targetDao = daoSession.getAlertEntityDao();
+            List<AlertEntity> alertEntityListNew = targetDao
+                    ._queryWeatherEntity_AlertEntityList(cityId);
+            synchronized (this) {
+                if (alertEntityList == null) {
+                    alertEntityList = alertEntityListNew;
+                }
+            }
+        }
+        return alertEntityList;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 2026104948)
+    public synchronized void resetAlertEntityList() {
+        alertEntityList = null;
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 128553479)
+    public void delete() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.delete(this);
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 1942392019)
+    public void refresh() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.refresh(this);
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 713229351)
+    public void update() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.update(this);
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1493194274)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getWeatherEntityDao() : null;
     }
 }

@@ -12,24 +12,24 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.ContextCompat;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
-import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
-import wangdaye.com.geometricweather.utils.ValueUtils;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Weather dialog.
@@ -79,17 +79,19 @@ public class WeatherDialog extends GeoDialogFragment
 
         TextView title = view.findViewById(R.id.dialog_weather_title);
         if (daily) {
-            title.setText(weather.dailyList.get(position).getDateInFormat(getString(R.string.date_format_long))
-                    + " " + weather.dailyList.get(position).week);
+            title.setText(
+                    weather.getDailyForecast().get(position).getLongDate(getActivity())
+                            + " "
+                            + weather.getDailyForecast().get(position).getWeek(getActivity())
+            );
         } else {
-            title.setText(weather.hourlyList.get(position).time);
+            title.setText(weather.getHourlyForecast().get(position).getHour(getActivity()));
         }
         title.setTextColor(weatherColor);
 
         TextView subtitle = view.findViewById(R.id.dialog_weather_subtitle);
-        if (daily && LanguageUtils.getLanguageCode(getActivity()).startsWith("zh")) {
-            String[] dates = weather.dailyList.get(position).date.split("-");
-            subtitle.setText(LunarHelper.getLunarDate(dates));
+        if (daily && SettingsOptionManager.getInstance(getActivity()).getLanguage().getCode().startsWith("zh")) {
+            subtitle.setText(weather.getDailyForecast().get(position).getLunar());
         } else {
             subtitle.setVisibility(View.GONE);
         }
@@ -105,11 +107,12 @@ public class WeatherDialog extends GeoDialogFragment
                 colorPicker.getTextContentColor(getActivity())
         );
 
-        if (daily && !TextUtils.isEmpty(weather.dailyList.get(position).moonPhase)) {
-            phaseTitle.setText(WeatherHelper.getMoonPhaseName(
-                    getActivity(), weather.dailyList.get(position).moonPhase));
-            phaseView.setSurfaceAngle(WeatherHelper.getMoonPhaseAngle(
-                    weather.dailyList.get(position).moonPhase));
+        if (daily && weather.getDailyForecast().get(position).getMoonPhase().isValid()) {
+            phaseTitle.setText(
+                    weather.getDailyForecast().get(position).getMoonPhase().getMoonPhase(getActivity())
+            );
+            Integer angle = weather.getDailyForecast().get(position).getMoonPhase().getAngle();
+            phaseView.setSurfaceAngle(angle == null ? 0 : angle);
         } else {
             phaseTitle.setVisibility(View.GONE);
             phaseView.setVisibility(View.GONE);
@@ -122,25 +125,25 @@ public class WeatherDialog extends GeoDialogFragment
                 view.findViewById(R.id.dialog_weather_icon_day),
                 view.findViewById(R.id.dialog_weather_icon_night)
         };
-        String weatherKind;
+        WeatherCode weatherCode;
         if (daily) {
-            weatherKind = weather.dailyList.get(position).weatherKinds[0];
+            weatherCode = weather.getDailyForecast().get(position).day().getWeatherCode();
             weatherIcons[0].setAnimatableIcon(
-                    WeatherHelper.getWeatherIcons(provider, weatherKind, true),
-                    WeatherHelper.getWeatherAnimators(provider, weatherKind, true)
+                    ResourceHelper.getWeatherIcons(provider, weatherCode, true),
+                    ResourceHelper.getWeatherAnimators(provider, weatherCode, true)
             );
 
-            weatherKind = weather.dailyList.get(position).weatherKinds[1];
+            weatherCode = weather.getDailyForecast().get(position).night().getWeatherCode();
             weatherIcons[1].setAnimatableIcon(
-                    WeatherHelper.getWeatherIcons(provider, weatherKind, false),
-                    WeatherHelper.getWeatherAnimators(provider, weatherKind, false)
+                    ResourceHelper.getWeatherIcons(provider, weatherCode, false),
+                    ResourceHelper.getWeatherAnimators(provider, weatherCode, false)
             );
         } else {
-            weatherKind = weather.hourlyList.get(position).weatherKind;
-            boolean daytime = weather.hourlyList.get(position).dayTime;
+            weatherCode = weather.getHourlyForecast().get(position).getWeatherCode();
+            boolean daytime = weather.getHourlyForecast().get(position).isDaylight();
             weatherIcons[0].setAnimatableIcon(
-                    WeatherHelper.getWeatherIcons(provider, weatherKind, daytime),
-                    WeatherHelper.getWeatherAnimators(provider, weatherKind, daytime)
+                    ResourceHelper.getWeatherIcons(provider, weatherCode, daytime),
+                    ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime)
             );
 
             view.findViewById(R.id.dialog_weather_weatherContainer_night).setVisibility(View.GONE);
@@ -152,57 +155,61 @@ public class WeatherDialog extends GeoDialogFragment
         };
         weatherTexts[0].setTextColor(colorPicker.getTextContentColor(getActivity()));
         weatherTexts[1].setTextColor(colorPicker.getTextContentColor(getActivity()));
-        if (daily) {
-            String daytimeTxt = weather.dailyList.get(position).weathers[0] + "  "
-                    + ValueUtils.buildCurrentTemp(
-                            weather.dailyList.get(position).temps[0],
-                            false,
-                            SettingsOptionManager.getInstance(getActivity()).isFahrenheit()
-                    ) + "\n"
-                    + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[0]
-                    + (TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[0])
-                            ? ""
-                            : " " + weather.dailyList.get(position).windSpeeds[0])
-                    + " (" + weather.dailyList.get(position).windLevels[0] + ") "
-                    + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[0])
-                    + (
-                            weather.dailyList.get(position).precipitations[0] >= 0
-                                    ? "\n" + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[0] + "%"
-                                    : ""
-                    );
-            weatherTexts[0].setText(daytimeTxt);
 
-            String nighttimeTxt = weather.dailyList.get(position).weathers[1] + "  "
-                    + ValueUtils.buildCurrentTemp(
-                            weather.dailyList.get(position).temps[1],
-                            false,
-                            SettingsOptionManager.getInstance(getActivity()).isFahrenheit()
-                    ) + "\n"
-                    + getString(R.string.wind) + " : " + weather.dailyList.get(position).windDirs[1]
-                    + (
-                            TextUtils.isEmpty(weather.dailyList.get(position).windSpeeds[1])
-                                    ? ""
-                                    : " " + weather.dailyList.get(position).windSpeeds[1]
-                    ) + " (" + weather.dailyList.get(position).windLevels[1] + ") "
-                    + WeatherHelper.getWindArrows(weather.dailyList.get(position).windDegrees[1])
-                    + (
-                            weather.dailyList.get(position).precipitations[1] >= 0
-                                    ? "\n" + getString(R.string.precipitation) + " : " + weather.dailyList.get(position).precipitations[1] + "%"
-                                    : ""
-                    );
-            weatherTexts[1].setText(nighttimeTxt);
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(getActivity());
+        TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
+        SpeedUnit speedUnit = settings.getSpeedUnit();
+
+        if (daily) {
+            StringBuilder builder = new StringBuilder(
+                    weather.getDailyForecast().get(position).day().getWeatherText()
+                            + "  "
+                            + weather.getDailyForecast().get(position).day().getTemperature().getTemperature(temperatureUnit)
+                            + "\n"
+                            + getString(R.string.wind)
+                            + " : "
+                            + weather.getDailyForecast().get(position).day().getWind().getWindDescription(speedUnit)
+            );
+            if (weather.getDailyForecast().get(position).day().getPrecipitationProbability().getTotal() != null) {
+                Float p = weather.getDailyForecast().get(position).day().getPrecipitationProbability().getTotal();
+                builder.append("\n")
+                        .append(getString(R.string.precipitation))
+                        .append(" : ")
+                        .append(ProbabilityUnit.PERCENT.getProbabilityText(p == null ? 0 : p));
+            }
+            weatherTexts[0].setText(builder.toString());
+
+            builder = new StringBuilder(
+                    weather.getDailyForecast().get(position).night().getWeatherText()
+                            + "  "
+                            + weather.getDailyForecast().get(position).night().getTemperature().getTemperature(temperatureUnit)
+                            + "\n"
+                            + getString(R.string.wind)
+                            + " : "
+                            + weather.getDailyForecast().get(position).night().getWind().getWindDescription(speedUnit)
+            );
+            if (weather.getDailyForecast().get(position).night().getPrecipitationProbability().getTotal() != null) {
+                Float p = weather.getDailyForecast().get(position).night().getPrecipitationProbability().getTotal();
+                builder.append("\n")
+                        .append(getString(R.string.precipitation))
+                        .append(" : ")
+                        .append(ProbabilityUnit.PERCENT.getProbabilityText(p == null ? 0 : p));
+            }
+            weatherTexts[1].setText(builder.toString());
         } else {
-            String text = weather.hourlyList.get(position).weather + "  "
-                    + ValueUtils.buildCurrentTemp(
-                            weather.hourlyList.get(position).temp,
-                            false,
-                            SettingsOptionManager.getInstance(getActivity()).isFahrenheit()
-                    ) + (
-                            weather.hourlyList.get(position).precipitation >= 0
-                                    ? "\n" + getString(R.string.precipitation) + " : " + weather.hourlyList.get(position).precipitation + "%"
-                                    : ""
-                    );
-            weatherTexts[0].setText(text);
+            StringBuilder builder = new StringBuilder(
+                    weather.getHourlyForecast().get(position).getWeatherText()
+                            + "  "
+                            + weather.getHourlyForecast().get(position).getTemperature().getTemperature(temperatureUnit)
+            );
+            if (weather.getHourlyForecast().get(position).getPrecipitationProbability().getTotal() != null) {
+                Float p = weather.getHourlyForecast().get(position).getPrecipitationProbability().getTotal();
+                builder.append("\n")
+                        .append(getString(R.string.precipitation))
+                        .append(" : ")
+                        .append(ProbabilityUnit.PERCENT.getProbabilityText(p == null ? 0 : p));
+            }
+            weatherTexts[0].setText(builder.toString());
         }
 
         ((AppCompatImageView) view.findViewById(R.id.dialog_weather_sun_icon)).setSupportImageTintList(
@@ -219,16 +226,24 @@ public class WeatherDialog extends GeoDialogFragment
         sunMoonText[0].setTextColor(colorPicker.getTextSubtitleColor(getActivity()));
         sunMoonText[1].setTextColor(colorPicker.getTextSubtitleColor(getActivity()));
         if (daily) {
-            sunMoonText[0].setText(
-                    weather.dailyList.get(position).astros[0] + "↑"
-                            + " / "
-                            + weather.dailyList.get(position).astros[1] + "↓"
-            );
-            if (!TextUtils.isEmpty(weather.dailyList.get(position).astros[2])) {
-                sunMoonText[1].setText(
-                        weather.dailyList.get(position).astros[2] + "↑"
+            if (weather.getDailyForecast().get(position).sun().isValid()) {
+                sunMoonText[0].setText(
+                        weather.getDailyForecast().get(position).sun().getRiseTime(getActivity())
+                                + "↑"
                                 + " / "
-                                + weather.dailyList.get(position).astros[3] + "↓"
+                                + weather.getDailyForecast().get(position).sun().getSetTime(getActivity())
+                                + "↓"
+                );
+            } else {
+                view.findViewById(R.id.dialog_weather_sunContainer).setVisibility(View.GONE);
+            }
+            if (weather.getDailyForecast().get(position).moon().isValid()) {
+                sunMoonText[1].setText(
+                        weather.getDailyForecast().get(position).moon().getRiseTime(getActivity())
+                                + "↑"
+                                + " / "
+                                + weather.getDailyForecast().get(position).moon().getSetTime(getActivity())
+                                + "↓"
                 );
             } else {
                 view.findViewById(R.id.dialog_weather_moonContainer).setVisibility(View.GONE);

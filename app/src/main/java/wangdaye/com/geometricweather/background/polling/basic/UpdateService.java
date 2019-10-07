@@ -5,12 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -57,8 +58,7 @@ public abstract class UpdateService extends Service
 
     // control.
 
-    public abstract void updateView(Context context, Location location,
-                                    @Nullable Weather weather, @Nullable History history);
+    public abstract void updateView(Context context, Location location);
 
     public abstract void handlePollingResult(boolean failed);
 
@@ -69,20 +69,16 @@ public abstract class UpdateService extends Service
     // on polling update listener.
 
     @Override
-    public void onUpdateCompleted(Location location, Weather weather, Weather old,
+    public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                   boolean succeed, int index, int total) {
         for (int i = 0; i < locationList.size(); i ++) {
             if (locationList.get(i).equals(location)) {
-                location.weather = weather;
-                location.history = DatabaseHelper.getInstance(this).readHistory(weather);
                 locationList.set(i, location);
                 if (i == 0) {
-                    updateView(this, location, location.weather, location.history);
+                    updateView(this, location);
                     if (succeed) {
-                        NotificationUtils.checkAndSendAlert(
-                                this, location, weather, old);
-                        NotificationUtils.checkAndSendPrecipitationForecast(
-                                this, location, weather, old);
+                        NotificationUtils.checkAndSendAlert(this, location, old);
+                        NotificationUtils.checkAndSendPrecipitationForecast(this, location, old);
                     } else {
                         failed = true;
                     }

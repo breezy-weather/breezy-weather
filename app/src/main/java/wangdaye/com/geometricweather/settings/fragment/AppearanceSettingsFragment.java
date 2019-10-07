@@ -9,6 +9,7 @@ import java.util.HashSet;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.OptionMapper;
 import wangdaye.com.geometricweather.ui.dialog.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.ValueUtils;
@@ -26,22 +27,10 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
 
         // ui style.
         Preference uiStyle = findPreference(getString(R.string.key_ui_style));
-        uiStyle.setSummary(
-                getNameByValue(
-                        getSettingsOptionManager().getUiStyle(),
-                        R.array.ui_styles,
-                        R.array.ui_style_values
-                )
-        );
+        uiStyle.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(getActivity()));
         uiStyle.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setUiStyle((String) newValue);
-            preference.setSummary(
-                    getNameByValue(
-                            (String) newValue,
-                            R.array.ui_styles,
-                            R.array.ui_style_values
-                    )
-            );
+            getSettingsOptionManager().setUiStyle(OptionMapper.getUIStyle((String) newValue));
+            preference.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(getActivity()));
             SnackbarUtils.showSnackbar(
                     (GeoActivity) requireActivity(), getString(R.string.feedback_restart));
             return true;
@@ -71,22 +60,10 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
 
         // card order.
         Preference cardOrder = findPreference(getString(R.string.key_card_order));
-        cardOrder.setSummary(
-                getNameByValue(
-                        getSettingsOptionManager().getCardOrder(),
-                        R.array.card_orders,
-                        R.array.card_order_values
-                )
-        );
+        cardOrder.setSummary(getSettingsOptionManager().getCardOrder().getCardOrderName(getActivity()));
         cardOrder.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setCardOrder((String) newValue);
-            preference.setSummary(
-                    getNameByValue(
-                            (String) newValue,
-                            R.array.card_orders,
-                            R.array.card_order_values
-                    )
-            );
+            getSettingsOptionManager().setCardOrder(OptionMapper.getCardOrder((String) newValue));
+            preference.setSummary(getSettingsOptionManager().getCardOrder().getCardOrderName(getActivity()));
             return true;
         });
 
@@ -98,22 +75,10 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
 
         // language.
         Preference language = findPreference(getString(R.string.key_language));
-        language.setSummary(
-                getNameByValue(
-                        getSettingsOptionManager().getLanguage(),
-                        R.array.languages,
-                        R.array.language_values
-                )
-        );
+        language.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(getActivity()));
         language.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setLanguage((String) newValue);
-            preference.setSummary(
-                    getNameByValue(
-                            (String) newValue,
-                            R.array.languages,
-                            R.array.language_values
-                    )
-            );
+            getSettingsOptionManager().setLanguage(OptionMapper.getLanguage((String) newValue));
+            preference.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(getActivity()));
             SnackbarUtils.showSnackbar(
                     (GeoActivity) requireActivity(), getString(R.string.feedback_restart));
             return true;

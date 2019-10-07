@@ -3,12 +3,12 @@
     tools:ignore="MissingTranslation">
 
     <!-- Chinese source. -->
-    <string-array name="chinese_sources">
-        <item>weather.com.cn</item>
-        <item>caiyun.com</item>
+    <string-array name="weather_sources">
+        <item>weather.com.cn (Only For China)</item>
+        <item>caiyun.com (Only For China)</item>
         <item>accuweather.com</item>
     </string-array>
-    <string-array name="chinese_source_values">
+    <string-array name="weather_source_values">
         <item>cn</item>
         <item>caiyun</item>
         <item>accu</item>
@@ -294,6 +294,78 @@
         <item>auto</item>
         <item>day</item>
         <item>night</item>
+    </string-array>
+
+    <!-- speed unit. -->
+    <string-array name="speed_units">
+        <item>km/h</item>
+        <item>m/s</item>
+        <item>kn</item>
+        <item>mi/h</item>
+        <item>ft/s</item>
+    </string-array>
+    <string-array name="speed_unit_values">
+        <item>kph</item>
+        <item>mps</item>
+        <item>kn</item>
+        <item>mph</item>
+        <item>ftps</item>
+    </string-array>
+
+    <!-- precipitation unit. -->
+    <string-array name="precipitation_units">
+        <item>mm</item>
+        <item>L/m²</item>
+    </string-array>
+    <string-array name="precipitation_unit_values">
+        <item>mm</item>
+        <item>lpsqm</item>
+    </string-array>
+
+    <!-- temperature unit. -->
+    <string-array name="temperature_units">
+        <item>℃</item>
+        <item>℉</item>
+    </string-array>
+    <string-array name="temperature_unit_values">
+        <item>c</item>
+        <item>f</item>
+    </string-array>
+
+    <!-- distance unit. -->
+    <string-array name="distance_units">
+        <item>km</item>
+        <item>m</item>
+        <item>mi</item>
+        <item>nmi</item>
+        <item>ft</item>
+    </string-array>
+    <string-array name="distance_unit_values">
+        <item>km</item>
+        <item>m</item>
+        <item>mi</item>
+        <item>nmi</item>
+        <item>ft</item>
+    </string-array>
+
+    <!-- pressure unit. -->
+    <string-array name="pressure_units">
+        <item>mb</item>
+        <item>kPa</item>
+        <item>hPa</item>
+        <item>atm</item>
+        <item>mmHg</item>
+        <item>inHg</item>
+        <item>kgf/cm²</item>
+    </string-array>
+    <string-array name="pressure_unit_values">
+        <item>mb</item>
+        <item>kpa</item>
+        <item>hpa</item>
+        <item>atm</item>
+        <item>mmhg</item>
+        <item>inhg</item>
+        <item>kgfpsqcm</item>
     </string-array>
 
 </resources>

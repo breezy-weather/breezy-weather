@@ -18,16 +18,17 @@ import java.util.List;
 import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
- * Shortcuts utils.
+ * Shortcuts manager.
  * */
 
 @RequiresApi(api = Build.VERSION_CODES.N_MR1)
@@ -80,21 +81,25 @@ public class ShortcutsManager {
                 if (weather != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         icon = getAdaptiveIcon(
-                                provider, weather.realTime.weatherKind, TimeManager.isDaylight(weather)
+                                provider,
+                                weather.getCurrent().getWeatherCode(),
+                                TimeManager.isDaylight(list.get(i))
                         );
                     } else {
                         icon = getIcon(
-                                provider, weather.realTime.weatherKind, TimeManager.isDaylight(weather)
+                                provider,
+                                weather.getCurrent().getWeatherCode(),
+                                TimeManager.isDaylight(list.get(i))
                         );
                     }
                 } else {
-                    icon = getIcon(provider, Weather.KIND_CLEAR, true);
+                    icon = getIcon(provider, WeatherCode.CLEAR, true);
                 }
 
                 title = list.get(i).isCurrentPosition() ? c.getString(R.string.current_location) : list.get(i).getCityName(c);
 
                 shortcutList.add(
-                        new ShortcutInfo.Builder(c, list.get(i).cityId)
+                        new ShortcutInfo.Builder(c, list.get(i).getCityId())
                                 .setIcon(icon)
                                 .setShortLabel(title)
                                 .setLongLabel(title)
@@ -128,19 +133,19 @@ public class ShortcutsManager {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @NonNull
-    private static Icon getAdaptiveIcon(ResourceProvider provider, String weatherKind, boolean daytime) {
+    private static Icon getAdaptiveIcon(ResourceProvider provider, WeatherCode code, boolean daytime) {
         return Icon.createWithAdaptiveBitmap(
                 drawableToBitmap(
-                        WeatherHelper.getShortcutsForegroundIcon(provider, weatherKind, daytime)
+                        ResourceHelper.getShortcutsForegroundIcon(provider, code, daytime)
                 )
         );
     }
 
     @NonNull
-    private static Icon getIcon(ResourceProvider provider, String weatherKind, boolean daytime) {
+    private static Icon getIcon(ResourceProvider provider, WeatherCode code, boolean daytime) {
         return Icon.createWithBitmap(
                 drawableToBitmap(
-                        WeatherHelper.getShortcutsIcon(provider, weatherKind, daytime)
+                        ResourceHelper.getShortcutsIcon(provider, code, daytime)
                 )
         );
     }

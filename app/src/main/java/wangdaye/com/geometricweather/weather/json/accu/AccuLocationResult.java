@@ -1,10 +1,6 @@
 package wangdaye.com.geometricweather.weather.json.accu;
 
-import android.text.TextUtils;
-
 import java.util.List;
-
-import wangdaye.com.geometricweather.basic.model.Location;
 
 /**
  * Accu location result.
@@ -150,26 +146,5 @@ public class AccuLocationResult {
                 public int UnitType;
             }
         }
-    }
-
-    public Location toLocation() {
-        return new Location(
-                Key,
-                "",
-                LocalizedName,
-                AdministrativeArea == null ? "" : AdministrativeArea.LocalizedName,
-                Country.LocalizedName,
-                String.valueOf(GeoPosition.Latitude), String.valueOf(GeoPosition.Longitude),
-                Location.WEATHER_SOURCE_ACCU,
-                null, null,
-                false,
-                !TextUtils.isEmpty(Country.ID)
-                        && (Country.ID.equals("CN")
-                        || Country.ID.equals("cn")
-                        || Country.ID.equals("HK")
-                        || Country.ID.equals("hk")
-                        || Country.ID.equals("TW")
-                        || Country.ID.equals("tw"))
-        );
     }
 }

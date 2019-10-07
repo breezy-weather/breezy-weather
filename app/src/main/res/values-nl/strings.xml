@@ -147,13 +147,10 @@
     <!-- settings -->
     <string name="settings_category_basic">Standaard</string>
     <string name="settings_title_background_free">Achtergrondvrij</string>
-    <string name="settings_title_chinese_source">Chinese weeerbron</string>
     <string name="settings_title_ui_style">UI stijl.</string>
     <string name="settings_title_card_order">Kaartvolgorde.</string>
     <string name="settings_title_gravity_sensor_switch">Gebruik sensoren.</string>
     <string name="settings_language">Taal.</string>
-    <string name="settings_title_fahrenheit">Fahrenheit.</string>
-    <string name="settings_title_imperial">Imperial units.</string>
     <string name="settings_title_refresh_rate">Vernieuwfrequentie.</string>
     <string name="settings_title_alert_notification_switch">Stuur alarmnotificaties.</string>
     <string name="settings_title_permanent_service">Permanente service.</string>

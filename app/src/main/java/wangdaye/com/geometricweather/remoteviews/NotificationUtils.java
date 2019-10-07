@@ -16,12 +16,13 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -46,9 +47,9 @@ public class NotificationUtils {
 */
     // notification.
 
-    public static void updateNotificationIfNecessary(Context context, @Nullable Weather weather) {
+    public static void updateNotificationIfNecessary(Context context, Location location) {
         if (NormalNotificationIMP.isEnable(context)) {
-            NormalNotificationIMP.buildNotificationAndSendIt(context, weather);
+            NormalNotificationIMP.buildNotificationAndSendIt(context, location);
         }
     }
 
@@ -100,28 +101,31 @@ public class NotificationUtils {
 
     // alert.
 
-    public static void checkAndSendAlert(Context context, Location location,
-                                         Weather weather, @Nullable Weather oldResult) {
-        if (!SettingsOptionManager.getInstance(context).isAlertPushEnabled()) {
+    public static void checkAndSendAlert(Context context,
+                                         Location location, @Nullable Weather oldResult) {
+        Weather weather = location.getWeather();
+        if (weather == null
+                || !SettingsOptionManager.getInstance(context).isAlertPushEnabled()) {
             return;
         }
 
         List<Alert> alertList = new ArrayList<>();
         if (oldResult != null) {
-            for (int i = 0; i < weather.alertList.size(); i ++) {
+            for (int i = 0; i < weather.getAlertList().size(); i ++) {
                 boolean newAlert = true;
-                for (int j = 0; j < oldResult.alertList.size(); j ++) {
-                    if (weather.alertList.get(i).id == oldResult.alertList.get(j).id) {
+                for (int j = 0; j < oldResult.getAlertList().size(); j ++) {
+                    if (weather.getAlertList().get(i).getAlertId()
+                            == oldResult.getAlertList().get(j).getAlertId()) {
                         newAlert = false;
                         break;
                     }
                 }
                 if (newAlert) {
-                    alertList.add(weather.alertList.get(i));
+                    alertList.add(weather.getAlertList().get(i));
                 }
             }
         } else {
-            alertList.addAll(weather.alertList);
+            alertList.addAll(weather.getAlertList());
         }
 
         for (int i = 0; i < alertList.size(); i ++) {
@@ -153,7 +157,12 @@ public class NotificationUtils {
     private static Notification buildSingleAlertNotification(Context context, Location location,
                                                              Alert alert, boolean inGroup) {
         NotificationCompat.Builder builder = getAlertNotificationBuilder(
-                context, R.drawable.ic_alert, alert.publishTime, alert.description, location);
+                context,
+                R.drawable.ic_alert,
+                DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT).format(alert.getDate()),
+                alert.getContent(),
+                location
+        );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             builder.setGroup(NOTIFICATION_GROUP_KEY);
         }
@@ -164,7 +173,7 @@ public class NotificationUtils {
                                                                    Location location, Alert alert) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
-                .setContentTitle(alert.description)
+                .setContentTitle(alert.getContent())
                 .setGroup(NOTIFICATION_GROUP_KEY)
                 .setColor(
                         ContextCompat.getColor(
@@ -198,8 +207,8 @@ public class NotificationUtils {
 
     // precipitation.
 
-    public static void checkAndSendPrecipitationForecast(Context context, Location location,
-                                                         Weather weather, @Nullable Weather oldResult) {
+    public static void checkAndSendPrecipitationForecast(Context context,
+                                                         Location location, @Nullable Weather oldResult) {
         // TODO: 2019/8/26 finish this !!!!
         /*
         if (!SettingsOptionManager.getInstance(context).isPrecipitationPushEnabled()) {

@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import androidx.annotation.AnyRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class ResourceUtils {
 
@@ -29,5 +30,33 @@ public class ResourceUtils {
                 .appendPath(resType)
                 .appendPath(resName)
                 .build();
+    }
+
+    public static <T> T nonNull(@Nullable T obj) throws NullException {
+        if (obj == null) {
+            throw new NullException();
+        }
+        return obj;
+    }
+
+    public static int nonNull(int resId) throws NullResourceIdException {
+        if (resId == 0) {
+            throw new NullResourceIdException();
+        }
+        return resId;
+    }
+
+    public static class NullException extends Exception {
+
+        public NullException() {
+            super("Null Object.");
+        }
+    }
+
+    public static class NullResourceIdException extends Exception {
+
+        public NullResourceIdException() {
+            super("Null Resource.");
+        }
     }
 }

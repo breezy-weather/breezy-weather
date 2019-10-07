@@ -4,15 +4,12 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.basic.model.History;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 
 /**
  * Weather service.
@@ -31,8 +28,6 @@ public abstract class WeatherService {
                                          @NonNull RequestLocationCallback callback);
 
     public abstract void cancel();
-
-    public abstract boolean needGeocodeInformation();
 
     protected static String formatLocationString(String str) {
         if (TextUtils.isEmpty(str)) {
@@ -141,8 +136,7 @@ public abstract class WeatherService {
     }
 
     public interface RequestWeatherCallback {
-        void requestWeatherSuccess(@Nullable Weather weather, @Nullable History history,
-                                   @NonNull Location requestLocation);
+        void requestWeatherSuccess(@NonNull Location requestLocation);
         void requestWeatherFailed(@NonNull Location requestLocation);
     }
 

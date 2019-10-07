@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
 
 public abstract class ResourceProvider {
@@ -41,53 +42,53 @@ public abstract class ResourceProvider {
     // weather icon.
 
     @NonNull
-    public abstract Drawable getWeatherIcon(String weatherKind, boolean dayTime);
+    public abstract Drawable getWeatherIcon(WeatherCode code, boolean dayTime);
 
     @NonNull
-    public abstract Uri getWeatherIconUri(String weatherKind, boolean dayTime);
+    public abstract Uri getWeatherIconUri(WeatherCode code, boolean dayTime);
 
     @Size(3)
-    public abstract Drawable[] getWeatherIcons(String weatherKind, boolean dayTime);
+    public abstract Drawable[] getWeatherIcons(WeatherCode code, boolean dayTime);
 
     // animator.
 
     @Size(3)
-    public abstract Animator[] getWeatherAnimators(String weatherKind, boolean dayTime);
+    public abstract Animator[] getWeatherAnimators(WeatherCode code, boolean dayTime);
 
     // minimal icon.
 
     @NonNull
-    public abstract Drawable getMinimalLightIcon(String weatherKind, boolean dayTime);
+    public abstract Drawable getMinimalLightIcon(WeatherCode code, boolean dayTime);
 
     @NonNull
-    public abstract Uri getMinimalLightIconUri(String weatherKind, boolean dayTime);
+    public abstract Uri getMinimalLightIconUri(WeatherCode code, boolean dayTime);
 
     @NonNull
-    public abstract Drawable getMinimalGreyIcon(String weatherKind, boolean dayTime);
+    public abstract Drawable getMinimalGreyIcon(WeatherCode code, boolean dayTime);
 
     @NonNull
-    public abstract Uri getMinimalGreyIconUri(String weatherKind, boolean dayTime);
+    public abstract Uri getMinimalGreyIconUri(WeatherCode code, boolean dayTime);
 
     @NonNull
-    public abstract Drawable getMinimalDarkIcon(String weatherKind, boolean dayTime);
+    public abstract Drawable getMinimalDarkIcon(WeatherCode code, boolean dayTime);
 
     @NonNull
-    public abstract Uri getMinimalDarkIconUri(String weatherKind, boolean dayTime);
+    public abstract Uri getMinimalDarkIconUri(WeatherCode code, boolean dayTime);
 
     @NonNull
-    public abstract Drawable getMinimalXmlIcon(String weatherKind, boolean dayTime);
+    public abstract Drawable getMinimalXmlIcon(WeatherCode code, boolean dayTime);
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @NonNull
-    public abstract Icon getMinimalIcon(String weatherKind, boolean dayTime);
+    public abstract Icon getMinimalIcon(WeatherCode code, boolean dayTime);
 
     // shortcut.
 
     @NonNull
-    public abstract Drawable getShortcutsIcon(String weatherKind, boolean dayTime);
+    public abstract Drawable getShortcutsIcon(WeatherCode code, boolean dayTime);
 
     @NonNull
-    public abstract Drawable getShortcutsForegroundIcon(String weatherKind, boolean dayTime);
+    public abstract Drawable getShortcutsForegroundIcon(WeatherCode code, boolean dayTime);
 
     // sun and moon.
 

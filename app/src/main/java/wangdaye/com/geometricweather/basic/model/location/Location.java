@@ -1,0 +1,257 @@
+package wangdaye.com.geometricweather.basic.model.location;
+
+import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.text.TextUtils;
+
+import androidx.annotation.Nullable;
+
+import java.util.TimeZone;
+
+import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.utils.LanguageUtils;
+
+/**
+ * Location.
+ * */
+
+public class Location
+        implements Parcelable {
+
+    private String cityId;
+
+    private float latitude;
+    private float longitude;
+    private int GMTOffset;
+
+    private String country;
+    private String province;
+    private String city;
+    private String district;
+
+    @Nullable private Weather weather;
+    private WeatherSource weatherSource;
+
+    private boolean currentPosition;
+    private boolean china;
+
+    private static final String NULL_ID = "NULL_ID";
+    public static final String CURRENT_POSITION_ID = "CURRENT_POSITION";
+
+    public Location(String cityId,
+                    float latitude, float longitude, int GMTOffset,
+                    String country, String province, String city, String district,
+                    @Nullable Weather weather, WeatherSource weatherSource,
+                    boolean currentPosition, boolean china) {
+        this.cityId = cityId;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.GMTOffset = GMTOffset;
+        this.country = country;
+        this.province = province;
+        this.city = city;
+        this.district = district;
+        this.weather = weather;
+        this.weatherSource = weatherSource;
+        this.currentPosition = currentPosition;
+        this.china = china;
+    }
+
+    public static Location buildLocal() {
+        return new Location(
+                NULL_ID,
+                0, 0, 0,
+                "", "", "", "",
+                null, WeatherSource.ACCU,
+                true, false
+        );
+    }
+
+    public static Location buildDefaultLocation() {
+        return new Location(
+                "101924",
+                39.904000f, 116.391000f, 8,
+                "中国", "直辖市", "北京", "",
+                null, WeatherSource.ACCU,
+                true, true
+        );
+    }
+
+    public void updateLocationResult(float latitude, float longitude, int GMTOffset,
+                                     String country, String province, String city, String district,
+                                     boolean china) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.GMTOffset = GMTOffset;
+        this.country = country;
+        this.province = province;
+        this.city = city;
+        this.district = district;
+        this.currentPosition = true;
+        this.china = china;
+    }
+
+    public boolean equals(Location location) {
+        if (location.isCurrentPosition()) {
+            return isCurrentPosition();
+        } else {
+            return cityId.equals(location.cityId)
+                    && weatherSource == location.weatherSource;
+        }
+    }
+
+    public String getFormattedId() {
+        return isCurrentPosition() ? CURRENT_POSITION_ID : cityId;
+    }
+
+    public static boolean isLocal(String formattedId) {
+        return CURRENT_POSITION_ID.equals(formattedId);
+    }
+
+    public Location setCurrentPosition() {
+        currentPosition = true;
+        return this;
+    }
+
+    public boolean isCurrentPosition() {
+        return currentPosition;
+    }
+
+    public boolean isUsable() {
+        return !cityId.equals(NULL_ID);
+    }
+
+    public boolean canUseChineseSource() {
+        return LanguageUtils.isChinese(city) && china;
+    }
+
+    public String getCityId() {
+        return cityId;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public int getGMTOffset() {
+        return GMTOffset;
+    }
+
+    public TimeZone getTimeZone() {
+        return TimeZone.getTimeZone(
+                TimeZone.getAvailableIDs(GMTOffset * 60 * 60 * 1000)[0]
+        );
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getCityName(Context context) {
+        if (!TextUtils.isEmpty(district) && !district.equals("市辖区") && !district.equals("无")) {
+            return district;
+        } else if (!TextUtils.isEmpty(city) && !city.equals("市辖区")) {
+            return city;
+        } else if (!TextUtils.isEmpty(province)) {
+            return province;
+        } else if (currentPosition) {
+            return context.getString(R.string.current_location);
+        } else {
+            return "";
+        }
+    }
+
+    public boolean hasGeocodeInformation() {
+        return !TextUtils.isEmpty(country)
+                || !TextUtils.isEmpty(province)
+                || !TextUtils.isEmpty(city)
+                || !TextUtils.isEmpty(district);
+    }
+
+    @Nullable
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public void setWeather(@Nullable Weather weather) {
+        this.weather = weather;
+    }
+
+    public void setWeatherSource(WeatherSource source) {
+        this.weatherSource = source;
+    }
+
+    public WeatherSource getWeatherSource() {
+        return weatherSource;
+    }
+
+    public boolean isChina() {
+        return china;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.cityId);
+        dest.writeFloat(this.latitude);
+        dest.writeFloat(this.longitude);
+        dest.writeInt(this.GMTOffset);
+        dest.writeString(this.country);
+        dest.writeString(this.province);
+        dest.writeString(this.city);
+        dest.writeString(this.district);
+        dest.writeInt(this.weatherSource == null ? -1 : this.weatherSource.ordinal());
+        dest.writeByte(this.currentPosition ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.china ? (byte) 1 : (byte) 0);
+    }
+
+    protected Location(Parcel in) {
+        this.cityId = in.readString();
+        this.latitude = in.readFloat();
+        this.longitude = in.readFloat();
+        this.GMTOffset = in.readInt();
+        this.country = in.readString();
+        this.province = in.readString();
+        this.city = in.readString();
+        this.district = in.readString();
+        int tmpWeatherSource = in.readInt();
+        this.weatherSource = tmpWeatherSource == -1 ? null : WeatherSource.values()[tmpWeatherSource];
+        this.currentPosition = in.readByte() != 0;
+        this.china = in.readByte() != 0;
+    }
+
+    public static final Creator<Location> CREATOR = new Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel source) {
+            return new Location(source);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
+}

@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.weather.json.accu;
 
+import java.util.Date;
+
 /**
  * Accu aqi result.
  * */
@@ -18,19 +20,19 @@ public class AccuAqiResult {
      * NitrogenDioxide : 40.0
      * SulfurDioxide : 23.0
      * Lead : null
-     * Source : Breezometer
+     * SettingsWeatherSource : Breezometer
      */
 
-    public String Date;
-    public int EpochDate;
+    public Date Date;
+    public long EpochDate;
     public int Index;
-    public double ParticulateMatter2_5;
-    public double ParticulateMatter10;
-    public double Ozone;
-    public double CarbonMonoxide;
-    public double NitrogenMonoxide;
-    public double NitrogenDioxide;
-    public double SulfurDioxide;
-    public double Lead;
+    public float ParticulateMatter2_5;
+    public float ParticulateMatter10;
+    public float Ozone;
+    public float CarbonMonoxide;
+    public float NitrogenMonoxide;
+    public float NitrogenDioxide;
+    public float SulfurDioxide;
+    public float Lead;
     public String Source;
 }

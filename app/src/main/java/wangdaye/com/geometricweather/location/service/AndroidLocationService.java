@@ -59,17 +59,11 @@ public class AndroidLocationService extends LocationService {
 
     private class LocationListener implements android.location.LocationListener {
 
-        private boolean geocode;
-
-        LocationListener(boolean geocode) {
-            this.geocode = geocode;
-        }
-
         @Override
         public void onLocationChanged(Location location) {
             if (location != null) {
                 stopLocationUpdates();
-                handleLocation(location, geocode);
+                handleLocation(location);
             }
         }
 
@@ -91,16 +85,10 @@ public class AndroidLocationService extends LocationService {
 
     private class GMSLocationListener extends com.google.android.gms.location.LocationCallback {
 
-        private boolean geocode;
-
-        GMSLocationListener(boolean geocode) {
-            this.geocode = geocode;
-        }
-
         public void onLocationResult(LocationResult locationResult) {
             if (locationResult != null && locationResult.getLocations().size() > 0) {
                 stopLocationUpdates();
-                handleLocation(locationResult.getLocations().get(0), geocode);
+                handleLocation(locationResult.getLocations().get(0));
             }
         }
     }
@@ -118,7 +106,7 @@ public class AndroidLocationService extends LocationService {
     }
 
     @Override
-    public void requestLocation(Context context, boolean geocode, @NonNull LocationCallback callback){
+    public void requestLocation(Context context, @NonNull LocationCallback callback){
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         gmsLocationClient = gmsEnabled(context)
                 ? LocationServices.getFusedLocationProviderClient(context)
@@ -131,9 +119,9 @@ public class AndroidLocationService extends LocationService {
             return;
         }
 
-        networkListener = new LocationListener(geocode);
-        gpsListener = new LocationListener(geocode);
-        gmsListener = new GMSLocationListener(geocode);
+        networkListener = new LocationListener();
+        gpsListener = new LocationListener();
+        gmsListener = new GMSLocationListener();
 
         locationCallback = callback;
         lastKnownLocation = getLastKnownLocation();
@@ -162,7 +150,7 @@ public class AndroidLocationService extends LocationService {
 
         timer.postDelayed(() -> {
             stopLocationUpdates();
-            handleLocation(lastKnownLocation, geocode);
+            handleLocation(lastKnownLocation);
         }, TIMEOUT_MILLIS);
     }
 
@@ -180,12 +168,7 @@ public class AndroidLocationService extends LocationService {
         if (location != null) {
             return location;
         }
-        location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-        if (location != null) {
-            return location;
-        }
-
-        return null;
+        return locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
     }
 
     @Override
@@ -220,14 +203,14 @@ public class AndroidLocationService extends LocationService {
         };
     }
 
-    private void handleLocation(@Nullable Location location, boolean geocode) {
+    private void handleLocation(@Nullable Location location) {
         if (location == null) {
             handleResultIfNecessary(null);
             return;
         }
 
         Observable.create((ObservableOnSubscribe<Result>) emitter ->
-                emitter.onNext(buildResult(location, geocode))
+                emitter.onNext(buildResult(location))
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(this::handleResultIfNecessary)
@@ -243,18 +226,15 @@ public class AndroidLocationService extends LocationService {
 
     @WorkerThread
     @Nullable
-    private Result buildResult(@NonNull Location location, boolean geocode) {
+    private Result buildResult(@NonNull Location location) {
         if (!location.hasAccuracy()) {
             return null;
         }
 
-        Result result = new Result(
-                String.valueOf(location.getLatitude()),
-                String.valueOf(location.getLongitude())
-        );
+        Result result = new Result((float) location.getLatitude(), (float) location.getLongitude());
         result.hasGeocodeInformation = false;
 
-        if (!geocoderEnabled() || !geocode) {
+        if (!Geocoder.isPresent()) {
             return result;
         }
 
@@ -302,12 +282,11 @@ public class AndroidLocationService extends LocationService {
                     || countryCode.equals("TW")
                     || countryCode.equals("tw");
         }
+        if (result.inChina) {
+            result.GMTOffset = 8;
+        }
 
         return result;
-    }
-
-    public static boolean geocoderEnabled() {
-        return Geocoder.isPresent();
     }
 
     private static boolean gmsEnabled(Context context) {

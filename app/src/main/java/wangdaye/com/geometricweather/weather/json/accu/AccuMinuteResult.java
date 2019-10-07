@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.weather.json.accu;
 
+import java.util.Date;
 import java.util.List;
 
 public class AccuMinuteResult {
@@ -12,51 +13,11 @@ public class AccuMinuteResult {
      * Link : http://www.accuweather.com/zh/cn/licang-district/2333323/minute-weather-forecast/2333323?lang=zh-cn?lat=36.14&lon=120.42
      */
 
-    private SummaryBean Summary;
-    private String MobileLink;
-    private String Link;
-    private List<SummariesBean> Summaries;
-    private List<IntervalsBean> Intervals;
-
-    public SummaryBean getSummary() {
-        return Summary;
-    }
-
-    public void setSummary(SummaryBean Summary) {
-        this.Summary = Summary;
-    }
-
-    public String getMobileLink() {
-        return MobileLink;
-    }
-
-    public void setMobileLink(String MobileLink) {
-        this.MobileLink = MobileLink;
-    }
-
-    public String getLink() {
-        return Link;
-    }
-
-    public void setLink(String Link) {
-        this.Link = Link;
-    }
-
-    public List<SummariesBean> getSummaries() {
-        return Summaries;
-    }
-
-    public void setSummaries(List<SummariesBean> Summaries) {
-        this.Summaries = Summaries;
-    }
-
-    public List<IntervalsBean> getIntervals() {
-        return Intervals;
-    }
-
-    public void setIntervals(List<IntervalsBean> Intervals) {
-        this.Intervals = Intervals;
-    }
+    public SummaryBean Summary;
+    public String MobileLink;
+    public String Link;
+    public List<SummariesBean> Summaries;
+    public List<IntervalsBean> Intervals;
 
     public static class SummaryBean {
         /**
@@ -69,69 +30,13 @@ public class AccuMinuteResult {
          * IconCode : 7
          */
 
-        private String Phrase;
-        private String Phrase_60;
-        private String WidgetPhrase;
-        private String ShortPhrase;
-        private String BriefPhrase;
-        private String LongPhrase;
-        private int IconCode;
-
-        public String getPhrase() {
-            return Phrase;
-        }
-
-        public void setPhrase(String Phrase) {
-            this.Phrase = Phrase;
-        }
-
-        public String getPhrase_60() {
-            return Phrase_60;
-        }
-
-        public void setPhrase_60(String Phrase_60) {
-            this.Phrase_60 = Phrase_60;
-        }
-
-        public String getWidgetPhrase() {
-            return WidgetPhrase;
-        }
-
-        public void setWidgetPhrase(String WidgetPhrase) {
-            this.WidgetPhrase = WidgetPhrase;
-        }
-
-        public String getShortPhrase() {
-            return ShortPhrase;
-        }
-
-        public void setShortPhrase(String ShortPhrase) {
-            this.ShortPhrase = ShortPhrase;
-        }
-
-        public String getBriefPhrase() {
-            return BriefPhrase;
-        }
-
-        public void setBriefPhrase(String BriefPhrase) {
-            this.BriefPhrase = BriefPhrase;
-        }
-
-        public String getLongPhrase() {
-            return LongPhrase;
-        }
-
-        public void setLongPhrase(String LongPhrase) {
-            this.LongPhrase = LongPhrase;
-        }
-
-        public int getIconCode() {
-            return IconCode;
-        }
-
-        public void setIconCode(int IconCode) {
-            this.IconCode = IconCode;
-        }
+        public String Phrase;
+        public String Phrase_60;
+        public String WidgetPhrase;
+        public String ShortPhrase;
+        public String BriefPhrase;
+        public String LongPhrase;
+        public int IconCode;
     }
 
     public static class SummariesBean {
@@ -148,96 +53,16 @@ public class AccuMinuteResult {
          * IconCode : 7
          */
 
-        private int StartMinute;
-        private int EndMinute;
-        private int CountMinute;
-        private String MinuteText;
-        private String MinutesText;
-        private String WidgetPhrase;
-        private String ShortPhrase;
-        private String BriefPhrase;
-        private String LongPhrase;
-        private int IconCode;
-
-        public int getStartMinute() {
-            return StartMinute;
-        }
-
-        public void setStartMinute(int StartMinute) {
-            this.StartMinute = StartMinute;
-        }
-
-        public int getEndMinute() {
-            return EndMinute;
-        }
-
-        public void setEndMinute(int EndMinute) {
-            this.EndMinute = EndMinute;
-        }
-
-        public int getCountMinute() {
-            return CountMinute;
-        }
-
-        public void setCountMinute(int CountMinute) {
-            this.CountMinute = CountMinute;
-        }
-
-        public String getMinuteText() {
-            return MinuteText;
-        }
-
-        public void setMinuteText(String MinuteText) {
-            this.MinuteText = MinuteText;
-        }
-
-        public String getMinutesText() {
-            return MinutesText;
-        }
-
-        public void setMinutesText(String MinutesText) {
-            this.MinutesText = MinutesText;
-        }
-
-        public String getWidgetPhrase() {
-            return WidgetPhrase;
-        }
-
-        public void setWidgetPhrase(String WidgetPhrase) {
-            this.WidgetPhrase = WidgetPhrase;
-        }
-
-        public String getShortPhrase() {
-            return ShortPhrase;
-        }
-
-        public void setShortPhrase(String ShortPhrase) {
-            this.ShortPhrase = ShortPhrase;
-        }
-
-        public String getBriefPhrase() {
-            return BriefPhrase;
-        }
-
-        public void setBriefPhrase(String BriefPhrase) {
-            this.BriefPhrase = BriefPhrase;
-        }
-
-        public String getLongPhrase() {
-            return LongPhrase;
-        }
-
-        public void setLongPhrase(String LongPhrase) {
-            this.LongPhrase = LongPhrase;
-        }
-
-        public int getIconCode() {
-            return IconCode;
-        }
-
-        public void setIconCode(int IconCode) {
-            this.IconCode = IconCode;
-        }
+        public int StartMinute;
+        public int EndMinute;
+        public int CountMinute;
+        public String MinuteText;
+        public String MinutesText;
+        public String WidgetPhrase;
+        public String ShortPhrase;
+        public String BriefPhrase;
+        public String LongPhrase;
+        public int IconCode;
     }
 
     public static class IntervalsBean {
@@ -251,68 +76,12 @@ public class AccuMinuteResult {
          * CloudCover : 100
          */
 
-        private String StartDateTime;
-        private long StartEpochDateTime;
-        private int Minute;
-        private double Dbz;
-        private String ShortPhrase;
-        private int IconCode;
-        private int CloudCover;
-
-        public String getStartDateTime() {
-            return StartDateTime;
-        }
-
-        public void setStartDateTime(String StartDateTime) {
-            this.StartDateTime = StartDateTime;
-        }
-
-        public long getStartEpochDateTime() {
-            return StartEpochDateTime;
-        }
-
-        public void setStartEpochDateTime(long StartEpochDateTime) {
-            this.StartEpochDateTime = StartEpochDateTime;
-        }
-
-        public int getMinute() {
-            return Minute;
-        }
-
-        public void setMinute(int Minute) {
-            this.Minute = Minute;
-        }
-
-        public double getDbz() {
-            return Dbz;
-        }
-
-        public void setDbz(double Dbz) {
-            this.Dbz = Dbz;
-        }
-
-        public String getShortPhrase() {
-            return ShortPhrase;
-        }
-
-        public void setShortPhrase(String ShortPhrase) {
-            this.ShortPhrase = ShortPhrase;
-        }
-
-        public int getIconCode() {
-            return IconCode;
-        }
-
-        public void setIconCode(int IconCode) {
-            this.IconCode = IconCode;
-        }
-
-        public int getCloudCover() {
-            return CloudCover;
-        }
-
-        public void setCloudCover(int CloudCover) {
-            this.CloudCover = CloudCover;
-        }
+        public Date StartDateTime;
+        public long StartEpochDateTime;
+        public int Minute;
+        public double Dbz;
+        public String ShortPhrase;
+        public int IconCode;
+        public int CloudCover;
     }
 }

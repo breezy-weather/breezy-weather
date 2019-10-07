@@ -13,9 +13,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Trend linear layout.
@@ -30,6 +30,7 @@ public class TrendLinearLayout extends LinearLayout {
 
     private int highestTemp;
     private int lowestTemp;
+    private TemperatureUnit unit;
 
     @ColorInt private int lineColor;
     @ColorInt private int textColor;
@@ -64,6 +65,8 @@ public class TrendLinearLayout extends LinearLayout {
         paint.setAntiAlias(true);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setTextSize(TEXT_SIZE);
+
+        this.unit = TemperatureUnit.C;
 
         setColor(true);
 
@@ -103,19 +106,13 @@ public class TrendLinearLayout extends LinearLayout {
         paint.setTextAlign(Paint.Align.LEFT);
         paint.setColor(textColor);
         canvas.drawText(
-                ValueUtils.buildAbbreviatedCurrentTemp(
-                        historyTemps[0],
-                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
-                ),
+                Temperature.getShortTemperature(historyTemps[0], unit),
                 2 * MARGIN_TEXT,
                 historyTempYs[0] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint
         );
         canvas.drawText(
-                ValueUtils.buildAbbreviatedCurrentTemp(
-                        historyTemps[1],
-                        SettingsOptionManager.getInstance(getContext()).isFahrenheit()
-                ),
+                Temperature.getShortTemperature(historyTemps[1], unit),
                 2 * MARGIN_TEXT,
                 historyTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint
@@ -148,10 +145,13 @@ public class TrendLinearLayout extends LinearLayout {
         }
     }
 
-    public void setData(@Nullable int[] historyTemps, int highestTemp, int lowestTemp, boolean daily) {
+    public void setData(@Nullable int[] historyTemps,
+                        int highestTemp, int lowestTemp, TemperatureUnit unit,
+                        boolean daily) {
         this.historyTemps = historyTemps;
         this.highestTemp = highestTemp;
         this.lowestTemp = lowestTemp;
+        this.unit = unit;
         if (daily) {
             this.TREND_ITEM_HEIGHT = DisplayUtils.dpToPx(
                     getContext(), WidgetItemView.TREND_VIEW_HEIGHT_DIP_2X);

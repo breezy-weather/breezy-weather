@@ -10,7 +10,8 @@ import androidx.core.app.ActivityCompat;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.service.AMapLocationService;
 import wangdaye.com.geometricweather.location.service.AndroidLocationService;
@@ -25,7 +26,7 @@ import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
 import wangdaye.com.geometricweather.weather.service.WeatherService;
 
 /**
- * Location utils.
+ * Location helper.
  * */
 
 public class LocationHelper {
@@ -33,94 +34,33 @@ public class LocationHelper {
     private LocationService locationService;
     private WeatherService weatherService;
 
-    private class AccuLocationCallback implements WeatherService.RequestLocationCallback {
-        private Context context;
-        private Location location;
-        private OnRequestLocationListener listener;
-
-        AccuLocationCallback(Context context, Location location,
-                             @NonNull OnRequestLocationListener l) {
-            this.context = context;
-            this.location = location;
-            this.listener = l;
-        }
-
-        @Override
-        public void requestLocationSuccess(String query, List<Location> locationList) {
-            if (locationList.size() > 0) {
-                Location location = locationList.get(0).setCurrentPosition();
-                DatabaseHelper.getInstance(context).writeLocation(location);
-                listener.requestLocationSuccess(location);
-            } else {
-                requestLocationFailed(query);
-            }
-        }
-
-        @Override
-        public void requestLocationFailed(String query) {
-            listener.requestLocationFailed(location);
-        }
-    }
-
-    private class CNLocationCallback implements WeatherService.RequestLocationCallback {
-        private Context context;
-        private Location location;
-        private OnRequestLocationListener listener;
-
-        CNLocationCallback(Context context, Location location,
-                           @NonNull OnRequestLocationListener l) {
-            this.context = context;
-            this.location = location;
-            this.listener = l;
-        }
-
-        @Override
-        public void requestLocationSuccess(String query, List<Location> locationList) {
-            if (locationList.size() > 0) {
-                location.cityId = locationList.get(0).cityId;
-                location.setCurrentPosition();
-                DatabaseHelper.getInstance(context).writeLocation(location);
-                listener.requestLocationSuccess(location);
-            } else {
-                requestLocationFailed(query);
-            }
-        }
-
-        @Override
-        public void requestLocationFailed(String query) {
-            listener.requestLocationFailed(location);
-        }
-    }
-
     public LocationHelper(Context context) {
-        switch (SettingsOptionManager.getInstance(context).getLocationService()) {
-            case SettingsOptionManager.LOCATION_SERVICE_BAIDU:
+        switch (SettingsOptionManager.getInstance(context).getLocationProvider()) {
+            case BAIDU:
                 locationService = new BaiduLocationService(context);
                 break;
 
-            case SettingsOptionManager.LOCATION_SERVICE_BAIDU_IP:
+            case BAIDU_IP:
                 locationService = new BaiduIPLocationService();
                 break;
 
-            case SettingsOptionManager.LOCATION_SERVICE_AMAP:
+            case AMAP:
                 locationService = new AMapLocationService(context);
                 break;
-            default: // SettingsOptionManager.LOCATION_SERVICE_NATIVE
+            default: // NATIVE
                 locationService = new AndroidLocationService(context);
                 break;
         }
     }
 
-    public void requestLocation(Context context, Location location, boolean runInBackground,
-                                @NonNull OnRequestLocationListener l) {
+    public void requestLocation(Context context, Location location, @NonNull OnRequestLocationListener l) {
         if (!NetworkUtils.isAvailable(context)
                 || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
-                || (runInBackground
-                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-                != PackageManager.PERMISSION_GRANTED)) {
+                || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
             l.requestLocationFailed(location);
             return;
         }
@@ -128,35 +68,19 @@ public class LocationHelper {
         // 1. get location by location service.
         // 2. get available location by weather service.
 
-        String chineseSource = SettingsOptionManager.getInstance(context).getChineseSource();
-        WeatherService service;
-        if (chineseSource.equals("accu")) {
-            service = new AccuWeatherService();
-        } else if (chineseSource.equals("cn")) {
-            service = new CNWeatherService();
-        } else {
-            service = new CaiYunWeatherService();
-        }
-
         locationService.requestLocation(
                 context,
-                service.needGeocodeInformation(),
                 result -> {
                     if (result == null) {
                         l.requestLocationFailed(location);
                         return;
                     }
 
-                    location.lat = result.latitude;
-                    location.lon = result.longitude;
-
-                    location.district = result.district;
-                    location.city = result.city;
-                    location.province = result.province;
-                    location.country = result.country;
-
-                    location.currentPosition = true;
-                    location.china = result.inChina;
+                    location.updateLocationResult(
+                            result.latitude, result.longitude, result.GMTOffset,
+                            result.country, result.province, result.city, result.district,
+                            result.inChina
+                    );
 
                     requestAvailableWeatherLocation(context, location, l);
                 }
@@ -166,22 +90,22 @@ public class LocationHelper {
     private void requestAvailableWeatherLocation(Context context,
                                                  @NonNull Location location,
                                                  @NonNull OnRequestLocationListener l) {
-        String chineseSource = SettingsOptionManager.getInstance(context).getChineseSource();
-        if (!location.canUseChineseSource() || chineseSource.equals("accu")) {
+        WeatherSource source = SettingsOptionManager.getInstance(context).getWeatherSource();
+        if (!location.canUseChineseSource() || source == WeatherSource.ACCU) {
             // use accu as weather service api.
-            location.source = "accu";
+            location.setWeatherSource(WeatherSource.ACCU);
             weatherService = new AccuWeatherService();
             weatherService.requestLocation(context, location, new AccuLocationCallback(context, location, l));
-        } else if (chineseSource.equals("cn")) {
+        } else if (source == WeatherSource.CN) {
             // use cn weather net as the weather service api.
-            location.source = "cn";
+            location.setWeatherSource(WeatherSource.CN);
             weatherService = new CNWeatherService();
-            weatherService.requestLocation(context, location, new CNLocationCallback(context, location, l));
+            weatherService.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
         } else {
             // caiyun.
-            location.source = "caiyun";
+            location.setWeatherSource(WeatherSource.CAIYUN);
             weatherService = new CaiYunWeatherService();
-            weatherService.requestLocation(context, location, new CNLocationCallback(context, location, l));
+            weatherService.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
         }
     }
 
@@ -213,5 +137,65 @@ public class LocationHelper {
     public interface OnRequestLocationListener {
         void requestLocationSuccess(Location requestLocation);
         void requestLocationFailed(Location requestLocation);
+    }
+}
+
+class AccuLocationCallback implements WeatherService.RequestLocationCallback {
+
+    private Context context;
+    private Location location;
+    private LocationHelper.OnRequestLocationListener listener;
+
+    AccuLocationCallback(Context context, Location location,
+                         @NonNull LocationHelper.OnRequestLocationListener l) {
+        this.context = context;
+        this.location = location;
+        this.listener = l;
+    }
+
+    @Override
+    public void requestLocationSuccess(String query, List<Location> locationList) {
+        if (locationList.size() > 0) {
+            Location location = locationList.get(0).setCurrentPosition();
+            DatabaseHelper.getInstance(context).writeLocation(location);
+            listener.requestLocationSuccess(location);
+        } else {
+            requestLocationFailed(query);
+        }
+    }
+
+    @Override
+    public void requestLocationFailed(String query) {
+        listener.requestLocationFailed(location);
+    }
+}
+
+class ChineseCityLocationCallback implements WeatherService.RequestLocationCallback {
+
+    private Context context;
+    private Location location;
+    private LocationHelper.OnRequestLocationListener listener;
+
+    ChineseCityLocationCallback(Context context, Location location,
+                                @NonNull LocationHelper.OnRequestLocationListener l) {
+        this.context = context;
+        this.location = location;
+        this.listener = l;
+    }
+
+    @Override
+    public void requestLocationSuccess(String query, List<Location> locationList) {
+        if (locationList.size() > 0) {
+            Location location = locationList.get(0).setCurrentPosition();
+            DatabaseHelper.getInstance(context).writeLocation(location);
+            listener.requestLocationSuccess(location);
+        } else {
+            requestLocationFailed(query);
+        }
+    }
+
+    @Override
+    public void requestLocationFailed(String query) {
+        listener.requestLocationFailed(location);
     }
 }

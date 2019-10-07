@@ -198,7 +198,6 @@
     <string name="settings_summary_live_wallpaper">Nastavi materilano aniimacijo vremena kot živo ozadje</string>
     <string name="settings_title_service_provider">Ponudnik storitev</string>
     <string name="settings_summary_service_provider">Izberite ponudnika vremenskih in lokacijskih storitev</string>
-    <string name="settings_title_chinese_source">Kitajski vir vremenski podatkov</string>
     <string name="settings_title_location_service">Dejavnost lokacija</string>
     <string name="settings_title_dark_mode">Temen način</string>
     <string name="settings_title_ui_style">Stil uporabniškega vmesnika</string>
@@ -211,8 +210,6 @@
     <string name="settings_language">Jezik</string>
     <string name="settings_title_unit">Enote</string>
     <string name="settings_summary_unit">Nastavi enoto za vremenske podatke</string>
-    <string name="settings_title_fahrenheit">Farenheit</string>
-    <string name="settings_title_imperial">Imperialne enote</string>
     <string name="settings_title_refresh_rate">Samodejen čas posodabljanja</string>
     <string name="settings_title_alert_notification_switch">Pošlji opozorilno obvestilo</string>
     <string name="settings_title_permanent_service">Stalen proces</string>

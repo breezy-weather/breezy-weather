@@ -29,8 +29,9 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.basic.model.resource.Resource;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.MainControllerAdapter;
@@ -113,11 +114,11 @@ public class MainActivity extends GeoActivity
         setContentView(R.layout.activity_main);
 
         switch (SettingsOptionManager.getInstance(this).getUiStyle()) {
-            case SettingsOptionManager.UI_STYLE_MATERIAL:
+            case MATERIAL:
                 weatherView = new MaterialWeatherView(this);
                 break;
 
-            case SettingsOptionManager.UI_STYLE_CIRCULAR:
+            case CIRCULAR:
                 weatherView = new CircularSkyWeatherView(this);
                 break;
         }
@@ -162,7 +163,7 @@ public class MainActivity extends GeoActivity
                 ThreadManager.getInstance().execute(() ->
                         NotificationUtils.updateNotificationIfNecessary(
                                 MainActivity.this,
-                                viewModel.getDefaultLocation().weather
+                                viewModel.getDefaultLocation()
                         )
                 );
                 resetUIUpdateFlag();
@@ -308,8 +309,8 @@ public class MainActivity extends GeoActivity
     private void drawUI(Location location, boolean updatedInBackground) {
         if (currentLocation != null
                 && location.equals(currentLocation)
-                && location.weather != null
-                && location.weather.base.timeStamp == currentWeatherTimeStamp) {
+                && location.getWeather() != null
+                && location.getWeather().getBase().getTimeStamp() == currentWeatherTimeStamp) {
             return;
         }
 
@@ -318,18 +319,18 @@ public class MainActivity extends GeoActivity
                 || currentWeatherTimeStamp != INVALID_CURRENT_WEATHER_TIME_STAMP;
 
         currentLocation = location;
-        currentWeatherTimeStamp = location.weather != null
-                ? location.weather.base.timeStamp
+        currentWeatherTimeStamp = location.getWeather() != null
+                ? location.getWeather().getBase().getTimeStamp()
                 : INVALID_CURRENT_WEATHER_TIME_STAMP;
 
         DisplayUtils.setSystemBarStyleWithScrolling(
                 this, statusBar,
                 true, false,
-                true, location.weather != null,
+                true, location.getWeather() != null,
                 colorPicker.isLightTheme()
         );
 
-        if (location.weather == null) {
+        if (location.getWeather() == null) {
             resetUI(location);
             return;
         }
@@ -340,7 +341,7 @@ public class MainActivity extends GeoActivity
 
         boolean oldDaytime = TimeManager.getInstance(this).isDayTime();
         boolean daytime = TimeManager.getInstance(this)
-                .update(this, location.weather)
+                .update(this, location)
                 .isDayTime();
 
         setDarkMode(daytime);
@@ -348,8 +349,8 @@ public class MainActivity extends GeoActivity
             ensureColorPicker();
         }
 
-        WeatherViewController.setWeatherViewWeatherKind(
-                weatherView, location.weather, daytime, resourceProvider);
+        WeatherViewController.setWeatherCode(
+                weatherView, location.getWeather(), daytime, resourceProvider);
 
         DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
 
@@ -381,7 +382,7 @@ public class MainActivity extends GeoActivity
 
     private void resetUI(Location location) {
         if (weatherView.getWeatherKind() == WeatherView.WEATHER_KING_NULL) {
-            WeatherViewController.setWeatherViewWeatherKind(
+            WeatherViewController.setWeatherCode(
                     weatherView, null, colorPicker.isLightTheme(), resourceProvider);
             refreshLayout.setColorSchemeColors(weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
             refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
@@ -389,7 +390,7 @@ public class MainActivity extends GeoActivity
         weatherView.setGravitySensorEnabled(
                 SettingsOptionManager.getInstance(this).isGravitySensorEnabled());
 
-        setToolbarTitle(location);
+        toolbar.setTitle(location.getCityName(this));
 
         switchLayout.reset();
 
@@ -416,7 +417,7 @@ public class MainActivity extends GeoActivity
 
     private void ensureColorPicker() {
         boolean daytime = TimeManager.getInstance(this).isDayTime();
-        String darkMode = SettingsOptionManager.getInstance(this).getDarkMode();
+        DarkMode darkMode = SettingsOptionManager.getInstance(this).getDarkMode();
         if (colorPicker == null
                 || colorPicker.isDaytime() != daytime
                 || !colorPicker.getDarkMode().equals(darkMode)) {
@@ -424,19 +425,9 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    private void setToolbarTitle(Location location) {
-        if (location.weather == null) {
-            toolbar.setTitle(location.getCityName(this));
-        } else {
-            toolbar.setTitle(location.weather.base.city);
-        }
-    }
-
     @SuppressLint("RestrictedApi")
     private void setDarkMode(boolean dayTime) {
-        if (SettingsOptionManager.getInstance(this)
-                .getDarkMode()
-                .equals(SettingsOptionManager.DARK_MODE_AUTO)) {
+        if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.AUTO) {
             int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
             getDelegate().setLocalNightMode(mode);
             AppCompatDelegate.setDefaultNightMode(mode);
@@ -459,8 +450,8 @@ public class MainActivity extends GeoActivity
         if (refreshRemoteViews) {
             Observable.create(emitter -> {
                 Location location = viewModel.getDefaultLocation();
-                WidgetUtils.updateWidgetIfNecessary(this, location, location.weather, location.history);
-                NotificationUtils.updateNotificationIfNecessary(this, location.weather);
+                WidgetUtils.updateWidgetIfNecessary(this, location);
+                NotificationUtils.updateNotificationIfNecessary(this, location);
             }).subscribeOn(AndroidSchedulers.mainThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .delay(1, TimeUnit.SECONDS)
@@ -524,12 +515,12 @@ public class MainActivity extends GeoActivity
             }
 
             if (indexSwitched) {
-                setToolbarTitle(location);
-                if (location.weather != null) {
-                    WeatherViewController.setWeatherViewWeatherKind(
+                toolbar.setTitle(location.getCityName(MainActivity.this));
+                if (location.getWeather() != null) {
+                    WeatherViewController.setWeatherCode(
                             weatherView,
-                            location.weather,
-                            TimeManager.isDaylight(location.weather),
+                            location.getWeather(),
+                            TimeManager.isDaylight(location),
                             resourceProvider
                     );
                 }

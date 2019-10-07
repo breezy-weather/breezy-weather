@@ -5,13 +5,15 @@ import android.app.NotificationManager;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 
@@ -80,9 +82,9 @@ public abstract class ForegroundUpdateService extends UpdateService {
     public abstract int getForegroundNotificationId();
 
     @Override
-    public void onUpdateCompleted(Location location, Weather weather, Weather old,
+    public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                   boolean succeed, int index, int total) {
-        super.onUpdateCompleted(location, weather, old, succeed, index, total);
+        super.onUpdateCompleted(location, old, succeed, index, total);
         if (index + 1 != total) {
             NotificationManagerCompat.from(this).notify(
                     getForegroundNotificationId(),

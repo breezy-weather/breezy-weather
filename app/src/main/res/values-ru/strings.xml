@@ -140,7 +140,6 @@
     <string name="settings_category_basic">Основные</string>
     <string name="settings_title_background_free">Background free</string>
     <string name="settings_language">Язык</string>
-    <string name="settings_title_fahrenheit">Градусы по Фаренгейту</string>
     <string name="settings_title_refresh_rate">Частота обновления</string>
     <string name="settings_title_permanent_service">Фоновый режим</string>
     <string name="settings_category_forecast">Прогноз погоды</string>

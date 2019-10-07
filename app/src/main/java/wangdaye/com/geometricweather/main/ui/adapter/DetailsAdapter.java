@@ -7,7 +7,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.res.ColorStateList;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.option.unit.CloudCoverUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.RelativeHumidityUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Details adapter.
@@ -70,45 +73,97 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
     }
 
-    public DetailsAdapter(Context context, Weather weather, MainColorPicker colorPicker) {
+    public DetailsAdapter(Context context, @NonNull Weather weather, MainColorPicker colorPicker) {
         this.indexList = new ArrayList<>();
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
 
-        indexList.add(new Index(
-                R.drawable.ic_wind,
-                weather.index.currentWind,
-                weather.index.dailyWind));
+        SpeedUnit speedUnit = settings.getSpeedUnit();
+        indexList.add(
+                new Index(
+                        R.drawable.ic_wind,
+                        context.getString(R.string.live)
+                                + " : "
+                                + weather.getCurrent().getWind().getWindDescription(speedUnit),
+                        context.getString(R.string.daytime)
+                                + " : "
+                                + weather.getDailyForecast().get(0).day().getWind().getWindDescription(speedUnit)
+                                + "\n"
+                                + context.getString(R.string.nighttime)
+                                + " : "
+                                + weather.getDailyForecast().get(0).night().getWind().getWindDescription(speedUnit)
+                )
+        );
 
-        indexList.add(new Index(
-                R.drawable.ic_flower,
-                weather.index.sensibleTemp,
-                weather.index.humidity));
-
-        if (!TextUtils.isEmpty(weather.index.uv)) {
-            indexList.add(new Index(
-                    R.drawable.ic_uv,
-                    context.getString(R.string.uv_index),
-                    weather.index.uv));
+        if (weather.getCurrent().getRelativeHumidity() != null) {
+            indexList.add(
+                    new Index(
+                            R.drawable.ic_flower,
+                            context.getString(R.string.humidity),
+                            RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
+                                    weather.getCurrent().getRelativeHumidity()
+                            )
+                    )
+            );
         }
 
-        if (!TextUtils.isEmpty(weather.index.pressure)) {
-            indexList.add(new Index(
-                    R.drawable.ic_gauge,
-                    context.getString(R.string.pressure),
-                    weather.index.pressure));
+        if (weather.getCurrent().getUV().isValid()) {
+            indexList.add(
+                    new Index(
+                            R.drawable.ic_uv,
+                            context.getString(R.string.uv_index),
+                            weather.getCurrent().getUV().getUVDescription()
+                    )
+            );
         }
 
-        if (!TextUtils.isEmpty(weather.index.visibility)) {
-            indexList.add(new Index(
-                    R.drawable.ic_eye,
-                    context.getString(R.string.visibility),
-                    weather.index.visibility));
+        if (weather.getCurrent().getPressure() != null) {
+            indexList.add(
+                    new Index(
+                            R.drawable.ic_gauge,
+                            context.getString(R.string.pressure),
+                            settings.getPressureUnit().getPressureText(weather.getCurrent().getPressure())
+                    )
+            );
         }
 
-        if (!TextUtils.isEmpty(weather.index.dewPoint)) {
-            indexList.add(new Index(
-                    R.drawable.ic_water,
-                    context.getString(R.string.dew_point),
-                    weather.index.dewPoint));
+        if (weather.getCurrent().getVisibility() != null) {
+            indexList.add(
+                    new Index(
+                            R.drawable.ic_eye,
+                            context.getString(R.string.visibility),
+                            settings.getDistanceUnit().getDistanceText(weather.getCurrent().getVisibility())
+                    )
+            );
+        }
+
+        if (weather.getCurrent().getDewPoint() != null) {
+            indexList.add(
+                    new Index(
+                            R.drawable.ic_water,
+                            context.getString(R.string.dew_point),
+                            settings.getTemperatureUnit().getTemperatureText(weather.getCurrent().getDewPoint())
+                    )
+            );
+        }
+
+        if (weather.getCurrent().getCloudCover() != null) {
+            indexList.add(
+                    new Index(
+                            R.drawable.ic_cloud,
+                            context.getString(R.string.cloud_cover),
+                            CloudCoverUnit.PERCENT.getCloudCoverText(weather.getCurrent().getCloudCover())
+                    )
+            );
+        }
+
+        if (weather.getCurrent().getCeiling() != null) {
+            indexList.add(
+                    new Index(
+                            R.drawable.ic_top,
+                            context.getString(R.string.ceiling),
+                            settings.getDistanceUnit().getDistanceText(weather.getCurrent().getCeiling())
+                    )
+            );
         }
 
         this.colorPicker = colorPicker;

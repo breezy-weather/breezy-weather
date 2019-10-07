@@ -3,11 +3,11 @@
     android:title="@string/settings_title_service_provider" >
 
     <ListPreference
-        android:title="@string/settings_title_chinese_source"
-        android:key="@string/key_chinese_source"
-        android:entries="@array/chinese_sources"
-        android:entryValues="@array/chinese_source_values"
-        android:dialogTitle="@string/settings_title_chinese_source"
+        android:title="@string/settings_title_weather_source"
+        android:key="@string/key_weather_source"
+        android:entries="@array/weather_sources"
+        android:entryValues="@array/weather_source_values"
+        android:dialogTitle="@string/settings_title_weather_source"
         android:defaultValue="accu" />
 
     <ListPreference

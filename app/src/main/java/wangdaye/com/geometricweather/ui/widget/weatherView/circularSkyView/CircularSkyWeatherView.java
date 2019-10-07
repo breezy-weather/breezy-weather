@@ -29,13 +29,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 import wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Circular sky weather view.
@@ -214,10 +215,10 @@ public class CircularSkyWeatherView extends FrameLayout
         this.iconProvider = provider.getPackageName();
         this.daytime = daytime;
 
-        String entityWeatherKind = WeatherViewController.getEntityWeatherKind(weatherKind);
+        WeatherCode weatherCode = WeatherViewController.getWeatherCode(weatherKind);
 
-        iconDrawables = WeatherHelper.getWeatherIcons(provider, entityWeatherKind, daytime);
-        iconAnimators = WeatherHelper.getWeatherAnimators(provider, entityWeatherKind, daytime);
+        iconDrawables = ResourceHelper.getWeatherIcons(provider, weatherCode, daytime);
+        iconAnimators = ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime);
 
         setStatusBarColor();
         controlView.showWeatherIcon();

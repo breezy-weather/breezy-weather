@@ -10,12 +10,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 public class HeaderController extends AbstractMainItemController
         implements View.OnClickListener {
@@ -49,24 +49,21 @@ public class HeaderController extends AbstractMainItemController
         container.setLayoutParams(params);
         container.setOnClickListener(this);
 
-        if (location.weather != null) {
+        if (location.getWeather() != null) {
+            TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
             temperature.setText(
-                    ValueUtils.buildAbbreviatedCurrentTemp(
-                            location.weather.realTime.temp,
-                            SettingsOptionManager.getInstance(context).isFahrenheit()));
-            weather.setText(location.weather.realTime.weather);
+                    location.getWeather().getCurrent().getTemperature().getShortTemperature(temperatureUnit));
+            weather.setText(location.getWeather().getCurrent().getWeatherText());
             sensibleTemp.setText(
-                    context.getString(R.string.feels_like) + " "
-                            + ValueUtils.buildAbbreviatedCurrentTemp(
-                                    location.weather.realTime.sensibleTemp,
-                                    SettingsOptionManager.getInstance(context).isFahrenheit()
-                            )
+                    context.getString(R.string.feels_like)
+                            + " "
+                            + location.getWeather().getCurrent().getTemperature().getShortRealFeeTemperature(temperatureUnit)
             );
 
-            if (location.weather.aqi == null) {
-                aqiOrWind.setText(location.weather.realTime.windLevel);
+            if (location.getWeather().getCurrent().getAirQuality().getAqiText() == null) {
+                aqiOrWind.setText(location.getWeather().getCurrent().getWind().getLevel());
             } else {
-                aqiOrWind.setText(location.weather.aqi.quality);
+                aqiOrWind.setText(location.getWeather().getCurrent().getAirQuality().getAqiText());
             }
         }
     }

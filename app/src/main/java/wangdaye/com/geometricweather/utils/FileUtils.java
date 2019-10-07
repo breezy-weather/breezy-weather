@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.CNCity;
+import wangdaye.com.geometricweather.basic.model.location.ChineseCity;
 
 /**
  * File utils.
@@ -19,10 +19,10 @@ import wangdaye.com.geometricweather.basic.model.CNCity;
 
 public class FileUtils {
 
-    public static List<CNCity> readCityList(Context context) {
+    public static List<ChineseCity> readCityList(Context context) {
         return new Gson().fromJson(
                 readAssetFileToString(context, "city_list.txt"),
-                new TypeToken<List<CNCity>>() {}.getType()
+                new TypeToken<List<ChineseCity>>() {}.getType()
         );
     }
 

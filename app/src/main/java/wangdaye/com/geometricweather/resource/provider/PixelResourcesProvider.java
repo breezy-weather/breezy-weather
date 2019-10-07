@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.Constants;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
 import wangdaye.com.geometricweather.ui.image.pixel.PixelMoonDrawable;
@@ -49,27 +49,27 @@ public class PixelResourcesProvider extends IconPackResourcesProvider {
 
     @Override
     public Drawable getProviderIcon() {
-        return getWeatherIcon(Weather.KIND_PARTLY_CLOUDY, true);
+        return getWeatherIcon(WeatherCode.PARTLY_CLOUDY, true);
     }
 
     // weather icon.
 
     @Override
     @Size(3)
-    public Drawable[] getWeatherIcons(String weatherKind, boolean dayTime) {
-        return new Drawable[] {getWeatherIcon(weatherKind, dayTime), null, null};
+    public Drawable[] getWeatherIcons(WeatherCode code, boolean dayTime) {
+        return new Drawable[] {getWeatherIcon(code, dayTime), null, null};
     }
 
     @Override
-    String getWeatherIconName(String weatherKind, boolean daytime) {
-        return super.getWeatherIconName(weatherKind, daytime) + Constants.SEPARATOR + "pixel";
+    String getWeatherIconName(WeatherCode code, boolean daytime) {
+        return super.getWeatherIconName(code, daytime) + Constants.SEPARATOR + "pixel";
     }
 
     @Override
-    String getWeatherIconName(String weatherKind, boolean daytime,
+    String getWeatherIconName(WeatherCode code, boolean daytime,
                                      @IntRange(from = 1, to = 3) int index) {
         if (index == 1) {
-            return getWeatherIconName(weatherKind, daytime);
+            return getWeatherIconName(code, daytime);
         } else {
             return null;
         }
@@ -79,12 +79,12 @@ public class PixelResourcesProvider extends IconPackResourcesProvider {
 
     @Override
     @Size(3)
-    public Animator[] getWeatherAnimators(String weatherKind, boolean dayTime) {
+    public Animator[] getWeatherAnimators(WeatherCode code, boolean dayTime) {
         return new Animator[] {null, null, null};
     }
 
     @Override
-    String getWeatherAnimatorName(String weatherKind, boolean daytime,
+    String getWeatherAnimatorName(WeatherCode code, boolean daytime,
                                   @IntRange(from = 1, to = 3) int index) {
         return null;
     }

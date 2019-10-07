@@ -17,7 +17,7 @@ import android.view.View;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -203,8 +203,7 @@ public class ManageActivity extends GeoActivity
             } else {
                 adapter.removeData(position);
 
-                location.weather = DatabaseHelper.getInstance(this).readWeather(location);
-                location.history = DatabaseHelper.getInstance(this).readHistory(location.weather);
+                location.setWeather(DatabaseHelper.getInstance(this).readWeather(location));
 
                 DatabaseHelper.getInstance(this).deleteLocation(location);
                 DatabaseHelper.getInstance(this).deleteWeather(location);
@@ -239,9 +238,10 @@ public class ManageActivity extends GeoActivity
         public void onClick(View view) {
             adapter.insertData(location, adapter.getItemCount());
             DatabaseHelper.getInstance(ManageActivity.this).writeLocation(location);
-            DatabaseHelper.getInstance(ManageActivity.this).writeWeather(location, location.weather);
-            DatabaseHelper.getInstance(ManageActivity.this).writeTodayHistory(location.weather);
-            DatabaseHelper.getInstance(ManageActivity.this).writeYesterdayHistory(location.history);
+            if (location.getWeather() != null) {
+                DatabaseHelper.getInstance(ManageActivity.this)
+                        .writeWeather(location, location.getWeather());
+            }
         }
     }
 

@@ -13,9 +13,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 public abstract class AsyncWorker extends ListenableWorker {
 
-    // Package-private to avoid synthetic accessor.
-    SettableFuture<ListenableWorker.Result> future;
-
     @Keep
     @SuppressLint("BanKeepAnnotation")
     public AsyncWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
@@ -28,7 +25,8 @@ public abstract class AsyncWorker extends ListenableWorker {
     @Override
     public final @NonNull
     ListenableFuture<ListenableWorker.Result> startWork() {
-        future = SettableFuture.create();
+        // Package-private to avoid synthetic accessor.
+        SettableFuture<Result> future = SettableFuture.create();
         doAsyncWork(future);
         return future;
     }

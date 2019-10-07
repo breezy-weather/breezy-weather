@@ -23,10 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.option.unit.AirQualityUnit;
+import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.ui.widget.RoundProgress;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Aqi adapter.
@@ -144,78 +145,79 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    public AqiAdapter(Context context, Weather weather,
+    public AqiAdapter(Context context, @Nullable Weather weather,
                       MainColorPicker colorPicker, boolean executeAnimation) {
         this.itemList = new ArrayList<>();
-        if (weather != null && weather.aqi != null) {
-            if (weather.aqi.pm25 >= 0) {
+        if (weather != null && weather.getCurrent().getAirQuality().isValid()) {
+            AirQuality airQuality = weather.getCurrent().getAirQuality();
+            if (airQuality.getPM25() != null) {
                 itemList.add(
                         new AqiItem(
-                                WeatherHelper.getPm25Color(context, weather.aqi.pm25),
-                                weather.aqi.pm25,
+                                airQuality.getPm25Color(context),
+                                airQuality.getPM25(),
                                 250,
                                 "PM2.5",
-                                weather.aqi.pm25 + " μg/m³",
+                                AirQualityUnit.MUGPCUM.getDensityText(airQuality.getPM25()),
                                 executeAnimation
                         )
                 );
             }
-            if (weather.aqi.pm10 >= 0) {
+            if (airQuality.getPM10() != null) {
                 itemList.add(
                         new AqiItem(
-                                WeatherHelper.getPm10Color(context, weather.aqi.pm10),
-                                weather.aqi.pm10,
+                                airQuality.getPm10Color(context),
+                                airQuality.getPM10(),
                                 420,
                                 "PM10",
-                                weather.aqi.pm10 + " μg/m³",
+                                AirQualityUnit.MUGPCUM.getDensityText(airQuality.getPM10()),
                                 executeAnimation
                         )
                 );
             }
-            if (weather.aqi.so2 >= 0) {
+            if (airQuality.getSO2() != null) {
                 itemList.add(
                         new AqiItem(
-                                WeatherHelper.getSo2Color(context, weather.aqi.so2),
-                                weather.aqi.so2,
+                                airQuality.getSo2Color(context),
+                                airQuality.getSO2(),
                                 1600,
                                 "SO2",
-                                weather.aqi.so2 + " μg/m³",
+                                AirQualityUnit.MUGPCUM.getDensityText(airQuality.getSO2()),
                                 executeAnimation
                         )
                 );
             }
-            if (weather.aqi.no2 >= 0) {
+            if (airQuality.getNO2() != null) {
                 itemList.add(
                         new AqiItem(
-                                WeatherHelper.getNo2Color(context, weather.aqi.no2),
-                                weather.aqi.no2,
+                                airQuality.getNo2Color(context),
+                                airQuality.getNO2(),
                                 565,
                                 "NO2",
-                                weather.aqi.no2 + " μg/m³",
+                                AirQualityUnit.MUGPCUM.getDensityText(airQuality.getNO2()),
                                 executeAnimation
                         )
                 );
             }
-            if (weather.aqi.o3 >= 0) {
+            if (airQuality.getO3() != null) {
                 itemList.add(
                         new AqiItem(
-                                WeatherHelper.getO3Color(context, weather.aqi.o3),
-                                weather.aqi.o3,
+                                airQuality.getO3Color(context),
+                                airQuality.getO3(),
                                 800,
                                 "O3",
-                                weather.aqi.o3 + " μg/m³",
+                                AirQualityUnit.MUGPCUM.getDensityText(airQuality.getO3()),
                                 executeAnimation
                         )
                 );
             }
-            if (weather.aqi.co >= 0) {
+            if (airQuality.getCO() != null) {
                 itemList.add(
                         new AqiItem(
-                                WeatherHelper.getCOColor(context, weather.aqi.co),
-                                weather.aqi.co,
+                                airQuality.getCOColor(context),
+                                airQuality.getCO(),
                                 90,
                                 "CO",
-                                weather.aqi.co + " μg/m³",
+                                AirQualityUnit.MUGPCUM.getDensityText(airQuality.getCO()),
                                 executeAnimation
                         )
                 );

@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView;
@@ -19,103 +20,96 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.M
 
 public class WeatherViewController {
 
-    public static void setWeatherViewWeatherKind(@NonNull WeatherView view, @Nullable Weather weather,
-                                                 boolean dayTime, @NonNull ResourceProvider provider) {
-        view.setWeather(getWeatherViewWeatherKind(weather), dayTime, provider);
+    public static void setWeatherCode(@NonNull WeatherView view, @Nullable Weather weather,
+                                      boolean dayTime, @NonNull ResourceProvider provider) {
+        view.setWeather(getWeatherKind(weather), dayTime, provider);
     }
 
-    public static String getEntityWeatherKind(@WeatherView.WeatherKindRule int weatherKind) {
+    public static WeatherCode getWeatherCode(@WeatherView.WeatherKindRule int weatherKind) {
         switch (weatherKind) {
-            case WeatherView.WEATHER_KIND_CLEAR:
-                return Weather.KIND_CLEAR;
-
             case WeatherView.WEATHER_KIND_CLOUDY:
-                return Weather.KIND_CLOUDY;
+                return WeatherCode.CLOUDY;
 
             case WeatherView.WEATHER_KIND_CLOUD:
-                return Weather.KIND_PARTLY_CLOUDY;
+                return WeatherCode.PARTLY_CLOUDY;
 
             case WeatherView.WEATHER_KIND_FOG:
-                return Weather.KIND_FOG;
+                return WeatherCode.FOG;
 
             case WeatherView.WEATHER_KIND_HAIL:
-                return Weather.KIND_HAIL;
+                return WeatherCode.HAIL;
 
             case WeatherView.WEATHER_KIND_HAZE:
-                return Weather.KIND_HAZE;
+                return WeatherCode.HAZE;
 
             case WeatherView.WEATHER_KIND_RAINY:
-                return Weather.KIND_RAIN;
+                return WeatherCode.RAIN;
 
             case WeatherView.WEATHER_KIND_SLEET:
-                return Weather.KIND_SLEET;
+                return WeatherCode.SLEET;
 
             case WeatherView.WEATHER_KIND_SNOW:
-                return Weather.KIND_SNOW;
+                return WeatherCode.SNOW;
 
             case WeatherView.WEATHER_KIND_THUNDERSTORM:
-                return Weather.KIND_THUNDERSTORM;
+                return WeatherCode.THUNDERSTORM;
 
             case WeatherView.WEATHER_KIND_THUNDER:
-                return Weather.KIND_THUNDER;
+                return WeatherCode.THUNDER;
 
             case WeatherView.WEATHER_KIND_WIND:
-                return Weather.KIND_WIND;
+                return WeatherCode.WIND;
 
-            case WeatherView.WEATHER_KING_NULL:
             default:
-                return Weather.KIND_CLEAR;
+                return WeatherCode.CLEAR;
         }
     }
 
     @WeatherView.WeatherKindRule
-    public static int getWeatherViewWeatherKind(@Nullable Weather weather) {
+    public static int getWeatherKind(@Nullable Weather weather) {
         if (weather == null) {
             return WeatherView.WEATHER_KIND_CLEAR;
         }
-        return getWeatherViewWeatherKind(weather.realTime.weatherKind);
+        return getWeatherKind(weather.getCurrent().getWeatherCode());
     }
 
     @WeatherView.WeatherKindRule
-    public static int getWeatherViewWeatherKind(@Nullable String weatherKind) {
-        if (weatherKind == null) {
-            return WeatherView.WEATHER_KIND_CLEAR;
-        }
-        switch (weatherKind) {
-            case Weather.KIND_CLEAR:
+    public static int getWeatherKind(WeatherCode weatherCode) {
+        switch (weatherCode) {
+            case CLEAR:
                 return WeatherView.WEATHER_KIND_CLEAR;
 
-            case Weather.KIND_PARTLY_CLOUDY:
+            case PARTLY_CLOUDY:
                 return WeatherView.WEATHER_KIND_CLOUD;
 
-            case Weather.KIND_CLOUDY:
+            case CLOUDY:
                 return WeatherView.WEATHER_KIND_CLOUDY;
 
-            case Weather.KIND_RAIN:
+            case RAIN:
                 return WeatherView.WEATHER_KIND_RAINY;
 
-            case Weather.KIND_SNOW:
+            case SNOW:
                 return WeatherView.WEATHER_KIND_SNOW;
 
-            case Weather.KIND_WIND:
+            case WIND:
                 return WeatherView.WEATHER_KIND_WIND;
 
-            case Weather.KIND_FOG:
+            case FOG:
                 return WeatherView.WEATHER_KIND_FOG;
 
-            case Weather.KIND_HAZE:
+            case HAZE:
                 return WeatherView.WEATHER_KIND_HAZE;
 
-            case Weather.KIND_SLEET:
-                return WeatherView.WEATHER_KIND_RAINY;
+            case SLEET:
+                return WeatherView.WEATHER_KIND_SLEET;
 
-            case Weather.KIND_HAIL:
+            case HAIL:
                 return WeatherView.WEATHER_KIND_HAIL;
 
-            case Weather.KIND_THUNDER:
+            case THUNDER:
                 return WeatherView.WEATHER_KIND_THUNDER;
 
-            case Weather.KIND_THUNDERSTORM:
+            case THUNDERSTORM:
                 return WeatherView.WEATHER_KIND_THUNDERSTORM;
         }
         return WeatherView.WEATHER_KIND_CLEAR;
@@ -131,9 +125,9 @@ public class WeatherViewController {
     @Size(3)
     public static int[] getThemeColors(Context context, @NonNull Weather weather, boolean lightTheme) {
         switch (SettingsOptionManager.getInstance(context).getUiStyle()) {
-            case SettingsOptionManager.UI_STYLE_MATERIAL:
+            case MATERIAL:
                 return MaterialWeatherView.getThemeColors(
-                        context, getWeatherViewWeatherKind(weather), lightTheme);
+                        context, getWeatherKind(weather), lightTheme);
 
             default: // circular
                 return CircularSkyWeatherView.getThemeColors(context, lightTheme);

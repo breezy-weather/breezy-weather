@@ -38,7 +38,7 @@ public class HourlyTrendWidgetConfigActivity extends AbstractWidgetConfigActivit
     @Override
     public RemoteViews getRemoteViews() {
         return HourlyTrendWidgetIMP.getRemoteViews(
-                this, locationNow, locationNow.weather, locationNow.history,
+                this, locationNow,
                 getResources().getDisplayMetrics().widthPixels,
                 cardStyleValueNow, cardAlpha
         );

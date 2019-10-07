@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.DetailsAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
@@ -45,7 +45,7 @@ public class DetailsController extends AbstractMainItemController {
             view.setVisibility(View.VISIBLE);
         }
 
-        if (location.weather != null) {
+        if (location.getWeather() != null) {
             card.setCardBackgroundColor(picker.getRootColor(context));
 
             title.setTextColor(
@@ -53,7 +53,7 @@ public class DetailsController extends AbstractMainItemController {
             );
 
             detailsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-            detailsRecyclerView.setAdapter(new DetailsAdapter(context, location.weather, picker));
+            detailsRecyclerView.setAdapter(new DetailsAdapter(context, location.getWeather(), picker));
         }
     }
 }

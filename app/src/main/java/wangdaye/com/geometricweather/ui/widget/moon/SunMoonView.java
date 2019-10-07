@@ -24,6 +24,9 @@ import android.view.View;
 
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
+
+import java.util.Calendar;
+
 import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
@@ -134,7 +137,15 @@ public class SunMoonView extends View {
 
     public static int decodeTime(String time) {
         String[] t = time.split(":");
-        return Integer.parseInt(t[0]) * 60 + Integer.parseInt(t[1]);
+        return decodeTime(Integer.parseInt(t[0]), Integer.parseInt(t[1]));
+    }
+
+    public static int decodeTime(Calendar calendar) {
+        return decodeTime(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+    }
+
+    public static int decodeTime(int hour, int minute) {
+        return hour * 60 + minute;
     }
 
     public void setTime(@Size(2) float[] startTimes, @Size(2) float[] endTimes, @Size(2) float[] currentTimes) {
