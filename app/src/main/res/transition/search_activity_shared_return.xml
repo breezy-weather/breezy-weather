@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:duration="350"
     android:transitionOrdering="together">
 
@@ -12,5 +13,17 @@
             <target android:targetId="@id/activity_search_searchBar" />
         </targets>
     </changeBounds>
+
+    <transition
+        class="wangdaye.com.geometricweather.ui.transition.RoundCornerTransition"
+        android:interpolator="@android:interpolator/fast_out_slow_in"
+        android:duration="350"
+        app:radius_from="0dp"
+        app:radius_to="8dp"
+        tools:ignore="NewApi">
+        <targets>
+            <target android:targetId="@id/activity_search_searchBar" />
+        </targets>
+    </transition>
 
 </transitionSet>

@@ -100,8 +100,8 @@ public class CaiyunResultConverter {
                             !TextUtils.isEmpty(mainlyResult.current.humidity.value)
                                     ? Float.parseFloat(mainlyResult.current.humidity.value)
                                     : null,
-                            !TextUtils.isEmpty(mainlyResult.current.humidity.value)
-                                    ? Float.parseFloat(mainlyResult.current.humidity.value)
+                            !TextUtils.isEmpty(mainlyResult.current.pressure.value)
+                                    ? Float.parseFloat(mainlyResult.current.pressure.value)
                                     : null,
                             !TextUtils.isEmpty(mainlyResult.current.visibility.value)
                                     ? Float.parseFloat(mainlyResult.current.visibility.value)

@@ -55,10 +55,13 @@
                 <TextClock
                     android:id="@+id/container_main_first_trend_card_localTimeText"
                     android:layout_toStartOf="@id/container_main_first_trend_card_localTimeIcon"
+                    android:layout_toEndOf="@id/container_main_first_trend_card_timeText"
                     android:layout_centerVertical="true"
                     android:format12Hour="aa h:mm"
                     android:format24Hour="HH:mm"
+                    android:gravity="end"
                     style="@style/content_text"
+                    tools:text="06:00"
                     tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
 
             </RelativeLayout>

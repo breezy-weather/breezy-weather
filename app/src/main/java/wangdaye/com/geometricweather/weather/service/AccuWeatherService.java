@@ -287,13 +287,13 @@ public class AccuWeatherService extends WeatherService {
                             locationList.add(AccuResultConverter.convert(accuLocationResult));
                             callback.requestLocationSuccess(lat + ", " + lon, locationList);
                         } else {
-                            callback.requestLocationFailed(lat + ", " + lon);
+                            onFailed();
                         }
                     }
 
                     @Override
                     public void onFailed() {
-
+                        callback.requestLocationFailed(lat + ", " + lon);
                     }
                 }));
     }

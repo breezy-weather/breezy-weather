@@ -36,6 +36,7 @@ public class Location
     private WeatherSource weatherSource;
 
     private boolean currentPosition;
+    private boolean residentPosition;
     private boolean china;
 
     private static final String NULL_ID = "NULL_ID";
@@ -45,7 +46,7 @@ public class Location
                     float latitude, float longitude, int GMTOffset,
                     String country, String province, String city, String district,
                     @Nullable Weather weather, WeatherSource weatherSource,
-                    boolean currentPosition, boolean china) {
+                    boolean currentPosition, boolean residentPosition, boolean china) {
         this.cityId = cityId;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -57,6 +58,7 @@ public class Location
         this.weather = weather;
         this.weatherSource = weatherSource;
         this.currentPosition = currentPosition;
+        this.residentPosition = residentPosition;
         this.china = china;
     }
 
@@ -66,7 +68,7 @@ public class Location
                 0, 0, 0,
                 "", "", "", "",
                 null, WeatherSource.ACCU,
-                true, false
+                true, false, false
         );
     }
 
@@ -76,7 +78,7 @@ public class Location
                 39.904000f, 116.391000f, 8,
                 "中国", "直辖市", "北京", "",
                 null, WeatherSource.ACCU,
-                true, true
+                false, false, true
         );
     }
 
@@ -118,6 +120,14 @@ public class Location
 
     public boolean isCurrentPosition() {
         return currentPosition;
+    }
+
+    public boolean isResidentPosition() {
+        return residentPosition;
+    }
+
+    public void setResidentPosition(boolean residentPosition) {
+        this.residentPosition = residentPosition;
     }
 
     public boolean isUsable() {
@@ -208,6 +218,27 @@ public class Location
         return china;
     }
 
+    public boolean isCloseTo(Context c, Location location) {
+        boolean sameId = cityId.equals(location.getCityId());
+        boolean sameCity = isEquals(province, location.province)
+                && isEquals(city, location.city);
+        boolean sameName = isEquals(province, location.province)
+                && getCityName(c).equals(location.getCityName(c));
+        boolean validGeoPosition = Math.abs(latitude - location.latitude) < 0.8
+                && Math.abs(longitude - location.longitude) < 0.8;
+        return sameId || sameCity || sameName || validGeoPosition;
+    }
+
+    private static boolean isEquals(@Nullable String a, @Nullable String b) {
+        if (TextUtils.isEmpty(a) && TextUtils.isEmpty(b)) {
+            return true;
+        } else if (!TextUtils.isEmpty(a) && !TextUtils.isEmpty(b)) {
+            return a.equals(b);
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -225,6 +256,7 @@ public class Location
         dest.writeString(this.district);
         dest.writeInt(this.weatherSource == null ? -1 : this.weatherSource.ordinal());
         dest.writeByte(this.currentPosition ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.residentPosition ? (byte) 1 : (byte) 0);
         dest.writeByte(this.china ? (byte) 1 : (byte) 0);
     }
 
@@ -240,6 +272,7 @@ public class Location
         int tmpWeatherSource = in.readInt();
         this.weatherSource = tmpWeatherSource == -1 ? null : WeatherSource.values()[tmpWeatherSource];
         this.currentPosition = in.readByte() != 0;
+        this.residentPosition = in.readByte() != 0;
         this.china = in.readByte() != 0;
     }
 

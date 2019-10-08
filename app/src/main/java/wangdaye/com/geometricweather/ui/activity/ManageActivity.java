@@ -19,6 +19,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.ui.dialog.LearnMoreAboutResidentLocationDialog;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -259,5 +260,19 @@ public class ManageActivity extends GeoActivity
     @Override
     public void onDelete(View view, int position) {
         deleteLocation(position);
+    }
+
+    @Override
+    public void onResidentSwitch(View view, int position, boolean resident) {
+        adapter.itemList.get(position).setResidentPosition(resident);
+        DatabaseHelper.getInstance(this).writeLocation(adapter.itemList.get(position));
+        if (resident) {
+            SnackbarUtils.showSnackbar(
+                    this,
+                    getString(R.string.feedback_resident_location),
+                    getString(R.string.learn_more),
+                    v -> new LearnMoreAboutResidentLocationDialog().show(getSupportFragmentManager(), null)
+            );
+        }
     }
 }

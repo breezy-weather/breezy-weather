@@ -56,6 +56,7 @@ public class AccuResultConverter {
                 null,
                 WeatherSource.ACCU,
                 false,
+                false,
                 !TextUtils.isEmpty(result.Country.ID)
                         && (result.Country.ID.equals("CN")
                         || result.Country.ID.equals("cn")

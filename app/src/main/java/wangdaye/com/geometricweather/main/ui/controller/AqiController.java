@@ -69,7 +69,7 @@ public class AqiController extends AbstractMainItemController {
 
         weather = location.getWeather();
         if (weather != null) {
-            if (weather.getCurrent().getAirQuality().isValid()) {
+            if (!weather.getCurrent().getAirQuality().isValid()) {
                 enable = false;
                 view.setVisibility(View.GONE);
                 return;

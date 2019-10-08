@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="@string/resident_location"
+        android:textColor="@color/colorTextTitle"
+        android:layout_margin="@dimen/normal_margin"
+        style="@style/large_title_text" />
+
+    <TextView
+        android:text="@string/feedback_resident_location_description"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:layout_marginBottom="@dimen/normal_margin"
+        style="@style/content_text" />
+
+</LinearLayout>

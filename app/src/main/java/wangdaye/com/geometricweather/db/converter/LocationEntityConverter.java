@@ -20,6 +20,7 @@ public class LocationEntityConverter {
         entity.district = location.getDistrict();
         entity.weatherSource = location.getWeatherSource();
         entity.currentPosition = location.isCurrentPosition();
+        entity.residentPosition = location.isResidentPosition();
         entity.china = location.isChina();
         return entity;
     }
@@ -38,7 +39,7 @@ public class LocationEntityConverter {
                 entity.latitude, entity.longitude, entity.GMTOffset,
                 entity.country, entity.province, entity.city, entity.district,
                 null, entity.weatherSource,
-                entity.currentPosition, entity.china
+                entity.currentPosition, entity.residentPosition, entity.china
         );
     }
 

@@ -26,7 +26,7 @@ public class MainActivityViewModel extends ViewModel {
 
     private MutableLiveData<ListResource<Location>> locationList;
     private MutableLiveData<LocationResource> currentLocation;
-    private int locationCount;
+    private List<Location> totalLocationList;
     private int currentIndex;
 
     private MainActivityRepository repository;
@@ -37,7 +37,6 @@ public class MainActivityViewModel extends ViewModel {
         locationList = new MutableLiveData<>();
         currentLocation = new MutableLiveData<>();
         currentIndex = INVALID_LOCATION_INDEX;
-        locationCount = 0;
     }
 
     public void reset(GeoActivity activity) {
@@ -58,12 +57,13 @@ public class MainActivityViewModel extends ViewModel {
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(activity);
 
-        List<Location> dataList = databaseHelper.readLocationList();
-        for (int i = 0; i < dataList.size(); i ++) {
-            dataList.get(i).setWeather(databaseHelper.readWeather(dataList.get(i)));
+        totalLocationList = databaseHelper.readLocationList();
+        for (int i = 0; i < totalLocationList.size(); i ++) {
+            totalLocationList.get(i).setWeather(databaseHelper.readWeather(totalLocationList.get(i)));
         }
-        locationList.setValue(new ListResource<>(dataList));
-        locationCount = dataList.size();
+
+        List<Location> validList = MainActivityRepository.copyValidLocations(activity, totalLocationList);
+        locationList.setValue(new ListResource<>(validList));
 
         setLocation(activity, formattedId, false);
     }
@@ -120,26 +120,24 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public void updateLocationFromBackground(GeoActivity activity, @Nullable String formattedId) {
-        ListResource<Location> resource = locationList.getValue();
-        if (resource == null) {
-            return;
-        }
-
-        int index = indexLocation(resource.dataList, formattedId);
+        int index = indexLocation(totalLocationList, formattedId);
         if (index == INVALID_LOCATION_INDEX) {
             return;
         }
 
-        Location location = resource.dataList.get(index);
+        Location location = totalLocationList.get(index);
         location = DatabaseHelper.getInstance(activity).readLocation(location);
         if (location == null) {
             return;
         }
-
         location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
 
-        locationList.setValue(ListResource.changeItem(resource, location, index));
-        if (index == currentIndex) {
+        totalLocationList.set(index, location);
+        List<Location> validList = MainActivityRepository.copyValidLocations(activity, totalLocationList);
+        locationList.setValue(new ListResource<>(validList));
+
+        index = indexLocation(validList, formattedId);
+        if (index != INVALID_LOCATION_INDEX && index == currentIndex) {
             if (activity.isForeground()) {
                 SnackbarUtils.showSnackbar(
                         activity, activity.getString(R.string.feedback_updated_in_background));
@@ -193,7 +191,8 @@ public class MainActivityViewModel extends ViewModel {
                         if (isPivotalPermission(permission[i])
                                 && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
                             if (location.isUsable()) {
-                                repository.getWeather(activity, currentLocation, locationList, false);
+                                repository.getWeather(activity,
+                                        currentLocation, locationList, totalLocationList, false);
                             } else {
                                 currentLocation.setValue(
                                         LocationResource.error(location, true));
@@ -201,13 +200,13 @@ public class MainActivityViewModel extends ViewModel {
                             return;
                         }
                     }
-                    repository.getWeather(activity, currentLocation, locationList, true);
+                    repository.getWeather(activity, currentLocation, locationList, totalLocationList, true);
                 });
                 return;
             }
         }
 
-        repository.getWeather(activity, currentLocation, locationList, location.isCurrentPosition());
+        repository.getWeather(activity, currentLocation, locationList, totalLocationList, location.isCurrentPosition());
     }
 
     private boolean isPivotalPermission(String permission) {
@@ -228,7 +227,13 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public int getLocationCount() {
-        return locationCount;
+        if (locationList == null
+                || locationList.getValue() == null) {
+            return 0;
+        } else {
+            locationList.getValue();
+        }
+        return locationList.getValue().dataList.size();
     }
 
     @Override

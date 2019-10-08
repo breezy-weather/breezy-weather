@@ -38,5 +38,11 @@
     <declare-styleable name="AnimatableIconView">
         <attr name="inner_margins" format="dimension" />
     </declare-styleable>
+    
+    <!-- Round corner transition. -->
+    <declare-styleable name="RoundCornerTransition">
+        <attr name="radius_from" format="dimension" />
+        <attr name="radius_to" format="dimension" />
+    </declare-styleable>
 
 </resources>

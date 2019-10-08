@@ -259,6 +259,11 @@ public class SearcActivity extends GeoActivity
         // do nothing.
     }
 
+    @Override
+    public void onResidentSwitch(View view, int position, boolean resident) {
+        // do nothing.
+    }
+
     // on editor action listener.
 
     @Override

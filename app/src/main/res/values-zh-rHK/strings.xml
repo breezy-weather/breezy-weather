@@ -5,6 +5,7 @@
 
     <!-- keyword. -->
     <string name="current_location">當前位置</string>
+    <string name="resident_location">常駐位置</string>
     <string name="default_location">默認位置</string>
     <string name="live">實時</string>
     <string name="today">今日</string>
@@ -229,6 +230,9 @@
     <string name="feedback_about_geocoder">地址解析服務，是一種將Android原生定位結果從經緯度格式轉換至XX省XX市XX區格式的服務組件。若缺少這項服務，在使用原生API作爲位置提供商時，只能通過AccuWeather獲取數據。</string>
 
     <string name="feedback_precipitation_alert_content">未來$d$小時内，$l$可能會出現降水</string>
+
+    <string name="feedback_resident_location">設置為常駐城市</string>
+    <string name="feedback_resident_location_description">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。\n例如將家鄉設置爲常駐城市後，可以在旅途中查看家鄉天氣，而在歸家后，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
 
     <!-- action -->
     <string name="action_alert">預警</string>

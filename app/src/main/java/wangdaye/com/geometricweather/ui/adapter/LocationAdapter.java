@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -86,19 +87,53 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             return this;
         }
 
+        void setSettingsButton(Location location) {
+            if (location.isCurrentPosition()) {
+                settingsButton.setImageResource(R.drawable.ic_settings);
+                settingsButton.setSupportImageTintList(
+                        ColorStateList.valueOf(
+                                ContextCompat.getColor(activity, R.color.colorTextContent)
+                        )
+                );
+            } else {
+                settingsButton.setImageResource(
+                        location.isResidentPosition()
+                                ? R.drawable.ic_star
+                                : R.drawable.ic_star_outline
+                );
+                settingsButton.setSupportImageTintList(
+                        ColorStateList.valueOf(
+                                ContextCompat.getColor(
+                                        activity,
+                                        location.isResidentPosition()
+                                                ? R.color.colorTextAlert
+                                                : R.color.colorTextContent
+                                )
+                        )
+                );
+            }
+        }
+
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.item_location_container:
-                    listener.onClick(v,getAdapterPosition());
+                    listener.onClick(v, getAdapterPosition());
                     break;
 
                 case R.id.item_location_settingsBtn:
-                    IntentHelper.startSelectProviderActivityForResult(activity, requestCode);
+                    Location location = itemList.get(getAdapterPosition());
+                    if (location.isCurrentPosition()) {
+                        IntentHelper.startSelectProviderActivityForResult(activity, requestCode);
+                    } else {
+                        location.setResidentPosition(!location.isResidentPosition());
+                        setSettingsButton(location);
+                        listener.onResidentSwitch(v, getAdapterPosition(), location.isResidentPosition());
+                    }
                     break;
 
                 case R.id.item_location_deleteBtn:
-                    listener.onDelete(v,getAdapterPosition());
+                    listener.onDelete(v, getAdapterPosition());
                     break;
             }
         }
@@ -125,23 +160,25 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Location location = itemList.get(position);
+        
         // title.
-        if (itemList.get(position).isCurrentPosition()) {
+        if (location.isCurrentPosition()) {
             holder.title.setText(activity.getString(R.string.current_location));
         } else {
-            holder.title.setText(itemList.get(position).getCityName(activity));
+            holder.title.setText(location.getCityName(activity));
         }
 
         // subtitle.
-        if (!itemList.get(position).isCurrentPosition() || itemList.get(position).isUsable()) {
+        if (!location.isCurrentPosition() || location.isUsable()) {
             StringBuilder builder = new StringBuilder(
-                    itemList.get(position).getCountry() + " " + itemList.get(position).getProvince()
+                    location.getCountry() + " " + location.getProvince()
             );
-            if (!itemList.get(position).getProvince().equals(itemList.get(position).getCity())) {
-                builder.append(" ").append(itemList.get(position).getCity());
+            if (!location.getProvince().equals(location.getCity())) {
+                builder.append(" ").append(location.getCity());
             }
-            if (!itemList.get(position).getCity().equals(itemList.get(position).getDistrict())) {
-                builder.append(" ").append(itemList.get(position).getDistrict());
+            if (!location.getCity().equals(location.getDistrict())) {
+                builder.append(" ").append(location.getDistrict());
             }
             holder.subtitle.setText(builder.toString());
         } else {
@@ -149,19 +186,23 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         }
 
         // source.
-        if (itemList.get(position).isCurrentPosition() && !itemList.get(position).isUsable()) {
+        if (location.isCurrentPosition() && !location.isUsable()) {
             holder.source.setTextColor(ContextCompat.getColor(activity, R.color.colorTextSubtitle));
             holder.source.setText("...");
         } else {
-            holder.source.setTextColor(itemList.get(position).getWeatherSource().getSourceColor());
-            holder.source.setText("Powered by " + itemList.get(position).getWeatherSource().getSourceUrl());
+            holder.source.setTextColor(location.getWeatherSource().getSourceColor());
+            holder.source.setText("Powered by " + location.getWeatherSource().getSourceUrl());
         }
 
         // swipe icon.
-        holder.settingsButton.setVisibility(
-                itemList.get(position).isCurrentPosition() ? View.VISIBLE : View.GONE);
-        holder.deleteButton.setVisibility(
-                manage ? View.VISIBLE : View.GONE);
+        if (manage) {
+            holder.settingsButton.setVisibility(View.VISIBLE);
+            holder.deleteButton.setVisibility(View.VISIBLE);
+            holder.setSettingsButton(location);
+        } else {
+            holder.settingsButton.setVisibility(View.GONE);
+            holder.deleteButton.setVisibility(View.GONE);
+        }
 
         holder.drawSwipe(0);
         holder.drawDrag(activity, false);
@@ -192,6 +233,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     public interface OnLocationItemClickListener {
         void onClick(View view, int position);
         void onDelete(View view, int position);
+        void onResidentSwitch(View view, int position, boolean resident);
     }
 
     private void setOnLocationItemClickListener(OnLocationItemClickListener l){

@@ -36,11 +36,14 @@ public class LocationEntity {
     public WeatherSource weatherSource;
 
     public boolean currentPosition;
+    public boolean residentPosition;
     public boolean china;
-    @Generated(hash = 495343798)
-    public LocationEntity(Long id, String cityId, float latitude, float longitude, int GMTOffset,
-            String country, String province, String city, String district, WeatherSource weatherSource,
-            boolean currentPosition, boolean china) {
+
+    @Generated(hash = 793368199)
+    public LocationEntity(Long id, String cityId, float latitude, float longitude,
+            int GMTOffset, String country, String province, String city,
+            String district, WeatherSource weatherSource, boolean currentPosition,
+            boolean residentPosition, boolean china) {
         this.id = id;
         this.cityId = cityId;
         this.latitude = latitude;
@@ -52,106 +55,90 @@ public class LocationEntity {
         this.district = district;
         this.weatherSource = weatherSource;
         this.currentPosition = currentPosition;
+        this.residentPosition = residentPosition;
         this.china = china;
     }
-
     @Generated(hash = 1723987110)
     public LocationEntity() {
     }
-
     public Long getId() {
         return this.id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getCityId() {
         return this.cityId;
     }
-
     public void setCityId(String cityId) {
         this.cityId = cityId;
     }
-
     public float getLatitude() {
         return this.latitude;
     }
-
     public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
-
     public float getLongitude() {
         return this.longitude;
     }
-
     public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
-
     public int getGMTOffset() {
         return this.GMTOffset;
     }
-
     public void setGMTOffset(int GMTOffset) {
         this.GMTOffset = GMTOffset;
     }
-
     public String getCountry() {
         return this.country;
     }
-
     public void setCountry(String country) {
         this.country = country;
     }
-
     public String getProvince() {
         return this.province;
     }
-
     public void setProvince(String province) {
         this.province = province;
     }
-
     public String getCity() {
         return this.city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
-
     public String getDistrict() {
         return this.district;
     }
-
     public void setDistrict(String district) {
         this.district = district;
     }
-
     public WeatherSource getWeatherSource() {
         return this.weatherSource;
     }
-
     public void setWeatherSource(WeatherSource weatherSource) {
         this.weatherSource = weatherSource;
     }
-
     public boolean getCurrentPosition() {
         return this.currentPosition;
     }
-
     public void setCurrentPosition(boolean currentPosition) {
         this.currentPosition = currentPosition;
     }
-
+    public boolean getResidentPosition() {
+        return this.residentPosition;
+    }
+    public void setResidentPosition(boolean residentPosition) {
+        this.residentPosition = residentPosition;
+    }
     public boolean getChina() {
         return this.china;
     }
-
     public void setChina(boolean china) {
         this.china = china;
     }
+
+
 }

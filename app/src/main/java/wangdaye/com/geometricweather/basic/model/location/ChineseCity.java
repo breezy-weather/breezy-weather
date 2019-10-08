@@ -57,7 +57,7 @@ public class ChineseCity {
                 Float.parseFloat(getLatitude()), Float.parseFloat(getLongitude()), 8,
                 "中国", getProvince(), getCity(), getDistrict().equals("无") ? "" : getDistrict(),
                 null, source.getSource(),
-                false, true
+                false, false, true
         );
     }
 
