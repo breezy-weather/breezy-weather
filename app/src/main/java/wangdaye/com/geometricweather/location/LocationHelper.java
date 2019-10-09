@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 import java.util.List;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
@@ -77,7 +78,7 @@ public class LocationHelper {
                     }
 
                     location.updateLocationResult(
-                            result.latitude, result.longitude, result.GMTOffset,
+                            result.latitude, result.longitude, TimeZone.getDefault(),
                             result.country, result.province, result.city, result.district,
                             result.inChina
                     );

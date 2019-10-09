@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
@@ -48,7 +49,7 @@ public class AccuResultConverter {
                 result.Key,
                 (float) result.GeoPosition.Latitude,
                 (float) result.GeoPosition.Longitude,
-                (int) result.TimeZone.GmtOffset,
+                TimeZone.getTimeZone(result.TimeZone.Name),
                 result.Country.LocalizedName,
                 result.AdministrativeArea == null ? "" : result.AdministrativeArea.LocalizedName,
                 result.LocalizedName,

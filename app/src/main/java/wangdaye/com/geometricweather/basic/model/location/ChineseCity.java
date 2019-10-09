@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.basic.model.location;
 
+import java.util.TimeZone;
+
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 
 /**
@@ -54,7 +56,7 @@ public class ChineseCity {
     public Location toLocation(CNWeatherSource source) {
         return new Location(
                 getCityId(),
-                Float.parseFloat(getLatitude()), Float.parseFloat(getLongitude()), 8,
+                Float.parseFloat(getLatitude()), Float.parseFloat(getLongitude()), TimeZone.getTimeZone("Asia/Shanghai"),
                 "中国", getProvince(), getCity(), getDistrict().equals("无") ? "" : getDistrict(),
                 null, source.getSource(),
                 false, false, true

@@ -45,9 +45,6 @@ public class BaiduLocationService extends LocationService {
                                 bdLocation.getDistrict()
                         );
                         result.inChina = bdLocation.getLocationWhere() == BDLocation.LOCATION_WHERE_IN_CN;
-                        if (result.inChina) {
-                            result.GMTOffset = 8;
-                        }
                         callback.onCompleted(result);
                         break;
 

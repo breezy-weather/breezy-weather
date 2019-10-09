@@ -47,9 +47,6 @@ public class AMapLocationService extends LocationService {
                                 aMapLocation.getLatitude(),
                                 aMapLocation.getLongitude()
                         );
-                        if (result.inChina) {
-                            result.GMTOffset = 8;
-                        }
                         callback.onCompleted(result);
                         break;
 

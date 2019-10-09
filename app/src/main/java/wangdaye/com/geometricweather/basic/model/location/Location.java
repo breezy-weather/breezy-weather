@@ -25,7 +25,7 @@ public class Location
 
     private float latitude;
     private float longitude;
-    private int GMTOffset;
+    private TimeZone timeZone;
 
     private String country;
     private String province;
@@ -43,14 +43,14 @@ public class Location
     public static final String CURRENT_POSITION_ID = "CURRENT_POSITION";
 
     public Location(String cityId,
-                    float latitude, float longitude, int GMTOffset,
+                    float latitude, float longitude, TimeZone timeZone,
                     String country, String province, String city, String district,
                     @Nullable Weather weather, WeatherSource weatherSource,
                     boolean currentPosition, boolean residentPosition, boolean china) {
         this.cityId = cityId;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.GMTOffset = GMTOffset;
+        this.timeZone = timeZone;
         this.country = country;
         this.province = province;
         this.city = city;
@@ -65,7 +65,7 @@ public class Location
     public static Location buildLocal() {
         return new Location(
                 NULL_ID,
-                0, 0, 0,
+                0, 0, TimeZone.getDefault(),
                 "", "", "", "",
                 null, WeatherSource.ACCU,
                 true, false, false
@@ -75,19 +75,19 @@ public class Location
     public static Location buildDefaultLocation() {
         return new Location(
                 "101924",
-                39.904000f, 116.391000f, 8,
+                39.904000f, 116.391000f, TimeZone.getTimeZone("Asia/Shanghai"),
                 "中国", "直辖市", "北京", "",
                 null, WeatherSource.ACCU,
                 false, false, true
         );
     }
 
-    public void updateLocationResult(float latitude, float longitude, int GMTOffset,
+    public void updateLocationResult(float latitude, float longitude, TimeZone timeZone,
                                      String country, String province, String city, String district,
                                      boolean china) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.GMTOffset = GMTOffset;
+        this.timeZone = timeZone;
         this.country = country;
         this.province = province;
         this.city = city;
@@ -150,14 +150,8 @@ public class Location
         return longitude;
     }
 
-    public int getGMTOffset() {
-        return GMTOffset;
-    }
-
     public TimeZone getTimeZone() {
-        return TimeZone.getTimeZone(
-                TimeZone.getAvailableIDs(GMTOffset * 60 * 60 * 1000)[0]
-        );
+        return timeZone;
     }
 
     public String getCountry() {
@@ -249,7 +243,7 @@ public class Location
         dest.writeString(this.cityId);
         dest.writeFloat(this.latitude);
         dest.writeFloat(this.longitude);
-        dest.writeInt(this.GMTOffset);
+        dest.writeSerializable(this.timeZone);
         dest.writeString(this.country);
         dest.writeString(this.province);
         dest.writeString(this.city);
@@ -264,7 +258,7 @@ public class Location
         this.cityId = in.readString();
         this.latitude = in.readFloat();
         this.longitude = in.readFloat();
-        this.GMTOffset = in.readInt();
+        this.timeZone = (TimeZone) in.readSerializable();
         this.country = in.readString();
         this.province = in.readString();
         this.city = in.readString();

@@ -189,9 +189,6 @@ public class GMSLocationService extends LocationService {
                     || countryCode.equals("TW")
                     || countryCode.equals("tw");
         }
-        if (result.inChina) {
-            result.GMTOffset = 8;
-        }
 
         return result;
     }

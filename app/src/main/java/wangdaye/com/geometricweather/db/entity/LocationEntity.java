@@ -4,11 +4,14 @@ import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.db.propertyConverter.TimeZoneConverter;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 import org.greenrobot.greendao.annotation.Id;
 
 import org.greenrobot.greendao.annotation.Generated;
+
+import java.util.TimeZone;
 
 /**
  * Location entity.
@@ -25,7 +28,9 @@ public class LocationEntity {
 
     public float latitude;
     public float longitude;
-    public int GMTOffset;
+
+    @Convert(converter = TimeZoneConverter.class, columnType = String.class)
+    public TimeZone timeZone;
 
     public String country;
     public String province;
@@ -39,16 +44,16 @@ public class LocationEntity {
     public boolean residentPosition;
     public boolean china;
 
-    @Generated(hash = 793368199)
+    @Generated(hash = 768556232)
     public LocationEntity(Long id, String cityId, float latitude, float longitude,
-            int GMTOffset, String country, String province, String city,
+            TimeZone timeZone, String country, String province, String city,
             String district, WeatherSource weatherSource, boolean currentPosition,
             boolean residentPosition, boolean china) {
         this.id = id;
         this.cityId = cityId;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.GMTOffset = GMTOffset;
+        this.timeZone = timeZone;
         this.country = country;
         this.province = province;
         this.city = city;
@@ -85,11 +90,11 @@ public class LocationEntity {
     public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
-    public int getGMTOffset() {
-        return this.GMTOffset;
+    public TimeZone getTimeZone() {
+        return this.timeZone;
     }
-    public void setGMTOffset(int GMTOffset) {
-        this.GMTOffset = GMTOffset;
+    public void setTimeZone(TimeZone timeZone) {
+        this.timeZone = timeZone;
     }
     public String getCountry() {
         return this.country;
@@ -139,6 +144,4 @@ public class LocationEntity {
     public void setChina(boolean china) {
         this.china = china;
     }
-
-
 }

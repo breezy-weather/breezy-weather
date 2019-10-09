@@ -42,8 +42,7 @@ public class BaiduIPLocationService extends LocationService {
                         try {
                             Result result = new Result(
                                     Float.parseFloat(baiduIPLocationResult.getContent().getPoint().getY()),
-                                    Float.parseFloat(baiduIPLocationResult.getContent().getPoint().getX()),
-                                    8
+                                    Float.parseFloat(baiduIPLocationResult.getContent().getPoint().getX())
                             );
                             result.setGeocodeInformation(
                                     "中国",

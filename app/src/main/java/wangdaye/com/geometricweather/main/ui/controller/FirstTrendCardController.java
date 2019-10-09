@@ -107,8 +107,8 @@ public class FirstTrendCardController extends AbstractMainItemController
             refreshTime.setText(Base.getTime(context, weather.getBase().getUpdateDate()));
             refreshTime.setTextColor(picker.getTextContentColor(context));
 
-            if (TimeZone.getDefault().getOffset(System.currentTimeMillis()) / 1000 / 60 / 60
-                    == location.getGMTOffset()) {
+            long time = System.currentTimeMillis();
+            if (TimeZone.getDefault().getOffset(time) == location.getTimeZone().getOffset(time)) {
                 // same time zone.
                 localTimeIcon.setVisibility(View.GONE);
                 localTime.setVisibility(View.GONE);

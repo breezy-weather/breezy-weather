@@ -13,7 +13,7 @@ public class LocationEntityConverter {
         entity.cityId = location.getCityId();
         entity.latitude = location.getLatitude();
         entity.longitude = location.getLongitude();
-        entity.GMTOffset = location.getGMTOffset();
+        entity.timeZone = location.getTimeZone();
         entity.country = location.getCountry();
         entity.province = location.getProvince();
         entity.city = location.getCity();
@@ -36,7 +36,7 @@ public class LocationEntityConverter {
     public static Location convertToModule(LocationEntity entity) {
         return new Location(
                 entity.cityId,
-                entity.latitude, entity.longitude, entity.GMTOffset,
+                entity.latitude, entity.longitude, entity.timeZone,
                 entity.country, entity.province, entity.city, entity.district,
                 null, entity.weatherSource,
                 entity.currentPosition, entity.residentPosition, entity.china
