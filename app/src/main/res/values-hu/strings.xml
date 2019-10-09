@@ -7,7 +7,7 @@
     <string name="default_location">Alapértelmezett Hely</string>
     <string name="live">Élő</string>
     <string name="today">Ma</string>
-    <string name="refresh_at">frissítése ekkor:</string>
+    <string name="refresh_at">Frissítése ekkor</string>
     <string name="precipitation">Csapadék</string>
     <string name="maxi_temp">Nappal</string>
     <string name="mini_temp">Este</string>
@@ -24,7 +24,6 @@
     <string name="nighttime">Este</string>
     <string name="publish_at">Közzététel ekkor:</string>
     <string name="feels_like">Érezhető</string>
-    <string name="exercise">Sport Szint</string>
     <string name="follow_system">Rendszerbeállítás Használata</string>
     <string name="background_information">Háttérinformáció</string>
     <string name="pressure">Légköri Nyomás</string>

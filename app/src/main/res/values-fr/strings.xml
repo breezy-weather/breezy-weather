@@ -77,7 +77,7 @@
     <string name="precipitation">Précipitation</string>
     <string name="pressure">Pression atmosphérique</string>
     <string name="publish_at">Mise à jour</string>
-    <string name="refresh_at">mise à jour</string>
+    <string name="refresh_at">Mise à jour</string>
     <string name="retrofit">Retrofit 2.0</string>
     <string name="sensible_temp">Temp. ressentie</string>
     <string name="settings_category_basic">Général</string>

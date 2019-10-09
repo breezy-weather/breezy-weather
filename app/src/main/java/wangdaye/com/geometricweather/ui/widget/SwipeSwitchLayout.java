@@ -43,7 +43,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
     private boolean isBeingNestedScrolling;
 
     private static final float SWIPE_RATIO = 0.4f;
-    private static final float NESTED_SCROLLING_RATIO = 0.1f;
+    private static final float NESTED_SCROLLING_RATIO = 0.075f;
 
     public static final int SWIPE_DIRECTION_LEFT = -1;
     public static final int SWIPE_DIRECTION_RIGHT = 1;
@@ -87,7 +87,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
     private void initialize() {
         this.swipeDistance = 0;
         this.swipeTrigger = getContext().getResources().getDisplayMetrics().widthPixels / 3;
-        this.nestedScrollingTrigger = swipeTrigger * 2;
+        this.nestedScrollingTrigger = (int) (swipeTrigger * 2.25);
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
 

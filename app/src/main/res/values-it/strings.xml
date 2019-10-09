@@ -8,7 +8,7 @@
     <string name="default_location">Posizione predefinita</string>
     <string name="live">Attualmente</string>
     <string name="today">Oggi</string>
-    <string name="refresh_at">aggiornato il </string>
+    <string name="refresh_at">Aggiornato il </string>
     <string name="precipitation">Precipitazioni</string>
     <string name="maxi_temp">Giorno</string>
     <string name="mini_temp">Notte</string>

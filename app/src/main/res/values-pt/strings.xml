@@ -8,7 +8,7 @@
     <string name="default_location">localização padrão</string>
     <string name="live">Ao vivo</string>
     <string name="today">Hoje</string>
-    <string name="refresh_at">atualizado em</string>
+    <string name="refresh_at">Atualizado em</string>
     <string name="precipitation">Precipitação</string>
     <string name="maxi_temp">Min</string>
     <string name="mini_temp">Max</string>

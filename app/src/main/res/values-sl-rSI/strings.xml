@@ -8,7 +8,7 @@
     <string name="default_location">Privzeta lokacija</string>
     <string name="live">Trenutno</string>
     <string name="today">Danes</string>
-    <string name="refresh_at">osveži ob</string>
+    <string name="refresh_at">Osveži ob</string>
     <string name="precipitation">Padavine</string>
     <string name="maxi_temp">podnevi</string>
     <string name="mini_temp">ponoči</string>
@@ -25,7 +25,6 @@
     <string name="nighttime">Ponoči</string>
     <string name="publish_at">Objavi ob</string>
     <string name="feels_like">Občuti se</string>
-    <string name="exercise">Primernost za šport</string>
     <string name="follow_system">Sledi sistemu</string>
     <string name="background_information">Informacije iz ozadja</string>
     <string name="pressure">Atmosferski tlak</string>

@@ -12,7 +12,8 @@
     <string name="default_location">default location</string>
     <string name="live">Live</string>
     <string name="today">Today</string>
-    <string name="refresh_at">refresh at</string>
+    <string name="refresh_at">Refresh at</string>
+    <string name="local_time">Local time</string>
     <string name="precipitation">Precipitation</string>
     <string name="maxi_temp">daytime</string>
     <string name="mini_temp">nighttime</string>
@@ -29,7 +30,6 @@
     <string name="nighttime">Nighttime</string>
     <string name="publish_at">Publish at</string>
     <string name="feels_like">Feels like</string>
-    <string name="exercise">运动指数</string>
     <string name="follow_system">Follow system</string>
     <string name="background_information">Background information</string>
     <string name="pressure">Atmospheric pressure</string>

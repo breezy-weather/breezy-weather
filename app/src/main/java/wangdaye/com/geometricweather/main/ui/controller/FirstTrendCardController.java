@@ -36,7 +36,6 @@ public class FirstTrendCardController extends AbstractMainItemController
     
     private AppCompatImageView timeIcon;
     private TextView refreshTime;
-    private AppCompatImageView localTimeIcon;
     private TextClock localTime;
 
     private TextView alert;
@@ -56,7 +55,6 @@ public class FirstTrendCardController extends AbstractMainItemController
         this.card = view.findViewById(R.id.container_main_first_trend_card);
         this.timeIcon = view.findViewById(R.id.container_main_first_trend_card_timeIcon);
         this.refreshTime = view.findViewById(R.id.container_main_first_trend_card_timeText);
-        this.localTimeIcon = view.findViewById(R.id.container_main_first_trend_card_localTimeIcon);
         this.localTime = view.findViewById(R.id.container_main_first_trend_card_localTimeText);
         this.alert = view.findViewById(R.id.container_main_first_trend_card_alert);
         this.line = view.findViewById(R.id.container_main_first_trend_card_line);
@@ -67,7 +65,7 @@ public class FirstTrendCardController extends AbstractMainItemController
         this.weatherView = weatherView;
     }
 
-    @SuppressLint("RestrictedApi")
+    @SuppressLint({"RestrictedApi", "SetTextI18n"})
     @Override
     public void onBindView(@NonNull Location location) {
         if (SettingsOptionManager.getInstance(context).getCardOrder() == CardOrder.DAILY_FIRST) {
@@ -104,23 +102,27 @@ public class FirstTrendCardController extends AbstractMainItemController
             );
             timeIcon.setOnClickListener(this);
             
-            refreshTime.setText(Base.getTime(context, weather.getBase().getUpdateDate()));
+            refreshTime.setText(
+                    context.getString(R.string.refresh_at)
+                            + " "
+                            + Base.getTime(context, weather.getBase().getUpdateDate())
+            );
             refreshTime.setTextColor(picker.getTextContentColor(context));
 
             long time = System.currentTimeMillis();
             if (TimeZone.getDefault().getOffset(time) == location.getTimeZone().getOffset(time)) {
                 // same time zone.
-                localTimeIcon.setVisibility(View.GONE);
                 localTime.setVisibility(View.GONE);
             } else {
-                localTimeIcon.setVisibility(View.VISIBLE);
                 localTime.setVisibility(View.VISIBLE);
-
-                localTimeIcon.setSupportImageTintList(
-                        ColorStateList.valueOf(picker.getTextContentColor(context))
-                );
                 localTime.setTimeZone(location.getTimeZone().getID());
-                localTime.setTextColor(picker.getTextContentColor(context));
+                localTime.setTextColor(picker.getTextSubtitleColor(context));
+                localTime.setFormat12Hour(
+                        context.getString(R.string.date_format_widget_long) + " - h:mm aa"
+                );
+                localTime.setFormat24Hour(
+                        context.getString(R.string.date_format_widget_long) + " - HH:mm"
+                );
             }
 
             if (weather.getAlertList().size() == 0) {

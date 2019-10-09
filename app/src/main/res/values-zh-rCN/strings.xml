@@ -10,6 +10,7 @@
     <string name="live">实时</string>
     <string name="today">今日</string>
     <string name="refresh_at">更新于</string>
+    <string name="local_time">当地时间</string>
     <string name="precipitation">降水概率</string>
     <string name="time">时间</string>
     <string name="day">白天</string>
@@ -24,7 +25,6 @@
     <string name="nighttime">夜间</string>
     <string name="publish_at">发布于</string>
     <string name="feels_like">体感</string>
-    <string name="exercise">运动指数</string>
     <string name="follow_system">跟随系统</string>
     <string name="background_information">后台信息</string>
     <string name="pressure">气压</string>
