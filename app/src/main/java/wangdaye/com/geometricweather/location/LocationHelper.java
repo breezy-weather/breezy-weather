@@ -32,8 +32,10 @@ import wangdaye.com.geometricweather.weather.service.WeatherService;
 
 public class LocationHelper {
 
-    private LocationService locationService;
-    private WeatherService weatherService;
+    @NonNull private final LocationService locationService;
+    @NonNull private final WeatherService accuWeather;
+    @NonNull private final WeatherService cnWeather;
+    @NonNull private final WeatherService caiyunWeather;
 
     public LocationHelper(Context context) {
         switch (SettingsOptionManager.getInstance(context).getLocationProvider()) {
@@ -52,6 +54,10 @@ public class LocationHelper {
                 locationService = new AndroidLocationService(context);
                 break;
         }
+
+        accuWeather = new AccuWeatherService();
+        cnWeather = new CNWeatherService();
+        caiyunWeather = new CaiYunWeatherService();
     }
 
     public void requestLocation(Context context, Location location, @NonNull OnRequestLocationListener l) {
@@ -95,28 +101,23 @@ public class LocationHelper {
         if (!location.canUseChineseSource() || source == WeatherSource.ACCU) {
             // use accu as weather service api.
             location.setWeatherSource(WeatherSource.ACCU);
-            weatherService = new AccuWeatherService();
-            weatherService.requestLocation(context, location, new AccuLocationCallback(context, location, l));
+            accuWeather.requestLocation(context, location, new AccuLocationCallback(context, location, l));
         } else if (source == WeatherSource.CN) {
             // use cn weather net as the weather service api.
             location.setWeatherSource(WeatherSource.CN);
-            weatherService = new CNWeatherService();
-            weatherService.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
+            cnWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
         } else {
             // caiyun.
             location.setWeatherSource(WeatherSource.CAIYUN);
-            weatherService = new CaiYunWeatherService();
-            weatherService.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
+            caiyunWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
         }
     }
 
     public void cancel() {
-        if (locationService != null) {
-            locationService.cancel();
-        }
-        if (weatherService != null) {
-            weatherService.cancel();
-        }
+        locationService.cancel();
+        accuWeather.cancel();
+        cnWeather.cancel();
+        caiyunWeather.cancel();
     }
 
     public String[] getPermissions() {

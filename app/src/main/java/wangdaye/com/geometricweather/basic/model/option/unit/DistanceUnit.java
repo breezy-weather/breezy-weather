@@ -29,4 +29,8 @@ public enum DistanceUnit {
     public String getDistanceText(float km) {
         return UnitUtils.formatFloat(km * unitFactor, 2) + unitAbbreviation;
     }
+
+    public String getAbbreviation() {
+        return unitAbbreviation;
+    }
 }

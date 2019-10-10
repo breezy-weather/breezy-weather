@@ -30,4 +30,8 @@ public enum TemperatureUnit {
     public String getTemperatureText(int c) {
         return unitCalculator.getTemperature(c) + unitAbbreviation;
     }
+
+    public String getAbbreviation() {
+        return unitAbbreviation;
+    }
 }

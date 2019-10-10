@@ -124,10 +124,8 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
         int minIndex = -1;
         double minDistance = Double.MAX_VALUE;
         for (int i = 0; i < entityList.size(); i ++) {
-            double distance = Math.sqrt(
-                    Math.pow(latitude - Double.parseDouble(entityList.get(i).latitude), 2)
-                            + Math.pow(longitude - Double.parseDouble(entityList.get(i).longitude), 2)
-            );
+            double distance = Math.pow(latitude - Double.parseDouble(entityList.get(i).latitude), 2)
+                    + Math.pow(longitude - Double.parseDouble(entityList.get(i).longitude), 2);
             if (distance < minDistance) {
                 minIndex = i;
                 minDistance = distance;

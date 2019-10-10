@@ -97,9 +97,6 @@ public class CNWeatherService extends WeatherService {
 
     @Override
     public void requestLocation(Context context, Location location, @NonNull RequestLocationCallback callback) {
-        if (!location.hasGeocodeInformation()) {
-            callback.requestLocationFailed(null);
-        }
         if (location.hasGeocodeInformation()) {
             searchLocationsInThread(
                     context,

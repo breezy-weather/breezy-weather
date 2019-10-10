@@ -31,4 +31,8 @@ public enum PressureUnit {
     public String getPressureText(float mb) {
         return UnitUtils.formatFloat(mb * unitFactor) + unitAbbreviation;
     }
+
+    public String getAbbreviation() {
+        return unitAbbreviation;
+    }
 }

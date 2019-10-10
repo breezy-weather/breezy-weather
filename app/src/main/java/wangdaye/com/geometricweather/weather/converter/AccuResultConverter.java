@@ -44,28 +44,55 @@ import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 
 public class AccuResultConverter {
 
-    public static Location convert(AccuLocationResult result) {
-        return new Location(
-                result.Key,
-                (float) result.GeoPosition.Latitude,
-                (float) result.GeoPosition.Longitude,
-                TimeZone.getTimeZone(result.TimeZone.Name),
-                result.Country.LocalizedName,
-                result.AdministrativeArea == null ? "" : result.AdministrativeArea.LocalizedName,
-                result.LocalizedName,
-                "",
-                null,
-                WeatherSource.ACCU,
-                false,
-                false,
-                !TextUtils.isEmpty(result.Country.ID)
-                        && (result.Country.ID.equals("CN")
-                        || result.Country.ID.equals("cn")
-                        || result.Country.ID.equals("HK")
-                        || result.Country.ID.equals("hk")
-                        || result.Country.ID.equals("TW")
-                        || result.Country.ID.equals("tw"))
-        );
+    public static Location convert(@Nullable Location location, AccuLocationResult result) {
+        if (location != null
+                && !TextUtils.isEmpty(location.getProvince())
+                && !TextUtils.isEmpty(location.getCity())
+                && !TextUtils.isEmpty(location.getDistrict())) {
+            return new Location(
+                    result.Key,
+                    (float) result.GeoPosition.Latitude,
+                    (float) result.GeoPosition.Longitude,
+                    TimeZone.getTimeZone(result.TimeZone.Name),
+                    result.Country.LocalizedName,
+                    location.getProvince(),
+                    location.getCity(),
+                    location.getDistrict(),
+                    null,
+                    WeatherSource.ACCU,
+                    false,
+                    false,
+                    !TextUtils.isEmpty(result.Country.ID)
+                            && (result.Country.ID.equals("CN")
+                            || result.Country.ID.equals("cn")
+                            || result.Country.ID.equals("HK")
+                            || result.Country.ID.equals("hk")
+                            || result.Country.ID.equals("TW")
+                            || result.Country.ID.equals("tw"))
+            );
+        } else {
+            return new Location(
+                    result.Key,
+                    (float) result.GeoPosition.Latitude,
+                    (float) result.GeoPosition.Longitude,
+                    TimeZone.getTimeZone(result.TimeZone.Name),
+                    result.Country.LocalizedName,
+                    result.AdministrativeArea == null ? "" : result.AdministrativeArea.LocalizedName,
+                    result.LocalizedName,
+                    "",
+                    null,
+                    WeatherSource.ACCU,
+                    false,
+                    false,
+                    !TextUtils.isEmpty(result.Country.ID)
+                            && (result.Country.ID.equals("CN")
+                            || result.Country.ID.equals("cn")
+                            || result.Country.ID.equals("HK")
+                            || result.Country.ID.equals("hk")
+                            || result.Country.ID.equals("TW")
+                            || result.Country.ID.equals("tw"))
+            );
+        }
     }
 
     public static Weather convert(Context context,

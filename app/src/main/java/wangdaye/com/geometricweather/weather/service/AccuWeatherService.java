@@ -14,7 +14,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.basic.model.option.provider.LocationProvider;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
@@ -187,7 +186,7 @@ public class AccuWeatherService extends WeatherService {
         List<Location> locationList = new ArrayList<>();
         if (resultList != null && resultList.size() != 0) {
             for (AccuLocationResult r : resultList) {
-                locationList.add(AccuResultConverter.convert(r));
+                locationList.add(AccuResultConverter.convert(null, r));
             }
         }
         return locationList;
@@ -225,23 +224,34 @@ public class AccuWeatherService extends WeatherService {
                 .putString(KEY_OLD_PROVINCE, location.getProvince())
                 .apply();
 
-        if (SettingsOptionManager.getInstance(context).getLocationProvider()
-                == LocationProvider.BAIDU_IP) {
-            requestLocation(
-                    context,
-                    TextUtils.isEmpty(location.getDistrict())
-                            ? formatLocationString(convertChinese(location.getCity()))
-                            : formatLocationString(convertChinese(location.getDistrict())),
-                    new CacheLocationRequestCallback(context, callback)
-            );
-        } else {
-            requestLocation(
-                    context,
-                    String.valueOf(location.getLatitude()),
-                    String.valueOf(location.getLongitude()),
-                    new CacheLocationRequestCallback(context, callback)
-            );
-        }
+        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        final CacheLocationRequestCallback finalCallback = new CacheLocationRequestCallback(context, callback);
+
+        api.getWeatherLocationByGeoPosition(
+                "Always",
+                BuildConfig.ACCU_WEATHER_KEY,
+                location.getLatitude() + "," + location.getLongitude(),
+                languageCode
+        ).compose(SchedulerTransformer.create())
+                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<AccuLocationResult>() {
+                    @Override
+                    public void onSucceed(AccuLocationResult accuLocationResult) {
+                        if (accuLocationResult != null) {
+                            List<Location> locationList = new ArrayList<>();
+                            locationList.add(AccuResultConverter.convert(location, accuLocationResult));
+                            finalCallback.requestLocationSuccess(
+                                    location.getLatitude() + "," + location.getLongitude(), locationList);
+                        } else {
+                            onFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onFailed() {
+                        finalCallback.requestLocationFailed(
+                                location.getLatitude() + "," + location.getLongitude());
+                    }
+                }));
     }
 
     public void requestLocation(Context context, String query,
@@ -255,7 +265,7 @@ public class AccuWeatherService extends WeatherService {
                         if (accuLocationResults != null && accuLocationResults.size() != 0) {
                             List<Location> locationList = new ArrayList<>();
                             for (AccuLocationResult r : accuLocationResults) {
-                                locationList.add(AccuResultConverter.convert(r));
+                                locationList.add(AccuResultConverter.convert(null, r));
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
@@ -266,34 +276,6 @@ public class AccuWeatherService extends WeatherService {
                     @Override
                     public void onFailed() {
                         callback.requestLocationFailed(query);
-                    }
-                }));
-    }
-
-    public void requestLocation(Context context, String lat, String lon,
-                                @NonNull RequestLocationCallback callback) {
-        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
-        api.getWeatherLocationByGeoPosition(
-                "Always",
-                BuildConfig.ACCU_WEATHER_KEY,
-                lat + "," + lon,
-                languageCode
-        ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<AccuLocationResult>() {
-                    @Override
-                    public void onSucceed(AccuLocationResult accuLocationResult) {
-                        if (accuLocationResult != null) {
-                            List<Location> locationList = new ArrayList<>();
-                            locationList.add(AccuResultConverter.convert(accuLocationResult));
-                            callback.requestLocationSuccess(lat + ", " + lon, locationList);
-                        } else {
-                            onFailed();
-                        }
-                    }
-
-                    @Override
-                    public void onFailed() {
-                        callback.requestLocationFailed(lat + ", " + lon);
                     }
                 }));
     }
