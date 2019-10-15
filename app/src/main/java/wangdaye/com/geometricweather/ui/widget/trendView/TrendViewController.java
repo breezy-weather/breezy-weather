@@ -9,12 +9,14 @@ import android.widget.TextView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.ui.adapter.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Trend view controller.
@@ -40,11 +42,23 @@ public class TrendViewController {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new DailyTrendAdapter(activity, weather, themeColors, provider, picker, unit));
+        recyclerView.setAdapter(
+                new DailyTrendAdapter(
+                        activity,
+                        recyclerView,
+                        activity.getResources().getDimensionPixelSize(R.dimen.little_margin),
+                        DisplayUtils.isTabletDevice(activity) ? 7 : 5,
+                        weather,
+                        themeColors,
+                        provider,
+                        picker,
+                        unit
+                )
+        );
 
         recyclerView.setLineColor(picker.getLineColor(activity));
         if (weather.getYesterday() == null) {
-            recyclerView.setData(null, 0, 0, unit, true);
+            recyclerView.setData(null, null, 0, 0, null, null);
         } else {
             int highest = weather.getYesterday().getDaytimeTemperature();
             int lowest = weather.getYesterday().getNighttimeTemperature();
@@ -57,14 +71,12 @@ public class TrendViewController {
                 }
             }
             recyclerView.setData(
-                    new int[] {
-                            weather.getYesterday().getDaytimeTemperature(),
-                            weather.getYesterday().getNighttimeTemperature()
-                    },
+                    (float) weather.getYesterday().getDaytimeTemperature(),
+                    (float) weather.getYesterday().getNighttimeTemperature(),
                     highest,
                     lowest,
-                    unit,
-                    true
+                    Temperature.getShortTemperature(weather.getYesterday().getDaytimeTemperature(), unit),
+                    Temperature.getShortTemperature(weather.getYesterday().getNighttimeTemperature(), unit)
             );
         }
     }
@@ -87,11 +99,23 @@ public class TrendViewController {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new HourlyTrendAdapter(activity, weather, themeColors, provider, picker, unit));
+        recyclerView.setAdapter(
+                new HourlyTrendAdapter(
+                        activity,
+                        recyclerView,
+                        activity.getResources().getDimensionPixelSize(R.dimen.little_margin),
+                        DisplayUtils.isTabletDevice(activity) ? 7 : 5,
+                        weather,
+                        themeColors,
+                        provider,
+                        picker,
+                        unit
+                )
+        );
 
         recyclerView.setLineColor(picker.getLineColor(activity));
         if (weather.getYesterday() == null) {
-            recyclerView.setData(null, 0, 0, unit, false);
+            recyclerView.setData(null, null, 0, 0, null, null);
         } else {
             int highest = weather.getYesterday().getDaytimeTemperature();
             int lowest = weather.getYesterday().getNighttimeTemperature();
@@ -104,14 +128,12 @@ public class TrendViewController {
                 }
             }
             recyclerView.setData(
-                    new int[] {
-                            weather.getYesterday().getDaytimeTemperature(),
-                            weather.getYesterday().getNighttimeTemperature()
-                    },
+                    (float) weather.getYesterday().getDaytimeTemperature(),
+                    (float) weather.getYesterday().getNighttimeTemperature(),
                     highest,
                     lowest,
-                    unit,
-                    false
+                    Temperature.getShortTemperature(weather.getYesterday().getDaytimeTemperature(), unit),
+                    Temperature.getShortTemperature(weather.getYesterday().getNighttimeTemperature(), unit)
             );
         }
     }

@@ -18,14 +18,15 @@ import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
-import wangdaye.com.geometricweather.ui.widget.trendView.HourlyItemView;
-import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
+import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
+import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendRecyclerViewAdapter;
+import wangdaye.com.geometricweather.ui.widget.trendView.overview.HourlyItemView;
 
 /**
  * Hourly trend adapter.
  * */
 
-public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.ViewHolder> {
+public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdapter.ViewHolder> {
 
     private GeoActivity activity;
 
@@ -34,9 +35,9 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
     private MainColorPicker picker;
     private TemperatureUnit unit;
 
-    private float[] temps;
-    private int highestTemp;
-    private int lowestTemp;
+    private float[] temperatures;
+    private int highestTemperature;
+    private int lowestTemperature;
 
     private int[] themeColors;
 
@@ -47,6 +48,8 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
         ViewHolder(View itemView) {
             super(itemView);
             hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
+            hourlyItem.setParent(getTrendParent());
+            hourlyItem.setWidth(getItemWidth());
         }
 
         void onBindView(int position) {
@@ -61,26 +64,24 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
                     ResourceHelper.getWeatherIcon(provider, hourly.getWeatherCode(), hourly.isDaylight())
             );
 
-            Float p = hourly.getPrecipitationProbability().getTotal();
-            float fp = p == null ? 0 : p;
-            hourlyItem.getTrendItemView().setData(
-                    buildTempArrayForItem(temps, position),
+            hourlyItem.getTrendItem().setData(
+                    buildTempArrayForItem(temperatures, position),
                     null,
-                    (int) fp,
-                    highestTemp,
-                    lowestTemp,
+                    hourly.getPrecipitationProbability().getTotal(),
+                    highestTemperature,
+                    lowestTemperature,
                     unit
             );
-            hourlyItem.getTrendItemView().setLineColors(
+            hourlyItem.getTrendItem().setLineColors(
                     themeColors[1], themeColors[2], picker.getLineColor(context)
             );
-            hourlyItem.getTrendItemView().setShadowColors(
+            hourlyItem.getTrendItem().setShadowColors(
                     themeColors[1], themeColors[2], picker.isLightTheme());
-            hourlyItem.getTrendItemView().setTextColors(
+            hourlyItem.getTrendItem().setTextColors(
                     picker.getTextContentColor(context),
                     picker.getTextSubtitleColor(context)
             );
-            hourlyItem.getTrendItemView().setPrecipitationAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
+            hourlyItem.getTrendItem().setPrecipitationAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
 
             hourlyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
@@ -93,16 +94,16 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
         }
 
         @Size(3)
-        private float[] buildTempArrayForItem(float[] temps, int adapterPosition) {
-            float[] a = new float[3];
+        private Float[] buildTempArrayForItem(float[] temps, int adapterPosition) {
+            Float[] a = new Float[3];
             a[1] = temps[2 * adapterPosition];
             if (2 * adapterPosition - 1 < 0) {
-                a[0] = TrendItemView.NONEXISTENT_VALUE;
+                a[0] = null;
             } else {
                 a[0] = temps[2 * adapterPosition - 1];
             }
             if (2 * adapterPosition + 1 >= temps.length) {
-                a[2] = TrendItemView.NONEXISTENT_VALUE;
+                a[2] = null;
             } else {
                 a[2] = temps[2 * adapterPosition + 1];
             }
@@ -110,8 +111,11 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
         }
     }
 
-    public HourlyTrendAdapter(GeoActivity activity, @NonNull Weather weather, int[] themeColors,
+    public HourlyTrendAdapter(GeoActivity activity,
+                              TrendParent parent, float marginHorizontalPx, int itemCountPerLine,
+                              @NonNull Weather weather, int[] themeColors,
                               ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
+        super(activity, parent, marginHorizontalPx, itemCountPerLine);
         this.activity = activity;
 
         this.weather = weather;
@@ -119,26 +123,26 @@ public class HourlyTrendAdapter extends RecyclerView.Adapter<HourlyTrendAdapter.
         this.picker = picker;
         this.unit = unit;
 
-        this.temps = new float[Math.max(0, weather.getHourlyForecast().size() * 2 - 1)];
-        for (int i = 0; i < temps.length; i += 2) {
-            temps[i] = weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature();
+        this.temperatures = new float[Math.max(0, weather.getHourlyForecast().size() * 2 - 1)];
+        for (int i = 0; i < temperatures.length; i += 2) {
+            temperatures[i] = weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature();
         }
-        for (int i = 1; i < temps.length; i += 2) {
-            temps[i] = (temps[i - 1] + temps[i + 1]) * 0.5F;
+        for (int i = 1; i < temperatures.length; i += 2) {
+            temperatures[i] = (temperatures[i - 1] + temperatures[i + 1]) * 0.5F;
         }
 
-        highestTemp = weather.getYesterday() == null
+        highestTemperature = weather.getYesterday() == null
                 ? Integer.MIN_VALUE
                 : weather.getYesterday().getDaytimeTemperature();
-        lowestTemp = weather.getYesterday() == null
+        lowestTemperature = weather.getYesterday() == null
                 ? Integer.MAX_VALUE
                 : weather.getYesterday().getNighttimeTemperature();
         for (int i = 0; i < weather.getHourlyForecast().size(); i ++) {
-            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() > highestTemp) {
-                highestTemp = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
+            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() > highestTemperature) {
+                highestTemperature = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
             }
-            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() < lowestTemp) {
-                lowestTemp = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
+            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() < lowestTemperature) {
+                lowestTemperature = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
             }
         }
         this.themeColors = themeColors;

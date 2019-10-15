@@ -108,10 +108,7 @@ public class MainActivityViewModel extends ViewModel {
         }
 
         for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).isCurrentPosition() && Location.isLocal(formattedId)) {
-                return i;
-            } else if (!locationList.get(i).isCurrentPosition()
-                    && locationList.get(i).getCityId().equals(formattedId)) {
+            if (locationList.get(i).equals(formattedId)) {
                 return i;
             }
         }

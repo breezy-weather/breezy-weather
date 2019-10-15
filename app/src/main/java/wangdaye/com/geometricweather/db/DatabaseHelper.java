@@ -109,7 +109,7 @@ public class DatabaseHelper {
     @Nullable
     public Location readLocation(@NonNull Location location) {
         LocationEntity entity = locationEntityController.selectLocationEntity(
-                location.getCityId(), location.isCurrentPosition());
+                location.getCityId(), location.getWeatherSource(), location.isCurrentPosition());
         if (entity != null) {
             return LocationEntityConverter.convertToModule(entity);
         } else {

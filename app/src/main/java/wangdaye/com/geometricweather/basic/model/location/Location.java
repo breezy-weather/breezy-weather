@@ -105,12 +105,24 @@ public class Location
         }
     }
 
-    public String getFormattedId() {
-        return isCurrentPosition() ? CURRENT_POSITION_ID : cityId;
+    public boolean equals(@Nullable String formattedId) {
+        if (TextUtils.isEmpty(formattedId)) {
+            return false;
+        }
+        if (CURRENT_POSITION_ID.equals(formattedId)) {
+            return isCurrentPosition();
+        }
+        try {
+            String[] keys = formattedId.split("&");
+            return cityId.equals(keys[0])
+                    && weatherSource.name().equals(keys[1]);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static boolean isLocal(String formattedId) {
-        return CURRENT_POSITION_ID.equals(formattedId);
+    public String getFormattedId() {
+        return isCurrentPosition() ? CURRENT_POSITION_ID : (cityId + "&" + weatherSource.name());
     }
 
     public Location setCurrentPosition() {

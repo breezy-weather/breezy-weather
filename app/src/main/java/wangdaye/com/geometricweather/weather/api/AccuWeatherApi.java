@@ -21,17 +21,17 @@ import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 
 public interface AccuWeatherApi {
 
-    @GET("locations/v1/cities/search.json")
+    @GET("locations/v1/cities/translate.json")
     Call<List<AccuLocationResult>> callWeatherLocation(@Query("alias") String alias,
                                                        @Query("apikey") String apikey,
                                                        @Query("q") String q,
                                                        @Query("language") String language);
 
-    @GET("locations/v1/cities/search.json")
+    @GET("locations/v1/cities/translate.json")
     Observable<List<AccuLocationResult>> getWeatherLocation(@Query("alias") String alias,
-                                                      @Query("apikey") String apikey,
-                                                      @Query("q") String q,
-                                                      @Query("language") String language);
+                                                            @Query("apikey") String apikey,
+                                                            @Query("q") String q,
+                                                            @Query("language") String language);
 
     @GET("locations/v1/cities/geoposition/search.json")
     Observable<AccuLocationResult> getWeatherLocationByGeoPosition(@Query("alias") String alias,
@@ -40,10 +40,10 @@ public interface AccuWeatherApi {
                                                                    @Query("language") String language);
 
     @GET("currentconditions/v1/{city_key}.json")
-    Observable<List<AccuCurrentResult>> getRealtime(@Path("city_key") String city_key,
-                                                    @Query("apikey") String apikey,
-                                                    @Query("language") String language,
-                                                    @Query("details") boolean details);
+    Observable<List<AccuCurrentResult>> getCurrent(@Path("city_key") String city_key,
+                                                   @Query("apikey") String apikey,
+                                                   @Query("language") String language,
+                                                   @Query("details") boolean details);
 
     @GET("forecasts/v1/daily/15day/{city_key}.json")
     Observable<AccuDailyResult> getDaily(@Path("city_key") String city_key,
@@ -59,14 +59,14 @@ public interface AccuWeatherApi {
                                                  @Query("metric") boolean metric);
 
     @GET("forecasts/v1/minute/1minute.json")
-    Observable<AccuMinuteResult> getMinute(@Query("apikey") String apikey,
-                                           @Query("language") String language,
-                                           @Query("details") boolean details,
-                                           @Query("q") String q);
+    Observable<AccuMinuteResult> getMinutely(@Query("apikey") String apikey,
+                                             @Query("language") String language,
+                                             @Query("details") boolean details,
+                                             @Query("q") String q);
 
     @GET("airquality/v1/observations/{city_key}.json")
-    Observable<AccuAqiResult> getAqi(@Path("city_key") String city_key,
-                                     @Query("apikey") String apikey);
+    Observable<AccuAqiResult> getAirQuality(@Path("city_key") String city_key,
+                                            @Query("apikey") String apikey);
 
     @GET("alerts/v1/{city_key}.json")
     Observable<List<AccuAlertResult>> getAlert(@Path("city_key") String city_key,

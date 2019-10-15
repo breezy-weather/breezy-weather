@@ -8,6 +8,7 @@ android {
         targetSdkVersion 29
         versionCode 2400
         versionName "2.400"
+        multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
@@ -79,7 +80,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // android x.
-    implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'com.google.android.material:material:1.1.0-beta01'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.0'
@@ -92,6 +93,9 @@ dependencies {
     implementation "android.arch.lifecycle:livedata:1.1.1"
     //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
+    // multi dex.
+    implementation 'com.android.support:multidex:1.0.3'
 
     // a map.
     implementation 'com.amap.api:location:4.7.0'

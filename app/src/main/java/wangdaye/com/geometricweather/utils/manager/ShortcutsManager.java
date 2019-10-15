@@ -99,7 +99,7 @@ public class ShortcutsManager {
                 title = list.get(i).isCurrentPosition() ? c.getString(R.string.current_location) : list.get(i).getCityName(c);
 
                 shortcutList.add(
-                        new ShortcutInfo.Builder(c, list.get(i).getCityId())
+                        new ShortcutInfo.Builder(c, list.get(i).getFormattedId())
                                 .setIcon(icon)
                                 .setShortLabel(title)
                                 .setLongLabel(title)

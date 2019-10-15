@@ -113,6 +113,7 @@ public class MainActivity extends GeoActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // attach weather view.
         switch (SettingsOptionManager.getInstance(this).getUiStyle()) {
             case MATERIAL:
                 weatherView = new MaterialWeatherView(this);
@@ -255,7 +256,6 @@ public class MainActivity extends GeoActivity
 
         this.scrollView = findViewById(R.id.activity_main_scrollView);
         scrollView.setOnTouchListener(indicatorStateListener);
-        scrollView.setOnScrollChangeListener(new OnScrollListener(weatherView.getFirstCardMarginTop()));
 
         this.scrollContainer = findViewById(R.id.activity_main_scrollContainer);
 
@@ -357,11 +357,11 @@ public class MainActivity extends GeoActivity
         refreshLayout.setColorSchemeColors(weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
         refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
 
-        adapter = new MainControllerAdapter(this, weatherView, location, resourceProvider, colorPicker);
-        adapter.bindView();
-        adapter.onScroll(0, 0);
-
-        scrollView.setVisibility(View.VISIBLE);
+        adapter = new MainControllerAdapter(this);
+        adapter.bind(this, scrollContainer, weatherView, location, resourceProvider, colorPicker);
+        scrollView.setOnScrollChangeListener(
+                new OnScrollListener(adapter.getFooter(this), weatherView.getFirstCardMarginTop())
+        );
 
         indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
         indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));
@@ -394,11 +394,8 @@ public class MainActivity extends GeoActivity
 
         switchLayout.reset();
 
-        scrollView.setVisibility(View.GONE);
-        scrollView.scrollTo(0, 0);
-
         if (adapter != null) {
-            adapter.destroy();
+            adapter.unbind(scrollContainer);
         }
     }
 
@@ -562,9 +559,9 @@ public class MainActivity extends GeoActivity
         private int firstCardMarginTop;
         private int topOverlapTrigger;
 
-        OnScrollListener(int firstCardMarginTop) {
+        OnScrollListener(View footer, int firstCardMarginTop) {
             super();
-            footer = findViewById(R.id.container_main_footer);
+            this.footer = footer;
 
             topChanged = false;
             topOverlap = false;

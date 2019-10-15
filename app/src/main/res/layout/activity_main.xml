@@ -26,17 +26,7 @@
                     android:id="@+id/activity_main_scrollContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <include layout="@layout/container_main_header" />
-                    <include layout="@layout/container_main_first_trend_card" />
-                    <include layout="@layout/container_main_second_trend_card" />
-                    <include layout="@layout/container_main_aqi" />
-                    <include layout="@layout/container_main_details" />
-                    <include layout="@layout/container_main_sun_moon" />
-                    <include layout="@layout/container_main_footer" />
-
-                </LinearLayout>
+                    android:orientation="vertical" />
 
             </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView>
 

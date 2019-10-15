@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trendView;
+package wangdaye.com.geometricweather.ui.widget.trendView.overview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,18 +13,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.image.AbstractIconTarget;
+import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendChild;
+import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
- * Daily trend item view.
+ * Daily trendItem item view.
  * */
-public class DailyItemView extends ViewGroup {
+public class DailyItemView extends ViewGroup implements TrendChild {
 
-    private TrendItemView trend;
+    private TrendItemView trendItem;
+    private TrendParent trendParent;
     private Paint paint;
 
     @Nullable private OnClickListener clickListener;
@@ -37,6 +41,8 @@ public class DailyItemView extends ViewGroup {
 
     @ColorInt private int contentColor;
     @ColorInt private int subTitleColor;
+
+    private float width;
 
     private float weekTextBaseLine;
 
@@ -83,8 +89,8 @@ public class DailyItemView extends ViewGroup {
     private void initialize() {
         setWillNotDraw(false);
 
-        trend = new TrendItemView(getContext());
-        addView(trend);
+        trendItem = new TrendItemView(getContext());
+        addView(trendItem);
 
         paint = new Paint();
         paint.setAntiAlias(true);
@@ -93,16 +99,13 @@ public class DailyItemView extends ViewGroup {
 
         setTextColor(Color.BLACK, Color.GRAY);
 
+        width = 0;
         iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        float width = (
-                getResources().getDisplayMetrics().widthPixels
-                        - 2 * getResources().getDimensionPixelSize(R.dimen.little_margin)
-        ) / 5f;
-        width = Math.max(DisplayUtils.dpToPx(getContext(), 56), width);
+        float width = Math.max(DisplayUtils.dpToPx(getContext(), 56), this.width);
 
         float height = 0;
 
@@ -130,9 +133,9 @@ public class DailyItemView extends ViewGroup {
         height += iconSize;
         height += iconMargin;
 
-        // trend item view.
+        // trendItem item view.
         trendViewTop = height;
-        trend.measure(
+        trendItem.measure(
                 MeasureSpec.makeMeasureSpec(
                         (int) width,
                         MeasureSpec.EXACTLY
@@ -141,7 +144,7 @@ public class DailyItemView extends ViewGroup {
                         MeasureSpec.EXACTLY
                 )
         );
-        height += trend.getMeasuredHeight();
+        height += trendItem.getMeasuredHeight();
 
         // night icon.
         height += iconMargin;
@@ -154,15 +157,21 @@ public class DailyItemView extends ViewGroup {
         height += (int) (DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP));
 
         setMeasuredDimension((int) width, (int) height);
+        if (trendParent != null) {
+            trendParent.setDrawingBoundary(
+                    (int) (trendViewTop + trendItem.getMarginTop()),
+                    (int) (trendViewTop + trendItem.getMeasuredHeight() - trendItem.getMarginBottom())
+            );
+        }
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        trend.layout(
+        trendItem.layout(
                 0,
                 (int) trendViewTop,
-                trend.getMeasuredWidth(),
-                (int) trendViewTop + trend.getMeasuredHeight()
+                trendItem.getMeasuredWidth(),
+                (int) trendViewTop + trendItem.getMeasuredHeight()
         );
     }
 
@@ -307,13 +316,23 @@ public class DailyItemView extends ViewGroup {
     }
 
     public TrendItemView getTrendItemView() {
-        return trend;
+        return trendItem;
     }
 
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
         clickListener = l;
         super.setOnClickListener(v -> {});
+    }
+
+    @Override
+    public void setParent(@NonNull TrendParent parent) {
+        trendParent = parent;
+    }
+
+    @Override
+    public void setWidth(float width) {
+        this.width = width;
     }
 }
 

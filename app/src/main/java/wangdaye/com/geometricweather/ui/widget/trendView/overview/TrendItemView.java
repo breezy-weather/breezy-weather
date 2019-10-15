@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trendView;
+package wangdaye.com.geometricweather.ui.widget.trendView.overview;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -33,16 +33,25 @@ public class TrendItemView extends View {
     private Path path;
     private DayNightShaderWrapper shaderWrapper;
 
-    private float[] maxiTemps = new float[3];
-    private float[] miniTemps = new float[3];
-    private int highestTemp;
-    private int lowestTemp;
-    private int precipitation;
+    private Float[] daytimeTemperatureC = new Float[3];
+    private Float[] nighttimeTemperatureC = new Float[3];
+    private int highestTemperatureC;
+    private int lowestTemperatureC;
+    private @Nullable Float precipitation;
     private TemperatureUnit unit;
 
-    private int[] maxiTempYs = new int[3];
-    private int[] miniTempYs = new int[3];
+    private int[] daytimeY = new int[3];
+    private int[] nighttimeY = new int[3];
     private int precipitationY;
+
+    private int marginTop;
+    private int marginBottom;
+    private int temperatureTextSize;
+    private int precipitationTextSize;
+    private int trendLineWidth;
+    private int precipitationPillarWidth;
+    private int chartLineWith;
+    private int textMargin;
 
     private int[] lineColors;
     private int[] shadowColors;
@@ -52,16 +61,14 @@ public class TrendItemView extends View {
 
     private float precipitationAlpha;
 
-    public static final int NONEXISTENT_VALUE = Integer.MAX_VALUE;
-
-    private float TREND_MARGIN_TOP = 24;
-    private float TREND_MARGIN_BOTTOM = 36;
-    private float WEATHER_TEXT_SIZE = 13;
-    private float POP_TEXT_SIZE = 11;
-    private float TREND_LINE_SIZE = 3;
-    private float PRECIPITATION_BAR_SIZE = 3;
-    private float CHART_LINE_SIZE = 1;
-    private float MARGIN_TEXT = 2;
+    private static final float MARGIN_TOP_DIP = 24;
+    private static final float MARGIN_BOTTOM_DIP = 36;
+    private static final float TEMPERATURE_TEXT_SIZE_DIP = 13;
+    private static final float PRECIPITATION_TEXT_SIZE_DIP = 11;
+    private static final float TREND_LINE_SIZE_DIP = 3;
+    private static final float PRECIPITATION_PILLAR_WIDTH_DIP = 3;
+    private static final float CHART_LINE_SIZE_DIP = 1;
+    private static final float TEXT_MARGIN_DIP = 2;
 
     private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.1f;
     private static final float SHADOW_ALPHA_FACTOR_DARK = 0.1f;
@@ -88,14 +95,14 @@ public class TrendItemView extends View {
         setTextColors(Color.BLACK, Color.GRAY);
         setPrecipitationAlpha(0.33f);
 
-        this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
-        this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
-        this.WEATHER_TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) WEATHER_TEXT_SIZE);
-        this.POP_TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) POP_TEXT_SIZE);
-        this.TREND_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) TREND_LINE_SIZE);
-        this.PRECIPITATION_BAR_SIZE = DisplayUtils.dpToPx(getContext(), (int) PRECIPITATION_BAR_SIZE);
-        this.CHART_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE);
-        this.MARGIN_TEXT = DisplayUtils.dpToPx(getContext(), (int) MARGIN_TEXT);
+        this.marginTop = (int) DisplayUtils.dpToPx(getContext(), (int) MARGIN_TOP_DIP);
+        this.marginBottom = (int) DisplayUtils.dpToPx(getContext(), (int) MARGIN_BOTTOM_DIP);
+        this.temperatureTextSize = (int) DisplayUtils.dpToPx(getContext(), (int) TEMPERATURE_TEXT_SIZE_DIP);
+        this.precipitationTextSize = (int) DisplayUtils.dpToPx(getContext(), (int) PRECIPITATION_TEXT_SIZE_DIP);
+        this.trendLineWidth = (int) DisplayUtils.dpToPx(getContext(), (int) TREND_LINE_SIZE_DIP);
+        this.precipitationPillarWidth = (int) DisplayUtils.dpToPx(getContext(), (int) PRECIPITATION_PILLAR_WIDTH_DIP);
+        this.chartLineWith = (int) DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE_DIP);
+        this.textMargin = (int) DisplayUtils.dpToPx(getContext(), (int) TEXT_MARGIN_DIP);
 
         this.paint = new Paint();
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -117,32 +124,32 @@ public class TrendItemView extends View {
 
         drawTimeLine(canvas);
 
-        if (precipitation > 5) {
+        if (precipitation != null && precipitation > 5) {
             drawPrecipitationData(canvas);
         }
-        if (maxiTempYs != null) {
-            drawMaxiTemp(canvas);
+        if (daytimeTemperatureC != null) {
+            drawMaxiTemperature(canvas);
         }
-        if (maxiTempYs != null) {
-            drawMiniTemp(canvas);
+        if (nighttimeTemperatureC != null) {
+            drawMiniTemperature(canvas);
         }
     }
 
     private void drawTimeLine(Canvas canvas) {
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(CHART_LINE_SIZE);
+        paint.setStrokeWidth(chartLineWith);
         paint.setColor(lineColors[2]);
         paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
         canvas.drawLine(
-                getMeasuredWidth() / 2.f, TREND_MARGIN_TOP,
-                getMeasuredWidth() / 2.f, getMeasuredHeight() - TREND_MARGIN_BOTTOM,
+                getMeasuredWidth() / 2.f, marginTop,
+                getMeasuredWidth() / 2.f, getMeasuredHeight() - marginBottom,
                 paint
         );
     }
 
-    private void drawMaxiTemp(Canvas canvas) {
-        if (maxiTempYs[0] != NONEXISTENT_VALUE && maxiTempYs[2] != NONEXISTENT_VALUE) {
+    private void drawMaxiTemperature(Canvas canvas) {
+        if (daytimeTemperatureC[0] != null && daytimeTemperatureC[2] != null) {
             // shadow.
             paint.setColor(Color.BLACK);
             paint.setShader(shaderWrapper.getShader());
@@ -150,27 +157,27 @@ public class TrendItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), maxiTempYs[2]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
-            path.lineTo(getRTLCompactX(0), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.moveTo(getRTLCompactX(0), daytimeY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), daytimeY[2]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - marginBottom);
+            path.lineTo(getRTLCompactX(0), getMeasuredHeight() - marginBottom);
             path.close();
             canvas.drawPath(path, paint);
 
             // line.
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(TREND_LINE_SIZE);
+            paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[0]);
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), maxiTempYs[2]);
+            path.moveTo(getRTLCompactX(0), daytimeY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), daytimeY[2]);
             canvas.drawPath(path, paint);
-        } else if (maxiTempYs[0] == NONEXISTENT_VALUE) {
+        } else if (daytimeTemperatureC[0] == null) {
             // shadow.
             paint.setColor(Color.BLACK);
             paint.setShader(shaderWrapper.getShader());
@@ -178,23 +185,23 @@ public class TrendItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), maxiTempYs[2]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), daytimeY[2]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - marginBottom);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - marginBottom);
             path.close();
             canvas.drawPath(path, paint);
 
             // line.
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(TREND_LINE_SIZE);
+            paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[0]);
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), maxiTempYs[2]);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), daytimeY[2]);
             canvas.drawPath(path, paint);
         } else {
             // shadow.
@@ -204,23 +211,23 @@ public class TrendItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
-            path.lineTo(getRTLCompactX(0), getMeasuredHeight() - TREND_MARGIN_BOTTOM);
+            path.moveTo(getRTLCompactX(0), daytimeY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - marginBottom);
+            path.lineTo(getRTLCompactX(0), getMeasuredHeight() - marginBottom);
             path.close();
             canvas.drawPath(path, paint);
 
             // line.
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(TREND_LINE_SIZE);
+            paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[0]);
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), maxiTempYs[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), maxiTempYs[1]);
+            path.moveTo(getRTLCompactX(0), daytimeY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
             canvas.drawPath(path, paint);
         }
 
@@ -228,50 +235,50 @@ public class TrendItemView extends View {
         paint.setColor(textColor);
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(WEATHER_TEXT_SIZE);
+        paint.setTextSize(temperatureTextSize);
         paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
-                Temperature.getShortTemperature((int) maxiTemps[1], unit),
+                Temperature.getShortTemperature(toInt(daytimeTemperatureC[1]), unit),
                 getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
-                maxiTempYs[1] - paint.getFontMetrics().bottom - MARGIN_TEXT,
+                daytimeY[1] - paint.getFontMetrics().bottom - textMargin,
                 paint
         );
     }
 
-    private void drawMiniTemp(Canvas canvas) {
-        if (miniTempYs[0] != NONEXISTENT_VALUE && miniTempYs[2] != NONEXISTENT_VALUE) {
+    private void drawMiniTemperature(Canvas canvas) {
+        if (nighttimeTemperatureC[0] != null && nighttimeTemperatureC[2] != null) {
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(TREND_LINE_SIZE);
+            paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[1]);
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), miniTempYs[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), miniTempYs[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), miniTempYs[2]);
+            path.moveTo(getRTLCompactX(0), nighttimeY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), nighttimeY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), nighttimeY[2]);
             canvas.drawPath(path, paint);
-        } else if (miniTempYs[0] == NONEXISTENT_VALUE) {
+        } else if (nighttimeTemperatureC[0] == null) {
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(TREND_LINE_SIZE);
+            paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[1]);
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), miniTempYs[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), miniTempYs[2]);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), nighttimeY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), nighttimeY[2]);
             canvas.drawPath(path, paint);
         } else {
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(TREND_LINE_SIZE);
+            paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[1]);
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), miniTempYs[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), miniTempYs[1]);
+            path.moveTo(getRTLCompactX(0), nighttimeY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), nighttimeY[1]);
             canvas.drawPath(path, paint);
         }
 
@@ -279,14 +286,19 @@ public class TrendItemView extends View {
         paint.setColor(textColor);
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(WEATHER_TEXT_SIZE);
+        paint.setTextSize(temperatureTextSize);
         paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
-                Temperature.getShortTemperature((int) miniTemps[1], unit),
+                Temperature.getShortTemperature(toInt(nighttimeTemperatureC[1]), unit),
                 getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
-                miniTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
+                nighttimeY[1] - paint.getFontMetrics().top + textMargin,
                 paint
         );
+    }
+
+    private int toInt(Float f) {
+        float v = f;
+        return (int) v;
     }
 
     private void drawPrecipitationData(Canvas canvas) {
@@ -298,28 +310,28 @@ public class TrendItemView extends View {
 
         canvas.drawRoundRect(
                 new RectF(
-                        (float) (getMeasuredWidth() / 2.0 - PRECIPITATION_BAR_SIZE),
+                        (float) (getMeasuredWidth() / 2.0 - precipitationPillarWidth),
                         precipitationY,
-                        (float) (getMeasuredWidth() / 2.0 + PRECIPITATION_BAR_SIZE),
-                        getMeasuredHeight() - TREND_MARGIN_BOTTOM
+                        (float) (getMeasuredWidth() / 2.0 + precipitationPillarWidth),
+                        getMeasuredHeight() - marginBottom
                 ),
-                PRECIPITATION_BAR_SIZE, PRECIPITATION_BAR_SIZE,
+                precipitationPillarWidth, precipitationPillarWidth,
                 paint
         );
 
         paint.setColor(precipitationTextColor);
         paint.setAlpha(255);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(POP_TEXT_SIZE);
+        paint.setTextSize(precipitationTextSize);
         canvas.drawText(
                 precipitation + "%",
                 (float) (getMeasuredWidth() / 2.0),
                 (float) (
                         getMeasuredHeight()
-                                - TREND_MARGIN_BOTTOM
+                                - marginBottom
                                 - paint.getFontMetrics().top
-                                + 2.0 * MARGIN_TEXT
-                                + WEATHER_TEXT_SIZE
+                                + 2.0 * textMargin
+                                + temperatureTextSize
                 ), paint
         );
 
@@ -328,17 +340,15 @@ public class TrendItemView extends View {
 
     // control.
 
-    public void setData(@NonNull @Size(3) float[] maxiTemps, @Nullable @Size(3) float[] miniTemps,
-                        int precipitation, int highestTemp, int lowestTemp, TemperatureUnit unit) {
-        this.maxiTemps = maxiTemps;
-        if (miniTemps != null) {
-            this.miniTemps = miniTemps;
-        } else {
-            this.miniTemps = new float[] {NONEXISTENT_VALUE, NONEXISTENT_VALUE, NONEXISTENT_VALUE};
-        }
+    public void setData(@NonNull @Size(3) Float[] daytimeTemperatureC,
+                        @Nullable @Size(3) Float[] nighttimeTemperatureC,
+                        @Nullable Float precipitation,
+                        int highestTemperatureC, int lowestTemperatureC, TemperatureUnit unit) {
+        this.daytimeTemperatureC = daytimeTemperatureC;
+        this.nighttimeTemperatureC = nighttimeTemperatureC;
         this.precipitation = precipitation;
-        this.highestTemp = highestTemp;
-        this.lowestTemp = lowestTemp;
+        this.highestTemperatureC = highestTemperatureC;
+        this.lowestTemperatureC = lowestTemperatureC;
         this.unit = unit;
         invalidate();
     }
@@ -387,8 +397,8 @@ public class TrendItemView extends View {
                 getMeasuredWidth(), getMeasuredHeight(), lightTheme, shadowColors)) {
             shaderWrapper.setShader(
                     new LinearGradient(
-                            0, TREND_MARGIN_TOP,
-                            0, getMeasuredHeight() - TREND_MARGIN_BOTTOM,
+                            0, marginTop,
+                            0, getMeasuredHeight() - marginBottom,
                             shadowColors[0], shadowColors[1],
                             Shader.TileMode.CLAMP
                     ),
@@ -400,36 +410,48 @@ public class TrendItemView extends View {
     }
 
     private void computeCoordinates() {
-        for (int i = 0; i < maxiTemps.length; i ++) {
-            if (maxiTemps[i] == NONEXISTENT_VALUE) {
-                maxiTempYs[i] = NONEXISTENT_VALUE;
+        float canvasHeight = getMeasuredHeight() - marginTop - marginBottom;
+        for (int i = 0; i < daytimeTemperatureC.length; i ++) {
+            if (daytimeTemperatureC[i] == null) {
+                daytimeY[i] = 0;
             } else {
-                maxiTempYs[i] = computeSingleCoordinate(maxiTemps[i], highestTemp, lowestTemp);
+                daytimeY[i] = computeSingleCoordinate(
+                        canvasHeight, daytimeTemperatureC[i], highestTemperatureC, lowestTemperatureC);
             }
         }
-        for (int i = 0; i < miniTemps.length; i ++) {
-            if (miniTemps[i] == NONEXISTENT_VALUE) {
-                miniTempYs[i] = NONEXISTENT_VALUE;
-            } else {
-                miniTempYs[i] = computeSingleCoordinate(miniTemps[i], highestTemp, lowestTemp);
+        if (nighttimeTemperatureC != null) {
+            for (int i = 0; i < nighttimeTemperatureC.length; i ++) {
+                if (nighttimeTemperatureC[i] == null) {
+                    nighttimeY[i] = 0;
+                } else {
+                    nighttimeY[i] = computeSingleCoordinate(
+                            canvasHeight, nighttimeTemperatureC[i], highestTemperatureC, lowestTemperatureC);
+                }
             }
         }
-        if (precipitation > 5) {
-            precipitationY = computeSingleCoordinate(precipitation, 100, 0);
+        if (precipitation != null && precipitation > 5) {
+            precipitationY = computeSingleCoordinate(
+                    canvasHeight, precipitation, 100, 0);
         }
     }
 
-    private int computeSingleCoordinate(float value, float max, float min) {
-        float canvasHeight = getMeasuredHeight() - TREND_MARGIN_TOP - TREND_MARGIN_BOTTOM;
-
+    private int computeSingleCoordinate(float canvasHeight, float value, float max, float min) {
         return (int) (
                 getMeasuredHeight()
-                        - TREND_MARGIN_BOTTOM
+                        - marginBottom
                         - canvasHeight * (value - min) / (max - min)
         );
     }
 
     private float getRTLCompactX(float x) {
         return getLayoutDirection() == LAYOUT_DIRECTION_RTL ? (getMeasuredWidth() - x) : x;
+    }
+
+    public int getMarginTop() {
+        return marginTop;
+    }
+
+    public int getMarginBottom() {
+        return marginBottom;
     }
 }

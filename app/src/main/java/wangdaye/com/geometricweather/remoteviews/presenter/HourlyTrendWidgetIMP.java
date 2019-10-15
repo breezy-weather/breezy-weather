@@ -27,7 +27,6 @@ import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.TrendLinearLayout;
 import wangdaye.com.geometricweather.ui.widget.trendView.appwidget.WidgetItemView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
@@ -76,33 +75,33 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
         int itemCount = 5;
-        float[] temps;
-        int highestTemp;
-        int lowestTemp;
+        float[] temperatures;
+        int highestTemperature;
+        int lowestTemperature;
 
         boolean minimalIcon = SettingsOptionManager.getInstance(context).isWidgetMinimalIconEnabled();
         TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
 
-        temps = new float[Math.max(0, itemCount * 2 - 1)];
-        for (int i = 0; i < temps.length; i += 2) {
-            temps[i] = weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature();
+        temperatures = new float[Math.max(0, itemCount * 2 - 1)];
+        for (int i = 0; i < temperatures.length; i += 2) {
+            temperatures[i] = weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature();
         }
-        for (int i = 1; i < temps.length; i += 2) {
-            temps[i] = (temps[i - 1] + temps[i + 1]) * 0.5F;
+        for (int i = 1; i < temperatures.length; i += 2) {
+            temperatures[i] = (temperatures[i - 1] + temperatures[i + 1]) * 0.5F;
         }
 
-        highestTemp = weather.getYesterday() == null
+        highestTemperature = weather.getYesterday() == null
                 ? Integer.MIN_VALUE
                 : weather.getYesterday().getDaytimeTemperature();
-        lowestTemp = weather.getYesterday() == null
+        lowestTemperature = weather.getYesterday() == null
                 ? Integer.MAX_VALUE
                 : weather.getYesterday().getNighttimeTemperature();
         for (int i = 0; i < itemCount; i ++) {
-            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() > highestTemp) {
-                highestTemp = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
+            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() > highestTemperature) {
+                highestTemperature = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
             }
-            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() < lowestTemp) {
-                lowestTemp = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
+            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() < lowestTemperature) {
+                lowestTemperature = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
             }
         }
 
@@ -115,8 +114,8 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                             weather.getYesterday().getDaytimeTemperature(),
                             weather.getYesterday().getNighttimeTemperature()
                     },
-                    highestTemp,
-                    lowestTemp,
+                    highestTemperature,
+                    lowestTemperature,
                     temperatureUnit,
                     false
             );
@@ -142,14 +141,12 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                     )
             );
 
-            Float precipitationProbability = hourly.getPrecipitationProbability().getTotal();
-            float intProbability = precipitationProbability == null ? 0 : precipitationProbability;
             items[i].getTrendItemView().setData(
-                    buildTempArrayForItem(temps, i),
+                    buildTempArrayForItem(temperatures, i),
                     null,
-                    (int) intProbability,
-                    highestTemp,
-                    lowestTemp,
+                    hourly.getPrecipitationProbability().getTotal(),
+                    highestTemperature,
+                    lowestTemperature,
                     temperatureUnit
             );
             items[i].getTrendItemView().setLineColors(
@@ -266,16 +263,16 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         return widgetIds != null && widgetIds.length > 0;
     }
 
-    private static float[] buildTempArrayForItem(float[] temps, int index) {
-        float[] a = new float[3];
+    private static Float[] buildTempArrayForItem(float[] temps, int index) {
+        Float[] a = new Float[3];
         a[1] = temps[2 * index];
         if (2 * index - 1 < 0) {
-            a[0] = TrendItemView.NONEXISTENT_VALUE;
+            a[0] = null;
         } else {
             a[0] = temps[2 * index - 1];
         }
         if (2 * index + 1 >= temps.length) {
-            a[2] = TrendItemView.NONEXISTENT_VALUE;
+            a[2] = null;
         } else {
             a[2] = temps[2 * index + 1];
         }

@@ -19,14 +19,15 @@ import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
-import wangdaye.com.geometricweather.ui.widget.trendView.DailyItemView;
-import wangdaye.com.geometricweather.ui.widget.trendView.TrendItemView;
+import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
+import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendRecyclerViewAdapter;
+import wangdaye.com.geometricweather.ui.widget.trendView.overview.DailyItemView;
 
 /**
  * Daily trend adapter.
  * */
 
-public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.ViewHolder> {
+public class DailyTrendAdapter extends TrendRecyclerViewAdapter<DailyTrendAdapter.ViewHolder> {
 
     private GeoActivity activity;
 
@@ -35,10 +36,10 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
     private MainColorPicker picker;
     private TemperatureUnit unit;
 
-    private float[] maxiTemps;
-    private float[] miniTemps;
-    private int highestTemp;
-    private int lowestTemp;
+    private float[] daytimeTemperatures;
+    private float[] nighttimeTemperatures;
+    private int highestTemperature;
+    private int lowestTemperature;
 
     private int[] themeColors;
 
@@ -48,7 +49,9 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.dailyItem = itemView.findViewById(R.id.item_trend_daily);
+            dailyItem = itemView.findViewById(R.id.item_trend_daily);
+            dailyItem.setParent(getTrendParent());
+            dailyItem.setWidth(getItemWidth());
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
@@ -75,14 +78,14 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
             Float daytimePrecipitationProbability = daily.day().getPrecipitationProbability().getTotal();
             Float nighttimePrecipitationProbability = daily.night().getPrecipitationProbability().getTotal();
             dailyItem.getTrendItemView().setData(
-                    buildTempArrayForItem(maxiTemps, position),
-                    buildTempArrayForItem(miniTemps, position),
-                    (int) Math.max(
+                    buildTempArrayForItem(daytimeTemperatures, position),
+                    buildTempArrayForItem(nighttimeTemperatures, position),
+                    Math.max(
                             daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
                             nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
                     ),
-                    highestTemp,
-                    lowestTemp,
+                    highestTemperature,
+                    lowestTemperature,
                     unit
             );
             dailyItem.getTrendItemView().setLineColors(
@@ -110,16 +113,16 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
         }
 
         @Size(3)
-        private float[] buildTempArrayForItem(float[] temps, int adapterPosition) {
-            float[] a = new float[3];
+        private Float[] buildTempArrayForItem(float[] temps, int adapterPosition) {
+            Float[] a = new Float[3];
             a[1] = temps[2 * adapterPosition];
             if (2 * adapterPosition - 1 < 0) {
-                a[0] = TrendItemView.NONEXISTENT_VALUE;
+                a[0] = null;
             } else {
                 a[0] = temps[2 * adapterPosition - 1];
             }
             if (2 * adapterPosition + 1 >= temps.length) {
-                a[2] = TrendItemView.NONEXISTENT_VALUE;
+                a[2] = null;
             } else {
                 a[2] = temps[2 * adapterPosition + 1];
             }
@@ -128,8 +131,11 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyTrendAdapter(GeoActivity activity, @NonNull Weather weather, int[] themeColors,
+    public DailyTrendAdapter(GeoActivity activity,
+                             TrendParent parent, float marginHorizontalPx, int itemCountPerLine,
+                             @NonNull Weather weather, int[] themeColors,
                              ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
+        super(activity, parent, marginHorizontalPx, itemCountPerLine);
         this.activity = activity;
 
         this.weather = weather;
@@ -137,34 +143,34 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<DailyTrendAdapter.Vi
         this.picker = picker;
         this.unit = unit;
 
-        this.maxiTemps = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
-        for (int i = 0; i < maxiTemps.length; i += 2) {
-            maxiTemps[i] = weather.getDailyForecast().get(i / 2).day().getTemperature().getTemperature();
+        this.daytimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
+        for (int i = 0; i < daytimeTemperatures.length; i += 2) {
+            daytimeTemperatures[i] = weather.getDailyForecast().get(i / 2).day().getTemperature().getTemperature();
         }
-        for (int i = 1; i < maxiTemps.length; i += 2) {
-            maxiTemps[i] = (maxiTemps[i - 1] + maxiTemps[i + 1]) * 0.5F;
-        }
-
-        this.miniTemps = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
-        for (int i = 0; i < miniTemps.length; i += 2) {
-            miniTemps[i] = weather.getDailyForecast().get(i / 2).night().getTemperature().getTemperature();
-        }
-        for (int i = 1; i < miniTemps.length; i += 2) {
-            miniTemps[i] = (miniTemps[i - 1] + miniTemps[i + 1]) * 0.5F;
+        for (int i = 1; i < daytimeTemperatures.length; i += 2) {
+            daytimeTemperatures[i] = (daytimeTemperatures[i - 1] + daytimeTemperatures[i + 1]) * 0.5F;
         }
 
-        highestTemp = weather.getYesterday() == null
+        this.nighttimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
+        for (int i = 0; i < nighttimeTemperatures.length; i += 2) {
+            nighttimeTemperatures[i] = weather.getDailyForecast().get(i / 2).night().getTemperature().getTemperature();
+        }
+        for (int i = 1; i < nighttimeTemperatures.length; i += 2) {
+            nighttimeTemperatures[i] = (nighttimeTemperatures[i - 1] + nighttimeTemperatures[i + 1]) * 0.5F;
+        }
+
+        highestTemperature = weather.getYesterday() == null
                 ? Integer.MIN_VALUE
                 : weather.getYesterday().getDaytimeTemperature();
-        lowestTemp = weather.getYesterday() == null
+        lowestTemperature = weather.getYesterday() == null
                 ? Integer.MAX_VALUE
                 : weather.getYesterday().getNighttimeTemperature();
         for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
-            if (weather.getDailyForecast().get(i).day().getTemperature().getTemperature() > highestTemp) {
-                highestTemp = weather.getDailyForecast().get(i).day().getTemperature().getTemperature();
+            if (weather.getDailyForecast().get(i).day().getTemperature().getTemperature() > highestTemperature) {
+                highestTemperature = weather.getDailyForecast().get(i).day().getTemperature().getTemperature();
             }
-            if (weather.getDailyForecast().get(i).night().getTemperature().getTemperature() < lowestTemp) {
-                lowestTemp = weather.getDailyForecast().get(i).night().getTemperature().getTemperature();
+            if (weather.getDailyForecast().get(i).night().getTemperature().getTemperature() < lowestTemperature) {
+                lowestTemperature = weather.getDailyForecast().get(i).night().getTemperature().getTemperature();
             }
         }
 

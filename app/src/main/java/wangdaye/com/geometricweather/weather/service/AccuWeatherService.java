@@ -106,7 +106,7 @@ public class AccuWeatherService extends WeatherService {
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
         String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
 
-        Observable<List<AccuCurrentResult>> realtime = api.getRealtime(
+        Observable<List<AccuCurrentResult>> realtime = api.getCurrent(
                 location.getCityId(), BuildConfig.ACCU_CURRENT_KEY, languageCode, true);
 
         Observable<AccuDailyResult> daily = api.getDaily(
@@ -115,7 +115,7 @@ public class AccuWeatherService extends WeatherService {
         Observable<List<AccuHourlyResult>> hourly = api.getHourly(
                 location.getCityId(), BuildConfig.ACCU_WEATHER_KEY, languageCode, true);
 
-        Observable<AccuMinuteResult> minute = api.getMinute(
+        Observable<AccuMinuteResult> minute = api.getMinutely(
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
                 true,
@@ -127,7 +127,7 @@ public class AccuWeatherService extends WeatherService {
         Observable<List<AccuAlertResult>> alert = api.getAlert(
                 location.getCityId(), BuildConfig.ACCU_WEATHER_KEY, languageCode, true);
 
-        Observable<AccuAqiResult> aqi = api.getAqi(
+        Observable<AccuAqiResult> aqi = api.getAirQuality(
                 location.getCityId(),
                 BuildConfig.ACCU_AQI_KEY
         ).onExceptionResumeNext(
