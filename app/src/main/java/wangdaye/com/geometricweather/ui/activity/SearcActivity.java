@@ -4,10 +4,12 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
@@ -163,13 +165,31 @@ public class SearcActivity extends GeoActivity
             }
         });
 
-        this.recyclerView = findViewById(R.id.activity_search_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.addItemDecoration(new ListDecoration(this));
-        recyclerView.setAdapter(adapter);
-
         DragScrollBar scrollBar = findViewById(R.id.activity_search_scrollBar);
         scrollBar.setIndicator(new CustomIndicator(this).setTextSize(16), true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(
+                this, RecyclerView.VERTICAL, false);
+
+        this.recyclerView = findViewById(R.id.activity_search_recyclerView);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new ListDecoration(this));
+        recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @ColorInt int sourceColor = Color.TRANSPARENT;
+            @ColorInt int color;
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                color = adapter.getItemSourceColor(layoutManager.findFirstVisibleItemPosition());
+                if (color != sourceColor) {
+                    scrollBar.setHandleColor(sourceColor);
+                    scrollBar.setHandleOffColor(sourceColor);
+                }
+            }
+        });
 
         this.progressView = findViewById(R.id.activity_search_progress);
         progressView.setAlpha(0);

@@ -26,9 +26,11 @@ public class SecondTrendCardController extends AbstractMainItemController {
     private TrendRecyclerView trendRecyclerView;
 
     @NonNull private WeatherView weatherView;
+    private int marginsHorizontal;
 
     public SecondTrendCardController(@NonNull Activity activity, @NonNull WeatherView weatherView,
-                                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+                                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                                     int marginsHorizontal) {
         super(activity, activity.findViewById(R.id.container_main_second_trend_card), provider, picker);
 
         this.card = view.findViewById(R.id.container_main_second_trend_card);
@@ -37,6 +39,7 @@ public class SecondTrendCardController extends AbstractMainItemController {
         this.trendRecyclerView = view.findViewById(R.id.container_main_second_trend_card_trendRecyclerView);
 
         this.weatherView = weatherView;
+        this.marginsHorizontal = marginsHorizontal;
     }
 
     @Override
@@ -65,11 +68,15 @@ public class SecondTrendCardController extends AbstractMainItemController {
             if (SettingsOptionManager.getInstance(context).getCardOrder() == CardOrder.DAILY_FIRST) {
                 TrendViewController.setHourlyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
-                        location.getWeather(), weatherView.getThemeColors(picker.isLightTheme()));
+                        location.getWeather(), weatherView.getThemeColors(picker.isLightTheme()),
+                        marginsHorizontal
+                );
             } else {
                 TrendViewController.setDailyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
-                        location.getWeather(), weatherView.getThemeColors(picker.isLightTheme()));
+                        location.getWeather(), weatherView.getThemeColors(picker.isLightTheme()),
+                        marginsHorizontal
+                );
             }
         }
     }

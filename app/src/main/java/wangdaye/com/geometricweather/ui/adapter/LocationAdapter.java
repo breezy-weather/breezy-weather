@@ -3,7 +3,10 @@ package wangdaye.com.geometricweather.ui.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Build;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -226,6 +229,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     public void moveData(int fromPosition, int toPosition) {
         itemList.add(toPosition, itemList.remove(fromPosition));
         notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @ColorInt
+    public int getItemSourceColor(int position) {
+        if (0 <= position && position < itemList.size()) {
+            return itemList.get(position).getWeatherSource().getSourceColor();
+        } else {
+            return Color.TRANSPARENT;
+        }
     }
 
     // interface.

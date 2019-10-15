@@ -47,9 +47,11 @@ public class FirstTrendCardController extends AbstractMainItemController
     
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
+    private int marginsHorizontal;
 
     public FirstTrendCardController(@NonNull Activity activity, @NonNull WeatherView weatherView,
-                                    @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+                                    @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                                    int marginsHorizontal) {
         super(activity, activity.findViewById(R.id.container_main_first_trend_card), provider, picker);
 
         this.card = view.findViewById(R.id.container_main_first_trend_card);
@@ -63,6 +65,7 @@ public class FirstTrendCardController extends AbstractMainItemController
         this.trendRecyclerView = view.findViewById(R.id.container_main_first_trend_card_trendRecyclerView);
         
         this.weatherView = weatherView;
+        this.marginsHorizontal = marginsHorizontal;
     }
 
     @SuppressLint({"RestrictedApi", "SetTextI18n"})
@@ -157,12 +160,12 @@ public class FirstTrendCardController extends AbstractMainItemController
             if (SettingsOptionManager.getInstance(context).getCardOrder() == CardOrder.DAILY_FIRST) {
                 TrendViewController.setDailyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
-                        weather, weatherView.getThemeColors(picker.isLightTheme())
+                        weather, weatherView.getThemeColors(picker.isLightTheme()), marginsHorizontal
                 );
             } else {
                 TrendViewController.setHourlyTrend(
                         (GeoActivity) context, title, subtitle, trendRecyclerView, provider, picker,
-                        weather, weatherView.getThemeColors(picker.isLightTheme())
+                        weather, weatherView.getThemeColors(picker.isLightTheme()), marginsHorizontal
                 );
             }
         }

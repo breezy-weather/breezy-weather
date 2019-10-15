@@ -27,7 +27,7 @@ public class TrendViewController {
     public static void setDailyTrend(GeoActivity activity, TextView title, TextView subtitle,
                                      TrendRecyclerView recyclerView,
                                      @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                     @NonNull Weather weather, int[] themeColors) {
+                                     @NonNull Weather weather, int[] themeColors, int marginsHorizontal) {
         TemperatureUnit unit = SettingsOptionManager.getInstance(activity).getTemperatureUnit();
 
         title.setText(activity.getString(R.string.daily_overview));
@@ -46,7 +46,7 @@ public class TrendViewController {
                 new DailyTrendAdapter(
                         activity,
                         recyclerView,
-                        activity.getResources().getDimensionPixelSize(R.dimen.little_margin),
+                        marginsHorizontal,
                         DisplayUtils.isTabletDevice(activity) ? 7 : 5,
                         weather,
                         themeColors,
@@ -84,7 +84,7 @@ public class TrendViewController {
     public static void setHourlyTrend(GeoActivity activity, TextView title, TextView subtitle,
                                       TrendRecyclerView recyclerView,
                                       @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                      @NonNull Weather weather, int[] themeColors) {
+                                      @NonNull Weather weather, int[] themeColors, int marginsHorizontal) {
         TemperatureUnit unit = SettingsOptionManager.getInstance(activity).getTemperatureUnit();
 
         title.setText(activity.getString(R.string.hourly_overview));
@@ -103,7 +103,7 @@ public class TrendViewController {
                 new HourlyTrendAdapter(
                         activity,
                         recyclerView,
-                        activity.getResources().getDimensionPixelSize(R.dimen.little_margin),
+                        marginsHorizontal,
                         DisplayUtils.isTabletDevice(activity) ? 7 : 5,
                         weather,
                         themeColors,

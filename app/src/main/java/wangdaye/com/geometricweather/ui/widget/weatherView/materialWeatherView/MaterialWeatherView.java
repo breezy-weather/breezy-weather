@@ -364,6 +364,16 @@ public class MaterialWeatherView extends View implements WeatherView {
         return firstCardMarginTop;
     }
 
+    @Override
+    public int getCardMargins(Context context) {
+        return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
+    }
+
+    @Override
+    public int getCardRadius(Context context) {
+        return (int) DisplayUtils.dpToPx(context, 8);
+    }
+
     public void setDrawable(boolean drawable) {
         if (this.drawable == drawable) {
             return;

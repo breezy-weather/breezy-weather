@@ -40,7 +40,8 @@ public class MainControllerAdapter {
     public void bind(@NonNull Activity activity,
                      @NonNull ViewGroup scrollContainer, @NonNull WeatherView weatherView,
                      @NonNull Location location,
-                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                     int marginsHorizontal) {
         if (scrollContainer.getChildCount() != 0) {
             scrollContainer.removeAllViews();
         }
@@ -51,10 +52,10 @@ public class MainControllerAdapter {
             controllerList.add(new HeaderController(activity, weatherView, provider, picker));
 
             inflater.inflate(R.layout.container_main_first_trend_card, scrollContainer, true);
-            controllerList.add(new FirstTrendCardController(activity, weatherView, provider, picker));
+            controllerList.add(new FirstTrendCardController(activity, weatherView, provider, picker, marginsHorizontal));
 
             inflater.inflate(R.layout.container_main_second_trend_card, scrollContainer, true);
-            controllerList.add(new SecondTrendCardController(activity, weatherView, provider, picker));
+            controllerList.add(new SecondTrendCardController(activity, weatherView, provider, picker, marginsHorizontal));
 
             inflater.inflate(R.layout.container_main_aqi, scrollContainer, true);
             controllerList.add(new AqiController(activity, weatherView, provider, picker));

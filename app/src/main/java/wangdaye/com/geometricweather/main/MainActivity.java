@@ -358,7 +358,8 @@ public class MainActivity extends GeoActivity
         refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
 
         adapter = new MainControllerAdapter(this);
-        adapter.bind(this, scrollContainer, weatherView, location, resourceProvider, colorPicker);
+        adapter.bind(this, scrollContainer, weatherView, location, resourceProvider,
+                colorPicker, weatherView.getCardMargins(this));
         scrollView.setOnScrollChangeListener(
                 new OnScrollListener(adapter.getFooter(this), weatherView.getFirstCardMarginTop())
         );

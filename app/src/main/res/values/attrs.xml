@@ -45,4 +45,15 @@
         <attr name="radius_to" format="dimension" />
     </declare-styleable>
 
+    <!-- Tag view. -->
+    <declare-styleable name="TagView">
+        <attr name="checked" format="boolean" />
+        <attr name="checked_text_color" format="color" />
+        <attr name="checked_background_color" format="color" />
+        <attr name="unchecked_text_color" format="color" />
+        <attr name="unchecked_background_color" format="color" />
+    </declare-styleable>
+
+
+
 </resources>
