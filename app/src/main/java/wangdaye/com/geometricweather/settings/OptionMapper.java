@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.settings;
 
-import wangdaye.com.geometricweather.basic.model.option.CardOrder;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.basic.model.option.Language;
 import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
@@ -181,16 +180,6 @@ public class OptionMapper {
                 
             default:
                 return UIStyle.MATERIAL;
-        }
-    }
-
-    public static CardOrder getCardOrder(String value) {
-        switch (value) {
-            case "hourly_first":
-                return CardOrder.HOURLY_FIRST;
-
-            default:
-                return CardOrder.DAILY_FIRST;
         }
     }
     

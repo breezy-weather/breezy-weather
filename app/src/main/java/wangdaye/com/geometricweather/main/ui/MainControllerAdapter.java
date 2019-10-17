@@ -5,8 +5,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,23 +18,26 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.controller.AbstractMainItemController;
 import wangdaye.com.geometricweather.main.ui.controller.AqiController;
 import wangdaye.com.geometricweather.main.ui.controller.DetailsController;
-import wangdaye.com.geometricweather.main.ui.controller.FirstTrendCardController;
+import wangdaye.com.geometricweather.main.ui.controller.DailyTrendCardController;
+import wangdaye.com.geometricweather.main.ui.controller.FirstCardHeaderController;
 import wangdaye.com.geometricweather.main.ui.controller.FooterController;
 import wangdaye.com.geometricweather.main.ui.controller.HeaderController;
-import wangdaye.com.geometricweather.main.ui.controller.SecondTrendCardController;
+import wangdaye.com.geometricweather.main.ui.controller.HourlyTrendCardController;
 import wangdaye.com.geometricweather.main.ui.controller.SunMoonController;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 public class MainControllerAdapter {
 
     private List<AbstractMainItemController> controllerList;
+    private @Nullable FirstCardHeaderController firstCardHeaderController;
     private int headerCurrentTemperatureTextHeight;
     private int screenHeight;
 
     public MainControllerAdapter(@NonNull Context context) {
         this.controllerList = new ArrayList<>();
-
+        this.firstCardHeaderController = null;
         this.headerCurrentTemperatureTextHeight = -1;
         this.screenHeight = context.getResources().getDisplayMetrics().heightPixels;
     }
@@ -47,27 +52,45 @@ public class MainControllerAdapter {
         }
         if (location.getWeather() != null) {
             LayoutInflater inflater = LayoutInflater.from(scrollContainer.getContext());
+            String[] cardDisplayValues = SettingsOptionManager.getInstance(activity).getCardDisplayValues();
 
             inflater.inflate(R.layout.container_main_header, scrollContainer, true);
             controllerList.add(new HeaderController(activity, weatherView, provider, picker));
 
-            inflater.inflate(R.layout.container_main_first_trend_card, scrollContainer, true);
-            controllerList.add(new FirstTrendCardController(activity, weatherView, provider, picker, marginsHorizontal));
+            if (isDisplay(SettingsOptionManager.CARD_DAILY_OVERVIEW, cardDisplayValues)) {
+                inflater.inflate(R.layout.container_main_daily_trend_card, scrollContainer, true);
+                controllerList.add(new DailyTrendCardController(activity, weatherView, provider, picker, marginsHorizontal));
+            }
 
-            inflater.inflate(R.layout.container_main_second_trend_card, scrollContainer, true);
-            controllerList.add(new SecondTrendCardController(activity, weatherView, provider, picker, marginsHorizontal));
+            if (isDisplay(SettingsOptionManager.CARD_HOURLY_OVERVIEW, cardDisplayValues)) {
+                inflater.inflate(R.layout.container_main_hourly_trend_card, scrollContainer, true);
+                controllerList.add(new HourlyTrendCardController(activity, weatherView, provider, picker, marginsHorizontal));
+            }
 
-            inflater.inflate(R.layout.container_main_aqi, scrollContainer, true);
-            controllerList.add(new AqiController(activity, weatherView, provider, picker));
+            if (isDisplay(SettingsOptionManager.CARD_AIR_QUALITY, cardDisplayValues)) {
+                inflater.inflate(R.layout.container_main_aqi, scrollContainer, true);
+                controllerList.add(new AqiController(activity, weatherView, provider, picker));
+            }
 
-            inflater.inflate(R.layout.container_main_sun_moon, scrollContainer, true);
-            controllerList.add(new SunMoonController(activity, weatherView, provider, picker));
+            if (isDisplay(SettingsOptionManager.CARD_SUNRISE_SUNSET, cardDisplayValues)) {
+                inflater.inflate(R.layout.container_main_sun_moon, scrollContainer, true);
+                controllerList.add(new SunMoonController(activity, weatherView, provider, picker));
+            }
 
-            inflater.inflate(R.layout.container_main_details, scrollContainer, true);
-            controllerList.add(new DetailsController(activity, weatherView, provider, picker));
+            if (isDisplay(SettingsOptionManager.CARD_LIFE_DETAILS, cardDisplayValues)) {
+                inflater.inflate(R.layout.container_main_details, scrollContainer, true);
+                controllerList.add(new DetailsController(activity, weatherView, provider, picker));
+            }
 
             inflater.inflate(R.layout.container_main_footer, scrollContainer, true);
             controllerList.add(new FooterController(activity, provider, picker));
+        }
+        if (controllerList.size() > 1) {
+            LinearLayout viewGroup = controllerList.get(1).getContainer();
+            if (viewGroup != null) {
+                firstCardHeaderController = new FirstCardHeaderController(activity, viewGroup, provider, picker);
+                firstCardHeaderController.onBindView(location);
+            }
         }
         for (int i = 0; i < controllerList.size(); i ++) {
             controllerList.get(i).onBindView(location);
@@ -80,6 +103,9 @@ public class MainControllerAdapter {
             controllerList.get(i).onDestroy();
         }
         controllerList.clear();
+        if (firstCardHeaderController != null) {
+            firstCardHeaderController.onDestroy();
+        }
         if (scrollContainer.getChildCount() != 0) {
             scrollContainer.removeAllViews();
         }
@@ -113,5 +139,13 @@ public class MainControllerAdapter {
 
     public View getFooter(Activity activity) {
         return activity.findViewById(R.id.container_main_footer);
+    }
+
+    private static boolean isDisplay(String targetValue, String[] displayValues) {
+        for(String s : displayValues){
+            if(s.equals(targetValue))
+                return true;
+        }
+        return false;
     }
 }

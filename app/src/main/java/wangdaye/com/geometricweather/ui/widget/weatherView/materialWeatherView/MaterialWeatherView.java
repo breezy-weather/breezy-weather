@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -18,9 +19,7 @@ import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.CardOrder;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
@@ -148,46 +147,29 @@ public class MaterialWeatherView extends View implements WeatherView {
         this.step = STEP_DISPLAY;
         setWeather(WeatherView.WEATHER_KING_NULL, true, null);
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        Resources res = getResources();
+        DisplayMetrics metrics = res.getDisplayMetrics();
         this.sizes = new int[] {metrics.widthPixels, metrics.heightPixels};
 
-        CardOrder cardOrder = SettingsOptionManager.getInstance(getContext()).getCardOrder();
-        if (cardOrder == CardOrder.DAILY_FIRST) {
-            this.firstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels
-                    + getResources().getDimensionPixelSize(R.dimen.little_margin)
-                    - DisplayUtils.dpToPx(
-                            getContext(),
-                        56 /* time icon */
-                                + 16 * 2 /* first card title margin */
-                                + 3 * 4 /* daily item text margin */
-                                + 48 * 2 /* daily icon */
-                                + 144 /* daily trend */
-                                + 16 /* daily item bottom margin */)
-                    - getResources().getDimensionPixelSize(R.dimen.title_text_size) // first card title
-                    - getResources().getDimensionPixelSize(R.dimen.content_text_size) * 2); // daily item text
-        } else {
-            this.firstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels
-                    + getResources().getDimensionPixelSize(R.dimen.little_margin)
-                    - DisplayUtils.dpToPx(
-                            getContext(),
-                        56 /* time icon */
-                                + 16 * 2 /* first card title margin */
-                                + 2 * 4 /* hourly item text margin */
-                                + 48 /* hourly icon */
-                                + 128 /* hourly trend */
-                                + 16 /* hourly item bottom margin */)
-                    - getResources().getDimensionPixelSize(R.dimen.title_text_size) // first card title
-                    - getResources().getDimensionPixelSize(R.dimen.content_text_size)); // hourly item text
-        }
-        firstCardMarginTop = (int) Math.max(
+        this.firstCardMarginTop = (int) (res.getDisplayMetrics().heightPixels
+                - res.getDimensionPixelSize(R.dimen.daily_trend_item_height)
+                - res.getDimensionPixelSize(R.dimen.standard_weather_icon_size)
+                - res.getDimensionPixelSize(R.dimen.normal_margin)
+                - res.getDimensionPixelSize(R.dimen.content_text_size)
+                - res.getDimensionPixelSize(R.dimen.normal_margin)
+                - res.getDimensionPixelSize(R.dimen.subtitle_text_size)
+                - res.getDimensionPixelSize(R.dimen.normal_margin)
+                + DisplayUtils.dpToPx(getContext(), 16 + 32 + 8 * 2));
+        this.firstCardMarginTop = (int) Math.max(
                 firstCardMarginTop,
-                getResources().getDisplayMetrics().heightPixels * 0.6);
-        scrollTransparentTriggerDistance = (int) (
+                res.getDisplayMetrics().heightPixels * 0.5);
+
+        this.scrollTransparentTriggerDistance = (int) (
                 firstCardMarginTop
-                        - DisplayUtils.getStatusBarHeight(getResources())
+                        - DisplayUtils.getStatusBarHeight(res)
                         - DisplayUtils.dpToPx(getContext(), 56)
-                        - getResources().getDimension(R.dimen.design_title_text_size)
-                        - getResources().getDimension(R.dimen.normal_margin)
+                        - res.getDimension(R.dimen.design_title_text_size)
+                        - res.getDimension(R.dimen.normal_margin)
         );
 
         this.lastScrollRate = 0;

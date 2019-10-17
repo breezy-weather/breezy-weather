@@ -22,7 +22,6 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.AqiAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.ArcProgress;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
@@ -58,15 +57,6 @@ public class AqiController extends AbstractMainItemController {
 
     @Override
     public void onBindView(@NonNull Location location) {
-        if (!isDisplay(SettingsOptionManager.CARD_AIR_QUALITY)) {
-            enable = false;
-            view.setVisibility(View.GONE);
-            return;
-        } else {
-            enable = true;
-            view.setVisibility(View.VISIBLE);
-        }
-
         weather = location.getWeather();
         if (weather != null) {
             if (!weather.getCurrent().getAirQuality().isValid()) {

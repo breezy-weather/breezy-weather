@@ -362,7 +362,6 @@
     <string name="key_icon_provider">icon_provider</string>
     <string name="key_appearance">appearance</string>
     <string name="key_card_display">card_display</string>
-    <string name="key_card_order">card_order</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
     <string name="key_language">language</string>
     <string name="key_unit">unit</string>

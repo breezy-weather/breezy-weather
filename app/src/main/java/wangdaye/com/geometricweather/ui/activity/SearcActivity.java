@@ -97,6 +97,18 @@ public class SearcActivity extends GeoActivity
         }
     }
 
+    private class WeatherSourceIndicator extends CustomIndicator {
+
+        public WeatherSourceIndicator(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected int getIndicatorHeight() {
+            return 40;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,9 +177,6 @@ public class SearcActivity extends GeoActivity
             }
         });
 
-        DragScrollBar scrollBar = findViewById(R.id.activity_search_scrollBar);
-        scrollBar.setIndicator(new CustomIndicator(this).setTextSize(16), true);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 this, RecyclerView.VERTICAL, false);
 
@@ -175,6 +184,10 @@ public class SearcActivity extends GeoActivity
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(adapter);
+
+        DragScrollBar scrollBar = findViewById(R.id.activity_search_scrollBar);
+        scrollBar.setIndicator(new WeatherSourceIndicator(this).setTextSize(16), true);
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @ColorInt int sourceColor = Color.TRANSPARENT;
@@ -185,8 +198,8 @@ public class SearcActivity extends GeoActivity
                 super.onScrolled(recyclerView, dx, dy);
                 color = adapter.getItemSourceColor(layoutManager.findFirstVisibleItemPosition());
                 if (color != sourceColor) {
-                    scrollBar.setHandleColor(sourceColor);
-                    scrollBar.setHandleOffColor(sourceColor);
+                    scrollBar.setHandleColor(color);
+                    scrollBar.setHandleOffColor(color);
                 }
             }
         });

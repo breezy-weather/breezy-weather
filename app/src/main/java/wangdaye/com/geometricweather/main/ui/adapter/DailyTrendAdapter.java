@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.main.ui.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 import androidx.annotation.Size;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +22,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
 import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
 import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendRecyclerViewAdapter;
-import wangdaye.com.geometricweather.ui.widget.trendView.overview.DailyItemView;
+import wangdaye.com.geometricweather.ui.widget.trendView.item.DailyItemView;
 
 /**
  * Daily trend adapter.
@@ -52,6 +53,7 @@ public class DailyTrendAdapter extends TrendRecyclerViewAdapter<DailyTrendAdapte
             dailyItem = itemView.findViewById(R.id.item_trend_daily);
             dailyItem.setParent(getTrendParent());
             dailyItem.setWidth(getItemWidth());
+            dailyItem.setHeight(getItemHeight());
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
@@ -133,9 +135,10 @@ public class DailyTrendAdapter extends TrendRecyclerViewAdapter<DailyTrendAdapte
     @SuppressLint("SimpleDateFormat")
     public DailyTrendAdapter(GeoActivity activity,
                              TrendParent parent, float marginHorizontalPx, int itemCountPerLine,
+                             @Px float itemHeight,
                              @NonNull Weather weather, int[] themeColors,
                              ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
-        super(activity, parent, marginHorizontalPx, itemCountPerLine);
+        super(activity, parent, marginHorizontalPx, itemCountPerLine, itemHeight);
         this.activity = activity;
 
         this.weather = weather;

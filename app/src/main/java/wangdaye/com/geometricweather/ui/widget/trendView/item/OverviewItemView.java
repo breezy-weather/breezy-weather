@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trendView.overview;
+package wangdaye.com.geometricweather.ui.widget.trendView.item;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -27,7 +27,7 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
  * Trend item view.
  * */
 
-public class TrendItemView extends View {
+public class OverviewItemView extends View {
 
     private Paint paint;
     private Path path;
@@ -73,17 +73,17 @@ public class TrendItemView extends View {
     private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.1f;
     private static final float SHADOW_ALPHA_FACTOR_DARK = 0.1f;
 
-    public TrendItemView(Context context) {
+    public OverviewItemView(Context context) {
         super(context);
         this.initialize();
     }
 
-    public TrendItemView(Context context, AttributeSet attrs) {
+    public OverviewItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.initialize();
     }
 
-    public TrendItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public OverviewItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initialize();
     }

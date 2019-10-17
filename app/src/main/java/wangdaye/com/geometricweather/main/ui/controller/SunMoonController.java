@@ -27,7 +27,6 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
 import wangdaye.com.geometricweather.ui.widget.moon.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -55,7 +54,6 @@ public class SunMoonController extends AbstractMainItemController {
     @Size(2) private float[] animCurrentTimes;
     private int phaseAngle;
 
-    private boolean enable;
     private boolean executeEnterAnimation;
     @Size(3) private AnimatorSet[] attachAnimatorSets;
 
@@ -81,15 +79,6 @@ public class SunMoonController extends AbstractMainItemController {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(@NonNull Location location) {
-        if (!isDisplay(SettingsOptionManager.CARD_SUNRISE_SUNSET)) {
-            enable = false;
-            view.setVisibility(View.GONE);
-            return;
-        } else {
-            enable = true;
-            view.setVisibility(View.VISIBLE);
-        }
-
         if (location.getWeather() != null && location.getWeather().getDailyForecast().size() != 0) {
             weather = location.getWeather();
 
@@ -177,7 +166,7 @@ public class SunMoonController extends AbstractMainItemController {
 
     @Override
     public void onEnterScreen() {
-        if (executeEnterAnimation && enable && weather != null) {
+        if (executeEnterAnimation && weather != null) {
             executeEnterAnimation = false;
 
             ValueAnimator timeDay = ValueAnimator.ofObject(new FloatEvaluator(), startTimes[0], currentTimes[0]);

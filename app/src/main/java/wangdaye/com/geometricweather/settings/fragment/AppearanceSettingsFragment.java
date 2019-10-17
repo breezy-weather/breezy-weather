@@ -58,15 +58,6 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
             return true;
         });
 
-        // card order.
-        Preference cardOrder = findPreference(getString(R.string.key_card_order));
-        cardOrder.setSummary(getSettingsOptionManager().getCardOrder().getCardOrderName(getActivity()));
-        cardOrder.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setCardOrder(OptionMapper.getCardOrder((String) newValue));
-            preference.setSummary(getSettingsOptionManager().getCardOrder().getCardOrderName(getActivity()));
-            return true;
-        });
-
         // sensor.
         findPreference(getString(R.string.key_gravity_sensor_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setGravitySensorEnabled((Boolean) newValue);

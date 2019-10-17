@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
@@ -13,7 +12,6 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.DetailsAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 public class DetailsController extends AbstractMainItemController {
@@ -38,13 +36,6 @@ public class DetailsController extends AbstractMainItemController {
 
     @Override
     public void onBindView(@NonNull Location location) {
-        if (!isDisplay(SettingsOptionManager.CARD_LIFE_DETAILS)) {
-            view.setVisibility(View.GONE);
-            return;
-        } else {
-            view.setVisibility(View.VISIBLE);
-        }
-
         if (location.getWeather() != null) {
             card.setCardBackgroundColor(picker.getRootColor(context));
 

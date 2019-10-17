@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wangdaye.com.geometricweather.ui.widget.trendView.overview.DailyItemView
+<wangdaye.com.geometricweather.ui.widget.trendView.item.DailyItemView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_trend_daily"
     android:layout_width="56dp"
-    android:layout_height="wrap_content"
+    android:layout_height="424dp"
     android:foreground="@drawable/selectable_item_background"
     tools:ignore="UnusedAttribute" />
 

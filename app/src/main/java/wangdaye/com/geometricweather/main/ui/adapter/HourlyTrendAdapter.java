@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.ui.adapter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 import androidx.annotation.Size;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +21,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
 import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
 import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendRecyclerViewAdapter;
-import wangdaye.com.geometricweather.ui.widget.trendView.overview.HourlyItemView;
+import wangdaye.com.geometricweather.ui.widget.trendView.item.HourlyItemView;
 
 /**
  * Hourly trend adapter.
@@ -50,6 +51,7 @@ public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdap
             hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
             hourlyItem.setParent(getTrendParent());
             hourlyItem.setWidth(getItemWidth());
+            hourlyItem.setHeight(getItemHeight());
         }
 
         void onBindView(int position) {
@@ -64,7 +66,7 @@ public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdap
                     ResourceHelper.getWeatherIcon(provider, hourly.getWeatherCode(), hourly.isDaylight())
             );
 
-            hourlyItem.getTrendItem().setData(
+            hourlyItem.getOverviewItem().setData(
                     buildTempArrayForItem(temperatures, position),
                     null,
                     hourly.getPrecipitationProbability().getTotal(),
@@ -72,16 +74,16 @@ public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdap
                     lowestTemperature,
                     unit
             );
-            hourlyItem.getTrendItem().setLineColors(
+            hourlyItem.getOverviewItem().setLineColors(
                     themeColors[1], themeColors[2], picker.getLineColor(context)
             );
-            hourlyItem.getTrendItem().setShadowColors(
+            hourlyItem.getOverviewItem().setShadowColors(
                     themeColors[1], themeColors[2], picker.isLightTheme());
-            hourlyItem.getTrendItem().setTextColors(
+            hourlyItem.getOverviewItem().setTextColors(
                     picker.getTextContentColor(context),
                     picker.getTextSubtitleColor(context)
             );
-            hourlyItem.getTrendItem().setPrecipitationAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
+            hourlyItem.getOverviewItem().setPrecipitationAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
 
             hourlyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
@@ -113,9 +115,10 @@ public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdap
 
     public HourlyTrendAdapter(GeoActivity activity,
                               TrendParent parent, float marginHorizontalPx, int itemCountPerLine,
+                              @Px float itemHeight,
                               @NonNull Weather weather, int[] themeColors,
                               ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
-        super(activity, parent, marginHorizontalPx, itemCountPerLine);
+        super(activity, parent, marginHorizontalPx, itemCountPerLine, itemHeight);
         this.activity = activity;
 
         this.weather = weather;

@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.CardOrder;
 import wangdaye.com.geometricweather.basic.model.option.Language;
 import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
 import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
@@ -76,7 +75,6 @@ public class SettingsOptionManager {
             CARD_AIR_QUALITY, CARD_LIFE_DETAILS, CARD_SUNRISE_SUNSET
     }) public @interface CardDisplayValueRule {}
 
-    private CardOrder cardOrder;
     private boolean gravitySensorEnabled;
     private Language language;
 
@@ -185,11 +183,6 @@ public class SettingsOptionManager {
                         ))
                 )
         ).toArray(new String[] {});
-
-        cardOrder = OptionMapper.getCardOrder(
-                sharedPreferences.getString(
-                        context.getString(R.string.key_card_order), "daily_first")
-        );
 
         gravitySensorEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_gravity_sensor_switch), true);
@@ -380,14 +373,6 @@ public class SettingsOptionManager {
 
     public void setCardDisplayValues(String[] cardDisplayValues) {
         this.cardDisplayValues = cardDisplayValues;
-    }
-
-    public CardOrder getCardOrder() {
-        return cardOrder;
-    }
-
-    public void setCardOrder(CardOrder cardOrder) {
-        this.cardOrder = cardOrder;
     }
 
     public boolean isGravitySensorEnabled() {
