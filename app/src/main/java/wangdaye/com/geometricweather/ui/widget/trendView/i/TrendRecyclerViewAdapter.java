@@ -9,18 +9,21 @@ public abstract class TrendRecyclerViewAdapter<VH extends RecyclerView.ViewHolde
         extends RecyclerView.Adapter<VH> {
 
     private TrendParent trendParent;
-    private float marginHorizontalPx;
+    private @Px float cardMarginsVertical;
+    private @Px float cardMarginsHorizontal;
     private int itemCountPerLine;
     private @Px float itemWidth;
     private @Px float itemHeight;
 
     public TrendRecyclerViewAdapter(Context context,
-                                    TrendParent trendParent, float marginHorizontalPx, int itemCountPerLine,
-                                    @Px float itemHeight) {
+                                    TrendParent trendParent,
+                                    @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                                    int itemCountPerLine, @Px float itemHeight) {
         this.trendParent = trendParent;
-        this.marginHorizontalPx = marginHorizontalPx;
+        this.cardMarginsVertical = cardMarginsVertical;
+        this.cardMarginsHorizontal = cardMarginsHorizontal;
         this.itemCountPerLine = itemCountPerLine;
-        this.itemWidth = (context.getResources().getDisplayMetrics().widthPixels - 2 * marginHorizontalPx)
+        this.itemWidth = (context.getResources().getDisplayMetrics().widthPixels - 2 * cardMarginsHorizontal)
                 / itemCountPerLine;
         this.itemHeight = itemHeight;
     }
@@ -29,8 +32,12 @@ public abstract class TrendRecyclerViewAdapter<VH extends RecyclerView.ViewHolde
         return trendParent;
     }
 
-    public float getMarginHorizontalPx() {
-        return marginHorizontalPx;
+    public float getCardMarginsVertical() {
+        return cardMarginsVertical;
+    }
+
+    public float getCardMarginsHorizontal() {
+        return cardMarginsHorizontal;
     }
 
     public int getItemCountPerLine() {

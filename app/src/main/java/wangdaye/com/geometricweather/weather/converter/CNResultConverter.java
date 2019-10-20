@@ -375,6 +375,7 @@ public class CNResultConverter {
             );
         }
 
+        Alert.deduplication(alertList);
         return alertList;
     }
 

@@ -79,16 +79,21 @@ public class DailyTrendAdapter extends TrendRecyclerViewAdapter<DailyTrendAdapte
 
             Float daytimePrecipitationProbability = daily.day().getPrecipitationProbability().getTotal();
             Float nighttimePrecipitationProbability = daily.night().getPrecipitationProbability().getTotal();
+            float p = Math.max(
+                    daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
+                    nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
+            );
             dailyItem.getTrendItemView().setData(
-                    buildTempArrayForItem(daytimeTemperatures, position),
-                    buildTempArrayForItem(nighttimeTemperatures, position),
-                    Math.max(
-                            daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
-                            nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
-                    ),
-                    highestTemperature,
-                    lowestTemperature,
-                    unit
+                    buildTemperatureArrayForItem(daytimeTemperatures, position),
+                    buildTemperatureArrayForItem(nighttimeTemperatures, position),
+                    daily.day().getTemperature().getShortTemperature(unit),
+                    daily.night().getTemperature().getShortTemperature(unit),
+                    (float) highestTemperature,
+                    (float) lowestTemperature,
+                    p < 5 ? null : p,
+                    p < 5 ? null : ((int) p + "%"),
+                    100f,
+                    0f
             );
             dailyItem.getTrendItemView().setLineColors(
                     themeColors[1], themeColors[2], picker.getLineColor(context)
@@ -115,7 +120,7 @@ public class DailyTrendAdapter extends TrendRecyclerViewAdapter<DailyTrendAdapte
         }
 
         @Size(3)
-        private Float[] buildTempArrayForItem(float[] temps, int adapterPosition) {
+        private Float[] buildTemperatureArrayForItem(float[] temps, int adapterPosition) {
             Float[] a = new Float[3];
             a[1] = temps[2 * adapterPosition];
             if (2 * adapterPosition - 1 < 0) {
@@ -133,12 +138,12 @@ public class DailyTrendAdapter extends TrendRecyclerViewAdapter<DailyTrendAdapte
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyTrendAdapter(GeoActivity activity,
-                             TrendParent parent, float marginHorizontalPx, int itemCountPerLine,
-                             @Px float itemHeight,
+    public DailyTrendAdapter(GeoActivity activity, TrendParent parent,
+                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                             int itemCountPerLine, @Px float itemHeight,
                              @NonNull Weather weather, int[] themeColors,
                              ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
-        super(activity, parent, marginHorizontalPx, itemCountPerLine, itemHeight);
+        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight);
         this.activity = activity;
 
         this.weather = weather;

@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.ColorUtils;
@@ -43,8 +44,11 @@ public class AqiController extends AbstractMainItemController {
     @Nullable private AnimatorSet attachAnimatorSet;
 
     public AqiController(@NonNull Activity activity, @NonNull WeatherView weatherView,
-                         @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
-        super(activity, activity.findViewById(R.id.container_main_aqi), provider, picker);
+                         @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                         @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                         @Px float cardRadius) {
+        super(activity, activity.findViewById(R.id.container_main_aqi), provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius);
 
         this.card = view.findViewById(R.id.container_main_aqi);
         this.title = view.findViewById(R.id.container_main_aqi_title);

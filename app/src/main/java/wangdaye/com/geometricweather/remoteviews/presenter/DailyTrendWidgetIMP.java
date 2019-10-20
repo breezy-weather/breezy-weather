@@ -159,16 +159,21 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
             Float daytimePrecipitationProbability = daily.day().getPrecipitationProbability().getTotal();
             Float nighttimePrecipitationProbability = daily.night().getPrecipitationProbability().getTotal();
+            float p = Math.max(
+                    daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
+                    nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
+            );
             items[i].getTrendItemView().setData(
-                    buildTempArrayForItem(daytimeTemperatures, i),
-                    buildTempArrayForItem(nighttimeTemperatures, i),
-                    Math.max(
-                            daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
-                            nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
-                    ),
-                    highestTemperature,
-                    lowestTemperature,
-                    temperatureUnit
+                    buildTemperatureArrayForItem(daytimeTemperatures, i),
+                    buildTemperatureArrayForItem(nighttimeTemperatures, i),
+                    daily.day().getTemperature().getShortTemperature(temperatureUnit),
+                    daily.night().getTemperature().getShortTemperature(temperatureUnit),
+                    (float) highestTemperature,
+                    (float) lowestTemperature,
+                    p < 5 ? null : p,
+                    p < 5 ? null : ((int) p + "%"),
+                    100f,
+                    0f
             );
             items[i].getTrendItemView().setLineColors(
                     colors[1], colors[2],
@@ -288,7 +293,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         return widgetIds != null && widgetIds.length > 0;
     }
 
-    private static Float[] buildTempArrayForItem(float[] temps, int index) {
+    private static Float[] buildTemperatureArrayForItem(float[] temps, int index) {
         Float[] a = new Float[3];
         a[1] = temps[2 * index];
         if (2 * index - 1 < 0) {

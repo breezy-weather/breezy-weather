@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
@@ -58,8 +59,11 @@ public class SunMoonController extends AbstractMainItemController {
     @Size(3) private AnimatorSet[] attachAnimatorSets;
 
     public SunMoonController(@NonNull Activity activity, @NonNull WeatherView weatherView,
-                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
-        super(activity, activity.findViewById(R.id.container_main_sun_moon), provider, picker);
+                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                             @Px float cardRadius) {
+        super(activity, activity.findViewById(R.id.container_main_sun_moon), provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius);
 
         this.card = view.findViewById(R.id.container_main_sun_moon);
         this.title = view.findViewById(R.id.container_main_sun_moon_title);

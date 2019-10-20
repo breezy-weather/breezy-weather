@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_aqi"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/normal_margin"
+    android:paddingBottom="4dp"
     android:paddingStart="@dimen/large_margin"
     android:paddingEnd="@dimen/large_margin">
 
     <TextView
         android:id="@+id/item_aqi_title"
-        android:layout_alignParentStart="true"
         android:layout_marginStart="2dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textSize="@dimen/subtitle_text_size"
         style="@style/content_text"
         tools:text="PM 2.5"/>
 
-    <TextView
-        android:id="@+id/item_aqi_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="2dp"
-        style="@style/subtitle_text"
-        tools:text="126 μg/m³"/>
-
     <wangdaye.com.geometricweather.ui.widget.RoundProgress
         android:id="@+id/item_aqi_progress"
         android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:layout_below="@id/item_aqi_title" />
+        android:layout_height="6dp" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/item_aqi_content"
+        android:layout_marginEnd="2dp"
+        android:layout_gravity="end"
+        android:maxLines="1"
+        android:ellipsize="end"
+        style="@style/subtitle_text"
+        tools:text="126 μg/m³"/>
+
+</LinearLayout>

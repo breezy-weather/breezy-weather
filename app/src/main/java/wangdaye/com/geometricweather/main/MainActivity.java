@@ -358,8 +358,7 @@ public class MainActivity extends GeoActivity
         refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
 
         adapter = new MainControllerAdapter(this);
-        adapter.bind(this, scrollContainer, weatherView, location, resourceProvider,
-                colorPicker, weatherView.getCardMargins(this));
+        adapter.bind(this, scrollContainer, weatherView, location, resourceProvider, colorPicker);
         scrollView.setOnScrollChangeListener(
                 new OnScrollListener(adapter.getFooter(this), weatherView.getFirstCardMarginTop())
         );
@@ -397,6 +396,7 @@ public class MainActivity extends GeoActivity
 
         if (adapter != null) {
             adapter.unbind(scrollContainer);
+            scrollView.scrollTo(0, 0);
         }
     }
 
@@ -578,7 +578,7 @@ public class MainActivity extends GeoActivity
                                    int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
 
             weatherView.onScroll(scrollY);
-            adapter.onScroll(oldScrollY, scrollY);
+            adapter.onScroll(scrollY);
 
             // set translation y of toolbar.
             if (adapter != null) {

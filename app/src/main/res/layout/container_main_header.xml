@@ -1,60 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_main_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:background="@android:color/transparent"
     android:foreground="@drawable/selectable_item_background"
     tools:layout_height="256dp"
     tools:background="@android:color/black"
     tools:ignore="UnusedAttribute">
 
-    <TextView
-        android:id="@+id/container_main_header_tempTxt"
-        android:layout_marginStart="@dimen/normal_margin"
-        android:layout_marginBottom="@dimen/little_margin"
-        android:layout_centerVertical="true"
-        android:layout_alignParentBottom="true"
-        android:textSize="@dimen/design_title_text_size"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        style="@style/large_title_text"
-        tools:text="30°"
-        tools:ignore="RelativeOverlap,RtlHardcoded" />
-
-    <TextView
-        android:id="@+id/container_main_header_sensibleTempTxt"
-        android:maxLines="1"
-        android:textSize="@dimen/title_text_size"
-        android:layout_toEndOf="@id/container_main_header_tempTxt"
-        android:layout_marginStart="@dimen/little_margin"
-        android:layout_alignBaseline="@id/container_main_header_tempTxt"
-        style="@style/large_title_text"
-        tools:text="体感 37°"
-        tools:ignore="RelativeOverlap,RtlHardcoded" />
-
-    <TextView
-        android:id="@+id/container_main_header_weatherTxt"
-        android:maxLines="1"
-        android:textSize="@dimen/title_text_size"
-        android:layout_toEndOf="@id/container_main_header_tempTxt"
-        android:layout_marginStart="@dimen/little_margin"
-        android:layout_above="@id/container_main_header_sensibleTempTxt"
-        style="@style/large_title_text"
-        tools:text="晴"
-        tools:ignore="RelativeOverlap,RtlHardcoded" />
-
-    <TextView
-        android:id="@+id/container_main_header_aqiOrWindTxt"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBaseline="@id/container_main_header_tempTxt"
-        android:textSize="@dimen/title_text_size"
-        android:maxLines="1"
-        style="@style/large_title_text"
-        tools:text="轻度污染"
-        tools:ignore="RtlHardcoded" />
+        android:layout_gravity="bottom"
+        tools:ignore="UselessParent">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/container_main_header_tempTxt"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/main_title_text_size"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            style="@style/large_title_text"
+            tools:text="30°"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/container_main_header_tempTxt"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/little_margin">
+
+            <TextView
+                android:id="@+id/container_main_header_weatherTxt"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/large_title_text"
+                tools:text="晴"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/container_main_header_sensibleTempTxt"
+                android:textSize="@dimen/content_text_size"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/large_title_text"
+                tools:text="体感 37°"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/container_main_header_aqiOrWindTxt"
+                android:textSize="@dimen/content_text_size"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/large_title_text"
+                tools:text="空气 轻度污染"
+                tools:ignore="RtlHardcoded" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

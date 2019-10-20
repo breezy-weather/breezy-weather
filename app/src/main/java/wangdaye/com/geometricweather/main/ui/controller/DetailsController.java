@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.main.ui.controller;
 
 import android.app.Activity;
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,8 +25,11 @@ public class DetailsController extends AbstractMainItemController {
     @NonNull private WeatherView weatherView;
 
     public DetailsController(@NonNull Activity activity, @NonNull WeatherView weatherView,
-                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
-        super(activity, activity.findViewById(R.id.container_main_details), provider, picker);
+                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                             @Px float cardRadius) {
+        super(activity, activity.findViewById(R.id.container_main_details), provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius);
 
         this.card = view.findViewById(R.id.container_main_details);
         this.title = view.findViewById(R.id.container_main_details_title);

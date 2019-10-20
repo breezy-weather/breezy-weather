@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.main.ui.controller;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -34,20 +35,24 @@ public class DailyTrendCardController extends AbstractMainItemController {
     private TrendRecyclerView trendRecyclerView;
     
     @NonNull private WeatherView weatherView;
-    private int marginsHorizontal;
+    @Px private float cardMarginsVertical;
+    @Px private float cardMarginsHorizontal;
 
     public DailyTrendCardController(@NonNull Activity activity, @NonNull WeatherView weatherView,
                                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                    int marginsHorizontal) {
-        super(activity, activity.findViewById(R.id.container_main_first_trend_card), provider, picker);
+                                    @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                                    @Px float cardRadius) {
+        super(activity, activity.findViewById(R.id.container_main_daily_trend_card), provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius);
 
-        this.card = view.findViewById(R.id.container_main_first_trend_card);
-        this.title = view.findViewById(R.id.container_main_first_trend_card_title);
-        this.subtitle = view.findViewById(R.id.container_main_first_trend_card_subtitle);
-        this.trendRecyclerView = view.findViewById(R.id.container_main_first_trend_card_trendRecyclerView);
+        this.card = view.findViewById(R.id.container_main_daily_trend_card);
+        this.title = view.findViewById(R.id.container_main_daily_trend_card_title);
+        this.subtitle = view.findViewById(R.id.container_main_daily_trend_card_subtitle);
+        this.trendRecyclerView = view.findViewById(R.id.container_main_daily_trend_card_trendRecyclerView);
         
         this.weatherView = weatherView;
-        this.marginsHorizontal = marginsHorizontal;
+        this.cardMarginsVertical = cardMarginsVertical;
+        this.cardMarginsHorizontal = cardMarginsHorizontal;
     }
 
     @SuppressLint({"RestrictedApi", "SetTextI18n"})
@@ -59,7 +64,6 @@ public class DailyTrendCardController extends AbstractMainItemController {
 
             card.setCardBackgroundColor(picker.getRootColor(context));
 
-            title.setText(context.getString(R.string.daily_overview));
             title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
             if (TextUtils.isEmpty(weather.getCurrent().getDailyForecast())) {
@@ -74,9 +78,8 @@ public class DailyTrendCardController extends AbstractMainItemController {
                     new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             trendRecyclerView.setAdapter(
                     new DailyTrendAdapter(
-                            (GeoActivity) context,
-                            trendRecyclerView,
-                            marginsHorizontal,
+                            (GeoActivity) context, trendRecyclerView,
+                            cardMarginsVertical, cardMarginsHorizontal,
                             DisplayUtils.isTabletDevice(context) ? 7 : 5,
                             context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
                             weather,

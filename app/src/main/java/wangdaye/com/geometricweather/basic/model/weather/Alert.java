@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.ColorInt;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Alert.
@@ -68,6 +69,17 @@ public class Alert implements Parcelable {
 
     public int getColor() {
         return color;
+    }
+
+    public static void deduplication(List<Alert> alertList) {
+        for (int i = 0; i < alertList.size(); i ++) {
+            String type = alertList.get(i).getType();
+            for (int j = alertList.size() - 1; j > i; j --) {
+                if (alertList.get(j).getType().equals(type)) {
+                    alertList.remove(j);
+                }
+            }
+        }
     }
 
     // parcelable.

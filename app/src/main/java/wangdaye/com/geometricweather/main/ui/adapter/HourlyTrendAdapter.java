@@ -66,24 +66,25 @@ public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdap
                     ResourceHelper.getWeatherIcon(provider, hourly.getWeatherCode(), hourly.isDaylight())
             );
 
-            hourlyItem.getOverviewItem().setData(
-                    buildTempArrayForItem(temperatures, position),
+            hourlyItem.getChartItem().setData(
+                    buildTemperatureArrayForItem(temperatures, position),
                     null,
-                    hourly.getPrecipitationProbability().getTotal(),
-                    highestTemperature,
-                    lowestTemperature,
-                    unit
+                    hourly.getTemperature().getShortTemperature(unit),
+                    null,
+                    (float) highestTemperature,
+                    (float) lowestTemperature,
+                    null, null, null, null
             );
-            hourlyItem.getOverviewItem().setLineColors(
+            hourlyItem.getChartItem().setLineColors(
                     themeColors[1], themeColors[2], picker.getLineColor(context)
             );
-            hourlyItem.getOverviewItem().setShadowColors(
+            hourlyItem.getChartItem().setShadowColors(
                     themeColors[1], themeColors[2], picker.isLightTheme());
-            hourlyItem.getOverviewItem().setTextColors(
+            hourlyItem.getChartItem().setTextColors(
                     picker.getTextContentColor(context),
                     picker.getTextSubtitleColor(context)
             );
-            hourlyItem.getOverviewItem().setPrecipitationAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
+            hourlyItem.getChartItem().setPrecipitationAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
 
             hourlyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
@@ -96,7 +97,7 @@ public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdap
         }
 
         @Size(3)
-        private Float[] buildTempArrayForItem(float[] temps, int adapterPosition) {
+        private Float[] buildTemperatureArrayForItem(float[] temps, int adapterPosition) {
             Float[] a = new Float[3];
             a[1] = temps[2 * adapterPosition];
             if (2 * adapterPosition - 1 < 0) {
@@ -113,12 +114,12 @@ public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdap
         }
     }
 
-    public HourlyTrendAdapter(GeoActivity activity,
-                              TrendParent parent, float marginHorizontalPx, int itemCountPerLine,
-                              @Px float itemHeight,
+    public HourlyTrendAdapter(GeoActivity activity, TrendParent parent,
+                              @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                              int itemCountPerLine, @Px float itemHeight,
                               @NonNull Weather weather, int[] themeColors,
                               ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
-        super(activity, parent, marginHorizontalPx, itemCountPerLine, itemHeight);
+        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight);
         this.activity = activity;
 
         this.weather = weather;

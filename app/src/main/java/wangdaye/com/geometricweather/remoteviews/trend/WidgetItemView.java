@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.widget.trendView.item.OverviewItemView;
+import wangdaye.com.geometricweather.ui.widget.trendView.item.ChartItemView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
  * */
 public class WidgetItemView extends ViewGroup {
 
-    private OverviewItemView trend;
+    private ChartItemView trend;
     private Paint paint;
 
     private float width;
@@ -81,7 +81,7 @@ public class WidgetItemView extends ViewGroup {
     private void initialize() {
         setWillNotDraw(false);
 
-        trend = new OverviewItemView(getContext());
+        trend = new ChartItemView(getContext());
         addView(trend);
 
         paint = new Paint();
@@ -238,7 +238,7 @@ public class WidgetItemView extends ViewGroup {
         }
     }
 
-    public OverviewItemView getTrendItemView() {
+    public ChartItemView getTrendItemView() {
         return trend;
     }
 

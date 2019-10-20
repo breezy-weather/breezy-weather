@@ -429,6 +429,7 @@ public class AccuResultConverter {
                     )
             );
         }
+        Alert.deduplication(alertList);
         return alertList;
     }
 

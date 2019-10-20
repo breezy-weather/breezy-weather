@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.adapter;
+package wangdaye.com.geometricweather.main.ui.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.ui.widget.TagView;
 
-public class WeatherSourceTagAdapter extends RecyclerView.Adapter<WeatherSourceTagAdapter.ViewHolder> {
+public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
-    private List<WeatherSource> sourceList;
+    private List<String> tagList;
     private int checkedIndex;
 
     @Nullable private OnTagCheckedListener listener;
@@ -35,9 +34,8 @@ public class WeatherSourceTagAdapter extends RecyclerView.Adapter<WeatherSourceT
             });
         }
 
-        void onBindView(WeatherSource source, boolean checked) {
-            tagView.setCheckedBackgroundColor(source.getSourceColor());
-            tagView.setUncheckedTextColor(source.getSourceColor());
+        void onBindView(String tag, boolean checked) {
+            tagView.setText(tag);
             setChecked(checked);
         }
 
@@ -46,12 +44,12 @@ public class WeatherSourceTagAdapter extends RecyclerView.Adapter<WeatherSourceT
         }
     }
 
-    public WeatherSourceTagAdapter(List<WeatherSource> sourceList) {
-        this(sourceList, 0);
+    public TagAdapter(List<String> tagList) {
+        this(tagList, 0);
     }
 
-    public WeatherSourceTagAdapter(List<WeatherSource> sourceList, int checkedIndex) {
-        this.sourceList = sourceList;
+    public TagAdapter(List<String> tagList, int checkedIndex) {
+        this.tagList = tagList;
         this.checkedIndex = checkedIndex;
     }
 
@@ -66,12 +64,12 @@ public class WeatherSourceTagAdapter extends RecyclerView.Adapter<WeatherSourceT
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(sourceList.get(position), position == checkedIndex);
+        holder.onBindView(tagList.get(position), position == checkedIndex);
     }
 
     @Override
     public int getItemCount() {
-        return sourceList.size();
+        return tagList.size();
     }
 
     public interface OnTagCheckedListener {

@@ -81,6 +81,8 @@
 
     <string name="daily_overview">每日概览</string>
     <string name="hourly_overview">小时概览</string>
+    <string name="minutely_overview">分钟概览</string>
+    <string name="precipitation_overview">降水概览</string>
     <string name="air_quality">空气质量</string>
     <string name="life_details">详情数据</string>
     <string name="sunrise_sunset">日月升落</string>

@@ -69,6 +69,10 @@ public class Wind {
         }
     }
 
+    public String getShortWindDescription() {
+        return direction + " " + level;
+    }
+
     public String getWindDescription(SpeedUnit unit) {
         StringBuilder builder = new StringBuilder();
         builder.append(direction);

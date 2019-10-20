@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
@@ -62,13 +61,10 @@ public class Base {
 
     @SuppressLint("SimpleDateFormat")
     public static String getTime(Context c, Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-
         if (TimeManager.is12Hour(c)) {
-            return new SimpleDateFormat("h:mm aa").format(calendar.getTime());
+            return new SimpleDateFormat("h:mm aa").format(date);
         } else {
-            return new SimpleDateFormat("HH:mm").format(calendar.getTime());
+            return new SimpleDateFormat("HH:mm").format(date);
         }
     }
 }

@@ -23,12 +23,12 @@ import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
- * Daily overviewItem item view.
+ * Daily chartItem item view.
  * */
 public class HourlyItemView extends ViewGroup
         implements TrendChild {
 
-    private OverviewItemView overviewItem;
+    private ChartItemView chartItem;
     private TrendParent trendParent;
     private Paint paint;
 
@@ -82,8 +82,8 @@ public class HourlyItemView extends ViewGroup
     private void initialize() {
         setWillNotDraw(false);
 
-        overviewItem = new OverviewItemView(getContext());
-        addView(overviewItem);
+        chartItem = new ChartItemView(getContext());
+        addView(chartItem);
 
         paint = new Paint();
         paint.setAntiAlias(true);
@@ -99,7 +99,7 @@ public class HourlyItemView extends ViewGroup
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        width = Math.max(DisplayUtils.dpToPx(getContext(), 56), width);
+        width = Math.max(DisplayUtils.dpToPx(getContext(), MIN_ITEM_WIDTH), width);
         height = Math.max(DisplayUtils.dpToPx(getContext(), MIN_ITEM_HEIGHT), height);
 
         float y = 0;
@@ -124,8 +124,8 @@ public class HourlyItemView extends ViewGroup
         // margin bottom.
         float marginBottom = DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
 
-        // overviewItem item view.
-        overviewItem.measure(
+        // chartItem item view.
+        chartItem.measure(
                 MeasureSpec.makeMeasureSpec(
                         (int) width,
                         MeasureSpec.EXACTLY
@@ -139,19 +139,19 @@ public class HourlyItemView extends ViewGroup
         setMeasuredDimension((int) width, (int) height);
         if (trendParent != null) {
             trendParent.setDrawingBoundary(
-                    (int) (trendViewTop + overviewItem.getMarginTop()),
-                    (int) (trendViewTop + overviewItem.getMeasuredHeight() - overviewItem.getMarginBottom())
+                    (int) (trendViewTop + chartItem.getMarginTop()),
+                    (int) (trendViewTop + chartItem.getMeasuredHeight() - chartItem.getMarginBottom())
             );
         }
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        overviewItem.layout(
+        chartItem.layout(
                 0,
                 (int) trendViewTop,
-                overviewItem.getMeasuredWidth(),
-                (int) trendViewTop + overviewItem.getMeasuredHeight()
+                chartItem.getMeasuredWidth(),
+                (int) trendViewTop + chartItem.getMeasuredHeight()
         );
     }
 
@@ -234,8 +234,8 @@ public class HourlyItemView extends ViewGroup
         };
     }
 
-    public OverviewItemView getOverviewItem() {
-        return overviewItem;
+    public ChartItemView getChartItem() {
+        return chartItem;
     }
 
     @Override

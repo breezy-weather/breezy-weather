@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_main_second_trend_card"
+    android:id="@+id/container_main_hourly_trend_card"
     style="@style/material_card">
 
     <LinearLayout
@@ -11,16 +11,16 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/container_main_second_trend_card_title"
+            android:id="@+id/container_main_hourly_trend_card_title"
+            android:text="@string/hourly_overview"
             android:textSize="@dimen/title_text_size"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
             style="@style/content_text"
-            tools:text="@string/hourly_overview"
             tools:ignore="RtlHardcoded" />
 
         <TextView
-            android:id="@+id/container_main_second_trend_card_subtitle"
+            android:id="@+id/container_main_hourly_trend_card_subtitle"
             android:layout_marginTop="2dp"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
@@ -29,11 +29,61 @@
             tools:ignore="RtlHardcoded" />
 
         <wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView
-            android:id="@+id/container_main_second_trend_card_trendRecyclerView"
+            android:id="@+id/container_main_hourly_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/hourly_trend_item_height"
             android:layout_marginTop="@dimen/normal_margin"
             tools:ignore="UnusedAttribute" />
+
+        <LinearLayout
+            android:id="@+id/container_main_hourly_trend_card_minutely"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selectable_item_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/container_main_hourly_trend_card_minutelyTitle"
+                android:text="@string/precipitation_overview"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginTop="2dp"
+                style="@style/content_text"
+                tools:ignore="RtlHardcoded" />
+
+            <wangdaye.com.geometricweather.ui.widget.PrecipitationBar
+                android:id="@+id/container_main_hourly_trend_card_minutelyBar"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginBottom="@dimen/little_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                tools:background="@color/colorLine" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin">
+
+                <TextView
+                    android:id="@+id/container_main_hourly_trend_card_minutelyStartText"
+                    android:layout_alignParentStart="true"
+                    style="@style/subtitle_text"
+                    tools:text="07:00"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/container_main_hourly_trend_card_minutelyEndText"
+                    android:layout_alignParentEnd="true"
+                    style="@style/subtitle_text"
+                    tools:text="09:00"
+                    tools:ignore="RtlHardcoded" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -23,11 +23,11 @@ import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
- * Daily overviewItem item view.
+ * Daily chartItem item view.
  * */
 public class DailyItemView extends ViewGroup implements TrendChild {
 
-    private OverviewItemView overviewItem;
+    private ChartItemView chartItem;
     private TrendParent trendParent;
     private Paint paint;
 
@@ -90,8 +90,8 @@ public class DailyItemView extends ViewGroup implements TrendChild {
     private void initialize() {
         setWillNotDraw(false);
 
-        overviewItem = new OverviewItemView(getContext());
-        addView(overviewItem);
+        chartItem = new ChartItemView(getContext());
+        addView(chartItem);
 
         paint = new Paint();
         paint.setAntiAlias(true);
@@ -142,8 +142,8 @@ public class DailyItemView extends ViewGroup implements TrendChild {
         nightIconLeft = (width - iconSize) / 2f;
         nightIconTop = height - marginBottom - iconMargin - iconSize;
 
-        // overviewItem item view.
-        overviewItem.measure(
+        // chartItem item view.
+        chartItem.measure(
                 MeasureSpec.makeMeasureSpec(
                         (int) width,
                         MeasureSpec.EXACTLY
@@ -157,19 +157,19 @@ public class DailyItemView extends ViewGroup implements TrendChild {
         setMeasuredDimension((int) width, (int) height);
         if (trendParent != null) {
             trendParent.setDrawingBoundary(
-                    (int) (trendViewTop + overviewItem.getMarginTop()),
-                    (int) (trendViewTop + overviewItem.getMeasuredHeight() - overviewItem.getMarginBottom())
+                    (int) (trendViewTop + chartItem.getMarginTop()),
+                    (int) (trendViewTop + chartItem.getMeasuredHeight() - chartItem.getMarginBottom())
             );
         }
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        overviewItem.layout(
+        chartItem.layout(
                 0,
                 (int) trendViewTop,
-                overviewItem.getMeasuredWidth(),
-                (int) trendViewTop + overviewItem.getMeasuredHeight()
+                chartItem.getMeasuredWidth(),
+                (int) trendViewTop + chartItem.getMeasuredHeight()
         );
     }
 
@@ -313,8 +313,8 @@ public class DailyItemView extends ViewGroup implements TrendChild {
         };
     }
 
-    public OverviewItemView getTrendItemView() {
-        return overviewItem;
+    public ChartItemView getTrendItemView() {
+        return chartItem;
     }
 
     @Override

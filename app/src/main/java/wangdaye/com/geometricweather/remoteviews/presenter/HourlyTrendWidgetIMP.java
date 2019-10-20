@@ -142,12 +142,13 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             );
 
             items[i].getTrendItemView().setData(
-                    buildTempArrayForItem(temperatures, i),
+                    buildTemperatureArrayForItem(temperatures, i),
                     null,
-                    hourly.getPrecipitationProbability().getTotal(),
-                    highestTemperature,
-                    lowestTemperature,
-                    temperatureUnit
+                    hourly.getTemperature().getShortTemperature(temperatureUnit),
+                    null,
+                    (float) highestTemperature,
+                    (float) lowestTemperature,
+                    null, null, null, null
             );
             items[i].getTrendItemView().setLineColors(
                     colors[1], colors[2],
@@ -263,7 +264,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         return widgetIds != null && widgetIds.length > 0;
     }
 
-    private static Float[] buildTempArrayForItem(float[] temps, int index) {
+    private static Float[] buildTemperatureArrayForItem(float[] temps, int index) {
         Float[] a = new Float[3];
         a[1] = temps[2 * index];
         if (2 * index - 1 < 0) {

@@ -296,7 +296,12 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     @Override
-    public int getCardMargins(Context context) {
+    public int getCardMarginsVertical(Context context) {
+        return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
+    }
+
+    @Override
+    public int getCardMarginsHorizontal(Context context) {
         return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
     }
 

@@ -45,8 +45,11 @@ public class MainControllerAdapter {
     public void bind(@NonNull Activity activity,
                      @NonNull ViewGroup scrollContainer, @NonNull WeatherView weatherView,
                      @NonNull Location location,
-                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                     int marginsHorizontal) {
+                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+        float cardMarginsVertical = weatherView.getCardMarginsVertical(activity);
+        float cardMarginsHorizontal = weatherView.getCardMarginsHorizontal(activity);
+        float cardRadius = weatherView.getCardRadius(activity);
+
         if (scrollContainer.getChildCount() != 0) {
             scrollContainer.removeAllViews();
         }
@@ -55,47 +58,63 @@ public class MainControllerAdapter {
             String[] cardDisplayValues = SettingsOptionManager.getInstance(activity).getCardDisplayValues();
 
             inflater.inflate(R.layout.container_main_header, scrollContainer, true);
-            controllerList.add(new HeaderController(activity, weatherView, provider, picker));
+            controllerList.add(new HeaderController(
+                    activity, weatherView, provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius
+            ));
 
             if (isDisplay(SettingsOptionManager.CARD_DAILY_OVERVIEW, cardDisplayValues)) {
                 inflater.inflate(R.layout.container_main_daily_trend_card, scrollContainer, true);
-                controllerList.add(new DailyTrendCardController(activity, weatherView, provider, picker, marginsHorizontal));
+                controllerList.add(new DailyTrendCardController(
+                        activity, weatherView, provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius
+                ));
             }
 
             if (isDisplay(SettingsOptionManager.CARD_HOURLY_OVERVIEW, cardDisplayValues)) {
                 inflater.inflate(R.layout.container_main_hourly_trend_card, scrollContainer, true);
-                controllerList.add(new HourlyTrendCardController(activity, weatherView, provider, picker, marginsHorizontal));
+                controllerList.add(new HourlyTrendCardController(
+                        activity, weatherView, provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius
+                ));
             }
 
             if (isDisplay(SettingsOptionManager.CARD_AIR_QUALITY, cardDisplayValues)) {
                 inflater.inflate(R.layout.container_main_aqi, scrollContainer, true);
-                controllerList.add(new AqiController(activity, weatherView, provider, picker));
+                controllerList.add(new AqiController(
+                        activity, weatherView, provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius
+                ));
             }
 
             if (isDisplay(SettingsOptionManager.CARD_SUNRISE_SUNSET, cardDisplayValues)) {
                 inflater.inflate(R.layout.container_main_sun_moon, scrollContainer, true);
-                controllerList.add(new SunMoonController(activity, weatherView, provider, picker));
+                controllerList.add(new SunMoonController(
+                        activity, weatherView, provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius
+                ));
             }
 
             if (isDisplay(SettingsOptionManager.CARD_LIFE_DETAILS, cardDisplayValues)) {
                 inflater.inflate(R.layout.container_main_details, scrollContainer, true);
-                controllerList.add(new DetailsController(activity, weatherView, provider, picker));
+                controllerList.add(new DetailsController(
+                        activity, weatherView, provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius
+                ));
             }
 
             inflater.inflate(R.layout.container_main_footer, scrollContainer, true);
-            controllerList.add(new FooterController(activity, provider, picker));
+            controllerList.add(new FooterController(
+                    activity, provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius
+            ));
         }
         if (controllerList.size() > 1) {
             LinearLayout viewGroup = controllerList.get(1).getContainer();
             if (viewGroup != null) {
-                firstCardHeaderController = new FirstCardHeaderController(activity, viewGroup, provider, picker);
+                firstCardHeaderController = new FirstCardHeaderController(
+                        activity, viewGroup, provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius
+                );
                 firstCardHeaderController.onBindView(location);
             }
         }
         for (int i = 0; i < controllerList.size(); i ++) {
             controllerList.get(i).onBindView(location);
         }
-        scrollContainer.post(() -> onScroll(0, 0));
+        scrollContainer.post(() -> onScroll(0));
     }
 
     public void unbind(@NonNull ViewGroup scrollContainer) {
@@ -124,15 +143,11 @@ public class MainControllerAdapter {
         return headerCurrentTemperatureTextHeight;
     }
 
-    public void onScroll(int oldScrollY, int scrollY) {
-        if (oldScrollY > scrollY) {
-            return;
-        }
+    public void onScroll(int scrollY) {
         for (int i = 0; i < controllerList.size(); i ++) {
-            if ((oldScrollY + screenHeight <= controllerList.get(i).getTop()
-                    && controllerList.get(i).getTop() < scrollY + screenHeight)
+            if (controllerList.get(i).getTop() < scrollY + screenHeight
                     || controllerList.get(i).getTop() < screenHeight) {
-                controllerList.get(i).onEnterScreen();
+                controllerList.get(i).enterScreen();
             }
         }
     }

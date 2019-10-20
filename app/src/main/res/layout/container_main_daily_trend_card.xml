@@ -2,26 +2,26 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_main_first_trend_card"
+    android:id="@+id/container_main_daily_trend_card"
     style="@style/material_card">
 
     <LinearLayout
-        android:id="@+id/container_main_first_trend_card_container"
+        android:id="@+id/container_main_first_daily_card_container"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/container_main_first_trend_card_title"
+            android:id="@+id/container_main_daily_trend_card_title"
+            android:text="@string/daily_overview"
             android:textSize="@dimen/title_text_size"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
             style="@style/content_text"
-            tools:text="@string/daily_overview"
             tools:ignore="RtlHardcoded" />
 
         <TextView
-            android:id="@+id/container_main_first_trend_card_subtitle"
+            android:id="@+id/container_main_daily_trend_card_subtitle"
             android:layout_marginTop="2dp"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
@@ -30,7 +30,7 @@
             tools:ignore="RtlHardcoded" />
 
         <wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView
-            android:id="@+id/container_main_first_trend_card_trendRecyclerView"
+            android:id="@+id/container_main_daily_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/daily_trend_item_height"
             android:layout_marginTop="@dimen/normal_margin"

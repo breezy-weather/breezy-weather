@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import java.text.DateFormat;
@@ -39,8 +40,12 @@ public class FirstCardHeaderController extends AbstractMainItemController
     @Nullable private Weather weather;
 
     public FirstCardHeaderController(@NonNull Activity activity, LinearLayout firstCardContainer,
-                                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
-        super(activity, activity.findViewById(R.id.container_main_first_trend_card), provider, picker);
+                                     @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                                     @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                                     @Px float cardRadius) {
+        super(activity, activity.findViewById(R.id.container_main_daily_trend_card), provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius);
+
         this.header = LayoutInflater.from(firstCardContainer.getContext()).inflate(
                 R.layout.container_main_first_card_header, firstCardContainer, false);
         firstCardContainer.addView(header, 0);
@@ -117,7 +122,7 @@ public class FirstCardHeaderController extends AbstractMainItemController
                 alert.setTextColor(picker.getTextSubtitleColor(context));
 
                 line.setVisibility(View.VISIBLE);
-                line.setBackgroundColor(picker.getLineColor(context));
+                line.setBackgroundColor(picker.getRootColor(context));
             }
             alert.setOnClickListener(this);
         }

@@ -93,7 +93,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             if (firstTime) {
                 y = r.nextInt((int) (canvasSize - MAX_HEIGHT)) - canvasSize;
             } else {
-                y = -MAX_HEIGHT;
+                y = -MAX_HEIGHT * (1 + 2 * r.nextFloat());
             }
             width = MIN_WIDTH + r.nextFloat() * (MAX_WIDTH - MIN_WIDTH);
             height = MIN_HEIGHT + r.nextFloat() * (MAX_HEIGHT - MIN_HEIGHT);

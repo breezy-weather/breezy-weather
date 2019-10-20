@@ -65,7 +65,9 @@ public interface WeatherView {
 
     int getFirstCardMarginTop();
 
-    int getCardMargins(Context context);
+    int getCardMarginsVertical(Context context);
+
+    int getCardMarginsHorizontal(Context context);
 
     int getCardRadius(Context context);
 

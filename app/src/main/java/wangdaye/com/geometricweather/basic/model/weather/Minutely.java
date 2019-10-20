@@ -66,4 +66,12 @@ public class Minutely {
     public Integer getCloudCover() {
         return cloudCover;
     }
+
+    public boolean isPrecipitation() {
+        return weatherCode == WeatherCode.RAIN
+                || weatherCode == WeatherCode.SNOW
+                || weatherCode == WeatherCode.SLEET
+                || weatherCode == WeatherCode.HAIL
+                || weatherCode == WeatherCode.THUNDERSTORM;
+    }
 }

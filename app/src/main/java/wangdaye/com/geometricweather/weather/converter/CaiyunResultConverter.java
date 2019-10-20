@@ -517,6 +517,7 @@ public class CaiyunResultConverter {
                     )
             );
         }
+        Alert.deduplication(alertList);
         return alertList;
     }
 

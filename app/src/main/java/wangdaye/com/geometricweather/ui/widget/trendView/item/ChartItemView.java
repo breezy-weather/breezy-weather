@@ -10,7 +10,6 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
@@ -18,31 +17,34 @@ import androidx.core.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
- * Trend item view.
+ * Chart item view.
  * */
 
-public class OverviewItemView extends View {
+public class ChartItemView extends View {
 
     private Paint paint;
     private Path path;
     private DayNightShaderWrapper shaderWrapper;
 
-    private Float[] daytimeTemperatureC = new Float[3];
-    private Float[] nighttimeTemperatureC = new Float[3];
-    private int highestTemperatureC;
-    private int lowestTemperatureC;
-    private @Nullable Float precipitation;
-    private TemperatureUnit unit;
+    private @Nullable @Size(3) Float[] highPolylineValues = new Float[3];
+    private @Nullable @Size(3) Float[] lowPolylineValues = new Float[3];
+    private @Nullable String highPolylineValueStr;
+    private @Nullable String lowPolylineValueStr;
+    private @Nullable Float highestPolylineValue;
+    private @Nullable Float lowestPolylineValue;
 
-    private int[] daytimeY = new int[3];
-    private int[] nighttimeY = new int[3];
-    private int precipitationY;
+    private @Nullable Float histogramValue;
+    private @Nullable String histogramValueStr;
+    private @Nullable Float highestHistogramValue;
+    private @Nullable Float lowestHistogramValue;
+
+    private int[] highPolylineY = new int[3];
+    private int[] lowPolylineY = new int[3];
+    private int histogramY;
 
     private int marginTop;
     private int marginBottom;
@@ -73,17 +75,17 @@ public class OverviewItemView extends View {
     private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.1f;
     private static final float SHADOW_ALPHA_FACTOR_DARK = 0.1f;
 
-    public OverviewItemView(Context context) {
+    public ChartItemView(Context context) {
         super(context);
         this.initialize();
     }
 
-    public OverviewItemView(Context context, AttributeSet attrs) {
+    public ChartItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.initialize();
     }
 
-    public OverviewItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ChartItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initialize();
     }
@@ -111,8 +113,6 @@ public class OverviewItemView extends View {
         this.path = new Path();
         this.shaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
         setShadowColors(Color.BLACK, Color.GRAY, true);
-
-        this.unit = TemperatureUnit.C;
     }
 
     @Override
@@ -124,14 +124,17 @@ public class OverviewItemView extends View {
 
         drawTimeLine(canvas);
 
-        if (precipitation != null && precipitation > 5) {
-            drawPrecipitationData(canvas);
+        if (histogramValue != null && histogramValueStr != null
+                && highestHistogramValue != null && lowestHistogramValue != null) {
+            drawHistogram(canvas);
         }
-        if (daytimeTemperatureC != null) {
-            drawMaxiTemperature(canvas);
-        }
-        if (nighttimeTemperatureC != null) {
-            drawMiniTemperature(canvas);
+        if (highestPolylineValue != null && lowestPolylineValue != null) {
+            if (highPolylineValues != null && highPolylineValueStr != null) {
+                drawHighPolyLine(canvas);
+            }
+            if (lowPolylineValues != null && lowPolylineValueStr != null) {
+                drawLowPolyline(canvas);
+            }
         }
     }
 
@@ -148,8 +151,10 @@ public class OverviewItemView extends View {
         );
     }
 
-    private void drawMaxiTemperature(Canvas canvas) {
-        if (daytimeTemperatureC[0] != null && daytimeTemperatureC[2] != null) {
+    private void drawHighPolyLine(Canvas canvas) {
+        assert highPolylineValues != null;
+        assert highPolylineValueStr != null;
+        if (highPolylineValues[0] != null && highPolylineValues[2] != null) {
             // shadow.
             paint.setColor(Color.BLACK);
             paint.setShader(shaderWrapper.getShader());
@@ -157,9 +162,9 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), daytimeY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), daytimeY[2]);
+            path.moveTo(getRTLCompactX(0), highPolylineY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), highPolylineY[2]);
             path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - marginBottom);
             path.lineTo(getRTLCompactX(0), getMeasuredHeight() - marginBottom);
             path.close();
@@ -173,11 +178,11 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), daytimeY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), daytimeY[2]);
+            path.moveTo(getRTLCompactX(0), highPolylineY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), highPolylineY[2]);
             canvas.drawPath(path, paint);
-        } else if (daytimeTemperatureC[0] == null) {
+        } else if (highPolylineValues[0] == null) {
             // shadow.
             paint.setColor(Color.BLACK);
             paint.setShader(shaderWrapper.getShader());
@@ -185,8 +190,8 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), daytimeY[2]);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), highPolylineY[2]);
             path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - marginBottom);
             path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - marginBottom);
             path.close();
@@ -200,8 +205,8 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), daytimeY[2]);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), highPolylineY[2]);
             canvas.drawPath(path, paint);
         } else {
             // shadow.
@@ -211,8 +216,8 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), daytimeY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
+            path.moveTo(getRTLCompactX(0), highPolylineY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
             path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - marginBottom);
             path.lineTo(getRTLCompactX(0), getMeasuredHeight() - marginBottom);
             path.close();
@@ -226,8 +231,8 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), daytimeY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), daytimeY[1]);
+            path.moveTo(getRTLCompactX(0), highPolylineY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
             canvas.drawPath(path, paint);
         }
 
@@ -238,15 +243,17 @@ public class OverviewItemView extends View {
         paint.setTextSize(temperatureTextSize);
         paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
-                Temperature.getShortTemperature(toInt(daytimeTemperatureC[1]), unit),
+                highPolylineValueStr,
                 getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
-                daytimeY[1] - paint.getFontMetrics().bottom - textMargin,
+                highPolylineY[1] - paint.getFontMetrics().bottom - textMargin,
                 paint
         );
     }
 
-    private void drawMiniTemperature(Canvas canvas) {
-        if (nighttimeTemperatureC[0] != null && nighttimeTemperatureC[2] != null) {
+    private void drawLowPolyline(Canvas canvas) {
+        assert lowPolylineValues != null;
+        assert lowPolylineValueStr != null;
+        if (lowPolylineValues[0] != null && lowPolylineValues[2] != null) {
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(trendLineWidth);
@@ -254,11 +261,11 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), nighttimeY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), nighttimeY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), nighttimeY[2]);
+            path.moveTo(getRTLCompactX(0), lowPolylineY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), lowPolylineY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), lowPolylineY[2]);
             canvas.drawPath(path, paint);
-        } else if (nighttimeTemperatureC[0] == null) {
+        } else if (lowPolylineValues[0] == null) {
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(trendLineWidth);
@@ -266,8 +273,8 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), nighttimeY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), nighttimeY[2]);
+            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), lowPolylineY[1]);
+            path.lineTo(getRTLCompactX(getMeasuredWidth()), lowPolylineY[2]);
             canvas.drawPath(path, paint);
         } else {
             paint.setShader(null);
@@ -277,8 +284,8 @@ public class OverviewItemView extends View {
             paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
-            path.moveTo(getRTLCompactX(0), nighttimeY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), nighttimeY[1]);
+            path.moveTo(getRTLCompactX(0), lowPolylineY[0]);
+            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), lowPolylineY[1]);
             canvas.drawPath(path, paint);
         }
 
@@ -289,19 +296,16 @@ public class OverviewItemView extends View {
         paint.setTextSize(temperatureTextSize);
         paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
-                Temperature.getShortTemperature(toInt(nighttimeTemperatureC[1]), unit),
+                lowPolylineValueStr,
                 getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
-                nighttimeY[1] - paint.getFontMetrics().top + textMargin,
+                lowPolylineY[1] - paint.getFontMetrics().top + textMargin,
                 paint
         );
     }
 
-    private int toInt(Float f) {
-        float v = f;
-        return (int) v;
-    }
+    private void drawHistogram(Canvas canvas) {
+        assert histogramValueStr != null;
 
-    private void drawPrecipitationData(Canvas canvas) {
         paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
         paint.setColor(lineColors[1]);
@@ -311,7 +315,7 @@ public class OverviewItemView extends View {
         canvas.drawRoundRect(
                 new RectF(
                         (float) (getMeasuredWidth() / 2.0 - precipitationPillarWidth),
-                        precipitationY,
+                        histogramY,
                         (float) (getMeasuredWidth() / 2.0 + precipitationPillarWidth),
                         getMeasuredHeight() - marginBottom
                 ),
@@ -324,7 +328,7 @@ public class OverviewItemView extends View {
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(precipitationTextSize);
         canvas.drawText(
-                precipitation + "%",
+                histogramValueStr,
                 (float) (getMeasuredWidth() / 2.0),
                 (float) (
                         getMeasuredHeight()
@@ -340,16 +344,26 @@ public class OverviewItemView extends View {
 
     // control.
 
-    public void setData(@NonNull @Size(3) Float[] daytimeTemperatureC,
-                        @Nullable @Size(3) Float[] nighttimeTemperatureC,
-                        @Nullable Float precipitation,
-                        int highestTemperatureC, int lowestTemperatureC, TemperatureUnit unit) {
-        this.daytimeTemperatureC = daytimeTemperatureC;
-        this.nighttimeTemperatureC = nighttimeTemperatureC;
-        this.precipitation = precipitation;
-        this.highestTemperatureC = highestTemperatureC;
-        this.lowestTemperatureC = lowestTemperatureC;
-        this.unit = unit;
+    public void setData(@Nullable @Size(3) Float[] highPolylineValues,
+                        @Nullable @Size(3) Float[] lowPolylineValues,
+                        @Nullable String highPolylineValueStr,
+                        @Nullable String lowPolylineValueStr,
+                        @Nullable Float highestPolylineValue,
+                        @Nullable Float lowestPolylineValue,
+                        @Nullable Float histogramValue,
+                        @Nullable String histogramValueStr,
+                        @Nullable Float highestHistogramValue,
+                        @Nullable Float lowestHistogramValue) {
+        this.highPolylineValues = highPolylineValues;
+        this.lowPolylineValues = lowPolylineValues;
+        this.highPolylineValueStr = highPolylineValueStr;
+        this.lowPolylineValueStr = lowPolylineValueStr;
+        this.highestPolylineValue = highestPolylineValue;
+        this.lowestPolylineValue = lowestPolylineValue;
+        this.histogramValue = histogramValue;
+        this.histogramValueStr = histogramValueStr;
+        this.highestHistogramValue = highestHistogramValue;
+        this.lowestHistogramValue = lowestHistogramValue;
         invalidate();
     }
 
@@ -411,27 +425,32 @@ public class OverviewItemView extends View {
 
     private void computeCoordinates() {
         float canvasHeight = getMeasuredHeight() - marginTop - marginBottom;
-        for (int i = 0; i < daytimeTemperatureC.length; i ++) {
-            if (daytimeTemperatureC[i] == null) {
-                daytimeY[i] = 0;
-            } else {
-                daytimeY[i] = computeSingleCoordinate(
-                        canvasHeight, daytimeTemperatureC[i], highestTemperatureC, lowestTemperatureC);
+        if (highestPolylineValue != null && lowestPolylineValue != null) {
+            if (highPolylineValues != null) {
+                for (int i = 0; i < highPolylineValues.length; i ++) {
+                    if (highPolylineValues[i] == null) {
+                        highPolylineY[i] = 0;
+                    } else {
+                        highPolylineY[i] = computeSingleCoordinate(
+                                canvasHeight, highPolylineValues[i], highestPolylineValue, lowestPolylineValue);
+                    }
+                }
             }
-        }
-        if (nighttimeTemperatureC != null) {
-            for (int i = 0; i < nighttimeTemperatureC.length; i ++) {
-                if (nighttimeTemperatureC[i] == null) {
-                    nighttimeY[i] = 0;
-                } else {
-                    nighttimeY[i] = computeSingleCoordinate(
-                            canvasHeight, nighttimeTemperatureC[i], highestTemperatureC, lowestTemperatureC);
+            if (lowPolylineValues != null) {
+                for (int i = 0; i < lowPolylineValues.length; i ++) {
+                    if (lowPolylineValues[i] == null) {
+                        lowPolylineY[i] = 0;
+                    } else {
+                        lowPolylineY[i] = computeSingleCoordinate(
+                                canvasHeight, lowPolylineValues[i], highestPolylineValue, lowestPolylineValue);
+                    }
                 }
             }
         }
-        if (precipitation != null && precipitation > 5) {
-            precipitationY = computeSingleCoordinate(
-                    canvasHeight, precipitation, 100, 0);
+
+        if (histogramValue != null && highestHistogramValue != null && lowestHistogramValue != null) {
+            histogramY = computeSingleCoordinate(
+                    canvasHeight, histogramValue, highestHistogramValue, lowestHistogramValue);
         }
     }
 

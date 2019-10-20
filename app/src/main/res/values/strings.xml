@@ -86,6 +86,8 @@
 
     <string name="daily_overview">Daily forecast</string>
     <string name="hourly_overview">Hourly forecast</string>
+    <string name="minutely_overview">Minutely forecast</string>
+    <string name="precipitation_overview">Precipitation forecast</string>
     <string name="air_quality">Air quality</string>
     <string name="life_details">Details</string>
     <string name="sunrise_sunset">Sun &amp; moon</string>
