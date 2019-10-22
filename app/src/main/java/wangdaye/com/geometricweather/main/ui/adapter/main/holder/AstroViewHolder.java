@@ -1,22 +1,25 @@
-package wangdaye.com.geometricweather.main.ui.controller;
+package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
 import android.animation.AnimatorSet;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.Px;
-import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
-import androidx.cardview.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.Px;
+import androidx.annotation.Size;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -32,7 +35,7 @@ import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
 import wangdaye.com.geometricweather.ui.widget.moon.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
-public class SunMoonController extends AbstractMainItemController {
+public class AstroViewHolder extends AbstractMainViewHolder {
 
     private CardView card;
 
@@ -58,22 +61,22 @@ public class SunMoonController extends AbstractMainItemController {
     private boolean executeEnterAnimation;
     @Size(3) private AnimatorSet[] attachAnimatorSets;
 
-    public SunMoonController(@NonNull Activity activity, @NonNull WeatherView weatherView,
-                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                             @Px float cardRadius) {
-        super(activity, activity.findViewById(R.id.container_main_sun_moon), provider, picker,
-                cardMarginsVertical, cardMarginsHorizontal, cardRadius);
+    public AstroViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                           @Px float cardRadius, @Px float cardElevation) {
+        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_sun_moon, parent, false),
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
 
-        this.card = view.findViewById(R.id.container_main_sun_moon);
-        this.title = view.findViewById(R.id.container_main_sun_moon_title);
-        this.phaseText = view.findViewById(R.id.container_main_sun_moon_phaseText);
-        this.phaseView = view.findViewById(R.id.container_main_sun_moon_phaseView);
-        this.sunMoonView = view.findViewById(R.id.container_main_sun_moon_controlView);
-        this.sunContainer = view.findViewById(R.id.container_main_sun_moon_sunContainer);
-        this.sunTxt = view.findViewById(R.id.container_main_sun_moon_sunrise_sunset);
-        this.moonContainer = view.findViewById(R.id.container_main_sun_moon_moonContainer);
-        this.moonTxt = view.findViewById(R.id.container_main_sun_moon_moonrise_moonset);
+        this.card = itemView.findViewById(R.id.container_main_sun_moon);
+        this.title = itemView.findViewById(R.id.container_main_sun_moon_title);
+        this.phaseText = itemView.findViewById(R.id.container_main_sun_moon_phaseText);
+        this.phaseView = itemView.findViewById(R.id.container_main_sun_moon_phaseView);
+        this.sunMoonView = itemView.findViewById(R.id.container_main_sun_moon_controlView);
+        this.sunContainer = itemView.findViewById(R.id.container_main_sun_moon_sunContainer);
+        this.sunTxt = itemView.findViewById(R.id.container_main_sun_moon_sunrise_sunset);
+        this.moonContainer = itemView.findViewById(R.id.container_main_sun_moon_moonContainer);
+        this.moonTxt = itemView.findViewById(R.id.container_main_sun_moon_moonrise_moonset);
 
         this.weatherView = weatherView;
         this.executeEnterAnimation = true;
@@ -83,88 +86,83 @@ public class SunMoonController extends AbstractMainItemController {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(@NonNull Location location) {
-        if (location.getWeather() != null && location.getWeather().getDailyForecast().size() != 0) {
-            weather = location.getWeather();
+        weather = location.getWeather();
+        assert weather != null;
 
-            if (!weather.getDailyForecast().get(0).sun().isValid()) {
-                return;
-            }
+        ensureTime(weather);
+        ensurePhaseAngle(weather);
 
-            ensureTime(weather);
-            ensurePhaseAngle(weather);
+        card.setCardBackgroundColor(picker.getRootColor(context));
 
-            card.setCardBackgroundColor(picker.getRootColor(context));
+        title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
-            title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
+        if (!weather.getDailyForecast().get(0).getMoonPhase().isValid()) {
+            phaseText.setVisibility(View.GONE);
+            phaseView.setVisibility(View.GONE);
+        } else {
+            phaseText.setVisibility(View.VISIBLE);
+            phaseText.setTextColor(picker.getTextContentColor(context));
+            phaseText.setText(weather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
+            phaseView.setVisibility(View.VISIBLE);
+            phaseView.setColor(
+                    ContextCompat.getColor(context, R.color.colorTextContent_dark),
+                    ContextCompat.getColor(context, R.color.colorTextContent_light),
+                    picker.getTextContentColor(context)
+            );
+        }
 
-            if (!weather.getDailyForecast().get(0).getMoonPhase().isValid()) {
-                phaseText.setVisibility(View.GONE);
-                phaseView.setVisibility(View.GONE);
-            } else {
-                phaseText.setVisibility(View.VISIBLE);
-                phaseText.setTextColor(picker.getTextContentColor(context));
-                phaseText.setText(weather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
-                phaseView.setVisibility(View.VISIBLE);
-                phaseView.setColor(
-                        ContextCompat.getColor(context, R.color.colorTextContent_dark),
-                        ContextCompat.getColor(context, R.color.colorTextContent_light),
-                        picker.getTextContentColor(context)
-                );
-            }
+        sunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider));
+        sunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider));
 
-            sunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider));
-            sunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider));
+        if (executeEnterAnimation) {
+            sunMoonView.setTime(startTimes, endTimes, startTimes);
+            sunMoonView.setDayIndicatorRotation(0);
+            sunMoonView.setNightIndicatorRotation(0);
+            phaseView.setSurfaceAngle(0);
+        } else {
+            sunMoonView.setTime(startTimes, endTimes, currentTimes);
+            sunMoonView.setDayIndicatorRotation(0);
+            sunMoonView.setNightIndicatorRotation(0);
+            phaseView.setSurfaceAngle(phaseAngle);
+        }
+        int[] themeColors = weatherView.getThemeColors(picker.isLightTheme());
+        if (picker.isLightTheme()) {
+            sunMoonView.setColors(
+                    themeColors[1],
+                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
+                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
+                    picker.getRootColor(context),
+                    true
+            );
+        } else {
+            sunMoonView.setColors(
+                    themeColors[1],
+                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.5 * 255)),
+                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.2 * 255)),
+                    picker.getRootColor(context),
+                    false
+            );
+        }
 
-            if (executeEnterAnimation) {
-                sunMoonView.setTime(startTimes, endTimes, startTimes);
-                sunMoonView.setDayIndicatorRotation(0);
-                sunMoonView.setNightIndicatorRotation(0);
-                phaseView.setSurfaceAngle(0);
-            } else {
-                sunMoonView.setTime(startTimes, endTimes, currentTimes);
-                sunMoonView.setDayIndicatorRotation(0);
-                sunMoonView.setNightIndicatorRotation(0);
-                phaseView.setSurfaceAngle(phaseAngle);
-            }
-            int[] themeColors = weatherView.getThemeColors(picker.isLightTheme());
-            if (picker.isLightTheme()) {
-                sunMoonView.setColors(
-                        themeColors[1],
-                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
-                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                        picker.getRootColor(context),
-                        true
-                );
-            } else {
-                sunMoonView.setColors(
-                        themeColors[1],
-                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.5 * 255)),
-                        ColorUtils.setAlphaComponent(themeColors[1], (int) (0.2 * 255)),
-                        picker.getRootColor(context),
-                        false
-                );
-            }
-
-            if (weather.getDailyForecast().get(0).sun().isValid()) {
-                sunContainer.setVisibility(View.VISIBLE);
-                sunTxt.setText(
-                        weather.getDailyForecast().get(0).sun().getRiseTime(context) + "↑"
-                                + " / "
-                                + weather.getDailyForecast().get(0).sun().getSetTime(context) + "↓"
-                );
-            } else {
-                sunContainer.setVisibility(View.GONE);
-            }
-            if (weather.getDailyForecast().get(0).moon().isValid()) {
-                moonContainer.setVisibility(View.VISIBLE);
-                moonTxt.setText(
-                        weather.getDailyForecast().get(0).moon().getRiseTime(context) + "↑"
-                                + " / "
-                                + weather.getDailyForecast().get(0).moon().getSetTime(context) + "↓"
-                );
-            } else {
-                moonContainer.setVisibility(View.GONE);
-            }
+        if (weather.getDailyForecast().get(0).sun().isValid()) {
+            sunContainer.setVisibility(View.VISIBLE);
+            sunTxt.setText(
+                    weather.getDailyForecast().get(0).sun().getRiseTime(context) + "↑"
+                            + " / "
+                            + weather.getDailyForecast().get(0).sun().getSetTime(context) + "↓"
+            );
+        } else {
+            sunContainer.setVisibility(View.GONE);
+        }
+        if (weather.getDailyForecast().get(0).moon().isValid()) {
+            moonContainer.setVisibility(View.VISIBLE);
+            moonTxt.setText(
+                    weather.getDailyForecast().get(0).moon().getRiseTime(context) + "↑"
+                            + " / "
+                            + weather.getDailyForecast().get(0).moon().getSetTime(context) + "↓"
+            );
+        } else {
+            moonContainer.setVisibility(View.GONE);
         }
     }
 

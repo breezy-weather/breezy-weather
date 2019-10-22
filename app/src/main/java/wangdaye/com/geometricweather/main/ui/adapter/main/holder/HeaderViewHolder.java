@@ -1,13 +1,15 @@
-package wangdaye.com.geometricweather.main.ui.controller;
+package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import androidx.annotation.NonNull;
-import androidx.annotation.Px;
-
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -17,7 +19,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
-public class HeaderController extends AbstractMainItemController
+public class HeaderViewHolder extends AbstractMainViewHolder
         implements View.OnClickListener {
 
     private LinearLayout container;
@@ -28,18 +30,18 @@ public class HeaderController extends AbstractMainItemController
 
     private WeatherView weatherView;
 
-    public HeaderController(@NonNull Activity activity, @NonNull WeatherView weatherView,
+    public HeaderViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                            @Px float cardRadius) {
-        super(activity, activity.findViewById(R.id.container_main_header), provider, picker,
-                cardMarginsVertical, cardMarginsHorizontal, cardRadius);
+                            @Px float cardRadius, @Px float cardElevation) {
+        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_header, parent, false),
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
 
-        this.container = view.findViewById(R.id.container_main_header);
-        this.temperature = view.findViewById(R.id.container_main_header_tempTxt);
-        this.weather = view.findViewById(R.id.container_main_header_weatherTxt);
-        this.sensibleTemp = view.findViewById(R.id.container_main_header_sensibleTempTxt);
-        this.aqiOrWind = view.findViewById(R.id.container_main_header_aqiOrWindTxt);
+        this.container = itemView.findViewById(R.id.container_main_header);
+        this.temperature = itemView.findViewById(R.id.container_main_header_tempTxt);
+        this.weather = itemView.findViewById(R.id.container_main_header_weatherTxt);
+        this.sensibleTemp = itemView.findViewById(R.id.container_main_header_sensibleTempTxt);
+        this.aqiOrWind = itemView.findViewById(R.id.container_main_header_aqiOrWindTxt);
 
         this.weatherView = weatherView;
     }
@@ -47,7 +49,7 @@ public class HeaderController extends AbstractMainItemController
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(@NonNull Location location) {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) container.getLayoutParams();
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) container.getLayoutParams();
         params.height = weatherView.getFirstCardMarginTop();
         container.setLayoutParams(params);
         container.setOnClickListener(this);

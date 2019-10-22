@@ -2,16 +2,17 @@ package wangdaye.com.geometricweather.ui.widget.verticalScrollView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.core.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
- * Vertical nested scroll view.
+ * Vertical Recycler view.
  * */
 
-public class VerticalNestedScrollView extends NestedScrollView {
+public class VerticalRecyclerView extends RecyclerView {
 
     private float initialX, initialY;
     private int touchSlop;
@@ -19,17 +20,17 @@ public class VerticalNestedScrollView extends NestedScrollView {
     private boolean isBeingDragged = false;
     private boolean isHorizontalDragged = false;
 
-    public VerticalNestedScrollView(Context context) {
+    public VerticalRecyclerView(Context context) {
         super(context);
         this.initialize();
     }
 
-    public VerticalNestedScrollView(Context context, AttributeSet attrs) {
+    public VerticalRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.initialize();
     }
 
-    public VerticalNestedScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public VerticalRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initialize();
     }

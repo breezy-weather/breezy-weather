@@ -311,6 +311,11 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     @Override
+    public int getCardElevation(Context context) {
+        return (int) DisplayUtils.dpToPx(context, 2);
+    }
+
+    @Override
     public void setDrawable(boolean drawable) {
         // do nothing.
     }

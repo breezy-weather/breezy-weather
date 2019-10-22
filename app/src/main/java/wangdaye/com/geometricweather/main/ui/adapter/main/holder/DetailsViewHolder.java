@@ -1,12 +1,15 @@
-package wangdaye.com.geometricweather.main.ui.controller;
+package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -15,7 +18,7 @@ import wangdaye.com.geometricweather.main.ui.adapter.DetailsAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
-public class DetailsController extends AbstractMainItemController {
+public class DetailsViewHolder extends AbstractMainViewHolder {
 
     private CardView card;
 
@@ -24,16 +27,16 @@ public class DetailsController extends AbstractMainItemController {
 
     @NonNull private WeatherView weatherView;
 
-    public DetailsController(@NonNull Activity activity, @NonNull WeatherView weatherView,
+    public DetailsViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                              @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                              @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                             @Px float cardRadius) {
-        super(activity, activity.findViewById(R.id.container_main_details), provider, picker,
-                cardMarginsVertical, cardMarginsHorizontal, cardRadius);
+                             @Px float cardRadius, @Px float cardElevation) {
+        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_details, parent, false),
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
 
-        this.card = view.findViewById(R.id.container_main_details);
-        this.title = view.findViewById(R.id.container_main_details_title);
-        this.detailsRecyclerView = view.findViewById(R.id.container_main_details_recyclerView);
+        this.card = itemView.findViewById(R.id.container_main_details);
+        this.title = itemView.findViewById(R.id.container_main_details_title);
+        this.detailsRecyclerView = itemView.findViewById(R.id.container_main_details_recyclerView);
 
         this.weatherView = weatherView;
     }

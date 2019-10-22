@@ -361,6 +361,11 @@ public class MaterialWeatherView extends View implements WeatherView {
         return (int) DisplayUtils.dpToPx(context, 8);
     }
 
+    @Override
+    public int getCardElevation(Context context) {
+        return (int) DisplayUtils.dpToPx(context, 2);
+    }
+
     public void setDrawable(boolean drawable) {
         if (this.drawable == drawable) {
             return;

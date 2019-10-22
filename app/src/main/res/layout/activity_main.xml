@@ -16,19 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView
-                android:id="@+id/activity_main_scrollView"
+            <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView
+                android:id="@+id/activity_main_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="none">
-                
-                <LinearLayout
-                    android:id="@+id/activity_main_scrollContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-
-            </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView>
+                android:scrollbars="none" />
 
         </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout>
 

@@ -1,37 +1,49 @@
-package wangdaye.com.geometricweather.main.ui.controller;
+package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
+import android.animation.ObjectAnimator;
+import android.animation.StateListAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.Px;
-import androidx.cardview.widget.CardView;
-
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.Px;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
-public abstract class AbstractMainItemController {
+public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
     protected Context context;
-    protected View view;
     protected @Nullable LinearLayout container;
     protected ResourceProvider provider;
     protected MainColorPicker picker;
     private boolean inScreen;
 
-    AbstractMainItemController(Context context, @NonNull View view,
-                               @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                               @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                               @Px float cardRadius) {
+    @SuppressLint("ObjectAnimatorBinding")
+    public AbstractMainViewHolder(Context context, @NonNull View view,
+                                  @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                                  @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                                  @Px float cardRadius, @Px float cardElevation) {
+        super(view);
+
         this.context = context;
-        this.view = view;
         if (view instanceof CardView) {
             CardView card = (CardView) view;
+
             card.setRadius(cardRadius);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                card.setElevation(cardElevation);
+            }
 
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
             params.setMargins((int) cardMarginsHorizontal, 0, (int) cardMarginsHorizontal, (int) cardMarginsVertical);
@@ -50,7 +62,7 @@ public abstract class AbstractMainItemController {
     public abstract void onBindView(@NonNull Location location);
 
     public int getTop() {
-        return view.getTop();
+        return itemView.getTop();
     }
 
     public @Nullable LinearLayout getContainer() {

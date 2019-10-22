@@ -10,11 +10,12 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.MotionEvent;
@@ -28,19 +29,21 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.basic.model.resource.Resource;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.MainControllerAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.ui.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.layout.UnRecycledLinearLayoutManager;
+import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView;
-import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView;
@@ -76,10 +79,9 @@ public class MainActivity extends GeoActivity
 
     private SwipeSwitchLayout switchLayout;
     private VerticalSwipeRefreshLayout refreshLayout;
-    private VerticalNestedScrollView scrollView;
-    private LinearLayout scrollContainer;
+    private VerticalRecyclerView recyclerView;
 
-    private MainControllerAdapter adapter;
+    @Nullable private MainAdapter adapter;
     private AnimatorSet initAnimator;
 
     private ResourceProvider resourceProvider;
@@ -254,10 +256,9 @@ public class MainActivity extends GeoActivity
         );
         refreshLayout.setOnRefreshListener(this);
 
-        this.scrollView = findViewById(R.id.activity_main_scrollView);
-        scrollView.setOnTouchListener(indicatorStateListener);
-
-        this.scrollContainer = findViewById(R.id.activity_main_scrollContainer);
+        this.recyclerView = findViewById(R.id.activity_main_recyclerView);
+        recyclerView.setLayoutManager(new UnRecycledLinearLayoutManager());
+        recyclerView.setOnTouchListener(indicatorStateListener);
 
         this.indicator = findViewById(R.id.activity_main_indicator);
         indicator.setSwitchView(switchLayout);
@@ -357,11 +358,10 @@ public class MainActivity extends GeoActivity
         refreshLayout.setColorSchemeColors(weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
         refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
 
-        adapter = new MainControllerAdapter(this);
-        adapter.bind(this, scrollContainer, weatherView, location, resourceProvider, colorPicker);
-        scrollView.setOnScrollChangeListener(
-                new OnScrollListener(adapter.getFooter(this), weatherView.getFirstCardMarginTop())
-        );
+        adapter = new MainAdapter(this, location, weatherView, resourceProvider, colorPicker);
+        recyclerView.setAdapter(adapter);
+        recyclerView.clearOnScrollListeners();
+        recyclerView.addOnScrollListener(new OnScrollListener(weatherView.getFirstCardMarginTop()));
 
         indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
         indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));
@@ -370,7 +370,7 @@ public class MainActivity extends GeoActivity
             initAnimator.cancel();
         }
         initAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_in);
-        initAnimator.setTarget(scrollView);
+        initAnimator.setTarget(recyclerView);
         initAnimator.setInterpolator(new DecelerateInterpolator());
         initAnimator.start();
 
@@ -395,8 +395,9 @@ public class MainActivity extends GeoActivity
         switchLayout.reset();
 
         if (adapter != null) {
-            adapter.unbind(scrollContainer);
-            scrollView.scrollTo(0, 0);
+            recyclerView.setAdapter(null);
+            recyclerView.scrollTo(0, 0);
+            adapter = null;
         }
     }
 
@@ -548,9 +549,7 @@ public class MainActivity extends GeoActivity
 
     // on scroll changed listener.
 
-    private class OnScrollListener implements NestedScrollView.OnScrollChangeListener {
-
-        private View footer;
+    private class OnScrollListener extends RecyclerView.OnScrollListener {
 
         private boolean topChanged;
         private boolean topOverlap;
@@ -560,9 +559,11 @@ public class MainActivity extends GeoActivity
         private int firstCardMarginTop;
         private int topOverlapTrigger;
 
-        OnScrollListener(View footer, int firstCardMarginTop) {
+        private int oldScrollY;
+        private int scrollY;
+
+        OnScrollListener(int firstCardMarginTop) {
             super();
-            this.footer = footer;
 
             topChanged = false;
             topOverlap = false;
@@ -570,28 +571,35 @@ public class MainActivity extends GeoActivity
             bottomOverlap = false;
 
             this.firstCardMarginTop = firstCardMarginTop;
-            this.topOverlapTrigger = firstCardMarginTop - DisplayUtils.getStatusBarHeight(getResources());
+            this.topOverlapTrigger = firstCardMarginTop
+                    - GeometricWeather.getInstance().getWindowInsets().top;
+
+            this.oldScrollY = 0;
+            this.scrollY = 0;
         }
 
         @Override
-        public void onScrollChange(NestedScrollView v,
-                                   int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            oldScrollY = scrollY;
+            scrollY += dy;
 
             weatherView.onScroll(scrollY);
-            adapter.onScroll(scrollY);
+            if (adapter != null) {
+                adapter.onScroll(recyclerView, scrollY);
+            }
 
             // set translation y of toolbar.
             if (adapter != null) {
                 if (scrollY < firstCardMarginTop
                         - appBar.getMeasuredHeight()
-                        - adapter.getCurrentTemperatureTextHeight()) {
+                        - adapter.getCurrentTemperatureTextHeight(recyclerView)) {
                     appBar.setTranslationY(0);
                 } else if (scrollY > firstCardMarginTop - appBar.getY()) {
                     appBar.setTranslationY(-appBar.getMeasuredHeight());
                 } else {
                     appBar.setTranslationY(
                             firstCardMarginTop
-                                    - adapter.getCurrentTemperatureTextHeight()
+                                    - adapter.getCurrentTemperatureTextHeight(recyclerView)
                                     - scrollY
                                     - appBar.getMeasuredHeight()
                     );
@@ -607,16 +615,7 @@ public class MainActivity extends GeoActivity
                 topOverlap = false;
             }
 
-            if (scrollY + scrollView.getMeasuredHeight()
-                    <= scrollContainer.getMeasuredHeight() - footer.getMeasuredHeight()) {
-                bottomChanged = oldScrollY + scrollView.getMeasuredHeight()
-                        > scrollContainer.getMeasuredHeight() - footer.getMeasuredHeight();
-                bottomOverlap = true;
-            } else {
-                bottomChanged = oldScrollY + scrollView.getMeasuredHeight()
-                        <= scrollContainer.getMeasuredHeight() - footer.getMeasuredHeight();
-                bottomOverlap = false;
-            }
+            bottomOverlap = recyclerView.canScrollVertically(1);
 
             DisplayUtils.setSystemBarStyleWithScrolling(
                     MainActivity.this, statusBar,
