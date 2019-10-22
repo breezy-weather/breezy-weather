@@ -1,12 +1,13 @@
 package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -72,8 +73,24 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     public final void enterScreen() {
         if (!inScreen) {
             inScreen = true;
+            executeEnterAnimator();
             onEnterScreen();
         }
+    }
+
+    public void executeEnterAnimator() {
+        int popupDistance = (int) DisplayUtils.dpToPx(context, 40);
+        itemView.setAlpha(0f);
+        itemView.setTranslationY(popupDistance);
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(
+                ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f),
+                ObjectAnimator.ofFloat(itemView, "translationY", popupDistance, 0f)
+        );
+        set.setDuration(450);
+        set.setInterpolator(new DecelerateInterpolator(2f));
+        set.setStartDelay(150 * getAdapterPosition());
+        set.start();
     }
 
     public void onEnterScreen() {

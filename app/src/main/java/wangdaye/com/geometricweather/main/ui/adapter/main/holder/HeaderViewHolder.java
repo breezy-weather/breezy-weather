@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -79,6 +82,16 @@ public class HeaderViewHolder extends AbstractMainViewHolder
                 );
             }
         }
+    }
+
+    @Override
+    public void executeEnterAnimator() {
+        super.onEnterScreen();
+        itemView.setAlpha(0f);
+        Animator a = ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f);
+        a.setDuration(450);
+        a.setInterpolator(new FastOutSlowInInterpolator());
+        a.start();
     }
 
     public int getCurrentTemperatureHeight() {

@@ -1,7 +1,5 @@
 package wangdaye.com.geometricweather.main;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,7 +19,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -36,12 +33,12 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.basic.model.resource.Resource;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.main.ui.MainLayoutManager;
 import wangdaye.com.geometricweather.main.ui.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.ui.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.layout.UnRecycledLinearLayoutManager;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -82,7 +79,6 @@ public class MainActivity extends GeoActivity
     private VerticalRecyclerView recyclerView;
 
     @Nullable private MainAdapter adapter;
-    private AnimatorSet initAnimator;
 
     private ResourceProvider resourceProvider;
     private MainColorPicker colorPicker;
@@ -257,7 +253,7 @@ public class MainActivity extends GeoActivity
         refreshLayout.setOnRefreshListener(this);
 
         this.recyclerView = findViewById(R.id.activity_main_recyclerView);
-        recyclerView.setLayoutManager(new UnRecycledLinearLayoutManager());
+        recyclerView.setLayoutManager(new MainLayoutManager());
         recyclerView.setOnTouchListener(indicatorStateListener);
 
         this.indicator = findViewById(R.id.activity_main_indicator);
@@ -365,14 +361,6 @@ public class MainActivity extends GeoActivity
 
         indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
         indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));
-
-        if (initAnimator != null) {
-            initAnimator.cancel();
-        }
-        initAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_in);
-        initAnimator.setTarget(recyclerView);
-        initAnimator.setInterpolator(new DecelerateInterpolator());
-        initAnimator.start();
 
         refreshBackgroundViews(
                 false,

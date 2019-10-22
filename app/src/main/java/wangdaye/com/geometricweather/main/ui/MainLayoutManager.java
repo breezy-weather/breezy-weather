@@ -1,19 +1,19 @@
-package wangdaye.com.geometricweather.ui.layout;
+package wangdaye.com.geometricweather.main.ui;
 
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class UnRecycledLinearLayoutManager extends RecyclerView.LayoutManager {
+public class MainLayoutManager extends RecyclerView.LayoutManager {
 
     private int scrollOffset;
     private int measuredHeight;
 
-    public UnRecycledLinearLayoutManager() {
+    public MainLayoutManager() {
         super();
-        scrollOffset = 0;
-        measuredHeight = 0;
+        this.scrollOffset = 0;
+        this.measuredHeight = 0;
     }
 
     @Override
