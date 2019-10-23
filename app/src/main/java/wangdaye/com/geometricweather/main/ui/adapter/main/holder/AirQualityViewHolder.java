@@ -145,6 +145,7 @@ public class AirQualityViewHolder extends AbstractMainViewHolder {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         if (attachAnimatorSet != null && attachAnimatorSet.isRunning()) {
             attachAnimatorSet.cancel();
         }

@@ -151,6 +151,7 @@ public class HourlyViewHolder extends AbstractMainViewHolder {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         trendRecyclerView.setAdapter(null);
     }
 

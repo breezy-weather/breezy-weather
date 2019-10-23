@@ -11,9 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
@@ -32,6 +39,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     private TextView aqiOrWind;
 
     private WeatherView weatherView;
+    private @Nullable Disposable disposable;
 
     public HeaderViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
@@ -47,6 +55,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder
         this.aqiOrWind = itemView.findViewById(R.id.container_main_header_aqiOrWindTxt);
 
         this.weatherView = weatherView;
+        this.disposable = null;
     }
 
     @SuppressLint("SetTextI18n")
@@ -85,17 +94,34 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     }
 
     @Override
-    public void executeEnterAnimator() {
-        super.onEnterScreen();
+    public void executeEnterAnimator(List<Animator> pendingAnimatorList) {
         itemView.setAlpha(0f);
         Animator a = ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f);
-        a.setDuration(450);
+        a.setDuration(300);
+        a.setStartDelay(100);
         a.setInterpolator(new FastOutSlowInInterpolator());
+
+        pendingAnimatorList.add(a);
+        disposable = Observable.timer(100, TimeUnit.MILLISECONDS)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnComplete(() -> {
+                    pendingAnimatorList.remove(a);
+                    onEnterScreen();
+                }).subscribe();
         a.start();
     }
 
     public int getCurrentTemperatureHeight() {
         return temperature.getMeasuredHeight();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (disposable != null) {
+            disposable.dispose();
+            disposable = null;
+        }
     }
 
     // interface.

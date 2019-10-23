@@ -64,6 +64,12 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
             return true;
         });
 
+        // list animation.
+        findPreference(getString(R.string.key_list_animation_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setListAnimationEnabled((Boolean) newValue);
+            return true;
+        });
+
         // language.
         Preference language = findPreference(getString(R.string.key_language));
         language.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(getActivity()));

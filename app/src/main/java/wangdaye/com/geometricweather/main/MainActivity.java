@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.main;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,6 +21,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -79,6 +82,7 @@ public class MainActivity extends GeoActivity
     private VerticalRecyclerView recyclerView;
 
     @Nullable private MainAdapter adapter;
+    @Nullable private AnimatorSet recyclerViewAnimator;
 
     private ResourceProvider resourceProvider;
     private MainColorPicker colorPicker;
@@ -354,13 +358,33 @@ public class MainActivity extends GeoActivity
         refreshLayout.setColorSchemeColors(weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
         refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
 
-        adapter = new MainAdapter(this, location, weatherView, resourceProvider, colorPicker);
+        boolean listAnimationEnabled = SettingsOptionManager.getInstance(this).isListAnimationEnabled();
+
+        adapter = new MainAdapter(
+                this, location, weatherView, resourceProvider, colorPicker, listAnimationEnabled);
         recyclerView.setAdapter(adapter);
         recyclerView.clearOnScrollListeners();
         recyclerView.addOnScrollListener(new OnScrollListener(weatherView.getFirstCardMarginTop()));
 
         indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
         indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));
+
+        if (!listAnimationEnabled) {
+            recyclerView.setAlpha(0);
+            recyclerViewAnimator = new AnimatorSet();
+            recyclerViewAnimator.playTogether(
+                    ObjectAnimator.ofFloat(recyclerView, "alpha", 0f, 1f),
+                    ObjectAnimator.ofFloat(
+                            recyclerView,
+                            "translationY",
+                            DisplayUtils.dpToPx(this, 40), 0f
+                    )
+            );
+            recyclerViewAnimator.setDuration(450);
+            recyclerViewAnimator.setInterpolator(new DecelerateInterpolator(2f));
+            recyclerViewAnimator.setStartDelay(150);
+            recyclerViewAnimator.start();
+        }
 
         refreshBackgroundViews(
                 false,
@@ -382,6 +406,10 @@ public class MainActivity extends GeoActivity
 
         switchLayout.reset();
 
+        if (recyclerViewAnimator != null) {
+            recyclerViewAnimator.cancel();
+            recyclerViewAnimator = null;
+        }
         if (adapter != null) {
             recyclerView.setAdapter(null);
             recyclerView.scrollTo(0, 0);
@@ -573,7 +601,7 @@ public class MainActivity extends GeoActivity
 
             weatherView.onScroll(scrollY);
             if (adapter != null) {
-                adapter.onScroll(recyclerView, scrollY);
+                adapter.onScroll(recyclerView);
             }
 
             // set translation y of toolbar.

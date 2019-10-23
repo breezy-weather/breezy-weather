@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -16,6 +17,12 @@ import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
@@ -28,6 +35,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     protected ResourceProvider provider;
     protected MainColorPicker picker;
     private boolean inScreen;
+    private @Nullable Disposable disposable;
 
     @SuppressLint("ObjectAnimatorBinding")
     public AbstractMainViewHolder(Context context, @NonNull View view,
@@ -58,6 +66,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         this.provider = provider;
         this.picker = picker;
         this.inScreen = false;
+        this.disposable = null;
     }
 
     public abstract void onBindView(@NonNull Location location);
@@ -70,18 +79,25 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         return container;
     }
 
-    public final void enterScreen() {
+    public final void enterScreen(List<Animator> pendingAnimatorList,
+                                  boolean listAnimationEnabled) {
         if (!inScreen) {
             inScreen = true;
-            executeEnterAnimator();
-            onEnterScreen();
+            if (listAnimationEnabled) {
+                executeEnterAnimator(pendingAnimatorList);
+            } else {
+                onEnterScreen();
+            }
         }
     }
 
-    public void executeEnterAnimator() {
+    public void executeEnterAnimator(List<Animator> pendingAnimatorList) {
         int popupDistance = (int) DisplayUtils.dpToPx(context, 40);
         itemView.setAlpha(0f);
         itemView.setTranslationY(popupDistance);
+
+        long delay = pendingAnimatorList.size() * 150;
+
         AnimatorSet set = new AnimatorSet();
         set.playTogether(
                 ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f),
@@ -89,7 +105,16 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         );
         set.setDuration(450);
         set.setInterpolator(new DecelerateInterpolator(2f));
-        set.setStartDelay(150 * getAdapterPosition());
+        set.setStartDelay(delay);
+
+        pendingAnimatorList.add(set);
+        disposable = Observable.timer(100, TimeUnit.MILLISECONDS)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnComplete(() -> {
+                    pendingAnimatorList.remove(set);
+                    onEnterScreen();
+                }).subscribe();
         set.start();
     }
 
@@ -98,6 +123,9 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onDestroy() {
-        // do nothing.
+        if (disposable != null) {
+            disposable.dispose();
+            disposable = null;
+        }
     }
 }

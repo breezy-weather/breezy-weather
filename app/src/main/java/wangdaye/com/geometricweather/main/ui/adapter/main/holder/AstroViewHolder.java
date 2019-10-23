@@ -228,6 +228,7 @@ public class AstroViewHolder extends AbstractMainViewHolder {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         for (int i = 0; i < attachAnimatorSets.length; i ++) {
             if (attachAnimatorSets[i] != null && attachAnimatorSets[i].isRunning()) {
                 attachAnimatorSets[i].cancel();

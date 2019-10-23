@@ -76,6 +76,7 @@ public class SettingsOptionManager {
     }) public @interface CardDisplayValueRule {}
 
     private boolean gravitySensorEnabled;
+    private boolean listAnimationEnabled;
     private Language language;
 
     // forecast.
@@ -186,6 +187,9 @@ public class SettingsOptionManager {
 
         gravitySensorEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_gravity_sensor_switch), true);
+
+        listAnimationEnabled = sharedPreferences.getBoolean(
+                context.getString(R.string.key_list_animation_switch), true);
 
         language = OptionMapper.getLanguage(
                 sharedPreferences.getString(
@@ -381,6 +385,14 @@ public class SettingsOptionManager {
 
     public void setGravitySensorEnabled(boolean gravitySensorEnabled) {
         this.gravitySensorEnabled = gravitySensorEnabled;
+    }
+
+    public boolean isListAnimationEnabled() {
+        return listAnimationEnabled;
+    }
+
+    public void setListAnimationEnabled(boolean listAnimationEnabled) {
+        this.listAnimationEnabled = listAnimationEnabled;
     }
 
     public Language getLanguage() {

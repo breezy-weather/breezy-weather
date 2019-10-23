@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main.ui.adapter.main;
 
+import android.animation.Animator;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -36,11 +37,14 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private @NonNull List<Integer> viewTypeList;
     private @Nullable Integer firstCardType;
     private @Nullable FirstCardHeaderController firstCardHeaderController;
+    private @NonNull List<Animator> pendingAnimatorList;
     private int headerCurrentTemperatureTextHeight;
+    private boolean listAnimationEnabled;
 
     public MainAdapter(@NonNull GeoActivity activity, @NonNull Location location,
                        @NonNull WeatherView weatherView,
-                       @NonNull ResourceProvider provider, @NonNull MainColorPicker picker) {
+                       @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                       boolean listAnimationEnabled) {
         this.activity = activity;
         this.location = location;
         this.weatherView = weatherView;
@@ -50,7 +54,9 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         this.viewTypeList = new ArrayList<>();
         this.firstCardType = null;
         this.firstCardHeaderController = null;
+        this.pendingAnimatorList = new ArrayList<>();
         this.headerCurrentTemperatureTextHeight = -1;
+        this.listAnimationEnabled = listAnimationEnabled;
 
         if (location.getWeather() != null) {
             Weather weather = location.getWeather();
@@ -140,6 +146,12 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     }
 
     @Override
+    public void onViewDetachedFromWindow(@NonNull AbstractMainViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.onDestroy();
+    }
+
+    @Override
     public int getItemCount() {
         return viewTypeList.size();
     }
@@ -206,14 +218,12 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         return headerCurrentTemperatureTextHeight;
     }
 
-    public void onScroll(RecyclerView recyclerView, int scrollY) {
+    public void onScroll(RecyclerView recyclerView) {
         AbstractMainViewHolder holder;
         for (int i = 0; i < getItemCount(); i ++) {
             holder = (AbstractMainViewHolder) recyclerView.findViewHolderForAdapterPosition(i);
-            if (holder != null
-                    && (holder.getTop() < scrollY + recyclerView.getMeasuredHeight()
-                    || holder.getTop() < recyclerView.getMeasuredHeight())) {
-                holder.enterScreen();
+            if (holder != null && holder.getTop() < recyclerView.getMeasuredHeight()) {
+                holder.enterScreen(pendingAnimatorList, listAnimationEnabled);
             }
         }
     }
