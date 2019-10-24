@@ -58,15 +58,15 @@ public class AstroViewHolder extends AbstractMainViewHolder {
     @Size(2) private float[] animCurrentTimes;
     private int phaseAngle;
 
-    private boolean executeEnterAnimation;
     @Size(3) private AnimatorSet[] attachAnimatorSets;
 
     public AstroViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                            @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                            @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                           @Px float cardRadius, @Px float cardElevation) {
+                           @Px float cardRadius, @Px float cardElevation,
+                           boolean itemAnimationEnabled) {
         super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_sun_moon, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
 
         this.card = itemView.findViewById(R.id.container_main_sun_moon);
         this.title = itemView.findViewById(R.id.container_main_sun_moon_title);
@@ -79,7 +79,6 @@ public class AstroViewHolder extends AbstractMainViewHolder {
         this.moonTxt = itemView.findViewById(R.id.container_main_sun_moon_moonrise_moonset);
 
         this.weatherView = weatherView;
-        this.executeEnterAnimation = true;
         this.attachAnimatorSets = new AnimatorSet[] {null, null, null};
     }
 
@@ -114,13 +113,13 @@ public class AstroViewHolder extends AbstractMainViewHolder {
         sunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider));
         sunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider));
 
-        if (executeEnterAnimation) {
+        if (itemAnimationEnabled) {
             sunMoonView.setTime(startTimes, endTimes, startTimes);
             sunMoonView.setDayIndicatorRotation(0);
             sunMoonView.setNightIndicatorRotation(0);
             phaseView.setSurfaceAngle(0);
         } else {
-            sunMoonView.setTime(startTimes, endTimes, currentTimes);
+            sunMoonView.post(() -> sunMoonView.setTime(startTimes, endTimes, currentTimes));
             sunMoonView.setDayIndicatorRotation(0);
             sunMoonView.setNightIndicatorRotation(0);
             phaseView.setSurfaceAngle(phaseAngle);
@@ -168,9 +167,7 @@ public class AstroViewHolder extends AbstractMainViewHolder {
 
     @Override
     public void onEnterScreen() {
-        if (executeEnterAnimation && weather != null) {
-            executeEnterAnimation = false;
-
+        if (itemAnimationEnabled && weather != null) {
             ValueAnimator timeDay = ValueAnimator.ofObject(new FloatEvaluator(), startTimes[0], currentTimes[0]);
             timeDay.addUpdateListener(animation -> {
                 animCurrentTimes[0] = (Float) animation.getAnimatedValue();

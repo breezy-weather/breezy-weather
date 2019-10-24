@@ -40,11 +40,12 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private @NonNull List<Animator> pendingAnimatorList;
     private int headerCurrentTemperatureTextHeight;
     private boolean listAnimationEnabled;
+    private boolean itemAnimationEnabled;
 
     public MainAdapter(@NonNull GeoActivity activity, @NonNull Location location,
                        @NonNull WeatherView weatherView,
                        @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                       boolean listAnimationEnabled) {
+                       boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         this.activity = activity;
         this.location = location;
         this.weatherView = weatherView;
@@ -57,6 +58,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         this.pendingAnimatorList = new ArrayList<>();
         this.headerCurrentTemperatureTextHeight = -1;
         this.listAnimationEnabled = listAnimationEnabled;
+        this.itemAnimationEnabled = itemAnimationEnabled;
 
         if (location.getWeather() != null) {
             Weather weather = location.getWeather();
@@ -98,7 +100,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         switch (viewType) {
             case ViewType.HEADER:
                 holder = new HeaderViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
                 break;
 
             case ViewType.DAILY:
@@ -113,12 +115,12 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
             case ViewType.AIR_QUALITY:
                 holder = new AirQualityViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
                 break;
 
             case ViewType.ASTRO:
                 holder = new AstroViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
                 break;
 
             case ViewType.DETAILS:

@@ -43,15 +43,15 @@ public class AirQualityViewHolder extends AbstractMainViewHolder {
     private int aqiIndex;
 
     private boolean enable;
-    private boolean executeEnterAnimation;
     @Nullable private AnimatorSet attachAnimatorSet;
 
     public AirQualityViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                                 @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                                 @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                                @Px float cardRadius, @Px float cardElevation) {
+                                @Px float cardRadius, @Px float cardElevation,
+                                boolean itemAnimationEnabled) {
         super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_aqi, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
 
         this.card = itemView.findViewById(R.id.container_main_aqi);
         this.title = itemView.findViewById(R.id.container_main_aqi_title);
@@ -59,7 +59,6 @@ public class AirQualityViewHolder extends AbstractMainViewHolder {
         this.recyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView);
 
         this.weatherView = weatherView;
-        this.executeEnterAnimation = true;
     }
 
     @Override
@@ -77,7 +76,7 @@ public class AirQualityViewHolder extends AbstractMainViewHolder {
         card.setCardBackgroundColor(picker.getRootColor(context));
         title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
 
-        if (executeEnterAnimation) {
+        if (itemAnimationEnabled) {
             progress.setProgress(0);
             progress.setText("0");
             progress.setProgressColor(
@@ -98,16 +97,14 @@ public class AirQualityViewHolder extends AbstractMainViewHolder {
         progress.setBottomText(weather.getCurrent().getAirQuality().getAqiText());
         progress.setBottomTextColor(picker.getTextSubtitleColor(context));
 
-        adapter = new AqiAdapter(context, weather, picker, executeEnterAnimation);
+        adapter = new AqiAdapter(context, weather, picker, itemAnimationEnabled);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
     @Override
     public void onEnterScreen() {
-        if (executeEnterAnimation && enable && weather != null) {
-            executeEnterAnimation = false;
-
+        if (itemAnimationEnabled && enable && weather != null) {
             int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(progress.getContext());
 
             ValueAnimator progressColor = ValueAnimator.ofObject(

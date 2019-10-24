@@ -28,7 +28,7 @@ public class FooterViewHolder extends AbstractMainViewHolder {
                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
                             @Px float cardRadius, @Px float cardElevation) {
         super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_footer, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, false);
         this.text = itemView.findViewById(R.id.container_main_footer_title);
     }
 

@@ -279,6 +279,7 @@
     <string name="settings_title_card_order">卡片順序</string>
     <string name="settings_title_gravity_sensor_switch">重力感應</string>
     <string name="settings_title_list_animation_switch">列表動畫</string>
+    <string name="settings_title_item_animation_switch">組件動畫</string>
     <string name="settings_language">語言</string>
     <string name="settings_title_unit">單位</string>
     <string name="settings_summary_unit">設置天氣數據的單位</string>

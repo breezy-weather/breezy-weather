@@ -38,17 +38,18 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     private TextView weather;
     private TextView aqiOrWind;
 
-    private @Nullable Location location;
-    private TemperatureUnit unit;
     private WeatherView weatherView;
+    private int temperatureC;
+    private TemperatureUnit unit;
     private @Nullable Disposable disposable;
 
     public HeaderViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                            @Px float cardRadius, @Px float cardElevation) {
+                            @Px float cardRadius, @Px float cardElevation,
+                            boolean itemAnimationEnabled) {
         super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_header, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
 
         this.container = itemView.findViewById(R.id.container_main_header);
         this.temperature = itemView.findViewById(R.id.container_main_header_tempTxt);
@@ -56,6 +57,8 @@ public class HeaderViewHolder extends AbstractMainViewHolder
         this.aqiOrWind = itemView.findViewById(R.id.container_main_header_aqiOrWindTxt);
 
         this.weatherView = weatherView;
+        this.temperatureC = 0;
+        this.unit = null;
         this.disposable = null;
     }
 
@@ -67,11 +70,12 @@ public class HeaderViewHolder extends AbstractMainViewHolder
         container.setLayoutParams(params);
         container.setOnClickListener(this);
 
-        this.location = location;
-
+        unit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
         if (location.getWeather() != null) {
-            this.unit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
-            temperature.setDuration(2000);
+            temperatureC = location.getWeather().getCurrent().getTemperature().getTemperature();
+
+            temperature.setEnableAnim(itemAnimationEnabled);
+            temperature.setDuration((long) Math.max(0, Math.abs(temperatureC) / 10f * 1000));
             temperature.setPostfixString("°");
 
             weather.setText(
@@ -101,6 +105,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     @Override
     public void executeEnterAnimator(List<Animator> pendingAnimatorList) {
         itemView.setAlpha(0f);
+
         Animator a = ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f);
         a.setDuration(300);
         a.setStartDelay(100);
@@ -120,14 +125,10 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     @Override
     public void onEnterScreen() {
         super.onEnterScreen();
-        if (location != null && location.getWeather() != null) {
-            temperature.setNumberString(
-                    "0",
-                    String.valueOf(unit.getTemperature(
-                            location.getWeather().getCurrent().getTemperature().getTemperature()
-                    ))
-            );
-        }
+        temperature.setNumberString(
+                "0",
+                String.valueOf(unit.getTemperature(temperatureC))
+        );
     }
 
     @Override

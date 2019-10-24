@@ -32,7 +32,7 @@ public class DetailsViewHolder extends AbstractMainViewHolder {
                              @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
                              @Px float cardRadius, @Px float cardElevation) {
         super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_details, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, false);
 
         this.card = itemView.findViewById(R.id.container_main_details);
         this.title = itemView.findViewById(R.id.container_main_details_title);

@@ -292,6 +292,7 @@
     <string name="settings_title_card_order">Card order</string>
     <string name="settings_title_gravity_sensor_switch">Gravity sensor</string>
     <string name="settings_title_list_animation_switch">List animation</string>
+    <string name="settings_title_item_animation_switch">Item animation</string>
     <string name="settings_language">Language</string>
     <string name="settings_title_unit">Units</string>
     <string name="settings_summary_unit">Set the unit of weather data</string>
@@ -367,6 +368,7 @@
     <string name="key_card_display">card_display</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
     <string name="key_list_animation_switch">list_animation_switch</string>
+    <string name="key_item_animation_switch">item_animation_switch</string>
     <string name="key_language">language</string>
     <string name="key_unit">unit</string>
     <string name="key_temperature_unit">temperature_unit</string>

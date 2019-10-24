@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/container_main_header_aqiOrWindTxt"
-        android:textSize="@dimen/subtitle_text_size"
+        android:textSize="@dimen/content_text_size"
         android:maxLines="1"
         android:ellipsize="end"
         android:layout_marginStart="2dp"

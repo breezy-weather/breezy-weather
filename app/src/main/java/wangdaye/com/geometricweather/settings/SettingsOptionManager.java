@@ -77,6 +77,7 @@ public class SettingsOptionManager {
 
     private boolean gravitySensorEnabled;
     private boolean listAnimationEnabled;
+    private boolean itemAnimationEnabled;
     private Language language;
 
     // forecast.
@@ -190,6 +191,9 @@ public class SettingsOptionManager {
 
         listAnimationEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_list_animation_switch), true);
+
+        itemAnimationEnabled = sharedPreferences.getBoolean(
+                context.getString(R.string.key_item_animation_switch), true);
 
         language = OptionMapper.getLanguage(
                 sharedPreferences.getString(
@@ -393,6 +397,14 @@ public class SettingsOptionManager {
 
     public void setListAnimationEnabled(boolean listAnimationEnabled) {
         this.listAnimationEnabled = listAnimationEnabled;
+    }
+
+    public boolean isItemAnimationEnabled() {
+        return itemAnimationEnabled;
+    }
+
+    public void setItemAnimationEnabled(boolean itemAnimationEnabled) {
+        this.itemAnimationEnabled = itemAnimationEnabled;
     }
 
     public Language getLanguage() {

@@ -57,7 +57,7 @@ public class HourlyViewHolder extends AbstractMainViewHolder {
                             @Px float cardRadius, @Px float cardElevation) {
         super(activity,
                 LayoutInflater.from(activity).inflate(R.layout.container_main_hourly_trend_card, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, false);
 
         this.card = itemView.findViewById(R.id.container_main_hourly_trend_card);
         this.title = itemView.findViewById(R.id.container_main_hourly_trend_card_title);

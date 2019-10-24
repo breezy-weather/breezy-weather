@@ -359,9 +359,10 @@ public class MainActivity extends GeoActivity
         refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
 
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(this).isListAnimationEnabled();
+        boolean itemAnimationEnabled = SettingsOptionManager.getInstance(this).isItemAnimationEnabled();
 
-        adapter = new MainAdapter(
-                this, location, weatherView, resourceProvider, colorPicker, listAnimationEnabled);
+        adapter = new MainAdapter(this, location, weatherView, resourceProvider, colorPicker,
+                listAnimationEnabled, itemAnimationEnabled);
         recyclerView.setAdapter(adapter);
         recyclerView.clearOnScrollListeners();
         recyclerView.addOnScrollListener(new OnScrollListener(weatherView.getFirstCardMarginTop()));

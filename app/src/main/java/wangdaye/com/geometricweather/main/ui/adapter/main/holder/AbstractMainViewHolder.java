@@ -34,6 +34,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     protected @Nullable LinearLayout container;
     protected ResourceProvider provider;
     protected MainColorPicker picker;
+    protected boolean itemAnimationEnabled;
     private boolean inScreen;
     private @Nullable Disposable disposable;
 
@@ -41,7 +42,8 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     public AbstractMainViewHolder(Context context, @NonNull View view,
                                   @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                                   @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                                  @Px float cardRadius, @Px float cardElevation) {
+                                  @Px float cardRadius, @Px float cardElevation,
+                                  boolean itemAnimationEnabled) {
         super(view);
 
         this.context = context;
@@ -65,6 +67,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         }
         this.provider = provider;
         this.picker = picker;
+        this.itemAnimationEnabled = itemAnimationEnabled;
         this.inScreen = false;
         this.disposable = null;
     }
