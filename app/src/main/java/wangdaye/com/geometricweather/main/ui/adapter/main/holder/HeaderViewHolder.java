@@ -10,16 +10,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -46,7 +44,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     public HeaderViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                            @Px float cardRadius, @Px float cardElevation,
+                            @Px float cardRadius, @Px float cardElevation, @ColorInt int textColor,
                             boolean itemAnimationEnabled) {
         super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_header, parent, false),
                 provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
@@ -55,6 +53,10 @@ public class HeaderViewHolder extends AbstractMainViewHolder
         this.temperature = itemView.findViewById(R.id.container_main_header_tempTxt);
         this.weather = itemView.findViewById(R.id.container_main_header_weatherTxt);
         this.aqiOrWind = itemView.findViewById(R.id.container_main_header_aqiOrWindTxt);
+
+        temperature.setTextColor(textColor);
+        weather.setTextColor(textColor);
+        aqiOrWind.setTextColor(textColor);
 
         this.weatherView = weatherView;
         this.temperatureC = 0;
@@ -103,23 +105,12 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     }
 
     @Override
-    public void executeEnterAnimator(List<Animator> pendingAnimatorList) {
-        itemView.setAlpha(0f);
-
+    protected Animator getEnterAnimator(List<Animator> pendingAnimatorList) {
         Animator a = ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f);
         a.setDuration(300);
         a.setStartDelay(100);
         a.setInterpolator(new FastOutSlowInInterpolator());
-
-        pendingAnimatorList.add(a);
-        disposable = Observable.timer(100, TimeUnit.MILLISECONDS)
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete(() -> {
-                    pendingAnimatorList.remove(a);
-                    onEnterScreen();
-                }).subscribe();
-        a.start();
+        return a;
     }
 
     @Override

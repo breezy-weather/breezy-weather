@@ -79,6 +79,9 @@ public interface WeatherView {
     @Px
     int getCardElevation(Context context);
 
+    @ColorInt
+    int getHeaderTextColor(Context context);
+
     void setDrawable(boolean drawable);
 
     void setGravitySensorEnabled(boolean enabled);

@@ -366,6 +366,11 @@ public class MaterialWeatherView extends View implements WeatherView {
         return (int) DisplayUtils.dpToPx(context, 2);
     }
 
+    @Override
+    public int getHeaderTextColor(Context context) {
+        return Color.WHITE;
+    }
+
     public void setDrawable(boolean drawable) {
         if (this.drawable == drawable) {
             return;

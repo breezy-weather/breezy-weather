@@ -100,7 +100,8 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         switch (viewType) {
             case ViewType.HEADER:
                 holder = new HeaderViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
+                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation,
+                        weatherView.getHeaderTextColor(activity), itemAnimationEnabled);
                 break;
 
             case ViewType.DAILY:

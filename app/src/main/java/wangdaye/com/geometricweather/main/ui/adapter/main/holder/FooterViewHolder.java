@@ -39,12 +39,11 @@ public class FooterViewHolder extends AbstractMainViewHolder {
     }
 
     @Override
-    public void executeEnterAnimator(List<Animator> pendingAnimatorList) {
-        itemView.setAlpha(0f);
+    protected Animator getEnterAnimator(List<Animator> pendingAnimatorList) {
         Animator a = ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f);
         a.setDuration(450);
         a.setInterpolator(new FastOutSlowInInterpolator());
         a.setStartDelay(pendingAnimatorList.size() * 150);
-        a.start();
+        return a;
     }
 }

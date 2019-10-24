@@ -94,31 +94,33 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    public void executeEnterAnimator(List<Animator> pendingAnimatorList) {
-        int popupDistance = (int) DisplayUtils.dpToPx(context, 40);
+    public final void executeEnterAnimator(List<Animator> pendingAnimatorList) {
         itemView.setAlpha(0f);
-        itemView.setTranslationY(popupDistance);
 
-        long delay = pendingAnimatorList.size() * 150;
-
-        AnimatorSet set = new AnimatorSet();
-        set.playTogether(
-                ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f),
-                ObjectAnimator.ofFloat(itemView, "translationY", popupDistance, 0f)
-        );
-        set.setDuration(450);
-        set.setInterpolator(new DecelerateInterpolator(2f));
-        set.setStartDelay(delay);
-
-        pendingAnimatorList.add(set);
-        disposable = Observable.timer(100, TimeUnit.MILLISECONDS)
+        Animator a = getEnterAnimator(pendingAnimatorList);
+        pendingAnimatorList.add(a);
+        disposable = Observable.timer(a.getStartDelay(), TimeUnit.MILLISECONDS)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(() -> {
-                    pendingAnimatorList.remove(set);
+                    pendingAnimatorList.remove(a);
                     onEnterScreen();
                 }).subscribe();
-        set.start();
+        a.start();
+    }
+
+    protected Animator getEnterAnimator(List<Animator> pendingAnimatorList) {
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(
+                ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f),
+                ObjectAnimator.ofFloat(
+                        itemView, "translationY", DisplayUtils.dpToPx(context, 40), 0f
+                )
+        );
+        set.setDuration(450);
+        set.setInterpolator(new DecelerateInterpolator(2f));
+        set.setStartDelay(pendingAnimatorList.size() * 150);
+        return set;
     }
 
     public void onEnterScreen() {

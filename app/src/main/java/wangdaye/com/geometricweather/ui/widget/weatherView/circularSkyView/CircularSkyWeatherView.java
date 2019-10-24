@@ -8,6 +8,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 
@@ -313,6 +314,11 @@ public class CircularSkyWeatherView extends FrameLayout
     @Override
     public int getCardElevation(Context context) {
         return (int) DisplayUtils.dpToPx(context, 2);
+    }
+
+    @Override
+    public int getHeaderTextColor(Context context) {
+        return Color.WHITE;
     }
 
     @Override
