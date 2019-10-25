@@ -29,7 +29,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
-import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
+import wangdaye.com.geometricweather.ui.widget.astro.MoonPhaseView;
 
 /**
  * Weather dialog.

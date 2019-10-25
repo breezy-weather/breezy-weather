@@ -56,7 +56,7 @@ public class DisplayUtils {
         }
     }
 
-    public static float dpToPx(Context context, int dp) {
+    public static float dpToPx(Context context, float dp) {
         return dp * (context.getResources().getDisplayMetrics().densityDpi / 160f);
     }
 

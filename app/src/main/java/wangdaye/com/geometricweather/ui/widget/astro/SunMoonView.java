@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.moon;
+package wangdaye.com.geometricweather.ui.widget.astro;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -53,7 +53,6 @@ public class SunMoonView extends View {
     @Size(2) private float[] maxes;
 
     @Size(3) private int[] lineColors;
-    @Size(2) private int[] shadowColors;
     @Size(2) private int[] x1ShaderColors;
     @Size(2) private int[] x2ShaderColors;
     @ColorInt private int rootColor;
@@ -64,15 +63,15 @@ public class SunMoonView extends View {
 
     int iconSize;
 
-    private final static int ICON_SIZE_DIP = 24;
-    private final static int LINE_SIZE_DIP = 3;
-    private final static int DOTTED_LINE_SIZE_DIP = 1;
-    private final static int MARGIN_DIP = 16;
+    private final static float ICON_SIZE_DIP = 24;
+    private final static float LINE_SIZE_DIP = 3.5f;
+    private final static float DOTTED_LINE_SIZE_DIP = 1;
+    private final static float MARGIN_DIP = 16;
 
     private static final int ARC_ANGLE = 135;
 
-    private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.05f;
-    private static final float SHADOW_ALPHA_FACTOR_DARK = 0.05f;
+    private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.1f;
+    private static final float SHADOW_ALPHA_FACTOR_DARK = 0.2f;
 
     public SunMoonView(@NonNull Context context) {
         super(context);
@@ -103,10 +102,6 @@ public class SunMoonView extends View {
         this.maxes = new float[] {100, 100};
 
         this.lineColors = new int[] {Color.BLACK, Color.GRAY, Color.LTGRAY};
-        this.shadowColors = new int[] {
-                Color.argb((int) (255 * 0.2), 0, 0, 0),
-                Color.argb((int) (255 * 0.2), 0, 0, 0)
-        };
 
         this.x1ShaderColors = new int[] {Color.GRAY, Color.WHITE};
         this.x2ShaderColors = new int[] {Color.BLACK, Color.WHITE};
@@ -163,17 +158,8 @@ public class SunMoonView extends View {
                           @ColorInt int backgroundLineColor, @ColorInt int rootColor,
                           boolean lightTheme) {
         this.lineColors = new int[] {sunLineColor, moonLineColor, backgroundLineColor};
-        this.shadowColors = new int[] {getDarkerColor(sunLineColor), getDarkerColor(moonLineColor)};
         ensureShader(rootColor, sunLineColor, moonLineColor, lightTheme);
         ViewCompat.postInvalidateOnAnimation(this);
-    }
-
-    private int getDarkerColor(@ColorInt int color){
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[1] = hsv[1] + 0.15f;
-        hsv[2] = hsv[2] - 0.15f;
-        return Color.HSVToColor(hsv);
     }
 
     public void setDayIndicatorRotation(float rotation) {
@@ -326,7 +312,6 @@ public class SunMoonView extends View {
         paint.setColor(lineColors[2]);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(dottedLineSize);
-        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
         paint.setPathEffect(effect);
         canvas.drawArc(rectF, startAngle, ARC_ANGLE, false, paint);
         canvas.drawLine(
@@ -396,7 +381,6 @@ public class SunMoonView extends View {
             paint.setColor(lineColors[index]);
             paint.setStrokeWidth(lineSize);
             paint.setPathEffect(null);
-            paint.setShadowLayer(1, 0, 1, shadowColors[index]);
             canvas.drawArc(rectF, startAngle, progressSweepAngle, false, paint);
         }
     }

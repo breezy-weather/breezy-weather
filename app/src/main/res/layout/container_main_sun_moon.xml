@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin">
 
-            <wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView
+            <wangdaye.com.geometricweather.ui.widget.astro.MoonPhaseView
                 android:id="@+id/container_main_sun_moon_phaseView"
                 android:layout_width="@dimen/material_icon_size"
                 android:layout_height="@dimen/material_icon_size"
@@ -43,7 +43,7 @@
 
         </RelativeLayout>
 
-        <wangdaye.com.geometricweather.ui.widget.moon.SunMoonView
+        <wangdaye.com.geometricweather.ui.widget.astro.SunMoonView
             android:id="@+id/container_main_sun_moon_controlView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

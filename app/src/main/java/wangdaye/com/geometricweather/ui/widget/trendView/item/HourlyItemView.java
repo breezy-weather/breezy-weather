@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 public class HourlyItemView extends ViewGroup
         implements TrendChild {
 
-    private ChartItemView chartItem;
+    private PolylineItemView chartItem;
     private TrendParent trendParent;
     private Paint paint;
 
@@ -82,7 +82,7 @@ public class HourlyItemView extends ViewGroup
     private void initialize() {
         setWillNotDraw(false);
 
-        chartItem = new ChartItemView(getContext());
+        chartItem = new PolylineItemView(getContext());
         addView(chartItem);
 
         paint = new Paint();
@@ -234,7 +234,7 @@ public class HourlyItemView extends ViewGroup
         };
     }
 
-    public ChartItemView getChartItem() {
+    public PolylineItemView getChartItem() {
         return chartItem;
     }
 

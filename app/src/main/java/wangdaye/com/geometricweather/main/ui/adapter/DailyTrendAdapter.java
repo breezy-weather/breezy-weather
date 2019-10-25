@@ -96,8 +96,7 @@ public class DailyTrendAdapter extends TrendRecyclerViewAdapter<DailyTrendAdapte
                     0f
             );
             dailyItem.getTrendItemView().setLineColors(
-                    themeColors[1], themeColors[2], picker.getLineColor(context)
-            );
+                    themeColors[1], themeColors[2], picker.getLineColor(context));
             dailyItem.getTrendItemView().setShadowColors(
                     themeColors[1], themeColors[2], picker.isLightTheme());
             dailyItem.getTrendItemView().setTextColors(

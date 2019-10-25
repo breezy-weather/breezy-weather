@@ -39,7 +39,7 @@
 
             </LinearLayout>
 
-            <wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView
+            <wangdaye.com.geometricweather.ui.widget.astro.MoonPhaseView
                 android:id="@+id/dialog_weather_phaseView"
                 android:layout_width="@dimen/material_icon_size"
                 android:layout_height="@dimen/material_icon_size"

@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.moon;
+package wangdaye.com.geometricweather.ui.widget.astro;
 
 import android.content.Context;
 import android.graphics.Canvas;

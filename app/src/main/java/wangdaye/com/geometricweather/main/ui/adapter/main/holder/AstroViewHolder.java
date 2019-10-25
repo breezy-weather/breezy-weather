@@ -31,8 +31,8 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.ui.widget.moon.MoonPhaseView;
-import wangdaye.com.geometricweather.ui.widget.moon.SunMoonView;
+import wangdaye.com.geometricweather.ui.widget.astro.MoonPhaseView;
+import wangdaye.com.geometricweather.ui.widget.astro.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 public class AstroViewHolder extends AbstractMainViewHolder {
@@ -126,20 +126,20 @@ public class AstroViewHolder extends AbstractMainViewHolder {
         }
         int[] themeColors = weatherView.getThemeColors(picker.isLightTheme());
         if (picker.isLightTheme()) {
-            sunMoonView.setColors(
-                    themeColors[1],
+                    sunMoonView.setColors(
+                    themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
                     picker.getRootColor(context),
-                    true
+                    picker.isLightTheme()
             );
         } else {
             sunMoonView.setColors(
-                    themeColors[1],
-                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.5 * 255)),
-                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.2 * 255)),
+                    themeColors[2],
+                    ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
+                    ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
                     picker.getRootColor(context),
-                    false
+                    picker.isLightTheme()
             );
         }
 

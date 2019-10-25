@@ -76,10 +76,9 @@ public class HourlyTrendAdapter extends TrendRecyclerViewAdapter<HourlyTrendAdap
                     null, null, null, null
             );
             hourlyItem.getChartItem().setLineColors(
-                    themeColors[1], themeColors[2], picker.getLineColor(context)
-            );
+                    themeColors[picker.isLightTheme() ? 1 : 2], themeColors[2], picker.getLineColor(context));
             hourlyItem.getChartItem().setShadowColors(
-                    themeColors[1], themeColors[2], picker.isLightTheme());
+                    themeColors[picker.isLightTheme() ? 1 : 2], themeColors[2], picker.isLightTheme());
             hourlyItem.getChartItem().setTextColors(
                     picker.getTextContentColor(context),
                     picker.getTextSubtitleColor(context)

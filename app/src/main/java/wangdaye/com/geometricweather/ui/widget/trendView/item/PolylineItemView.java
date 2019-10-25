@@ -21,10 +21,10 @@ import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
- * Chart item view.
+ * Polyline item view.
  * */
 
-public class ChartItemView extends View {
+public class PolylineItemView extends View {
 
     private Paint paint;
     private Path path;
@@ -67,44 +67,44 @@ public class ChartItemView extends View {
     private static final float MARGIN_BOTTOM_DIP = 36;
     private static final float TEMPERATURE_TEXT_SIZE_DIP = 13;
     private static final float PRECIPITATION_TEXT_SIZE_DIP = 11;
-    private static final float TREND_LINE_SIZE_DIP = 3;
+    private static final float TREND_LINE_SIZE_DIP = 3.5f;
     private static final float PRECIPITATION_PILLAR_WIDTH_DIP = 3;
     private static final float CHART_LINE_SIZE_DIP = 1;
     private static final float TEXT_MARGIN_DIP = 2;
 
-    private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.1f;
-    private static final float SHADOW_ALPHA_FACTOR_DARK = 0.1f;
+    private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.15f;
+    private static final float SHADOW_ALPHA_FACTOR_DARK = 0.3f;
 
-    public ChartItemView(Context context) {
+    public PolylineItemView(Context context) {
         super(context);
         this.initialize();
     }
 
-    public ChartItemView(Context context, AttributeSet attrs) {
+    public PolylineItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.initialize();
     }
 
-    public ChartItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PolylineItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initialize();
     }
 
     private void initialize() {
         lineColors = new int[] {Color.BLACK, Color.DKGRAY, Color.LTGRAY};
-        shadowColors = new int[] {Color.BLACK, Color.WHITE, Color.GRAY};
+        shadowColors = new int[] {Color.BLACK, Color.WHITE};
 
         setTextColors(Color.BLACK, Color.GRAY);
         setPrecipitationAlpha(0.33f);
 
-        this.marginTop = (int) DisplayUtils.dpToPx(getContext(), (int) MARGIN_TOP_DIP);
-        this.marginBottom = (int) DisplayUtils.dpToPx(getContext(), (int) MARGIN_BOTTOM_DIP);
-        this.temperatureTextSize = (int) DisplayUtils.dpToPx(getContext(), (int) TEMPERATURE_TEXT_SIZE_DIP);
-        this.precipitationTextSize = (int) DisplayUtils.dpToPx(getContext(), (int) PRECIPITATION_TEXT_SIZE_DIP);
-        this.trendLineWidth = (int) DisplayUtils.dpToPx(getContext(), (int) TREND_LINE_SIZE_DIP);
-        this.precipitationPillarWidth = (int) DisplayUtils.dpToPx(getContext(), (int) PRECIPITATION_PILLAR_WIDTH_DIP);
-        this.chartLineWith = (int) DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE_DIP);
-        this.textMargin = (int) DisplayUtils.dpToPx(getContext(), (int) TEXT_MARGIN_DIP);
+        this.marginTop = (int) DisplayUtils.dpToPx(getContext(), MARGIN_TOP_DIP);
+        this.marginBottom = (int) DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
+        this.temperatureTextSize = (int) DisplayUtils.dpToPx(getContext(), TEMPERATURE_TEXT_SIZE_DIP);
+        this.precipitationTextSize = (int) DisplayUtils.dpToPx(getContext(), PRECIPITATION_TEXT_SIZE_DIP);
+        this.trendLineWidth = (int) DisplayUtils.dpToPx(getContext(), TREND_LINE_SIZE_DIP);
+        this.precipitationPillarWidth = (int) DisplayUtils.dpToPx(getContext(), PRECIPITATION_PILLAR_WIDTH_DIP);
+        this.chartLineWith = (int) DisplayUtils.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
+        this.textMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
 
         this.paint = new Paint();
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -142,7 +142,6 @@ public class ChartItemView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(chartLineWith);
         paint.setColor(lineColors[2]);
-        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
         canvas.drawLine(
                 getMeasuredWidth() / 2.f, marginTop,
@@ -159,7 +158,6 @@ public class ChartItemView extends View {
             paint.setColor(Color.BLACK);
             paint.setShader(shaderWrapper.getShader());
             paint.setStyle(Paint.Style.FILL);
-            paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), highPolylineY[0]);
@@ -175,7 +173,6 @@ public class ChartItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[0]);
-            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), highPolylineY[0]);
@@ -187,7 +184,6 @@ public class ChartItemView extends View {
             paint.setColor(Color.BLACK);
             paint.setShader(shaderWrapper.getShader());
             paint.setStyle(Paint.Style.FILL);
-            paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
             path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
@@ -202,7 +198,6 @@ public class ChartItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[0]);
-            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
@@ -213,7 +208,6 @@ public class ChartItemView extends View {
             paint.setColor(Color.BLACK);
             paint.setShader(shaderWrapper.getShader());
             paint.setStyle(Paint.Style.FILL);
-            paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), highPolylineY[0]);
@@ -228,7 +222,6 @@ public class ChartItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[0]);
-            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), highPolylineY[0]);
@@ -248,6 +241,7 @@ public class ChartItemView extends View {
                 highPolylineY[1] - paint.getFontMetrics().bottom - textMargin,
                 paint
         );
+        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
     }
 
     private void drawLowPolyline(Canvas canvas) {
@@ -258,7 +252,6 @@ public class ChartItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[1]);
-            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), lowPolylineY[0]);
@@ -270,7 +263,6 @@ public class ChartItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[1]);
-            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), lowPolylineY[1]);
@@ -281,7 +273,6 @@ public class ChartItemView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(trendLineWidth);
             paint.setColor(lineColors[1]);
-            paint.setShadowLayer(1, 0, 1, shadowColors[2]);
 
             path.reset();
             path.moveTo(getRTLCompactX(0), lowPolylineY[0]);
@@ -301,12 +292,11 @@ public class ChartItemView extends View {
                 lowPolylineY[1] - paint.getFontMetrics().top + textMargin,
                 paint
         );
+        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
     }
 
     private void drawHistogram(Canvas canvas) {
         assert histogramValueStr != null;
-
-        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
 
         paint.setColor(lineColors[1]);
         paint.setAlpha((int) (255 * precipitationAlpha));
@@ -380,7 +370,6 @@ public class ChartItemView extends View {
                 ? ColorUtils.setAlphaComponent(colorDay, (int) (255 * SHADOW_ALPHA_FACTOR_LIGHT))
                 : ColorUtils.setAlphaComponent(colorNight, (int) (255 * SHADOW_ALPHA_FACTOR_DARK));
         shadowColors[1] = Color.TRANSPARENT;
-        shadowColors[2] = getDarkerColor(lightTheme ? colorDay : colorNight);
 
         ensureShader(lightTheme);
         invalidate();

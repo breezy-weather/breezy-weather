@@ -77,7 +77,12 @@ public class HeaderViewHolder extends AbstractMainViewHolder
             temperatureC = location.getWeather().getCurrent().getTemperature().getTemperature();
 
             temperature.setEnableAnim(itemAnimationEnabled);
-            temperature.setDuration((long) Math.max(0, Math.abs(temperatureC) / 10f * 1000));
+            temperature.setDuration(
+                    (long) Math.min(
+                            2000,
+                            Math.max(0, Math.abs(temperatureC) / 10f * 1000)
+                    )
+            );
             temperature.setPostfixString("°");
 
             weather.setText(
