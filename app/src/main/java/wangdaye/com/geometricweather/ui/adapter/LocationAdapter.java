@@ -44,7 +44,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
-        // widget
+
         RelativeLayout locationItemContainer;
         RelativeLayout locationItemView;
         AppCompatImageView deleteImageLeft;
@@ -87,6 +87,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             locationItemView.setTranslationX(dX);
             deleteImageLeft.setTranslationX((float) Math.min(0.5 * (dX - deleteImageLeft.getMeasuredWidth()), 0));
             deleteImageRight.setTranslationX((float) Math.max(0.5 * (dX + deleteImageRight.getMeasuredWidth()), 0));
+
             return this;
         }
 

@@ -100,7 +100,8 @@ public class Location
         if (location.isCurrentPosition()) {
             return isCurrentPosition();
         } else {
-            return cityId.equals(location.cityId)
+            return !isCurrentPosition()
+                    && cityId.equals(location.cityId)
                     && weatherSource == location.weatherSource;
         }
     }
@@ -114,7 +115,8 @@ public class Location
         }
         try {
             String[] keys = formattedId.split("&");
-            return cityId.equals(keys[0])
+            return !isCurrentPosition()
+                    && cityId.equals(keys[0])
                     && weatherSource.name().equals(keys[1]);
         } catch (Exception e) {
             return false;

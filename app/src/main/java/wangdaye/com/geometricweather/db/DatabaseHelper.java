@@ -92,24 +92,32 @@ public class DatabaseHelper {
     // location.
 
     public void writeLocation(@NonNull Location location) {
-        locationEntityController.insertLocationEntity(
-                LocationEntityConverter.convertToEntity(location));
+        LocationEntity entity = locationEntityController.selectLocationEntity(location.getFormattedId());
+        if (entity == null) {
+            writeLocation(location, locationEntityController.countLocationEntity() + 1);
+        } else {
+            writeLocation(location, entity.sequence);
+        }
+    }
+
+    public void writeLocation(@NonNull Location location, long sequence) {
+        locationEntityController.insertOrUpdateLocationEntity(
+                LocationEntityConverter.convertToEntity(location, sequence));
     }
 
     public void writeLocationList(@NonNull List<Location> list) {
-        locationEntityController.insertLocationEntityList(
+        locationEntityController.insertOrUpdateLocationEntityList(
                 LocationEntityConverter.convertToEntityList(list));
     }
 
     public void deleteLocation(@NonNull Location location) {
         locationEntityController.deleteLocationEntity(
-                LocationEntityConverter.convertToEntity(location));
+                LocationEntityConverter.convertToEntity(location, 0));
     }
 
     @Nullable
     public Location readLocation(@NonNull Location location) {
-        LocationEntity entity = locationEntityController.selectLocationEntity(
-                location.getCityId(), location.getWeatherSource(), location.isCurrentPosition());
+        LocationEntity entity = locationEntityController.selectLocationEntity(location.getFormattedId());
         if (entity != null) {
             return LocationEntityConverter.convertToModule(entity);
         } else {
@@ -122,9 +130,9 @@ public class DatabaseHelper {
         List<LocationEntity> entityList = locationEntityController.selectLocationEntityList();
         if (entityList.size() == 0) {
             entityList.add(
-                    LocationEntityConverter.convertToEntity(Location.buildLocal())
+                    LocationEntityConverter.convertToEntity(Location.buildLocal(), 0)
             );
-            locationEntityController.insertLocationEntityList(entityList);
+            locationEntityController.insertOrUpdateLocationEntityList(entityList);
         }
         return LocationEntityConverter.convertToModuleList(entityList);
     }

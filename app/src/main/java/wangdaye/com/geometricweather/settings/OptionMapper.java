@@ -1,10 +1,19 @@
 package wangdaye.com.geometricweather.settings;
 
+import android.content.Context;
+import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
-import wangdaye.com.geometricweather.basic.model.option.Language;
+import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
+import wangdaye.com.geometricweather.basic.model.option.appearance.Language;
 import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
 import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
-import wangdaye.com.geometricweather.basic.model.option.UIStyle;
+import wangdaye.com.geometricweather.basic.model.option.appearance.UIStyle;
 import wangdaye.com.geometricweather.basic.model.option.UpdateInterval;
 import wangdaye.com.geometricweather.basic.model.option.provider.LocationProvider;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
@@ -181,6 +190,68 @@ public class OptionMapper {
             default:
                 return UIStyle.MATERIAL;
         }
+    }
+
+    @NonNull
+    public static List<CardDisplay> getCardDisplayList(String value) {
+        if (TextUtils.isEmpty(value)) {
+            return new ArrayList<>();
+        }
+        try {
+            String[] cards = value.split("&");
+
+            List<CardDisplay> list = new ArrayList<>();
+            for (String card : cards) {
+                switch (card) {
+                    case "daily_overview":
+                        list.add(CardDisplay.CARD_DAILY_OVERVIEW);
+                        break;
+
+                    case "hourly_overview":
+                        list.add(CardDisplay.CARD_HOURLY_OVERVIEW);
+                        break;
+
+                    case "air_quality":
+                        list.add(CardDisplay.CARD_AIR_QUALITY);
+                        break;
+
+                    case "life_details":
+                        list.add(CardDisplay.CARD_LIFE_DETAILS);
+                        break;
+
+                    case "sunrise_sunset":
+                        list.add(CardDisplay.CARD_SUNRISE_SUNSET);
+                        break;
+                }
+            }
+            return list;
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @NonNull
+    public static String getCardDisplayValue(@NonNull List<CardDisplay> list) {
+        StringBuilder builder = new StringBuilder();
+        for (CardDisplay v : list) {
+            builder.append("&").append(v.getCardValue());
+        }
+        if (builder.charAt(0) == '&') {
+            builder.deleteCharAt(0);
+        }
+        return builder.toString();
+    }
+
+    @NonNull
+    public static String getCardDisplaySummary(Context context, @NonNull List<CardDisplay> list) {
+        StringBuilder builder = new StringBuilder();
+        for (CardDisplay v : list) {
+            builder.append(",").append(v.getCardName(context));
+        }
+        if (builder.charAt(0) == ',') {
+            builder.deleteCharAt(0);
+        }
+        return builder.toString().replace(",", ", ");
     }
     
     public static Language getLanguage(String value) {

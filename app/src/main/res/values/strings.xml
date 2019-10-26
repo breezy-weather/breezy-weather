@@ -365,7 +365,7 @@
     <string name="key_ui_style">ui_style</string>
     <string name="key_icon_provider">icon_provider</string>
     <string name="key_appearance">appearance</string>
-    <string name="key_card_display">card_display</string>
+    <string name="key_card_display">card_display_2</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
     <string name="key_list_animation_switch">list_animation_switch</string>
     <string name="key_item_animation_switch">item_animation_switch</string>

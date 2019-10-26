@@ -50,22 +50,6 @@
         <item>material</item>
     </string-array>
 
-    <!-- card display. -->
-    <string-array name="card_display_options">
-        <item>@string/daily_overview</item>
-        <item>@string/hourly_overview</item>
-        <item>@string/air_quality</item>
-        <item>@string/life_details</item>
-        <item>@string/sunrise_sunset</item>
-    </string-array>
-    <string-array name="card_display_values">
-        <item>daily_overview</item>
-        <item>hourly_overview</item>
-        <item>air_quality</item>
-        <item>life_details</item>
-        <item>sunrise_sunset</item>
-    </string-array>
-
     <!-- card order. -->
     <string-array name="card_orders">
         <item>Daily first</item>

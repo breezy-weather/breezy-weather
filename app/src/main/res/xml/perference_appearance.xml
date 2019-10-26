@@ -14,13 +14,9 @@
         android:title="@string/settings_title_icon_provider"
         android:key="@string/key_icon_provider" />
 
-    <MultiSelectListPreference
+    <Preference
         android:title="@string/settings_title_card_display"
-        android:key="@string/key_card_display"
-        android:entries="@array/card_display_options"
-        android:entryValues="@array/card_display_values"
-        android:defaultValue="@array/card_display_values"
-        android:dialogTitle="@string/settings_title_card_display" />
+        android:key="@string/key_card_display" />
 
     <CheckBoxPreference
         android:title="@string/settings_title_gravity_sensor_switch"

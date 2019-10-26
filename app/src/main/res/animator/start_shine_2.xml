@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:ordering="sequentially">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:ordering="sequentially"
+    android:interpolator="@android:interpolator/fast_out_slow_in"
+    tools:ignore="NewApi">
 
     <objectAnimator
         android:propertyName="alpha"

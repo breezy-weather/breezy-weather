@@ -4,15 +4,13 @@ import android.os.Bundle;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
-import java.util.HashSet;
-
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.OptionMapper;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.dialog.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
-import wangdaye.com.geometricweather.utils.ValueUtils;
 
 /**
  * Appearance settings fragment.
@@ -41,20 +39,12 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
 
         // card display.
         Preference cardDisplay = findPreference(getString(R.string.key_card_display));
-        cardDisplay.setSummary(
-                ValueUtils.getCardDisplay(
-                        requireActivity(),
-                        getSettingsOptionManager().getCardDisplayValues()
-                )
-        );
-        cardDisplay.setOnPreferenceChangeListener((preference, newValue) -> {
-            try {
-                String[] values = ((HashSet<String>) newValue).toArray(new String[] {});
-                getSettingsOptionManager().setCardDisplayValues(values);
-                preference.setSummary(ValueUtils.getCardDisplay(requireActivity(), values));
-            } catch (Exception ignore) {
-                // do nothing.
-            }
+        cardDisplay.setSummary(OptionMapper.getCardDisplaySummary(
+                getActivity(),
+                SettingsOptionManager.getInstance(getActivity()).getCardDisplayList()
+        ));
+        cardDisplay.setOnPreferenceClickListener(preference -> {
+            // TODO: 2019/10/26
             return true;
         });
 

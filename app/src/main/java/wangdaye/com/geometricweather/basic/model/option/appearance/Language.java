@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.basic.model.option;
+package wangdaye.com.geometricweather.basic.model.option.appearance;
 
 import android.content.Context;
 import android.content.res.Resources;

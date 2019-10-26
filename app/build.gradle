@@ -69,7 +69,7 @@ allprojects {
 
 apply plugin: 'org.greenrobot.greendao'
 greendao {
-    schemaVersion 45
+    schemaVersion 46
     generateTests false
 }
 dependencies {

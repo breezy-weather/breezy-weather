@@ -108,7 +108,10 @@ public class ManageActivity extends GeoActivity
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SEARCH_ACTIVITY:
-                resetLocationList(true, resultCode == RESULT_OK);
+                resetLocationList(
+                        resultCode == RESULT_OK,
+                        resultCode == RESULT_OK
+                );
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
@@ -162,14 +165,19 @@ public class ManageActivity extends GeoActivity
     }
 
     private void resetLocationList(boolean updateShortcuts, boolean added) {
-        this.adapter = new LocationAdapter(
-                this,
-                SELECT_PROVIDER_ACTIVITY,
-                DatabaseHelper.getInstance(this).readLocationList(),
-                true,
-                this
-        );
-        recyclerView.setAdapter(adapter);
+        if (added) {
+            adapter.itemList = DatabaseHelper.getInstance(this).readLocationList();
+            adapter.notifyItemInserted(adapter.getItemCount() - 1);
+        } else {
+            adapter = new LocationAdapter(
+                    this,
+                    SELECT_PROVIDER_ACTIVITY,
+                    DatabaseHelper.getInstance(this).readLocationList(),
+                    true,
+                    this
+            );
+            recyclerView.setAdapter(adapter);
+        }
 
         setCurrentLocationButtonEnabled();
 
@@ -208,6 +216,8 @@ public class ManageActivity extends GeoActivity
 
                 DatabaseHelper.getInstance(this).deleteLocation(location);
                 DatabaseHelper.getInstance(this).deleteWeather(location);
+                DatabaseHelper.getInstance(this).writeLocationList(adapter.itemList);
+
                 SnackbarUtils.showSnackbar(
                         this,
                         getString(R.string.feedback_delete_succeed),

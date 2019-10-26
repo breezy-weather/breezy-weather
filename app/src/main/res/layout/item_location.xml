@@ -4,6 +4,7 @@
     android:id="@+id/item_location_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:foreground="@drawable/selectable_item_background"
     android:background="@color/striking_red"
     android:stateListAnimator="@animator/touch_raise"
     tools:ignore="UnusedAttribute">
@@ -36,6 +37,14 @@
         android:layout_height="wrap_content"
         android:background="@color/colorRoot">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_location_dragIcon"
+            android:src="@drawable/ic_drag"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription" />
+
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/item_location_deleteBtn"
             android:src="@drawable/ic_close"
@@ -56,10 +65,9 @@
             android:id="@+id/item_location_title"
             android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginBottom="2dp"
-            android:layout_alignParentStart="true"
             android:layout_toStartOf="@id/item_location_settingsBtn"
+            android:layout_toEndOf="@id/item_location_dragIcon"
             android:maxLines="1"
             android:ellipsize="end"
             android:gravity="start"
@@ -71,10 +79,9 @@
         <TextView
             android:id="@+id/item_location_subtitle"
             android:layout_width="match_parent"
-            android:layout_alignParentStart="true"
             android:layout_below="@id/item_location_title"
-            android:layout_marginStart="@dimen/normal_margin"
             android:layout_toStartOf="@id/item_location_settingsBtn"
+            android:layout_toEndOf="@id/item_location_dragIcon"
             android:gravity="start"
             android:textAlignment="gravity"
             style="@style/subtitle_text"
@@ -84,11 +91,10 @@
         <TextView
             android:id="@+id/item_location_source"
             android:layout_width="match_parent"
-            android:layout_alignParentStart="true"
             android:layout_below="@id/item_location_subtitle"
             android:layout_marginBottom="@dimen/normal_margin"
-            android:layout_marginStart="@dimen/normal_margin"
             android:layout_toStartOf="@id/item_location_settingsBtn"
+            android:layout_toEndOf="@id/item_location_dragIcon"
             android:gravity="start"
             android:textStyle="bold"
             android:textSize="10sp"

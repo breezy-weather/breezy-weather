@@ -4,19 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.StringDef;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.Language;
+import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
+import wangdaye.com.geometricweather.basic.model.option.appearance.Language;
 import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
 import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
-import wangdaye.com.geometricweather.basic.model.option.UIStyle;
+import wangdaye.com.geometricweather.basic.model.option.appearance.UIStyle;
 import wangdaye.com.geometricweather.basic.model.option.provider.LocationProvider;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
@@ -63,17 +61,12 @@ public class SettingsOptionManager {
     // appearance.
     private UIStyle uiStyle;
     private String iconProvider;
-
-    private String[] cardDisplayValues;
-    public static final String CARD_DAILY_OVERVIEW = "daily_overview";
-    public static final String CARD_HOURLY_OVERVIEW = "hourly_overview";
-    public static final String CARD_AIR_QUALITY = "air_quality";
-    public static final String CARD_LIFE_DETAILS = "life_details";
-    public static final String CARD_SUNRISE_SUNSET = "sunrise_sunset";
-    @StringDef({
-            CARD_DAILY_OVERVIEW, CARD_HOURLY_OVERVIEW,
-            CARD_AIR_QUALITY, CARD_LIFE_DETAILS, CARD_SUNRISE_SUNSET
-    }) public @interface CardDisplayValueRule {}
+    private List<CardDisplay> cardDisplayList;
+    private static final String DEFAULT_CARD_DISPLAY = "daily_overview"
+            + "&hourly_overview"
+            + "&air_quality"
+            + "&sunrise_sunset"
+            + "&life_details";
 
     private boolean gravitySensorEnabled;
     private boolean listAnimationEnabled;
@@ -177,14 +170,9 @@ public class SettingsOptionManager {
                 context.getPackageName()
         );
 
-        cardDisplayValues = Objects.requireNonNull(
-                sharedPreferences.getStringSet(
-                        context.getString(R.string.key_card_display),
-                        new HashSet<>(Arrays.asList(
-                                context.getResources().getStringArray(R.array.card_display_values)
-                        ))
-                )
-        ).toArray(new String[] {});
+        cardDisplayList = OptionMapper.getCardDisplayList(
+                sharedPreferences.getString(context.getString(R.string.key_card_display), DEFAULT_CARD_DISPLAY)
+        );
 
         gravitySensorEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_gravity_sensor_switch), true);
@@ -375,12 +363,12 @@ public class SettingsOptionManager {
         this.iconProvider = iconProvider;
     }
 
-    public String[] getCardDisplayValues() {
-        return cardDisplayValues;
+    public List<CardDisplay> getCardDisplayList() {
+        return cardDisplayList;
     }
 
-    public void setCardDisplayValues(String[] cardDisplayValues) {
-        this.cardDisplayValues = cardDisplayValues;
+    public void setCardDisplayList(List<CardDisplay> cardDisplayList) {
+        this.cardDisplayList = cardDisplayList;
     }
 
     public boolean isGravitySensorEnabled() {

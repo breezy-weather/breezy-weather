@@ -8,8 +8,9 @@ import wangdaye.com.geometricweather.db.entity.LocationEntity;
 
 public class LocationEntityConverter {
 
-    public static LocationEntity convertToEntity(Location location) {
+    public static LocationEntity convertToEntity(Location location, long sequence) {
         LocationEntity entity = new LocationEntity();
+        entity.formattedId = location.getFormattedId();
         entity.cityId = location.getCityId();
         entity.latitude = location.getLatitude();
         entity.longitude = location.getLongitude();
@@ -22,13 +23,14 @@ public class LocationEntityConverter {
         entity.currentPosition = location.isCurrentPosition();
         entity.residentPosition = location.isResidentPosition();
         entity.china = location.isChina();
+        entity.sequence = sequence;
         return entity;
     }
 
     public static List<LocationEntity> convertToEntityList(List<Location> locationList) {
         List<LocationEntity> entityList = new ArrayList<>(locationList.size());
-        for (Location location : locationList) {
-            entityList.add(convertToEntity(location));
+        for (int i = 0; i < locationList.size(); i ++) {
+            entityList.add(convertToEntity(locationList.get(i), i));
         }
         return entityList;
     }

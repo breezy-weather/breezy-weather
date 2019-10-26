@@ -12,6 +12,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AbstractMainViewHolder;
@@ -62,25 +63,19 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
         if (location.getWeather() != null) {
             Weather weather = location.getWeather();
-            String[] cardDisplayValues = SettingsOptionManager.getInstance(activity).getCardDisplayValues();
+            List<CardDisplay> cardDisplayList = SettingsOptionManager.getInstance(activity).getCardDisplayList();
             viewTypeList.add(ViewType.HEADER);
-            if (isDisplay(SettingsOptionManager.CARD_DAILY_OVERVIEW, cardDisplayValues)) {
-                viewTypeList.add(ViewType.DAILY);
-            }
-            if (isDisplay(SettingsOptionManager.CARD_HOURLY_OVERVIEW, cardDisplayValues)) {
-                viewTypeList.add(ViewType.HOURLY);
-            }
-            if (isDisplay(SettingsOptionManager.CARD_AIR_QUALITY, cardDisplayValues)
-                    && weather.getCurrent().getAirQuality().isValid()) {
-                viewTypeList.add(ViewType.AIR_QUALITY);
-            }
-            if (isDisplay(SettingsOptionManager.CARD_SUNRISE_SUNSET, cardDisplayValues)
-                    && weather.getDailyForecast().size() != 0
-                    && weather.getDailyForecast().get(0).sun().isValid()) {
-                viewTypeList.add(ViewType.ASTRO);
-            }
-            if (isDisplay(SettingsOptionManager.CARD_LIFE_DETAILS, cardDisplayValues)) {
-                viewTypeList.add(ViewType.DETAILS);
+            for (CardDisplay c : cardDisplayList) {
+                if (c == CardDisplay.CARD_AIR_QUALITY
+                        && !weather.getCurrent().getAirQuality().isValid()) {
+                    continue;
+                }
+                if (c == CardDisplay.CARD_SUNRISE_SUNSET
+                        && (weather.getDailyForecast().size() == 0
+                        || !weather.getDailyForecast().get(0).sun().isValid())) {
+                    continue;
+                }
+                viewTypeList.add(getViewType(c));
             }
             viewTypeList.add(ViewType.FOOTER);
 
@@ -231,11 +226,22 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         }
     }
 
-    private static boolean isDisplay(String targetValue, String[] displayValues) {
-        for(String s : displayValues){
-            if(s.equals(targetValue))
-                return true;
+    private static int getViewType(CardDisplay cardDisplay) {
+        switch (cardDisplay) {
+            case CARD_DAILY_OVERVIEW:
+                return ViewType.DAILY;
+
+            case CARD_HOURLY_OVERVIEW:
+                return ViewType.HOURLY;
+
+            case CARD_AIR_QUALITY:
+                return ViewType.AIR_QUALITY;
+
+            case CARD_SUNRISE_SUNSET:
+                return ViewType.ASTRO;
+
+            default: // CARD_LIFE_DETAILS.
+                return ViewType.DETAILS;
         }
-        return false;
     }
 }
