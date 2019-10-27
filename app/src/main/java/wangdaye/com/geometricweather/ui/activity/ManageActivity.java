@@ -58,9 +58,7 @@ public class ManageActivity extends GeoActivity
 
             adapter.moveData(fromPosition, toPosition);
             DatabaseHelper.getInstance(ManageActivity.this).writeLocationList(adapter.itemList);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                ShortcutsManager.refreshShortcutsInNewThread(ManageActivity.this, adapter.itemList);
-            }
+            onLocationListChanged(true);
 
             ((LocationAdapter.ViewHolder) viewHolder).drawDrag(ManageActivity.this, false);
             return true;
@@ -108,14 +106,18 @@ public class ManageActivity extends GeoActivity
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SEARCH_ACTIVITY:
-                resetLocationList(
-                        resultCode == RESULT_OK,
-                        resultCode == RESULT_OK
-                );
+                boolean addedLocation = resultCode == RESULT_OK;
+                adapter.itemList = DatabaseHelper.getInstance(this).readLocationList();
+                adapter.notifyItemInserted(adapter.getItemCount() - 1);
+                onLocationListChanged(addedLocation);
+                if (addedLocation) {
+                    SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_succeed));
+                }
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
-                resetLocationList(false, false);
+                resetLocationList();
+                onLocationListChanged(false);
                 break;
         }
     }
@@ -143,8 +145,9 @@ public class ManageActivity extends GeoActivity
 
         this.currentLocationButton = findViewById(R.id.activity_manage_currentLocationButton);
         currentLocationButton.setOnClickListener(view -> {
-            DatabaseHelper.getInstance(this).writeLocation(Location.buildLocal());
-            resetLocationList(true, true);
+            Location local = Location.buildLocal();
+            adapter.insertData(local);
+            DatabaseHelper.getInstance(this).writeLocation(local);
         });
 
         this.recyclerView = findViewById(R.id.activity_manage_recyclerView);
@@ -153,8 +156,6 @@ public class ManageActivity extends GeoActivity
         );
         recyclerView.addItemDecoration(new ListDecoration(this));
 
-        resetLocationList(false, false);
-
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new LocationSwipeCallback(
                         ItemTouchHelper.UP | ItemTouchHelper.DOWN,
@@ -162,30 +163,26 @@ public class ManageActivity extends GeoActivity
                 )
         );
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        resetLocationList();
+        onLocationListChanged(false);
     }
 
-    private void resetLocationList(boolean updateShortcuts, boolean added) {
-        if (added) {
-            adapter.itemList = DatabaseHelper.getInstance(this).readLocationList();
-            adapter.notifyItemInserted(adapter.getItemCount() - 1);
-        } else {
-            adapter = new LocationAdapter(
-                    this,
-                    SELECT_PROVIDER_ACTIVITY,
-                    DatabaseHelper.getInstance(this).readLocationList(),
-                    true,
-                    this
-            );
-            recyclerView.setAdapter(adapter);
-        }
+    private void resetLocationList() {
+        adapter = new LocationAdapter(
+                this,
+                SELECT_PROVIDER_ACTIVITY,
+                DatabaseHelper.getInstance(this).readLocationList(),
+                true,
+                this
+        );
+        recyclerView.setAdapter(adapter);
+    }
 
+    private void onLocationListChanged(boolean updateShortcuts) {
         setCurrentLocationButtonEnabled();
-
         if (updateShortcuts && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutsManager.refreshShortcutsInNewThread(this, adapter.itemList);
-        }
-        if (added) {
-            SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_succeed));
         }
     }
 
@@ -206,11 +203,12 @@ public class ManageActivity extends GeoActivity
             Location location = adapter.itemList.get(position);
             if (adapter.itemList.size() <= 1) {
                 adapter.removeData(position);
-                adapter.insertData(location, position);
+                adapter.insertData(location);
                 SnackbarUtils.showSnackbar(
                         this, getString(R.string.feedback_location_list_cannot_be_null));
             } else {
                 adapter.removeData(position);
+                onLocationListChanged(true);
 
                 location.setWeather(DatabaseHelper.getInstance(this).readWeather(location));
 
@@ -224,11 +222,7 @@ public class ManageActivity extends GeoActivity
                         getString(R.string.cancel),
                         new CancelDeleteListener(location)
                 );
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    ShortcutsManager.refreshShortcutsInNewThread(ManageActivity.this, adapter.itemList);
-                }
             }
-            setCurrentLocationButtonEnabled();
         }
     }
 
@@ -247,7 +241,9 @@ public class ManageActivity extends GeoActivity
 
         @Override
         public void onClick(View view) {
-            adapter.insertData(location, adapter.getItemCount());
+            adapter.insertData(location);
+            onLocationListChanged(true);
+
             DatabaseHelper.getInstance(ManageActivity.this).writeLocation(location);
             if (location.getWeather() != null) {
                 DatabaseHelper.getInstance(ManageActivity.this)
@@ -275,7 +271,10 @@ public class ManageActivity extends GeoActivity
     @Override
     public void onResidentSwitch(View view, int position, boolean resident) {
         adapter.itemList.get(position).setResidentPosition(resident);
+        onLocationListChanged(true);
+
         DatabaseHelper.getInstance(this).writeLocation(adapter.itemList.get(position));
+
         if (resident) {
             SnackbarUtils.showSnackbar(
                     this,

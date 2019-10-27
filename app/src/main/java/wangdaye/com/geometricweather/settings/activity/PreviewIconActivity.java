@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.activity;
+package wangdaye.com.geometricweather.settings.activity;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -24,10 +24,10 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.PixelResourcesProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.ui.adapter.WeatherIconAdapter;
-import wangdaye.com.geometricweather.ui.dialog.AdaptiveIconDialog;
-import wangdaye.com.geometricweather.ui.dialog.AnimatableIconDialog;
-import wangdaye.com.geometricweather.ui.dialog.MinimalIconDialog;
+import wangdaye.com.geometricweather.settings.adapter.WeatherIconAdapter;
+import wangdaye.com.geometricweather.settings.dialog.AdaptiveIconDialog;
+import wangdaye.com.geometricweather.settings.dialog.AnimatableIconDialog;
+import wangdaye.com.geometricweather.settings.dialog.MinimalIconDialog;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 

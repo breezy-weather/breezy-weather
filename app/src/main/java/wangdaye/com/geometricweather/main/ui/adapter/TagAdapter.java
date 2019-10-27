@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -15,10 +14,11 @@ import wangdaye.com.geometricweather.ui.widget.TagView;
 
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
-    private List<String> tagList;
+    private List<? extends Tag> tagList;
+    private OnTagCheckedListener listener;
     private int checkedIndex;
 
-    @Nullable private OnTagCheckedListener listener;
+    public static final int UNCHECKABLE_INDEX = -1;
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -26,7 +26,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tagView = itemView.findViewById(R.id.item_weather_source_tag);
+            tagView = itemView.findViewById(R.id.item_tag);
             tagView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemChecked(!tagView.isChecked(), getAdapterPosition());
@@ -34,8 +34,8 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
             });
         }
 
-        void onBindView(String tag, boolean checked) {
-            tagView.setText(tag);
+        void onBindView(Tag tag, boolean checked) {
+            tagView.setText(tag.getName());
             setChecked(checked);
         }
 
@@ -44,12 +44,13 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         }
     }
 
-    public TagAdapter(List<String> tagList) {
-        this(tagList, 0);
+    public TagAdapter(List<? extends Tag> tagList, OnTagCheckedListener listener) {
+        this(tagList, listener, UNCHECKABLE_INDEX);
     }
 
-    public TagAdapter(List<String> tagList, int checkedIndex) {
+    public TagAdapter(List<? extends Tag> tagList, OnTagCheckedListener listener, int checkedIndex) {
         this.tagList = tagList;
+        this.listener = listener;
         this.checkedIndex = checkedIndex;
     }
 
@@ -58,7 +59,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_weather_source_tag, parent, false)
+                        .inflate(R.layout.item_tag, parent, false)
         );
     }
 
@@ -76,7 +77,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         void onItemChecked(boolean checked, int position);
     }
 
-    public void setOnTagCheckedListener(@Nullable OnTagCheckedListener l) {
-        listener = l;
+    public interface Tag {
+        String getName();
     }
 }

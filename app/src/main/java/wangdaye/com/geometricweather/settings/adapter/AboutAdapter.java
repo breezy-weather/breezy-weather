@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.adapter;
+package wangdaye.com.geometricweather.settings.adapter;
 
 import android.net.Uri;
 import androidx.annotation.NonNull;

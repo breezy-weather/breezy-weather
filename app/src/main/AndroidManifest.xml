@@ -108,18 +108,24 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".settings.activity.CardDisplayManageActivity"
+            android:label="@string/settings_title_card_display"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".settings.activity.SelectProviderActivity"
             android:label="@string/settings_title_service_provider"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.PreviewIconActivity"
+            android:name=".settings.activity.PreviewIconActivity"
             android:label="@string/action_preview"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activity.AboutActivity"
+            android:name=".settings.activity.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="portrait" />

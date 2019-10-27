@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.dialog;
+package wangdaye.com.geometricweather.settings.dialog;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

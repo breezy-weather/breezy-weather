@@ -1,5 +1,6 @@
-package wangdaye.com.geometricweather.ui.dialog;
+package wangdaye.com.geometricweather.settings.dialog;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,33 +11,30 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.Size;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import java.util.Random;
-
-import james.adaptiveicon.AdaptiveIcon;
-import james.adaptiveicon.AdaptiveIconView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 
 /**
- * Adaptive icon dialog.
+ * Animatable icon dialog.
  * */
-public class AdaptiveIconDialog extends GeoDialogFragment {
+public class AnimatableIconDialog extends GeoDialogFragment {
 
     private CoordinatorLayout container;
 
     private String title;
-    private Drawable foregroundDrawable;
-    private Drawable backgroundDrawable;
+    @Size(3) private Drawable[] iconDrawables;
+    @Size(3) private Animator[] iconAnimators;
 
     @NonNull
     @SuppressLint("InflateParams")
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_adaptive_icon, null, false);
+                .inflate(R.layout.dialog_animatable_icon, null, false);
         this.initWidget(view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -45,14 +43,14 @@ public class AdaptiveIconDialog extends GeoDialogFragment {
     }
 
     private void initWidget(View view) {
-        TextView titleView = view.findViewById(R.id.dialog_adaptive_icon_title);
+        TextView titleView = view.findViewById(R.id.dialog_animatable_icon_title);
         titleView.setText(title);
 
-        AdaptiveIconView iconView = view.findViewById(R.id.dialog_adaptive_icon_icon);
-        iconView.setIcon(new AdaptiveIcon(foregroundDrawable, backgroundDrawable, 0.5));
-        iconView.setPath(new Random().nextInt(AdaptiveIconView.PATH_TEARDROP + 1));
+        AnimatableIconView iconView = view.findViewById(R.id.dialog_animatable_icon_icon);
+        iconView.setAnimatableIcon(iconDrawables, iconAnimators);
 
-        this.container = view.findViewById(R.id.dialog_adaptive_icon_container);
+        this.container = view.findViewById(R.id.dialog_animatable_icon_container);
+        container.setOnClickListener(v -> iconView.startAnimators());
     }
 
     @Override
@@ -61,10 +59,10 @@ public class AdaptiveIconDialog extends GeoDialogFragment {
     }
 
     public void setData(@NonNull String title,
-                        @NonNull Drawable foregroundDrawable,
-                        @Nullable Drawable backgroundDrawable) {
+                        @NonNull @Size(3) Drawable[] iconDrawables,
+                        @NonNull @Size(3) Animator[] iconAnimators) {
         this.title = title;
-        this.foregroundDrawable = foregroundDrawable;
-        this.backgroundDrawable = backgroundDrawable;
+        this.iconDrawables = iconDrawables;
+        this.iconAnimators = iconAnimators;
     }
 }

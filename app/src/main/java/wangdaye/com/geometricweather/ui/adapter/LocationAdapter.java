@@ -52,6 +52,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         TextView title;
         TextView subtitle;
         TextView source;
+        AppCompatImageView dragIcon;
         AppCompatImageButton settingsButton;
         AppCompatImageButton deleteButton;
 
@@ -66,6 +67,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             this.title = itemView.findViewById(R.id.item_location_title);
             this.subtitle = itemView.findViewById(R.id.item_location_subtitle);
             this.source = itemView.findViewById(R.id.item_location_source);
+            this.dragIcon = itemView.findViewById(R.id.item_location_dragIcon);
             this.settingsButton = itemView.findViewById(R.id.item_location_settingsBtn);
             this.deleteButton = itemView.findViewById(R.id.item_location_deleteBtn);
             this.listener = listener;
@@ -73,6 +75,56 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             locationItemContainer.setOnClickListener(this);
             settingsButton.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
+        }
+
+        @SuppressLint("SetTextI18n")
+        void onBindView(Location location, boolean manage) {
+            // title.
+            if (location.isCurrentPosition()) {
+                title.setText(activity.getString(R.string.current_location));
+            } else {
+                title.setText(location.getCityName(activity));
+            }
+
+            // subtitle.
+            if (!location.isCurrentPosition() || location.isUsable()) {
+                StringBuilder builder = new StringBuilder(
+                        location.getCountry() + " " + location.getProvince()
+                );
+                if (!location.getProvince().equals(location.getCity())) {
+                    builder.append(" ").append(location.getCity());
+                }
+                if (!location.getCity().equals(location.getDistrict())) {
+                    builder.append(" ").append(location.getDistrict());
+                }
+                subtitle.setText(builder.toString());
+            } else {
+                subtitle.setText(activity.getString(R.string.feedback_not_yet_location));
+            }
+
+            // source.
+            if (location.isCurrentPosition() && !location.isUsable()) {
+                source.setTextColor(ContextCompat.getColor(activity, R.color.colorTextSubtitle));
+                source.setText("...");
+            } else {
+                source.setTextColor(location.getWeatherSource().getSourceColor());
+                source.setText("Powered by " + location.getWeatherSource().getSourceUrl());
+            }
+
+            // swipe icon.
+            if (manage) {
+                dragIcon.setVisibility(View.VISIBLE);
+                settingsButton.setVisibility(View.VISIBLE);
+                deleteButton.setVisibility(View.VISIBLE);
+                setSettingsButton(location);
+            } else {
+                dragIcon.setVisibility(View.GONE);
+                settingsButton.setVisibility(View.GONE);
+                deleteButton.setVisibility(View.GONE);
+            }
+
+            drawSwipe(0);
+            drawDrag(activity, false);
         }
 
         public ViewHolder drawDrag(Context context, boolean elevate) {
@@ -164,52 +216,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Location location = itemList.get(position);
-        
-        // title.
-        if (location.isCurrentPosition()) {
-            holder.title.setText(activity.getString(R.string.current_location));
-        } else {
-            holder.title.setText(location.getCityName(activity));
-        }
-
-        // subtitle.
-        if (!location.isCurrentPosition() || location.isUsable()) {
-            StringBuilder builder = new StringBuilder(
-                    location.getCountry() + " " + location.getProvince()
-            );
-            if (!location.getProvince().equals(location.getCity())) {
-                builder.append(" ").append(location.getCity());
-            }
-            if (!location.getCity().equals(location.getDistrict())) {
-                builder.append(" ").append(location.getDistrict());
-            }
-            holder.subtitle.setText(builder.toString());
-        } else {
-            holder.subtitle.setText(activity.getString(R.string.feedback_not_yet_location));
-        }
-
-        // source.
-        if (location.isCurrentPosition() && !location.isUsable()) {
-            holder.source.setTextColor(ContextCompat.getColor(activity, R.color.colorTextSubtitle));
-            holder.source.setText("...");
-        } else {
-            holder.source.setTextColor(location.getWeatherSource().getSourceColor());
-            holder.source.setText("Powered by " + location.getWeatherSource().getSourceUrl());
-        }
-
-        // swipe icon.
-        if (manage) {
-            holder.settingsButton.setVisibility(View.VISIBLE);
-            holder.deleteButton.setVisibility(View.VISIBLE);
-            holder.setSettingsButton(location);
-        } else {
-            holder.settingsButton.setVisibility(View.GONE);
-            holder.deleteButton.setVisibility(View.GONE);
-        }
-
-        holder.drawSwipe(0);
-        holder.drawDrag(activity, false);
+        holder.onBindView(itemList.get(position), manage);
     }
 
     @Override
@@ -217,9 +224,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         return itemList.size();
     }
 
-    public void insertData(Location item, int adapterPosition) {
-        itemList.add(adapterPosition, item);
-        notifyItemInserted(adapterPosition);
+    public void insertData(Location item) {
+        itemList.add(item);
+        notifyItemInserted(itemList.size() - 1);
     }
 
     public void removeData(int adapterPosition) {

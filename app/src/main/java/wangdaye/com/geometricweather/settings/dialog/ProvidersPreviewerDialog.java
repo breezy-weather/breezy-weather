@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.dialog;
+package wangdaye.com.geometricweather.settings.dialog;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -34,7 +34,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialogFragment;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.ui.adapter.IconProviderAdapter;
+import wangdaye.com.geometricweather.settings.adapter.IconProviderAdapter;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 

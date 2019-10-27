@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.activity;
+package wangdaye.com.geometricweather.settings.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.view.View;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.ui.adapter.AboutAdapter;
+import wangdaye.com.geometricweather.settings.adapter.AboutAdapter;
 
 /**
  * About activity.

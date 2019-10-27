@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.adapter;
+package wangdaye.com.geometricweather.settings.adapter;
 
 import android.app.Activity;
 import android.graphics.drawable.AdaptiveIconDrawable;
