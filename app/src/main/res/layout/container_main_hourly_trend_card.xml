@@ -14,6 +14,7 @@
             android:id="@+id/container_main_hourly_trend_card_title"
             android:text="@string/hourly_overview"
             android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
             style="@style/content_text"

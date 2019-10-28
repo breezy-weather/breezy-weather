@@ -15,6 +15,7 @@
             android:text="@string/life_details"
             android:layout_margin="@dimen/normal_margin"
             android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
             style="@style/content_text" />
 
         <androidx.recyclerview.widget.RecyclerView

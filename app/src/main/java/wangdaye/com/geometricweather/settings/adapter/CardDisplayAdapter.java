@@ -46,6 +46,9 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
 
         void onBindView(CardDisplay cardDisplay) {
             title.setText(cardDisplay.getCardName(title.getContext()));
+
+            drawSwipe(0);
+            drawDrag(title.getContext(), false);
         }
 
         public ViewHolder drawDrag(Context context, boolean elevate) {
@@ -88,6 +91,11 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
 
     public List<CardDisplay> getCardDisplayList() {
         return cardDisplayList;
+    }
+
+    public void insertItem(CardDisplay cardDisplay) {
+        cardDisplayList.add(cardDisplay);
+        notifyItemInserted(cardDisplayList.size() - 1);
     }
 
     public void removeItem(int adapterPosition) {

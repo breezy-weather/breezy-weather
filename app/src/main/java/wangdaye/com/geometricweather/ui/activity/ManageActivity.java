@@ -156,13 +156,12 @@ public class ManageActivity extends GeoActivity
         );
         recyclerView.addItemDecoration(new ListDecoration(this));
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+        new ItemTouchHelper(
                 new LocationSwipeCallback(
                         ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                         ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
                 )
-        );
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        ).attachToRecyclerView(recyclerView);
 
         resetLocationList();
         onLocationListChanged(false);

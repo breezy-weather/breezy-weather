@@ -1,13 +1,18 @@
 package wangdaye.com.geometricweather.settings.activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,18 +26,19 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.main.ui.adapter.TagAdapter;
+import wangdaye.com.geometricweather.settings.OptionMapper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapter.CardDisplayAdapter;
+import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 
 public class CardDisplayManageActivity extends GeoActivity {
 
     private CardDisplayAdapter cardDisplayAdapter;
-    private RecyclerView recyclerView;
-
-    private LinearLayout bottomBar;
-
     private TagAdapter tagAdapter;
+
     private RecyclerView bottomRecyclerView;
+    private @Nullable AnimatorSet bottomAnimator;
+    private @Nullable Boolean bottomBarVisibility;
 
     private class CardTag implements TagAdapter.Tag {
 
@@ -106,12 +112,21 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         List<CardDisplay> displayCards = SettingsOptionManager.getInstance(this).getCardDisplayList();
         cardDisplayAdapter = new CardDisplayAdapter(displayCards, cardDisplay -> {
-            // TODO: 2019/10/27
+            tagAdapter.insertItem(new CardTag(cardDisplay));
+            resetBottomBarVisibility();
         });
 
-        recyclerView = findViewById(R.id.activity_card_display_manage_recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.activity_card_display_manage_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(cardDisplayAdapter);
+
+        new ItemTouchHelper(
+                new CardDisplaySwipeCallback(
+                        ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
+                )
+        ).attachToRecyclerView(recyclerView);
 
         List<CardDisplay> otherCards = new ArrayList<>();
         otherCards.add(CardDisplay.CARD_DAILY_OVERVIEW);
@@ -120,19 +135,21 @@ public class CardDisplayManageActivity extends GeoActivity {
         otherCards.add(CardDisplay.CARD_SUNRISE_SUNSET);
         otherCards.add(CardDisplay.CARD_LIFE_DETAILS);
         for (int i = otherCards.size() - 1; i >= 0; i --) {
-            for (int j = 0; j < displayCards.size(); i ++) {
+            for (int j = 0; j < displayCards.size(); j ++) {
                 if (otherCards.get(i) == displayCards.get(j)) {
                     otherCards.remove(i);
                     break;
                 }
             }
         }
-        List<CardTag> tagList = new ArrayList<>();
+        List<TagAdapter.Tag> tagList = new ArrayList<>();
         for (CardDisplay card : otherCards) {
             tagList.add(new CardTag(card));
         }
         tagAdapter = new TagAdapter(tagList, (checked, position) -> {
-
+            CardTag tag = (CardTag) tagAdapter.removeItem(position);
+            cardDisplayAdapter.insertItem(tag.card);
+            resetBottomBarVisibility();
         });
 
         bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
@@ -140,8 +157,21 @@ public class CardDisplayManageActivity extends GeoActivity {
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         bottomRecyclerView.setAdapter(tagAdapter);
 
-        bottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
-        bottomBar.setVisibility(tagAdapter.getItemCount() == 0 ? View.GONE : View.VISIBLE);
+        bottomAnimator = null;
+        bottomBarVisibility = false;
+        bottomRecyclerView.post(this::resetBottomBarVisibility);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .edit()
+                .putString(
+                        getString(R.string.key_card_display),
+                        OptionMapper.getCardDisplayValue(cardDisplayAdapter.getCardDisplayList())
+                ).apply();
+        SettingsOptionManager.getInstance(this).setCardDisplayList(cardDisplayAdapter.getCardDisplayList());
     }
 
     @Override
@@ -153,5 +183,28 @@ public class CardDisplayManageActivity extends GeoActivity {
     @Override
     protected void onSaveInstanceState(@NotNull Bundle outState) {
         // do nothing.
+    }
+
+    private void resetBottomBarVisibility() {
+        boolean visible = tagAdapter.getItemCount() != 0;
+        if (bottomBarVisibility == null || bottomBarVisibility != visible) {
+            bottomBarVisibility = visible;
+
+            if (bottomAnimator != null) {
+                bottomAnimator.cancel();
+            }
+            bottomAnimator = new AnimatorSet();
+            bottomAnimator.playTogether(
+                    ObjectAnimator.ofFloat(bottomRecyclerView, "alpha",
+                            bottomRecyclerView.getAlpha(), visible ? 1 : 0),
+                    ObjectAnimator.ofFloat(bottomRecyclerView, "translationY",
+                            bottomRecyclerView.getTranslationY(), visible ? 0 : bottomRecyclerView.getMeasuredHeight())
+            );
+            bottomAnimator.setDuration(visible ? 350 : 150);
+            bottomAnimator.setInterpolator(visible
+                    ? new DecelerateInterpolator(2f)
+                    : new AccelerateInterpolator(2f));
+            bottomAnimator.start();
+        }
     }
 }

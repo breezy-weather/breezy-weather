@@ -25,6 +25,7 @@ import wangdaye.com.geometricweather.background.polling.basic.AwakeForegroundUpd
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.settings.activity.CardDisplayManageActivity;
 import wangdaye.com.geometricweather.wallpaper.material.MaterialLiveWallpaperService;
 import wangdaye.com.geometricweather.settings.activity.AboutActivity;
 import wangdaye.com.geometricweather.ui.activity.AlertActivity;
@@ -107,6 +108,10 @@ public class IntentHelper {
                 new Intent(activity, SettingsActivity.class),
                 MainActivity.SETTINGS_ACTIVITY
         );
+    }
+
+    public static void startCardDisplayManageActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, CardDisplayManageActivity.class));
     }
 
     public static void startSelectProviderActivity(Activity activity) {

@@ -1,7 +1,5 @@
 package wangdaye.com.geometricweather.ui.widget;
 
-import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class TagView extends AppCompatTextView {
 
@@ -52,6 +49,7 @@ public class TagView extends AppCompatTextView {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setClipToOutline(true);
             setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
@@ -86,27 +84,6 @@ public class TagView extends AppCompatTextView {
         } else {
             setTextColor(uncheckedTextColor);
             setBackgroundColor(uncheckedBackgroundColor);
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            StateListAnimator animator = new StateListAnimator();
-            animator.addState(
-                    new int[] {android.R.attr.enabled},
-                    ObjectAnimator.ofFloat(
-                            this,
-                            "elevation",
-                            DisplayUtils.dpToPx(getContext(), 10)
-                    ).setDuration(150)
-            );
-            animator.addState(
-                    new int[0],
-                    ObjectAnimator.ofFloat(
-                            this,
-                            "elevation",
-                            checked ? DisplayUtils.dpToPx(getContext(), 2) : 0
-                    ).setDuration(150)
-            );
-            setStateListAnimator(animator);
         }
     }
 

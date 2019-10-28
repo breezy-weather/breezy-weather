@@ -14,7 +14,7 @@ import wangdaye.com.geometricweather.ui.widget.TagView;
 
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
-    private List<? extends Tag> tagList;
+    private List<Tag> tagList;
     private OnTagCheckedListener listener;
     private int checkedIndex;
 
@@ -44,11 +44,11 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         }
     }
 
-    public TagAdapter(List<? extends Tag> tagList, OnTagCheckedListener listener) {
+    public TagAdapter(List<Tag> tagList, OnTagCheckedListener listener) {
         this(tagList, listener, UNCHECKABLE_INDEX);
     }
 
-    public TagAdapter(List<? extends Tag> tagList, OnTagCheckedListener listener, int checkedIndex) {
+    public TagAdapter(List<Tag> tagList, OnTagCheckedListener listener, int checkedIndex) {
         this.tagList = tagList;
         this.listener = listener;
         this.checkedIndex = checkedIndex;
@@ -71,6 +71,17 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return tagList.size();
+    }
+
+    public void insertItem(Tag tag) {
+        tagList.add(tag);
+        notifyItemInserted(tagList.size() - 1);
+    }
+
+    public Tag removeItem(int position) {
+        Tag tag = tagList.remove(position);
+        notifyItemRemoved(position);
+        return tag;
     }
 
     public interface OnTagCheckedListener {

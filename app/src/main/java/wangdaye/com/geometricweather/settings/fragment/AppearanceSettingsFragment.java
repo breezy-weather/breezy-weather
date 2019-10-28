@@ -11,6 +11,7 @@ import wangdaye.com.geometricweather.settings.OptionMapper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.dialog.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * Appearance settings fragment.
@@ -37,16 +38,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         // icon provider.
         initIconProviderPreference();
 
-        // card display.
-        Preference cardDisplay = findPreference(getString(R.string.key_card_display));
-        cardDisplay.setSummary(OptionMapper.getCardDisplaySummary(
-                getActivity(),
-                SettingsOptionManager.getInstance(getActivity()).getCardDisplayList()
-        ));
-        cardDisplay.setOnPreferenceClickListener(preference -> {
-            // TODO: 2019/10/26
-            return true;
-        });
+        // set card display preference in onStart().
 
         // sensor.
         findPreference(getString(R.string.key_gravity_sensor_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
@@ -74,6 +66,22 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
             preference.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(getActivity()));
             SnackbarUtils.showSnackbar(
                     (GeoActivity) requireActivity(), getString(R.string.feedback_restart));
+            return true;
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // card display.
+        Preference cardDisplay = findPreference(getString(R.string.key_card_display));
+        cardDisplay.setSummary(OptionMapper.getCardDisplaySummary(
+                getActivity(),
+                SettingsOptionManager.getInstance(getActivity()).getCardDisplayList()
+        ));
+        cardDisplay.setOnPreferenceClickListener(preference -> {
+            IntentHelper.startCardDisplayManageActivity(requireActivity());
             return true;
         });
     }

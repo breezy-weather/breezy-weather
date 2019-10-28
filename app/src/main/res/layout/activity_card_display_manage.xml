@@ -34,39 +34,22 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
-            android:id="@+id/activity_card_display_manage_bottomBar"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorLine" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:src="@drawable/ic_plus"
-                android:layout_margin="@dimen/little_margin"
-                style="@style/material_icon" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/activity_card_display_manage_bottomRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="@dimen/little_margin"
-                android:clipToPadding="true"
-                tools:ignore="RtlSymmetry" />
-
-        </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_card_display_manage_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/activity_card_display_manage_appBar"
-            android:layout_above="@id/activity_card_display_manage_bottomBar" />
+            android:layout_below="@id/activity_card_display_manage_appBar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_card_display_manage_bottomRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorRoot"
+            android:clipToPadding="true"
+            android:paddingStart="@dimen/little_margin"
+            android:layout_alignParentBottom="true"
+            android:elevation="2dp"
+            tools:ignore="RtlSymmetry,UnusedAttribute" />
 
     </RelativeLayout>
 
