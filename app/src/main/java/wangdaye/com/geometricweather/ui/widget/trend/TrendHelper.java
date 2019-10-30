@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trendView;
+package wangdaye.com.geometricweather.ui.widget.trend;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Size;

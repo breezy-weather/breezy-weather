@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_main_details"
+    android:layout_margin="0dp"
     style="@style/material_card">
 
     <LinearLayout

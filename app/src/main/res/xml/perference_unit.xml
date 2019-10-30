@@ -40,6 +40,6 @@
         android:entries="@array/speed_units"
         android:entryValues="@array/speed_unit_values"
         android:dialogTitle="@string/settings_title_speed_unit"
-        android:defaultValue="kph" />
+        android:defaultValue="mps" />
 
 </PreferenceScreen>

@@ -10,6 +10,8 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.util.Date;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -23,6 +25,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 
 /**
  * Forecast notification utils.
@@ -102,9 +105,17 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 )
         );
 
-        builder.setSubText(
-                location.getCityName(context) + " " + Base.getTime(context, weather.getBase().getUpdateDate())
-        );
+        StringBuilder subtitle = new StringBuilder();
+        subtitle.append(location.getCityName(context));
+        if (SettingsOptionManager.getInstance(context).getLanguage().getCode().startsWith("zh")) {
+            subtitle.append(", ").append(LunarHelper.getLunarDate(new Date()));
+        } else {
+            subtitle.append(", ")
+                    .append(context.getString(R.string.refresh_at))
+                    .append(" ")
+                    .append(Base.getTime(context, weather.getBase().getUpdateDate()));
+        }
+        builder.setSubText(subtitle.toString());
         builder.setContentTitle(
                 weather.getCurrent().getTemperature().getTemperature(temperatureUnit)
                         + " "
@@ -112,13 +123,14 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         );
 
         StringBuilder contentText = new StringBuilder();
-        contentText.append(context.getString(R.string.feels_like))
-                .append(" ")
-                .append(weather.getCurrent().getTemperature().getShortRealFeeTemperature(temperatureUnit));
-        if (weather.getCurrent().getAirQuality().getAqiText() == null) {
-            contentText.append(", ").append(weather.getCurrent().getWind().getLevel());
+        if (weather.getCurrent().getAirQuality().isValid()) {
+            contentText.append(context.getString(R.string.air_quality))
+                    .append(" - ")
+                    .append(weather.getCurrent().getAirQuality().getAqiText());
         } else {
-            contentText.append(", ").append(weather.getCurrent().getAirQuality().getAqiText());
+            contentText.append(context.getString(R.string.wind))
+                    .append(" - ")
+                    .append(weather.getCurrent().getWind().getLevel());
         }
         builder.setContentText(contentText.toString());
 

@@ -190,7 +190,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                             ? ContextCompat.getColor(context, R.color.colorTextSubtitle_light)
                             : ContextCompat.getColor(context, R.color.colorTextSubtitle_dark)
             );
-            items[i].getTrendItemView().setPrecipitationAlpha(lightTheme ? 0.2f : 0.5f);
+            items[i].getTrendItemView().setHistogramAlpha(lightTheme ? 0.2f : 0.5f);
 
             items[i].setBottomIconDrawable(
                     ResourceHelper.getWidgetNotificationIcon(

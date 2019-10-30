@@ -155,7 +155,7 @@ public class SettingsOptionManager {
         );
         speedUnit = OptionMapper.getSpeedUnit(
                 sharedPreferences.getString(
-                        context.getString(R.string.key_speed_unit), "kph")
+                        context.getString(R.string.key_speed_unit), "mps")
         );
 
         // appearance.

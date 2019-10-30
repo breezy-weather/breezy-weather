@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_main_daily_trend_card"
+    android:layout_margin="0dp"
     style="@style/material_card">
 
     <LinearLayout
@@ -30,7 +31,7 @@
             tools:text="星期日天气宜人"
             tools:ignore="RtlHardcoded" />
 
-        <wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView
+        <wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView
             android:id="@+id/container_main_daily_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/daily_trend_item_height"

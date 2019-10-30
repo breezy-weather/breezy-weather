@@ -3,15 +3,17 @@ package wangdaye.com.geometricweather.main.ui;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MainLayoutManager extends RecyclerView.LayoutManager {
 
-    private int scrollOffset;
-    private int measuredHeight;
+    private @Px int scrollOffset;
+    private @Px int measuredHeight;
 
     public MainLayoutManager() {
         super();
+
         this.scrollOffset = 0;
         this.measuredHeight = 0;
     }
@@ -81,5 +83,10 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
         offsetChildrenVertical(-consumed);
         return consumed;
+    }
+
+    @Px
+    public int getScrollOffset() {
+        return scrollOffset;
     }
 }

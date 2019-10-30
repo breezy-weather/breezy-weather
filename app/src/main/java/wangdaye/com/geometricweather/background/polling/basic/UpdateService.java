@@ -10,7 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
@@ -27,7 +31,7 @@ public abstract class UpdateService extends Service
 
     private PollingUpdateHelper helper;
     private List<Location> locationList;
-
+    private Disposable disposable;
     private boolean failed;
 
     @Override
@@ -38,11 +42,21 @@ public abstract class UpdateService extends Service
         helper = new PollingUpdateHelper(this, locationList);
         helper.setOnPollingUpdateListener(this);
         helper.pollingUpdate();
+
+        disposable = Observable.timer(30, TimeUnit.SECONDS)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnComplete(this::stopService)
+                .subscribe();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (disposable != null) {
+            disposable.dispose();
+            disposable = null;
+        }
         if (helper != null) {
             helper.setOnPollingUpdateListener(null);
             helper.cancel();

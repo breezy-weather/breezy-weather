@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.main.ui.adapter;
+package wangdaye.com.geometricweather.ui.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

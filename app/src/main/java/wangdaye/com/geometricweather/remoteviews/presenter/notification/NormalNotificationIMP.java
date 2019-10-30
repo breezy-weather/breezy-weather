@@ -31,7 +31,6 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
@@ -228,50 +227,20 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 )
         );
 
-        views.setTextViewText(
-                R.id.notification_base_dailyTemp,
-                Temperature.getTrendTemperature(
-                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                        temperatureUnit
-                )
-        );
-
-        if (weather.getCurrent().getAirQuality().getAqiIndex() != null) {
+        if (weather.getCurrent().getAirQuality().isValid()) {
             views.setTextViewText(
-                    R.id.notification_base_aqi_wind,
-                    "AQI " + weather.getCurrent().getAirQuality().getAqiIndex()
-            );
-            int colorRes = weather.getCurrent().getAirQuality().getAqiColorResId();
-            if (colorRes == 0) {
-                views.setTextColor(R.id.notification_base_aqi_wind, subColor);
-            } else {
-                views.setTextColor(
-                        R.id.notification_base_aqi_wind,
-                        ContextCompat.getColor(context, colorRes)
-                );
-            }
-
-            views.setTextViewText(
-                    R.id.notification_base_lunar,
-                    SettingsOptionManager.getInstance(context).getLanguage().getCode().startsWith("zh")
-                            ? LunarHelper.getLunarDate(new Date())
-                            : location.getCityName(context)
+                    R.id.notification_base_aqiAndWind,
+                    context.getString(R.string.air_quality)
+                            + " - "
+                            + weather.getCurrent().getAirQuality().getAqiText()
             );
         } else {
             views.setTextViewText(
-                    R.id.notification_base_aqi_wind,
-                    weather.getCurrent().getWind().getLevel()
+                    R.id.notification_base_aqiAndWind,
+                    context.getString(R.string.wind)
+                            + " - "
+                            + weather.getCurrent().getWind().getLevel()
             );
-            int colorRes = weather.getCurrent().getWind().getWindColorResId();
-            if (colorRes == 0) {
-                views.setTextColor(R.id.notification_base_aqi_wind, subColor);
-            } else {
-                views.setTextColor(
-                        R.id.notification_base_aqi_wind,
-                        ContextCompat.getColor(context, colorRes)
-                );
-            }
         }
 
         views.setTextViewText(
@@ -279,13 +248,18 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 weather.getCurrent().getWeatherText()
         );
 
-        views.setTextViewText(
-                R.id.notification_base_time,
-                (SettingsOptionManager.getInstance(context).getLanguage().getCode().startsWith("zh")
-                        ? (location.getCityName(context) + " ")
-                        : ""
-                ) + WidgetUtils.getWeek(context) + " " + Base.getTime(context, weather.getBase().getUpdateDate())
-        );
+        StringBuilder timeStr = new StringBuilder();
+        timeStr.append(location.getCityName(context));
+        if (SettingsOptionManager.getInstance(context).getLanguage().getCode().startsWith("zh")) {
+            timeStr.append(", ")
+                    .append(LunarHelper.getLunarDate(new Date()));
+        } else {
+            timeStr.append(", ")
+                    .append(context.getString(R.string.refresh_at))
+                    .append(" ")
+                    .append(Base.getTime(context, weather.getBase().getUpdateDate()));
+        }
+        views.setTextViewText(R.id.notification_base_time, timeStr.toString());
 
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             if (customColor) {
@@ -295,9 +269,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             }
 
             views.setTextColor(R.id.notification_base_realtimeTemp, mainColor);
-            views.setTextColor(R.id.notification_base_dailyTemp, subColor);
             views.setTextColor(R.id.notification_base_weather, mainColor);
-            views.setTextColor(R.id.notification_base_lunar, subColor);
+            views.setTextColor(R.id.notification_base_aqiAndWind, subColor);
             views.setTextColor(R.id.notification_base_time, subColor);
         }
 

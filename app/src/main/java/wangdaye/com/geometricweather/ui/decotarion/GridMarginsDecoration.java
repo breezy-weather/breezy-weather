@@ -22,6 +22,8 @@ public class GridMarginsDecoration extends RecyclerView.ItemDecoration {
     private int adapterPosition;
     private boolean firstLine;
 
+    private @RecyclerView.Orientation int orientation;
+
     public GridMarginsDecoration(Context context) {
         this(context.getResources().getDimensionPixelSize(R.dimen.little_margin));
     }
@@ -30,7 +32,16 @@ public class GridMarginsDecoration extends RecyclerView.ItemDecoration {
         this(margins, margins);
     }
 
+    public GridMarginsDecoration(@Px float margins, @RecyclerView.Orientation int orientation) {
+        this(margins, margins, orientation);
+    }
+
     public GridMarginsDecoration(@Px float marginsVertical, @Px float marginsHorizontal) {
+        this(marginsVertical, marginsHorizontal, RecyclerView.VERTICAL);
+    }
+
+    public GridMarginsDecoration(@Px float marginsVertical, @Px float marginsHorizontal,
+                                 @RecyclerView.Orientation int orientation) {
         this.marginsVertical = marginsVertical;
         this.marginsHorizontal = marginsHorizontal;
 
@@ -38,6 +49,8 @@ public class GridMarginsDecoration extends RecyclerView.ItemDecoration {
         this.spanIndex = -1;
         this.adapterPosition = -1;
         this.firstLine = false;
+
+        this.orientation = orientation;
     }
 
     @Override
@@ -79,29 +92,60 @@ public class GridMarginsDecoration extends RecyclerView.ItemDecoration {
             firstLine = adapterPosition == 0;
         }
 
-        if (spanCount == 1) {
-            outRect.set(
-                    (int) marginsHorizontal,
-                    (int) (firstLine ? marginsVertical : 0),
-                    (int) marginsHorizontal,
-                    (int) marginsVertical
-            );
-        } else {
-            if (spanIndex == 0) {
-                outRect.set(
-                        (int) marginsHorizontal,
-                        (int) (firstLine ? marginsVertical : 0),
-                        (int) marginsHorizontal,
-                        (int) marginsVertical
-                );
-            } else{
-                outRect.set(
-                        0,
-                        (int) (firstLine ? marginsVertical : 0),
-                        (int) marginsHorizontal,
-                        (int) marginsVertical
-                );
-            }
+        switch (orientation) {
+            case RecyclerView.VERTICAL:
+                if (spanCount == 1) {
+                    outRect.set(
+                            (int) marginsHorizontal,
+                            (int) (firstLine ? marginsVertical : 0),
+                            (int) marginsHorizontal,
+                            (int) marginsVertical
+                    );
+                } else {
+                    if (spanIndex == 0) {
+                        outRect.set(
+                                (int) marginsHorizontal,
+                                (int) (firstLine ? marginsVertical : 0),
+                                (int) marginsHorizontal,
+                                (int) marginsVertical
+                        );
+                    } else{
+                        outRect.set(
+                                0,
+                                (int) (firstLine ? marginsVertical : 0),
+                                (int) marginsHorizontal,
+                                (int) marginsVertical
+                        );
+                    }
+                }
+                break;
+
+            case RecyclerView.HORIZONTAL:
+                if (spanCount == 1) {
+                    outRect.set(
+                            (int) (firstLine ? marginsHorizontal : 0),
+                            (int) marginsVertical,
+                            (int) marginsHorizontal,
+                            (int) marginsVertical
+                    );
+                } else {
+                    if (spanIndex == 0) {
+                        outRect.set(
+                                (int) (firstLine ? marginsHorizontal : 0),
+                                (int) marginsVertical,
+                                (int) marginsHorizontal,
+                                (int) marginsVertical
+                        );
+                    } else{
+                        outRect.set(
+                                (int) (firstLine ? marginsHorizontal : 0),
+                                0,
+                                (int) marginsHorizontal,
+                                (int) marginsVertical
+                        );
+                    }
+                }
+                break;
         }
     }
 }

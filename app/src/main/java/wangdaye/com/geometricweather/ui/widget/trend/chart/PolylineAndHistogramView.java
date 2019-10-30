@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trendView.item;
+package wangdaye.com.geometricweather.ui.widget.trend.chart;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,16 +15,15 @@ import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
 
 import android.util.AttributeSet;
-import android.view.View;
 
 import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
+import wangdaye.com.geometricweather.ui.widget.trend.abs.ChartItemView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
- * Polyline item view.
+ * Polyline and histogram view.
  * */
-
-public class PolylineItemView extends View {
+public class PolylineAndHistogramView extends ChartItemView {
 
     private Paint paint;
     private Path path;
@@ -48,10 +47,10 @@ public class PolylineItemView extends View {
 
     private int marginTop;
     private int marginBottom;
-    private int temperatureTextSize;
-    private int precipitationTextSize;
-    private int trendLineWidth;
-    private int precipitationPillarWidth;
+    private int polylineWidth;
+    private int polylineTextSize;
+    private int histogramWidth;
+    private int histogramTextSize;
     private int chartLineWith;
     private int textMargin;
 
@@ -59,33 +58,33 @@ public class PolylineItemView extends View {
     private int[] shadowColors;
     private int textColor;
     private int textShadowColor;
-    private int precipitationTextColor;
+    private int histogramTextColor;
 
-    private float precipitationAlpha;
+    private float histogramAlpha;
 
     private static final float MARGIN_TOP_DIP = 24;
     private static final float MARGIN_BOTTOM_DIP = 36;
-    private static final float TEMPERATURE_TEXT_SIZE_DIP = 13;
-    private static final float PRECIPITATION_TEXT_SIZE_DIP = 11;
-    private static final float TREND_LINE_SIZE_DIP = 3.5f;
-    private static final float PRECIPITATION_PILLAR_WIDTH_DIP = 3;
+    private static final float POLYLINE_SIZE_DIP = 3.5f;
+    private static final float POLYLINE_TEXT_SIZE_DIP = 13;
+    private static final float HISTOGRAM_WIDTH_DIP = 3.5f;
+    private static final float HISTOGRAM_TEXT_SIZE_DIP = 11;
     private static final float CHART_LINE_SIZE_DIP = 1;
     private static final float TEXT_MARGIN_DIP = 2;
 
     private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.15f;
     private static final float SHADOW_ALPHA_FACTOR_DARK = 0.3f;
 
-    public PolylineItemView(Context context) {
+    public PolylineAndHistogramView(Context context) {
         super(context);
         this.initialize();
     }
 
-    public PolylineItemView(Context context, AttributeSet attrs) {
+    public PolylineAndHistogramView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.initialize();
     }
 
-    public PolylineItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PolylineAndHistogramView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initialize();
     }
@@ -95,14 +94,14 @@ public class PolylineItemView extends View {
         shadowColors = new int[] {Color.BLACK, Color.WHITE};
 
         setTextColors(Color.BLACK, Color.GRAY);
-        setPrecipitationAlpha(0.33f);
+        setHistogramAlpha(0.33f);
 
         this.marginTop = (int) DisplayUtils.dpToPx(getContext(), MARGIN_TOP_DIP);
         this.marginBottom = (int) DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
-        this.temperatureTextSize = (int) DisplayUtils.dpToPx(getContext(), TEMPERATURE_TEXT_SIZE_DIP);
-        this.precipitationTextSize = (int) DisplayUtils.dpToPx(getContext(), PRECIPITATION_TEXT_SIZE_DIP);
-        this.trendLineWidth = (int) DisplayUtils.dpToPx(getContext(), TREND_LINE_SIZE_DIP);
-        this.precipitationPillarWidth = (int) DisplayUtils.dpToPx(getContext(), PRECIPITATION_PILLAR_WIDTH_DIP);
+        this.polylineTextSize = (int) DisplayUtils.dpToPx(getContext(), POLYLINE_TEXT_SIZE_DIP);
+        this.histogramTextSize = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
+        this.polylineWidth = (int) DisplayUtils.dpToPx(getContext(), POLYLINE_SIZE_DIP);
+        this.histogramWidth = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
         this.chartLineWith = (int) DisplayUtils.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
         this.textMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
 
@@ -113,6 +112,16 @@ public class PolylineItemView extends View {
         this.path = new Path();
         this.shaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
         setShadowColors(Color.BLACK, Color.GRAY, true);
+    }
+
+    @Override
+    public int getMarginTop() {
+        return marginTop;
+    }
+
+    @Override
+    public int getMarginBottom() {
+        return marginBottom;
     }
 
     @Override
@@ -171,7 +180,7 @@ public class PolylineItemView extends View {
             // line.
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(trendLineWidth);
+            paint.setStrokeWidth(polylineWidth);
             paint.setColor(lineColors[0]);
 
             path.reset();
@@ -196,7 +205,7 @@ public class PolylineItemView extends View {
             // line.
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(trendLineWidth);
+            paint.setStrokeWidth(polylineWidth);
             paint.setColor(lineColors[0]);
 
             path.reset();
@@ -220,7 +229,7 @@ public class PolylineItemView extends View {
             // line.
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(trendLineWidth);
+            paint.setStrokeWidth(polylineWidth);
             paint.setColor(lineColors[0]);
 
             path.reset();
@@ -233,7 +242,7 @@ public class PolylineItemView extends View {
         paint.setColor(textColor);
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(temperatureTextSize);
+        paint.setTextSize(polylineTextSize);
         paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
                 highPolylineValueStr,
@@ -250,7 +259,7 @@ public class PolylineItemView extends View {
         if (lowPolylineValues[0] != null && lowPolylineValues[2] != null) {
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(trendLineWidth);
+            paint.setStrokeWidth(polylineWidth);
             paint.setColor(lineColors[1]);
 
             path.reset();
@@ -261,7 +270,7 @@ public class PolylineItemView extends View {
         } else if (lowPolylineValues[0] == null) {
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(trendLineWidth);
+            paint.setStrokeWidth(polylineWidth);
             paint.setColor(lineColors[1]);
 
             path.reset();
@@ -271,7 +280,7 @@ public class PolylineItemView extends View {
         } else {
             paint.setShader(null);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(trendLineWidth);
+            paint.setStrokeWidth(polylineWidth);
             paint.setColor(lineColors[1]);
 
             path.reset();
@@ -284,7 +293,7 @@ public class PolylineItemView extends View {
         paint.setColor(textColor);
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(temperatureTextSize);
+        paint.setTextSize(polylineTextSize);
         paint.setShadowLayer(2, 0, 1, textShadowColor);
         canvas.drawText(
                 lowPolylineValueStr,
@@ -299,24 +308,24 @@ public class PolylineItemView extends View {
         assert histogramValueStr != null;
 
         paint.setColor(lineColors[1]);
-        paint.setAlpha((int) (255 * precipitationAlpha));
+        paint.setAlpha((int) (255 * histogramAlpha));
         paint.setStyle(Paint.Style.FILL);
 
         canvas.drawRoundRect(
                 new RectF(
-                        (float) (getMeasuredWidth() / 2.0 - precipitationPillarWidth),
+                        (float) (getMeasuredWidth() / 2.0 - histogramWidth),
                         histogramY,
-                        (float) (getMeasuredWidth() / 2.0 + precipitationPillarWidth),
+                        (float) (getMeasuredWidth() / 2.0 + histogramWidth),
                         getMeasuredHeight() - marginBottom
                 ),
-                precipitationPillarWidth, precipitationPillarWidth,
+                histogramWidth, histogramWidth,
                 paint
         );
 
-        paint.setColor(precipitationTextColor);
+        paint.setColor(histogramTextColor);
         paint.setAlpha(255);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(precipitationTextSize);
+        paint.setTextSize(histogramTextSize);
         canvas.drawText(
                 histogramValueStr,
                 (float) (getMeasuredWidth() / 2.0),
@@ -325,7 +334,7 @@ public class PolylineItemView extends View {
                                 - marginBottom
                                 - paint.getFontMetrics().top
                                 + 2.0 * textMargin
-                                + temperatureTextSize
+                                + polylineTextSize
                 ), paint
         );
 
@@ -357,41 +366,33 @@ public class PolylineItemView extends View {
         invalidate();
     }
 
-    public void setLineColors(@ColorInt int colorDay, @ColorInt int colorNight,
+    public void setLineColors(@ColorInt int colorHigh, @ColorInt int colorLow,
                               @ColorInt int colorSubLine) {
-        lineColors[0] = colorDay;
-        lineColors[1] = colorNight;
+        lineColors[0] = colorHigh;
+        lineColors[1] = colorLow;
         lineColors[2] = colorSubLine;
         invalidate();
     }
 
-    public void setShadowColors(@ColorInt int colorDay, @ColorInt int colorNight, boolean lightTheme) {
+    public void setShadowColors(@ColorInt int colorHigh, @ColorInt int colorLow, boolean lightTheme) {
         shadowColors[0] = lightTheme
-                ? ColorUtils.setAlphaComponent(colorDay, (int) (255 * SHADOW_ALPHA_FACTOR_LIGHT))
-                : ColorUtils.setAlphaComponent(colorNight, (int) (255 * SHADOW_ALPHA_FACTOR_DARK));
+                ? ColorUtils.setAlphaComponent(colorHigh, (int) (255 * SHADOW_ALPHA_FACTOR_LIGHT))
+                : ColorUtils.setAlphaComponent(colorLow, (int) (255 * SHADOW_ALPHA_FACTOR_DARK));
         shadowColors[1] = Color.TRANSPARENT;
 
         ensureShader(lightTheme);
         invalidate();
     }
 
-    private int getDarkerColor(@ColorInt int color){
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[1] = hsv[1] + 0.15f;
-        hsv[2] = hsv[2] - 0.15f;
-        return Color.HSVToColor(hsv);
-    }
-
-    public void setTextColors(@ColorInt int textColor, @ColorInt int precipitationTextColor) {
+    public void setTextColors(@ColorInt int textColor, @ColorInt int histogramTextColor) {
         this.textColor = textColor;
         this.textShadowColor = Color.argb((int) (255 * 0.2), 0, 0, 0);
-        this.precipitationTextColor = precipitationTextColor;
+        this.histogramTextColor = histogramTextColor;
         invalidate();
     }
 
-    public void setPrecipitationAlpha(@FloatRange(from = 0, to = 1) float precipitationAlpha) {
-        this.precipitationAlpha = precipitationAlpha;
+    public void setHistogramAlpha(@FloatRange(from = 0, to = 1) float histogramAlpha) {
+        this.histogramAlpha = histogramAlpha;
         invalidate();
     }
 
@@ -453,13 +454,5 @@ public class PolylineItemView extends View {
 
     private float getRTLCompactX(float x) {
         return getLayoutDirection() == LAYOUT_DIRECTION_RTL ? (getMeasuredWidth() - x) : x;
-    }
-
-    public int getMarginTop() {
-        return marginTop;
-    }
-
-    public int getMarginBottom() {
-        return marginBottom;
     }
 }

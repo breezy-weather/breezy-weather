@@ -16,15 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.adapter.DailyTrendAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyAirQualityAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyTemperatureAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyWindAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.trendView.TrendHelper;
-import wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView;
+import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
@@ -39,6 +38,8 @@ public class DailyViewHolder extends AbstractMainViewHolder {
     @NonNull private WeatherView weatherView;
     @Px private float cardMarginsVertical;
     @Px private float cardMarginsHorizontal;
+
+    private static final int VIEW_TYPE = 0;
 
     public DailyViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                            @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
@@ -64,8 +65,6 @@ public class DailyViewHolder extends AbstractMainViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
-        TemperatureUnit unit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
-
         card.setCardBackgroundColor(picker.getRootColor(context));
 
         title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
@@ -80,33 +79,46 @@ public class DailyViewHolder extends AbstractMainViewHolder {
         trendRecyclerView.setHasFixedSize(true);
         trendRecyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        trendRecyclerView.setAdapter(
-                new DailyTrendAdapter(
-                        (GeoActivity) context, trendRecyclerView,
-                        cardMarginsVertical, cardMarginsHorizontal,
-                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
-                        context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
-                        weather,
-                        weatherView.getThemeColors(picker.isLightTheme()),
-                        provider,
-                        picker,
-                        unit
-                )
-        );
 
-        trendRecyclerView.setLineColor(picker.getLineColor(context));
-        if (weather.getYesterday() == null) {
-            trendRecyclerView.setData(
-                    null, null, 0, 0, null, null);
-        } else {
-            int[] highestAndLowest = TrendHelper.getHighestAndLowestDailyTemperature(weather);
-            trendRecyclerView.setData(
-                    (float) weather.getYesterday().getDaytimeTemperature(),
-                    (float) weather.getYesterday().getNighttimeTemperature(),
-                    highestAndLowest[0],
-                    highestAndLowest[1],
-                    Temperature.getShortTemperature(weather.getYesterday().getDaytimeTemperature(), unit),
-                    Temperature.getShortTemperature(weather.getYesterday().getNighttimeTemperature(), unit)
+        if (VIEW_TYPE == 0) {
+            trendRecyclerView.setAdapter(
+                    new DailyTemperatureAdapter(
+                            (GeoActivity) context, trendRecyclerView,
+                            cardMarginsVertical, cardMarginsHorizontal,
+                            DisplayUtils.isTabletDevice(context) ? 7 : 5,
+                            context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                            weather,
+                            weatherView.getThemeColors(picker.isLightTheme()),
+                            provider,
+                            picker,
+                            SettingsOptionManager.getInstance(context).getTemperatureUnit()
+                    )
+            );
+        } else if (VIEW_TYPE == 1) {
+            trendRecyclerView.setAdapter(
+                    new DailyWindAdapter(
+                            (GeoActivity) context, trendRecyclerView,
+                            cardMarginsVertical, cardMarginsHorizontal,
+                            DisplayUtils.isTabletDevice(context) ? 7 : 5,
+                            context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                            weather,
+                            weatherView.getThemeColors(picker.isLightTheme()),
+                            picker,
+                            SettingsOptionManager.getInstance(context).getSpeedUnit()
+                    )
+            );
+        } else if (VIEW_TYPE == 2) {
+            trendRecyclerView.setAdapter(
+                    new DailyAirQualityAdapter(
+                            (GeoActivity) context, trendRecyclerView,
+                            cardMarginsVertical, cardMarginsHorizontal,
+                            DisplayUtils.isTabletDevice(context) ? 7 : 5,
+                            context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                            weather,
+                            weatherView.getThemeColors(picker.isLightTheme()),
+                            provider,
+                            picker
+                    )
             );
         }
     }

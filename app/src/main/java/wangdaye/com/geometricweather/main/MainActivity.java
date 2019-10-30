@@ -365,7 +365,8 @@ public class MainActivity extends GeoActivity
                 listAnimationEnabled, itemAnimationEnabled);
         recyclerView.setAdapter(adapter);
         recyclerView.clearOnScrollListeners();
-        recyclerView.addOnScrollListener(new OnScrollListener(weatherView.getFirstCardMarginTop()));
+        recyclerView.addOnScrollListener(new OnScrollListener(
+                (MainLayoutManager) recyclerView.getLayoutManager(), weatherView.getFirstCardMarginTop()));
 
         indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
         indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));
@@ -413,7 +414,6 @@ public class MainActivity extends GeoActivity
         }
         if (adapter != null) {
             recyclerView.setAdapter(null);
-            recyclerView.scrollTo(0, 0);
             adapter = null;
         }
     }
@@ -568,6 +568,8 @@ public class MainActivity extends GeoActivity
 
     private class OnScrollListener extends RecyclerView.OnScrollListener {
 
+        private MainLayoutManager layoutManager;
+
         private boolean topChanged;
         private boolean topOverlap;
         private boolean bottomChanged;
@@ -579,13 +581,15 @@ public class MainActivity extends GeoActivity
         private int oldScrollY;
         private int scrollY;
 
-        OnScrollListener(int firstCardMarginTop) {
+        OnScrollListener(MainLayoutManager layoutManager, int firstCardMarginTop) {
             super();
 
-            topChanged = false;
-            topOverlap = false;
-            bottomChanged = false;
-            bottomOverlap = false;
+            this.layoutManager = layoutManager;
+
+            this.topChanged = false;
+            this.topOverlap = false;
+            this.bottomChanged = false;
+            this.bottomOverlap = false;
 
             this.firstCardMarginTop = firstCardMarginTop;
             this.topOverlapTrigger = firstCardMarginTop
@@ -597,8 +601,8 @@ public class MainActivity extends GeoActivity
 
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-            oldScrollY = scrollY;
-            scrollY += dy;
+            scrollY = layoutManager.getScrollOffset();
+            oldScrollY = scrollY - dy;
 
             weatherView.onScroll(scrollY);
             if (adapter != null) {

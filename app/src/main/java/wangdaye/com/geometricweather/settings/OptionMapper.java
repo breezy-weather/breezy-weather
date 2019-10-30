@@ -103,6 +103,9 @@ public class OptionMapper {
         switch (value) {
             case "f":
                 return TemperatureUnit.F;
+
+            case "k":
+                return TemperatureUnit.K;
                 
             default:
                 return TemperatureUnit.C;

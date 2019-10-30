@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_main_aqi"
+    android:layout_margin="0dp"
     style="@style/material_card">
 
     <LinearLayout

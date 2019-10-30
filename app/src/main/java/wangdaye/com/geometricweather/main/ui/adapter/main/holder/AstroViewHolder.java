@@ -23,6 +23,7 @@ import androidx.core.graphics.ColorUtils;
 
 import java.util.Calendar;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -51,6 +52,7 @@ public class AstroViewHolder extends AbstractMainViewHolder {
 
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
+    @Nullable private TimeZone timeZone;
 
     @Size(2) private float[] startTimes;
     @Size(2) private float[] endTimes;
@@ -86,6 +88,7 @@ public class AstroViewHolder extends AbstractMainViewHolder {
     @Override
     public void onBindView(@NonNull Location location) {
         weather = location.getWeather();
+        timeZone = location.getTimeZone();
         assert weather != null;
 
         ensureTime(weather);
@@ -239,7 +242,11 @@ public class AstroViewHolder extends AbstractMainViewHolder {
         Daily tomorrow = weather.getDailyForecast().get(1);
 
         Calendar calendar = Calendar.getInstance();
+        if (timeZone != null) {
+            calendar.setTimeZone(timeZone);
+        }
         int currentTime = SunMoonView.decodeTime(calendar);
+        calendar.setTimeZone(TimeZone.getDefault());
 
         calendar.setTime(Objects.requireNonNull(today.sun().getRiseDate()));
         int sunriseTime = SunMoonView.decodeTime(calendar);
@@ -254,7 +261,7 @@ public class AstroViewHolder extends AbstractMainViewHolder {
         // sun.
         startTimes[0] = sunriseTime;
         endTimes[0] = sunsetTime;
-        
+
         // moon.
         if (!today.moon().isValid() || !tomorrow.moon().isValid()) {
             // do not have moonrise and moonset data.

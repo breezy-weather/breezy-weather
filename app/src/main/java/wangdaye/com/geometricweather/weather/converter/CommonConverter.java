@@ -9,33 +9,35 @@ import java.util.Calendar;
 import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
+import wangdaye.com.geometricweather.basic.model.weather.Wind;
 
 public class CommonConverter {
 
     public static String getWindLevel(Context c, double speed) {
-        if (speed <= 2) {
+        if (speed <= Wind.WIND_SPEED_0) {
             return c.getString(R.string.wind_0);
-        } else if (speed <= 6) {
+        } else if (speed <= Wind.WIND_SPEED_1) {
             return c.getString(R.string.wind_1);
-        } else if (speed <= 12) {
+        } else if (speed <= Wind.WIND_SPEED_2) {
             return c.getString(R.string.wind_2);
-        } else if (speed <= 19) {
+        } else if (speed <= Wind.WIND_SPEED_3) {
             return c.getString(R.string.wind_3);
-        } else if (speed <= 30) {
+        } else if (speed <= Wind.WIND_SPEED_4) {
             return c.getString(R.string.wind_4);
-        } else if (speed <= 40) {
+        } else if (speed <= Wind.WIND_SPEED_5) {
             return c.getString(R.string.wind_5);
-        } else if (speed <= 51) {
+        } else if (speed <= Wind.WIND_SPEED_6) {
             return c.getString(R.string.wind_6);
-        } else if (speed <= 62) {
+        } else if (speed <= Wind.WIND_SPEED_7) {
             return c.getString(R.string.wind_7);
-        } else if (speed <= 75) {
+        } else if (speed <= Wind.WIND_SPEED_8) {
             return c.getString(R.string.wind_8);
-        } else if (speed <= 87) {
+        } else if (speed <= Wind.WIND_SPEED_9) {
             return c.getString(R.string.wind_9);
-        } else if (speed <= 103) {
+        } else if (speed <= Wind.WIND_SPEED_10) {
             return c.getString(R.string.wind_10);
-        } else if (speed <= 117) {
+        } else if (speed <= Wind.WIND_SPEED_11) {
             return c.getString(R.string.wind_11);
         } else {
             return c.getString(R.string.wind_12);
@@ -46,15 +48,15 @@ public class CommonConverter {
     public static String getAqiQuality(Context c, @Nullable Integer index) {
         if (index == null || index < 0) {
             return null;
-        } if (index <= 50) {
+        } if (index <= AirQuality.AQI_INDEX_1) {
             return c.getString(R.string.aqi_1);
-        } else if (index <= 100) {
+        } else if (index <= AirQuality.AQI_INDEX_2) {
             return c.getString(R.string.aqi_2);
-        } else if (index <= 150) {
+        } else if (index <= AirQuality.AQI_INDEX_3) {
             return c.getString(R.string.aqi_3);
-        } else if (index <= 200) {
+        } else if (index <= AirQuality.AQI_INDEX_4) {
             return c.getString(R.string.aqi_4);
-        } else if (index <= 300) {
+        } else if (index <= AirQuality.AQI_INDEX_5) {
             return c.getString(R.string.aqi_5);
         } else {
             return c.getString(R.string.aqi_6);

@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.ui.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import androidx.annotation.ColorInt;
@@ -107,7 +106,6 @@ public class RoundProgress extends View {
         super.onDraw(canvas);
         float radius = backgroundRectF.height() / 2f;
         progressPaint.setColor(backgroundColor);
-        progressPaint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
         canvas.drawRoundRect(backgroundRectF, radius, radius, progressPaint);
 
         progressRectF.set(
@@ -117,12 +115,6 @@ public class RoundProgress extends View {
                 backgroundRectF.bottom
         );
         progressPaint.setColor(progressColor);
-        progressPaint.setShadowLayer(
-                1,
-                0,
-                1,
-                Color.argb((int) (255 * 0.1), 0, 0, 0)
-        );
         if (progressRectF.width() < 2 * radius) {
             canvas.drawCircle(
                     progressRectF.left + radius,

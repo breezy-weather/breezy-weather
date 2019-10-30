@@ -18,18 +18,15 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Minutely;
-import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.adapter.HourlyTrendAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.hourly.HourlyTemperatureAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.PrecipitationBar;
-import wangdaye.com.geometricweather.ui.widget.trendView.TrendHelper;
-import wangdaye.com.geometricweather.ui.widget.trendView.TrendRecyclerView;
+import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
@@ -83,8 +80,6 @@ public class HourlyViewHolder extends AbstractMainViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
-        TemperatureUnit unit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
-
         card.setCardBackgroundColor(picker.getRootColor(context));
 
         title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
@@ -100,7 +95,7 @@ public class HourlyViewHolder extends AbstractMainViewHolder {
         trendRecyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         trendRecyclerView.setAdapter(
-                new HourlyTrendAdapter(
+                new HourlyTemperatureAdapter(
                         (GeoActivity) context, trendRecyclerView,
                         cardMarginsVertical, cardMarginsHorizontal,
                         DisplayUtils.isTabletDevice(context) ? 7 : 5,
@@ -109,25 +104,9 @@ public class HourlyViewHolder extends AbstractMainViewHolder {
                         weatherView.getThemeColors(picker.isLightTheme()),
                         provider,
                         picker,
-                        unit
+                        SettingsOptionManager.getInstance(context).getTemperatureUnit()
                 )
         );
-
-        trendRecyclerView.setLineColor(picker.getLineColor(context));
-        if (weather.getYesterday() == null) {
-            trendRecyclerView.setData(
-                    null, null, 0, 0, null, null);
-        } else {
-            int[] highestAndLowest = TrendHelper.getHighestAndLowestHourlyTemperature(weather);
-            trendRecyclerView.setData(
-                    (float) weather.getYesterday().getDaytimeTemperature(),
-                    (float) weather.getYesterday().getNighttimeTemperature(),
-                    highestAndLowest[0],
-                    highestAndLowest[1],
-                    Temperature.getShortTemperature(weather.getYesterday().getDaytimeTemperature(), unit),
-                    Temperature.getShortTemperature(weather.getYesterday().getNighttimeTemperature(), unit)
-            );
-        }
 
         List<Minutely> minutelyList = weather.getMinutelyForecast();
         if (minutelyList.size() != 0 && needToShowMinutelyForecast(minutelyList)) {

@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trendView;
+package wangdaye.com.geometricweather.ui.widget.trend;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,14 +10,16 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
+import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendParent;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
@@ -33,12 +35,9 @@ public class TrendRecyclerView extends RecyclerView
     private int drawingBoundaryTop;
     private int drawingBoundaryBottom;
 
-    private @Nullable Float maxiData;
-    private @Nullable Float miniData;
+    private @Nullable List<KeyLine> keyLineList;
     private @Nullable Float highestData;
     private @Nullable Float lowestData;
-    private @Nullable String maxiDataStr;
-    private @Nullable String miniDataStr;
 
     private int textSize;
     private int textMargin;
@@ -56,6 +55,23 @@ public class TrendRecyclerView extends RecyclerView
     private static final int TEXT_MARGIN_DIP = 2;
 
     private static final String TAG = "TrendRecyclerView";
+
+    public static class KeyLine {
+
+        float value;
+        String contentLeft;
+        String contentRight;
+        ContentPosition contentPosition;
+
+        public enum ContentPosition {ABOVE_LINE, BELOW_LINE}
+
+        public KeyLine(float value, String contentLeft, String contentRight, ContentPosition contentPosition) {
+            this.value = value;
+            this.contentLeft = contentLeft;
+            this.contentRight = contentRight;
+            this.contentPosition = contentPosition;
+        }
+    }
 
     public TrendRecyclerView(Context context) {
         super(context);
@@ -85,6 +101,7 @@ public class TrendRecyclerView extends RecyclerView
 
         setLineColor(Color.GRAY);
 
+        this.keyLineList = new ArrayList<>();
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
 
@@ -154,8 +171,8 @@ public class TrendRecyclerView extends RecyclerView
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (maxiData == null || TextUtils.isEmpty(maxiDataStr)
-                || miniData == null || TextUtils.isEmpty(miniDataStr)
+        if (keyLineList == null
+                || keyLineList.size() == 0
                 || highestData == null
                 || lowestData == null) {
             return;
@@ -163,58 +180,65 @@ public class TrendRecyclerView extends RecyclerView
 
         float dataRange = highestData - lowestData;
         float boundaryRange = drawingBoundaryBottom - drawingBoundaryTop;
-        int maxiY = (int) (drawingBoundaryBottom - (maxiData - lowestData) / dataRange * boundaryRange);
-        int miniY = (int) (drawingBoundaryBottom - (miniData - lowestData) / dataRange * boundaryRange);
+        for (KeyLine line : keyLineList) {
+            if (line.value > highestData || line.value < lowestData) {
+                continue;
+            }
 
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(lineWidth);
-        paint.setColor(lineColor);
-        canvas.drawLine(0, maxiY, getMeasuredWidth(), maxiY, paint);
-        canvas.drawLine(0, miniY, getMeasuredWidth(), miniY, paint);
+            int y = (int) (drawingBoundaryBottom - (line.value - lowestData) / dataRange * boundaryRange);
 
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(textSize);
-        paint.setTextAlign(Paint.Align.LEFT);
-        paint.setColor(ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd));
-        canvas.drawText(
-                maxiDataStr,
-                2 * textMargin,
-                maxiY - paint.getFontMetrics().bottom - textMargin,
-                paint
-        );
-        canvas.drawText(
-                miniDataStr,
-                2 * textMargin,
-                miniY - paint.getFontMetrics().top + textMargin,
-                paint
-        );
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(lineWidth);
+            paint.setColor(lineColor);
+            canvas.drawLine(0, y, getMeasuredWidth(), y, paint);
 
-        paint.setTextAlign(Paint.Align.RIGHT);
-        canvas.drawText(
-                getContext().getString(R.string.yesterday),
-                getMeasuredWidth() - 2 * textMargin,
-                maxiY - paint.getFontMetrics().bottom - textMargin,
-                paint
-        );
-        canvas.drawText(
-                getContext().getString(R.string.yesterday),
-                getMeasuredWidth() - 2 * textMargin,
-                miniY - paint.getFontMetrics().top + textMargin,
-                paint
-        );
+            paint.setStyle(Paint.Style.FILL);
+            paint.setTextSize(textSize);
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd));
+            switch (line.contentPosition) {
+                case ABOVE_LINE:
+                    paint.setTextAlign(Paint.Align.LEFT);
+                    canvas.drawText(
+                            line.contentLeft,
+                            2 * textMargin,
+                            y - paint.getFontMetrics().bottom - textMargin,
+                            paint
+                    );
+                    paint.setTextAlign(Paint.Align.RIGHT);
+                    canvas.drawText(
+                            line.contentRight,
+                            getMeasuredWidth() - 2 * textMargin,
+                            y - paint.getFontMetrics().bottom - textMargin,
+                            paint
+                    );
+                    break;
+
+                case BELOW_LINE:
+                    paint.setTextAlign(Paint.Align.LEFT);
+                    canvas.drawText(
+                            line.contentLeft,
+                            2 * textMargin,
+                            y - paint.getFontMetrics().top + textMargin,
+                            paint
+                    );
+                    paint.setTextAlign(Paint.Align.RIGHT);
+                    canvas.drawText(
+                            line.contentRight,
+                            getMeasuredWidth() - 2 * textMargin,
+                            y - paint.getFontMetrics().top + textMargin,
+                            paint
+                    );
+                    break;
+            }
+        }
     }
 
     // control.
 
-    public void setData(@Nullable Float maxiData, @Nullable Float miniData,
-                        float highestData, float lowestData,
-                        @Nullable String maxiDataStr, @Nullable String miniDataStr) {
-        this.maxiData = maxiData;
-        this.miniData = miniData;
+    public void setData(List<KeyLine> keyLineList, float highestData, float lowestData) {
+        this.keyLineList = keyLineList;
         this.highestData = highestData;
         this.lowestData = lowestData;
-        this.maxiDataStr = maxiDataStr;
-        this.miniDataStr = miniDataStr;
         invalidate();
     }
 

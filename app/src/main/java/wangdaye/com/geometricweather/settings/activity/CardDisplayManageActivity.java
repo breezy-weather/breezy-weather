@@ -25,10 +25,11 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
-import wangdaye.com.geometricweather.main.ui.adapter.TagAdapter;
+import wangdaye.com.geometricweather.ui.adapter.TagAdapter;
 import wangdaye.com.geometricweather.settings.OptionMapper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapter.CardDisplayAdapter;
+import wangdaye.com.geometricweather.ui.decotarion.GridMarginsDecoration;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 
 public class CardDisplayManageActivity extends GeoActivity {
@@ -155,6 +156,12 @@ public class CardDisplayManageActivity extends GeoActivity {
         bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
         bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        bottomRecyclerView.addItemDecoration(
+                new GridMarginsDecoration(
+                        getResources().getDimension(R.dimen.little_margin),
+                        RecyclerView.HORIZONTAL
+                )
+        );
         bottomRecyclerView.setAdapter(tagAdapter);
 
         bottomAnimator = null;

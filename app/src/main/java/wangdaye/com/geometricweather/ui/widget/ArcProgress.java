@@ -265,12 +265,10 @@ public class ArcProgress extends View {
             }
         }
 
-        progressPaint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
         progressPaint.setColor(backgroundColor);
         canvas.drawArc(rectF, startAngle, arcAngle, false, progressPaint);
         if (progress > 0) {
             progressPaint.setColor(progressColor);
-            progressPaint.setShadowLayer(1, 0, 1, shadowColor);
             canvas.drawArc(rectF, startAngle, progressSweepAngle, false, progressPaint);
         }
 

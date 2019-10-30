@@ -51,7 +51,6 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
             CardView card = (CardView) view;
 
             card.setRadius(cardRadius);
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 card.setElevation(cardElevation);
             }

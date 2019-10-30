@@ -97,7 +97,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         if (weather.getCurrent().getRelativeHumidity() != null) {
             indexList.add(
                     new Index(
-                            R.drawable.ic_flower,
+                            R.drawable.ic_water_percent,
                             context.getString(R.string.humidity),
                             RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
                                     weather.getCurrent().getRelativeHumidity()

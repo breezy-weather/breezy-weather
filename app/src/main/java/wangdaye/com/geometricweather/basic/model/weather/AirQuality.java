@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
@@ -25,6 +24,12 @@ public class AirQuality {
     @Nullable private Float no2;
     @Nullable private Float o3;
     @Nullable private Float co;
+
+    public static final int AQI_INDEX_1 = 50;
+    public static final int AQI_INDEX_2 = 100;
+    public static final int AQI_INDEX_3 = 150;
+    public static final int AQI_INDEX_4 = 200;
+    public static final int AQI_INDEX_5 = 300;
 
     public AirQuality(@Nullable String aqiText,
                       @Nullable Integer aqiIndex,
@@ -84,38 +89,19 @@ public class AirQuality {
         return co;
     }
 
-    @ColorRes
-    public int getAqiColorResId() {
-        if (aqiIndex == null) {
-            return 0;
-        } else if (aqiIndex <= 50) {
-            return 0;
-        } else if (aqiIndex <= 100) {
-            return 0;
-        } else if (aqiIndex <= 150) {
-            return 0;
-        } else if (aqiIndex <= 200) {
-            return R.color.colorLevel_4;
-        } else if (aqiIndex <= 300) {
-            return R.color.colorLevel_5;
-        } else {
-            return R.color.colorLevel_6;
-        }
-    }
-
     @ColorInt
     public int getAqiColor(Context context) {
         if (aqiIndex == null) {
             return Color.TRANSPARENT;
-        } else if (aqiIndex <= 50) {
+        } else if (aqiIndex <= AQI_INDEX_1) {
             return ContextCompat.getColor(context, R.color.colorLevel_1);
-        } else if (aqiIndex <= 100) {
+        } else if (aqiIndex <= AQI_INDEX_2) {
             return ContextCompat.getColor(context, R.color.colorLevel_2);
-        } else if (aqiIndex <= 150) {
+        } else if (aqiIndex <= AQI_INDEX_3) {
             return ContextCompat.getColor(context, R.color.colorLevel_3);
-        } else if (aqiIndex <= 200) {
+        } else if (aqiIndex <= AQI_INDEX_4) {
             return ContextCompat.getColor(context, R.color.colorLevel_4);
-        } else if (aqiIndex <= 300) {
+        } else if (aqiIndex <= AQI_INDEX_5) {
             return ContextCompat.getColor(context, R.color.colorLevel_5);
         } else {
             return ContextCompat.getColor(context, R.color.colorLevel_6);

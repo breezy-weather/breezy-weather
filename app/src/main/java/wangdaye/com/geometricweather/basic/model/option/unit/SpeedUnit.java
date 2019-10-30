@@ -27,7 +27,11 @@ public enum SpeedUnit {
     }
 
     public String getSpeedText(float kph) {
-        return UnitUtils.formatFloat(kph * unitFactor, 1) + unitAbbreviation;
+        return getSpeedTextWithoutUnit(kph) + unitAbbreviation;
+    }
+
+    public String getSpeedTextWithoutUnit(float kph) {
+        return UnitUtils.formatFloat(kph * unitFactor, 1);
     }
 
     public String getAbbreviation() {

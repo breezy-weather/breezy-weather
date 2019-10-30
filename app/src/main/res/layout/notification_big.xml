@@ -8,7 +8,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="86dp">
+        android:layout_height="82dp">
 
         <include layout="@layout/notification_base" />
 

@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trendView.item;
+package wangdaye.com.geometricweather.ui.widget.trend.item;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,16 +18,18 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.ui.image.AbstractIconTarget;
-import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendChild;
-import wangdaye.com.geometricweather.ui.widget.trendView.i.TrendParent;
+import wangdaye.com.geometricweather.ui.widget.trend.abs.ChartItemView;
+import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendChild;
+import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendParent;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
- * Daily chartItem item view.
+ * Daily trend item view.
  * */
-public class DailyItemView extends ViewGroup implements TrendChild {
+public class DailyTrendItemView extends ViewGroup
+        implements TrendChild {
 
-    private PolylineItemView chartItem;
+    private @Nullable ChartItemView chartItem;
     private TrendParent trendParent;
     private Paint paint;
 
@@ -66,32 +68,29 @@ public class DailyItemView extends ViewGroup implements TrendChild {
     private static final int MIN_ITEM_WIDTH = 56;
     private static final int MIN_ITEM_HEIGHT = 144;
 
-    public DailyItemView(Context context) {
+    public DailyTrendItemView(Context context) {
         super(context);
         this.initialize();
     }
 
-    public DailyItemView(Context context, @Nullable AttributeSet attrs) {
+    public DailyTrendItemView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.initialize();
     }
 
-    public DailyItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DailyTrendItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initialize();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public DailyItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public DailyTrendItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         this.initialize();
     }
 
     private void initialize() {
         setWillNotDraw(false);
-
-        chartItem = new PolylineItemView(getContext());
-        addView(chartItem);
 
         paint = new Paint();
         paint.setAntiAlias(true);
@@ -143,15 +142,17 @@ public class DailyItemView extends ViewGroup implements TrendChild {
         nightIconTop = height - marginBottom - iconMargin - iconSize;
 
         // chartItem item view.
-        chartItem.measure(
-                MeasureSpec.makeMeasureSpec(
-                        (int) width,
-                        MeasureSpec.EXACTLY
-                ), MeasureSpec.makeMeasureSpec(
-                        (int) (nightIconTop - iconMargin - y),
-                        MeasureSpec.EXACTLY
-                )
-        );
+        if (chartItem != null) {
+            chartItem.measure(
+                    MeasureSpec.makeMeasureSpec(
+                            (int) width,
+                            MeasureSpec.EXACTLY
+                    ), MeasureSpec.makeMeasureSpec(
+                            (int) (nightIconTop - iconMargin - y),
+                            MeasureSpec.EXACTLY
+                    )
+            );
+        }
         trendViewTop = y;
 
         setMeasuredDimension((int) width, (int) height);
@@ -165,12 +166,14 @@ public class DailyItemView extends ViewGroup implements TrendChild {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        chartItem.layout(
-                0,
-                (int) trendViewTop,
-                chartItem.getMeasuredWidth(),
-                (int) trendViewTop + chartItem.getMeasuredHeight()
-        );
+        if (chartItem != null) {
+            chartItem.layout(
+                    0,
+                    (int) trendViewTop,
+                    chartItem.getMeasuredWidth(),
+                    (int) trendViewTop + chartItem.getMeasuredHeight()
+            );
+        }
     }
 
     @Override
@@ -259,7 +262,7 @@ public class DailyItemView extends ViewGroup implements TrendChild {
         return new AbstractIconTarget(iconSize) {
             @Override
             public View getTarget() {
-                return DailyItemView.this;
+                return DailyTrendItemView.this;
             }
 
             @Override
@@ -288,7 +291,7 @@ public class DailyItemView extends ViewGroup implements TrendChild {
         return new AbstractIconTarget(iconSize) {
             @Override
             public View getTarget() {
-                return DailyItemView.this;
+                return DailyTrendItemView.this;
             }
 
             @Override
@@ -313,10 +316,6 @@ public class DailyItemView extends ViewGroup implements TrendChild {
         };
     }
 
-    public PolylineItemView getTrendItemView() {
-        return chartItem;
-    }
-
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
         clickListener = l;
@@ -326,6 +325,19 @@ public class DailyItemView extends ViewGroup implements TrendChild {
     @Override
     public void setParent(@NonNull TrendParent parent) {
         trendParent = parent;
+    }
+
+    @Override
+    public void setChartItemView(ChartItemView t) {
+        chartItem = t;
+        removeAllViews();
+        addView(chartItem);
+        requestLayout();
+    }
+
+    @Override
+    public ChartItemView getChartItemView() {
+        return chartItem;
     }
 
     @Override

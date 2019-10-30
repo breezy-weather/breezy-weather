@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trendView.i;
+package wangdaye.com.geometricweather.ui.widget.trend.abs;
 
 import android.content.Context;
 

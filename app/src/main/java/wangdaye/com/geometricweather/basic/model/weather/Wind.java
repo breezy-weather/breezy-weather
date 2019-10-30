@@ -1,8 +1,12 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
-import androidx.annotation.ColorRes;
+import android.content.Context;
+import android.graphics.Color;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
@@ -19,6 +23,19 @@ public class Wind {
     @NonNull private WindDegree degree;
     @Nullable private Float speed;
     @NonNull private String level;
+
+    public static final float WIND_SPEED_0 = 2;
+    public static final float WIND_SPEED_1 = 6;
+    public static final float WIND_SPEED_2 = 12;
+    public static final float WIND_SPEED_3 = 19;
+    public static final float WIND_SPEED_4 = 30;
+    public static final float WIND_SPEED_5 = 40;
+    public static final float WIND_SPEED_6 = 51;
+    public static final float WIND_SPEED_7 = 62;
+    public static final float WIND_SPEED_8 = 75;
+    public static final float WIND_SPEED_9 = 87;
+    public static final float WIND_SPEED_10 = 103;
+    public static final float WIND_SPEED_11 = 117;
 
     public Wind(@NonNull String direction,
                 @NonNull WindDegree degree,
@@ -50,22 +67,22 @@ public class Wind {
         return level;
     }
 
-    @ColorRes
-    public int getWindColorResId() {
+    @ColorInt
+    public int getWindColor(Context context) {
         if (speed == null) {
-            return 0;
-        } else if (speed <= 30) {
-            return 0;
-        } else if (speed <= 51) {
-            return 0;
-        } else if (speed <= 75) {
-            return 0;
-        } else if (speed <= 103) {
-            return R.color.colorLevel_4;
-        } else if (speed <= 117) {
-            return R.color.colorLevel_5;
+            return Color.TRANSPARENT;
+        } else if (speed <= WIND_SPEED_3) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (speed <= WIND_SPEED_5) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (speed <= WIND_SPEED_7) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (speed <= WIND_SPEED_9) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else if (speed <= WIND_SPEED_11) {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
         } else {
-            return R.color.colorLevel_6;
+            return ContextCompat.getColor(context, R.color.colorLevel_6);
         }
     }
 
@@ -84,5 +101,9 @@ public class Wind {
             builder.append(" ").append(degree.getWindArrow());
         }
         return builder.toString();
+    }
+
+    public boolean isValidSpeed() {
+        return speed != null && speed > 0;
     }
 }

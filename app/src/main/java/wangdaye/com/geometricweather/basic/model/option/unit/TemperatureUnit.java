@@ -3,7 +3,8 @@ package wangdaye.com.geometricweather.basic.model.option.unit;
 public enum TemperatureUnit {
 
     C("c", "℃", c -> c),
-    F("f", "℉", c -> (int) (32 + c * 1.8f));
+    F("f", "℉", c -> (int) (32 + c * 1.8f)),
+    K("k", "K", c -> (int) (273.15 + c));
 
     private String unitId;
     private String unitAbbreviation;
