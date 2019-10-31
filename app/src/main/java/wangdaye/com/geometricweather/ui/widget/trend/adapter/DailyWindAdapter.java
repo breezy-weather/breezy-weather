@@ -79,6 +79,9 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                     picker.getTextSubtitleColor(context)
             );
 
+            int daytimeWindColor = daily.day().getWind().getWindColor(context);
+            int nighttimeWindColor = daily.night().getWind().getWindColor(context);
+
             RotateDrawable dayIcon = daily.day().getWind().isValidSpeed()
                     ? new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_navigation))
                     : new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_circle_medium));
@@ -95,11 +98,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                     unit.getSpeedTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
                     highestWindSpeed
             );
-            doubleHistogramView.setLineColors(
-                    daily.day().getWind().getWindColor(context),
-                    daily.night().getWind().getWindColor(context),
-                    picker.getLineColor(context)
-            );
+            doubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, picker.getLineColor(context));
             doubleHistogramView.setTextColors(picker.getTextContentColor(context));
             doubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
@@ -107,8 +106,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                     ? new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_navigation))
                     : new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_circle_medium));
             nightIcon.rotate(daily.night().getWind().getDegree().getDegree() + 180);
-            nightIcon.setColorFilter(
-                    new PorterDuffColorFilter(themeColors[1], PorterDuff.Mode.SRC_ATOP));
+            nightIcon.setColorFilter(new PorterDuffColorFilter(themeColors[1], PorterDuff.Mode.SRC_ATOP));
             dailyItem.setNightIconDrawable(nightIcon);
 
             dailyItem.setOnClickListener(v -> {
@@ -159,7 +157,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_3,
                         activity.getString(R.string.wind_3),
-                        unit.getSpeedText(Wind.WIND_SPEED_3),
+                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_3),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
@@ -167,7 +165,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_7,
                         activity.getString(R.string.wind_7),
-                        unit.getSpeedText(Wind.WIND_SPEED_7),
+                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_7),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
@@ -175,7 +173,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_3,
                         activity.getString(R.string.wind_3),
-                        unit.getSpeedText(Wind.WIND_SPEED_3),
+                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_3),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
@@ -183,7 +181,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_7,
                         activity.getString(R.string.wind_7),
-                        unit.getSpeedText(Wind.WIND_SPEED_7),
+                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_7),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );

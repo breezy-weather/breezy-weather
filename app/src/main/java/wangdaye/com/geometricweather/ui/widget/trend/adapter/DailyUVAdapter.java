@@ -10,14 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
+import wangdaye.com.geometricweather.basic.model.weather.UV;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
@@ -27,10 +26,10 @@ import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramV
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
 
 /**
- * Daily air quality adapter.
+ * Daily UV adapter.
  * */
 
-public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<DailyAirQualityAdapter.ViewHolder> {
+public abstract class DailyUVAdapter extends TrendRecyclerViewAdapter<DailyUVAdapter.ViewHolder> {
 
     private GeoActivity activity;
 
@@ -74,7 +73,8 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
                     picker.getTextSubtitleColor(context)
             );
 
-            Integer index = daily.getAirQuality().getAqiIndex();
+
+            Integer index = daily.getUV().getIndex();
             polylineAndHistogramView.setData(
                     null, null,
                     null, null,
@@ -85,8 +85,8 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
                     0f
             );
             polylineAndHistogramView.setLineColors(
-                    daily.getAirQuality().getAqiColor(context),
-                    daily.getAirQuality().getAqiColor(context),
+                    daily.getUV().getUVColor(context),
+                    daily.getUV().getUVColor(context),
                     picker.getLineColor(context)
             );
             polylineAndHistogramView.setShadowColors(
@@ -109,10 +109,10 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                  @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                                  int itemCountPerLine, @Px float itemHeight,
-                                  @NonNull Weather weather, int[] themeColors, MainColorPicker picker) {
+    public DailyUVAdapter(GeoActivity activity, TrendRecyclerView parent,
+                          @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                          int itemCountPerLine, @Px float itemHeight,
+                          @NonNull Weather weather, int[] themeColors, MainColorPicker picker) {
         super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight);
         this.activity = activity;
 
@@ -121,13 +121,13 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
 
         highestIndex = Integer.MIN_VALUE;
         for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
-            Integer index = weather.getDailyForecast().get(i).getAirQuality().getAqiIndex();
+            Integer index = weather.getDailyForecast().get(i).getUV().getIndex();
             if (index != null && index > highestIndex) {
                 highestIndex = index;
             }
         }
         if (highestIndex == 0) {
-            highestIndex = AirQuality.AQI_INDEX_5;
+            highestIndex = UV.UV_INDEX_EXCESSIVE;
         }
 
         this.themeColors = themeColors;
@@ -135,25 +135,9 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
         List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
-                        AirQuality.AQI_INDEX_1,
-                        activity.getString(R.string.aqi_1),
-                        String.valueOf(AirQuality.AQI_INDEX_1),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        AirQuality.AQI_INDEX_3,
-                        activity.getString(R.string.aqi_3),
-                        String.valueOf(AirQuality.AQI_INDEX_3),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        AirQuality.AQI_INDEX_5,
-                        activity.getString(R.string.aqi_5),
-                        String.valueOf(AirQuality.AQI_INDEX_5),
+                        UV.UV_INDEX_HIGH,
+                        activity.getString(R.string.action_alert),
+                        String.valueOf(UV.UV_INDEX_HIGH),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );

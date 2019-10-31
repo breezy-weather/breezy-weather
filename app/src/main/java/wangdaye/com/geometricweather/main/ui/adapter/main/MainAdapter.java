@@ -206,7 +206,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     }
 
     public int getCurrentTemperatureTextHeight(RecyclerView recyclerView) {
-        if (headerCurrentTemperatureTextHeight < 0 && getItemCount() > 0) {
+        if (headerCurrentTemperatureTextHeight <= 0 && getItemCount() > 0) {
             AbstractMainViewHolder holder = (AbstractMainViewHolder) recyclerView.findViewHolderForAdapterPosition(0);
             if (holder instanceof HeaderViewHolder) {
                 headerCurrentTemperatureTextHeight

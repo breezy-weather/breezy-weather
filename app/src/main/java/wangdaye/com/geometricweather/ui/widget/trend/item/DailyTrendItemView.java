@@ -110,6 +110,7 @@ public class DailyTrendItemView extends ViewGroup
         height = Math.max(DisplayUtils.dpToPx(getContext(), MIN_ITEM_HEIGHT), height);
 
         float y = 0;
+        float consumedHeight = 0;
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
 
@@ -128,29 +129,32 @@ public class DailyTrendItemView extends ViewGroup
         y += textMargin;
 
         // day icon.
-        y += iconMargin;
-        dayIconLeft = (width - iconSize) / 2f;
-        dayIconTop = y;
-        y += iconSize;
-        y += iconMargin;
+        if (dayIconDrawable != null) {
+            y += iconMargin;
+            dayIconLeft = (width - iconSize) / 2f;
+            dayIconTop = y;
+            y += iconSize;
+            y += iconMargin;
+        }
+
+        consumedHeight = y;
 
         // margin bottom.
         float marginBottom = DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
+        consumedHeight += marginBottom;
 
         // night icon.
-        nightIconLeft = (width - iconSize) / 2f;
-        nightIconTop = height - marginBottom - iconMargin - iconSize;
+        if (nightIconDrawable != null) {
+            nightIconLeft = (width - iconSize) / 2f;
+            nightIconTop = height - marginBottom - iconMargin - iconSize;
+            consumedHeight += iconSize + 2 * iconMargin;
+        }
 
         // chartItem item view.
         if (chartItem != null) {
             chartItem.measure(
-                    MeasureSpec.makeMeasureSpec(
-                            (int) width,
-                            MeasureSpec.EXACTLY
-                    ), MeasureSpec.makeMeasureSpec(
-                            (int) (nightIconTop - iconMargin - y),
-                            MeasureSpec.EXACTLY
-                    )
+                    MeasureSpec.makeMeasureSpec((int) width, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec((int) (height - consumedHeight), MeasureSpec.EXACTLY)
             );
         }
         trendViewTop = y;
@@ -239,23 +243,37 @@ public class DailyTrendItemView extends ViewGroup
     }
 
     public void setDayIconDrawable(@Nullable Drawable d) {
+        boolean nullDrawable = dayIconDrawable == null;
+
         dayIconDrawable = d;
         if (d != null) {
             d.setVisible(true, true);
             d.setCallback(this);
             d.setBounds(0, 0, iconSize, iconSize);
         }
-        invalidate();
+
+        if (nullDrawable != (d == null)) {
+            requestLayout();
+        } else {
+            invalidate();
+        }
     }
 
     public void setNightIconDrawable(@Nullable Drawable d) {
+        boolean nullDrawable = nightIconDrawable == null;
+
         nightIconDrawable = d;
         if (d != null) {
             d.setVisible(true, true);
             d.setCallback(this);
             d.setBounds(0, 0, iconSize, iconSize);
         }
-        invalidate();
+
+        if (nullDrawable != (d == null)) {
+            requestLayout();
+        } else {
+            invalidate();
+        }
     }
 
     public AbstractIconTarget getDayIconTarget() {

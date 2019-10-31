@@ -136,7 +136,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     }
 
     public int getCurrentTemperatureHeight() {
-        return temperature.getMeasuredHeight();
+        return container.getMeasuredHeight() - temperature.getTop();
     }
 
     // interface.

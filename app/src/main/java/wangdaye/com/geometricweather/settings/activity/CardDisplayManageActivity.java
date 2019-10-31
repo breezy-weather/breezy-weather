@@ -147,10 +147,11 @@ public class CardDisplayManageActivity extends GeoActivity {
         for (CardDisplay card : otherCards) {
             tagList.add(new CardTag(card));
         }
-        tagAdapter = new TagAdapter(tagList, (checked, position) -> {
-            CardTag tag = (CardTag) tagAdapter.removeItem(position);
+        tagAdapter = new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
+            CardTag tag = (CardTag) tagAdapter.removeItem(newPosition);
             cardDisplayAdapter.insertItem(tag.card);
             resetBottomBarVisibility();
+            return true;
         });
 
         bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);

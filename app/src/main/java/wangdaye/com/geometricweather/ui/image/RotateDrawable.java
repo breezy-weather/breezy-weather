@@ -16,10 +16,6 @@ public class RotateDrawable extends Drawable {
 
     public RotateDrawable(@Nullable Drawable drawable) {
         this.drawable = drawable;
-        if (drawable != null) {
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        }
-
         this.degree = 0;
     }
 
@@ -33,13 +29,7 @@ public class RotateDrawable extends Drawable {
         final float cx = (innerBounds.right - innerBounds.left) / 2f;
         final float cy = (innerBounds.bottom - innerBounds.top) / 2f;
 
-        final Rect outerBounds = getBounds();
-
         final int saveCount = canvas.save();
-        canvas.translate(
-                (outerBounds.width() - innerBounds.width()) / 2f,
-                (outerBounds.height() - innerBounds.height()) / 2f
-        );
         canvas.rotate(degree, cx + innerBounds.left, cy + innerBounds.top);
         drawable.draw(canvas);
         canvas.restoreToCount(saveCount);
@@ -62,6 +52,18 @@ public class RotateDrawable extends Drawable {
     @Override
     public int getOpacity() {
         return PixelFormat.OPAQUE;
+    }
+
+    @Override
+    public void setBounds(int left, int top, int right, int bottom) {
+        if (drawable != null) {
+            drawable.setBounds(left, top, right, bottom);
+        }
+    }
+
+    @Override
+    public void setBounds(@NonNull Rect bounds) {
+        setBounds(bounds.left, bounds.top, bounds.right, bounds.bottom);
     }
 
     public void rotate(float degree) {

@@ -31,6 +31,12 @@
             tools:text="星期日天气宜人"
             tools:ignore="RtlHardcoded" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/container_main_daily_trend_card_tagView"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView
             android:id="@+id/container_main_daily_trend_card_trendRecyclerView"
             android:layout_width="match_parent"

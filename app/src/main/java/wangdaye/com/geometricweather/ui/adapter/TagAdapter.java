@@ -28,8 +28,15 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
             super(itemView);
             tagView = itemView.findViewById(R.id.item_tag);
             tagView.setOnClickListener(v -> {
+                boolean consumed = false;
                 if (listener != null) {
-                    listener.onItemChecked(!tagView.isChecked(), getAdapterPosition());
+                    consumed = listener.onItemChecked(!tagView.isChecked(), checkedIndex, getAdapterPosition());
+                }
+                if (!consumed && checkedIndex != getAdapterPosition()) {
+                    int i = checkedIndex;
+                    checkedIndex = getAdapterPosition();
+                    notifyItemChanged(i);
+                    notifyItemChanged(checkedIndex);
                 }
             });
         }
@@ -85,7 +92,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     }
 
     public interface OnTagCheckedListener {
-        void onItemChecked(boolean checked, int position);
+        boolean onItemChecked(boolean checked, int oldPosition, int newPosition);
     }
 
     public interface Tag {

@@ -8,13 +8,13 @@ import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 
-public class DailyAirQualityAdapter extends wangdaye.com.geometricweather.ui.widget.trend.adapter.DailyAirQualityAdapter {
+public class DailyUVAdapter extends wangdaye.com.geometricweather.ui.widget.trend.adapter.DailyUVAdapter {
 
-    public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                  float cardMarginsVertical, float cardMarginsHorizontal,
-                                  int itemCountPerLine, float itemHeight,
-                                  @NonNull Weather weather, int[] themeColors,
-                                  ResourceProvider provider, MainColorPicker picker) {
+    public DailyUVAdapter(GeoActivity activity, TrendRecyclerView parent,
+                          float cardMarginsVertical, float cardMarginsHorizontal,
+                          int itemCountPerLine, float itemHeight,
+                          @NonNull Weather weather, int[] themeColors,
+                          ResourceProvider provider, MainColorPicker picker) {
         super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight,
                 weather, themeColors, picker);
     }

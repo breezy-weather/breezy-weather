@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
 import android.content.Context;
-import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -70,7 +69,7 @@ public class Wind {
     @ColorInt
     public int getWindColor(Context context) {
         if (speed == null) {
-            return Color.TRANSPARENT;
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
         } else if (speed <= WIND_SPEED_3) {
             return ContextCompat.getColor(context, R.color.colorLevel_1);
         } else if (speed <= WIND_SPEED_5) {

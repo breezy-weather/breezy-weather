@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.main.ui;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,12 +11,13 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
     private @Px int scrollOffset;
     private @Px int measuredHeight;
+    private boolean adapterChanged;
 
     public MainLayoutManager() {
         super();
-
         this.scrollOffset = 0;
         this.measuredHeight = 0;
+        this.adapterChanged = true;
     }
 
     @Override
@@ -56,8 +58,16 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
             y += childHeight + params.topMargin + params.bottomMargin;
         }
 
-        scrollOffset = 0;
         measuredHeight = y;
+
+        if (adapterChanged) {
+            scrollOffset = 0;
+            adapterChanged = false;
+        } else {
+            int oldOffset = scrollOffset;
+            scrollOffset = 0;
+            scrollVerticallyBy(oldOffset, recycler, state);
+        }
     }
 
     @Override
@@ -83,6 +93,12 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
         offsetChildrenVertical(-consumed);
         return consumed;
+    }
+
+    @Override
+    public void onAdapterChanged(@Nullable RecyclerView.Adapter oldAdapter, @Nullable RecyclerView.Adapter newAdapter) {
+        super.onAdapterChanged(oldAdapter, newAdapter);
+        this.adapterChanged = true;
     }
 
     @Px

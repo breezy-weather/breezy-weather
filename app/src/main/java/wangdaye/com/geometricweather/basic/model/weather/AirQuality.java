@@ -92,7 +92,7 @@ public class AirQuality {
     @ColorInt
     public int getAqiColor(Context context) {
         if (aqiIndex == null) {
-            return Color.TRANSPARENT;
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
         } else if (aqiIndex <= AQI_INDEX_1) {
             return ContextCompat.getColor(context, R.color.colorLevel_1);
         } else if (aqiIndex <= AQI_INDEX_2) {
@@ -231,5 +231,9 @@ public class AirQuality {
                 || no2 != null
                 || o3 != null
                 || co != null;
+    }
+
+    public boolean isValidIndex() {
+        return aqiIndex != null && aqiIndex > 0;
     }
 }

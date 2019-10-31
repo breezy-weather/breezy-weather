@@ -113,11 +113,13 @@ public class HourlyTrendItemView extends ViewGroup
         y += textMargin;
 
         // day icon.
-        y += iconMargin;
-        iconLeft = (width - iconSize) / 2f;
-        iconTop = y;
-        y += iconSize;
-        y += iconMargin;
+        if (iconDrawable != null) {
+            y += iconMargin;
+            iconLeft = (width - iconSize) / 2f;
+            iconTop = y;
+            y += iconSize;
+            y += iconMargin;
+        }
 
         // margin bottom.
         float marginBottom = DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
@@ -198,13 +200,20 @@ public class HourlyTrendItemView extends ViewGroup
     }
 
     public void setIconDrawable(@Nullable Drawable d) {
+        boolean nullDrawable = iconDrawable == null;
+
         iconDrawable = d;
         if (d != null) {
             d.setVisible(true, true);
             d.setCallback(this);
             d.setBounds(0, 0, iconSize, iconSize);
         }
-        invalidate();
+
+        if (nullDrawable != (d == null)) {
+            requestLayout();
+        } else {
+            invalidate();
+        }
     }
 
     public AbstractIconTarget getIconTarget() {

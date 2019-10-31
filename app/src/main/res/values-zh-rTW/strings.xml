@@ -113,6 +113,11 @@
     <string name="date_format_widget_long">M月d日 EEEE</string>
     <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
 
+    <string name="tag_temperature">氣溫</string>
+    <string name="tag_wind">@string/wind</string>
+    <string name="tag_aqi">@string/air_quality</string>
+    <string name="tag_uv">@string/uv_index</string>
+
     <!-- about. -->
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
