@@ -20,6 +20,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyAirQualityAdapter;
@@ -84,11 +85,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
             subtitle.setText(weather.getCurrent().getDailyForecast());
         }
 
-        List<TagAdapter.Tag> tagList = new ArrayList<>();
-        tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
-        tagList.add(new MainTag(context.getString(R.string.tag_wind), MainTag.Type.WIND));
-        tagList.add(new MainTag(context.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
-        tagList.add(new MainTag(context.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
+        List<TagAdapter.Tag> tagList = getTagList(location.getWeatherSource());
 
         if (tagList.size() == 0) {
             tagView.setVisibility(View.GONE);
@@ -98,15 +95,14 @@ public class DailyViewHolder extends AbstractMainViewHolder {
             tagView.addItemDecoration(
                     new GridMarginsDecoration(
                             context.getResources().getDimension(R.dimen.little_margin),
-                            context.getResources().getDimension(R.dimen.normal_margin),
-                            RecyclerView.HORIZONTAL
+                            context.getResources().getDimension(R.dimen.normal_margin)
                     )
             );
             tagView.setAdapter(
                     new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(weather, (MainTag) tagList.get(newPosition));
                         return false;
-                    }, 0)
+                    }, picker, 0)
             );
         }
 
@@ -185,5 +181,18 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                 );
                 break;
         }
+    }
+
+    private List<TagAdapter.Tag> getTagList(WeatherSource source) {
+        List<TagAdapter.Tag> tagList = new ArrayList<>();
+        tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
+        if (source == WeatherSource.ACCU) {
+            tagList.add(new MainTag(context.getString(R.string.tag_wind), MainTag.Type.WIND));
+        }
+        tagList.add(new MainTag(context.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
+        if (source == WeatherSource.ACCU) {
+            tagList.add(new MainTag(context.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
+        }
+        return tagList;
     }
 }

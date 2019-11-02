@@ -38,7 +38,9 @@
             android:id="@+id/activity_card_display_manage_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/activity_card_display_manage_appBar" />
+            android:layout_below="@id/activity_card_display_manage_appBar"
+            android:paddingBottom="64dp"
+            android:clipToPadding="false" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_card_display_manage_bottomRecyclerView"

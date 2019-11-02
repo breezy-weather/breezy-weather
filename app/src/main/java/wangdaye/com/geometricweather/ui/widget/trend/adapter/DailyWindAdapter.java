@@ -45,6 +45,8 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
 
     private int[] themeColors;
 
+    private int size;
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private DailyTrendItemView dailyItem;
@@ -136,7 +138,8 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
         highestWindSpeed = Integer.MIN_VALUE;
         Float daytimeWindSpeed;
         Float nighttimeWindSpeed;
-        for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
+        boolean valid = false;
+        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
             daytimeWindSpeed = weather.getDailyForecast().get(i).day().getWind().getSpeed();
             nighttimeWindSpeed = weather.getDailyForecast().get(i).night().getWind().getSpeed();
             if (daytimeWindSpeed != null && daytimeWindSpeed > highestWindSpeed) {
@@ -144,6 +147,12 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
             }
             if (nighttimeWindSpeed != null && nighttimeWindSpeed > highestWindSpeed) {
                 highestWindSpeed = nighttimeWindSpeed;
+            }
+            if ((daytimeWindSpeed != null && daytimeWindSpeed != 0)
+                    || (nighttimeWindSpeed != null && nighttimeWindSpeed != 0)
+                    || valid) {
+                valid = true;
+                size ++;
             }
         }
         if (highestWindSpeed == 0) {
@@ -204,6 +213,6 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
 
     @Override
     public int getItemCount() {
-        return weather.getDailyForecast().size();
+        return size;
     }
 }

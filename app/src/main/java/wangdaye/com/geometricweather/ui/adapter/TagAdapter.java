@@ -5,17 +5,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.ui.widget.TagView;
 
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
     private List<Tag> tagList;
     private OnTagCheckedListener listener;
+    private @Nullable MainColorPicker picker;
     private int checkedIndex;
 
     public static final int UNCHECKABLE_INDEX = -1;
@@ -44,6 +47,13 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         void onBindView(Tag tag, boolean checked) {
             tagView.setText(tag.getName());
             setChecked(checked);
+
+            if (picker != null) {
+                tagView.setCheckedTextColor(picker.getRootColor(tagView.getContext()));
+                tagView.setCheckedBackgroundColor(picker.getTextTitleColor(tagView.getContext()));
+                tagView.setUncheckedTextColor(picker.getTextSubtitleColor(tagView.getContext()));
+                tagView.setUncheckedBackgroundColor(picker.getLineColor(tagView.getContext()));
+            }
         }
 
         public void setChecked(boolean checked) {
@@ -52,12 +62,14 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     }
 
     public TagAdapter(List<Tag> tagList, OnTagCheckedListener listener) {
-        this(tagList, listener, UNCHECKABLE_INDEX);
+        this(tagList, listener, null, UNCHECKABLE_INDEX);
     }
 
-    public TagAdapter(List<Tag> tagList, OnTagCheckedListener listener, int checkedIndex) {
+    public TagAdapter(List<Tag> tagList, OnTagCheckedListener listener,
+                      @Nullable MainColorPicker picker, int checkedIndex) {
         this.tagList = tagList;
         this.listener = listener;
+        this.picker = picker;
         this.checkedIndex = checkedIndex;
     }
 

@@ -40,6 +40,8 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
     private int highestIndex;
     private int[] themeColors;
 
+    private int size;
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private DailyTrendItemView dailyItem;
@@ -120,10 +122,15 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
         this.picker = picker;
 
         highestIndex = Integer.MIN_VALUE;
-        for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
+        boolean valid = false;
+        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
             Integer index = weather.getDailyForecast().get(i).getAirQuality().getAqiIndex();
             if (index != null && index > highestIndex) {
                 highestIndex = index;
+            }
+            if ((index != null && index != 0) || valid) {
+                valid = true;
+                size ++;
             }
         }
         if (highestIndex == 0) {
@@ -176,6 +183,6 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
 
     @Override
     public int getItemCount() {
-        return weather.getDailyForecast().size();
+        return size;
     }
 }

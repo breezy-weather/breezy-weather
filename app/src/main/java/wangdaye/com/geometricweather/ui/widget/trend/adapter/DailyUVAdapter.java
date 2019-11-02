@@ -39,6 +39,8 @@ public abstract class DailyUVAdapter extends TrendRecyclerViewAdapter<DailyUVAda
     private int highestIndex;
     private int[] themeColors;
 
+    private int size;
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private DailyTrendItemView dailyItem;
@@ -72,7 +74,6 @@ public abstract class DailyUVAdapter extends TrendRecyclerViewAdapter<DailyUVAda
                     picker.getTextContentColor(context),
                     picker.getTextSubtitleColor(context)
             );
-
 
             Integer index = daily.getUV().getIndex();
             polylineAndHistogramView.setData(
@@ -120,10 +121,15 @@ public abstract class DailyUVAdapter extends TrendRecyclerViewAdapter<DailyUVAda
         this.picker = picker;
 
         highestIndex = Integer.MIN_VALUE;
-        for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
+        boolean valid = false;
+        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
             Integer index = weather.getDailyForecast().get(i).getUV().getIndex();
             if (index != null && index > highestIndex) {
                 highestIndex = index;
+            }
+            if ((index != null && index != 0) || valid) {
+                valid = true;
+                size ++;
             }
         }
         if (highestIndex == 0) {
@@ -160,6 +166,6 @@ public abstract class DailyUVAdapter extends TrendRecyclerViewAdapter<DailyUVAda
 
     @Override
     public int getItemCount() {
-        return weather.getDailyForecast().size();
+        return size;
     }
 }
