@@ -70,7 +70,7 @@ public class DisplayUtils {
     }
 
     public static int getNavigationBarHeight(Context context) {
-        if (!isNavigationBarShow(context)){
+        if (!isNavigationBarVisible(context)){
             return 0;
         }
         int result = 0;
@@ -82,7 +82,7 @@ public class DisplayUtils {
         return result;
     }
 
-    private static boolean isNavigationBarShow(Context context){
+    private static boolean isNavigationBarVisible(Context context){
         WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         if (manager == null) {
             return false;
@@ -140,7 +140,9 @@ public class DisplayUtils {
         }
 
         if (bottomChanged) {
-            if (bottomOverlap) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                alpha = 0;
+            } else if (bottomOverlap) {
                 alpha = 0.15f;
             } else {
                 alpha = 0.1f;

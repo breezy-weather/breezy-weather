@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.remoteviews.config;
 
+import android.os.Build;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -11,6 +12,37 @@ import wangdaye.com.geometricweather.remoteviews.presenter.DayWidgetIMP;
  * */
 
 public class DayWidgetConfigActivity extends AbstractWidgetConfigActivity {
+
+    @Override
+    public void initData() {
+        super.initData();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            String[] widgetStyles = getResources().getStringArray(R.array.widget_styles);
+            String[] widgetStyleValues = getResources().getStringArray(R.array.widget_style_values);
+
+            this.viewTypeValueNow = "rectangle";
+            this.viewTypes = new String[] {
+                    widgetStyles[0],
+                    widgetStyles[1],
+                    widgetStyles[2],
+                    widgetStyles[3],
+                    widgetStyles[4],
+                    widgetStyles[5],
+                    widgetStyles[6],
+                    widgetStyles[7]
+            };
+            this.viewTypeValues = new String[] {
+                    widgetStyleValues[0],
+                    widgetStyleValues[1],
+                    widgetStyleValues[2],
+                    widgetStyleValues[3],
+                    widgetStyleValues[4],
+                    widgetStyleValues[5],
+                    widgetStyleValues[6],
+                    widgetStyleValues[7]
+            };
+        }
+    }
 
     @Override
     public void initView() {

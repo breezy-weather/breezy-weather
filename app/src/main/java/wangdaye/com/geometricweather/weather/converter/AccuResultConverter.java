@@ -212,7 +212,7 @@ public class AccuResultConverter {
                                             (float) forecasts.Day.TotalLiquid.Value,
                                             null,
                                             (float) forecasts.Day.Rain.Value,
-                                            (float) forecasts.Day.Snow.Value,
+                                            (float) (forecasts.Day.Snow.Value * 10),
                                             (float) forecasts.Day.Ice.Value
                                     ),
                                     new PrecipitationProbability(

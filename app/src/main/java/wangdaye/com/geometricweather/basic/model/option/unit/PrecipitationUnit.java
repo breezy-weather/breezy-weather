@@ -24,7 +24,11 @@ public enum PrecipitationUnit {
     }
 
     public String getPrecipitationText(float mm) {
-        return UnitUtils.formatFloat(mm * unitFactor, 1) + unitAbbreviation;
+        return getPrecipitationTextWithoutUnit(mm) + unitAbbreviation;
+    }
+
+    public String getPrecipitationTextWithoutUnit(float mm) {
+        return UnitUtils.formatFloat(mm * unitFactor, 1);
     }
 
     public String getAbbreviation() {

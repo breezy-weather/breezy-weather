@@ -51,11 +51,14 @@
 
                     <TextView
                         android:id="@+id/activity_live_wallpaper_config_weatherKindTitle"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_live_wallpaper_weather_kind"
+                        style="@style/content_text"
                         android:layout_alignParentStart="true"
-                        style="@style/content_text" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:text="@string/feedback_live_wallpaper_weather_kind" />
 
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/activity_live_wallpaper_config_weatherKindSpinner"

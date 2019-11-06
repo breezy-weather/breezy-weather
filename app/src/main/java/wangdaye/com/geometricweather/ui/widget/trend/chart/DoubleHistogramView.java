@@ -102,10 +102,10 @@ public class DoubleHistogramView extends ChartItemView {
         drawTimeLine(canvas);
 
         if (highestHistogramValue != null) {
-            if (highHistogramValue != null && highHistogramValueStr != null) {
+            if (highHistogramValue != null && highHistogramValue != 0 && highHistogramValueStr != null) {
                 drawHighHistogram(canvas);
             }
-            if (lowHistogramValue != null && lowHistogramValueStr != null) {
+            if (lowHistogramValue != null && lowHistogramValue != 0 && lowHistogramValueStr != null) {
                 drawLowHistogram(canvas);
             }
         }

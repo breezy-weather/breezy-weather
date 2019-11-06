@@ -173,7 +173,7 @@ public class WeatherDialog extends GeoDialogFragment
             if (weather.getDailyForecast().get(position).day().getPrecipitationProbability().getTotal() != null) {
                 Float p = weather.getDailyForecast().get(position).day().getPrecipitationProbability().getTotal();
                 builder.append("\n")
-                        .append(getString(R.string.precipitation))
+                        .append(getString(R.string.precipitation_probability))
                         .append(" : ")
                         .append(ProbabilityUnit.PERCENT.getProbabilityText(p == null ? 0 : p));
             }
@@ -191,7 +191,7 @@ public class WeatherDialog extends GeoDialogFragment
             if (weather.getDailyForecast().get(position).night().getPrecipitationProbability().getTotal() != null) {
                 Float p = weather.getDailyForecast().get(position).night().getPrecipitationProbability().getTotal();
                 builder.append("\n")
-                        .append(getString(R.string.precipitation))
+                        .append(getString(R.string.precipitation_probability))
                         .append(" : ")
                         .append(ProbabilityUnit.PERCENT.getProbabilityText(p == null ? 0 : p));
             }
@@ -205,7 +205,7 @@ public class WeatherDialog extends GeoDialogFragment
             if (weather.getHourlyForecast().get(position).getPrecipitationProbability().getTotal() != null) {
                 Float p = weather.getHourlyForecast().get(position).getPrecipitationProbability().getTotal();
                 builder.append("\n")
-                        .append(getString(R.string.precipitation))
+                        .append(getString(R.string.precipitation_probability))
                         .append(" : ")
                         .append(ProbabilityUnit.PERCENT.getProbabilityText(p == null ? 0 : p));
             }

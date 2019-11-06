@@ -63,7 +63,8 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
-        if (viewStyle.equals("pixel") || viewStyle.equals("nano") || viewStyle.equals("oreo")) {
+        if (viewStyle.equals("pixel") || viewStyle.equals("nano")
+                || viewStyle.equals("oreo") || viewStyle.equals("oreo_google_sans")) {
             color.showCard = false;
             color.darkText = textColor.equals("dark")
                     || (textColor.equals("auto") && isLightWallpaper(context));
@@ -132,6 +133,10 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "oreo":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_day_oreo);
                 break;
+
+            case "oreo_google_sans":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_oreo_google_sans);
+                break;
         }
         Weather weather = location.getWeather();
         if (weather == null) {
@@ -157,7 +162,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                         color.darkText
                 )
         );
-        if (!viewStyle.equals("oreo")) {
+        if (!viewStyle.equals("oreo") && !viewStyle.equals("oreo_google_sans")) {
             views.setTextViewText(
                     R.id.widget_day_title,
                     getTitleText(context, location, viewStyle, temperatureUnit)
@@ -278,6 +283,10 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "oreo":
                 return weather.getCurrent().getTemperature().getTemperature(unit);
+
+            case "oreo_google_sans":
+                return unit.getTemperature(weather.getCurrent().getTemperature().getTemperature())
+                        + unit.getLongAbbreviation();
         }
         return "";
     }
@@ -367,6 +376,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 return context.getResources().getDimensionPixelSize(R.dimen.widget_current_weather_icon_size);
 
             case "oreo":
+            case "oreo_google_sans":
                 return context.getResources().getDimensionPixelSize(R.dimen.widget_large_title_text_size);
         }
         return 0;
@@ -381,6 +391,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 return context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size);
 
             case "oreo":
+            case "oreo_google_sans":
                 return context.getResources().getDimensionPixelSize(R.dimen.widget_large_title_text_size);
         }
         return 0;
@@ -424,7 +435,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         }
 
         // title.
-        if (viewStyle.equals("oreo")) {
+        if (viewStyle.equals("oreo") || viewStyle.equals("oreo_google_sans")) {
             views.setOnClickPendingIntent(
                     R.id.widget_day_title,
                     getCalendarPendingIntent(

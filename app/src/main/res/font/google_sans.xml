@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="UnusedAttribute">
+    <font
+        android:fontWeight="100" android:fontStyle="normal" android:font="@font/product_sans_thin"
+        app:fontWeight="100" app:fontStyle="normal" app:font="@font/product_sans_thin"/>
+    <font
+        android:fontWeight="100" android:fontStyle="italic" android:font="@font/product_sans_thin_italic"
+        app:fontWeight="100" app:fontStyle="italic" app:font="@font/product_sans_thin_italic" />
+    <font
+        android:fontWeight="300" android:fontStyle="normal" android:font="@font/product_sans_light"
+        app:fontWeight="300" app:fontStyle="normal" app:font="@font/product_sans_light" />
+    <font
+        android:fontWeight="300" android:fontStyle="italic" android:font="@font/product_sans_light_italic"
+        app:fontWeight="300" app:fontStyle="italic" app:font="@font/product_sans_light_italic" />
+    <font
+        android:fontWeight="400" android:fontStyle="normal" android:font="@font/product_sans_regular"
+        app:fontWeight="400" app:fontStyle="normal" app:font="@font/product_sans_regular" />
+    <font
+        android:fontWeight="400" android:fontStyle="italic" android:font="@font/product_sans_italic"
+        app:fontWeight="400" app:fontStyle="italic" app:font="@font/product_sans_italic" />
+    <font
+        android:fontWeight="500" android:fontStyle="normal" android:font="@font/product_sans_medium"
+        app:fontWeight="500" app:fontStyle="normal" app:font="@font/product_sans_medium" />
+    <font
+        android:fontWeight="500" android:fontStyle="italic" android:font="@font/product_sans_medium_italic"
+        app:fontWeight="500" app:fontStyle="italic" app:font="@font/product_sans_medium_italic" />
+    <font
+        android:fontWeight="900" android:fontStyle="normal" android:font="@font/product_sans_black"
+        app:fontWeight="900" app:fontStyle="normal" app:font="@font/product_sans_black" />
+    <font
+        android:fontWeight="900" android:fontStyle="italic" android:font="@font/product_sans_black_italic"
+        app:fontWeight="900" app:fontStyle="italic" app:font="@font/product_sans_black_italic" />
+    <font
+        android:fontWeight="700" android:fontStyle="normal" android:font="@font/product_sans_bold"
+        app:fontWeight="700" app:fontStyle="normal" app:font="@font/product_sans_bold" />
+    <font
+        android:fontWeight="700" android:fontStyle="italic" android:font="@font/product_sans_bold_italic"
+        app:fontWeight="700" app:fontStyle="italic" app:font="@font/product_sans_bold_italic" />
+</font-family>

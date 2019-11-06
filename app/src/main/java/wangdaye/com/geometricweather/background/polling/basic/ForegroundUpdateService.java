@@ -58,12 +58,12 @@ public abstract class ForegroundUpdateService extends UpdateService {
     }
 
     @Override
-    public void stopService() {
+    public void stopService(boolean updateFailed) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             stopForeground(true);
             NotificationManagerCompat.from(this).cancel(getForegroundNotificationId());
         }
-        stopSelf();
+        super.stopService(updateFailed);
     }
 
     public NotificationCompat.Builder getForegroundNotification(int index, int total) {

@@ -28,7 +28,7 @@ import android.widget.LinearLayout;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -457,8 +457,8 @@ public class MainActivity extends GeoActivity
     private void refreshBackgroundViews(boolean resetBackground, boolean refreshRemoteViews) {
         if (resetBackground) {
             Observable.create(emitter -> PollingManager.resetAllBackgroundTask(this, false))
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
                     .delay(1, TimeUnit.SECONDS)
                     .subscribe();
         }
@@ -468,8 +468,8 @@ public class MainActivity extends GeoActivity
                 Location location = viewModel.getDefaultLocation();
                 WidgetUtils.updateWidgetIfNecessary(this, location);
                 NotificationUtils.updateNotificationIfNecessary(this, location);
-            }).subscribeOn(AndroidSchedulers.mainThread())
-                    .observeOn(AndroidSchedulers.mainThread())
+            }).subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
                     .delay(1, TimeUnit.SECONDS)
                     .subscribe();
         }

@@ -15,6 +15,7 @@
     <string name="refresh_at">Refresh at</string>
     <string name="local_time">Local time</string>
     <string name="precipitation">Precipitation</string>
+    <string name="precipitation_probability">Precipitation probability</string>
     <string name="maxi_temp">daytime</string>
     <string name="mini_temp">nighttime</string>
     <string name="time">time</string>
@@ -68,6 +69,11 @@
     <string name="wind_11">Violent storm</string>
     <string name="wind_12">Hurricane/Typhoon</string>
 
+    <string name="precipitation_light">Drizzle</string>
+    <string name="precipitation_middle">Rain</string>
+    <string name="precipitation_heavy">Heavy rain</string>
+    <string name="precipitation_rainstorm">Rainstorm</string>
+
     <string name="aqi_1">Fresh air</string>
     <string name="aqi_2">Clear air</string>
     <string name="aqi_3">Slight polluted</string>
@@ -120,6 +126,7 @@
 
     <string name="tag_temperature">Temperature</string>
     <string name="tag_wind">@string/wind</string>
+    <string name="tag_precipitation">@string/precipitation</string>
     <string name="tag_aqi">@string/air_quality</string>
     <string name="tag_uv">@string/uv_index</string>
 

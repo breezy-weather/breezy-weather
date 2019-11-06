@@ -21,12 +21,14 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyAirQualityAdapter;
-import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyTemperatureAdapter;
-import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyUVAdapter;
-import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyWindAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.trend.DailyAirQualityAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.trend.DailyPrecipitationAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.trend.DailyTemperatureAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.trend.DailyUVAdapter;
+import wangdaye.com.geometricweather.main.ui.adapter.trend.DailyWindAdapter;
 import wangdaye.com.geometricweather.main.ui.adapter.main.MainTag;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -85,9 +87,8 @@ public class DailyViewHolder extends AbstractMainViewHolder {
             subtitle.setText(weather.getCurrent().getDailyForecast());
         }
 
-        List<TagAdapter.Tag> tagList = getTagList(location.getWeatherSource());
-
-        if (tagList.size() == 0) {
+        List<TagAdapter.Tag> tagList = getTagList(weather, location.getWeatherSource());
+        if (tagList.size() < 2) {
             tagView.setVisibility(View.GONE);
         } else {
             tagView.setLayoutManager(
@@ -95,7 +96,8 @@ public class DailyViewHolder extends AbstractMainViewHolder {
             tagView.addItemDecoration(
                     new GridMarginsDecoration(
                             context.getResources().getDimension(R.dimen.little_margin),
-                            context.getResources().getDimension(R.dimen.normal_margin)
+                            context.getResources().getDimension(R.dimen.normal_margin),
+                            tagView
                     )
             );
             tagView.setAdapter(
@@ -151,6 +153,22 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                 );
                 break;
 
+            case PRECIPITATION:
+                trendRecyclerView.setAdapter(
+                        new DailyPrecipitationAdapter(
+                                (GeoActivity) context, trendRecyclerView,
+                                cardMarginsVertical, cardMarginsHorizontal,
+                                DisplayUtils.isTabletDevice(context) ? 7 : 5,
+                                context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                                weather,
+                                weatherView.getThemeColors(picker.isLightTheme()),
+                                provider,
+                                picker,
+                                SettingsOptionManager.getInstance(context).getPrecipitationUnit()
+                        )
+                );
+                break;
+
             case AIR_QUALITY:
                 trendRecyclerView.setAdapter(
                         new DailyAirQualityAdapter(
@@ -160,7 +178,6 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
                                 weather,
                                 weatherView.getThemeColors(picker.isLightTheme()),
-                                provider,
                                 picker
                         )
                 );
@@ -175,7 +192,6 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
                                 weather,
                                 weatherView.getThemeColors(picker.isLightTheme()),
-                                provider,
                                 picker
                         )
                 );
@@ -183,16 +199,32 @@ public class DailyViewHolder extends AbstractMainViewHolder {
         }
     }
 
-    private List<TagAdapter.Tag> getTagList(WeatherSource source) {
+    private List<TagAdapter.Tag> getTagList(Weather weather, WeatherSource source) {
         List<TagAdapter.Tag> tagList = new ArrayList<>();
         tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
-        if (source == WeatherSource.ACCU) {
-            tagList.add(new MainTag(context.getString(R.string.tag_wind), MainTag.Type.WIND));
-        }
         tagList.add(new MainTag(context.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
         if (source == WeatherSource.ACCU) {
+            tagList.add(new MainTag(context.getString(R.string.tag_wind), MainTag.Type.WIND));
             tagList.add(new MainTag(context.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
+            tagList.addAll(getPrecipitationTagList(weather));
         }
         return tagList;
+    }
+
+    private List<TagAdapter.Tag> getPrecipitationTagList(Weather weather) {
+        int precipitationCount = 0;
+        for (Daily d : weather.getDailyForecast()) {
+            if ((d.day().getWeatherCode().isPercipitation() || d.night().getWeatherCode().isPercipitation())
+                    && (d.day().getPrecipitation().isValid() || d.night().getPrecipitation().isValid())) {
+                precipitationCount ++;
+            }
+        }
+        if (precipitationCount < 3) {
+            return new ArrayList<>();
+        } else {
+            List<TagAdapter.Tag> list = new ArrayList<>();
+            list.add(new MainTag(context.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
+            return list;
+        }
     }
 }

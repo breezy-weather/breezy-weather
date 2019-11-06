@@ -73,7 +73,7 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     private void setLocation(GeoActivity activity, @Nullable String formattedId,
-                            boolean updatedInBackground) {
+                             boolean updatedInBackground) {
         assert locationList.getValue() != null;
         List<Location> dataList = locationList.getValue().dataList;
 
@@ -184,21 +184,21 @@ public class MainActivityViewModel extends ViewModel {
                 // request permission.
                 activity.requestPermissions(permissionList.toArray(new String[0]), 0,
                         (requestCode, permission, grantResult) -> {
-                    for (int i = 0; i < permission.length && i < grantResult.length; i++) {
-                        if (isPivotalPermission(permission[i])
-                                && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
-                            if (location.isUsable()) {
-                                repository.getWeather(activity,
-                                        currentLocation, locationList, totalLocationList, false);
-                            } else {
-                                currentLocation.setValue(
-                                        LocationResource.error(location, true));
+                            for (int i = 0; i < permission.length && i < grantResult.length; i++) {
+                                if (isPivotalPermission(permission[i])
+                                        && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
+                                    if (location.isUsable()) {
+                                        repository.getWeather(activity,
+                                                currentLocation, locationList, totalLocationList, false);
+                                    } else {
+                                        currentLocation.setValue(
+                                                LocationResource.error(location, true));
+                                    }
+                                    return;
+                                }
                             }
-                            return;
-                        }
-                    }
-                    repository.getWeather(activity, currentLocation, locationList, totalLocationList, true);
-                });
+                            repository.getWeather(activity, currentLocation, locationList, totalLocationList, true);
+                        });
                 return;
             }
         }

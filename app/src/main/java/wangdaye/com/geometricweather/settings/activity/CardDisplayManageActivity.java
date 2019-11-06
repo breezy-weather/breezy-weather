@@ -159,7 +159,7 @@ public class CardDisplayManageActivity extends GeoActivity {
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         bottomRecyclerView.addItemDecoration(
                 new GridMarginsDecoration(
-                        getResources().getDimension(R.dimen.normal_margin)
+                        getResources().getDimension(R.dimen.normal_margin), bottomRecyclerView
                 )
         );
         bottomRecyclerView.setAdapter(tagAdapter);

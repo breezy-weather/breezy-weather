@@ -133,7 +133,7 @@ public class PolylineAndHistogramView extends ChartItemView {
 
         drawTimeLine(canvas);
 
-        if (histogramValue != null && histogramValueStr != null
+        if (histogramValue != null && histogramValue != 0 && histogramValueStr != null
                 && highestHistogramValue != null && lowestHistogramValue != null) {
             drawHistogram(canvas);
         }

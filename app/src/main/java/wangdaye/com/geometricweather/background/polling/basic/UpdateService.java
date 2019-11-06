@@ -46,7 +46,7 @@ public abstract class UpdateService extends Service
         disposable = Observable.timer(30, TimeUnit.SECONDS)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete(this::stopService)
+                .doOnComplete(() -> stopService(true))
                 .subscribe();
     }
 
@@ -74,9 +74,12 @@ public abstract class UpdateService extends Service
 
     public abstract void updateView(Context context, Location location);
 
-    public abstract void handlePollingResult(boolean failed);
+    public abstract void handlePollingResult(boolean updateSucceed);
 
-    public abstract void stopService();
+    public void stopService(boolean updateFailed) {
+        handlePollingResult(updateFailed);
+        stopSelf();
+    }
 
     // interface.
 
@@ -107,7 +110,6 @@ public abstract class UpdateService extends Service
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
         }
-        handlePollingResult(failed);
-        stopService();
+        stopService(failed);
     }
 }

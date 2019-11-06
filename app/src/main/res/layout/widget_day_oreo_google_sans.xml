@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_day"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/black">
+
+    <LinearLayout
+        android:id="@+id/widget_day_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        tools:ignore="UselessParent">
+
+        <TextClock
+            android:id="@+id/widget_day_title"
+            android:textSize="@dimen/widget_large_title_text_size"
+            android:format24Hour="@string/date_format_widget_oreo_style"
+            android:format12Hour="@string/date_format_widget_oreo_style"
+            android:fontFamily="@font/google_sans"
+            style="@style/widget_text_clock"
+            tools:text="11月14日星期六 │ "
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/widget_day_icon"
+            android:layout_width="@dimen/widget_mini_weather_icon_size"
+            android:layout_height="@dimen/widget_mini_weather_icon_size"
+            android:src="@drawable/weather_clear_day"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/widget_day_subtitle"
+            android:layout_marginStart="@dimen/little_margin"
+            android:textSize="@dimen/widget_large_title_text_size"
+            android:textColor="@color/colorTextLight"
+            android:shadowColor="@color/colorTextDark2nd"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:fontFamily="@font/google_sans"
+            style="@style/content_text"
+            tools:text="24 ℃"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+    </LinearLayout>
+
+</RelativeLayout>

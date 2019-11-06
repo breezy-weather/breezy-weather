@@ -1,6 +1,12 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
+import android.content.Context;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
+import wangdaye.com.geometricweather.R;
 
 /**
  * Precipitation.
@@ -14,6 +20,11 @@ public class Precipitation {
     @Nullable private Float rain;
     @Nullable private Float snow;
     @Nullable private Float ice;
+
+    public static final float PRECIPITATION_LIGHT = 10;
+    public static final float PRECIPITATION_MIDDLE = 25;
+    public static final float PRECIPITATION_HEAVY = 50;
+    public static final float PRECIPITATION_RAINSTORM = 100;
 
     public Precipitation(@Nullable Float total,
                          @Nullable Float thunderstorm,
@@ -50,5 +61,26 @@ public class Precipitation {
     @Nullable
     public Float getIce() {
         return ice;
+    }
+
+    public boolean isValid() {
+        return total != null && total > 0;
+    }
+
+    @ColorInt
+    public int getPrecipitationColor(Context context) {
+        if (total == null) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (total <= PRECIPITATION_LIGHT) {
+            return ContextCompat.getColor(context, R.color.colorLevel_1);
+        } else if (total <= PRECIPITATION_MIDDLE) {
+            return ContextCompat.getColor(context, R.color.colorLevel_2);
+        } else if (total <= PRECIPITATION_HEAVY) {
+            return ContextCompat.getColor(context, R.color.colorLevel_3);
+        } else if (total <= PRECIPITATION_RAINSTORM) {
+            return ContextCompat.getColor(context, R.color.colorLevel_4);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorLevel_5);
+        }
     }
 }

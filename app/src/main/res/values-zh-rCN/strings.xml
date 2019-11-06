@@ -11,7 +11,8 @@
     <string name="today">今日</string>
     <string name="refresh_at">更新于</string>
     <string name="local_time">当地时间</string>
-    <string name="precipitation">降水概率</string>
+    <string name="precipitation">降水量</string>
+    <string name="precipitation_probability">降水概率</string>
     <string name="time">时间</string>
     <string name="day">白天</string>
     <string name="night">夜间</string>
@@ -62,6 +63,11 @@
     <string name="wind_10">十级</string>
     <string name="wind_11">十一级</string>
     <string name="wind_12">灾害级</string>
+
+    <string name="precipitation_light">小雨</string>
+    <string name="precipitation_middle">中雨</string>
+    <string name="precipitation_heavy">大雨</string>
+    <string name="precipitation_rainstorm">暴雨</string>
 
     <string name="aqi_1">优</string>
     <string name="aqi_2">良</string>
