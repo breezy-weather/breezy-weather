@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_main_pollen"
+    android:layout_margin="0dp"
+    style="@style/material_card">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/container_main_pollen_title"
+            android:text="@string/pollen"
+            android:layout_margin="@dimen/normal_margin"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
+            style="@style/content_text" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/container_main_pollen_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:paddingBottom="@dimen/little_margin"
+            tools:ignore="UnusedAttribute" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

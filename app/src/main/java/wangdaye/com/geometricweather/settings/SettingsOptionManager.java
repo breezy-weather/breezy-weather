@@ -65,6 +65,7 @@ public class SettingsOptionManager {
     private static final String DEFAULT_CARD_DISPLAY = "daily_overview"
             + "&hourly_overview"
             + "&air_quality"
+            + "&allergen"
             + "&sunrise_sunset"
             + "&life_details";
 

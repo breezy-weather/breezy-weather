@@ -85,11 +85,17 @@
     <string name="phase_third">下弦月</string>
     <string name="phase_waning_crescent">殘月</string>
 
+    <string name="grass">草地花粉</string>
+    <string name="mold">黴菌</string>
+    <string name="ragweed">豚草花粉</string>
+    <string name="tree">樹木花粉</string>
+
     <string name="daily_overview">每日概覽</string>
     <string name="hourly_overview">小時概覽</string>
     <string name="minutely_overview">分鐘概覽</string>
     <string name="precipitation_overview">降水概覽</string>
     <string name="air_quality">空氣質量</string>
+    <string name="pollen">過敏原</string>
     <string name="life_details">詳情數據</string>
     <string name="sunrise_sunset">日月升落</string>
 
