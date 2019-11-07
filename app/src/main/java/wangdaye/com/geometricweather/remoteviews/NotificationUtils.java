@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -47,7 +48,7 @@ public class NotificationUtils {
 */
     // notification.
 
-    public static void updateNotificationIfNecessary(Context context, Location location) {
+    public static void updateNotificationIfNecessary(Context context, @NonNull Location location) {
         if (NormalNotificationIMP.isEnable(context)) {
             NormalNotificationIMP.buildNotificationAndSendIt(context, location);
         }

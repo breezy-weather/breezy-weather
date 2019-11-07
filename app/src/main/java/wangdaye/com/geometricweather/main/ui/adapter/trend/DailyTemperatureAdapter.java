@@ -2,6 +2,8 @@ package wangdaye.com.geometricweather.main.ui.adapter.trend;
 
 import androidx.annotation.NonNull;
 
+import java.util.TimeZone;
+
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -15,14 +17,12 @@ import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 
 public class DailyTemperatureAdapter extends wangdaye.com.geometricweather.ui.widget.trend.adapter.DailyTemperatureAdapter {
 
+    public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, float cardMarginsVertical, float cardMarginsHorizontal, int itemCountPerLine, float itemHeight, @NonNull Weather weather, @NonNull TimeZone timeZone, int[] themeColors, ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
+        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight, weather, timeZone, themeColors, provider, picker, unit);
+    }
 
-    public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                   float cardMarginsVertical, float cardMarginsHorizontal,
-                                   int itemCountPerLine, float itemHeight,
-                                   @NonNull Weather weather, int[] themeColors,
-                                   ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
-        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight,
-                weather, themeColors, true, provider, picker, unit);
+    public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, float cardMarginsVertical, float cardMarginsHorizontal, int itemCountPerLine, float itemHeight, @NonNull Weather weather, @NonNull TimeZone timeZone, int[] themeColors, boolean showPrecipitationProbability, ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
+        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight, weather, timeZone, themeColors, showPrecipitationProbability, provider, picker, unit);
     }
 
     @Override

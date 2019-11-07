@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.text.TextUtils;
@@ -11,22 +12,26 @@ import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.basic.model.resource.ListResource;
-import wangdaye.com.geometricweather.basic.model.resource.LocationResource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.main.model.Indicator;
+import wangdaye.com.geometricweather.main.model.LocationResource;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
-public class MainActivityViewModel extends ViewModel {
+public class MainActivityViewModel extends ViewModel
+        implements MainActivityRepository.OnLocationCompletedListener {
 
-    private MutableLiveData<ListResource<Location>> locationList;
     private MutableLiveData<LocationResource> currentLocation;
-    private List<Location> totalLocationList;
+    private MutableLiveData<Indicator> indicator;
+
+    private List<Location> locationList;
+    private int currentPositionIndex;
     private int currentIndex;
 
     private MainActivityRepository repository;
@@ -34,9 +39,14 @@ public class MainActivityViewModel extends ViewModel {
     private static final int INVALID_LOCATION_INDEX = -1;
 
     public MainActivityViewModel() {
-        locationList = new MutableLiveData<>();
         currentLocation = new MutableLiveData<>();
-        currentIndex = INVALID_LOCATION_INDEX;
+
+        indicator = new MutableLiveData<>();
+        indicator.setValue(new Indicator(1, 0));
+
+        locationList = new ArrayList<>();
+        currentPositionIndex = INVALID_LOCATION_INDEX;
+        currentIndex = 0;
     }
 
     public void reset(GeoActivity activity) {
@@ -56,37 +66,31 @@ public class MainActivityViewModel extends ViewModel {
         }
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(activity);
-
-        totalLocationList = databaseHelper.readLocationList();
-        for (int i = 0; i < totalLocationList.size(); i ++) {
-            totalLocationList.get(i).setWeather(databaseHelper.readWeather(totalLocationList.get(i)));
+        locationList = databaseHelper.readLocationList();
+        for (int i = 0; i < locationList.size(); i ++) {
+            locationList.get(i).setWeather(databaseHelper.readWeather(locationList.get(i)));
+            if (locationList.get(i).isCurrentPosition()) {
+                currentPositionIndex = i;
+            }
+            if (locationList.get(i).equals(formattedId)) {
+                currentIndex = i;
+            }
         }
 
-        List<Location> validList = MainActivityRepository.copyValidLocations(activity, totalLocationList);
-        locationList.setValue(new ListResource<>(validList));
-
-        setLocation(activity, formattedId, false);
+        setLocation(activity, true, false);
     }
 
     public void setLocation(GeoActivity activity, int offset) {
-        setLocation(activity, getLocationFromList(offset).getFormattedId(), false);
+        currentIndex = getLocationIndexFromList(activity, offset);
+        setLocation(activity, offset != 0, false);
     }
 
-    private void setLocation(GeoActivity activity, @Nullable String formattedId,
-                             boolean updatedInBackground) {
-        assert locationList.getValue() != null;
-        List<Location> dataList = locationList.getValue().dataList;
+    private void setLocation(GeoActivity activity, boolean resetIndicator, boolean updatedInBackground) {
+        Location current = locationList.get(currentIndex);
 
-        int index = indexLocation(dataList, formattedId);
-        if (index == INVALID_LOCATION_INDEX) {
-            index = currentIndex != INVALID_LOCATION_INDEX ? currentIndex : 0;
+        if (resetIndicator) {
+            resetIndicator(activity);
         }
-        if (index < 0 || index >= dataList.size()) {
-            index = 0;
-        }
-        currentIndex = index;
-
-        Location current = dataList.get(index);
 
         float pollingIntervalInHour = SettingsOptionManager.getInstance(activity)
                 .getUpdateInterval()
@@ -99,6 +103,43 @@ public class MainActivityViewModel extends ViewModel {
         } else {
             currentLocation.setValue(LocationResource.loading(current));
             updateWeather(activity);
+        }
+    }
+
+    private void resetIndicator(Context context) {
+        int index = 0;
+        int total = 0;
+        for (int i = 0; i < locationList.size(); i ++) {
+            if (i == currentIndex) {
+                index = total;
+            }
+            if (currentPositionIndex == INVALID_LOCATION_INDEX
+                    || !locationList.get(i).isResidentPosition()
+                    || !locationList.get(i).isCloseTo(context, locationList.get(currentPositionIndex))) {
+                total ++;
+            }
+        }
+        indicator.setValue(new Indicator(total, index));
+    }
+
+    public void updateLocationFromBackground(GeoActivity activity, @Nullable String formattedId) {
+        int index = indexLocation(locationList, formattedId);
+        if (index == INVALID_LOCATION_INDEX) {
+            return;
+        }
+
+        Location location = DatabaseHelper.getInstance(activity).readLocation(locationList.get(index));
+        if (location == null) {
+            return;
+        }
+
+        location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
+        locationList.set(index, location);
+        if (index == currentIndex) {
+            if (activity.isForeground()) {
+                SnackbarUtils.showSnackbar(activity, activity.getString(R.string.feedback_updated_in_background));
+            }
+            setLocation(activity, location.isCurrentPosition(), true);
         }
     }
 
@@ -116,50 +157,25 @@ public class MainActivityViewModel extends ViewModel {
         return INVALID_LOCATION_INDEX;
     }
 
-    public void updateLocationFromBackground(GeoActivity activity, @Nullable String formattedId) {
-        int index = indexLocation(totalLocationList, formattedId);
-        if (index == INVALID_LOCATION_INDEX) {
-            return;
+    public int getLocationIndexFromList(GeoActivity activity, int offset) {
+        if (offset == 0) {
+            return currentIndex;
         }
 
-        Location location = totalLocationList.get(index);
-        location = DatabaseHelper.getInstance(activity).readLocation(location);
-        if (location == null) {
-            return;
+        int index = currentIndex;
+        index += locationList.size() + offset;
+        index %= locationList.size();
+        while (currentPositionIndex != INVALID_LOCATION_INDEX
+                && locationList.get(index).isResidentPosition()
+                && locationList.get(index).isCloseTo(activity, locationList.get(currentPositionIndex))) {
+            index += locationList.size() + (offset > 0 ? 1 : -1);
+            index %= locationList.size();
         }
-        location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
-
-        totalLocationList.set(index, location);
-        List<Location> validList = MainActivityRepository.copyValidLocations(activity, totalLocationList);
-        locationList.setValue(new ListResource<>(validList));
-
-        index = indexLocation(validList, formattedId);
-        if (index != INVALID_LOCATION_INDEX && index == currentIndex) {
-            if (activity.isForeground()) {
-                SnackbarUtils.showSnackbar(
-                        activity, activity.getString(R.string.feedback_updated_in_background));
-            }
-            setLocation(activity, location.getFormattedId(), true);
-        }
+        return index;
     }
 
-    public Location getDefaultLocation() {
-        assert locationList.getValue() != null;
-        return locationList.getValue().dataList.get(0);
-    }
-
-    public Location getLocationFromList(int offset) {
-        assert locationList.getValue() != null;
-
-        int index = currentIndex + offset;
-        int size = locationList.getValue().dataList.size();
-
-        while (index < 0) {
-            index += size;
-        }
-        index %= size;
-
-        return locationList.getValue().dataList.get(index);
+    public Location getLocationFromList(GeoActivity activity, int offset) {
+        return locationList.get(getLocationIndexFromList(activity, offset));
     }
 
     public void updateWeather(GeoActivity activity) {
@@ -189,7 +205,7 @@ public class MainActivityViewModel extends ViewModel {
                                         && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
                                     if (location.isUsable()) {
                                         repository.getWeather(activity,
-                                                currentLocation, locationList, totalLocationList, false);
+                                                currentLocation, locationList, false, this);
                                     } else {
                                         currentLocation.setValue(
                                                 LocationResource.error(location, true));
@@ -197,13 +213,13 @@ public class MainActivityViewModel extends ViewModel {
                                     return;
                                 }
                             }
-                            repository.getWeather(activity, currentLocation, locationList, totalLocationList, true);
+                            repository.getWeather(activity, currentLocation, locationList, true, this);
                         });
                 return;
             }
         }
 
-        repository.getWeather(activity, currentLocation, locationList, totalLocationList, location.isCurrentPosition());
+        repository.getWeather(activity, currentLocation, locationList, location.isCurrentPosition(), this);
     }
 
     private boolean isPivotalPermission(String permission) {
@@ -211,26 +227,42 @@ public class MainActivityViewModel extends ViewModel {
                 || permission.equals(Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
-    public MutableLiveData<ListResource<Location>> getLocationList() {
-        return locationList;
-    }
-
     public MutableLiveData<LocationResource> getCurrentLocation() {
         return currentLocation;
     }
 
-    public int getCurrentIndex() {
-        return currentIndex;
+    public MutableLiveData<Indicator> getIndicator() {
+        return indicator;
     }
 
-    public int getLocationCount() {
-        if (locationList == null
-                || locationList.getValue() == null) {
-            return 0;
+    @Nullable
+    public Location getCurrentLocationValue() {
+        LocationResource resource = currentLocation.getValue();
+        if (resource != null) {
+            return resource.data;
         } else {
-            locationList.getValue();
+            return null;
         }
-        return locationList.getValue().dataList.size();
+    }
+
+    public int getIndicatorCountValue() {
+        if (indicator.getValue() != null) {
+            return indicator.getValue().total;
+        } else {
+            return 1;
+        }
+    }
+
+    public int getIndicatorIndexValue() {
+        if (indicator.getValue() != null) {
+            return indicator.getValue().index;
+        } else {
+            return 0;
+        }
+    }
+
+    public List<Location> getLocationList() {
+        return locationList;
     }
 
     @Override
@@ -239,5 +271,12 @@ public class MainActivityViewModel extends ViewModel {
         if (repository != null) {
             repository.cancel();
         }
+    }
+
+    // on location completed listener.
+
+    @Override
+    public void onCompleted(Context context) {
+        resetIndicator(context);
     }
 }

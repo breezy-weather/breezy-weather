@@ -163,12 +163,11 @@ public class MainActivity extends GeoActivity
                 ensureResourceProvider();
                 ensureColorPicker();
 
-                ThreadManager.getInstance().execute(() ->
-                        NotificationUtils.updateNotificationIfNecessary(
-                                MainActivity.this,
-                                viewModel.getDefaultLocation()
-                        )
-                );
+                Location location = viewModel.getCurrentLocationValue();
+                if (location != null) {
+                    ThreadManager.getInstance().execute(() ->
+                            NotificationUtils.updateNotificationIfNecessary(this, location));
+                }
                 resetUIUpdateFlag();
                 viewModel.reset(this);
 
@@ -286,17 +285,14 @@ public class MainActivity extends GeoActivity
             }
         });
 
-        viewModel.getLocationList().observe(this, resource -> {
-            int currentIndex = viewModel.getCurrentIndex();
-            int totalCount = viewModel.getLocationCount();
-
-            if (switchLayout.getPosition() != currentIndex
-                    || switchLayout.getTotalCount() != totalCount) {
-                switchLayout.setData(currentIndex, totalCount);
+        viewModel.getIndicator().observe(this, resource -> {
+            if (switchLayout.getTotalCount() != resource.total
+                    || switchLayout.getPosition() != resource.index) {
+                switchLayout.setData(resource.index, resource.total);
                 indicator.setSwitchView(switchLayout);
             }
 
-            if (totalCount > 1) {
+            if (resource.total > 1) {
                 indicator.setVisibility(View.VISIBLE);
             } else {
                 indicator.setVisibility(View.GONE);
@@ -390,7 +386,7 @@ public class MainActivity extends GeoActivity
 
         refreshBackgroundViews(
                 false,
-                !updatedInBackground && viewModel.getCurrentIndex() == 0
+                !updatedInBackground && viewModel.getIndicatorIndexValue() == 0
         );
     }
 
@@ -465,19 +461,19 @@ public class MainActivity extends GeoActivity
 
         if (refreshRemoteViews) {
             Observable.create(emitter -> {
-                Location location = viewModel.getDefaultLocation();
-                WidgetUtils.updateWidgetIfNecessary(this, location);
-                NotificationUtils.updateNotificationIfNecessary(this, location);
+                Location location = viewModel.getCurrentLocationValue();
+                if (location != null) {
+                    WidgetUtils.updateWidgetIfNecessary(this, location);
+                    NotificationUtils.updateNotificationIfNecessary(this, location);
+                }
             }).subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
                     .delay(1, TimeUnit.SECONDS)
                     .subscribe();
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1
-                && viewModel.getLocationList().getValue() != null) {
-            ShortcutsManager.refreshShortcutsInNewThread(
-                    this, viewModel.getLocationList().getValue().dataList);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            ShortcutsManager.refreshShortcutsInNewThread(this, viewModel.getLocationList());
         }
     }
 
@@ -521,12 +517,12 @@ public class MainActivity extends GeoActivity
 
             if (progress >= 1 && lastProgress < 0.5) {
                 indexSwitched = true;
-                location = viewModel.getLocationFromList(
+                location = viewModel.getLocationFromList(MainActivity.this,
                         swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
                 lastProgress = 1;
             } else if (progress < 0.5 && lastProgress >= 1) {
                 indexSwitched = true;
-                location = viewModel.getLocationFromList(0);
+                location = viewModel.getLocationFromList(MainActivity.this, 0);
                 lastProgress = 0;
             }
 

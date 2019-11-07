@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -40,7 +41,7 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
-    public static void buildNotificationAndSendIt(Context context, Location location) {
+    public static void buildNotificationAndSendIt(Context context, @NonNull Location location) {
         Weather weather = location.getWeather();
         if (weather == null) {
             return;

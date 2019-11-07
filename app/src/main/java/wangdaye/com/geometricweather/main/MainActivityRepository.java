@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.main;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
@@ -10,9 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.basic.model.resource.ListResource;
-import wangdaye.com.geometricweather.basic.model.resource.LocationResource;
 import wangdaye.com.geometricweather.location.LocationHelper;
+import wangdaye.com.geometricweather.main.model.LocationResource;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class MainActivityRepository {
@@ -29,10 +29,9 @@ public class MainActivityRepository {
 
     public void getWeather(Context context,
                            @NonNull MutableLiveData<LocationResource> currentLocation,
-                           @NonNull MutableLiveData<ListResource<Location>> locationList,
                            @NonNull List<Location> totalLocationList,
-                           boolean locate) {
-        assert currentLocation.getValue() != null && locationList.getValue() != null;
+                           boolean locate, @Nullable OnLocationCompletedListener l) {
+        assert currentLocation.getValue() != null;
         Location data = currentLocation.getValue().data;
 
         if (locate) {
@@ -44,10 +43,13 @@ public class MainActivityRepository {
                                 return;
                             }
                             currentLocation.setValue(LocationResource.loading(requestLocation));
-                            updateLocationList(context, requestLocation, locationList, totalLocationList);
+                            updateLocationList(requestLocation, totalLocationList);
+                            if (l != null) {
+                                l.onCompleted(context);
+                            }
 
                             getWeatherWithValidLocationInformation(
-                                    context, currentLocation, locationList, totalLocationList);
+                                    context, currentLocation, totalLocationList);
                         }
 
                         @Override
@@ -59,27 +61,26 @@ public class MainActivityRepository {
                             if (requestLocation.isUsable()) {
                                 currentLocation.setValue(
                                         LocationResource.loading(requestLocation, true));
-                                updateLocationList(context, requestLocation, locationList, totalLocationList);
+                                updateLocationList(requestLocation, totalLocationList);
 
                                 getWeatherWithValidLocationInformation(
-                                        context, currentLocation, locationList, totalLocationList);
+                                        context, currentLocation, totalLocationList);
                             } else {
                                 currentLocation.setValue(
                                         LocationResource.error(requestLocation, true));
-                                updateLocationList(context, requestLocation, locationList, totalLocationList);
+                                updateLocationList(requestLocation, totalLocationList);
                             }
                         }
                     });
         } else {
-            getWeatherWithValidLocationInformation(context, currentLocation, locationList, totalLocationList);
+            getWeatherWithValidLocationInformation(context, currentLocation, totalLocationList);
         }
     }
 
     private void getWeatherWithValidLocationInformation(Context context,
                                                         @NonNull MutableLiveData<LocationResource> currentLocation,
-                                                        @NonNull MutableLiveData<ListResource<Location>> locationList,
                                                         @NonNull List<Location> totalLocationList) {
-        assert currentLocation.getValue() != null && locationList.getValue() != null;
+        assert currentLocation.getValue() != null;
         Location data = currentLocation.getValue().data;
 
         weatherHelper.requestWeather(context, data, new WeatherHelper.OnRequestWeatherListener() {
@@ -90,7 +91,7 @@ public class MainActivityRepository {
                 }
 
                 currentLocation.setValue(LocationResource.success(requestLocation));
-                updateLocationList(context, requestLocation, locationList, totalLocationList);
+                updateLocationList(requestLocation, totalLocationList);
             }
 
             @Override
@@ -100,19 +101,15 @@ public class MainActivityRepository {
                 }
 
                 currentLocation.setValue(LocationResource.error(requestLocation));
-                updateLocationList(context, requestLocation, locationList, totalLocationList);
+                updateLocationList(requestLocation, totalLocationList);
             }
         });
     }
 
-    private void updateLocationList(Context context,
-                                    @NonNull Location data,
-                                    @NonNull MutableLiveData<ListResource<Location>> locationList,
-                                    @NonNull List<Location> totalList) {
+    private void updateLocationList(@NonNull Location data, @NonNull List<Location> totalList) {
         int index = indexLocation(totalList, data);
         if (index != INVALID_LOCATION_INDEX) {
             totalList.set(index, data);
-            locationList.setValue(new ListResource<>(copyValidLocations(context, totalList)));
         }
     }
 
@@ -125,32 +122,6 @@ public class MainActivityRepository {
         return INVALID_LOCATION_INDEX;
     }
 
-    static List<Location> copyValidLocations(Context context, List<Location> locationList) {
-        List<Location> validList = new ArrayList<>(locationList.size());
-        Location currentLocation = null;
-
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).isCurrentPosition()) {
-                currentLocation = locationList.get(i);
-                break;
-            }
-        }
-
-        if (currentLocation == null) {
-            validList.addAll(locationList);
-        } else {
-            for (int i = 0; i < locationList.size(); i ++) {
-                if (locationList.get(i).isCurrentPosition()
-                        || !locationList.get(i).isResidentPosition()
-                        || !locationList.get(i).isCloseTo(context, currentLocation)) {
-                    validList.add(locationList.get(i));
-                }
-            }
-        }
-
-        return validList;
-    }
-
     public List<String> getLocatePermissionList() {
         return new ArrayList<>(
                 Arrays.asList(locationHelper.getPermissions())
@@ -160,5 +131,9 @@ public class MainActivityRepository {
     public void cancel() {
         locationHelper.cancel();
         weatherHelper.cancel();
+    }
+
+    public interface OnLocationCompletedListener {
+        void onCompleted(Context context);
     }
 }

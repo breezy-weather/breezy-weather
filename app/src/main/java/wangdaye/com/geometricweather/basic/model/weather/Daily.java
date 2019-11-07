@@ -8,6 +8,7 @@ import androidx.annotation.Size;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
@@ -128,8 +129,14 @@ public class Daily {
         return LunarHelper.getLunarDate(date);
     }
 
-    public boolean isToday() {
+    public boolean isToday(TimeZone timeZone) {
+        long millis = System.currentTimeMillis();
+
         Calendar current = Calendar.getInstance();
+        current.add(
+                Calendar.MILLISECOND,
+                timeZone.getOffset(millis) - TimeZone.getDefault().getOffset(millis)
+        );
 
         Calendar thisDay = Calendar.getInstance();
         thisDay.setTime(date);

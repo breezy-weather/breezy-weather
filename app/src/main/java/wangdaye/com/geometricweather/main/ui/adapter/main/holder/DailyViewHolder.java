@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -102,7 +103,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
             );
             tagView.setAdapter(
                     new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
-                        setTrendAdapterByTag(weather, (MainTag) tagList.get(newPosition));
+                        setTrendAdapterByTag(weather, location.getTimeZone(), (MainTag) tagList.get(newPosition));
                         return false;
                     }, picker, 0)
             );
@@ -111,7 +112,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
         trendRecyclerView.setHasFixedSize(true);
         trendRecyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        setTrendAdapterByTag(weather, (MainTag) tagList.get(0));
+        setTrendAdapterByTag(weather, location.getTimeZone(), (MainTag) tagList.get(0));
     }
 
     @Override
@@ -120,7 +121,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
         trendRecyclerView.setAdapter(null);
     }
 
-    private void setTrendAdapterByTag(Weather weather, MainTag tag) {
+    private void setTrendAdapterByTag(Weather weather, TimeZone timeZone, MainTag tag) {
         switch (tag.getType()) {
             case TEMPERATURE:
                 trendRecyclerView.setAdapter(
@@ -130,6 +131,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
                                 weather,
+                                timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),
                                 provider,
                                 picker,
@@ -146,6 +148,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
                                 weather,
+                                timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),
                                 picker,
                                 SettingsOptionManager.getInstance(context).getSpeedUnit()
@@ -161,6 +164,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
                                 weather,
+                                timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),
                                 provider,
                                 picker,
@@ -177,6 +181,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
                                 weather,
+                                timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),
                                 picker
                         )
@@ -191,6 +196,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
                                 weather,
+                                timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),
                                 picker
                         )

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -38,6 +39,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
     private GeoActivity activity;
 
     private Weather weather;
+    private TimeZone timeZone;
     private MainColorPicker picker;
     private SpeedUnit unit;
 
@@ -68,7 +70,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
             Context context = itemView.getContext();
             Daily daily = weather.getDailyForecast().get(position);
 
-            if (daily.isToday()) {
+            if (daily.isToday(timeZone)) {
                 dailyItem.setWeekText(context.getString(R.string.today));
             } else {
                 dailyItem.setWeekText(daily.getWeek(context));
@@ -124,14 +126,15 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
 
     @SuppressLint("SimpleDateFormat")
     public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                   @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                                   int itemCountPerLine, @Px float itemHeight,
-                                   @NonNull Weather weather, int[] themeColors,
-                                   MainColorPicker picker, SpeedUnit unit) {
+                            @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                            int itemCountPerLine, @Px float itemHeight,
+                            @NonNull Weather weather, @NonNull TimeZone timeZone,
+                            int[] themeColors, MainColorPicker picker, SpeedUnit unit) {
         super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight);
         this.activity = activity;
 
         this.weather = weather;
+        this.timeZone = timeZone;
         this.picker = picker;
         this.unit = unit;
 

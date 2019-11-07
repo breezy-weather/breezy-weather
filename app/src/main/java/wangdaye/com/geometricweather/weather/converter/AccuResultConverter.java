@@ -190,6 +190,7 @@ public class AccuResultConverter {
 
     private static List<Daily> getDailyList(Context context, AccuDailyResult dailyResult) {
         List<Daily> dailyList = new ArrayList<>(dailyResult.DailyForecasts.size());
+
         for (AccuDailyResult.DailyForecasts forecasts : dailyResult.DailyForecasts) {
             dailyList.add(
                     new Daily(

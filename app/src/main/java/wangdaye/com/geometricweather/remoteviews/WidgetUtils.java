@@ -3,6 +3,8 @@ package wangdaye.com.geometricweather.remoteviews;
 import android.content.Context;
 import android.text.TextPaint;
 
+import androidx.annotation.NonNull;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -27,7 +29,7 @@ import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
 
 public class WidgetUtils {
 
-    public static void updateWidgetIfNecessary(Context context, Location location) {
+    public static void updateWidgetIfNecessary(Context context, @NonNull Location location) {
         if (DayWidgetIMP.isEnable(context)) {
             DayWidgetIMP.updateWidgetView(context, location);
         }

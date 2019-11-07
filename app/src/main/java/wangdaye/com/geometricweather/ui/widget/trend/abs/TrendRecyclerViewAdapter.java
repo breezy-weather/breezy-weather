@@ -15,8 +15,7 @@ public abstract class TrendRecyclerViewAdapter<VH extends RecyclerView.ViewHolde
     private @Px float itemWidth;
     private @Px float itemHeight;
 
-    public TrendRecyclerViewAdapter(Context context,
-                                    TrendParent trendParent,
+    public TrendRecyclerViewAdapter(Context context, TrendParent trendParent,
                                     @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
                                     int itemCountPerLine, @Px float itemHeight) {
         this.trendParent = trendParent;
