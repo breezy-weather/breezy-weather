@@ -23,8 +23,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            android:paddingBottom="@dimen/little_margin"
+            android:layout_marginBottom="@dimen/little_margin"
             tools:ignore="UnusedAttribute" />
+
+        <Button
+            android:id="@+id/container_main_pollen_more"
+            android:text="@string/get_more"
+            android:layout_gravity="end"
+            style="@style/material_button" />
 
     </LinearLayout>
 

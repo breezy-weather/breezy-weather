@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ public class AllergenViewHolder extends AbstractMainViewHolder {
 
     private RecyclerView recyclerView;
     private PollenAdapter adapter;
+    private Button getMore;
 
     @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
@@ -44,6 +46,7 @@ public class AllergenViewHolder extends AbstractMainViewHolder {
         this.card = itemView.findViewById(R.id.container_main_pollen);
         this.title = itemView.findViewById(R.id.container_main_pollen_title);
         this.recyclerView = itemView.findViewById(R.id.container_main_pollen_recyclerView);
+        this.getMore = itemView.findViewById(R.id.container_main_pollen_more);
 
         this.weatherView = weatherView;
     }
@@ -61,6 +64,8 @@ public class AllergenViewHolder extends AbstractMainViewHolder {
         adapter = new PollenAdapter(context, weather, picker, itemAnimationEnabled);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+        getMore.setTextColor(picker.getTextTitleColor(context));
     }
 
     @Override
