@@ -17,6 +17,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AbstractMainViewHolder;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AirQualityViewHolder;
+import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AllergenViewHolder;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AstroViewHolder;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.DailyViewHolder;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.DetailsViewHolder;
@@ -70,6 +71,10 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
                         && !weather.getCurrent().getAirQuality().isValid()) {
                     continue;
                 }
+                if (c == CardDisplay.CARD_ALLERGEN
+                        && !weather.getDailyForecast().get(0).getPollen().isValid()) {
+                    continue;
+                }
                 if (c == CardDisplay.CARD_SUNRISE_SUNSET
                         && (weather.getDailyForecast().size() == 0
                         || !weather.getDailyForecast().get(0).sun().isValid())) {
@@ -111,6 +116,11 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
             case ViewType.AIR_QUALITY:
                 holder = new AirQualityViewHolder(activity, parent, weatherView, provider, picker,
+                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
+                break;
+
+            case ViewType.ALLERGEN:
+                holder = new AllergenViewHolder(activity, parent, weatherView, provider, picker,
                         cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
                 break;
 
@@ -165,6 +175,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
             if (type == ViewType.DAILY
                     || type == ViewType.HOURLY
                     || type == ViewType.AIR_QUALITY
+                    || type == ViewType.ALLERGEN
                     || type == ViewType.ASTRO
                     || type == ViewType.DETAILS) {
                 firstCardType = type;
@@ -236,6 +247,9 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
             case CARD_AIR_QUALITY:
                 return ViewType.AIR_QUALITY;
+
+            case CARD_ALLERGEN:
+                return ViewType.ALLERGEN;
 
             case CARD_SUNRISE_SUNSET:
                 return ViewType.ASTRO;

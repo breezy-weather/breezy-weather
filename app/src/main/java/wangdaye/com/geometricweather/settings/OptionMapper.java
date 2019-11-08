@@ -218,6 +218,10 @@ public class OptionMapper {
                         list.add(CardDisplay.CARD_AIR_QUALITY);
                         break;
 
+                    case "allergen":
+                        list.add(CardDisplay.CARD_ALLERGEN);
+                        break;
+
                     case "life_details":
                         list.add(CardDisplay.CARD_LIFE_DETAILS);
                         break;

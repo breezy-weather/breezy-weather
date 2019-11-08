@@ -131,12 +131,16 @@ public class DailyEntity {
 
     // pollen.
     public Integer grassIndex;
+    public Integer grassLevel;
     public String grassDescription;
     public Integer moldIndex;
+    public Integer moldLevel;
     public String moldDescription;
     public Integer ragweedIndex;
+    public Integer ragweedLevel;
     public String ragweedDescription;
     public Integer treeIndex;
+    public Integer treeLevel;
     public String treeDescription;
 
     // uv.
@@ -146,7 +150,7 @@ public class DailyEntity {
 
     public float hoursOfSun;
 
-    @Generated(hash = 680823515)
+    @Generated(hash = 1891484418)
     public DailyEntity(Long id, String cityId, Date date, long time,
             String daytimeWeatherText, String daytimeWeatherPhase,
             WeatherCode daytimeWeatherCode, int daytimeTemperature,
@@ -196,11 +200,12 @@ public class DailyEntity {
             Date sunRiseDate, Date sunSetDate, Date moonRiseDate, Date moonSetDate,
             Integer moonPhaseAngle, String moonPhaseDescription, String aqiText,
             Integer aqiIndex, Float pm25, Float pm10, Float so2, Float no2,
-            Float o3, Float co, Integer grassIndex, String grassDescription,
-            Integer moldIndex, String moldDescription, Integer ragweedIndex,
-            String ragweedDescription, Integer treeIndex, String treeDescription,
-            Integer uvIndex, String uvLevel, String uvDescription,
-            float hoursOfSun) {
+            Float o3, Float co, Integer grassIndex, Integer grassLevel,
+            String grassDescription, Integer moldIndex, Integer moldLevel,
+            String moldDescription, Integer ragweedIndex, Integer ragweedLevel,
+            String ragweedDescription, Integer treeIndex, Integer treeLevel,
+            String treeDescription, Integer uvIndex, String uvLevel,
+            String uvDescription, float hoursOfSun) {
         this.id = id;
         this.cityId = cityId;
         this.date = date;
@@ -280,12 +285,16 @@ public class DailyEntity {
         this.o3 = o3;
         this.co = co;
         this.grassIndex = grassIndex;
+        this.grassLevel = grassLevel;
         this.grassDescription = grassDescription;
         this.moldIndex = moldIndex;
+        this.moldLevel = moldLevel;
         this.moldDescription = moldDescription;
         this.ragweedIndex = ragweedIndex;
+        this.ragweedLevel = ragweedLevel;
         this.ragweedDescription = ragweedDescription;
         this.treeIndex = treeIndex;
+        this.treeLevel = treeLevel;
         this.treeDescription = treeDescription;
         this.uvIndex = uvIndex;
         this.uvLevel = uvLevel;
@@ -960,6 +969,14 @@ public class DailyEntity {
         this.grassIndex = grassIndex;
     }
 
+    public Integer getGrassLevel() {
+        return this.grassLevel;
+    }
+
+    public void setGrassLevel(Integer grassLevel) {
+        this.grassLevel = grassLevel;
+    }
+
     public String getGrassDescription() {
         return this.grassDescription;
     }
@@ -974,6 +991,14 @@ public class DailyEntity {
 
     public void setMoldIndex(Integer moldIndex) {
         this.moldIndex = moldIndex;
+    }
+
+    public Integer getMoldLevel() {
+        return this.moldLevel;
+    }
+
+    public void setMoldLevel(Integer moldLevel) {
+        this.moldLevel = moldLevel;
     }
 
     public String getMoldDescription() {
@@ -992,6 +1017,14 @@ public class DailyEntity {
         this.ragweedIndex = ragweedIndex;
     }
 
+    public Integer getRagweedLevel() {
+        return this.ragweedLevel;
+    }
+
+    public void setRagweedLevel(Integer ragweedLevel) {
+        this.ragweedLevel = ragweedLevel;
+    }
+
     public String getRagweedDescription() {
         return this.ragweedDescription;
     }
@@ -1006,6 +1039,14 @@ public class DailyEntity {
 
     public void setTreeIndex(Integer treeIndex) {
         this.treeIndex = treeIndex;
+    }
+
+    public Integer getTreeLevel() {
+        return this.treeLevel;
+    }
+
+    public void setTreeLevel(Integer treeLevel) {
+        this.treeLevel = treeLevel;
     }
 
     public String getTreeDescription() {

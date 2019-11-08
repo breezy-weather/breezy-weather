@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_pollen"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/little_margin"
-    android:paddingBottom="@dimen/little_margin"
-    android:gravity="center_vertical">
+    android:paddingBottom="@dimen/little_margin">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_pollen_icon"
         style="@style/material_icon"
         tools:src="@drawable/ic_grass" />
-    
-    <LinearLayout
-        android:orientation="vertical"
+
+    <TextView
+        android:id="@+id/item_pollen_title"
+        android:layout_marginStart="2dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/item_pollen_icon"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        style="@style/title_text"
+        tools:text="@string/grass"/>
+
+    <wangdaye.com.geometricweather.ui.widget.RoundProgress
+        android:id="@+id/item_pollen_progress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/normal_margin">
+        android:layout_height="6dp"
+        android:layout_below="@id/item_pollen_title"
+        android:layout_toEndOf="@id/item_pollen_icon"
+        android:layout_marginEnd="@dimen/normal_margin" />
 
-        <TextView
-            android:id="@+id/item_pollen_title"
-            android:layout_marginStart="2dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            style="@style/content_text"
-            tools:text="@string/grass"/>
+    <TextView
+        android:id="@+id/item_pollen_content"
+        android:textAlignment="viewEnd"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="@dimen/subtitle_text_size"
+        android:layout_below="@id/item_pollen_progress"
+        android:layout_toEndOf="@id/item_pollen_icon"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/normal_margin"
+        style="@style/subtitle_text"
+        tools:text="3 / 强"/>
 
-        <wangdaye.com.geometricweather.ui.widget.RoundProgress
-            android:id="@+id/item_pollen_progress"
-            android:layout_width="match_parent"
-            android:layout_height="6dp" />
-
-        <TextView
-            android:id="@+id/item_pollen_content"
-            android:layout_marginEnd="2dp"
-            android:layout_gravity="end"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textSize="@dimen/content_text_size"
-            style="@style/subtitle_text"
-            tools:text="3 / 强"/>
-        
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

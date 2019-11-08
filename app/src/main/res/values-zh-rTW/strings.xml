@@ -95,7 +95,7 @@
     <string name="minutely_overview">分鐘概覽</string>
     <string name="precipitation_overview">降水概覽</string>
     <string name="air_quality">空氣質量</string>
-    <string name="pollen">過敏原</string>
+    <string name="allergen">過敏原</string>
     <string name="life_details">詳情數據</string>
     <string name="sunrise_sunset">日月升落</string>
 

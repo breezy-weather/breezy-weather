@@ -133,6 +133,7 @@ public class CardDisplayManageActivity extends GeoActivity {
         otherCards.add(CardDisplay.CARD_DAILY_OVERVIEW);
         otherCards.add(CardDisplay.CARD_HOURLY_OVERVIEW);
         otherCards.add(CardDisplay.CARD_AIR_QUALITY);
+        otherCards.add(CardDisplay.CARD_ALLERGEN);
         otherCards.add(CardDisplay.CARD_SUNRISE_SUNSET);
         otherCards.add(CardDisplay.CARD_LIFE_DETAILS);
         for (int i = otherCards.size() - 1; i >= 0; i --) {

@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.option.unit.PollenUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Pollen;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
@@ -96,7 +97,7 @@ public class PollenAdapter extends RecyclerView.Adapter<PollenAdapter.ViewHolder
             title.setTextColor(colorPicker.getTextContentColor(context));
 
             content.setText(item.content);
-            title.setTextColor(colorPicker.getTextSubtitleColor(context));
+            content.setTextColor(colorPicker.getTextSubtitleColor(context));
 
             if (executeAnimation) {
                 progress.setProgress(0);
@@ -161,54 +162,55 @@ public class PollenAdapter extends RecyclerView.Adapter<PollenAdapter.ViewHolder
         this.itemList = new ArrayList<>();
         if (weather != null && weather.getDailyForecast().get(0).getPollen().isValid()) {
             Pollen pollen = weather.getDailyForecast().get(0).getPollen();
-            if (pollen.getGrassIndex() != null) {
+            PollenUnit unit = PollenUnit.PPCM;
+            if (pollen.getGrassIndex() != null && pollen.getGrassLevel() != null) {
                 itemList.add(
                         new PollenItem(
-                                Pollen.getPollenColor(context, pollen.getGrassIndex()),
-                                pollen.getGrassIndex(),
+                                Pollen.getPollenColor(context, pollen.getGrassLevel()),
+                                pollen.getGrassLevel(),
                                 6,
                                 R.drawable.ic_grass,
                                 context.getString(R.string.grass),
-                                pollen.getGrassIndex() + " / " + pollen.getGrassDescription(),
+                                unit.getPollenText(pollen.getGrassIndex()) + " - " + pollen.getGrassDescription(),
                                 executeAnimation
                         )
                 );
             }
-            if (pollen.getRagweedIndex() != null) {
+            if (pollen.getRagweedIndex() != null && pollen.getRagweedLevel() != null) {
                 itemList.add(
                         new PollenItem(
-                                Pollen.getPollenColor(context, pollen.getRagweedIndex()),
-                                pollen.getRagweedIndex(),
+                                Pollen.getPollenColor(context, pollen.getRagweedLevel()),
+                                pollen.getRagweedLevel(),
                                 6,
                                 R.drawable.ic_ragweed,
                                 context.getString(R.string.ragweed),
-                                pollen.getRagweedIndex() + " / " + pollen.getRagweedDescription(),
+                                unit.getPollenText(pollen.getRagweedIndex()) + " - " + pollen.getRagweedDescription(),
                                 executeAnimation
                         )
                 );
             }
-            if (pollen.getTreeIndex() != null) {
+            if (pollen.getTreeIndex() != null && pollen.getTreeLevel() != null) {
                 itemList.add(
                         new PollenItem(
-                                Pollen.getPollenColor(context, pollen.getTreeIndex()),
-                                pollen.getTreeIndex(),
+                                Pollen.getPollenColor(context, pollen.getTreeLevel()),
+                                pollen.getTreeLevel(),
                                 6,
                                 R.drawable.ic_tree,
                                 context.getString(R.string.tree),
-                                pollen.getTreeIndex() + " / " + pollen.getTreeDescription(),
+                                unit.getPollenText(pollen.getTreeIndex()) + " - " + pollen.getTreeDescription(),
                                 executeAnimation
                         )
                 );
             }
-            if (pollen.getMoldIndex() != null) {
+            if (pollen.getMoldIndex() != null && pollen.getMoldLevel() != null) {
                 itemList.add(
                         new PollenItem(
-                                Pollen.getPollenColor(context, pollen.getMoldIndex()),
-                                pollen.getMoldIndex(),
+                                Pollen.getPollenColor(context, pollen.getMoldLevel()),
+                                pollen.getMoldLevel(),
                                 6,
                                 R.drawable.ic_mold,
                                 context.getString(R.string.mold),
-                                pollen.getMoldIndex() + " / " + pollen.getMoldDescription(),
+                                unit.getPollenText(pollen.getMoldIndex()) + " - " + pollen.getMoldDescription(),
                                 executeAnimation
                         )
                 );

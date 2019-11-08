@@ -126,12 +126,16 @@ public class DailyEntityConverter {
 
         // pollen.
         entity.grassIndex = daily.getPollen().getGrassIndex();
+        entity.grassLevel = daily.getPollen().getGrassLevel();
         entity.grassDescription = daily.getPollen().getGrassDescription();
         entity.moldIndex = daily.getPollen().getMoldIndex();
+        entity.moldLevel = daily.getPollen().getMoldLevel();
         entity.moldDescription = daily.getPollen().getMoldDescription();
         entity.ragweedIndex = daily.getPollen().getRagweedIndex();
+        entity.ragweedLevel = daily.getPollen().getRagweedLevel();
         entity.ragweedDescription = daily.getPollen().getRagweedDescription();
         entity.treeIndex = daily.getPollen().getTreeIndex();
+        entity.treeLevel = daily.getPollen().getTreeLevel();
         entity.treeDescription = daily.getPollen().getTreeDescription();
 
         // uv.
@@ -249,10 +253,10 @@ public class DailyEntityConverter {
                         entity.co
                 ),
                 new Pollen(
-                        entity.grassIndex, entity.grassDescription,
-                        entity.moldIndex, entity.moldDescription,
-                        entity.ragweedIndex, entity.ragweedDescription,
-                        entity.treeIndex, entity.treeDescription
+                        entity.grassIndex, entity.grassLevel, entity.grassDescription,
+                        entity.moldIndex, entity.moldLevel, entity.moldDescription,
+                        entity.ragweedIndex, entity.ragweedLevel, entity.ragweedDescription,
+                        entity.treeIndex, entity.treeLevel, entity.treeDescription
                 ),
                 new UV(entity.uvIndex, entity.uvLevel, entity.uvDescription),
                 entity.hoursOfSun

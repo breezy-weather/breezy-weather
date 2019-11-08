@@ -85,7 +85,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             title.setTextColor(colorPicker.getTextContentColor(context));
 
             content.setText(item.content);
-            title.setTextColor(colorPicker.getTextSubtitleColor(context));
+            content.setTextColor(colorPicker.getTextSubtitleColor(context));
 
             if (executeAnimation) {
                 progress.setProgress(0);

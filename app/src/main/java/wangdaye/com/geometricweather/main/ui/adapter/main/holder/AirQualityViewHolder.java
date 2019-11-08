@@ -6,7 +6,6 @@ import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
@@ -71,7 +70,6 @@ public class AirQualityViewHolder extends AbstractMainViewHolder {
                 : weather.getCurrent().getAirQuality().getAqiIndex();
 
         enable = true;
-        itemView.setVisibility(View.VISIBLE);
 
         card.setCardBackgroundColor(picker.getRootColor(context));
         title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);

@@ -322,12 +322,16 @@ public class AccuResultConverter {
         AccuDailyResult.DailyForecasts.AirAndPollen tree = getAirAndPollen(list, "Tree");
         return new Pollen(
                 grass == null ? null : grass.Value,
+                grass == null ? null : grass.CategoryValue,
                 grass == null ? null : grass.Category,
                 mold == null ? null : mold.Value,
+                mold == null ? null : mold.CategoryValue,
                 mold == null ? null : mold.Category,
                 ragweed == null ? null : ragweed.Value,
+                ragweed == null ? null : ragweed.CategoryValue,
                 ragweed == null ? null : ragweed.Category,
                 tree == null ? null : tree.Value,
+                tree == null ? null : tree.CategoryValue,
                 tree == null ? null : tree.Category
         );
     }

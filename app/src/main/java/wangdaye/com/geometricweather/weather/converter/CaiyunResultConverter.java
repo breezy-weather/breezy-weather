@@ -341,6 +341,10 @@ public class CaiyunResultConverter {
                                     null,
                                     null,
                                     null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
                                     null
                             ),
                             new UV(

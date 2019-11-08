@@ -14,34 +14,47 @@ import wangdaye.com.geometricweather.R;
 public class Pollen {
 
     @Nullable private Integer grassIndex;
+    @Nullable private Integer grassLevel;
     @Nullable private String grassDescription;
 
     @Nullable private Integer moldIndex;
+    @Nullable private Integer moldLevel;
     @Nullable private String moldDescription;
 
     @Nullable private Integer ragweedIndex;
+    @Nullable private Integer ragweedLevel;
     @Nullable private String ragweedDescription;
 
     @Nullable private Integer treeIndex;
+    @Nullable private Integer treeLevel;
     @Nullable private String treeDescription;
 
-    public Pollen(@Nullable Integer grassIndex, @Nullable String grassDescription,
-                  @Nullable Integer moldIndex, @Nullable String moldDescription,
-                  @Nullable Integer ragweedIndex, @Nullable String ragweedDescription,
-                  @Nullable Integer treeIndex, @Nullable String treeDescription) {
+    public Pollen(@Nullable Integer grassIndex, @Nullable Integer grassLevel, @Nullable String grassDescription,
+                  @Nullable Integer moldIndex, @Nullable Integer moldLevel, @Nullable String moldDescription,
+                  @Nullable Integer ragweedIndex, @Nullable Integer ragweedLevel, @Nullable String ragweedDescription,
+                  @Nullable Integer treeIndex, @Nullable Integer treeLevel, @Nullable String treeDescription) {
         this.grassIndex = grassIndex;
+        this.grassLevel = grassLevel;
         this.grassDescription = grassDescription;
         this.moldIndex = moldIndex;
+        this.moldLevel = moldLevel;
         this.moldDescription = moldDescription;
         this.ragweedIndex = ragweedIndex;
+        this.ragweedLevel = ragweedLevel;
         this.ragweedDescription = ragweedDescription;
         this.treeIndex = treeIndex;
+        this.treeLevel = treeLevel;
         this.treeDescription = treeDescription;
     }
 
     @Nullable
     public Integer getGrassIndex() {
         return grassIndex;
+    }
+
+    @Nullable
+    public Integer getGrassLevel() {
+        return grassLevel;
     }
 
     @Nullable
@@ -55,6 +68,11 @@ public class Pollen {
     }
 
     @Nullable
+    public Integer getMoldLevel() {
+        return moldLevel;
+    }
+
+    @Nullable
     public String getMoldDescription() {
         return moldDescription;
     }
@@ -62,6 +80,11 @@ public class Pollen {
     @Nullable
     public Integer getRagweedIndex() {
         return ragweedIndex;
+    }
+
+    @Nullable
+    public Integer getRagweedLevel() {
+        return ragweedLevel;
     }
 
     @Nullable
@@ -75,15 +98,20 @@ public class Pollen {
     }
 
     @Nullable
+    public Integer getTreeLevel() {
+        return treeLevel;
+    }
+
+    @Nullable
     public String getTreeDescription() {
         return treeDescription;
     }
 
     public boolean isValid() {
-        return (grassIndex != null && grassIndex > 0)
-                || (moldIndex != null && moldIndex > 0)
-                || (ragweedIndex != null && ragweedIndex > 0)
-                || (treeIndex != null && treeIndex > 0);
+        return (grassIndex != null && grassIndex > 0 && grassLevel != null)
+                || (moldIndex != null && moldIndex > 0 && moldLevel != null)
+                || (ragweedIndex != null && ragweedIndex > 0 && ragweedLevel != null)
+                || (treeIndex != null && treeIndex > 0 && treeLevel != null);
     }
 
     @ColorInt
