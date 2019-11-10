@@ -117,7 +117,12 @@ public class DatabaseHelper {
 
     @Nullable
     public Location readLocation(@NonNull Location location) {
-        LocationEntity entity = locationEntityController.selectLocationEntity(location.getFormattedId());
+        return readLocation(location.getFormattedId());
+    }
+
+    @Nullable
+    public Location readLocation(@NonNull String formattedId) {
+        LocationEntity entity = locationEntityController.selectLocationEntity(formattedId);
         if (entity != null) {
             return LocationEntityConverter.convertToModule(entity);
         } else {

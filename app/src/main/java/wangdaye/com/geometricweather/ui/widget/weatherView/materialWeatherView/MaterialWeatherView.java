@@ -259,15 +259,6 @@ public class MaterialWeatherView extends View implements WeatherView {
         return Color.HSVToColor(hsv);
     }
 
-    private static boolean isIgnoreDayNight(@WeatherKindRule int weatherKind) {
-        return weatherKind == WeatherView.WEATHER_KIND_CLOUDY
-                || weatherKind == WeatherView.WEATHER_KIND_FOG
-                || weatherKind == WeatherView.WEATHER_KIND_HAZE
-                || weatherKind == WeatherView.WEATHER_KIND_THUNDERSTORM
-                || weatherKind == WeatherView.WEATHER_KIND_THUNDER
-                || weatherKind == WeatherView.WEATHER_KIND_WIND;
-    }
-
     // interface.
 
     // weather view.
@@ -275,8 +266,7 @@ public class MaterialWeatherView extends View implements WeatherView {
     @Override
     public void setWeather(@WeatherKindRule int weatherKind, boolean daytime,
                            @Nullable ResourceProvider provider) {
-        if (this.weatherKind == weatherKind
-                && (isIgnoreDayNight(weatherKind) || this.daytime == daytime)) {
+        if (this.weatherKind == weatherKind && this.daytime == daytime) {
             return;
         }
 

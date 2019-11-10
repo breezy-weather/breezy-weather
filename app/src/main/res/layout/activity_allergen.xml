@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_alert_container"
+    android:id="@+id/activity_allergen_container"
     android:background="@color/colorRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/activity_alert_toolbar"
+                android:id="@+id/activity_allergen_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
@@ -33,7 +33,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/activity_alert_recyclerView"
+            android:id="@+id/activity_allergen_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

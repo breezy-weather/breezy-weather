@@ -22,8 +22,7 @@ import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
  * Alert activity.
  * */
 
-public class AlertActivity extends GeoActivity
-        implements View.OnClickListener {
+public class AlertActivity extends GeoActivity {
 
     private CoordinatorLayout container;
 
@@ -58,23 +57,11 @@ public class AlertActivity extends GeoActivity
 
         Toolbar toolbar = findViewById(R.id.activity_alert_toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
-        toolbar.setNavigationOnClickListener(this);
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         RecyclerView recyclerView = findViewById(R.id.activity_alert_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(new AlertAdapter(alarmList));
-    }
-
-    // interface.
-
-    // on click listener.
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case -1:
-                finish();
-        }
     }
 }

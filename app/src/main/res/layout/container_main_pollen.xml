@@ -10,27 +10,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/container_main_pollen_title"
-            android:text="@string/allergen"
-            android:layout_margin="@dimen/normal_margin"
-            android:textSize="@dimen/title_text_size"
-            android:textStyle="bold"
-            style="@style/content_text" />
+        <LinearLayout
+            android:id="@+id/container_main_pollen_titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/selectable_item_background"
+            android:orientation="vertical"
+            tools:ignore="UnusedAttribute">
+
+            <TextView
+                android:id="@+id/container_main_pollen_title"
+                android:text="@string/allergen"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                style="@style/content_text" />
+
+            <TextView
+                android:id="@+id/container_main_pollen_subtitle"
+                android:text="@string/feedback_click_to_get_more"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                style="@style/subtitle_text"
+                tools:ignore="RtlHardcoded" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/container_main_pollen_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            android:layout_marginBottom="@dimen/little_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
             tools:ignore="UnusedAttribute" />
-
-        <Button
-            android:id="@+id/container_main_pollen_more"
-            android:text="@string/get_more"
-            android:layout_gravity="end"
-            style="@style/material_button" />
 
     </LinearLayout>
 

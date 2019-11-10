@@ -26,6 +26,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.settings.activity.CardDisplayManageActivity;
+import wangdaye.com.geometricweather.ui.activity.AllergenActivity;
 import wangdaye.com.geometricweather.wallpaper.material.MaterialLiveWallpaperService;
 import wangdaye.com.geometricweather.settings.activity.AboutActivity;
 import wangdaye.com.geometricweather.ui.activity.AlertActivity;
@@ -73,6 +74,15 @@ public class IntentHelper {
         intent.putParcelableArrayListExtra(
                 AlertActivity.KEY_ALERT_ACTIVITY_ALERT_LIST,
                 (ArrayList<? extends Parcelable>) weather.getAlertList()
+        );
+        activity.startActivity(intent);
+    }
+
+    public static void startAllergenActivity(GeoActivity activity, Location location) {
+        Intent intent = new Intent(activity, AllergenActivity.class);
+        intent.putExtra(
+                AllergenActivity.KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID,
+                location.getFormattedId()
         );
         activity.startActivity(intent);
     }

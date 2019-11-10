@@ -253,6 +253,8 @@
     <string name="feedback_resident_location">設置為常駐城市</string>
     <string name="feedback_resident_location_description">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。\n例如將家鄉設置爲常駐城市後，可以在旅途中查看家鄉天氣，而在歸家后，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
 
+    <string name="feedback_click_to_get_more">點擊可獲取更多…</string>
+
     <!-- action -->
     <string name="action_alert">預警</string>
     <string name="action_manage">地址管理</string>

@@ -93,6 +93,11 @@
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
+            android:name=".ui.activity.AllergenActivity"
+            android:label="@string/allergen"
+            android:theme="@style/GeometricWeatherTheme" />
+
+        <activity
             android:name=".ui.activity.ManageActivity"
             android:label="@string/action_manage"
             android:theme="@style/GeometricWeatherTheme" />
