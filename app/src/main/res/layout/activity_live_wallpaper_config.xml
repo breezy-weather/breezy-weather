@@ -5,18 +5,14 @@
     android:id="@+id/activity_live_wallpaper_config"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorRoot">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
-
-        <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-            android:id="@+id/activity_live_wallpaper_config_statusBar"
-            android:background="@color/colorPrimaryDark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/activity_live_wallpaper_config_toolbar"
@@ -36,7 +32,9 @@
             android:id="@+id/activity_live_wallpaper_config_scrollView"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:id="@+id/activity_live_wallpaper_config_scrollContainer"

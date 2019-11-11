@@ -15,12 +15,8 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
             app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
-
-            <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-                android:background="?attr/colorPrimaryDark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/activity_preview_icon_toolbar"
@@ -34,7 +30,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_preview_icon_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:clipToPadding="false" />
 
     </LinearLayout>
 

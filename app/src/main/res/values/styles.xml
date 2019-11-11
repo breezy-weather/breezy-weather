@@ -7,20 +7,20 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
         <item name="colorAccent">@android:color/transparent</item>
-        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">
-        <item name="android:windowTranslucentStatus">true</item>
-    </style>
+    <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme" />
 
-    <style name="GeometricWeatherTheme.AppbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="GeometricWeatherTheme.AppbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="elevation">2dp</item>
+    </style>
     <style name="GeometricWeatherTheme.AppbarPopupTheme" parent="ThemeOverlay.AppCompat.Light" />
     
     <!-- card. -->

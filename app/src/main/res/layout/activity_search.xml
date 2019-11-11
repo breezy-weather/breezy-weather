@@ -1,121 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/activity_search_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorRoot">
 
-    <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-        android:id="@+id/activity_search_statusBar"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryDark" />
+        android:layout_height="match_parent">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/activity_search_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorRoot">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/activity_search_searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:fitsSystemWindows="true"
+            android:background="@color/colorSearchBarBackground"
+            android:transitionName="@string/transition_activity_search_bar"
+            tools:targetApi="lollipop">
 
-        <LinearLayout
-            android:orientation="vertical"
+            <RelativeLayout
+                android:id="@+id/activity_search_searchContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/activity_search_backBtn"
+                    android:src="@drawable/ic_back"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    style="@style/material_image_button"
+                    tools:ignore="ContentDescription" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/activity_search_clearBtn"
+                    android:src="@drawable/ic_close"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    style="@style/material_image_button"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <EditText
+                    android:id="@+id/activity_search_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/feedback_search_location"
+                    android:textSize="@dimen/title_text_size"
+                    android:textColor="@color/colorTextContent"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:background="@android:color/transparent"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/activity_search_backBtn"
+                    android:layout_toStartOf="@id/activity_search_clearBtn"
+                    tools:ignore="Autofill,RtlHardcoded" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/activity_search_searchBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorSearchBarBackground"
-                android:transitionName="@string/transition_activity_search_bar"
-                tools:targetApi="lollipop">
-
-                <RelativeLayout
-                    android:id="@+id/activity_search_searchContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0">
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/activity_search_backBtn"
-                        android:src="@drawable/ic_back"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        style="@style/material_image_button"
-                        tools:ignore="ContentDescription" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/activity_search_clearBtn"
-                        android:src="@drawable/ic_close"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        style="@style/material_image_button"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
-
-                    <EditText
-                        android:id="@+id/activity_search_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/feedback_search_location"
-                        android:textSize="@dimen/title_text_size"
-                        android:textColor="@color/colorTextContent"
-                        android:textColorHint="@android:color/darker_gray"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:inputType="text"
-                        android:imeOptions="actionSearch"
-                        android:background="@android:color/transparent"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@id/activity_search_backBtn"
-                        android:layout_toStartOf="@id/activity_search_clearBtn"
-                        tools:ignore="Autofill,RtlHardcoded" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.appbar.AppBarLayout>
+            <com.github.rahatarmanahmed.cpv.CircularProgressView
+                android:id="@+id/activity_search_progress"
+                android:layout_width="@dimen/little_weather_icon_size"
+                android:layout_height="@dimen/little_weather_icon_size"
+                android:layout_centerInParent="true"
+                app:cpv_animAutostart="true"
+                app:cpv_color="@color/colorTextContent"
+                app:cpv_indeterminate="true" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.github.rahatarmanahmed.cpv.CircularProgressView
-                    android:id="@+id/activity_search_progress"
-                    android:layout_width="@dimen/little_weather_icon_size"
-                    android:layout_height="@dimen/little_weather_icon_size"
-                    android:layout_centerInParent="true"
-                    app:cpv_animAutostart="true"
-                    app:cpv_color="@color/colorTextContent"
-                    app:cpv_indeterminate="true" />
-
-                <RelativeLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/activity_search_recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:clipToPadding="false" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/activity_search_recyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <com.turingtechnologies.materialscrollbar.DragScrollBar
-                        android:id="@+id/activity_search_scrollBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentEnd="true"
-                        app:msb_recyclerView="@id/activity_search_recyclerView"
-                        app:msb_lightOnTouch="true"
-                        app:msb_scrollMode="firstVisible"
-                        app:msb_barColor="@color/colorTextSubtitle"
-                        app:msb_handleColor="@color/colorPrimary"
-                        app:msb_handleOffColor="@color/colorPrimary"
-                        app:msb_textColor="@color/colorRoot" />
-
-                </RelativeLayout>
+                <com.turingtechnologies.materialscrollbar.DragScrollBar
+                    android:id="@+id/activity_search_scrollBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    app:msb_recyclerView="@id/activity_search_recyclerView"
+                    app:msb_lightOnTouch="true"
+                    app:msb_scrollMode="firstVisible"
+                    app:msb_barColor="@color/colorTextSubtitle"
+                    app:msb_handleColor="@color/colorPrimary"
+                    app:msb_handleOffColor="@color/colorPrimary"
+                    app:msb_textColor="@color/colorRoot" />
 
             </RelativeLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

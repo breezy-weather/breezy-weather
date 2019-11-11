@@ -57,6 +57,7 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public abstract class AbstractWidgetConfigActivity extends GeoActivity
         implements WeatherHelper.OnRequestWeatherListener {
 
+    protected FrameLayout topContainer;
     protected ImageView wallpaper;
     protected FrameLayout widgetContainer;
 
@@ -214,6 +215,14 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         bindWallpaper(true);
 
         this.widgetContainer = findViewById(R.id.activity_widget_config_widgetContainer);
+
+        this.topContainer = findViewById(R.id.activity_widget_config_top);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            topContainer.setOnApplyWindowInsetsListener((v, insets) -> {
+                widgetContainer.setPadding(0, insets.getSystemWindowInsetTop(), 0, 0);
+                return insets;
+            });
+        }
 
         this.container = findViewById(R.id.activity_widget_config_container);
 

@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.basic;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.CallSuper;
@@ -7,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.windowInsets.ApplyWindowInsetsLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -47,13 +46,9 @@ public abstract class GeoActivity extends AppCompatActivity {
         );
 
         boolean darkMode = DisplayUtils.isDarkMode(this);
-        DisplayUtils.setWindowTopColor(this, 0);
-        DisplayUtils.setSystemBarStyle(
-                getWindow(), false, false, !darkMode);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            DisplayUtils.setNavigationBarColor(
-                    this, ContextCompat.getColor(this, R.color.colorRootDark));
-        }
+        DisplayUtils.setWindowTopColor(this, Color.TRANSPARENT);
+        DisplayUtils.setSystemBarStyle(this, getWindow(),
+                false, false, true, !darkMode);
     }
 
     @Override

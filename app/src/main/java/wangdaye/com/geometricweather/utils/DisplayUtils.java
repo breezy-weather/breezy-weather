@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.os.Build;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 
 import android.view.Display;
 import android.view.View;
@@ -96,30 +98,56 @@ public class DisplayUtils {
         return realSize.y != size.y;
     }
 
-    public static void setSystemBarStyle(Window window,
-                                         boolean lightStatusBar,
-                                         boolean transparentNavigationBar, boolean lightNavigationBar) {
+    public static void setSystemBarStyle(Context context, Window window,
+                                         boolean lightStatus,
+                                         boolean navigationShader, boolean lightNavigation) {
+        setSystemBarStyle(context, window, false, lightStatus, navigationShader, lightNavigation);
+    }
+
+    @SuppressLint("InlinedApi")
+    public static void setSystemBarStyle(Context context, Window window,
+                                         boolean statusShader, boolean lightStatus,
+                                         boolean navigationShader, boolean lightNavigation) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return;
         }
 
-        int visibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-        if (lightStatusBar && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        lightStatus &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+        lightNavigation &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
+        // navigationShader ^= Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
+
+        int visibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        if (lightStatus) {
             visibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         }
-        if (transparentNavigationBar) {
-            visibility |= View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        }
-        if (lightNavigationBar && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (lightNavigation) {
             visibility |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
         }
         window.getDecorView().setSystemUiVisibility(visibility);
-    }
 
-    public static void setNavigationBarColor(Activity a, @ColorInt int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            a.getWindow().setNavigationBarColor(color);
+        if (!statusShader) {
+            window.setStatusBarColor(Color.TRANSPARENT);
+        } else if (!lightStatus) {
+            window.setStatusBarColor(ColorUtils.setAlphaComponent(
+                    ContextCompat.getColor(context, R.color.colorRoot_dark), (int) (0.8 * 255)
+            ));
+        } else {
+            window.setStatusBarColor(ColorUtils.setAlphaComponent(
+                    ContextCompat.getColor(context, R.color.colorRoot_light), (int) (0.8 * 255)
+            ));
+        }
+        if (!navigationShader) {
+            window.setNavigationBarColor(Color.TRANSPARENT);
+        } else if (!lightNavigation) {
+            window.setNavigationBarColor(ColorUtils.setAlphaComponent(
+                    ContextCompat.getColor(context, R.color.colorRoot_dark), (int) (0.8 * 255)
+            ));
+        } else {
+            window.setNavigationBarColor(ColorUtils.setAlphaComponent(
+                    ContextCompat.getColor(context, R.color.colorRoot_light), (int) (0.8 * 255)
+            ));
         }
     }
 
@@ -147,18 +175,21 @@ public class DisplayUtils {
             } else {
                 alpha = 0.1f;
             }
-            setNavigationBarColor(activity, Color.argb((int) (255 * alpha), 0, 0, 0));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                activity.getWindow().setNavigationBarColor(Color.argb((int) (255 * alpha), 0, 0, 0));
+            }
         }
 
         setSystemBarStyle(
+                activity,
                 activity.getWindow(),
-                topOverlap && lightTheme,
-                true, bottomOverlap && lightTheme
+                false, topOverlap && lightTheme,
+                false, bottomOverlap && lightTheme
         );
     }
 
     public static void setWindowTopColor(Activity a, @ColorInt int color) {
-        if (color == 0) {
+        if (color == Color.TRANSPARENT) {
             ContextCompat.getColor(a, R.color.colorPrimary);
         }
 

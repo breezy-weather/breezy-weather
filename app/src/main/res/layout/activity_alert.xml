@@ -7,36 +7,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/activity_alert_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="@string/action_alert"
+            app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-            <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-                android:background="?attr/colorPrimaryDark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/activity_alert_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:title="@string/allergen"
-                app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/activity_alert_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
+    <wangdaye.com.geometricweather.ui.widget.FitBottomSystemBarRecyclerView
+        android:id="@+id/activity_alert_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

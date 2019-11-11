@@ -17,12 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:fitsSystemWindows="true"
             app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
-
-            <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-                android:background="?attr/colorPrimaryDark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/activity_card_display_manage_toolbar"
@@ -42,14 +38,23 @@
             android:paddingBottom="64dp"
             android:clipToPadding="false" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/activity_card_display_manage_bottomRecyclerView"
+        <FrameLayout
+            android:id="@+id/activity_card_display_manage_bottomBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorRoot"
             android:layout_alignParentBottom="true"
+            android:background="@color/colorRoot"
             android:elevation="2dp"
-            tools:ignore="RtlSymmetry,UnusedAttribute" />
+            android:fitsSystemWindows="true"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/activity_card_display_manage_bottomRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="RtlSymmetry,UnusedAttribute" />
+
+        </FrameLayout>
 
     </RelativeLayout>
 

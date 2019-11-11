@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +38,7 @@ public class CardDisplayManageActivity extends GeoActivity {
     private CardDisplayAdapter cardDisplayAdapter;
     private TagAdapter tagAdapter;
 
-    private RecyclerView bottomRecyclerView;
+    private FrameLayout bottomBar;
     private @Nullable AnimatorSet bottomAnimator;
     private @Nullable Boolean bottomBarVisibility;
 
@@ -155,7 +156,9 @@ public class CardDisplayManageActivity extends GeoActivity {
             return true;
         });
 
-        bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
+        bottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
+
+        RecyclerView bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
         bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         bottomRecyclerView.addItemDecoration(
@@ -203,10 +206,10 @@ public class CardDisplayManageActivity extends GeoActivity {
             }
             bottomAnimator = new AnimatorSet();
             bottomAnimator.playTogether(
-                    ObjectAnimator.ofFloat(bottomRecyclerView, "alpha",
-                            bottomRecyclerView.getAlpha(), visible ? 1 : 0),
-                    ObjectAnimator.ofFloat(bottomRecyclerView, "translationY",
-                            bottomRecyclerView.getTranslationY(), visible ? 0 : bottomRecyclerView.getMeasuredHeight())
+                    ObjectAnimator.ofFloat(bottomBar, "alpha",
+                            bottomBar.getAlpha(), visible ? 1 : 0),
+                    ObjectAnimator.ofFloat(bottomBar, "translationY",
+                            bottomBar.getTranslationY(), visible ? 0 : bottomBar.getMeasuredHeight())
             );
             bottomAnimator.setDuration(visible ? 350 : 150);
             bottomAnimator.setInterpolator(visible

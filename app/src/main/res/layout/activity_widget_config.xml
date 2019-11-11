@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/activity_widget_config_top"
         android:layout_width="match_parent"
         android:layout_height="360dp">
 
@@ -19,22 +20,13 @@
             android:src="@color/colorTextDark2nd"
             tools:ignore="contentDescription" />
 
-        <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-            android:id="@+id/activity_widget_config_statusBar"
-            android:background="@android:color/black"
-            android:alpha="0.2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
-
         <FrameLayout
             android:id="@+id/activity_widget_config_widgetContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/little_margin"
-            android:layout_below="@id/activity_widget_config_statusBar" />
+            android:padding="@dimen/little_margin" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_widget_config_container"
@@ -45,7 +37,9 @@
             android:id="@+id/activity_widget_config_scrollView"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:id="@+id/activity_widget_config_scrollContainer"

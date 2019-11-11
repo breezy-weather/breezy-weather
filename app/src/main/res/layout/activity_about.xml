@@ -1,43 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/activity_about_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorRoot">
 
-    <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-        android:id="@+id/activity_about_statusBar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark" />
+        android:fitsSystemWindows="true"
+        app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/activity_about_container"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/activity_about_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/action_about"
+            app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <wangdaye.com.geometricweather.ui.widget.FitBottomSystemBarRecyclerView
+        android:id="@+id/activity_about_recyclerView"
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/activity_about_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="@string/action_about"
-                app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/activity_about_recyclerView"
-            android:scrollbars="none"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
