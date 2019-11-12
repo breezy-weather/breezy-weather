@@ -9,6 +9,7 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 
@@ -20,11 +21,9 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -34,7 +33,6 @@ import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
-import wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -51,8 +49,6 @@ public class CircularSkyWeatherView extends FrameLayout
     @ColorInt private int backgroundColor;
     private boolean daytime = true;
 
-    private LinearLayout container;
-    private StatusBarView statusBar;
     private WeatherIconControlView controlView;
     private CircleView circleView;
     private FrameLayout starContainer;
@@ -117,17 +113,14 @@ public class CircularSkyWeatherView extends FrameLayout
 
     @SuppressLint("InflateParams")
     private void initialize() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.container_circular_sky_view, null);
-        addView(view);
+        setBackgroundColor(getBackgroundColor());
 
-        this.container = findViewById(R.id.container_circular_sky_view);
-        container.setBackgroundColor(getBackgroundColor());
-
-        this.statusBar = findViewById(R.id.container_circular_sky_view_statusBar);
-        setStatusBarColor();
+        this.controlView = (WeatherIconControlView) LayoutInflater.from(getContext()).inflate(
+                R.layout.container_circular_sky_view, null);
+        controlView.setOnWeatherIconChangingListener(this);
+        addView(controlView);
 
         this.controlView = findViewById(R.id.container_circular_sky_view_controller);
-        controlView.setOnWeatherIconChangingListener(this);
 
         this.circleView = findViewById(R.id.container_circular_sky_view_circularSkyView);
 
@@ -165,8 +158,17 @@ public class CircularSkyWeatherView extends FrameLayout
             starShineAnimators[i].start();
         }
 
-        this.firstCardMarginTop = (int) (getResources().getDisplayMetrics().widthPixels / 6.8 * 5.0
-                + DisplayUtils.getStatusBarHeight(getResources()) - DisplayUtils.dpToPx(getContext(), 28));
+        this.firstCardMarginTop = 0;
+    }
+
+    @Override
+    protected boolean fitSystemWindows(Rect insets) {
+        setPadding(0, insets.top, 0, 0);
+        this.firstCardMarginTop = (int) (
+                getResources().getDisplayMetrics().widthPixels / 6.8 * 5.0
+                        - DisplayUtils.dpToPx(getContext(), 28)
+        );
+        return false;
     }
 
     /**
@@ -178,14 +180,6 @@ public class CircularSkyWeatherView extends FrameLayout
             return true;
         }
         return false;
-    }
-
-    private void setStatusBarColor() {
-        if (daytime) {
-            statusBar.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightPrimary_5));
-        } else {
-            statusBar.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.darkPrimary_5));
-        }
     }
 
     private void changeStarAlPha() {
@@ -221,13 +215,12 @@ public class CircularSkyWeatherView extends FrameLayout
         iconDrawables = ResourceHelper.getWeatherIcons(provider, weatherCode, daytime);
         iconAnimators = ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime);
 
-        setStatusBarColor();
         controlView.showWeatherIcon();
 
         int newColor = getBackgroundColor();
         if ((showCircles() || newColor != backgroundColor) && !firstTime) {
             backgroundColor = newColor;
-            Drawable drawable = container.getBackground();
+            Drawable drawable = getBackground();
             if (drawable instanceof ColorDrawable) {
                 ValueAnimator colorAnimator = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
@@ -235,12 +228,12 @@ public class CircularSkyWeatherView extends FrameLayout
                         newColor
                 );
                 colorAnimator.addUpdateListener(animation ->
-                        container.setBackgroundColor((Integer) animation.getAnimatedValue())
+                        setBackgroundColor((Integer) animation.getAnimatedValue())
                 );
                 colorAnimator.setDuration(300);
                 colorAnimator.start();
             } else {
-                container.setBackgroundColor(newColor);
+                setBackgroundColor(newColor);
             }
         }
     }
@@ -253,13 +246,10 @@ public class CircularSkyWeatherView extends FrameLayout
 
     @Override
     public void onScroll(int scrollY) {
-        statusBar.setTranslationY(
-                (float) (
-                        -(circleView.getMeasuredHeight() + statusBar.getMeasuredHeight())
-                                * Math.min(1, 1.0 * scrollY / firstCardMarginTop)
-                )
+        controlView.setTranslationY(
+                -circleView.getMeasuredHeight()
+                        * Math.min(1f, 1f * scrollY / firstCardMarginTop)
         );
-        controlView.setTranslationY(statusBar.getTranslationY());
     }
 
     @Override
@@ -285,9 +275,9 @@ public class CircularSkyWeatherView extends FrameLayout
     @Override
     public int getBackgroundColor() {
         if (daytime) {
-            return ContextCompat.getColor(getContext(), R.color.lightPrimary_4);
+            return ContextCompat.getColor(getContext(), R.color.lightPrimary_5);
         } else {
-            return ContextCompat.getColor(getContext(), R.color.darkPrimary_4);
+            return ContextCompat.getColor(getContext(), R.color.darkPrimary_5);
         }
     }
 

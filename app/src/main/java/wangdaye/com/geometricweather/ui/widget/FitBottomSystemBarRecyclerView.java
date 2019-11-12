@@ -26,6 +26,7 @@ public class FitBottomSystemBarRecyclerView extends RecyclerView {
     protected boolean fitSystemWindows(Rect insets) {
         Rect r = new Rect(insets);
         r.top = 0;
-        return super.fitSystemWindows(r);
+        super.fitSystemWindows(r);
+        return false;
     }
 }

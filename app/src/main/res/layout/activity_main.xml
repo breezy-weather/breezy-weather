@@ -20,19 +20,20 @@
                 android:id="@+id/activity_main_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:fitsSystemWindows="true"
+                android:clipToPadding="false" />
 
         </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout>
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/activity_main_appBar"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:background="@android:color/transparent"
+            app:elevation="0dp">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/activity_main_toolbar"
@@ -42,12 +43,13 @@
                 app:theme="@style/GeometricWeatherTheme.AppbarTheme"
                 app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-        </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <wangdaye.com.geometricweather.ui.widget.InkPageIndicator
             android:id="@+id/activity_main_indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin"
             android:alpha="0"
             app:layout_behavior=".ui.behavior.InkPageIndicatorBehavior"
             app:dotDiameter="8dp"
@@ -55,12 +57,5 @@
             app:animationDuration="300" />
         
     </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
-
-    <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-        android:id="@+id/activity_main_statusBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:alpha="0.05" />
 
 </FrameLayout>

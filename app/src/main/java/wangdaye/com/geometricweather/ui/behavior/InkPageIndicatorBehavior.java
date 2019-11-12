@@ -7,9 +7,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.snackbar.Snackbar;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 
-import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 
 /**
@@ -25,14 +24,14 @@ public class InkPageIndicatorBehavior<V extends InkPageIndicator> extends Coordi
     @Override
     public boolean onLayoutChild(@NonNull CoordinatorLayout parent, @NonNull V child,
                                  int layoutDirection) {
-        int marginBottom = (int) (
-                DisplayUtils.dpToPx(parent.getContext(), 16)
-                        + GeometricWeather.getInstance().getWindowInsets().bottom
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
+        int cx = parent.getMeasuredWidth() / 2;
+        child.layout(
+                cx - child.getMeasuredWidth() / 2,
+                parent.getMeasuredHeight() - child.getMeasuredHeight() - params.topMargin - params.bottomMargin,
+                cx + child.getMeasuredWidth() / 2,
+                parent.getMeasuredHeight() - params.bottomMargin
         );
-        child.layout(0,
-                parent.getMeasuredHeight() - child.getMeasuredHeight() - marginBottom,
-                parent.getMeasuredWidth(),
-                parent.getMeasuredHeight() - marginBottom);
         return true;
     }
 

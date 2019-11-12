@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -164,18 +165,24 @@ public class MaterialWeatherView extends View implements WeatherView {
                 firstCardMarginTop,
                 res.getDisplayMetrics().heightPixels * 0.5);
 
-        this.scrollTransparentTriggerDistance = (int) (
-                firstCardMarginTop
-                        - DisplayUtils.getStatusBarHeight(res)
-                        - DisplayUtils.dpToPx(getContext(), 56)
-                        - res.getDimension(R.dimen.design_title_text_size)
-                        - res.getDimension(R.dimen.normal_margin)
-        );
+        this.scrollTransparentTriggerDistance = 0;
 
         this.lastScrollRate = 0;
         this.scrollRate = 0;
 
         this.drawable = false;
+    }
+
+    @Override
+    protected boolean fitSystemWindows(Rect insets) {
+        this.scrollTransparentTriggerDistance = (int) (
+                firstCardMarginTop
+                        - insets.top
+                        - DisplayUtils.dpToPx(getContext(), 56)
+                        - getResources().getDimension(R.dimen.design_title_text_size)
+                        - getResources().getDimension(R.dimen.normal_margin)
+        );
+        return false;
     }
 
     @Override

@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.main.ui;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +37,9 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
         }
 
         int y = 0;
+        if (!getClipToPadding()) {
+            y += getPaddingTop();
+        }
         int childWidth;
         int childHeight;
         ViewGroup.MarginLayoutParams params;
@@ -56,6 +60,9 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
             );
 
             y += childHeight + params.topMargin + params.bottomMargin;
+        }
+        if (!getClipToPadding()) {
+            y += getPaddingBottom();
         }
 
         measuredHeight = y;
@@ -104,5 +111,20 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
     @Px
     public int getScrollOffset() {
         return scrollOffset;
+    }
+
+    @Override
+    public int computeVerticalScrollOffset(@NonNull RecyclerView.State state) {
+        return scrollOffset;
+    }
+
+    @Override
+    public int computeVerticalScrollRange(@NonNull RecyclerView.State state) {
+        return measuredHeight;
+    }
+
+    @Override
+    public int computeVerticalScrollExtent(@NonNull RecyclerView.State state) {
+        return getHeight();
     }
 }

@@ -9,13 +9,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
-
-        <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-            android:id="@+id/activity_settings_statusBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimaryDark"/>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/activity_settings_toolbar"

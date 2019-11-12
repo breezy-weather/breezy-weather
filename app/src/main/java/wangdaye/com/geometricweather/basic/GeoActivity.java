@@ -10,14 +10,12 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.windowInsets.ApplyWindowInsetsLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 
@@ -30,7 +28,6 @@ public abstract class GeoActivity extends AppCompatActivity {
     private List<GeoDialogFragment> dialogList;
     private boolean foreground;
 
-    @Nullable private ApplyWindowInsetsLayout applyWindowInsetsLayout;
     @Nullable private OnRequestPermissionsResultListener permissionsListener;
 
     @CallSuper
@@ -49,29 +46,6 @@ public abstract class GeoActivity extends AppCompatActivity {
         DisplayUtils.setWindowTopColor(this, Color.TRANSPARENT);
         DisplayUtils.setSystemBarStyle(this, getWindow(),
                 false, false, true, !darkMode);
-    }
-
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        bindApplyWindowInsetsLayout();
-    }
-
-    protected void bindApplyWindowInsetsLayout() {
-        applyWindowInsetsLayout = new ApplyWindowInsetsLayout(this);
-
-        ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
-        ViewGroup contentView = (ViewGroup) decorView.getChildAt(0);
-
-        decorView.removeView(contentView);
-        applyWindowInsetsLayout.addView(contentView);
-
-        decorView.addView(applyWindowInsetsLayout, 0);
-    }
-
-    @Nullable
-    protected ApplyWindowInsetsLayout getApplyWindowInsetsLayout() {
-        return applyWindowInsetsLayout;
     }
 
     @CallSuper

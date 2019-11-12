@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.graphics.Rect;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -38,7 +37,6 @@ public class GeometricWeather extends Application {
     }
 
     private List<GeoActivity> activityList;
-    private Rect windowInsets;
 
     private OkHttpClient okHttpClient;
     private GsonConverterFactory gsonConverterFactory;
@@ -133,7 +131,6 @@ public class GeometricWeather extends Application {
     private void initialize() {
         instance = this;
         activityList = new ArrayList<>();
-        windowInsets = new Rect(0, 0, 0, 0);
 
         okHttpClient = TLSCompactHelper.getClientBuilder().build();
         gsonConverterFactory = GsonConverterFactory.create(
@@ -161,17 +158,6 @@ public class GeometricWeather extends Application {
             return null;
         }
         return activityList.get(activityList.size() - 1);
-    }
-
-    public void setWindowInsets(int left, int top, int right, int bottom) {
-        if (left != windowInsets.left || top != windowInsets.top
-                || right != windowInsets.right || bottom != windowInsets.bottom) {
-            windowInsets.set(left, top, right, bottom);
-        }
-    }
-
-    public Rect getWindowInsets() {
-        return windowInsets;
     }
 
     public OkHttpClient getOkHttpClient() {

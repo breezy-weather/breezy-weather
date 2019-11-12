@@ -15,7 +15,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/activity_search_searchBar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:background="@color/colorSearchBarBackground"
             android:transitionName="@string/transition_activity_search_bar"
@@ -24,7 +24,7 @@
             <RelativeLayout
                 android:id="@+id/activity_search_searchContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:alpha="0">
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.recyclerview.widget.RecyclerView
+                <wangdaye.com.geometricweather.ui.widget.FitBottomSystemBarRecyclerView
                     android:id="@+id/activity_search_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

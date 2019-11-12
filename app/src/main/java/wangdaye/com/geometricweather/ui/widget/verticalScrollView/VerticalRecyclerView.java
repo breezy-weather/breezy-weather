@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.ui.widget.verticalScrollView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
@@ -37,6 +38,12 @@ public class VerticalRecyclerView extends RecyclerView {
 
     private void initialize() {
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
+    }
+
+    @Override
+    protected boolean fitSystemWindows(Rect insets) {
+        super.fitSystemWindows(insets);
+        return false;
     }
 
     @Override

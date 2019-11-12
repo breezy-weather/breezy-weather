@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -157,6 +158,12 @@ public class CardDisplayManageActivity extends GeoActivity {
         });
 
         bottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            bottomBar.setOnApplyWindowInsetsListener((v, insets) -> {
+                bottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
+                return insets;
+            });
+        }
 
         RecyclerView bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
         bottomRecyclerView.setLayoutManager(

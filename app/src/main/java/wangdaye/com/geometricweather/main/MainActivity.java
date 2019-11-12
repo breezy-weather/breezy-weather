@@ -23,13 +23,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.R;
@@ -43,7 +43,6 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView;
-import wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView;
@@ -70,9 +69,8 @@ public class MainActivity extends GeoActivity
 
     private MainActivityViewModel viewModel;
 
-    private StatusBarView statusBar;
     private WeatherView weatherView;
-    private LinearLayout appBar;
+    private AppBarLayout appBar;
     private Toolbar toolbar;
 
     private InkPageIndicator indicator;
@@ -221,8 +219,6 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint("ClickableViewAccessibility")
     private void initView() {
-        this.statusBar = findViewById(R.id.activity_main_statusBar);
-
         this.appBar = findViewById(R.id.activity_main_appBar);
 
         this.toolbar = findViewById(R.id.activity_main_toolbar);
@@ -244,15 +240,19 @@ public class MainActivity extends GeoActivity
         switchLayout.setOnSwitchListener(switchListener);
 
         this.refreshLayout = findViewById(R.id.activity_main_refreshView);
-        int startPosition = (int) (
-                DisplayUtils.getStatusBarHeight(getResources())
-                        + DisplayUtils.dpToPx(this, 16)
-        );
-        refreshLayout.setProgressViewOffset(
-                false,
-                startPosition,
-                startPosition + refreshLayout.getProgressViewEndOffset()
-        );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            refreshLayout.setOnApplyWindowInsetsListener((v, insets) -> {
+                int startPosition = insets.getSystemWindowInsetTop()
+                        + getResources().getDimensionPixelSize(R.dimen.normal_margin);
+                refreshLayout.setProgressViewOffset(
+                        false,
+                        startPosition,
+                        startPosition + refreshLayout.getProgressViewEndOffset()
+                );
+                return insets;
+            });
+        }
+
         refreshLayout.setOnRefreshListener(this);
 
         this.recyclerView = findViewById(R.id.activity_main_recyclerView);
@@ -320,12 +320,8 @@ public class MainActivity extends GeoActivity
                 ? location.getWeather().getBase().getTimeStamp()
                 : INVALID_CURRENT_WEATHER_TIME_STAMP;
 
-        DisplayUtils.setSystemBarStyleWithScrolling(
-                this, statusBar,
-                true, false,
-                true, location.getWeather() != null,
-                colorPicker.isLightTheme()
-        );
+        DisplayUtils.setSystemBarStyle(this, getWindow(), true,
+                false, false, false, false);
 
         if (location.getWeather() == null) {
             resetUI(location);
@@ -361,8 +357,7 @@ public class MainActivity extends GeoActivity
                 listAnimationEnabled, itemAnimationEnabled);
         recyclerView.setAdapter(adapter);
         recyclerView.clearOnScrollListeners();
-        recyclerView.addOnScrollListener(new OnScrollListener(
-                (MainLayoutManager) recyclerView.getLayoutManager(), weatherView.getFirstCardMarginTop()));
+        recyclerView.addOnScrollListener(new OnScrollListener());
 
         indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
         indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));
@@ -564,32 +559,25 @@ public class MainActivity extends GeoActivity
 
     private class OnScrollListener extends RecyclerView.OnScrollListener {
 
-        private MainLayoutManager layoutManager;
-
         private boolean topChanged;
         private boolean topOverlap;
         private boolean bottomChanged;
         private boolean bottomOverlap;
 
         private int firstCardMarginTop;
-        private int topOverlapTrigger;
 
         private int oldScrollY;
         private int scrollY;
 
-        OnScrollListener(MainLayoutManager layoutManager, int firstCardMarginTop) {
+        OnScrollListener() {
             super();
-
-            this.layoutManager = layoutManager;
 
             this.topChanged = false;
             this.topOverlap = false;
             this.bottomChanged = false;
             this.bottomOverlap = false;
 
-            this.firstCardMarginTop = firstCardMarginTop;
-            this.topOverlapTrigger = firstCardMarginTop
-                    - GeometricWeather.getInstance().getWindowInsets().top;
+            this.firstCardMarginTop = 0;
 
             this.oldScrollY = 0;
             this.scrollY = 0;
@@ -597,7 +585,9 @@ public class MainActivity extends GeoActivity
 
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-            scrollY = layoutManager.getScrollOffset();
+            firstCardMarginTop = weatherView.getFirstCardMarginTop();
+
+            scrollY = recyclerView.computeVerticalScrollOffset();
             oldScrollY = scrollY - dy;
 
             weatherView.onScroll(scrollY);
@@ -624,21 +614,30 @@ public class MainActivity extends GeoActivity
             }
 
             // set system bar style.
-            if (scrollY >= topOverlapTrigger) {
-                topChanged = oldScrollY < topOverlapTrigger;
+            if (scrollY >= firstCardMarginTop) {
+                topChanged = oldScrollY < firstCardMarginTop;
                 topOverlap = true;
             } else {
-                topChanged = oldScrollY >= topOverlapTrigger;
+                topChanged = oldScrollY >= firstCardMarginTop;
                 topOverlap = false;
             }
 
-            bottomOverlap = recyclerView.canScrollVertically(1);
+            if (bottomOverlap != recyclerView.canScrollVertically(1)) {
+                bottomOverlap = recyclerView.canScrollVertically(1);
+                bottomChanged = true;
+            } else {
+                bottomChanged = false;
+            }
 
-            DisplayUtils.setSystemBarStyleWithScrolling(
-                    MainActivity.this, statusBar,
-                    topChanged, topOverlap, bottomChanged, bottomOverlap,
-                    colorPicker.isLightTheme()
-            );
+            if (topChanged || bottomChanged) {
+                DisplayUtils.setSystemBarStyle(
+                        MainActivity.this, getWindow(), true,
+                        topOverlap,
+                        topOverlap && colorPicker.isLightTheme(),
+                        bottomOverlap,
+                        bottomOverlap && colorPicker.isLightTheme()
+                );
+            }
         }
     }
 }

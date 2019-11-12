@@ -1,61 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.WeatherIconControlView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container_circular_sky_view"
+    android:id="@+id/container_circular_sky_view_controller"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/darkPrimary_4">
+    android:layout_height="wrap_content">
 
-    <wangdaye.com.geometricweather.ui.widget.windowInsets.StatusBarView
-        android:id="@+id/container_circular_sky_view_statusBar"
+    <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircleView
+        android:id="@+id/container_circular_sky_view_circularSkyView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/darkPrimary_5" />
+        android:layout_height="wrap_content" />
 
-    <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.WeatherIconControlView
-        android:id="@+id/container_circular_sky_view_controller"
+    <FrameLayout
+        android:id="@+id/container_circular_sky_view_starContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircleView
-            android:id="@+id/container_circular_sky_view_circularSkyView"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/container_circular_sky_view_star_2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <FrameLayout
-            android:id="@+id/container_circular_sky_view_starContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/container_circular_sky_view_star_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitStart"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/star_2" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/container_circular_sky_view_star_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitStart"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/star_1" />
-
-        </FrameLayout>
-
-        <wangdaye.com.geometricweather.ui.widget.AnimatableIconView
-            android:id="@+id/container_circular_sky_view_icon"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:inner_margins="@dimen/normal_margin"
-            tools:background="@drawable/weather_cloudy"
-            tools:layout_width="80dp"
-            tools:layout_height="80dp" />
+            android:scaleType="fitStart"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/star_2" />
 
-    </wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.WeatherIconControlView>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/container_circular_sky_view_star_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/star_1" />
 
-</LinearLayout>
+    </FrameLayout>
+
+    <wangdaye.com.geometricweather.ui.widget.AnimatableIconView
+        android:id="@+id/container_circular_sky_view_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:inner_margins="@dimen/normal_margin"
+        tools:background="@drawable/weather_cloudy"
+        tools:layout_width="80dp"
+        tools:layout_height="80dp" />
+
+</wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.WeatherIconControlView>
