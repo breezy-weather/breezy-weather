@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin"
             android:alpha="0"
+            android:fitsSystemWindows="true"
             app:layout_behavior=".ui.behavior.InkPageIndicatorBehavior"
             app:dotDiameter="8dp"
             app:dotGap="8dp"

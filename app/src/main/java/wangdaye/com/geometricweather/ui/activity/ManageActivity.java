@@ -106,11 +106,10 @@ public class ManageActivity extends GeoActivity
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SEARCH_ACTIVITY:
-                boolean addedLocation = resultCode == RESULT_OK;
-                adapter.itemList = DatabaseHelper.getInstance(this).readLocationList();
-                adapter.notifyItemInserted(adapter.getItemCount() - 1);
-                onLocationListChanged(addedLocation);
-                if (addedLocation) {
+                if (resultCode == RESULT_OK) {
+                    adapter.itemList = DatabaseHelper.getInstance(this).readLocationList();
+                    adapter.notifyItemInserted(adapter.getItemCount() - 1);
+                    onLocationListChanged(true);
                     SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_succeed));
                 }
                 break;

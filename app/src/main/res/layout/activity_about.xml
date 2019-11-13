@@ -22,7 +22,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <wangdaye.com.geometricweather.ui.widget.FitBottomSystemBarRecyclerView
+    <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView
         android:id="@+id/activity_about_recyclerView"
         android:scrollbars="none"
         android:layout_width="match_parent"

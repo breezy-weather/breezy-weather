@@ -20,7 +20,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
+import wangdaye.com.geometricweather.main.ui.dialog.HourlyWeatherDialog;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
@@ -105,10 +105,10 @@ public abstract class HourlyTemperatureAdapter extends TrendRecyclerViewAdapter<
 
             hourlyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
-                    WeatherDialog weatherDialog = new WeatherDialog();
-                    weatherDialog.setData(weather, getAdapterPosition(), false, themeColors[0]);
-                    weatherDialog.setColorPicker(picker);
-                    weatherDialog.show(activity.getSupportFragmentManager(), null);
+                    HourlyWeatherDialog dialog = new HourlyWeatherDialog();
+                    dialog.setData(weather, getAdapterPosition(), themeColors[0]);
+                    dialog.setColorPicker(picker);
+                    dialog.show(activity.getSupportFragmentManager(), null);
                 }
             });
         }

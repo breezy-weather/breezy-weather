@@ -21,6 +21,12 @@
     <style name="GeometricWeatherTheme.AppbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="elevation">2dp</item>
     </style>
+    <style name="GeometricWeatherTheme.TabLayoutTheme" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabIndicatorColor">@color/colorTextTitle</item>
+        <item name="tabSelectedTextColor">@color/colorTextTitle</item>
+        <item name="tabTextColor">@color/colorTextSubtitle</item>
+    </style>
     <style name="GeometricWeatherTheme.AppbarPopupTheme" parent="ThemeOverlay.AppCompat.Light" />
     
     <!-- card. -->

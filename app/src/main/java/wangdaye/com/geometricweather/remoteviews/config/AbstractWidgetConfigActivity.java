@@ -46,6 +46,7 @@ import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -73,6 +74,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected RelativeLayout clockFontContainer;
 
     private BottomSheetBehavior bottomSheetBehavior;
+    private FitBottomSystemBarNestedScrollView bottomSheetScrollView;
     private TextInputLayout subtitleInputLayout;
     private TextInputEditText subtitleInputter;
 
@@ -188,14 +190,23 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.hideSubtitle = false;
 
         this.subtitleDataValueNow = "time";
-        int length = SettingsOptionManager.getInstance(this).getLanguage().getCode().startsWith("zh") ? 6 : 5;
-        this.subtitleData = new String[length];
-        this.subtitleDataValues = new String[length];
+        boolean chinese = SettingsOptionManager.getInstance(this).getLanguage().getCode().startsWith("zh");
         String[] data = res.getStringArray(R.array.subtitle_data);
         String[] dataValues = res.getStringArray(R.array.subtitle_data_values);
-        for (int i = 0; i < length; i ++) {
-            subtitleData[i] = data[i];
-            subtitleDataValues[i] = dataValues[i];
+        if (chinese) {
+            this.subtitleData = new String[] {
+                    data[0], data[1], data[2], data[3], data[4], data[5]
+            };
+            this.subtitleDataValues = new String[] {
+                    dataValues[0], dataValues[1], dataValues[2], dataValues[3], dataValues[4], dataValues[5]
+            };
+        } else {
+            this.subtitleData = new String[] {
+                    data[0], data[1], data[2], data[3], data[5]
+            };
+            this.subtitleDataValues = new String[] {
+                    dataValues[0], dataValues[1], dataValues[2], dataValues[3], dataValues[5]
+            };
         }
 
         this.textColorValueNow = "light";
@@ -326,6 +337,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         bottomSheetBehavior = BottomSheetBehavior.from(
                 findViewById(R.id.activity_widget_config_custom_subtitle));
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+        bottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView);
 
         subtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout);
 
@@ -492,7 +505,10 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             if (subtitleDataValues[i].equals("custom")) {
-                bottomSheetBehavior.setPeekHeight(subtitleInputLayout.getMeasuredHeight(), true);
+                bottomSheetBehavior.setPeekHeight(
+                        (int) (subtitleInputLayout.getMeasuredHeight() + bottomSheetScrollView.getInsetsBottom()),
+                        true
+                );
                 bottomSheetBehavior.setHideable(false);
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             } else {

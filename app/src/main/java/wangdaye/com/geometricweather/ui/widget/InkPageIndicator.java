@@ -10,6 +10,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -287,6 +288,12 @@ public class InkPageIndicator extends View
         if (getMeasuredHeight() != 0 || getMeasuredWidth() != 0) {
             calculateDotPositions(getMeasuredWidth(), getMeasuredHeight());
         }
+    }
+
+    @Override
+    protected boolean fitSystemWindows(Rect insets) {
+        setPadding(0, 0, 0, insets.bottom);
+        return false;
     }
 
     @Override

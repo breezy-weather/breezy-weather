@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <wangdaye.com.geometricweather.ui.widget.FitBottomSystemBarRecyclerView
+                <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView
                     android:id="@+id/activity_search_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
