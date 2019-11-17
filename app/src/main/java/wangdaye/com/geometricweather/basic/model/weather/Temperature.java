@@ -112,4 +112,13 @@ public class Temperature {
         }
         return getShortTemperature(from, unit) + "/" + getShortTemperature(to, unit);
     }
+
+    public boolean isValid() {
+        return realFeelTemperature != null
+                || realFeelShaderTemperature != null
+                || apparentTemperature != null
+                || windChillTemperature != null
+                || wetBulbTemperature != null
+                || degreeDayTemperature != null;
+    }
 }

@@ -14,7 +14,7 @@ import java.util.Random;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 
 /**
- * Wind implementor.
+ * DailyWind implementor.
  * */
 
 public class WindImplementor extends MaterialWeatherView.WeatherAnimationImplementor {

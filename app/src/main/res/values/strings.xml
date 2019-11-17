@@ -16,15 +16,21 @@
     <string name="local_time">Local time</string>
     <string name="precipitation">Precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
+    <string name="precipitation_duration">Precipitation duration</string>
     <string name="maxi_temp">daytime</string>
     <string name="mini_temp">nighttime</string>
     <string name="time">time</string>
     <string name="day">daytime</string>
     <string name="night">nighttime</string>
+    <string name="temperature">Temperature</string>
     <string name="wind">Wind</string>
+    <string name="wind_direction">Wind direction</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="wind_level">Wind gage</string>
     <string name="sensible_temp">Sensible temp</string>
     <string name="humidity">Humidity</string>
     <string name="uv_index">UV index</string>
+    <string name="hours_of_sun">Hours of sun</string>
     <string name="forecast">Forecast</string>
     <string name="briefings">Briefings</string>
     <string name="daytime">Daytime</string>
@@ -54,6 +60,19 @@
     <string name="week_5">Fri</string>
     <string name="week_6">Sat</string>
     <string name="week_7">Sun</string>
+
+    <string name="real_feel_temperature">Real feel</string>
+    <string name="real_feel_shader_temperature">Real feel shader</string>
+    <string name="apparent_temperature">Apparent</string>
+    <string name="wind_chill_temperature">Wind chill</string>
+    <string name="wet_bulb_temperature">Wet bulb</string>
+    <string name="degree_day_temperature">Degree day</string>
+
+    <string name="total">Total</string>
+    <string name="thunderstorm">Thunderstorm</string>
+    <string name="rain">Rain</string>
+    <string name="snow">Snow</string>
+    <string name="ice">Ice</string>
 
     <string name="wind_0">Calm</string>
     <string name="wind_1">Light air</string>
@@ -130,7 +149,7 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
-    <string name="tag_temperature">Temperature</string>
+    <string name="tag_temperature">@string/temperature</string>
     <string name="tag_wind">@string/wind</string>
     <string name="tag_precipitation">@string/precipitation</string>
     <string name="tag_aqi">@string/air_quality</string>

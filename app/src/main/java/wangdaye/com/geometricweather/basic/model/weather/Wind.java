@@ -11,7 +11,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
 
 /**
- * Wind.
+ * DailyWind.
  *
  * default unit:
  * {@link #speed} : {@link wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit#KPH}

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 

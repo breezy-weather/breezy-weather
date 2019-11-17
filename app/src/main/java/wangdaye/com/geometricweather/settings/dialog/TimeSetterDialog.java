@@ -17,7 +17,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 
 /**
  * Time setter dialog.

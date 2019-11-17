@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="UnusedAttribute">
+
+    <LinearLayout
+        android:id="@+id/item_weather_daily_astro_sun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:src="@drawable/weather_clear_day_mini_xml"
+            android:layout_gravity="center_vertical"
+            style="@style/material_icon" />
+
+        <TextView
+            android:id="@+id/item_weather_daily_astro_sunText"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginBottom="@dimen/little_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            style="@style/title_text"
+            tools:text="06:00↑ / 18:00↓" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_weather_daily_astro_moon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:src="@drawable/weather_clear_night_mini_xml"
+            android:layout_gravity="center_vertical"
+            style="@style/material_icon" />
+
+        <TextView
+            android:id="@+id/item_weather_daily_astro_moonText"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginBottom="@dimen/little_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            style="@style/title_text"
+            tools:text="06:00↑ / 18:00↓" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_weather_daily_astro_moonPhase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <wangdaye.com.geometricweather.ui.widget.astro.MoonPhaseView
+            android:id="@+id/item_weather_daily_astro_moonPhaseIcon"
+            android:src="@drawable/weather_clear_night_mini_xml"
+            android:layout_gravity="center_vertical"
+            style="@style/material_icon" />
+
+        <TextView
+            android:id="@+id/item_weather_daily_astro_moonPhaseText"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginBottom="@dimen/little_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            style="@style/title_text"
+            tools:text="@string/phase_waxing_crescent" />
+
+    </LinearLayout>
+
+</LinearLayout>

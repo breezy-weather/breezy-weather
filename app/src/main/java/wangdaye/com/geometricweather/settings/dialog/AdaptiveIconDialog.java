@@ -18,7 +18,7 @@ import java.util.Random;
 import james.adaptiveicon.AdaptiveIcon;
 import james.adaptiveicon.AdaptiveIconView;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 
 /**
  * Adaptive icon dialog.

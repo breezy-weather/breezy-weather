@@ -1,29 +1,32 @@
 package wangdaye.com.geometricweather.main.ui.dialog;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.dialog.GeoBottomSheetDialogFragment;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.main.ui.adapter.daily.DailyWeatherAdapter;
 
 /**
  * Daily weather dialog.
  * */
 
-public class DailyWeatherDialog extends GeoDialogFragment {
+public class DailyWeatherDialog extends GeoBottomSheetDialogFragment {
 
     private CoordinatorLayout container;
     private MainColorPicker colorPicker;
@@ -33,17 +36,17 @@ public class DailyWeatherDialog extends GeoDialogFragment {
 
     @ColorInt private int weatherColor;
 
-    @NonNull
     @SuppressLint("InflateParams")
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        BottomSheetDialog dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_weather_daily, null, false);
         this.initWidget(view);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+        dialog.setContentView(view);
+        setBehavior(BottomSheetBehavior.from((View) view.getParent()));
+        return dialog;
     }
 
     @Override
@@ -62,19 +65,13 @@ public class DailyWeatherDialog extends GeoDialogFragment {
         this.container = view.findViewById(R.id.dialog_weather_daily_container);
         container.setBackgroundColor(colorPicker.getRootColor(getActivity()));
 
-        TextView title = view.findViewById(R.id.dialog_weather_daily_title);
-        title.setText(daily.getDate(getString(R.string.date_format_widget_long)));
-        title.setTextColor(weatherColor);
+        RecyclerView recyclerView = view.findViewById(R.id.dialog_weather_daily_recyclerView);
 
-        TextView subtitle = view.findViewById(R.id.dialog_weather_daily_subtitle);
-        if (SettingsOptionManager.getInstance(getActivity()).getLanguage().getCode().startsWith("zh")) {
-            subtitle.setText(daily.getLunar());
-        } else {
-            subtitle.setVisibility(View.GONE);
-        }
-        subtitle.setTextColor(colorPicker.getTextSubtitleColor(getActivity()));
-
-
+        DailyWeatherAdapter dailyWeatherAdapter = new DailyWeatherAdapter(getActivity(), daily, weatherColor, 3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        gridLayoutManager.setSpanSizeLookup(dailyWeatherAdapter.spanSizeLookup);
+        recyclerView.setAdapter(dailyWeatherAdapter);
+        recyclerView.setLayoutManager(gridLayoutManager);
     }
 
     public void setData(Weather weather, int position, @ColorInt int weatherColor) {

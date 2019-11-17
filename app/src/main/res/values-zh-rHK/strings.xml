@@ -13,13 +13,19 @@
     <string name="local_time">當地時間</string>
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水概率</string>
+    <string name="precipitation_duration">降水時長</string>
     <string name="time">時間</string>
     <string name="day">白天</string>
     <string name="night">夜間</string>
+    <string name="temperature">氣溫</string>
     <string name="wind">風況</string>
+    <string name="wind_direction">風向</string>
+    <string name="wind_speed">風速</string>
+    <string name="wind_level">風力</string>
     <string name="sensible_temp">體感溫度</string>
     <string name="humidity">相對濕度</string>
     <string name="uv_index">紫外綫指數</string>
+    <string name="hours_of_sun">日曬時長</string>
     <string name="forecast">預報</string>
     <string name="briefings">簡報</string>
     <string name="daytime">白天</string>
@@ -49,6 +55,19 @@
     <string name="week_5">周五</string>
     <string name="week_6">周六</string>
     <string name="week_7">周日</string>
+
+    <string name="real_feel_temperature">體感溫度</string>
+    <string name="real_feel_shader_temperature">陰面體感</string>
+    <string name="apparent_temperature">地表溫度</string>
+    <string name="wind_chill_temperature">風寒溫度</string>
+    <string name="wet_bulb_temperature">濕球溫度</string>
+    <string name="degree_day_temperature">度日溫度</string>
+
+    <string name="total">總量</string>
+    <string name="thunderstorm">暴風雨</string>
+    <string name="rain">雨</string>
+    <string name="snow">雪</string>
+    <string name="ice">冰</string>
 
     <string name="wind_0">無風</string>
     <string name="wind_1">一級</string>
@@ -125,7 +144,7 @@
     <string name="date_format_widget_long">M月d日 EEEE</string>
     <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
 
-    <string name="tag_temperature">氣溫</string>
+    <string name="tag_temperature">@string/temperature</string>
     <string name="tag_wind">@string/wind</string>
     <string name="tag_aqi">@string/air_quality</string>
     <string name="tag_uv">@string/uv_index</string>

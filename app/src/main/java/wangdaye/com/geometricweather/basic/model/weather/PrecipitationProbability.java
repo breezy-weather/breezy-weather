@@ -51,4 +51,8 @@ public class PrecipitationProbability {
     public Float getIce() {
         return ice;
     }
+
+    public boolean isValid() {
+        return total != null && total > 0;
+    }
 }

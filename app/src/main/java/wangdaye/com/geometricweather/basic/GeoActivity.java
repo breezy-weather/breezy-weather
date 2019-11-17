@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.basic.dialog.IGeoDialogFragment;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
@@ -25,7 +26,7 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public abstract class GeoActivity extends AppCompatActivity {
 
-    private List<GeoDialogFragment> dialogList;
+    private List<IGeoDialogFragment> dialogList;
     private boolean foreground;
 
     @Nullable private OnRequestPermissionsResultListener permissionsListener;
@@ -83,7 +84,7 @@ public abstract class GeoActivity extends AppCompatActivity {
         return foreground;
     }
 
-    public List<GeoDialogFragment> getDialogList() {
+    public List<IGeoDialogFragment> getDialogList() {
         if (dialogList == null) {
             dialogList = new ArrayList<>();
         }

@@ -24,7 +24,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.basic.model.weather.Wind;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
+import wangdaye.com.geometricweather.main.ui.dialog.DailyWeatherDialog;
 import wangdaye.com.geometricweather.ui.image.RotateDrawable;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendRecyclerViewAdapter;
@@ -115,10 +115,10 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
 
             dailyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
-                    WeatherDialog weatherDialog = new WeatherDialog();
-                    weatherDialog.setData(weather, getAdapterPosition(), true, themeColors[0]);
-                    weatherDialog.setColorPicker(picker);
-                    weatherDialog.show(activity.getSupportFragmentManager(), null);
+                    DailyWeatherDialog dialog = new DailyWeatherDialog();
+                    dialog.setData(weather, getAdapterPosition(), themeColors[0]);
+                    dialog.setColorPicker(picker);
+                    dialog.show(activity.getSupportFragmentManager(), null);
                 }
             });
         }

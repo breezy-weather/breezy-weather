@@ -1,16 +1,18 @@
-package wangdaye.com.geometricweather.basic;
+package wangdaye.com.geometricweather.basic.dialog;
 
 import android.app.Activity;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import android.view.View;
+
+import wangdaye.com.geometricweather.basic.GeoActivity;
 
 /**
  * Geometric weather dialog fragment.
  * */
 
-public abstract class GeoDialogFragment extends DialogFragment {
+public abstract class GeoDialogFragment extends DialogFragment
+        implements IGeoDialogFragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -29,6 +31,4 @@ public abstract class GeoDialogFragment extends DialogFragment {
             ((GeoActivity) activity).getDialogList().remove(this);
         }
     }
-
-    public abstract View getSnackbarContainer();
 }

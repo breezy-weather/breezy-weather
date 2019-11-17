@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.dialog.WeatherDialog;
+import wangdaye.com.geometricweather.main.ui.dialog.DailyWeatherDialog;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
@@ -125,10 +125,10 @@ public abstract class DailyTemperatureAdapter extends TrendRecyclerViewAdapter<D
 
             dailyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
-                    WeatherDialog weatherDialog = new WeatherDialog();
-                    weatherDialog.setData(weather, getAdapterPosition(), true, themeColors[0]);
-                    weatherDialog.setColorPicker(picker);
-                    weatherDialog.show(activity.getSupportFragmentManager(), null);
+                    DailyWeatherDialog dialog = new DailyWeatherDialog();
+                    dialog.setData(weather, getAdapterPosition(), themeColors[0]);
+                    dialog.setColorPicker(picker);
+                    dialog.show(activity.getSupportFragmentManager(), null);
                 }
             });
         }
@@ -158,7 +158,7 @@ public abstract class DailyTemperatureAdapter extends TrendRecyclerViewAdapter<D
                                    @NonNull Weather weather, @NonNull TimeZone timeZone, int[] themeColors,
                                    ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
         this(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight,
-                weather, timeZone, themeColors, false, provider, picker, unit);
+                weather, timeZone, themeColors, true, provider, picker, unit);
     }
 
     @SuppressLint("SimpleDateFormat")

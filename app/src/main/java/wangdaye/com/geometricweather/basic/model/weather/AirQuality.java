@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Air quality.
+ * DailyAirQuality quality.
  *
  * default unit : {@link wangdaye.com.geometricweather.basic.model.option.unit.AirQualityUnit#MUGPCUM}
  * */

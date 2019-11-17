@@ -245,17 +245,34 @@ public class MaterialWeatherView extends View implements WeatherView {
         postInvalidate();
     }
 
-    private void setWeatherImplementor() {
-        if (implementor != null) {
-            backgroundColor = getBackgroundColor();
+    private void resetDrawer() {
+        rotation2D = rotation3D = 0;
+        if (sensorManager != null) {
+            sensorManager.registerListener(
+                    gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
         }
 
-        step = STEP_DISPLAY;
+        setWeatherImplementor();
+
+        if (intervalComputer == null) {
+            intervalComputer = new IntervalComputer();
+        } else {
+            intervalComputer.reset();
+        }
+
+        postInvalidate();
+    }
+
+    private void setWeatherImplementor() {
         implementor = WeatherImplementorFactory.getWeatherImplementor(weatherKind, daytime, sizes);
         rotators = new RotateController[] {
                 new DelayRotateController(rotation2D),
                 new DelayRotateController(rotation3D)
         };
+        if (implementor != null) {
+            step = STEP_DISPLAY;
+            backgroundColor = getBackgroundColor();
+        }
     }
 
     private static int getBrighterColor(int color){
@@ -282,9 +299,13 @@ public class MaterialWeatherView extends View implements WeatherView {
         this.backgroundColor = getBackgroundColor();
 
         if (drawable) {
-            // Set step to dismiss. The implementor will execute exit animation and call weather
-            // view to resetWidget it.
-            step = STEP_DISMISS;
+            if (implementor == null) {
+                resetDrawer();
+            } else {
+                // Set step to dismiss. The implementor will execute exit animation and call weather
+                // view to resetWidget it.
+                step = STEP_DISMISS;
+            }
         }
     }
 
@@ -375,19 +396,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         this.drawable = drawable;
 
         if (drawable) {
-            rotation2D = rotation3D = 0;
-            if (sensorManager != null) {
-                sensorManager.registerListener(
-                        gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
-            }
-
-            setWeatherImplementor();
-
-            if (intervalComputer == null) {
-                intervalComputer = new IntervalComputer();
-            } else {
-                intervalComputer.reset();
-            }
+            resetDrawer();
         } else {
             // !drawable
             if (sensorManager != null) {

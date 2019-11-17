@@ -15,7 +15,7 @@ import androidx.annotation.Size;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 
 /**

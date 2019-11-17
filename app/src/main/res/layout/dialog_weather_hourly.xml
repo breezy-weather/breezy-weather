@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarCoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialog_weather_hourly_container"
@@ -35,7 +36,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:foreground="@drawable/selectable_item_background_borderless"
@@ -54,7 +54,8 @@
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:gravity="start"
                 android:textAlignment="gravity"
-                style="@style/content_text"
+                android:textStyle="bold"
+                style="@style/title_text"
                 tools:text="晴 9℃\n东北风3-4级"
                 tools:ignore="RtlHardcoded" />
 
@@ -62,4 +63,4 @@
 
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarCoordinatorLayout>

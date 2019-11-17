@@ -20,7 +20,7 @@ public class AccuCurrentResult {
      * RealFeelTemperatureShade : {"Metric":{"Value":-0.6,"Unit":"C","UnitType":17},"Imperial":{"Value":31,"Unit":"F","UnitType":18}}
      * RelativeHumidity : 75
      * DewPoint : {"Metric":{"Value":-0.2,"Unit":"C","UnitType":17},"Imperial":{"Value":32,"Unit":"F","UnitType":18}}
-     * Wind : {"Direction":{"Degrees":315,"Localized":"西北","English":"NW"},"Speed":{"Metric":{"Value":16.7,"Unit":"km/h","UnitType":7},"Imperial":{"Value":10.4,"Unit":"mi/h","UnitType":9}}}
+     * DailyWind : {"Direction":{"Degrees":315,"Localized":"西北","English":"NW"},"Speed":{"Metric":{"Value":16.7,"Unit":"km/h","UnitType":7},"Imperial":{"Value":10.4,"Unit":"mi/h","UnitType":9}}}
      * WindGust : {"Speed":{"Metric":{"Value":16.7,"Unit":"km/h","UnitType":7},"Imperial":{"Value":10.4,"Unit":"mi/h","UnitType":9}}}
      * UVIndex : 1
      * UVIndexText : 低

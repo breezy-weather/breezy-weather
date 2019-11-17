@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.R;
 
 /**
- * Pollen.
+ * DailyPollen.
  * */
 public class Pollen {
 

@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.TextUtils;
 
 import androidx.annotation.ColorInt;

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_weather_daily_pollen"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="@drawable/selectable_item_background"
+    tools:ignore="UnusedAttribute">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="DisableBaselineAlignment">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_weather_daily_pollen_grassIcon"
+                android:src="@drawable/ic_circle_medium"
+                android:layout_centerVertical="true"
+                style="@style/material_icon"
+                tools:tint="@color/colorLevel_1"
+                tools:ignore="ContentDescription" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_toEndOf="@id/item_weather_daily_pollen_grassIcon"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/item_weather_daily_pollen_grassTitle"
+                    style="@style/content_text"
+                    tools:text="草地花粉" />
+
+                <TextView
+                    android:id="@+id/item_weather_daily_pollen_grassValue"
+                    style="@style/subtitle_text"
+                    tools:text="2/m³ - 低" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_weather_daily_pollen_ragweedIcon"
+                android:src="@drawable/ic_circle_medium"
+                android:layout_centerVertical="true"
+                style="@style/material_icon"
+                tools:tint="@color/colorLevel_1"
+                tools:ignore="ContentDescription" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_toEndOf="@id/item_weather_daily_pollen_ragweedIcon"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/item_weather_daily_pollen_ragweedTitle"
+                    style="@style/content_text"
+                    tools:text="草地花粉" />
+
+                <TextView
+                    android:id="@+id/item_weather_daily_pollen_ragweedValue"
+                    style="@style/subtitle_text"
+                    tools:text="2/m³ - 低" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="DisableBaselineAlignment">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_weather_daily_pollen_treeIcon"
+                android:src="@drawable/ic_circle_medium"
+                android:layout_centerVertical="true"
+                style="@style/material_icon"
+                tools:tint="@color/colorLevel_1"
+                tools:ignore="ContentDescription" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_toEndOf="@id/item_weather_daily_pollen_treeIcon"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/item_weather_daily_pollen_treeTitle"
+                    style="@style/content_text"
+                    tools:text="草地花粉" />
+
+                <TextView
+                    android:id="@+id/item_weather_daily_pollen_treeValue"
+                    style="@style/subtitle_text"
+                    tools:text="2/m³ - 低" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_weather_daily_pollen_moldIcon"
+                android:src="@drawable/ic_circle_medium"
+                android:layout_centerVertical="true"
+                style="@style/material_icon"
+                tools:tint="@color/colorLevel_1"
+                tools:ignore="ContentDescription" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_toEndOf="@id/item_weather_daily_pollen_moldIcon"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/item_weather_daily_pollen_moldTitle"
+                    style="@style/content_text"
+                    tools:text="草地花粉" />
+
+                <TextView
+                    android:id="@+id/item_weather_daily_pollen_moldValue"
+                    style="@style/subtitle_text"
+                    tools:text="2/m³ - 低" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

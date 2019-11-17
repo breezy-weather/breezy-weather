@@ -11,7 +11,6 @@
 
     <TextView
         android:id="@+id/item_aqi_title"
-        android:layout_marginStart="2dp"
         android:maxLines="1"
         android:ellipsize="end"
         android:textSize="@dimen/subtitle_text_size"
@@ -25,7 +24,6 @@
 
     <TextView
         android:id="@+id/item_aqi_content"
-        android:layout_marginEnd="2dp"
         android:layout_gravity="end"
         android:maxLines="1"
         android:ellipsize="end"

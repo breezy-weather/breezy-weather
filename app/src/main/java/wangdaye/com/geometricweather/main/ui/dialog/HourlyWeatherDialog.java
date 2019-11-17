@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.ui.dialog;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +11,13 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import java.text.SimpleDateFormat;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.dialog.GeoBottomSheetDialogFragment;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
@@ -33,7 +35,7 @@ import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
  * Hourly weather dialog.
  * */
 
-public class HourlyWeatherDialog extends GeoDialogFragment {
+public class HourlyWeatherDialog extends GeoBottomSheetDialogFragment {
 
     private CoordinatorLayout container;
     private AnimatableIconView weatherIcon;
@@ -44,17 +46,17 @@ public class HourlyWeatherDialog extends GeoDialogFragment {
 
     @ColorInt private int weatherColor;
 
-    @NonNull
     @SuppressLint("InflateParams")
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        BottomSheetDialog dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_weather_hourly, null, false);
         this.initWidget(view);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+        dialog.setContentView(view);
+        setBehavior(BottomSheetBehavior.from((View) view.getParent()));
+        return dialog;
     }
 
     @Override
@@ -115,7 +117,8 @@ public class HourlyWeatherDialog extends GeoDialogFragment {
                     .append(" : ")
                     .append(precipitationUnit.getPrecipitationText(p));
         }
-        if (hourly.getPrecipitationProbability().getTotal() != null) {
+        if (hourly.getPrecipitationProbability().getTotal() != null
+                && hourly.getPrecipitationProbability().getTotal() > 0) {
             Float p = hourly.getPrecipitationProbability().getTotal();
             builder.append("\n")
                     .append(getString(R.string.precipitation_probability))

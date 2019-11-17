@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 
 /**
  * Running in background O dialog.

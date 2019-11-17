@@ -32,7 +32,7 @@ import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.ui.widget.RoundProgress;
 
 /**
- * Pollen adapter.
+ * DailyPollen adapter.
  */
 
 public class PollenAdapter extends RecyclerView.Adapter<PollenAdapter.ViewHolder> {

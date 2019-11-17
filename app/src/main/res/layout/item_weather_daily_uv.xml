@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="@drawable/selectable_item_background_borderless"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    tools:ignore="UnusedAttribute">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_weather_daily_uv_icon"
+        android:src="@drawable/ic_circle_medium"
+        style="@style/material_icon"
+        tools:tint="@color/colorLevel_1"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/item_weather_daily_uv_title"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/little_margin"
+        android:layout_marginBottom="@dimen/little_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        style="@style/title_text"
+        tools:text="3 / 弱" />
+
+</LinearLayout>

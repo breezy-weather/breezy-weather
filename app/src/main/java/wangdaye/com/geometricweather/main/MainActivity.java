@@ -247,7 +247,7 @@ public class MainActivity extends GeoActivity
                 refreshLayout.setProgressViewOffset(
                         false,
                         startPosition,
-                        startPosition + refreshLayout.getProgressViewEndOffset()
+                        (int) (startPosition + 64 * getResources().getDisplayMetrics().density)
                 );
                 return insets;
             });

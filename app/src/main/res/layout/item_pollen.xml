@@ -14,7 +14,6 @@
 
     <TextView
         android:id="@+id/item_pollen_title"
-        android:layout_marginStart="2dp"
         android:maxLines="1"
         android:ellipsize="end"
         android:layout_alignParentTop="true"

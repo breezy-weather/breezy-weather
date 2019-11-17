@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.locks.ReadWriteLock;
 
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.location.LocationHelper;
@@ -30,7 +31,9 @@ public class MainActivityRepository {
     public void getWeather(Context context,
                            @NonNull MutableLiveData<LocationResource> currentLocation,
                            @NonNull List<Location> totalLocationList,
-                           boolean locate, @Nullable OnLocationCompletedListener l) {
+                           @NonNull ReadWriteLock lock,
+                           boolean locate,
+                           @Nullable OnLocationCompletedListener l) {
         assert currentLocation.getValue() != null;
         Location data = currentLocation.getValue().data;
 
@@ -42,14 +45,17 @@ public class MainActivityRepository {
                             if (!requestLocation.equals(data)) {
                                 return;
                             }
+
+                            lock.writeLock().lock();
                             currentLocation.setValue(LocationResource.loading(requestLocation));
                             updateLocationList(requestLocation, totalLocationList);
                             if (l != null) {
                                 l.onCompleted(context);
                             }
+                            lock.writeLock().unlock();
 
                             getWeatherWithValidLocationInformation(
-                                    context, currentLocation, totalLocationList);
+                                    context, currentLocation, totalLocationList, lock);
                         }
 
                         @Override
@@ -58,28 +64,32 @@ public class MainActivityRepository {
                                 return;
                             }
 
+                            lock.writeLock().lock();
                             if (requestLocation.isUsable()) {
                                 currentLocation.setValue(
                                         LocationResource.loading(requestLocation, true));
                                 updateLocationList(requestLocation, totalLocationList);
+                                lock.writeLock().unlock();
 
                                 getWeatherWithValidLocationInformation(
-                                        context, currentLocation, totalLocationList);
+                                        context, currentLocation, totalLocationList, lock);
                             } else {
                                 currentLocation.setValue(
                                         LocationResource.error(requestLocation, true));
                                 updateLocationList(requestLocation, totalLocationList);
+                                lock.writeLock().unlock();
                             }
                         }
                     });
         } else {
-            getWeatherWithValidLocationInformation(context, currentLocation, totalLocationList);
+            getWeatherWithValidLocationInformation(context, currentLocation, totalLocationList, lock);
         }
     }
 
     private void getWeatherWithValidLocationInformation(Context context,
                                                         @NonNull MutableLiveData<LocationResource> currentLocation,
-                                                        @NonNull List<Location> totalLocationList) {
+                                                        @NonNull List<Location> totalLocationList,
+                                                        @NonNull ReadWriteLock lock) {
         assert currentLocation.getValue() != null;
         Location data = currentLocation.getValue().data;
 
@@ -90,8 +100,10 @@ public class MainActivityRepository {
                     return;
                 }
 
+                lock.writeLock().lock();
                 currentLocation.setValue(LocationResource.success(requestLocation));
                 updateLocationList(requestLocation, totalLocationList);
+                lock.writeLock().unlock();
             }
 
             @Override
@@ -100,8 +112,10 @@ public class MainActivityRepository {
                     return;
                 }
 
+                lock.writeLock().lock();
                 currentLocation.setValue(LocationResource.error(requestLocation));
                 updateLocationList(requestLocation, totalLocationList);
+                lock.writeLock().unlock();
             }
         });
     }
@@ -134,6 +148,9 @@ public class MainActivityRepository {
     }
 
     public interface OnLocationCompletedListener {
+        /**
+         * Work in write lock.
+         * */
         void onCompleted(Context context);
     }
 }
