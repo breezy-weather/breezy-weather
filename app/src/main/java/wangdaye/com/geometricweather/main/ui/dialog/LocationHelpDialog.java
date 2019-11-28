@@ -6,18 +6,18 @@ import android.app.Dialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.DialogFragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
-public class LocationHelpDialog extends GeoDialogFragment {
+public class LocationHelpDialog extends DialogFragment {
 
-    private CoordinatorLayout container;
     private MainColorPicker colorPicker;
 
     @NonNull
@@ -33,18 +33,13 @@ public class LocationHelpDialog extends GeoDialogFragment {
         return builder.create();
     }
 
-    @Override
-    public View getSnackbarContainer() {
-        return container;
-    }
-
     @SuppressLint("SetTextI18n")
     private void initWidget(View view) {
         if (getActivity() == null) {
             return;
         }
 
-        this.container = view.findViewById(R.id.dialog_location_help_container);
+        CoordinatorLayout container = view.findViewById(R.id.dialog_location_help_container);
         container.setBackgroundColor(colorPicker.getRootColor(getActivity()));
 
         ((TextView) view.findViewById(R.id.dialog_location_help_title)).setTextColor(

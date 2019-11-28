@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.main.ui.adapter.DetailsAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
-public class DetailsViewHolder extends AbstractMainViewHolder {
+public class DetailsViewHolder extends AbstractMainCardViewHolder {
 
     private CardView card;
 

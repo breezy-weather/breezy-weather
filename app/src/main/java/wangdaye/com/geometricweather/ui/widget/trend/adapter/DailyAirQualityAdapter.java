@@ -21,11 +21,11 @@ import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.dialog.DailyWeatherDialog;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * Daily air quality adapter.
@@ -35,6 +35,7 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
 
     private GeoActivity activity;
 
+    private String formattedId;
     private Weather weather;
     private TimeZone timeZone;
     private MainColorPicker picker;
@@ -103,10 +104,7 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
 
             dailyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
-                    DailyWeatherDialog dialog = new DailyWeatherDialog();
-                    dialog.setData(weather, getAdapterPosition(), themeColors[0]);
-                    dialog.setColorPicker(picker);
-                    dialog.show(activity.getSupportFragmentManager(), null);
+                    IntentHelper.startDailyWeatherActivity(activity, formattedId, getAdapterPosition());
                 }
             });
         }
@@ -116,11 +114,12 @@ public abstract class DailyAirQualityAdapter extends TrendRecyclerViewAdapter<Da
     public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent,
                                   @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
                                   int itemCountPerLine, @Px float itemHeight,
-                                  @NonNull Weather weather, @NonNull TimeZone timeZone,
+                                  String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                   int[] themeColors, MainColorPicker picker) {
         super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight);
         this.activity = activity;
 
+        this.formattedId = formattedId;
         this.weather = weather;
         this.timeZone = timeZone;
         this.picker = picker;

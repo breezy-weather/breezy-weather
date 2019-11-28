@@ -9,6 +9,7 @@ import androidx.preference.Preference;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
 import wangdaye.com.geometricweather.settings.OptionMapper;
 import wangdaye.com.geometricweather.settings.dialog.RunningInBackgroundDialog;
@@ -93,7 +94,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
 
         // live wallpaper.
         findPreference(getString(R.string.key_live_wallpaper)).setOnPreferenceClickListener(preference -> {
-            IntentHelper.startLiveWallpaperActivity(requireActivity());
+            IntentHelper.startLiveWallpaperActivity((GeoActivity) requireActivity());
             return true;
         });
 

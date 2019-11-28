@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 
 public class DailyPrecipitationAdapter extends wangdaye.com.geometricweather.ui.widget.trend.adapter.DailyPrecipitationAdapter {
 
-    public DailyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent, float cardMarginsVertical, float cardMarginsHorizontal, int itemCountPerLine, float itemHeight, @NonNull Weather weather, @NonNull TimeZone timeZone, int[] themeColors, ResourceProvider provider, MainColorPicker picker, PrecipitationUnit unit) {
-        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight, weather, timeZone, themeColors, provider, picker, unit);
+    public DailyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent, float cardMarginsVertical, float cardMarginsHorizontal, int itemCountPerLine, float itemHeight, String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone, ResourceProvider provider, MainColorPicker picker, PrecipitationUnit unit) {
+        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight, formattedId, weather, timeZone, provider, picker, unit);
     }
 }

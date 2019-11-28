@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:fitsSystemWindows="true"
-            app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
+            app:theme="@style/GeometricWeatherTheme.AppbarTheme">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/activity_card_display_manage_toolbar"

@@ -9,21 +9,19 @@ import android.os.Bundle;
 import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.DialogFragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 
 /**
  * Running in background O dialog.
  * */
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class RunningInBackgroundODialog extends GeoDialogFragment
+public class RunningInBackgroundODialog extends DialogFragment
         implements View.OnClickListener {
-
-    private CoordinatorLayout container;
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -39,15 +37,8 @@ public class RunningInBackgroundODialog extends GeoDialogFragment
     }
 
     private void initWidget(View view) {
-        this.container = view.findViewById(R.id.dialog_running_in_background_o_container);
-
         view.findViewById(R.id.dialog_running_in_background_o_setBtn).setOnClickListener(this);
         view.findViewById(R.id.dialog_running_in_background_o_doneBtn).setOnClickListener(this);
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
     }
 
     @Override
@@ -56,8 +47,8 @@ public class RunningInBackgroundODialog extends GeoDialogFragment
             case R.id.dialog_running_in_background_o_setBtn:
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-                intent.putExtra(Settings.EXTRA_APP_PACKAGE, getActivity().getPackageName());
-                getActivity().startActivity(intent);
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, requireActivity().getPackageName());
+                requireActivity().startActivity(intent);
                 break;
 
             case R.id.dialog_running_in_background_o_doneBtn:

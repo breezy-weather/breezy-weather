@@ -11,11 +11,10 @@
     android:paddingBottom="@dimen/little_margin"
     android:textStyle="bold"
     android:textSize="@dimen/content_text_size"
+    android:textColor="@color/colorTextSubtitle"
     android:foreground="@drawable/selectable_item_background"
     android:stateListAnimator="@animator/touch_raise"
-    app:checked_text_color="@color/colorRoot"
     app:checked_background_color="@color/colorTextContent"
-    app:unchecked_text_color="@color/colorTextSubtitle"
     app:unchecked_background_color="@color/colorLine"
     tools:text="accuweather.com"
     tools:ignore="UnusedAttribute" />

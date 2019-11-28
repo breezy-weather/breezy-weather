@@ -94,7 +94,7 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
                                                 boolean touchToRefresh) {
-        // container.
+        // headerContainer.
         if (touchToRefresh) {
             views.setOnClickPendingIntent(
                     R.id.widget_text_container,

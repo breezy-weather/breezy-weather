@@ -143,7 +143,7 @@ public class MainActivity extends GeoActivity
                 backgroundUpdateReceiver,
                 new IntentFilter(ACTION_UPDATE_WEATHER_IN_BACKGROUND)
         );
-        refreshBackgroundViews(true, true);
+        refreshBackgroundViews(true, null);
     }
 
     @Override
@@ -169,7 +169,7 @@ public class MainActivity extends GeoActivity
                 resetUIUpdateFlag();
                 viewModel.reset(this);
 
-                refreshBackgroundViews(true, true);
+                refreshBackgroundViews(true, location);
                 break;
 
             case MANAGE_ACTIVITY:
@@ -265,7 +265,7 @@ public class MainActivity extends GeoActivity
         viewModel.getCurrentLocation().observe(this, resource -> {
 
             setRefreshing(resource.status == Resource.Status.LOADING);
-            drawUI(resource.data, resource.isUpdatedInBackground());
+            drawUI(resource.data, resource.isDefaultLocation(), resource.isUpdatedInBackground());
 
             if (resource.isLocateFailed()) {
                 SnackbarUtils.showSnackbar(
@@ -303,7 +303,7 @@ public class MainActivity extends GeoActivity
     // control.
 
     @SuppressLint("SetTextI18n")
-    private void drawUI(Location location, boolean updatedInBackground) {
+    private void drawUI(Location location, boolean defaultLocation, boolean updatedInBackground) {
         if (currentLocation != null
                 && location.equals(currentLocation)
                 && location.getWeather() != null
@@ -381,7 +381,7 @@ public class MainActivity extends GeoActivity
 
         refreshBackgroundViews(
                 false,
-                !updatedInBackground && viewModel.getIndicatorIndexValue() == 0
+                (!updatedInBackground && defaultLocation) ? location : null
         );
     }
 
@@ -445,7 +445,7 @@ public class MainActivity extends GeoActivity
         refreshLayout.post(() -> refreshLayout.setRefreshing(b));
     }
 
-    private void refreshBackgroundViews(boolean resetBackground, boolean refreshRemoteViews) {
+    private void refreshBackgroundViews(boolean resetBackground, @Nullable Location location) {
         if (resetBackground) {
             Observable.create(emitter -> PollingManager.resetAllBackgroundTask(this, false))
                     .subscribeOn(Schedulers.io())
@@ -454,13 +454,10 @@ public class MainActivity extends GeoActivity
                     .subscribe();
         }
 
-        if (refreshRemoteViews) {
+        if (location != null) {
             Observable.create(emitter -> {
-                Location location = viewModel.getCurrentLocationValue();
-                if (location != null) {
-                    WidgetUtils.updateWidgetIfNecessary(this, location);
-                    NotificationUtils.updateNotificationIfNecessary(this, location);
-                }
+                WidgetUtils.updateWidgetIfNecessary(this, location);
+                NotificationUtils.updateNotificationIfNecessary(this, location);
             }).subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
                     .delay(1, TimeUnit.SECONDS)

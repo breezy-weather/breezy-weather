@@ -36,7 +36,7 @@ import wangdaye.com.geometricweather.ui.widget.astro.MoonPhaseView;
 import wangdaye.com.geometricweather.ui.widget.astro.SunMoonView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
-public class AstroViewHolder extends AbstractMainViewHolder {
+public class AstroViewHolder extends AbstractMainCardViewHolder {
 
     private CardView card;
 

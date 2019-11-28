@@ -11,11 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.basic.dialog.IGeoDialogFragment;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
@@ -26,7 +22,6 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public abstract class GeoActivity extends AppCompatActivity {
 
-    private List<IGeoDialogFragment> dialogList;
     private boolean foreground;
 
     @Nullable private OnRequestPermissionsResultListener permissionsListener;
@@ -70,25 +65,10 @@ public abstract class GeoActivity extends AppCompatActivity {
         GeometricWeather.getInstance().removeActivity(this);
     }
 
-    public View provideSnackbarContainer() {
-        if (getDialogList().size() > 0) {
-            return getDialogList().get(getDialogList().size() - 1).getSnackbarContainer();
-        } else {
-            return getSnackbarContainer();
-        }
-    }
-
     public abstract View getSnackbarContainer();
 
     public boolean isForeground() {
         return foreground;
-    }
-
-    public List<IGeoDialogFragment> getDialogList() {
-        if (dialogList == null) {
-            dialogList = new ArrayList<>();
-        }
-        return dialogList;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

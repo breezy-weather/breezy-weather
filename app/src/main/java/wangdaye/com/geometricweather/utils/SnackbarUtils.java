@@ -6,7 +6,6 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.core.content.ContextCompat;
 import android.view.View;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 
@@ -16,15 +15,8 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 
 public class SnackbarUtils {
 
-    public static void showSnackbar(String txt) {
-        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
-        if (activity != null) {
-            showSnackbar(activity, txt);
-        }
-    }
-
     public static void showSnackbar(@NonNull GeoActivity activity, String txt) {
-        Snackbar.make(activity.provideSnackbarContainer(), txt, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(activity.getSnackbarContainer(), txt, Snackbar.LENGTH_SHORT).show();
     }
 
     public static void showSnackbar(@NonNull GeoActivity activity, String txt, String action,
@@ -40,7 +32,7 @@ public class SnackbarUtils {
         }
 
         Snackbar.make(
-                activity.provideSnackbarContainer(),
+                activity.getSnackbarContainer(),
                 txt,
                 Snackbar.LENGTH_LONG
         ).setAction(action, l)

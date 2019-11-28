@@ -5,16 +5,11 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Px;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -31,7 +26,6 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
     protected Context context;
-    protected @Nullable LinearLayout container;
     protected ResourceProvider provider;
     protected MainColorPicker picker;
     protected boolean itemAnimationEnabled;
@@ -41,29 +35,9 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     @SuppressLint("ObjectAnimatorBinding")
     public AbstractMainViewHolder(Context context, @NonNull View view,
                                   @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                  @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                                  @Px float cardRadius, @Px float cardElevation,
                                   boolean itemAnimationEnabled) {
         super(view);
-
         this.context = context;
-        if (view instanceof CardView) {
-            CardView card = (CardView) view;
-
-            card.setRadius(cardRadius);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                card.setElevation(cardElevation);
-            }
-
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
-            params.setMargins((int) cardMarginsHorizontal, 0, (int) cardMarginsHorizontal, (int) cardMarginsVertical);
-            card.setLayoutParams(params);
-
-            View child = card.getChildAt(0);
-            if (child instanceof LinearLayout) {
-                container = (LinearLayout) child;
-            }
-        }
         this.provider = provider;
         this.picker = picker;
         this.itemAnimationEnabled = itemAnimationEnabled;
@@ -75,10 +49,6 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
     public int getTop() {
         return itemView.getTop();
-    }
-
-    public @Nullable LinearLayout getContainer() {
-        return container;
     }
 
     public final void enterScreen(List<Animator> pendingAnimatorList,

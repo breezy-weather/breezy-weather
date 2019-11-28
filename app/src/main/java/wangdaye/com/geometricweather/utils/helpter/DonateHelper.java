@@ -17,7 +17,7 @@ public class DonateHelper {
         if (AlipayDonate.hasInstalledAlipayClient(activity)) {
             AlipayDonate.startAlipayClient(activity, "fkx02882gqdh6imokjddj2a");
         } else {
-            SnackbarUtils.showSnackbar("Alipay is not installed.");
+            SnackbarUtils.showSnackbar(activity, "Alipay is not installed.");
         }
     }
 
@@ -25,7 +25,7 @@ public class DonateHelper {
         if (WeiXinDonate.hasInstalledWeiXinClient(activity)) {
             new WechatDonateDialog().show(activity.getSupportFragmentManager(), null);
         } else {
-            SnackbarUtils.showSnackbar("WeChat is not installed.");
+            SnackbarUtils.showSnackbar(activity, "WeChat is not installed.");
         }
     }
 }

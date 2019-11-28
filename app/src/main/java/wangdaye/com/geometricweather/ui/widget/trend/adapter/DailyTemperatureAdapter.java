@@ -22,13 +22,13 @@ import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.dialog.DailyWeatherDialog;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * Daily temperature adapter.
@@ -38,6 +38,7 @@ public abstract class DailyTemperatureAdapter extends TrendRecyclerViewAdapter<D
 
     private GeoActivity activity;
 
+    private String formattedId;
     private Weather weather;
     private TimeZone timeZone;
     private ResourceProvider provider;
@@ -125,10 +126,7 @@ public abstract class DailyTemperatureAdapter extends TrendRecyclerViewAdapter<D
 
             dailyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
-                    DailyWeatherDialog dialog = new DailyWeatherDialog();
-                    dialog.setData(weather, getAdapterPosition(), themeColors[0]);
-                    dialog.setColorPicker(picker);
-                    dialog.show(activity.getSupportFragmentManager(), null);
+                    IntentHelper.startDailyWeatherActivity(activity, formattedId, getAdapterPosition());
                 }
             });
         }
@@ -155,22 +153,23 @@ public abstract class DailyTemperatureAdapter extends TrendRecyclerViewAdapter<D
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
                                    @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
                                    int itemCountPerLine, @Px float itemHeight,
-                                   @NonNull Weather weather, @NonNull TimeZone timeZone, int[] themeColors,
+                                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone, int[] themeColors,
                                    ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
         this(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight,
-                weather, timeZone, themeColors, true, provider, picker, unit);
+                formattedId, weather, timeZone, themeColors, true, provider, picker, unit);
     }
 
     @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
                                    @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
                                    int itemCountPerLine, @Px float itemHeight,
-                                   @NonNull Weather weather, @NonNull TimeZone timeZone,
+                                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                    int[] themeColors, boolean showPrecipitationProbability,
                                    ResourceProvider provider, MainColorPicker picker, TemperatureUnit unit) {
         super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight);
         this.activity = activity;
 
+        this.formattedId = formattedId;
         this.weather = weather;
         this.timeZone = timeZone;
         this.provider = provider;

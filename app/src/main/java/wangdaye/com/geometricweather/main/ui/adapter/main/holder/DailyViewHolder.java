@@ -39,7 +39,7 @@ import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
-public class DailyViewHolder extends AbstractMainViewHolder {
+public class DailyViewHolder extends AbstractMainCardViewHolder {
 
     private CardView card;
 
@@ -77,9 +77,11 @@ public class DailyViewHolder extends AbstractMainViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
+        int weatherColor = weatherView.getThemeColors(picker.isLightTheme())[0];
+
         card.setCardBackgroundColor(picker.getRootColor(context));
 
-        title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
+        title.setTextColor(weatherColor);
 
         if (TextUtils.isEmpty(weather.getCurrent().getDailyForecast())) {
             subtitle.setVisibility(View.GONE);
@@ -102,8 +104,9 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                     )
             );
             tagView.setAdapter(
-                    new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
-                        setTrendAdapterByTag(weather, location.getTimeZone(), (MainTag) tagList.get(newPosition));
+                    new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
+                        setTrendAdapterByTag(
+                                location.getFormattedId(), weather, location.getTimeZone(), (MainTag) tagList.get(newPosition));
                         return false;
                     }, picker, 0)
             );
@@ -112,7 +115,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
         trendRecyclerView.setHasFixedSize(true);
         trendRecyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        setTrendAdapterByTag(weather, location.getTimeZone(), (MainTag) tagList.get(0));
+        setTrendAdapterByTag(location.getFormattedId(), weather, location.getTimeZone(), (MainTag) tagList.get(0));
     }
 
     @Override
@@ -121,7 +124,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
         trendRecyclerView.setAdapter(null);
     }
 
-    private void setTrendAdapterByTag(Weather weather, TimeZone timeZone, MainTag tag) {
+    private void setTrendAdapterByTag(String formattedId, Weather weather, TimeZone timeZone, MainTag tag) {
         switch (tag.getType()) {
             case TEMPERATURE:
                 trendRecyclerView.setAdapter(
@@ -130,6 +133,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 cardMarginsVertical, cardMarginsHorizontal,
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                                formattedId,
                                 weather,
                                 timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),
@@ -147,6 +151,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 cardMarginsVertical, cardMarginsHorizontal,
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                                formattedId,
                                 weather,
                                 timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),
@@ -163,9 +168,9 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 cardMarginsVertical, cardMarginsHorizontal,
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                                formattedId,
                                 weather,
                                 timeZone,
-                                weatherView.getThemeColors(picker.isLightTheme()),
                                 provider,
                                 picker,
                                 SettingsOptionManager.getInstance(context).getPrecipitationUnit()
@@ -180,6 +185,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 cardMarginsVertical, cardMarginsHorizontal,
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                                formattedId,
                                 weather,
                                 timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),
@@ -195,6 +201,7 @@ public class DailyViewHolder extends AbstractMainViewHolder {
                                 cardMarginsVertical, cardMarginsHorizontal,
                                 DisplayUtils.isTabletDevice(context) ? 7 : 5,
                                 context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
+                                formattedId,
                                 weather,
                                 timeZone,
                                 weatherView.getThemeColors(picker.isLightTheme()),

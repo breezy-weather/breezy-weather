@@ -255,7 +255,7 @@ public class AccuResultConverter {
                                             (float) forecasts.Night.TotalLiquid.Value,
                                             null,
                                             (float) forecasts.Night.Rain.Value,
-                                            (float) forecasts.Night.Snow.Value,
+                                            (float) (forecasts.Day.Snow.Value * 10),
                                             (float) forecasts.Night.Ice.Value
                                     ),
                                     new PrecipitationProbability(

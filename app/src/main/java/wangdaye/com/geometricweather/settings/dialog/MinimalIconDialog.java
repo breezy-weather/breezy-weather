@@ -11,17 +11,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.DialogFragment;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 
 /**
  * Adaptive icon dialog.
  * */
-public class MinimalIconDialog extends GeoDialogFragment {
-
-    private CoordinatorLayout container;
+public class MinimalIconDialog extends DialogFragment {
 
     private String title;
     private Drawable xmlIconDrawable;
@@ -61,13 +58,6 @@ public class MinimalIconDialog extends GeoDialogFragment {
 
         AppCompatImageView darkIconView = view.findViewById(R.id.dialog_minimal_icon_darkIcon);
         darkIconView.setImageDrawable(darkDrawable);
-
-        this.container = view.findViewById(R.id.dialog_minimal_icon_container);
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
     }
 
     public void setData(@NonNull String title,

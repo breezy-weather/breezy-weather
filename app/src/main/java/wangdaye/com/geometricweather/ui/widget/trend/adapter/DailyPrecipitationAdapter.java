@@ -21,13 +21,13 @@ import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Precipitation;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.dialog.DailyWeatherDialog;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.DoubleHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * Daily precipitation adapter.
@@ -36,6 +36,7 @@ public abstract class DailyPrecipitationAdapter extends TrendRecyclerViewAdapter
 
     private GeoActivity activity;
 
+    private String formattedId;
     private Weather weather;
     private TimeZone timeZone;
     private ResourceProvider provider;
@@ -43,8 +44,6 @@ public abstract class DailyPrecipitationAdapter extends TrendRecyclerViewAdapter
     private PrecipitationUnit unit;
 
     private float highestPrecipitation;
-
-    private int[] themeColors;
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -105,10 +104,7 @@ public abstract class DailyPrecipitationAdapter extends TrendRecyclerViewAdapter
 
             dailyItem.setOnClickListener(v -> {
                 if (activity.isForeground()) {
-                    DailyWeatherDialog dialog = new DailyWeatherDialog();
-                    dialog.setData(weather, getAdapterPosition(), themeColors[0]);
-                    dialog.setColorPicker(picker);
-                    dialog.show(activity.getSupportFragmentManager(), null);
+                    IntentHelper.startDailyWeatherActivity(activity, formattedId, getAdapterPosition());
                 }
             });
         }
@@ -118,11 +114,12 @@ public abstract class DailyPrecipitationAdapter extends TrendRecyclerViewAdapter
     public DailyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent,
                                      @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
                                      int itemCountPerLine, @Px float itemHeight,
-                                     @NonNull Weather weather, @NonNull TimeZone timeZone, int[] themeColors,
+                                     String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                      ResourceProvider provider, MainColorPicker picker, PrecipitationUnit unit) {
         super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight);
         this.activity = activity;
 
+        this.formattedId = formattedId;
         this.weather = weather;
         this.timeZone = timeZone;
         this.provider = provider;
@@ -145,8 +142,6 @@ public abstract class DailyPrecipitationAdapter extends TrendRecyclerViewAdapter
         if (highestPrecipitation == 0) {
             highestPrecipitation = Precipitation.PRECIPITATION_HEAVY;
         }
-
-        this.themeColors = themeColors;
 
         List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
         keyLineList.add(

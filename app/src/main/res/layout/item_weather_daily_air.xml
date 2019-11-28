@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     android:foreground="@drawable/selectable_item_background_borderless"
     android:orientation="vertical"
-    android:padding="@dimen/normal_margin"
+    android:paddingTop="@dimen/normal_margin"
+    android:paddingStart="@dimen/normal_margin"
+    android:paddingEnd="@dimen/normal_margin"
     tools:ignore="UnusedAttribute">
 
     <TextView

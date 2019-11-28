@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Px;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import java.util.List;
@@ -43,11 +42,9 @@ public class HeaderViewHolder extends AbstractMainViewHolder
 
     public HeaderViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                            @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                            @Px float cardRadius, @Px float cardElevation, @ColorInt int textColor,
-                            boolean itemAnimationEnabled) {
+                            @ColorInt int textColor, boolean itemAnimationEnabled) {
         super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_header, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
+                provider, picker, itemAnimationEnabled);
 
         this.container = itemView.findViewById(R.id.container_main_header);
         this.temperature = itemView.findViewById(R.id.container_main_header_tempTxt);

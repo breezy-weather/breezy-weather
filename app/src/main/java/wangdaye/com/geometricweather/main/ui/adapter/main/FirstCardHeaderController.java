@@ -27,18 +27,14 @@ public class FirstCardHeaderController
         implements View.OnClickListener {
 
     private GeoActivity activity;
-    private LinearLayout firstCardContainer;
     private View view;
     @Nullable private Weather weather;
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
-    public FirstCardHeaderController(@NonNull GeoActivity activity, LinearLayout firstCardContainer,
+    public FirstCardHeaderController(@NonNull GeoActivity activity,
                                      @NonNull Location location, @NonNull MainColorPicker picker) {
         this.activity = activity;
-
-        this.firstCardContainer = firstCardContainer;
         this.view = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
-        bind(firstCardContainer);
 
         AppCompatImageView timeIcon = view.findViewById(R.id.container_main_first_card_header_timeIcon);
         TextView refreshTime = view.findViewById(R.id.container_main_first_card_header_timeText);
@@ -115,15 +111,7 @@ public class FirstCardHeaderController
     }
 
     public void bind(LinearLayout firstCardContainer) {
-        this.firstCardContainer = firstCardContainer;
         firstCardContainer.addView(view, 0);
-    }
-
-    public void unbind() {
-        if (firstCardContainer.getChildCount() != 0
-                && firstCardContainer.getChildAt(0) == view) {
-            firstCardContainer.removeViewAt(0);
-        }
     }
 
     // interface.

@@ -73,7 +73,7 @@ public class MaterialWeatherView extends View implements WeatherView {
     public static abstract class WeatherAnimationImplementor {
 
         public abstract void updateData(@Size(2) int[] canvasSizes, long interval,
-                                 float rotation2D, float rotation3D);
+                                        float rotation2D, float rotation3D);
 
         // return true if finish drawing.
         public abstract void draw(@Size(2) int[] canvasSizes, Canvas canvas,

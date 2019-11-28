@@ -13,17 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.DialogFragment;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
 import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 
 /**
  * Animatable icon dialog.
  * */
-public class AnimatableIconDialog extends GeoDialogFragment {
-
-    private CoordinatorLayout container;
+public class AnimatableIconDialog extends DialogFragment {
 
     private String title;
     @Size(3) private Drawable[] iconDrawables;
@@ -49,13 +47,8 @@ public class AnimatableIconDialog extends GeoDialogFragment {
         AnimatableIconView iconView = view.findViewById(R.id.dialog_animatable_icon_icon);
         iconView.setAnimatableIcon(iconDrawables, iconAnimators);
 
-        this.container = view.findViewById(R.id.dialog_animatable_icon_container);
+        CoordinatorLayout container = view.findViewById(R.id.dialog_animatable_icon_container);
         container.setOnClickListener(v -> iconView.startAnimators());
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
     }
 
     public void setData(@NonNull String title,

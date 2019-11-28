@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:textStyle="bold"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:layout_marginTop="@dimen/normal_margin"
     android:layout_marginStart="@dimen/normal_margin"
     android:layout_marginEnd="@dimen/normal_margin"
-    style="@style/subtitle_text"
-    tools:text="@string/tag_temperature" />
+    android:gravity="center_vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_weather_daily_title_icon"
+        android:tint="@color/colorTextContent"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="@dimen/little_margin"
+        style="@style/material_icon"
+        tools:src="@drawable/ic_water_percent" />
+
+    <TextView
+        android:id="@+id/item_weather_daily_title_title"
+        android:textStyle="bold"
+        style="@style/subtitle_text"
+        tools:text="@string/tag_temperature" />
+
+</LinearLayout>

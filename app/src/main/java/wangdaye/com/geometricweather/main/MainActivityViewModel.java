@@ -123,13 +123,14 @@ public class MainActivityViewModel extends ViewModel
         float pollingIntervalInHour = SettingsOptionManager.getInstance(activity)
                 .getUpdateInterval()
                 .getIntervalInHour();
+        boolean defaultLocation = pkg.indicator.index == 0;
         if (current.isUsable()
                 && current.getWeather() != null
                 && current.getWeather().isValid(pollingIntervalInHour)) {
             repository.cancel();
-            currentLocation.setValue(LocationResource.success(current, updatedInBackground));
+            currentLocation.setValue(LocationResource.success(current, defaultLocation, updatedInBackground));
         } else {
-            currentLocation.setValue(LocationResource.loading(current));
+            currentLocation.setValue(LocationResource.loading(current, defaultLocation));
             updateWeather(activity);
         }
     }
@@ -229,7 +230,9 @@ public class MainActivityViewModel extends ViewModel
         assert currentLocation.getValue() != null;
         Location location = currentLocation.getValue().data;
 
-        currentLocation.setValue(LocationResource.loading(location));
+        currentLocation.setValue(
+                LocationResource.loading(location, currentLocation.getValue().isDefaultLocation())
+        );
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && location.isCurrentPosition()) {
             // check permissions.

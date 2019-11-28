@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.ui.dialog;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,14 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.fragment.app.DialogFragment;
 
 import java.text.SimpleDateFormat;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.dialog.GeoBottomSheetDialogFragment;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
@@ -35,9 +33,8 @@ import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
  * Hourly weather dialog.
  * */
 
-public class HourlyWeatherDialog extends GeoBottomSheetDialogFragment {
+public class HourlyWeatherDialog extends DialogFragment {
 
-    private CoordinatorLayout container;
     private AnimatableIconView weatherIcon;
     private MainColorPicker colorPicker;
 
@@ -50,18 +47,10 @@ public class HourlyWeatherDialog extends GeoBottomSheetDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        BottomSheetDialog dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_weather_hourly, null, false);
-        this.initWidget(view);
-        dialog.setContentView(view);
-        setBehavior(BottomSheetBehavior.from((View) view.getParent()));
-        return dialog;
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
+        initWidget(view);
+        return new AlertDialog.Builder(getActivity()).setView(view).create();
     }
 
     @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
@@ -74,7 +63,7 @@ public class HourlyWeatherDialog extends GeoBottomSheetDialogFragment {
 
         Hourly hourly = weather.getHourlyForecast().get(position);
 
-        this.container = view.findViewById(R.id.dialog_weather_hourly_container);
+        CoordinatorLayout container = view.findViewById(R.id.dialog_weather_hourly_container);
         container.setBackgroundColor(colorPicker.getRootColor(getActivity()));
 
         TextView title = view.findViewById(R.id.dialog_weather_hourly_title);

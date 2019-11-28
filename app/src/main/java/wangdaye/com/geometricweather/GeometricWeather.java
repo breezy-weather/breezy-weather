@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.gson.GsonBuilder;
@@ -12,8 +11,8 @@ import com.google.gson.GsonBuilder;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import okhttp3.OkHttpClient;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -36,7 +35,7 @@ public class GeometricWeather extends Application {
         return instance;
     }
 
-    private List<GeoActivity> activityList;
+    private Set<GeoActivity> activitySet;
 
     private OkHttpClient okHttpClient;
     private GsonConverterFactory gsonConverterFactory;
@@ -130,7 +129,7 @@ public class GeometricWeather extends Application {
 
     private void initialize() {
         instance = this;
-        activityList = new ArrayList<>();
+        activitySet = new HashSet<>();
 
         okHttpClient = TLSCompactHelper.getClientBuilder().build();
         gsonConverterFactory = GsonConverterFactory.create(
@@ -145,19 +144,11 @@ public class GeometricWeather extends Application {
     }
 
     public void addActivity(GeoActivity a) {
-        activityList.add(a);
+        activitySet.add(a);
     }
 
     public void removeActivity(GeoActivity a) {
-        activityList.remove(a);
-    }
-
-    @Nullable
-    public GeoActivity getTopActivity() {
-        if (activityList.size() == 0) {
-            return null;
-        }
-        return activityList.get(activityList.size() - 1);
+        activitySet.remove(a);
     }
 
     public OkHttpClient getOkHttpClient() {
@@ -225,7 +216,7 @@ public class GeometricWeather extends Application {
     }
 
     public void recreateAllActivities() {
-        for (Activity a : activityList) {
+        for (Activity a : activitySet) {
             a.recreate();
         }
     }

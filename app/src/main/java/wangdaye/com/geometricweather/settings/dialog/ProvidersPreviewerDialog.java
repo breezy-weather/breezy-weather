@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,16 +31,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.dialog.GeoDialogFragment;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.adapter.IconProviderAdapter;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
-public class ProvidersPreviewerDialog extends GeoDialogFragment {
+public class ProvidersPreviewerDialog extends DialogFragment {
 
-    private CoordinatorLayout container;
     private CircularProgressView progress;
     private RecyclerView list;
 
@@ -55,7 +54,6 @@ public class ProvidersPreviewerDialog extends GeoDialogFragment {
 
         if (getActivity() != null) {
             Context context = getActivity();
-            this.container = view.findViewById(R.id.dialog_providers_previewer_container);
 
             TextView title = view.findViewById(R.id.dialog_providers_previewer_title);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -103,11 +101,6 @@ public class ProvidersPreviewerDialog extends GeoDialogFragment {
         return builder.create();
     }
 
-    @Override
-    public View getSnackbarContainer() {
-        return container;
-    }
-
     private void bindAdapter(List<ResourceProvider> providerList) {
         list.setAdapter(new IconProviderAdapter(
                 getActivity(),
@@ -124,7 +117,7 @@ public class ProvidersPreviewerDialog extends GeoDialogFragment {
                     @Override
                     public void onAppStoreItemClicked(String query) {
                         if (getActivity() != null) {
-                            IntentHelper.startAppStoreSearchActivity(getActivity(), query);
+                            IntentHelper.startAppStoreSearchActivity((GeoActivity) getActivity(), query);
                             dismiss();
                         }
                     }
@@ -132,7 +125,7 @@ public class ProvidersPreviewerDialog extends GeoDialogFragment {
                     @Override
                     public void onGitHubItemClicked(String query) {
                         if (getActivity() != null) {
-                            IntentHelper.startWebViewActivity(getActivity(), query);
+                            IntentHelper.startWebViewActivity((GeoActivity) getActivity(), query);
                             dismiss();
                         }
                     }
@@ -144,7 +137,6 @@ public class ProvidersPreviewerDialog extends GeoDialogFragment {
         show.setInterpolator(new FastOutSlowInInterpolator());
         list.startAnimation(show);
         list.setVisibility(View.VISIBLE);
-
 
         Animation out = new AlphaAnimation(1f, 0f);
         show.setDuration(300);

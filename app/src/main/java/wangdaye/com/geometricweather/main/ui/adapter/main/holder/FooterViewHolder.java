@@ -25,10 +25,9 @@ public class FooterViewHolder extends AbstractMainViewHolder {
 
     public FooterViewHolder(@NonNull Activity activity, ViewGroup parent,
                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                            @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                            @Px float cardRadius, @Px float cardElevation) {
+                            @Px float cardMarginsVertical) {
         super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_footer, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, false);
+                provider, picker, false);
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
         if (cardMarginsVertical == 0) {

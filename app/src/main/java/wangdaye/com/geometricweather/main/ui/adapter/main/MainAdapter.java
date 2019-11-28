@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.main.ui.adapter.main;
 
 import android.animation.Animator;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AbstractMainCardViewHolder;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AbstractMainViewHolder;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AirQualityViewHolder;
 import wangdaye.com.geometricweather.main.ui.adapter.main.holder.AllergenViewHolder;
@@ -38,7 +40,6 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
     private @NonNull List<Integer> viewTypeList;
     private @Nullable Integer firstCardType;
-    private @Nullable FirstCardHeaderController firstCardHeaderController;
     private @NonNull List<Animator> pendingAnimatorList;
     private int headerCurrentTemperatureTextHeight;
     private boolean listAnimationEnabled;
@@ -56,7 +57,6 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
         this.viewTypeList = new ArrayList<>();
         this.firstCardType = null;
-        this.firstCardHeaderController = null;
         this.pendingAnimatorList = new ArrayList<>();
         this.headerCurrentTemperatureTextHeight = -1;
         this.listAnimationEnabled = listAnimationEnabled;
@@ -100,7 +100,6 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         switch (viewType) {
             case ViewType.HEADER:
                 holder = new HeaderViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation,
                         weatherView.getHeaderTextColor(activity), itemAnimationEnabled);
                 break;
 
@@ -135,14 +134,16 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
                 break;
 
             default: // FOOTER.
-                holder = new FooterViewHolder(activity, parent, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
+                holder = new FooterViewHolder(activity, parent, provider, picker, cardMarginsVertical);
                 break;
         }
 
-        if (firstCardType != null && firstCardType == viewType && holder.getContainer() != null) {
-            firstCardHeaderController = new FirstCardHeaderController(
-                    activity, holder.getContainer(), location, picker);
+        if (firstCardType != null && firstCardType == viewType
+                && holder instanceof AbstractMainCardViewHolder) {
+            LinearLayout container = ((AbstractMainCardViewHolder) holder).getHeaderContainer();
+            if (container != null) {
+                new FirstCardHeaderController(activity, location, picker).bind(container);
+            }
         }
 
         return holder;
@@ -180,38 +181,6 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
                     || type == ViewType.DETAILS) {
                 firstCardType = type;
                 return;
-            }
-        }
-    }
-
-    public void dragSort(RecyclerView recyclerView,
-                         RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        int from = viewHolder.getAdapterPosition();
-        int to = target.getAdapterPosition();
-        viewTypeList.add(to, viewTypeList.remove(from));
-
-        notifyItemMoved(from, to);
-
-        if (from == 1 || to == 1) {
-            if (firstCardHeaderController != null) {
-                firstCardHeaderController.unbind();
-            }
-            ensureFirstCard();
-            if (firstCardType == null) {
-                firstCardHeaderController = null;
-            } else {
-                AbstractMainViewHolder holder = null;
-                for (int i = 0; i < viewTypeList.size(); i ++) {
-                    if (viewTypeList.get(i).equals(firstCardType)) {
-                        holder = (AbstractMainViewHolder) recyclerView.findViewHolderForAdapterPosition(i);
-                        break;
-                    }
-                }
-                if (holder != null && holder.getContainer() != null) {
-                    firstCardHeaderController.bind(holder.getContainer());
-                } else {
-                    firstCardHeaderController = null;
-                }
             }
         }
     }

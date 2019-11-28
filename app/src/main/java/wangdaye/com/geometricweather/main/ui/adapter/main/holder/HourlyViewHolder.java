@@ -38,7 +38,7 @@ import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
-public class HourlyViewHolder extends AbstractMainViewHolder {
+public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
     private CardView card;
 
@@ -90,9 +90,11 @@ public class HourlyViewHolder extends AbstractMainViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
+        int weatherColor = weatherView.getThemeColors(picker.isLightTheme())[0];
+
         card.setCardBackgroundColor(picker.getRootColor(context));
 
-        title.setTextColor(weatherView.getThemeColors(picker.isLightTheme())[0]);
+        title.setTextColor(weatherColor);
 
         if (TextUtils.isEmpty(weather.getCurrent().getHourlyForecast())) {
             subtitle.setVisibility(View.GONE);
@@ -115,7 +117,7 @@ public class HourlyViewHolder extends AbstractMainViewHolder {
                     )
             );
             tagView.setAdapter(
-                    new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
+                    new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(weather, (MainTag) tagList.get(newPosition));
                         return false;
                     }, picker, 0)

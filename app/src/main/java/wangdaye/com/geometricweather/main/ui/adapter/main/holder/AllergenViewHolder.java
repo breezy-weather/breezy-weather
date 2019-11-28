@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
-public class AllergenViewHolder extends AbstractMainViewHolder {
+public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
     private CardView card;
     private TextView title;

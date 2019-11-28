@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.ArcProgress;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
-public class AirQualityViewHolder extends AbstractMainViewHolder {
+public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
     private CardView card;
     private TextView title;

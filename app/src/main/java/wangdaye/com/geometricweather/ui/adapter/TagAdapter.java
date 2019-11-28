@@ -1,9 +1,11 @@
 package wangdaye.com.geometricweather.ui.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import wangdaye.com.geometricweather.ui.widget.TagView;
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
     private List<Tag> tagList;
+    private @ColorInt int checkedBackgroundColor;
     private OnTagCheckedListener listener;
     private @Nullable MainColorPicker picker;
     private int checkedIndex;
@@ -49,25 +52,32 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
             setChecked(checked);
 
             if (picker != null) {
-                tagView.setCheckedTextColor(picker.getRootColor(tagView.getContext()));
-                tagView.setCheckedBackgroundColor(picker.getTextTitleColor(tagView.getContext()));
-                tagView.setUncheckedTextColor(picker.getTextSubtitleColor(tagView.getContext()));
+                tagView.setCheckedBackgroundColor(checkedBackgroundColor);
                 tagView.setUncheckedBackgroundColor(picker.getLineColor(tagView.getContext()));
             }
         }
 
         public void setChecked(boolean checked) {
             tagView.setChecked(checked);
+            if (picker != null) {
+                if (checked) {
+                    tagView.setTextColor(picker.getTextContentColor(tagView.getContext()));
+                } else {
+                    tagView.setTextColor(picker.getTextSubtitleColor(tagView.getContext()));
+                }
+            }
         }
     }
 
     public TagAdapter(List<Tag> tagList, OnTagCheckedListener listener) {
-        this(tagList, listener, null, UNCHECKABLE_INDEX);
+        this(tagList, Color.TRANSPARENT, listener, null, UNCHECKABLE_INDEX);
     }
 
-    public TagAdapter(List<Tag> tagList, OnTagCheckedListener listener,
-                      @Nullable MainColorPicker picker, int checkedIndex) {
+    public TagAdapter(List<Tag> tagList, @ColorInt int checkedBackgroundColor,
+                      OnTagCheckedListener listener, @Nullable MainColorPicker picker,
+                      int checkedIndex) {
         this.tagList = tagList;
+        this.checkedBackgroundColor = checkedBackgroundColor;
         this.listener = listener;
         this.picker = picker;
         this.checkedIndex = checkedIndex;

@@ -8,6 +8,7 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@color/colorRoot</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

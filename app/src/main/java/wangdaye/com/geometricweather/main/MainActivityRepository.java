@@ -36,6 +36,7 @@ public class MainActivityRepository {
                            @Nullable OnLocationCompletedListener l) {
         assert currentLocation.getValue() != null;
         Location data = currentLocation.getValue().data;
+        boolean defaultLocation = currentLocation.getValue().isDefaultLocation();
 
         if (locate) {
             locationHelper.requestLocation(context, currentLocation.getValue().data,
@@ -47,7 +48,7 @@ public class MainActivityRepository {
                             }
 
                             lock.writeLock().lock();
-                            currentLocation.setValue(LocationResource.loading(requestLocation));
+                            currentLocation.setValue(LocationResource.loading(requestLocation, defaultLocation));
                             updateLocationList(requestLocation, totalLocationList);
                             if (l != null) {
                                 l.onCompleted(context);
@@ -67,7 +68,7 @@ public class MainActivityRepository {
                             lock.writeLock().lock();
                             if (requestLocation.isUsable()) {
                                 currentLocation.setValue(
-                                        LocationResource.loading(requestLocation, true));
+                                        LocationResource.loading(requestLocation, defaultLocation, true));
                                 updateLocationList(requestLocation, totalLocationList);
                                 lock.writeLock().unlock();
 
@@ -75,7 +76,7 @@ public class MainActivityRepository {
                                         context, currentLocation, totalLocationList, lock);
                             } else {
                                 currentLocation.setValue(
-                                        LocationResource.error(requestLocation, true));
+                                        LocationResource.error(requestLocation, defaultLocation, true));
                                 updateLocationList(requestLocation, totalLocationList);
                                 lock.writeLock().unlock();
                             }
@@ -92,6 +93,7 @@ public class MainActivityRepository {
                                                         @NonNull ReadWriteLock lock) {
         assert currentLocation.getValue() != null;
         Location data = currentLocation.getValue().data;
+        boolean defaultLocation = currentLocation.getValue().isDefaultLocation();
 
         weatherHelper.requestWeather(context, data, new WeatherHelper.OnRequestWeatherListener() {
             @Override
@@ -101,7 +103,7 @@ public class MainActivityRepository {
                 }
 
                 lock.writeLock().lock();
-                currentLocation.setValue(LocationResource.success(requestLocation));
+                currentLocation.setValue(LocationResource.success(requestLocation, defaultLocation));
                 updateLocationList(requestLocation, totalLocationList);
                 lock.writeLock().unlock();
             }
@@ -113,7 +115,7 @@ public class MainActivityRepository {
                 }
 
                 lock.writeLock().lock();
-                currentLocation.setValue(LocationResource.error(requestLocation));
+                currentLocation.setValue(LocationResource.error(requestLocation, defaultLocation));
                 updateLocationList(requestLocation, totalLocationList);
                 lock.writeLock().unlock();
             }

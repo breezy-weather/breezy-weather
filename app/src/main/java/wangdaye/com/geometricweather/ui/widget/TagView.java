@@ -1,10 +1,12 @@
 package wangdaye.com.geometricweather.ui.widget;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -12,17 +14,22 @@ import android.view.ViewOutlineProvider;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class TagView extends AppCompatTextView {
 
-    private boolean checked;
+    private RectF outline;
 
-    private @ColorInt int checkedTextColor;
+    private Paint paint;
+
+    private boolean checked;
+    private @Px float strokeWidth;
+
     private @ColorInt int checkedBackgroundColor;
-    private @ColorInt int uncheckedTextColor;
     private @ColorInt int uncheckedBackgroundColor;
 
     public TagView(Context context) {
@@ -36,11 +43,16 @@ public class TagView extends AppCompatTextView {
     public TagView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        outline = new RectF();
+
+        paint = new Paint();
+        paint.setAntiAlias(true);
+
+        strokeWidth = DisplayUtils.dpToPx(context, 5);
+
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TagView, defStyleAttr, 0);
-        innerSetChecked(a.getBoolean(R.styleable.TagView_checked, false));
-        setCheckedTextColor(a.getColor(R.styleable.TagView_checked_text_color, Color.BLACK));
+        setChecked(a.getBoolean(R.styleable.TagView_checked, false));
         setCheckedBackgroundColor(a.getColor(R.styleable.TagView_checked_background_color, Color.WHITE));
-        setUncheckedTextColor(a.getColor(R.styleable.TagView_unchecked_text_color, Color.DKGRAY));
         setUncheckedBackgroundColor(a.getColor(R.styleable.TagView_unchecked_background_color, Color.LTGRAY));
         a.recycle();
     }
@@ -48,54 +60,65 @@ public class TagView extends AppCompatTextView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        outline.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setClipToOutline(true);
             setOutlineProvider(new ViewOutlineProvider() {
                 @Override
-                public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(
-                            0,
-                            0,
-                            view.getMeasuredWidth(),
-                            view.getMeasuredHeight(),
-                            view.getMeasuredHeight() / 2f
+                public void getOutline(View view, Outline viewOutline) {
+                    viewOutline.setRoundRect(
+                            (int) outline.left,
+                            (int) outline.top,
+                            (int) outline.right,
+                            (int) outline.bottom,
+                            outline.height() / 2
                     );
                 }
             });
         }
     }
 
-    public boolean isChecked() {
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (checked) {
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(uncheckedBackgroundColor);
+            paint.setAlpha(255);
+            canvas.drawRoundRect(
+                    outline, outline.height() / 2, outline.height() / 2, paint);
+
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(checkedBackgroundColor);
+            paint.setAlpha((int) (255 * 0.1));
+            canvas.drawRoundRect(
+                    outline, outline.height() / 2, outline.height() / 2, paint);
+
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(strokeWidth);
+            paint.setColor(checkedBackgroundColor);
+            paint.setAlpha((int) (255 * 0f));
+            canvas.drawRoundRect(
+                    outline, outline.height() / 2, outline.height() / 2, paint);
+        } else {
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(uncheckedBackgroundColor);
+            paint.setAlpha(255);
+            canvas.drawRoundRect(
+                    outline, outline.height() / 2, outline.height() / 2, paint);
+        }
+
+        super.onDraw(canvas);
+    }
+
+    public final boolean isChecked() {
         return checked;
     }
 
-    @SuppressLint("PrivateResource")
     public void setChecked(boolean checked) {
-        if (this.checked != checked) {
-            innerSetChecked(checked);
-        }
-    }
-
-    private void innerSetChecked(boolean checked) {
         this.checked = checked;
-        if (checked) {
-            setTextColor(checkedTextColor);
-            setBackgroundColor(checkedBackgroundColor);
-        } else {
-            setTextColor(uncheckedTextColor);
-            setBackgroundColor(uncheckedBackgroundColor);
-        }
-    }
-
-    public int getCheckedTextColor() {
-        return checkedTextColor;
-    }
-
-    public void setCheckedTextColor(int checkedTextColor) {
-        this.checkedTextColor = checkedTextColor;
-        if (checked) {
-            setTextColor(checkedTextColor);
-        }
+        invalidate();
     }
 
     public int getCheckedBackgroundColor() {
@@ -104,20 +127,7 @@ public class TagView extends AppCompatTextView {
 
     public void setCheckedBackgroundColor(int checkedBackgroundColor) {
         this.checkedBackgroundColor = checkedBackgroundColor;
-        if (checked) {
-            setBackgroundColor(checkedBackgroundColor);
-        }
-    }
-
-    public int getUncheckedTextColor() {
-        return uncheckedTextColor;
-    }
-
-    public void setUncheckedTextColor(int uncheckedTextColor) {
-        this.uncheckedTextColor = uncheckedTextColor;
-        if (!checked) {
-            setTextColor(uncheckedTextColor);
-        }
+        invalidate();
     }
 
     public int getUncheckedBackgroundColor() {
@@ -126,8 +136,6 @@ public class TagView extends AppCompatTextView {
 
     public void setUncheckedBackgroundColor(int uncheckedBackgroundColor) {
         this.uncheckedBackgroundColor = uncheckedBackgroundColor;
-        if (!checked) {
-            setBackgroundColor(uncheckedBackgroundColor);
-        }
+        invalidate();
     }
 }

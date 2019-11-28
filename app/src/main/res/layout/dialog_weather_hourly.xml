@@ -15,6 +15,7 @@
 
         <TextView
             android:id="@+id/dialog_weather_hourly_title"
+            android:layout_width="match_parent"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
@@ -24,9 +25,11 @@
 
         <TextView
             android:id="@+id/dialog_weather_hourly_subtitle"
+            android:layout_width="match_parent"
             android:layout_marginTop="2dp"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
             style="@style/subtitle_text"
             tools:text="11月13日"
             tools:ignore="RtlHardcoded" />
@@ -35,7 +38,6 @@
             android:id="@+id/dialog_weather_hourly_weatherContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:foreground="@drawable/selectable_item_background_borderless"
