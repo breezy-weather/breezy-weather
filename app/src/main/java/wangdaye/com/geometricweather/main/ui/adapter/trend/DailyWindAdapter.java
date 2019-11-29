@@ -13,6 +13,6 @@ import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 public class DailyWindAdapter extends wangdaye.com.geometricweather.ui.widget.trend.adapter.DailyWindAdapter {
 
     public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent, float cardMarginsVertical, float cardMarginsHorizontal, int itemCountPerLine, float itemHeight, String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone, int[] themeColors, MainColorPicker picker, SpeedUnit unit) {
-        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight, formattedId, weather, timeZone, themeColors, picker, unit);
+        super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight, formattedId, weather, timeZone, picker, unit);
     }
 }

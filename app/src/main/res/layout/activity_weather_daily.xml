@@ -29,10 +29,19 @@
                     android:layout_height="wrap_content"
                     android:minHeight="?attr/actionBarSize">
 
+                    <TextView
+                        android:id="@+id/activity_weather_daily_indicator"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        style="@style/subtitle_text"
+                        tools:text="3/15" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/activity_weather_daily_indicator"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/little_margin"
                         android:paddingBottom="@dimen/little_margin"
@@ -62,8 +71,8 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView
-            android:id="@+id/activity_weather_daily_recyclerView"
+        <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarViewPager
+            android:id="@+id/activity_weather_daily_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

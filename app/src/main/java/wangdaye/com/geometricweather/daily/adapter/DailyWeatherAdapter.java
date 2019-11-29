@@ -123,7 +123,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             return new OverviewHolder(parent);
         } else if (Line.isCode(viewType)) {
             return new LineHolder(parent);
-        }  else if (Margin.isCode(viewType)) {
+        } else if (Margin.isCode(viewType)) {
             return new MarginHolder(parent);
         } else if (Value.isCode(viewType)) {
             return new ValueHolder(parent);

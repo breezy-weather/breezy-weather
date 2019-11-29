@@ -46,8 +46,6 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
 
     private float highestWindSpeed;
 
-    private int[] themeColors;
-
     private int size;
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -91,7 +89,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                     ? new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_navigation))
                     : new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_circle_medium));
             dayIcon.rotate(daily.day().getWind().getDegree().getDegree() + 180);
-            dayIcon.setColorFilter(new PorterDuffColorFilter(themeColors[0], PorterDuff.Mode.SRC_ATOP));
+            dayIcon.setColorFilter(new PorterDuffColorFilter(daytimeWindColor, PorterDuff.Mode.SRC_ATOP));
             dailyItem.setDayIconDrawable(dayIcon);
 
             Float daytimeWindSpeed = weather.getDailyForecast().get(position).day().getWind().getSpeed();
@@ -111,7 +109,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                     ? new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_navigation))
                     : new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_circle_medium));
             nightIcon.rotate(daily.night().getWind().getDegree().getDegree() + 180);
-            nightIcon.setColorFilter(new PorterDuffColorFilter(themeColors[1], PorterDuff.Mode.SRC_ATOP));
+            nightIcon.setColorFilter(new PorterDuffColorFilter(nighttimeWindColor, PorterDuff.Mode.SRC_ATOP));
             dailyItem.setNightIconDrawable(nightIcon);
 
             dailyItem.setOnClickListener(v -> {
@@ -127,7 +125,7 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
                             int itemCountPerLine, @Px float itemHeight,
                             String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                            int[] themeColors, MainColorPicker picker, SpeedUnit unit) {
+                            MainColorPicker picker, SpeedUnit unit) {
         super(activity, parent, cardMarginsVertical, cardMarginsHorizontal, itemCountPerLine, itemHeight);
         this.activity = activity;
 
@@ -160,8 +158,6 @@ public abstract class DailyWindAdapter extends TrendRecyclerViewAdapter<DailyWin
         if (highestWindSpeed == 0) {
             highestWindSpeed = Wind.WIND_SPEED_11;
         }
-
-        this.themeColors = themeColors;
 
         List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
         keyLineList.add(
