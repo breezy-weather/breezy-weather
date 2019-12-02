@@ -130,8 +130,9 @@ public class IntentHelper {
         );
     }
 
-    public static void startCardDisplayManageActivity(Activity activity) {
-        activity.startActivity(new Intent(activity, CardDisplayManageActivity.class));
+    public static void startCardDisplayManageActivityForResult(Activity activity, int requestCode) {
+        activity.startActivityForResult(
+                new Intent(activity, CardDisplayManageActivity.class), requestCode);
     }
 
     public static void startSelectProviderActivity(Activity activity) {

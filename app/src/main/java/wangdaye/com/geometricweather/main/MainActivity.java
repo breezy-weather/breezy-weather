@@ -92,6 +92,7 @@ public class MainActivity extends GeoActivity
 
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int MANAGE_ACTIVITY = 2;
+    public static final int CARD_MANAGE_ACTIVITY = 3;
 
     private static final long INVALID_CURRENT_WEATHER_TIME_STAMP = -1;
 
@@ -177,6 +178,13 @@ public class MainActivity extends GeoActivity
             case MANAGE_ACTIVITY:
                 if (resultCode == RESULT_OK) {
                     viewModel.init(this, getLocationId(data));
+                }
+                break;
+
+            case CARD_MANAGE_ACTIVITY:
+                if (resultCode == RESULT_OK) {
+                    resetUIUpdateFlag();
+                    viewModel.reset(this);
                 }
                 break;
         }

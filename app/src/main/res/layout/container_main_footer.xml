@@ -11,7 +11,6 @@
         android:textColor="@color/colorTextLight2nd"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/normal_margin"
         style="@style/material_button" />
 
     <TextView
@@ -22,7 +21,7 @@
         android:layout_toStartOf="@id/container_main_footer_editButton"
         android:textColor="@color/colorTextLight2nd"
         android:layout_margin="@dimen/normal_margin"
-        style="@style/content_text"
+        style="@style/subtitle_text"
         tools:text="Powered by AccuWeather.com" />
 
 </RelativeLayout>

@@ -91,7 +91,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                 SettingsOptionManager.getInstance(getActivity()).getCardDisplayList()
         ));
         cardDisplay.setOnPreferenceClickListener(preference -> {
-            IntentHelper.startCardDisplayManageActivity(requireActivity());
+            IntentHelper.startCardDisplayManageActivityForResult(requireActivity(), 0);
             return true;
         });
     }

@@ -66,6 +66,8 @@ public class CardDisplayManageActivity extends GeoActivity {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView,
                               @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            setResult(RESULT_OK);
+
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition = target.getAdapterPosition();
 
@@ -76,6 +78,7 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            setResult(RESULT_OK);
             cardDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
         }
 
@@ -151,6 +154,7 @@ public class CardDisplayManageActivity extends GeoActivity {
             tagList.add(new CardTag(card));
         }
         tagAdapter = new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
+            setResult(RESULT_OK);
             CardTag tag = (CardTag) tagAdapter.removeItem(newPosition);
             cardDisplayAdapter.insertItem(tag.card);
             resetBottomBarVisibility();

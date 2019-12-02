@@ -134,7 +134,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
                 break;
 
             default: // FOOTER.
-                holder = new FooterViewHolder(activity, parent, provider, picker, cardMarginsVertical);
+                holder = new FooterViewHolder(activity, parent, weatherView, provider, picker, cardMarginsVertical);
                 break;
         }
 
