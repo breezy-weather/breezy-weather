@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_main_footer_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:textColor="@color/colorTextLight2nd"
-    style="@style/content_text"
-    tools:background="@color/colorAccent"
-    tools:text="AccuWeather.com" />
+    tools:background="@color/colorAccent">
+
+    <Button
+        android:id="@+id/container_main_footer_editButton"
+        android:text="@string/edit"
+        android:textColor="@color/colorTextLight2nd"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/normal_margin"
+        style="@style/material_button" />
+
+    <TextView
+        android:id="@+id/container_main_footer_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/container_main_footer_editButton"
+        android:textColor="@color/colorTextLight2nd"
+        android:layout_margin="@dimen/normal_margin"
+        style="@style/content_text"
+        tools:text="Powered by AccuWeather.com" />
+
+</RelativeLayout>

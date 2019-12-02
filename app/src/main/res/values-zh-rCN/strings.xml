@@ -43,6 +43,7 @@
     <string name="get_more_store">从应用商店获取更多</string>
     <string name="get_more_github">从GitHub获取更多</string>
     <string name="refresh">刷新数据</string>
+    <string name="restart">重启</string>
 
     <string name="of_clock">时</string>
     <string name="yesterday">昨日</string>

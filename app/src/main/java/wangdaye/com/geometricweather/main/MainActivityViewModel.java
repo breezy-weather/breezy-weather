@@ -53,8 +53,6 @@ public class MainActivityViewModel extends ViewModel
         indicator.setValue(new Indicator(1, 0));
 
         locationList = new ArrayList<>();
-        currentPositionIndex = INVALID_LOCATION_INDEX;
-        currentIndex = 0;
         lock = new ReentrantReadWriteLock();
     }
 
@@ -76,6 +74,9 @@ public class MainActivityViewModel extends ViewModel
 
         Observable.create((ObservableOnSubscribe<UpdatePackage>) emitter -> {
             lock.writeLock().lock();
+
+            currentPositionIndex = INVALID_LOCATION_INDEX;
+            currentIndex = 0;
 
             DatabaseHelper databaseHelper = DatabaseHelper.getInstance(activity);
             locationList = databaseHelper.readLocationList();
@@ -288,6 +289,16 @@ public class MainActivityViewModel extends ViewModel
         LocationResource resource = currentLocation.getValue();
         if (resource != null) {
             return resource.data;
+        } else {
+            return null;
+        }
+    }
+
+    @Nullable
+    public String getCurrentLocationFormattedId() {
+        Location location = getCurrentLocationValue();
+        if (location != null) {
+            return location.getFormattedId();
         } else {
             return null;
         }

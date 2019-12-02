@@ -36,6 +36,7 @@ import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
  * Circular sky weather view.
@@ -47,7 +48,7 @@ public class CircularSkyWeatherView extends FrameLayout
     @WeatherKindRule private int weatherKind = WEATHER_KING_NULL;
     @Nullable private String iconProvider;
     @ColorInt private int backgroundColor;
-    private boolean daytime = true;
+    private boolean daytime;
 
     private WeatherIconControlView controlView;
     private CircleView circleView;
@@ -113,7 +114,10 @@ public class CircularSkyWeatherView extends FrameLayout
 
     @SuppressLint("InflateParams")
     private void initialize() {
-        setBackgroundColor(getBackgroundColor());
+        this.daytime = TimeManager.getInstance(getContext()).isDayTime();
+
+        this.backgroundColor = getBackgroundColor();
+        setBackgroundColor(backgroundColor);
 
         this.controlView = (WeatherIconControlView) LayoutInflater.from(getContext()).inflate(
                 R.layout.container_circular_sky_view, null);
@@ -204,8 +208,6 @@ public class CircularSkyWeatherView extends FrameLayout
             return;
         }
 
-        boolean firstTime = this.weatherKind == WEATHER_KING_NULL;
-
         this.weatherKind = weatherKind;
         this.iconProvider = provider.getPackageName();
         this.daytime = daytime;
@@ -218,7 +220,7 @@ public class CircularSkyWeatherView extends FrameLayout
         controlView.showWeatherIcon();
 
         int newColor = getBackgroundColor();
-        if ((showCircles() || newColor != backgroundColor) && !firstTime) {
+        if (showCircles() || newColor != backgroundColor) {
             backgroundColor = newColor;
             Drawable drawable = getBackground();
             if (drawable instanceof ColorDrawable) {

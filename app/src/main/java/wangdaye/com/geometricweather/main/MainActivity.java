@@ -34,6 +34,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.resource.Resource;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.MainLayoutManager;
@@ -85,7 +86,8 @@ public class MainActivity extends GeoActivity
     private ResourceProvider resourceProvider;
     private MainColorPicker colorPicker;
 
-    @Nullable private Location currentLocation;
+    @Nullable private String currentLocationFormattedId;
+    @Nullable private WeatherSource currentWeatherSource;
     private long currentWeatherTimeStamp;
 
     public static final int SETTINGS_ACTIVITY = 1;
@@ -173,8 +175,9 @@ public class MainActivity extends GeoActivity
                 break;
 
             case MANAGE_ACTIVITY:
-                resetUIUpdateFlag();
-                viewModel.init(this, getLocationId(data));
+                if (resultCode == RESULT_OK) {
+                    viewModel.init(this, getLocationId(data));
+                }
                 break;
         }
     }
@@ -226,7 +229,8 @@ public class MainActivity extends GeoActivity
         toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.action_manage:
-                    IntentHelper.startManageActivityForResult(this);
+                    IntentHelper.startManageActivityForResult(
+                            this, viewModel.getCurrentLocationFormattedId());
                     break;
 
                 case R.id.action_settings:
@@ -304,18 +308,19 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint("SetTextI18n")
     private void drawUI(Location location, boolean defaultLocation, boolean updatedInBackground) {
-        if (currentLocation != null
-                && location.equals(currentLocation)
+        if (location.equals(currentLocationFormattedId)
+                && location.getWeatherSource() == currentWeatherSource
                 && location.getWeather() != null
                 && location.getWeather().getBase().getTimeStamp() == currentWeatherTimeStamp) {
             return;
         }
 
-        boolean needToResetUI = currentLocation == null
-                || !location.equals(currentLocation)
+        boolean needToResetUI = !location.equals(currentLocationFormattedId)
+                || currentWeatherSource != location.getWeatherSource()
                 || currentWeatherTimeStamp != INVALID_CURRENT_WEATHER_TIME_STAMP;
 
-        currentLocation = location;
+        currentLocationFormattedId = location.getFormattedId();
+        currentWeatherSource = location.getWeatherSource();
         currentWeatherTimeStamp = location.getWeather() != null
                 ? location.getWeather().getBase().getTimeStamp()
                 : INVALID_CURRENT_WEATHER_TIME_STAMP;
@@ -386,7 +391,8 @@ public class MainActivity extends GeoActivity
     }
 
     private void resetUI(Location location) {
-        if (weatherView.getWeatherKind() == WeatherView.WEATHER_KING_NULL) {
+        if (weatherView.getWeatherKind() == WeatherView.WEATHER_KING_NULL
+                && location.getWeather() == null) {
             WeatherViewController.setWeatherCode(
                     weatherView, null, colorPicker.isLightTheme(), resourceProvider);
             refreshLayout.setColorSchemeColors(weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
@@ -410,7 +416,8 @@ public class MainActivity extends GeoActivity
     }
 
     private void resetUIUpdateFlag() {
-        currentLocation = null;
+        currentLocationFormattedId = null;
+        currentWeatherSource = null;
         currentWeatherTimeStamp = INVALID_CURRENT_WEATHER_TIME_STAMP;
     }
 

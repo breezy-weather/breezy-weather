@@ -6,6 +6,7 @@ import androidx.preference.Preference;
 
 import java.util.List;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -60,7 +61,11 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             getSettingsOptionManager().setLocationProvider(OptionMapper.getLocationProvider((String) newValue));
             preference.setSummary(getSettingsOptionManager().getLocationProvider().getProviderName(getActivity()));
             SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_restart));
+                    (GeoActivity) requireActivity(),
+                    getString(R.string.feedback_restart),
+                    getString(R.string.restart),
+                    v -> GeometricWeather.getInstance().recreateAllActivities()
+            );
             return true;
         });
     }

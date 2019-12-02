@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
@@ -40,9 +41,12 @@ public class ManageActivity extends GeoActivity
     private RecyclerView recyclerView;
 
     private LocationAdapter adapter;
+    private String currentFormattedId;
 
     public static final int SEARCH_ACTIVITY = 1;
     public static final int SELECT_PROVIDER_ACTIVITY = 2;
+
+    public static final String KEY_CURRENT_FORMATTED_ID = "CURRENT_FORMATTED_ID";
 
     private class LocationSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
@@ -53,6 +57,8 @@ public class ManageActivity extends GeoActivity
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView,
                               @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            notifyMainActivityToUpdate(currentFormattedId);
+
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition = target.getAdapterPosition();
 
@@ -98,6 +104,7 @@ public class ManageActivity extends GeoActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage);
+        currentFormattedId = getIntent().getStringExtra(KEY_CURRENT_FORMATTED_ID);
         initWidget();
     }
 
@@ -107,6 +114,8 @@ public class ManageActivity extends GeoActivity
         switch (requestCode) {
             case SEARCH_ACTIVITY:
                 if (resultCode == RESULT_OK) {
+                    notifyMainActivityToUpdate(currentFormattedId);
+
                     adapter.itemList = DatabaseHelper.getInstance(this).readLocationList();
                     adapter.notifyItemInserted(adapter.getItemCount() - 1);
                     onLocationListChanged(true);
@@ -166,6 +175,13 @@ public class ManageActivity extends GeoActivity
         onLocationListChanged(false);
     }
 
+    private void notifyMainActivityToUpdate(@Nullable String formattedId) {
+        setResult(
+                RESULT_OK,
+                new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
+        );
+    }
+
     private void resetLocationList() {
         adapter = new LocationAdapter(
                 this,
@@ -205,6 +221,10 @@ public class ManageActivity extends GeoActivity
                 SnackbarUtils.showSnackbar(
                         this, getString(R.string.feedback_location_list_cannot_be_null));
             } else {
+                String formattedId = adapter.itemList.get(position).getFormattedId();
+                notifyMainActivityToUpdate(
+                        formattedId.equals(currentFormattedId) ? null : currentFormattedId);
+
                 adapter.removeData(position);
                 onLocationListChanged(true);
 
@@ -254,10 +274,7 @@ public class ManageActivity extends GeoActivity
 
     @Override
     public void onClick(View view, int position) {
-        String formattedId = adapter.itemList.get(position).getFormattedId();
-        Intent intent = new Intent().putExtra(
-                MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId);
-        setResult(RESULT_OK, intent);
+        notifyMainActivityToUpdate(adapter.itemList.get(position).getFormattedId());
         finish();
     }
 

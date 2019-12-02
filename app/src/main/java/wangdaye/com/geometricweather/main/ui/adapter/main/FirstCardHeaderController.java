@@ -29,6 +29,7 @@ public class FirstCardHeaderController
     private GeoActivity activity;
     private View view;
     @Nullable private Weather weather;
+    @NonNull private String formattedId;
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
     public FirstCardHeaderController(@NonNull GeoActivity activity,
@@ -108,6 +109,8 @@ public class FirstCardHeaderController
             }
             alert.setOnClickListener(this);
         }
+
+        this.formattedId = location.getFormattedId();
     }
 
     public void bind(LinearLayout firstCardContainer) {
@@ -127,7 +130,7 @@ public class FirstCardHeaderController
                 break;
 
             case R.id.container_main_first_card_header:
-                IntentHelper.startManageActivityForResult(activity);
+                IntentHelper.startManageActivityForResult(activity, formattedId);
                 break;
         }
     }
