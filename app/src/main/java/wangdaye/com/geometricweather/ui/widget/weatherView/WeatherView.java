@@ -65,9 +65,6 @@ public interface WeatherView {
     int getBackgroundColor();
 
     @Px
-    int getFirstCardMarginTop();
-
-    @Px
     int getCardMarginsVertical(Context context);
 
     @Px
@@ -78,6 +75,9 @@ public interface WeatherView {
 
     @Px
     int getCardElevation(Context context);
+
+    @Px
+    int getHeaderHeight();
 
     @ColorInt
     int getHeaderTextColor(Context context);

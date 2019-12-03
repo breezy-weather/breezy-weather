@@ -51,7 +51,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
             if (!backgroundFree) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     new RunningInBackgroundODialog().show(requireFragmentManager(), null);
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     new RunningInBackgroundDialog().show(requireFragmentManager(), null);
                 }
             }
@@ -69,7 +69,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
             getSettingsOptionManager().setPrecipitationPushEnabled((Boolean) v);
             return true;
         });
-        findPreference(getString(R.string.key_precipitation_notification_switch)).setVisible(false);
 
         // update interval.
         Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));

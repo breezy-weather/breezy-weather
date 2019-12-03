@@ -284,11 +284,6 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     @Override
-    public int getFirstCardMarginTop() {
-        return firstCardMarginTop;
-    }
-
-    @Override
     public int getCardMarginsVertical(Context context) {
         return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
     }
@@ -306,6 +301,11 @@ public class CircularSkyWeatherView extends FrameLayout
     @Override
     public int getCardElevation(Context context) {
         return (int) DisplayUtils.dpToPx(context, 2);
+    }
+
+    @Override
+    public int getHeaderHeight() {
+        return firstCardMarginTop;
     }
 
     @Override

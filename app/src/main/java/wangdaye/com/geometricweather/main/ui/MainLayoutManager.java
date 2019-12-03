@@ -40,6 +40,7 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
         if (!getClipToPadding()) {
             y += getPaddingTop();
         }
+
         int childWidth;
         int childHeight;
         ViewGroup.MarginLayoutParams params;
@@ -61,6 +62,7 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
             y += childHeight + params.topMargin + params.bottomMargin;
         }
+
         if (!getClipToPadding()) {
             y += getPaddingBottom();
         }

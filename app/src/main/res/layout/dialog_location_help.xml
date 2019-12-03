@@ -101,6 +101,33 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/dialog_location_help_manageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/selectable_item_background"
+            tools:ignore="UnusedAttribute">
+
+            <ImageView
+                android:id="@+id/dialog_location_help_manageIcon"
+                android:src="@drawable/ic_building"
+                android:tint="#bb86fc"
+                android:layout_centerVertical="true"
+                style="@style/material_icon"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/dialog_location_help_manageTitle"
+                android:text="@string/feedback_add_location_manually"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/dialog_location_help_manageIcon"
+                style="@style/content_text" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

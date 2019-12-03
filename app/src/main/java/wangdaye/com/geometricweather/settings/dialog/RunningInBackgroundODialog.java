@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * Running in background O dialog.
@@ -37,22 +39,22 @@ public class RunningInBackgroundODialog extends DialogFragment
     }
 
     private void initWidget(View view) {
-        view.findViewById(R.id.dialog_running_in_background_o_setBtn).setOnClickListener(this);
-        view.findViewById(R.id.dialog_running_in_background_o_doneBtn).setOnClickListener(this);
+        view.findViewById(R.id.dialog_running_in_background_o_setNotificationGroupBtn).setOnClickListener(this);
+        view.findViewById(R.id.dialog_running_in_background_o_ignoreBatteryOptBtn).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.dialog_running_in_background_o_setBtn:
+            case R.id.dialog_running_in_background_o_setNotificationGroupBtn:
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
                 intent.putExtra(Settings.EXTRA_APP_PACKAGE, requireActivity().getPackageName());
                 requireActivity().startActivity(intent);
                 break;
 
-            case R.id.dialog_running_in_background_o_doneBtn:
-                dismiss();
+            case R.id.dialog_running_in_background_o_ignoreBatteryOptBtn:
+                IntentHelper.startBatteryOptimizationActivity((GeoActivity) requireActivity());
                 break;
         }
     }

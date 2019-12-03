@@ -13,6 +13,7 @@ import android.os.Parcelable;
 import android.provider.Settings;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
@@ -70,14 +71,14 @@ public class IntentHelper {
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
-    public static void startDailyWeatherActivity(GeoActivity activity, String formattedId, int index) {
+    public static void startDailyWeatherActivity(Activity activity, String formattedId, int index) {
         Intent intent = new Intent(activity, DailyWeatherActivity.class);
         intent.putExtra(DailyWeatherActivity.KEY_FORMATTED_LOCATION_ID, formattedId);
         intent.putExtra(DailyWeatherActivity.KEY_CURRENT_DAILY_INDEX, index);
         activity.startActivity(intent);
     }
 
-    public static void startAlertActivity(GeoActivity activity, Weather weather) {
+    public static void startAlertActivity(Activity activity, Weather weather) {
         Intent intent = new Intent(activity, AlertActivity.class);
         intent.putParcelableArrayListExtra(
                 AlertActivity.KEY_ALERT_ACTIVITY_ALERT_LIST,
@@ -86,7 +87,7 @@ public class IntentHelper {
         activity.startActivity(intent);
     }
 
-    public static void startAllergenActivity(GeoActivity activity, Location location) {
+    public static void startAllergenActivity(Activity activity, Location location) {
         Intent intent = new Intent(activity, AllergenActivity.class);
         intent.putExtra(
                 AllergenActivity.KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID,
@@ -95,7 +96,7 @@ public class IntentHelper {
         activity.startActivity(intent);
     }
 
-    public static void startManageActivityForResult(GeoActivity activity, @Nullable String currentFormattedId) {
+    public static void startManageActivityForResult(Activity activity, @Nullable String currentFormattedId) {
         activity.startActivityForResult(
                 new Intent(
                         activity, ManageActivity.class
@@ -104,7 +105,7 @@ public class IntentHelper {
         );
     }
 
-    public static void startSearchActivityForResult(GeoActivity activity, View bar) {
+    public static void startSearchActivityForResult(Activity activity, View bar) {
         Intent intent = new Intent(activity, SearcActivity.class);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -123,7 +124,7 @@ public class IntentHelper {
         }
     }
 
-    public static void startSettingsActivityForResult(GeoActivity activity) {
+    public static void startSettingsActivityForResult(Activity activity) {
         activity.startActivityForResult(
                 new Intent(activity, SettingsActivity.class),
                 MainActivity.SETTINGS_ACTIVITY
@@ -152,7 +153,7 @@ public class IntentHelper {
         );
     }
 
-    public static void startAboutActivity(GeoActivity activity) {
+    public static void startAboutActivity(Activity activity) {
         activity.startActivity(new Intent(activity, AboutActivity.class));
     }
 
@@ -229,6 +230,18 @@ public class IntentHelper {
             activity.startActivity(intent);
         } else {
             SnackbarUtils.showSnackbar(activity, "Unavailable e-mail.");
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @SuppressLint("BatteryLife")
+    public static void startBatteryOptimizationActivity(GeoActivity activity) {
+        Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+        intent.setData(Uri.parse("package:" + activity.getPackageName()));
+        if (isIntentAvailable(activity, intent)) {
+            activity.startActivity(intent);
+        } else {
+            SnackbarUtils.showSnackbar(activity, "Unavailable battery optimization activity.");
         }
     }
 

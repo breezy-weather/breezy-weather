@@ -597,7 +597,7 @@ public class MainActivity extends GeoActivity
 
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-            firstCardMarginTop = weatherView.getFirstCardMarginTop();
+            firstCardMarginTop = recyclerView.getChildAt(0).getMeasuredHeight();
 
             scrollY = recyclerView.computeVerticalScrollOffset();
             oldScrollY = scrollY - dy;

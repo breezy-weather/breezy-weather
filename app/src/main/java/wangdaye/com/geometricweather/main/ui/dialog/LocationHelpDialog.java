@@ -43,25 +43,31 @@ public class LocationHelpDialog extends DialogFragment {
         container.setBackgroundColor(colorPicker.getRootColor(getActivity()));
 
         ((TextView) view.findViewById(R.id.dialog_location_help_title)).setTextColor(
-                colorPicker.getTextTitleColor(getActivity())
-        );
+                colorPicker.getTextTitleColor(getActivity()));
 
         view.findViewById(R.id.dialog_location_help_permissionContainer)
                 .setOnClickListener(v -> IntentHelper.startApplicationDetailsActivity(getActivity()));
         ((TextView) view.findViewById(R.id.dialog_location_help_permissionTitle)).setTextColor(
-                colorPicker.getTextContentColor(getActivity())
-        );
+                colorPicker.getTextContentColor(getActivity()));
 
         view.findViewById(R.id.dialog_location_help_locationContainer)
                 .setOnClickListener(v -> IntentHelper.startLocationSettingsActivity(getActivity()));
         ((TextView) view.findViewById(R.id.dialog_location_help_locationTitle)).setTextColor(
-                colorPicker.getTextContentColor(getActivity())
-        );
+                colorPicker.getTextContentColor(getActivity()));
 
         view.findViewById(R.id.dialog_location_help_providerContainer)
                 .setOnClickListener(v -> IntentHelper.startSelectProviderActivity(getActivity()));
         ((TextView) view.findViewById(R.id.dialog_location_help_providerTitle)).setTextColor(
-                colorPicker.getTextContentColor(getActivity())
+                colorPicker.getTextContentColor(getActivity()));
+
+        view.findViewById(R.id.dialog_location_help_manageContainer)
+                .setOnClickListener(v -> IntentHelper.startManageActivityForResult(getActivity(), null));
+        ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setTextColor(
+                colorPicker.getTextContentColor(getActivity()));
+        ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setText(
+                getString(R.string.feedback_add_location_manually).replace(
+                        "$", getString(R.string.current_location)
+                )
         );
     }
 

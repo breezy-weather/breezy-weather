@@ -152,20 +152,8 @@ public class MaterialWeatherView extends View implements WeatherView {
         DisplayMetrics metrics = res.getDisplayMetrics();
         this.sizes = new int[] {metrics.widthPixels, metrics.heightPixels};
 
-        this.firstCardMarginTop = (int) (res.getDisplayMetrics().heightPixels
-                - res.getDimensionPixelSize(R.dimen.daily_trend_item_height)
-                - res.getDimensionPixelSize(R.dimen.standard_weather_icon_size)
-                - res.getDimensionPixelSize(R.dimen.normal_margin)
-                - res.getDimensionPixelSize(R.dimen.content_text_size)
-                - res.getDimensionPixelSize(R.dimen.normal_margin)
-                - res.getDimensionPixelSize(R.dimen.subtitle_text_size)
-                - res.getDimensionPixelSize(R.dimen.normal_margin)
-                + DisplayUtils.dpToPx(getContext(), 16 + 32 + 8 * 2));
-        this.firstCardMarginTop = (int) Math.max(
-                firstCardMarginTop,
-                res.getDisplayMetrics().heightPixels * 0.5);
-
-        this.scrollTransparentTriggerDistance = 0;
+        this.firstCardMarginTop = (int) (res.getDisplayMetrics().heightPixels * 0.55);
+        this.scrollTransparentTriggerDistance = firstCardMarginTop;
 
         this.lastScrollRate = 0;
         this.scrollRate = 0;
@@ -175,13 +163,7 @@ public class MaterialWeatherView extends View implements WeatherView {
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        this.scrollTransparentTriggerDistance = (int) (
-                firstCardMarginTop
-                        - insets.top
-                        - DisplayUtils.dpToPx(getContext(), 56)
-                        - getResources().getDimension(R.dimen.design_title_text_size)
-                        - getResources().getDimension(R.dimen.normal_margin)
-        );
+        this.scrollTransparentTriggerDistance = firstCardMarginTop - insets.top;
         return false;
     }
 
@@ -360,11 +342,6 @@ public class MaterialWeatherView extends View implements WeatherView {
     }
 
     @Override
-    public int getFirstCardMarginTop() {
-        return firstCardMarginTop;
-    }
-
-    @Override
     public int getCardMarginsVertical(Context context) {
         return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
     }
@@ -382,6 +359,11 @@ public class MaterialWeatherView extends View implements WeatherView {
     @Override
     public int getCardElevation(Context context) {
         return (int) DisplayUtils.dpToPx(context, 2);
+    }
+
+    @Override
+    public int getHeaderHeight() {
+        return firstCardMarginTop;
     }
 
     @Override

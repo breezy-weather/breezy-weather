@@ -220,8 +220,6 @@
     <string name="feedback_unusable_geocoder">Ez az eszköz nem tartalmaz egy érvényes geokódolót. A helyszolgáltató át lett állítva Baidu Location-ra.</string>
     <string name="feedback_about_geocoder">A geokódoló egy olyan komponens, amely átalakítja a helymeghatározás eredményét a szélesség-magasság formátumból, \'XX város, YY megye\' formátummá. A komponens hiányában egyedül AccuWeather-en keresztül lehet időjárásadatokat lekérni a natív API-val helyszolgáltatóként.</string>
 
-    <string name="feedback_precipitation_alert_content">A következő in $d$ órában $l$ területén csapadék fordulhat elő.</string>
-
     <!-- action -->
     <string name="action_alert">Riadó</string>
     <string name="action_manage">Kezelés</string>

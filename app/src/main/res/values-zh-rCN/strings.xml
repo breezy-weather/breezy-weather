@@ -170,6 +170,7 @@
     <string name="feedback_check_location_permission">检查位置权限</string>
     <string name="feedback_enable_location_information">开启位置信息</string>
     <string name="feedback_select_location_provider">选择位置信息提供商</string>
+    <string name="feedback_add_location_manually">手动添加城市并删除“$”</string>
 
     <string name="feedback_view_style">界面风格</string>
     <string name="feedback_show_widget_card">卡片背景</string>
@@ -264,12 +265,16 @@
     <string name="feedback_interpret_notification_group_title">关闭相应通知频道</string>
     <string name="feedback_interpret_notification_group_content">关闭后台纯净后，会出现一个标示后台服务正在运行的通知，你可以在app相关信息页面中找到通知设置，在其中关闭“后台信息”这个频道来隐藏这个通知</string>
 
+    <string name="feedback_ignore_battery_optimizations_title">忽略电池优化</string>
+    <string name="feedback_ignore_battery_optimizations_content">为了保证后台服务能够持续工作，请为几何天气选择忽略电池优化</string>
+
     <string name="feedback_cannot_start_live_wallpaper_activity">无法启动动态壁纸预览程序</string>
 
     <string name="feedback_unusable_geocoder">本设备不包含有效的地址解析服务，已将位置提供商更改为百度定位</string>
     <string name="feedback_about_geocoder">地址解析服务，是一种将Android原生定位结果从经纬度格式转换至XX省XX市XX区格式的服务组件。若缺少这项服务，在使用原生API作为位置提供商时，只能通过AccuWeather获取数据。</string>
 
-    <string name="feedback_precipitation_alert_content">未来$d$小时内，$l$可能会出现降水</string>
+    <string name="feedback_today_precipitation_alert">今日可能出现降水</string>
+    <string name="feedback_short_term_precipitation_alert">未来几小时内可能出现降水</string>
 
     <string name="feedback_resident_location">设置为常驻城市</string>
     <string name="feedback_resident_location_description">常驻城市的天气将会根据您当前的位置来进行显示和隐藏。\n例如将家乡设置为常驻城市后，可以在旅途中查看家乡天气，而在回家后，家乡的天气数据将被当前位置替代并进行隐藏。</string>

@@ -65,7 +65,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     @Override
     public void onBindView(@NonNull Location location) {
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) container.getLayoutParams();
-        params.height = weatherView.getFirstCardMarginTop();
+        params.height = weatherView.getHeaderHeight();
         container.setLayoutParams(params);
         container.setOnClickListener(this);
 

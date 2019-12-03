@@ -7,28 +7,36 @@
     android:layout_height="wrap_content"
     android:background="@color/colorRoot">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/dialog_running_in_background_content"
-            android:text="@string/feedback_interpret_background_notification_content"
+            android:text="@string/feedback_ignore_battery_optimizations_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextTitle"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/normal_margin"
+            style="@style/large_title_text" />
+
+        <TextView
+            android:text="@string/feedback_ignore_battery_optimizations_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorTextContent"
-            android:layout_margin="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
             style="@style/content_text" />
 
         <Button
-            android:id="@+id/dialog_running_in_background_doneBtn"
-            android:text="@string/done"
-            android:layout_alignParentEnd="true"
-            android:textColor="@color/colorAccent"
-            android:layout_below="@id/dialog_running_in_background_content"
+            android:id="@+id/dialog_running_in_background_setBtn"
+            android:text="@string/go_to_set"
+            android:layout_gravity="end"
+            android:textColor="@color/striking_red"
             style="@style/material_button"
             tools:ignore="RtlHardcoded" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

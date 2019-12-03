@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
@@ -40,12 +41,11 @@ public class NotificationUtils {
     private static final String NOTIFICATION_GROUP_KEY = "geometric_weather_alert_notification_group";
     private static final String PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE";
     private static final String KEY_NOTIFICATION_ID = "NOTIFICATION_ID";
-/*
-    private static final String PREFERENCE_PRECIPITATION_ALERT = "PRECIPITATION_ALERT_PREFERENCE";
+
+    private static final String PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT = "SHORT_TERM_PRECIPITATION_ALERT_PREFERENCE";
     private static final String KEY_PRECIPITATION_LOCATION_KEY = "PRECIPITATION_LOCATION_KEY";
-    private static final String KEY_PRECIPITATION_START_TIME = "PRECIPITATION_START_TIME";
-    private static final String KEY_PRECIPITATION_END_TIME = "PRECIPITATION_END_TIME";
-*/
+    private static final String KEY_PRECIPITATION_DATE = "PRECIPITATION_DATE";
+
     // notification.
 
     public static void updateNotificationIfNecessary(Context context, @NonNull Location location) {
@@ -73,13 +73,13 @@ public class NotificationUtils {
         return channel;
     }
 
-    private static NotificationCompat.Builder getAlertNotificationBuilder(Context context, @DrawableRes int iconId,
-                                                                          String subtitle, String content,
-                                                                          Location location) {
+    private static NotificationCompat.Builder getNotificationBuilder(Context context, @DrawableRes int iconId,
+                                                                     String title, String subtitle, String content,
+                                                                     Location location) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(iconId)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))
-                .setContentTitle(context.getString(R.string.action_alert))
+                .setContentTitle(title)
                 .setSubText(subtitle)
                 .setContentText(content)
                 .setColor(
@@ -157,9 +157,10 @@ public class NotificationUtils {
 
     private static Notification buildSingleAlertNotification(Context context, Location location,
                                                              Alert alert, boolean inGroup) {
-        NotificationCompat.Builder builder = getAlertNotificationBuilder(
+        NotificationCompat.Builder builder = getNotificationBuilder(
                 context,
                 R.drawable.ic_alert,
+                context.getString(R.string.action_alert),
                 DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT).format(alert.getDate()),
                 alert.getContent(),
                 location
@@ -210,99 +211,79 @@ public class NotificationUtils {
 
     public static void checkAndSendPrecipitationForecast(Context context,
                                                          Location location, @Nullable Weather oldResult) {
-        // TODO: 2019/8/26 finish this !!!!
-        /*
-        if (!SettingsOptionManager.getInstance(context).isPrecipitationPushEnabled()) {
+        if (!SettingsOptionManager.getInstance(context).isPrecipitationPushEnabled()
+                || location.getWeather() == null) {
             return;
         }
-
-        String precipitationAlert = getPrecipitationAlert(context, weather, oldResult);
-        if (TextUtils.isEmpty(precipitationAlert)) {
-            return;
-        }
-
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             manager.createNotificationChannel(getAlertNotificationChannel(context));
         }
 
-        manager.notify(
-                GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
-                getAlertNotificationBuilder(
-                        context,
-                        R.drawable.ic_precipitation,
-                        weather.base.time,
-                        precipitationAlert,
-                        location
-                ).build()
-        );*/
-    }
-/*
-    @Nullable
-    private static String getPrecipitationAlert(Context context,
-                                                Weather weather, @Nullable Weather oldResult) {
-
-        if (oldResult != null) {
-            if (weather.base.timeStamp == oldResult.base.timeStamp) {
-                return null;
-            } else if (weather.base.timeStamp < oldResult.base.timeStamp) {
-                oldResult = null;
-            }
-        }
+        Weather weather = location.getWeather();
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(
-                PREFERENCE_PRECIPITATION_ALERT, Context.MODE_PRIVATE);
+                PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT, Context.MODE_PRIVATE);
+        String locationKey = sharedPreferences.getString(KEY_PRECIPITATION_LOCATION_KEY, null);
+        long date = sharedPreferences.getLong(KEY_PRECIPITATION_DATE, 0);
 
-        String lastPricipitationLocationKey = sharedPreferences.getString(
-                KEY_PRECIPITATION_LOCATION_KEY, null);
-        long lastPricipitationStartTime = sharedPreferences.getLong(
-                KEY_PRECIPITATION_START_TIME, -1);
-        long lastPricipitationEndTime = sharedPreferences.getLong(
-                KEY_PRECIPITATION_END_TIME, -1);
-
-        String currentLocationKey = weather.base.cityId;
-        String current
-
-        if (newPrecipitationDuration - oldPrecipitationDuration >= 6) {
-            return context.getString(R.string.feedback_precipitation_alert_content)
-                    .replace("$l$", weather.base.city)
-                    .replace("$d$", String.valueOf(newPrecipitationDuration));
+        if ((!location.getFormattedId().equals(locationKey)
+                || is2Days(new Date(date), weather.getBase().getPublishDate()))
+                && isShortTermLiquid(weather)) {
+            manager.notify(
+                    GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
+                    getNotificationBuilder(
+                            context,
+                            R.drawable.ic_precipitation,
+                            context.getString(R.string.precipitation_overview),
+                            weather.getDailyForecast().get(0).getDate(
+                                    context.getString(R.string.date_format_widget_long)),
+                            context.getString(R.string.feedback_short_term_precipitation_alert),
+                            location
+                    ).build()
+            );
+            sharedPreferences.edit()
+                    .putString(KEY_PRECIPITATION_LOCATION_KEY, location.getFormattedId())
+                    .putLong(KEY_PRECIPITATION_DATE, weather.getBase().getPublishTime())
+                    .apply();
+            return;
         }
 
-        return null;
+        if (oldResult == null
+                || (is2Days(oldResult.getBase().getPublishDate(), weather.getBase().getPublishDate())
+                && isLiquidDay(weather))) {
+            manager.notify(
+                    GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
+                    getNotificationBuilder(
+                            context,
+                            R.drawable.ic_precipitation,
+                            context.getString(R.string.precipitation_overview),
+                            weather.getDailyForecast().get(0).getDate(
+                                    context.getString(R.string.date_format_widget_long)),
+                            context.getString(R.string.feedback_today_precipitation_alert),
+                            location
+                    ).build()
+            );
+        }
     }
 
-    @Size(2)
-    private static long[] getUpcomingPrecipitationPeriod(@Nullable Weather weather) {
-        long[] precipitationPeriod = new long[] {-1, -1};
-        if (weather == null) {
-            return precipitationPeriod;
-        }
-
-        int interruption = 0;
-
-        for (Hourly hourly : weather.hourlyList) {
-            if (hourly.weatherKind.equals(Weather.KIND_RAIN)
-                    || hourly.weatherKind.equals(Weather.KIND_SNOW)
-                    || hourly.weatherKind.equals(Weather.KIND_SLEET)) {
-                if (precipitationPeriod[0] == -1) {
-                    precipitationPeriod[0] = getHourlyTimeStamp(weather, hourly);
-                }
-                precipitationPeriod[1] = getHourlyTimeStamp(weather, hourly);
-
-                interruption = 0;
-            } else if (precipitationPeriod[0] != -1) {
-                interruption += 1;
-                if (interruption >= 4) {
-
-                }
+    private static boolean isShortTermLiquid(Weather weather) {
+        for (int i = 0; i < 4; i ++) {
+            if (weather.getHourlyForecast().get(i).getWeatherCode().isPercipitation()) {
+                return true;
             }
         }
-
-        return duration;
+        return false;
     }
 
-    private static long getHourlyTimeStamp(Weather weather, Hourly hourly) {
+    private static boolean is2Days(@NonNull Date date1, @NonNull Date date2) {
+        long day1 = date1.getTime() / 1000 / 60 / 60 / 24;
+        long day2 = date2.getTime() / 1000 / 60 / 60 / 24;
+        return day1 != day2;
+    }
 
-    }*/
+    private static boolean isLiquidDay(Weather weather) {
+        return weather.getDailyForecast().get(0).day().getWeatherCode().isPercipitation()
+                || weather.getDailyForecast().get(0).night().getWeatherCode().isPercipitation();
+    }
 }
