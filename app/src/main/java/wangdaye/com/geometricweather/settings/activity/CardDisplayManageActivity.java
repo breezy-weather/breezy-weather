@@ -118,6 +118,7 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         List<CardDisplay> displayCards = SettingsOptionManager.getInstance(this).getCardDisplayList();
         cardDisplayAdapter = new CardDisplayAdapter(displayCards, cardDisplay -> {
+            setResult(RESULT_OK);
             tagAdapter.insertItem(new CardTag(cardDisplay));
             resetBottomBarVisibility();
         });

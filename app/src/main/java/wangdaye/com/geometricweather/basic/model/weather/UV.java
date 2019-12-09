@@ -70,6 +70,19 @@ public class UV {
         return builder.toString();
     }
 
+    public String getShortUVDescription() {
+        StringBuilder builder = new StringBuilder();
+        if (index != null) {
+            builder.append(index);
+        }
+        if (level != null) {
+            builder.append(
+                    TextUtils.isEmpty(builder.toString()) ? "" : " "
+            ).append(level);
+        }
+        return builder.toString();
+    }
+
     @ColorInt
     public int getUVColor(Context context) {
         if (index == null) {

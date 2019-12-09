@@ -243,7 +243,7 @@ public class OptionMapper {
         for (CardDisplay v : list) {
             builder.append("&").append(v.getCardValue());
         }
-        if (builder.charAt(0) == '&') {
+        if (builder.length() > 0 && builder.charAt(0) == '&') {
             builder.deleteCharAt(0);
         }
         return builder.toString();
@@ -255,7 +255,7 @@ public class OptionMapper {
         for (CardDisplay v : list) {
             builder.append(",").append(v.getCardName(context));
         }
-        if (builder.charAt(0) == ',') {
+        if (builder.length() > 0 && builder.charAt(0) == ',') {
             builder.deleteCharAt(0);
         }
         return builder.toString().replace(",", ", ");

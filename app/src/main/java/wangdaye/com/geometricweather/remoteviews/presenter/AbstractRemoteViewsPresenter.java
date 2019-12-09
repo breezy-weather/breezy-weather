@@ -27,11 +27,13 @@ import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.unit.DistanceUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.basic.model.option.unit.PressureUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Base;
-import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -212,6 +214,10 @@ public abstract class AbstractRemoteViewsPresenter {
             return "";
         }
         TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+        PrecipitationUnit precipitationUnit = SettingsOptionManager.getInstance(context).getPrecipitationUnit();
+        PressureUnit pressureUnit = SettingsOptionManager.getInstance(context).getPressureUnit();
+        DistanceUnit distanceUnit = SettingsOptionManager.getInstance(context).getDistanceUnit();
+
         subtitle = subtitle
                 .replace("$cw$", weather.getCurrent().getWeatherText())
                 .replace(
@@ -235,12 +241,21 @@ public abstract class AbstractRemoteViewsPresenter {
                                 .getTemperature()
                                 .getShortRealFeeTemperature(temperatureUnit) + ""
                 ).replace(
-                        "$cp$",
+                        "$cpb$",
                         ProbabilityUnit.PERCENT.getProbabilityText(
                                 WidgetUtils.getNonNullValue(
-                                        weather.getHourlyForecast()
-                                                .get(0)
+                                        weather.getCurrent()
                                                 .getPrecipitationProbability()
+                                                .getTotal(),
+                                        0
+                                )
+                        )
+                ).replace(
+                        "$cp$",
+                        precipitationUnit.getPrecipitationText(
+                                WidgetUtils.getNonNullValue(
+                                        weather.getCurrent()
+                                                .getPrecipitation()
                                                 .getTotal(),
                                         0
                                 )
@@ -251,6 +266,21 @@ public abstract class AbstractRemoteViewsPresenter {
                                 + " ("
                                 + weather.getCurrent().getWind().getDirection()
                                 + ")"
+                ).replace("$cuv$", weather.getCurrent().getUV().getShortUVDescription())
+                .replace(
+                        "$ch$",
+                        RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
+                                WidgetUtils.getNonNullValue(
+                                        weather.getCurrent().getRelativeHumidity(),
+                                        0
+                                )
+                        )
+                ).replace("$cps$", pressureUnit.getPressureText(
+                        WidgetUtils.getNonNullValue(weather.getCurrent().getPressure(), 0))
+                ).replace("$cv$", distanceUnit.getDistanceText(
+                        WidgetUtils.getNonNullValue(weather.getCurrent().getVisibility(), 0))
+                ).replace("$cdp$", temperatureUnit.getTemperatureText(
+                        WidgetUtils.getNonNullValue(weather.getCurrent().getDewPoint(), 0))
                 ).replace("$l$", location.getCityName(context))
                 .replace("$lat$", String.valueOf(location.getLatitude()))
                 .replace("$lon$", String.valueOf(location.getLongitude()))
@@ -268,16 +298,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         "$ws$",
                         new SimpleDateFormat("EEE").format(new Date())
                 ).replace("$dd$", weather.getCurrent().getDailyForecast() + "")
-                .replace("$hd$", weather.getCurrent().getHourlyForecast() + "")
-                .replace(
-                        "$h$",
-                        RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
-                                WidgetUtils.getNonNullValue(
-                                        weather.getCurrent().getRelativeHumidity(),
-                                        0
-                                )
-                        )
-                );
+                .replace("$hd$", weather.getCurrent().getHourlyForecast() + "");
         subtitle = replaceDaytimeWeatherSubtitle(subtitle, weather);
         subtitle = replaceNighttimeWeatherSubtitle(subtitle, weather);
         subtitle = replaceDaytimeTemperatureSubtitle(subtitle, weather, temperatureUnit);

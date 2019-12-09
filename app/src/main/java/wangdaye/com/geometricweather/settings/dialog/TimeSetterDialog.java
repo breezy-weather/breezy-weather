@@ -17,6 +17,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Time setter dialog.
@@ -45,7 +46,7 @@ public class TimeSetterDialog extends DialogFragment
         return builder.create();
     }
 
-    public void setModel(boolean today) {
+    public void setIsToday(boolean today) {
         this.today = today;
     }
 
@@ -115,8 +116,12 @@ public class TimeSetterDialog extends DialogFragment
                 SharedPreferences.Editor editor
                         = PreferenceManager.getDefaultSharedPreferences(requireActivity()).edit();
                 if (today) {
+                    SettingsOptionManager.getInstance(requireActivity())
+                            .setTodayForecastTime(hourText + ":" + minuteText);
                     editor.putString(getString(R.string.key_forecast_today_time), hourText + ":" + minuteText);
                 } else {
+                    SettingsOptionManager.getInstance(requireActivity())
+                            .setTomorrowForecastTime(hourText + ":" + minuteText);
                     editor.putString(getString(R.string.key_forecast_tomorrow_time), hourText + ":" + minuteText);
                 }
                 editor.apply();

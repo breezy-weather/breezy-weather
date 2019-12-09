@@ -333,9 +333,6 @@ public class MainActivity extends GeoActivity
                 ? location.getWeather().getBase().getTimeStamp()
                 : INVALID_CURRENT_WEATHER_TIME_STAMP;
 
-        DisplayUtils.setSystemBarStyle(this, getWindow(), true,
-                false, false, false, false);
-
         if (location.getWeather() == null) {
             resetUI(location);
             return;
@@ -371,6 +368,12 @@ public class MainActivity extends GeoActivity
         recyclerView.setAdapter(adapter);
         recyclerView.clearOnScrollListeners();
         recyclerView.addOnScrollListener(new OnScrollListener());
+        recyclerView.post(() -> {
+            boolean bottomOverlap = recyclerView.canScrollVertically(1);
+            DisplayUtils.setSystemBarStyle(this, getWindow(), true,
+                    false, false,
+                    bottomOverlap, bottomOverlap && colorPicker.isLightTheme());
+        });
 
         indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
         indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));

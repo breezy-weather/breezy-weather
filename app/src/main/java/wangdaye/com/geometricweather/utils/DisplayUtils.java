@@ -68,14 +68,16 @@ public class DisplayUtils {
         window.getDecorView().setSystemUiVisibility(visibility);
 
         if (!statusShader) {
-            window.setStatusBarColor(Color.TRANSPARENT);
+            // window.setStatusBarColor(Color.TRANSPARENT);
+            window.setStatusBarColor(Color.argb(1, 0, 0, 0));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.setStatusBarColor(getStatusBarColor23(context, lightStatus, miniAlpha));
         } else {
             window.setStatusBarColor(getStatusBarColor21());
         }
         if (!navigationShader) {
-            window.setNavigationBarColor(Color.TRANSPARENT);
+            // window.setNavigationBarColor(Color.TRANSPARENT);
+            window.setNavigationBarColor(Color.argb(1, 0, 0, 0));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.setNavigationBarColor(getStatusBarColor26(context, lightNavigation, miniAlpha));
         } else {

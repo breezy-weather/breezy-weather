@@ -36,7 +36,8 @@
         android:largeHeap="true"
         android:theme="@style/GeometricWeatherTheme"
         android:networkSecurityConfig="@xml/network_security_config"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource,RtlEnabled"
+        android:requestLegacyExternalStorage="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource,RtlEnabled,UnusedAttribute"
         tools:replace="android:label"
         tools:targetApi="n">
 

@@ -188,4 +188,8 @@ public class WidgetUtils {
     public static float getNonNullValue(Float value, float defaultValue) {
         return value == null ? defaultValue : value;
     }
+
+    public static int getNonNullValue(Integer value, int defaultValue) {
+        return value == null ? defaultValue : value;
+    }
 }

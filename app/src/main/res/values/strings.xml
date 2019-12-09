@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.400</string>
+    <string name="version_code">v2.500</string>
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -202,8 +202,14 @@
         $ctd$ : Current Temperature (°)\n
         $at$ : Apparent Temperature (℃/℉)\n
         $atd$ : Apparent Temperature (°)\n
-        $cp$ : Current Precipitation (%)\n
+        $cpb$ : Current Precipitation Probability (%)\n
+        $cp$ : Current Precipitation (mm/L/m²)\n
         $cwd$ : Current Wind\n
+        $cuv$ : Current UV\n
+        $ch$ : Current Humidity\n
+        $cps$ : Current Pressure\n
+        $cv$ : Current Visibility\n
+        $cdp$ : Current DewPoint\n
         \n
         $l$ : Location\n
         $lat$ : Latitude\n
@@ -215,7 +221,6 @@
         $ws$ : Week (Short)\n
         $dd$ : Daily Description\n
         $hd$ : Hourly Description\n
-        $h$ : Humidity\n
         \n
         $0dw$, $1dw$, …, $4dw$ : \nDaytime Weather of Today, Tmw, …, 4 days later\n
         \n

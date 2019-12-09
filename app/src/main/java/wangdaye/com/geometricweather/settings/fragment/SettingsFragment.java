@@ -130,7 +130,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         todayForecastTime.setSummary(getSettingsOptionManager().getTodayForecastTime());
         todayForecastTime.setOnPreferenceClickListener(preference -> {
             TimeSetterDialog dialog = new TimeSetterDialog();
-            dialog.setModel(true);
+            dialog.setIsToday(true);
             dialog.setOnTimeChangedListener(() -> {
                 initForecastPart();
                 if (getSettingsOptionManager().isTodayForecastEnabled()) {
@@ -156,7 +156,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         tomorrowForecastTime.setSummary(getSettingsOptionManager().getTomorrowForecastTime());
         tomorrowForecastTime.setOnPreferenceClickListener(preference -> {
             TimeSetterDialog dialog = new TimeSetterDialog();
-            dialog.setModel(false);
+            dialog.setIsToday(false);
             dialog.setOnTimeChangedListener(() -> {
                 initForecastPart();
                 if (getSettingsOptionManager().isTomorrowForecastEnabled()) {

@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
@@ -228,7 +227,7 @@ public class NotificationUtils {
         long date = sharedPreferences.getLong(KEY_PRECIPITATION_DATE, 0);
 
         if ((!location.getFormattedId().equals(locationKey)
-                || is2Days(new Date(date), weather.getBase().getPublishDate()))
+                || isDifferentDays(date, weather.getBase().getPublishTime()))
                 && isShortTermLiquid(weather)) {
             manager.notify(
                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
@@ -249,9 +248,9 @@ public class NotificationUtils {
             return;
         }
 
-        if (oldResult == null
-                || (is2Days(oldResult.getBase().getPublishDate(), weather.getBase().getPublishDate())
-                && isLiquidDay(weather))) {
+        if ((oldResult == null
+                || isDifferentDays(oldResult.getBase().getPublishTime(), weather.getBase().getPublishTime()))
+                && isLiquidDay(weather)) {
             manager.notify(
                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
                     getNotificationBuilder(
@@ -276,9 +275,9 @@ public class NotificationUtils {
         return false;
     }
 
-    private static boolean is2Days(@NonNull Date date1, @NonNull Date date2) {
-        long day1 = date1.getTime() / 1000 / 60 / 60 / 24;
-        long day2 = date2.getTime() / 1000 / 60 / 60 / 24;
+    private static boolean isDifferentDays(long time1, long time2) {
+        long day1 = time1 / 1000 / 60 / 60 / 24;
+        long day2 = time2 / 1000 / 60 / 60 / 24;
         return day1 != day2;
     }
 

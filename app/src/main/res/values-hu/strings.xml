@@ -137,8 +137,14 @@
         $ctd$ : Jelenlegi Hőmérséklet (°)\n
         $at$ : Érezhető Hőmérséklet (℃/℉)\n
         $atd$ : Érezhető Hőmérséklet (°)\n
-        $cp$ : Jelenlegi Csapadék (%)\n
+        $cpb$ : Current Precipitation Probability (%)\n
+        $cp$ : Current Precipitation (mm/L/m²)\n
         $cwd$ : Jelenlegi Szél\n
+        $cuv$ : Current UV\n
+        $ch$ : Current Humidity\n
+        $cps$ : Current Pressure\n
+        $cv$ : Current Visibility\n
+        $cdp$ : Current DewPoint\n
         \n
         $l$ : Elhelyezkedés\n
         $lat$ : Szélesség\n
@@ -150,7 +156,6 @@
         $ws$ : Hét (Rövid)\n
         $dd$ : Napi Leírás\n
         $hd$ : Óránkénti Leírás\n
-        $h$ : Páratartalom\n
         \n
         $0dw$, $1dw$, …, $4dw$ : \nNappali Időjárás a Mai Napra, Tmw, …, 4 nappal később\n
         \n
