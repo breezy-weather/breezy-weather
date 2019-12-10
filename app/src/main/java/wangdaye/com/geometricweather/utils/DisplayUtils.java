@@ -1,11 +1,8 @@
 package wangdaye.com.geometricweather.utils;
 
-import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -21,7 +18,6 @@ import android.view.View;
 import android.view.Window;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.main.MainActivity;
 
 /**
  * Display utils.
@@ -123,33 +119,6 @@ public class DisplayUtils {
                 ContextCompat.getColor(context, light ? R.color.colorRoot_light : R.color.colorRoot_dark),
                 (int) (0.8 * 255)
         );
-    }
-
-    public static void setWindowTopColor(Activity a, @ColorInt int color) {
-        if (color == Color.TRANSPARENT) {
-            ContextCompat.getColor(a, R.color.colorPrimary);
-        }
-
-        int c = a instanceof MainActivity ?
-                color : ContextCompat.getColor(a, R.color.colorPrimary);
-        ActivityManager.TaskDescription taskDescription;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            taskDescription = new ActivityManager.TaskDescription(
-                    a.getString(R.string.geometric_weather),
-                    R.mipmap.ic_launcher,
-                    c
-            );
-            a.setTaskDescription(taskDescription);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Bitmap topIcon = BitmapFactory.decodeResource(a.getResources(), R.drawable.ic_launcher);
-            taskDescription = new ActivityManager.TaskDescription(
-                    a.getString(R.string.geometric_weather),
-                    topIcon,
-                    c
-            );
-            a.setTaskDescription(taskDescription);
-            topIcon.recycle();
-        }
     }
 
     public static boolean isTabletDevice(Context context) {

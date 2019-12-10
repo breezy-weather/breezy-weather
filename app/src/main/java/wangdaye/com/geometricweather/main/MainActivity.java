@@ -355,8 +355,6 @@ public class MainActivity extends GeoActivity
         WeatherViewController.setWeatherCode(
                 weatherView, location.getWeather(), daytime, resourceProvider);
 
-        DisplayUtils.setWindowTopColor(this, weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
-
         refreshLayout.setColorSchemeColors(weatherView.getThemeColors(colorPicker.isLightTheme())[0]);
         refreshLayout.setProgressBackgroundColorSchemeColor(colorPicker.getRootColor(this));
 

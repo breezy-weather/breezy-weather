@@ -112,7 +112,7 @@ public class SettingsOptionManager {
                 context.getString(R.string.key_alert_notification_switch), true);
 
         precipitationPushEnabled = sharedPreferences.getBoolean(
-                context.getString(R.string.key_precipitation_notification_switch), true);
+                context.getString(R.string.key_precipitation_notification_switch), false);
 
         updateInterval = OptionMapper.getUpdateInterval(
                 sharedPreferences.getString(

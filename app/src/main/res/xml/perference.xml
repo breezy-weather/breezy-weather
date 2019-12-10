@@ -24,7 +24,7 @@
             android:key="@string/key_precipitation_notification_switch"
             android:summaryOn="@string/on"
             android:summaryOff="@string/off"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <ListPreference
             android:title="@string/settings_title_refresh_rate"

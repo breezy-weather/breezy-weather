@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.basic;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.CallSuper;
@@ -39,7 +38,6 @@ public abstract class GeoActivity extends AppCompatActivity {
         );
 
         boolean darkMode = DisplayUtils.isDarkMode(this);
-        DisplayUtils.setWindowTopColor(this, Color.TRANSPARENT);
         DisplayUtils.setSystemBarStyle(this, getWindow(),
                 false, false, true, !darkMode);
     }
