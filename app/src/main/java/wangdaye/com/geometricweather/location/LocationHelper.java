@@ -60,13 +60,19 @@ public class LocationHelper {
         caiyunWeather = new CaiYunWeatherService();
     }
 
-    public void requestLocation(Context context, Location location, @NonNull OnRequestLocationListener l) {
+    public void requestLocation(Context context, Location location, boolean background,
+                                @NonNull OnRequestLocationListener l) {
         if (!NetworkUtils.isAvailable(context)
                 || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            l.requestLocationFailed(location);
+            return;
+        }
+        if (background
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             l.requestLocationFailed(location);
             return;

@@ -57,7 +57,7 @@ public class PollingUpdateHelper {
             return;
         }
         if (locationList.get(position).isCurrentPosition() && !located) {
-            locationHelper.requestLocation(context, locationList.get(position),
+            locationHelper.requestLocation(context, locationList.get(position), true,
                     new RequestLocationCallback(position, locationList.size()));
         } else {
             weatherHelper.requestWeather(context, locationList.get(position),

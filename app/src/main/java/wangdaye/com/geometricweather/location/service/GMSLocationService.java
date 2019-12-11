@@ -132,12 +132,7 @@ public class GMSLocationService extends LocationService {
     }
 
     @WorkerThread
-    @Nullable
     private Result buildResult(@NonNull Location location) {
-        if (!location.hasAccuracy()) {
-            return null;
-        }
-
         Result result = new Result((float) location.getLatitude(), (float) location.getLongitude());
         result.hasGeocodeInformation = false;
 

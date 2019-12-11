@@ -39,7 +39,7 @@ public class MainActivityRepository {
         boolean defaultLocation = currentLocation.getValue().isDefaultLocation();
 
         if (locate) {
-            locationHelper.requestLocation(context, currentLocation.getValue().data,
+            locationHelper.requestLocation(context, currentLocation.getValue().data, false,
                     new LocationHelper.OnRequestLocationListener() {
                         @Override
                         public void requestLocationSuccess(Location requestLocation) {
