@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -35,13 +37,13 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 public class ShortcutsManager {
 
     public static void refreshShortcutsInNewThread(final Context c, List<Location> locationList) {
-        final List<Location> list = new ArrayList<>(locationList);
-
         ThreadManager.getInstance().execute(() -> {
             ShortcutManager shortcutManager = c.getSystemService(ShortcutManager.class);
             if (shortcutManager == null) {
                 return;
             }
+
+            List<Location> list = new ArrayList<>(locationList);
 
             ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
@@ -71,13 +73,13 @@ public class ShortcutsManager {
             );
 
             // location list.
-            Weather weather;
+            list = removeInvalidResidentLocations(c, list);
             int count = Math.min(
                     shortcutManager.getMaxShortcutCountPerActivity() - 1,
                     list.size()
             );
             for (int i = 0; i < count; i ++) {
-                weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
+                Weather weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
                 if (weather != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         icon = getAdaptiveIcon(
@@ -114,6 +116,25 @@ public class ShortcutsManager {
                 // do nothing.
             }
         });
+    }
+
+    private static List<Location> removeInvalidResidentLocations(Context context, List<Location> list) {
+        final int[] currentPositionIndex = {-1};
+        IntStream.range(0, list.size())
+                .filter(value -> list.get(value).isCurrentPosition())
+                .findFirst()
+                .ifPresent(value -> currentPositionIndex[0] = value);
+
+        if (currentPositionIndex[0] == -1) {
+            return list;
+        }
+
+        Location currentPosition = list.get(currentPositionIndex[0]);
+        return list.stream().filter(location ->
+                location.equals(currentPosition)
+                        || !location.isResidentPosition()
+                        || !location.isCloseTo(context, currentPosition)
+        ).collect(Collectors.toList());
     }
 
     @NonNull

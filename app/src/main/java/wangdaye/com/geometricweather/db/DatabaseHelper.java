@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +11,6 @@ import org.greenrobot.greendao.database.Database;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.ChineseCity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.History;
@@ -301,19 +299,12 @@ public class DatabaseHelper {
 
 class DatabaseOpenHelper extends DaoMaster.DevOpenHelper {
 
-    private Context context;
-
     DatabaseOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
         super(context, name, factory);
-        this.context = context;
     }
 
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
         super.onUpgrade(db, oldVersion, newVersion);
-        Toast.makeText(
-                context,
-                context.getString(R.string.feedback_readd_location),
-                Toast.LENGTH_SHORT).show();
     }
 }

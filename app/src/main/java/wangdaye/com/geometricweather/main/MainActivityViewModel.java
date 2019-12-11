@@ -89,6 +89,17 @@ public class MainActivityViewModel extends ViewModel
                     currentIndex = i;
                 }
             }
+
+            if (locationList.get(currentIndex).isResidentPosition()) {
+                Location current = locationList.get(currentIndex);
+                Location currentPosition = currentPositionIndex == INVALID_LOCATION_INDEX
+                        ? null
+                        : locationList.get(currentPositionIndex);
+                if (currentPosition != null && currentPosition.isCloseTo(activity, current)) {
+                    currentIndex = currentPositionIndex;
+                }
+            }
+
             UpdatePackage pkg = new UpdatePackage(
                     locationList.get(currentIndex), getIndicatorInstance(activity));
 
