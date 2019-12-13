@@ -103,19 +103,21 @@ public class LocationHelper {
     private void requestAvailableWeatherLocation(Context context,
                                                  @NonNull Location location,
                                                  @NonNull OnRequestLocationListener l) {
-        WeatherSource source = SettingsOptionManager.getInstance(context).getWeatherSource();
-        if (!location.canUseChineseSource() || source == WeatherSource.ACCU) {
-            // use accu as weather service api.
-            location.setWeatherSource(WeatherSource.ACCU);
-            accuWeather.requestLocation(context, location, new AccuLocationCallback(context, location, l));
-        } else if (source == WeatherSource.CN) {
-            // use cn weather net as the weather service api.
-            location.setWeatherSource(WeatherSource.CN);
-            cnWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
-        } else {
-            // caiyun.
-            location.setWeatherSource(WeatherSource.CAIYUN);
-            caiyunWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
+        switch (SettingsOptionManager.getInstance(context).getWeatherSource()) {
+            case ACCU:
+                location.setWeatherSource(WeatherSource.ACCU);
+                accuWeather.requestLocation(context, location, new AccuLocationCallback(context, location, l));
+                break;
+
+            case CN:
+                location.setWeatherSource(WeatherSource.CN);
+                cnWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
+                break;
+
+            case CAIYUN:
+                location.setWeatherSource(WeatherSource.CAIYUN);
+                caiyunWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
+                break;
         }
     }
 

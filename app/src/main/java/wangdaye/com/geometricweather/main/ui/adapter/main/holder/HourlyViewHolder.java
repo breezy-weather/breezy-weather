@@ -107,8 +107,10 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         if (tagList.size() < 2) {
             tagView.setVisibility(View.GONE);
         } else {
-            tagView.setLayoutManager(
-                    new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            int decorCount = tagView.getItemDecorationCount();
+            for (int i = 0; i < decorCount; i ++) {
+                tagView.removeItemDecorationAt(0);
+            }
             tagView.addItemDecoration(
                     new GridMarginsDecoration(
                             context.getResources().getDimension(R.dimen.little_margin),
@@ -116,6 +118,9 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                             tagView
                     )
             );
+
+            tagView.setLayoutManager(
+                    new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             tagView.setAdapter(
                     new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(weather, (MainTag) tagList.get(newPosition));

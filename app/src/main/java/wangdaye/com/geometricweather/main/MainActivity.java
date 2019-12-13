@@ -364,14 +364,11 @@ public class MainActivity extends GeoActivity
         adapter = new MainAdapter(this, location, weatherView, resourceProvider, colorPicker,
                 listAnimationEnabled, itemAnimationEnabled);
         recyclerView.setAdapter(adapter);
+
+        OnScrollListener l = new OnScrollListener();
         recyclerView.clearOnScrollListeners();
-        recyclerView.addOnScrollListener(new OnScrollListener());
-        recyclerView.post(() -> {
-            boolean bottomOverlap = recyclerView.canScrollVertically(1);
-            DisplayUtils.setSystemBarStyle(this, getWindow(), true,
-                    false, false,
-                    bottomOverlap, bottomOverlap && colorPicker.isLightTheme());
-        });
+        recyclerView.addOnScrollListener(l);
+        recyclerView.post(() -> l.onScrolled(recyclerView, 0, 0));
 
         indicator.setCurrentIndicatorColor(colorPicker.getAccentColor(this));
         indicator.setIndicatorColor(colorPicker.getTextSubtitleColor(this));
@@ -572,9 +569,9 @@ public class MainActivity extends GeoActivity
 
     private class OnScrollListener extends RecyclerView.OnScrollListener {
 
-        private boolean topChanged;
+        private @Nullable Boolean topChanged;
         private boolean topOverlap;
-        private boolean bottomChanged;
+        private @Nullable Boolean bottomChanged;
         private boolean bottomOverlap;
 
         private int firstCardMarginTop;
@@ -585,9 +582,9 @@ public class MainActivity extends GeoActivity
         OnScrollListener() {
             super();
 
-            this.topChanged = false;
+            this.topChanged = null;
             this.topOverlap = false;
-            this.bottomChanged = false;
+            this.bottomChanged = null;
             this.bottomOverlap = false;
 
             this.firstCardMarginTop = 0;
@@ -598,7 +595,11 @@ public class MainActivity extends GeoActivity
 
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-            firstCardMarginTop = recyclerView.getChildAt(0).getMeasuredHeight();
+            if (recyclerView.getChildCount() > 0) {
+                firstCardMarginTop = recyclerView.getChildAt(0).getMeasuredHeight();
+            } else {
+                firstCardMarginTop = -1;
+            }
 
             scrollY = recyclerView.computeVerticalScrollOffset();
             oldScrollY = scrollY - dy;
@@ -609,25 +610,33 @@ public class MainActivity extends GeoActivity
             }
 
             // set translation y of toolbar.
-            if (adapter != null) {
-                if (scrollY < firstCardMarginTop
-                        - appBar.getMeasuredHeight()
-                        - adapter.getCurrentTemperatureTextHeight(recyclerView)) {
-                    appBar.setTranslationY(0);
-                } else if (scrollY > firstCardMarginTop - appBar.getY()) {
-                    appBar.setTranslationY(-appBar.getMeasuredHeight());
+            if (adapter != null && firstCardMarginTop > 0) {
+                if (firstCardMarginTop
+                        >= appBar.getMeasuredHeight() + adapter.getCurrentTemperatureTextHeight(recyclerView)) {
+                    if (scrollY < firstCardMarginTop
+                            - appBar.getMeasuredHeight()
+                            - adapter.getCurrentTemperatureTextHeight(recyclerView)) {
+                        appBar.setTranslationY(0);
+                    } else if (scrollY > firstCardMarginTop - appBar.getY()) {
+                        appBar.setTranslationY(-appBar.getMeasuredHeight());
+                    } else {
+                        appBar.setTranslationY(
+                                firstCardMarginTop
+                                        - adapter.getCurrentTemperatureTextHeight(recyclerView)
+                                        - scrollY
+                                        - appBar.getMeasuredHeight()
+                        );
+                    }
                 } else {
-                    appBar.setTranslationY(
-                            firstCardMarginTop
-                                    - adapter.getCurrentTemperatureTextHeight(recyclerView)
-                                    - scrollY
-                                    - appBar.getMeasuredHeight()
-                    );
+                    appBar.setTranslationY(-scrollY);
                 }
             }
 
             // set system bar style.
-            if (scrollY >= firstCardMarginTop) {
+            if (firstCardMarginTop <= 0) {
+                topChanged = true;
+                topOverlap = false;
+            } else if (scrollY >= firstCardMarginTop) {
                 topChanged = oldScrollY < firstCardMarginTop;
                 topOverlap = true;
             } else {
@@ -635,7 +644,8 @@ public class MainActivity extends GeoActivity
                 topOverlap = false;
             }
 
-            if (bottomOverlap != recyclerView.canScrollVertically(1)) {
+            if (bottomChanged == null
+                    || bottomOverlap != recyclerView.canScrollVertically(1)) {
                 bottomOverlap = recyclerView.canScrollVertically(1);
                 bottomChanged = true;
             } else {

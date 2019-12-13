@@ -249,7 +249,11 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "vertical":
                 return String.valueOf(
-                        unit.getTemperature(weather.getCurrent().getTemperature().getTemperature())
+                        Math.abs(
+                                unit.getTemperature(
+                                        weather.getCurrent().getTemperature().getTemperature()
+                                )
+                        )
                 );
         }
         return "";

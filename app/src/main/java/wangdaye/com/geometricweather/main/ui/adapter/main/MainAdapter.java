@@ -155,8 +155,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     }
 
     @Override
-    public void onViewDetachedFromWindow(@NonNull AbstractMainViewHolder holder) {
-        super.onViewDetachedFromWindow(holder);
+    public void onViewRecycled(@NonNull AbstractMainViewHolder holder) {
         holder.onDestroy();
     }
 
