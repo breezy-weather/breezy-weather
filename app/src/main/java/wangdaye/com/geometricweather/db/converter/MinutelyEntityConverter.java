@@ -3,15 +3,18 @@ package wangdaye.com.geometricweather.db.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Minutely;
 import wangdaye.com.geometricweather.db.entity.MinutelyEntity;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class MinutelyEntityConverter {
 
-    public static MinutelyEntity convertToEntity(String cityId, Minutely minutely) {
+    public static MinutelyEntity convertToEntity(String cityId, WeatherSource source, Minutely minutely) {
         MinutelyEntity entity = new MinutelyEntity();
 
         entity.cityId = cityId;
+        entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(source);
         
         entity.date = minutely.getDate();
         entity.time = minutely.getTime();
@@ -27,10 +30,11 @@ public class MinutelyEntityConverter {
         return entity;
     }
 
-    public static List<MinutelyEntity> convertToEntityList(String cityId, List<Minutely> minutelyList) {
+    public static List<MinutelyEntity> convertToEntityList(String cityId, WeatherSource source,
+                                                           List<Minutely> minutelyList) {
         List<MinutelyEntity> entityList = new ArrayList<>(minutelyList.size());
         for (Minutely minutely : minutelyList) {
-            entityList.add(convertToEntity(cityId, minutely));
+            entityList.add(convertToEntity(cityId, source, minutely));
         }
         return entityList;
     }

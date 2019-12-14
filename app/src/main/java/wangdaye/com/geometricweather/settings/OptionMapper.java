@@ -133,6 +133,9 @@ public class OptionMapper {
 
     public static PrecipitationUnit getPrecipitationUnit(String value) {
         switch (value) {
+            case "in":
+                return PrecipitationUnit.IN;
+
             case "lpsqm":
                 return PrecipitationUnit.LPSQM;
 

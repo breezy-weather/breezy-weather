@@ -3,18 +3,21 @@ package wangdaye.com.geometricweather.db.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Precipitation;
 import wangdaye.com.geometricweather.basic.model.weather.PrecipitationProbability;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.db.entity.HourlyEntity;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class HourlyEntityConverter {
 
-    public static HourlyEntity convertToEntity(String cityId, Hourly hourly) {
+    public static HourlyEntity convertToEntity(String cityId, WeatherSource source, Hourly hourly) {
         HourlyEntity entity = new HourlyEntity();
 
         entity.cityId = cityId;
+        entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(source);
         
         entity.date = hourly.getDate();
         entity.time = hourly.getTime();
@@ -46,10 +49,11 @@ public class HourlyEntityConverter {
         return entity;
     }
 
-    public static List<HourlyEntity> convertToEntityList(String cityId, List<Hourly> hourlyList) {
+    public static List<HourlyEntity> convertToEntityList(String cityId, WeatherSource source,
+                                                         List<Hourly> hourlyList) {
         List<HourlyEntity> entityList = new ArrayList<>(hourlyList.size());
         for (Hourly hourly : hourlyList) {
-            entityList.add(convertToEntity(cityId, hourly));
+            entityList.add(convertToEntity(cityId, source, hourly));
         }
         return entityList;
     }

@@ -17,7 +17,7 @@ import wangdaye.com.geometricweather.basic.model.weather.History;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.controller.AlertEntityController;
 import wangdaye.com.geometricweather.db.controller.ChineseCityEntityController;
-import wangdaye.com.geometricweather.db.controller.DailyEntitiyController;
+import wangdaye.com.geometricweather.db.controller.DailyEntityController;
 import wangdaye.com.geometricweather.db.controller.HistoryEntityController;
 import wangdaye.com.geometricweather.db.controller.HourlyEntityController;
 import wangdaye.com.geometricweather.db.controller.LocationEntityController;
@@ -31,12 +31,18 @@ import wangdaye.com.geometricweather.db.converter.HourlyEntityConverter;
 import wangdaye.com.geometricweather.db.converter.LocationEntityConverter;
 import wangdaye.com.geometricweather.db.converter.MinutelyEntityConverter;
 import wangdaye.com.geometricweather.db.converter.WeatherEntityConverter;
+import wangdaye.com.geometricweather.db.entity.AlertEntityDao;
 import wangdaye.com.geometricweather.db.entity.ChineseCityEntity;
+import wangdaye.com.geometricweather.db.entity.DailyEntityDao;
 import wangdaye.com.geometricweather.db.entity.DaoMaster;
 import wangdaye.com.geometricweather.db.entity.DaoSession;
 import wangdaye.com.geometricweather.db.entity.HistoryEntity;
+import wangdaye.com.geometricweather.db.entity.HistoryEntityDao;
+import wangdaye.com.geometricweather.db.entity.HourlyEntityDao;
 import wangdaye.com.geometricweather.db.entity.LocationEntity;
+import wangdaye.com.geometricweather.db.entity.MinutelyEntityDao;
 import wangdaye.com.geometricweather.db.entity.WeatherEntity;
+import wangdaye.com.geometricweather.db.entity.WeatherEntityDao;
 
 /**
  * Database helper
@@ -59,7 +65,7 @@ public class DatabaseHelper {
     private LocationEntityController locationEntityController;
     private ChineseCityEntityController chineseCityEntityController;
     private WeatherEntityController weatherEntityController;
-    private DailyEntitiyController dailyEntitiyController;
+    private DailyEntityController dailyEntityController;
     private HourlyEntityController hourlyEntityController;
     private MinutelyEntityController minutelyEntityController;
     private AlertEntityController alertEntityController;
@@ -77,7 +83,7 @@ public class DatabaseHelper {
         locationEntityController = new LocationEntityController(session);
         chineseCityEntityController = new ChineseCityEntityController(session);
         weatherEntityController = new WeatherEntityController(session);
-        dailyEntitiyController = new DailyEntitiyController(session);
+        dailyEntityController = new DailyEntityController(session);
         hourlyEntityController = new HourlyEntityController(session);
         minutelyEntityController = new MinutelyEntityController(session);
         alertEntityController = new AlertEntityController(session);
@@ -149,33 +155,42 @@ public class DatabaseHelper {
     public void writeWeather(@NonNull Location location, @NonNull Weather weather) {
         weatherEntityController.insertWeatherEntity(
                 location.getCityId(),
-                WeatherEntityConverter.convert(weather)
+                location.getWeatherSource(),
+                WeatherEntityConverter.convert(location, weather)
         );
-        dailyEntitiyController.insertDailyList(
+        dailyEntityController.insertDailyList(
                 location.getCityId(),
+                location.getWeatherSource(),
                 DailyEntityConverter.convertToEntityList(
                         location.getCityId(),
+                        location.getWeatherSource(),
                         weather.getDailyForecast()
                 )
         );
         hourlyEntityController.insertHourlyList(
                 location.getCityId(),
+                location.getWeatherSource(),
                 HourlyEntityConverter.convertToEntityList(
                         location.getCityId(),
+                        location.getWeatherSource(),
                         weather.getHourlyForecast()
                 )
         );
         minutelyEntityController.insertMinutelyList(
                 location.getCityId(),
+                location.getWeatherSource(),
                 MinutelyEntityConverter.convertToEntityList(
                         location.getCityId(),
+                        location.getWeatherSource(),
                         weather.getMinutelyForecast()
                 )
         );
         alertEntityController.insertAlertList(
                 location.getCityId(),
+                location.getWeatherSource(),
                 AlertEntityConverter.convertToEntityList(
                         location.getCityId(),
+                        location.getWeatherSource(),
                         weather.getAlertList()
                 )
         );
@@ -187,23 +202,24 @@ public class DatabaseHelper {
 
     @Nullable
     public Weather readWeather(@NonNull Location location) {
-        WeatherEntity weatherEntity = weatherEntityController.selectWeatherEntity(location.getCityId());
+        WeatherEntity weatherEntity = weatherEntityController.selectWeatherEntity(
+                location.getCityId(), location.getWeatherSource());
         if (weatherEntity == null) {
             return null;
         }
 
         HistoryEntity historyEntity = historyEntityController.selectYesterdayHistoryEntity(
-                location.getCityId(), weatherEntity.updateDate);
+                location.getCityId(), location.getWeatherSource(),weatherEntity.updateDate);
         return WeatherEntityConverter.convert(weatherEntity, historyEntity);
     }
 
     public void deleteWeather(@NonNull Location location) {
-        weatherEntityController.deleteWeather(location.getCityId());
-        historyEntityController.deleteLocationHistoryEntity(location.getCityId());
-        dailyEntitiyController.deleteDailyEntityList(location.getCityId());
-        hourlyEntityController.deleteHourlyEntityList(location.getCityId());
-        minutelyEntityController.deleteMinutelyEntityList(location.getCityId());
-        alertEntityController.deleteAlertList(location.getCityId());
+        weatherEntityController.deleteWeather(location.getCityId(), location.getWeatherSource());
+        historyEntityController.deleteLocationHistoryEntity(location.getCityId(), location.getWeatherSource());
+        dailyEntityController.deleteDailyEntityList(location.getCityId(), location.getWeatherSource());
+        hourlyEntityController.deleteHourlyEntityList(location.getCityId(), location.getWeatherSource());
+        minutelyEntityController.deleteMinutelyEntityList(location.getCityId(), location.getWeatherSource());
+        alertEntityController.deleteAlertList(location.getCityId(), location.getWeatherSource());
 
         DbUtils.vacuum(new DaoMaster(openHelper.getWritableDatabase()).getDatabase());
     }
@@ -213,8 +229,9 @@ public class DatabaseHelper {
     public void writeTodayHistory(@NonNull Location location, @NonNull Weather weather) {
         historyEntityController.insertTodayHistoryEntity(
                 location.getCityId(),
+                location.getWeatherSource(),
                 weather.getBase().getPublishDate(),
-                HistoryEntityConverter.convert(location.getCityId(), weather)
+                HistoryEntityConverter.convert(location.getCityId(), location.getWeatherSource(), weather)
         );
     }
 
@@ -222,8 +239,9 @@ public class DatabaseHelper {
                                       @NonNull Weather weather, @NonNull History history) {
         historyEntityController.insertYesterdayHistoryEntity(
                 location.getCityId(),
+                location.getWeatherSource(),
                 weather.getBase().getPublishDate(),
-                HistoryEntityConverter.convert(location.getCityId(), history)
+                HistoryEntityConverter.convert(location.getCityId(), location.getWeatherSource(), history)
         );
     }
 
@@ -231,6 +249,7 @@ public class DatabaseHelper {
         return HistoryEntityConverter.convert(
                 historyEntityController.selectYesterdayHistoryEntity(
                         location.getCityId(),
+                        location.getWeatherSource(),
                         weather.getBase().getPublishDate()
                 )
         );
@@ -305,6 +324,31 @@ class DatabaseOpenHelper extends DaoMaster.DevOpenHelper {
 
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
-        super.onUpgrade(db, oldVersion, newVersion);
+        switch (oldVersion) {
+            case 52:
+            case 51:
+            case 50:
+            case 49:
+            case 48:
+            case 47:
+                WeatherEntityDao.dropTable(db, true);
+                DailyEntityDao.dropTable(db, true);
+                HourlyEntityDao.dropTable(db, true);
+                MinutelyEntityDao.dropTable(db, true);
+                AlertEntityDao.dropTable(db, true);
+                HistoryEntityDao.dropTable(db, true);
+
+                WeatherEntityDao.createTable(db, true);
+                DailyEntityDao.createTable(db, true);
+                HourlyEntityDao.createTable(db, true);
+                MinutelyEntityDao.createTable(db, true);
+                AlertEntityDao.createTable(db, true);
+                HistoryEntityDao.createTable(db, true);
+                break;
+
+            default:
+                super.onUpgrade(db, oldVersion, newVersion);
+                break;
+        }
     }
 }

@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.basic.model.weather.WindDegree;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherCodeConverter;
@@ -23,6 +24,7 @@ public class DailyEntity {
 
     @Id public Long id;
     public String cityId;
+    public String weatherSource;
 
     public Date date;
     public long time;
@@ -150,9 +152,9 @@ public class DailyEntity {
 
     public float hoursOfSun;
 
-    @Generated(hash = 1891484418)
-    public DailyEntity(Long id, String cityId, Date date, long time,
-            String daytimeWeatherText, String daytimeWeatherPhase,
+    @Generated(hash = 1727023126)
+    public DailyEntity(Long id, String cityId, String weatherSource, Date date,
+            long time, String daytimeWeatherText, String daytimeWeatherPhase,
             WeatherCode daytimeWeatherCode, int daytimeTemperature,
             Integer daytimeRealFeelTemperature,
             Integer daytimeRealFeelShaderTemperature,
@@ -208,6 +210,7 @@ public class DailyEntity {
             String uvDescription, float hoursOfSun) {
         this.id = id;
         this.cityId = cityId;
+        this.weatherSource = weatherSource;
         this.date = date;
         this.time = time;
         this.daytimeWeatherText = daytimeWeatherText;
@@ -320,6 +323,14 @@ public class DailyEntity {
 
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+
+    public String getWeatherSource() {
+        return this.weatherSource;
+    }
+
+    public void setWeatherSource(String weatherSource) {
+        this.weatherSource = weatherSource;
     }
 
     public Date getDate() {
@@ -1088,4 +1099,5 @@ public class DailyEntity {
     public void setHoursOfSun(float hoursOfSun) {
         this.hoursOfSun = hoursOfSun;
     }
+
 }

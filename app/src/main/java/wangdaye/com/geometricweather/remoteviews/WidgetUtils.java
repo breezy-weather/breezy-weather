@@ -163,7 +163,7 @@ public class WidgetUtils {
         today.setTime(new Date());
 
         Calendar publish = Calendar.getInstance();
-        publish.setTime(weather.getBase().getPublishDate());
+        publish.setTime(weather.getDailyForecast().get(0).getDate());
 
         if (today.get(Calendar.YEAR) == publish.get(Calendar.YEAR)
                 && today.get(Calendar.DAY_OF_YEAR) == publish.get(Calendar.DAY_OF_YEAR)) {

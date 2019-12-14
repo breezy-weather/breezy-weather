@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.basic.model.option.unit;
 public enum PrecipitationUnit {
 
     MM("mm", "mm", 1f),
+    IN("in", "inch", 0.0394f),
     LPSQM("lpsqm", "L/m²", 1f);
 
     private String unitId;

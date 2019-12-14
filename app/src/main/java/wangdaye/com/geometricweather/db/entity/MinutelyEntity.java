@@ -6,8 +6,10 @@ import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherCodeConverter;
+
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -20,6 +22,7 @@ public class MinutelyEntity {
 
     @Id public Long id;
     public String cityId;
+    public String weatherSource;
 
     public Date date;
     public long time;
@@ -32,13 +35,14 @@ public class MinutelyEntity {
     public int minuteInterval;
     public Integer dbz;
     public Integer cloudCover;
-
-    @Generated(hash = 620625812)
-    public MinutelyEntity(Long id, String cityId, Date date, long time,
-            boolean daylight, String weatherText, WeatherCode weatherCode,
-            int minuteInterval, Integer dbz, Integer cloudCover) {
+    @Generated(hash = 1731751090)
+    public MinutelyEntity(Long id, String cityId, String weatherSource, Date date,
+            long time, boolean daylight, String weatherText,
+            WeatherCode weatherCode, int minuteInterval, Integer dbz,
+            Integer cloudCover) {
         this.id = id;
         this.cityId = cityId;
+        this.weatherSource = weatherSource;
         this.date = date;
         this.time = time;
         this.daylight = daylight;
@@ -62,6 +66,12 @@ public class MinutelyEntity {
     }
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+    public String getWeatherSource() {
+        return this.weatherSource;
+    }
+    public void setWeatherSource(String weatherSource) {
+        this.weatherSource = weatherSource;
     }
     public Date getDate() {
         return this.date;
@@ -111,5 +121,5 @@ public class MinutelyEntity {
     public void setCloudCover(Integer cloudCover) {
         this.cloudCover = cloudCover;
     }
-    
+
 }

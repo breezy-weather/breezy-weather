@@ -6,8 +6,10 @@ import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherCodeConverter;
+
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -20,6 +22,7 @@ public class HourlyEntity {
 
     @Id public Long id;
     public String cityId;
+    public String weatherSource;
 
     public Date date;
     public long time;
@@ -48,11 +51,10 @@ public class HourlyEntity {
     public Float rainPrecipitationProbability;
     public Float snowPrecipitationProbability;
     public Float icePrecipitationProbability;
-
-    @Generated(hash = 1338968111)
-    public HourlyEntity(Long id, String cityId, Date date, long time,
-            boolean daylight, String weatherText, WeatherCode weatherCode,
-            int temperature, Integer realFeelTemperature,
+    @Generated(hash = 1553100243)
+    public HourlyEntity(Long id, String cityId, String weatherSource, Date date,
+            long time, boolean daylight, String weatherText,
+            WeatherCode weatherCode, int temperature, Integer realFeelTemperature,
             Integer realFeelShaderTemperature, Integer apparentTemperature,
             Integer windChillTemperature, Integer wetBulbTemperature,
             Integer degreeDayTemperature, Float totalPrecipitation,
@@ -64,6 +66,7 @@ public class HourlyEntity {
             Float icePrecipitationProbability) {
         this.id = id;
         this.cityId = cityId;
+        this.weatherSource = weatherSource;
         this.date = date;
         this.time = time;
         this.daylight = daylight;
@@ -101,6 +104,12 @@ public class HourlyEntity {
     }
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+    public String getWeatherSource() {
+        return this.weatherSource;
+    }
+    public void setWeatherSource(String weatherSource) {
+        this.weatherSource = weatherSource;
     }
     public Date getDate() {
         return this.date;
@@ -238,4 +247,5 @@ public class HourlyEntity {
     public void setIcePrecipitationProbability(Float icePrecipitationProbability) {
         this.icePrecipitationProbability = icePrecipitationProbability;
     }
+
 }

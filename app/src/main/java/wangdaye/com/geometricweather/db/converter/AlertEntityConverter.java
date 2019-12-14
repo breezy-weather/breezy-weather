@@ -3,15 +3,18 @@ package wangdaye.com.geometricweather.db.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
 import wangdaye.com.geometricweather.db.entity.AlertEntity;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class AlertEntityConverter {
 
-    public static AlertEntity convertToEntity(String cityId, Alert alert) {
+    public static AlertEntity convertToEntity(String cityId, WeatherSource source, Alert alert) {
         AlertEntity entity = new AlertEntity();
 
         entity.cityId = cityId;
+        entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(source);
 
         entity.alertId = alert.getAlertId();
         entity.date = alert.getDate();
@@ -27,10 +30,11 @@ public class AlertEntityConverter {
         return entity;
     }
 
-    public static List<AlertEntity> convertToEntityList(String cityId, List<Alert> alertList) {
+    public static List<AlertEntity> convertToEntityList(String cityId, WeatherSource source,
+                                                        List<Alert> alertList) {
         List<AlertEntity> entityList = new ArrayList<>(alertList.size());
         for (Alert alert : alertList) {
-            entityList.add(convertToEntity(cityId, alert));
+            entityList.add(convertToEntity(cityId, source, alert));
         }
         return entityList;
     }

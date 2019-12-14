@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.entity.DaoSession;
 import wangdaye.com.geometricweather.db.entity.MinutelyEntity;
 import wangdaye.com.geometricweather.db.entity.MinutelyEntityDao;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class MinutelyEntityController extends AbsEntityController<MinutelyEntity> {
     
@@ -16,9 +18,10 @@ public class MinutelyEntityController extends AbsEntityController<MinutelyEntity
 
     // insert.
 
-    public void insertMinutelyList(@NonNull String cityId, @NonNull List<MinutelyEntity> entityList) {
+    public void insertMinutelyList(@NonNull String cityId, @NonNull WeatherSource source,
+                                   @NonNull List<MinutelyEntity> entityList) {
         if (entityList.size() != 0) {
-            deleteMinutelyEntityList(cityId);
+            deleteMinutelyEntityList(cityId, source);
             getSession().getMinutelyEntityDao().insertInTx(entityList);
             getSession().clear();
         }
@@ -26,19 +29,23 @@ public class MinutelyEntityController extends AbsEntityController<MinutelyEntity
 
     // delete.
 
-    public void deleteMinutelyEntityList(@NonNull String cityId) {
-        getSession().getMinutelyEntityDao().deleteInTx(selectMinutelyEntityList(cityId));
+    public void deleteMinutelyEntityList(@NonNull String cityId, @NonNull WeatherSource source) {
+        getSession().getMinutelyEntityDao().deleteInTx(selectMinutelyEntityList(cityId, source));
         getSession().clear();
     }
 
     // select.
 
-    public List<MinutelyEntity> selectMinutelyEntityList(@NonNull String cityId) {
+    public List<MinutelyEntity> selectMinutelyEntityList(@NonNull String cityId, @NonNull WeatherSource source) {
         return getNonNullList(
                 getSession().getMinutelyEntityDao()
                         .queryBuilder()
-                        .where(MinutelyEntityDao.Properties.CityId.eq(cityId))
-                        .list()
+                        .where(
+                                MinutelyEntityDao.Properties.CityId.eq(cityId),
+                                MinutelyEntityDao.Properties.WeatherSource.eq(
+                                        new WeatherSourceConverter().convertToDatabaseValue(source)
+                                )
+                        ).list()
         );
     }
 }

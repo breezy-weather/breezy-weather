@@ -301,10 +301,12 @@
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
         <item>mm</item>
+        <item>inch</item>
         <item>L/m²</item>
     </string-array>
     <string-array name="precipitation_unit_values">
         <item>mm</item>
+        <item>in</item>
         <item>lpsqm</item>
     </string-array>
 

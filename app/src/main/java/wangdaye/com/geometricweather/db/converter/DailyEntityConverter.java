@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.db.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Astro;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
@@ -16,13 +17,15 @@ import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.UV;
 import wangdaye.com.geometricweather.basic.model.weather.Wind;
 import wangdaye.com.geometricweather.db.entity.DailyEntity;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class DailyEntityConverter {
 
-    public static DailyEntity convertToEntity(String cityId, Daily daily) {
+    public static DailyEntity convertToEntity(String cityId, WeatherSource source, Daily daily) {
         DailyEntity entity = new DailyEntity();
 
         entity.cityId = cityId;
+        entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(source);
         entity.date = daily.getDate();
         entity.time = daily.getTime();
 
@@ -148,10 +151,11 @@ public class DailyEntityConverter {
         return entity;
     }
 
-    public static List<DailyEntity> convertToEntityList(String cityId, List<Daily> dailyList) {
+    public static List<DailyEntity> convertToEntityList(String cityId, WeatherSource source,
+                                                        List<Daily> dailyList) {
         List<DailyEntity> entityList = new ArrayList<>(dailyList.size());
         for (Daily daily : dailyList) {
-            entityList.add(convertToEntity(cityId, daily));
+            entityList.add(convertToEntity(cityId, source, daily));
         }
         return entityList;
     }

@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.db.converter;
 
 import androidx.annotation.Nullable;
 
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Current;
@@ -13,14 +14,16 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.basic.model.weather.Wind;
 import wangdaye.com.geometricweather.db.entity.HistoryEntity;
 import wangdaye.com.geometricweather.db.entity.WeatherEntity;
+import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class WeatherEntityConverter {
 
-    public static WeatherEntity convert(Weather weather) {
+    public static WeatherEntity convert(Location location, Weather weather) {
         WeatherEntity entity = new WeatherEntity();
 
         // base.
         entity.cityId = weather.getBase().getCityId();
+        entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(location.getWeatherSource());
         entity.timeStamp = weather.getBase().getTimeStamp();
         entity.publishDate = weather.getBase().getPublishDate();
         entity.publishTime = weather.getBase().getPublishTime();

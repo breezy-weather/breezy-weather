@@ -7,6 +7,8 @@ import org.greenrobot.greendao.annotation.Id;
 import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+
 /**
  * History entity.
  *
@@ -18,18 +20,19 @@ public class HistoryEntity {
 
     @Id public Long id;
     public String cityId;
+    public String weatherSource;
 
     public Date date;
     public long time;
 
     public int daytimeTemperature;
     public int nighttimeTemperature;
-
-    @Generated(hash = 902661261)
-    public HistoryEntity(Long id, String cityId, Date date, long time,
-            int daytimeTemperature, int nighttimeTemperature) {
+    @Generated(hash = 1203457063)
+    public HistoryEntity(Long id, String cityId, String weatherSource, Date date,
+            long time, int daytimeTemperature, int nighttimeTemperature) {
         this.id = id;
         this.cityId = cityId;
+        this.weatherSource = weatherSource;
         this.date = date;
         this.time = time;
         this.daytimeTemperature = daytimeTemperature;
@@ -49,6 +52,12 @@ public class HistoryEntity {
     }
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+    public String getWeatherSource() {
+        return this.weatherSource;
+    }
+    public void setWeatherSource(String weatherSource) {
+        this.weatherSource = weatherSource;
     }
     public Date getDate() {
         return this.date;
@@ -74,4 +83,5 @@ public class HistoryEntity {
     public void setNighttimeTemperature(int nighttimeTemperature) {
         this.nighttimeTemperature = nighttimeTemperature;
     }
+
 }

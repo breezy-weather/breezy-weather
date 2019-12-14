@@ -6,6 +6,8 @@ import org.greenrobot.greendao.annotation.Id;
 import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
 
+import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+
 /**
  * Alert entity.
  *
@@ -16,6 +18,7 @@ public class AlertEntity {
 
     @Id public Long id;
     public String cityId;
+    public String weatherSource;
     
     public long alertId;
     public Date date;
@@ -27,13 +30,13 @@ public class AlertEntity {
     public String type;
     public int priority;
     public int color;
-
-    @Generated(hash = 1777957766)
-    public AlertEntity(Long id, String cityId, long alertId, Date date, long time,
-            String description, String content, String type, int priority,
-            int color) {
+    @Generated(hash = 1514490199)
+    public AlertEntity(Long id, String cityId, String weatherSource, long alertId,
+            Date date, long time, String description, String content, String type,
+            int priority, int color) {
         this.id = id;
         this.cityId = cityId;
+        this.weatherSource = weatherSource;
         this.alertId = alertId;
         this.date = date;
         this.time = time;
@@ -57,6 +60,12 @@ public class AlertEntity {
     }
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+    public String getWeatherSource() {
+        return this.weatherSource;
+    }
+    public void setWeatherSource(String weatherSource) {
+        this.weatherSource = weatherSource;
     }
     public long getAlertId() {
         return this.alertId;
@@ -106,4 +115,5 @@ public class AlertEntity {
     public void setColor(int color) {
         this.color = color;
     }
+
 }
