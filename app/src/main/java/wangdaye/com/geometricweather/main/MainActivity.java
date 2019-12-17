@@ -364,15 +364,9 @@ public class MainActivity extends GeoActivity
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(this).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(this).isItemAnimationEnabled();
 
-        if (adapter == null) {
-            adapter = new MainAdapter(this, location, weatherView, resourceProvider, colorPicker,
-                    listAnimationEnabled, itemAnimationEnabled);
-            recyclerView.setAdapter(adapter);
-        } else {
-            adapter.reset(this, location, weatherView, resourceProvider, colorPicker,
-                    listAnimationEnabled, itemAnimationEnabled);
-            adapter.notifyDataSetChanged();
-        }
+        adapter = new MainAdapter(this, location, weatherView, resourceProvider, colorPicker,
+                listAnimationEnabled, itemAnimationEnabled);
+        recyclerView.setAdapter(adapter);
 
         OnScrollListener l = new OnScrollListener();
         recyclerView.clearOnScrollListeners();
@@ -423,6 +417,10 @@ public class MainActivity extends GeoActivity
         if (recyclerViewAnimator != null) {
             recyclerViewAnimator.cancel();
             recyclerViewAnimator = null;
+        }
+        if (adapter != null) {
+            recyclerView.setAdapter(null);
+            adapter = null;
         }
     }
 
