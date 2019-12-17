@@ -12,13 +12,19 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
     private @Px int scrollOffset;
     private @Px int measuredHeight;
-    private boolean adapterChanged;
+    private boolean dataSetChanged;
 
     public MainLayoutManager() {
         super();
         this.scrollOffset = 0;
         this.measuredHeight = 0;
-        this.adapterChanged = true;
+        this.dataSetChanged = true;
+    }
+
+    @Override
+    public void onDetachedFromWindow(RecyclerView view, RecyclerView.Recycler recycler) {
+        super.onDetachedFromWindow(view, recycler);
+        removeAndRecycleAllViews(recycler);
     }
 
     @Override
@@ -28,9 +34,30 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
+    public void onAdapterChanged(@Nullable RecyclerView.Adapter oldAdapter, @Nullable RecyclerView.Adapter newAdapter) {
+        super.onAdapterChanged(oldAdapter, newAdapter);
+        this.dataSetChanged = true;
+    }
+
+    @Override
+    public void onItemsChanged(@NonNull RecyclerView recyclerView) {
+        super.onItemsChanged(recyclerView);
+        this.dataSetChanged = true;
+    }
+
+    @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         super.onLayoutChildren(recycler, state);
-        detachAndScrapAttachedViews(recycler);
+
+        if (state.getItemCount() == 0 || state.isPreLayout()) {
+            return;
+        }
+
+        if (dataSetChanged) {
+            removeAndRecycleAllViews(recycler);
+        } else {
+            detachAndScrapAttachedViews(recycler);
+        }
 
         if (getItemCount() == 0) {
             return;
@@ -69,9 +96,9 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
         measuredHeight = y;
 
-        if (adapterChanged) {
+        if (dataSetChanged) {
             scrollOffset = 0;
-            adapterChanged = false;
+            dataSetChanged = false;
         } else {
             int oldOffset = scrollOffset;
             scrollOffset = 0;
@@ -102,12 +129,6 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
         offsetChildrenVertical(-consumed);
         return consumed;
-    }
-
-    @Override
-    public void onAdapterChanged(@Nullable RecyclerView.Adapter oldAdapter, @Nullable RecyclerView.Adapter newAdapter) {
-        super.onAdapterChanged(oldAdapter, newAdapter);
-        this.adapterChanged = true;
     }
 
     @Px

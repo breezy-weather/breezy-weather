@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.main.ui.adapter.main;
 
 import android.animation.Animator;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +38,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private @NonNull MainColorPicker picker;
 
     private @NonNull List<Integer> viewTypeList;
-    private @Nullable Integer firstCardType;
+    private @Nullable Integer firstCardPosition;
     private @NonNull List<Animator> pendingAnimatorList;
     private int headerCurrentTemperatureTextHeight;
     private boolean listAnimationEnabled;
@@ -49,6 +48,13 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
                        @NonNull WeatherView weatherView,
                        @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
+        reset(activity, location, weatherView, provider, picker, listAnimationEnabled, itemAnimationEnabled);
+    }
+
+    public void reset(@NonNull GeoActivity activity, @NonNull Location location,
+                      @NonNull WeatherView weatherView,
+                      @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                      boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         this.activity = activity;
         this.location = location;
         this.weatherView = weatherView;
@@ -56,7 +62,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         this.picker = picker;
 
         this.viewTypeList = new ArrayList<>();
-        this.firstCardType = null;
+        this.firstCardPosition = null;
         this.pendingAnimatorList = new ArrayList<>();
         this.headerCurrentTemperatureTextHeight = -1;
         this.listAnimationEnabled = listAnimationEnabled;
@@ -91,72 +97,48 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     @NonNull
     @Override
     public AbstractMainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        float cardMarginsVertical = weatherView.getCardMarginsVertical(activity);
-        float cardMarginsHorizontal = weatherView.getCardMarginsHorizontal(activity);
-        float cardRadius = weatherView.getCardRadius(activity);
-        float cardElevation = weatherView.getCardElevation(activity);
-
-        AbstractMainViewHolder holder;
         switch (viewType) {
             case ViewType.HEADER:
-                holder = new HeaderViewHolder(activity, parent, weatherView, provider, picker,
-                        weatherView.getHeaderTextColor(activity), itemAnimationEnabled);
-                break;
+                return new HeaderViewHolder(parent, weatherView, weatherView.getHeaderTextColor(activity));
 
             case ViewType.DAILY:
-                holder = new DailyViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
-                break;
+                return new DailyViewHolder(parent);
 
             case ViewType.HOURLY:
-                holder = new HourlyViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
-                break;
+                return new HourlyViewHolder(parent);
 
             case ViewType.AIR_QUALITY:
-                holder = new AirQualityViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
-                break;
+                return new AirQualityViewHolder(parent);
 
             case ViewType.ALLERGEN:
-                holder = new AllergenViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
-                break;
+                return new AllergenViewHolder(parent);
 
             case ViewType.ASTRO:
-                holder = new AstroViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
-                break;
+                return new AstroViewHolder(parent);
 
             case ViewType.DETAILS:
-                holder = new DetailsViewHolder(activity, parent, weatherView, provider, picker,
-                        cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation);
-                break;
+                return new DetailsViewHolder(parent);
 
             default: // FOOTER.
-                holder = new FooterViewHolder(activity, parent, weatherView, provider, picker, cardMarginsVertical);
-                break;
+                return new FooterViewHolder(parent, weatherView, weatherView.getCardMarginsVertical(activity));
         }
-
-        if (firstCardType != null && firstCardType == viewType
-                && holder instanceof AbstractMainCardViewHolder) {
-            LinearLayout container = ((AbstractMainCardViewHolder) holder).getHeaderContainer();
-            if (container != null) {
-                new FirstCardHeaderController(activity, location, picker).bind(container);
-            }
-        }
-
-        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull AbstractMainViewHolder holder, int position) {
-        holder.onBindView(location);
+        if (holder instanceof AbstractMainCardViewHolder) {
+            ((AbstractMainCardViewHolder) holder).onBindView(activity, location, weatherView, provider, picker,
+                    weatherView.getCardMarginsVertical(activity), weatherView.getCardMarginsHorizontal(activity),
+                    weatherView.getCardRadius(activity), weatherView.getCardElevation(activity),
+                    itemAnimationEnabled, firstCardPosition != null && firstCardPosition == position);
+        } else {
+            holder.onBindView(activity, location, provider, picker, itemAnimationEnabled);
+        }
     }
 
     @Override
     public void onViewRecycled(@NonNull AbstractMainViewHolder holder) {
-        holder.onDestroy();
+        holder.onRecycleView();
     }
 
     @Override
@@ -170,15 +152,16 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     }
 
     private void ensureFirstCard() {
-        firstCardType = null;
-        for (int type : viewTypeList) {
+        firstCardPosition = null;
+        for (int i = 0; i < getItemCount(); i ++) {
+            int type = getItemViewType(i);
             if (type == ViewType.DAILY
                     || type == ViewType.HOURLY
                     || type == ViewType.AIR_QUALITY
                     || type == ViewType.ALLERGEN
                     || type == ViewType.ASTRO
                     || type == ViewType.DETAILS) {
-                firstCardType = type;
+                firstCardPosition = i;
                 return;
             }
         }

@@ -114,6 +114,9 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DisplayUtils.setSystemBarStyle(MainActivity.this, getWindow(), true,
+                false, false, false, false);
+
         setContentView(R.layout.activity_main);
 
         // attach weather view.
@@ -361,9 +364,15 @@ public class MainActivity extends GeoActivity
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(this).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(this).isItemAnimationEnabled();
 
-        adapter = new MainAdapter(this, location, weatherView, resourceProvider, colorPicker,
-                listAnimationEnabled, itemAnimationEnabled);
-        recyclerView.setAdapter(adapter);
+        if (adapter == null) {
+            adapter = new MainAdapter(this, location, weatherView, resourceProvider, colorPicker,
+                    listAnimationEnabled, itemAnimationEnabled);
+            recyclerView.setAdapter(adapter);
+        } else {
+            adapter.reset(this, location, weatherView, resourceProvider, colorPicker,
+                    listAnimationEnabled, itemAnimationEnabled);
+            adapter.notifyDataSetChanged();
+        }
 
         OnScrollListener l = new OnScrollListener();
         recyclerView.clearOnScrollListeners();
@@ -414,10 +423,6 @@ public class MainActivity extends GeoActivity
         if (recyclerViewAnimator != null) {
             recyclerViewAnimator.cancel();
             recyclerViewAnimator = null;
-        }
-        if (adapter != null) {
-            recyclerView.setAdapter(null);
-            adapter = null;
         }
     }
 
@@ -653,13 +658,8 @@ public class MainActivity extends GeoActivity
             }
 
             if (topChanged || bottomChanged) {
-                DisplayUtils.setSystemBarStyle(
-                        MainActivity.this, getWindow(), true,
-                        topOverlap,
-                        topOverlap && colorPicker.isLightTheme(),
-                        bottomOverlap,
-                        bottomOverlap && colorPicker.isLightTheme()
-                );
+                DisplayUtils.setSystemBarColor(MainActivity.this, getWindow(), true,
+                        topOverlap, false, bottomOverlap, false);
             }
         }
     }

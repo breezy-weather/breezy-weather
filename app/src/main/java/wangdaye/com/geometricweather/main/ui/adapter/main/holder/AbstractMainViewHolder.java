@@ -8,6 +8,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,19 +34,25 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     private @Nullable Disposable disposable;
 
     @SuppressLint("ObjectAnimatorBinding")
-    public AbstractMainViewHolder(Context context, @NonNull View view,
-                                  @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                  boolean itemAnimationEnabled) {
+    public AbstractMainViewHolder(@NonNull View view ) {
         super(view);
+    }
+
+    @CallSuper
+    public void onBindView(Context context, @NonNull Location location,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           boolean itemAnimationEnabled) {
         this.context = context;
         this.provider = provider;
         this.picker = picker;
         this.itemAnimationEnabled = itemAnimationEnabled;
         this.inScreen = false;
         this.disposable = null;
-    }
 
-    public abstract void onBindView(@NonNull Location location);
+        if (itemAnimationEnabled) {
+            itemView.setAlpha(0f);
+        }
+    }
 
     public int getTop() {
         return itemView.getTop();
@@ -96,7 +103,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         // do nothing.
     }
 
-    public void onDestroy() {
+    public void onRecycleView() {
         if (disposable != null) {
             disposable.dispose();
             disposable = null;

@@ -1,24 +1,113 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
 
+    <!-- Chinese source. -->
+    <string-array name="weather_sources">
+        <item>weather.com.cn (Только для Китая)</item>
+        <item>caiyun.com (Только для Китая)</item>
+        <item>accuweather.com</item>
+    </string-array>
+
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Baidu Location</item>
+        <item>Baidu IP Location (Только для Китая)</item>
+        <item>AMap Location</item>
+        <item>Системный API</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Автоматически</item>
+        <item>Всегда светлая</item>
+        <item>Всегда тёмная</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Круглое небо</item>
+        <item>Material анимация</item>
+    </string-array>
+
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>Сначала ежедневный</item>
+        <item>Сначала почасовой</item>
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Системное</item>
+        <item>@string/geometric_weather</item>
+    </string-array>
+
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
-        <item>Dark</item>
-        <item>Grey</item>
-        <item>Light</item>
+        <item>Тёмный</item>
+        <item>Серый</item>
+        <item>Светлый</item>
     </string-array>
 
     <!-- widget style. -->
     <string-array name="widget_styles">
-        <item>Rectangle</item>
-        <item>Symmetry</item>
-        <item>Tile</item>
-        <item>Mini</item>
-        <item>Nano</item>
+        <item>Прямоугольный</item>
+        <item>Симметричный</item>
+        <item>Плитка</item>
+        <item>Мини</item>
+        <item>Нано</item>
         <item>Pixel</item>
-        <item>Vertical</item>
+        <item>Вертикальный</item>
         <item>Oreo</item>
         <item>Oreo (Google sans)</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Время обновления</item>
+        <item>AQI (Не везде работает)</item>
+        <item>Ветер</item>
+        <item>Ощущается как</item>
+        <item>Лунный календарь</item>
+        <item>Пользовательский</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Нет</item>
+        <item>Автоматически</item>
+        <item>Светлый</item>
+        <item>Тёмный</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Светлый</item>
+        <item>Тёмный</item>
+        <item>Автоматически</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Автоматически</item>
+        <item>Ясно</item>
+        <item>Переменная облачность</item>
+        <item>Облачно</item>
+        <item>Дождь</item>
+        <item>Снег</item>
+        <item>Мокрый снег</item>
+        <item>Град</item>
+        <item>Туман</item>
+        <item>Дымка</item>
+        <item>Гроза</item>
+        <item>Ураган</item>
+        <item>Ветер</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Автоматически</item>
+        <item>Всегда день</item>
+        <item>Всегда ночь</item>
     </string-array>
 
 </resources>

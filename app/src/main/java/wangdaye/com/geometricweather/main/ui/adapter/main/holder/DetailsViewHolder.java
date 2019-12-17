@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
 import wangdaye.com.geometricweather.main.ui.adapter.DetailsAdapter;
@@ -25,24 +25,23 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
     private TextView title;
     private RecyclerView detailsRecyclerView;
 
-    @NonNull private WeatherView weatherView;
-
-    public DetailsViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
-                             @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                             @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                             @Px float cardRadius, @Px float cardElevation) {
-        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_details, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, false);
+    public DetailsViewHolder(ViewGroup parent) {
+        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_details, parent, false));
 
         this.card = itemView.findViewById(R.id.container_main_details);
         this.title = itemView.findViewById(R.id.container_main_details_title);
         this.detailsRecyclerView = itemView.findViewById(R.id.container_main_details_recyclerView);
-
-        this.weatherView = weatherView;
     }
 
     @Override
-    public void onBindView(@NonNull Location location) {
+    public void onBindView(GeoActivity activity, @NonNull Location location, WeatherView weatherView,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                           @Px float cardRadius, @Px float cardElevation,
+                           boolean itemAnimationEnabled, boolean firstCard) {
+        super.onBindView(activity, location, weatherView, provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled, firstCard);
+
         if (location.getWeather() != null) {
             card.setCardBackgroundColor(picker.getRootColor(context));
 

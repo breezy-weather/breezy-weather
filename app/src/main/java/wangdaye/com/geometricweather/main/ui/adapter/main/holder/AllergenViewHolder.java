@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -44,16 +43,10 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
     private TextView moldTitle;
     private TextView moldValue;
     
-    @NonNull private WeatherView weatherView;
     private PollenUnit unit;
 
-    public AllergenViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
-                              @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                              @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                              @Px float cardRadius, @Px float cardElevation,
-                              boolean itemAnimationEnabled) {
-        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_pollen, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
+    public AllergenViewHolder(ViewGroup parent) {
+        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_pollen, parent, false));
 
         this.card = itemView.findViewById(R.id.container_main_pollen);
         this.title = itemView.findViewById(R.id.container_main_pollen_title);
@@ -72,13 +65,19 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
         this.moldTitle = itemView.findViewById(R.id.container_main_pollen_moldTitle);
         this.moldValue = itemView.findViewById(R.id.container_main_pollen_moldValue);
         
-        this.weatherView = weatherView;
         this.unit = PollenUnit.PPCM;
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindView(@NonNull Location location) {
+    public void onBindView(GeoActivity activity, @NonNull Location location, WeatherView weatherView,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                           @Px float cardRadius, @Px float cardElevation,
+                           boolean itemAnimationEnabled, boolean firstCard) {
+        super.onBindView(activity, location, weatherView, provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled, firstCard);
+
         assert location.getWeather() != null;
 
         card.setCardBackgroundColor(picker.getRootColor(context));

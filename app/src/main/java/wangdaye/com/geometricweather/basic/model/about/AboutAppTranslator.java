@@ -44,6 +44,11 @@ public class AboutAppTranslator {
                 R.drawable.flag_ru
         ));
         list.add(new AboutAppTranslator(
+                "Denio",
+                "deniosens@yandex.ru",
+                R.drawable.flag_ru
+        ));
+        list.add(new AboutAppTranslator(
                 "Ken Berns",
                 "ken.berns@yahoo.de",
                 R.drawable.flag_de

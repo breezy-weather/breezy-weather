@@ -63,6 +63,16 @@ public class DisplayUtils {
         }
         window.getDecorView().setSystemUiVisibility(visibility);
 
+        setSystemBarColor(context, window, miniAlpha, statusShader, lightStatus, navigationShader, lightNavigation);
+    }
+
+    public static void setSystemBarColor(Context context, Window window, boolean miniAlpha,
+                                         boolean statusShader, boolean lightStatus,
+                                         boolean navigationShader, boolean lightNavigation) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return;
+        }
+
         if (!statusShader) {
             // window.setStatusBarColor(Color.TRANSPARENT);
             window.setStatusBarColor(Color.argb(1, 0, 0, 0));

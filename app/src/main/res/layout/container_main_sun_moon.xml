@@ -49,7 +49,7 @@
             android:id="@+id/container_main_sun_moon_controlView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                     tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>
-            
+
         </RelativeLayout>
 
     </LinearLayout>

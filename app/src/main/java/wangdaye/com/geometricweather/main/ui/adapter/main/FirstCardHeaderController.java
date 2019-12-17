@@ -31,6 +31,8 @@ public class FirstCardHeaderController
     @Nullable private Weather weather;
     @NonNull private String formattedId;
 
+    private @Nullable LinearLayout container;
+
     @SuppressLint({"SetTextI18n", "InflateParams"})
     public FirstCardHeaderController(@NonNull GeoActivity activity,
                                      @NonNull Location location, @NonNull MainColorPicker picker) {
@@ -114,7 +116,15 @@ public class FirstCardHeaderController
     }
 
     public void bind(LinearLayout firstCardContainer) {
-        firstCardContainer.addView(view, 0);
+        container = firstCardContainer;
+        container.addView(view, 0);
+    }
+
+    public void unbind() {
+        if (container != null) {
+            container.removeViewAt(0);
+            container = null;
+        }
     }
 
     // interface.

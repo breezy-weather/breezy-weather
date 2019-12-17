@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,11 +40,8 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     private TemperatureUnit unit;
     private @Nullable Disposable disposable;
 
-    public HeaderViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
-                            @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                            @ColorInt int textColor, boolean itemAnimationEnabled) {
-        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_header, parent, false),
-                provider, picker, itemAnimationEnabled);
+    public HeaderViewHolder(ViewGroup parent, @NonNull WeatherView weatherView, @ColorInt int textColor) {
+        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_header, parent, false));
 
         this.container = itemView.findViewById(R.id.container_main_header);
         this.temperature = itemView.findViewById(R.id.container_main_header_tempTxt);
@@ -63,7 +60,11 @@ public class HeaderViewHolder extends AbstractMainViewHolder
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindView(@NonNull Location location) {
+    public void onBindView(Context context, @NonNull Location location,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           boolean itemAnimationEnabled) {
+        super.onBindView(context, location, provider, picker, itemAnimationEnabled);
+
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) container.getLayoutParams();
         params.height = weatherView.getHeaderHeight();
         container.setLayoutParams(params);
@@ -125,7 +126,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder
     }
 
     @Override
-    public void onDestroy() {
+    public void onRecycleView() {
         if (disposable != null) {
             disposable.dispose();
             disposable = null;

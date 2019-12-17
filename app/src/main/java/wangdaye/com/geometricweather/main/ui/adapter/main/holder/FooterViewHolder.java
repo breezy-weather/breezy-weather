@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,11 +31,9 @@ public class FooterViewHolder extends AbstractMainViewHolder {
 
     @NonNull private WeatherView weatherView;
 
-    public FooterViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
-                            @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+    public FooterViewHolder(ViewGroup parent, @NonNull WeatherView weatherView,
                             @Px float cardMarginsVertical) {
-        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_footer, parent, false),
-                provider, picker, false);
+        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_footer, parent, false));
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
         if (cardMarginsVertical != 0) {
@@ -50,7 +49,11 @@ public class FooterViewHolder extends AbstractMainViewHolder {
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindView(@NonNull Location location) {
+    public void onBindView(Context context, @NonNull Location location,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           boolean itemAnimationEnabled) {
+        super.onBindView(context, location, provider, picker, itemAnimationEnabled);
+
         title.setTextColor(weatherView.getHeaderTextColor(title.getContext()));
         title.setText("* Powered by " + location.getWeatherSource().getSourceUrl());
 

@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -50,7 +50,6 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     private RelativeLayout moonContainer;
     private TextView moonTxt;
 
-    @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
     @Nullable private TimeZone timeZone;
 
@@ -62,13 +61,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
 
     @Size(3) private AnimatorSet[] attachAnimatorSets;
 
-    public AstroViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
-                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                           @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                           @Px float cardRadius, @Px float cardElevation,
-                           boolean itemAnimationEnabled) {
-        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_sun_moon, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
+    public AstroViewHolder(ViewGroup parent) {
+        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_sun_moon, parent, false));
 
         this.card = itemView.findViewById(R.id.container_main_sun_moon);
         this.title = itemView.findViewById(R.id.container_main_sun_moon_title);
@@ -80,13 +74,19 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         this.moonContainer = itemView.findViewById(R.id.container_main_sun_moon_moonContainer);
         this.moonTxt = itemView.findViewById(R.id.container_main_sun_moon_moonrise_moonset);
 
-        this.weatherView = weatherView;
         this.attachAnimatorSets = new AnimatorSet[] {null, null, null};
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindView(@NonNull Location location) {
+    public void onBindView(GeoActivity activity, @NonNull Location location, WeatherView weatherView,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                           @Px float cardRadius, @Px float cardElevation,
+                           boolean itemAnimationEnabled, boolean firstCard) {
+        super.onBindView(activity, location, weatherView, provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled, firstCard);
+
         weather = location.getWeather();
         timeZone = location.getTimeZone();
         assert weather != null;
@@ -129,7 +129,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         }
         int[] themeColors = weatherView.getThemeColors(picker.isLightTheme());
         if (picker.isLightTheme()) {
-                    sunMoonView.setColors(
+            sunMoonView.setColors(
                     themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
@@ -150,7 +150,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             sunContainer.setVisibility(View.VISIBLE);
             sunTxt.setText(
                     weather.getDailyForecast().get(0).sun().getRiseTime(context) + "↑"
-                            + " / "
+                            + "\n"
                             + weather.getDailyForecast().get(0).sun().getSetTime(context) + "↓"
             );
         } else {
@@ -160,7 +160,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             moonContainer.setVisibility(View.VISIBLE);
             moonTxt.setText(
                     weather.getDailyForecast().get(0).moon().getRiseTime(context) + "↑"
-                            + " / "
+                            + "\n"
                             + weather.getDailyForecast().get(0).moon().getSetTime(context) + "↓"
             );
         } else {
@@ -227,8 +227,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onRecycleView() {
+        super.onRecycleView();
         for (int i = 0; i < attachAnimatorSets.length; i ++) {
             if (attachAnimatorSets[i] != null && attachAnimatorSets[i].isRunning()) {
                 attachAnimatorSets[i].cancel();

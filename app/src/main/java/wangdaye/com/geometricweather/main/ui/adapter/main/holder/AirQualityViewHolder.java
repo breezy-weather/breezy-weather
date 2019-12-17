@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -20,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
@@ -37,31 +37,30 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     private RecyclerView recyclerView;
     private AqiAdapter adapter;
 
-    @NonNull private WeatherView weatherView;
     @Nullable private Weather weather;
     private int aqiIndex;
 
     private boolean enable;
     @Nullable private AnimatorSet attachAnimatorSet;
 
-    public AirQualityViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
-                                @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                                @Px float cardRadius, @Px float cardElevation,
-                                boolean itemAnimationEnabled) {
-        super(activity, LayoutInflater.from(activity).inflate(R.layout.container_main_aqi, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled);
+    public AirQualityViewHolder(ViewGroup parent) {
+        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_aqi, parent, false));
 
         this.card = itemView.findViewById(R.id.container_main_aqi);
         this.title = itemView.findViewById(R.id.container_main_aqi_title);
         this.progress = itemView.findViewById(R.id.container_main_aqi_progress);
         this.recyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView);
-
-        this.weatherView = weatherView;
     }
 
     @Override
-    public void onBindView(@NonNull Location location) {
+    public void onBindView(GeoActivity activity, @NonNull Location location, WeatherView weatherView,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                           @Px float cardRadius, @Px float cardElevation,
+                           boolean itemAnimationEnabled, boolean firstCard) {
+        super.onBindView(activity, location, weatherView, provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled, firstCard);
+
         weather = location.getWeather();
         assert weather != null;
 
@@ -139,8 +138,8 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onRecycleView() {
+        super.onRecycleView();
         if (attachAnimatorSet != null && attachAnimatorSet.isRunning()) {
             attachAnimatorSet.cancel();
         }

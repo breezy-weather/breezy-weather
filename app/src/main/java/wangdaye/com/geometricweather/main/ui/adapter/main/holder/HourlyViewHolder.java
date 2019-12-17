@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.ui.adapter.main.holder;
 
-import android.app.Activity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,9 +25,8 @@ import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Minutely;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
-import wangdaye.com.geometricweather.main.ui.adapter.trend.HourlyPrecipitationAdapter;
-import wangdaye.com.geometricweather.main.ui.adapter.trend.HourlyTemperatureAdapter;
 import wangdaye.com.geometricweather.main.ui.adapter.main.MainTag;
+import wangdaye.com.geometricweather.main.ui.adapter.trend.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.adapter.TagAdapter;
@@ -45,7 +43,9 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
     private TextView title;
     private TextView subtitle;
     private RecyclerView tagView;
+
     private TrendRecyclerView trendRecyclerView;
+    private HourlyTrendAdapter trendAdapter;
 
     private LinearLayout minutelyContainer;
     private TextView minutelyTitle;
@@ -53,17 +53,13 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
     private TextView minutelyStartText;
     private TextView minutelyEndText;
 
-    @NonNull private WeatherView weatherView;
+    private WeatherView weatherView;
     @Px private float cardMarginsVertical;
     @Px private float cardMarginsHorizontal;
 
-    public HourlyViewHolder(@NonNull Activity activity, ViewGroup parent, @NonNull WeatherView weatherView,
-                            @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                            @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                            @Px float cardRadius, @Px float cardElevation) {
-        super(activity,
-                LayoutInflater.from(activity).inflate(R.layout.container_main_hourly_trend_card, parent, false),
-                provider, picker, cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, false);
+    public HourlyViewHolder(ViewGroup parent) {
+        super(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.container_main_hourly_trend_card, parent, false));
 
         this.card = itemView.findViewById(R.id.container_main_hourly_trend_card);
         this.title = itemView.findViewById(R.id.container_main_hourly_trend_card_title);
@@ -76,9 +72,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         this.minutelyStartText = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyStartText);
         this.minutelyEndText = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyEndText);
 
-        this.weatherView = weatherView;
-        this.cardMarginsVertical = cardMarginsVertical;
-        this.cardMarginsHorizontal = cardMarginsHorizontal;
+        this.trendAdapter = new HourlyTrendAdapter();
 
         minutelyContainer.setOnClickListener(v -> {
 
@@ -86,7 +80,18 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
     }
 
     @Override
-    public void onBindView(@NonNull Location location) {
+    public void onBindView(GeoActivity activity, @NonNull Location location, WeatherView weatherView,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                           @Px float cardRadius, @Px float cardElevation,
+                           boolean itemAnimationEnabled, boolean firstCard) {
+        super.onBindView(activity, location, weatherView, provider, picker,
+                cardMarginsVertical, cardMarginsHorizontal, cardRadius, cardElevation, itemAnimationEnabled, firstCard);
+
+        this.weatherView = weatherView;
+        this.cardMarginsVertical = cardMarginsVertical;
+        this.cardMarginsHorizontal = cardMarginsHorizontal;
+
         Weather weather = location.getWeather();
         assert weather != null;
 
@@ -108,7 +113,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             tagView.setVisibility(View.GONE);
         } else {
             int decorCount = tagView.getItemDecorationCount();
-            for (int i = 0; i < decorCount; i ++) {
+            for (int i = 0; i < decorCount; i++) {
                 tagView.removeItemDecorationAt(0);
             }
             tagView.addItemDecoration(
@@ -132,6 +137,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         trendRecyclerView.setHasFixedSize(true);
         trendRecyclerView.setLayoutManager(
                 new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        trendRecyclerView.setAdapter(trendAdapter);
         setTrendAdapterByTag(weather, (MainTag) tagList.get(0));
 
         List<Minutely> minutelyList = weather.getMinutelyForecast();
@@ -154,12 +160,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        trendRecyclerView.setAdapter(null);
-    }
-
     private static boolean needToShowMinutelyForecast(List<Minutely> minutelyList) {
         for (Minutely m : minutelyList) {
             if (m.isPrecipitation()) {
@@ -172,34 +172,30 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
     private void setTrendAdapterByTag(Weather weather, MainTag tag) {
         switch (tag.getType()) {
             case TEMPERATURE:
-                trendRecyclerView.setAdapter(
-                        new HourlyTemperatureAdapter(
-                                (GeoActivity) context, trendRecyclerView,
-                                cardMarginsVertical, cardMarginsHorizontal,
-                                DisplayUtils.isTabletDevice(context) ? 7 : 5,
-                                context.getResources().getDimensionPixelSize(R.dimen.hourly_trend_item_height),
-                                weather,
-                                weatherView.getThemeColors(picker.isLightTheme()),
-                                provider,
-                                picker,
-                                SettingsOptionManager.getInstance(context).getTemperatureUnit()
-                        )
+                trendAdapter.temperature(
+                        (GeoActivity) context, trendRecyclerView,
+                        cardMarginsVertical, cardMarginsHorizontal,
+                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
+                        context.getResources().getDimensionPixelSize(R.dimen.hourly_trend_item_height),
+                        weather,
+                        weatherView.getThemeColors(picker.isLightTheme()),
+                        provider,
+                        picker,
+                        SettingsOptionManager.getInstance(context).getTemperatureUnit()
                 );
                 break;
 
             case PRECIPITATION:
-                trendRecyclerView.setAdapter(
-                        new HourlyPrecipitationAdapter(
-                                (GeoActivity) context, trendRecyclerView,
-                                cardMarginsVertical, cardMarginsHorizontal,
-                                DisplayUtils.isTabletDevice(context) ? 7 : 5,
-                                context.getResources().getDimensionPixelSize(R.dimen.hourly_trend_item_height),
-                                weather,
-                                weatherView.getThemeColors(picker.isLightTheme()),
-                                provider,
-                                picker,
-                                SettingsOptionManager.getInstance(context).getPrecipitationUnit()
-                        )
+                trendAdapter.precipitation(
+                        (GeoActivity) context, trendRecyclerView,
+                        cardMarginsVertical, cardMarginsHorizontal,
+                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
+                        context.getResources().getDimensionPixelSize(R.dimen.hourly_trend_item_height),
+                        weather,
+                        weatherView.getThemeColors(picker.isLightTheme()),
+                        provider,
+                        picker,
+                        SettingsOptionManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;
         }

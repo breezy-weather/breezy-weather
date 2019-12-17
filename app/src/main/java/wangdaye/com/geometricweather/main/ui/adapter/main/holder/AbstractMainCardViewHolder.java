@@ -7,45 +7,67 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 
+import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.main.ui.adapter.main.FirstCardHeaderController;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder {
 
-    protected @Nullable LinearLayout headerContainer;
+    private FirstCardHeaderController firstCardHeaderController;
 
     @SuppressLint("ObjectAnimatorBinding")
-    public AbstractMainCardViewHolder(Context context, @NonNull View view,
-                                      @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
-                                      @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                                      @Px float cardRadius, @Px float cardElevation,
-                                      boolean itemAnimationEnabled) {
-        super(context, view, provider, picker, itemAnimationEnabled);
-        if (view instanceof CardView) {
-            CardView card = (CardView) view;
+    public AbstractMainCardViewHolder(@NonNull View view) {
+        super(view);
+    }
 
-            card.setRadius(cardRadius);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                card.setElevation(cardElevation);
-            }
+    @CallSuper
+    public void onBindView(GeoActivity activity, @NonNull Location location, WeatherView weatherView,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
+                           @Px float cardRadius, @Px float cardElevation,
+                           boolean itemAnimationEnabled, boolean firstCard) {
+        super.onBindView(activity, location, provider, picker, itemAnimationEnabled);
 
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
-            params.setMargins((int) cardMarginsHorizontal, 0, (int) cardMarginsHorizontal, (int) cardMarginsVertical);
-            card.setLayoutParams(params);
+        CardView card = (CardView) itemView;
 
-            View child = card.getChildAt(0);
-            if (child instanceof LinearLayout) {
-                headerContainer = (LinearLayout) child;
-            }
+        card.setRadius(cardRadius);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            card.setElevation(cardElevation);
+        }
+
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
+        params.setMargins((int) cardMarginsHorizontal, 0, (int) cardMarginsHorizontal, (int) cardMarginsVertical);
+        card.setLayoutParams(params);
+
+        if (firstCard) {
+            firstCardHeaderController = new FirstCardHeaderController(activity, location, picker);
+            firstCardHeaderController.bind((LinearLayout) card.getChildAt(0));
         }
     }
 
-    public @Nullable LinearLayout getHeaderContainer() {
-        return headerContainer;
+    @SuppressLint("MissingSuperCall")
+    @Deprecated
+    @Override
+    public void onBindView(Context context, @NonNull Location location,
+                           @NonNull ResourceProvider provider, @NonNull MainColorPicker picker,
+                           boolean itemAnimationEnabled) {
+        // do nothing.
+    }
+
+    @Override
+    public void onRecycleView() {
+        super.onRecycleView();
+        if (firstCardHeaderController != null) {
+            firstCardHeaderController.unbind();
+            firstCardHeaderController = null;
+        }
     }
 }
