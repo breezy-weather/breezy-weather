@@ -92,16 +92,14 @@ public class CircleView extends View {
     // draw.
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = getResources().getDisplayMetrics().widthPixels;
-        int height = (int) (width / 6.8 * 5.0);
-        setMeasuredDimension(width, height);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        float unitRadius = (float) (width / 6.8);
+        float unitRadius = getMeasuredWidth() / Constants.UNIT_RADIUS_RATIO;
         for (int i = 0; i < 4; i ++) {
             initRadius[i] = unitRadius * (i + 1);
             realRadius[i] = initRadius[i];
         }
-        cX = (float) (getMeasuredWidth() / 2.0);
+        cX = getMeasuredWidth() / 2;
         cY = getMeasuredHeight();
     }
 

@@ -1,23 +1,38 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView;
 
+import android.content.Context;
+
+import wangdaye.com.geometricweather.utils.DisplayUtils;
+
 /**
  * Delay Rotate controller.
  * */
 
 public class DelayRotateController extends MaterialWeatherView.RotateController {
 
+    private Context context;
     private double targetRotation;
     private double currentRotation;
     private double velocity;
     private double acceleration;
+    private boolean adaptiveLandscape;
 
     private static final double DEFAULT_ABS_ACCELERATION = 90.0 / 200.0 / 800.0;
 
-    public DelayRotateController(double initRotation) {
+    public DelayRotateController(Context c, double initRotation, boolean adaptiveLandscape) {
+        context = c;
+        this.adaptiveLandscape = adaptiveLandscape;
+
         targetRotation = getRotationInScope(initRotation);
         currentRotation = targetRotation;
         velocity = 0;
         acceleration = 0;
+    }
+
+    public DelayRotateController(Context c, boolean adaptiveLandscape) {
+        this(c, 0, adaptiveLandscape);
+        targetRotation = 0;
+        currentRotation = 0;
     }
 
     @Override
@@ -68,6 +83,9 @@ public class DelayRotateController extends MaterialWeatherView.RotateController 
     }
 
     private double getRotationInScope(double rotation) {
+        if (adaptiveLandscape && DisplayUtils.isLandscape(context)) {
+            rotation -= 90;
+        }
         rotation %= 180;
         if (Math.abs(rotation) <= 90) {
             return rotation;

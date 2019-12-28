@@ -77,7 +77,7 @@
             android:name=".main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/GeometricWeatherTheme.Main"
-            android:screenOrientation="portrait"
+            android:screenOrientation="user"
             android:configChanges="uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -118,19 +118,19 @@
             android:name=".settings.activity.SettingsActivity"
             android:label="@string/action_settings"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activity.CardDisplayManageActivity"
             android:label="@string/settings_title_card_display"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activity.SelectProviderActivity"
             android:label="@string/settings_title_service_provider"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activity.PreviewIconActivity"
@@ -141,7 +141,7 @@
             android:name=".settings.activity.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="user" />
 
         <activity
             android:name=".ui.activity.AwakeUpdateActivity"
@@ -156,7 +156,7 @@
             android:name=".wallpaper.LiveWallpaperConfigActivity"
             android:label="@string/settings_title_live_wallpaper"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait"
+            android:screenOrientation="user"
             android:exported="true" />
 
         <!-- widget -->
@@ -164,7 +164,7 @@
         <activity
             android:name=".remoteviews.config.DayWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -173,7 +173,7 @@
         <activity
             android:name=".remoteviews.config.WeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -182,7 +182,7 @@
         <activity
             android:name=".remoteviews.config.DayWeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -191,7 +191,7 @@
         <activity
             android:name=".remoteviews.config.ClockDayHorizontalWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -200,7 +200,7 @@
         <activity
             android:name=".remoteviews.config.ClockDayDetailsWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -209,7 +209,7 @@
         <activity
             android:name=".remoteviews.config.ClockDayVerticalWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -218,7 +218,7 @@
         <activity
             android:name=".remoteviews.config.ClockDayWeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -227,7 +227,7 @@
         <activity
             android:name=".remoteviews.config.TextWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -236,7 +236,7 @@
         <activity
             android:name=".remoteviews.config.DailyTrendWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -245,7 +245,7 @@
         <activity
             android:name=".remoteviews.config.HourlyTrendWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>

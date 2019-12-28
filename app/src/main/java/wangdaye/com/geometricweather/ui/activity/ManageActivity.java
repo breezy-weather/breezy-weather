@@ -2,110 +2,64 @@ package wangdaye.com.geometricweather.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.fragment.app.FragmentTransaction;
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.ui.dialog.LearnMoreAboutResidentLocationDialog;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
-import wangdaye.com.geometricweather.ui.adapter.LocationAdapter;
-import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
+import wangdaye.com.geometricweather.main.fragment.LocationManageFragment;
 
 /**
  * Manage activity.
  * */
 
-public class ManageActivity extends GeoActivity
-        implements LocationAdapter.OnLocationItemClickListener {
+public class ManageActivity extends GeoActivity {
 
     private CoordinatorLayout container;
-    private CardView cardView;
-    private AppCompatImageButton currentLocationButton;
-    private RecyclerView recyclerView;
-
-    private LocationAdapter adapter;
-    private String currentFormattedId;
+    private LocationManageFragment manageFragment;
 
     public static final int SEARCH_ACTIVITY = 1;
     public static final int SELECT_PROVIDER_ACTIVITY = 2;
 
     public static final String KEY_CURRENT_FORMATTED_ID = "CURRENT_FORMATTED_ID";
 
-    private class LocationSwipeCallback extends ItemTouchHelper.SimpleCallback {
-
-        LocationSwipeCallback(int dragDirs, int swipeDirs) {
-            super(dragDirs, swipeDirs);
-        }
-
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView,
-                              @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            notifyMainActivityToUpdate(currentFormattedId);
-
-            int fromPosition = viewHolder.getAdapterPosition();
-            int toPosition = target.getAdapterPosition();
-
-            adapter.moveData(fromPosition, toPosition);
-            DatabaseHelper.getInstance(ManageActivity.this).writeLocationList(adapter.itemList);
-            onLocationListChanged(true);
-
-            ((LocationAdapter.ViewHolder) viewHolder).drawDrag(ManageActivity.this, false);
-            return true;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            deleteLocation(viewHolder.getAdapterPosition());
-        }
-
-        @Override
-        public void onChildDraw(@NonNull Canvas c,
-                                @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
-                                float dX, float dY, int actionState, boolean isCurrentlyActive) {
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-            switch (actionState) {
-                case ItemTouchHelper.ACTION_STATE_SWIPE:
-                    ((LocationAdapter.ViewHolder) viewHolder)
-                            .drawSwipe(dX);
-                    break;
-
-                case ItemTouchHelper.ACTION_STATE_DRAG:
-                    ((LocationAdapter.ViewHolder) viewHolder)
-                            .drawDrag(ManageActivity.this, dY != 0);
-                    break;
-
-                case ItemTouchHelper.ACTION_STATE_IDLE:
-                    ((LocationAdapter.ViewHolder) viewHolder)
-                            .drawSwipe(0)
-                            .drawDrag(ManageActivity.this, false);
-                    break;
-            }
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage);
-        currentFormattedId = getIntent().getStringExtra(KEY_CURRENT_FORMATTED_ID);
-        initWidget();
+
+        String currentFormattedId = getIntent().getStringExtra(KEY_CURRENT_FORMATTED_ID);
+
+        container = findViewById(R.id.activity_manage_container);
+
+        manageFragment = new LocationManageFragment();
+        manageFragment.setData(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY, currentFormattedId);
+        manageFragment.setOnLocationListChangedListener(new LocationManageFragment.LocationManageCallback() {
+            @Override
+            public void onSelectedLocation(@NonNull String formattedId) {
+                finish();
+            }
+
+            @Override
+            public void onLocationListChanged(@Nullable String formattedId) {
+                setResult(
+                        RESULT_OK,
+                        new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
+                );
+            }
+        });
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.activity_manage_container, manageFragment)
+                .commit();
     }
 
     @Override
@@ -114,18 +68,12 @@ public class ManageActivity extends GeoActivity
         switch (requestCode) {
             case SEARCH_ACTIVITY:
                 if (resultCode == RESULT_OK) {
-                    notifyMainActivityToUpdate(currentFormattedId);
-
-                    adapter.itemList = DatabaseHelper.getInstance(this).readLocationList();
-                    adapter.notifyItemInserted(adapter.getItemCount() - 1);
-                    onLocationListChanged(true);
-                    SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_succeed));
+                    manageFragment.addLocation();
                 }
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
-                resetLocationList();
-                onLocationListChanged(false);
+                manageFragment.resetLocationList();
                 break;
         }
     }
@@ -139,164 +87,5 @@ public class ManageActivity extends GeoActivity
     @Override
     public View getSnackbarContainer() {
         return container;
-    }
-
-    private void initWidget() {
-        this.container = findViewById(R.id.activity_manage_container);
-
-        this.cardView = findViewById(R.id.activity_manage_searchBar);
-        cardView.setOnClickListener(view ->
-                IntentHelper.startSearchActivityForResult(ManageActivity.this, cardView));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cardView.setTransitionName(getString(R.string.transition_activity_search_bar));
-        }
-
-        this.currentLocationButton = findViewById(R.id.activity_manage_currentLocationButton);
-        currentLocationButton.setOnClickListener(view -> {
-            Location local = Location.buildLocal();
-            adapter.insertData(local);
-            DatabaseHelper.getInstance(this).writeLocation(local);
-        });
-
-        this.recyclerView = findViewById(R.id.activity_manage_recyclerView);
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        );
-        recyclerView.addItemDecoration(new ListDecoration(this));
-
-        new ItemTouchHelper(
-                new LocationSwipeCallback(
-                        ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
-                )
-        ).attachToRecyclerView(recyclerView);
-
-        resetLocationList();
-        onLocationListChanged(false);
-    }
-
-    private void notifyMainActivityToUpdate(@Nullable String formattedId) {
-        setResult(
-                RESULT_OK,
-                new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
-        );
-    }
-
-    private void resetLocationList() {
-        adapter = new LocationAdapter(
-                this,
-                SELECT_PROVIDER_ACTIVITY,
-                DatabaseHelper.getInstance(this).readLocationList(),
-                true,
-                this
-        );
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void onLocationListChanged(boolean updateShortcuts) {
-        setCurrentLocationButtonEnabled();
-        if (updateShortcuts && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcutsInNewThread(this, adapter.itemList);
-        }
-    }
-
-    private void setCurrentLocationButtonEnabled() {
-        boolean hasCurrentLocation = false;
-        for (int i = 0; i < adapter.itemList.size(); i ++) {
-            if (adapter.itemList.get(i).isCurrentPosition()) {
-                hasCurrentLocation = true;
-                break;
-            }
-        }
-        currentLocationButton.setEnabled(!hasCurrentLocation);
-        currentLocationButton.setAlpha(hasCurrentLocation ? 0.5f : 1);
-    }
-
-    private void deleteLocation(int position) {
-        if (0 <= position && position < adapter.itemList.size()) {
-            Location location = adapter.itemList.get(position);
-            if (adapter.itemList.size() <= 1) {
-                adapter.removeData(position);
-                adapter.insertData(location);
-                SnackbarUtils.showSnackbar(
-                        this, getString(R.string.feedback_location_list_cannot_be_null));
-            } else {
-                String formattedId = adapter.itemList.get(position).getFormattedId();
-                notifyMainActivityToUpdate(
-                        formattedId.equals(currentFormattedId) ? null : currentFormattedId);
-
-                adapter.removeData(position);
-                onLocationListChanged(true);
-
-                location.setWeather(DatabaseHelper.getInstance(this).readWeather(location));
-
-                DatabaseHelper.getInstance(this).deleteLocation(location);
-                DatabaseHelper.getInstance(this).deleteWeather(location);
-                DatabaseHelper.getInstance(this).writeLocationList(adapter.itemList);
-
-                SnackbarUtils.showSnackbar(
-                        this,
-                        getString(R.string.feedback_delete_succeed),
-                        getString(R.string.cancel),
-                        new CancelDeleteListener(location)
-                );
-            }
-        }
-    }
-
-    // interface.
-
-    // on click listener.
-
-    private class CancelDeleteListener
-            implements View.OnClickListener {
-
-        private Location location;
-
-        CancelDeleteListener(Location l) {
-            this.location = l;
-        }
-
-        @Override
-        public void onClick(View view) {
-            adapter.insertData(location);
-            onLocationListChanged(true);
-
-            DatabaseHelper.getInstance(ManageActivity.this).writeLocation(location);
-            if (location.getWeather() != null) {
-                DatabaseHelper.getInstance(ManageActivity.this)
-                        .writeWeather(location, location.getWeather());
-            }
-        }
-    }
-
-    // on location item click listener.
-
-    @Override
-    public void onClick(View view, int position) {
-        notifyMainActivityToUpdate(adapter.itemList.get(position).getFormattedId());
-        finish();
-    }
-
-    @Override
-    public void onDelete(View view, int position) {
-        deleteLocation(position);
-    }
-
-    @Override
-    public void onResidentSwitch(View view, int position, boolean resident) {
-        adapter.itemList.get(position).setResidentPosition(resident);
-        onLocationListChanged(true);
-
-        DatabaseHelper.getInstance(this).writeLocation(adapter.itemList.get(position));
-
-        if (resident) {
-            SnackbarUtils.showSnackbar(
-                    this,
-                    getString(R.string.feedback_resident_location),
-                    getString(R.string.learn_more),
-                    v -> new LearnMoreAboutResidentLocationDialog().show(getSupportFragmentManager(), null)
-            );
-        }
     }
 }

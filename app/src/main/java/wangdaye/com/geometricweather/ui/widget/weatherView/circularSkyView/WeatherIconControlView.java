@@ -8,7 +8,6 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 
-import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
@@ -22,7 +21,9 @@ public class WeatherIconControlView extends FrameLayout {
 
     private boolean rose = false;
 
-    private int cX;
+    private float currentAngle;
+    private int iconX;
+    private int iconY;
     private int iconSize;
     private int radius;
 
@@ -31,37 +32,45 @@ public class WeatherIconControlView extends FrameLayout {
 
     private class AnimRise extends Animation {
 
-        private int startX;
-        private int endX;
+        //     90
+        // 180      0
+        //------------
+        private float angleFrom;
+        private float angleTo;
 
         AnimRise() {
-            startX = (int) (width / 2.0 - radius);
-            endX = (int) (width / 2.0);
+            angleFrom = 180;
+            angleTo = 90;
         }
 
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            calcCX(startX, endX, interpolatedTime);
-            requestLayout();
+            ensureIconOffset(angleFrom, angleTo, interpolatedTime);
+
+            getChildAt(2).setTranslationX(iconX + iconSize);
+            getChildAt(2).setTranslationY(iconY + iconSize);
         }
     }
 
     private class AnimFall extends Animation {
 
-        private int startX;
-        private int endX;
+        //     90
+        // 180      0
+        //------------
+        private float angleFrom;
+        private float angleTo;
 
         AnimFall() {
-            startX = cX;
-            endX = (int) (width / 2.0 + radius);
+            angleFrom = currentAngle;
+            angleTo = 0;
         }
 
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            calcCX(startX, endX, interpolatedTime);
-            requestLayout();
+            ensureIconOffset(angleFrom, angleTo, interpolatedTime);
+
+            getChildAt(2).setTranslationX(iconX + iconSize);
+            getChildAt(2).setTranslationY(iconY + iconSize);
         }
     }
 
@@ -91,7 +100,6 @@ public class WeatherIconControlView extends FrameLayout {
                         break;
 
                     case CONTINUE_TYPE:
-                        getChildAt(2).setVisibility(GONE);
                         animRise();
                         break;
                 }
@@ -106,49 +114,39 @@ public class WeatherIconControlView extends FrameLayout {
 
     public WeatherIconControlView(Context context) {
         super(context);
-        this.initialize();
     }
 
     public WeatherIconControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
     }
 
     public WeatherIconControlView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initialize();
-    }
-
-    // init.
-
-    private void initialize() {
-        this.width = getResources().getDisplayMetrics().widthPixels;
-        this.height = (int) (width / 6.8 * 5.0);
-        if (DisplayUtils.isTabletDevice(getContext())) {
-            iconSize = (int) (width / 6.8 * 1.3);
-        } else {
-            iconSize = (int) (width / 6.8 * 1.8);
-        }
-        cX = (int) (-iconSize * 0.5);
-        radius = (int) (width / 6.8 * 4.0);
     }
 
     // draw.
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(
-                getChildAt(0).getMeasuredWidth(),
-                getChildAt(0).getMeasuredHeight()
-        );
-        for (int i = 0; i < getChildCount(); i ++) {
-            if (getChildAt(i) instanceof AnimatableIconView) {
-                getChildAt(i).measure(
-                        MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY),
-                        MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY));
-                break;
-            }
+        this.width = getMeasuredWidth();
+        this.height = getMeasuredHeight();
+
+        if (DisplayUtils.isTabletDevice(getContext())) {
+            iconSize = (int) (width / Constants.UNIT_RADIUS_RATIO * 1.3);
+        } else {
+            iconSize = (int) (width / Constants.UNIT_RADIUS_RATIO * 1.8);
         }
+
+        currentAngle = 0;
+        iconX = -iconSize;
+        iconY = -iconSize;
+        radius = (int) (width / Constants.UNIT_RADIUS_RATIO * 4);
+
+        // animatable icon.
+        getChildAt(2).measure(
+                MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY)
+        );
     }
 
     @Override
@@ -162,11 +160,7 @@ public class WeatherIconControlView extends FrameLayout {
         child.layout(0, 0, child.getMeasuredWidth(), child.getMeasuredHeight());
 
         child = getChildAt(2);
-        child.layout(
-                getIconLeft(),
-                getIconTop(),
-                getIconLeft() + iconSize,
-                getIconTop() + iconSize);
+        child.layout(-iconSize, -iconSize, 0, 0);
     }
 
     // control.
@@ -180,20 +174,11 @@ public class WeatherIconControlView extends FrameLayout {
         }
     }
 
-    private void calcCX(int startX, int endX, float time) {
-        cX = (int) (startX + (endX - startX) * time);
-    }
-
-    private int getIconLeft() {
-        return (int) (cX - iconSize * 0.5);
-    }
-
-    private int getIconTop() {
-        return (int) (getIconCY() - iconSize * 0.5);
-    }
-
-    private int getIconCY() {
-        return (int) (height - Math.sqrt(Math.pow(radius, 2) - Math.pow(cX - width / 2.0, 2)));
+    private void ensureIconOffset(float angleFrom, float angleTo, float time) {
+        currentAngle = angleFrom + (angleTo - angleFrom) * time;
+        double radians = Math.toRadians(currentAngle);
+        iconX = (int) (width / 2 + radius * Math.cos(radians) - iconSize / 2);
+        iconY = (int) (height - radius * Math.sin(radians) - iconSize / 2);
     }
 
     private void animRise() {
@@ -211,7 +196,6 @@ public class WeatherIconControlView extends FrameLayout {
         animation.setInterpolator(new AccelerateDecelerateInterpolator());
         animation.setAnimationListener(animListener);
 
-        getChildAt(2).setVisibility(VISIBLE);
         clearAnimation();
         startAnimation(animation);
     }

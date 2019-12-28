@@ -5,17 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_circular_sky_view_controller"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircleView
         android:id="@+id/container_circular_sky_view_circularSkyView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
     <FrameLayout
         android:id="@+id/container_circular_sky_view_starContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/container_circular_sky_view_star_2"

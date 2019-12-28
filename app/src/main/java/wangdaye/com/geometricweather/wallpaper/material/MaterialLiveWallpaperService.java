@@ -184,8 +184,8 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             step = STEP_DISPLAY;
             implementor = WeatherImplementorFactory.getWeatherImplementor(weatherKind, daytime, sizes);
             rotators = new MaterialWeatherView.RotateController[] {
-                    new DelayRotateController(rotation2D),
-                    new DelayRotateController(rotation3D)
+                    new DelayRotateController(getApplicationContext(), true),
+                    new DelayRotateController(getApplicationContext(), false)
             };
         }
 

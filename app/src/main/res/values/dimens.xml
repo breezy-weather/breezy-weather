@@ -21,6 +21,7 @@
     <dimen name="trend_item_width">56dp</dimen>
     <dimen name="daily_trend_item_height">298dp</dimen>
     <dimen name="hourly_trend_item_height">208dp</dimen>
+    <dimen name="main_location_container_width">360dp</dimen>
 
     <!-- text. -->
     <dimen name="main_title_text_size">72sp</dimen>

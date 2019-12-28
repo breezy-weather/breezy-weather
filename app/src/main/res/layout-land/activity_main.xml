@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorRoot">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/activity_main_locationContainer"
+            android:layout_width="@dimen/main_location_container_width"
+            android:layout_height="match_parent"
+            android:elevation="2dp"
+            tools:ignore="UnusedAttribute" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout
+                android:id="@+id/activity_main_switchView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout
+                    android:id="@+id/activity_main_refreshView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView
+                        android:id="@+id/activity_main_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="none"
+                        android:fitsSystemWindows="true"
+                        android:clipToPadding="false" />
+
+                </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout>
+
+            </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/activity_main_appBar"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:background="@android:color/transparent"
+                app:elevation="0dp">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/activity_main_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    app:theme="@style/GeometricWeatherTheme.AppbarTheme"
+                    app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <wangdaye.com.geometricweather.ui.widget.InkPageIndicator
+                android:id="@+id/activity_main_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/normal_margin"
+                android:alpha="0"
+                android:fitsSystemWindows="true"
+                app:layout_behavior=".ui.behavior.InkPageIndicatorBehavior"
+                app:dotDiameter="8dp"
+                app:dotGap="8dp"
+                app:animationDuration="300" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

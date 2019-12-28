@@ -5,9 +5,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.ViewCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,15 +14,16 @@ import android.view.ViewConfiguration;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+import android.widget.FrameLayout;
 
 /**
  * Swipe switch layout.
  * */
 
-public class SwipeSwitchLayout extends CoordinatorLayout {
+public class SwipeSwitchLayout extends FrameLayout
+        implements NestedScrollingParent3 {
 
-    private View target;
-
+    @Nullable private View target;
     @Nullable private OnSwitchListener switchListener;
     @Nullable private OnPagerSwipeListener pageSwipeListener;
 
@@ -85,6 +85,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
     // init.
 
     private void initialize() {
+        this.target = null;
         this.swipeDistance = 0;
         this.swipeTrigger = getContext().getResources().getDisplayMetrics().widthPixels / 3;
         this.nestedScrollingTrigger = (int) (swipeTrigger * 2.25);
@@ -191,20 +192,7 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
         setTranslation(swipeTrigger, SWIPE_RATIO);
     }
 
-    private void getTarget() {
-        if (target == null) {
-            for (int i = 0; i <getChildCount(); i ++) {
-                if (getChildAt(i) instanceof SwipeRefreshLayout) {
-                    target = getChildAt(i);
-                    return;
-                }
-            }
-        }
-    }
-
     private void setTranslation(int triggerDistance, float translateRatio) {
-        this.getTarget();
-
         float realDistance = swipeDistance;
         realDistance = Math.min(realDistance, triggerDistance);
         realDistance = Math.max(realDistance, -triggerDistance);
@@ -212,14 +200,17 @@ public class SwipeSwitchLayout extends CoordinatorLayout {
         int swipeDirection = swipeDistance < 0 ? SWIPE_DIRECTION_LEFT : SWIPE_DIRECTION_RIGHT;
         float progress = (float) (1.0 * Math.abs(realDistance) / triggerDistance);
 
-        target.setAlpha(1 - progress);
-        target.setTranslationX(
-                (float) (
-                        swipeDirection * translateRatio * triggerDistance * Math.log10(
-                                1 + 9.0 * Math.abs(swipeDistance) / triggerDistance
-                        )
-                )
-        );
+        if (getChildCount() > 0) {
+            target = getChildAt(0);
+            target.setAlpha(1 - progress);
+            target.setTranslationX(
+                    (float) (
+                            swipeDirection * translateRatio * triggerDistance * Math.log10(
+                                    1 + 9.0 * Math.abs(swipeDistance) / triggerDistance
+                            )
+                    )
+            );
+        }
 
         if (switchListener != null) {
             switchListener.onSwipeProgressChanged(swipeDirection, progress);

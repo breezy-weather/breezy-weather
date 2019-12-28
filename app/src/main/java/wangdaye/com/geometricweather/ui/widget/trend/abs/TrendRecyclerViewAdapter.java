@@ -1,7 +1,5 @@
 package wangdaye.com.geometricweather.ui.widget.trend.abs;
 
-import android.content.Context;
-
 import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,34 +7,20 @@ public abstract class TrendRecyclerViewAdapter<VH extends RecyclerView.ViewHolde
         extends RecyclerView.Adapter<VH> {
 
     private TrendParent trendParent;
-    private @Px float cardMarginsVertical;
-    private @Px float cardMarginsHorizontal;
     private int itemCountPerLine;
     private @Px float itemWidth;
     private @Px float itemHeight;
 
-    public TrendRecyclerViewAdapter(Context context, TrendParent trendParent,
-                                    @Px float cardMarginsVertical, @Px float cardMarginsHorizontal,
-                                    int itemCountPerLine, @Px float itemHeight) {
+    public TrendRecyclerViewAdapter(TrendParent trendParent,
+                                    @Px float parentWidth, @Px float parentHeight, int itemCountPerLine) {
         this.trendParent = trendParent;
-        this.cardMarginsVertical = cardMarginsVertical;
-        this.cardMarginsHorizontal = cardMarginsHorizontal;
         this.itemCountPerLine = itemCountPerLine;
-        this.itemWidth = (context.getResources().getDisplayMetrics().widthPixels - 2 * cardMarginsHorizontal)
-                / itemCountPerLine;
-        this.itemHeight = itemHeight;
+        this.itemWidth = parentWidth / itemCountPerLine;
+        this.itemHeight = parentHeight;
     }
 
     public TrendParent getTrendParent() {
         return trendParent;
-    }
-
-    public float getCardMarginsVertical() {
-        return cardMarginsVertical;
-    }
-
-    public float getCardMarginsHorizontal() {
-        return cardMarginsHorizontal;
     }
 
     public int getItemCountPerLine() {

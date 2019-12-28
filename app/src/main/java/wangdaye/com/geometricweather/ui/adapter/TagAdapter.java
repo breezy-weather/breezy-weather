@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.main.ui.MainColorPicker;
+import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.ui.widget.TagView;
 
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
@@ -21,7 +21,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     private List<Tag> tagList;
     private @ColorInt int checkedBackgroundColor;
     private OnTagCheckedListener listener;
-    private @Nullable MainColorPicker picker;
+    private @Nullable MainThemePicker picker;
     private int checkedIndex;
 
     public static final int UNCHECKABLE_INDEX = -1;
@@ -74,7 +74,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     }
 
     public TagAdapter(List<Tag> tagList, @ColorInt int checkedBackgroundColor,
-                      OnTagCheckedListener listener, @Nullable MainColorPicker picker,
+                      OnTagCheckedListener listener, @Nullable MainThemePicker picker,
                       int checkedIndex) {
         this.tagList = tagList;
         this.checkedBackgroundColor = checkedBackgroundColor;

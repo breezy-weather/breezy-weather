@@ -105,11 +105,11 @@ public class IntentHelper {
         );
     }
 
-    public static void startSearchActivityForResult(Activity activity, View bar) {
+    public static void startSearchActivityForResult(Activity activity, View bar, int requestCode) {
         Intent intent = new Intent(activity, SearcActivity.class);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            activity.startActivityForResult(intent, ManageActivity.SEARCH_ACTIVITY);
+            activity.startActivityForResult(intent, requestCode);
             activity.overridePendingTransition(R.anim.activity_search_in, 0);
         } else {
             ActivityCompat.startActivityForResult(

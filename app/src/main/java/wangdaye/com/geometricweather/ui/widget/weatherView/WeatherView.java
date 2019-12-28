@@ -1,7 +1,5 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView;
 
-import android.content.Context;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
@@ -65,22 +63,7 @@ public interface WeatherView {
     int getBackgroundColor();
 
     @Px
-    int getCardMarginsVertical(Context context);
-
-    @Px
-    int getCardMarginsHorizontal(Context context);
-
-    @Px
-    int getCardRadius(Context context);
-
-    @Px
-    int getCardElevation(Context context);
-
-    @Px
     int getHeaderHeight();
-
-    @ColorInt
-    int getHeaderTextColor(Context context);
 
     void setDrawable(boolean drawable);
 

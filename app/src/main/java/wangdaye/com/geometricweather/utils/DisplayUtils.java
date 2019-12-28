@@ -10,6 +10,7 @@ import android.media.ThumbnailUtils;
 import android.os.Build;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
@@ -24,6 +25,9 @@ import wangdaye.com.geometricweather.R;
  * */
 
 public class DisplayUtils {
+
+    private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512;
+    private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600;
 
     public static float dpToPx(Context context, float dp) {
         return dp * (context.getResources().getDisplayMetrics().densityDpi / 160f);
@@ -72,6 +76,11 @@ public class DisplayUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return;
         }
+
+        // statusShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
+        lightStatus &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+        navigationShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
+        lightNavigation &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
 
         if (!statusShader) {
             // window.setStatusBarColor(Color.TRANSPARENT);
@@ -136,6 +145,10 @@ public class DisplayUtils {
                 & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
+    public static boolean isLandscape(Context context) {
+        return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
     public static boolean isDarkMode(Context context) {
         return (context.getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
@@ -172,5 +185,21 @@ public class DisplayUtils {
         grey = (int) (red * 0.3 + green * 0.59 + blue * 0.11);
         grey = alpha | (grey << 16) | (grey << 8) | grey;
         return grey > 0xffbdbdbd;
+    }
+
+    @Px
+    public static int getTabletListAdaptiveWidth(Context context, @Px int width) {
+        if (!isTabletDevice(context) && !isLandscape(context)) {
+            return width;
+        }
+        return (int) Math.min(
+                width,
+                DisplayUtils.dpToPx(
+                        context,
+                        isTabletDevice(context)
+                                ? MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET
+                                : MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE
+                )
+        );
     }
 }

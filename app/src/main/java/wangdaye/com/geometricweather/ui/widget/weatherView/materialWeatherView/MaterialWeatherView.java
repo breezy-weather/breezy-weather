@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -171,7 +170,10 @@ public class MaterialWeatherView extends View implements WeatherView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
-            sizes[0] = getMeasuredWidth();
+            sizes[0] = Math.min(
+                    getMeasuredWidth(),
+                    DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth())
+            );
             sizes[1] = getMeasuredHeight();
         }
         setWeatherImplementor();
@@ -211,11 +213,17 @@ public class MaterialWeatherView extends View implements WeatherView {
 
         canvas.drawColor(backgroundColor);
         if (implementor != null && rotators != null) {
+            canvas.save();
+            canvas.translate(
+                    (getMeasuredWidth() - sizes[0]) / 2,
+                    (getMeasuredHeight() - sizes[1]) / 2
+            );
             implementor.draw(
                     sizes, canvas,
                     displayRate, scrollRate,
                     (float) rotators[0].getRotation(), (float) rotators[1].getRotation()
             );
+            canvas.restore();
         }
         if (lastScrollRate >= 1 && scrollRate >= 1) {
             lastScrollRate = scrollRate;
@@ -248,8 +256,8 @@ public class MaterialWeatherView extends View implements WeatherView {
     private void setWeatherImplementor() {
         implementor = WeatherImplementorFactory.getWeatherImplementor(weatherKind, daytime, sizes);
         rotators = new RotateController[] {
-                new DelayRotateController(rotation2D),
-                new DelayRotateController(rotation3D)
+                new DelayRotateController(getContext(), true),
+                new DelayRotateController(getContext(), false)
         };
         if (implementor != null) {
             step = STEP_DISPLAY;
@@ -342,33 +350,8 @@ public class MaterialWeatherView extends View implements WeatherView {
     }
 
     @Override
-    public int getCardMarginsVertical(Context context) {
-        return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
-    }
-
-    @Override
-    public int getCardMarginsHorizontal(Context context) {
-        return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
-    }
-
-    @Override
-    public int getCardRadius(Context context) {
-        return (int) DisplayUtils.dpToPx(context, 8);
-    }
-
-    @Override
-    public int getCardElevation(Context context) {
-        return (int) DisplayUtils.dpToPx(context, 2);
-    }
-
-    @Override
     public int getHeaderHeight() {
         return firstCardMarginTop;
-    }
-
-    @Override
-    public int getHeaderTextColor(Context context) {
-        return Color.WHITE;
     }
 
     public void setDrawable(boolean drawable) {

@@ -8,7 +8,6 @@ import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -59,6 +58,7 @@ public class CircularSkyWeatherView extends FrameLayout
     @Size(3) private Animator[] iconAnimators;
     @Size(2) private Animator[] starShineAnimators;
 
+    private int insetTop;
     private int firstCardMarginTop;
 
     private class StarAlphaAnimation extends Animation {
@@ -120,7 +120,7 @@ public class CircularSkyWeatherView extends FrameLayout
         setBackgroundColor(backgroundColor);
 
         this.controlView = (WeatherIconControlView) LayoutInflater.from(getContext()).inflate(
-                R.layout.container_circular_sky_view, null);
+                R.layout.container_circular_sky_view, this, false);
         controlView.setOnWeatherIconChangingListener(this);
         addView(controlView);
 
@@ -136,7 +136,6 @@ public class CircularSkyWeatherView extends FrameLayout
         }
 
         this.flagIcon = findViewById(R.id.container_circular_sky_view_icon);
-        flagIcon.setVisibility(GONE);
 
         this.iconDrawables = new Drawable[] {null, null, null};
         this.iconAnimators = new Animator[] {null, null, null};
@@ -162,16 +161,36 @@ public class CircularSkyWeatherView extends FrameLayout
             starShineAnimators[i].start();
         }
 
+        this.insetTop = 0;
         this.firstCardMarginTop = 0;
     }
 
     @Override
-    protected boolean fitSystemWindows(Rect insets) {
-        setPadding(0, insets.top, 0, 0);
-        this.firstCardMarginTop = (int) (
-                getResources().getDisplayMetrics().widthPixels / 6.8 * 5.0
-                        - DisplayUtils.dpToPx(getContext(), 28)
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
+        setMeasuredDimension(
+                width,
+                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec)
         );
+
+        int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(getContext(), width);
+        measureChildren(
+                widthMeasureSpec,
+                MeasureSpec.makeMeasureSpec(
+                        (int) (adaptiveWidth / Constants.UNIT_RADIUS_RATIO * 5 + insetTop),
+                        MeasureSpec.AT_MOST
+                )
+        );
+
+        setPadding((width - adaptiveWidth) / 2, insetTop, (width - adaptiveWidth) / 2, 0);
+
+        this.firstCardMarginTop = (int) (circleView.getMeasuredHeight() - DisplayUtils.dpToPx(getContext(), 28));
+    }
+
+    @Override
+    protected boolean fitSystemWindows(Rect insets) {
+        insetTop = insets.top;
+        requestLayout();
         return false;
     }
 
@@ -284,33 +303,8 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     @Override
-    public int getCardMarginsVertical(Context context) {
-        return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
-    }
-
-    @Override
-    public int getCardMarginsHorizontal(Context context) {
-        return context.getResources().getDimensionPixelSize(R.dimen.little_margin);
-    }
-
-    @Override
-    public int getCardRadius(Context context) {
-        return (int) DisplayUtils.dpToPx(context, 8);
-    }
-
-    @Override
-    public int getCardElevation(Context context) {
-        return (int) DisplayUtils.dpToPx(context, 2);
-    }
-
-    @Override
     public int getHeaderHeight() {
         return firstCardMarginTop;
-    }
-
-    @Override
-    public int getHeaderTextColor(Context context) {
-        return Color.WHITE;
     }
 
     @Override
