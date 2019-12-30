@@ -114,6 +114,11 @@ public class MainThemePicker {
     }
 
     @ColorInt
+    public int getSearchBarColor(Context context) {
+        return getColor(context, "colorSearchBarBackground", isLightTheme());
+    }
+
+    @ColorInt
     public int getTextTitleColor(Context context) {
         return getColor(context, "colorTextTitle", isLightTheme());
     }

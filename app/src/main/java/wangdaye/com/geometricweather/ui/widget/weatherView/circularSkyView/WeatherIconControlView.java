@@ -27,9 +27,6 @@ public class WeatherIconControlView extends FrameLayout {
     private int iconSize;
     private int radius;
 
-    private int width;
-    private int height;
-
     private class AnimRise extends Animation {
 
         //     90
@@ -128,8 +125,7 @@ public class WeatherIconControlView extends FrameLayout {
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        this.width = getMeasuredWidth();
-        this.height = getMeasuredHeight();
+        int width = DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth());
 
         if (DisplayUtils.isTabletDevice(getContext())) {
             iconSize = (int) (width / Constants.UNIT_RADIUS_RATIO * 1.3);
@@ -177,8 +173,8 @@ public class WeatherIconControlView extends FrameLayout {
     private void ensureIconOffset(float angleFrom, float angleTo, float time) {
         currentAngle = angleFrom + (angleTo - angleFrom) * time;
         double radians = Math.toRadians(currentAngle);
-        iconX = (int) (width / 2 + radius * Math.cos(radians) - iconSize / 2);
-        iconY = (int) (height - radius * Math.sin(radians) - iconSize / 2);
+        iconX = (int) (getMeasuredWidth() / 2 + radius * Math.cos(radians) - iconSize / 2);
+        iconY = (int) (getMeasuredHeight() - radius * Math.sin(radians) - iconSize / 2);
     }
 
     private void animRise() {

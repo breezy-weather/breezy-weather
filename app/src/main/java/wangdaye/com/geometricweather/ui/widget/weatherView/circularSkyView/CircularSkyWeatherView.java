@@ -167,22 +167,19 @@ public class CircularSkyWeatherView extends FrameLayout
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
         setMeasuredDimension(
-                width,
+                getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
                 getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec)
         );
 
-        int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(getContext(), width);
         measureChildren(
                 widthMeasureSpec,
                 MeasureSpec.makeMeasureSpec(
-                        (int) (adaptiveWidth / Constants.UNIT_RADIUS_RATIO * 5 + insetTop),
+                        (int) (DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth())
+                                / Constants.UNIT_RADIUS_RATIO * 5 + insetTop),
                         MeasureSpec.AT_MOST
                 )
         );
-
-        setPadding((width - adaptiveWidth) / 2, insetTop, (width - adaptiveWidth) / 2, 0);
 
         this.firstCardMarginTop = (int) (circleView.getMeasuredHeight() - DisplayUtils.dpToPx(getContext(), 28));
     }
@@ -190,6 +187,7 @@ public class CircularSkyWeatherView extends FrameLayout
     @Override
     protected boolean fitSystemWindows(Rect insets) {
         insetTop = insets.top;
+        setPadding(0, insetTop, 0, 0);
         requestLayout();
         return false;
     }

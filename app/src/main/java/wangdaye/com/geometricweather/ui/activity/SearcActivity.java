@@ -39,7 +39,7 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.ui.adapter.LocationAdapter;
+import wangdaye.com.geometricweather.main.adapter.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
@@ -151,6 +151,7 @@ public class SearcActivity extends GeoActivity
                 this,
                 0,
                 new ArrayList<>(),
+                null,
                 false,
                 this
         );

@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
 import android.text.TextUtils;
+import android.view.OrientationEventListener;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
@@ -33,6 +34,7 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.I
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.WeatherImplementorFactory;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.wallpaper.LiveWallpaperConfigManager;
 
@@ -43,6 +45,10 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
     @IntDef({STEP_DISPLAY, STEP_DISMISS})
     private @interface StepRule {}
+
+    private enum DeviceOrientation {
+        TOP, LEFT, BOTTOM, RIGHT
+    }
 
     private static final int SWITCH_ANIMATION_DURATION = 150;
 
@@ -75,6 +81,8 @@ public class MaterialLiveWallpaperService extends WallpaperService {
         @StepRule
         private int step;
         private boolean visible;
+
+        private DeviceOrientation deviceOrientation;
 
         @Nullable private Disposable disposable;
         private HandlerThread handlerThread;
@@ -150,6 +158,27 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
                     rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
 
+                    switch (deviceOrientation) {
+                        case TOP:
+                            break;
+
+                        case LEFT:
+                            rotation2D -= 90;
+                            break;
+
+                        case RIGHT:
+                            rotation2D += 90;
+                            break;
+
+                        case BOTTOM:
+                            if (rotation2D > 0) {
+                                rotation2D -= 180;
+                            } else {
+                                rotation2D += 180;
+                            }
+                            break;
+                    }
+
                     if (60 < Math.abs(rotation3D) && Math.abs(rotation3D) < 120) {
                         rotation2D *= Math.abs(Math.abs(rotation3D) - 90) / 30.0;
                     }
@@ -165,8 +194,28 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             }
         };
 
+        private OrientationEventListener orientationListener = new OrientationEventListener(getApplicationContext()) {
+            @Override
+            public void onOrientationChanged(int orientation) {
+                deviceOrientation = getDeviceOrientation(orientation);
+            }
+
+            private DeviceOrientation getDeviceOrientation(int orientation) {
+                if (DisplayUtils.isLandscape(getApplicationContext())) {
+                    return (0 < orientation && orientation < 180)
+                            ? DeviceOrientation.RIGHT : DeviceOrientation.LEFT;
+                } else {
+                    return (270 < orientation || orientation < 90)
+                            ? DeviceOrientation.TOP : DeviceOrientation.BOTTOM;
+                }
+            }
+        };
+
         WeatherEngine() {
             super();
+
+            deviceOrientation = DeviceOrientation.TOP;
+
             handlerThread = new HandlerThread(
                     String.valueOf(System.currentTimeMillis()),
                     Process.THREAD_PRIORITY_FOREGROUND
@@ -184,8 +233,8 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             step = STEP_DISPLAY;
             implementor = WeatherImplementorFactory.getWeatherImplementor(weatherKind, daytime, sizes);
             rotators = new MaterialWeatherView.RotateController[] {
-                    new DelayRotateController(getApplicationContext(), true),
-                    new DelayRotateController(getApplicationContext(), false)
+                    new DelayRotateController(rotation2D),
+                    new DelayRotateController(rotation3D)
             };
         }
 
@@ -239,6 +288,9 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     if (sensorManager != null) {
                         sensorManager.registerListener(
                                 gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+                    }
+                    if (orientationListener.canDetectOrientation()) {
+                        orientationListener.enable();
                     }
 
                     Location location = DatabaseHelper.getInstance(MaterialLiveWallpaperService.this)
@@ -317,6 +369,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     if (sensorManager != null) {
                         sensorManager.unregisterListener(gravityListener, gravitySensor);
                     }
+                    orientationListener.disable();
                 }
             }
         }

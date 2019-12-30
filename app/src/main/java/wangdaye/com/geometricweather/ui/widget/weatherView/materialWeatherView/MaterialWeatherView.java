@@ -11,6 +11,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.view.OrientationEventListener;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -64,6 +65,11 @@ public class MaterialWeatherView extends View implements WeatherView {
 
     private boolean drawable;
 
+    private DeviceOrientation deviceOrientation;
+    private enum DeviceOrientation {
+        TOP, LEFT, BOTTOM, RIGHT
+    }
+
     private static final int SWITCH_ANIMATION_DURATION = 150;
 
     /**
@@ -107,6 +113,27 @@ public class MaterialWeatherView extends View implements WeatherView {
                 rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
                 rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
 
+                switch (deviceOrientation) {
+                    case TOP:
+                        break;
+
+                    case LEFT:
+                        rotation2D -= 90;
+                        break;
+
+                    case RIGHT:
+                        rotation2D += 90;
+                        break;
+
+                    case BOTTOM:
+                        if (rotation2D > 0) {
+                            rotation2D -= 180;
+                        } else {
+                            rotation2D += 180;
+                        }
+                        break;
+                }
+
                 if (60 < Math.abs(rotation3D) && Math.abs(rotation3D) < 120) {
                     rotation2D *= Math.abs(Math.abs(rotation3D) - 90) / 30.0;
                 }
@@ -119,6 +146,23 @@ public class MaterialWeatherView extends View implements WeatherView {
         @Override
         public void onAccuracyChanged(Sensor sensor, int i) {
             // do nothing.
+        }
+    };
+
+    private OrientationEventListener orientationListener = new OrientationEventListener(getContext()) {
+        @Override
+        public void onOrientationChanged(int orientation) {
+            deviceOrientation = getDeviceOrientation(orientation);
+        }
+
+        private DeviceOrientation getDeviceOrientation(int orientation) {
+            if (DisplayUtils.isLandscape(getContext())) {
+                return (0 < orientation && orientation < 180)
+                        ? DeviceOrientation.RIGHT : DeviceOrientation.LEFT;
+            } else {
+                return (270 < orientation || orientation < 90)
+                        ? DeviceOrientation.TOP : DeviceOrientation.BOTTOM;
+            }
         }
     };
 
@@ -158,6 +202,8 @@ public class MaterialWeatherView extends View implements WeatherView {
         this.scrollRate = 0;
 
         this.drawable = false;
+
+        this.deviceOrientation = DeviceOrientation.TOP;
     }
 
     @Override
@@ -241,6 +287,9 @@ public class MaterialWeatherView extends View implements WeatherView {
             sensorManager.registerListener(
                     gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
         }
+        if (orientationListener.canDetectOrientation()) {
+            orientationListener.enable();
+        }
 
         setWeatherImplementor();
 
@@ -256,8 +305,8 @@ public class MaterialWeatherView extends View implements WeatherView {
     private void setWeatherImplementor() {
         implementor = WeatherImplementorFactory.getWeatherImplementor(weatherKind, daytime, sizes);
         rotators = new RotateController[] {
-                new DelayRotateController(getContext(), true),
-                new DelayRotateController(getContext(), false)
+                new DelayRotateController(rotation2D),
+                new DelayRotateController(rotation3D)
         };
         if (implementor != null) {
             step = STEP_DISPLAY;
@@ -367,6 +416,7 @@ public class MaterialWeatherView extends View implements WeatherView {
             if (sensorManager != null) {
                 sensorManager.unregisterListener(gravityListener, gravitySensor);
             }
+            orientationListener.disable();
         }
     }
 

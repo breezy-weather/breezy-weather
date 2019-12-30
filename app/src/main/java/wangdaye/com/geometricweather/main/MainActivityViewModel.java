@@ -44,6 +44,8 @@ public class MainActivityViewModel extends ViewModel
 
     private MainActivityRepository repository;
 
+    private boolean newInstance;
+
     private static final int INVALID_LOCATION_INDEX = -1;
 
     public MainActivityViewModel() {
@@ -54,6 +56,8 @@ public class MainActivityViewModel extends ViewModel
 
         locationList = new ArrayList<>();
         lock = new ReentrantReadWriteLock();
+
+        newInstance = true;
     }
 
     public void reset(GeoActivity activity) {
@@ -333,6 +337,14 @@ public class MainActivityViewModel extends ViewModel
 
     public List<Location> getLocationList() {
         return locationList;
+    }
+
+    public boolean isNewInstance() {
+        if (newInstance) {
+            newInstance = false;
+            return true;
+        }
+        return false;
     }
 
     @Override

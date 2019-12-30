@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -185,7 +186,11 @@ public class MainActivity extends GeoActivity
 
             case MANAGE_ACTIVITY:
                 if (resultCode == RESULT_OK) {
-                    viewModel.init(this, getLocationId(data));
+                    String formattedId = getLocationId(data);
+                    if (TextUtils.isEmpty(formattedId)) {
+                        formattedId = viewModel.getCurrentLocationFormattedId();
+                    }
+                    viewModel.init(this, formattedId);
                 }
                 break;
 
@@ -237,7 +242,9 @@ public class MainActivity extends GeoActivity
 
     private void initModel() {
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
-        viewModel.init(this, getLocationId(getIntent()));
+        if (viewModel.isNewInstance()) {
+            viewModel.init(this, getLocationId(getIntent()));
+        }
     }
 
     @Nullable
@@ -254,7 +261,8 @@ public class MainActivity extends GeoActivity
 
         if (DisplayUtils.isLandscape(this)) {
             this.manageFragment = new LocationManageFragment();
-            manageFragment.setData(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY, null);
+            manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
+            manageFragment.setThemePicker(themePicker);
             manageFragment.setOnLocationListChangedListener(new LocationManageFragment.LocationManageCallback() {
                 @Override
                 public void onSelectedLocation(@NonNull String formattedId) {
@@ -262,8 +270,8 @@ public class MainActivity extends GeoActivity
                 }
 
                 @Override
-                public void onLocationListChanged(@Nullable String formattedId) {
-                    viewModel.init(MainActivity.this, formattedId);
+                public void onLocationListChanged() {
+                    viewModel.init(MainActivity.this, viewModel.getCurrentLocationFormattedId());
                 }
             });
             getSupportFragmentManager()
@@ -281,12 +289,11 @@ public class MainActivity extends GeoActivity
         toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.action_manage:
-                    IntentHelper.startManageActivityForResult(
-                            this, viewModel.getCurrentLocationFormattedId());
+                    IntentHelper.startManageActivityForResult(this, MANAGE_ACTIVITY);
                     break;
 
                 case R.id.action_settings:
-                    IntentHelper.startSettingsActivityForResult(this);
+                    IntentHelper.startSettingsActivityForResult(this, SETTINGS_ACTIVITY);
                     break;
             }
             return true;
@@ -394,6 +401,9 @@ public class MainActivity extends GeoActivity
         setDarkMode(daytime);
         if (oldDaytime != daytime) {
             ensureColorPicker();
+        }
+        if (manageFragment != null) {
+            manageFragment.updateView(viewModel.getLocationList(), themePicker);
         }
 
         WeatherViewController.setWeatherCode(

@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -30,7 +31,6 @@ public class FirstCardHeaderController
     private GeoActivity activity;
     private View view;
     @Nullable private Weather weather;
-    @NonNull private String formattedId;
 
     private @Nullable LinearLayout container;
 
@@ -52,7 +52,7 @@ public class FirstCardHeaderController
             view.setOnClickListener(
                     DisplayUtils.isLandscape(activity)
                             ? null
-                            : v -> IntentHelper.startManageActivityForResult(activity, formattedId)
+                            : v -> IntentHelper.startManageActivityForResult(activity, MainActivity.MANAGE_ACTIVITY)
             );
 
             if (weather.getAlertList().size() == 0) {
@@ -117,8 +117,6 @@ public class FirstCardHeaderController
             }
             alert.setOnClickListener(this);
         }
-
-        this.formattedId = location.getFormattedId();
     }
 
     public void bind(LinearLayout firstCardContainer) {

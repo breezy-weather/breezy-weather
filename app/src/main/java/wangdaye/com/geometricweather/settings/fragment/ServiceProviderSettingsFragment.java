@@ -34,7 +34,7 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
     }
 
     private void initPreferences() {
-        // chinese source.
+        // weather source.
         Preference chineseSource = findPreference(getString(R.string.key_weather_source));
         chineseSource.setSummary(getSettingsOptionManager().getWeatherSource().getSourceName(getActivity()));
         chineseSource.setOnPreferenceChangeListener((preference, newValue) -> {

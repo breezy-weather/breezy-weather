@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.TimeZone;
@@ -196,6 +197,12 @@ public class Location
         } else {
             return "";
         }
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return country + " " + province + " " + city + " " + district;
     }
 
     public boolean hasGeocodeInformation() {

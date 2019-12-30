@@ -14,7 +14,7 @@
     <color name="colorTextContent">@color/colorTextContent_light</color>
     <color name="colorTextSubtitle">@color/colorTextSubtitle_light</color>
 
-    <color name="colorSearchBarBackground">@color/colorRoot_light</color>
+    <color name="colorSearchBarBackground">@color/colorSearchBarBackground_light</color>
 
     <!-- repository. -->
 
@@ -41,6 +41,9 @@
 
     <color name="colorRootDark_light">#f5f5f5</color>
     <color name="colorRootDark_dark">#212121</color>
+
+    <color name="colorSearchBarBackground_light">@color/colorRoot_light</color>
+    <color name="colorSearchBarBackground_dark">@color/colorRoot_dark</color>
 
     <color name="colorTextTitle_light">@color/colorTextDark</color>
     <color name="colorTextTitle_dark">@color/colorTextLight</color>

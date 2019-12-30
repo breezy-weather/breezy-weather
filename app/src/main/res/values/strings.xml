@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.508</string>
+    <string name="version_code">v2.509</string>
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -262,7 +262,7 @@
     <string name="feedback_collect_failed">This location already exists</string>
     <string name="feedback_collect_succeed">Add location success</string>
     <string name="feedback_delete_succeed">Delete location success</string>
-    <string name="feedback_location_list_cannot_be_null">The location list cannot be empty</string>
+    <string name="feedback_location_list_cannot_be_null">Location list cannot be empty</string>
 
     <string name="feedback_search_location">Search a location…</string>
     <string name="feedback_not_yet_location">No location yet…</string>

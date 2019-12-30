@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import androidx.fragment.app.FragmentTransaction;
@@ -27,31 +26,28 @@ public class ManageActivity extends GeoActivity {
     public static final int SEARCH_ACTIVITY = 1;
     public static final int SELECT_PROVIDER_ACTIVITY = 2;
 
-    public static final String KEY_CURRENT_FORMATTED_ID = "CURRENT_FORMATTED_ID";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage);
 
-        String currentFormattedId = getIntent().getStringExtra(KEY_CURRENT_FORMATTED_ID);
-
         container = findViewById(R.id.activity_manage_container);
 
         manageFragment = new LocationManageFragment();
-        manageFragment.setData(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY, currentFormattedId);
+        manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
         manageFragment.setOnLocationListChangedListener(new LocationManageFragment.LocationManageCallback() {
             @Override
             public void onSelectedLocation(@NonNull String formattedId) {
-                finish();
-            }
-
-            @Override
-            public void onLocationListChanged(@Nullable String formattedId) {
                 setResult(
                         RESULT_OK,
                         new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
                 );
+                finish();
+            }
+
+            @Override
+            public void onLocationListChanged() {
+                setResult(RESULT_OK);
             }
         });
 

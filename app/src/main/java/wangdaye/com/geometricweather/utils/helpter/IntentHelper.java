@@ -96,13 +96,8 @@ public class IntentHelper {
         activity.startActivity(intent);
     }
 
-    public static void startManageActivityForResult(Activity activity, @Nullable String currentFormattedId) {
-        activity.startActivityForResult(
-                new Intent(
-                        activity, ManageActivity.class
-                ).putExtra(ManageActivity.KEY_CURRENT_FORMATTED_ID, currentFormattedId),
-                MainActivity.MANAGE_ACTIVITY
-        );
+    public static void startManageActivityForResult(Activity activity, int requestCode) {
+        activity.startActivityForResult(new Intent(activity, ManageActivity.class), requestCode);
     }
 
     public static void startSearchActivityForResult(Activity activity, View bar, int requestCode) {
@@ -115,7 +110,7 @@ public class IntentHelper {
             ActivityCompat.startActivityForResult(
                     activity,
                     intent,
-                    ManageActivity.SEARCH_ACTIVITY,
+                    requestCode,
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
                             activity,
                             Pair.create(bar, activity.getString(R.string.transition_activity_search_bar))
@@ -124,11 +119,8 @@ public class IntentHelper {
         }
     }
 
-    public static void startSettingsActivityForResult(Activity activity) {
-        activity.startActivityForResult(
-                new Intent(activity, SettingsActivity.class),
-                MainActivity.SETTINGS_ACTIVITY
-        );
+    public static void startSettingsActivityForResult(Activity activity, int requestCode) {
+        activity.startActivityForResult(new Intent(activity, SettingsActivity.class), requestCode);
     }
 
     public static void startCardDisplayManageActivityForResult(Activity activity, int requestCode) {

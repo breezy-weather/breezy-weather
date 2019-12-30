@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +24,14 @@ public class ListDecoration extends RecyclerView.ItemDecoration {
     private int decorationHeight;
 
     public ListDecoration(Context context) {
+        this(context, ContextCompat.getColor(context, R.color.colorLine));
+    }
+
+    public ListDecoration(Context context, @ColorInt int color) {
         this.decorationHeight = (int) DisplayUtils.dpToPx(context, 2);
 
         this.paint = new Paint();
-        paint.setColor(ContextCompat.getColor(context, R.color.colorLine));
+        paint.setColor(color);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(decorationHeight);
     }

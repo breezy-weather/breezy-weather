@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
@@ -60,8 +61,9 @@ public class LocationHelpDialog extends DialogFragment {
         ((TextView) view.findViewById(R.id.dialog_location_help_providerTitle)).setTextColor(
                 colorPicker.getTextContentColor(getActivity()));
 
-        view.findViewById(R.id.dialog_location_help_manageContainer)
-                .setOnClickListener(v -> IntentHelper.startManageActivityForResult(getActivity(), null));
+        view.findViewById(R.id.dialog_location_help_manageContainer).setOnClickListener(v ->
+                IntentHelper.startManageActivityForResult(getActivity(), MainActivity.MANAGE_ACTIVITY)
+        );
         ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setTextColor(
                 colorPicker.getTextContentColor(getActivity()));
         ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setText(

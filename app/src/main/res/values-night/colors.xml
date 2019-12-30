@@ -10,6 +10,6 @@
     <color name="colorTextContent">@color/colorTextContent_dark</color>
     <color name="colorTextSubtitle">@color/colorTextSubtitle_dark</color>
 
-    <color name="colorSearchBarBackground">@color/colorRoot_dark</color>
+    <color name="colorSearchBarBackground">@color/colorSearchBarBackground_dark</color>
 
 </resources>
