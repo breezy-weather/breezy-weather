@@ -2,14 +2,12 @@ package wangdaye.com.geometricweather.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
@@ -33,13 +31,11 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
-import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
@@ -50,94 +46,146 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         implements ICustomAdapter {
 
     private GeoActivity activity;
-    private int requestCode;
     private OnLocationItemClickListener listener = null;
 
     public List<Location> itemList;
-    private boolean manage;
 
     private @Nullable MainThemePicker themePicker;
     private @NonNull ResourceProvider resourceProvider;
     private @NonNull WeatherSource defaultSource;
     private @NonNull TemperatureUnit temperatureUnit;
 
-    private boolean tablet;
-
-    public class ViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout locationItemContainer;
-        LinearLayout locationItemView;
-        AppCompatImageView deleteImageLeft;
-        AppCompatImageView deleteImageRight;
-        TextView title;
-        TextView subtitle;
-        TextView source;
-        AppCompatImageView dragIcon;
-        AppCompatImageButton settingsButton;
-        AppCompatImageButton deleteButton;
+        AppCompatImageView swipeIconStart;
+        AppCompatImageView swipeIconEnd;
 
-        LinearLayout weatherContainer;
+        LinearLayout locationItemView;
         ImageView weatherIcon;
-        TextView weatherText;
+        AppCompatImageView residentIcon;
+        TextView title;
         TextView alerts;
 
-        private OnLocationItemClickListener listener;
+        TextView subtitle;
+        TextView source;
+
+        private int direction;
+        private @ColorInt int swipeRightColor;
 
         ViewHolder(View itemView, OnLocationItemClickListener listener) {
             super(itemView);
-            this.locationItemContainer = itemView.findViewById(R.id.item_location_container);
-            this.locationItemView = itemView.findViewById(R.id.item_location_item);
-            this.deleteImageLeft = itemView.findViewById(R.id.item_location_deleteIconLeft);
-            this.deleteImageRight = itemView.findViewById(R.id.item_location_deleteIconRight);
-            this.title = itemView.findViewById(R.id.item_location_title);
-            this.subtitle = itemView.findViewById(R.id.item_location_subtitle);
-            this.source = itemView.findViewById(R.id.item_location_source);
-            this.dragIcon = itemView.findViewById(R.id.item_location_dragIcon);
-            this.settingsButton = itemView.findViewById(R.id.item_location_settingsBtn);
-            this.deleteButton = itemView.findViewById(R.id.item_location_deleteBtn);
 
-            this.weatherContainer = itemView.findViewById(R.id.item_location_weather_container);
+            this.locationItemContainer = itemView.findViewById(R.id.item_location_container);
+            this.swipeIconStart = itemView.findViewById(R.id.item_location_swipeIcon_start);
+            this.swipeIconEnd = itemView.findViewById(R.id.item_location_swipeIcon_end);
+
+            this.locationItemView = itemView.findViewById(R.id.item_location_item);
             this.weatherIcon = itemView.findViewById(R.id.item_location_weather_icon);
-            this.weatherText = itemView.findViewById(R.id.item_location_weather_text);
+            this.residentIcon = itemView.findViewById(R.id.item_location_resident_icon);
+            this.title = itemView.findViewById(R.id.item_location_title);
             this.alerts = itemView.findViewById(R.id.item_location_alerts);
 
-            this.listener = listener;
+            this.subtitle = itemView.findViewById(R.id.item_location_subtitle);
+            this.source = itemView.findViewById(R.id.item_location_source);
 
-            locationItemContainer.setOnClickListener(this);
-            settingsButton.setOnClickListener(this);
-            deleteButton.setOnClickListener(this);
+            locationItemContainer.setOnClickListener(v -> listener.onClick(v, getAdapterPosition()));
         }
 
         @SuppressLint("SetTextI18n")
-        void onBindView(Location location, boolean manage) {            
+        void onBindView(Location location) {
+            direction = 0;
+            swipeRightColor = ContextCompat.getColor(activity, location.isCurrentPosition()
+                    ? R.color.colorPrimary : R.color.colorTextAlert);
+
+            // icon.
+            if (location.isCurrentPosition()) {
+                swipeIconEnd.setImageResource(R.drawable.ic_settings);
+            } else {
+                swipeIconEnd.setImageResource(
+                        location.isResidentPosition()
+                                ? R.drawable.ic_tag_off
+                                : R.drawable.ic_tag_plus
+                );
+            }
+
             // background.
             if (themePicker != null) {
                 locationItemView.setBackgroundColor(themePicker.getRootColor(activity));
             } else {
                 locationItemView.setBackgroundColor(ContextCompat.getColor(activity, R.color.colorRoot));
             }
-            
+
+            residentIcon.setVisibility(location.isResidentPosition() ? View.VISIBLE : View.GONE);
+
             // title.
             if (themePicker != null) {
                 title.setTextColor(themePicker.getTextTitleColor(activity));
             } else {
                 title.setTextColor(ContextCompat.getColor(activity, R.color.colorTextTitle));
             }
-            if (location.isCurrentPosition()) {
-                title.setText(activity.getString(R.string.current_location));
+            StringBuilder builder = new StringBuilder(location.isCurrentPosition()
+                    ? activity.getString(R.string.current_location)
+                    : location.getCityName(activity));
+            if (location.getWeather() != null) {
+                builder.append(", ").append(
+                        location.getWeather().getCurrent().getTemperature().getTemperature(temperatureUnit)
+                );
+            }
+            title.setText(builder.toString());
+
+            // weather.
+            if (themePicker != null) {
+                alerts.setTextColor(themePicker.getTextSubtitleColor(activity));
             } else {
-                title.setText(location.getCityName(activity));
+                alerts.setTextColor(ContextCompat.getColor(activity, R.color.colorTextSubtitle));
+            }
+            if (location.getWeather() != null) {
+                weatherIcon.setVisibility(View.VISIBLE);
+
+
+                weatherIcon.setImageDrawable(
+                        resourceProvider.getWeatherIcon(
+                                location.getWeather().getCurrent().getWeatherCode(),
+                                TimeManager.isDaylight(location)
+                        )
+                );
+
+                List<Alert> alertList = location.getWeather().getAlertList();
+                if (alertList.size() > 0) {
+                    alerts.setVisibility(View.VISIBLE);
+
+                    builder = new StringBuilder();
+                    for (int i = 0; i < alertList.size(); i ++) {
+                        builder.append(alertList.get(i).getDescription())
+                                .append(", ")
+                                .append(
+                                        DateFormat.getDateTimeInstance(
+                                                DateFormat.SHORT,
+                                                DateFormat.SHORT
+                                        ).format(alertList.get(i).getDate())
+                                );
+                        if (i != alertList.size() - 1) {
+                            builder.append("\n");
+                        }
+                    }
+                    alerts.setText(builder.toString());
+                } else {
+                    alerts.setVisibility(View.GONE);
+                }
+            } else {
+                weatherIcon.setVisibility(View.GONE);
+                alerts.setVisibility(View.GONE);
             }
 
             // subtitle.
             if (themePicker != null) {
-                subtitle.setTextColor(themePicker.getTextSubtitleColor(activity));
+                subtitle.setTextColor(themePicker.getTextContentColor(activity));
             } else {
-                subtitle.setTextColor(ContextCompat.getColor(activity, R.color.colorTextSubtitle));
+                subtitle.setTextColor(ContextCompat.getColor(activity, R.color.colorTextContent));
             }
             if (!location.isCurrentPosition() || location.isUsable()) {
-                StringBuilder builder = new StringBuilder(
+                builder = new StringBuilder(
                         location.getCountry() + " " + location.getProvince()
                 );
                 if (!location.getProvince().equals(location.getCity())) {
@@ -157,77 +205,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                     : location.getWeatherSource();
             source.setText("Powered by " + weatherSource.getSourceUrl());
             source.setTextColor(weatherSource.getSourceColor());
-            
-            // icon.
-            if (themePicker != null) {
-                int contentColor = themePicker.getTextContentColor(activity);
-                dragIcon.setSupportImageTintList(ColorStateList.valueOf(contentColor));
-                deleteButton.setSupportImageTintList(ColorStateList.valueOf(contentColor));
-            } else {
-                ColorStateList colorStateList = ColorStateList.valueOf(
-                        ContextCompat.getColor(activity, R.color.colorTextContent));
-                dragIcon.setSupportImageTintList(colorStateList);
-                settingsButton.setSupportImageTintList(colorStateList);
-                deleteButton.setSupportImageTintList(colorStateList);
-            }
-            if (manage) {
-                dragIcon.setVisibility(View.VISIBLE);
-                settingsButton.setVisibility(View.VISIBLE);
-                deleteButton.setVisibility(View.VISIBLE);
-                setSettingsButton(location);
-            } else {
-                dragIcon.setVisibility(View.GONE);
-                settingsButton.setVisibility(View.GONE);
-                deleteButton.setVisibility(View.GONE);
-            }
-
-            // weather.
-            if (themePicker != null) {
-                weatherText.setTextColor(themePicker.getTextTitleColor(activity));
-                alerts.setTextColor(themePicker.getTextSubtitleColor(activity));
-            } else {
-                weatherText.setTextColor(ContextCompat.getColor(activity, R.color.colorTextTitle));
-                alerts.setTextColor(ContextCompat.getColor(activity, R.color.colorTextSubtitle));
-            }
-
-            if (tablet && location.getWeather() != null) {
-                weatherContainer.setVisibility(View.VISIBLE);
-                alerts.setVisibility(View.VISIBLE);
-
-                weatherIcon.setImageDrawable(
-                        resourceProvider.getWeatherIcon(
-                                location.getWeather().getCurrent().getWeatherCode(),
-                                TimeManager.isDaylight(location)
-                        )
-                );
-
-                Daily daily = location.getWeather().getDailyForecast().get(0);
-                weatherText.setText(
-                        daily.day().getTemperature().getShortTemperature(temperatureUnit)
-                                + "/"
-                                + daily.night().getTemperature().getShortTemperature(temperatureUnit)
-                );
-
-                List<Alert> alertList = location.getWeather().getAlertList();
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < alertList.size(); i ++) {
-                    builder.append(alertList.get(i).getDescription())
-                            .append(", ")
-                            .append(
-                                    DateFormat.getDateTimeInstance(
-                                            DateFormat.SHORT,
-                                            DateFormat.SHORT
-                                    ).format(alertList.get(i).getDate())
-                            );
-                    if (i != alertList.size() - 1) {
-                        builder.append("\n");
-                    }
-                }
-                alerts.setText(builder.toString());
-            } else {
-                weatherContainer.setVisibility(View.GONE);
-                alerts.setVisibility(View.GONE);
-            }
 
             drawSwipe(0);
             drawDrag(activity, false);
@@ -241,76 +218,46 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         }
 
         public ViewHolder drawSwipe(float dX) {
-            locationItemContainer.setTranslationX(0);
-            locationItemView.setTranslationX(dX);
-            deleteImageLeft.setTranslationX((float) Math.min(0.5 * (dX - deleteImageLeft.getMeasuredWidth()), 0));
-            deleteImageRight.setTranslationX((float) Math.max(0.5 * (dX + deleteImageRight.getMeasuredWidth()), 0));
+            if (itemView.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                if (dX < 0 && direction >= 0) {
+                    direction = -1;
+                    locationItemContainer.setBackgroundColor(ContextCompat.getColor(activity, R.color.striking_red));
+                } else if (dX > 0 && direction <= 0) {
+                    direction = 1;
+                    locationItemContainer.setBackgroundColor(swipeRightColor);
+                }
+
+                locationItemContainer.setTranslationX(0);
+                locationItemView.setTranslationX(dX);
+                swipeIconStart.setTranslationX((float) Math.max(0.5 * (dX + swipeIconEnd.getMeasuredWidth()), 0));
+                swipeIconEnd.setTranslationX((float) Math.min(0.5 * (dX - swipeIconStart.getMeasuredWidth()), 0));
+            } else {
+                if (dX < 0 && direction >= 0) {
+                    direction = -1;
+                    locationItemContainer.setBackgroundColor(swipeRightColor);
+                } else if (dX > 0 && direction <= 0) {
+                    direction = 1;
+                    locationItemContainer.setBackgroundColor(ContextCompat.getColor(activity, R.color.striking_red));
+                }
+
+                locationItemContainer.setTranslationX(0);
+                locationItemView.setTranslationX(dX);
+                swipeIconStart.setTranslationX((float) Math.min(0.5 * (dX - swipeIconStart.getMeasuredWidth()), 0));
+                swipeIconEnd.setTranslationX((float) Math.max(0.5 * (dX + swipeIconEnd.getMeasuredWidth()), 0));
+            }
 
             return this;
         }
-
-        void setSettingsButton(Location location) {
-            if (themePicker != null) {
-                settingsButton.setSupportImageTintList(ColorStateList.valueOf(
-                        themePicker.getTextContentColor(activity)));
-            } else {
-                settingsButton.setSupportImageTintList(ColorStateList.valueOf(
-                        ContextCompat.getColor(activity, R.color.colorTextContent)));
-            }
-            if (location.isCurrentPosition()) {
-                settingsButton.setImageResource(R.drawable.ic_settings);
-            } else {
-                settingsButton.setImageResource(
-                        location.isResidentPosition()
-                                ? R.drawable.ic_star
-                                : R.drawable.ic_star_outline
-                );
-                if (location.isResidentPosition()) {
-                    settingsButton.setSupportImageTintList(
-                            ColorStateList.valueOf(
-                                    ContextCompat.getColor(activity, R.color.colorTextAlert)
-                            )
-                    );
-                }
-            }
-        }
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.item_location_container:
-                    listener.onClick(v, getAdapterPosition());
-                    break;
-
-                case R.id.item_location_settingsBtn:
-                    Location location = itemList.get(getAdapterPosition());
-                    if (location.isCurrentPosition()) {
-                        IntentHelper.startSelectProviderActivityForResult(activity, requestCode);
-                    } else {
-                        location.setResidentPosition(!location.isResidentPosition());
-                        setSettingsButton(location);
-                        listener.onResidentSwitch(v, getAdapterPosition(), location.isResidentPosition());
-                    }
-                    break;
-
-                case R.id.item_location_deleteBtn:
-                    listener.onDelete(v, getAdapterPosition());
-                    break;
-            }
-        }
     }
 
-    public LocationAdapter(GeoActivity activity, int requestCode, List<Location> itemList,
-                           @Nullable MainThemePicker themePicker, boolean manage, OnLocationItemClickListener l) {
+    public LocationAdapter(GeoActivity activity, List<Location> itemList,
+                           @Nullable MainThemePicker themePicker, OnLocationItemClickListener l) {
         this.activity = activity;
-        this.requestCode = requestCode;
         this.itemList = itemList;
         this.resourceProvider = ResourcesProviderFactory.getNewInstance();
         this.themePicker = themePicker;
         this.defaultSource = SettingsOptionManager.getInstance(activity).getWeatherSource();
         this.temperatureUnit = SettingsOptionManager.getInstance(activity).getTemperatureUnit();
-        this.manage = manage;
-        this.tablet = DisplayUtils.isTabletDevice(activity);
         setOnLocationItemClickListener(l);
     }
 
@@ -326,7 +273,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(itemList.get(position), manage);
+        holder.onBindView(itemList.get(position));
     }
 
     @Override
@@ -386,8 +333,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
     public interface OnLocationItemClickListener {
         void onClick(View view, int position);
-        void onDelete(View view, int position);
-        void onResidentSwitch(View view, int position, boolean resident);
     }
 
     private void setOnLocationItemClickListener(OnLocationItemClickListener l){

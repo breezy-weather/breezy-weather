@@ -149,10 +149,8 @@ public class SearcActivity extends GeoActivity
     private void initData() {
         this.adapter = new LocationAdapter(
                 this,
-                0,
                 new ArrayList<>(),
                 null,
-                false,
                 this
         );
         this.locationList = DatabaseHelper.getInstance(this).readLocationList();
@@ -292,16 +290,6 @@ public class SearcActivity extends GeoActivity
 
         DatabaseHelper.getInstance(this).writeLocation(adapter.itemList.get(position));
         finishSelf(true);
-    }
-
-    @Override
-    public void onDelete(View view, int position) {
-        // do nothing.
-    }
-
-    @Override
-    public void onResidentSwitch(View view, int position, boolean resident) {
-        // do nothing.
     }
 
     // on editor action listener.

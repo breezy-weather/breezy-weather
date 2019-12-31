@@ -79,7 +79,55 @@ public class LocationManageFragment extends Fragment
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            deleteLocation(viewHolder.getAdapterPosition());
+            int position = viewHolder.getAdapterPosition();
+            Location location = adapter.itemList.get(position);
+            switch (direction) {
+                case ItemTouchHelper.START:
+                    if (location.isCurrentPosition()) {
+                        IntentHelper.startSelectProviderActivityForResult(
+                                requireActivity(), providerSettingsRequestCode);
+                    } else {
+                        location.setResidentPosition(!location.isResidentPosition());
+                        DatabaseHelper.getInstance(requireActivity()).writeLocation(location);
+
+                        if (location.isResidentPosition()) {
+                            SnackbarUtils.showSnackbar(
+                                    (GeoActivity) requireActivity(),
+                                    getString(R.string.feedback_resident_location),
+                                    getString(R.string.learn_more),
+                                    v -> new LearnMoreAboutResidentLocationDialog().show(requireFragmentManager(), null)
+                            );
+                        }
+
+                        onLocationListChanged(true, true);
+                    }
+                    adapter.notifyItemChanged(position);
+                    break;
+
+                case ItemTouchHelper.END:
+                    if (adapter.itemList.size() <= 1) {
+                        adapter.removeData(position);
+                        adapter.insertData(location);
+                        SnackbarUtils.showSnackbar(
+                                (GeoActivity) requireActivity(), getString(R.string.feedback_location_list_cannot_be_null));
+                    } else {
+                        location.setWeather(DatabaseHelper.getInstance(requireActivity()).readWeather(location));
+
+                        DatabaseHelper.getInstance(requireActivity()).deleteLocation(location);
+                        DatabaseHelper.getInstance(requireActivity()).deleteWeather(location);
+
+                        adapter.removeData(position);
+                        SnackbarUtils.showSnackbar(
+                                (GeoActivity) requireActivity(),
+                                getString(R.string.feedback_delete_succeed),
+                                getString(R.string.cancel),
+                                new CancelDeleteListener(location)
+                        );
+
+                        onLocationListChanged(true, true);
+                    }
+                    break;
+            }
         }
 
         @Override
@@ -128,7 +176,7 @@ public class LocationManageFragment extends Fragment
         this.currentLocationButton = view.findViewById(R.id.fragment_location_manage_currentLocationButton);
         currentLocationButton.setOnClickListener(v -> {
             DatabaseHelper.getInstance(requireActivity()).writeLocation(Location.buildLocal());
-            addLocation();
+            addLocation(true);
         });
 
         this.recyclerView = view.findViewById(R.id.fragment_location_manage_recyclerView);
@@ -139,7 +187,7 @@ public class LocationManageFragment extends Fragment
         new ItemTouchHelper(
                 new LocationSwipeCallback(
                         ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
+                        ItemTouchHelper.START | ItemTouchHelper.END
                 )
         ).attachToRecyclerView(recyclerView);
 
@@ -221,8 +269,14 @@ public class LocationManageFragment extends Fragment
     }
 
     public void addLocation() {
+        addLocation(true);
+    }
+
+    private void addLocation(boolean notify) {
         resetLocationList();
-        SnackbarUtils.showSnackbar((GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
+        if (notify) {
+            SnackbarUtils.showSnackbar((GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
+        }
     }
 
     public void resetLocationList() {
@@ -234,10 +288,8 @@ public class LocationManageFragment extends Fragment
         if (adapter == null) {
             adapter = new LocationAdapter(
                     (GeoActivity) requireActivity(),
-                    providerSettingsRequestCode,
                     list,
                     themePicker,
-                    true,
                     this
             );
             recyclerView.setAdapter(adapter);
@@ -268,34 +320,6 @@ public class LocationManageFragment extends Fragment
         currentLocationButton.setAlpha(hasCurrentLocation ? 0.5f : 1);
     }
 
-    private void deleteLocation(int position) {
-        if (0 <= position && position < adapter.itemList.size()) {
-            Location location = adapter.itemList.get(position);
-            if (adapter.itemList.size() <= 1) {
-                adapter.removeData(position);
-                adapter.insertData(location);
-                SnackbarUtils.showSnackbar(
-                        (GeoActivity) requireActivity(), getString(R.string.feedback_location_list_cannot_be_null));
-            } else {
-                location.setWeather(DatabaseHelper.getInstance(requireActivity()).readWeather(location));
-
-                DatabaseHelper.getInstance(requireActivity()).deleteLocation(location);
-                DatabaseHelper.getInstance(requireActivity()).deleteWeather(location);
-                DatabaseHelper.getInstance(requireActivity()).writeLocationList(adapter.itemList);
-
-                adapter.removeData(position);
-                SnackbarUtils.showSnackbar(
-                        (GeoActivity) requireActivity(),
-                        getString(R.string.feedback_delete_succeed),
-                        getString(R.string.cancel),
-                        new CancelDeleteListener(location)
-                );
-
-                onLocationListChanged(true, true);
-            }
-        }
-    }
-
     // interface.
 
     public interface LocationManageCallback {
@@ -324,7 +348,7 @@ public class LocationManageFragment extends Fragment
                 DatabaseHelper.getInstance(requireActivity()).writeWeather(location, location.getWeather());
             }
 
-            addLocation();
+            addLocation(false);
         }
     }
 
@@ -336,27 +360,5 @@ public class LocationManageFragment extends Fragment
         if (locationListChangedListener != null) {
             locationListChangedListener.onSelectedLocation(formattedId);
         }
-    }
-
-    @Override
-    public void onDelete(View view, int position) {
-        deleteLocation(position);
-    }
-
-    @Override
-    public void onResidentSwitch(View view, int position, boolean resident) {
-        DatabaseHelper.getInstance(requireActivity()).writeLocation(adapter.itemList.get(position));
-        adapter.itemList.get(position).setResidentPosition(resident);
-
-        if (resident) {
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(),
-                    getString(R.string.feedback_resident_location),
-                    getString(R.string.learn_more),
-                    v -> new LearnMoreAboutResidentLocationDialog().show(requireFragmentManager(), null)
-            );
-        }
-
-        onLocationListChanged(true, true);
     }
 }

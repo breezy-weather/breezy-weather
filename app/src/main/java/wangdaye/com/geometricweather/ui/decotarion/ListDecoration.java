@@ -38,7 +38,7 @@ public class ListDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        for (int i = 0; i < parent.getChildCount(); i++){
+        for (int i = 0; i < parent.getChildCount(); i ++){
             View child = parent.getChildAt(i);
             c.drawLine(child.getLeft(), child.getBottom(), child.getRight(), child.getBottom(), paint);
         }
