@@ -5,6 +5,7 @@ import android.content.Context;
 
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 /**
  * Astro.
  * */
-public class Astro {
+public class Astro implements Serializable {
 
     @Nullable private Date riseDate;
     @Nullable private Date setDate;

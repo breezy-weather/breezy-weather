@@ -7,12 +7,14 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import java.io.Serializable;
+
 import wangdaye.com.geometricweather.R;
 
 /**
  * UV.
  * */
-public class UV {
+public class UV implements Serializable {
 
     @Nullable private Integer index;
     @Nullable private String level;

@@ -2,12 +2,13 @@ package wangdaye.com.geometricweather.basic.model.weather;
 
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Minutely.
  * */
-public class Minutely {
+public class Minutely implements Serializable {
 
     private Date date;
     private long time;

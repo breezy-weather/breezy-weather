@@ -1,0 +1,323 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <!-- app. -->
+    <string name="app_name">الطقس</string>
+    <string name="geometric_weather">Geometric Weather</string>
+
+    <!-- keyword. -->
+    <string name="current_location">الموقع الحالي</string>
+    <string name="resident_location">موقع الإقامة</string>
+    <string name="default_location">الموقع الافتراضي</string>
+    <string name="live">حَيّ</string>
+    <string name="today">اليوم</string>
+    <string name="refresh_at">تم التحديث في</string>
+    <string name="local_time">التوقيت المحلي</string>
+    <string name="precipitation">هطول الامطار</string>
+    <string name="precipitation_probability">إحتمالية هطول الامطار</string>
+    <string name="precipitation_duration">مدة هطول الامطار</string>
+    <string name="maxi_temp">النهار</string>
+    <string name="mini_temp">الليل</string>
+    <string name="time">الوقت</string>
+    <string name="day">النهار</string>
+    <string name="night">الليل</string>
+    <string name="temperature">درجة الحرارة</string>
+    <string name="wind">الرياح</string>
+    <string name="wind_direction">إتجاه الرياح</string>
+    <string name="wind_speed">سرعة الرياح</string>
+    <string name="wind_level">نوعية الرياح</string>
+    <string name="sensible_temp">درجة الحرارة المعقولة</string>
+    <string name="humidity">الرطوبة</string>
+    <string name="uv_index">مؤشر الأشعة فوق البنفسجية</string>
+    <string name="hours_of_sun">ساعات من الشمس</string>
+    <string name="forecast">توقعات</string>
+    <string name="briefings">موجز</string>
+    <string name="daytime">النهار</string>
+    <string name="nighttime">الليل</string>
+    <string name="publish_at">نُشِر في</string>
+    <string name="feels_like">تبدو وكأنها</string>
+    <string name="follow_system">حسب النظام</string>
+    <string name="background_information">بيانات الخلفية</string>
+    <string name="pressure">الضغط الجوي</string>
+    <string name="visibility">الرؤية</string>
+    <string name="dew_point">نقطة الندى</string>
+    <string name="cloud_cover">الغطاء السحابي</string>
+    <string name="ceiling">الحد الأعلى</string>
+    <string name="get_more">تعرف على المزيد</string>
+    <string name="get_more_store">تعرف على المزيد في متجر التطبيقات</string>
+    <string name="get_more_github">تعرف على المزيد من خلال GitHub</string>
+    <string name="refresh">تحديث</string>
+    <string name="restart">إعادة التشغيل</string>
+    <string name="edit">تحرير</string>
+
+    <string name="of_clock">:00</string>
+    <string name="yesterday">أمس</string>
+    <string name="tomorrow">غداً</string>
+    <string name="week">أسبوع</string>
+    <string name="week_1">الإثنين</string>
+    <string name="week_2">الثلاثاء</string>
+    <string name="week_3">الأربعاء</string>
+    <string name="week_4">الخميس</string>
+    <string name="week_5">الجمعة</string>
+    <string name="week_6">السبت</string>
+    <string name="week_7">الأحد</string>
+
+    <string name="real_feel_temperature">الفعلية</string>
+    <string name="real_feel_shader_temperature">في الظل</string>
+    <string name="apparent_temperature">الظاهرة</string>
+    <string name="wind_chill_temperature">هواء بارد</string>
+    <string name="wet_bulb_temperature">هواء رطب</string>
+    <string name="degree_day_temperature">يوم درجة</string>
+
+    <string name="total">المجموع</string>
+    <string name="thunderstorm">عاصفة رعدية</string>
+    <string name="rain">مطر</string>
+    <string name="snow">ثلج</string>
+    <string name="ice">جليد</string>
+
+    <string name="wind_0">هادئ</string>
+    <string name="wind_1">هواء خفيف</string>
+    <string name="wind_2">نسيم خفيف</string>
+    <string name="wind_3">نسيم لطيف</string>
+    <string name="wind_4">نسيم معتدل</string>
+    <string name="wind_5">نسيم منعش</string>
+    <string name="wind_6">نسيم قوي</string>
+    <string name="wind_7">قريب من الرياح العاتية</string>
+    <string name="wind_8">عاصفة</string>
+    <string name="wind_9">رياح عاتية</string>
+    <string name="wind_10">عاصفة</string>
+    <string name="wind_11">عاصفة عنيفة</string>
+    <string name="wind_12">إعصار</string>
+
+    <string name="precipitation_light">رذاذ</string>
+    <string name="precipitation_middle">مطر</string>
+    <string name="precipitation_heavy">مطر غزير</string>
+    <string name="precipitation_rainstorm">عاصفة مطرية</string>
+
+    <string name="aqi_1">هواء منعش</string>
+    <string name="aqi_2">هواء نظيف</string>
+    <string name="aqi_3">ملوث قليلاً</string>
+    <string name="aqi_4">تلوث متوسط</string>
+    <string name="aqi_5">تلوث شديد</string>
+    <string name="aqi_6">تلوث حاد</string>
+
+    <string name="phase_new">مُحاق</string>
+    <string name="phase_waxing_crescent">هلال</string>
+    <string name="phase_first">تربيع متزايد</string>
+    <string name="phase_waxing_gibbous">أحدب متزايد</string>
+    <string name="phase_full">بدر</string>
+    <string name="phase_waning_gibbous">أحدب متناقص</string>
+    <string name="phase_third">تربيع متناقص</string>
+    <string name="phase_waning_crescent">هلال متناقص</string>
+
+    <string name="grass">عشب</string>
+    <string name="mold">عفن</string>
+    <string name="ragweed">حبوب اللقاح</string>
+    <string name="tree">شجرة</string>
+
+    <string name="daily_overview">توقعات يومية</string>
+    <string name="hourly_overview">توقعات كل ساعة</string>
+    <string name="minutely_overview">توقعات كل دقيقة</string>
+    <string name="precipitation_overview">توقعات هطول الأمطار</string>
+    <string name="air_quality">جودة الهواء</string>
+    <string name="allergen">حساسية</string>
+    <string name="life_details">تفاصيل</string>
+    <string name="sunrise_sunset">الشمس وamp; القمر</string>
+
+    <string name="next">التالي</string>
+    <string name="done">تم</string>
+    <string name="cancel" tools:ignore="ButtonCase">إلغاء</string>
+    <string name="on">مُفعل</string>
+    <string name="off">مُعطل</string>
+    <string name="go_to_set">ضبط</string>
+    <string name="help">مساعدة</string>
+    <string name="learn_more">تعرف على المزيد</string>
+
+    <string name="about_app">حول التطبيق</string>
+    <string name="introduce">تقديم</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="donate">تبرع</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">المترجمون</string>
+    <string name="thanks">شُكر</string>
+
+    <string name="alipay">Alipay</string>
+    <string name="wechat">Wechat</string>
+
+    <string name="date_format_short">M-d</string>
+    <string name="date_format_long">MMM d</string>
+    <string name="date_format_widget_short">EEEE, MMM d</string>
+    <string name="date_format_widget_long">EEEE, MMM d</string>
+    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
+
+    <!-- about. -->
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
+    <string name="page_indicator">InkPageIndicator</string>
+    <string name="about_page_indicator">InkPageIndicator created by @nickbutcher for Plaid https://github.com/nickbutcher/plaid and backported by David Pacioianu for API 14+ (4.0+).</string>
+    <string name="circular_progress_view">CircularProgressView</string>
+    <string name="about_circular_progress_view">Material style circular progress bar for Android.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">الأذونات</string>
+    <string name="feedback_request_location">الموقع</string>
+    <string name="feedback_request_location_in_background">تحديد الموقع في الخلفية</string>
+    <string name="feedback_request_location_permission_success">تم الحصول على أذونات الموقع بنجاح</string>
+    <string name="feedback_request_location_permission_failed">فشل في الحصول على أذونات الموقع</string>
+
+    <string name="feedback_location_failed">فشل في العثور على الموقع</string>
+    <string name="feedback_get_weather_failed">فشل في الحصول على بيانات الطقس</string>
+    <string name="feedback_location_help_title">لا يمكن الحصول على الموقع بشكل صحيح؟</string>
+    <string name="feedback_check_location_permission">قم بفحص أذونات الموقع</string>
+    <string name="feedback_enable_location_information">تمكين معلومات الموقع</string>
+    <string name="feedback_select_location_provider">قم بإختيار مزود خدمة المواقع</string>
+    <string name="feedback_add_location_manually">إضافة المواقع يدوياً وإزالتها \'$\'</string>
+
+    <string name="feedback_view_style">أسلوب العرض</string>
+    <string name="feedback_show_widget_card">لون الخلفية</string>
+    <string name="feedback_show_widget_card_alpha">الشفافية</string>
+    <string name="feedback_hide_subtitle">إخفاء العنوان</string>
+    <string name="feedback_subtitle_data">بيانات العنوان</string>
+    <string name="feedback_black_text">لون الخط</string>
+    <string name="feedback_text_size">حجم الخط</string>
+    <string name="feedback_clock_font">خط الساعة</string>
+
+    <string name="feedback_live_wallpaper_weather_kind">الطقس</string>
+    <string name="feedback_live_wallpaper_day_night_type">الوقت</string>
+
+    <string name="feedback_click_toggle">أنقر على الرسم البياني لتبديل البيانات</string>
+    <string name="feedback_no_data">لا يوجد بيانات</string>
+
+    <string name="feedback_collect_failed">هذا الموقع موجود بالفعل</string>
+    <string name="feedback_collect_succeed">تمت إضافة الموقع بنجاح</string>
+    <string name="feedback_delete_succeed">تمت إزالة الموقع بنجاح</string>
+    <string name="feedback_location_list_cannot_be_null">قائمة المواقع لا يمكن أن تكون فارغة</string>
+
+    <string name="feedback_search_location">البحث عن موقع…</string>
+    <string name="feedback_not_yet_location">ليست هناك أي مواقع…</string>
+    <string name="feedback_search_nothing">لم يتم العثور على أي موقع</string>
+    <string name="feedback_initializing">جار التهيئة…</string>
+
+    <string name="feedback_refresh_notification_after_back">سيتم تطبيق التغييرات عند العودة إلى الصفحة الرئيسية</string>
+    <string name="feedback_refresh_notification_now">تحديث الآن</string>
+    <string name="feedback_refresh_ui_after_refresh">سيتم تطبيق التغييرات عند تحديث البيانات</string>
+    <string name="feedback_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
+    <string name="feedback_readd_location">رجاءً قم بإضافة الموقع مرة أخرى</string>
+    <string name="feedback_readd_location_after_changing_source">رجاءً قم بإضافة الموقع مرة أخرى عند تغيير مصدر البيانات</string>
+
+    <string name="feedback_running_in_background">التشغيل في الخلفية للبقاء على التطبيق محدثاً</string>
+    <string name="feedback_updating_weather_data">تحديث بيانات الطقس</string>
+    <string name="feedback_updated_in_background">التحديث في الخلفية</string>
+
+    <string name="feedback_interpret_background_notification_content">في بعض الأجهزة، بعد إيقاف \'عدم التشغيل في الخلفية\'، قد يظهر إشعار لا يمكن مسحه في شريط الإشعارات.</string>
+    <string name="feedback_interpret_notification_group_title">حظر الإشعارات</string>
+    <string name="feedback_interpret_notification_group_content">بعد إيقاف تشغيل \"عدم التشغيل في الخلفية\"، سيظهر لك إشعار في شريط الإشعارات يعلمك بأن التطبيق يعمل في الخلفية. يمكنك إخفاء هذا الإشعار عن طريق الذهاب إلى إعدادات الإشعارات في جهازك، وحظر هذا الإشعار.</string>
+
+    <string name="feedback_ignore_battery_optimizations_title">تجاهل تحسين البطارية</string>
+    <string name="feedback_ignore_battery_optimizations_content">من أجل ضمان استمرار عمل خدمات الطقس في الخلفية، الرجاء تجاهل تحسين البطارية لهذا التطبيق.</string>
+
+    <string name="feedback_cannot_start_live_wallpaper_activity">غير قادر على معاينة الخلفية الحية.</string>
+
+    <string name="feedback_unusable_geocoder">لا يحتوي هذا الجهاز على رمز جغرافي صالح. تم تغيير مزود الموقع إلى مزود خدمة المواقع Baidu.</string>
+    <string name="feedback_about_geocoder">الترميز الجغرافي هو مكون يقوم بتحويل نتيجة الموقع من تنسيق خطوط الطول-العرض الى تنسيق مثل \'إسم المدينة، إسم المقاطعة\'. في حالة عدم وجود هذا المكون، يمكنك الحصول على بيانات الطقس من خلال AccuWeather باستخدام native API كمزود للمواقع.</string>
+
+    <string name="feedback_today_precipitation_alert">هناك إحتمالية لهطول الأمطار اليوم</string>
+    <string name="feedback_short_term_precipitation_alert">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
+
+    <string name="feedback_resident_location">تحديد كمكان الإقامة</string>
+    <string name="feedback_resident_location_description">سيقوم التطبيق تلقائياً بعرض وإخفاء أماكن الإقامة بناءً على موقعك الحالي. \nعلى سبيل المثال، يمكنك إختيار مسقط رأسك كمكان الإقامة. يمكنك تفقد أحوال الطقس في مسقط رأسك بينما أنت مسافر. عند عودتك إلى منزلك، سيتم إخفاء الطقس في مسقط رأسك وإستبداله بطقس موقعك الحالي.</string>
+
+    <string name="feedback_click_to_get_more">أنقر للمزيد…</string>
+
+    <!-- action -->
+    <string name="action_alert">منبه</string>
+    <string name="action_manage">إدارة</string>
+    <string name="action_search">بحث</string>
+    <string name="action_settings">إعدادات</string>
+    <string name="action_preview">عرض</string>
+    <string name="action_about">حول</string>
+    <string name="action_appStore">متجر التطبيقات</string>
+
+    <!-- widget -->
+    <string name="widget_day">يومي</string>
+    <string name="widget_week">أسبوعي</string>
+    <string name="widget_day_week">يومي + أسبوعي</string>
+    <string name="widget_clock_day_horizontal">ساعة + يومي (نمط أفقي)</string>
+    <string name="widget_clock_day_details">ساعة + يومي (تفاصيل)</string>
+    <string name="widget_clock_day_vertical">ساعة + يومي (نمط عمودي)</string>
+    <string name="widget_clock_day_week">ساعة + يومي + أسبوعي</string>
+    <string name="widget_text">نص</string>
+    <string name="widget_trend_daily">مجرى يومي</string>
+    <string name="widget_trend_hourly">مجرى كل ساعة</string>
+    <string name="wait_refresh">إنتظار</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">الأساسية</string>
+    <string name="settings_title_background_free">عدم التشغيل في الخلفية</string>
+    <string name="settings_summary_background_free_on">ممكّن/nإذا تعذر تحديث التطبيق المصغّر والإشعارات تلقائياً، رجاءً قم بإيقاف هذا الخيار.</string>
+    <string name="settings_summary_background_free_off">معطل/nإذا كنت لا ترغب في مواصلة عمل أي خدمات في الخلفية، فيرجى تشغيل هذا الخيار.</string>
+    <string name="settings_title_live_wallpaper">الخلفية الحية</string>
+    <string name="settings_summary_live_wallpaper">إستخدام رسوم الطقس المتحركة كخلفية حية للشاشة الرئيسية</string>
+    <string name="settings_title_service_provider">مزود الخدمة</string>
+    <string name="settings_summary_service_provider">حدد مزود خدمة بيانات الطقس ومعلومات الموقع</string>
+    <string name="settings_title_weather_source">مصدر الطقس</string>
+    <string name="settings_title_location_service">خدمة الموقع</string>
+    <string name="settings_title_dark_mode">الوضع الداكن</string>
+    <string name="settings_title_ui_style">نمط الواجهة الرئيسية</string>
+    <string name="settings_title_icon_provider">شكل الأيقونات</string>
+    <string name="settings_title_appearance">المظهر</string>
+    <string name="settings_summary_appearance">نمط الواجهة الرئيسية، ترتيب البطاقات، اللغة…</string>
+    <string name="settings_title_card_display">البطاقات المعروضة</string>
+    <string name="settings_title_card_order">ترتيب البطاقات</string>
+    <string name="settings_title_gravity_sensor_switch">مستشعر الجاذبية</string>
+    <string name="settings_title_list_animation_switch">Animation list</string>
+    <string name="settings_title_item_animation_switch">Animation item</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_title_unit">وحدات القياس</string>
+    <string name="settings_summary_unit">إختيار وحدات قياس الطقس</string>
+    <string name="settings_title_temperature_unit">وحدة درجة الحرارة</string>
+    <string name="settings_title_distance_unit">وحدة المسافة</string>
+    <string name="settings_title_precipitation_unit">وحدة هطول الأمطار</string>
+    <string name="settings_title_pressure_unit">وحدة الضغط</string>
+    <string name="settings_title_speed_unit">وحدة السرعة</string>
+    <string name="settings_title_refresh_rate">معدل التحديث التلقائي</string>
+    <string name="settings_title_alert_notification_switch">إرسال التنبيهات</string>
+    <string name="settings_title_precipitation_notification_switch">إرسال توقعات هطول الأمطار</string>
+    <string name="settings_title_permanent_service">خدمة دائمة</string>
+    <string name="settings_category_forecast">توقعات</string>
+    <string name="settings_title_forecast_today">التوقعات لهذا اليوم</string>
+    <string name="settings_title_forecast_today_time">قم بإختيار الوقت</string>
+    <string name="settings_title_forecast_tomorrow">التوقعات ليوم غد</string>
+    <string name="settings_title_forecast_tomorrow_time">قم بإختيار الوقت</string>
+    <string name="settings_category_widget">التطبيقات المصغرة</string>
+    <string name="settings_title_minimal_icon">أيقونات أضيق الحدود</string>
+    <string name="settings_title_click_widget_to_refresh">تحديث التطبيق المصغر عند النقر عليه</string>
+    <string name="settings_category_notification">الإشعارات</string>
+    <string name="settings_title_notification">إرسال الإشعارات</string>
+    <string name="settings_title_notification_style">نمط الإشعارات</string>
+    <string name="settings_title_notification_temp_icon">عرض درجة الحرارة كأيقونة في شريط الحالة</string>
+    <string name="settings_title_notification_color">لون الإشعارات</string>
+    <string name="settings_title_notification_custom_color">لون إشعارات مخصص</string>
+    <string name="settings_title_notification_text_color">لون الخط</string>
+    <string name="settings_title_notification_background">لون الخلفية</string>
+    <string name="settings_notification_background_off">حسب النظام</string>
+    <string name="settings_title_notification_can_be_cleared">يمكن مسحها</string>
+    <string name="settings_notification_can_be_cleared_on">يمكن مسحها عن طريق السحب</string>
+    <string name="settings_notification_can_be_cleared_off">لا يمكن مسحها</string>
+    <string name="settings_title_notification_hide_icon">إخفاء أيقونة الإشعارات</string>
+    <string name="settings_notification_hide_icon_on">إخفاء</string>
+    <string name="settings_notification_hide_icon_off">إظهار</string>
+    <string name="settings_title_notification_hide_in_lockScreen">الإخفار في شاشة القفل</string>
+    <string name="settings_notification_hide_in_lockScreen_on">إخفاء (تحتاج إلى فتح في إعدادات النظام)</string>
+    <string name="settings_notification_hide_in_lockScreen_off">إظهار</string>
+    <string name="settings_title_notification_hide_big_view">النمط الموسع</string>
+    <string name="settings_notification_hide_big_view_on">إخفاء</string>
+    <string name="settings_notification_hide_big_view_off">إظهار</string>
+
+</resources>

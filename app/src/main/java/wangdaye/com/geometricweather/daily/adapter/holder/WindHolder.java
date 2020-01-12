@@ -60,7 +60,7 @@ public class WindHolder extends DailyWeatherAdapter.ViewHolder {
 
         if (wind.getSpeed() != null && wind.getSpeed() > 0) {
             speed.setVisibility(View.VISIBLE);
-            speedText.setText(unit.getSpeedText(wind.getSpeed()));
+            speedText.setText(unit.getSpeedText(speedText.getContext(), wind.getSpeed()));
         } else {
             speed.setVisibility(View.GONE);
         }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>تلقائي</item>
+        <item>فاتح دائماً</item>
+        <item>داكن دائماً</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Circular sky</item>
+        <item>Material animation</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>داكن</item>
+        <item>رمادي</item>
+        <item>فاتح</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>وقت التحديث</item>
+        <item>مؤشر جودة الهواء (غير متاح في بعض المناطق)</item>
+        <item>الرياح</item>
+        <item>درجة الحرارة المعقولة</item>
+        <item>تقويم قمري</item>
+        <item>مخصص</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>لا شيء</item>
+        <item>الوضع التلقائي</item>
+        <item>فاتح</item>
+        <item>داكن</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>فاتح</item>
+        <item>داكن</item>
+        <item>تلقائي</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>تلقائي</item>
+        <item>صافي</item>
+        <item>غائم جزئياً</item>
+        <item>غائم</item>
+        <item>مطر</item>
+        <item>ثلج</item>
+        <item>مطر متجمد</item>
+        <item>بَرَد</item>
+        <item>ضباب</item>
+        <item>مُغبَر</item>
+        <item>رعد</item>
+        <item>عاصفة رعدية</item>
+        <item>رياح</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>تلقائي</item>
+        <item>دائماً في النهار</item>
+        <item>دائماً في الليل</item>
+    </string-array>
+
+</resources>

@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.ui.adapter.TagAdapter;
-import wangdaye.com.geometricweather.settings.OptionMapper;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapter.CardDisplayAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.GridMarginsDecoration;

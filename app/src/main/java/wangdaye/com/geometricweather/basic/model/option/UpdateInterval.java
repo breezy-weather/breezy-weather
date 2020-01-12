@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.utils.OptionUtils;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum UpdateInterval {
 
@@ -36,7 +36,7 @@ public enum UpdateInterval {
 
     @Nullable
     public String getUpdateIntervalName(Context context) {
-        return OptionUtils.getNameByValue(
+        return OptionMapper.getNameByValue(
                 context,
                 value,
                 R.array.automatic_refresh_rates,

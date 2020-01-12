@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.ColorInt;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * All properties are {@link androidx.annotation.NonNull}.
  * */
-public class Alert implements Parcelable {
+public class Alert implements Parcelable, Serializable {
 
     private long alertId;
     private Date date;

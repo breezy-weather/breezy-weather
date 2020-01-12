@@ -2,12 +2,14 @@ package wangdaye.com.geometricweather.basic.model.weather;
 
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
+
 /**
  * Precipitation duration.
  *
  * default unit : {@link wangdaye.com.geometricweather.basic.model.option.unit.DurationUnit#H}
  * */
-public class PrecipitationDuration {
+public class PrecipitationDuration implements Serializable {
 
     @Nullable private Float total;
     @Nullable private Float thunderstorm;

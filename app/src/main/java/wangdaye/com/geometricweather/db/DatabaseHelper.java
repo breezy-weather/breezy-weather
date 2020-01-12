@@ -226,7 +226,7 @@ public class DatabaseHelper {
 
     // history.
 
-    public void writeTodayHistory(@NonNull Location location, @NonNull Weather weather) {
+    private void writeTodayHistory(@NonNull Location location, @NonNull Weather weather) {
         historyEntityController.insertTodayHistoryEntity(
                 location.getCityId(),
                 location.getWeatherSource(),
@@ -235,8 +235,8 @@ public class DatabaseHelper {
         );
     }
 
-    public void writeYesterdayHistory(@NonNull Location location,
-                                      @NonNull Weather weather, @NonNull History history) {
+    private void writeYesterdayHistory(@NonNull Location location,
+                                       @NonNull Weather weather, @NonNull History history) {
         historyEntityController.insertYesterdayHistoryEntity(
                 location.getCityId(),
                 location.getWeatherSource(),

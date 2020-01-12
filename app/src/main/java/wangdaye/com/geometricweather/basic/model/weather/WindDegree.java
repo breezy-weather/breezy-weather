@@ -2,12 +2,14 @@ package wangdaye.com.geometricweather.basic.model.weather;
 
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
+
 /**
  * WindDegree.
  *
  * All properties are {@link androidx.annotation.NonNull}.
  * */
-public class WindDegree {
+public class WindDegree implements Serializable {
 
     private float degree;
     private boolean noDirection;

@@ -79,6 +79,7 @@ public class InkPageIndicator extends View
     // drawing
     private final Paint unselectedPaint;
     private final Paint selectedPaint;
+    private final Paint textPaint;
     private Path combinedUnselectedPath;
     private final Path unselectedDotPath;
     private final Path unselectedDotLeftPath;
@@ -143,6 +144,8 @@ public class InkPageIndicator extends View
         unselectedPaint.setColor(unselectedColour);
         selectedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         selectedPaint.setColor(selectedColour);
+        textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setColor(selectedColour);
         interpolator = new FastOutSlowInInterpolator();
 
         // create paths & rect now – reuse & rewind later
@@ -237,6 +240,7 @@ public class InkPageIndicator extends View
 
     public void setCurrentIndicatorColor(@ColorInt int color) {
         selectedPaint.setColor(color);
+        textPaint.setColor(color);
         invalidate();
     }
 
@@ -355,6 +359,19 @@ public class InkPageIndicator extends View
     @Override
     protected void onDraw(Canvas canvas) {
         if (switchView == null || pageCount == 0) return;
+        if (pageCount > 7) {
+            int cx = getMeasuredWidth() / 2;
+            int cy = getMeasuredHeight() / 2;
+
+            textPaint.setTextAlign(Paint.Align.CENTER);
+            textPaint.setTextSize(dotDiameter + gap / 2);
+            Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+            int baseLineY = (int) (cy - fontMetrics.top - fontMetrics.bottom);
+            canvas.drawText((currentPage + 1) + "/" + pageCount, cx, baseLineY, textPaint);
+
+            return;
+        }
+
         drawUnselected(canvas);
         drawSelected(canvas);
     }
@@ -676,7 +693,6 @@ public class InkPageIndicator extends View
 
             joiningFractions[leftDot] = fraction;
             ViewCompat.postInvalidateOnAnimation(this);
-            ;
         }
     }
 

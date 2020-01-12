@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.utils.OptionUtils;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum LocationProvider {
 
@@ -26,7 +26,7 @@ public enum LocationProvider {
 
     @Nullable
     public String getProviderName(Context context) {
-        return OptionUtils.getNameByValue(
+        return OptionMapper.getNameByValue(
                 context,
                 providerId,
                 R.array.location_services,

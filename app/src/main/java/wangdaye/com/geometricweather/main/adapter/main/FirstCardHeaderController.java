@@ -49,11 +49,9 @@ public class FirstCardHeaderController
         if (location.getWeather() != null) {
             this.weather = location.getWeather();
 
-            view.setOnClickListener(
-                    DisplayUtils.isLandscape(activity)
-                            ? null
-                            : v -> IntentHelper.startManageActivityForResult(activity, MainActivity.MANAGE_ACTIVITY)
-            );
+            view.setOnClickListener(v ->
+                    IntentHelper.startManageActivityForResult(activity, MainActivity.MANAGE_ACTIVITY));
+            view.setEnabled(!DisplayUtils.isLandscape(activity));
 
             if (weather.getAlertList().size() == 0) {
                 timeIcon.setEnabled(false);

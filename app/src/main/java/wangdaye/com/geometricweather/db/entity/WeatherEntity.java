@@ -121,16 +121,16 @@ public class WeatherEntity {
     @OrderBy("date ASC")
     public List<AlertEntity> alertEntityList;
 
-/** Used to resolve relations */
-@Generated(hash = 2040040024)
-private transient DaoSession daoSession;
+    /** Used to resolve relations */
+    @Generated(hash = 2040040024)
+    private transient DaoSession daoSession;
 
-/** Used for active entity operations. */
-@Generated(hash = 428286643)
-private transient WeatherEntityDao myDao;
+    /** Used for active entity operations. */
+    @Generated(hash = 428286643)
+    private transient WeatherEntityDao myDao;
 
-@Generated(hash = 836344586)
-public WeatherEntity(Long id, String cityId, String weatherSource,
+    @Generated(hash = 836344586)
+    public WeatherEntity(Long id, String cityId, String weatherSource,
         long timeStamp, Date publishDate, long publishTime, Date updateDate,
         long updateTime, String weatherText, WeatherCode weatherCode,
         int temperature, Integer realFeelTemperature,
@@ -199,422 +199,422 @@ public WeatherEntity(Long id, String cityId, String weatherSource,
     this.ceiling = ceiling;
     this.dailyForecast = dailyForecast;
     this.hourlyForecast = hourlyForecast;
-}
+    }
 
-@Generated(hash = 1598697471)
-public WeatherEntity() {
-}
+    @Generated(hash = 1598697471)
+    public WeatherEntity() {
+    }
 
-public Long getId() {
+    public Long getId() {
     return this.id;
-}
+    }
 
-public void setId(Long id) {
+    public void setId(Long id) {
     this.id = id;
-}
+    }
 
-public String getCityId() {
+    public String getCityId() {
     return this.cityId;
-}
+    }
 
-public void setCityId(String cityId) {
+    public void setCityId(String cityId) {
     this.cityId = cityId;
-}
+    }
 
-public String getWeatherSource() {
+    public String getWeatherSource() {
     return this.weatherSource;
-}
+    }
 
-public void setWeatherSource(String weatherSource) {
+    public void setWeatherSource(String weatherSource) {
     this.weatherSource = weatherSource;
-}
+    }
 
-public long getTimeStamp() {
+    public long getTimeStamp() {
     return this.timeStamp;
-}
+    }
 
-public void setTimeStamp(long timeStamp) {
+    public void setTimeStamp(long timeStamp) {
     this.timeStamp = timeStamp;
-}
+    }
 
-public Date getPublishDate() {
+    public Date getPublishDate() {
     return this.publishDate;
-}
+    }
 
-public void setPublishDate(Date publishDate) {
+    public void setPublishDate(Date publishDate) {
     this.publishDate = publishDate;
-}
+    }
 
-public long getPublishTime() {
+    public long getPublishTime() {
     return this.publishTime;
-}
+    }
 
-public void setPublishTime(long publishTime) {
+    public void setPublishTime(long publishTime) {
     this.publishTime = publishTime;
-}
+    }
 
-public Date getUpdateDate() {
+    public Date getUpdateDate() {
     return this.updateDate;
-}
+    }
 
-public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(Date updateDate) {
     this.updateDate = updateDate;
-}
+    }
 
-public long getUpdateTime() {
+    public long getUpdateTime() {
     return this.updateTime;
-}
+    }
 
-public void setUpdateTime(long updateTime) {
+    public void setUpdateTime(long updateTime) {
     this.updateTime = updateTime;
-}
+    }
 
-public String getWeatherText() {
+    public String getWeatherText() {
     return this.weatherText;
-}
+    }
 
-public void setWeatherText(String weatherText) {
+    public void setWeatherText(String weatherText) {
     this.weatherText = weatherText;
-}
+    }
 
-public WeatherCode getWeatherCode() {
+    public WeatherCode getWeatherCode() {
     return this.weatherCode;
-}
+    }
 
-public void setWeatherCode(WeatherCode weatherCode) {
+    public void setWeatherCode(WeatherCode weatherCode) {
     this.weatherCode = weatherCode;
-}
+    }
 
-public int getTemperature() {
+    public int getTemperature() {
     return this.temperature;
-}
+    }
 
-public void setTemperature(int temperature) {
+    public void setTemperature(int temperature) {
     this.temperature = temperature;
-}
+    }
 
-public Integer getRealFeelTemperature() {
+    public Integer getRealFeelTemperature() {
     return this.realFeelTemperature;
-}
+    }
 
-public void setRealFeelTemperature(Integer realFeelTemperature) {
+    public void setRealFeelTemperature(Integer realFeelTemperature) {
     this.realFeelTemperature = realFeelTemperature;
-}
+    }
 
-public Integer getRealFeelShaderTemperature() {
+    public Integer getRealFeelShaderTemperature() {
     return this.realFeelShaderTemperature;
-}
+    }
 
-public void setRealFeelShaderTemperature(Integer realFeelShaderTemperature) {
+    public void setRealFeelShaderTemperature(Integer realFeelShaderTemperature) {
     this.realFeelShaderTemperature = realFeelShaderTemperature;
-}
+    }
 
-public Integer getApparentTemperature() {
+    public Integer getApparentTemperature() {
     return this.apparentTemperature;
-}
+    }
 
-public void setApparentTemperature(Integer apparentTemperature) {
+    public void setApparentTemperature(Integer apparentTemperature) {
     this.apparentTemperature = apparentTemperature;
-}
+    }
 
-public Integer getWindChillTemperature() {
+    public Integer getWindChillTemperature() {
     return this.windChillTemperature;
-}
+    }
 
-public void setWindChillTemperature(Integer windChillTemperature) {
+    public void setWindChillTemperature(Integer windChillTemperature) {
     this.windChillTemperature = windChillTemperature;
-}
+    }
 
-public Integer getWetBulbTemperature() {
+    public Integer getWetBulbTemperature() {
     return this.wetBulbTemperature;
-}
+    }
 
-public void setWetBulbTemperature(Integer wetBulbTemperature) {
+    public void setWetBulbTemperature(Integer wetBulbTemperature) {
     this.wetBulbTemperature = wetBulbTemperature;
-}
+    }
 
-public Integer getDegreeDayTemperature() {
+    public Integer getDegreeDayTemperature() {
     return this.degreeDayTemperature;
-}
+    }
 
-public void setDegreeDayTemperature(Integer degreeDayTemperature) {
+    public void setDegreeDayTemperature(Integer degreeDayTemperature) {
     this.degreeDayTemperature = degreeDayTemperature;
-}
+    }
 
-public Float getTotalPrecipitation() {
+    public Float getTotalPrecipitation() {
     return this.totalPrecipitation;
-}
+    }
 
-public void setTotalPrecipitation(Float totalPrecipitation) {
+    public void setTotalPrecipitation(Float totalPrecipitation) {
     this.totalPrecipitation = totalPrecipitation;
-}
+    }
 
-public Float getThunderstormPrecipitation() {
+    public Float getThunderstormPrecipitation() {
     return this.thunderstormPrecipitation;
-}
+    }
 
-public void setThunderstormPrecipitation(Float thunderstormPrecipitation) {
+    public void setThunderstormPrecipitation(Float thunderstormPrecipitation) {
     this.thunderstormPrecipitation = thunderstormPrecipitation;
-}
+    }
 
-public Float getRainPrecipitation() {
+    public Float getRainPrecipitation() {
     return this.rainPrecipitation;
-}
+    }
 
-public void setRainPrecipitation(Float rainPrecipitation) {
+    public void setRainPrecipitation(Float rainPrecipitation) {
     this.rainPrecipitation = rainPrecipitation;
-}
+    }
 
-public Float getSnowPrecipitation() {
+    public Float getSnowPrecipitation() {
     return this.snowPrecipitation;
-}
+    }
 
-public void setSnowPrecipitation(Float snowPrecipitation) {
+    public void setSnowPrecipitation(Float snowPrecipitation) {
     this.snowPrecipitation = snowPrecipitation;
-}
+    }
 
-public Float getIcePrecipitation() {
+    public Float getIcePrecipitation() {
     return this.icePrecipitation;
-}
+    }
 
-public void setIcePrecipitation(Float icePrecipitation) {
+    public void setIcePrecipitation(Float icePrecipitation) {
     this.icePrecipitation = icePrecipitation;
-}
+    }
 
-public Float getTotalPrecipitationProbability() {
+    public Float getTotalPrecipitationProbability() {
     return this.totalPrecipitationProbability;
-}
+    }
 
-public void setTotalPrecipitationProbability(
+    public void setTotalPrecipitationProbability(
         Float totalPrecipitationProbability) {
     this.totalPrecipitationProbability = totalPrecipitationProbability;
-}
+    }
 
-public Float getThunderstormPrecipitationProbability() {
+    public Float getThunderstormPrecipitationProbability() {
     return this.thunderstormPrecipitationProbability;
-}
+    }
 
-public void setThunderstormPrecipitationProbability(
+    public void setThunderstormPrecipitationProbability(
         Float thunderstormPrecipitationProbability) {
     this.thunderstormPrecipitationProbability = thunderstormPrecipitationProbability;
-}
+    }
 
-public Float getRainPrecipitationProbability() {
+    public Float getRainPrecipitationProbability() {
     return this.rainPrecipitationProbability;
-}
+    }
 
-public void setRainPrecipitationProbability(
+    public void setRainPrecipitationProbability(
         Float rainPrecipitationProbability) {
     this.rainPrecipitationProbability = rainPrecipitationProbability;
-}
+    }
 
-public Float getSnowPrecipitationProbability() {
+    public Float getSnowPrecipitationProbability() {
     return this.snowPrecipitationProbability;
-}
+    }
 
-public void setSnowPrecipitationProbability(
+    public void setSnowPrecipitationProbability(
         Float snowPrecipitationProbability) {
     this.snowPrecipitationProbability = snowPrecipitationProbability;
-}
+    }
 
-public Float getIcePrecipitationProbability() {
+    public Float getIcePrecipitationProbability() {
     return this.icePrecipitationProbability;
-}
+    }
 
-public void setIcePrecipitationProbability(Float icePrecipitationProbability) {
+    public void setIcePrecipitationProbability(Float icePrecipitationProbability) {
     this.icePrecipitationProbability = icePrecipitationProbability;
-}
+    }
 
-public String getWindDirection() {
+    public String getWindDirection() {
     return this.windDirection;
-}
+    }
 
-public void setWindDirection(String windDirection) {
+    public void setWindDirection(String windDirection) {
     this.windDirection = windDirection;
-}
+    }
 
-public WindDegree getWindDegree() {
+    public WindDegree getWindDegree() {
     return this.windDegree;
-}
+    }
 
-public void setWindDegree(WindDegree windDegree) {
+    public void setWindDegree(WindDegree windDegree) {
     this.windDegree = windDegree;
-}
+    }
 
-public Float getWindSpeed() {
+    public Float getWindSpeed() {
     return this.windSpeed;
-}
+    }
 
-public void setWindSpeed(Float windSpeed) {
+    public void setWindSpeed(Float windSpeed) {
     this.windSpeed = windSpeed;
-}
+    }
 
-public String getWindLevel() {
+    public String getWindLevel() {
     return this.windLevel;
-}
+    }
 
-public void setWindLevel(String windLevel) {
+    public void setWindLevel(String windLevel) {
     this.windLevel = windLevel;
-}
+    }
 
-public Integer getUvIndex() {
+    public Integer getUvIndex() {
     return this.uvIndex;
-}
+    }
 
-public void setUvIndex(Integer uvIndex) {
+    public void setUvIndex(Integer uvIndex) {
     this.uvIndex = uvIndex;
-}
+    }
 
-public String getUvLevel() {
+    public String getUvLevel() {
     return this.uvLevel;
-}
+    }
 
-public void setUvLevel(String uvLevel) {
+    public void setUvLevel(String uvLevel) {
     this.uvLevel = uvLevel;
-}
+    }
 
-public String getUvDescription() {
+    public String getUvDescription() {
     return this.uvDescription;
-}
+    }
 
-public void setUvDescription(String uvDescription) {
+    public void setUvDescription(String uvDescription) {
     this.uvDescription = uvDescription;
-}
+    }
 
-public String getAqiText() {
+    public String getAqiText() {
     return this.aqiText;
-}
+    }
 
-public void setAqiText(String aqiText) {
+    public void setAqiText(String aqiText) {
     this.aqiText = aqiText;
-}
+    }
 
-public Integer getAqiIndex() {
+    public Integer getAqiIndex() {
     return this.aqiIndex;
-}
+    }
 
-public void setAqiIndex(Integer aqiIndex) {
+    public void setAqiIndex(Integer aqiIndex) {
     this.aqiIndex = aqiIndex;
-}
+    }
 
-public Float getPm25() {
+    public Float getPm25() {
     return this.pm25;
-}
+    }
 
-public void setPm25(Float pm25) {
+    public void setPm25(Float pm25) {
     this.pm25 = pm25;
-}
+    }
 
-public Float getPm10() {
+    public Float getPm10() {
     return this.pm10;
-}
+    }
 
-public void setPm10(Float pm10) {
+    public void setPm10(Float pm10) {
     this.pm10 = pm10;
-}
+    }
 
-public Float getSo2() {
+    public Float getSo2() {
     return this.so2;
-}
+    }
 
-public void setSo2(Float so2) {
+    public void setSo2(Float so2) {
     this.so2 = so2;
-}
+    }
 
-public Float getNo2() {
+    public Float getNo2() {
     return this.no2;
-}
+    }
 
-public void setNo2(Float no2) {
+    public void setNo2(Float no2) {
     this.no2 = no2;
-}
+    }
 
-public Float getO3() {
+    public Float getO3() {
     return this.o3;
-}
+    }
 
-public void setO3(Float o3) {
+    public void setO3(Float o3) {
     this.o3 = o3;
-}
+    }
 
-public Float getCo() {
+    public Float getCo() {
     return this.co;
-}
+    }
 
-public void setCo(Float co) {
+    public void setCo(Float co) {
     this.co = co;
-}
+    }
 
-public Float getRelativeHumidity() {
+    public Float getRelativeHumidity() {
     return this.relativeHumidity;
-}
+    }
 
-public void setRelativeHumidity(Float relativeHumidity) {
+    public void setRelativeHumidity(Float relativeHumidity) {
     this.relativeHumidity = relativeHumidity;
-}
+    }
 
-public Float getPressure() {
+    public Float getPressure() {
     return this.pressure;
-}
+    }
 
-public void setPressure(Float pressure) {
+    public void setPressure(Float pressure) {
     this.pressure = pressure;
-}
+    }
 
-public Float getVisibility() {
+    public Float getVisibility() {
     return this.visibility;
-}
+    }
 
-public void setVisibility(Float visibility) {
+    public void setVisibility(Float visibility) {
     this.visibility = visibility;
-}
+    }
 
-public Integer getDewPoint() {
+    public Integer getDewPoint() {
     return this.dewPoint;
-}
+    }
 
-public void setDewPoint(Integer dewPoint) {
+    public void setDewPoint(Integer dewPoint) {
     this.dewPoint = dewPoint;
-}
+    }
 
-public Integer getCloudCover() {
+    public Integer getCloudCover() {
     return this.cloudCover;
-}
+    }
 
-public void setCloudCover(Integer cloudCover) {
+    public void setCloudCover(Integer cloudCover) {
     this.cloudCover = cloudCover;
-}
+    }
 
-public Float getCeiling() {
+    public Float getCeiling() {
     return this.ceiling;
-}
+    }
 
-public void setCeiling(Float ceiling) {
+    public void setCeiling(Float ceiling) {
     this.ceiling = ceiling;
-}
+    }
 
-public String getDailyForecast() {
+    public String getDailyForecast() {
     return this.dailyForecast;
-}
+    }
 
-public void setDailyForecast(String dailyForecast) {
+    public void setDailyForecast(String dailyForecast) {
     this.dailyForecast = dailyForecast;
-}
+    }
 
-public String getHourlyForecast() {
+    public String getHourlyForecast() {
     return this.hourlyForecast;
-}
+    }
 
-public void setHourlyForecast(String hourlyForecast) {
+    public void setHourlyForecast(String hourlyForecast) {
     this.hourlyForecast = hourlyForecast;
-}
+    }
 
-/**
- * To-many relationship, resolved on first access (and after reset).
- * Changes to to-many relations are not persisted, make changes to the target entity.
- */
-@Generated(hash = 693799015)
-public List<DailyEntity> getDailyEntityList() {
+    /**
+    * To-many relationship, resolved on first access (and after reset).
+    * Changes to to-many relations are not persisted, make changes to the target entity.
+    */
+    @Generated(hash = 693799015)
+    public List<DailyEntity> getDailyEntityList() {
     if (dailyEntityList == null) {
         final DaoSession daoSession = this.daoSession;
         if (daoSession == null) {
@@ -630,20 +630,20 @@ public List<DailyEntity> getDailyEntityList() {
         }
     }
     return dailyEntityList;
-}
+    }
 
-/** Resets a to-many relationship, making the next get call to query for a fresh result. */
-@Generated(hash = 1145290907)
-public synchronized void resetDailyEntityList() {
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1145290907)
+    public synchronized void resetDailyEntityList() {
     dailyEntityList = null;
-}
+    }
 
-/**
- * To-many relationship, resolved on first access (and after reset).
- * Changes to to-many relations are not persisted, make changes to the target entity.
- */
-@Generated(hash = 92300296)
-public List<HourlyEntity> getHourlyEntityList() {
+    /**
+    * To-many relationship, resolved on first access (and after reset).
+    * Changes to to-many relations are not persisted, make changes to the target entity.
+    */
+    @Generated(hash = 92300296)
+    public List<HourlyEntity> getHourlyEntityList() {
     if (hourlyEntityList == null) {
         final DaoSession daoSession = this.daoSession;
         if (daoSession == null) {
@@ -659,20 +659,20 @@ public List<HourlyEntity> getHourlyEntityList() {
         }
     }
     return hourlyEntityList;
-}
+    }
 
-/** Resets a to-many relationship, making the next get call to query for a fresh result. */
-@Generated(hash = 1603476353)
-public synchronized void resetHourlyEntityList() {
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1603476353)
+    public synchronized void resetHourlyEntityList() {
     hourlyEntityList = null;
-}
+    }
 
-/**
- * To-many relationship, resolved on first access (and after reset).
- * Changes to to-many relations are not persisted, make changes to the target entity.
- */
-@Generated(hash = 176390241)
-public List<MinutelyEntity> getMinutelyEntityList() {
+    /**
+    * To-many relationship, resolved on first access (and after reset).
+    * Changes to to-many relations are not persisted, make changes to the target entity.
+    */
+    @Generated(hash = 176390241)
+    public List<MinutelyEntity> getMinutelyEntityList() {
     if (minutelyEntityList == null) {
         final DaoSession daoSession = this.daoSession;
         if (daoSession == null) {
@@ -688,20 +688,20 @@ public List<MinutelyEntity> getMinutelyEntityList() {
         }
     }
     return minutelyEntityList;
-}
+    }
 
-/** Resets a to-many relationship, making the next get call to query for a fresh result. */
-@Generated(hash = 1906829833)
-public synchronized void resetMinutelyEntityList() {
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1906829833)
+    public synchronized void resetMinutelyEntityList() {
     minutelyEntityList = null;
-}
+    }
 
-/**
- * To-many relationship, resolved on first access (and after reset).
- * Changes to to-many relations are not persisted, make changes to the target entity.
- */
-@Generated(hash = 1421248109)
-public List<AlertEntity> getAlertEntityList() {
+    /**
+    * To-many relationship, resolved on first access (and after reset).
+    * Changes to to-many relations are not persisted, make changes to the target entity.
+    */
+    @Generated(hash = 1421248109)
+    public List<AlertEntity> getAlertEntityList() {
     if (alertEntityList == null) {
         final DaoSession daoSession = this.daoSession;
         if (daoSession == null) {
@@ -717,56 +717,56 @@ public List<AlertEntity> getAlertEntityList() {
         }
     }
     return alertEntityList;
-}
+    }
 
-/** Resets a to-many relationship, making the next get call to query for a fresh result. */
-@Generated(hash = 2026104948)
-public synchronized void resetAlertEntityList() {
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 2026104948)
+    public synchronized void resetAlertEntityList() {
     alertEntityList = null;
-}
+    }
 
-/**
- * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
- * Entity must attached to an entity context.
- */
-@Generated(hash = 128553479)
-public void delete() {
+    /**
+    * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
+    * Entity must attached to an entity context.
+    */
+    @Generated(hash = 128553479)
+    public void delete() {
     if (myDao == null) {
         throw new DaoException("Entity is detached from DAO context");
     }
     myDao.delete(this);
-}
+    }
 
-/**
- * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
- * Entity must attached to an entity context.
- */
-@Generated(hash = 1942392019)
-public void refresh() {
+    /**
+    * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
+    * Entity must attached to an entity context.
+    */
+    @Generated(hash = 1942392019)
+    public void refresh() {
     if (myDao == null) {
         throw new DaoException("Entity is detached from DAO context");
     }
     myDao.refresh(this);
-}
+    }
 
-/**
- * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
- * Entity must attached to an entity context.
- */
-@Generated(hash = 713229351)
-public void update() {
+    /**
+    * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
+    * Entity must attached to an entity context.
+    */
+    @Generated(hash = 713229351)
+    public void update() {
     if (myDao == null) {
         throw new DaoException("Entity is detached from DAO context");
     }
     myDao.update(this);
-}
+    }
 
-/** called by internal mechanisms, do not call yourself. */
-@Generated(hash = 1493194274)
-public void __setDaoSession(DaoSession daoSession) {
-    this.daoSession = daoSession;
-    myDao = daoSession != null ? daoSession.getWeatherEntityDao() : null;
-}
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1493194274)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getWeatherEntityDao() : null;
+    }
 
 
 }

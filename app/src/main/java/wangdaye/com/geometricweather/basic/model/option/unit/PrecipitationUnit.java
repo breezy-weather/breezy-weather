@@ -1,18 +1,22 @@
 package wangdaye.com.geometricweather.basic.model.option.unit;
 
+import android.content.Context;
+
+import wangdaye.com.geometricweather.R;
+
 public enum PrecipitationUnit {
 
-    MM("mm", "mm", 1f),
-    IN("in", "inch", 0.0394f),
-    LPSQM("lpsqm", "L/m²", 1f);
+    MM("mm", 0, 1f),
+    IN("in", 1, 0.0394f),
+    LPSQM("lpsqm", 2, 1f);
 
     private String unitId;
-    private String unitAbbreviation;
+    private int unitArrayIndex;
     private float unitFactor; // actual precipitation = precipitation(mm) * factor.
 
-    PrecipitationUnit(String id, String abbreviation, float factor) {
+    PrecipitationUnit(String id, int arrayIndex, float factor) {
         unitId = id;
-        unitAbbreviation = abbreviation;
+        unitArrayIndex = arrayIndex;
         unitFactor = factor;
     }
 
@@ -24,15 +28,15 @@ public enum PrecipitationUnit {
         return mm * unitFactor;
     }
 
-    public String getPrecipitationText(float mm) {
-        return getPrecipitationTextWithoutUnit(mm) + unitAbbreviation;
+    public String getPrecipitationText(Context context, float mm) {
+        return getPrecipitationTextWithoutUnit(mm) + getAbbreviation(context);
     }
 
     public String getPrecipitationTextWithoutUnit(float mm) {
         return UnitUtils.formatFloat(mm * unitFactor, 1);
     }
 
-    public String getAbbreviation() {
-        return unitAbbreviation;
+    public String getAbbreviation(Context context) {
+        return context.getResources().getStringArray(R.array.precipitation_units)[unitArrayIndex];
     }
 }

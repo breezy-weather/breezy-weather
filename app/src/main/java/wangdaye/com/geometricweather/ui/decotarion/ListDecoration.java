@@ -7,6 +7,7 @@ import android.graphics.Rect;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -21,32 +22,38 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 public class ListDecoration extends RecyclerView.ItemDecoration {
 
     private Paint paint;
-    private int decorationHeight;
+    private @Px int decorationWidth;
 
     public ListDecoration(Context context) {
         this(context, ContextCompat.getColor(context, R.color.colorLine));
     }
 
     public ListDecoration(Context context, @ColorInt int color) {
-        this.decorationHeight = (int) DisplayUtils.dpToPx(context, 2);
+        this.decorationWidth = (int) DisplayUtils.dpToPx(context, 1);
 
         this.paint = new Paint();
         paint.setColor(color);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(decorationHeight);
+        paint.setStrokeWidth(decorationWidth);
     }
 
     @Override
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         for (int i = 0; i < parent.getChildCount(); i ++){
             View child = parent.getChildAt(i);
-            c.drawLine(child.getLeft(), child.getBottom(), child.getRight(), child.getBottom(), paint);
+            c.drawLine(
+                    child.getLeft(),
+                    child.getBottom() + decorationWidth / 2,
+                    child.getRight(),
+                    child.getBottom() + decorationWidth / 2,
+                    paint
+            );
         }
     }
 
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
                                @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        outRect.set(0, 0, 0, decorationHeight);
+        outRect.set(0, 0, 0, decorationWidth);
     }
 }

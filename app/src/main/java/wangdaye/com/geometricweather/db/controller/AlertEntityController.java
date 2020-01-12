@@ -20,11 +20,9 @@ public class AlertEntityController extends AbsEntityController<AlertEntity> {
 
     public void insertAlertList(@NonNull String cityId, @NonNull WeatherSource source,
                                 @NonNull List<AlertEntity> entityList) {
-        if (entityList.size() != 0) {
-            deleteAlertList(cityId, source);
-            getSession().getAlertEntityDao().insertInTx(entityList);
-            getSession().clear();
-        }
+        deleteAlertList(cityId, source);
+        getSession().getAlertEntityDao().insertInTx(entityList);
+        getSession().clear();
     }
 
     // delete.

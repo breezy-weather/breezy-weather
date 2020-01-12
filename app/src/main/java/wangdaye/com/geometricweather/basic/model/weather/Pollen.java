@@ -6,12 +6,14 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import java.io.Serializable;
+
 import wangdaye.com.geometricweather.R;
 
 /**
  * DailyPollen.
  * */
-public class Pollen {
+public class Pollen implements Serializable {
 
     @Nullable private Integer grassIndex;
     @Nullable private Integer grassLevel;

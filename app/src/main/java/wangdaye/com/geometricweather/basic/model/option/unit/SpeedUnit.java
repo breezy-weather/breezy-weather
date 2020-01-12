@@ -1,20 +1,24 @@
 package wangdaye.com.geometricweather.basic.model.option.unit;
 
+import android.content.Context;
+
+import wangdaye.com.geometricweather.R;
+
 public enum SpeedUnit {
 
-    KPH("kph", "km/h", 1f),
-    MPS("mps", "m/s", 1f / 3.6f),
-    KN("kn", "kn", 1f / 1.852f),
-    MPH("mph", "mi/h", 1f / 1.609f),
-    FTPS("ftps", "ft/s", 0.9113f);
+    KPH("kph", 0, 1f),
+    MPS("mps", 1, 1f / 3.6f),
+    KN("kn", 2, 1f / 1.852f),
+    MPH("mph", 3, 1f / 1.609f),
+    FTPS("ftps", 4, 0.9113f);
 
     private String unitId;
-    private String unitAbbreviation;
+    private int unitArrayIndex;
     private float unitFactor; // actual speed = speed(km/h) * factor.
 
-    SpeedUnit(String id, String abbreviation, float factor) {
+    SpeedUnit(String id, int arrayIndex, float factor) {
         unitId = id;
-        unitAbbreviation = abbreviation;
+        unitArrayIndex = arrayIndex;
         unitFactor = factor;
     }
 
@@ -26,15 +30,15 @@ public enum SpeedUnit {
         return kph * unitFactor;
     }
 
-    public String getSpeedText(float kph) {
-        return getSpeedTextWithoutUnit(kph) + unitAbbreviation;
+    public String getSpeedText(Context context, float kph) {
+        return getSpeedTextWithoutUnit(kph) + getAbbreviation(context);
     }
 
     public String getSpeedTextWithoutUnit(float kph) {
         return UnitUtils.formatFloat(kph * unitFactor, 1);
     }
 
-    public String getAbbreviation() {
-        return unitAbbreviation;
+    public String getAbbreviation(Context context) {
+        return context.getResources().getStringArray(R.array.speed_units)[unitArrayIndex];
     }
 }

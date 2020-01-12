@@ -12,7 +12,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.settings.OptionMapper;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
 /**

@@ -9,7 +9,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.OptionMapper;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.dialog.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;

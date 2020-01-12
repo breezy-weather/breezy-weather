@@ -169,8 +169,6 @@
                     android:id="@+id/widget_clock_day_subtitle"
                     android:text="@string/ellipsis"
                     android:maxLines="1"
-                    android:gravity="end"
-                    android:textAlignment="gravity"
                     android:textSize="@dimen/widget_content_text_size"
                     android:textColor="@color/colorTextLight"
                     android:shadowColor="@color/colorTextDark2nd"

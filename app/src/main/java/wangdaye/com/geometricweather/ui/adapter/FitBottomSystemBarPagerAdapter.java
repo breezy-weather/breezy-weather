@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarViewPager;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class FitBottomSystemBarPagerAdapter extends androidx.viewpager.widget.PagerAdapter {
 
@@ -15,11 +16,17 @@ public class FitBottomSystemBarPagerAdapter extends androidx.viewpager.widget.Pa
     private List<View> viewList;
     public List<String> titleList;
 
+    private int screenWidth;
+    private int adaptiveWidth;
+
     public FitBottomSystemBarPagerAdapter(FitBottomSystemBarViewPager pager,
                                           List<View> viewList, List<String> titleList) {
         this.pager = pager;
         this.viewList = viewList;
         this.titleList = titleList;
+
+        this.screenWidth = pager.getResources().getDisplayMetrics().widthPixels;
+        this.adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(pager.getContext(), screenWidth);
     }
 
     @Override
@@ -35,7 +42,8 @@ public class FitBottomSystemBarPagerAdapter extends androidx.viewpager.widget.Pa
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        viewList.get(position).setPadding(0, 0, 0, (int) pager.getInsetsBottom());
+        int paddingHorizontal = (screenWidth - adaptiveWidth) / 2;
+        viewList.get(position).setPadding(paddingHorizontal, 0, paddingHorizontal, (int) pager.getInsetsBottom());
         container.addView(viewList.get(position));
         return viewList.get(position);
     }

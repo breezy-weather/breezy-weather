@@ -95,6 +95,7 @@
             android:text="@string/wait_refresh"
             android:textColor="@color/colorTextLight"
             android:textSize="@dimen/widget_time_text_size"
+            android:textAlignment="center"
             android:shadowColor="@color/colorTextDark2nd"
             android:shadowDx="1"
             android:shadowDy="1"

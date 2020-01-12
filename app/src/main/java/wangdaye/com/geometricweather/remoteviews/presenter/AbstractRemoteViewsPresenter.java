@@ -253,6 +253,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                         "$cp$",
                         precipitationUnit.getPrecipitationText(
+                                context,
                                 WidgetUtils.getNonNullValue(
                                         weather.getCurrent()
                                                 .getPrecipitation()
@@ -276,9 +277,9 @@ public abstract class AbstractRemoteViewsPresenter {
                                 )
                         )
                 ).replace("$cps$", pressureUnit.getPressureText(
-                        WidgetUtils.getNonNullValue(weather.getCurrent().getPressure(), 0))
+                        context, WidgetUtils.getNonNullValue(weather.getCurrent().getPressure(), 0))
                 ).replace("$cv$", distanceUnit.getDistanceText(
-                        WidgetUtils.getNonNullValue(weather.getCurrent().getVisibility(), 0))
+                        context, WidgetUtils.getNonNullValue(weather.getCurrent().getVisibility(), 0))
                 ).replace("$cdp$", temperatureUnit.getTemperatureText(
                         WidgetUtils.getNonNullValue(weather.getCurrent().getDewPoint(), 0))
                 ).replace("$l$", location.getCityName(context))
@@ -298,7 +299,8 @@ public abstract class AbstractRemoteViewsPresenter {
                         "$ws$",
                         new SimpleDateFormat("EEE").format(new Date())
                 ).replace("$dd$", weather.getCurrent().getDailyForecast() + "")
-                .replace("$hd$", weather.getCurrent().getHourlyForecast() + "");
+                .replace("$hd$", weather.getCurrent().getHourlyForecast() + "")
+                .replace("$enter$", "\n");
         subtitle = replaceDaytimeWeatherSubtitle(subtitle, weather);
         subtitle = replaceNighttimeWeatherSubtitle(subtitle, weather);
         subtitle = replaceDaytimeTemperatureSubtitle(subtitle, weather, temperatureUnit);

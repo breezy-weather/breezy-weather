@@ -238,6 +238,14 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             };
         }
 
+        private void setIntervalComputer() {
+            if (intervalComputer == null) {
+                intervalComputer = new IntervalComputer(getApplicationContext());
+            } else {
+                intervalComputer.reset(getApplicationContext());
+            }
+        }
+
         private void setOpenGravitySensor(boolean openGravitySensor) {
             this.openGravitySensor = openGravitySensor;
         }
@@ -334,16 +342,9 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                         );
                     }
                     setWeatherImplementor();
+                    setIntervalComputer();
                     setOpenGravitySensor(
-                            SettingsOptionManager.getInstance(MaterialLiveWallpaperService.this)
-                                    .isGravitySensorEnabled()
-                    );
-
-                    if (intervalComputer == null) {
-                        intervalComputer = new IntervalComputer();
-                    } else {
-                        intervalComputer.reset();
-                    }
+                            SettingsOptionManager.getInstance(getApplicationContext()).isGravitySensorEnabled());
 
                     float screenRefreshRate;
                     WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);

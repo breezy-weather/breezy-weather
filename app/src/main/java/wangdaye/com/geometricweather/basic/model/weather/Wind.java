@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import java.io.Serializable;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
 
@@ -16,7 +18,7 @@ import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
  * default unit:
  * {@link #speed} : {@link wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit#KPH}
  * */
-public class Wind {
+public class Wind implements Serializable {
 
     @NonNull private String direction;
     @NonNull private WindDegree degree;
@@ -89,11 +91,11 @@ public class Wind {
         return direction + " " + level;
     }
 
-    public String getWindDescription(SpeedUnit unit) {
+    public String getWindDescription(Context context, SpeedUnit unit) {
         StringBuilder builder = new StringBuilder();
         builder.append(direction);
         if (speed != null) {
-            builder.append(" ").append(unit.getSpeedText(speed));
+            builder.append(" ").append(unit.getSpeedText(context, speed));
         }
         builder.append(" ").append("(").append(level).append(")");
         if (!degree.isNoDirection()) {

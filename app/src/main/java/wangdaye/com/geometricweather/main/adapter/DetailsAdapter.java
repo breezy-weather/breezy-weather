@@ -83,14 +83,14 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                         R.drawable.ic_wind,
                         context.getString(R.string.live)
                                 + " : "
-                                + weather.getCurrent().getWind().getWindDescription(speedUnit),
+                                + weather.getCurrent().getWind().getWindDescription(context, speedUnit),
                         context.getString(R.string.daytime)
                                 + " : "
-                                + weather.getDailyForecast().get(0).day().getWind().getWindDescription(speedUnit)
+                                + weather.getDailyForecast().get(0).day().getWind().getWindDescription(context, speedUnit)
                                 + "\n"
                                 + context.getString(R.string.nighttime)
                                 + " : "
-                                + weather.getDailyForecast().get(0).night().getWind().getWindDescription(speedUnit)
+                                + weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit)
                 )
         );
 
@@ -121,7 +121,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_gauge,
                             context.getString(R.string.pressure),
-                            settings.getPressureUnit().getPressureText(weather.getCurrent().getPressure())
+                            settings.getPressureUnit().getPressureText(context, weather.getCurrent().getPressure())
                     )
             );
         }
@@ -131,7 +131,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_eye,
                             context.getString(R.string.visibility),
-                            settings.getDistanceUnit().getDistanceText(weather.getCurrent().getVisibility())
+                            settings.getDistanceUnit().getDistanceText(context, weather.getCurrent().getVisibility())
                     )
             );
         }
@@ -161,7 +161,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_top,
                             context.getString(R.string.ceiling),
-                            settings.getDistanceUnit().getDistanceText(weather.getCurrent().getCeiling())
+                            settings.getDistanceUnit().getDistanceText(context, weather.getCurrent().getCeiling())
                     )
             );
         }

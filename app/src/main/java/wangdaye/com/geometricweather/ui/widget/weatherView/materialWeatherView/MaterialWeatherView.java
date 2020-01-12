@@ -235,7 +235,6 @@ public class MaterialWeatherView extends View implements WeatherView {
         }
 
         intervalComputer.invalidate();
-
         rotators[0].updateRotation(rotation2D, intervalComputer.getInterval());
         rotators[1].updateRotation(rotation3D, intervalComputer.getInterval());
 
@@ -273,6 +272,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         }
         if (lastScrollRate >= 1 && scrollRate >= 1) {
             lastScrollRate = scrollRate;
+            setIntervalComputer();
             return;
         }
 
@@ -292,12 +292,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         }
 
         setWeatherImplementor();
-
-        if (intervalComputer == null) {
-            intervalComputer = new IntervalComputer();
-        } else {
-            intervalComputer.reset();
-        }
+        setIntervalComputer();
 
         postInvalidate();
     }
@@ -311,6 +306,14 @@ public class MaterialWeatherView extends View implements WeatherView {
         if (implementor != null) {
             step = STEP_DISPLAY;
             backgroundColor = getBackgroundColor();
+        }
+    }
+
+    private void setIntervalComputer() {
+        if (intervalComputer == null) {
+            intervalComputer = new IntervalComputer(getContext());
+        } else {
+            intervalComputer.reset(getContext());
         }
     }
 

@@ -156,6 +156,7 @@
         $ws$ : Hét (Rövid)\n
         $dd$ : Napi Leírás\n
         $hd$ : Óránkénti Leírás\n
+        $enter$ : Enter\n
         \n
         $0dw$, $1dw$, …, $4dw$ : \nNappali Időjárás a Mai Napra, Tmw, …, 4 nappal később\n
         \n

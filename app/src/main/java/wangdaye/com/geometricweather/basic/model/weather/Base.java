@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.basic.model.weather;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
  *
  * All properties are {@link androidx.annotation.NonNull}.
  * */
-public class Base {
+public class Base implements Serializable {
 
     private String cityId;
     private long timeStamp;

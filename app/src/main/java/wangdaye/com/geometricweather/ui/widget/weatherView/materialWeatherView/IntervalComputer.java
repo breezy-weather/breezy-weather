@@ -1,28 +1,40 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView;
 
+import android.content.Context;
+import android.view.WindowManager;
+
 public class IntervalComputer {
 
     private long currentTime;
     private long lastTime;
+
+    private double defaultInterval;
     private double interval;
 
-    private static final double DEFAULT_INTERVAL = 16.6;
-
-    public IntervalComputer() {
-        reset();
+    public IntervalComputer(Context context) {
+        reset(context);
     }
 
-    public void reset() {
+    public void reset(Context context) {
         currentTime = -1;
         lastTime = -1;
-        interval = DEFAULT_INTERVAL;
+
+        double screenRefreshRate = 60;
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager != null) {
+            screenRefreshRate = windowManager.getDefaultDisplay().getRefreshRate();
+        }
+        if (screenRefreshRate < 60) {
+            screenRefreshRate = 60;
+        }
+
+        defaultInterval = 1000.0 / screenRefreshRate;
+        interval = defaultInterval;
     }
 
     public void invalidate() {
         currentTime = System.currentTimeMillis();
-        interval = lastTime == -1
-                ? DEFAULT_INTERVAL
-                : (currentTime - lastTime);
+        interval = lastTime == -1 ? defaultInterval : (currentTime - lastTime);
         lastTime = currentTime;
     }
 

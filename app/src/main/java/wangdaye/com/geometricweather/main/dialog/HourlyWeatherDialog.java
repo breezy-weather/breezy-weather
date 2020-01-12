@@ -104,7 +104,7 @@ public class HourlyWeatherDialog extends DialogFragment {
             builder.append("\n")
                     .append(getString(R.string.precipitation))
                     .append(" : ")
-                    .append(precipitationUnit.getPrecipitationText(p));
+                    .append(precipitationUnit.getPrecipitationText(requireActivity(), p));
         }
         if (hourly.getPrecipitationProbability().getTotal() != null
                 && hourly.getPrecipitationProbability().getTotal() > 0) {

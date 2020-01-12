@@ -14,10 +14,10 @@
     <string name="precipitation">Осадки</string>
     <string name="precipitation_probability">Вероятность осадков</string>
     <string name="precipitation_duration">Продолжительность осадков</string>
-    <string name="maxi_temp">Днем</string>
+    <string name="maxi_temp">Днём</string>
     <string name="mini_temp">Ночью</string>
-    <string name="time">время</string>
-    <string name="day">Днем</string>
+    <string name="time">Время</string>
+    <string name="day">Днём</string>
     <string name="night">Ночью</string>
     <string name="temperature">Температура</string>
     <string name="wind">Ветер</string>
@@ -30,12 +30,12 @@
     <string name="hours_of_sun">Солнечных часов</string>
     <string name="forecast">Прогноз</string>
     <string name="briefings">Обзор</string>
-    <string name="daytime">Днем</string>
+    <string name="daytime">Днём</string>
     <string name="nighttime">Ночью</string>
     <string name="publish_at">Опубликовано в</string>
-    <string name="feels_like">Как будто</string>
+    <string name="feels_like">Ощущается как</string>
     <string name="follow_system">Как в системе</string>
-    <string name="background_information">Background information</string>
+    <string name="background_information">Фоновая информация</string>
     <string name="pressure">Атмосферное давление</string>
     <string name="visibility">Видимость</string>
     <string name="dew_point">Точка росы</string>
@@ -112,7 +112,7 @@
     <string name="hourly_overview">Почасовой</string>
     <string name="minutely_overview">Поминутный</string>
     <string name="precipitation_overview">Прогноз осадков</string>
-    <string name="air_quality">Качесвто воздуха</string>
+    <string name="air_quality">Качество воздуха</string>
     <string name="allergen">Аллерген</string>
     <string name="life_details">Подробно</string>
     <string name="sunrise_sunset">Восход и закат</string>
@@ -146,7 +146,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Разрешения</string>
-    <string name="feedback_request_location">Местположение</string>
+    <string name="feedback_request_location">Местоположение</string>
     <string name="feedback_request_location_in_background">Запрос местоположения в фоне</string>
     <string name="feedback_request_location_permission_success">Запрос местоположения успешно выполнен</string>
     <string name="feedback_request_location_permission_failed">Ошибка запроса местоположения</string>
@@ -159,18 +159,18 @@
     <string name="feedback_select_location_provider">Выбрать источник определения местоположения</string>
     <string name="feedback_add_location_manually">Добавить местоположение и удалить \'$\'</string>
 
-    <string name="feedback_view_style">Стиль внешенго вида</string>
+    <string name="feedback_view_style">Стиль внешнего вида</string>
     <string name="feedback_show_widget_card">Цвет фона</string>
     <string name="feedback_show_widget_card_alpha">Прозрачность</string>
     <string name="feedback_hide_subtitle">Скрыть подписи</string>
     <string name="feedback_subtitle_data">Содержание подписи</string>
     <string name="feedback_black_text">Цвет текста</string>
     <string name="feedback_text_size">Размер текста</string>
-    <string name="feedback_clock_font">Шрифт чаов</string>
+    <string name="feedback_clock_font">Шрифт чаcов</string>
     <string name="feedback_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.\n\nНапример, \"погода сейчас = $cw$\" будет показана как \"Погода сейчас = Ясный День\".</string>
     <string name="feedback_custom_subtitle_keywords">
         \n
-        $cw$ : Погода ссейчас\n
+        $cw$ : Погода сейчас\n
         $ct$ : Текущая температура (℃/℉)\n
         $ctd$ : Текущая температура (°)\n
         $at$ : Ощущается как (℃/℉)\n
@@ -194,6 +194,7 @@
         $ws$ : Неделя (Кратко)\n
         $dd$ : Дневной подробный\n
         $hd$ : Почасовой подробный\n
+        $enter$ : Enter\n
         \n
         $0dw$, $1dw$, …, $4dw$ : \nПогода сегодня днём, завтра, …, на 4 дня\n
         \n
@@ -238,7 +239,7 @@
     <string name="feedback_location_list_cannot_be_null">Список мест не может быть пустым</string>
 
     <string name="feedback_search_location">Поиск местоположения…</string>
-    <string name="feedback_not_yet_location">Месоположение не задано…</string>
+    <string name="feedback_not_yet_location">Местоположение не задано…</string>
     <string name="feedback_search_nothing">Место не найдено </string>
     <string name="feedback_initializing">Инициализация…</string>
 
@@ -254,22 +255,22 @@
     <string name="feedback_updated_in_background">Обновлено в фоне</string>
 
     <string name="feedback_interpret_background_notification_content">На некоторых устройствах, после выключения \'Запрет работы в фоне\', в панели уведомлений может быть уведомление, которое не удаляется.</string>
-    <string name="feedback_interpret_notification_group_title">Block notification group</string>
-    <string name="feedback_interpret_notification_group_content">После выключения \"Запрет работы в фоне\", на панели уведомлений появится уведомление о том, что служба запущена в фоне. Вы можете отключить уведомление о работе в фоне на информационной странице приложения, чтобы скрыть эти уведомления.</string>
+    <string name="feedback_interpret_notification_group_title">Настройка уведомлений</string>
+    <string name="feedback_interpret_notification_group_content">После выключения \"Запрет работы в фоне\", на панели уведомлений появится уведомление о том, что служба запущена в фоне. Вы можете отключить уведомление о работе в фоне в настройках уведомлений приложения, чтобы скрыть это уведомление.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Игнорировать Оптимизацию батареи</string>
     <string name="feedback_ignore_battery_optimizations_content">Чтобы фоновая служба гарантированно работала, пожалуйста отключите Оптимизацию батареи для GeometricWeather.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Невозможно начать предпросмотр живых обоев</string>
 
-    <string name="feedback_unusable_geocoder">Это устройство не имеет необходимого геокодера - сервиса определения местположения. Провайдер местположения будет изменён на Baidu Location.</string>
+    <string name="feedback_unusable_geocoder">Это устройство не имеет необходимого геокодера - сервиса определения местоположения. Провайдер местоположения будет изменён на Baidu Location.</string>
     <string name="feedback_about_geocoder">Геокодер это компонент, который преобразует результаты местоположения из формата "широта-долгота" в формат \'XX город, YY область \'. В отсутствие этого компонента вы можете получать данные о погоде только через AccuWeather при использовании собственного API в качестве провайдера местоположения..</string>
 
     <string name="feedback_today_precipitation_alert">Сегодня возможны осадки.</string>
     <string name="feedback_short_term_precipitation_alert">В ближайшее время возможны осадки.</string>
 
     <string name="feedback_resident_location">Установить как моё место постоянного пребывания</string>
-    <string name="feedback_resident_location_description">GeometricWeather будет автоматически показыать или скрывать место Вашего постоянного пребывания, основываясь на данных Вашего местоположения.\nНапример, Вы можете установить Ваш родной город как место Вашего постоянного пребывания. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
+    <string name="feedback_resident_location_description">GeometricWeather будет автоматически показывать или скрывать место Вашего постоянного пребывания, основываясь на данных Вашего местоположения.\nНапример, Вы можете установить Ваш родной город как место Вашего постоянного пребывания. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
 
     <string name="feedback_click_to_get_more">Дополнительно…</string>
 
@@ -306,7 +307,7 @@
     <string name="settings_title_service_provider">Провайдер данных</string>
     <string name="settings_summary_service_provider">Выберите провайдера погодных данных, и данных о местоположении</string>
     <string name="settings_title_weather_source">Погодный провайдер</string>
-    <string name="settings_title_location_service">Провайдер местположения</string>
+    <string name="settings_title_location_service">Провайдер местоположения</string>
     <string name="settings_title_dark_mode">Тёмная тема</string>
     <string name="settings_title_ui_style">Стиль интерфейса</string>
     <string name="settings_title_icon_provider">Иконки</string>
@@ -320,7 +321,7 @@
     <string name="settings_language">Язык</string>
     <string name="settings_title_unit">Единицы измерения</string>
     <string name="settings_summary_unit">Установка единиц измерения погодных данных</string>
-    <string name="settings_title_temperature_unit">Темпреатура</string>
+    <string name="settings_title_temperature_unit">Температура</string>
     <string name="settings_title_distance_unit">Расстояние</string>
     <string name="settings_title_precipitation_unit">Осадки</string>
     <string name="settings_title_pressure_unit">Давление</string>
@@ -347,8 +348,8 @@
     <string name="settings_title_notification_background">Цвет фона</string>
     <string name="settings_notification_background_off">По умолчанию</string>
     <string name="settings_title_notification_can_be_cleared">Постоянное уведомление в шторке</string>
-    <string name="settings_notification_can_be_cleared_on">Включено</string>
-    <string name="settings_notification_can_be_cleared_off">Выключено</string>
+    <string name="settings_notification_can_be_cleared_on">Удаляемое</string>
+    <string name="settings_notification_can_be_cleared_off">Постоянное</string>
     <string name="settings_title_notification_hide_icon">Скрыть иконку в строке состояния</string>
     <string name="settings_notification_hide_icon_on">Скрывать</string>
     <string name="settings_notification_hide_icon_off">Показывать</string>

@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.utils.OptionUtils;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum DarkMode {
     AUTO("auto"),
@@ -20,7 +20,7 @@ public enum DarkMode {
 
     @Nullable
     public String getDarkModeName(Context context) {
-        return OptionUtils.getNameByValue(
+        return OptionMapper.getNameByValue(
                 context,
                 modeId,
                 R.array.dark_modes,

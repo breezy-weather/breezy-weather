@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  *
  * All properties are {@link androidx.annotation.NonNull}.
  * */
-public class History {
+public class History implements Serializable {
 
     private Date date;
     private long time;

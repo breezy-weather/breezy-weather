@@ -20,11 +20,9 @@ public class HourlyEntityController extends AbsEntityController<HourlyEntity> {
 
     public void insertHourlyList(@NonNull String cityId, @NonNull WeatherSource source,
                                  @NonNull List<HourlyEntity> entityList) {
-        if (entityList.size() != 0) {
-            deleteHourlyEntityList(cityId, source);
-            getSession().getHourlyEntityDao().insertInTx(entityList);
-            getSession().clear();
-        }
+        deleteHourlyEntityList(cityId, source);
+        getSession().getHourlyEntityDao().insertInTx(entityList);
+        getSession().clear();
     }
 
     // delete.

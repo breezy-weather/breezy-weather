@@ -3,9 +3,11 @@ package wangdaye.com.geometricweather.basic.model.weather;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Weather {
+public class Weather
+        implements Serializable {
 
     @NonNull private Base base;
     @NonNull private Current current;

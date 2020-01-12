@@ -5,6 +5,7 @@ import android.content.Context;
 
 import androidx.annotation.Size;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,7 +19,7 @@ import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
  *
  * All properties are {@link androidx.annotation.NonNull}.
  * */
-public class Daily {
+public class Daily implements Serializable {
 
     private Date date;
     private long time;

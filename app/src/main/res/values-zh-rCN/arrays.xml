@@ -110,4 +110,55 @@
         <item>夜晚</item>
     </string-array>
 
+    <!-- speed unit. -->
+    <string-array name="speed_units">
+        <item>千米/时</item>
+        <item>米/秒</item>
+        <item>节</item>
+        <item>英里/时</item>
+        <item>英尺/秒</item>
+    </string-array>
+
+    <!-- precipitation unit. -->
+    <string-array name="precipitation_units">
+        <item>毫米</item>
+        <item>英寸</item>
+        <item>升/米²</item>
+    </string-array>
+
+    <!-- distance unit. -->
+    <string-array name="distance_units">
+        <item>千米</item>
+        <item>米</item>
+        <item>英里</item>
+        <item>海里</item>
+        <item>英尺</item>
+    </string-array>
+
+    <!-- pressure unit. -->
+    <string-array name="pressure_units">
+        <item>毫巴</item>
+        <item>千帕</item>
+        <item>帕</item>
+        <item>标准大气压</item>
+        <item>毫米汞柱</item>
+        <item>英寸汞柱</item>
+        <item>千克力/米²</item>
+    </string-array>
+
+    <!-- air quality unit. -->
+    <string-array name="air_quality_units">
+        <item>微克/米³</item>
+    </string-array>
+
+    <!-- duration unit. -->
+    <string-array name="duration_units">
+        <item>小时</item> <!-- hour -->
+    </string-array>
+
+    <!-- pollen unit. -->
+    <string-array name="pollen_units">
+        <item>/米³</item>
+    </string-array>
+
 </resources>

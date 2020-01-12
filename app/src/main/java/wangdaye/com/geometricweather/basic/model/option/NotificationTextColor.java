@@ -6,7 +6,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.utils.OptionUtils;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum NotificationTextColor {
 
@@ -26,7 +26,7 @@ public enum NotificationTextColor {
 
     @Nullable
     public String getNotificationTextColorName(Context context) {
-        return OptionUtils.getNameByValue(
+        return OptionMapper.getNameByValue(
                 context,
                 colorId,
                 R.array.notification_text_colors,

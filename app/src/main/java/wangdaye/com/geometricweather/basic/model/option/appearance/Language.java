@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import java.util.Locale;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.utils.OptionUtils;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum Language {
 
@@ -36,7 +36,8 @@ public enum Language {
     HUNGARIAN("hungarian", new Locale("hu")),
     PORTUGUESE("portuguese", new Locale("pt")),
     PORTUGUESE_BR("portuguese_brazilian", new Locale("pt", "BR")),
-    SLOVENIAN("slovenian", new Locale("sl", "SI"));
+    SLOVENIAN("slovenian", new Locale("sl", "SI")),
+    ARABIC("arabic", new Locale("ar"));
 
     private String languageId;
     private Locale locale;
@@ -65,7 +66,7 @@ public enum Language {
 
     @Nullable
     public String getLanguageName(Context context) {
-        return OptionUtils.getNameByValue(
+        return OptionMapper.getNameByValue(
                 context,
                 languageId,
                 R.array.languages,

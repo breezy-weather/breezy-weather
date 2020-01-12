@@ -3,6 +3,8 @@ package wangdaye.com.geometricweather.basic.model.weather;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
+
 /**
  * Current.
  *
@@ -12,7 +14,7 @@ import androidx.annotation.Nullable;
  * {@link #visibility} : {@link wangdaye.com.geometricweather.basic.model.option.unit.DistanceUnit#KM}
  * {@link #ceiling} : {@link wangdaye.com.geometricweather.basic.model.option.unit.DistanceUnit#KM}
  * */
-public class Current {
+public class Current implements Serializable {
 
     @NonNull private String weatherText;
     @NonNull private WeatherCode weatherCode;

@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.ColorInt;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.utils.OptionUtils;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum WeatherSource {
 
@@ -28,7 +28,7 @@ public enum WeatherSource {
     }
 
     public String getSourceName(Context context) {
-        return OptionUtils.getNameByValue(
+        return OptionMapper.getNameByValue(
                 context,
                 sourceId,
                 R.array.weather_sources,

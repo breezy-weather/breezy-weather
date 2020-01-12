@@ -142,11 +142,13 @@ public class ResourceHelper {
 
     @DrawableRes
     public static int getTempIconId(Context context, int temp) {
-        int id = ResourceUtils.getResId(
-                context,
-                "notif_temp_" + temp,
-                "drawable"
-        );
+        StringBuilder builder = new StringBuilder("notif_temp_");
+        if (temp < 0) {
+            builder.append("neg_");
+        }
+        builder.append(Math.abs(temp));
+
+        int id = ResourceUtils.getResId(context, builder.toString(), "drawable");
         if (id == 0) {
             return R.drawable.notif_temp_0;
         } else {

@@ -110,4 +110,47 @@
         <item>Всегда ночь</item>
     </string-array>
 
+    <!-- speed unit. -->
+    <string-array name="speed_units">
+        <item>км/ч</item>
+        <item>м/с</item>
+        <item>узлов</item>
+        <item>миль/ч</item>
+        <item>футов/с</item>
+    </string-array>
+
+    <!-- precipitation unit. -->
+    <string-array name="precipitation_units">
+        <item>мм</item>
+        <item>дюйм</item>
+        <item>л/м²</item>
+    </string-array>
+
+    <!-- temperature unit. -->
+    <string-array name="temperature_units">
+        <item>℃</item>
+        <item>℉</item>
+        <item>K</item>
+    </string-array>
+
+    <!-- distance unit. -->
+    <string-array name="distance_units">
+        <item>км</item>
+        <item>метры</item>
+        <item>мили</item>
+        <item>мор. мили</item>
+        <item>футы</item>
+    </string-array>
+
+    <!-- pressure unit. -->
+    <string-array name="pressure_units">
+        <item>миллибар</item>
+        <item>килопаскаль</item>
+        <item>гектопаскаль</item>
+        <item>атмосфер</item>
+        <item>мм рт. ст.</item>
+        <item>дюйм рт. ст.</item>
+        <item>кгс/cм²</item>
+    </string-array>
+
 </resources>

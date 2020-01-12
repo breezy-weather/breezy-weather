@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.basic.model.weather;
 
 import android.content.Context;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
  *
  * All properties are {@link androidx.annotation.NonNull}.
  * */
-public class Hourly {
+public class Hourly implements Serializable {
 
     private Date date;
     private long time;

@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
@@ -20,7 +21,7 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
  * */
 
 public class Location
-        implements Parcelable {
+        implements Parcelable, Serializable {
 
     private String cityId;
 
@@ -302,4 +303,6 @@ public class Location
             return new Location[size];
         }
     };
+
+
 }

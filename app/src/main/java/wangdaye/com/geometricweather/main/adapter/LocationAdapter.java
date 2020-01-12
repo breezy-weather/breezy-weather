@@ -12,6 +12,8 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import android.widget.TextView;
 
 import com.turingtechnologies.materialscrollbar.ICustomAdapter;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.List;
 
@@ -36,6 +39,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.ObjectUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
@@ -71,7 +75,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         TextView source;
 
         private int direction;
-        private @ColorInt int swipeRightColor;
+        private @ColorInt int swipeEndColor;
 
         ViewHolder(View itemView, OnLocationItemClickListener listener) {
             super(itemView);
@@ -95,18 +99,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         @SuppressLint("SetTextI18n")
         void onBindView(Location location) {
             direction = 0;
-            swipeRightColor = ContextCompat.getColor(activity, location.isCurrentPosition()
-                    ? R.color.colorPrimary : R.color.colorTextAlert);
+            swipeEndColor = ContextCompat.getColor(activity,
+                    location.isCurrentPosition() ? R.color.colorPrimary : R.color.colorTextAlert);
 
             // icon.
             if (location.isCurrentPosition()) {
                 swipeIconEnd.setImageResource(R.drawable.ic_settings);
             } else {
                 swipeIconEnd.setImageResource(
-                        location.isResidentPosition()
-                                ? R.drawable.ic_tag_off
-                                : R.drawable.ic_tag_plus
-                );
+                        location.isResidentPosition() ? R.drawable.ic_tag_off : R.drawable.ic_tag_plus);
             }
 
             // background.
@@ -143,7 +144,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             if (location.getWeather() != null) {
                 weatherIcon.setVisibility(View.VISIBLE);
 
-
                 weatherIcon.setImageDrawable(
                         resourceProvider.getWeatherIcon(
                                 location.getWeather().getCurrent().getWeatherCode(),
@@ -170,6 +170,12 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                         }
                     }
                     alerts.setText(builder.toString());
+                } else if (!TextUtils.isEmpty(location.getWeather().getCurrent().getDailyForecast())) {
+                    alerts.setVisibility(View.VISIBLE);
+                    alerts.setText(location.getWeather().getCurrent().getDailyForecast());
+                } else if (!TextUtils.isEmpty(location.getWeather().getCurrent().getHourlyForecast())) {
+                    alerts.setVisibility(View.VISIBLE);
+                    alerts.setText(location.getWeather().getCurrent().getHourlyForecast());
                 } else {
                     alerts.setVisibility(View.GONE);
                 }
@@ -185,13 +191,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                 subtitle.setTextColor(ContextCompat.getColor(activity, R.color.colorTextContent));
             }
             if (!location.isCurrentPosition() || location.isUsable()) {
-                builder = new StringBuilder(
-                        location.getCountry() + " " + location.getProvince()
-                );
-                if (!location.getProvince().equals(location.getCity())) {
+                builder = new StringBuilder(location.getCountry() + " " + location.getProvince());
+                if (!location.getProvince().equals(location.getCity())
+                        && !TextUtils.isEmpty(location.getCity())) {
                     builder.append(" ").append(location.getCity());
                 }
-                if (!location.getCity().equals(location.getDistrict())) {
+                if (!location.getCity().equals(location.getDistrict())
+                        && !TextUtils.isEmpty(location.getDistrict())) {
                     builder.append(" ").append(location.getDistrict());
                 }
                 subtitle.setText(builder.toString());
@@ -224,7 +230,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                     locationItemContainer.setBackgroundColor(ContextCompat.getColor(activity, R.color.striking_red));
                 } else if (dX > 0 && direction <= 0) {
                     direction = 1;
-                    locationItemContainer.setBackgroundColor(swipeRightColor);
+                    locationItemContainer.setBackgroundColor(swipeEndColor);
                 }
 
                 locationItemContainer.setTranslationX(0);
@@ -234,7 +240,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             } else {
                 if (dX < 0 && direction >= 0) {
                     direction = -1;
-                    locationItemContainer.setBackgroundColor(swipeRightColor);
+                    locationItemContainer.setBackgroundColor(swipeEndColor);
                 } else if (dX > 0 && direction <= 0) {
                     direction = 1;
                     locationItemContainer.setBackgroundColor(ContextCompat.getColor(activity, R.color.striking_red));
@@ -301,7 +307,11 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(
                 new DiffCallback(itemList, newList, forceUpdate), false);
         itemList.clear();
-        itemList.addAll(newList);
+        try {
+            itemList = ObjectUtils.deepCopy(newList);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         diffResult.dispatchUpdatesTo(this);
     }
 

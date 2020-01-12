@@ -73,25 +73,25 @@ public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.
                     Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel())
             ));
             grassTitle.setText(context.getString(R.string.grass));
-            grassValue.setText(unit.getPollenText(pollen.getGrassIndex()) + " - " + pollen.getGrassDescription());
+            grassValue.setText(unit.getPollenText(context, pollen.getGrassIndex()) + " - " + pollen.getGrassDescription());
 
             ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel())
             ));
             ragweedTitle.setText(context.getString(R.string.ragweed));
-            ragweedValue.setText(unit.getPollenText(pollen.getRagweedIndex()) + " - " + pollen.getRagweedDescription());
+            ragweedValue.setText(unit.getPollenText(context, pollen.getRagweedIndex()) + " - " + pollen.getRagweedDescription());
 
             treeIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel())
             ));
             treeTitle.setText(context.getString(R.string.tree));
-            treeValue.setText(unit.getPollenText(pollen.getTreeIndex()) + " - " + pollen.getTreeDescription());
+            treeValue.setText(unit.getPollenText(context, pollen.getTreeIndex()) + " - " + pollen.getTreeDescription());
 
             moldIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel())
             ));
             moldTitle.setText(context.getString(R.string.mold));
-            moldValue.setText(unit.getPollenText(pollen.getMoldIndex()) + " - " + pollen.getMoldDescription());
+            moldValue.setText(unit.getPollenText(context, pollen.getMoldIndex()) + " - " + pollen.getMoldDescription());
         }
     }
 

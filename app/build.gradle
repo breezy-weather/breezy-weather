@@ -6,8 +6,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 2509
-        versionName "2.509"
+        versionCode 2600
+        versionName "2.600"
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -80,7 +80,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // android x.
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.0-alpha03'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.0'
@@ -100,7 +100,7 @@ dependencies {
     // a map.
     implementation 'com.amap.api:location:4.7.2'
 
-    // play.
+    // gms.
     implementation "com.google.android.gms:play-services-location:17.0.0"
 
     // glide.

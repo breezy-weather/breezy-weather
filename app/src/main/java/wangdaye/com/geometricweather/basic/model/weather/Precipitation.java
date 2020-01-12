@@ -6,6 +6,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import java.io.Serializable;
+
 import wangdaye.com.geometricweather.R;
 
 /**
@@ -13,7 +15,7 @@ import wangdaye.com.geometricweather.R;
  *
  * default unit : {@link wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit#MM}
  * */
-public class Precipitation {
+public class Precipitation implements Serializable {
 
     @Nullable private Float total;
     @Nullable private Float thunderstorm;

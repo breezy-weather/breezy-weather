@@ -3,10 +3,12 @@ package wangdaye.com.geometricweather.basic.model.weather;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
+
 /**
  * Half day.
  * */
-public class HalfDay {
+public class HalfDay implements Serializable {
 
     @NonNull private String weatherText;
     @NonNull private String weatherPhase;

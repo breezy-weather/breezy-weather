@@ -2,13 +2,15 @@ package wangdaye.com.geometricweather.basic.model.weather;
 
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
+
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 
 /**
  * Temperature.
  * default unit : {@link wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit#C}
  * */
-public class Temperature {
+public class Temperature implements Serializable {
 
     private int temperature;
     @Nullable private Integer realFeelTemperature;

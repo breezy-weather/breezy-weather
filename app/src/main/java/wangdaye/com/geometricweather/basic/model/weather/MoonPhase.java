@@ -5,12 +5,14 @@ import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
+
 import wangdaye.com.geometricweather.R;
 
 /**
  * Moon phase.
  * */
-public class MoonPhase {
+public class MoonPhase implements Serializable {
 
     @Nullable private Integer angle;
     @Nullable private String description;

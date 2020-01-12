@@ -229,6 +229,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
 
         float[] scales = new float[] {0.6F, 0.8F, 1};
+        assert rains != null;
         for (int i = 0; i < rains.length; i ++) {
             rains[i] = new Rain(
                     canvasSizes[0], canvasSizes[1],

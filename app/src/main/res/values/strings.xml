@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.509</string>
+    <string name="version_code">v2.600</string>
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -221,6 +221,7 @@
         $ws$ : Week (Short)\n
         $dd$ : Daily Description\n
         $hd$ : Hourly Description\n
+        $enter$ : Enter\n
         \n
         $0dw$, $1dw$, …, $4dw$ : \nDaytime Weather of Today, Tmw, …, 4 days later\n
         \n

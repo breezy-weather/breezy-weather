@@ -20,11 +20,9 @@ public class MinutelyEntityController extends AbsEntityController<MinutelyEntity
 
     public void insertMinutelyList(@NonNull String cityId, @NonNull WeatherSource source,
                                    @NonNull List<MinutelyEntity> entityList) {
-        if (entityList.size() != 0) {
-            deleteMinutelyEntityList(cityId, source);
-            getSession().getMinutelyEntityDao().insertInTx(entityList);
-            getSession().clear();
-        }
+        deleteMinutelyEntityList(cityId, source);
+        getSession().getMinutelyEntityDao().insertInTx(entityList);
+        getSession().clear();
     }
 
     // delete.

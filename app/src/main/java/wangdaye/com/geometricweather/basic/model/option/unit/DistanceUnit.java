@@ -1,20 +1,24 @@
 package wangdaye.com.geometricweather.basic.model.option.unit;
 
+import android.content.Context;
+
+import wangdaye.com.geometricweather.R;
+
 public enum DistanceUnit {
 
-    KM("km", "km", 1f),
-    M("m", "m", 1000f),
-    MI("mi", "mi", 0.6213f),
-    NMI("nmi", "nmi", 0.5399f),
-    FT("ft", "ft", 3280.8398f);
+    KM("km", 0, 1f),
+    M("m", 1, 1000f),
+    MI("mi", 2, 0.6213f),
+    NMI("nmi", 3, 0.5399f),
+    FT("ft", 4, 3280.8398f);
 
     private String unitId;
-    private String unitAbbreviation;
+    private int unitArrayIndex;
     private float unitFactor; // actual distance = distance(km) * factor.
 
-    DistanceUnit(String id, String abbreviation, float factor) {
+    DistanceUnit(String id, int arrayIndex, float factor) {
         unitId = id;
-        unitAbbreviation = abbreviation;
+        unitArrayIndex = arrayIndex;
         unitFactor = factor;
     }
 
@@ -26,11 +30,11 @@ public enum DistanceUnit {
         return km * unitFactor;
     }
 
-    public String getDistanceText(float km) {
-        return UnitUtils.formatFloat(km * unitFactor, 2) + unitAbbreviation;
+    public String getDistanceText(Context context, float km) {
+        return UnitUtils.formatFloat(km * unitFactor, 2) + getAbbreviation(context);
     }
 
-    public String getAbbreviation() {
-        return unitAbbreviation;
+    public String getAbbreviation(Context context) {
+        return context.getResources().getStringArray(R.array.distance_units)[unitArrayIndex];
     }
 }

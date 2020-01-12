@@ -18,12 +18,11 @@ public class DailyEntityController extends AbsEntityController<DailyEntity> {
 
     // insert.
 
-    public void insertDailyList(@NonNull String cityId, @NonNull WeatherSource source, @NonNull List<DailyEntity> entityList) {
-        if (entityList.size() != 0) {
-            deleteDailyEntityList(cityId, source);
-            getSession().getDailyEntityDao().insertInTx(entityList);
-            getSession().clear();
-        }
+    public void insertDailyList(@NonNull String cityId, @NonNull WeatherSource source,
+                                @NonNull List<DailyEntity> entityList) {
+        deleteDailyEntityList(cityId, source);
+        getSession().getDailyEntityDao().insertInTx(entityList);
+        getSession().clear();
     }
 
     // delete.

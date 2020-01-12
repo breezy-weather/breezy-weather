@@ -10,6 +10,7 @@ import androidx.preference.PreferenceManager;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.option.appearance.Language;
 import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
