@@ -1,6 +1,6 @@
 # GeometricWeather
 
-![Geometric Weather](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_header.png)
+![Geometric Weather](https://github.com/WangDaYeeeeee/GeometricWeather/blob/master/work/preview_header_new.png)
 
 ### app简介
 
