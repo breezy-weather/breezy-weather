@@ -171,6 +171,21 @@ public class SettingsFragment extends AbstractSettingsFragment {
     }
 
     private void initWidgetPart() {
+        // widget week icon mode.
+        ListPreference widgetWeekIconMode = findPreference(getString(R.string.key_week_icon_mode));
+        widgetWeekIconMode.setSummary(
+                getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(getActivity())
+        );
+        widgetWeekIconMode.setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setWidgetWeekIconMode(OptionMapper.getWidgetWeekIconMode((String) newValue));
+            initWidgetPart();
+            preference.setSummary(
+                    getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(getActivity())
+            );
+            PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+            return true;
+        });
+
         // widget minimal icon.
         findPreference(getString(R.string.key_widget_minimal_icon)).setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setWidgetMinimalIconEnabled((Boolean) newValue);

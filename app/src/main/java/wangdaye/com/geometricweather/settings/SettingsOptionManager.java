@@ -10,6 +10,7 @@ import androidx.preference.PreferenceManager;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.option.appearance.Language;
@@ -85,6 +86,7 @@ public class SettingsOptionManager {
     public static final String DEFAULT_TOMORROW_FORECAST_TIME = "21:00";
 
     // widget.
+    private WidgetWeekIconMode widgetWeekIconMode;
     private boolean widgetMinimalIconEnabled;
     private boolean widgetClickToRefreshEnabled;
 
@@ -205,6 +207,11 @@ public class SettingsOptionManager {
                 context.getString(R.string.key_forecast_tomorrow_time), DEFAULT_TOMORROW_FORECAST_TIME);
 
         // widget.
+
+        widgetWeekIconMode = OptionMapper.getWidgetWeekIconMode(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_week_icon_mode), "auto")
+        );
 
         widgetMinimalIconEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_widget_minimal_icon), false);
@@ -435,6 +442,14 @@ public class SettingsOptionManager {
 
     public void setTomorrowForecastTime(String tomorrowForecastTime) {
         this.tomorrowForecastTime = tomorrowForecastTime;
+    }
+
+    public WidgetWeekIconMode getWidgetWeekIconMode() {
+        return widgetWeekIconMode;
+    }
+
+    public void setWidgetWeekIconMode(WidgetWeekIconMode widgetWeekIconMode) {
+        this.widgetWeekIconMode = widgetWeekIconMode;
     }
 
     public boolean isWidgetMinimalIconEnabled() {

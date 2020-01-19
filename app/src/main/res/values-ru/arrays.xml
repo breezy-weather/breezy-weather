@@ -153,4 +153,19 @@
         <item>кгс/cм²</item>
     </string-array>
 
+    <!-- air quality unit. -->
+    <string-array name="air_quality_units">
+        <item>мкг/м³</item>
+    </string-array>
+
+    <!-- duration unit. -->
+    <string-array name="duration_units">
+        <item>ч</item> <!-- hour -->
+    </string-array>
+
+    <!-- pollen unit. -->
+    <string-array name="pollen_units">
+        <item>/м³</item>
+    </string-array>
+
 </resources>

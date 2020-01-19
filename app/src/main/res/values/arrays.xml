@@ -126,6 +126,18 @@
         <item>4:00</item>
     </string-array>
 
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automatic</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
+    </string-array>
+    <string-array name="week_icon_mode_values">
+        <item>auto</item>
+        <item>day</item>
+        <item>night</item>
+    </string-array>
+
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>Native</item>

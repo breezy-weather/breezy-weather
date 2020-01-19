@@ -5,9 +5,11 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.NestedScrollingParent2;
 import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.ViewCompat;
 import android.util.AttributeSet;
+import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -21,7 +23,7 @@ import android.widget.FrameLayout;
  * */
 
 public class SwipeSwitchLayout extends FrameLayout
-        implements NestedScrollingParent3 {
+        implements NestedScrollingParent2, NestedScrollingParent3 {
 
     @Nullable private View target;
     @Nullable private OnSwitchListener switchListener;
@@ -32,7 +34,8 @@ public class SwipeSwitchLayout extends FrameLayout
 
     private int swipeDistance;
     private int swipeTrigger;
-    private int nestedScrollingTrigger;
+    private float nestedScrollingDistance;
+    private float nestedScrollingTrigger;
 
     private float lastX, lastY;
     private int touchSlop;
@@ -43,7 +46,7 @@ public class SwipeSwitchLayout extends FrameLayout
     private boolean isBeingNestedScrolling;
 
     private static final float SWIPE_RATIO = 0.4f;
-    private static final float NESTED_SCROLLING_RATIO = 0.075f;
+    private static final float NESTED_SCROLLING_RATIO = SWIPE_RATIO; // 0.075f
 
     public static final int SWIPE_DIRECTION_LEFT = -1;
     public static final int SWIPE_DIRECTION_RIGHT = 1;
@@ -87,10 +90,21 @@ public class SwipeSwitchLayout extends FrameLayout
     private void initialize() {
         this.target = null;
         this.swipeDistance = 0;
-        this.swipeTrigger = getContext().getResources().getDisplayMetrics().widthPixels / 3;
-        this.nestedScrollingTrigger = (int) (swipeTrigger * 2.25);
+        this.swipeTrigger = 500;
+        this.nestedScrollingDistance = 0;
+        this.nestedScrollingTrigger = 300;
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
+
+    // layout.
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        this.swipeTrigger = getMeasuredWidth() / 5;
+        this.nestedScrollingTrigger = swipeTrigger;
+    }
+
 
     // touch.
 
@@ -189,6 +203,7 @@ public class SwipeSwitchLayout extends FrameLayout
         isBeingDragged = false;
         isHorizontalDragged = false;
         swipeDistance = 0;
+        nestedScrollingDistance = 0;
         setTranslation(swipeTrigger, SWIPE_RATIO);
     }
 
@@ -198,7 +213,7 @@ public class SwipeSwitchLayout extends FrameLayout
         realDistance = Math.max(realDistance, -triggerDistance);
 
         int swipeDirection = swipeDistance < 0 ? SWIPE_DIRECTION_LEFT : SWIPE_DIRECTION_RIGHT;
-        float progress = (float) (1.0 * Math.abs(realDistance) / triggerDistance);
+        float progress = 1.f * Math.abs(realDistance) / triggerDistance;
 
         if (getChildCount() > 0) {
             target = getChildAt(0);
@@ -244,13 +259,13 @@ public class SwipeSwitchLayout extends FrameLayout
             if (swipeDistance > 0) {
                 pageSwipeListener.onPageScrolled(
                         position - 1,
-                        (float) (1 - Math.min(1, 1.0 * swipeDistance / triggerDistance)),
+                        1 - Math.min(1, 1.f * swipeDistance / triggerDistance),
                         Math.max(0, triggerDistance - swipeDistance)
                 );
             } else {
                 pageSwipeListener.onPageScrolled(
                         position,
-                        (float) Math.min(1, -1.0 * swipeDistance / triggerDistance),
+                        Math.min(1, -1.f * swipeDistance / triggerDistance),
                         Math.min(-swipeDistance, triggerDistance)
                 );
             }
@@ -329,12 +344,18 @@ public class SwipeSwitchLayout extends FrameLayout
     @Override
     public void onNestedScrollAccepted(@NonNull View child, @NonNull View target, int axes, int type) {
         isBeingNestedScrolling = true;
+        if ((!target.canScrollHorizontally(-1) && !target.canScrollHorizontally(1))
+                || swipeDistance != 0) {
+            nestedScrollingDistance = nestedScrollingTrigger;
+        } else {
+            nestedScrollingDistance = 0;
+        }
     }
 
     @Override
     public void onStopNestedScroll(@NonNull View target, int type) {
         isBeingNestedScrolling = false;
-        release(nestedScrollingTrigger, NESTED_SCROLLING_RATIO);
+        release(swipeTrigger, NESTED_SCROLLING_RATIO);
     }
 
     @Override
@@ -346,7 +367,7 @@ public class SwipeSwitchLayout extends FrameLayout
             } else {
                 consumed[0] = dx;
             }
-            onNestedScroll(target, 0, 0, consumed[0], dy, type);
+            innerNestedScroll(consumed[0]);
         }
     }
 
@@ -354,7 +375,7 @@ public class SwipeSwitchLayout extends FrameLayout
     public void onNestedScroll(@NonNull View target,
                                int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed,
                                int type, @NonNull int[] consumed) {
-        onNestedScroll(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
+        innerNestedScroll(dxUnconsumed);
         consumed[0] += dxUnconsumed;
     }
 
@@ -362,7 +383,19 @@ public class SwipeSwitchLayout extends FrameLayout
     public void onNestedScroll(@NonNull View target,
                                int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed,
                                int type) {
-        swipeDistance -= dxUnconsumed;
-        setTranslation(nestedScrollingTrigger, NESTED_SCROLLING_RATIO);
+        innerNestedScroll(dxUnconsumed);
+    }
+
+    private void innerNestedScroll(int dxUnconsumed) {
+        if (Math.abs(nestedScrollingDistance) >= nestedScrollingTrigger) {
+            swipeDistance -= dxUnconsumed;
+        } else {
+            nestedScrollingDistance -= dxUnconsumed;
+            swipeDistance -= dxUnconsumed / 10f;
+            if (Math.abs(nestedScrollingDistance) >= nestedScrollingTrigger) {
+                performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            }
+        }
+        setTranslation(swipeTrigger, NESTED_SCROLLING_RATIO);
     }
 }

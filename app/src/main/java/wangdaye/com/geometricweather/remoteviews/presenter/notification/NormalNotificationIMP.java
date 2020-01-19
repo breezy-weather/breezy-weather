@@ -182,6 +182,9 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         // set clear flag
         builder.setOngoing(!canBeCleared);
 
+        // set only alert once.
+        builder.setOnlyAlertOnce(true);
+
         Notification notification = builder.build();
         if (!tempIcon && Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             try {
@@ -300,6 +303,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         );
 
         // weekly.
+        boolean weekIconDaytime = isWeekIconDaytime(
+                SettingsOptionManager.getInstance(context).getWidgetWeekIconMode(), dayTime);
         // 1
         views.setTextViewText( // set week 1.
                 R.id.notification_big_week_1,
@@ -317,10 +322,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_icon_1,
                 ResourceHelper.getWidgetNotificationIconUri(
                         provider,
-                        dayTime
+                        weekIconDaytime
                                 ? weather.getDailyForecast().get(0).day().getWeatherCode()
                                 : weather.getDailyForecast().get(0).night().getWeatherCode(),
-                        dayTime, minimalIcon, textColor
+                        weekIconDaytime, minimalIcon, textColor
                 )
         );
         // 2
@@ -340,10 +345,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_icon_2,
                 ResourceHelper.getWidgetNotificationIconUri( // get icon 2 resource id.
                         provider,
-                        dayTime
+                        weekIconDaytime
                                 ? weather.getDailyForecast().get(1).day().getWeatherCode()
                                 : weather.getDailyForecast().get(1).night().getWeatherCode(),
-                        dayTime, minimalIcon, textColor
+                        weekIconDaytime, minimalIcon, textColor
                 )
         );
         // 3
@@ -363,10 +368,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_icon_3,
                 ResourceHelper.getWidgetNotificationIconUri( // get icon 3 resource id.
                         provider,
-                        dayTime
+                        weekIconDaytime
                                 ? weather.getDailyForecast().get(2).day().getWeatherCode()
                                 : weather.getDailyForecast().get(2).night().getWeatherCode(),
-                        dayTime, minimalIcon, textColor
+                        weekIconDaytime, minimalIcon, textColor
                 )
         );
         // 4
@@ -386,10 +391,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_icon_4,
                 ResourceHelper.getWidgetNotificationIconUri( // get icon 4 resource id.
                         provider,
-                        dayTime
+                        weekIconDaytime
                                 ? weather.getDailyForecast().get(3).day().getWeatherCode()
                                 : weather.getDailyForecast().get(3).night().getWeatherCode(),
-                        dayTime, minimalIcon, textColor
+                        weekIconDaytime, minimalIcon, textColor
                 )
         );
         // 5
@@ -409,10 +414,10 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_big_icon_5,
                 ResourceHelper.getWidgetNotificationIconUri( // get icon 5 resource id.
                         provider,
-                        dayTime
+                        weekIconDaytime
                                 ? weather.getDailyForecast().get(4).day().getWeatherCode()
                                 : weather.getDailyForecast().get(4).night().getWeatherCode(),
-                        dayTime, minimalIcon, textColor
+                        weekIconDaytime, minimalIcon, textColor
                 )
         );
 

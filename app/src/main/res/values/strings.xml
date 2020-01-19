@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.600</string>
+    <string name="version_code">v2.601</string>
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -363,6 +363,7 @@
     <string name="settings_title_forecast_tomorrow">Forecast for tomorrow</string>
     <string name="settings_title_forecast_tomorrow_time">Forecast time for tomorrow</string>
     <string name="settings_category_widget">Widget</string>
+    <string name="settings_title_week_icon_mode">Weekly icons mode</string>
     <string name="settings_title_minimal_icon">Minimalistic icons</string>
     <string name="settings_title_click_widget_to_refresh">Refresh widget when clicked</string>
     <string name="settings_category_notification">Notification</string>
@@ -386,7 +387,6 @@
     <string name="settings_title_notification_hide_big_view">Extended style</string>
     <string name="settings_notification_hide_big_view_on">Hide</string>
     <string name="settings_notification_hide_big_view_off">Show</string>
-
 
     <!--share preference-->
     <string name="sp_widget_day_setting">widget_day_setting</string>
@@ -435,6 +435,7 @@
     <string name="key_forecast_today_time">forecast_time_today</string>
     <string name="key_forecast_tomorrow">timing_forecast_switch_tomorrow</string>
     <string name="key_forecast_tomorrow_time">forecast_time_tomorrow</string>
+    <string name="key_week_icon_mode">week_icon_mode</string>
     <string name="key_widget_minimal_icon">widget_minimal_icon</string>
     <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
     <string name="key_notification">notification_switch</string>

@@ -14,6 +14,7 @@ import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
 import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
 import wangdaye.com.geometricweather.basic.model.option.UpdateInterval;
+import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.option.appearance.Language;
 import wangdaye.com.geometricweather.basic.model.option.appearance.UIStyle;
@@ -339,6 +340,19 @@ public class OptionMapper {
 
             default:
                 return Language.FOLLOW_SYSTEM;
+        }
+    }
+
+    public static WidgetWeekIconMode getWidgetWeekIconMode(String value) {
+        switch (value) {
+            case "day":
+                return WidgetWeekIconMode.DAY;
+
+            case "night":
+                return WidgetWeekIconMode.NIGHT;
+
+            default:
+                return WidgetWeekIconMode.AUTO;
         }
     }
 

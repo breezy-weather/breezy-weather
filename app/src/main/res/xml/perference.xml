@@ -92,6 +92,14 @@
     <PreferenceCategory
         android:title="@string/settings_category_widget">
 
+        <ListPreference
+            android:title="@string/settings_title_week_icon_mode"
+            android:key="@string/key_week_icon_mode"
+            android:entries="@array/week_icon_modes"
+            android:entryValues="@array/week_icon_mode_values"
+            android:dialogTitle="@string/settings_title_week_icon_mode"
+            android:defaultValue="auto" />
+
         <CheckBoxPreference
             android:title="@string/settings_title_minimal_icon"
             android:key="@string/key_widget_minimal_icon"

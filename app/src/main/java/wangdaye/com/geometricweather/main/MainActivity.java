@@ -41,6 +41,7 @@ import wangdaye.com.geometricweather.basic.model.resource.Resource;
 import wangdaye.com.geometricweather.main.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.fragment.LocationManageFragment;
+import wangdaye.com.geometricweather.main.layout.MainLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -326,7 +327,6 @@ public class MainActivity extends GeoActivity
         indicator.setSwitchView(switchLayout);
 
         viewModel.getCurrentLocation().observe(this, resource -> {
-
             setRefreshing(resource.status == Resource.Status.LOADING);
             drawUI(resource.data, resource.isDefaultLocation(), resource.isUpdatedInBackground());
 

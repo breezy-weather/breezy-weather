@@ -349,6 +349,7 @@
     <string name="settings_title_forecast_tomorrow">定时预报(明日天气)</string>
     <string name="settings_title_forecast_tomorrow_time">设定预报时间(明日天气)</string>
     <string name="settings_category_widget">小部件</string>
+    <string name="settings_title_week_icon_mode">一周天气图标样式</string>
     <string name="settings_title_minimal_icon">Minimal图标</string>
     <string name="settings_title_click_widget_to_refresh">点击小部件时进行刷新</string>
     <string name="settings_category_notification">通知</string>

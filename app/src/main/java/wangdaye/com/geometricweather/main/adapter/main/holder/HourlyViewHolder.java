@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -27,6 +26,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.main.adapter.main.MainTag;
 import wangdaye.com.geometricweather.main.adapter.trend.HourlyTrendAdapter;
+import wangdaye.com.geometricweather.main.layout.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.adapter.TagAdapter;
@@ -113,8 +113,7 @@ public class HourlyViewHolder extends AbstractMainTrendCardViewHolder {
                     )
             );
 
-            tagView.setLayoutManager(
-                    new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            tagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
             tagView.setAdapter(
                     new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(weather, (MainTag) tagList.get(newPosition));
@@ -124,8 +123,7 @@ public class HourlyViewHolder extends AbstractMainTrendCardViewHolder {
         }
 
         trendRecyclerView.setHasFixedSize(true);
-        trendRecyclerView.setLayoutManager(
-                new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        trendRecyclerView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
         trendRecyclerView.setAdapter(trendAdapter);
         setTrendAdapterByTag(weather, (MainTag) tagList.get(0));
 

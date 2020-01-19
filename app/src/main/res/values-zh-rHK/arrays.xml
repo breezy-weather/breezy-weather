@@ -35,6 +35,13 @@
         <item>小時數據在上</item>
     </string-array>
 
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>自動</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
+    </string-array>
+
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>原生</item>
@@ -137,9 +144,9 @@
 
     <!-- pressure unit. -->
     <string-array name="pressure_units">
-        <item>好把</item>
+        <item>毫巴</item>
         <item>千帕</item>
-        <item>帕</item>
+        <item>百帕</item>
         <item>標準大氣壓</item>
         <item>毫米汞柱</item>
         <item>英寸汞柱</item>

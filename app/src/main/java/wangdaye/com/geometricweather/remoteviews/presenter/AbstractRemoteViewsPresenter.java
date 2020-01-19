@@ -27,6 +27,7 @@ import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.basic.model.option.unit.DistanceUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.PressureUnit;
@@ -163,6 +164,19 @@ public abstract class AbstractRemoteViewsPresenter {
                 return resId;
             }
             return R.drawable.widget_card_light_100;
+        }
+    }
+
+    public static boolean isWeekIconDaytime(WidgetWeekIconMode mode, boolean daytime) {
+        switch (mode) {
+            case DAY:
+                return true;
+
+            case NIGHT:
+                return false;
+
+            default:
+                return daytime;
         }
     }
 

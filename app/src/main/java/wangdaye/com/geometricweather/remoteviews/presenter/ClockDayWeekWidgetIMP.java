@@ -17,6 +17,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayWeekProvider;
+import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -63,6 +64,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
+        WidgetWeekIconMode weekIconMode = settings.getWidgetWeekIconMode();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
@@ -140,11 +142,12 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 getTemp(weather, 4, temperatureUnit)
         );
 
+        boolean weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime);
         views.setImageViewUri(
                 R.id.widget_clock_day_week_icon_1,
                 getIconDrawableUri(
                         provider, weather,
-                        dayTime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.darkText,
                         0
                 )
         );
@@ -152,7 +155,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_2,
                 getIconDrawableUri(
                         provider, weather,
-                        dayTime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.darkText,
                         1
                 )
         );
@@ -160,7 +163,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_3,
                 getIconDrawableUri(
                         provider, weather,
-                        dayTime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.darkText,
                         2
                 )
         );
@@ -168,7 +171,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_4,
                 getIconDrawableUri(
                         provider, weather,
-                        dayTime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.darkText,
                         3
                 )
         );
@@ -176,7 +179,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_5,
                 getIconDrawableUri(
                         provider, weather,
-                        dayTime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.darkText,
                         4
                 )
         );

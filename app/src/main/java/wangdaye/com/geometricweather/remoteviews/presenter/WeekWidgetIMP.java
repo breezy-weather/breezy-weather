@@ -15,6 +15,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetWeekProvider;
+import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -58,6 +59,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
+        WidgetWeekIconMode weekIconMode = settings.getWidgetWeekIconMode();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
@@ -104,34 +106,35 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_temp_5,
                 getTemp(weather, 4, temperatureUnit));
 
+        boolean weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime);
         views.setImageViewUri(
                 R.id.widget_week_icon_1,
                 getIconDrawableUri(
-                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        provider, weather, weekIconDaytime, minimalIcon, color.darkText,
                         0)
         );
         views.setImageViewUri(
                 R.id.widget_week_icon_2,
                 getIconDrawableUri(
-                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        provider, weather, weekIconDaytime, minimalIcon, color.darkText,
                         1)
         );
         views.setImageViewUri(
                 R.id.widget_week_icon_3,
                 getIconDrawableUri(
-                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        provider, weather, weekIconDaytime, minimalIcon, color.darkText,
                         2)
         );
         views.setImageViewUri(
                 R.id.widget_week_icon_4,
                 getIconDrawableUri(
-                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        provider, weather, weekIconDaytime, minimalIcon, color.darkText,
                         3)
         );
         views.setImageViewUri(
                 R.id.widget_week_icon_5,
                 getIconDrawableUri(
-                        provider, weather, dayTime, minimalIcon, color.darkText,
+                        provider, weather, weekIconDaytime, minimalIcon, color.darkText,
                         4)
         );
 

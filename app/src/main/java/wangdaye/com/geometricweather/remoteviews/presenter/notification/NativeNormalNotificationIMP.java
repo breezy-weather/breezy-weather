@@ -116,11 +116,14 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     .append(Base.getTime(context, weather.getBase().getUpdateDate()));
         }
         builder.setSubText(subtitle.toString());
-        builder.setContentTitle(
-                weather.getCurrent().getTemperature().getTemperature(temperatureUnit)
-                        + " "
-                        + weather.getCurrent().getWeatherText()
-        );
+
+        StringBuilder content = new StringBuilder();
+        if (!tempIcon) {
+            content.append(weather.getCurrent().getTemperature().getTemperature(temperatureUnit))
+                    .append(" ");
+        }
+        content.append(weather.getCurrent().getWeatherText());
+        builder.setContentTitle(content.toString());
 
         StringBuilder contentText = new StringBuilder();
         if (weather.getCurrent().getAirQuality().isValid()) {
@@ -138,6 +141,9 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         // set clear flag
         builder.setOngoing(!canBeCleared);
+
+        // set only alert once.
+        builder.setOnlyAlertOnce(true);
 
         builder.setContentIntent(
                 getWeatherPendingIntent(context, null, GeometricWeather.NOTIFICATION_ID_NORMALLY)
