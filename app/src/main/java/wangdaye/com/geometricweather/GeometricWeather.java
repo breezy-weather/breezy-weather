@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.multidex.MultiDexApplication;
 
 import com.google.gson.GsonBuilder;
 
@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
  * Geometric weather application class.
  * */
 
-public class GeometricWeather extends Application {
+public class GeometricWeather extends MultiDexApplication {
 
     private static GeometricWeather instance;
     public static GeometricWeather getInstance() {

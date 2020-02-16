@@ -288,7 +288,7 @@
     <string name="feedback_ignore_battery_optimizations_title">Ignore battery optimization</string>
     <string name="feedback_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for GeometricWeather.</string>
     
-    <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview activity</string>
+    <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview context</string>
 
     <string name="feedback_unusable_geocoder">This device does not contain a valid geocoder. The location provider has been changed to Baidu Location.</string>
     <string name="feedback_about_geocoder">Geocoder is a component that converts the location result from lat-lon format to a format like \'XX city, YY province \'. In the absence of this component, you can only get weather data through AccuWeather when using the native API as location provider.</string>

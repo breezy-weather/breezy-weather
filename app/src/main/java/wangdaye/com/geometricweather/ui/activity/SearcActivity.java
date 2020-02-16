@@ -39,7 +39,7 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.main.adapter.LocationAdapter;
+import wangdaye.com.geometricweather.main.adapter.location.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
@@ -48,8 +48,8 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
  * */
 
 public class SearcActivity extends GeoActivity
-        implements View.OnClickListener, LocationAdapter.OnLocationItemClickListener,
-        EditText.OnEditorActionListener, WeatherHelper.OnRequestLocationListener {
+        implements View.OnClickListener, EditText.OnEditorActionListener, 
+        WeatherHelper.OnRequestLocationListener {
 
     private CoordinatorLayout container;
     private RelativeLayout searchContainer;
@@ -59,9 +59,10 @@ public class SearcActivity extends GeoActivity
     private CircularProgressView progressView;
 
     private LocationAdapter adapter;
-    private List<Location> locationList;
-
     private WeatherHelper weatherHelper;
+
+    private List<Location> currentList;
+    private List<Location> locationList;
     private String query = "";
 
     private int state = STATE_SHOWING;
@@ -147,13 +148,8 @@ public class SearcActivity extends GeoActivity
     // init.
 
     private void initData() {
-        this.adapter = new LocationAdapter(
-                this,
-                new ArrayList<>(),
-                null,
-                this
-        );
-        this.locationList = DatabaseHelper.getInstance(this).readLocationList();
+        this.currentList = DatabaseHelper.getInstance(this).readLocationList();
+        this.locationList = new ArrayList<>();
 
         this.weatherHelper = new WeatherHelper();
     }
@@ -185,6 +181,27 @@ public class SearcActivity extends GeoActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 this, RecyclerView.VERTICAL, false);
 
+        this.adapter = new LocationAdapter(
+                this,
+                locationList,
+                null,
+                (view, formattedId) -> {
+                    for (int i = 0; i < currentList.size(); i ++) {
+                        if (currentList.get(i).equals(formattedId)) {
+                            SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_failed));
+                            return;
+                        }
+                    }
+
+                    for (Location l : locationList) {
+                        if (l.equals(formattedId)) {
+                            DatabaseHelper.getInstance(this).writeLocation(l);
+                            finishSelf(true);
+                            return;
+                        }
+                    }
+                }
+        );
         this.recyclerView = findViewById(R.id.activity_search_recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new ListDecoration(this));
@@ -212,10 +229,15 @@ public class SearcActivity extends GeoActivity
         this.progressView = findViewById(R.id.activity_search_progress);
         progressView.setAlpha(0);
 
-        AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.search_container_in);
-        animationSet.setStartDelay(350);
-        animationSet.setTarget(searchContainer);
-        animationSet.start();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            searchContainer.setAlpha(1f);
+        } else {
+            AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(
+                    this, R.animator.search_container_in);
+            animationSet.setStartDelay(350);
+            animationSet.setTarget(searchContainer);
+            animationSet.start();
+        }
     }
 
     // control.
@@ -277,21 +299,6 @@ public class SearcActivity extends GeoActivity
         }
     }
 
-    // on location item click listener.
-
-    @Override
-    public void onClick(View view, int position) {
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).equals(adapter.itemList.get(position))) {
-                SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_failed));
-                return;
-            }
-        }
-
-        DatabaseHelper.getInstance(this).writeLocation(adapter.itemList.get(position));
-        finishSelf(true);
-    }
-
     // on editor action listener.
 
     @Override
@@ -314,9 +321,9 @@ public class SearcActivity extends GeoActivity
     @Override
     public void requestLocationSuccess(String query, List<Location> locationList) {
         if (this.query.equals(query)) {
-            adapter.itemList.clear();
-            adapter.itemList.addAll(locationList);
-            adapter.notifyDataSetChanged();
+            this.locationList.clear();
+            this.locationList.addAll(locationList);
+            adapter.update(this.locationList, null);
             setState(STATE_SHOWING);
             if (locationList.size() <= 0) {
                 SnackbarUtils.showSnackbar(this, getString(R.string.feedback_search_nothing));
@@ -327,8 +334,8 @@ public class SearcActivity extends GeoActivity
     @Override
     public void requestLocationFailed(String query) {
         if (this.query.equals(query)) {
-            adapter.itemList.clear();
-            adapter.notifyDataSetChanged();
+            this.locationList.clear();
+            adapter.update(this.locationList, null);
             setState(STATE_SHOWING);
             SnackbarUtils.showSnackbar(this, getString(R.string.feedback_search_nothing));
         }

@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.main.fragment;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.res.ColorStateList;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -32,14 +31,14 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.main.MainListDecoration;
 import wangdaye.com.geometricweather.main.MainThemePicker;
-import wangdaye.com.geometricweather.main.adapter.LocationAdapter;
-import wangdaye.com.geometricweather.ui.dialog.LearnMoreAboutResidentLocationDialog;
+import wangdaye.com.geometricweather.main.adapter.location.LocationAdapter;
+import wangdaye.com.geometricweather.main.adapter.location.LocationTouchCallback;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 public class LocationManageFragment extends Fragment
-        implements LocationAdapter.OnLocationItemClickListener {
+        implements LocationTouchCallback.OnLocationListChangedListener {
 
     private CardView cardView;
     private AppCompatImageView searchIcon;
@@ -57,102 +56,6 @@ public class LocationManageFragment extends Fragment
 
     private @Nullable LocationManageCallback locationListChangedListener;
 
-    private class LocationSwipeCallback extends ItemTouchHelper.SimpleCallback {
-
-        LocationSwipeCallback(int dragDirs, int swipeDirs) {
-            super(dragDirs, swipeDirs);
-        }
-
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView,
-                              @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            ((LocationAdapter.ViewHolder) viewHolder).drawDrag(requireActivity(), false);
-
-            int fromPosition = viewHolder.getAdapterPosition();
-            int toPosition = target.getAdapterPosition();
-            adapter.moveData(fromPosition, toPosition);
-
-            DatabaseHelper.getInstance(requireActivity()).writeLocationList(adapter.itemList);
-            onLocationListChanged(true, true);
-            return true;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int position = viewHolder.getAdapterPosition();
-            Location location = adapter.itemList.get(position);
-            switch (direction) {
-                case ItemTouchHelper.START:
-                    if (location.isCurrentPosition()) {
-                        IntentHelper.startSelectProviderActivityForResult(
-                                requireActivity(), providerSettingsRequestCode);
-                    } else {
-                        location.setResidentPosition(!location.isResidentPosition());
-                        DatabaseHelper.getInstance(requireActivity()).writeLocation(location);
-
-                        if (location.isResidentPosition()) {
-                            SnackbarUtils.showSnackbar(
-                                    (GeoActivity) requireActivity(),
-                                    getString(R.string.feedback_resident_location),
-                                    getString(R.string.learn_more),
-                                    v -> new LearnMoreAboutResidentLocationDialog().show(requireFragmentManager(), null)
-                            );
-                        }
-
-                        onLocationListChanged(true, true);
-                    }
-                    adapter.notifyItemChanged(position);
-                    break;
-
-                case ItemTouchHelper.END:
-                    if (adapter.itemList.size() <= 1) {
-                        adapter.removeData(position);
-                        adapter.insertData(location);
-                        SnackbarUtils.showSnackbar(
-                                (GeoActivity) requireActivity(), getString(R.string.feedback_location_list_cannot_be_null));
-                    } else {
-                        location.setWeather(DatabaseHelper.getInstance(requireActivity()).readWeather(location));
-
-                        DatabaseHelper.getInstance(requireActivity()).deleteLocation(location);
-                        DatabaseHelper.getInstance(requireActivity()).deleteWeather(location);
-
-                        adapter.removeData(position);
-                        SnackbarUtils.showSnackbar(
-                                (GeoActivity) requireActivity(),
-                                getString(R.string.feedback_delete_succeed),
-                                getString(R.string.cancel),
-                                new CancelDeleteListener(location)
-                        );
-
-                        onLocationListChanged(true, true);
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public void onChildDraw(@NonNull Canvas c,
-                                @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
-                                float dX, float dY, int actionState, boolean isCurrentlyActive) {
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-            switch (actionState) {
-                case ItemTouchHelper.ACTION_STATE_SWIPE:
-                    ((LocationAdapter.ViewHolder) viewHolder).drawSwipe(dX);
-                    break;
-
-                case ItemTouchHelper.ACTION_STATE_DRAG:
-                    ((LocationAdapter.ViewHolder) viewHolder).drawDrag(requireActivity(), dY != 0);
-                    break;
-
-                case ItemTouchHelper.ACTION_STATE_IDLE:
-                    ((LocationAdapter.ViewHolder) viewHolder)
-                            .drawSwipe(0)
-                            .drawDrag(requireActivity(), false);
-                    break;
-            }
-        }
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -160,6 +63,14 @@ public class LocationManageFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_location_manage, container, false);
         initWidget(view);
         return view;
+    }
+
+    private List<Location> readLocationList() {
+        List<Location> locationList = DatabaseHelper.getInstance(requireActivity()).readLocationList();
+        for (Location l : locationList) {
+            l.setWeather(DatabaseHelper.getInstance(requireActivity()).readWeather(l));
+        }
+        return locationList;
     }
 
     private void initWidget(View view) {
@@ -176,25 +87,37 @@ public class LocationManageFragment extends Fragment
         this.currentLocationButton = view.findViewById(R.id.fragment_location_manage_currentLocationButton);
         currentLocationButton.setOnClickListener(v -> {
             DatabaseHelper.getInstance(requireActivity()).writeLocation(Location.buildLocal());
-            addLocation(true);
+            addLocation();
         });
 
-        this.recyclerView = view.findViewById(R.id.fragment_location_manage_recyclerView);
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false)
+        List<Location> locationList = readLocationList();
+        adapter = new LocationAdapter(
+                requireActivity(),
+                locationList,
+                themePicker,
+                (v, formattedId) -> {
+                    if (locationListChangedListener != null) {
+                        locationListChangedListener.onSelectedLocation(formattedId);
+                    }
+                }
         );
+        this.recyclerView = view.findViewById(R.id.fragment_location_manage_recyclerView);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(
+                requireActivity(), RecyclerView.VERTICAL, false));
 
         new ItemTouchHelper(
-                new LocationSwipeCallback(
+                new LocationTouchCallback(
+                        (GeoActivity) requireActivity(),
+                        adapter,
                         ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.START | ItemTouchHelper.END
+                        ItemTouchHelper.START | ItemTouchHelper.END,
+                        this
                 )
         ).attachToRecyclerView(recyclerView);
 
-        adapter = null;
         setThemeStyle();
-        resetLocationAdapter(readLocationList());
-        onLocationListChanged(false, false);
+        onLocationListChanged(locationList, false, false);
     }
 
     private void setThemeStyle() {
@@ -251,67 +174,42 @@ public class LocationManageFragment extends Fragment
         this.themePicker = picker;
     }
 
-    private List<Location> readLocationList() {
-        List<Location> locationList = DatabaseHelper.getInstance(requireActivity()).readLocationList();
-        for (Location l : locationList) {
-            l.setWeather(DatabaseHelper.getInstance(requireActivity()).readWeather(l));
-        }
-        return locationList;
-    }
-
     public void updateView(List<Location> newList, @NonNull MainThemePicker picker) {
         boolean themeChanged = themePicker == null || themePicker.isLightTheme() != picker.isLightTheme();
         if (themeChanged) {
             setThemePicker(picker);
             setThemeStyle();
         }
-        resetLocationAdapter(newList);
+
+        adapter.update(newList, picker);
     }
 
     public void addLocation() {
-        addLocation(true);
-    }
-
-    private void addLocation(boolean notify) {
         resetLocationList();
-        if (notify) {
-            SnackbarUtils.showSnackbar((GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
-        }
+        SnackbarUtils.showSnackbar(
+                (GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
     }
 
     public void resetLocationList() {
-        resetLocationAdapter(readLocationList());
-        onLocationListChanged(false, true);
+        List<Location> list = readLocationList();
+        adapter.update(list, themePicker);
+        onLocationListChanged(list, false, true);
     }
 
-    private void resetLocationAdapter(List<Location> list) {
-        if (adapter == null) {
-            adapter = new LocationAdapter(
-                    (GeoActivity) requireActivity(),
-                    list,
-                    themePicker,
-                    this
-            );
-            recyclerView.setAdapter(adapter);
-        } else {
-            adapter.changeData(list, themePicker);
-        }
-    }
-
-    private void onLocationListChanged(boolean updateShortcuts, boolean notifyOutside) {
-        setCurrentLocationButtonEnabled();
+    private void onLocationListChanged(List<Location> list, boolean updateShortcuts, boolean notifyOutside) {
+        setCurrentLocationButtonEnabled(list);
         if (updateShortcuts && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcutsInNewThread(requireActivity(), adapter.itemList);
+            ShortcutsManager.refreshShortcutsInNewThread(requireActivity(), list);
         }
         if (notifyOutside && locationListChangedListener != null) {
             locationListChangedListener.onLocationListChanged();
         }
     }
 
-    private void setCurrentLocationButtonEnabled() {
+    private void setCurrentLocationButtonEnabled(List<Location> list) {
         boolean hasCurrentLocation = false;
-        for (int i = 0; i < adapter.itemList.size(); i ++) {
-            if (adapter.itemList.get(i).isCurrentPosition()) {
+        for (int i = 0; i < list.size(); i ++) {
+            if (list.get(i).isCurrentPosition()) {
                 hasCurrentLocation = true;
                 break;
             }
@@ -331,34 +229,36 @@ public class LocationManageFragment extends Fragment
         this.locationListChangedListener = l;
     }
 
-    // on click listener.
+    // on location list changed listener.
 
-    private class CancelDeleteListener implements View.OnClickListener {
+    @Override
+    public void onLocationSequenceChanged(List<Location> locationList) {
+        DatabaseHelper.getInstance(requireActivity()).writeLocationList(locationList);
+        onLocationListChanged(locationList, true, true);
+    }
 
-        private Location location;
-
-        CancelDeleteListener(Location l) {
-            this.location = l;
-        }
-
-        @Override
-        public void onClick(View view) {
-            DatabaseHelper.getInstance(requireActivity()).writeLocation(location);
-            if (location.getWeather() != null) {
-                DatabaseHelper.getInstance(requireActivity()).writeWeather(location, location.getWeather());
-            }
-
-            addLocation(false);
+    @Override
+    public void onLocationInserted(Location location) {
+        DatabaseHelper.getInstance(requireActivity()).writeLocation(location);
+        if (location.getWeather() != null) {
+            DatabaseHelper.getInstance(requireActivity()).writeWeather(location, location.getWeather());
         }
     }
 
-    // on location item click listener.
+    @Override
+    public void onLocationRemoved(Location location) {
+        DatabaseHelper.getInstance(requireActivity()).deleteLocation(location);
+        DatabaseHelper.getInstance(requireActivity()).deleteWeather(location);
+    }
 
     @Override
-    public void onClick(View view, int position) {
-        String formattedId = adapter.itemList.get(position).getFormattedId();
-        if (locationListChangedListener != null) {
-            locationListChangedListener.onSelectedLocation(formattedId);
-        }
+    public void onLocationChanged(Location location) {
+        DatabaseHelper.getInstance(requireActivity()).writeLocation(location);
+    }
+
+    @Override
+    public void onSelectProviderActivityStarted() {
+        IntentHelper.startSelectProviderActivityForResult(
+                requireActivity(), providerSettingsRequestCode);
     }
 }

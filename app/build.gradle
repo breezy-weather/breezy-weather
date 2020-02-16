@@ -80,19 +80,22 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // android x.
-    implementation 'com.google.android.material:material:1.2.0-alpha03'
+    implementation 'com.google.android.material:material:1.2.0-alpha04'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
     // android architect.
-    implementation "android.arch.work:work-runtime:1.0.1"
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    implementation "android.arch.lifecycle:viewmodel:1.1.1"
-    implementation "android.arch.lifecycle:livedata:1.1.1"
+    implementation "androidx.work:work-runtime:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-runtime:2.2.0"
     //noinspection LifecycleAnnotationProcessorWithJava8
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:2.2.0"
 
     // multi dex.
     implementation 'com.android.support:multidex:1.0.3'

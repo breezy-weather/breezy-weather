@@ -386,6 +386,16 @@ public class SwipeSwitchLayout extends FrameLayout
         innerNestedScroll(dxUnconsumed);
     }
 
+    @Override
+    public boolean onNestedPreFling(@NonNull View target, float velocityX, float velocityY) {
+        return false;
+    }
+
+    @Override
+    public boolean onNestedFling(@NonNull View target, float velocityX, float velocityY, boolean consumed) {
+        return false;
+    }
+
     private void innerNestedScroll(int dxUnconsumed) {
         if (Math.abs(nestedScrollingDistance) >= nestedScrollingTrigger) {
             swipeDistance -= dxUnconsumed;

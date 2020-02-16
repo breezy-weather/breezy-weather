@@ -51,6 +51,8 @@
 -keep public class com.android.vending.licensing.ILicensingService
 
 -keep class android.support.** {*;}
+-keep class androidx.lifecycle.** {*;}
+-keep class android.arch.lifecycle.** {*;}
 
 -keep public class * extends android.support.v4.**
 -keep public class * extends android.support.v7.**

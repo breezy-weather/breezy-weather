@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
@@ -242,7 +242,7 @@ public class MainActivity extends GeoActivity
     // init.
 
     private void initModel() {
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         if (viewModel.isNewInstance()) {
             viewModel.init(this, getLocationId(getIntent()));
         }
@@ -349,6 +349,8 @@ public class MainActivity extends GeoActivity
         });
 
         viewModel.getIndicator().observe(this, resource -> {
+            switchLayout.setEnabled(resource.total > 1);
+
             if (switchLayout.getTotalCount() != resource.total
                     || switchLayout.getPosition() != resource.index) {
                 switchLayout.setData(resource.index, resource.total);
