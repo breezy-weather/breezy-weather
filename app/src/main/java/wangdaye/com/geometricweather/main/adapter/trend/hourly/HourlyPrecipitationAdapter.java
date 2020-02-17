@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -47,8 +46,6 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
             super(itemView);
             hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
             hourlyItem.setParent(getTrendParent());
-            hourlyItem.setWidth(getItemWidth());
-            hourlyItem.setHeight(getItemHeight());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
             hourlyItem.setChartItemView(polylineAndHistogramView);
@@ -95,9 +92,8 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
     }
 
     public HourlyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                                      @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                       ResourceProvider provider, MainThemePicker picker, PrecipitationUnit unit) {
-        super(activity, parent, weather, picker, parentWidth, parentHeight, itemCountPerLine);
+        super(activity, parent, weather, picker);
 
         this.weather = weather;
         this.provider = provider;

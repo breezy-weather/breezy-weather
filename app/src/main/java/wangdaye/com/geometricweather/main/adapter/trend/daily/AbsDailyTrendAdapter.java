@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.adapter.trend.daily;
 
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -13,9 +12,8 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
     private GeoActivity activity;
     private String formattedId;
 
-    public AbsDailyTrendAdapter(GeoActivity activity, TrendParent trendParent, String formattedId,
-                                @Px float parentWidth, @Px float parentHeight, int itemCountPerLine) {
-        super(trendParent, parentWidth, parentHeight, itemCountPerLine);
+    public AbsDailyTrendAdapter(GeoActivity activity, TrendParent trendParent, String formattedId) {
+        super(trendParent);
         this.activity = activity;
         this.formattedId = formattedId;
     }

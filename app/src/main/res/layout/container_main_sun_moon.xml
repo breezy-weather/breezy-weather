@@ -113,6 +113,7 @@
                     android:layout_toEndOf="@id/container_main_sun_moon_moon_icon"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="4dp"
+                    android:textAlignment="viewEnd"
                     style="@style/subtitle_text"
                     tools:text="05:45↑\n17:45↓"
                     tools:ignore="RtlHardcoded" />

@@ -21,7 +21,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -29,7 +28,6 @@ import wangdaye.com.geometricweather.main.model.Indicator;
 import wangdaye.com.geometricweather.main.model.LocationResource;
 import wangdaye.com.geometricweather.main.model.UpdatePackage;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
 public class MainActivityViewModel extends ViewModel
         implements MainActivityRepository.OnLocationCompletedListener {
@@ -197,12 +195,8 @@ public class MainActivityViewModel extends ViewModel
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(updatePackage -> {
-                    if (activity.isForeground()) {
-                        SnackbarUtils.showSnackbar(activity, activity.getString(R.string.feedback_updated_in_background));
-                    }
-                    setLocation(activity, updatePackage, true);
-                }).subscribe();
+                .doOnNext(updatePackage -> setLocation(activity, updatePackage, true))
+                .subscribe();
     }
 
     private int indexLocation(List<Location> locationList, @Nullable String formattedId) {

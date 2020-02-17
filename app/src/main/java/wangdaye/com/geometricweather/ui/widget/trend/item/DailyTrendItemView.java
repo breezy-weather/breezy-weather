@@ -44,9 +44,6 @@ public class DailyTrendItemView extends ViewGroup
     @ColorInt private int contentColor;
     @ColorInt private int subTitleColor;
 
-    private float width;
-    private float height;
-
     private float weekTextBaseLine;
 
     private float dateTextBaseLine;
@@ -65,8 +62,6 @@ public class DailyTrendItemView extends ViewGroup
     private static final int TEXT_MARGIN_DIP = 4;
     private static final int ICON_MARGIN_DIP = 8;
     private static final int MARGIN_BOTTOM_DIP = 16;
-    private static final int MIN_ITEM_WIDTH = 56;
-    private static final int MIN_ITEM_HEIGHT = 144;
 
     public DailyTrendItemView(Context context) {
         super(context);
@@ -99,18 +94,16 @@ public class DailyTrendItemView extends ViewGroup
 
         setTextColor(Color.BLACK, Color.GRAY);
 
-        width = 0;
-        height = 0;
         iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        width = Math.max(DisplayUtils.dpToPx(getContext(), MIN_ITEM_WIDTH), width);
-        height = Math.max(DisplayUtils.dpToPx(getContext(), MIN_ITEM_HEIGHT), height);
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
 
         float y = 0;
-        float consumedHeight = 0;
+        float consumedHeight;
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
 
@@ -153,13 +146,13 @@ public class DailyTrendItemView extends ViewGroup
         // chartItem item view.
         if (chartItem != null) {
             chartItem.measure(
-                    MeasureSpec.makeMeasureSpec((int) width, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec((int) (height - consumedHeight), MeasureSpec.EXACTLY)
             );
         }
         trendViewTop = y;
 
-        setMeasuredDimension((int) width, (int) height);
+        setMeasuredDimension(width, height);
         if (trendParent != null) {
             trendParent.setDrawingBoundary(
                     (int) (trendViewTop + chartItem.getMarginTop()),
@@ -356,16 +349,6 @@ public class DailyTrendItemView extends ViewGroup
     @Override
     public ChartItemView getChartItemView() {
         return chartItem;
-    }
-
-    @Override
-    public void setWidth(float width) {
-        this.width = width;
-    }
-
-    @Override
-    public void setHeight(float height) {
-        this.height = height;
     }
 }
 

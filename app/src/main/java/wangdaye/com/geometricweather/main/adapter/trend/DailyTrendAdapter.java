@@ -4,7 +4,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.TimeZone;
@@ -32,44 +31,34 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public void temperature(GeoActivity activity, TrendRecyclerView parent,
-                            @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                             String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                             ResourceProvider provider, MainThemePicker picker,
                             TemperatureUnit unit) {
-        adapter = new DailyTemperatureAdapter(activity, parent, parentWidth, parentHeight, itemCountPerLine,
-                formattedId, weather, timeZone, provider, picker, unit);
+        adapter = new DailyTemperatureAdapter(activity, parent, formattedId, weather, timeZone, provider, picker, unit);
     }
 
     public void airQuality(GeoActivity activity, TrendRecyclerView parent,
-                           @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                            String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                            MainThemePicker picker) {
-        adapter = new DailyAirQualityAdapter(activity, parent, parentWidth, parentHeight, itemCountPerLine,
-                formattedId, weather, timeZone, picker);
+        adapter = new DailyAirQualityAdapter(activity, parent, formattedId, weather, timeZone, picker);
     }
 
     public void wind(GeoActivity activity, TrendRecyclerView parent,
-                     @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                      String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                      MainThemePicker picker, SpeedUnit unit) {
-        adapter = new DailyWindAdapter(activity, parent, parentWidth, parentHeight, itemCountPerLine,
-                formattedId, weather, timeZone, picker, unit);
+        adapter = new DailyWindAdapter(activity, parent, formattedId, weather, timeZone, picker, unit);
     }
 
     public void uv(GeoActivity activity, TrendRecyclerView parent,
-                   @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                    String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                    MainThemePicker picker) {
-        adapter = new DailyUVAdapter(activity, parent, parentWidth, parentHeight, itemCountPerLine,
-                formattedId, weather, timeZone, picker);
+        adapter = new DailyUVAdapter(activity, parent, formattedId, weather, timeZone, picker);
     }
 
     public void precipitation(GeoActivity activity, TrendRecyclerView parent,
-                              @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                               String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                               ResourceProvider provider, MainThemePicker picker, PrecipitationUnit unit) {
-        adapter = new DailyPrecipitationAdapter(activity, parent, parentWidth, parentHeight, itemCountPerLine,
-                formattedId, weather, timeZone, provider, picker, unit);
+        adapter = new DailyPrecipitationAdapter(activity, parent, formattedId, weather, timeZone, provider, picker, unit);
     }
 
     @NonNull
@@ -112,11 +101,9 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 class DailyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter.trend.daily.DailyTemperatureAdapter {
 
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                   @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                    String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                    ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        super(activity, parent, parentWidth, parentHeight, itemCountPerLine, formattedId, weather, timeZone,
-                true, provider, picker, unit);
+        super(activity, parent, formattedId, weather, timeZone, true, provider, picker, unit);
 
     }
 

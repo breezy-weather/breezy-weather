@@ -40,9 +40,6 @@ public class HourlyTrendItemView extends ViewGroup
 
     @ColorInt private int contentColor;
 
-    private float width;
-    private float height;
-
     private float hourTextBaseLine;
 
     private float iconLeft;
@@ -56,8 +53,6 @@ public class HourlyTrendItemView extends ViewGroup
     private static final int TEXT_MARGIN_DIP = 4;
     private static final int ICON_MARGIN_DIP = 8;
     private static final int MARGIN_BOTTOM_DIP = 16;
-    private static final int MIN_ITEM_WIDTH = 56;
-    private static final int MIN_ITEM_HEIGHT = 128;
 
     public HourlyTrendItemView(Context context) {
         super(context);
@@ -90,15 +85,13 @@ public class HourlyTrendItemView extends ViewGroup
 
         setTextColor(Color.BLACK);
 
-        width = 0;
-        height = 0;
         iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        width = Math.max(DisplayUtils.dpToPx(getContext(), MIN_ITEM_WIDTH), width);
-        height = Math.max(DisplayUtils.dpToPx(getContext(), MIN_ITEM_HEIGHT), height);
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
 
         float y = 0;
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
@@ -128,7 +121,7 @@ public class HourlyTrendItemView extends ViewGroup
         if (chartItem != null) {
             chartItem.measure(
                     MeasureSpec.makeMeasureSpec(
-                            (int) width,
+                            width,
                             MeasureSpec.EXACTLY
                     ), MeasureSpec.makeMeasureSpec(
                             (int) (height - marginBottom - y),
@@ -138,7 +131,7 @@ public class HourlyTrendItemView extends ViewGroup
         }
         trendViewTop = y;
 
-        setMeasuredDimension((int) width, (int) height);
+        setMeasuredDimension(width, height);
         if (trendParent != null) {
             trendParent.setDrawingBoundary(
                     (int) (trendViewTop + chartItem.getMarginTop()),
@@ -267,16 +260,6 @@ public class HourlyTrendItemView extends ViewGroup
     @Override
     public ChartItemView getChartItemView() {
         return chartItem;
-    }
-
-    @Override
-    public void setWidth(float width) {
-        this.width = width;
-    }
-
-    @Override
-    public void setHeight(float height) {
-        this.height = height;
     }
 }
 

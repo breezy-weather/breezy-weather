@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.adapter.trend.hourly;
 
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -17,9 +16,8 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
     private MainThemePicker picker;
 
     public AbsHourlyTrendAdapter(GeoActivity activity, TrendParent trendParent, Weather weather,
-                                 MainThemePicker picker,
-                                 @Px float parentWidth, @Px float parentHeight, int itemCountPerLine) {
-        super(trendParent, parentWidth, parentHeight, itemCountPerLine);
+                                 MainThemePicker picker) {
+        super(trendParent);
         this.activity = activity;
         this.weather = weather;
         this.picker = picker;

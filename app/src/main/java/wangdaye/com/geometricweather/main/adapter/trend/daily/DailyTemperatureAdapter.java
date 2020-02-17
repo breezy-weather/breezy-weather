@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.annotation.Size;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,8 +55,6 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
             super(itemView);
             dailyItem = itemView.findViewById(R.id.item_trend_daily);
             dailyItem.setParent(getTrendParent());
-            dailyItem.setWidth(getItemWidth());
-            dailyItem.setHeight(getItemHeight());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
             dailyItem.setChartItemView(polylineAndHistogramView);
@@ -142,20 +139,17 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
 
     @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                   @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                    String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                    ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        this(activity, parent, parentWidth, parentHeight, itemCountPerLine,
-                formattedId, weather, timeZone, true, provider, picker, unit);
+        this(activity, parent, formattedId, weather, timeZone, true, provider, picker, unit);
     }
 
     @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                   @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                    String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                    boolean showPrecipitationProbability,
                                    ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        super(activity, parent, formattedId, parentWidth, parentHeight, itemCountPerLine);
+        super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;

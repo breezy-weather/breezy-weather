@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -46,8 +45,6 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
             super(itemView);
             dailyItem = itemView.findViewById(R.id.item_trend_daily);
             dailyItem.setParent(getTrendParent());
-            dailyItem.setWidth(getItemWidth());
-            dailyItem.setHeight(getItemHeight());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
             dailyItem.setChartItemView(polylineAndHistogramView);
@@ -101,10 +98,9 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
 
     @SuppressLint("SimpleDateFormat")
     public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                  @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                   MainThemePicker picker) {
-        super(activity, parent, formattedId, parentWidth, parentHeight, itemCountPerLine);
+        super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;

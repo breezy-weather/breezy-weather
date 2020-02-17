@@ -24,6 +24,7 @@ import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
  * Location adapter.
@@ -78,7 +79,8 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
 
         List<LocationModel> modelList = new ArrayList<>(newList.size());
         for (Location l : newList) {
-            modelList.add(new LocationModel(context, l, temperatureUnit, defaultSource, false));
+            modelList.add(new LocationModel(context, l, temperatureUnit, defaultSource,
+                    isLightTheme(picker), false));
         }
         submitList(modelList);
     }
@@ -89,9 +91,15 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
         List<LocationModel> modelList = new ArrayList<>(newList.size());
         for (Location l : newList) {
             modelList.add(new LocationModel(context, l, temperatureUnit, defaultSource,
-                    l.getFormattedId().equals(forceUpdateId)));
+                    isLightTheme(picker), l.getFormattedId().equals(forceUpdateId)));
         }
         submitList(modelList);
+    }
+
+    private boolean isLightTheme(@Nullable MainThemePicker picker) {
+        return picker == null
+                ? TimeManager.getInstance(context).isDayTime()
+                : picker.isLightTheme();
     }
 
     protected List<Location> moveItem(int from, int to) {

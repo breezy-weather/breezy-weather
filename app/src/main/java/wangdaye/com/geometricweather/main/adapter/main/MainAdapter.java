@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.main.adapter.main.holder.AbstractMainCardViewHolder;
-import wangdaye.com.geometricweather.main.adapter.main.holder.AbstractMainTrendCardViewHolder;
 import wangdaye.com.geometricweather.main.adapter.main.holder.AbstractMainViewHolder;
 import wangdaye.com.geometricweather.main.adapter.main.holder.AirQualityViewHolder;
 import wangdaye.com.geometricweather.main.adapter.main.holder.AllergenViewHolder;
@@ -36,7 +34,6 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private @NonNull Location location;
     private @NonNull ResourceProvider provider;
     private @NonNull MainThemePicker picker;
-    private @Px float itemWidth;
 
     private @NonNull List<Integer> viewTypeList;
     private @Nullable Integer firstCardPosition;
@@ -46,19 +43,18 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private boolean itemAnimationEnabled;
 
     public MainAdapter(@NonNull GeoActivity activity, @NonNull Location location,
-                       @NonNull ResourceProvider provider, @NonNull MainThemePicker picker, @Px float itemWidth,
+                       @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        reset(activity, location, provider, picker, itemWidth, listAnimationEnabled, itemAnimationEnabled);
+        reset(activity, location, provider, picker, listAnimationEnabled, itemAnimationEnabled);
     }
 
     public void reset(@NonNull GeoActivity activity, @NonNull Location location,
-                      @NonNull ResourceProvider provider, @NonNull MainThemePicker picker, @Px float itemWidth,
+                      @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
                       boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         this.activity = activity;
         this.location = location;
         this.provider = provider;
         this.picker = picker;
-        this.itemWidth = itemWidth;
 
         this.viewTypeList = new ArrayList<>();
         this.firstCardPosition = null;
@@ -130,18 +126,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AbstractMainViewHolder holder, int position) {
-        if (holder instanceof AbstractMainTrendCardViewHolder) {
-            ((AbstractMainTrendCardViewHolder) holder).onBindView(
-                    activity,
-                    location,
-                    itemWidth,
-                    provider,
-                    picker,
-                    listAnimationEnabled,
-                    itemAnimationEnabled,
-                    firstCardPosition != null && firstCardPosition == position
-            );
-        } else if (holder instanceof AbstractMainCardViewHolder) {
+        if (holder instanceof AbstractMainCardViewHolder) {
             ((AbstractMainCardViewHolder) holder).onBindView(
                     activity,
                     location,

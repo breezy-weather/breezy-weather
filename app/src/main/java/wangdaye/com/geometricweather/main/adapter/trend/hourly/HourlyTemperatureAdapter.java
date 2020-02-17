@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.annotation.Size;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,8 +51,6 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
             super(itemView);
             hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
             hourlyItem.setParent(getTrendParent());
-            hourlyItem.setWidth(getItemWidth());
-            hourlyItem.setHeight(getItemHeight());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
             hourlyItem.setChartItemView(polylineAndHistogramView);
@@ -121,17 +118,14 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
     }
 
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                                    @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                     ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        this(activity, parent, weather, true, parentWidth, parentHeight,
-                itemCountPerLine, provider, picker, unit);
+        this(activity, parent, weather, true, provider, picker, unit);
     }
 
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
                                     boolean showPrecipitationProbability,
-                                    @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                     ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        super(activity, parent, weather, picker, parentWidth, parentHeight, itemCountPerLine);
+        super(activity, parent, weather, picker);
 
         this.weather = weather;
         this.provider = provider;

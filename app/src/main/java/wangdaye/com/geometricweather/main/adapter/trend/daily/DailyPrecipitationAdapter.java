@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -49,8 +48,6 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
             super(itemView);
             dailyItem = itemView.findViewById(R.id.item_trend_daily);
             dailyItem.setParent(getTrendParent());
-            dailyItem.setWidth(getItemWidth());
-            dailyItem.setHeight(getItemHeight());
 
             doubleHistogramView = new DoubleHistogramView(itemView.getContext());
             dailyItem.setChartItemView(doubleHistogramView);
@@ -103,10 +100,9 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
 
     @SuppressLint("SimpleDateFormat")
     public DailyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                     @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                      String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                      ResourceProvider provider, MainThemePicker picker, PrecipitationUnit unit) {
-        super(activity, parent, formattedId, parentWidth, parentHeight, itemCountPerLine);
+        super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;

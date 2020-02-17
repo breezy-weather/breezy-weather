@@ -9,7 +9,4 @@ public interface TrendChild {
 
     void setChartItemView(ChartItemView t);
     ChartItemView getChartItemView();
-
-    void setWidth(@Px float width);
-    void setHeight(@Px float height);
 }

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -47,8 +46,6 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
             super(itemView);
             dailyItem = itemView.findViewById(R.id.item_trend_daily);
             dailyItem.setParent(getTrendParent());
-            dailyItem.setWidth(getItemWidth());
-            dailyItem.setHeight(getItemHeight());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
             dailyItem.setChartItemView(polylineAndHistogramView);
@@ -102,10 +99,9 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
 
     @SuppressLint("SimpleDateFormat")
     public DailyUVAdapter(GeoActivity activity, TrendRecyclerView parent,
-                          @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                           String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                           MainThemePicker picker) {
-        super(activity, parent, formattedId, parentWidth, parentHeight, itemCountPerLine);
+        super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;

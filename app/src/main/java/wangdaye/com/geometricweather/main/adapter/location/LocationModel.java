@@ -29,10 +29,11 @@ public class LocationModel {
     public @NonNull String subtitle;
     public @Nullable String alerts;
 
+    private boolean lightTheme;
     private boolean forceUpdate;
 
-    public LocationModel(Context context, Location location,
-                         TemperatureUnit unit, WeatherSource defaultSource, boolean forceUpdate) {
+    public LocationModel(Context context, Location location, TemperatureUnit unit, WeatherSource defaultSource,
+                         boolean lightTheme, boolean forceUpdate) {
         this.location = location;
 
         if (location.getWeather() != null) {
@@ -102,6 +103,7 @@ public class LocationModel {
             alerts = null;
         }
 
+        this.lightTheme = lightTheme;
         this.forceUpdate = forceUpdate;
     }
 
@@ -117,6 +119,7 @@ public class LocationModel {
                 && isSameString(title, newItem.title)
                 && isSameString(subtitle, newItem.subtitle)
                 && isSameString(alerts, newItem.alerts)
+                && lightTheme == newItem.lightTheme
                 && !newItem.forceUpdate;
     }
 

@@ -4,7 +4,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -26,17 +25,13 @@ public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public void temperature(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                            @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                             ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        adapter = new HourlyTemperatureAdapter(activity, parent, weather, parentWidth, parentHeight, itemCountPerLine,
-                provider, picker, unit);
+        adapter = new HourlyTemperatureAdapter(activity, parent, weather, provider, picker, unit);
     }
 
     public void precipitation(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                              @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                               ResourceProvider provider, MainThemePicker picker, PrecipitationUnit unit) {
-        adapter = new HourlyPrecipitationAdapter(activity, parent, weather, parentWidth, parentHeight, itemCountPerLine,
-                provider, picker, unit);
+        adapter = new HourlyPrecipitationAdapter(activity, parent, weather, provider, picker, unit);
     }
 
     @NonNull
@@ -74,10 +69,8 @@ public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
 class HourlyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter.trend.hourly.HourlyTemperatureAdapter {
 
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                                    @Px float parentWidth, @Px float parentHeight, int itemCountPerLine,
                                     ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        super(activity, parent, weather, true, parentWidth, parentHeight, itemCountPerLine,
-                provider, picker, unit);
+        super(activity, parent, weather, true, provider, picker, unit);
     }
 
     @Override

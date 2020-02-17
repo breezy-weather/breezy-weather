@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +31,7 @@ import wangdaye.com.geometricweather.ui.decotarion.GridMarginsDecoration;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
-public class DailyViewHolder extends AbstractMainTrendCardViewHolder {
+public class DailyViewHolder extends AbstractMainCardViewHolder {
 
     private CardView card;
 
@@ -57,11 +56,10 @@ public class DailyViewHolder extends AbstractMainTrendCardViewHolder {
     }
 
     @Override
-    public void onBindView(GeoActivity activity, @NonNull Location location, @Px float cardWidth,
+    public void onBindView(GeoActivity activity, @NonNull Location location,
                            @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, cardWidth, provider, picker,
-                listAnimationEnabled, itemAnimationEnabled, firstCard);
+        super.onBindView(activity, location, provider, picker, listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         Weather weather = location.getWeather();
         assert weather != null;
@@ -106,7 +104,8 @@ public class DailyViewHolder extends AbstractMainTrendCardViewHolder {
         }
 
         trendRecyclerView.setHasFixedSize(true);
-        trendRecyclerView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
+        trendRecyclerView.setLayoutManager(
+                new TrendHorizontalLinearLayoutManager(context, DisplayUtils.isLandscape(context) ? 7 : 5));
         trendRecyclerView.setAdapter(trendAdapter);
         setTrendAdapterByTag(location.getFormattedId(), weather, location.getTimeZone(), (MainTag) tagList.get(0));
     }
@@ -116,9 +115,6 @@ public class DailyViewHolder extends AbstractMainTrendCardViewHolder {
             case TEMPERATURE:
                 trendAdapter.temperature(
                         (GeoActivity) context, trendRecyclerView,
-                        cardWidth,
-                        context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
-                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
                         formattedId,
                         weather,
                         timeZone,
@@ -131,9 +127,6 @@ public class DailyViewHolder extends AbstractMainTrendCardViewHolder {
             case WIND:
                 trendAdapter.wind(
                         (GeoActivity) context, trendRecyclerView,
-                        cardWidth,
-                        context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
-                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
                         formattedId,
                         weather,
                         timeZone,
@@ -145,9 +138,6 @@ public class DailyViewHolder extends AbstractMainTrendCardViewHolder {
             case PRECIPITATION:
                 trendAdapter.precipitation(
                         (GeoActivity) context, trendRecyclerView,
-                        cardWidth,
-                        context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
-                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
                         formattedId,
                         weather,
                         timeZone,
@@ -160,9 +150,6 @@ public class DailyViewHolder extends AbstractMainTrendCardViewHolder {
             case AIR_QUALITY:
                 trendAdapter.airQuality(
                         (GeoActivity) context, trendRecyclerView,
-                        cardWidth,
-                        context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
-                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
                         formattedId,
                         weather,
                         timeZone,
@@ -173,9 +160,6 @@ public class DailyViewHolder extends AbstractMainTrendCardViewHolder {
             case UV_INDEX:
                 trendAdapter.uv(
                         (GeoActivity) context, trendRecyclerView,
-                        cardWidth,
-                        context.getResources().getDimensionPixelSize(R.dimen.daily_trend_item_height),
-                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
                         formattedId,
                         weather,
                         timeZone,

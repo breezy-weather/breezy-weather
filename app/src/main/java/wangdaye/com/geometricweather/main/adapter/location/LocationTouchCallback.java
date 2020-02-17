@@ -71,7 +71,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                     }
 
                     if (listener != null) {
-                        listener.onLocationChanged(location);
+                        listener.onLocationChanged(list, location);
                     }
                 }
                 break;
@@ -97,7 +97,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                     );
 
                     if (listener != null) {
-                        listener.onLocationRemoved(location);
+                        listener.onLocationRemoved(list, location);
                     }
                 }
                 break;
@@ -125,9 +125,9 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
 
     public interface OnLocationListChangedListener {
         void onLocationSequenceChanged(List<Location> locationList);
-        void onLocationInserted(Location location);
-        void onLocationRemoved(Location location);
-        void onLocationChanged(Location location);
+        void onLocationInserted(List<Location> locationList, Location location);
+        void onLocationRemoved(List<Location> locationList, Location location);
+        void onLocationChanged(List<Location> locationList, Location location);
         void onSelectProviderActivityStarted();
     }
 
@@ -148,7 +148,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
             adapter.update(list, adapter.getThemePicker());
 
             if (listener != null) {
-                listener.onLocationInserted(location);
+                listener.onLocationInserted(list, location);
             }
         }
     }

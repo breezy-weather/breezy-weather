@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +34,7 @@ import wangdaye.com.geometricweather.ui.widget.PrecipitationBar;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
-public class HourlyViewHolder extends AbstractMainTrendCardViewHolder {
+public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
     private CardView card;
 
@@ -75,11 +74,10 @@ public class HourlyViewHolder extends AbstractMainTrendCardViewHolder {
     }
 
     @Override
-    public void onBindView(GeoActivity activity, @NonNull Location location, @Px float cardWidth,
+    public void onBindView(GeoActivity activity, @NonNull Location location,
                            @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, cardWidth, provider, picker,
-                listAnimationEnabled, itemAnimationEnabled, firstCard);
+        super.onBindView(activity, location, provider, picker, listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         Weather weather = location.getWeather();
         assert weather != null;
@@ -123,7 +121,8 @@ public class HourlyViewHolder extends AbstractMainTrendCardViewHolder {
         }
 
         trendRecyclerView.setHasFixedSize(true);
-        trendRecyclerView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
+        trendRecyclerView.setLayoutManager(
+                new TrendHorizontalLinearLayoutManager(context, DisplayUtils.isLandscape(context) ? 7 : 5));
         trendRecyclerView.setAdapter(trendAdapter);
         setTrendAdapterByTag(weather, (MainTag) tagList.get(0));
 
@@ -162,9 +161,6 @@ public class HourlyViewHolder extends AbstractMainTrendCardViewHolder {
                 trendAdapter.temperature(
                         (GeoActivity) context, trendRecyclerView,
                         weather,
-                        cardWidth,
-                        context.getResources().getDimensionPixelSize(R.dimen.hourly_trend_item_height),
-                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
                         provider,
                         picker,
                         SettingsOptionManager.getInstance(context).getTemperatureUnit()
@@ -175,9 +171,6 @@ public class HourlyViewHolder extends AbstractMainTrendCardViewHolder {
                 trendAdapter.precipitation(
                         (GeoActivity) context, trendRecyclerView,
                         weather,
-                        cardWidth,
-                        context.getResources().getDimensionPixelSize(R.dimen.hourly_trend_item_height),
-                        DisplayUtils.isTabletDevice(context) ? 7 : 5,
                         provider,
                         picker,
                         SettingsOptionManager.getInstance(context).getPrecipitationUnit()

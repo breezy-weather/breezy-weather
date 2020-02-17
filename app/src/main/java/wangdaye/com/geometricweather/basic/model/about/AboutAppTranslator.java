@@ -22,7 +22,7 @@ public class AboutAppTranslator {
     }
 
     public static List<AboutAppTranslator> buildTranslatorList() {
-        List<AboutAppTranslator> list = new ArrayList<>(17);
+        List<AboutAppTranslator> list = new ArrayList<>(18);
         list.add(new AboutAppTranslator(
                 "Mehmet Saygin Yilmaz",
                 "memcos@gmail.com",
@@ -107,6 +107,11 @@ public class AboutAppTranslator {
                 "sodqe muhammad",
                 "sodqe.younes@gmail.com",
                 R.drawable.flag_ar
+        ));
+        list.add(new AboutAppTranslator(
+                "Thorsten Eckerlein",
+                "thorsten.eckerlein@gmx.de",
+                R.drawable.flag_de
         ));
         return list;
     }

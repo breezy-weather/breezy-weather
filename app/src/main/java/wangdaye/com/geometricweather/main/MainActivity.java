@@ -345,6 +345,14 @@ public class MainActivity extends GeoActivity
                 );
             } else if (resource.status == Resource.Status.ERROR) {
                 SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
+            } else if (resource.isUpdatedInBackground()) {
+                final String formattedId = resource.data.getFormattedId();
+                getSnackbarContainer().postDelayed(() -> {
+                    if (formattedId.equals(viewModel.getCurrentLocationFormattedId())) {
+                        SnackbarUtils.showSnackbar(
+                                this, getString(R.string.feedback_updated_in_background));
+                    }
+                }, 1200);
             }
         });
 
@@ -419,12 +427,10 @@ public class MainActivity extends GeoActivity
 
         if (adapter == null) {
             adapter = new MainAdapter(this, location, resourceProvider, themePicker,
-                    themePicker.getListItemAdaptiveWidth(this),
                     listAnimationEnabled, itemAnimationEnabled);
             recyclerView.setAdapter(adapter);
         } else {
             adapter.reset(this, location, resourceProvider, themePicker,
-                    themePicker.getListItemAdaptiveWidth(this),
                     listAnimationEnabled, itemAnimationEnabled);
             adapter.notifyDataSetChanged();
         }

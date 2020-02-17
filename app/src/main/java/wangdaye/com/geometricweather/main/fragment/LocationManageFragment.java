@@ -238,22 +238,25 @@ public class LocationManageFragment extends Fragment
     }
 
     @Override
-    public void onLocationInserted(Location location) {
+    public void onLocationInserted(List<Location> locationList, Location location) {
         DatabaseHelper.getInstance(requireActivity()).writeLocation(location);
         if (location.getWeather() != null) {
             DatabaseHelper.getInstance(requireActivity()).writeWeather(location, location.getWeather());
         }
+        onLocationListChanged(locationList, true, true);
     }
 
     @Override
-    public void onLocationRemoved(Location location) {
+    public void onLocationRemoved(List<Location> locationList, Location location) {
         DatabaseHelper.getInstance(requireActivity()).deleteLocation(location);
         DatabaseHelper.getInstance(requireActivity()).deleteWeather(location);
+        onLocationListChanged(locationList, true, true);
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(List<Location> locationList, Location location) {
         DatabaseHelper.getInstance(requireActivity()).writeLocation(location);
+        onLocationListChanged(locationList, true, true);
     }
 
     @Override

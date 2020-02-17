@@ -2,6 +2,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Baidu Location</item>
+        <item>Baidu IP Location (متاح للصين فقط)</item>
+        <item>AMap Location</item>
+        <item>Native API</item>
+    </string-array>
+
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>تلقائي</item>
@@ -15,6 +23,24 @@
         <item>Material animation</item>
     </string-array>
 
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>كل ٣٠ دقيقة</item>
+        <item>كل ساعة</item>
+        <item>كل ساعة ونصف</item>
+        <item>كل ساعتان</item>
+        <item>كل ساعتان ونصف</item>
+        <item>كل ٣ ساعات</item>
+        <item>كل ٣ ساعات ونصف</item>
+        <item>كل ٤ ساعات</item>
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Native</item>
+        <item>@string/geometric_weather</item>
+    </string-array>
+
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
         <item>داكن</item>
@@ -22,14 +48,35 @@
         <item>فاتح</item>
     </string-array>
 
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Rectangle</item>
+        <item>Symmetry</item>
+        <item>Tile</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+        <item>Vertical</item>
+        <item>Oreo</item>
+        <item>Oreo (Google sans)</item>
+    </string-array>
+
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
-        <item>وقت التحديث</item>
+        <item>وقت آخر تحديث للطقس</item>
         <item>مؤشر جودة الهواء (غير متاح في بعض المناطق)</item>
         <item>الرياح</item>
-        <item>درجة الحرارة المعقولة</item>
+        <item>درجة الحرارة المحسوسة</item>
         <item>تقويم قمري</item>
         <item>مخصص</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="clock_font">
+        <item>sans-serif-light</item>
+        <item>sans-serif</item>
+        <item>sans-serif-black</item>
+        <item>analog</item>
     </string-array>
 
     <!-- widget card style. -->
@@ -69,6 +116,49 @@
         <item>تلقائي</item>
         <item>دائماً في النهار</item>
         <item>دائماً في الليل</item>
+    </string-array>
+
+    <!-- speed unit. -->
+    <string-array name="speed_units">
+        <item>كم/س</item>
+        <item>م/س</item>
+        <item>عقدة</item>
+        <item>ميل/س</item>
+        <item>قدم/س</item>
+    </string-array>
+
+    <!-- precipitation unit. -->
+    <string-array name="precipitation_units">
+        <item>ملم</item>
+        <item>إنش</item>
+        <item>لتر/م²</item>
+    </string-array>
+
+    <!-- temperature unit. -->
+    <string-array name="temperature_units">
+        <item>°م</item>
+        <item>°ف</item>
+        <item>ك</item>
+    </string-array>
+
+    <!-- distance unit. -->
+    <string-array name="distance_units">
+        <item>كم</item>
+        <item>م</item>
+        <item>ميل</item>
+        <item>ميل بحري</item>
+        <item>قدم</item>
+    </string-array>
+
+    <!-- pressure unit. -->
+    <string-array name="pressure_units">
+        <item>ملي بار</item>
+        <item>كيلو باسكال</item>
+        <item>هيكتوباسكال</item>
+        <item>ضغط جوي</item>
+        <item>ملي متر زئبق</item>
+        <item>بوصة من الزئبق</item>
+        <item>كغم قوة/سم²</item>
     </string-array>
 
 </resources>
