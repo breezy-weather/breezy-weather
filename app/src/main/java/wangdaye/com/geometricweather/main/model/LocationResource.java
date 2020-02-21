@@ -51,7 +51,9 @@ public class LocationResource extends Resource<Location> {
         return locateFailed;
     }
 
-    public boolean isUpdatedInBackground() {
-        return updatedInBackground;
+    public boolean consumeUpdatedInBackground() {
+        boolean result = updatedInBackground;
+        updatedInBackground = false;
+        return result;
     }
 }

@@ -9,11 +9,11 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.locks.ReadWriteLock;
 
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.main.model.LocationResource;
+import wangdaye.com.geometricweather.main.model.LockableLocationList;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class MainActivityRepository {
@@ -30,8 +30,7 @@ public class MainActivityRepository {
 
     public void getWeather(Context context,
                            @NonNull MutableLiveData<LocationResource> currentLocation,
-                           @NonNull List<Location> totalLocationList,
-                           @NonNull ReadWriteLock lock,
+                           @NonNull LockableLocationList lockableLocationList,
                            boolean locate,
                            @Nullable OnLocationCompletedListener l) {
         assert currentLocation.getValue() != null;
@@ -47,16 +46,16 @@ public class MainActivityRepository {
                                 return;
                             }
 
-                            lock.writeLock().lock();
                             currentLocation.setValue(LocationResource.loading(requestLocation, defaultLocation));
-                            updateLocationList(requestLocation, totalLocationList);
-                            if (l != null) {
-                                l.onCompleted(context);
-                            }
-                            lock.writeLock().unlock();
+                            lockableLocationList.write((getter, setter) -> {
+                                updateLocationList(requestLocation, getter, setter);
+                                if (l != null) {
+                                    l.onCompleted(context);
+                                }
+                            });
 
                             getWeatherWithValidLocationInformation(
-                                    context, currentLocation, totalLocationList, lock);
+                                    context, currentLocation, lockableLocationList);
                         }
 
                         @Override
@@ -65,32 +64,31 @@ public class MainActivityRepository {
                                 return;
                             }
 
-                            lock.writeLock().lock();
                             if (requestLocation.isUsable()) {
                                 currentLocation.setValue(
                                         LocationResource.loading(requestLocation, defaultLocation, true));
-                                updateLocationList(requestLocation, totalLocationList);
-                                lock.writeLock().unlock();
-
-                                getWeatherWithValidLocationInformation(
-                                        context, currentLocation, totalLocationList, lock);
                             } else {
                                 currentLocation.setValue(
                                         LocationResource.error(requestLocation, defaultLocation, true));
-                                updateLocationList(requestLocation, totalLocationList);
-                                lock.writeLock().unlock();
+                            }
+
+                            lockableLocationList.write((getter, setter) ->
+                                    updateLocationList(requestLocation, getter, setter));
+
+                            if (requestLocation.isUsable()) {
+                                getWeatherWithValidLocationInformation(
+                                        context, currentLocation, lockableLocationList);
                             }
                         }
                     });
         } else {
-            getWeatherWithValidLocationInformation(context, currentLocation, totalLocationList, lock);
+            getWeatherWithValidLocationInformation(context, currentLocation, lockableLocationList);
         }
     }
 
     private void getWeatherWithValidLocationInformation(Context context,
                                                         @NonNull MutableLiveData<LocationResource> currentLocation,
-                                                        @NonNull List<Location> totalLocationList,
-                                                        @NonNull ReadWriteLock lock) {
+                                                        @NonNull LockableLocationList lockableLocationList) {
         assert currentLocation.getValue() != null;
         Location data = currentLocation.getValue().data;
         boolean defaultLocation = currentLocation.getValue().isDefaultLocation();
@@ -102,10 +100,9 @@ public class MainActivityRepository {
                     return;
                 }
 
-                lock.writeLock().lock();
                 currentLocation.setValue(LocationResource.success(requestLocation, defaultLocation));
-                updateLocationList(requestLocation, totalLocationList);
-                lock.writeLock().unlock();
+                lockableLocationList.write((getter, setter) ->
+                        updateLocationList(requestLocation, getter, setter));
             }
 
             @Override
@@ -114,19 +111,22 @@ public class MainActivityRepository {
                     return;
                 }
 
-                lock.writeLock().lock();
                 currentLocation.setValue(LocationResource.error(requestLocation, defaultLocation));
-                updateLocationList(requestLocation, totalLocationList);
-                lock.writeLock().unlock();
+                lockableLocationList.write((getter, setter) ->
+                        updateLocationList(requestLocation, getter, setter));
             }
         });
     }
 
-    private void updateLocationList(@NonNull Location data, @NonNull List<Location> totalList) {
+    private void updateLocationList(@NonNull Location data,
+                                    @NonNull LockableLocationList.Getter getter,
+                                    @NonNull LockableLocationList.Setter setter) {
+        List<Location> totalList = new ArrayList<>(getter.getLocationList());
         int index = indexLocation(totalList, data);
         if (index != INVALID_LOCATION_INDEX) {
             totalList.set(index, data);
         }
+        setter.setLocationList(totalList);
     }
 
     private int indexLocation(@NonNull List<Location> locationList, @NonNull Location location) {

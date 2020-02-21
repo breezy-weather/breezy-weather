@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
             android:id="@+id/activity_card_display_manage_appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
                 app:title="@string/settings_title_card_display"
                 app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_card_display_manage_recyclerView"

@@ -29,7 +29,7 @@
         
     </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
 
-    <com.google.android.material.appbar.AppBarLayout
+    <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
         android:id="@+id/activity_main_appBar"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
             app:theme="@style/GeometricWeatherTheme.AppbarTheme"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
     <wangdaye.com.geometricweather.ui.widget.InkPageIndicator
         android:id="@+id/activity_main_indicator"

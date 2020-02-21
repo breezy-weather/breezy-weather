@@ -37,7 +37,8 @@ public enum Language {
     PORTUGUESE("portuguese", new Locale("pt")),
     PORTUGUESE_BR("portuguese_brazilian", new Locale("pt", "BR")),
     SLOVENIAN("slovenian", new Locale("sl", "SI")),
-    ARABIC("arabic", new Locale("ar"));
+    ARABIC("arabic", new Locale("ar")),
+    CZECH("czech", new Locale("cs"));
 
     private String languageId;
     private Locale locale;

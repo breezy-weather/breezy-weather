@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.layout;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -9,18 +8,14 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.recyclerview.widget.RecyclerView;
 
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-
 public class MainLayoutManager extends RecyclerView.LayoutManager {
 
-    private Context context;
     private @Px int scrollOffset;
     private @Px int measuredHeight;
     private boolean dataSetChanged;
 
-    public MainLayoutManager(Context context) {
+    public MainLayoutManager() {
         super();
-        this.context = context;
         this.scrollOffset = 0;
         this.measuredHeight = 0;
         this.dataSetChanged = true;
@@ -35,7 +30,7 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
         return new RecyclerView.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     @Override
@@ -67,33 +62,25 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
             return;
         }
 
-        int cardWidth = DisplayUtils.getTabletListAdaptiveWidth(context, getWidth());
-        int widthUsed = 0;
-        if (cardWidth < getWidth()) {
-            widthUsed = getWidth() - cardWidth;
-        }
-
         int y = 0;
         if (!getClipToPadding()) {
             y += getPaddingTop();
         }
 
-        int childWidth;
         int childHeight;
         ViewGroup.MarginLayoutParams params;
         for (int i = 0; i < getItemCount(); i ++) {
             View child = recycler.getViewForPosition(i);
             addView(child);
 
-            measureChildWithMargins(child, widthUsed, 0);
-            childWidth = getDecoratedMeasuredWidth(child);
+            measureChildWithMargins(child, 0, 0);
             childHeight = getDecoratedMeasuredHeight(child);
             params = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
             layoutDecoratedWithMargins(
                     child,
-                    widthUsed / 2,
+                    getPaddingLeft(),
                     y,
-                    widthUsed / 2 + childWidth + params.leftMargin + params.rightMargin,
+                    getWidth() - getPaddingRight(),
                     y + childHeight + params.topMargin + params.bottomMargin
             );
 

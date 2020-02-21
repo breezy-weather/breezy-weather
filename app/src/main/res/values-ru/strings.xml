@@ -336,6 +336,7 @@
     <string name="settings_title_forecast_tomorrow">Прогноз на завтра</string>
     <string name="settings_title_forecast_tomorrow_time">Время получения прогноза на завтра</string>
     <string name="settings_category_widget">Виджет</string>
+    <string name="settings_title_week_icon_mode">Иконки прогноза на неделю</string>
     <string name="settings_title_minimal_icon">Минималистичные иконки</string>
     <string name="settings_title_click_widget_to_refresh">Обновлять виджет при нажатии</string>
     <string name="settings_category_notification">Уведомления</string>

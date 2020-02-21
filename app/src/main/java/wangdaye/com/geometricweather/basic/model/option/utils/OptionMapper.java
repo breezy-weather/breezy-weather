@@ -338,6 +338,9 @@ public class OptionMapper {
             case "arabic":
                 return Language.ARABIC;
 
+            case "czech":
+                return Language.CZECH;
+
             default:
                 return Language.FOLLOW_SYSTEM;
         }

@@ -14,8 +14,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.atomic.AtomicReference;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -26,6 +25,7 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.main.model.Indicator;
 import wangdaye.com.geometricweather.main.model.LocationResource;
+import wangdaye.com.geometricweather.main.model.LockableLocationList;
 import wangdaye.com.geometricweather.main.model.UpdatePackage;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
@@ -34,12 +34,7 @@ public class MainActivityViewModel extends ViewModel
 
     private MutableLiveData<LocationResource> currentLocation;
     private MutableLiveData<Indicator> indicator;
-
-    private List<Location> locationList;
-    private int currentPositionIndex;
-    private int currentIndex;
-    private ReadWriteLock lock;
-
+    private LockableLocationList lockableLocationList;
     private MainActivityRepository repository;
 
     private boolean newInstance;
@@ -52,8 +47,7 @@ public class MainActivityViewModel extends ViewModel
         indicator = new MutableLiveData<>();
         indicator.setValue(new Indicator(1, 0));
 
-        locationList = new ArrayList<>();
-        lock = new ReentrantReadWriteLock();
+        lockableLocationList = new LockableLocationList();
 
         newInstance = true;
     }
@@ -74,56 +68,61 @@ public class MainActivityViewModel extends ViewModel
             repository = new MainActivityRepository(activity);
         }
 
-        Observable.create((ObservableOnSubscribe<UpdatePackage>) emitter -> {
-            lock.writeLock().lock();
+        Observable.create((ObservableOnSubscribe<UpdatePackage>) emitter ->
+            lockableLocationList.write((getter, setter) -> {
+                setter.setCurrentPositionIndex(INVALID_LOCATION_INDEX);
+                setter.setCurrentIndex(0);
 
-            currentPositionIndex = INVALID_LOCATION_INDEX;
-            currentIndex = 0;
-
-            DatabaseHelper databaseHelper = DatabaseHelper.getInstance(activity);
-            locationList = databaseHelper.readLocationList();
-            for (int i = 0; i < locationList.size(); i ++) {
-                locationList.get(i).setWeather(databaseHelper.readWeather(locationList.get(i)));
-                if (locationList.get(i).isCurrentPosition()) {
-                    currentPositionIndex = i;
+                DatabaseHelper databaseHelper = DatabaseHelper.getInstance(activity);
+                List<Location> locationList = databaseHelper.readLocationList();
+                setter.setLocationList(locationList);
+                for (int i = 0; i < locationList.size(); i ++) {
+                    locationList.get(i).setWeather(databaseHelper.readWeather(locationList.get(i)));
+                    if (locationList.get(i).isCurrentPosition()) {
+                        setter.setCurrentPositionIndex(i);
+                    }
+                    if (locationList.get(i).equals(formattedId)) {
+                        setter.setCurrentIndex(i);
+                    }
                 }
-                if (locationList.get(i).equals(formattedId)) {
-                    currentIndex = i;
+
+                int currentPositionIndex = getter.getCurrentPositionIndex();
+                int currentIndex = getter.getCurrentIndex();
+                if (locationList.get(currentIndex).isResidentPosition()) {
+                    Location current = locationList.get(currentIndex);
+                    Location currentPosition = currentPositionIndex == INVALID_LOCATION_INDEX
+                            ? null
+                            : locationList.get(currentPositionIndex);
+                    if (currentPosition != null && currentPosition.isCloseTo(activity, current)) {
+                        currentIndex = currentPositionIndex;
+                    }
                 }
-            }
 
-            if (locationList.get(currentIndex).isResidentPosition()) {
-                Location current = locationList.get(currentIndex);
-                Location currentPosition = currentPositionIndex == INVALID_LOCATION_INDEX
-                        ? null
-                        : locationList.get(currentPositionIndex);
-                if (currentPosition != null && currentPosition.isCloseTo(activity, current)) {
-                    currentIndex = currentPositionIndex;
-                }
-            }
-
-            UpdatePackage pkg = new UpdatePackage(
-                    locationList.get(currentIndex), getIndicatorInstance(activity));
-
-            lock.writeLock().unlock();
-
-            emitter.onNext(pkg);
-        }).subscribeOn(Schedulers.io())
+                emitter.onNext(
+                        new UpdatePackage(
+                                locationList.get(currentIndex),
+                                getIndicatorInstance(activity, locationList, currentPositionIndex, currentIndex)
+                        )
+                );
+            })
+        ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(updatePackage -> setLocation(activity, updatePackage, false))
                 .subscribe();
     }
 
     public void setLocation(GeoActivity activity, int offset) {
-        lock.readLock().lock();
+        AtomicReference<UpdatePackage> pkg = new AtomicReference<>();
 
-        currentIndex = getLocationIndexFromList(activity, offset);
-        UpdatePackage pkg = new UpdatePackage(
-                locationList.get(currentIndex), getIndicatorInstance(activity));
+        lockableLocationList.write((getter, setter) -> {
+            setter.setCurrentIndex(getLocationIndexFromList(activity, getter, offset));
+            pkg.set(new UpdatePackage(
+                    getter.getLocationList().get(getter.getCurrentIndex()),
+                    getIndicatorInstance(activity, getter)
+            ));
+        });
 
-        lock.readLock().unlock();
-
-        setLocation(activity, pkg, false);
+        setLocation(activity, pkg.get(), false);
     }
 
     private void setLocation(GeoActivity activity, UpdatePackage pkg, boolean updatedInBackground) {
@@ -149,7 +148,13 @@ public class MainActivityViewModel extends ViewModel
         }
     }
 
-    private Indicator getIndicatorInstance(Context context) {
+    private Indicator getIndicatorInstance(Context context, LockableLocationList.Getter getter) {
+        return getIndicatorInstance(context, getter.getLocationList(),
+                getter.getCurrentPositionIndex(), getter.getCurrentIndex());
+    }
+
+    private Indicator getIndicatorInstance(Context context, List<Location> locationList,
+                                           int currentPositionIndex, int currentIndex) {
         int index = 0;
         int total = 0;
         for (int i = 0; i < locationList.size(); i ++) {
@@ -167,31 +172,32 @@ public class MainActivityViewModel extends ViewModel
 
     public void updateLocationFromBackground(GeoActivity activity, @Nullable String formattedId) {
         Observable.create((ObservableOnSubscribe<UpdatePackage>) emitter -> {
-            lock.writeLock().lock();
+            AtomicReference<UpdatePackage> pkg = new AtomicReference<>(null);
 
-            int index = indexLocation(locationList, formattedId);
-            if (index == INVALID_LOCATION_INDEX) {
-                lock.writeLock().unlock();
-                return;
-            }
+            lockableLocationList.write((getter, setter) -> {
+                List<Location> locationList = new ArrayList<>(getter.getLocationList());
 
-            Location location = DatabaseHelper.getInstance(activity).readLocation(locationList.get(index));
-            if (location == null) {
-                lock.writeLock().unlock();
-                return;
-            }
+                int index = indexLocation(locationList, formattedId);
+                if (index == INVALID_LOCATION_INDEX) {
+                    return;
+                }
 
-            location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
-            locationList.set(index, location);
-            UpdatePackage pkg = null;
-            if (index == currentIndex) {
-                pkg = new UpdatePackage(location, getIndicatorInstance(activity));
-            }
+                Location location = DatabaseHelper.getInstance(activity).readLocation(locationList.get(index));
+                if (location == null) {
+                    return;
+                }
 
-            lock.writeLock().unlock();
+                location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
+                locationList.set(index, location);
+                setter.setLocationList(locationList);
 
-            if (pkg != null) {
-                emitter.onNext(pkg);
+                if (index == getter.getCurrentIndex()) {
+                    pkg.set(new UpdatePackage(location, getIndicatorInstance(activity, getter)));
+                }
+            });
+
+            if (pkg.get() != null) {
+                emitter.onNext(pkg.get());
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -213,7 +219,13 @@ public class MainActivityViewModel extends ViewModel
         return INVALID_LOCATION_INDEX;
     }
 
-    public int getLocationIndexFromList(GeoActivity activity, int offset) {
+    public int getLocationIndexFromList(GeoActivity activity, LockableLocationList.Getter getter, int offset) {
+        return getLocationIndexFromList(activity, getter.getLocationList(),
+                getter.getCurrentPositionIndex(), getter.getCurrentIndex(), offset);
+    }
+
+    public int getLocationIndexFromList(GeoActivity activity, List<Location> locationList,
+                                        int currentPositionIndex, int currentIndex, int offset) {
         if (offset == 0) {
             return currentIndex;
         }
@@ -231,7 +243,13 @@ public class MainActivityViewModel extends ViewModel
     }
 
     public Location getLocationFromList(GeoActivity activity, int offset) {
-        return locationList.get(getLocationIndexFromList(activity, offset));
+        final Location[] location = new Location[1];
+        lockableLocationList.read(getter ->
+                location[0] = getter.getLocationList().get(
+                        getLocationIndexFromList(activity, getter, offset)
+                )
+        );
+        return location[0];
     }
 
     public void updateWeather(GeoActivity activity) {
@@ -263,7 +281,7 @@ public class MainActivityViewModel extends ViewModel
                                         && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
                                     if (location.isUsable()) {
                                         repository.getWeather(activity,
-                                                currentLocation, locationList, lock,false, this);
+                                                currentLocation, lockableLocationList,false, this);
                                     } else {
                                         currentLocation.setValue(
                                                 LocationResource.error(location, true));
@@ -271,13 +289,13 @@ public class MainActivityViewModel extends ViewModel
                                     return;
                                 }
                             }
-                            repository.getWeather(activity, currentLocation, locationList, lock, true, this);
+                            repository.getWeather(activity, currentLocation, lockableLocationList, true, this);
                         });
                 return;
             }
         }
 
-        repository.getWeather(activity, currentLocation, locationList, lock, location.isCurrentPosition(), this);
+        repository.getWeather(activity, currentLocation, lockableLocationList, location.isCurrentPosition(), this);
     }
 
     private boolean isPivotalPermission(String permission) {
@@ -330,6 +348,8 @@ public class MainActivityViewModel extends ViewModel
     }
 
     public List<Location> getLocationList() {
+        List<Location> locationList = new ArrayList<>();
+        lockableLocationList.read(getter -> locationList.addAll(getter.getLocationList()));
         return locationList;
     }
 
@@ -354,10 +374,12 @@ public class MainActivityViewModel extends ViewModel
     @Override
     public void onCompleted(Context context) {
         Indicator old = indicator.getValue();
-        Indicator now = getIndicatorInstance(context);
+        final Indicator[] now = {null};
 
-        if (old == null || !old.equals(now)) {
-            indicator.setValue(now);
+        lockableLocationList.read(getter -> now[0] = getIndicatorInstance(context, getter));
+
+        if (old == null || !old.equals(now[0])) {
+            indicator.setValue(now[0]);
         }
     }
 }

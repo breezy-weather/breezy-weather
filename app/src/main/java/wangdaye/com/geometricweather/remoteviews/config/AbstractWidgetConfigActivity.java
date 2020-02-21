@@ -506,7 +506,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             if (subtitleDataValues[i].equals("custom")) {
                 bottomSheetBehavior.setPeekHeight(
-                        (int) (subtitleInputLayout.getMeasuredHeight() + bottomSheetScrollView.getInsetsBottom()),
+                        subtitleInputLayout.getMeasuredHeight() + bottomSheetScrollView.getWindowInsets().bottom,
                         true
                 );
                 bottomSheetBehavior.setHideable(false);

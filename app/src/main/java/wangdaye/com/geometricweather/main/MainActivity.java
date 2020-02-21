@@ -13,6 +13,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -40,7 +41,7 @@ import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.resource.Resource;
 import wangdaye.com.geometricweather.main.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
-import wangdaye.com.geometricweather.main.fragment.LocationManageFragment;
+import wangdaye.com.geometricweather.ui.fragment.LocationManageFragment;
 import wangdaye.com.geometricweather.main.layout.MainLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
@@ -124,7 +125,11 @@ public class MainActivity extends GeoActivity
         DisplayUtils.setSystemBarStyle(MainActivity.this, getWindow(), true,
                 false, false, false, false);
 
-        setContentView(R.layout.activity_main);
+        if (DisplayUtils.isLandscape(this) && DisplayUtils.isTabletDevice(this)) {
+            setContentView(R.layout.activity_main_tablet);
+        } else {
+            setContentView(R.layout.activity_main);
+        }
 
         // attach weather view.
         switch (SettingsOptionManager.getInstance(this).getUiStyle()) {
@@ -260,8 +265,9 @@ public class MainActivity extends GeoActivity
     private void initView() {
         this.background = findViewById(R.id.activity_main_background);
 
-        if (DisplayUtils.isLandscape(this)) {
+        if (DisplayUtils.isLandscape(this) && DisplayUtils.isTabletDevice(this)) {
             this.manageFragment = new LocationManageFragment();
+            manageFragment.setDrawerMode(true);
             manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
             manageFragment.setThemePicker(themePicker);
             manageFragment.setOnLocationListChangedListener(new LocationManageFragment.LocationManageCallback() {
@@ -283,6 +289,15 @@ public class MainActivity extends GeoActivity
         }
 
         this.appBar = findViewById(R.id.activity_main_appBar);
+        ViewCompat.setOnApplyWindowInsetsListener(appBar, (v, insets) -> {
+            v.setPadding(
+                    manageFragment != null ? 0 : insets.getSystemWindowInsetLeft(),
+                    insets.getSystemWindowInsetTop(),
+                    insets.getSystemWindowInsetRight(),
+                    0
+            );
+            return insets;
+        });
 
         this.toolbar = findViewById(R.id.activity_main_toolbar);
         toolbar.inflateMenu(R.menu.activity_main);
@@ -320,15 +335,26 @@ public class MainActivity extends GeoActivity
         refreshLayout.setOnRefreshListener(this);
 
         this.recyclerView = findViewById(R.id.activity_main_recyclerView);
-        recyclerView.setLayoutManager(new MainLayoutManager(this));
+        recyclerView.setLayoutManager(new MainLayoutManager());
         recyclerView.setOnTouchListener(indicatorStateListener);
+        ViewCompat.setOnApplyWindowInsetsListener(recyclerView, (v, insets) -> {
+            v.setPadding(
+                    manageFragment != null ? 0 : insets.getSystemWindowInsetLeft(),
+                    0,
+                    insets.getSystemWindowInsetRight(),
+                    insets.getSystemWindowInsetBottom()
+            );
+            return insets;
+        });
 
         this.indicator = findViewById(R.id.activity_main_indicator);
         indicator.setSwitchView(switchLayout);
 
         viewModel.getCurrentLocation().observe(this, resource -> {
+            boolean updateInBackground = resource.consumeUpdatedInBackground();
+
             setRefreshing(resource.status == Resource.Status.LOADING);
-            drawUI(resource.data, resource.isDefaultLocation(), resource.isUpdatedInBackground());
+            drawUI(resource.data, resource.isDefaultLocation(), updateInBackground);
 
             if (resource.isLocateFailed()) {
                 SnackbarUtils.showSnackbar(
@@ -345,7 +371,7 @@ public class MainActivity extends GeoActivity
                 );
             } else if (resource.status == Resource.Status.ERROR) {
                 SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
-            } else if (resource.isUpdatedInBackground()) {
+            } else if (updateInBackground) {
                 final String formattedId = resource.data.getFormattedId();
                 getSnackbarContainer().postDelayed(() -> {
                     if (formattedId.equals(viewModel.getCurrentLocationFormattedId())) {

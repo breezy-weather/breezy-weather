@@ -301,7 +301,7 @@
 
         </wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView>
 
-        <com.google.android.material.appbar.AppBarLayout
+        <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
             android:id="@+id/activity_widget_config_custom_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -362,7 +362,7 @@
 
             </wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView>
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

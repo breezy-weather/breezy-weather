@@ -27,7 +27,6 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.adapter.FitBottomSystemBarPagerAdapter;
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarViewPager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
@@ -118,7 +117,7 @@ public class DailyWeatherActivity extends GeoActivity {
         }
 
         FitBottomSystemBarViewPager pager = findViewById(R.id.activity_weather_daily_pager);
-        pager.setAdapter(new FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
+        pager.setAdapter(new FitBottomSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
         pager.setPageMargin((int) DisplayUtils.dpToPx(this, 1));
         pager.setPageMarginDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorLine)));
         pager.setCurrentItem(position);

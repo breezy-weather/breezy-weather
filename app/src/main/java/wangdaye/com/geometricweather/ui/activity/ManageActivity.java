@@ -12,7 +12,7 @@ import android.view.View;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.fragment.LocationManageFragment;
+import wangdaye.com.geometricweather.ui.fragment.LocationManageFragment;
 
 /**
  * Manage activity.
@@ -34,6 +34,7 @@ public class ManageActivity extends GeoActivity {
         container = findViewById(R.id.activity_manage_container);
 
         manageFragment = new LocationManageFragment();
+        manageFragment.setDrawerMode(false);
         manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
         manageFragment.setOnLocationListChangedListener(new LocationManageFragment.LocationManageCallback() {
             @Override

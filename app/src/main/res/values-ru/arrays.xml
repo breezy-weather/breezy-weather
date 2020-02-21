@@ -35,6 +35,13 @@
         <item>Сначала почасовой</item>
     </string-array>
 
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Автоматически</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
+    </string-array>
+
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>Системное</item>

@@ -7,13 +7,13 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
-import androidx.recyclerview.widget.RecyclerView;
+import wangdaye.com.geometricweather.ui.widget.insets.FitSystemBarRecyclerView;
 
 /**
  * Vertical Recycler view.
  * */
 
-public class VerticalRecyclerView extends RecyclerView {
+public class VerticalRecyclerView extends FitSystemBarRecyclerView {
 
     private float initialX, initialY;
     private int touchSlop;

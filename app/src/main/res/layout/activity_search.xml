@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
             android:id="@+id/activity_search_searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
 
             </RelativeLayout>
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
