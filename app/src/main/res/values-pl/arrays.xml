@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Chinese source. -->
+    <string-array name="weather_sources">
+        <item>Weather.com.cn (Tylko dla Chin)</item>
+        <item>Caiyun.com (Tylko dla Chin)</item>
+        <item>Accuweather.com</item>
+    </string-array>
+
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Lokalizacja Baidu</item>
+        <item>Lokalizacja Baidu IP (Tylko dla Chin)</item>
+        <item>AMap</item>
+        <item>Native API</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automatyczny</item>
+        <item>Zawsze jasny</item>
+        <item>Zawsze ciemny</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Okrągłe niebo</item>
+        <item>Animacja w stylu Material</item>
+    </string-array>
+
+    <!-- card order. -->
+    <string-array name="card_orders">
+        <item>Dzienne najpierw</item>
+        <item>Godzinowe najpierw</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>0:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+    </string-array>
+
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automatyczny</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Natywny</item>
+        <item>@string/geometric_weather</item>
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Ciemny</item>
+        <item>Szary</item>
+        <item>Jasny</item>
+    </string-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Prostokątny</item>
+        <item>Symetryczny</item>
+        <item>Kafelek</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+        <item>Pionowy</item>
+        <item>Oreo</item>
+        <item>Oreo (Google Sans)</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Czas odświeżenia</item>
+        <item>AQI (Niedziała w niektórych rejonach)</item>
+        <item>Wiatr</item>
+        <item>Temperatura odczuwalna</item>
+        <item>Kalendarz księżycowy</item>
+        <item>Inny</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="clock_font">
+        <item>sans-serif-light</item>
+        <item>sans-serif</item>
+        <item>sans-serif-black</item>
+        <item>analog</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Brak</item>
+        <item>Tryb Dzień/Noc</item>
+        <item>Jasny</item>
+        <item>Ciemny</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Jasny</item>
+        <item>Ciemny</item>
+        <item>Automatyczny</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automatyczny</item>
+        <item>Bezchmurnie</item>
+        <item>Częściowe zachmurzonie</item>
+        <item>Zachmurzenie</item>
+        <item>Deszcz</item>
+        <item>Śnieg</item>
+        <item>Śnieg z deszczem</item>
+        <item>Grad</item>
+        <item>Mgła</item>
+        <item>Mgiełka</item>
+        <item>Burza</item>
+        <item>Burza z piorunami</item>
+        <item>Wiatr</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automatyczny</item>
+        <item>Tryb dzienny</item>
+        <item>Tryb nocny</item>
+    </string-array>
+
+    <!-- speed unit. -->
+    <string-array name="speed_units">
+        <item>km/h</item>
+        <item>m/s</item>
+        <item>kn</item>
+        <item>mi/h</item>
+        <item>ft/s</item>
+    </string-array>
+
+    <!-- precipitation unit. -->
+    <string-array name="precipitation_units">
+        <item>mm</item>
+        <item>inch</item>
+        <item>L/m²</item>
+    </string-array>
+
+    <!-- temperature unit. -->
+    <string-array name="temperature_units">
+        <item>℃</item>
+        <item>℉</item>
+        <item>K</item>
+    </string-array>
+
+    <!-- distance unit. -->
+    <string-array name="distance_units">
+        <item>km</item>
+        <item>m</item>
+        <item>mi</item>
+        <item>nmi</item>
+        <item>ft</item>
+    </string-array>
+
+    <!-- pressure unit. -->
+    <string-array name="pressure_units">
+        <item>mb</item>
+        <item>kPa</item>
+        <item>hPa</item>
+        <item>atm</item>
+        <item>mmHg</item>
+        <item>inHg</item>
+        <item>kgf/cm²</item>
+    </string-array>
+
+    <!-- air quality unit. -->
+    <string-array name="air_quality_units">
+        <item>μg/m³</item>
+    </string-array>
+
+    <!-- duration unit. -->
+    <string-array name="duration_units">
+        <item>h</item> <!-- hour -->
+    </string-array>
+
+    <!-- pollen unit. -->
+    <string-array name="pollen_units">
+        <item>/m³</item>
+    </string-array>
+
+</resources>

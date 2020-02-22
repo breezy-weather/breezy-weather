@@ -82,6 +82,7 @@
         <item>Slovenščina</item>
         <item>العربية</item>
         <item>Čeština</item>
+        <item>Polski</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -104,6 +105,7 @@
         <item>slovenian</item>
         <item>arabic</item>
         <item>czech</item>
+        <item>polish</item>
     </string-array>
 
     <!-- automatic refresh rate. -->

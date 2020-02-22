@@ -15,8 +15,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-
 public class FitBottomSystemBarViewPager extends ViewPager {
 
     private Rect windowInsets;
@@ -27,17 +25,11 @@ public class FitBottomSystemBarViewPager extends ViewPager {
         private List<View> viewList;
         public List<String> titleList;
 
-        private int screenWidth;
-        private int adaptiveWidth;
-
         public FitBottomSystemBarPagerAdapter(FitBottomSystemBarViewPager pager,
                                               List<View> viewList, List<String> titleList) {
             this.pager = pager;
             this.viewList = viewList;
             this.titleList = titleList;
-
-            this.screenWidth = pager.getResources().getDisplayMetrics().widthPixels;
-            this.adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(pager.getContext(), screenWidth);
         }
 
         @Override
@@ -53,14 +45,7 @@ public class FitBottomSystemBarViewPager extends ViewPager {
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            int paddingHorizontal = (screenWidth - adaptiveWidth) / 2;
-            Rect insets = pager.getWindowInsets();
-            viewList.get(position).setPadding(
-                    Math.max(paddingHorizontal, insets.left),
-                    0,
-                    Math.max(paddingHorizontal, insets.right),
-                    insets.bottom
-            );
+            setWindowInsetsForViewTree(viewList.get(position), pager.getWindowInsets());
             container.addView(viewList.get(position));
             return viewList.get(position);
         }
@@ -73,6 +58,24 @@ public class FitBottomSystemBarViewPager extends ViewPager {
         @Override
         public CharSequence getPageTitle(int position) {
             return titleList.get(position);
+        }
+
+        private void setWindowInsetsForViewTree(View view, Rect insets) {
+            setWindowInsets(view, insets);
+            if (view instanceof ViewGroup) {
+                int count = ((ViewGroup) view).getChildCount();
+                for (int i = 0; i < count; i ++) {
+                    setWindowInsetsForViewTree(((ViewGroup) view).getChildAt(i), insets);
+                }
+            }
+        }
+
+        private void setWindowInsets(View view, Rect insets) {
+            if (view instanceof FitBottomSystemBarNestedScrollView) {
+                ((FitBottomSystemBarNestedScrollView) view).fitSystemWindows(insets);
+            } else if (view instanceof FitBottomSystemBarRecyclerView) {
+                ((FitBottomSystemBarRecyclerView) view).fitSystemWindows(insets);
+            }
         }
     }
 

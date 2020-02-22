@@ -12,7 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
@@ -27,6 +26,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarViewPager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
@@ -104,7 +104,7 @@ public class DailyWeatherActivity extends GeoActivity {
         for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
             Daily d = weather.getDailyForecast().get(i);
 
-            RecyclerView recyclerView = new RecyclerView(this);
+            FitBottomSystemBarRecyclerView recyclerView = new FitBottomSystemBarRecyclerView(this);
             recyclerView.setClipToPadding(false);
             DailyWeatherAdapter dailyWeatherAdapter = new DailyWeatherAdapter(this, d, 3);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);

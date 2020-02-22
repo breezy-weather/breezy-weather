@@ -17,9 +17,9 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.about.AboutAppLibrary;
-import wangdaye.com.geometricweather.basic.model.about.AboutAppLink;
-import wangdaye.com.geometricweather.basic.model.about.AboutAppTranslator;
+import wangdaye.com.geometricweather.settings.model.AboutAppLibrary;
+import wangdaye.com.geometricweather.settings.model.AboutAppLink;
+import wangdaye.com.geometricweather.settings.model.AboutAppTranslator;
 import wangdaye.com.geometricweather.utils.helpter.DonateHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 

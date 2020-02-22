@@ -47,6 +47,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -228,11 +229,21 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.widgetContainer = findViewById(R.id.activity_widget_config_widgetContainer);
 
         this.topContainer = findViewById(R.id.activity_widget_config_top);
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+        int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(this, screenWidth);
+        int paddingHorizontal = (screenWidth - adaptiveWidth) / 2;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
             topContainer.setOnApplyWindowInsetsListener((v, insets) -> {
-                widgetContainer.setPadding(0, insets.getSystemWindowInsetTop(), 0, 0);
+                widgetContainer.setPadding(
+                        Math.max(paddingHorizontal, insets.getSystemWindowInsetLeft()),
+                        insets.getSystemWindowInsetTop(),
+                        Math.max(paddingHorizontal, insets.getSystemWindowInsetRight()),
+                        0
+                );
                 return insets;
             });
+        } else {
+            widgetContainer.setPadding(paddingHorizontal, 0, paddingHorizontal, 0);
         }
 
         this.container = findViewById(R.id.activity_widget_config_container);
