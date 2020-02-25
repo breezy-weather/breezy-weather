@@ -70,38 +70,26 @@ public class MainActivityViewModel extends ViewModel
 
         Observable.create((ObservableOnSubscribe<UpdatePackage>) emitter ->
             lockableLocationList.write((getter, setter) -> {
-                setter.setCurrentPositionIndex(INVALID_LOCATION_INDEX);
+                DatabaseHelper databaseHelper = DatabaseHelper.getInstance(activity);
+                List<Location> totalList = databaseHelper.readLocationList();
+                for (Location l : totalList) {
+                    l.setWeather(databaseHelper.readWeather(l));
+                }
+                setter.setLocationList(activity, totalList);
                 setter.setCurrentIndex(0);
 
-                DatabaseHelper databaseHelper = DatabaseHelper.getInstance(activity);
-                List<Location> locationList = databaseHelper.readLocationList();
-                setter.setLocationList(locationList);
-                for (int i = 0; i < locationList.size(); i ++) {
-                    locationList.get(i).setWeather(databaseHelper.readWeather(locationList.get(i)));
-                    if (locationList.get(i).isCurrentPosition()) {
-                        setter.setCurrentPositionIndex(i);
-                    }
-                    if (locationList.get(i).equals(formattedId)) {
+                List<Location> validList = getter.getValidList();
+                for (int i = 0; i < validList.size(); i ++) {
+                    if (validList.get(i).equals(formattedId)) {
                         setter.setCurrentIndex(i);
-                    }
-                }
-
-                int currentPositionIndex = getter.getCurrentPositionIndex();
-                int currentIndex = getter.getCurrentIndex();
-                if (locationList.get(currentIndex).isResidentPosition()) {
-                    Location current = locationList.get(currentIndex);
-                    Location currentPosition = currentPositionIndex == INVALID_LOCATION_INDEX
-                            ? null
-                            : locationList.get(currentPositionIndex);
-                    if (currentPosition != null && currentPosition.isCloseTo(activity, current)) {
-                        currentIndex = currentPositionIndex;
+                        break;
                     }
                 }
 
                 emitter.onNext(
                         new UpdatePackage(
-                                locationList.get(currentIndex),
-                                getIndicatorInstance(activity, locationList, currentPositionIndex, currentIndex)
+                                validList.get(getter.getValidCurrentIndex()),
+                                getIndicatorInstance(getter)
                         )
                 );
             })
@@ -115,10 +103,10 @@ public class MainActivityViewModel extends ViewModel
         AtomicReference<UpdatePackage> pkg = new AtomicReference<>();
 
         lockableLocationList.write((getter, setter) -> {
-            setter.setCurrentIndex(getLocationIndexFromList(activity, getter, offset));
+            setter.setCurrentIndex(getLocationIndexFromList(getter, offset));
             pkg.set(new UpdatePackage(
-                    getter.getLocationList().get(getter.getCurrentIndex()),
-                    getIndicatorInstance(activity, getter)
+                    getter.getValidList().get(getter.getValidCurrentIndex()),
+                    getIndicatorInstance(getter)
             ));
         });
 
@@ -148,26 +136,8 @@ public class MainActivityViewModel extends ViewModel
         }
     }
 
-    private Indicator getIndicatorInstance(Context context, LockableLocationList.Getter getter) {
-        return getIndicatorInstance(context, getter.getLocationList(),
-                getter.getCurrentPositionIndex(), getter.getCurrentIndex());
-    }
-
-    private Indicator getIndicatorInstance(Context context, List<Location> locationList,
-                                           int currentPositionIndex, int currentIndex) {
-        int index = 0;
-        int total = 0;
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (i == currentIndex) {
-                index = total;
-            }
-            if (currentPositionIndex == INVALID_LOCATION_INDEX
-                    || !locationList.get(i).isResidentPosition()
-                    || !locationList.get(i).isCloseTo(context, locationList.get(currentPositionIndex))) {
-                total ++;
-            }
-        }
-        return new Indicator(total, index);
+    private Indicator getIndicatorInstance(LockableLocationList.Getter getter) {
+        return new Indicator(getter.getValidList().size(), getter.getValidCurrentIndex());
     }
 
     public void updateLocationFromBackground(GeoActivity activity, @Nullable String formattedId) {
@@ -175,24 +145,25 @@ public class MainActivityViewModel extends ViewModel
             AtomicReference<UpdatePackage> pkg = new AtomicReference<>(null);
 
             lockableLocationList.write((getter, setter) -> {
-                List<Location> locationList = new ArrayList<>(getter.getLocationList());
+                List<Location> totalList = new ArrayList<>(getter.getTotalList());
+                String currentId = getter.getValidFormattedId();
 
-                int index = indexLocation(locationList, formattedId);
+                int index = indexLocation(totalList, formattedId);
                 if (index == INVALID_LOCATION_INDEX) {
                     return;
                 }
 
-                Location location = DatabaseHelper.getInstance(activity).readLocation(locationList.get(index));
+                Location location = DatabaseHelper.getInstance(activity).readLocation(totalList.get(index));
                 if (location == null) {
                     return;
                 }
 
                 location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
-                locationList.set(index, location);
-                setter.setLocationList(locationList);
+                totalList.set(index, location);
+                setter.setLocationList(activity, totalList);
 
-                if (index == getter.getCurrentIndex()) {
-                    pkg.set(new UpdatePackage(location, getIndicatorInstance(activity, getter)));
+                if (currentId.equals(formattedId)) {
+                    pkg.set(new UpdatePackage(location, getIndicatorInstance(getter)));
                 }
             });
 
@@ -219,34 +190,19 @@ public class MainActivityViewModel extends ViewModel
         return INVALID_LOCATION_INDEX;
     }
 
-    public int getLocationIndexFromList(GeoActivity activity, LockableLocationList.Getter getter, int offset) {
-        return getLocationIndexFromList(activity, getter.getLocationList(),
-                getter.getCurrentPositionIndex(), getter.getCurrentIndex(), offset);
-    }
-
-    public int getLocationIndexFromList(GeoActivity activity, List<Location> locationList,
-                                        int currentPositionIndex, int currentIndex, int offset) {
+    private int getLocationIndexFromList(LockableLocationList.Getter getter, int offset) {
         if (offset == 0) {
-            return currentIndex;
+            return getter.getValidCurrentIndex();
         }
-
-        int index = currentIndex;
-        index += locationList.size() + offset;
-        index %= locationList.size();
-        while (currentPositionIndex != INVALID_LOCATION_INDEX
-                && locationList.get(index).isResidentPosition()
-                && locationList.get(index).isCloseTo(activity, locationList.get(currentPositionIndex))) {
-            index += locationList.size() + (offset > 0 ? 1 : -1);
-            index %= locationList.size();
-        }
-        return index;
+        int validSize = getter.getValidList().size();
+        return (getter.getValidCurrentIndex() + validSize + offset) % validSize;
     }
 
-    public Location getLocationFromList(GeoActivity activity, int offset) {
+    public Location getLocationFromList(int offset) {
         final Location[] location = new Location[1];
         lockableLocationList.read(getter ->
-                location[0] = getter.getLocationList().get(
-                        getLocationIndexFromList(activity, getter, offset)
+                location[0] = getter.getValidList().get(
+                        getLocationIndexFromList(getter, offset)
                 )
         );
         return location[0];
@@ -349,7 +305,7 @@ public class MainActivityViewModel extends ViewModel
 
     public List<Location> getLocationList() {
         List<Location> locationList = new ArrayList<>();
-        lockableLocationList.read(getter -> locationList.addAll(getter.getLocationList()));
+        lockableLocationList.read(getter -> locationList.addAll(getter.getValidList()));
         return locationList;
     }
 
@@ -376,7 +332,7 @@ public class MainActivityViewModel extends ViewModel
         Indicator old = indicator.getValue();
         final Indicator[] now = {null};
 
-        lockableLocationList.read(getter -> now[0] = getIndicatorInstance(context, getter));
+        lockableLocationList.read(getter -> now[0] = getIndicatorInstance(getter));
 
         if (old == null || !old.equals(now[0])) {
             indicator.setValue(now[0]);

@@ -46,7 +46,7 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
 
     // control.
 
-    public abstract void updateView(Context context, Location location);
+    public abstract void updateView(Context context, List<Location> locationList);
 
     /**
      * Call {@link SettableFuture#set(Object)} here.
@@ -64,7 +64,6 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
             if (locationList.get(i).equals(location)) {
                 locationList.set(i, location);
                 if (i == 0) {
-                    updateView(getApplicationContext(), location);
                     if (succeed) {
                         NotificationUtils.checkAndSendAlert(
                                 getApplicationContext(), location, old);
@@ -82,6 +81,7 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
     @SuppressLint("RestrictedApi")
     @Override
     public void onPollingCompleted() {
+        updateView(getApplicationContext(), locationList);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutsManager.refreshShortcutsInNewThread(getApplicationContext(), locationList);
         }

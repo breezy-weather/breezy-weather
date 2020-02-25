@@ -115,6 +115,13 @@ public class GeometricWeather extends MultiDexApplication {
     // trend hourly.
     public static final int WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_WEATHER = 111;
     public static final int WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_REFRESH = 112;
+    // multi city.
+    public static final int WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_1 = 121;
+    public static final int WIDGET_MULTI_CITY_PENDING_INTENT_CODE_REFRESH_1 = 122;
+    public static final int WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_2 = 123;
+    public static final int WIDGET_MULTI_CITY_PENDING_INTENT_CODE_REFRESH_2 = 124;
+    public static final int WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_3 = 125;
+    public static final int WIDGET_MULTI_CITY_PENDING_INTENT_CODE_REFRESH_3 = 126;
 
     @Override
     public void onCreate() {

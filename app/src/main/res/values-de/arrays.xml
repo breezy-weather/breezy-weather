@@ -11,6 +11,10 @@
         <item>3 Stunden</item>
         <item>3,5 Stunden</item>
         <item>4 Stunden</item>
+        <item>4,5 Stunden</item>
+        <item>5 Stunden</item>
+        <item>5,5 Stunden</item>
+        <item>6 Stunden</item>
     </string-array>
 
     <!-- Benachrichtigungstext -->

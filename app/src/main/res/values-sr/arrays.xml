@@ -11,6 +11,10 @@
         <item>3:00</item>
         <item>3:30</item>
         <item>4:00</item>
+        <item>4:30</item>
+        <item>5:00</item>
+        <item>5:30</item>
+        <item>6:00</item>
     </string-array>
 
     <!-- notification text color. -->

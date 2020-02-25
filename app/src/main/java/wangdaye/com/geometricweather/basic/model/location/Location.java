@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
@@ -234,17 +236,6 @@ public class Location
         return china;
     }
 
-    public boolean isCloseTo(Context c, Location location) {
-        boolean sameId = cityId.equals(location.getCityId());
-        boolean sameCity = isEquals(province, location.province)
-                && isEquals(city, location.city);
-        boolean sameName = isEquals(province, location.province)
-                && getCityName(c).equals(location.getCityName(c));
-        boolean validGeoPosition = Math.abs(latitude - location.latitude) < 0.8
-                && Math.abs(longitude - location.longitude) < 0.8;
-        return sameId || sameCity || sameName || validGeoPosition;
-    }
-
     private static boolean isEquals(@Nullable String a, @Nullable String b) {
         if (TextUtils.isEmpty(a) && TextUtils.isEmpty(b)) {
             return true;
@@ -253,6 +244,45 @@ public class Location
         } else {
             return false;
         }
+    }
+
+    public static List<Location> excludeInvalidResidentLocation(Context context, List<Location> list) {
+        Location currentLocation = null;
+        for (Location l : list) {
+            if (l.isCurrentPosition()) {
+                currentLocation = l;
+                break;
+            }
+        }
+
+        List<Location> result = new ArrayList<>(list.size());
+        if (currentLocation == null) {
+            result.addAll(list);
+            return result;
+        } else {
+            for (Location l : list) {
+                if (!l.isResidentPosition() || !l.isCloseTo(context, currentLocation)) {
+                    result.add(l);
+                }
+            }
+            return result;
+        }
+    }
+
+    private boolean isCloseTo(Context c, Location location) {
+        if (cityId.equals(location.getCityId())) {
+            return true;
+        }
+        if (isEquals(province, location.province)
+                && isEquals(city, location.city)) {
+            return true;
+        }
+        if (isEquals(province, location.province)
+                && getCityName(c).equals(location.getCityName(c))) {
+            return true;
+        }
+        return Math.abs(latitude - location.latitude) < 0.8
+                && Math.abs(longitude - location.longitude) < 0.8;
     }
 
     @Override

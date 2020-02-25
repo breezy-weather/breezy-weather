@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.background.polling.work;
 
+import android.content.Context;
+
 import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
@@ -25,7 +27,7 @@ public class WorkerHelper {
     private static final String WORK_NAME_TODAY_FORECAST = "TODAY_FORECAST";
     private static final String WORK_NAME_TOMORROW_FORECAST = "TOMORROW_FORECAST";
 
-    public static void setNormalPollingWork(float pollingRate) {
+    public static void setNormalPollingWork(Context context, float pollingRate) {
         PeriodicWorkRequest request = new PeriodicWorkRequest.Builder(
                 NormalUpdateWorker.class,
                 (long) (pollingRate * MINUTES_PER_HOUR),
@@ -40,18 +42,19 @@ public class WorkerHelper {
                         .build()
         ).build();
 
-        WorkManager.getInstance().enqueueUniquePeriodicWork(
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 WORK_NAME_NORMAL_VIEW,
                 ExistingPeriodicWorkPolicy.KEEP,
                 request
         );
     }
 
-    public static void cancelNormalPollingWork() {
-        WorkManager.getInstance().cancelUniqueWork(WORK_NAME_NORMAL_VIEW);
+    public static void cancelNormalPollingWork(Context context) {
+        WorkManager.getInstance(context).cancelUniqueWork(WORK_NAME_NORMAL_VIEW);
     }
 
-    public static void setTodayForecastUpdateWork(String todayForecastTime, boolean nextDay) {
+    public static void setTodayForecastUpdateWork(Context context,
+                                                  String todayForecastTime, boolean nextDay) {
         OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(TodayForecastUpdateWorker.class)
                 .setInitialDelay(
                         getForecastAlarmDelayInMinutes(todayForecastTime, nextDay),
@@ -62,18 +65,19 @@ public class WorkerHelper {
                                 .build()
                 ).build();
 
-        WorkManager.getInstance().enqueueUniqueWork(
+        WorkManager.getInstance(context).enqueueUniqueWork(
                 WORK_NAME_TODAY_FORECAST,
                 ExistingWorkPolicy.REPLACE,
                 request
         );
     }
 
-    public static void cancelTodayForecastUpdateWork() {
-        WorkManager.getInstance().cancelUniqueWork(WORK_NAME_TODAY_FORECAST);
+    public static void cancelTodayForecastUpdateWork(Context context) {
+        WorkManager.getInstance(context).cancelUniqueWork(WORK_NAME_TODAY_FORECAST);
     }
 
-    public static void setTomorrowForecastUpdateWork(String tomorrowForecastTime, boolean nextDay) {
+    public static void setTomorrowForecastUpdateWork(Context context,
+                                                     String tomorrowForecastTime, boolean nextDay) {
         OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(TomorrowForecastUpdateWorker.class)
                 .setInitialDelay(
                         getForecastAlarmDelayInMinutes(tomorrowForecastTime, nextDay),
@@ -84,15 +88,15 @@ public class WorkerHelper {
                                 .build()
                 ).build();
 
-        WorkManager.getInstance().enqueueUniqueWork(
+        WorkManager.getInstance(context).enqueueUniqueWork(
                 WORK_NAME_TOMORROW_FORECAST,
                 ExistingWorkPolicy.REPLACE,
                 request
         );
     }
 
-    public static void cancelTomorrowForecastUpdateWork() {
-        WorkManager.getInstance().cancelUniqueWork(WORK_NAME_TOMORROW_FORECAST);
+    public static void cancelTomorrowForecastUpdateWork(Context context) {
+        WorkManager.getInstance(context).cancelUniqueWork(WORK_NAME_TOMORROW_FORECAST);
     }
 
     private static long getForecastAlarmDelayInMinutes(String time, boolean nextDay) {

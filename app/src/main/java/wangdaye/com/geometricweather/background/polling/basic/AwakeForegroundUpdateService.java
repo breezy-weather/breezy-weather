@@ -2,6 +2,8 @@ package wangdaye.com.geometricweather.background.polling.basic;
 
 import android.content.Context;
 
+import java.util.List;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
@@ -14,9 +16,9 @@ import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 public class AwakeForegroundUpdateService extends ForegroundUpdateService {
 
     @Override
-    public void updateView(Context context, Location location) {
-        WidgetUtils.updateWidgetIfNecessary(context, location);
-        NotificationUtils.updateNotificationIfNecessary(context, location);
+    public void updateView(Context context, List<Location> locationList) {
+        WidgetUtils.updateWidgetIfNecessary(context, locationList);
+        NotificationUtils.updateNotificationIfNecessary(context, locationList.get(0));
     }
 
     @Override

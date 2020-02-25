@@ -289,8 +289,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 return weather.getCurrent().getTemperature().getTemperature(unit);
 
             case "oreo_google_sans":
-                return unit.getTemperature(weather.getCurrent().getTemperature().getTemperature())
-                        + unit.getLongAbbreviation();
+                return unit.getLongTemperatureText(weather.getCurrent().getTemperature().getTemperature());
         }
         return "";
     }

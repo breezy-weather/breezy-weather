@@ -307,6 +307,7 @@
     <string name="widget_text">纯文字</string>
     <string name="widget_trend_daily">每日趋势</string>
     <string name="widget_trend_hourly">小时趋势</string>
+    <string name="widget_multi_city">多个城市</string>
     <string name="wait_refresh">等待更新</string>
     <string name="ellipsis">…</string>
 

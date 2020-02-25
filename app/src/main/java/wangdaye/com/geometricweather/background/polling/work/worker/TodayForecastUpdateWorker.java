@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.work.WorkerParameters;
 import androidx.work.impl.utils.futures.SettableFuture;
 
+import java.util.List;
+
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.remoteviews.presenter.notification.ForecastNotificationIMP;
@@ -18,9 +20,9 @@ public class TodayForecastUpdateWorker extends AsyncUpdateWorker {
     }
 
     @Override
-    public void updateView(Context context, Location location) {
+    public void updateView(Context context, List<Location> locationList) {
         if (ForecastNotificationIMP.isEnable(context, true)) {
-            ForecastNotificationIMP.buildForecastAndSendIt(context, location, true);
+            ForecastNotificationIMP.buildForecastAndSendIt(context, locationList.get(0), true);
         }
     }
 

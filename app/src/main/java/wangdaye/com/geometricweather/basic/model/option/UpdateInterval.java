@@ -16,7 +16,11 @@ public enum UpdateInterval {
     INTERVAL_2_30("2:30", 2.5f),
     INTERVAL_3_00("3:00", 3.0f),
     INTERVAL_3_30("3:30", 3.5f),
-    INTERVAL_4_00("4:00", 4.0f);
+    INTERVAL_4_00("4:00", 4.0f),
+    INTERVAL_4_30("4:30", 4.5f),
+    INTERVAL_5_00("5:00", 5.0f),
+    INTERVAL_5_30("5:30", 5.5f),
+    INTERVAL_6_00("6:00", 6.0f);
 
     private String value;
     private float intervalInHour;

@@ -7,12 +7,6 @@
         <item>Material animation</item>
     </string-array>
 
-    <!-- card order. -->
-    <string-array name="card_orders">
-        <item>Dagelijks eerst</item>
-        <item>Per uur eerst</item>
-    </string-array>
-
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>0:30</item>
@@ -23,6 +17,10 @@
         <item>3:00</item>
         <item>3:30</item>
         <item>4:00</item>
+        <item>4:30</item>
+        <item>5:00</item>
+        <item>5:30</item>
+        <item>6:00</item>
     </string-array>
 
     <!-- notification text color. -->

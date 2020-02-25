@@ -72,7 +72,7 @@ public abstract class UpdateService extends Service
 
     // control.
 
-    public abstract void updateView(Context context, Location location);
+    public abstract void updateView(Context context, List<Location> locationList);
 
     public abstract void handlePollingResult(boolean updateSucceed);
 
@@ -92,7 +92,6 @@ public abstract class UpdateService extends Service
             if (locationList.get(i).equals(location)) {
                 locationList.set(i, location);
                 if (i == 0) {
-                    updateView(this, location);
                     if (succeed) {
                         NotificationUtils.checkAndSendAlert(this, location, old);
                         NotificationUtils.checkAndSendPrecipitationForecast(this, location, old);
@@ -107,6 +106,7 @@ public abstract class UpdateService extends Service
 
     @Override
     public void onPollingCompleted() {
+        updateView(this, locationList);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
         }

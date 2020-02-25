@@ -29,12 +29,6 @@
         <item>Material анимация</item>
     </string-array>
 
-    <!-- card order. -->
-    <string-array name="card_orders">
-        <item>Сначала ежедневный</item>
-        <item>Сначала почасовой</item>
-    </string-array>
-
     <!-- widget week icon mode. -->
     <string-array name="week_icon_modes">
         <item>Автоматически</item>

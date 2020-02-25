@@ -23,23 +23,24 @@ public class PollingManager {
             PermanentServiceHelper.stopPollingService(context);
 
             WorkerHelper.setNormalPollingWork(
+                    context,
                     SettingsOptionManager.getInstance(context).getUpdateInterval().getIntervalInHour());
 
             if (settings.isTodayForecastEnabled()) {
-                WorkerHelper.setTodayForecastUpdateWork(settings.getTodayForecastTime(), false);
+                WorkerHelper.setTodayForecastUpdateWork(context, settings.getTodayForecastTime(), false);
             } else {
-                WorkerHelper.cancelTodayForecastUpdateWork();
+                WorkerHelper.cancelTodayForecastUpdateWork(context);
             }
 
             if (settings.isTomorrowForecastEnabled()) {
-                WorkerHelper.setTomorrowForecastUpdateWork(settings.getTomorrowForecastTime(), false);
+                WorkerHelper.setTomorrowForecastUpdateWork(context, settings.getTomorrowForecastTime(), false);
             } else {
-                WorkerHelper.cancelTomorrowForecastUpdateWork();
+                WorkerHelper.cancelTomorrowForecastUpdateWork(context);
             }
         } else {
-            WorkerHelper.cancelNormalPollingWork();
-            WorkerHelper.cancelTodayForecastUpdateWork();
-            WorkerHelper.cancelTomorrowForecastUpdateWork();
+            WorkerHelper.cancelNormalPollingWork(context);
+            WorkerHelper.cancelTodayForecastUpdateWork(context);
+            WorkerHelper.cancelTomorrowForecastUpdateWork(context);
 
             PermanentServiceHelper.startPollingService(context);
         }
@@ -55,11 +56,12 @@ public class PollingManager {
             PermanentServiceHelper.stopPollingService(context);
 
             WorkerHelper.setNormalPollingWork(
+                    context,
                     SettingsOptionManager.getInstance(context).getUpdateInterval().getIntervalInHour());
         } else {
-            WorkerHelper.cancelNormalPollingWork();
-            WorkerHelper.cancelTodayForecastUpdateWork();
-            WorkerHelper.cancelTomorrowForecastUpdateWork();
+            WorkerHelper.cancelNormalPollingWork(context);
+            WorkerHelper.cancelTodayForecastUpdateWork(context);
+            WorkerHelper.cancelTomorrowForecastUpdateWork(context);
 
             PermanentServiceHelper.startPollingService(context);
         }
@@ -77,14 +79,14 @@ public class PollingManager {
             PermanentServiceHelper.stopPollingService(context);
 
             if (settings.isTodayForecastEnabled()) {
-                WorkerHelper.setTodayForecastUpdateWork(settings.getTodayForecastTime(), nextDay);
+                WorkerHelper.setTodayForecastUpdateWork(context, settings.getTodayForecastTime(), nextDay);
             } else {
-                WorkerHelper.cancelTodayForecastUpdateWork();
+                WorkerHelper.cancelTodayForecastUpdateWork(context);
             }
         } else {
-            WorkerHelper.cancelNormalPollingWork();
-            WorkerHelper.cancelTodayForecastUpdateWork();
-            WorkerHelper.cancelTomorrowForecastUpdateWork();
+            WorkerHelper.cancelNormalPollingWork(context);
+            WorkerHelper.cancelTodayForecastUpdateWork(context);
+            WorkerHelper.cancelTomorrowForecastUpdateWork(context);
 
             PermanentServiceHelper.startPollingService(context);
         }
@@ -102,14 +104,14 @@ public class PollingManager {
             PermanentServiceHelper.stopPollingService(context);
 
             if (settings.isTomorrowForecastEnabled()) {
-                WorkerHelper.setTomorrowForecastUpdateWork(settings.getTomorrowForecastTime(), nextDay);
+                WorkerHelper.setTomorrowForecastUpdateWork(context, settings.getTomorrowForecastTime(), nextDay);
             } else {
-                WorkerHelper.cancelTomorrowForecastUpdateWork();
+                WorkerHelper.cancelTomorrowForecastUpdateWork(context);
             }
         } else {
-            WorkerHelper.cancelNormalPollingWork();
-            WorkerHelper.cancelTodayForecastUpdateWork();
-            WorkerHelper.cancelTomorrowForecastUpdateWork();
+            WorkerHelper.cancelNormalPollingWork(context);
+            WorkerHelper.cancelTodayForecastUpdateWork(context);
+            WorkerHelper.cancelTomorrowForecastUpdateWork(context);
 
             PermanentServiceHelper.startPollingService(context);
         }

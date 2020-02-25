@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.main.model;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,9 +12,10 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 
 public class LockableLocationList {
 
-    private List<Location> locationList;
-    private int currentPositionIndex;
+    private List<Location> totalList;
+    private List<Location> validList;
     private int currentIndex;
+    private String formattedId;
     private ReadWriteLock lock;
 
     private Getter getter;
@@ -20,38 +23,52 @@ public class LockableLocationList {
 
     public class Getter {
 
-        public List<Location> getLocationList() {
-            return Collections.unmodifiableList(locationList);
+        public List<Location> getTotalList() {
+            return Collections.unmodifiableList(totalList);
         }
 
-        public int getCurrentPositionIndex() {
-            return currentPositionIndex;
+        public List<Location> getValidList() {
+            return Collections.unmodifiableList(validList);
         }
 
-        public int getCurrentIndex() {
+        public int getValidCurrentIndex() {
             return currentIndex;
+        }
+
+        public String getValidFormattedId() {
+            return formattedId;
         }
     }
 
     public class Setter {
 
-        public void setLocationList(List<Location> locationList) {
-            LockableLocationList.this.locationList = locationList;
-        }
+        public void setLocationList(Context context, List<Location> totalList) {
+            LockableLocationList.this.totalList = totalList;
+            LockableLocationList.this.validList = Location.excludeInvalidResidentLocation(context, totalList);
 
-        public void setCurrentPositionIndex(int currentPositionIndex) {
-            LockableLocationList.this.currentPositionIndex = currentPositionIndex;
+            if (currentIndex < 0
+                    || currentIndex >= validList.size()
+                    || !validList.get(currentIndex).getFormattedId().equals(formattedId)) {
+                for (int i = 0; i < validList.size(); i ++) {
+                    if (validList.get(i).getFormattedId().equals(formattedId)) {
+                        setCurrentIndex(i);
+                        break;
+                    }
+                }
+            }
         }
 
         public void setCurrentIndex(int currentIndex) {
             LockableLocationList.this.currentIndex = currentIndex;
+            LockableLocationList.this.formattedId = validList.get(currentIndex).getFormattedId();
         }
     }
 
     public LockableLocationList() {
-        this.locationList = new ArrayList<>();
-        this.currentPositionIndex = -1;
+        this.totalList = new ArrayList<>();
+        this.validList = new ArrayList<>();
         this.currentIndex = -1;
+        this.formattedId = null;
         this.lock = new ReentrantReadWriteLock();
 
         this.getter = new Getter();

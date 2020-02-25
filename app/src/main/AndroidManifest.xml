@@ -251,6 +251,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".remoteviews.config.MultiCityWidgetConfigActivity"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="user">
+            <intent-filter>
+                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
         <!-- service -->
         <service android:name=".background.polling.basic.AwakeForegroundUpdateService" />
 
@@ -419,6 +428,18 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_trend_hourly" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".background.receiver.widget.WidgetMultiCityProvider"
+            android:label="@string/widget_multi_city">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_multi_city" />
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />

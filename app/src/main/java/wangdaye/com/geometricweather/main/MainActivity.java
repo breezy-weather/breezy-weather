@@ -29,6 +29,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.google.android.material.appbar.AppBarLayout;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -116,6 +117,16 @@ public class MainActivity extends GeoActivity
         public void onReceive(Context context, Intent intent) {
             String formattedId = intent.getStringExtra(KEY_LOCATION_FORMATTED_ID);
             viewModel.updateLocationFromBackground(MainActivity.this, formattedId);
+            if (isForeground()) {
+                getSnackbarContainer().postDelayed(() -> {
+                    if (isForeground()
+                            && formattedId != null
+                            && formattedId.equals(viewModel.getCurrentLocationFormattedId())) {
+                        SnackbarUtils.showSnackbar(
+                                MainActivity.this, getString(R.string.feedback_updated_in_background));
+                    }
+                }, 1200);
+            }
         }
     };
 
@@ -187,7 +198,7 @@ public class MainActivity extends GeoActivity
                 resetUIUpdateFlag();
                 viewModel.reset(this);
 
-                refreshBackgroundViews(true, location);
+                refreshBackgroundViews(true, viewModel.getLocationList());
                 break;
 
             case MANAGE_ACTIVITY:
@@ -371,14 +382,6 @@ public class MainActivity extends GeoActivity
                 );
             } else if (resource.status == Resource.Status.ERROR) {
                 SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
-            } else if (updateInBackground) {
-                final String formattedId = resource.data.getFormattedId();
-                getSnackbarContainer().postDelayed(() -> {
-                    if (formattedId.equals(viewModel.getCurrentLocationFormattedId())) {
-                        SnackbarUtils.showSnackbar(
-                                this, getString(R.string.feedback_updated_in_background));
-                    }
-                }, 1200);
             }
         });
 
@@ -488,7 +491,7 @@ public class MainActivity extends GeoActivity
 
         refreshBackgroundViews(
                 false,
-                (!updatedInBackground && defaultLocation) ? location : null
+                (!updatedInBackground && defaultLocation) ? viewModel.getLocationList() : null
         );
     }
 
@@ -554,7 +557,7 @@ public class MainActivity extends GeoActivity
         refreshLayout.post(() -> refreshLayout.setRefreshing(b));
     }
 
-    private void refreshBackgroundViews(boolean resetBackground, @Nullable Location location) {
+    private void refreshBackgroundViews(boolean resetBackground, @Nullable List<Location> locationList) {
         if (resetBackground) {
             Observable.create(emitter -> PollingManager.resetAllBackgroundTask(this, false))
                     .subscribeOn(Schedulers.io())
@@ -563,10 +566,10 @@ public class MainActivity extends GeoActivity
                     .subscribe();
         }
 
-        if (location != null) {
+        if (locationList != null) {
             Observable.create(emitter -> {
-                WidgetUtils.updateWidgetIfNecessary(this, location);
-                NotificationUtils.updateNotificationIfNecessary(this, location);
+                WidgetUtils.updateWidgetIfNecessary(this, locationList);
+                NotificationUtils.updateNotificationIfNecessary(this, locationList.get(0));
             }).subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
                     .delay(1, TimeUnit.SECONDS)
@@ -618,12 +621,11 @@ public class MainActivity extends GeoActivity
 
             if (progress >= 1 && lastProgress < 0.5) {
                 indexSwitched = true;
-                location = viewModel.getLocationFromList(MainActivity.this,
-                        swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
+                location = viewModel.getLocationFromList(swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
                 lastProgress = 1;
             } else if (progress < 0.5 && lastProgress >= 1) {
                 indexSwitched = true;
-                location = viewModel.getLocationFromList(MainActivity.this, 0);
+                location = viewModel.getLocationFromList(0);
                 lastProgress = 0;
             }
 

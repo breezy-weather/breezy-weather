@@ -69,6 +69,18 @@ public class OptionMapper {
             case "4:00":
                 return UpdateInterval.INTERVAL_4_00;
 
+            case "4:30":
+                return UpdateInterval.INTERVAL_4_30;
+
+            case "5:00":
+                return UpdateInterval.INTERVAL_5_00;
+
+            case "5:30":
+                return UpdateInterval.INTERVAL_5_30;
+
+            case "6:00":
+                return UpdateInterval.INTERVAL_6_00;
+
             default:
                 return UpdateInterval.INTERVAL_1_30;
 

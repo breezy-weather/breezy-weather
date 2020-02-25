@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.core.app.NotificationCompat;
 
+import java.util.List;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.basic.ForegroundUpdateService;
@@ -17,9 +19,9 @@ import wangdaye.com.geometricweather.remoteviews.presenter.notification.Forecast
 public class ForegroundTodayForecastUpdateService extends ForegroundUpdateService {
 
     @Override
-    public void updateView(Context context, Location location) {
+    public void updateView(Context context, List<Location> locationList) {
         if (ForecastNotificationIMP.isEnable(this, true)) {
-            ForecastNotificationIMP.buildForecastAndSendIt(context, location, true);
+            ForecastNotificationIMP.buildForecastAndSendIt(context, locationList.get(0), true);
         }
     }
 

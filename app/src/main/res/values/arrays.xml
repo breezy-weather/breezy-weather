@@ -2,6 +2,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <!-- Do not translate those arrays which named "xxx_values". -->
+    <!-- Do not translate those items with a value of "@string/xxx". -->
+
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>weather.com.cn (Only For China)</item>
@@ -50,17 +53,8 @@
         <item>material</item>
     </string-array>
 
-    <!-- card order. -->
-    <string-array name="card_orders">
-        <item>Daily first</item>
-        <item>Hourly first</item>
-    </string-array>
-    <string-array name="card_order_values">
-        <item>daily_first</item>
-        <item>hourly_first</item>
-    </string-array>
-
     <!-- language. -->
+    <!-- Do not translate this array. -->
     <string-array name="languages">
         <item>@string/follow_system</item>
         <item>中文</item>
@@ -110,14 +104,18 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
-        <item>0:30</item>
-        <item>1:00</item>
-        <item>1:30</item>
-        <item>2:00</item>
-        <item>2:30</item>
-        <item>3:00</item>
-        <item>3:30</item>
-        <item>4:00</item>
+        <item>Half an hour</item>
+        <item>1 hour</item>
+        <item>1.5 hours</item>
+        <item>2 hours</item>
+        <item>2.5 hours</item>
+        <item>3 hours</item>
+        <item>3.5 hours</item>
+        <item>4 hours</item>
+        <item>4.5 hours</item>
+        <item>5 hours</item>
+        <item>5.5 hours</item>
+        <item>6 hours</item>
     </string-array>
     <string-array name="automatic_refresh_rate_values">
         <item>0:30</item>
@@ -128,13 +126,17 @@
         <item>3:00</item>
         <item>3:30</item>
         <item>4:00</item>
+        <item>4:30</item>
+        <item>5:00</item>
+        <item>5:30</item>
+        <item>6:00</item>
     </string-array>
 
     <!-- widget week icon mode. -->
     <string-array name="week_icon_modes">
         <item>Automatic</item>
-        <item>@string/daytime</item>
-        <item>@string/nighttime</item>
+        <item>@string/daytime</item><!-- do not translate. -->
+        <item>@string/nighttime</item><!-- do not translate. -->
     </string-array>
     <string-array name="week_icon_mode_values">
         <item>auto</item>
@@ -145,7 +147,7 @@
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>Native</item>
-        <item>@string/geometric_weather</item>
+        <item>@string/geometric_weather</item><!-- do not translate. -->
     </string-array>
     <string-array name="notification_style_values">
         <item>native</item>
@@ -165,6 +167,7 @@
     </string-array>
 
     <!-- notification background colors. -->
+    <!-- Do not translate this array. -->
     <integer-array name="notification_background_colors">
         <item>@color/notification_background_l</item>
         <item>@color/notification_background_m</item>

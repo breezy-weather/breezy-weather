@@ -3,8 +3,8 @@
     <!-- app. -->
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
-    <string name="package_name">wangdaye.com.geometricweather</string>
-    <string name="version_code">v2.603</string>
+    <string name="package_name">wangdaye.com.geometricweather</string><!-- Do not translate. -->
+    <string name="version_code">v2.603</string><!-- Do not translate. -->
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -51,6 +51,7 @@
     <string name="restart">Restart</string>
     <string name="edit">Edit</string>
 
+    <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="yesterday">yday</string>
     <string name="tomorrow">tmw</string>
@@ -145,12 +146,17 @@
     <string name="alipay">Alipay</string>
     <string name="wechat">Wechat</string>
 
+    <!-- Date format strings. -->
+    <!-- Month : MMM(long) / M(short). -->
+    <!-- Day   : dd(long) / d(short). -->
+    <!-- Week  : EEEE(long) / EEE(short). -->
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
+    <!-- Do not translate the following set of strings. -->
     <string name="tag_temperature">@string/temperature</string>
     <string name="tag_wind">@string/wind</string>
     <string name="tag_precipitation">@string/precipitation</string>
@@ -158,6 +164,7 @@
     <string name="tag_uv">@string/uv_index</string>
 
     <!-- about. -->
+    <!-- Optional, the following set of strings are not necessarily translated. -->
     <string name="retrofit">Retrofit 2.0</string>
     <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
     <string name="glide">Glide</string>
@@ -195,6 +202,8 @@
     <string name="feedback_text_size">Text size</string>
     <string name="feedback_clock_font">Clock font</string>
     <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
+    <!-- keep those content with the format "$xxx$". -->
+    <!-- keep "\n" -->
     <string name="feedback_custom_subtitle_keywords">
         \n
         $cw$ : Current Weather\n
@@ -281,6 +290,9 @@
     <string name="feedback_updating_weather_data">Updating weather data</string>
     <string name="feedback_updated_in_background">Updated in background</string>
 
+    <!-- there should be a "\" before single or double quotes. -->
+    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
+    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="feedback_interpret_background_notification_content">In some devices, after turning off \'Background free\', there might be a notification that cannot be cleared in the notification bar.</string>
     <string name="feedback_interpret_notification_group_title">Block notification group</string>
     <string name="feedback_interpret_notification_group_content">After turning off \"Free background\", a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app\'s information page to block this notifications.</string>
@@ -321,6 +333,7 @@
     <string name="widget_text">Text</string>
     <string name="widget_trend_daily">Daily Trend</string>
     <string name="widget_trend_hourly">Hourly Trend</string>
+    <string name="widget_multi_city">Multi City</string>
     <string name="wait_refresh">waiting</string>
     <string name="ellipsis">…</string>
 
@@ -389,6 +402,7 @@
     <string name="settings_notification_hide_big_view_off">Show</string>
 
     <!--share preference-->
+    <!-- Do not translate the following set of strings. -->
     <string name="sp_widget_day_setting">widget_day_setting</string>
     <string name="sp_widget_week_setting">widget_week_setting</string>
     <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
@@ -399,6 +413,7 @@
     <string name="sp_widget_text_setting">widget_text_setting</string>
     <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
     <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
+    <string name="sp_widget_multi_city">widget_multi_city</string>
     <string name="key_view_type">view_type</string>
     <string name="key_card_style">card_style</string>
     <string name="key_card_alpha">card_alpha_1</string>
@@ -408,6 +423,7 @@
     <string name="key_text_size">text_size</string>
     <string name="key_clock_font">clock_font</string>
 
+    <!-- Do not translate the following set of strings. -->
     <string name="key_background_free">background_free_3</string>
     <string name="key_live_wallpaper">live_wallpaper</string>
     <string name="key_service_provider">service_provider</string>
@@ -452,6 +468,7 @@
     <string name="key_notification_hide_big_view">hide_notification_big_view</string>
 
     <!-- transition. -->
+    <!-- Do not translate the following set of strings. -->
     <string name="transition_activity_search_bar">activity_search_bar</string>
     <string name="transition_activity_search_txt">activity_search_txt</string>
 

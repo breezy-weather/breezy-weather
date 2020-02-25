@@ -103,7 +103,7 @@ public class Temperature implements Serializable {
         if (temperature == null) {
             return null;
         }
-        return unit.getTemperature(temperature) + "°";
+        return unit.getShortTemperatureText(temperature);
     }
 
     @Nullable

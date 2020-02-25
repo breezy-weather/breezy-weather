@@ -16,8 +16,6 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
@@ -43,10 +41,8 @@ public class ShortcutsManager {
                 return;
             }
 
-            List<Location> list = new ArrayList<>(locationList);
-
+            List<Location> list = Location.excludeInvalidResidentLocation(c, locationList);
             ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
-
             List<ShortcutInfo> shortcutList = new ArrayList<>();
 
             // refresh button.
@@ -73,7 +69,6 @@ public class ShortcutsManager {
             );
 
             // location list.
-            list = removeInvalidResidentLocations(c, list);
             int count = Math.min(
                     shortcutManager.getMaxShortcutCountPerActivity() - 1,
                     list.size()
@@ -116,25 +111,6 @@ public class ShortcutsManager {
                 // do nothing.
             }
         });
-    }
-
-    private static List<Location> removeInvalidResidentLocations(Context context, List<Location> list) {
-        final int[] currentPositionIndex = {-1};
-        IntStream.range(0, list.size())
-                .filter(value -> list.get(value).isCurrentPosition())
-                .findFirst()
-                .ifPresent(value -> currentPositionIndex[0] = value);
-
-        if (currentPositionIndex[0] == -1) {
-            return list;
-        }
-
-        Location currentPosition = list.get(currentPositionIndex[0]);
-        return list.stream().filter(location ->
-                location.equals(currentPosition)
-                        || !location.isResidentPosition()
-                        || !location.isCloseTo(context, currentPosition)
-        ).collect(Collectors.toList());
     }
 
     @NonNull

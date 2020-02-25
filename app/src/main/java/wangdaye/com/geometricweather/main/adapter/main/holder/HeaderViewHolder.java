@@ -88,7 +88,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                             Math.max(temperatureCFrom, Math.abs(temperatureCTo) / 10f * 1000)
                     )
             );
-            temperature.setPostfixString("°");
+            temperature.setPostfixString(unit.getUnitShortAbbreviation());
 
             weather.setText(
                     location.getWeather().getCurrent().getWeatherText()

@@ -30,12 +30,6 @@
         <item>Material design animace</item>
     </string-array>
 
-    <!-- card order. -->
-    <string-array name="card_orders">
-        <item>Nejprve po dnech</item>
-        <item>Nejprve po hodinách</item>
-    </string-array>
-
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>30 min.</item>
@@ -46,6 +40,10 @@
         <item>3 hod.</item>
         <item>3,5 hod.</item>
         <item>4 hod.</item>
+        <item>4,5 hod.</item>
+        <item>5 hod.</item>
+        <item>5,5 hod.</item>
+        <item>6 hod.</item>
     </string-array>
 
     <!-- widget week icon mode. -->

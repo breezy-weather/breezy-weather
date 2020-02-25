@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.work.WorkerParameters;
 import androidx.work.impl.utils.futures.SettableFuture;
 
+import java.util.List;
+
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
@@ -18,9 +20,9 @@ public class NormalUpdateWorker extends AsyncUpdateWorker {
     }
 
     @Override
-    public void updateView(Context context, Location location) {
-        WidgetUtils.updateWidgetIfNecessary(context, location);
-        NotificationUtils.updateNotificationIfNecessary(context, location);
+    public void updateView(Context context, List<Location> locationList) {
+        WidgetUtils.updateWidgetIfNecessary(context, locationList);
+        NotificationUtils.updateNotificationIfNecessary(context, locationList.get(0));
     }
 
     @SuppressLint("RestrictedApi")

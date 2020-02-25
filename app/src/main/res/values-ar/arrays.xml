@@ -33,6 +33,10 @@
         <item>كل ٣ ساعات</item>
         <item>كل ٣ ساعات ونصف</item>
         <item>كل ٤ ساعات</item>
+        <item>كل أربع ساعات ونصف</item>
+        <item>كل خمس ساعات</item>
+        <item>كل خمس ساعات ونصف</item>
+        <item>كل ست ساعات</item>
     </string-array>
 
     <!-- notification style. -->
