@@ -50,9 +50,9 @@ public class SettingsFragment extends AbstractSettingsFragment {
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             if (!backgroundFree) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    new RunningInBackgroundODialog().show(requireFragmentManager(), null);
+                    new RunningInBackgroundODialog().show(getParentFragmentManager(), null);
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    new RunningInBackgroundDialog().show(requireFragmentManager(), null);
+                    new RunningInBackgroundDialog().show(getParentFragmentManager(), null);
                 }
             }
             return true;
@@ -138,7 +138,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
                             requireActivity(), false, false);
                 }
             });
-            dialog.show(requireFragmentManager(), null);
+            dialog.show(getParentFragmentManager(), null);
             return true;
         });
         todayForecastTime.setEnabled(getSettingsOptionManager().isTodayForecastEnabled());
@@ -164,7 +164,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
                             requireActivity(), false, false);
                 }
             });
-            dialog.show(requireFragmentManager(), null);
+            dialog.show(getParentFragmentManager(), null);
             return true;
         });
         tomorrowForecastTime.setEnabled(getSettingsOptionManager().isTomorrowForecastEnabled());

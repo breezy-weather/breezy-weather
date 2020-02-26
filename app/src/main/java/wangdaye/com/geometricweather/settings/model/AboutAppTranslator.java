@@ -123,6 +123,11 @@ public class AboutAppTranslator {
                 "invisiblehype@gmail.com",
                 R.drawable.flag_pl
         ));
+        list.add(new AboutAppTranslator(
+                "이서경",
+                "ng097207@gmail.com",
+                R.drawable.flag_ko
+        ));
         return list;
     }
 }

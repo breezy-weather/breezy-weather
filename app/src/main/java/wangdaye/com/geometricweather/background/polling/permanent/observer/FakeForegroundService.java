@@ -46,7 +46,6 @@ public class FakeForegroundService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stopForeground(true);
-
     }
 
     @Nullable

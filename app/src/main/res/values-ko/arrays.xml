@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <!-- 날씨 제공처. -->
+    <string-array name="weather_sources">
+        <item>weather.com.cn (중국 내수용)</item>
+        <item>caiyun.com (중국 내수용)</item>
+        <item>accuweather.com</item>
+    </string-array>
+
+    <!-- 위치 서비스. -->
+    <string-array name="location_services">
+        <item>바이두 위치</item>
+        <item>바이두 IP 위치 (중국 내수용)</item>
+        <item>AMap 위치</item>
+        <item>현지 API</item>
+    </string-array>
+
+    <!-- 어두운 모드. -->
+    <string-array name="dark_modes">
+        <item>자동</item>
+        <item>언제나 밝게</item>
+        <item>언제나 어둡게</item>
+    </string-array>
+
+    <!-- UI 스타일. -->
+    <string-array name="ui_styles">
+        <item>동글동글 하늘</item>
+        <item>머티리얼 애니메이션</item>
+    </string-array>
+
+    <!-- 자동 갱신 간격. -->
+    <string-array name="automatic_refresh_rates">
+        <item>30분</item>
+        <item>1시간</item>
+        <item>1시간 30분</item>
+        <item>2시간</item>
+        <item>2시간 30분</item>
+        <item>3시간</item>
+        <item>3시간 30분</item>
+        <item>4시간</item>
+        <item>4시간 30분</item>
+        <item>5시간</item>
+        <item>5시간 30분</item>
+        <item>6시간</item>
+    </string-array>
+
+    <!-- 위젯 주간 아이콘 모드. -->
+    <string-array name="week_icon_modes">
+        <item>자동</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
+    </string-array>
+
+    <!-- 알림 스타일. -->
+    <string-array name="notification_styles">
+        <item>지역</item>
+        <item>@string/geometric_weather</item>
+    </string-array>
+
+    <!-- 알림 글자 색상. -->
+    <string-array name="notification_text_colors">
+        <item>어두움</item>
+        <item>회색</item>
+        <item>밝음</item>
+    </string-array>
+
+    <!-- 위젯 스타일. -->
+    <string-array name="widget_styles">
+        <item>직사각형</item>
+        <item>대칭</item>
+        <item>타일</item>
+        <item>미니</item>
+        <item>나노</item>
+        <item>픽셀</item>
+        <item>세로</item>
+        <item>오레오</item>
+        <item>오레오 (구글 산스)</item>
+    </string-array>
+
+    <!-- 위젯 표시 데이터. -->
+    <string-array name="subtitle_data">
+        <item>갱신 시간</item>
+        <item>AQI (일부 지역에서는 불가능합니다.)</item>
+        <item>바람</item>
+        <item>체감 온도</item>
+        <item>월력</item>
+        <item>커스텀</item>
+    </string-array>
+
+    <!-- 위젯 시계 폰트. -->
+    <string-array name="clock_font">
+        <item>얇은 산 세리프</item>
+        <item>산 세리프</item>
+        <item>어두운 산 세리프</item>
+        <item>아날로그</item>
+    </string-array>
+
+    <!-- 위젯 카드 스타일. -->
+    <string-array name="widget_card_styles">
+        <item>없음</item>
+        <item>낮 밤 모드</item>
+        <item>밝음</item>
+        <item>어두움</item>
+    </string-array>
+
+    <!-- 위젯 글씨 색상. -->
+    <string-array name="widget_text_colors">
+        <item>밝음</item>
+        <item>어두움</item>
+        <item>자동</item>
+    </string-array>
+
+    <!-- 라이브 배경화면 종류. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>자동</item>
+        <item>맑음</item>
+        <item>약간 흐림</item>
+        <item>흐림</item>
+        <item>비</item>
+        <item>눈</item>
+        <item>진눈깨비</item>
+        <item>싸락눈</item>
+        <item>안개</item>
+        <item>실안개</item>
+        <item>번개</item>
+        <item>뇌우</item>
+        <item>바람</item>
+    </string-array>
+
+    <!-- 라이브 배경화면 시간 종류. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>자동</item>
+        <item>언제나 낮</item>
+        <item>언제나 밤</item>
+    </string-array>
+
+    <!-- 속도 단위. -->
+    <string-array name="speed_units">
+        <item>km/h</item>
+        <item>m/s</item>
+        <item>kn</item>
+        <item>mi/h</item>
+        <item>ft/s</item>
+    </string-array>
+
+    <!-- 강수 단위. -->
+    <string-array name="precipitation_units">
+        <item>mm</item>
+        <item>inch</item>
+        <item>L/m²</item>
+    </string-array>
+
+    <!-- 온도 단위. -->
+    <string-array name="temperature_units">
+        <item>℃</item>
+        <item>℉</item>
+        <item>K</item>
+    </string-array>
+
+    <!-- 거리 단위. -->
+    <string-array name="distance_units">
+        <item>km</item>
+        <item>m</item>
+        <item>mi</item>
+        <item>nmi</item>
+        <item>ft</item>
+    </string-array>
+
+    <!-- 기압 단위. -->
+    <string-array name="pressure_units">
+        <item>mb</item>
+        <item>kPa</item>
+        <item>hPa</item>
+        <item>atm</item>
+        <item>mmHg</item>
+        <item>inHg</item>
+        <item>kgf/cm²</item>
+    </string-array>
+
+    <!-- 대기 질 단위. -->
+    <string-array name="air_quality_units">
+        <item>μg/m³</item>
+    </string-array>
+
+    <!-- 시간 단위. -->
+    <string-array name="duration_units">
+        <item>h</item> <!-- hour -->
+    </string-array>
+
+    <!-- 입자 단위. -->
+    <string-array name="pollen_units">
+        <item>/m³</item>
+    </string-array>
+
+</resources>

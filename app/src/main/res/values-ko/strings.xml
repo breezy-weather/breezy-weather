@@ -1,0 +1,383 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <!-- app. -->
+    <string name="app_name">날씨</string>
+    <string name="geometric_weather">Geometric Weather</string>
+
+    <!-- keyword. -->
+    <string name="current_location">현 위치</string>
+    <string name="resident_location">거주지 </string>
+    <string name="default_location">기본 위치 </string>
+    <string name="live">현재</string>
+    <string name="today">오늘</string>
+    <string name="refresh_at">업데이트 됨</string>
+    <string name="local_time">현지 시간</string>
+    <string name="precipitation">강수</string>
+    <string name="precipitation_probability">강수 확률</string>
+    <string name="precipitation_duration">강수 지속 시간</string>
+    <string name="maxi_temp">주간</string>
+    <string name="mini_temp">야간</string>
+    <string name="time">시간</string>
+    <string name="day">낮</string>
+    <string name="night">밤</string>
+    <string name="temperature">온도</string>
+    <string name="wind">바람</string>
+    <string name="wind_direction">풍향</string>
+    <string name="wind_speed">풍속</string>
+    <string name="wind_level">보퍼트 풍력 계급</string>
+    <string name="sensible_temp">체감 온도</string>
+    <string name="humidity">습도</string>
+    <string name="uv_index">자외선 지수</string>
+    <string name="hours_of_sun">일조 시간</string>
+    <string name="forecast">일기 예보</string>
+    <string name="briefings">요약</string>
+    <string name="daytime">주간</string>
+    <string name="nighttime">야간</string>
+    <string name="publish_at">Pub</string>
+    <string name="feels_like">체감 온도</string>
+    <string name="follow_system">시스템 따르기</string>
+    <string name="background_information">배경 정보</string>
+    <string name="pressure">기압</string>
+    <string name="visibility">시계</string>
+    <string name="dew_point">이슬점</string>
+    <string name="cloud_cover">구름량</string>
+    <string name="ceiling">상승 한도</string>
+    <string name="get_more">더 보기</string>
+    <string name="get_more_store">앱 스토어에서 더보기</string>
+    <string name="get_more_github">GitHub에서 더보기</string>
+    <string name="refresh">갱신</string>
+    <string name="restart">재시작</string>
+    <string name="edit">수정</string>
+
+    <string name="of_clock">:00</string>
+    <string name="yesterday">어제</string>
+    <string name="tomorrow">내일</string>
+    <string name="week">주</string>
+    <string name="week_1">월</string>
+    <string name="week_2">화</string>
+    <string name="week_3">수</string>
+    <string name="week_4">목</string>
+    <string name="week_5">금</string>
+    <string name="week_6">토</string>
+    <string name="week_7">일</string>
+
+    <string name="real_feel_temperature">체감 온도</string>
+    <string name="real_feel_shader_temperature">체감 셰이더</string>
+    <string name="apparent_temperature">겉보기 온도</string>
+    <string name="wind_chill_temperature">풍속 냉각</string>
+    <string name="wet_bulb_temperature">습구</string>
+    <string name="degree_day_temperature">도일</string>
+
+    <string name="total">총계</string>
+    <string name="thunderstorm">뇌우</string>
+    <string name="rain">비</string>
+    <string name="snow">눈</string>
+    <string name="ice">얼음</string>
+
+    <string name="wind_0">고요</string>
+    <string name="wind_1">실바람</string>
+    <string name="wind_2">남실바람</string>
+    <string name="wind_3">산들바람</string>
+    <string name="wind_4">건들바람</string>
+    <string name="wind_5">흔들바람</string>
+    <string name="wind_6">된바람</string>
+    <string name="wind_7">센바람</string>
+    <string name="wind_8">큰바람</string>
+    <string name="wind_9">큰센바람</string>
+    <string name="wind_10">노대바람</string>
+    <string name="wind_11">왕바람</string>
+    <string name="wind_12">싹슬바람</string>
+
+    <string name="precipitation_light">이슬비</string>
+    <string name="precipitation_middle">비</string>
+    <string name="precipitation_heavy">호우</string>
+    <string name="precipitation_rainstorm">폭풍우</string>
+
+    <string name="aqi_1">청청한 공기</string>
+    <string name="aqi_2">깨끗한 공기</string>
+    <string name="aqi_3">약간 오염됨</string>
+    <string name="aqi_4">조금 오염됨</string>
+    <string name="aqi_5">많이 오염됨</string>
+    <string name="aqi_6">심각하게 오염됨</string>
+
+    <string name="phase_new">삭</string>
+    <string name="phase_waxing_crescent">초승달</string>
+    <string name="phase_first">상현달</string>
+    <string name="phase_waxing_gibbous">철월</string>
+    <string name="phase_full">보름달</string>
+    <string name="phase_waning_gibbous">요월</string>
+    <string name="phase_third">하현달</string>
+    <string name="phase_waning_crescent">그믐달</string>
+
+    <string name="grass">풀</string>
+    <string name="mold">양토</string>
+    <string name="ragweed">돼지풀</string>
+    <string name="tree">나무</string>
+
+    <string name="daily_overview">일간 예보</string>
+    <string name="hourly_overview">시간별 예보</string>
+    <string name="minutely_overview">분간 예보</string>
+    <string name="precipitation_overview">강수 예보</string>
+    <string name="air_quality">공기 질</string>
+    <string name="allergen">알레르기</string>
+    <string name="life_details">상세</string>
+    <string name="sunrise_sunset">Sun &amp; moon</string>
+
+    <string name="next">다음</string>
+    <string name="done">끝</string>
+    <string name="cancel" tools:ignore="ButtonCase">취소</string>
+    <string name="on">켜짐</string>
+    <string name="off">꺼짐</string>
+    <string name="go_to_set">설정</string>
+    <string name="help">도움말</string>
+    <string name="learn_more">더 알아보기</string>
+
+    <string name="about_app">앱에 관하여</string>
+    <string name="introduce">소개</string>
+    <string name="email">이메일</string>
+    <string name="donate">기부</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">번역해 주신 분들</string>
+    <string name="thanks">고마운 분들</string>
+
+    <string name="alipay">알리페이</string>
+    <string name="wechat">위챗</string>
+
+    <string name="date_format_short">M-d</string>
+    <string name="date_format_long">M월d일</string>
+    <string name="date_format_widget_short">MM-dd EEE</string>
+    <string name="date_format_widget_long">M월d일 EEEE</string>
+    <string name="date_format_widget_oreo_style">M월d일EEEE │ </string>
+
+    <!-- about. -->
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">안드로이드용 Type-safe HTTP 클라이언트와 Square, Inc.의 자바</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">부드러운 스크롤을 중점으로 하는 안드로이드용 이미지 로딩과 캐쉬 라이브러리</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">자바 오브젝트를 JSON으로 바꾸고 되돌릴 수 있는 자바 직렬화/역직렬화 라이브러리</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO는 SQLite 테이터베이스에서 지도 오브젝트를 빼올 수 있는 가볍고 빠른 안드로이드용 ORM 솔루션입니다.</string>
+    <string name="page_indicator">InkPageIndicator</string>
+    <string name="about_page_indicator">InkPageIndicator는 @nickbutcher for Plaid https://github.com/nickbutcher/plaid 에 의하여 만들어 지고 David Pacioianu for API 14+ (4.0+).에 의하여 백포팅 되었습니다</string>
+    <string name="circular_progress_view">CircularProgressView</string>
+    <string name="about_circular_progress_view">안드로이드용 머티리얼 디자인의 진행 바.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">허가</string>
+    <string name="feedback_request_location">위치</string>
+    <string name="feedback_request_location_in_background">백그라운드에 상주하기</string>
+    <string name="feedback_request_location_permission_success">위치 허가 요청에 성공하였습니다.</string>
+    <string name="feedback_request_location_permission_failed">위치 허가 요청에 실패하였습니다.</string>
+
+    <string name="feedback_location_failed">위치 실패</string>
+    <string name="feedback_get_weather_failed">날씨 데이터 요청 실패</string>
+    <string name="feedback_location_help_title">위치를 제대로 받아오지 못하였나요?</string>
+    <string name="feedback_check_location_permission">위치 허가 확인하기</string>
+    <string name="feedback_enable_location_information">위치 정보 활성화</string>
+    <string name="feedback_select_location_provider">위치 공급자 선택하기</string>
+    <string name="feedback_add_location_manually">위치를 수동으로 첨가하고 삭제하기 \'$\'</string>
+
+    <string name="feedback_view_style">보여지는 스타일</string>
+    <string name="feedback_show_widget_card">배경색</string>
+    <string name="feedback_show_widget_card_alpha">투명도</string>
+    <string name="feedback_hide_subtitle">부제 숨기기</string>
+    <string name="feedback_subtitle_data">부제 데이터</string>
+    <string name="feedback_black_text">글씨 색</string>
+    <string name="feedback_text_size">글씨 사이즈</string>
+    <string name="feedback_clock_font">시계 폰트</string>
+    <string name="feedback_custom_subtitle_explanation">당신은 아무거나 입력 할 수는 있지만, 글씨의 길이에 신경 써 주세요. 당신이 만약 날씨 데이터를 따오고 싶다면, 해당 키워드를 참조하여 $ 를 사용해 주세요.\n\n예를 들자면 \"현재 날씨 = $cw$\" 는 \"현재 날씨 = 맑음\" 으로 표시됩니다.</string>
+    <string name="feedback_custom_subtitle_keywords">
+        \n
+        $cw$ : 현재 날씨\n
+        $ct$ : 현재 온도 (℃/℉)\n
+        $ctd$ : 현재 온도 (°)\n
+        $at$ : 피상 온도 (℃/℉)\n
+        $atd$ : 피상 온도 (°)\n
+        $cpb$ : 현재 강수 확률 (%)\n
+        $cp$ : 현재 강수 (mm/L/m²)\n
+        $cwd$ : 현재 바람\n
+        $cuv$ : 현재 자외선\n
+        $ch$ : 현재 습도\n
+        $cps$ : 현재 기압\n
+        $cv$ : 현재 시계\n
+        $cdp$ : 현재 이슬점\n
+        \n
+        $l$ : 위치\n
+        $lat$ : 위도\n
+        $lon$ : 경도\n
+        $ut$ : 갱신 시간\n
+        $d$ : 날짜\n
+        $lc$ : 음력\n
+        $w$ : 주\n
+        $ws$ : 주 (짧은)\n
+        $dd$ : 오늘의 서술\n
+        $hd$ : 시간별 서술\n
+        $enter$ : 들어가기\n
+        \n
+        $0dw$, $1dw$, …, $4dw$ : \n오늘의 주간 날씨, 내일, …, 4일 후\n
+        \n
+        $0nw$, $1nw$, …, $4nw$ : \n오늘의 야간 날씨, 내일, …, 4일 후\n
+        \n
+        $0dt$, $1dt$, …, $4dt$ : \n오늘의 주간 온도, 내일, …, 4일 후 (℃/℉)\n
+        \n
+        $0nt$, $1nt$, …, $4nt$ : \n오늘의 야간 온도, 내일, …, 4일 후 (℃/℉)\n
+        \n
+        $0dtd$, $1dtd$, …, $4dtd$ : \n오늘의 주간 온도, 내일, …, 4일 후 (°)\n
+        \n
+        $0ntd$, $1ntd$, …, $4ntd$ : \n오늘의 야간 온도, 내일, …, 4일 후 (°)\n
+        \n
+        $0dp$, $1dp$, …, $4dp$ : \n오늘의 주간 강수 확률, 내일, …, 4일 후 (%)\n
+        \n
+        $0np$, $1np$, …, $4np$ : \n오늘의 야간 강수 확률, 내일, …, 4일 후 (%)\n
+        \n
+        $0dwd$, $1dwd$, …, $4dwd$ : \n오늘의 주간 바람, 내일, …, 4일 후\n
+        \n
+        $0nwd$, $1nwd$, …, $4nwd$ : \n오늘의 야간 바람, 내일, …, 4일 후\n
+        \n
+        $0sr$, $1sr$, …, $4sr$ : \n오늘의 일출, 내일, …, 4일 후\n
+        \n
+        $0ss$, $1ss$, …, $4ss$ : \n오늘의 일몰, 내일, …, 4일 후\n
+        \n
+        $0mr$, $1mr$, …, $4mr$ : \n오늘의 월출, 내일, …, 4일 후\n
+        \n
+        $0ms$, $1ms$, …, $4ms$ : \n오늘의 월몰, 내일, …, 4일 후\n
+        \n
+        $0mp$, $1mp$, …, $4mp$ : \n오늘의 달의 위상, 내일, …, 4일 후\n
+    </string>
+
+    <string name="feedback_live_wallpaper_weather_kind">날씨</string>
+    <string name="feedback_live_wallpaper_day_night_type">시간</string>
+
+    <string name="feedback_click_toggle">차트를 눌러 데이터 보이기</string>
+    <string name="feedback_no_data">데이터 없음</string>
+
+    <string name="feedback_collect_failed">이 위치는 이미 존재합니다</string>
+    <string name="feedback_collect_succeed">위치 추가 성공</string>
+    <string name="feedback_delete_succeed">위치 제거 성공</string>
+    <string name="feedback_location_list_cannot_be_null">위치 리스트는 비워 둘 수 없습니다.</string>
+
+    <string name="feedback_search_location">위치 찾기…</string>
+    <string name="feedback_not_yet_location">아직 어떠한 위치도 없습니다…</string>
+    <string name="feedback_search_nothing">어떠한 위치도 찾지 못하였습니다</string>
+    <string name="feedback_initializing">초기화 중…</string>
+
+    <string name="feedback_refresh_notification_after_back">홈 페이지로 돌아가면 변경 사항이 적용됩니다.</string>
+    <string name="feedback_refresh_notification_now">지금 갱신하기</string>
+    <string name="feedback_refresh_ui_after_refresh">변경 사항은 갱신 후에 적용됩니다</string>
+    <string name="feedback_restart">변경 사항은 재시작 후에 적용됩니다</string>
+    <string name="feedback_readd_location">다시 위치를 추가해 주세요</string>
+    <string name="feedback_readd_location_after_changing_source">데이터 제공자 변경 후, 위치를 다시 추가하여 주세요</string>
+
+    <string name="feedback_running_in_background">계속 갱신하기 위하여 백그라운드에서 작동하기</string>
+    <string name="feedback_updating_weather_data">위치 데이터 갱신중…</string>
+    <string name="feedback_updated_in_background">백그라운드에서 업데이트 되었습니다</string>
+
+    <string name="feedback_interpret_background_notification_content">몇몇 장치에서, \'배경 제거\'를 끈 후에, 알림 바에서 지워지지 않는 알림이 생길 수도 있습니다.</string>
+    <string name="feedback_interpret_notification_group_title">알림 그룹 막기</string>
+    <string name="feedback_interpret_notification_group_content">\"배경 없음\"을 끄고 난 후에, 알림 바에 \'백그라운드 서비스가 실행되고 있음\'이라는 알림이 나타납니다. 이 앱의 백그라운드 정보 채널에서 알림을 끔으로써, \ 이 알림을 막을 수 있습니다.</string>
+
+    <string name="feedback_ignore_battery_optimizations_title">배터리 최적화 무시하기</string>
+    <string name="feedback_ignore_battery_optimizations_content">GeometricWeather가 계속 날씨 데이터를 받아 오려면, 배터리 최적화에서 이 앱를 제외해야 합니다.</string>
+    
+    <string name="feedback_cannot_start_live_wallpaper_activity">라이브 배경화면 미리보기를 시작할 수 없습니다.</string>
+
+    <string name="feedback_unusable_geocoder">이 장치는 적절한 geocoder를 탑재하고 있지 않아요. 그에 따라, 위치 제공자가 바이두 위치로 바뀝니다.</string>
+    <string name="feedback_about_geocoder">Geocoder는 위,경도 스타일의 위치 정보를 \'XX 시, YY 도 \'로 바꾸어 주는 기능을 탑재하고 있어요. 이 기능 없이는, 현지 API를 위치 공급자로써 사용할 때에도 날씨 데이터를 오직 Accuweather로부터 가져 올 수밖에 없어요.</string>
+
+    <string name="feedback_today_precipitation_alert">오늘 강수가 있을 것입니다.</string>
+    <string name="feedback_short_term_precipitation_alert">강수는 대략 몇 시간 뒤에 일어날 수도 있습니다.</string>
+
+    <string name="feedback_resident_location">Set as a resident city</string>
+    <string name="feedback_resident_location_description">Geometric Weather는 자동적으로 당신의 위치에 따라 거주 도시를 보이고 숨겨줄 거에요.\n예를 들자면, 당신은 고향을 거주 도시로 설정 할 수도 있어요. 당신은 여행 하는 동안에도 고향의 날씨를 알 수 있어요. 집에 도착하면, 고향의 날씨는 자동으로 숨겨지고 현재 위치의 날씨로 대체 될 것 이에요.</string>
+
+    <string name="feedback_click_to_get_more">눌러서 더 알아보기…</string>
+
+    <!-- action -->
+    <string name="action_alert">알림</string>
+    <string name="action_manage">관리</string>
+    <string name="action_search">검색</string>
+    <string name="action_settings">설정</string>
+    <string name="action_preview">미리 보기</string>
+    <string name="action_about">더보기</string>
+    <string name="action_appStore">앱 스토어</string>
+
+    <!-- widget -->
+    <string name="widget_day">오늘의 날씨</string>
+    <string name="widget_week">주간 날씨</string>
+    <string name="widget_day_week">오늘의 날씨 + 주간 날씨</string>
+    <string name="widget_clock_day_horizontal">시계 + 오늘의 날씨 (가로)</string>
+    <string name="widget_clock_day_details">시계 + 오늘의 날씨 (자세한 날씨)</string>
+    <string name="widget_clock_day_vertical">시계 + 오늘의 날씨 (세로)</string>
+    <string name="widget_clock_day_week">시계 + 오늘의 날씨 + 주간 날씨</string>
+    <string name="widget_text">글자</string>
+    <string name="widget_trend_daily">일간 추이</string>
+    <string name="widget_trend_hourly">시간별 추이</string>
+    <string name="wait_refresh">기다려 주세요</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">기본</string>
+    <string name="settings_title_background_free">배경 없음</string>
+    <string name="settings_summary_background_free_on">켜짐\nIf 위젯과 알림이 자동적으로 갱신되지 아니한다면, 이 옵션을 꺼주세요.</string>
+    <string name="settings_summary_background_free_off">꺼짐\nIf 백그라운드에서 어떤 작업도 실행되는 것을 원치 않는다면, 이 옵션을 꺼주세요.</string>
+    <string name="settings_title_live_wallpaper">라이브 배경화면</string>
+    <string name="settings_summary_live_wallpaper">머티리얼 날씨 애니매이션을 라이브 배경화면으로 설정하기</string>
+    <string name="settings_title_service_provider">서비스 제공자</string>
+    <string name="settings_summary_service_provider">날씨 데이터와 지역 정보 서비스 제공자 선택하기</string>
+    <string name="settings_title_weather_source">날씨 제공처</string>
+    <string name="settings_title_location_service">위치 서비스</string>
+    <string name="settings_title_dark_mode">어두운 모드</string>
+    <string name="settings_title_ui_style">외관 스타일</string>
+    <string name="settings_title_icon_provider">아이콘 팩</string>
+    <string name="settings_title_appearance">외관</string>
+    <string name="settings_summary_appearance">인터페이스 스타일, 카드 순서, 언어 등등…</string>
+    <string name="settings_title_card_display">보여지는 카드</string>
+    <string name="settings_title_card_order">카드 순서</string>
+    <string name="settings_title_gravity_sensor_switch">중력 센서</string>
+    <string name="settings_title_list_animation_switch">목록의 애니매이션</string>
+    <string name="settings_title_item_animation_switch">자료의 애니매이션</string>
+    <string name="settings_language">언어</string>
+    <string name="settings_title_unit">단위</string>
+    <string name="settings_summary_unit">날씨 자료의 단위 설정하기</string>
+    <string name="settings_title_temperature_unit">온도 단위</string>
+    <string name="settings_title_distance_unit">거리 단위</string>
+    <string name="settings_title_precipitation_unit">강수 단위</string>
+    <string name="settings_title_pressure_unit">기압 단위</string>
+    <string name="settings_title_speed_unit">속도 단위</string>
+    <string name="settings_title_refresh_rate">자동 갱신 시간 간격</string>
+    <string name="settings_title_alert_notification_switch">위험 알림 보내기</string>
+    <string name="settings_title_precipitation_notification_switch">강수 예보 보내기</string>
+    <string name="settings_title_permanent_service">영구적인 서비스</string>
+    <string name="settings_category_forecast">오늘 예보</string>
+    <string name="settings_title_forecast_today">오늘 예보</string>
+    <string name="settings_title_forecast_today_time">오늘 예보를 보낼 시간</string>
+    <string name="settings_title_forecast_tomorrow">내일 예보</string>
+    <string name="settings_title_forecast_tomorrow_time">내일 예보를 보낼 시간</string>
+    <string name="settings_category_widget">위젯</string>
+    <string name="settings_title_week_icon_mode">주간 아이콘 모드</string>
+    <string name="settings_title_minimal_icon">미니멀리즘 디자인의 아이콘</string>
+    <string name="settings_title_click_widget_to_refresh">클릭 할 때마다 위젯 갱신하기</string>
+    <string name="settings_category_notification">알림</string>
+    <string name="settings_title_notification">알림 보내기</string>
+    <string name="settings_title_notification_style">알림 스타일</string>
+    <string name="settings_title_notification_temp_icon">상단 바에 온도 아이콘 표시하기</string>
+    <string name="settings_title_notification_color">알림 색</string>
+    <string name="settings_title_notification_custom_color">맞춤 알림 색</string>
+    <string name="settings_title_notification_text_color">글자 색</string>
+    <string name="settings_title_notification_background">배경 색</string>
+    <string name="settings_notification_background_off">시스템 설정 따르기</string>
+    <string name="settings_title_notification_can_be_cleared">지울 수 있습니다</string>
+    <string name="settings_notification_can_be_cleared_on">드래그 하여 지울 수 있어요</string>
+    <string name="settings_notification_can_be_cleared_off">지울 수 있어요</string>
+    <string name="settings_title_notification_hide_icon">알림 아이콘 숨겨짐</string>
+    <string name="settings_notification_hide_icon_on">숨겨짐</string>
+    <string name="settings_notification_hide_icon_off">보여짐</string>
+    <string name="settings_title_notification_hide_in_lockScreen">잠금 화면에서 숨겨짐</string>
+    <string name="settings_notification_hide_in_lockScreen_on">숨겨짐 (시스템 설정 상의 설정이 필요합니다)</string>
+    <string name="settings_notification_hide_in_lockScreen_off">보여짐</string>
+    <string name="settings_title_notification_hide_big_view">확장된 스타일</string>
+    <string name="settings_notification_hide_big_view_on">숨겨짐</string>
+    <string name="settings_notification_hide_big_view_off">보여짐</string>
+
+</resources>

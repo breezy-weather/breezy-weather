@@ -119,7 +119,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                         getString(R.string.feedback_refresh_ui_after_refresh)
                 );
             });
-            dialog.show(requireFragmentManager(), null);
+            dialog.show(getParentFragmentManager(), null);
             return true;
         });
     }

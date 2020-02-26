@@ -92,7 +92,7 @@ public class TimeObserverService extends Service {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver();
-        stopForeground();
+        stopForeground(true);
     }
 
     private void initData() {
@@ -119,10 +119,7 @@ public class TimeObserverService extends Service {
         if (lastUpdateNormalViewTime < 0
                 || System.currentTimeMillis() - lastUpdateNormalViewTime > getPollingInterval()) {
             lastUpdateNormalViewTime = System.currentTimeMillis();
-            Intent intent = new Intent(
-                    this,
-                    ForegroundNormalUpdateService.class
-            );
+            Intent intent = new Intent(this, ForegroundNormalUpdateService.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForegroundService(intent);
             } else {
@@ -130,10 +127,7 @@ public class TimeObserverService extends Service {
             }
         }
         if (!TextUtils.isEmpty(todayForecastTime) && isForecastTime(todayForecastTime)) {
-            Intent intent = new Intent(
-                    this,
-                    ForegroundTodayForecastUpdateService.class
-            );
+            Intent intent = new Intent(this, ForegroundTodayForecastUpdateService.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForegroundService(intent);
             } else {
@@ -141,10 +135,7 @@ public class TimeObserverService extends Service {
             }
         }
         if (!TextUtils.isEmpty(tomorrowForecastTime) && isForecastTime(tomorrowForecastTime)) {
-            Intent intent = new Intent(
-                    this,
-                    ForegroundTomorrowForecastUpdateService.class
-            );
+            Intent intent = new Intent(this, ForegroundTomorrowForecastUpdateService.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForegroundService(intent);
             } else {
@@ -200,10 +191,6 @@ public class TimeObserverService extends Service {
             );
             startService(new Intent(this, FakeForegroundService.class));
         }
-    }
-
-    private void stopForeground() {
-        stopForeground(true);
     }
 
     public static Notification getForegroundNotification(Context context, boolean setIcon) {
