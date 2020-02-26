@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
+
 <!--
     EN # Some translations can be untranslated or skipped cause of not having certain terms in Polish language. If there were any mistakes in the translation, I apologize in advance.
     PL # Niektóre zwroty mogą być nieprzetłumaczone lub pominięte z powodu braku niektórych określeń ("wet bulb temperature" lub "degree day temperature") w języku polskim. Jeśli wystąpiły pomyłki w tłumaczeniu, z góry przepraszam.
@@ -15,7 +16,7 @@
     <string name="default_location">domyślna lokalizacja</string>
     <string name="live">Obecnie</string>
     <string name="today">Dziś</string>
-    <string name="refresh_at">Odśwież za</string>
+    <string name="refresh_at">Odświeżono</string>
     <string name="local_time">Czas lokalny</string>
     <string name="precipitation">Opad atmosferyczny</string>
     <string name="precipitation_probability">Prawdopodobieństwo opadów</string>
@@ -55,7 +56,7 @@
     <string name="edit">Edytuj</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">wczorajy</string>
+    <string name="yesterday">wczoraj</string>
     <string name="tomorrow">dziś</string>
     <string name="week">tydzień</string>
     <string name="week_1">Pon</string>
