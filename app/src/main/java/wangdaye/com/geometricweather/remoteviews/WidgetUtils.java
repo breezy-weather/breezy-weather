@@ -29,38 +29,41 @@ import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
 
 public class WidgetUtils {
 
-    public static void updateWidgetIfNecessary(Context context, List<Location> locationList) {
-        locationList = Location.excludeInvalidResidentLocation(context, locationList);
+    public static void updateWidgetIfNecessary(Context context, Location location) {
         if (DayWidgetIMP.isEnable(context)) {
-            DayWidgetIMP.updateWidgetView(context, locationList.get(0));
+            DayWidgetIMP.updateWidgetView(context, location);
         }
         if (WeekWidgetIMP.isEnable(context)) {
-            WeekWidgetIMP.updateWidgetView(context, locationList.get(0));
+            WeekWidgetIMP.updateWidgetView(context, location);
         }
         if (DayWeekWidgetIMP.isEnable(context)) {
-            DayWeekWidgetIMP.updateWidgetView(context, locationList.get(0));
+            DayWeekWidgetIMP.updateWidgetView(context, location);
         }
         if (ClockDayHorizontalWidgetIMP.isEnable(context)) {
-            ClockDayHorizontalWidgetIMP.updateWidgetView(context, locationList.get(0));
+            ClockDayHorizontalWidgetIMP.updateWidgetView(context, location);
         }
         if (ClockDayVerticalWidgetIMP.isEnable(context)) {
-            ClockDayVerticalWidgetIMP.updateWidgetView(context, locationList.get(0));
+            ClockDayVerticalWidgetIMP.updateWidgetView(context, location);
         }
         if (ClockDayWeekWidgetIMP.isEnable(context)) {
-            ClockDayWeekWidgetIMP.updateWidgetView(context, locationList.get(0));
+            ClockDayWeekWidgetIMP.updateWidgetView(context, location);
         }
         if (ClockDayDetailsWidgetIMP.isEnable(context)) {
-            ClockDayDetailsWidgetIMP.updateWidgetView(context, locationList.get(0));
+            ClockDayDetailsWidgetIMP.updateWidgetView(context, location);
         }
         if (TextWidgetIMP.isEnable(context)) {
-            TextWidgetIMP.updateWidgetView(context, locationList.get(0));
+            TextWidgetIMP.updateWidgetView(context, location);
         }
         if (DailyTrendWidgetIMP.isEnable(context)) {
-            DailyTrendWidgetIMP.updateWidgetView(context, locationList.get(0));
+            DailyTrendWidgetIMP.updateWidgetView(context, location);
         }
         if (HourlyTrendWidgetIMP.isEnable(context)) {
-            HourlyTrendWidgetIMP.updateWidgetView(context, locationList.get(0));
+            HourlyTrendWidgetIMP.updateWidgetView(context, location);
         }
+    }
+
+    public static void updateWidgetIfNecessary(Context context, List<Location> locationList) {
+        locationList = Location.excludeInvalidResidentLocation(context, locationList);
         if (MultiCityWidgetIMP.isEnable(context)) {
             MultiCityWidgetIMP.updateWidgetView(context, locationList);
         }

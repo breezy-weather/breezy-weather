@@ -46,6 +46,8 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
 
     // control.
 
+    public abstract void updateView(Context context, Location location);
+
     public abstract void updateView(Context context, List<Location> locationList);
 
     /**
@@ -64,11 +66,10 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
             if (locationList.get(i).equals(location)) {
                 locationList.set(i, location);
                 if (i == 0) {
+                    updateView(getApplicationContext(), location);
                     if (succeed) {
-                        NotificationUtils.checkAndSendAlert(
-                                getApplicationContext(), location, old);
-                        NotificationUtils.checkAndSendPrecipitationForecast(
-                                getApplicationContext(), location, old);
+                        NotificationUtils.checkAndSendAlert(getApplicationContext(), location, old);
+                        NotificationUtils.checkAndSendPrecipitationForecast(getApplicationContext(), location, old);
                     } else {
                         failed = true;
                     }

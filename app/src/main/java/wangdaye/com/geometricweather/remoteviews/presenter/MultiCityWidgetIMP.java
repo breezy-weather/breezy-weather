@@ -50,7 +50,6 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                                              String cardStyle, int cardAlpha,
                                              String textColor, int textSize) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_multi_city_horizontal);
-        locationList = Location.excludeInvalidResidentLocation(context, locationList);
 
         Location location = locationList.get(0);
         Weather weather = location.getWeather();

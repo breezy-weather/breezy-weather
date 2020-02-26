@@ -134,7 +134,7 @@ public class MainActivity extends GeoActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DisplayUtils.setSystemBarStyle(MainActivity.this, getWindow(), true,
-                false, false, false, false);
+                false, false, true, false);
 
         if (DisplayUtils.isLandscape(this) && DisplayUtils.isTabletDevice(this)) {
             setContentView(R.layout.activity_main_tablet);
@@ -172,7 +172,8 @@ public class MainActivity extends GeoActivity
                 backgroundUpdateReceiver,
                 new IntentFilter(ACTION_UPDATE_WEATHER_IN_BACKGROUND)
         );
-        refreshBackgroundViews(true, null);
+        refreshBackgroundViews(true, viewModel.getLocationList(),
+                false, false);
     }
 
     @Override
@@ -198,7 +199,8 @@ public class MainActivity extends GeoActivity
                 resetUIUpdateFlag();
                 viewModel.reset(this);
 
-                refreshBackgroundViews(true, viewModel.getLocationList());
+                refreshBackgroundViews(true, viewModel.getLocationList(),
+                        true, true);
                 break;
 
             case MANAGE_ACTIVITY:
@@ -489,10 +491,8 @@ public class MainActivity extends GeoActivity
             recyclerViewAnimator.start();
         }
 
-        refreshBackgroundViews(
-                false,
-                (!updatedInBackground && defaultLocation) ? viewModel.getLocationList() : null
-        );
+        refreshBackgroundViews(false, viewModel.getLocationList(),
+                defaultLocation, !updatedInBackground);
     }
 
     private void resetUI(Location location) {
@@ -557,7 +557,8 @@ public class MainActivity extends GeoActivity
         refreshLayout.post(() -> refreshLayout.setRefreshing(b));
     }
 
-    private void refreshBackgroundViews(boolean resetBackground, @Nullable List<Location> locationList) {
+    private void refreshBackgroundViews(boolean resetBackground, List<Location> locationList,
+                                        boolean defaultLocationChanged, boolean updateRemoteViews) {
         if (resetBackground) {
             Observable.create(emitter -> PollingManager.resetAllBackgroundTask(this, false))
                     .subscribeOn(Schedulers.io())
@@ -566,18 +567,21 @@ public class MainActivity extends GeoActivity
                     .subscribe();
         }
 
-        if (locationList != null) {
+        if (updateRemoteViews) {
             Observable.create(emitter -> {
+                if (defaultLocationChanged) {
+                    WidgetUtils.updateWidgetIfNecessary(this, locationList.get(0));
+                    NotificationUtils.updateNotificationIfNecessary(this, locationList.get(0));
+                }
                 WidgetUtils.updateWidgetIfNecessary(this, locationList);
-                NotificationUtils.updateNotificationIfNecessary(this, locationList.get(0));
             }).subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
                     .delay(1, TimeUnit.SECONDS)
                     .subscribe();
-        }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcutsInNewThread(this, viewModel.getLocationList());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
+            }
         }
     }
 
@@ -669,8 +673,6 @@ public class MainActivity extends GeoActivity
 
         private @Nullable Boolean topChanged;
         private boolean topOverlap;
-        private @Nullable Boolean bottomChanged;
-        private boolean bottomOverlap;
 
         private int firstCardMarginTop;
 
@@ -682,8 +684,6 @@ public class MainActivity extends GeoActivity
 
             this.topChanged = null;
             this.topOverlap = false;
-            this.bottomChanged = null;
-            this.bottomOverlap = false;
 
             this.firstCardMarginTop = 0;
 
@@ -742,17 +742,9 @@ public class MainActivity extends GeoActivity
                 topOverlap = false;
             }
 
-            if (bottomChanged == null
-                    || bottomOverlap != recyclerView.canScrollVertically(1)) {
-                bottomOverlap = recyclerView.canScrollVertically(1);
-                bottomChanged = true;
-            } else {
-                bottomChanged = false;
-            }
-
-            if (topChanged || bottomChanged) {
+            if (topChanged) {
                 DisplayUtils.setSystemBarColor(MainActivity.this, getWindow(), true,
-                        topOverlap, false, bottomOverlap, false);
+                        topOverlap, false, true, false);
             }
         }
     }

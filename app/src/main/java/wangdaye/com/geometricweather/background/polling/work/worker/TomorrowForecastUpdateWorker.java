@@ -20,10 +20,14 @@ public class TomorrowForecastUpdateWorker extends AsyncUpdateWorker {
     }
 
     @Override
-    public void updateView(Context context, List<Location> locationList) {
+    public void updateView(Context context, Location location) {
         if (ForecastNotificationIMP.isEnable(context, false)) {
-            ForecastNotificationIMP.buildForecastAndSendIt(context, locationList.get(0), false);
+            ForecastNotificationIMP.buildForecastAndSendIt(context, location, false);
         }
+    }
+
+    @Override
+    public void updateView(Context context, List<Location> locationList) {
     }
 
     @SuppressLint("RestrictedApi")

@@ -19,10 +19,14 @@ import wangdaye.com.geometricweather.remoteviews.presenter.notification.Forecast
 public class ForegroundTodayForecastUpdateService extends ForegroundUpdateService {
 
     @Override
-    public void updateView(Context context, List<Location> locationList) {
+    public void updateView(Context context, Location location) {
         if (ForecastNotificationIMP.isEnable(this, true)) {
-            ForecastNotificationIMP.buildForecastAndSendIt(context, locationList.get(0), true);
+            ForecastNotificationIMP.buildForecastAndSendIt(context, location, true);
         }
+    }
+
+    @Override
+    public void updateView(Context context, List<Location> locationList) {
     }
 
     @Override
