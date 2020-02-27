@@ -121,7 +121,7 @@
         <item>비</item>
         <item>눈</item>
         <item>진눈깨비</item>
-        <item>싸락눈</item>
+        <item>우박</item>
         <item>안개</item>
         <item>실안개</item>
         <item>번개</item>
@@ -179,7 +179,7 @@
         <item>kgf/cm²</item>
     </string-array>
 
-    <!-- 대기 질 단위. -->
+    <!-- 대기질 단위. -->
     <string-array name="air_quality_units">
         <item>μg/m³</item>
     </string-array>

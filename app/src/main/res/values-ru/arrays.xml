@@ -29,6 +29,22 @@
         <item>Material анимация</item>
     </string-array>
 
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>Полчаса</item>
+        <item>1 час</item>
+        <item>1.5 часа</item>
+        <item>2 часа</item>
+        <item>2.5 часа</item>
+        <item>3 часа</item>
+        <item>3.5 часа</item>
+        <item>4 часа</item>
+        <item>4.5 часа</item>
+        <item>5 часа</item>
+        <item>5.5 часа</item>
+        <item>6 часа</item>
+    </string-array>
+
     <!-- widget week icon mode. -->
     <string-array name="week_icon_modes">
         <item>Автоматически</item>
