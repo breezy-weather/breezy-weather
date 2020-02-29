@@ -359,6 +359,9 @@ public class OptionMapper {
             case "korean":
                 return Language.KOREAN;
 
+            case "greek":
+                return Language.GREEK;
+
             default:
                 return Language.FOLLOW_SYSTEM;
         }

@@ -40,7 +40,8 @@ public enum Language {
     ARABIC("arabic", new Locale("ar")),
     CZECH("czech", new Locale("cs")),
     POLISH("polish", new Locale("pl")),
-    KOREAN("korean", new Locale("ko"));
+    KOREAN("korean", new Locale("ko")),
+    GREEK("greek", new Locale("el"));
 
     private String languageId;
     private Locale locale;

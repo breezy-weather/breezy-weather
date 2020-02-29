@@ -78,6 +78,7 @@
         <item>Čeština</item>
         <item>Polski</item>
         <item>한국어</item>
+        <item>Ελληνικά</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -102,6 +103,7 @@
         <item>czech</item>
         <item>polish</item>
         <item>korean</item>
+        <item>greek</item>
     </string-array>
 
     <!-- automatic refresh rate. -->

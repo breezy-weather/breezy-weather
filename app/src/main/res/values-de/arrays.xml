@@ -19,9 +19,9 @@
 
     <!-- Benachrichtigungstext -->
     <string-array name="notification_text_colors">
-        <item>Dark</item>
-        <item>Grey</item>
-        <item>Light</item>
+        <item>Dunkel</item>
+        <item>Grau</item>
+        <item>Hell</item>
     </string-array>
 
     <!-- Widget Stil -->
@@ -35,6 +35,18 @@
         <item>Vertical</item>
         <item>Oreo</item>
         <item>Oreo (Google sans)</item>
+    </string-array>
+
+    <string-array name="dark_modes">
+        <item>Automatisch</item>
+        <item>Immer hell</item>
+        <item>Immer dunkel</item>
+    </string-array>
+
+    <string-array name="week_icon_modes">
+        <item>Automatisch</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
     </string-array>
 
 </resources>
