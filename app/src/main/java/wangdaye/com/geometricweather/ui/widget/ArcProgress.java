@@ -10,7 +10,6 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
 import android.text.TextPaint;
@@ -86,24 +85,21 @@ public class ArcProgress extends View {
         arcAngle = attributes.getFloat(R.styleable.ArcProgress_arc_angle, 360 * 0.8f);
         progressWidth = attributes.getDimension(
                 R.styleable.ArcProgress_progress_width, DisplayUtils.dpToPx(getContext(), 8));
-        progressColor = attributes.getColor(
-                R.styleable.ArcProgress_progress_color, ContextCompat.getColor(getContext(), R.color.colorAccent));
+        progressColor = attributes.getColor(R.styleable.ArcProgress_progress_color, Color.BLACK);
         shadowColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
         shaderColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
         backgroundColor = attributes.getColor(
-                R.styleable.ArcProgress_background_color, ContextCompat.getColor(getContext(), R.color.colorLine));
+                R.styleable.ArcProgress_background_color, Color.GRAY);
 
         text = attributes.getString(R.styleable.ArcProgress_text);
         textSize = attributes.getDimension(
                 R.styleable.ArcProgress_text_size, DisplayUtils.dpToPx(getContext(), 36));
-        textColor = attributes.getColor(
-                R.styleable.ArcProgress_text_color, ContextCompat.getColor(getContext(), R.color.colorTextContent));
+        textColor = attributes.getColor(R.styleable.ArcProgress_text_color, Color.DKGRAY);
 
         bottomText = attributes.getString(R.styleable.ArcProgress_bottom_text);
         bottomTextSize = attributes.getDimension(
                 R.styleable.ArcProgress_bottom_text_size, DisplayUtils.dpToPx(getContext(), 12));
-        bottomTextColor = attributes.getColor(
-                R.styleable.ArcProgress_bottom_text_color, ContextCompat.getColor(getContext(), R.color.colorTextContent));
+        bottomTextColor = attributes.getColor(R.styleable.ArcProgress_bottom_text_color, Color.DKGRAY);
     }
 
     private void initPaint() {

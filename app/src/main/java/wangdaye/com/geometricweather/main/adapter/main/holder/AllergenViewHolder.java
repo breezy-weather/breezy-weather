@@ -9,13 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
+import androidx.core.widget.ImageViewCompat;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.PollenUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Pollen;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
@@ -69,40 +69,44 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(GeoActivity activity, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                           @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, provider, picker,
+        super.onBindView(activity, location, provider,
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         assert location.getWeather() != null;
 
-        card.setCardBackgroundColor(picker.getRootColor(context));
-        title.setTextColor(picker.getWeatherThemeColors()[0]);
-        subtitle.setTextColor(picker.getTextSubtitleColor(context));
+        card.setCardBackgroundColor(themeManager.getRootColor(context));
+        title.setTextColor(themeManager.getWeatherThemeColors()[0]);
+        subtitle.setTextColor(themeManager.getTextSubtitleColor(context));
 
         Pollen pollen = location.getWeather().getDailyForecast().get(0).getPollen();
 
-        grassIcon.setSupportImageTintList(ColorStateList.valueOf(
-                Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel())
-        ));
+        ImageViewCompat.setImageTintList(
+                grassIcon,
+                ColorStateList.valueOf(Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel()))
+        );
         grassTitle.setText(context.getString(R.string.grass));
         grassValue.setText(unit.getPollenText(context, pollen.getGrassIndex()) + " - " + pollen.getGrassDescription());
 
-        ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
-                Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel())
-        ));
+        ImageViewCompat.setImageTintList(
+                ragweedIcon,
+                ColorStateList.valueOf(Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel()))
+        );
         ragweedTitle.setText(context.getString(R.string.ragweed));
         ragweedValue.setText(unit.getPollenText(context, pollen.getRagweedIndex()) + " - " + pollen.getRagweedDescription());
 
-        treeIcon.setSupportImageTintList(ColorStateList.valueOf(
-                Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel())
-        ));
+        ImageViewCompat.setImageTintList(
+                treeIcon,
+                ColorStateList.valueOf(Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel()))
+        );
         treeTitle.setText(context.getString(R.string.tree));
         treeValue.setText(unit.getPollenText(context, pollen.getTreeIndex()) + " - " + pollen.getTreeDescription());
 
-        moldIcon.setSupportImageTintList(ColorStateList.valueOf(
-                Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel())
-        ));
+        ImageViewCompat.setImageTintList(
+                moldIcon,
+                ColorStateList.valueOf(Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel()))
+        );
         moldTitle.setText(context.getString(R.string.mold));
         moldValue.setText(unit.getPollenText(context, pollen.getMoldIndex()) + " - " + pollen.getMoldDescription());
 

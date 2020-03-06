@@ -19,10 +19,10 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Daily air quality adapter.
@@ -32,7 +32,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
 
     private Weather weather;
     private TimeZone timeZone;
-    private MainThemePicker picker;
+    private ThemeManager themeManager;
     private int highestIndex;
     private int size;
 
@@ -64,8 +64,8 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
             dailyItem.setDateText(daily.getShortDate(context));
 
             dailyItem.setTextColor(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+                    themeManager.getTextContentColor(context),
+                    themeManager.getTextSubtitleColor(context)
             );
 
             Integer index = daily.getAirQuality().getAqiIndex();
@@ -81,16 +81,16 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
             polylineAndHistogramView.setLineColors(
                     daily.getAirQuality().getAqiColor(context),
                     daily.getAirQuality().getAqiColor(context),
-                    picker.getLineColor(context)
+                    themeManager.getLineColor(context)
             );
-            int[] themeColors = picker.getWeatherThemeColors();
+            int[] themeColors = themeManager.getWeatherThemeColors();
             polylineAndHistogramView.setShadowColors(
-                    themeColors[1], themeColors[2], picker.isLightTheme());
+                    themeColors[1], themeColors[2], themeManager.isLightTheme());
             polylineAndHistogramView.setTextColors(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+                    themeManager.getTextContentColor(context),
+                    themeManager.getTextSubtitleColor(context)
             );
-            polylineAndHistogramView.setHistogramAlpha(picker.isLightTheme() ? 1f : 0.5f);
+            polylineAndHistogramView.setHistogramAlpha(themeManager.isLightTheme() ? 1f : 0.5f);
 
             dailyItem.setOnClickListener(v -> onItemClicked(getAdapterPosition()));
         }
@@ -98,13 +98,12 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
 
     @SuppressLint("SimpleDateFormat")
     public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                  String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                                  MainThemePicker picker) {
+                                  String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone) {
         super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;
-        this.picker = picker;
+        this.themeManager = ThemeManager.getInstance(activity);
 
         highestIndex = Integer.MIN_VALUE;
         boolean valid = false;
@@ -147,7 +146,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(picker.getLineColor(activity));
+        parent.setLineColor(themeManager.getLineColor(activity));
         parent.setData(keyLineList, highestIndex, 0);
     }
 

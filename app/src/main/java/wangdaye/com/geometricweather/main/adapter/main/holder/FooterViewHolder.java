@@ -20,7 +20,6 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
@@ -38,22 +37,21 @@ public class FooterViewHolder extends AbstractMainViewHolder {
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindView(Context context, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+    public void onBindView(Context context, @NonNull Location location, @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        super.onBindView(context, location, provider, picker, listAnimationEnabled, itemAnimationEnabled);
+        super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
-        float cardMarginsVertical = picker.getCardMarginsVertical(context);
+        float cardMarginsVertical = themeManager.getCardMarginsVertical(context);
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
         if (cardMarginsVertical != 0) {
             params.setMargins(0, (int) -cardMarginsVertical, 0, 0);
         }
         itemView.setLayoutParams(params);
 
-        title.setTextColor(picker.getHeaderTextColor(title.getContext()));
+        title.setTextColor(themeManager.getHeaderTextColor(title.getContext()));
         title.setText("* Powered by " + location.getWeatherSource().getSourceUrl());
 
-        editButton.setTextColor(picker.getHeaderTextColor(editButton.getContext()));
+        editButton.setTextColor(themeManager.getHeaderTextColor(editButton.getContext()));
         editButton.setOnClickListener(v -> IntentHelper.startCardDisplayManageActivityForResult(
                 (Activity) context,
                 MainActivity.CARD_MANAGE_ACTIVITY

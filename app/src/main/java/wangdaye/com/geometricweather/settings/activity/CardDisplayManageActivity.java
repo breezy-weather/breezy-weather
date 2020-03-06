@@ -154,7 +154,7 @@ public class CardDisplayManageActivity extends GeoActivity {
         for (CardDisplay card : otherCards) {
             tagList.add(new CardTag(card));
         }
-        tagAdapter = new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
+        tagAdapter = new TagAdapter(this, tagList, (checked, oldPosition, newPosition) -> {
             setResult(RESULT_OK);
             CardTag tag = (CardTag) tagAdapter.removeItem(newPosition);
             cardDisplayAdapter.insertItem(tag.card);

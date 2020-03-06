@@ -2,7 +2,7 @@
     tools:ignore="MissingTranslation">
     <!-- app. -->
     <string name="app_name">Počasí</string>
-    <string name="geometric_weather">Geometric Weather</string>
+    <string name="geometric_weather">Geometrické počasí</string>
 
     <!-- keyword. -->
     <string name="current_location">Aktuální poloha</string>
@@ -10,7 +10,7 @@
     <string name="default_location">Výchozí poloha</string>
     <string name="live">Živě</string>
     <string name="today">Dnes</string>
-    <string name="refresh_at">Aktualizovat v</string>
+    <string name="refresh_at">Aktualizováno v</string>
     <string name="local_time">Místní čas</string>
     <string name="precipitation">Srážky</string>
     <string name="precipitation_probability">Pravděpodobnost srážek</string>
@@ -41,9 +41,9 @@
     <string name="visibility">Viditelnost</string>
     <string name="dew_point">Rosný bod</string>
     <string name="cloud_cover">Oblačnost</string>
-    <string name="ceiling">maximálně</string>
+    <string name="ceiling">Strop</string>
     <string name="get_more">Zjisti víc</string>
-    <string name="get_more_store">Zjisti více v obchodu</string>
+    <string name="get_more_store">Zjistit více v obchodu</string>
     <string name="get_more_github">Zjisti více na Githubu</string>
     <string name="refresh">Obnovit</string>
     <string name="restart">Restartovat</string>
@@ -66,7 +66,7 @@
     <string name="apparent_temperature">Zdánlivá teplota</string>
     <string name="wind_chill_temperature">Ochlazení větrem</string>
     <string name="wet_bulb_temperature">Ochlazení vlhkostí</string>
-    <string name="degree_day_temperature">Degree day</string>
+    <string name="degree_day_temperature">Stupeň vytápění</string>
 
     <string name="total">Celkově</string>
     <string name="thunderstorm">Bouřka</string>
@@ -78,10 +78,10 @@
     <string name="wind_1">Téměř bezvětrno</string>
     <string name="wind_2">Lehký vánek</string>
     <string name="wind_3">Citelný vánek</string>
-    <string name="wind_4">Středně silný vítr</string>
+    <string name="wind_4">Lehký vítr</string>
     <string name="wind_5">Čerstvý vítr</string>
     <string name="wind_6">Silný vítr</string>
-    <string name="wind_7">Pořádně silný vítr</string>
+    <string name="wind_7">Drsný vítr</string>
     <string name="wind_8">Vichřice</string>
     <string name="wind_9">Silná vichřice</string>
     <string name="wind_10">Bouře</string>
@@ -121,7 +121,7 @@
     <string name="air_quality">Kvalita vzduchu</string>
     <string name="allergen">Alergeny</string>
     <string name="life_details">Detaily</string>
-    <string name="sunrise_sunset">Slunce &amp; měsíc</string>
+    <string name="sunrise_sunset">Slunce aamp; Měsíc</string>
 
     <string name="next">DALŠÍ</string>
     <string name="done">HOTOVO</string>
@@ -182,15 +182,15 @@
     <string name="feedback_show_widget_card">Barva pozadí</string>
     <string name="feedback_show_widget_card_alpha">Průhlednost</string>
     <string name="feedback_hide_subtitle">Schovat popis</string>
-    <string name="feedback_subtitle_data">data popisu</string>
+    <string name="feedback_subtitle_data">Data popisu</string>
     <string name="feedback_black_text">Barva písma</string>
     <string name="feedback_text_size">Velikost písma</string>
     <string name="feedback_clock_font">Font hodin</string>
-    <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
+    <string name="feedback_custom_subtitle_explanation">Můžete napsat cokoliv, ale dávejte si prosím pozor na délku textu. Pokud chcete citovat data o počasí, tak prosím použijte znak $, aby jste odkazovaly na odpovídající klíčová slova.\n\nNa příklad, \"current weather = $cw$\" se ukáže jako \"current weather = Clear Day\".</string>
     <string name="feedback_custom_subtitle_keywords">
         \n
         $cw$ : Současné Počasí\n
-        $ct$ : Současná teplota Teplota (℃/℉)\n
+        $ct$ : Současná Teplota (℃/℉)\n
         $ctd$ : Současná Teplota (°)\n
         $at$ : Zdánlivá Teplota (℃/℉)\n
         $atd$ : Zdánlivá Teplota (°)\n
@@ -267,7 +267,7 @@
     <string name="feedback_refresh_ui_after_refresh">Změny se projeví až po obnovení počasí</string>
     <string name="feedback_restart">Změny se projeví až po restartování aplikace</string>
     <string name="feedback_readd_location">Přidejte prosím polohy znovu</string>
-    <string name="feedback_readd_location_after_changing_source">Přidejte prosím polohy znovu potom co změníte zdroj informací o počasí</string>
+    <string name="feedback_readd_location_after_changing_source">Přidejte prosím polohy znovu, potom co změníte zdroj informací o počasí</string>
 
     <string name="feedback_running_in_background">Aplikace běží na pozadí aby zajistila aktualizace informací počasí</string>
     <string name="feedback_updating_weather_data">Aktualizace informací o počasí</string>
@@ -282,18 +282,18 @@
     <string name="feedback_cannot_start_live_wallpaper_activity">Nepodařilo se zobrazit náhled živé tapety</string>
 
     <string name="feedback_unusable_geocoder">Toto zařízení neobsahuje funkční geokodér. Poskytovatel polohy byl změněn na Baidu polohu.</string>
-    <string name="feedback_about_geocoder">Geokodér je komponent, který konvertuje výsledky polohy ze zeměpisné šířky a délky do formátu typu \'XX město, YY provincie \'. Pokud tento komponent chybí, můžeš používat jako zdroj informací o počasí pouze z AccuWeather pokud používáte nativní API pro získání polohy.</string>
+    <string name="feedback_about_geocoder">Geokodér je komponent, který konvertuje výsledky polohy ze zeměpisné šířky a délky do formátu typu \'XX město, YY provincie \'. Pokud tento komponent chybí, můžete používat jako zdroj informací o počasí pouze z AccuWeather, pokud používáte nativní API pro získání polohy.</string>
 
     <string name="feedback_today_precipitation_alert">Dnes možná přijdou srážky</string>
     <string name="feedback_short_term_precipitation_alert">V několika dalších hodinách možná přijdou srážky</string>
 
     <string name="feedback_resident_location">Nastavit jako bydliště</string>
-    <string name="feedback_resident_location_description">Geometric weather automaticky ukáže a skryje navštěvovaná města na základě aktuální polohy.\nNa příklad si můžete nastavit svůj domov a jiná místa, která navštěvuješ aby si je měl vždy po ruce. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
-    <string name="feedback_click_to_get_more">Klikni pro více info…</string>
+    <string name="feedback_resident_location_description">Geometrické počasí automaticky ukáže a skryje navštěvovaná města na základě aktuální polohy.\nNa příklad si můžete nastavit svůj domov a jiná místa, která navštěvuješ aby si je měl vždy po ruce. Až se dostaneš domů,počasí ve tvém bydlišti bude skryto a zobrazí se počasí kolem tvé aktuální polohy.</string>
+    <string name="feedback_click_to_get_more">Klepni pro více info…</string>
 
     <!-- action -->
     <string name="action_alert">Upozornit</string>
-    <string name="action_manage">Spravovat</string>l
+    <string name="action_manage">Spravovat místa</string>l
     <string name="action_search">Hledat</string>
     <string name="action_settings">Nastavení</string>
     <string name="action_preview">Přehled</string>
@@ -332,7 +332,7 @@
     <string name="settings_summary_appearance">Styl rozhraní, řazení karet, jazyk atd…</string>
     <string name="settings_title_card_display">Zobrazené karty</string>
     <string name="settings_title_card_order">Řazení karet</string>
-    <string name="settings_title_gravity_sensor_switch">Použít gravitační sensor</string>
+    <string name="settings_title_gravity_sensor_switch">Použít gravitační senzor</string>
     <string name="settings_title_list_animation_switch">Animace seznamu</string>
     <string name="settings_title_item_animation_switch">Animace položky</string>
     <string name="settings_language">Jazyk</string>
@@ -355,7 +355,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Mód týdenních ikon</string>
     <string name="settings_title_minimal_icon">Minimalistické ikony</string>
-    <string name="settings_title_click_widget_to_refresh">Obnovit</string>
+    <string name="settings_title_click_widget_to_refresh">Obnovit widget klepnutím</string>
     <string name="settings_category_notification">Oznámení</string>
     <string name="settings_title_notification">Poslat oznámení</string>
     <string name="settings_title_notification_style">Styl oznámení</string>
@@ -365,17 +365,17 @@
     <string name="settings_title_notification_text_color">Barva textu</string>
     <string name="settings_title_notification_background">Barva pozadí</string>
     <string name="settings_notification_background_off">Podle systému</string>
-    <string name="settings_title_notification_can_be_cleared">Může být odstraněno</string>
-    <string name="settings_notification_can_be_cleared_on">Může být odstraněno tažením</string>
-    <string name="settings_notification_can_be_cleared_off">Nemůže být odstraněno</string>
-    <string name="settings_title_notification_hide_icon">Skryj ikonu oznámení</string>
-    <string name="settings_notification_hide_icon_on">Skryj</string>
-    <string name="settings_notification_hide_icon_off">Ukaž</string>
-    <string name="settings_title_notification_hide_in_lockScreen">Schovej na zamknuté obrazovce</string>
-    <string name="settings_notification_hide_in_lockScreen_on">Skryj (je potřeba použít systémové nastavení)</string>
-    <string name="settings_notification_hide_in_lockScreen_off">Ukaž</string>
+    <string name="settings_title_notification_can_be_cleared">Odstranění widgetu tažením</string>
+    <string name="settings_notification_can_be_cleared_on">Povoleno</string>
+    <string name="settings_notification_can_be_cleared_off">Zakázáno</string>
+    <string name="settings_title_notification_hide_icon">Skrýt ikonu v oznámení</string>
+    <string name="settings_notification_hide_icon_on">Povoleno</string>
+    <string name="settings_notification_hide_icon_off">Zakázáno</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Schovat na zamknuté obrazovce</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Povoleno (je třeba použít systémové nastavení)</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Zakázáno</string>
     <string name="settings_title_notification_hide_big_view">Obsáhlejší styl</string>
-    <string name="settings_notification_hide_big_view_on">Skryj</string>
-    <string name="settings_notification_hide_big_view_off">Ukaž</string>
+    <string name="settings_notification_hide_big_view_on">Zakázán</string>
+    <string name="settings_notification_hide_big_view_off">Povolen</string>
 
 </resources>

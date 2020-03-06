@@ -21,7 +21,6 @@ import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.NumberAnimTextView;
@@ -33,7 +32,6 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
     private TextView weather;
     private TextView aqiOrWind;
 
-    private MainThemePicker themePicker;
     private int temperatureCFrom;
     private int temperatureCTo;
     private TemperatureUnit unit;
@@ -55,23 +53,20 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindView(Context context, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+    public void onBindView(Context context, @NonNull Location location, @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        super.onBindView(context, location, provider, picker, listAnimationEnabled, itemAnimationEnabled);
-
-        this.themePicker = picker;
+        super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) container.getLayoutParams();
-        params.height = themePicker.getHeaderHeight();
+        params.height = themeManager.getHeaderHeight();
         container.setLayoutParams(params);
         container.setOnClickListener(v -> {
-            if (themePicker != null) {
-                themePicker.getWeatherView().onClick();
+            if (themeManager != null && themeManager.getWeatherView() != null) {
+                themeManager.getWeatherView().onClick();
             }
         });
 
-        int textColor = picker.getHeaderTextColor(context);
+        int textColor = themeManager.getHeaderTextColor(context);
         temperature.setTextColor(textColor);
         weather.setTextColor(textColor);
         aqiOrWind.setTextColor(textColor);

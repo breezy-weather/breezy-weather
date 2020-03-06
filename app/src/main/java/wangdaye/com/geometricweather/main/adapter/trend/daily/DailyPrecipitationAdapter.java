@@ -19,12 +19,12 @@ import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Precipitation;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.DoubleHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Daily precipitation adapter.
@@ -34,7 +34,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
     private Weather weather;
     private TimeZone timeZone;
     private ResourceProvider provider;
-    private MainThemePicker picker;
+    private ThemeManager themeManager;
     private PrecipitationUnit unit;
 
     private float highestPrecipitation;
@@ -67,8 +67,8 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
             dailyItem.setDateText(daily.getShortDate(context));
 
             dailyItem.setTextColor(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+                    themeManager.getTextContentColor(context),
+                    themeManager.getTextSubtitleColor(context)
             );
 
             dailyItem.setDayIconDrawable(
@@ -86,9 +86,9 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
             doubleHistogramView.setLineColors(
                     daily.day().getPrecipitation().getPrecipitationColor(context),
                     daily.night().getPrecipitation().getPrecipitationColor(context),
-                    picker.getLineColor(context)
+                    themeManager.getLineColor(context)
             );
-            doubleHistogramView.setTextColors(picker.getTextContentColor(context));
+            doubleHistogramView.setTextColors(themeManager.getTextContentColor(context));
             doubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
             dailyItem.setNightIconDrawable(
@@ -101,13 +101,13 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
     @SuppressLint("SimpleDateFormat")
     public DailyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent,
                                      String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                                     ResourceProvider provider, MainThemePicker picker, PrecipitationUnit unit) {
+                                     ResourceProvider provider, PrecipitationUnit unit) {
         super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;
         this.provider = provider;
-        this.picker = picker;
+        this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;
 
         highestPrecipitation = Integer.MIN_VALUE;
@@ -160,7 +160,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
-        parent.setLineColor(picker.getLineColor(activity));
+        parent.setLineColor(themeManager.getLineColor(activity));
         parent.setData(keyLineList, highestPrecipitation, -highestPrecipitation);
     }
 

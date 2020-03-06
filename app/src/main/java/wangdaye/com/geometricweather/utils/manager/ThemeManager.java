@@ -1,9 +1,11 @@
-package wangdaye.com.geometricweather.main;
+package wangdaye.com.geometricweather.utils.manager;
 
 import android.content.Context;
 import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
@@ -11,21 +13,47 @@ import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
-public class MainThemePicker {
+public class ThemeManager {
 
-    private WeatherView weatherView;
+    private static volatile ThemeManager instance;
+    public static ThemeManager getInstance(Context context) {
+        if (instance == null) {
+            synchronized (ThemeManager.class) {
+                instance = new ThemeManager(context);
+            }
+        }
+        return instance;
+    }
+
+    private @Nullable WeatherView weatherView;
     private boolean daytime;
     private DarkMode darkMode;
 
     private boolean lightTheme;
 
-    public MainThemePicker(WeatherView weatherView, boolean daytime, DarkMode darkMode) {
-        this.weatherView = weatherView;
-        this.daytime = daytime;
-        this.darkMode = darkMode;
+    public ThemeManager(Context context) {
+        this.weatherView = null;
+        update(context);
+    }
+
+    public void update(Context context) {
+        innerUpdate(context, null);
+    }
+
+    public void update(Context context, @NonNull WeatherView weatherView) {
+        innerUpdate(context, weatherView);
+    }
+
+    public void innerUpdate(Context context, @Nullable WeatherView weatherView) {
+        if (weatherView != null) {
+            this.weatherView = weatherView;
+        }
+        this.daytime = TimeManager.getInstance(context).isDayTime();
+        this.darkMode = SettingsOptionManager.getInstance(context).getDarkMode();
 
         switch (darkMode) {
             case LIGHT:
@@ -42,6 +70,7 @@ public class MainThemePicker {
         }
     }
 
+    @Nullable
     public WeatherView getWeatherView() {
         return weatherView;
     }
@@ -80,17 +109,26 @@ public class MainThemePicker {
      * */
     @ColorInt @Size(3)
     public int[] getWeatherThemeColors() {
-        return weatherView.getThemeColors(lightTheme);
+        if (weatherView != null) {
+            return weatherView.getThemeColors(lightTheme);
+        }
+        return new int[] {Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT};
     }
 
     @ColorInt
     public int getWeatherBackgroundColor() {
-        return weatherView.getBackgroundColor();
+        if (weatherView != null) {
+            return weatherView.getBackgroundColor();
+        }
+        return Color.TRANSPARENT;
     }
 
     @Px
     public int getHeaderHeight() {
-        return weatherView.getHeaderHeight();
+        if (weatherView != null) {
+            return weatherView.getHeaderHeight();
+        }
+        return 0;
     }
 
     @ColorInt

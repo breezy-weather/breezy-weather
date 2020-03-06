@@ -21,15 +21,15 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
     protected Context context;
     protected ResourceProvider provider;
-    protected MainThemePicker picker;
+    protected ThemeManager themeManager;
     protected boolean itemAnimationEnabled;
     private boolean inScreen;
 
@@ -37,17 +37,17 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     private @Nullable Disposable disposable;
 
     @SuppressLint("ObjectAnimatorBinding")
-    public AbstractMainViewHolder(@NonNull View view ) {
+    public AbstractMainViewHolder(@NonNull View view) {
         super(view);
+        this.themeManager = ThemeManager.getInstance(view.getContext());
     }
 
     @CallSuper
     public void onBindView(Context context, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                           @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         this.context = context;
         this.provider = provider;
-        this.picker = picker;
         this.itemAnimationEnabled = itemAnimationEnabled;
         this.inScreen = false;
         this.disposable = null;

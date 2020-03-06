@@ -21,7 +21,6 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.main.adapter.AqiAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.ArcProgress;
@@ -52,9 +51,9 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
     @Override
     public void onBindView(GeoActivity activity, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                           @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, provider, picker,
+        super.onBindView(activity, location, provider,
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         weather = location.getWeather();
@@ -66,31 +65,31 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
         enable = true;
 
-        card.setCardBackgroundColor(picker.getRootColor(context));
-        title.setTextColor(picker.getWeatherThemeColors()[0]);
+        card.setCardBackgroundColor(themeManager.getRootColor(context));
+        title.setTextColor(themeManager.getWeatherThemeColors()[0]);
 
         if (itemAnimationEnabled) {
             progress.setProgress(0);
             progress.setText("0");
             progress.setProgressColor(
                     ContextCompat.getColor(context, R.color.colorLevel_1),
-                    picker.isLightTheme()
+                    themeManager.isLightTheme()
             );
-            progress.setArcBackgroundColor(picker.getLineColor(context));
+            progress.setArcBackgroundColor(themeManager.getLineColor(context));
         } else {
             int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(progress.getContext());
             progress.setProgress(aqiIndex);
             progress.setText(String.valueOf(aqiIndex));
-            progress.setProgressColor(aqiColor, picker.isLightTheme());
+            progress.setProgressColor(aqiColor, themeManager.isLightTheme());
             progress.setArcBackgroundColor(
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
         }
-        progress.setTextColor(picker.getTextContentColor(context));
+        progress.setTextColor(themeManager.getTextContentColor(context));
         progress.setBottomText(weather.getCurrent().getAirQuality().getAqiText());
-        progress.setBottomTextColor(picker.getTextSubtitleColor(context));
+        progress.setBottomTextColor(themeManager.getTextSubtitleColor(context));
 
-        adapter = new AqiAdapter(context, weather, picker, itemAnimationEnabled);
+        adapter = new AqiAdapter(context, weather, itemAnimationEnabled);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
@@ -106,11 +105,11 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                     aqiColor
             );
             progressColor.addUpdateListener(animation -> progress.setProgressColor(
-                    (Integer) animation.getAnimatedValue(), picker.isLightTheme()));
+                    (Integer) animation.getAnimatedValue(), themeManager.isLightTheme()));
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    picker.getLineColor(context),
+                    themeManager.getLineColor(context),
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
             backgroundColor.addUpdateListener(animation ->

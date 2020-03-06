@@ -20,11 +20,10 @@ import java.util.List;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Location adapter.
@@ -36,13 +35,12 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
     private Context context;
     private OnLocationItemClickListener listener = null;
 
-    private @Nullable MainThemePicker themePicker;
+    private @NonNull ThemeManager themeManager;
     private @NonNull ResourceProvider resourceProvider;
     private @NonNull WeatherSource defaultSource;
     private @NonNull TemperatureUnit temperatureUnit;
 
-    public LocationAdapter(Context context, List<Location> locationList,
-                           @Nullable MainThemePicker themePicker, OnLocationItemClickListener l) {
+    public LocationAdapter(Context context, List<Location> locationList, OnLocationItemClickListener l) {
         super(new DiffUtil.ItemCallback<LocationModel>() {
             @Override
             public boolean areItemsTheSame(@NonNull LocationModel oldItem, @NonNull LocationModel newItem) {
@@ -55,12 +53,13 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
             }
         });
         this.context = context;
+        this.themeManager = ThemeManager.getInstance(context);
         this.resourceProvider = ResourcesProviderFactory.getNewInstance();
         this.defaultSource = SettingsOptionManager.getInstance(context).getWeatherSource();
         this.temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
         setOnLocationItemClickListener(l);
 
-        update(locationList, themePicker);
+        update(locationList);
     }
 
     @NonNull
@@ -71,17 +70,14 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
 
     @Override
     public void onBindViewHolder(@NonNull LocationHolder holder, int position) {
-        holder.onBindView(context, getItem(position), resourceProvider, themePicker);
+        holder.onBindView(context, getItem(position), resourceProvider);
     }
 
-    public void update(@NonNull List<Location> newList, @Nullable MainThemePicker picker) {
-        update(newList, picker, null);
+    public void update(@NonNull List<Location> newList) {
+        update(newList, null);
     }
 
-    public void update(@NonNull List<Location> newList, @Nullable MainThemePicker picker,
-                       @Nullable String forceUpdateId) {
-        this.themePicker = picker;
-
+    public void update(@NonNull List<Location> newList, @Nullable String forceUpdateId) {
         List<LocationModel> modelList = new ArrayList<>(newList.size());
         for (Location l : newList) {
             modelList.add(
@@ -90,18 +86,12 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
                             l,
                             temperatureUnit,
                             defaultSource,
-                            isLightTheme(picker),
+                            themeManager.isLightTheme(),
                             l.getFormattedId().equals(forceUpdateId)
                     )
             );
         }
         submitList(modelList);
-    }
-
-    private boolean isLightTheme(@Nullable MainThemePicker picker) {
-        return picker == null
-                ? TimeManager.getInstance(context).isDayTime()
-                : picker.isLightTheme();
     }
 
     protected List<Location> moveItem(int from, int to) {
@@ -131,11 +121,6 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
             locationList.add(m.location);
         }
         return locationList;
-    }
-
-    @Nullable
-    protected MainThemePicker getThemePicker() {
-        return themePicker;
     }
 
     // interface.

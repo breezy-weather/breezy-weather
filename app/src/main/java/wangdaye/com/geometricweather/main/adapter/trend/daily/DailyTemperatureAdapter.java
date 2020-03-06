@@ -20,12 +20,12 @@ import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Daily temperature adapter.
@@ -36,7 +36,7 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
     private Weather weather;
     private TimeZone timeZone;
     private ResourceProvider provider;
-    private MainThemePicker picker;
+    private ThemeManager themeManager;
     private TemperatureUnit unit;
 
     private float[] daytimeTemperatures;
@@ -74,8 +74,8 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
             dailyItem.setDateText(daily.getShortDate(context));
 
             dailyItem.setTextColor(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+                    themeManager.getTextContentColor(context),
+                    themeManager.getTextSubtitleColor(context)
             );
 
             dailyItem.setDayIconDrawable(
@@ -102,16 +102,16 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
                     100f,
                     0f
             );
-            int[] themeColors = picker.getWeatherThemeColors();
+            int[] themeColors = themeManager.getWeatherThemeColors();
             polylineAndHistogramView.setLineColors(
-                    themeColors[1], themeColors[2], picker.getLineColor(context));
+                    themeColors[1], themeColors[2], themeManager.getLineColor(context));
             polylineAndHistogramView.setShadowColors(
-                    themeColors[1], themeColors[2], picker.isLightTheme());
+                    themeColors[1], themeColors[2], themeManager.isLightTheme());
             polylineAndHistogramView.setTextColors(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+                    themeManager.getTextContentColor(context),
+                    themeManager.getTextSubtitleColor(context)
             );
-            polylineAndHistogramView.setHistogramAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
+            polylineAndHistogramView.setHistogramAlpha(themeManager.isLightTheme() ? 0.2f : 0.5f);
 
             dailyItem.setNightIconDrawable(
                     ResourceHelper.getWeatherIcon(provider, daily.night().getWeatherCode(), false));
@@ -140,21 +140,21 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
     @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
                                    String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                                   ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        this(activity, parent, formattedId, weather, timeZone, true, provider, picker, unit);
+                                   ResourceProvider provider, TemperatureUnit unit) {
+        this(activity, parent, formattedId, weather, timeZone, true, provider, unit);
     }
 
     @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
                                    String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                    boolean showPrecipitationProbability,
-                                   ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
+                                   ResourceProvider provider, TemperatureUnit unit) {
         super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;
         this.provider = provider;
-        this.picker = picker;
+        this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;
 
         this.daytimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
@@ -190,7 +190,7 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
 
         this.showPrecipitationProbability = showPrecipitationProbability;
 
-        parent.setLineColor(picker.getLineColor(activity));
+        parent.setLineColor(themeManager.getLineColor(activity));
         if (weather.getYesterday() == null) {
             parent.setData(null,0, 0);
         } else {

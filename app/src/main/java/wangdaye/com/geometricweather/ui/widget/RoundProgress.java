@@ -2,14 +2,13 @@ package wangdaye.com.geometricweather.ui.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import androidx.annotation.ColorInt;
-import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
@@ -45,8 +44,8 @@ public class RoundProgress extends View {
     private void initialize() {
         progress = 0;
         max = 100;
-        progressColor = ContextCompat.getColor(getContext(), R.color.colorAccent);
-        backgroundColor = ContextCompat.getColor(getContext(), R.color.colorLine);
+        progressColor = Color.BLACK;
+        backgroundColor = Color.GRAY;
     }
 
     private void initPaint() {

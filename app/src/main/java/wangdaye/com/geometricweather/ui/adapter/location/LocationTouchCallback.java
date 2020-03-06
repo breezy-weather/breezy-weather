@@ -49,7 +49,6 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                 if (location.isCurrentPosition()) {
                     adapter.update(
                             adapter.getLocationList(),
-                            adapter.getThemePicker(),
                             location.getFormattedId()
                     );
                     if (listener != null) {
@@ -59,7 +58,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                     List<Location> list = adapter.getLocationList();
                     location = list.get(viewHolder.getAdapterPosition());
                     location.setResidentPosition(!location.isResidentPosition());
-                    adapter.update(list, adapter.getThemePicker(), location.getFormattedId());
+                    adapter.update(list, location.getFormattedId());
                     if (location.isResidentPosition()) {
                         SnackbarUtils.showSnackbar(
                                 activity,
@@ -80,7 +79,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                 if (adapter.getItemCount() <= 1) {
                     List<Location> list = adapter.getLocationList();
                     Location location = list.get(viewHolder.getAdapterPosition());
-                    adapter.update(list, adapter.getThemePicker(), location.getFormattedId());
+                    adapter.update(list, location.getFormattedId());
                     SnackbarUtils.showSnackbar(
                             activity, activity.getString(R.string.feedback_location_list_cannot_be_null));
                 } else {
@@ -88,7 +87,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                     Location location = list.remove(viewHolder.getAdapterPosition());
                     location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
 
-                    adapter.update(list, adapter.getThemePicker(), location.getFormattedId());
+                    adapter.update(list, location.getFormattedId());
                     SnackbarUtils.showSnackbar(
                             activity,
                             activity.getString(R.string.feedback_delete_succeed),
@@ -145,7 +144,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
         public void onClick(View view) {
             List<Location> list = adapter.getLocationList();
             list.add(location);
-            adapter.update(list, adapter.getThemePicker());
+            adapter.update(list);
 
             if (listener != null) {
                 listener.onLocationInserted(list, location);

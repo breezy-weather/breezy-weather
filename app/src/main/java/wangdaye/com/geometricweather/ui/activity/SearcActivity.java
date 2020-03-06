@@ -69,7 +69,7 @@ public class SearcActivity extends GeoActivity
     private static final int STATE_SHOWING = 1;
     private static final int STATE_LOADING = 2;
 
-    private class ShowAnimation extends Animation {
+    private static class ShowAnimation extends Animation {
         // widget
         private View v;
 
@@ -84,7 +84,7 @@ public class SearcActivity extends GeoActivity
         }
     }
 
-    private class HideAnimation extends Animation {
+    private static class HideAnimation extends Animation {
         // widget
         private View v;
 
@@ -99,7 +99,7 @@ public class SearcActivity extends GeoActivity
         }
     }
 
-    private class WeatherSourceIndicator extends CustomIndicator {
+    private static class WeatherSourceIndicator extends CustomIndicator {
 
         public WeatherSourceIndicator(Context context) {
             super(context);
@@ -184,7 +184,6 @@ public class SearcActivity extends GeoActivity
         this.adapter = new LocationAdapter(
                 this,
                 locationList,
-                null,
                 (view, formattedId) -> {
                     for (int i = 0; i < currentList.size(); i ++) {
                         if (currentList.get(i).equals(formattedId)) {

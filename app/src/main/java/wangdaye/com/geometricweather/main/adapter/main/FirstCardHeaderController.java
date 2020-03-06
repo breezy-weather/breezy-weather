@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.widget.ImageViewCompat;
 
 import java.text.DateFormat;
 import java.util.TimeZone;
@@ -21,9 +22,9 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.MainThemePicker;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.main.MainDisplayUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class FirstCardHeaderController
         implements View.OnClickListener {
@@ -35,8 +36,7 @@ public class FirstCardHeaderController
     private @Nullable LinearLayout container;
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
-    public FirstCardHeaderController(@NonNull GeoActivity activity,
-                                     @NonNull Location location, @NonNull MainThemePicker picker) {
+    public FirstCardHeaderController(@NonNull GeoActivity activity, @NonNull Location location) {
         this.activity = activity;
         this.view = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
 
@@ -46,12 +46,14 @@ public class FirstCardHeaderController
         TextView alert = view.findViewById(R.id.container_main_first_card_header_alert);
         View line = view.findViewById(R.id.container_main_first_card_header_line);
 
+        ThemeManager themeManager = ThemeManager.getInstance(activity);
+
         if (location.getWeather() != null) {
             this.weather = location.getWeather();
 
             view.setOnClickListener(v ->
                     IntentHelper.startManageActivityForResult(activity, MainActivity.MANAGE_ACTIVITY));
-            view.setEnabled(!DisplayUtils.isLandscape(activity));
+            view.setEnabled(!MainDisplayUtils.isMultiFragmentEnabled(activity));
 
             if (weather.getAlertList().size() == 0) {
                 timeIcon.setEnabled(false);
@@ -60,8 +62,9 @@ public class FirstCardHeaderController
                 timeIcon.setEnabled(true);
                 timeIcon.setImageResource(R.drawable.ic_alert);
             }
-            timeIcon.setSupportImageTintList(
-                    ColorStateList.valueOf(picker.getTextContentColor(activity))
+            ImageViewCompat.setImageTintList(
+                    timeIcon,
+                    ColorStateList.valueOf(themeManager.getTextContentColor(activity))
             );
             timeIcon.setOnClickListener(this);
 
@@ -70,7 +73,7 @@ public class FirstCardHeaderController
                             + " "
                             + Base.getTime(activity, weather.getBase().getUpdateDate())
             );
-            refreshTime.setTextColor(picker.getTextContentColor(activity));
+            refreshTime.setTextColor(themeManager.getTextContentColor(activity));
 
             long time = System.currentTimeMillis();
             if (TimeZone.getDefault().getOffset(time) == location.getTimeZone().getOffset(time)) {
@@ -79,7 +82,7 @@ public class FirstCardHeaderController
             } else {
                 localTime.setVisibility(View.VISIBLE);
                 localTime.setTimeZone(location.getTimeZone().getID());
-                localTime.setTextColor(picker.getTextSubtitleColor(activity));
+                localTime.setTextColor(themeManager.getTextSubtitleColor(activity));
                 localTime.setFormat12Hour(
                         activity.getString(R.string.date_format_widget_long) + ", h:mm aa"
                 );
@@ -108,10 +111,10 @@ public class FirstCardHeaderController
                     }
                 }
                 alert.setText(builder.toString());
-                alert.setTextColor(picker.getTextSubtitleColor(activity));
+                alert.setTextColor(themeManager.getTextSubtitleColor(activity));
 
                 line.setVisibility(View.VISIBLE);
-                line.setBackgroundColor(picker.getRootColor(activity));
+                line.setBackgroundColor(themeManager.getRootColor(activity));
             }
             alert.setOnClickListener(this);
         }

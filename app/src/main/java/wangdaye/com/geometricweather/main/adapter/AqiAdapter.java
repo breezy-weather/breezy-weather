@@ -26,8 +26,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.unit.AirQualityUnit;
 import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.ui.widget.RoundProgress;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Aqi adapter.
@@ -37,9 +37,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
     private List<AqiItem> itemList;
     private List<ViewHolder> holderList;
-    private MainThemePicker colorPicker;
+    private ThemeManager themeManager;
 
-    private class AqiItem {
+    private static class AqiItem {
         @ColorInt int color;
         float progress;
         float max;
@@ -82,15 +82,15 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             this.executeAnimation = item.executeAnimation;
 
             title.setText(item.title);
-            title.setTextColor(colorPicker.getTextContentColor(context));
+            title.setTextColor(themeManager.getTextContentColor(context));
 
             content.setText(item.content);
-            content.setTextColor(colorPicker.getTextSubtitleColor(context));
+            content.setTextColor(themeManager.getTextSubtitleColor(context));
 
             if (executeAnimation) {
                 progress.setProgress(0);
                 progress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
-                progress.setProgressBackgroundColor(colorPicker.getLineColor(context));
+                progress.setProgressBackgroundColor(themeManager.getLineColor(context));
             } else {
                 progress.setProgress((int) (100.0 * item.progress / item.max));
                 progress.setProgressColor(item.color);
@@ -115,7 +115,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
-                        colorPicker.getLineColor(itemView.getContext()),
+                        themeManager.getLineColor(itemView.getContext()),
                         ColorUtils.setAlphaComponent(item.color, (int) (255 * 0.1))
                 );
                 backgroundColor.addUpdateListener(animation ->
@@ -145,8 +145,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    public AqiAdapter(Context context, @Nullable Weather weather,
-                      MainThemePicker colorPicker, boolean executeAnimation) {
+    public AqiAdapter(Context context, @Nullable Weather weather, boolean executeAnimation) {
         this.itemList = new ArrayList<>();
         if (weather != null && weather.getCurrent().getAirQuality().isValid()) {
             AirQuality airQuality = weather.getCurrent().getAirQuality();
@@ -225,7 +224,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
 
         this.holderList = new ArrayList<>();
-        this.colorPicker = colorPicker;
+        this.themeManager = ThemeManager.getInstance(context);
     }
 
     @NonNull

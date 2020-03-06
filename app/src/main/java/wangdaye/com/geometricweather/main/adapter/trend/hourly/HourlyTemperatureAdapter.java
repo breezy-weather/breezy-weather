@@ -18,12 +18,12 @@ import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.HourlyTrendItemView;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Hourly temperature adapter.
@@ -33,7 +33,7 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
 
     private Weather weather;
     private ResourceProvider provider;
-    private MainThemePicker picker;
+    private ThemeManager themeManager;
     private TemperatureUnit unit;
 
     private float[] temperatures;
@@ -62,7 +62,7 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
 
             hourlyItem.setHourText(hourly.getHour(context));
 
-            hourlyItem.setTextColor(picker.getTextContentColor(context));
+            hourlyItem.setTextColor(themeManager.getTextContentColor(context));
 
             hourlyItem.setIconDrawable(
                     ResourceHelper.getWeatherIcon(provider, hourly.getWeatherCode(), hourly.isDaylight())
@@ -85,16 +85,16 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
                     100f,
                     0f
             );
-            int[] themeColors = picker.getWeatherThemeColors();
+            int[] themeColors = themeManager.getWeatherThemeColors();
             polylineAndHistogramView.setLineColors(
-                    themeColors[picker.isLightTheme() ? 1 : 2], themeColors[2], picker.getLineColor(context));
+                    themeColors[themeManager.isLightTheme() ? 1 : 2], themeColors[2], themeManager.getLineColor(context));
             polylineAndHistogramView.setShadowColors(
-                    themeColors[picker.isLightTheme() ? 1 : 2], themeColors[2], picker.isLightTheme());
+                    themeColors[themeManager.isLightTheme() ? 1 : 2], themeColors[2], themeManager.isLightTheme());
             polylineAndHistogramView.setTextColors(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+                    themeManager.getTextContentColor(context),
+                    themeManager.getTextSubtitleColor(context)
             );
-            polylineAndHistogramView.setHistogramAlpha(picker.isLightTheme() ? 0.2f : 0.5f);
+            polylineAndHistogramView.setHistogramAlpha(themeManager.isLightTheme() ? 0.2f : 0.5f);
 
             hourlyItem.setOnClickListener(v -> onItemClicked(getAdapterPosition()));
         }
@@ -118,18 +118,18 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
     }
 
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                                    ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        this(activity, parent, weather, true, provider, picker, unit);
+                                    ResourceProvider provider, TemperatureUnit unit) {
+        this(activity, parent, weather, true, provider, unit);
     }
 
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
                                     boolean showPrecipitationProbability,
-                                    ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        super(activity, parent, weather, picker);
+                                    ResourceProvider provider, TemperatureUnit unit) {
+        super(activity, parent, weather);
 
         this.weather = weather;
         this.provider = provider;
-        this.picker = picker;
+        this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;
 
         this.temperatures = new float[Math.max(0, weather.getHourlyForecast().size() * 2 - 1)];
@@ -157,7 +157,7 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
 
         this.showPrecipitationProbability = showPrecipitationProbability;
 
-        parent.setLineColor(picker.getLineColor(activity));
+        parent.setLineColor(themeManager.getLineColor(activity));
         if (weather.getYesterday() == null) {
             parent.setData(null,0, 0);
         } else {

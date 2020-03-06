@@ -22,12 +22,12 @@ import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Hourly weather dialog.
@@ -36,7 +36,6 @@ import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 public class HourlyWeatherDialog extends DialogFragment {
 
     private AnimatableIconView weatherIcon;
-    private MainThemePicker colorPicker;
 
     private Weather weather;
     private int position;
@@ -64,7 +63,7 @@ public class HourlyWeatherDialog extends DialogFragment {
         Hourly hourly = weather.getHourlyForecast().get(position);
 
         CoordinatorLayout container = view.findViewById(R.id.dialog_weather_hourly_container);
-        container.setBackgroundColor(colorPicker.getRootColor(getActivity()));
+        container.setBackgroundColor(ThemeManager.getInstance(requireActivity()).getRootColor(getActivity()));
 
         TextView title = view.findViewById(R.id.dialog_weather_hourly_title);
         title.setText(hourly.getHour(getActivity()));
@@ -72,7 +71,7 @@ public class HourlyWeatherDialog extends DialogFragment {
 
         TextView subtitle = view.findViewById(R.id.dialog_weather_hourly_subtitle);
         subtitle.setText(new SimpleDateFormat(getString(R.string.date_format_widget_long)).format(hourly.getDate()));
-        subtitle.setTextColor(colorPicker.getTextSubtitleColor(getActivity()));
+        subtitle.setTextColor(ThemeManager.getInstance(requireActivity()).getTextSubtitleColor(getActivity()));
 
         view.findViewById(R.id.dialog_weather_hourly_weatherContainer).setOnClickListener(v -> weatherIcon.startAnimators());
 
@@ -85,7 +84,7 @@ public class HourlyWeatherDialog extends DialogFragment {
         );
 
         TextView weatherText = view.findViewById(R.id.dialog_weather_hourly_text);
-        weatherText.setTextColor(colorPicker.getTextContentColor(getActivity()));
+        weatherText.setTextColor(ThemeManager.getInstance(requireActivity()).getTextContentColor(getActivity()));
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(getActivity());
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
@@ -121,9 +120,5 @@ public class HourlyWeatherDialog extends DialogFragment {
         this.weather = weather;
         this.position = position;
         this.weatherColor = weatherColor;
-    }
-
-    public void setColorPicker(@NonNull MainThemePicker colorPicker) {
-        this.colorPicker = colorPicker;
     }
 }

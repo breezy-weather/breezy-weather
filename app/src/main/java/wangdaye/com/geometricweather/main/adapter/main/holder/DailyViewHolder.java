@@ -20,7 +20,6 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.main.adapter.main.MainTag;
 import wangdaye.com.geometricweather.main.adapter.trend.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.layout.TrendHorizontalLinearLayoutManager;
@@ -57,16 +56,16 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
     @Override
     public void onBindView(GeoActivity activity, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                           @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, provider, picker, listAnimationEnabled, itemAnimationEnabled, firstCard);
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = picker.getWeatherThemeColors()[0];
+        int weatherColor = themeManager.getWeatherThemeColors()[0];
 
-        card.setCardBackgroundColor(picker.getRootColor(context));
+        card.setCardBackgroundColor(themeManager.getRootColor(context));
 
         title.setTextColor(weatherColor);
 
@@ -95,11 +94,11 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
             tagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
             tagView.setAdapter(
-                    new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
+                    new TagAdapter(context, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(location.getFormattedId(), weather,
                                 location.getTimeZone(), (MainTag) tagList.get(newPosition));
                         return false;
-                    }, picker, 0)
+                    }, 0)
             );
         }
 
@@ -119,7 +118,6 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         weather,
                         timeZone,
                         provider,
-                        picker,
                         SettingsOptionManager.getInstance(context).getTemperatureUnit()
                 );
                 break;
@@ -130,7 +128,6 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         formattedId,
                         weather,
                         timeZone,
-                        picker,
                         SettingsOptionManager.getInstance(context).getSpeedUnit()
                 );
                 break;
@@ -142,7 +139,6 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         weather,
                         timeZone,
                         provider,
-                        picker,
                         SettingsOptionManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;
@@ -152,8 +148,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         (GeoActivity) context, trendRecyclerView,
                         formattedId,
                         weather,
-                        timeZone,
-                        picker
+                        timeZone
                 );
                 break;
 
@@ -162,8 +157,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         (GeoActivity) context, trendRecyclerView,
                         formattedId,
                         weather,
-                        timeZone,
-                        picker
+                        timeZone
                 );
                 break;
         }

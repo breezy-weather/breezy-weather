@@ -4,6 +4,7 @@ import android.content.Context;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.res.ColorStateList;
@@ -20,8 +21,8 @@ import wangdaye.com.geometricweather.basic.model.option.unit.CloudCoverUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Details adapter.
@@ -30,9 +31,9 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
     private List<Index> indexList;
-    private MainThemePicker colorPicker;
+    private ThemeManager themeManager;
 
-    private class Index {
+    private static class Index {
         @DrawableRes int iconId;
         String title;
         String content;
@@ -61,19 +62,20 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             Context context = itemView.getContext();
 
             icon.setImageResource(index.iconId);
-            icon.setSupportImageTintList(
-                    ColorStateList.valueOf(colorPicker.getTextContentColor(context))
+            ImageViewCompat.setImageTintList(
+                    icon,
+                    ColorStateList.valueOf(themeManager.getTextContentColor(context))
             );
 
             title.setText(index.title);
-            title.setTextColor(colorPicker.getTextContentColor(context));
+            title.setTextColor(themeManager.getTextContentColor(context));
 
             content.setText(index.content);
-            content.setTextColor(colorPicker.getTextSubtitleColor(context));
+            content.setTextColor(themeManager.getTextSubtitleColor(context));
         }
     }
 
-    public DetailsAdapter(Context context, @NonNull Weather weather, MainThemePicker colorPicker) {
+    public DetailsAdapter(Context context, @NonNull Weather weather) {
         this.indexList = new ArrayList<>();
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
 
@@ -166,7 +168,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             );
         }
 
-        this.colorPicker = colorPicker;
+        this.themeManager = ThemeManager.getInstance(context);
     }
 
     @NonNull

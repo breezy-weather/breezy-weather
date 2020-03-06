@@ -13,7 +13,6 @@ import androidx.cardview.widget.CardView;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.main.adapter.main.FirstCardHeaderController;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
@@ -28,28 +27,28 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
 
     @CallSuper
     public void onBindView(GeoActivity activity, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                           @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, provider, picker, listAnimationEnabled, itemAnimationEnabled);
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
         CardView card = (CardView) itemView;
 
-        card.setRadius(picker.getCardRadius(activity));
+        card.setRadius(themeManager.getCardRadius(activity));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            card.setElevation(picker.getCardElevation(activity));
+            card.setElevation(themeManager.getCardElevation(activity));
         }
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
         params.setMargins(
-                picker.getCardMarginsHorizontal(activity),
+                themeManager.getCardMarginsHorizontal(activity),
                 0,
-                picker.getCardMarginsHorizontal(activity),
-                picker.getCardMarginsVertical(activity)
+                themeManager.getCardMarginsHorizontal(activity),
+                themeManager.getCardMarginsVertical(activity)
         );
         card.setLayoutParams(params);
 
         if (firstCard) {
-            firstCardHeaderController = new FirstCardHeaderController(activity, location, picker);
+            firstCardHeaderController = new FirstCardHeaderController(activity, location);
             firstCardHeaderController.bind((LinearLayout) card.getChildAt(0));
         }
     }
@@ -58,9 +57,9 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
     @Deprecated
     @Override
     public void onBindView(Context context, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                           @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        onBindView((GeoActivity) context, location, provider, picker,
+        onBindView((GeoActivity) context, location, provider,
                 listAnimationEnabled, itemAnimationEnabled, false);
     }
 

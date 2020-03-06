@@ -22,11 +22,11 @@ import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.basic.model.weather.Wind;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.ui.image.RotateDrawable;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.DoubleHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Daily wind adapter.
@@ -35,7 +35,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
     private Weather weather;
     private TimeZone timeZone;
-    private MainThemePicker picker;
+    private ThemeManager themeManager;
     private SpeedUnit unit;
 
     private float highestWindSpeed;
@@ -70,8 +70,8 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
             dailyItem.setDateText(daily.getShortDate(context));
 
             dailyItem.setTextColor(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+                    themeManager.getTextContentColor(context),
+                    themeManager.getTextSubtitleColor(context)
             );
 
             int daytimeWindColor = daily.day().getWind().getWindColor(context);
@@ -93,8 +93,8 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
                     unit.getSpeedTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
                     highestWindSpeed
             );
-            doubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, picker.getLineColor(context));
-            doubleHistogramView.setTextColors(picker.getTextContentColor(context));
+            doubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, themeManager.getLineColor(context));
+            doubleHistogramView.setTextColors(themeManager.getTextContentColor(context));
             doubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
             RotateDrawable nightIcon = daily.night().getWind().isValidSpeed()
@@ -109,14 +109,13 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent,
-                            String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                            MainThemePicker picker, SpeedUnit unit) {
+    public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent, String formattedId,
+                            @NonNull Weather weather, @NonNull TimeZone timeZone, SpeedUnit unit) {
         super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;
-        this.picker = picker;
+        this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;
 
         highestWindSpeed = Integer.MIN_VALUE;
@@ -176,7 +175,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
-        parent.setLineColor(picker.getLineColor(activity));
+        parent.setLineColor(themeManager.getLineColor(activity));
         parent.setData(keyLineList, highestWindSpeed, -highestWindSpeed);
     }
 

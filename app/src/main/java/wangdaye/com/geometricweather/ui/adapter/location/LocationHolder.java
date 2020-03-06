@@ -19,9 +19,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class LocationHolder extends RecyclerView.ViewHolder {
@@ -40,6 +40,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
     private TextView source;
 
     protected LocationModel model;
+    private ThemeManager themeManager;
     private int direction;
     private @ColorInt int swipeEndColor;
 
@@ -60,12 +61,13 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         this.subtitle = itemView.findViewById(R.id.item_location_subtitle);
         this.source = itemView.findViewById(R.id.item_location_source);
 
+        this.themeManager = ThemeManager.getInstance(parent.getContext());
+
         locationItemContainer.setOnClickListener(v -> listener.onClick(v, model.location.getFormattedId()));
     }
 
     @SuppressLint("SetTextI18n")
-    protected void onBindView(Context context, LocationModel model,
-                              ResourceProvider resourceProvider, MainThemePicker themePicker) {
+    protected void onBindView(Context context, LocationModel model, ResourceProvider resourceProvider) {
         this.model = model;
         direction = 0;
         swipeEndColor = ContextCompat.getColor(context,
@@ -77,11 +79,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             swipeIconEnd.setImageResource(model.residentPosition ? R.drawable.ic_tag_off : R.drawable.ic_tag_plus);
         }
 
-        if (themePicker != null) {
-            locationItemView.setBackgroundColor(themePicker.getRootColor(context));
-        } else {
-            locationItemView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRoot));
-        }
+        locationItemView.setBackgroundColor(themeManager.getRootColor(context));
 
         residentIcon.setVisibility(model.residentPosition ? View.VISIBLE : View.GONE);
 
@@ -97,18 +95,10 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             weatherIcon.setVisibility(View.GONE);
         }
 
-        if (themePicker != null) {
-            title.setTextColor(themePicker.getTextTitleColor(context));
-        } else {
-            title.setTextColor(ContextCompat.getColor(context, R.color.colorTextTitle));
-        }
+        title.setTextColor(themeManager.getTextTitleColor(context));
         title.setText(model.title);
 
-        if (themePicker != null) {
-            alerts.setTextColor(themePicker.getTextSubtitleColor(context));
-        } else {
-            alerts.setTextColor(ContextCompat.getColor(context, R.color.colorTextSubtitle));
-        }
+        alerts.setTextColor(themeManager.getTextSubtitleColor(context));
         if (!TextUtils.isEmpty(model.alerts)) {
             alerts.setVisibility(View.VISIBLE);
             alerts.setText(model.alerts);
@@ -116,11 +106,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             alerts.setVisibility(View.GONE);
         }
 
-        if (themePicker != null) {
-            subtitle.setTextColor(themePicker.getTextContentColor(context));
-        } else {
-            subtitle.setTextColor(ContextCompat.getColor(context, R.color.colorTextContent));
-        }
+        subtitle.setTextColor(themeManager.getTextContentColor(context));
         subtitle.setText(model.subtitle);
 
         // source.

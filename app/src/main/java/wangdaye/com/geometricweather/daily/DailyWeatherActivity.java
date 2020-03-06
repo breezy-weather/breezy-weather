@@ -29,6 +29,7 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarViewPager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Daily weather activity.
@@ -119,7 +120,7 @@ public class DailyWeatherActivity extends GeoActivity {
         FitBottomSystemBarViewPager pager = findViewById(R.id.activity_weather_daily_pager);
         pager.setAdapter(new FitBottomSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
         pager.setPageMargin((int) DisplayUtils.dpToPx(this, 1));
-        pager.setPageMarginDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorLine)));
+        pager.setPageMarginDrawable(new ColorDrawable(ThemeManager.getInstance(this).getLineColor(this)));
         pager.setCurrentItem(position);
         pager.clearOnPageChangeListeners();
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

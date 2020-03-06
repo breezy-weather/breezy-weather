@@ -13,7 +13,6 @@ import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.main.adapter.trend.daily.AbsDailyTrendAdapter;
@@ -32,33 +31,29 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public void temperature(GeoActivity activity, TrendRecyclerView parent,
                             String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                            ResourceProvider provider, MainThemePicker picker,
-                            TemperatureUnit unit) {
-        adapter = new DailyTemperatureAdapter(activity, parent, formattedId, weather, timeZone, provider, picker, unit);
+                            ResourceProvider provider, TemperatureUnit unit) {
+        adapter = new DailyTemperatureAdapter(activity, parent, formattedId, weather, timeZone, provider, unit);
     }
 
     public void airQuality(GeoActivity activity, TrendRecyclerView parent,
-                           String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                           MainThemePicker picker) {
-        adapter = new DailyAirQualityAdapter(activity, parent, formattedId, weather, timeZone, picker);
+                           String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone) {
+        adapter = new DailyAirQualityAdapter(activity, parent, formattedId, weather, timeZone);
     }
 
     public void wind(GeoActivity activity, TrendRecyclerView parent,
-                     String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                     MainThemePicker picker, SpeedUnit unit) {
-        adapter = new DailyWindAdapter(activity, parent, formattedId, weather, timeZone, picker, unit);
+                     String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone, SpeedUnit unit) {
+        adapter = new DailyWindAdapter(activity, parent, formattedId, weather, timeZone, unit);
     }
 
     public void uv(GeoActivity activity, TrendRecyclerView parent,
-                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                   MainThemePicker picker) {
-        adapter = new DailyUVAdapter(activity, parent, formattedId, weather, timeZone, picker);
+                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone) {
+        adapter = new DailyUVAdapter(activity, parent, formattedId, weather, timeZone);
     }
 
     public void precipitation(GeoActivity activity, TrendRecyclerView parent,
                               String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                              ResourceProvider provider, MainThemePicker picker, PrecipitationUnit unit) {
-        adapter = new DailyPrecipitationAdapter(activity, parent, formattedId, weather, timeZone, provider, picker, unit);
+                              ResourceProvider provider, PrecipitationUnit unit) {
+        adapter = new DailyPrecipitationAdapter(activity, parent, formattedId, weather, timeZone, provider, unit);
     }
 
     @NonNull
@@ -102,8 +97,8 @@ class DailyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter
 
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
                                    String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                                   ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        super(activity, parent, formattedId, weather, timeZone, true, provider, picker, unit);
+                                   ResourceProvider provider, TemperatureUnit unit) {
+        super(activity, parent, formattedId, weather, timeZone, true, provider, unit);
 
     }
 

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.main.adapter.DetailsAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
@@ -24,7 +23,8 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
     private RecyclerView detailsRecyclerView;
 
     public DetailsViewHolder(ViewGroup parent) {
-        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_details, parent, false));
+        super(LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.container_main_details, parent, false));
 
         this.card = itemView.findViewById(R.id.container_main_details);
         this.title = itemView.findViewById(R.id.container_main_details_title);
@@ -32,19 +32,18 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
     }
 
     @Override
-    public void onBindView(GeoActivity activity, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+    public void onBindView(GeoActivity activity, @NonNull Location location, @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, provider, picker,
+        super.onBindView(activity, location, provider,
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         if (location.getWeather() != null) {
-            card.setCardBackgroundColor(picker.getRootColor(context));
+            card.setCardBackgroundColor(themeManager.getRootColor(context));
 
-            title.setTextColor(picker.getWeatherThemeColors()[0]);
+            title.setTextColor(themeManager.getWeatherThemeColors()[0]);
 
             detailsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-            detailsRecyclerView.setAdapter(new DetailsAdapter(context, location.getWeather(), picker));
+            detailsRecyclerView.setAdapter(new DetailsAdapter(context, location.getWeather()));
         }
     }
 }

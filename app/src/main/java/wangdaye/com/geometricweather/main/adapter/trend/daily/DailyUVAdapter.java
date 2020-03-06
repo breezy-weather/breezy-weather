@@ -18,10 +18,10 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.UV;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Daily UV adapter.
@@ -31,7 +31,7 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
 
     private Weather weather;
     private TimeZone timeZone;
-    private MainThemePicker picker;
+    private ThemeManager picker;
 
     private int highestIndex;
 
@@ -99,13 +99,12 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
 
     @SuppressLint("SimpleDateFormat")
     public DailyUVAdapter(GeoActivity activity, TrendRecyclerView parent,
-                          String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                          MainThemePicker picker) {
+                          String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone) {
         super(activity, parent, formattedId);
 
         this.weather = weather;
         this.timeZone = timeZone;
-        this.picker = picker;
+        this.picker = ThemeManager.getInstance(activity);
 
         highestIndex = Integer.MIN_VALUE;
         boolean valid = false;

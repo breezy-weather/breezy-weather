@@ -14,7 +14,6 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.main.adapter.main.holder.AbstractMainCardViewHolder;
 import wangdaye.com.geometricweather.main.adapter.main.holder.AbstractMainViewHolder;
 import wangdaye.com.geometricweather.main.adapter.main.holder.AirQualityViewHolder;
@@ -33,7 +32,6 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private @NonNull GeoActivity activity;
     private @NonNull Location location;
     private @NonNull ResourceProvider provider;
-    private @NonNull MainThemePicker picker;
 
     private @NonNull List<Integer> viewTypeList;
     private @Nullable Integer firstCardPosition;
@@ -43,18 +41,17 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private boolean itemAnimationEnabled;
 
     public MainAdapter(@NonNull GeoActivity activity, @NonNull Location location,
-                       @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                       @NonNull ResourceProvider provider,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        reset(activity, location, provider, picker, listAnimationEnabled, itemAnimationEnabled);
+        reset(activity, location, provider, listAnimationEnabled, itemAnimationEnabled);
     }
 
     public void reset(@NonNull GeoActivity activity, @NonNull Location location,
-                      @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                      @NonNull ResourceProvider provider,
                       boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         this.activity = activity;
         this.location = location;
         this.provider = provider;
-        this.picker = picker;
 
         this.viewTypeList = new ArrayList<>();
         this.firstCardPosition = null;
@@ -131,13 +128,12 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
                     activity,
                     location,
                     provider,
-                    picker,
                     listAnimationEnabled,
                     itemAnimationEnabled,
                     firstCardPosition != null && firstCardPosition == position
             );
         } else {
-            holder.onBindView(activity, location, provider, picker, listAnimationEnabled, itemAnimationEnabled);
+            holder.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled);
         }
     }
 

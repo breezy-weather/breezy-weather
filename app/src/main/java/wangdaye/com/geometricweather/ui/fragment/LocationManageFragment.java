@@ -19,6 +19,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
+import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,12 +34,12 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.main.MainListDecoration;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.ui.adapter.location.LocationAdapter;
 import wangdaye.com.geometricweather.ui.adapter.location.LocationTouchCallback;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class LocationManageFragment extends Fragment
         implements LocationTouchCallback.OnLocationListChangedListener {
@@ -54,7 +55,6 @@ public class LocationManageFragment extends Fragment
     private int searchRequestCode;
     private int providerSettingsRequestCode;
 
-    private @Nullable MainThemePicker themePicker;
     private ValueAnimator colorAnimator;
 
     private boolean drawerMode = false;
@@ -110,7 +110,6 @@ public class LocationManageFragment extends Fragment
         adapter = new LocationAdapter(
                 requireActivity(),
                 locationList,
-                themePicker,
                 (v, formattedId) -> {
                     if (locationListChangedListener != null) {
                         locationListChangedListener.onSelectedLocation(formattedId);
@@ -146,47 +145,50 @@ public class LocationManageFragment extends Fragment
     }
 
     private void setThemeStyle() {
-        if (themePicker != null) {
-            // search bar elements.
-            searchIcon.setSupportImageTintList(
-                    ColorStateList.valueOf(themePicker.getTextContentColor(requireActivity())));
-            searchTitle.setTextColor(
-                    ColorStateList.valueOf(themePicker.getTextSubtitleColor(requireActivity())));
-            currentLocationButton.setSupportImageTintList(
-                    ColorStateList.valueOf(themePicker.getTextContentColor(requireActivity())));
+        ThemeManager themeManager = ThemeManager.getInstance(requireActivity());
 
-            // background.
-            if (colorAnimator != null) {
-                colorAnimator.cancel();
-                colorAnimator = null;
-            }
+        ImageViewCompat.setImageTintList(
+                searchIcon,
+                ColorStateList.valueOf(themeManager.getTextContentColor(requireActivity()))
+        );
+        ImageViewCompat.setImageTintList(
+                currentLocationButton,
+                ColorStateList.valueOf(themeManager.getTextContentColor(requireActivity()))
+        );
+        searchTitle.setTextColor(
+                ColorStateList.valueOf(themeManager.getTextSubtitleColor(requireActivity())));
 
-            int oldColor = Color.TRANSPARENT;
-            Drawable background = recyclerView.getBackground();
-            if (background instanceof ColorDrawable) {
-                oldColor = ((ColorDrawable) background).getColor();
-            }
-            int newColor = themePicker.getRootColor(requireActivity());
+        // background.
+        if (colorAnimator != null) {
+            colorAnimator.cancel();
+            colorAnimator = null;
+        }
 
-            if (newColor != oldColor) {
-                colorAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), oldColor, newColor);
-                colorAnimator.addUpdateListener(animation -> {
-                    cardView.setCardBackgroundColor((Integer) animation.getAnimatedValue());
-                    recyclerView.setBackgroundColor((Integer) animation.getAnimatedValue());
-                });
-                colorAnimator.setDuration(450);
-                colorAnimator.start();
-            } else {
-                cardView.setCardBackgroundColor(newColor);
-                recyclerView.setBackgroundColor(newColor);
-            }
+        int oldColor = Color.TRANSPARENT;
+        Drawable background = recyclerView.getBackground();
+        if (background instanceof ColorDrawable) {
+            oldColor = ((ColorDrawable) background).getColor();
+        }
+        int newColor = themeManager.getRootColor(requireActivity());
+
+        if (newColor != oldColor) {
+            colorAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), oldColor, newColor);
+            colorAnimator.addUpdateListener(animation -> {
+                cardView.setCardBackgroundColor((Integer) animation.getAnimatedValue());
+                recyclerView.setBackgroundColor((Integer) animation.getAnimatedValue());
+            });
+            colorAnimator.setDuration(450);
+            colorAnimator.start();
+        } else {
+            cardView.setCardBackgroundColor(newColor);
+            recyclerView.setBackgroundColor(newColor);
         }
 
         if (decoration != null) {
             recyclerView.removeItemDecoration(decoration);
             decoration = null;
         }
-        decoration = new MainListDecoration(requireActivity(), themePicker);
+        decoration = new MainListDecoration(requireActivity());
         recyclerView.addItemDecoration(decoration);
     }
 
@@ -195,18 +197,9 @@ public class LocationManageFragment extends Fragment
         this.providerSettingsRequestCode = providerSettingsRequestCode;
     }
 
-    public void setThemePicker(@Nullable MainThemePicker picker) {
-        this.themePicker = picker;
-    }
-
-    public void updateView(List<Location> newList, @NonNull MainThemePicker picker) {
-        boolean themeChanged = themePicker == null || themePicker.isLightTheme() != picker.isLightTheme();
-        if (themeChanged) {
-            setThemePicker(picker);
-            setThemeStyle();
-        }
-
-        adapter.update(newList, picker);
+    public void updateView(List<Location> newList) {
+        adapter.update(newList);
+        setThemeStyle();
     }
 
     public void addLocation() {
@@ -217,7 +210,7 @@ public class LocationManageFragment extends Fragment
 
     public void resetLocationList() {
         List<Location> list = readLocationList();
-        adapter.update(list, themePicker);
+        adapter.update(list);
         onLocationListChanged(list, false, true);
     }
 

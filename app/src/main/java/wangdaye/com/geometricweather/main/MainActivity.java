@@ -60,6 +60,7 @@ import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 import wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout;
@@ -91,7 +92,7 @@ public class MainActivity extends GeoActivity
     @Nullable private AnimatorSet recyclerViewAnimator;
 
     private ResourceProvider resourceProvider;
-    private MainThemePicker themePicker;
+    private ThemeManager themeManager;
 
     @Nullable private String currentLocationFormattedId;
     @Nullable private WeatherSource currentWeatherSource;
@@ -136,7 +137,7 @@ public class MainActivity extends GeoActivity
         DisplayUtils.setSystemBarStyle(MainActivity.this, getWindow(), true,
                 false, false, true, false);
 
-        if (DisplayUtils.isLandscape(this) && DisplayUtils.isTabletDevice(this)) {
+        if (MainDisplayUtils.isMultiFragmentEnabled(this)) {
             setContentView(R.layout.activity_main_tablet);
         } else {
             setContentView(R.layout.activity_main);
@@ -163,7 +164,7 @@ public class MainActivity extends GeoActivity
 
         resetUIUpdateFlag();
         ensureResourceProvider();
-        ensureColorPicker();
+        updateThemeManager();
 
         initModel();
         initView();
@@ -189,7 +190,7 @@ public class MainActivity extends GeoActivity
         switch (requestCode) {
             case SETTINGS_ACTIVITY:
                 ensureResourceProvider();
-                ensureColorPicker();
+                updateThemeManager();
 
                 Location location = viewModel.getCurrentLocationValue();
                 if (location != null) {
@@ -278,11 +279,10 @@ public class MainActivity extends GeoActivity
     private void initView() {
         this.background = findViewById(R.id.activity_main_background);
 
-        if (DisplayUtils.isLandscape(this) && DisplayUtils.isTabletDevice(this)) {
+        if (MainDisplayUtils.isMultiFragmentEnabled(this)) {
             this.manageFragment = new LocationManageFragment();
             manageFragment.setDrawerMode(true);
             manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
-            manageFragment.setThemePicker(themePicker);
             manageFragment.setOnLocationListChangedListener(new LocationManageFragment.LocationManageCallback() {
                 @Override
                 public void onSelectedLocation(@NonNull String formattedId) {
@@ -314,7 +314,7 @@ public class MainActivity extends GeoActivity
 
         this.toolbar = findViewById(R.id.activity_main_toolbar);
         toolbar.inflateMenu(R.menu.activity_main);
-        toolbar.getMenu().getItem(0).setVisible(!DisplayUtils.isLandscape(this));
+        toolbar.getMenu().getItem(0).setVisible(!MainDisplayUtils.isMultiFragmentEnabled(this));
         toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.action_manage:
@@ -376,9 +376,7 @@ public class MainActivity extends GeoActivity
                         getString(R.string.help),
                         v -> {
                             if (isForeground()) {
-                                new LocationHelpDialog()
-                                        .setColorPicker(themePicker)
-                                        .show(getSupportFragmentManager(), null);
+                                new LocationHelpDialog().show(getSupportFragmentManager(), null);
                             }
                         }
                 );
@@ -441,28 +439,28 @@ public class MainActivity extends GeoActivity
 
         setDarkMode(daytime);
         if (oldDaytime != daytime) {
-            ensureColorPicker();
+            updateThemeManager();
         }
         if (manageFragment != null) {
-            manageFragment.updateView(viewModel.getLocationList(), themePicker);
+            manageFragment.updateView(viewModel.getLocationList());
         }
 
         WeatherViewController.setWeatherCode(
                 weatherView, location.getWeather(), daytime, resourceProvider);
 
-        refreshLayout.setColorSchemeColors(weatherView.getThemeColors(themePicker.isLightTheme())[0]);
-        refreshLayout.setProgressBackgroundColorSchemeColor(themePicker.getRootColor(this));
+        refreshLayout.setColorSchemeColors(weatherView.getThemeColors(themeManager.isLightTheme())[0]);
+        refreshLayout.setProgressBackgroundColorSchemeColor(themeManager.getRootColor(this));
 
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(this).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(this).isItemAnimationEnabled();
 
         if (adapter == null) {
-            adapter = new MainAdapter(this, location, resourceProvider, themePicker,
-                    listAnimationEnabled, itemAnimationEnabled);
+            adapter = new MainAdapter(
+                    this, location, resourceProvider, listAnimationEnabled, itemAnimationEnabled);
             recyclerView.setAdapter(adapter);
         } else {
-            adapter.reset(this, location, resourceProvider, themePicker,
-                    listAnimationEnabled, itemAnimationEnabled);
+            adapter.reset(
+                    this, location, resourceProvider, listAnimationEnabled, itemAnimationEnabled);
             adapter.notifyDataSetChanged();
         }
 
@@ -471,8 +469,8 @@ public class MainActivity extends GeoActivity
         recyclerView.addOnScrollListener(l);
         recyclerView.post(() -> l.onScrolled(recyclerView, 0, 0));
 
-        indicator.setCurrentIndicatorColor(themePicker.getAccentColor(this));
-        indicator.setIndicatorColor(themePicker.getTextSubtitleColor(this));
+        indicator.setCurrentIndicatorColor(themeManager.getAccentColor(this));
+        indicator.setIndicatorColor(themeManager.getTextSubtitleColor(this));
 
         if (!listAnimationEnabled) {
             recyclerView.setAlpha(0f);
@@ -499,9 +497,9 @@ public class MainActivity extends GeoActivity
         if (weatherView.getWeatherKind() == WeatherView.WEATHER_KING_NULL
                 && location.getWeather() == null) {
             WeatherViewController.setWeatherCode(
-                    weatherView, null, themePicker.isLightTheme(), resourceProvider);
-            refreshLayout.setColorSchemeColors(weatherView.getThemeColors(themePicker.isLightTheme())[0]);
-            refreshLayout.setProgressBackgroundColorSchemeColor(themePicker.getRootColor(this));
+                    weatherView, null, themeManager.isLightTheme(), resourceProvider);
+            refreshLayout.setColorSchemeColors(weatherView.getThemeColors(themeManager.isLightTheme())[0]);
+            refreshLayout.setProgressBackgroundColorSchemeColor(themeManager.getRootColor(this));
         }
         weatherView.setGravitySensorEnabled(
                 SettingsOptionManager.getInstance(this).isGravitySensorEnabled());
@@ -534,14 +532,11 @@ public class MainActivity extends GeoActivity
         }
     }
 
-    private void ensureColorPicker() {
-        boolean daytime = TimeManager.getInstance(this).isDayTime();
-        DarkMode darkMode = SettingsOptionManager.getInstance(this).getDarkMode();
-        if (themePicker == null
-                || themePicker.isDaytime() != daytime
-                || !themePicker.getDarkMode().equals(darkMode)) {
-            themePicker = new MainThemePicker(weatherView, daytime, darkMode);
+    private void updateThemeManager() {
+        if (themeManager == null) {
+            themeManager = ThemeManager.getInstance(this);
         }
+        themeManager.update(this, weatherView);
     }
 
     @SuppressLint("RestrictedApi")

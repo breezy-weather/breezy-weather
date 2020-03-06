@@ -8,12 +8,11 @@ import android.graphics.Rect;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * List decoration.
@@ -25,7 +24,7 @@ public class ListDecoration extends RecyclerView.ItemDecoration {
     private @Px int decorationWidth;
 
     public ListDecoration(Context context) {
-        this(context, ContextCompat.getColor(context, R.color.colorLine));
+        this(context, ThemeManager.getInstance(context).getLineColor(context));
     }
 
     public ListDecoration(Context context, @ColorInt int color) {

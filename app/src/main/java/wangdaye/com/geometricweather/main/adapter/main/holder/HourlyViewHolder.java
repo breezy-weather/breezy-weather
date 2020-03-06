@@ -22,7 +22,6 @@ import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Minutely;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.main.adapter.main.MainTag;
 import wangdaye.com.geometricweather.main.adapter.trend.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.main.layout.TrendHorizontalLinearLayoutManager;
@@ -74,17 +73,16 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
     }
 
     @Override
-    public void onBindView(GeoActivity activity, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+    public void onBindView(GeoActivity activity, @NonNull Location location, @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, provider, picker, listAnimationEnabled, itemAnimationEnabled, firstCard);
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = picker.getWeatherThemeColors()[0];
+        int weatherColor = themeManager.getWeatherThemeColors()[0];
 
-        card.setCardBackgroundColor(picker.getRootColor(context));
+        card.setCardBackgroundColor(themeManager.getRootColor(context));
 
         title.setTextColor(weatherColor);
 
@@ -113,10 +111,10 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
             tagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
             tagView.setAdapter(
-                    new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
+                    new TagAdapter(context, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(weather, (MainTag) tagList.get(newPosition));
                         return false;
-                    }, picker, 0)
+                    }, 0)
             );
         }
 
@@ -130,17 +128,17 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         if (minutelyList.size() != 0 && needToShowMinutelyForecast(minutelyList)) {
             minutelyContainer.setVisibility(View.VISIBLE);
 
-            minutelyTitle.setTextColor(picker.getTextContentColor(context));
+            minutelyTitle.setTextColor(themeManager.getTextContentColor(context));
 
-            precipitationBar.setBackgroundColor(picker.getLineColor(context));
-            precipitationBar.setPrecipitationColor(picker.getWeatherThemeColors()[0]);
+            precipitationBar.setBackgroundColor(themeManager.getLineColor(context));
+            precipitationBar.setPrecipitationColor(themeManager.getWeatherThemeColors()[0]);
             precipitationBar.setMinutelyList(minutelyList);
 
             int size = minutelyList.size();
             minutelyStartText.setText(Base.getTime(context, minutelyList.get(0).getDate()));
-            minutelyStartText.setTextColor(picker.getTextSubtitleColor(context));
+            minutelyStartText.setTextColor(themeManager.getTextSubtitleColor(context));
             minutelyEndText.setText(Base.getTime(context, minutelyList.get(size - 1).getDate()));
-            minutelyEndText.setTextColor(picker.getTextSubtitleColor(context));
+            minutelyEndText.setTextColor(themeManager.getTextSubtitleColor(context));
         } else {
             minutelyContainer.setVisibility(View.GONE);
         }
@@ -162,7 +160,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         (GeoActivity) context, trendRecyclerView,
                         weather,
                         provider,
-                        picker,
                         SettingsOptionManager.getInstance(context).getTemperatureUnit()
                 );
                 break;
@@ -172,7 +169,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         (GeoActivity) context, trendRecyclerView,
                         weather,
                         provider,
-                        picker,
                         SettingsOptionManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;

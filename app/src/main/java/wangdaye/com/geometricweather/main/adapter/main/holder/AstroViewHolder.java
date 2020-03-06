@@ -28,7 +28,6 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.astro.MoonPhaseView;
@@ -78,21 +77,21 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(GeoActivity activity, @NonNull Location location,
-                           @NonNull ResourceProvider provider, @NonNull MainThemePicker picker,
+                           @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
-        super.onBindView(activity, location, provider, picker,
+        super.onBindView(activity, location, provider,
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         weather = location.getWeather();
         timeZone = location.getTimeZone();
         assert weather != null;
 
-        int[] themeColors = picker.getWeatherThemeColors();
+        int[] themeColors = themeManager.getWeatherThemeColors();
 
         ensureTime(weather);
         ensurePhaseAngle(weather);
 
-        card.setCardBackgroundColor(picker.getRootColor(context));
+        card.setCardBackgroundColor(themeManager.getRootColor(context));
 
         title.setTextColor(themeColors[0]);
 
@@ -101,13 +100,13 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             phaseView.setVisibility(View.GONE);
         } else {
             phaseText.setVisibility(View.VISIBLE);
-            phaseText.setTextColor(picker.getTextContentColor(context));
+            phaseText.setTextColor(themeManager.getTextContentColor(context));
             phaseText.setText(weather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
             phaseView.setVisibility(View.VISIBLE);
             phaseView.setColor(
                     ContextCompat.getColor(context, R.color.colorTextContent_dark),
                     ContextCompat.getColor(context, R.color.colorTextContent_light),
-                    picker.getTextContentColor(context)
+                    themeManager.getTextContentColor(context)
             );
         }
 
@@ -125,21 +124,21 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             sunMoonView.setNightIndicatorRotation(0);
             phaseView.setSurfaceAngle(phaseAngle);
         }
-        if (picker.isLightTheme()) {
+        if (themeManager.isLightTheme()) {
             sunMoonView.setColors(
                     themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                    picker.getRootColor(context),
-                    picker.isLightTheme()
+                    themeManager.getRootColor(context),
+                    themeManager.isLightTheme()
             );
         } else {
             sunMoonView.setColors(
                     themeColors[2],
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
-                    picker.getRootColor(context),
-                    picker.isLightTheme()
+                    themeManager.getRootColor(context),
+                    themeManager.isLightTheme()
             );
         }
 

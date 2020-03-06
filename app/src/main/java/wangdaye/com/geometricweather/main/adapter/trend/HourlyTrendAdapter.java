@@ -10,7 +10,6 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.main.adapter.trend.hourly.AbsHourlyTrendAdapter;
@@ -25,13 +24,13 @@ public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public void temperature(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                            ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        adapter = new HourlyTemperatureAdapter(activity, parent, weather, provider, picker, unit);
+                            ResourceProvider provider, TemperatureUnit unit) {
+        adapter = new HourlyTemperatureAdapter(activity, parent, weather, provider, unit);
     }
 
     public void precipitation(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                              ResourceProvider provider, MainThemePicker picker, PrecipitationUnit unit) {
-        adapter = new HourlyPrecipitationAdapter(activity, parent, weather, provider, picker, unit);
+                              ResourceProvider provider, PrecipitationUnit unit) {
+        adapter = new HourlyPrecipitationAdapter(activity, parent, weather, provider, unit);
     }
 
     @NonNull
@@ -69,8 +68,8 @@ public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
 class HourlyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter.trend.hourly.HourlyTemperatureAdapter {
 
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                                    ResourceProvider provider, MainThemePicker picker, TemperatureUnit unit) {
-        super(activity, parent, weather, true, provider, picker, unit);
+                                    ResourceProvider provider, TemperatureUnit unit) {
+        super(activity, parent, weather, true, provider, unit);
     }
 
     @Override

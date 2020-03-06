@@ -17,12 +17,12 @@ import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Precipitation;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.main.MainThemePicker;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.ui.widget.trend.item.HourlyTrendItemView;
+import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Hourly precipitation adapter.
@@ -32,7 +32,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
 
     private Weather weather;
     private ResourceProvider provider;
-    private MainThemePicker picker;
+    private ThemeManager themeManager;
     private PrecipitationUnit unit;
 
     private float highestPrecipitation;
@@ -57,7 +57,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
 
             hourlyItem.setHourText(hourly.getHour(context));
 
-            hourlyItem.setTextColor(picker.getTextContentColor(context));
+            hourlyItem.setTextColor(themeManager.getTextContentColor(context));
 
             hourlyItem.setIconDrawable(
                     ResourceHelper.getWeatherIcon(provider, hourly.getWeatherCode(), hourly.isDaylight())
@@ -76,28 +76,28 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
             polylineAndHistogramView.setLineColors(
                     hourly.getPrecipitation().getPrecipitationColor(context),
                     hourly.getPrecipitation().getPrecipitationColor(context),
-                    picker.getLineColor(context)
+                    themeManager.getLineColor(context)
             );
-            int[] themeColors = picker.getWeatherThemeColors();
+            int[] themeColors = themeManager.getWeatherThemeColors();
             polylineAndHistogramView.setShadowColors(
-                    themeColors[picker.isLightTheme() ? 1 : 2], themeColors[2], picker.isLightTheme());
+                    themeColors[themeManager.isLightTheme() ? 1 : 2], themeColors[2], themeManager.isLightTheme());
             polylineAndHistogramView.setTextColors(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+                    themeManager.getTextContentColor(context),
+                    themeManager.getTextSubtitleColor(context)
             );
-            polylineAndHistogramView.setHistogramAlpha(picker.isLightTheme() ? 1f : 0.5f);
+            polylineAndHistogramView.setHistogramAlpha(themeManager.isLightTheme() ? 1f : 0.5f);
 
             hourlyItem.setOnClickListener(v -> onItemClicked(getAdapterPosition()));
         }
     }
 
     public HourlyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                                      ResourceProvider provider, MainThemePicker picker, PrecipitationUnit unit) {
-        super(activity, parent, weather, picker);
+                                      ResourceProvider provider, PrecipitationUnit unit) {
+        super(activity, parent, weather);
 
         this.weather = weather;
         this.provider = provider;
-        this.picker = picker;
+        this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;
 
         highestPrecipitation = Integer.MIN_VALUE;
@@ -129,7 +129,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(picker.getLineColor(activity));
+        parent.setLineColor(themeManager.getLineColor(activity));
         parent.setData(keyLineList, highestPrecipitation, 0f);
     }
 
