@@ -11,6 +11,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
+import wangdaye.com.geometricweather.basic.model.option.appearance.DailyTrendDisplay;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.option.appearance.Language;
@@ -70,7 +71,15 @@ public class SettingsOptionManager {
             + "&allergen"
             + "&sunrise_sunset"
             + "&life_details";
+    private List<DailyTrendDisplay> dailyTrendDisplayList;
+    private static final String DEFAULT_DAILY_TREND_DISPLAY = "temperature"
+            + "&air_quality"
+            + "&wind"
+            + "&uv_index"
+            + "&precipitation";
 
+    private boolean trendHorizontalLinesEnabled;
+    private boolean exchangeDayNightTempEnabled;
     private boolean gravitySensorEnabled;
     private boolean listAnimationEnabled;
     private boolean itemAnimationEnabled;
@@ -177,6 +186,19 @@ public class SettingsOptionManager {
         cardDisplayList = OptionMapper.getCardDisplayList(
                 sharedPreferences.getString(context.getString(R.string.key_card_display), DEFAULT_CARD_DISPLAY)
         );
+
+        dailyTrendDisplayList = OptionMapper.getDailyTrendDisplayList(
+                sharedPreferences.getString(
+                        context.getString(R.string.key_daily_trend_display),
+                        DEFAULT_DAILY_TREND_DISPLAY
+                )
+        );
+
+        trendHorizontalLinesEnabled = sharedPreferences.getBoolean(
+                context.getString(R.string.key_trend_horizontal_line_switch), true);
+
+        exchangeDayNightTempEnabled = sharedPreferences.getBoolean(
+                context.getString(R.string.key_exchange_day_night_temp_switch), false);
 
         gravitySensorEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_gravity_sensor_switch), true);
@@ -378,6 +400,30 @@ public class SettingsOptionManager {
 
     public void setCardDisplayList(List<CardDisplay> cardDisplayList) {
         this.cardDisplayList = cardDisplayList;
+    }
+
+    public List<DailyTrendDisplay> getDailyTrendDisplayList() {
+        return dailyTrendDisplayList;
+    }
+
+    public void setDailyTrendDisplayList(List<DailyTrendDisplay> dailyTrendDisplayList) {
+        this.dailyTrendDisplayList = dailyTrendDisplayList;
+    }
+
+    public boolean isTrendHorizontalLinesEnabled() {
+        return trendHorizontalLinesEnabled;
+    }
+
+    public void setTrendHorizontalLinesEnabled(boolean trendHorizontalLinesEnabled) {
+        this.trendHorizontalLinesEnabled = trendHorizontalLinesEnabled;
+    }
+
+    public boolean isExchangeDayNightTempEnabled() {
+        return exchangeDayNightTempEnabled;
+    }
+
+    public void setExchangeDayNightTempEnabled(boolean exchangeDayNightTempEnabled) {
+        this.exchangeDayNightTempEnabled = exchangeDayNightTempEnabled;
     }
 
     public boolean isGravitySensorEnabled() {

@@ -36,6 +36,8 @@ public class TrendRecyclerView extends RecyclerView
     private int drawingBoundaryBottom;
 
     private @Nullable List<KeyLine> keyLineList;
+    private boolean keyLineVisibility = true;
+
     private @Nullable Float highestData;
     private @Nullable Float lowestData;
 
@@ -171,7 +173,8 @@ public class TrendRecyclerView extends RecyclerView
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (keyLineList == null
+        if (!keyLineVisibility
+                || keyLineList == null
                 || keyLineList.size() == 0
                 || highestData == null
                 || lowestData == null) {
@@ -239,6 +242,11 @@ public class TrendRecyclerView extends RecyclerView
         this.keyLineList = keyLineList;
         this.highestData = highestData;
         this.lowestData = lowestData;
+        invalidate();
+    }
+
+    public void setKeyLineVisibility(boolean visibility) {
+        this.keyLineVisibility = visibility;
         invalidate();
     }
 

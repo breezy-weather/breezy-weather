@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.settings.fragment;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -12,6 +13,28 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
+import wangdaye.com.geometricweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.ClockDayVerticalWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.ClockDayWeekWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.DailyTrendWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.DayWeekWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.DayWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.HourlyTrendWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.MultiCityWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.TextWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.config.WeekWidgetConfigActivity;
+import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayDetailsWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayHorizontalWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayVerticalWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayWeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.DailyTrendWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.DayWeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.DayWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.HourlyTrendWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.MultiCityWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.TextWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
 import wangdaye.com.geometricweather.settings.dialog.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.settings.dialog.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.settings.dialog.TimeSetterDialog;
@@ -197,6 +220,94 @@ public class SettingsFragment extends AbstractSettingsFragment {
         findPreference(getString(R.string.key_click_widget_to_refresh)).setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setWidgetClickToRefreshEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+            return true;
+        });
+
+        // day.
+        Preference day = findPreference(getString(R.string.key_widget_day));
+        day.setVisible(DayWidgetIMP.isEnable(requireActivity()));
+        day.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), DayWidgetConfigActivity.class));
+            return true;
+        });
+
+        // week.
+        Preference week = findPreference(getString(R.string.key_widget_week));
+        week.setVisible(WeekWidgetIMP.isEnable(requireActivity()));
+        week.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), WeekWidgetConfigActivity.class));
+            return true;
+        });
+
+        // day + week.
+        Preference dayWeek = findPreference(getString(R.string.key_widget_day_week));
+        dayWeek.setVisible(DayWeekWidgetIMP.isEnable(requireActivity()));
+        dayWeek.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), DayWeekWidgetConfigActivity.class));
+            return true;
+        });
+
+        // clock + day (horizontal).
+        Preference clockDayHorizontal = findPreference(getString(R.string.key_widget_clock_day_horizontal));
+        clockDayHorizontal.setVisible(ClockDayHorizontalWidgetIMP.isEnable(requireActivity()));
+        clockDayHorizontal.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), ClockDayHorizontalWidgetConfigActivity.class));
+            return true;
+        });
+
+        // clock + day (details).
+        Preference clockDayDetails = findPreference(getString(R.string.key_widget_clock_day_details));
+        clockDayDetails.setVisible(ClockDayDetailsWidgetIMP.isEnable(requireActivity()));
+        clockDayDetails.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), ClockDayDetailsWidgetConfigActivity.class));
+            return true;
+        });
+
+        // clock + day (vertical).
+        Preference clockDayVertical = findPreference(getString(R.string.key_widget_clock_day_vertical));
+        clockDayVertical.setVisible(ClockDayVerticalWidgetIMP.isEnable(requireActivity()));
+        clockDayVertical.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), ClockDayVerticalWidgetConfigActivity.class));
+            return true;
+        });
+
+        // clock + day + week.
+        Preference clockDayWeek = findPreference(getString(R.string.key_widget_clock_day_week));
+        clockDayWeek.setVisible(ClockDayWeekWidgetIMP.isEnable(requireActivity()));
+        clockDayWeek.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), ClockDayWeekWidgetConfigActivity.class));
+            return true;
+        });
+
+        // text.
+        Preference text = findPreference(getString(R.string.key_widget_text));
+        text.setVisible(TextWidgetIMP.isEnable(requireActivity()));
+        text.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), TextWidgetConfigActivity.class));
+            return true;
+        });
+
+        // daily trend.
+        Preference dailyTrend = findPreference(getString(R.string.key_widget_trend_daily));
+        dailyTrend.setVisible(DailyTrendWidgetIMP.isEnable(requireActivity()));
+        dailyTrend.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), DailyTrendWidgetConfigActivity.class));
+            return true;
+        });
+
+        // hourly trend.
+        Preference hourlyTrend = findPreference(getString(R.string.key_widget_trend_hourly));
+        hourlyTrend.setVisible(HourlyTrendWidgetIMP.isEnable(requireActivity()));
+        hourlyTrend.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), HourlyTrendWidgetConfigActivity.class));
+            return true;
+        });
+
+        // multi city.
+        Preference multiCity = findPreference(getString(R.string.key_widget_multi_city));
+        multiCity.setVisible(MultiCityWidgetIMP.isEnable(requireActivity()));
+        multiCity.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(requireActivity(), MultiCityWidgetConfigActivity.class));
             return true;
         });
     }

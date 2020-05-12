@@ -3,22 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container_circular_sky_view_controller"
+    android:id="@+id/controller"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircleView
-        android:id="@+id/container_circular_sky_view_circularSkyView"
+        android:id="@+id/circular_sky"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <FrameLayout
-        android:id="@+id/container_circular_sky_view_starContainer"
+        android:id="@+id/star_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/container_circular_sky_view_star_2"
+            android:id="@+id/star_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitStart"
@@ -26,7 +26,7 @@
             tools:src="@drawable/star_2" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/container_circular_sky_view_star_1"
+            android:id="@+id/star_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitStart"
@@ -36,7 +36,7 @@
     </FrameLayout>
 
     <wangdaye.com.geometricweather.ui.widget.AnimatableIconView
-        android:id="@+id/container_circular_sky_view_icon"
+        android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:inner_margins="@dimen/normal_margin"

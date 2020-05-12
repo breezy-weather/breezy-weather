@@ -105,18 +105,18 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         if (today) {
             builder.setContentTitle(context.getString(R.string.day)
                     + " " + weather.getDailyForecast().get(0).day().getWeatherText()
-                    + " " + weather.getDailyForecast().get(0).day().getTemperature().getTemperature(temperatureUnit)
+                    + " " + weather.getDailyForecast().get(0).day().getTemperature().getTemperature(context, temperatureUnit)
             ).setContentText(context.getString(R.string.night)
                     + " " + weather.getDailyForecast().get(0).night().getWeatherText()
-                    + " " + weather.getDailyForecast().get(0).night().getTemperature().getTemperature(temperatureUnit)
+                    + " " + weather.getDailyForecast().get(0).night().getTemperature().getTemperature(context, temperatureUnit)
             );
         } else {
             builder.setContentTitle(context.getString(R.string.day)
                     + " " + weather.getDailyForecast().get(1).day().getWeatherText()
-                    + " " + weather.getDailyForecast().get(0).day().getTemperature().getTemperature(temperatureUnit)
+                    + " " + weather.getDailyForecast().get(0).day().getTemperature().getTemperature(context, temperatureUnit)
             ).setContentText(context.getString(R.string.night)
                     + " " + weather.getDailyForecast().get(1).night().getWeatherText()
-                    + " " + weather.getDailyForecast().get(1).night().getTemperature().getTemperature(temperatureUnit)
+                    + " " + weather.getDailyForecast().get(1).night().getTemperature().getTemperature(context, temperatureUnit)
             );
         }
 

@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -20,6 +21,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -65,7 +67,10 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
     @NonNull
     @Override
     public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new LocationHolder(parent, listener);
+        return new LocationHolder(
+                ItemLocationBinding.inflate(LayoutInflater.from(parent.getContext())),
+                listener
+        );
     }
 
     @Override

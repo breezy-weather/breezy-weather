@@ -187,64 +187,46 @@
     <string name="feedback_text_size">글씨 사이즈</string>
     <string name="feedback_clock_font">시계 폰트</string>
     <string name="feedback_custom_subtitle_explanation">아무거나 입력 할 수는 있지만, 글씨의 길이에 신경 써 주십시오. 당신이 만약 날씨 데이터를 따오고 싶다면, 해당 키워드를 참조하여 $ 를 사용해 주십시오. \n\n예를 들자면 \"현재 날씨 = $cw$\" 는 \"현재 날씨 = 맑음\" 으로 표시됩니다.</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : 현재 날씨\n
-        $ct$ : 현재 온도 (℃/℉)\n
-        $ctd$ : 현재 온도 (°)\n
-        $at$ : 피상 온도 (℃/℉)\n
-        $atd$ : 피상 온도 (°)\n
-        $cpb$ : 현재 강수 확률 (%)\n
-        $cp$ : 현재 강수 (mm/L/m²)\n
-        $cwd$ : 현재 바람\n
-        $cuv$ : 현재 자외선\n
-        $ch$ : 현재 습도\n
-        $cps$ : 현재 기압\n
-        $cv$ : 현재 시계\n
-        $cdp$ : 현재 이슬점\n
-        \n
-        $l$ : 위치\n
-        $lat$ : 위도\n
-        $lon$ : 경도\n
-        $ut$ : 갱신 시간\n
-        $d$ : 날짜\n
-        $lc$ : 음력\n
-        $w$ : 주\n
-        $ws$ : 주 (짧은)\n
-        $dd$ : 오늘의 서술\n
-        $hd$ : 시간별 서술\n
-        $enter$ : 들어가기\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \n오늘의 주간 날씨, 내일, …, 4일 후\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \n오늘의 야간 날씨, 내일, …, 4일 후\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \n오늘의 주간 온도, 내일, …, 4일 후 (℃/℉)\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \n오늘의 야간 온도, 내일, …, 4일 후 (℃/℉)\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \n오늘의 주간 온도, 내일, …, 4일 후 (°)\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \n오늘의 야간 온도, 내일, …, 4일 후 (°)\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \n오늘의 주간 강수 확률, 내일, …, 4일 후 (%)\n
-        \n
-        $0np$, $1np$, …, $4np$ : \n오늘의 야간 강수 확률, 내일, …, 4일 후 (%)\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \n오늘의 주간 바람, 내일, …, 4일 후\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \n오늘의 야간 바람, 내일, …, 4일 후\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \n오늘의 일출, 내일, …, 4일 후\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \n오늘의 일몰, 내일, …, 4일 후\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \n오늘의 월출, 내일, …, 4일 후\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \n오늘의 월몰, 내일, …, 4일 후\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \n오늘의 달의 위상, 내일, …, 4일 후\n
-    </string>
+
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : 현재 날씨\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : 현재 온도 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : 현재 온도 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : 피상 온도 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : 피상 온도 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : 현재 강수 확률 (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : 현재 강수 (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : 현재 바람\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : 현재 자외선\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : 현재 습도\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : 현재 기압\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : 현재 시계\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : 현재 이슬점\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : 위치\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : 위도\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : 경도\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : 갱신 시간\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : 날짜\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : 음력\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : 주\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : 주 (짧은)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : 오늘의 서술\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : 시간별 서술\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : 들어가기\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \n오늘의 주간 날씨, 내일, …, 4일 후\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \n오늘의 야간 날씨, 내일, …, 4일 후\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \n오늘의 주간 온도, 내일, …, 4일 후 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \n오늘의 야간 온도, 내일, …, 4일 후 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \n오늘의 주간 온도, 내일, …, 4일 후 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \n오늘의 야간 온도, 내일, …, 4일 후 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \n오늘의 주간 강수 확률, 내일, …, 4일 후 (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \n오늘의 야간 강수 확률, 내일, …, 4일 후 (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \n오늘의 주간 바람, 내일, …, 4일 후\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \n오늘의 야간 바람, 내일, …, 4일 후\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \n오늘의 일출, 내일, …, 4일 후\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \n오늘의 일몰, 내일, …, 4일 후\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \n오늘의 월출, 내일, …, 4일 후\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \n오늘의 월몰, 내일, …, 4일 후\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \n오늘의 달의 위상, 내일, …, 4일 후\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">날씨</string>
     <string name="feedback_live_wallpaper_day_night_type">시간</string>

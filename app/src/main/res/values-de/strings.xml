@@ -178,10 +178,8 @@
     <string name="settings_notification_hide_in_lockScreen_off">Sichtbar</string>
     <string name="settings_notification_hide_in_lockScreen_on">Verbergen (muss in Systemeinstellungen geöffnet werden)</string>
     <string name="settings_summary_appearance">Interface Style, Kartenreihenfolge, Sprache…</string>
-    <string name="settings_summary_background_free_off">"Deaktiviert
-Falls keinerlei Dienste im Hintergrund laufen sollten bitte diese Option einschalten."</string>
-    <string name="settings_summary_background_free_on">"Aktiv
-Falls Widgets und Benachrichtigungen nicht aktualisieren bitte diese Option ausschalten."</string>
+    <string name="settings_summary_background_free_off">"Deaktiviert\nFalls keinerlei Dienste im Hintergrund laufen sollten bitte diese Option einschalten."</string>
+    <string name="settings_summary_background_free_on">"Aktiv\nFalls Widgets und Benachrichtigungen nicht aktualisieren bitte diese Option ausschalten."</string>
     <string name="settings_summary_live_wallpaper">Material Wetter Animation als Live Hintergrund setzen</string>
     <string name="settings_summary_service_provider">Wetteranbieter und Standortdienst auswählen</string>
     <string name="settings_summary_unit">Einheiten für Wetterdaten einstellen</string>
@@ -226,6 +224,7 @@ Falls Widgets und Benachrichtigungen nicht aktualisieren bitte diese Option auss
     <string name="settings_title_ui_style">Oberflächendesign</string>
     <string name="settings_title_unit">Einheiten</string>
     <string name="settings_title_weather_source">Wetteranbieter</string>
+    <string name="settings_title_week_icon_mode">Stil Wochensymbole</string>
     <string name="snow">Schnee</string>
     <string name="sunrise_sunset">Sonne &amp; Mond</string>
     <string name="temperature">Temperatur</string>

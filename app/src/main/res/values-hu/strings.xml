@@ -130,64 +130,38 @@
     <string name="feedback_text_size">Szövegméret</string>
     <string name="feedback_clock_font">Óra Betűtípusa</string>
     <string name="feedback_custom_subtitle_explanation">Akármit beírhat, de kérjük figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, kérjük használja a $ jelet a kulcsszóra való hivatkozáshoz.\n\nPéldául, \"Jelenlegi Időjárás = $cw$\" így fog megjelenni: \"Jelenlegi Időjárás = Napos\".</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : Jelenlegi Időjárás\n
-        $ct$ : Jelenlegi Hőmérséklet (℃/℉)\n
-        $ctd$ : Jelenlegi Hőmérséklet (°)\n
-        $at$ : Érezhető Hőmérséklet (℃/℉)\n
-        $atd$ : Érezhető Hőmérséklet (°)\n
-        $cpb$ : Current Precipitation Probability (%)\n
-        $cp$ : Current Precipitation (mm/L/m²)\n
-        $cwd$ : Jelenlegi Szél\n
-        $cuv$ : Current UV\n
-        $ch$ : Current Humidity\n
-        $cps$ : Current Pressure\n
-        $cv$ : Current Visibility\n
-        $cdp$ : Current DewPoint\n
-        \n
-        $l$ : Elhelyezkedés\n
-        $lat$ : Szélesség\n
-        $lon$ : Magasság\n
-        $ut$ : Frissítési Idő\n
-        $d$ : Dátum\n
-        $lc$ : Hold Naptár\n
-        $w$ : Hét\n
-        $ws$ : Hét (Rövid)\n
-        $dd$ : Napi Leírás\n
-        $hd$ : Óránkénti Leírás\n
-        $enter$ : Enter\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \nNappali Időjárás a Mai Napra, Tmw, …, 4 nappal később\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \nEsti Időjárás a Mai Napra, Tmw, …, 4 nappal később\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \nNappali Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (℃/℉)\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \nEsti Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (℃/℉)\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \nNappali Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (°)\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \nEsti Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (°)\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \nNappali Csapadék a Mai Napra, Tmw, …, 4 nappal később (%)\n
-        \n
-        $0np$, $1np$, …, $4np$ : \nEsti Csapadék a Mai Napra, Tmw, …, 4 nappal később (%)\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \nNappali Szél a Mai Napra, Tmw, …, 4 nappal később\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \nEsti Szél a Mai Napra, Tmw, …, 4 nappal később\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \nNapkelte a Mai Napra, Tmw, …, 4 nappal később\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \nNapnyugta a Mai Napra, Tmw, …, 4 nappal később\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \nHoldkelte a Mai Napra, Tmw, …, 4 nappal később\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \nHoldnyugta a Mai Napra, Tmw, …, 4 nappal később\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \nHoldfázis a Mai Napra, Tmw, …, 4 nappal később\n
-    </string>
+
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Jelenlegi Időjárás\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Jelenlegi Hőmérséklet (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Jelenlegi Hőmérséklet (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Érezhető Hőmérséklet (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Érezhető Hőmérséklet (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Jelenlegi Szél\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : Elhelyezkedés\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Szélesség\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Magasság\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Frissítési Idő\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : Dátum\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Hold Naptár\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : Hét\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Hét (Rövid)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Napi Leírás\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Óránkénti Leírás\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nNappali Időjárás a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nEsti Időjárás a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nNappali Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nEsti Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nNappali Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nEsti Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nNappali Csapadék a Mai Napra, Tmw, …, 4 nappal később (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nEsti Csapadék a Mai Napra, Tmw, …, 4 nappal később (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nNappali Szél a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nEsti Szél a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nNapkelte a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nNapnyugta a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nHoldkelte a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nHoldnyugta a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nHoldfázis a Mai Napra, Tmw, …, 4 nappal később\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">Időjárás</string>
     <string name="feedback_live_wallpaper_day_night_type">Idő</string>

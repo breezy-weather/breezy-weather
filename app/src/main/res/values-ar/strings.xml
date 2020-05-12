@@ -187,64 +187,6 @@
     <string name="feedback_black_text">لون الخط</string>
     <string name="feedback_text_size">حجم الخط</string>
     <string name="feedback_clock_font">خط الساعة</string>
-    <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : Current Weather\n
-        $ct$ : Current Temperature (℃/℉)\n
-        $ctd$ : Current Temperature (°)\n
-        $at$ : Apparent Temperature (℃/℉)\n
-        $atd$ : Apparent Temperature (°)\n
-        $cpb$ : Current Precipitation Probability (%)\n
-        $cp$ : Current Precipitation (mm/L/m²)\n
-        $cwd$ : Current Wind\n
-        $cuv$ : Current UV\n
-        $ch$ : Current Humidity\n
-        $cps$ : Current Pressure\n
-        $cv$ : Current Visibility\n
-        $cdp$ : Current DewPoint\n
-        \n
-        $l$ : Location\n
-        $lat$ : Latitude\n
-        $lon$ : Longitude\n
-        $ut$ : Update Time\n
-        $d$ : Date\n
-        $lc$ : Lunar Calendar\n
-        $w$ : Week\n
-        $ws$ : Week (Short)\n
-        $dd$ : Daily Description\n
-        $hd$ : Hourly Description\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \nDaytime Weather of Today, Tmw, …, 4 days later\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \nNighttime Weather of Today, Tmw, …, 4 days later\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (°)\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (°)\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \nDaytime Precipitation of Today, Tmw, …, 4 days later (%)\n
-        \n
-        $0np$, $1np$, …, $4np$ : \nNighttime Precipitation of Today, Tmw, …, 4 days later (%)\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \nDaytime Wind of Today, Tmw, …, 4 days later\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \nNighttime Wind of Today, Tmw, …, 4 days later\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \nSunrise of Today, Tmw, …, 4 days later\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \nSunset of Today, Tmw, …, 4 days later\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \nMoonrise of Today, Tmw, …, 4 days later\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \nMoonset of Today, Tmw, …, 4 days later\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \nMoon Phase of Today, Tmw, …, 4 days later\n
-    </string>
 
     <string name="feedback_live_wallpaper_weather_kind">الطقس</string>
     <string name="feedback_live_wallpaper_day_night_type">الوقت</string>

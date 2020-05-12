@@ -1,8 +1,10 @@
 package wangdaye.com.geometricweather.basic.model.option.unit;
 
 import android.content.Context;
+import android.text.BidiFormatter;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public enum AirQualityUnit {
 
@@ -27,7 +29,13 @@ public enum AirQualityUnit {
     }
 
     public String getDensityText(Context context, float mugpcum) {
-        return UnitUtils.formatFloat(mugpcum * unitFactor, 1)
-                + context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
+        if (DisplayUtils.isRtl(context)) {
+            return BidiFormatter.getInstance().unicodeWrap(
+                    UnitUtils.formatFloat(mugpcum * unitFactor, 1)
+            ) + context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
+        } else {
+            return UnitUtils.formatFloat(mugpcum * unitFactor, 1)
+                    + context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
+        }
     }
 }

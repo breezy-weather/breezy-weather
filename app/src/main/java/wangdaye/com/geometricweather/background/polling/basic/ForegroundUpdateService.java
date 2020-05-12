@@ -34,16 +34,17 @@ public abstract class ForegroundUpdateService extends UpdateService {
             );
             channel.setShowBadge(false);
             channel.setLightColor(ContextCompat.getColor(this, R.color.colorPrimary));
-
             NotificationManagerCompat.from(this).createNotificationChannel(channel);
-            startForeground(
-                    getForegroundNotificationId(),
-                    getForegroundNotification(
-                            1,
-                            DatabaseHelper.getInstance(this).countLocation()
-                    ).build()
-            );
         }
+
+        // version O.
+        startForeground(
+                getForegroundNotificationId(),
+                getForegroundNotification(
+                        1,
+                        DatabaseHelper.getInstance(this).countLocation()
+                ).build()
+        );
 
         super.onCreate();
     }
@@ -51,18 +52,15 @@ public abstract class ForegroundUpdateService extends UpdateService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            stopForeground(true);
-            NotificationManagerCompat.from(this).cancel(getForegroundNotificationId());
-        }
+        // version O.
+        stopForeground(true);
+        NotificationManagerCompat.from(this).cancel(getForegroundNotificationId());
     }
 
     @Override
     public void stopService(boolean updateFailed) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            stopForeground(true);
-            NotificationManagerCompat.from(this).cancel(getForegroundNotificationId());
-        }
+        stopForeground(true);
+        NotificationManagerCompat.from(this).cancel(getForegroundNotificationId());
         super.stopService(updateFailed);
     }
 

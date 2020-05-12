@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.daily.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -44,6 +45,7 @@ import wangdaye.com.geometricweather.daily.adapter.model.Margin;
 import wangdaye.com.geometricweather.daily.adapter.model.Overview;
 import wangdaye.com.geometricweather.daily.adapter.model.Title;
 import wangdaye.com.geometricweather.daily.adapter.model.Value;
+import wangdaye.com.geometricweather.databinding.ItemWeatherDailyPollenBinding;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapter.ViewHolder> {
@@ -134,7 +136,11 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         } else if (DailyAstro.isCode(viewType)) {
             return new AstroHolder(parent);
         } else if (DailyPollen.isCode(viewType)) {
-            return new PollenHolder(parent);
+            return new PollenHolder(
+                    ItemWeatherDailyPollenBinding.inflate(
+                            LayoutInflater.from(parent.getContext())
+                    )
+            );
         } else if (DailyUV.isCode(viewType)) {
             return new UVHolder(parent);
         } else if (DailyWind.isCode(viewType)) {
@@ -177,37 +183,37 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             if (temperature.getRealFeelTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.real_feel_temperature),
-                        temperatureUnit.getTemperatureText(temperature.getRealFeelTemperature())
+                        temperatureUnit.getTemperatureText(context, temperature.getRealFeelTemperature())
                 ));
             }
             if (temperature.getRealFeelShaderTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.real_feel_shader_temperature),
-                        temperatureUnit.getTemperatureText(temperature.getRealFeelShaderTemperature())
+                        temperatureUnit.getTemperatureText(context, temperature.getRealFeelShaderTemperature())
                 ));
             }
             if (temperature.getApparentTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.apparent_temperature),
-                        temperatureUnit.getTemperatureText(temperature.getApparentTemperature())
+                        temperatureUnit.getTemperatureText(context, temperature.getApparentTemperature())
                 ));
             }
             if (temperature.getWindChillTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.wind_chill_temperature),
-                        temperatureUnit.getTemperatureText(temperature.getWindChillTemperature())
+                        temperatureUnit.getTemperatureText(context, temperature.getWindChillTemperature())
                 ));
             }
             if (temperature.getWetBulbTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.wet_bulb_temperature),
-                        temperatureUnit.getTemperatureText(temperature.getWetBulbTemperature())
+                        temperatureUnit.getTemperatureText(context, temperature.getWetBulbTemperature())
                 ));
             }
             if (temperature.getDegreeDayTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.degree_day_temperature),
-                        temperatureUnit.getTemperatureText(temperature.getDegreeDayTemperature())
+                        temperatureUnit.getTemperatureText(context, temperature.getDegreeDayTemperature())
                 ));
             }
             list.add(new Margin());
@@ -255,30 +261,30 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             list.add(new Title(R.drawable.ic_water_percent, context.getString(R.string.precipitation_probability)));
             list.add(new Value(
                     context.getString(R.string.total),
-                    ProbabilityUnit.PERCENT.getProbabilityText(probability.getTotal())
+                    ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getTotal())
             ));
             if (probability.getRain() != null && probability.getRain() > 0) {
                 list.add(new Value(
                         context.getString(R.string.rain),
-                        ProbabilityUnit.PERCENT.getProbabilityText(probability.getRain())
+                        ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getRain())
                 ));
             }
             if (probability.getSnow() != null && probability.getSnow() > 0) {
                 list.add(new Value(
                         context.getString(R.string.snow),
-                        ProbabilityUnit.PERCENT.getProbabilityText(probability.getSnow())
+                        ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getSnow())
                 ));
             }
             if (probability.getIce() != null && probability.getIce() > 0) {
                 list.add(new Value(
                         context.getString(R.string.ice),
-                        ProbabilityUnit.PERCENT.getProbabilityText(probability.getIce())
+                        ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getIce())
                 ));
             }
             if (probability.getThunderstorm() != null && probability.getThunderstorm() > 0) {
                 list.add(new Value(
                         context.getString(R.string.thunderstorm),
-                        ProbabilityUnit.PERCENT.getProbabilityText(probability.getThunderstorm())
+                        ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getThunderstorm())
                 ));
             }
             list.add(new Margin());

@@ -1,12 +1,15 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.BidiFormatter;
 
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
@@ -73,18 +76,26 @@ public class Hourly implements Serializable {
         return precipitationProbability;
     }
 
+    @SuppressLint("DefaultLocale")
     public String getHour(Context c) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
+        int hour;
         if (TimeManager.is12Hour(c)) {
-            int hour = calendar.get(Calendar.HOUR);
+            hour = calendar.get(Calendar.HOUR);
             if (hour == 0) {
                 hour = 12;
             }
-            return hour + c.getString(R.string.of_clock);
         } else {
-            return calendar.get(Calendar.HOUR_OF_DAY) + c.getString(R.string.of_clock);
+            hour = calendar.get(Calendar.HOUR_OF_DAY);
+        }
+
+        if (DisplayUtils.isRtl(c)) {
+            return BidiFormatter.getInstance().unicodeWrap(String.format("%d", hour))
+                    + c.getString(R.string.of_clock);
+        } else {
+            return hour + c.getString(R.string.of_clock);
         }
     }
 }

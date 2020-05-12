@@ -64,7 +64,7 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
         );
         views.setTextViewText(
                 R.id.widget_text_temperature,
-                weather.getCurrent().getTemperature().getShortTemperature(temperatureUnit)
+                weather.getCurrent().getTemperature().getShortTemperature(context, temperatureUnit)
         );
 
         views.setTextColor(R.id.widget_text_date, textColorInt);

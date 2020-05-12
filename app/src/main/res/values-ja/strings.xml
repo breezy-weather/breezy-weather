@@ -1,0 +1,376 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <!-- app. -->
+    <string name="app_name">天気</string>
+
+    <!-- keyword. -->
+    <string name="current_location">現在地</string>
+    <string name="default_location">デフォルト位置</string>
+    <string name="live">現在</string>
+    <string name="today">今日</string>
+    <string name="refresh_at">更新時刻</string>
+    <string name="local_time">現地時間</string>
+    <string name="precipitation">降水量</string>
+    <string name="precipitation_probability">降水確率</string>
+
+    <string name="precipitation_duration">降水時間</string>
+    <string name="maxi_temp">昼間</string>
+    <string name="mini_temp">夜間</string>
+    <string name="time">時間</string>
+    <string name="day">昼間</string>
+    <string name="night">夜間</string>
+    <string name="temperature">気温</string>
+    <string name="wind">風</string>
+    <string name="wind_direction">風向</string>
+    <string name="wind_speed">風速</string>
+    <string name="wind_level">風向計</string>
+    <string name="sensible_temp">体感温度</string>
+    <string name="humidity">湿度</string>
+    <string name="uv_index">UV指数</string>
+    <string name="hours_of_sun">日照時間</string>
+    <string name="forecast">予報</string>
+    <string name="briefings">説明</string>
+    <string name="daytime">昼間</string>
+    <string name="nighttime">夜間</string>
+    <string name="publish_at">更新</string>
+    <string name="feels_like">体感温度</string>
+    <string name="follow_system">本体設定</string>
+    <string name="background_information">バックグラウンド情報</string>
+    <string name="pressure">気圧</string>
+    <string name="visibility">視程</string>
+    <string name="dew_point">露点</string>
+    <string name="cloud_cover">雲量</string>
+    <string name="ceiling">雲低高度</string>
+    <string name="get_more">追加する</string>
+    <string name="get_more_store">アプリストアから追加する</string>
+    <string name="get_more_github">GitHub から追加する</string>
+    <string name="refresh">更新</string>
+    <string name="restart">再起動</string>
+    <string name="edit">編集</string>
+
+    <!-- The following set of strings should be as short as possible. -->
+    <string name="of_clock">:00</string>
+    <string name="yesterday">昨日</string>
+    <string name="tomorrow">明日</string>
+    <string name="week">週</string>
+    <string name="week_1">月</string>
+    <string name="week_2">火</string>
+    <string name="week_3">水</string>
+    <string name="week_4">木</string>
+    <string name="week_5">金</string>
+    <string name="week_6">土</string>
+    <string name="week_7">日</string>
+
+    <string name="real_feel_temperature">体感温度</string>
+    <string name="real_feel_shader_temperature">Real feel shader</string>
+    <string name="apparent_temperature">Apparent</string>
+    <string name="wind_chill_temperature">Wind chill</string>
+    <string name="wet_bulb_temperature">湿球温度</string>
+    <string name="degree_day_temperature">Degree day</string>
+
+    <string name="total">合計</string>
+    <string name="thunderstorm">雷雨</string>
+    <string name="rain">雨</string>
+    <string name="snow">雪</string>
+    <string name="ice">氷</string>
+
+    <string name="wind_0">風力0</string>
+    <string name="wind_1">風力1</string>
+    <string name="wind_2">風力2</string>
+    <string name="wind_3">風力3</string>
+    <string name="wind_4">風力4</string>
+    <string name="wind_5">風力5</string>
+    <string name="wind_6">風力6</string>
+    <string name="wind_7">風力7</string>
+    <string name="wind_8">風力8</string>
+    <string name="wind_9">風力9</string>
+    <string name="wind_10">風力10</string>
+    <string name="wind_11">風力11</string>
+    <string name="wind_12">風力12</string>
+
+    <string name="precipitation_light">霧雨</string>
+    <string name="precipitation_middle">雨</string>
+    <string name="precipitation_heavy">大雨</string>
+    <string name="precipitation_rainstorm">暴風雨</string>
+
+    <string name="aqi_1">良い</string>
+    <string name="aqi_2">並</string>
+    <string name="aqi_3">軽度の汚染</string>
+    <string name="aqi_4">中程度の汚染</string>
+    <string name="aqi_5">重度の汚染</string>
+    <string name="aqi_6">深刻な汚染</string>
+
+    <string name="phase_new">新月</string>
+    <string name="phase_waxing_crescent">三日月</string>
+    <string name="phase_first">上弦</string>
+    <string name="phase_waxing_gibbous">十三夜</string>
+    <string name="phase_full">満月</string>
+    <string name="phase_waning_gibbous">十八夜</string>
+    <string name="phase_third">下弦</string>
+    <string name="phase_waning_crescent">二十六夜</string>
+
+    <string name="grass">草</string>
+    <string name="mold">カビ</string>
+    <string name="ragweed">ブタクサ</string>
+    <string name="tree">木</string>
+
+    <string name="daily_overview">日時予報</string>
+    <string name="hourly_overview">毎時予報</string>
+    <string name="minutely_overview">詳細予報</string>
+    <string name="precipitation_overview">降水量予報</string>
+    <string name="air_quality">空気質指数</string>
+    <string name="allergen">アレルギー</string>
+    <string name="life_details">詳細</string>
+    <string name="sunrise_sunset">太陽と月</string>
+
+    <string name="next">次</string>
+    <string name="done">完了</string>
+    <string name="cancel" tools:ignore="ButtonCase">キャンセル</string>
+    <string name="on">有効</string>
+    <string name="off">無効</string>
+    <string name="go_to_set">設定</string>
+    <string name="help">ヘルプ</string>
+    <string name="learn_more">もっと詳しく</string>
+
+    <string name="about_app">アプリについて</string>
+    <string name="introduce">introduce</string>
+    <string name="email">メール</string>
+    <string name="donate">寄付</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">翻訳者</string>
+    <string name="thanks">Thanks</string>
+
+    <string name="alipay">Alipay</string>
+    <string name="wechat">Wechat</string>
+
+    <!-- Date format strings. -->
+    <!-- Month : MMM(long) / M(short). -->
+    <!-- Day   : dd(long) / d(short). -->
+    <!-- Week  : EEEE(long) / EEE(short). -->
+    <string name="date_format_short">M-d</string>
+    <string name="date_format_long">MMM dd日</string>
+    <string name="date_format_widget_short">EEEE MMM dd日</string>
+    <string name="date_format_widget_long">EEEE MMM dd日</string>
+    <string name="date_format_widget_oreo_style">EEEE MMM dd日</string>
+
+    <!-- about. -->
+    <!-- Optional, the following set of strings are not necessarily translated. -->
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
+    <string name="page_indicator">InkPageIndicator</string>
+    <string name="about_page_indicator">InkPageIndicator created by @nickbutcher for Plaid https://github.com/nickbutcher/plaid and backported by David Pacioianu for API 14+ (4.0+).</string>
+    <string name="circular_progress_view">CircularProgressView</string>
+    <string name="about_circular_progress_view">Material style circular progress bar for Android.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">アクセス許可</string>
+    <string name="feedback_request_location">現在地</string>
+    <string name="feedback_request_location_in_background">Locating in background</string>
+    <string name="feedback_request_location_permission_success">Location permissions request success</string>
+    <string name="feedback_request_location_permission_failed">Location permissions request failed</string>
+
+    <string name="feedback_location_failed">位置情報を取得できませんでした。</string>
+    <string name="feedback_get_weather_failed">気象データを取得できませんでした</string>
+    <string name="feedback_location_help_title">位置情報が正しくありませんか？</string>
+    <string name="feedback_check_location_permission">Check location permissions</string>
+    <string name="feedback_enable_location_information">Enable Location Information</string>
+    <string name="feedback_select_location_provider">位置情報サービスを選択</string>
+    <string name="feedback_add_location_manually">手動でロケーションを追加し、\'$\'を削除</string>
+
+    <string name="feedback_view_style">View style</string>
+    <string name="feedback_show_widget_card">背景色</string>
+    <string name="feedback_show_widget_card_alpha">透明度</string>
+    <string name="feedback_hide_subtitle">字幕を隠す</string>
+    <string name="feedback_subtitle_data">字幕データ</string>
+    <string name="feedback_black_text">文字の色</string>
+    <string name="feedback_text_size">文字サイズ</string>
+    <string name="feedback_clock_font">時間のフォント</string>
+    <string name="feedback_custom_subtitle_explanation">何を入力しても構いませんが、文章の長さに注意してください。天気データを引用する場合は、対応するキーワードを$で参照してください。\n\n例えば、現在の天気＝$cw$の場合は、現在の天気＝晴れと表示されます。</string>
+    <!-- keep those content with the format "$xxx$". -->
+    <!-- keep "\n" -->
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : 現在の天気\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : 現在の気温 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : 現在の気温 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : 体感温度 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : 体感温度 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : 現在の降水確率 (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : 現在の降水量 (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : 現在の風\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : 現在の紫外線\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : 現在の湿度\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : 現在の気圧\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : 現在の視程\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : 現在の露点温度\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : 場所\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : 緯度\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : 経度\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : 更新時刻\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : 日付\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : 旧暦\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : 曜日\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : 曜日 (短い)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : 日ごとの説明\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : 時間ごとの説明\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : 改行\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \n日中の天気, 明日…, 4日目\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \n夜間の天気, 明日, …, 4日目\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \n日中の気温, 明日, …, 4日目 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \n夜間の天気, 明日, …, 4日目 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \n日中の気温, 明日, …, 4日目 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \n夜間の天気, 明日, …, 4日目 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \n日中の降水量, 明日, …, 4日目 (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \n夜間の降水量, 明日, …, 4日目 (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \n日中の風, 明日, …, 4日目\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \n夜間の風, 明日, …, 4日目\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \n今日の日の出, 明日, …, 4日目\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \n今日の日没, 明日, …, 4日目\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \n今日の月の出, 明日, …, 4日目\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \n今日の月没, 明日, …, 4日目\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \n今日の月の満ち欠け, 明日, …, 4日目\n</string>
+
+    <string name="feedback_live_wallpaper_weather_kind">天気</string>
+    <string name="feedback_live_wallpaper_day_night_type">時間</string>
+
+    <string name="feedback_click_toggle">グラフを押すとデータが切り替わります</string>
+    <string name="feedback_no_data">データ無し</string>
+
+    <string name="feedback_collect_failed">この場所は既に追加されています</string>
+    <string name="feedback_collect_succeed">場所を追加しました</string>
+    <string name="feedback_delete_succeed">場所を削除しました</string>
+    <string name="feedback_location_list_cannot_be_null">すべての場所を削除することはできません</string>
+
+    <string name="feedback_search_location">検索する</string>
+    <string name="feedback_not_yet_location">まだ場所はありません</string>
+    <string name="feedback_search_nothing">見つかりません</string>
+    <string name="feedback_initializing">初期化中</string>
+
+    <string name="feedback_refresh_notification_after_back">変更は、ホームに戻ったときに反映されます</string>
+    <string name="feedback_refresh_notification_now">更新する</string>
+    <string name="feedback_refresh_ui_after_refresh">変更はデータが更新されたときに有効になります</string>
+    <string name="feedback_restart">変更は再起動後に有効になります</string>
+    <string name="feedback_readd_location">場所を再追加してください</string>
+    <string name="feedback_readd_location_after_changing_source">データソースを変更した後は、場所を再追加してください</string>
+
+    <string name="feedback_running_in_background">バックグラウンドで更新</string>
+    <string name="feedback_updating_weather_data">気象データの更新</string>
+    <string name="feedback_updated_in_background">バックグラウンドで更新</string>
+
+    <!-- there should be a "\" before single or double quotes. -->
+    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
+    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
+    <string name="feedback_interpret_background_notification_content">端末によっては、「バックグラウンドで更新しない」をオフにした後、通知バーにクリアできない通知が表示される場合があります。</string>
+    <string name="feedback_interpret_notification_group_title">グループ通知をブロックする</string>
+    <string name="feedback_interpret_notification_group_content">「バックグラウンドで更新しない」をオフにすると、通知バーにバックグラウンドサービスが起動していることを示す通知が表示されます。アプリの情報ページの「バックグラウンド情報」をオフにすることで、この通知をブロックすることができます。</string>
+
+    <string name="feedback_ignore_battery_optimizations_title">バッテリーの最適化を無視する</string>
+    <string name="feedback_ignore_battery_optimizations_content">バックグラウンドサービスを継続して動作させるために、GeometricWeatherのバッテリー最適化は無視してください。</string>
+
+    <string name="feedback_cannot_start_live_wallpaper_activity">ライブ壁紙のプレビューを開始できません</string>
+
+    <string name="feedback_unusable_geocoder">このデバイスには有効なGeocoderが含まれていません。位置情報提供者はBaidu Locationに変更されました。</string>
+    <string name="feedback_about_geocoder">Geocoderは、緯度・経度の情報を、\'XX city, YY province \'のような形式に変換してくれるコンポーネントです。このコンポーネントがない場合、位置情報サービスとしてネイティブAPIを使用している場合は、AccuWeatherでしか天気データを取得することができません。</string>
+
+    <string name="feedback_today_precipitation_alert">今日は雨が降るかもしれません。</string>
+    <string name="feedback_short_term_precipitation_alert">数時間後に雨が降る可能性があります。</string>
+
+    <string name="feedback_resident_location">居住地として設定</string>
+    <string name="feedback_resident_location_description">GeometricWeatherは、現在地を基準にして自動的に居住地を表示・非表示にします。例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>
+
+    <string name="feedback_click_to_get_more">Click to get more…</string>
+
+    <!-- action -->
+    <string name="action_alert">警告</string>
+    <string name="action_manage">管理</string>
+    <string name="action_search">検索</string>
+    <string name="action_settings">設定</string>
+    <string name="action_preview">プレビュー</string>
+    <string name="action_about">Geometric Weather について</string>
+    <string name="action_appStore">アプリストア</string>
+
+    <!-- widget -->
+    <string name="widget_day">毎日</string>
+    <string name="widget_week">週間</string>
+    <string name="widget_day_week">毎日 + 週間</string>
+    <string name="widget_clock_day_horizontal">時計 + 毎日 (水平)</string>
+    <string name="widget_clock_day_details">時計 + 毎日 (詳細)</string>
+    <string name="widget_clock_day_vertical">時計 + 毎日 (垂直)</string>
+    <string name="widget_clock_day_week">時計 + 毎日 + 週間</string>
+    <string name="widget_text">テキスト</string>
+    <string name="widget_trend_daily">日中の動き</string>
+    <string name="widget_trend_hourly">時間ごと動き</string>
+    <string name="widget_multi_city">複数の都市</string>
+    <string name="wait_refresh">更新を待っています</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">基本</string>
+    <string name="settings_title_background_free">バックグラウンドで更新しない</string>
+    <string name="settings_summary_background_free_on">有効\nウィジェットや通知が自動更新できない場合は、このオプションをオフにしてください。</string>
+    <string name="settings_summary_background_free_off">無効\nウィジットや通知が自動更新されない場合は、このオプションをオフにしてください。</string>
+    <string name="settings_title_live_wallpaper">ライブ壁紙</string>
+    <string name="settings_summary_live_wallpaper">ライブ壁紙を設定</string>
+    <string name="settings_title_service_provider">サービス提供者</string>
+    <string name="settings_summary_service_provider">気象データと位置情報サービスを選択</string>
+    <string name="settings_title_weather_source">気象情報</string>
+    <string name="settings_title_location_service">位置情報サービス</string>
+    <string name="settings_title_dark_mode">ダークモード</string>
+    <string name="settings_title_ui_style">UIスタイル</string>
+    <string name="settings_title_icon_provider">アイコンパック</string>
+    <string name="settings_title_appearance">外観</string>
+    <string name="settings_summary_appearance">UIスタイル, カード, 言語…</string>
+    <string name="settings_title_card_display">表示カード</string>
+    <string name="settings_title_card_order">カード</string>
+    <string name="settings_title_gravity_sensor_switch">重力センサー</string>
+    <string name="settings_title_list_animation_switch">リストアニメーション</string>
+    <string name="settings_title_item_animation_switch">アイテムアニメーション</string>
+    <string name="settings_language">言語</string>
+    <string name="settings_title_unit">単位</string>
+    <string name="settings_summary_unit">単位を設定</string>
+    <string name="settings_title_temperature_unit">気温単位</string>
+    <string name="settings_title_distance_unit">距離単位</string>
+    <string name="settings_title_precipitation_unit">降水量単位</string>
+    <string name="settings_title_pressure_unit">圧力単位</string>
+    <string name="settings_title_speed_unit">速度単位</string>
+    <string name="settings_title_refresh_rate">自動更新</string>
+    <string name="settings_title_alert_notification_switch">悪天候警告</string>
+    <string name="settings_title_precipitation_notification_switch">降水予報を通知する</string>
+    <string name="settings_title_permanent_service">Permanent service</string>
+    <string name="settings_category_forecast">予報の通知</string>
+    <string name="settings_title_forecast_today">今日の予報を通知する</string>
+    <string name="settings_title_forecast_today_time">通知時間</string>
+    <string name="settings_title_forecast_tomorrow">明日の予報を通知する</string>
+    <string name="settings_title_forecast_tomorrow_time">通知時間</string>
+    <string name="settings_category_widget">ウィジット</string>
+    <string name="settings_title_week_icon_mode">アイコンモード</string>
+    <string name="settings_title_minimal_icon">シンプルなアイコン</string>
+    <string name="settings_title_click_widget_to_refresh">タップで更新</string>
+    <string name="settings_category_notification">通知</string>
+    <string name="settings_title_notification">継続的な通知</string>
+    <string name="settings_title_notification_style">通知スタイル</string>
+    <string name="settings_title_notification_temp_icon">気温を通知バーに表示する</string>
+    <string name="settings_title_notification_color">通知カラー</string>
+    <string name="settings_title_notification_custom_color">カスタム通知色</string>
+    <string name="settings_title_notification_text_color">文字色</string>
+    <string name="settings_title_notification_background">背景色</string>
+    <string name="settings_notification_background_off">本体設定</string>
+    <string name="settings_title_notification_can_be_cleared">削除可能</string>
+    <string name="settings_notification_can_be_cleared_on">ドラッグで削除できます</string>
+    <string name="settings_notification_can_be_cleared_off">通知から削除できません</string>
+    <string name="settings_title_notification_hide_icon">通知アイコンを表示しない</string>
+    <string name="settings_notification_hide_icon_on">非表示</string>
+    <string name="settings_notification_hide_icon_off">表示</string>
+    <string name="settings_title_notification_hide_in_lockScreen">ロック画面で表示しない</string>
+    <string name="settings_notification_hide_in_lockScreen_on">非表示</string>
+    <string name="settings_notification_hide_in_lockScreen_off">表示</string>
+    <string name="settings_title_notification_hide_big_view">拡張表示</string>
+    <string name="settings_notification_hide_big_view_on">非表示</string>
+    <string name="settings_notification_hide_big_view_off">表示</string>
+    <string name="resident_location">居住地</string>
+
+</resources>

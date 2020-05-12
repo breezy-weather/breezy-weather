@@ -10,7 +10,7 @@
         android:duration="350"
         tools:ignore="NewApi">
         <targets>
-            <target android:targetId="@id/activity_search_searchBar" />
+            <target android:targetId="@id/searchBar" />
         </targets>
     </changeBounds>
 
@@ -22,7 +22,7 @@
         app:radius_to="0dp"
         tools:ignore="NewApi">
         <targets>
-            <target android:targetId="@id/activity_search_searchBar" />
+            <target android:targetId="@id/searchBar" />
         </targets>
     </transition>
 

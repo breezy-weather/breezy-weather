@@ -110,7 +110,7 @@
             android:label="@string/action_manage"
             android:theme="@style/GeometricWeatherTheme" />
 
-        <activity android:name=".ui.activity.SearcActivity"
+        <activity android:name=".ui.activity.SearchActivity"
             android:label="@string/action_search"
             android:theme="@style/GeometricWeatherTheme.Search" />
 
@@ -123,6 +123,12 @@
         <activity
             android:name=".settings.activity.CardDisplayManageActivity"
             android:label="@string/settings_title_card_display"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="user" />
+
+        <activity
+            android:name=".settings.activity.DailyTrendDisplayManageActivity"
+            android:label="@string/settings_title_daily_trend_display"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 

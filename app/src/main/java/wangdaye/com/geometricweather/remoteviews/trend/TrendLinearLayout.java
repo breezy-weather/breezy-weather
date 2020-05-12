@@ -106,13 +106,13 @@ public class TrendLinearLayout extends LinearLayout {
         paint.setTextAlign(Paint.Align.LEFT);
         paint.setColor(textColor);
         canvas.drawText(
-                Temperature.getShortTemperature(historyTemps[0], unit),
+                Temperature.getShortTemperature(getContext(), historyTemps[0], unit),
                 2 * MARGIN_TEXT,
                 historyTempYs[0] - paint.getFontMetrics().bottom - MARGIN_TEXT,
                 paint
         );
         canvas.drawText(
-                Temperature.getShortTemperature(historyTemps[1], unit),
+                Temperature.getShortTemperature(getContext(), historyTemps[1], unit),
                 2 * MARGIN_TEXT,
                 historyTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
                 paint

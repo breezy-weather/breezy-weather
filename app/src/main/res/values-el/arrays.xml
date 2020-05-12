@@ -152,13 +152,6 @@
         <item>Λ/Μ²</item>
     </string-array>
 
-    <!-- temperature unit. -->
-    <string-array name="temperature_units">
-        <item>℃</item>
-        <item>℉</item>
-        <item>K</item>
-    </string-array>
-
     <!-- distance unit. -->
     <string-array name="distance_units">
         <item>Χλμ</item>

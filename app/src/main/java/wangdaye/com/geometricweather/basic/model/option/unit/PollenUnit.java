@@ -1,10 +1,12 @@
 package wangdaye.com.geometricweather.basic.model.option.unit;
 
 import android.content.Context;
+import android.text.BidiFormatter;
 
 import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public enum PollenUnit {
 
@@ -23,7 +25,13 @@ public enum PollenUnit {
     }
 
     public String getPollenText(Context context, int value) {
-        return value + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
+        if (DisplayUtils.isRtl(context)) {
+            return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt(value))
+                    + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
+        } else {
+            return UnitUtils.formatInt(value)
+                    + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
+        }
     }
 
     public String getPollenText(Context context, @Nullable Integer value) {

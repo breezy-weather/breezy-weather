@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Aktualisierungsintervall -->
     <string-array name="automatic_refresh_rates">
         <item>30 Minuten</item>
         <item>1 Stunde</item>
@@ -17,14 +16,38 @@
         <item>6 Stunden</item>
     </string-array>
 
-    <!-- Benachrichtigungstext -->
+    <string-array name="clock_font">
+        <item>Sans-Serif light</item>
+        <item>Sans-Serif</item>
+        <item>Sans-Serif fett</item>
+        <item>Analog</item>
+    </string-array>
+
+    <string-array name="dark_modes">
+        <item>Automatisch</item>
+        <item>Immer hell</item>
+        <item>Immer dunkel</item>
+    </string-array>
+
     <string-array name="notification_text_colors">
         <item>Dunkel</item>
         <item>Grau</item>
         <item>Hell</item>
     </string-array>
 
-    <!-- Widget Stil -->
+    <string-array name="week_icon_modes">
+        <item>Automatisch</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
+    </string-array>
+
+    <string-array name="widget_card_styles">
+        <item>Ohne</item>
+        <item>Tag/Nacht Modus</item>
+        <item>Hell</item>
+        <item>Dunkel</item>
+    </string-array>
+
     <string-array name="widget_styles">
         <item>Rechteckig</item>
         <item>Symmetrisch</item>
@@ -37,16 +60,10 @@
         <item>Oreo (Google sans)</item>
     </string-array>
 
-    <string-array name="dark_modes">
+    <string-array name="widget_text_colors">
+        <item>Hell</item>
+        <item>Dunkel</item>
         <item>Automatisch</item>
-        <item>Immer hell</item>
-        <item>Immer dunkel</item>
-    </string-array>
-
-    <string-array name="week_icon_modes">
-        <item>Automatisch</item>
-        <item>@string/daytime</item>
-        <item>@string/nighttime</item>
     </string-array>
 
 </resources>

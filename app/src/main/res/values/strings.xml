@@ -26,7 +26,7 @@
     <string name="wind">Wind</string>
     <string name="wind_direction">Wind direction</string>
     <string name="wind_speed">Wind speed</string>
-    <string name="wind_level">Wind gage</string>
+    <string name="wind_level">Wind gauge</string>
     <string name="sensible_temp">Sensible temp</string>
     <string name="humidity">Humidity</string>
     <string name="uv_index">UV index</string>
@@ -84,8 +84,8 @@
     <string name="wind_4">Moderate breeze</string>
     <string name="wind_5">Fresh breeze</string>
     <string name="wind_6">Strong breeze</string>
-    <string name="wind_7">Near breeze</string>
-    <string name="wind_8">Gale</string>
+    <string name="wind_7">Moderate gale</string>
+    <string name="wind_8">Fresh gale</string>
     <string name="wind_9">Strong gale</string>
     <string name="wind_10">Storm</string>
     <string name="wind_11">Violent storm</string>
@@ -204,64 +204,47 @@
     <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : Current Weather\n
-        $ct$ : Current Temperature (℃/℉)\n
-        $ctd$ : Current Temperature (°)\n
-        $at$ : Apparent Temperature (℃/℉)\n
-        $atd$ : Apparent Temperature (°)\n
-        $cpb$ : Current Precipitation Probability (%)\n
-        $cp$ : Current Precipitation (mm/L/m²)\n
-        $cwd$ : Current Wind\n
-        $cuv$ : Current UV\n
-        $ch$ : Current Humidity\n
-        $cps$ : Current Pressure\n
-        $cv$ : Current Visibility\n
-        $cdp$ : Current DewPoint\n
-        \n
-        $l$ : Location\n
-        $lat$ : Latitude\n
-        $lon$ : Longitude\n
-        $ut$ : Update Time\n
-        $d$ : Date\n
-        $lc$ : Lunar Calendar\n
-        $w$ : Week\n
-        $ws$ : Week (Short)\n
-        $dd$ : Daily Description\n
-        $hd$ : Hourly Description\n
-        $enter$ : Enter\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \nDaytime Weather of Today, Tmw, …, 4 days later\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \nNighttime Weather of Today, Tmw, …, 4 days later\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (°)\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (°)\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \nDaytime Precipitation of Today, Tmw, …, 4 days later (%)\n
-        \n
-        $0np$, $1np$, …, $4np$ : \nNighttime Precipitation of Today, Tmw, …, 4 days later (%)\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \nDaytime Wind of Today, Tmw, …, 4 days later\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \nNighttime Wind of Today, Tmw, …, 4 days later\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \nSunrise of Today, Tmw, …, 4 days later\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \nSunset of Today, Tmw, …, 4 days later\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \nMoonrise of Today, Tmw, …, 4 days later\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \nMoonset of Today, Tmw, …, 4 days later\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \nMoon Phase of Today, Tmw, …, 4 days later\n
-    </string>
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Current Weather\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Current Temperature (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Current Temperature (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Apparent Temperature (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Apparent Temperature (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Current Precipitation Probability (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Current Precipitation (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Current Wind\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Current UV\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Current Humidity\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Current Pressure\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Current Visibility\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Current DewPoint\n</string>
+    <string name="feedback_custom_subtitle_keyword_al">$al$ : Alerts\n</string>
+    <string name="feedback_custom_subtitle_keyword_als">$als$ : Alerts (Short)\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : Location\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Latitude\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Longitude\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Update Time\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : Date\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Lunar Calendar\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : Week\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Week (Short)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Daily Description\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Hourly Description\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Enter\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nDaytime Weather of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nNighttime Weather of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nDaytime Precipitation of Today, Tmw, …, 4 days later (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nNighttime Precipitation of Today, Tmw, …, 4 days later (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nDaytime Wind of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nNighttime Wind of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nSunrise of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nSunset of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nMoonrise of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nMoonset of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nMoon Phase of Today, Tmw, …, 4 days later\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">Weather</string>
     <string name="feedback_live_wallpaper_day_night_type">Time</string>
@@ -312,6 +295,7 @@
     <string name="feedback_resident_location_description">GeometricWeather will automatically show and hide resident cities based on your current location.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
 
     <string name="feedback_click_to_get_more">Click to get more…</string>
+    <string name="feedback_click_again_to_exit">Click again to exit</string>
 
     <!-- action -->
     <string name="action_alert">Alert</string>
@@ -354,6 +338,9 @@
     <string name="settings_title_appearance">Appearance</string>
     <string name="settings_summary_appearance">Interface style, card order, language…</string>
     <string name="settings_title_card_display">Displayed cards</string>
+    <string name="settings_title_daily_trend_display">Display daily trend</string>
+    <string name="settings_title_trend_horizontal_line_switch">Horizontal lines in trend</string>
+    <string name="settings_title_exchange_day_night_temp_switch">Exchange day night temperature</string>
     <string name="settings_title_card_order">Card order</string>
     <string name="settings_title_gravity_sensor_switch">Gravity sensor</string>
     <string name="settings_title_list_animation_switch">List animation</string>
@@ -379,6 +366,7 @@
     <string name="settings_title_week_icon_mode">Weekly icons mode</string>
     <string name="settings_title_minimal_icon">Minimalistic icons</string>
     <string name="settings_title_click_widget_to_refresh">Refresh widget when clicked</string>
+    <string name="settings_title_widget_config">Widget config</string>
     <string name="settings_category_notification">Notification</string>
     <string name="settings_title_notification">Send Notification</string>
     <string name="settings_title_notification_style">Notification style</string>
@@ -434,6 +422,9 @@
     <string name="key_icon_provider">icon_provider</string>
     <string name="key_appearance">appearance</string>
     <string name="key_card_display">card_display_2</string>
+    <string name="key_daily_trend_display">daily_trend_display</string>
+    <string name="key_trend_horizontal_line_switch">trend_horizontal_line_switch</string>
+    <string name="key_exchange_day_night_temp_switch">exchange_day_night_temp_switch</string>
     <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
     <string name="key_list_animation_switch">list_animation_switch</string>
     <string name="key_item_animation_switch">item_animation_switch</string>
@@ -454,6 +445,18 @@
     <string name="key_week_icon_mode">week_icon_mode</string>
     <string name="key_widget_minimal_icon">widget_minimal_icon</string>
     <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
+    <string name="key_widget_config">widget_config</string>
+    <string name="key_widget_day">widget_day</string>
+    <string name="key_widget_week">widget_week</string>
+    <string name="key_widget_day_week">widget_day_week</string>
+    <string name="key_widget_clock_day_horizontal">widget_clock_day_horizontal</string>
+    <string name="key_widget_clock_day_details">widget_clock_day_details</string>
+    <string name="key_widget_clock_day_vertical">widget_clock_day_vertical</string>
+    <string name="key_widget_clock_day_week">widget_clock_day_week</string>
+    <string name="key_widget_text">widget_text</string>
+    <string name="key_widget_trend_daily">widget_trend_daily</string>
+    <string name="key_widget_trend_hourly">widget_trend_hourly</string>
+    <string name="key_widget_multi_city">widget_multi_city</string>
     <string name="key_notification">notification_switch</string>
     <string name="key_notification_style">notification_style</string>
     <string name="key_notification_minimal_icon">notification_minimal_icon</string>

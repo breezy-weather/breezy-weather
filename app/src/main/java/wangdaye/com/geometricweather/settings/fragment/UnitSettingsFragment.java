@@ -22,10 +22,14 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
 
         // temperature.
         ListPreference temperature = findPreference(getString(R.string.key_temperature_unit));
-        temperature.setSummary(getSettingsOptionManager().getTemperatureUnit().getAbbreviation());
+        temperature.setSummary(
+                getSettingsOptionManager().getTemperatureUnit().getAbbreviation(requireActivity())
+        );
         temperature.setOnPreferenceChangeListener((p, newValue) -> {
             getSettingsOptionManager().setTemperatureUnit(OptionMapper.getTemperatureUnit((String) newValue));
-            temperature.setSummary(getSettingsOptionManager().getTemperatureUnit().getAbbreviation());
+            temperature.setSummary(
+                    getSettingsOptionManager().getTemperatureUnit().getAbbreviation(requireActivity())
+            );
             SnackbarUtils.showSnackbar(
                     (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
             return true;

@@ -193,64 +193,46 @@
     <string name="feedback_text_size">Μέγεθος κειμένου</string>
     <string name="feedback_clock_font">Γραμματοσειρά ρολογιού</string>
     <string name="feedback_custom_subtitle_explanation">Μπορείτε να εισάγετε οτιδήποτε, αλλά παρακαλώ δώστε προσοχή στο μήκος του κειμένου. Αν θέλετε τα δεδομένα καιρού να εμφανίζονται, χρησιμοποιήστε το $ για σύνδεση με την αντίστοιχη λέξη-κλειδί.\n\nΓια παράδειγμα, \"Ο καιρός τώρα = $cw$\" θα εμφανιστεί ως \"Ο καιρός τώρα = Καθαρή ημέρα\".</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : Ο καιρός τώρα\n
-        $ct$ : Τρέχουσα θερμοκρασία (℃/℉)\n
-        $ctd$ : Τρέχουσα θερμοκρασία (°)\n
-        $at$ : Αίσθηση σαν (℃/℉)\n
-        $atd$ : Αίσθηση σαν (°)\n
-        $cpb$ : Πιθανότητα βροχόπτωσης (%)\n
-        $cp$ : Πιθανότητα βροχόπτωσης (mm/L/m²)\n
-        $cwd$ : Άνεμος\n
-        $cuv$ : Δείκτης UV\n
-        $ch$ : Υγρασία\n
-        $cps$ : Πίεση\n
-        $cv$ : Ορατότητα\n
-        $cdp$ : Σημείο δρόσου\n
-        \n
-        $l$ : Τοποθεσία\n
-        $lat$ : Γεωγραφικό πλάτος\n
-        $lon$ : Γεωγραφικό μήκος\n
-        $ut$ : Ώρα ενημέρωσης\n
-        $d$ : Ημερομηνία\n
-        $lc$ : Σεληνιακό ημερολόγιο\n
-        $w$ : Εβδομάδα\n
-        $ws$ : Εβδομάδα (σύντομη)\n
-        $dd$ : Ημερήσια περιγραφή\n
-        $hd$ : Ωριαία περιγραφή\n
-        $enter$ : Καταχώρηση\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \nΟ καιρός σήμερα, αύριο …, για 4 ημέρες\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \nΟ καιρός τη νύχτα σήμερα, αύριο, …, για 4 ημέρες\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \nΟ καιρός την ημέρα σήμερα, αύριο, …, για 4 ημέρες (℃/℉)\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \nΘερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (℃/℉)\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \nΘερμοκρασία ημέρας σήμερα, αύριο, …, για 4 ημέρες (°)\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \nΘερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (°)\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \nΒροχόπτωση ημέρας σήμερα, αύριο, …, για 4 ημέρες (%)\n
-        \n
-        $0np$, $1np$, …, $4np$ : \nΒροχόπτωση νύχτας σήμερα, αύριο, …, για 4 ημέρες (%)\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \nΆνεμος ημέρας σήμερα, αύριο, …, για 4 ημέρες\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \nΆνεμος νύχτας σήμερα, αύριο, …, για 4 ημέρες\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \nΑνατολή ηλίου σήμερα, αύριο, …, για 4 ημέρες\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \nΔύση ηλίου σήμερα, αύριο, …, για 4 ημέρες\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \nΑνατολή σελήνης σήμερα, αύριο, …, για 4 ημέρες\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \nΔύση σελήνης, αύριο, …, για 4 ημέρες\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \nΦάση σελήνης σήμερα, αύριο, …, για 4 ημέρες\n
-    </string>
+
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Ο καιρός τώρα\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Τρέχουσα θερμοκρασία (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Τρέχουσα θερμοκρασία (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Αίσθηση σαν (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Αίσθηση σαν (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Πιθανότητα βροχόπτωσης (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Πιθανότητα βροχόπτωσης (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Άνεμος\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Δείκτης UV\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Υγρασία\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Πίεση\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Ορατότητα\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Σημείο δρόσου\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : Τοποθεσία\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Γεωγραφικό πλάτος\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Γεωγραφικό μήκος\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Ώρα ενημέρωσης\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : Ημερομηνία\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Σεληνιακό ημερολόγιο\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : Εβδομάδα\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Εβδομάδα (σύντομη)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Ημερήσια περιγραφή\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Ωριαία περιγραφή\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Καταχώρηση\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nΟ καιρός σήμερα, αύριο …, για 4 ημέρες\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nΟ καιρός τη νύχτα σήμερα, αύριο, …, για 4 ημέρες\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nΟ καιρός την ημέρα σήμερα, αύριο, …, για 4 ημέρες (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nΘερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nΘερμοκρασία ημέρας σήμερα, αύριο, …, για 4 ημέρες (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nΘερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nΒροχόπτωση ημέρας σήμερα, αύριο, …, για 4 ημέρες (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nΒροχόπτωση νύχτας σήμερα, αύριο, …, για 4 ημέρες (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nΆνεμος ημέρας σήμερα, αύριο, …, για 4 ημέρες\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nΆνεμος νύχτας σήμερα, αύριο, …, για 4 ημέρες\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nΑνατολή ηλίου σήμερα, αύριο, …, για 4 ημέρες\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nΔύση ηλίου σήμερα, αύριο, …, για 4 ημέρες\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nΑνατολή σελήνης σήμερα, αύριο, …, για 4 ημέρες\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nΔύση σελήνης, αύριο, …, για 4 ημέρες\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nΦάση σελήνης σήμερα, αύριο, …, για 4 ημέρες\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">Καιρός</string>
     <string name="feedback_live_wallpaper_day_night_type">Ώρα</string>

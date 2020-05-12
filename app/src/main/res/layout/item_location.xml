@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/item_location_container"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="@drawable/selectable_item_background"
@@ -11,7 +11,7 @@
     tools:ignore="UnusedAttribute">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_location_swipeIcon_start"
+        android:id="@+id/swipeIcon_start"
         android:src="@drawable/ic_delete"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -22,7 +22,7 @@
         tools:ignore="ContentDescription,RtlHardcoded" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_location_swipeIcon_end"
+        android:id="@+id/swipeIcon_end"
         android:src="@drawable/ic_star_outline"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -33,7 +33,7 @@
         tools:ignore="ContentDescription,RtlHardcoded" />
 
     <LinearLayout
-        android:id="@+id/item_location_item"
+        android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorRoot"
@@ -49,7 +49,7 @@
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
-                android:id="@+id/item_location_weather_icon"
+                android:id="@+id/weather_icon"
                 android:layout_width="@dimen/material_icon_size"
                 android:layout_height="@dimen/material_icon_size"
                 android:layout_marginEnd="@dimen/little_margin"
@@ -58,7 +58,7 @@
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/item_location_resident_icon"
+                android:id="@+id/resident_icon"
                 android:src="@drawable/ic_circle_medium"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -67,15 +67,15 @@
                 app:tint="@color/colorTextAlert" />
 
             <TextView
-                android:id="@+id/item_location_title"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textAlignment="viewStart"
                 android:textStyle="bold"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/item_location_weather_icon"
-                android:layout_toStartOf="@id/item_location_resident_icon"
+                android:layout_toEndOf="@id/weather_icon"
+                android:layout_toStartOf="@id/resident_icon"
                 style="@style/title_text"
                 tools:text="Current Location, 5°"
                 tools:ignore="RtlHardcoded" />
@@ -83,7 +83,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/item_location_alerts"
+            android:id="@+id/alerts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/normal_margin"
@@ -94,7 +94,7 @@
             tools:text="大雾黄色预警, 发布于2018-07-10 02:32\n大风蓝色预警, 发布于2018-07-10 03:34"/>
 
         <TextView
-            android:id="@+id/item_location_subtitle"
+            android:id="@+id/subtitle"
             android:layout_width="match_parent"
             android:layout_marginStart="@dimen/normal_margin"
             android:textAlignment="viewStart"
@@ -104,7 +104,7 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
-            android:id="@+id/item_location_source"
+            android:id="@+id/source"
             android:layout_width="match_parent"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"

@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -54,10 +55,11 @@ public class UV implements Serializable {
         return index != null;
     }
 
+    @SuppressLint("DefaultLocale")
     public String getUVDescription() {
         StringBuilder builder = new StringBuilder();
         if (index != null) {
-            builder.append(index);
+            builder.append(String.format("%d", index));
         }
         if (level != null) {
             builder.append(

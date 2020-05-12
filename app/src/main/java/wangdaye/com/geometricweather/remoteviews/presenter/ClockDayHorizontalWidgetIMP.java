@@ -94,7 +94,7 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_subtitle,
                 location.getCityName(context)
                         + " "
-                        + weather.getCurrent().getTemperature().getTemperature(temperatureUnit)
+                        + weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit)
         );
 
         views.setTextColor(R.id.widget_clock_day_clock_light, textColorInt);

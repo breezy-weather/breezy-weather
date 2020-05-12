@@ -7,6 +7,6 @@
     <targets>
         <target android:targetId="@android:id/navigationBarBackground" />
         <target android:targetId="@android:id/statusBarBackground" />
-        <target android:targetId="@id/activity_search_container" />
+        <target android:targetId="@id/container" />
     </targets>
 </fade>

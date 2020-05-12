@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 import android.view.View;
 
@@ -28,6 +29,7 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.daily.DailyWeatherActivity;
 import wangdaye.com.geometricweather.settings.activity.CardDisplayManageActivity;
+import wangdaye.com.geometricweather.settings.activity.DailyTrendDisplayManageActivity;
 import wangdaye.com.geometricweather.ui.activity.AllergenActivity;
 import wangdaye.com.geometricweather.wallpaper.material.MaterialLiveWallpaperService;
 import wangdaye.com.geometricweather.settings.activity.AboutActivity;
@@ -36,7 +38,7 @@ import wangdaye.com.geometricweather.settings.activity.SelectProviderActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.ui.activity.ManageActivity;
 import wangdaye.com.geometricweather.settings.activity.PreviewIconActivity;
-import wangdaye.com.geometricweather.ui.activity.SearcActivity;
+import wangdaye.com.geometricweather.ui.activity.SearchActivity;
 import wangdaye.com.geometricweather.settings.activity.SettingsActivity;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
@@ -101,7 +103,7 @@ public class IntentHelper {
     }
 
     public static void startSearchActivityForResult(Activity activity, View bar, int requestCode) {
-        Intent intent = new Intent(activity, SearcActivity.class);
+        Intent intent = new Intent(activity, SearchActivity.class);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             activity.startActivityForResult(intent, requestCode);
@@ -126,6 +128,11 @@ public class IntentHelper {
     public static void startCardDisplayManageActivityForResult(Activity activity, int requestCode) {
         activity.startActivityForResult(
                 new Intent(activity, CardDisplayManageActivity.class), requestCode);
+    }
+
+    public static void startDailyTrendDisplayManageActivityForResult(Activity activity, int requestCode) {
+        activity.startActivityForResult(
+                new Intent(activity, DailyTrendDisplayManageActivity.class), requestCode);
     }
 
     public static void startSelectProviderActivity(Activity activity) {
@@ -245,11 +252,7 @@ public class IntentHelper {
     }
 
     public static void startAwakeForegroundUpdateService(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(getAwakeForegroundUpdateServiceIntent(context));
-        } else {
-            context.startService(getAwakeForegroundUpdateServiceIntent(context));
-        }
+        ContextCompat.startForegroundService(context, getAwakeForegroundUpdateServiceIntent(context));
     }
 
     public static Intent getAwakeForegroundUpdateServiceIntent(Context context) {

@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.basic.model.option.unit;
 
+import android.annotation.SuppressLint;
+
 class UnitUtils {
 
     static String formatFloat(float value) {
@@ -11,5 +13,10 @@ class UnitUtils {
                 "%." + decimalNumber + "f",
                 value
         );
+    }
+
+    @SuppressLint("DefaultLocale")
+    static String formatInt(int value) {
+        return String.format("%d", value);
     }
 }

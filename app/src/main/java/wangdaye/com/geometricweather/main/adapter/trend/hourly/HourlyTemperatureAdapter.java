@@ -14,6 +14,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
@@ -81,7 +82,7 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
                     (float) highestTemperature,
                     (float) lowestTemperature,
                     p < 5 ? null : p,
-                    p < 5 ? null : ((int) p + "%"),
+                    p < 5 ? null : ProbabilityUnit.PERCENT.getProbabilityText(context, p),
                     100f,
                     0f
             );
@@ -165,7 +166,11 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
             keyLineList.add(
                     new TrendRecyclerView.KeyLine(
                             weather.getYesterday().getDaytimeTemperature(),
-                            Temperature.getShortTemperature(weather.getYesterday().getDaytimeTemperature(), unit),
+                            Temperature.getShortTemperature(
+                                    activity,
+                                    weather.getYesterday().getDaytimeTemperature(),
+                                    unit
+                            ),
                             activity.getString(R.string.yesterday),
                             TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                     )
@@ -173,7 +178,11 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
             keyLineList.add(
                     new TrendRecyclerView.KeyLine(
                             weather.getYesterday().getNighttimeTemperature(),
-                            Temperature.getShortTemperature(weather.getYesterday().getNighttimeTemperature(), unit),
+                            Temperature.getShortTemperature(
+                                    activity,
+                                    weather.getYesterday().getNighttimeTemperature(),
+                                    unit
+                            ),
                             activity.getString(R.string.yesterday),
                             TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                     )

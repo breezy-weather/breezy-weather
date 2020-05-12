@@ -9,7 +9,7 @@
     tools:ignore="UnusedAttribute">
 
     <TextView
-        android:id="@+id/item_pollen_daily_title"
+        android:id="@+id/title"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
@@ -18,7 +18,7 @@
         tools:text="11月8日 星期五" />
 
     <TextView
-        android:id="@+id/item_pollen_daily_subtitle"
+        android:id="@+id/subtitle"
         android:layout_marginTop="2dp"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
@@ -38,7 +38,7 @@
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/item_pollen_daily_grassIcon"
+                android:id="@+id/grassIcon"
                 android:src="@drawable/ic_circle_medium"
                 android:layout_centerVertical="true"
                 style="@style/material_icon"
@@ -51,16 +51,16 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_toEndOf="@id/item_pollen_daily_grassIcon"
+                android:layout_toEndOf="@id/grassIcon"
                 android:layout_centerVertical="true">
 
                 <TextView
-                    android:id="@+id/item_pollen_daily_grassTitle"
+                    android:id="@+id/grassTitle"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
-                    android:id="@+id/item_pollen_daily_grassValue"
+                    android:id="@+id/grassValue"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -74,7 +74,7 @@
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/item_pollen_daily_ragweedIcon"
+                android:id="@+id/ragweedIcon"
                 android:src="@drawable/ic_circle_medium"
                 android:layout_centerVertical="true"
                 style="@style/material_icon"
@@ -87,16 +87,16 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_toEndOf="@id/item_pollen_daily_ragweedIcon"
+                android:layout_toEndOf="@id/ragweedIcon"
                 android:layout_centerVertical="true">
 
                 <TextView
-                    android:id="@+id/item_pollen_daily_ragweedTitle"
+                    android:id="@+id/ragweedTitle"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
-                    android:id="@+id/item_pollen_daily_ragweedValue"
+                    android:id="@+id/ragweedValue"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -119,7 +119,7 @@
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/item_pollen_daily_treeIcon"
+                android:id="@+id/treeIcon"
                 android:src="@drawable/ic_circle_medium"
                 android:layout_centerVertical="true"
                 style="@style/material_icon"
@@ -132,16 +132,16 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_toEndOf="@id/item_pollen_daily_treeIcon"
+                android:layout_toEndOf="@id/treeIcon"
                 android:layout_centerVertical="true">
 
                 <TextView
-                    android:id="@+id/item_pollen_daily_treeTitle"
+                    android:id="@+id/treeTitle"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
-                    android:id="@+id/item_pollen_daily_treeValue"
+                    android:id="@+id/treeValue"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -155,7 +155,7 @@
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/item_pollen_daily_moldIcon"
+                android:id="@+id/moldIcon"
                 android:src="@drawable/ic_circle_medium"
                 android:layout_centerVertical="true"
                 style="@style/material_icon"
@@ -168,16 +168,16 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_toEndOf="@id/item_pollen_daily_moldIcon"
+                android:layout_toEndOf="@id/moldIcon"
                 android:layout_centerVertical="true">
 
                 <TextView
-                    android:id="@+id/item_pollen_daily_moldTitle"
+                    android:id="@+id/moldTitle"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
-                    android:id="@+id/item_pollen_daily_moldValue"
+                    android:id="@+id/moldValue"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 

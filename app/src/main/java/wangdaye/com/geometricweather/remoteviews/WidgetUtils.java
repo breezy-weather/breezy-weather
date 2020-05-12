@@ -69,12 +69,12 @@ public class WidgetUtils {
         }
     }
 
-    public static String[] buildWidgetDayStyleText(Weather weather, TemperatureUnit unit) {
+    public static String[] buildWidgetDayStyleText(Context context, Weather weather, TemperatureUnit unit) {
         String[] texts = new String[] {
                 weather.getCurrent().getWeatherText(),
-                weather.getCurrent().getTemperature().getTemperature(unit),
-                weather.getDailyForecast().get(0).day().getTemperature().getShortTemperature(unit),
-                weather.getDailyForecast().get(0).night().getTemperature().getShortTemperature(unit)
+                weather.getCurrent().getTemperature().getTemperature(context, unit),
+                weather.getDailyForecast().get(0).day().getTemperature().getShortTemperature(context, unit),
+                weather.getDailyForecast().get(0).night().getTemperature().getShortTemperature(context, unit)
         };
 
         TextPaint paint = new TextPaint();

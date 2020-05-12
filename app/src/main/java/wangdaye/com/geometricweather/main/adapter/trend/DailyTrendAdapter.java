@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main.adapter.trend;
 
+import android.content.Context;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -95,11 +96,13 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 class DailyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter.trend.daily.DailyTemperatureAdapter {
 
+    private Context c;
+
     public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
                                    String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
                                    ResourceProvider provider, TemperatureUnit unit) {
         super(activity, parent, formattedId, weather, timeZone, true, provider, unit);
-
+        this.c = activity;
     }
 
     @Override
@@ -124,21 +127,21 @@ class DailyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter
 
     @Override
     protected String getDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).day().getTemperature().getTemperature(unit);
+        return weather.getDailyForecast().get(index).day().getTemperature().getTemperature(c, unit);
     }
 
     @Override
     protected String getNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).night().getTemperature().getTemperature(unit);
+        return weather.getDailyForecast().get(index).night().getTemperature().getTemperature(c, unit);
     }
 
     @Override
     protected String getShortDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).day().getTemperature().getShortTemperature(unit);
+        return weather.getDailyForecast().get(index).day().getTemperature().getShortTemperature(c, unit);
     }
 
     @Override
     protected String getShortNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).night().getTemperature().getShortTemperature(unit);
+        return weather.getDailyForecast().get(index).night().getTemperature().getShortTemperature(c, unit);
     }
 }

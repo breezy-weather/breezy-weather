@@ -95,6 +95,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
             views.setTextViewText(
                     R.id.widget_multi_city_horizontal_content_1,
                     Temperature.getTrendTemperature(
+                            context,
                             weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                             weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                             temperatureUnit
@@ -133,6 +134,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                 views.setTextViewText(
                         R.id.widget_multi_city_horizontal_content_2,
                         Temperature.getTrendTemperature(
+                                context,
                                 weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                                 weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                                 temperatureUnit
@@ -174,6 +176,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                 views.setTextViewText(
                         R.id.widget_multi_city_horizontal_content_3,
                         Temperature.getTrendTemperature(
+                                context,
                                 weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                                 weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                                 temperatureUnit

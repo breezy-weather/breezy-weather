@@ -119,7 +119,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         StringBuilder content = new StringBuilder();
         if (!tempIcon) {
-            content.append(weather.getCurrent().getTemperature().getTemperature(temperatureUnit))
+            content.append(weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit))
                     .append(" ");
         }
         content.append(weather.getCurrent().getWeatherText());

@@ -226,6 +226,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         views.setTextViewText(
                 R.id.notification_base_realtimeTemp,
                 Temperature.getShortTemperature(
+                        context,
                         weather.getCurrent().getTemperature().getTemperature(),
                         temperatureUnit
                 )
@@ -313,6 +314,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         views.setTextViewText( // set temps 1.
                 R.id.notification_big_temp_1,
                 Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                         temperatureUnit
@@ -336,6 +338,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         views.setTextViewText( // set temps 2.
                 R.id.notification_big_temp_2,
                 Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(1).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(1).day().getTemperature().getTemperature(),
                         temperatureUnit
@@ -359,6 +362,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         views.setTextViewText( // set temps 3.
                 R.id.notification_big_temp_3,
                 Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(2).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(2).day().getTemperature().getTemperature(),
                         temperatureUnit
@@ -382,6 +386,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         views.setTextViewText( // set temps 4.
                 R.id.notification_big_temp_4,
                 Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(3).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(3).day().getTemperature().getTemperature(),
                         temperatureUnit
@@ -405,6 +410,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         views.setTextViewText( // set temps 5.
                 R.id.notification_big_temp_5,
                 Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(4).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(4).day().getTemperature().getTemperature(),
                         temperatureUnit

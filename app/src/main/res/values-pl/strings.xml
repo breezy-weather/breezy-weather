@@ -199,64 +199,46 @@
     <string name="feedback_text_size">Wielkość czcionki</string>
     <string name="feedback_clock_font">Czcionka zegara</string>
     <string name="feedback_custom_subtitle_explanation">Możesz wpisać wszystko, ale zwróć uwagę na długość tekstu. Jeśli chcesz odwołać się do danych pogodowych, proszę użyj $ aby odwołać się do odpowiedniego słowa kluczowego.\n\nNa przykład, \"current weather = $cw$\" wyświetli się jako \"current weather = Clear Day\".</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : Obecna pogodar\n
-        $ct$ : Obecna temperatura (℃/℉)\n
-        $ctd$ : Obecna temperatura (°)\n
-        $at$ : Temperatura pozorna (℃/℉)\n
-        $atd$ : Temperatura pozorna (°)\n
-        $cpb$ : Obecne prawdopodobieństwo opadów (%)\n
-        $cp$ : Obecne opady (mm/L/m²)\n
-        $cwd$ : Obecny wiatr\n
-        $cuv$ : Obecny indeks UV\n
-        $ch$ : Obecna wilgotność\n
-        $cps$ : Obecne ciśnienie\n
-        $cv$ : Obecna widoczność\n
-        $cdp$ : Obecny punkt rosy\n
-        \n
-        $l$ : Lokalizacja\n
-        $lat$ : Szerokość geograficzna\n
-        $lon$ : Długość geograficzna\n
-        $ut$ : Czas aktualizacji\n
-        $d$ : Data\n
-        $lc$ : Kalendarz księżycowy\n
-        $w$ : Tydzień\n
-        $ws$ : Tydzień (krótki)\n
-        $dd$ : Opis dzienny\n
-        $hd$ : Opis godzinowy\n
-        $enter$ : Wprowadź\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \nDzisiejsza pogoda w ciągu dnia, Tmw, …, 4 dni później\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \nDzisiejsza pogoda w ciągu nocy, Tmw, …, 4 dni później\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \nDzisiejsza temperatura w ciągu dnia, Tmw, …, 4 dni później\(℃/℉)\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \nDzisiejsza temperatura w ciągu nocy, Tmw, …, 4 dni później\(℃/℉)\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \nDzisiejsza temperatura w ciągu dnia, Tmw, …, 4 dni później\(°)\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \nDzisiejsza temperatura w ciągu nocy, Tmw, …, 4 dni później\(°)\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \nDzisiejsze opady w ciągu dnia, Tmw, …, 4 dni później\(%)\n
-        \n
-        $0np$, $1np$, …, $4np$ : \nDzisiejsze opady w ciągu nocy, Tmw, …, 4 dni później\(%)\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \nDzisiajsza prędkość wiatru w ciągu dnia, Tmw, …, 4 dni później\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \nDzisiajsza prędkość wiatru w ciągu nocy, Tmw, …, 4 dni później\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \nDzisiejszy wschód słońca, Tmw, …, 4 dni później\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \nDzisiejszy zachód słońca, Tmw, …, 4 dni później\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \nDzisiejszy wschód księżyca, Tmw, …, 4 dni później\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \nDzisiejszy zachód księżyca, Tmw, …, 4 dni później\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \nDzisiejsza faza księżyca, Tmw, …, 4 dni później\n
-    </string>
+
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Obecna pogodar\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Obecna temperatura (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Obecna temperatura (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Temperatura pozorna (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temperatura pozorna (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Obecne prawdopodobieństwo opadów (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Obecne opady (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Obecny wiatr\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Obecny indeks UV\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Obecna wilgotność\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Obecne ciśnienie\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Obecna widoczność\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Obecny punkt rosy\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : Lokalizacja\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Szerokość geograficzna\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Długość geograficzna\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Czas aktualizacji\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : Data\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Kalendarz księżycowy\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : Tydzień\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Tydzień (krótki)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Opis dzienny\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Opis godzinowy\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Wprowadź\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nDzisiejsza pogoda w ciągu dnia, Tmw, …, 4 dni później\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nDzisiejsza pogoda w ciągu nocy, Tmw, …, 4 dni później\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nDzisiejsza temperatura w ciągu dnia, Tmw, …, 4 dni później\(℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nDzisiejsza temperatura w ciągu nocy, Tmw, …, 4 dni później\(℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nDzisiejsza temperatura w ciągu dnia, Tmw, …, 4 dni później\(°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nDzisiejsza temperatura w ciągu nocy, Tmw, …, 4 dni później\(°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nDzisiejsze opady w ciągu dnia, Tmw, …, 4 dni później\(%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nDzisiejsze opady w ciągu nocy, Tmw, …, 4 dni później\(%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nDzisiajsza prędkość wiatru w ciągu dnia, Tmw, …, 4 dni później\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nDzisiajsza prędkość wiatru w ciągu nocy, Tmw, …, 4 dni później\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nDzisiejszy wschód słońca, Tmw, …, 4 dni później\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nDzisiejszy zachód słońca, Tmw, …, 4 dni później\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nDzisiejszy wschód księżyca, Tmw, …, 4 dni później\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nDzisiejszy zachód księżyca, Tmw, …, 4 dni później\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nDzisiejsza faza księżyca, Tmw, …, 4 dni później\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">Pogoda</string>
     <string name="feedback_live_wallpaper_day_night_type">Czas</string>

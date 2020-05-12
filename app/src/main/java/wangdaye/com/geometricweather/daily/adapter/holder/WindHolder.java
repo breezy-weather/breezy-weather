@@ -26,7 +26,7 @@ public class WindHolder extends DailyWeatherAdapter.ViewHolder {
     private LinearLayout speed;
     private TextView speedText;
 
-    private TextView gageText;
+    private TextView gaugeText;
 
     private SpeedUnit unit;
 
@@ -38,12 +38,12 @@ public class WindHolder extends DailyWeatherAdapter.ViewHolder {
         directionText = itemView.findViewById(R.id.item_weather_daily_wind_directionValue);
         speed = itemView.findViewById(R.id.item_weather_daily_wind_speed);
         speedText = itemView.findViewById(R.id.item_weather_daily_wind_speedValue);
-        gageText = itemView.findViewById(R.id.item_weather_daily_wind_levelValue);
+        gaugeText = itemView.findViewById(R.id.item_weather_daily_wind_levelValue);
 
         unit = SettingsOptionManager.getInstance(parent.getContext()).getSpeedUnit();
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "RestrictedApi"})
     @Override
     public void onBindView(DailyWeatherAdapter.ViewModel model, int position) {
         Wind wind = ((DailyWind) model).getWind();
@@ -65,6 +65,6 @@ public class WindHolder extends DailyWeatherAdapter.ViewHolder {
             speed.setVisibility(View.GONE);
         }
 
-        gageText.setText(wind.getLevel());
+        gaugeText.setText(wind.getLevel());
     }
 }

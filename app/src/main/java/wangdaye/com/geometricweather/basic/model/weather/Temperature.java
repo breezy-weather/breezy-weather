@@ -1,10 +1,13 @@
 package wangdaye.com.geometricweather.basic.model.weather;
 
+import android.content.Context;
+
 import androidx.annotation.Nullable;
 
 import java.io.Serializable;
 
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Temperature.
@@ -71,48 +74,54 @@ public class Temperature implements Serializable {
     }
 
     @Nullable
-    public String getTemperature(TemperatureUnit unit) {
-        return getTemperature(temperature, unit);
+    public String getTemperature(Context context, TemperatureUnit unit) {
+        return getTemperature(context, temperature, unit);
     }
 
     @Nullable
-    public String getShortTemperature(TemperatureUnit unit) {
-        return getShortTemperature(temperature, unit);
+    public String getShortTemperature(Context context, TemperatureUnit unit) {
+        return getShortTemperature(context, temperature, unit);
     }
 
     @Nullable
-    public String getRealFeelTemperature(TemperatureUnit unit) {
-        return getTemperature(realFeelTemperature, unit);
+    public String getRealFeelTemperature(Context context, TemperatureUnit unit) {
+        return getTemperature(context, realFeelTemperature, unit);
     }
 
     @Nullable
-    public String getShortRealFeeTemperature(TemperatureUnit unit) {
-        return getShortTemperature(realFeelTemperature, unit);
+    public String getShortRealFeeTemperature(Context context, TemperatureUnit unit) {
+        return getShortTemperature(context, realFeelTemperature, unit);
     }
 
     @Nullable
-    public static String getTemperature(@Nullable Integer temperature, TemperatureUnit unit) {
+    public static String getTemperature(Context context, @Nullable Integer temperature, TemperatureUnit unit) {
         if (temperature == null) {
             return null;
         }
-        return unit.getTemperatureText(temperature);
+        return unit.getTemperatureText(context, temperature);
     }
 
     @Nullable
-    public static String getShortTemperature(@Nullable Integer temperature, TemperatureUnit unit) {
+    public static String getShortTemperature(Context context,
+                                             @Nullable Integer temperature, TemperatureUnit unit) {
         if (temperature == null) {
             return null;
         }
-        return unit.getShortTemperatureText(temperature);
+        return unit.getShortTemperatureText(context, temperature);
     }
 
     @Nullable
-    public static String getTrendTemperature(@Nullable Integer from, @Nullable Integer to,
+    public static String getTrendTemperature(Context context,
+                                             @Nullable Integer night, @Nullable Integer day,
                                              TemperatureUnit unit) {
-        if (from == null || to == null) {
+        if (night == null || day == null) {
             return null;
         }
-        return getShortTemperature(from, unit) + "/" + getShortTemperature(to, unit);
+        if (SettingsOptionManager.getInstance(context).isExchangeDayNightTempEnabled()) {
+            return getShortTemperature(context, day, unit) + "/" + getShortTemperature(context, night, unit);
+        } else {
+            return getShortTemperature(context, night, unit) + "/" + getShortTemperature(context, day, unit);
+        }
     }
 
     public boolean isValid() {

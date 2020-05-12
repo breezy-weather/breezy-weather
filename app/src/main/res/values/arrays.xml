@@ -79,6 +79,7 @@
         <item>Polski</item>
         <item>한국어</item>
         <item>Ελληνικά</item>
+        <item>日本語</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -104,6 +105,7 @@
         <item>polish</item>
         <item>korean</item>
         <item>greek</item>
+        <item>japanese</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -312,7 +314,7 @@
         <item>km/h</item>
         <item>m/s</item>
         <item>kn</item>
-        <item>mi/h</item>
+        <item>mph</item>
         <item>ft/s</item>
     </string-array>
     <string-array name="speed_unit_values">
@@ -339,6 +341,16 @@
     <string-array name="temperature_units">
         <item>℃</item>
         <item>℉</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_units_short">
+        <item>°</item>
+        <item>°</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_units_long">
+        <item>°C</item>
+        <item>°F</item>
         <item>K</item>
     </string-array>
     <string-array name="temperature_unit_values">

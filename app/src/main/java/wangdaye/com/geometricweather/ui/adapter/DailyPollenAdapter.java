@@ -5,10 +5,8 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
@@ -16,6 +14,7 @@ import wangdaye.com.geometricweather.basic.model.option.unit.PollenUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Pollen;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.databinding.ItemPollenDailyBinding;
 
 public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.ViewHolder> {
 
@@ -24,74 +23,48 @@ public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title;
-        TextView subtitle;
+        ItemPollenDailyBinding binding;
 
-        AppCompatImageView grassIcon;
-        TextView grassTitle;
-        TextView grassValue;
-
-        AppCompatImageView ragweedIcon;
-        TextView ragweedTitle;
-        TextView ragweedValue;
-
-        AppCompatImageView treeIcon;
-        TextView treeTitle;
-        TextView treeValue;
-
-        AppCompatImageView moldIcon;
-        TextView moldTitle;
-        TextView moldValue;
-
-        ViewHolder(Context context, ViewGroup parent) {
-            super(LayoutInflater.from(context).inflate(R.layout.item_pollen_daily, parent, false));
-            title = itemView.findViewById(R.id.item_pollen_daily_title);
-            subtitle = itemView.findViewById(R.id.item_pollen_daily_subtitle);
-            grassIcon = itemView.findViewById(R.id.item_pollen_daily_grassIcon);
-            grassTitle = itemView.findViewById(R.id.item_pollen_daily_grassTitle);
-            grassValue = itemView.findViewById(R.id.item_pollen_daily_grassValue);
-            ragweedIcon = itemView.findViewById(R.id.item_pollen_daily_ragweedIcon);
-            ragweedTitle = itemView.findViewById(R.id.item_pollen_daily_ragweedTitle);
-            ragweedValue = itemView.findViewById(R.id.item_pollen_daily_ragweedValue);
-            treeIcon = itemView.findViewById(R.id.item_pollen_daily_treeIcon);
-            treeTitle = itemView.findViewById(R.id.item_pollen_daily_treeTitle);
-            treeValue = itemView.findViewById(R.id.item_pollen_daily_treeValue);
-            moldIcon = itemView.findViewById(R.id.item_pollen_daily_moldIcon);
-            moldTitle = itemView.findViewById(R.id.item_pollen_daily_moldTitle);
-            moldValue = itemView.findViewById(R.id.item_pollen_daily_moldValue);
+        ViewHolder(ItemPollenDailyBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
-        @SuppressLint("SetTextI18n")
+        @SuppressLint({"SetTextI18n", "RestrictedApi"})
         void onBindView(Daily daily) {
             Context context = itemView.getContext();
             Pollen pollen = daily.getPollen();
 
-            title.setText(daily.getDate(context.getString(R.string.date_format_widget_long)));
-            subtitle.setText(daily.day().getWeatherText() + " / " + daily.night().getWeatherText());
+            binding.title.setText(daily.getDate(context.getString(R.string.date_format_widget_long)));
+            binding.subtitle.setText(daily.day().getWeatherText() + " / " + daily.night().getWeatherText());
 
-            grassIcon.setSupportImageTintList(ColorStateList.valueOf(
+            binding.grassIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel())
             ));
-            grassTitle.setText(context.getString(R.string.grass));
-            grassValue.setText(unit.getPollenText(context, pollen.getGrassIndex()) + " - " + pollen.getGrassDescription());
+            binding.grassTitle.setText(context.getString(R.string.grass));
+            binding.grassValue.setText(unit.getPollenText(context, pollen.getGrassIndex())
+                    + " - " + pollen.getGrassDescription());
 
-            ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
+            binding.ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel())
             ));
-            ragweedTitle.setText(context.getString(R.string.ragweed));
-            ragweedValue.setText(unit.getPollenText(context, pollen.getRagweedIndex()) + " - " + pollen.getRagweedDescription());
+            binding.ragweedTitle.setText(context.getString(R.string.ragweed));
+            binding.ragweedValue.setText(unit.getPollenText(context, pollen.getRagweedIndex())
+                    + " - " + pollen.getRagweedDescription());
 
-            treeIcon.setSupportImageTintList(ColorStateList.valueOf(
+            binding.treeIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel())
             ));
-            treeTitle.setText(context.getString(R.string.tree));
-            treeValue.setText(unit.getPollenText(context, pollen.getTreeIndex()) + " - " + pollen.getTreeDescription());
+            binding.treeTitle.setText(context.getString(R.string.tree));
+            binding.treeValue.setText(unit.getPollenText(context, pollen.getTreeIndex())
+                    + " - " + pollen.getTreeDescription());
 
-            moldIcon.setSupportImageTintList(ColorStateList.valueOf(
+            binding.moldIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel())
             ));
-            moldTitle.setText(context.getString(R.string.mold));
-            moldValue.setText(unit.getPollenText(context, pollen.getMoldIndex()) + " - " + pollen.getMoldDescription());
+            binding.moldTitle.setText(context.getString(R.string.mold));
+            binding.moldValue.setText(unit.getPollenText(context, pollen.getMoldIndex())
+                    + " - " + pollen.getMoldDescription());
         }
     }
 
@@ -103,7 +76,11 @@ public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(parent.getContext(), parent);
+        return new ViewHolder(
+                ItemPollenDailyBinding.inflate(
+                        LayoutInflater.from(parent.getContext())
+                )
+        );
     }
 
     @Override

@@ -181,64 +181,48 @@
     <string name="feedback_text_size">文字尺寸</string>
     <string name="feedback_clock_font">时钟字体</string>
     <string name="feedback_custom_subtitle_explanation">可输入任何内容，但请注意内容长度。若需使用天气数据，可以通过使用$来引用相应的关键字来实现。\n\n例如：若输入\"天气为$cw$\"，副标题将显示为\"天气为晴\"。</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : 当天天气\n
-        $ct$ : 当前温度 (℃/℉)\n
-        $ctd$ : 当前温度 (°)\n
-        $at$ : 体感温度（℃/℉）\n
-        $atd$ : 体感温度（°）\n
-        $cpb$ : 当前降水概率 (%)\n
-        $cp$ : 当前降水量 (mm/L/m²)\n
-        $cwd$ : 当前风况\n
-        $cuv$ : 当前紫外线\n
-        $ch$ : 当前湿度\n
-        $cps$ : 当前气压\n
-        $cv$ : 当前能见度\n
-        $cdp$ : 当前露点\n
-        \n
-        $l$ : 地址\n
-        $lat$ : 纬度\n
-        $lon$ : 经度\n
-        $ut$ : 更新时间\n
-        $d$ : 日期\n
-        $lc$ : 农历\n
-        $w$ : 星期\n
-        $ws$ : 星期（短）\n
-        $dd$ : 每日概览\n
-        $hd$ : 小时概览\n
-        $enter$ : 换行\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \n今日白天天气，明日，……，4天后\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \n今日夜间天气，明日，……，4天后\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \n今日白天温度，明日，……，4天后（℃/℉）\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \n今日夜间温度，明日，……，4天后（℃/℉）\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \n今日白天温度，明日，……，4天后（°）\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \n今日夜间温度，明日，……，4天后（°）\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \n今日白天降水概率，明日，……，4天后（%）\n
-        \n
-        $0np$, $1np$, …, $4np$ : \n今日夜间降水概率，明日，……，4天后（%）\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \n今日白天风况，明日，……，4天后\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \n今日夜间风况，明日，……，4天后\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \n今日日出时间，明日，……，4天后\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \n今日日落时间，明日，……，4天后\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \n今日月出时间，明日，……，4天后\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \n今日月落时间，明日，……，4天后\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \n今日月相，明日，……，4天后\n
-    </string>
+
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : 当天天气\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : 当前温度 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : 当前温度 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : 体感温度（℃/℉）\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : 体感温度（°）\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : 当前降水概率 (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : 当前降水量 (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : 当前风况\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : 当前紫外线\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : 当前湿度\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : 当前气压\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : 当前能见度\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : 当前露点\n</string>
+    <string name="feedback_custom_subtitle_keyword_al">$al$ : 预警\n</string>
+    <string name="feedback_custom_subtitle_keyword_als">$als$ : 预警 (短格式)\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : 地址\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : 纬度\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : 经度\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : 更新时间\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : 日期\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : 农历\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : 星期\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : 星期（短）\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : 每日概览\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : 小时概览\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : 换行\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \n今日白天天气，明日，……，4天后\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \n今日夜间天气，明日，……，4天后\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \n今日白天温度，明日，……，4天后（℃/℉）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \n今日夜间温度，明日，……，4天后（℃/℉）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \n今日白天温度，明日，……，4天后（°）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \n今日夜间温度，明日，……，4天后（°）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \n今日白天降水概率，明日，……，4天后（%）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \n今日夜间降水概率，明日，……，4天后（%）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \n今日白天风况，明日，……，4天后\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \n今日夜间风况，明日，……，4天后\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \n今日日出时间，明日，……，4天后\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \n今日日落时间，明日，……，4天后\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \n今日月出时间，明日，……，4天后\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \n今日月落时间，明日，……，4天后\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \n今日月相，明日，……，4天后\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">天气</string>
     <string name="feedback_live_wallpaper_day_night_type">时间</string>
@@ -329,6 +313,9 @@
     <string name="settings_title_icon_provider">图标风格</string>
     <string name="settings_title_card_display">卡片显示</string>
     <string name="settings_title_card_order">卡片顺序</string>
+    <string name="settings_title_daily_trend_display">每日趋势顺序</string>
+    <string name="settings_title_trend_horizontal_line_switch">趋势图横线</string>
+    <string name="settings_title_exchange_day_night_temp_switch">交换日间夜间温度</string>
     <string name="settings_title_gravity_sensor_switch">重力感应</string>
     <string name="settings_title_list_animation_switch">列表动画</string>
     <string name="settings_title_item_animation_switch">组件动画</string>
@@ -353,6 +340,7 @@
     <string name="settings_title_week_icon_mode">一周天气图标样式</string>
     <string name="settings_title_minimal_icon">Minimal图标</string>
     <string name="settings_title_click_widget_to_refresh">点击小部件时进行刷新</string>
+    <string name="settings_title_widget_config">配置小部件</string>
     <string name="settings_category_notification">通知</string>
     <string name="settings_title_notification">开启天气通知</string>
     <string name="settings_title_notification_style">通知风格</string>

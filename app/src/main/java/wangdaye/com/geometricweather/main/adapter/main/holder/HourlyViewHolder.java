@@ -120,8 +120,14 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
         trendRecyclerView.setHasFixedSize(true);
         trendRecyclerView.setLayoutManager(
-                new TrendHorizontalLinearLayoutManager(context, DisplayUtils.isLandscape(context) ? 7 : 5));
+                new TrendHorizontalLinearLayoutManager(
+                        context,
+                        DisplayUtils.isLandscape(context) ? 7 : 5
+                )
+        );
         trendRecyclerView.setAdapter(trendAdapter);
+        trendRecyclerView.setKeyLineVisibility(
+                SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(weather, (MainTag) tagList.get(0));
 
         List<Minutely> minutelyList = weather.getMinutelyForecast();

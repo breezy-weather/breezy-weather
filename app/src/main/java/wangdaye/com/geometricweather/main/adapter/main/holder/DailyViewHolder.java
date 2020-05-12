@@ -17,6 +17,7 @@ import java.util.TimeZone;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.option.appearance.DailyTrendDisplay;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -80,6 +81,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         if (tagList.size() < 2) {
             tagView.setVisibility(View.GONE);
         } else {
+            tagView.setVisibility(View.VISIBLE);
             int decorCount = tagView.getItemDecorationCount();
             for (int i = 0; i < decorCount; i++) {
                 tagView.removeItemDecorationAt(0);
@@ -104,9 +106,16 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
         trendRecyclerView.setHasFixedSize(true);
         trendRecyclerView.setLayoutManager(
-                new TrendHorizontalLinearLayoutManager(context, DisplayUtils.isLandscape(context) ? 7 : 5));
+                new TrendHorizontalLinearLayoutManager(
+                        context,
+                        DisplayUtils.isLandscape(context) ? 7 : 5
+                )
+        );
         trendRecyclerView.setAdapter(trendAdapter);
-        setTrendAdapterByTag(location.getFormattedId(), weather, location.getTimeZone(), (MainTag) tagList.get(0));
+        trendRecyclerView.setKeyLineVisibility(
+                SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
+        setTrendAdapterByTag(location.getFormattedId(), weather, location.getTimeZone(),
+                (MainTag) tagList.get(0));
     }
 
     private void setTrendAdapterByTag(String formattedId, Weather weather, TimeZone timeZone, MainTag tag) {
@@ -166,13 +175,41 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
     private List<TagAdapter.Tag> getTagList(Weather weather, WeatherSource source) {
         List<TagAdapter.Tag> tagList = new ArrayList<>();
-        tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
-        tagList.add(new MainTag(context.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
-        if (source == WeatherSource.ACCU) {
-            tagList.add(new MainTag(context.getString(R.string.tag_wind), MainTag.Type.WIND));
-            tagList.add(new MainTag(context.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
-            tagList.addAll(getPrecipitationTagList(weather));
+        List<DailyTrendDisplay> displayList
+                = SettingsOptionManager.getInstance(context).getDailyTrendDisplayList();
+        for (DailyTrendDisplay d : displayList) {
+            switch (d) {
+                case TAG_TEMPERATURE:
+                    tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
+                    break;
+
+                case TAG_AIR_QUALITY:
+                    tagList.add(new MainTag(context.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
+                    break;
+
+                case TAG_WIND:
+                    if (source == WeatherSource.ACCU) {
+                        tagList.add(new MainTag(context.getString(R.string.tag_wind), MainTag.Type.WIND));
+                    }
+                    break;
+
+                case TAG_UV_INDEX:
+                    if (source == WeatherSource.ACCU) {
+                        tagList.add(new MainTag(context.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
+                    }
+                    break;
+
+                case TAG_PRECIPITATION:
+                    if (source == WeatherSource.ACCU) {
+                        tagList.addAll(getPrecipitationTagList(weather));
+                    }
+                    break;
+            }
         }
+        if (tagList.size() == 0) {
+            tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
+        }
+
         return tagList;
     }
 

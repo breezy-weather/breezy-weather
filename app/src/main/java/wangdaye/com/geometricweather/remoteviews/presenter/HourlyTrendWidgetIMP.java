@@ -148,7 +148,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             items[i].getTrendItemView().setData(
                     buildTemperatureArrayForItem(temperatures, i),
                     null,
-                    hourly.getTemperature().getShortTemperature(temperatureUnit),
+                    hourly.getTemperature().getShortTemperature(context, temperatureUnit),
                     null,
                     (float) highestTemperature,
                     (float) lowestTemperature,

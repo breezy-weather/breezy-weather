@@ -8,6 +8,7 @@ import androidx.preference.PreferenceManager;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -45,6 +46,36 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         initIconProviderPreference();
 
         // set card display preference in onStart().
+        // set daily trend display preference in onStart().
+
+        // horizontal lines in trend.
+        findPreference(getString(R.string.key_trend_horizontal_line_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setTrendHorizontalLinesEnabled((Boolean) newValue);
+            return true;
+        });
+
+        // exchange day night temperature.
+        Preference exchangeDayNightTemperature = findPreference(getString(R.string.key_exchange_day_night_temp_switch));
+        exchangeDayNightTemperature.setSummary(
+                Temperature.getTrendTemperature(
+                        requireActivity(),
+                        3,
+                        7,
+                        SettingsOptionManager.getInstance(requireActivity()).getTemperatureUnit()
+                )
+        );
+        exchangeDayNightTemperature.setOnPreferenceChangeListener((preference, newValue) -> {
+            getSettingsOptionManager().setExchangeDayNightTempEnabled((Boolean) newValue);
+            preference.setSummary(
+                    Temperature.getTrendTemperature(
+                            requireActivity(),
+                            3,
+                            7,
+                            SettingsOptionManager.getInstance(requireActivity()).getTemperatureUnit()
+                    )
+            );
+            return true;
+        });
 
         // sensor.
         findPreference(getString(R.string.key_gravity_sensor_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
@@ -92,6 +123,17 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         ));
         cardDisplay.setOnPreferenceClickListener(preference -> {
             IntentHelper.startCardDisplayManageActivityForResult(requireActivity(), 0);
+            return true;
+        });
+
+        // daily trend display.
+        Preference dailyTrendDisplay = findPreference(getString(R.string.key_daily_trend_display));
+        dailyTrendDisplay.setSummary(OptionMapper.getDailyTrendDisplaySummary(
+                getActivity(),
+                SettingsOptionManager.getInstance(getActivity()).getDailyTrendDisplayList()
+        ));
+        dailyTrendDisplay.setOnPreferenceClickListener(preference -> {
+            IntentHelper.startDailyTrendDisplayManageActivityForResult(requireActivity(), 1);
             return true;
         });
     }

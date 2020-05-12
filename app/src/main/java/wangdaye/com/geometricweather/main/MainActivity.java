@@ -17,7 +17,6 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -26,8 +25,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
-
-import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -40,6 +37,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.resource.Resource;
+import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.ui.fragment.LocationManageFragment;
@@ -47,7 +45,6 @@ import wangdaye.com.geometricweather.main.layout.MainLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircularSkyWeatherView;
@@ -56,14 +53,12 @@ import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
-import wangdaye.com.geometricweather.ui.widget.InkPageIndicator;
 import wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 import wangdaye.com.geometricweather.utils.manager.ThreadManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
@@ -74,20 +69,10 @@ public class MainActivity extends GeoActivity
         implements SwipeRefreshLayout.OnRefreshListener {
 
     private MainActivityViewModel viewModel;
+    private ActivityMainBinding binding;
 
-    private CoordinatorLayout background;
     @Nullable private LocationManageFragment manageFragment;
-
     private WeatherView weatherView;
-    private AppBarLayout appBar;
-    private Toolbar toolbar;
-
-    private InkPageIndicator indicator;
-
-    private SwipeSwitchLayout switchLayout;
-    private VerticalSwipeRefreshLayout refreshLayout;
-    private VerticalRecyclerView recyclerView;
-
     @Nullable private MainAdapter adapter;
     @Nullable private AnimatorSet recyclerViewAnimator;
 
@@ -134,14 +119,8 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DisplayUtils.setSystemBarStyle(MainActivity.this, getWindow(), true,
-                false, false, true, false);
-
-        if (MainDisplayUtils.isMultiFragmentEnabled(this)) {
-            setContentView(R.layout.activity_main_tablet);
-        } else {
-            setContentView(R.layout.activity_main);
-        }
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // attach weather view.
         switch (SettingsOptionManager.getInstance(this).getUiStyle()) {
@@ -153,7 +132,7 @@ public class MainActivity extends GeoActivity
                 weatherView = new CircularSkyWeatherView(this);
                 break;
         }
-        ((CoordinatorLayout) findViewById(R.id.activity_main_switchView).getParent()).addView(
+        ((CoordinatorLayout) binding.switchLayout.getParent()).addView(
                 (View) weatherView,
                 0,
                 new CoordinatorLayout.LayoutParams(
@@ -161,6 +140,8 @@ public class MainActivity extends GeoActivity
                         ViewGroup.LayoutParams.MATCH_PARENT
                 )
         );
+        weatherView.setSystemBarStyle(MainActivity.this, getWindow(),
+                false, false, true, false);
 
         resetUIUpdateFlag();
         ensureResourceProvider();
@@ -255,7 +236,7 @@ public class MainActivity extends GeoActivity
 
     @Override
     public View getSnackbarContainer() {
-        return background;
+        return binding.background;
     }
 
     // init.
@@ -277,9 +258,9 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint("ClickableViewAccessibility")
     private void initView() {
-        this.background = findViewById(R.id.activity_main_background);
-
         if (MainDisplayUtils.isMultiFragmentEnabled(this)) {
+            binding.locationContainer.setVisibility(View.VISIBLE);
+
             this.manageFragment = new LocationManageFragment();
             manageFragment.setDrawerMode(true);
             manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
@@ -297,12 +278,13 @@ public class MainActivity extends GeoActivity
             getSupportFragmentManager()
                     .beginTransaction()
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .replace(R.id.activity_main_locationContainer, manageFragment)
+                    .replace(R.id.location_container, manageFragment)
                     .commit();
+        } else {
+            binding.locationContainer.setVisibility(View.GONE);
         }
 
-        this.appBar = findViewById(R.id.activity_main_appBar);
-        ViewCompat.setOnApplyWindowInsetsListener(appBar, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.appBar, (v, insets) -> {
             v.setPadding(
                     manageFragment != null ? 0 : insets.getSystemWindowInsetLeft(),
                     insets.getSystemWindowInsetTop(),
@@ -312,10 +294,10 @@ public class MainActivity extends GeoActivity
             return insets;
         });
 
-        this.toolbar = findViewById(R.id.activity_main_toolbar);
-        toolbar.inflateMenu(R.menu.activity_main);
-        toolbar.getMenu().getItem(0).setVisible(!MainDisplayUtils.isMultiFragmentEnabled(this));
-        toolbar.setOnMenuItemClickListener(menuItem -> {
+        binding.toolbar.inflateMenu(R.menu.activity_main);
+        binding.toolbar.getMenu().getItem(0).setVisible(
+                !MainDisplayUtils.isMultiFragmentEnabled(this));
+        binding.toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.action_manage:
                     IntentHelper.startManageActivityForResult(this, MANAGE_ACTIVITY);
@@ -328,15 +310,13 @@ public class MainActivity extends GeoActivity
             return true;
         });
 
-        this.switchLayout = findViewById(R.id.activity_main_switchView);
-        switchLayout.setOnSwitchListener(switchListener);
+        binding.switchLayout.setOnSwitchListener(switchListener);
 
-        this.refreshLayout = findViewById(R.id.activity_main_refreshView);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            refreshLayout.setOnApplyWindowInsetsListener((v, insets) -> {
+            binding.refreshLayout.setOnApplyWindowInsetsListener((v, insets) -> {
                 int startPosition = insets.getSystemWindowInsetTop()
                         + getResources().getDimensionPixelSize(R.dimen.normal_margin);
-                refreshLayout.setProgressViewOffset(
+                binding.refreshLayout.setProgressViewOffset(
                         false,
                         startPosition,
                         (int) (startPosition + 64 * getResources().getDisplayMetrics().density)
@@ -344,13 +324,11 @@ public class MainActivity extends GeoActivity
                 return insets;
             });
         }
+        binding.refreshLayout.setOnRefreshListener(this);
 
-        refreshLayout.setOnRefreshListener(this);
-
-        this.recyclerView = findViewById(R.id.activity_main_recyclerView);
-        recyclerView.setLayoutManager(new MainLayoutManager());
-        recyclerView.setOnTouchListener(indicatorStateListener);
-        ViewCompat.setOnApplyWindowInsetsListener(recyclerView, (v, insets) -> {
+        binding.recyclerView.setLayoutManager(new MainLayoutManager());
+        binding.recyclerView.setOnTouchListener(indicatorStateListener);
+        ViewCompat.setOnApplyWindowInsetsListener(binding.recyclerView, (v, insets) -> {
             v.setPadding(
                     manageFragment != null ? 0 : insets.getSystemWindowInsetLeft(),
                     0,
@@ -360,8 +338,7 @@ public class MainActivity extends GeoActivity
             return insets;
         });
 
-        this.indicator = findViewById(R.id.activity_main_indicator);
-        indicator.setSwitchView(switchLayout);
+        binding.indicator.setSwitchView(binding.switchLayout);
 
         viewModel.getCurrentLocation().observe(this, resource -> {
             boolean updateInBackground = resource.consumeUpdatedInBackground();
@@ -386,18 +363,18 @@ public class MainActivity extends GeoActivity
         });
 
         viewModel.getIndicator().observe(this, resource -> {
-            switchLayout.setEnabled(resource.total > 1);
+            binding.switchLayout.setEnabled(resource.total > 1);
 
-            if (switchLayout.getTotalCount() != resource.total
-                    || switchLayout.getPosition() != resource.index) {
-                switchLayout.setData(resource.index, resource.total);
-                indicator.setSwitchView(switchLayout);
+            if (binding.switchLayout.getTotalCount() != resource.total
+                    || binding.switchLayout.getPosition() != resource.index) {
+                binding.switchLayout.setData(resource.index, resource.total);
+                binding.indicator.setSwitchView(binding.switchLayout);
             }
 
             if (resource.total > 1) {
-                indicator.setVisibility(View.VISIBLE);
+                binding.indicator.setVisibility(View.VISIBLE);
             } else {
-                indicator.setVisibility(View.GONE);
+                binding.indicator.setVisibility(View.GONE);
             }
         });
     }
@@ -448,8 +425,8 @@ public class MainActivity extends GeoActivity
         WeatherViewController.setWeatherCode(
                 weatherView, location.getWeather(), daytime, resourceProvider);
 
-        refreshLayout.setColorSchemeColors(weatherView.getThemeColors(themeManager.isLightTheme())[0]);
-        refreshLayout.setProgressBackgroundColorSchemeColor(themeManager.getRootColor(this));
+        binding.refreshLayout.setColorSchemeColors(weatherView.getThemeColors(themeManager.isLightTheme())[0]);
+        binding.refreshLayout.setProgressBackgroundColorSchemeColor(themeManager.getRootColor(this));
 
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(this).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(this).isItemAnimationEnabled();
@@ -457,7 +434,7 @@ public class MainActivity extends GeoActivity
         if (adapter == null) {
             adapter = new MainAdapter(
                     this, location, resourceProvider, listAnimationEnabled, itemAnimationEnabled);
-            recyclerView.setAdapter(adapter);
+            binding.recyclerView.setAdapter(adapter);
         } else {
             adapter.reset(
                     this, location, resourceProvider, listAnimationEnabled, itemAnimationEnabled);
@@ -465,20 +442,20 @@ public class MainActivity extends GeoActivity
         }
 
         OnScrollListener l = new OnScrollListener();
-        recyclerView.clearOnScrollListeners();
-        recyclerView.addOnScrollListener(l);
-        recyclerView.post(() -> l.onScrolled(recyclerView, 0, 0));
+        binding.recyclerView.clearOnScrollListeners();
+        binding.recyclerView.addOnScrollListener(l);
+        binding.recyclerView.post(() -> l.onScrolled(binding.recyclerView, 0, 0));
 
-        indicator.setCurrentIndicatorColor(themeManager.getAccentColor(this));
-        indicator.setIndicatorColor(themeManager.getTextSubtitleColor(this));
+        binding.indicator.setCurrentIndicatorColor(themeManager.getAccentColor(this));
+        binding.indicator.setIndicatorColor(themeManager.getTextSubtitleColor(this));
 
         if (!listAnimationEnabled) {
-            recyclerView.setAlpha(0f);
+            binding.recyclerView.setAlpha(0f);
             recyclerViewAnimator = new AnimatorSet();
             recyclerViewAnimator.playTogether(
-                    ObjectAnimator.ofFloat(recyclerView, "alpha", 0f, 1f),
+                    ObjectAnimator.ofFloat(binding.recyclerView, "alpha", 0f, 1f),
                     ObjectAnimator.ofFloat(
-                            recyclerView,
+                            binding.recyclerView,
                             "translationY",
                             DisplayUtils.dpToPx(this, 40), 0f
                     )
@@ -498,15 +475,17 @@ public class MainActivity extends GeoActivity
                 && location.getWeather() == null) {
             WeatherViewController.setWeatherCode(
                     weatherView, null, themeManager.isLightTheme(), resourceProvider);
-            refreshLayout.setColorSchemeColors(weatherView.getThemeColors(themeManager.isLightTheme())[0]);
-            refreshLayout.setProgressBackgroundColorSchemeColor(themeManager.getRootColor(this));
+            binding.refreshLayout.setColorSchemeColors(
+                    weatherView.getThemeColors(themeManager.isLightTheme())[0]);
+            binding.refreshLayout.setProgressBackgroundColorSchemeColor(
+                    themeManager.getRootColor(this));
         }
         weatherView.setGravitySensorEnabled(
                 SettingsOptionManager.getInstance(this).isGravitySensorEnabled());
 
-        toolbar.setTitle(location.getCityName(this));
+        binding.toolbar.setTitle(location.getCityName(this));
 
-        switchLayout.reset();
+        binding.switchLayout.reset();
 
         if (recyclerViewAnimator != null) {
             recyclerViewAnimator.cancel();
@@ -549,7 +528,7 @@ public class MainActivity extends GeoActivity
     }
 
     private void setRefreshing(final boolean b) {
-        refreshLayout.post(() -> refreshLayout.setRefreshing(b));
+        binding.refreshLayout.post(() -> binding.refreshLayout.setRefreshing(b));
     }
 
     private void refreshBackgroundViews(boolean resetBackground, List<Location> locationList,
@@ -591,12 +570,12 @@ public class MainActivity extends GeoActivity
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_MOVE:
-                    indicator.setDisplayState(true);
+                    binding.indicator.setDisplayState(true);
                     break;
 
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
-                    indicator.setDisplayState(false);
+                    binding.indicator.setDisplayState(false);
                     break;
             }
             return false;
@@ -614,7 +593,7 @@ public class MainActivity extends GeoActivity
 
         @Override
         public void onSwipeProgressChanged(int swipeDirection, float progress) {
-            indicator.setDisplayState(progress != 0);
+            binding.indicator.setDisplayState(progress != 0);
 
             indexSwitched = false;
 
@@ -629,7 +608,7 @@ public class MainActivity extends GeoActivity
             }
 
             if (indexSwitched) {
-                toolbar.setTitle(location.getCityName(MainActivity.this));
+                binding.toolbar.setTitle(location.getCityName(MainActivity.this));
                 if (location.getWeather() != null) {
                     WeatherViewController.setWeatherCode(
                             weatherView,
@@ -646,7 +625,7 @@ public class MainActivity extends GeoActivity
             if (doSwitch) {
                 resetUIUpdateFlag();
 
-                indicator.setDisplayState(false);
+                binding.indicator.setDisplayState(false);
                 viewModel.setLocation(
                         MainActivity.this,
                         swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
@@ -705,23 +684,23 @@ public class MainActivity extends GeoActivity
             // set translation y of toolbar.
             if (adapter != null && firstCardMarginTop > 0) {
                 if (firstCardMarginTop
-                        >= appBar.getMeasuredHeight() + adapter.getCurrentTemperatureTextHeight(recyclerView)) {
+                        >= binding.appBar.getMeasuredHeight() + adapter.getCurrentTemperatureTextHeight(recyclerView)) {
                     if (scrollY < firstCardMarginTop
-                            - appBar.getMeasuredHeight()
+                            - binding.appBar.getMeasuredHeight()
                             - adapter.getCurrentTemperatureTextHeight(recyclerView)) {
-                        appBar.setTranslationY(0);
-                    } else if (scrollY > firstCardMarginTop - appBar.getY()) {
-                        appBar.setTranslationY(-appBar.getMeasuredHeight());
+                        binding.appBar.setTranslationY(0);
+                    } else if (scrollY > firstCardMarginTop - binding.appBar.getY()) {
+                        binding.appBar.setTranslationY(-binding.appBar.getMeasuredHeight());
                     } else {
-                        appBar.setTranslationY(
+                        binding.appBar.setTranslationY(
                                 firstCardMarginTop
                                         - adapter.getCurrentTemperatureTextHeight(recyclerView)
                                         - scrollY
-                                        - appBar.getMeasuredHeight()
+                                        - binding.appBar.getMeasuredHeight()
                         );
                     }
                 } else {
-                    appBar.setTranslationY(-scrollY);
+                    binding.appBar.setTranslationY(-scrollY);
                 }
             }
 
@@ -738,7 +717,7 @@ public class MainActivity extends GeoActivity
             }
 
             if (topChanged) {
-                DisplayUtils.setSystemBarColor(MainActivity.this, getWindow(), true,
+                weatherView.setSystemBarColor(MainActivity.this, getWindow(),
                         topOverlap, false, true, false);
             }
         }

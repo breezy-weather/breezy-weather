@@ -168,64 +168,45 @@
     <string name="feedback_text_size">Размер текста</string>
     <string name="feedback_clock_font">Шрифт чаcов</string>
     <string name="feedback_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.\n\nНапример, \"погода сейчас = $cw$\" будет показана как \"Погода сейчас = Ясный День\".</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : Погода сейчас\n
-        $ct$ : Текущая температура (℃/℉)\n
-        $ctd$ : Текущая температура (°)\n
-        $at$ : Ощущается как (℃/℉)\n
-        $atd$ : Ощущается как (°)\n
-        $cpb$ : Вероятность осадков (%)\n
-        $cp$ : Вероятность осадков (mm/L/m²)\n
-        $cwd$ : Ветер\n
-        $cuv$ : УФ-индекс\n
-        $ch$ : Влажность\n
-        $cps$ : Давление\n
-        $cv$ : Видимость\n
-        $cdp$ : Точка росы\n
-        \n
-        $l$ : Местоположение\n
-        $lat$ : Широта\n
-        $lon$ : Долгота\n
-        $ut$ : Время обновления\n
-        $d$ : Дата\n
-        $lc$ : Лунный календарь\n
-        $w$ : Неделя\n
-        $ws$ : Неделя (Кратко)\n
-        $dd$ : Дневной подробный\n
-        $hd$ : Почасовой подробный\n
-        $enter$ : Enter\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \nПогода сегодня днём, завтра, …, на 4 дня\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \nПогода сегодня ночью, завтра, …, на 4 дня\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \nДневная температура сегодня, завтра, …, на 4 дня (℃/℉)\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \nНочная температура сегодня, завтра, …, на 4 дня (℃/℉)\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \nДневная температура сегодня, завтра, …, на 4 дня (°)\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \nНочная температура сегодня, завтра, …, на 4 дня (°)\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \nОсадки днём, завтра, …, на 4 дня (%)\n
-        \n
-        $0np$, $1np$, …, $4np$ : \nОсадки ночью, завтра, …, на 4 дня (%)\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \nВетер днём, завтра, …, на 4 дня\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \nВетер ночью, завтра, …, 4 на 4 дня\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \nВосход, завтра, …, на 4 дня\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \nЗакат, завтра, …, на 4 дня\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \nВосход Луны, …, на 4 дня\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \nЗакат Луны, завтра, …, на 4 дня\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \nФаза Луны, завтра, …, на 4 дня\n
-    </string>
+
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Погода сейчас\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Текущая температура (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Текущая температура (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Ощущается как (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Ощущается как (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Вероятность осадков (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Вероятность осадков (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Ветер\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : УФ-индекс\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Влажность\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Давление\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Видимость\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Точка росы\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : Местоположение\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Широта\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Долгота\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Время обновления\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : Дата\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Лунный календарь\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : Неделя\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Неделя (Кратко)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Дневной подробный\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Почасовой подробный\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nПогода сегодня днём, завтра, …, на 4 дня\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nПогода сегодня ночью, завтра, …, на 4 дня\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nДневная температура сегодня, завтра, …, на 4 дня (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nНочная температура сегодня, завтра, …, на 4 дня (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nДневная температура сегодня, завтра, …, на 4 дня (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nНочная температура сегодня, завтра, …, на 4 дня (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nОсадки днём, завтра, …, на 4 дня (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nОсадки ночью, завтра, …, на 4 дня (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nВетер днём, завтра, …, на 4 дня\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nВетер ночью, завтра, …, 4 на 4 дня\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nВосход, завтра, …, на 4 дня\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nЗакат, завтра, …, на 4 дня\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nВосход Луны, …, на 4 дня\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nЗакат Луны, завтра, …, на 4 дня\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nФаза Луны, завтра, …, на 4 дня\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">Погода</string>
     <string name="feedback_live_wallpaper_day_night_type">Время</string>

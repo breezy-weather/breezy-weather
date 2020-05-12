@@ -112,6 +112,61 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 
+        <Preference
+            android:title="@string/widget_day"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_day" />
+
+        <Preference
+            android:title="@string/widget_week"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_week" />
+
+        <Preference
+            android:title="@string/widget_day_week"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_day_week" />
+
+        <Preference
+            android:title="@string/widget_clock_day_horizontal"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_clock_day_horizontal" />
+
+        <Preference
+            android:title="@string/widget_clock_day_details"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_clock_day_details" />
+
+        <Preference
+            android:title="@string/widget_clock_day_vertical"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_clock_day_vertical" />
+
+        <Preference
+            android:title="@string/widget_clock_day_week"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_clock_day_week" />
+
+        <Preference
+            android:title="@string/widget_text"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_text" />
+
+        <Preference
+            android:title="@string/widget_trend_daily"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_trend_daily" />
+
+        <Preference
+            android:title="@string/widget_trend_hourly"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_trend_hourly" />
+
+        <Preference
+            android:title="@string/widget_multi_city"
+            android:summary="@string/settings_title_widget_config"
+            android:key="@string/key_widget_multi_city" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

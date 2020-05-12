@@ -1,8 +1,10 @@
 package wangdaye.com.geometricweather.basic.model.option.unit;
 
 import android.content.Context;
+import android.text.BidiFormatter;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public enum DurationUnit {
 
@@ -23,7 +25,13 @@ public enum DurationUnit {
     }
 
     public String getDurationText(Context context, float h) {
-        return UnitUtils.formatFloat(h * unitFactor, 1)
-                + context.getResources().getStringArray(R.array.duration_units)[unitArrayIndex];
+        if (DisplayUtils.isRtl(context)) {
+            return BidiFormatter.getInstance().unicodeWrap(
+                    UnitUtils.formatFloat(h * unitFactor, 1)
+            ) + context.getResources().getStringArray(R.array.duration_units)[unitArrayIndex];
+        } else {
+            return UnitUtils.formatFloat(h * unitFactor, 1)
+                    + context.getResources().getStringArray(R.array.duration_units)[unitArrayIndex];
+        }
     }
 }

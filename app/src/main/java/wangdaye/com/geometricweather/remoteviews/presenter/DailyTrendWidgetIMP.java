@@ -170,8 +170,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             items[i].getTrendItemView().setData(
                     buildTemperatureArrayForItem(daytimeTemperatures, i),
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
-                    daily.day().getTemperature().getShortTemperature(temperatureUnit),
-                    daily.night().getTemperature().getShortTemperature(temperatureUnit),
+                    daily.day().getTemperature().getShortTemperature(context, temperatureUnit),
+                    daily.night().getTemperature().getShortTemperature(context, temperatureUnit),
                     (float) highestTemperature,
                     (float) lowestTemperature,
                     p < 5 ? null : p,

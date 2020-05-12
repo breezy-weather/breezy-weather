@@ -6,6 +6,7 @@ import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.BidiFormatter;
 import android.util.AttributeSet;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
@@ -78,7 +79,7 @@ public class NumberAnimTextView extends TextView {
             start();
         } else {
             // 数字不合法　直接调用　setText　设置最终值
-            setText(mPrefixString + numberEnd + mPostfixString);
+            setText(mPrefixString + BidiFormatter.getInstance().unicodeWrap(numberEnd) + mPostfixString);
         }
     }
 
@@ -128,17 +129,19 @@ public class NumberAnimTextView extends TextView {
             setText(mPrefixString + format(new BigDecimal(mNumEnd)) + mPostfixString);
             return;
         }
+        BidiFormatter f = BidiFormatter.getInstance();
+
         animator = ValueAnimator.ofObject(new BigDecimalEvaluator(), new BigDecimal(mNumStart), new BigDecimal(mNumEnd));
         animator.setDuration(mDuration);
         animator.setInterpolator(new DecelerateInterpolator(3f));
         animator.addUpdateListener(valueAnimator -> {
             BigDecimal value = (BigDecimal) valueAnimator.getAnimatedValue();
-            setText(mPrefixString + format(value) + mPostfixString);
+            setText(mPrefixString + f.unicodeWrap(format(value)) + mPostfixString);
         });
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                setText(mPrefixString + mNumEnd + mPostfixString);
+                setText(mPrefixString + f.unicodeWrap(mNumEnd) + mPostfixString);
             }
         });
         animator.start();

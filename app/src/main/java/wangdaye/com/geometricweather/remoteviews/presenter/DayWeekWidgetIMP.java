@@ -111,23 +111,23 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setTextViewText(
                 R.id.widget_day_week_temp_1,
-                getTemp(weather, 0, temperatureUnit)
+                getTemp(context, weather, 0, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_temp_2,
-                getTemp(weather, 1, temperatureUnit)
+                getTemp(context, weather, 1, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_temp_3,
-                getTemp(weather, 2, temperatureUnit)
+                getTemp(context, weather, 2, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_temp_4,
-                getTemp(weather, 3, temperatureUnit)
+                getTemp(context, weather, 3, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_temp_5,
-                getTemp(weather, 4, temperatureUnit)
+                getTemp(context, weather, 4, temperatureUnit)
         );
 
         boolean weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime);
@@ -257,7 +257,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         );
         views.setTextViewText(
                 R.id.widget_day_week_subtitle,
-                getSubtitleText(weather, viewStyle, temperatureUnit)
+                getSubtitleText(context, weather, viewStyle, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_day_week_time,
@@ -300,28 +300,30 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         }
         switch (viewStyle) {
             case "rectangle":
-                return WidgetUtils.buildWidgetDayStyleText(weather, unit)[0];
+                return WidgetUtils.buildWidgetDayStyleText(context, weather, unit)[0];
 
             case "symmetry":
                 return location.getCityName(context)
                         + "\n"
-                        + weather.getCurrent().getTemperature().getTemperature(unit);
+                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
 
             case "tile":
                 return weather.getCurrent().getWeatherText()
                         + " "
-                        + weather.getCurrent().getTemperature().getTemperature(unit);
+                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
         }
         return "";
     }
 
-    private static String getSubtitleText(Weather weather, String viewStyle, TemperatureUnit unit) {
+    private static String getSubtitleText(Context context, Weather weather, String viewStyle,
+                                          TemperatureUnit unit) {
         switch (viewStyle) {
             case "rectangle":
-                return WidgetUtils.buildWidgetDayStyleText(weather, unit)[1];
+                return WidgetUtils.buildWidgetDayStyleText(context, weather, unit)[1];
 
             case "tile":
                 return Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                         unit
@@ -329,6 +331,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "symmetry":
                 return weather.getCurrent().getWeatherText() + "\n" + Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                         unit
@@ -404,13 +407,14 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "sensible_time":
                 return context.getString(R.string.feels_like) + " "
-                        + weather.getCurrent().getTemperature().getShortRealFeeTemperature(unit);
+                        + weather.getCurrent().getTemperature().getShortRealFeeTemperature(context, unit);
         }
         return getCustomSubtitle(context, subtitleData, location, weather);
     }
 
-    private static String getTemp(Weather weather, int index, TemperatureUnit unit) {
+    private static String getTemp(Context context, Weather weather, int index, TemperatureUnit unit) {
         return Temperature.getTrendTemperature(
+                context,
                 weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
                 weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
                 unit

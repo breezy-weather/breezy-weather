@@ -143,7 +143,10 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_water,
                             context.getString(R.string.dew_point),
-                            settings.getTemperatureUnit().getTemperatureText(weather.getCurrent().getDewPoint())
+                            settings.getTemperatureUnit().getTemperatureText(
+                                    context,
+                                    weather.getCurrent().getDewPoint()
+                            )
                     )
             );
         }
@@ -153,7 +156,9 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_cloud,
                             context.getString(R.string.cloud_cover),
-                            CloudCoverUnit.PERCENT.getCloudCoverText(weather.getCurrent().getCloudCover())
+                            CloudCoverUnit.PERCENT.getCloudCoverText(
+                                    weather.getCurrent().getCloudCover()
+                            )
                     )
             );
         }
@@ -163,7 +168,10 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_top,
                             context.getString(R.string.ceiling),
-                            settings.getDistanceUnit().getDistanceText(context, weather.getCurrent().getCeiling())
+                            settings.getDistanceUnit().getDistanceText(
+                                    context,
+                                    weather.getCurrent().getCeiling()
+                            )
                     )
             );
         }

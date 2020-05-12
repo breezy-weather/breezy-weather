@@ -6,6 +6,7 @@ import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -35,6 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputEditText;
@@ -47,6 +49,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -110,12 +113,15 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected String[] clockFonts;
     protected String[] clockFontValues;
 
+    private long lastBackPressedTime = -1;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_widget_config);
 
         initData();
+        readConfig();
         initView();
         updateHostView();
 
@@ -128,6 +134,23 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         } else {
             weatherHelper.requestWeather(this, locationNow, this);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            setBottomSheetState(true);
+            return;
+        }
+
+        long time = System.currentTimeMillis();
+        if (time - lastBackPressedTime < 2000) {
+            super.onBackPressed();
+            return;
+        }
+
+        lastBackPressedTime = time;
+        SnackbarUtils.showSnackbar(this, getString(R.string.feedback_click_again_to_exit));
     }
 
     @Override
@@ -221,6 +244,18 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.clockFontValues = res.getStringArray(R.array.clock_font_values);
     }
 
+    private void readConfig() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getSharedPreferencesName(), MODE_PRIVATE);
+        viewTypeValueNow = sharedPreferences.getString(getString(R.string.key_view_type), viewTypeValueNow);
+        cardStyleValueNow = sharedPreferences.getString(getString(R.string.key_card_style), cardStyleValueNow);
+        cardAlpha = sharedPreferences.getInt(getString(R.string.key_card_alpha), cardAlpha);
+        hideSubtitle = sharedPreferences.getBoolean(getString(R.string.key_hide_subtitle), hideSubtitle);
+        subtitleDataValueNow = sharedPreferences.getString(getString(R.string.key_subtitle_data), subtitleDataValueNow);
+        textColorValueNow = sharedPreferences.getString(getString(R.string.key_text_color), textColorValueNow);
+        textSize = sharedPreferences.getInt(getString(R.string.key_text_size), textSize);
+        clockFontValueNow = sharedPreferences.getString(getString(R.string.key_clock_font), clockFontValueNow);
+    }
+
     @CallSuper
     public void initView() {
         this.wallpaper = findViewById(R.id.activity_widget_config_wall);
@@ -254,6 +289,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         AppCompatSpinner viewTypeSpinner = findViewById(R.id.activity_widget_config_styleSpinner);
         viewTypeSpinner.setOnItemSelectedListener(new ViewTypeSpinnerSelectedListener());
         viewTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, viewTypes));
+        viewTypeSpinner.setSelection(indexValue(viewTypeValues, viewTypeValueNow), true);
 
         this.cardStyleContainer = findViewById(R.id.activity_widget_config_showCardContainer);
         AppCompatSpinner cardStyleSpinner = findViewById(R.id.activity_widget_config_showCardSpinner);
@@ -261,6 +297,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         cardStyleSpinner.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, cardStyles)
         );
+        cardStyleSpinner.setSelection(indexValue(cardStyleValues, cardStyleValueNow), true);
 
         this.cardAlphaContainer = findViewById(R.id.activity_widget_config_cardAlphaContainer);
         BubbleSeekBar cardAlphaSeekBar = findViewById(R.id.activity_widget_config_cardAlphaSeekBar);
@@ -275,16 +312,22 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             return array;
         });
         cardAlphaSeekBar.setOnProgressChangedListener(new CardAlphaChangedListener());
+        cardAlphaSeekBar.setProgress(cardAlpha);
 
         this.hideSubtitleContainer = findViewById(R.id.activity_widget_config_hideSubtitleContainer);
         Switch hideSubtitleSwitch = findViewById(R.id.activity_widget_config_hideSubtitleSwitch);
         hideSubtitleSwitch.setOnCheckedChangeListener(new HideSubtitleSwitchCheckListener());
+        hideSubtitleSwitch.setChecked(hideSubtitle);
 
         this.subtitleDataContainer = findViewById(R.id.activity_widget_config_subtitleDataContainer);
         AppCompatSpinner subtitleDataSpinner = findViewById(R.id.activity_widget_config_subtitleDataSpinner);
         subtitleDataSpinner.setOnItemSelectedListener(new SubtitleDataSpinnerSelectedListener());
         subtitleDataSpinner.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, subtitleData)
+        );
+        subtitleDataSpinner.setSelection(
+                indexValue(subtitleDataValues, isCustomSubtitle() ? "custom" : subtitleDataValueNow),
+                true
         );
 
         this.textColorContainer = findViewById(R.id.activity_widget_config_blackTextContainer);
@@ -293,6 +336,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textStyleSpinner.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, textColors)
         );
+        textStyleSpinner.setSelection(indexValue(textColorValues, textColorValueNow), true);
 
         this.textSizeContainer = findViewById(R.id.activity_widget_config_textSizeContainer);
         BubbleSeekBar textSizeSeekBar = findViewById(R.id.activity_widget_config_textSizeSeekBar);
@@ -305,6 +349,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             return array;
         });
         textSizeSeekBar.setOnProgressChangedListener(new TextSizeChangedListener());
+        textSizeSeekBar.setProgress(textSize);
 
         this.clockFontContainer = findViewById(R.id.activity_widget_config_clockFontContainer);
         AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_widget_config_clockFontSpinner);
@@ -312,6 +357,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         clockFontSpinner.setAdapter(
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, clockFonts)
         );
+        clockFontSpinner.setSelection(indexValue(clockFontValues, cardStyleValueNow), true);
 
         Button doneButton = findViewById(R.id.activity_widget_config_doneButton);
         doneButton.setOnClickListener(v -> {
@@ -345,10 +391,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             finish();
         });
 
-        bottomSheetBehavior = BottomSheetBehavior.from(
-                findViewById(R.id.activity_widget_config_custom_subtitle));
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
         bottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView);
 
         subtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout);
@@ -375,10 +417,29 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                 updateHostView();
             }
         });
+        if (isCustomSubtitle()) {
+            subtitleInputter.setText(subtitleDataValueNow);
+        } else {
+            subtitleInputter.setText("");
+        }
+
+        TextView subtitleCustomKeywords = findViewById(R.id.activity_widget_config_custom_subtitle_keywords);
+        subtitleCustomKeywords.setText(getSubtitleCustomKeywords());
 
         LinearLayout scrollContainer = findViewById(R.id.activity_widget_config_scrollContainer);
         scrollContainer.post(() -> scrollContainer.setPaddingRelative(
                 0, 0, 0, subtitleInputLayout.getMeasuredHeight()));
+
+        FitTopSystemBarAppBarLayout bottomSheet = findViewById(R.id.activity_widget_config_custom_subtitle);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        bottomSheet.post(() -> {
+            bottomSheetBehavior.setPeekHeight(
+                    subtitleInputLayout.getMeasuredHeight()
+                            + bottomSheetScrollView.getWindowInsets().bottom
+            );
+            setBottomSheetState(isCustomSubtitle());
+        });
     }
 
     public final void updateHostView() {
@@ -392,6 +453,16 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         widgetContainer.addView(view, params);
     }
 
+    private void setBottomSheetState(boolean visible) {
+        if (visible) {
+            bottomSheetBehavior.setHideable(false);
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        } else {
+            bottomSheetBehavior.setHideable(true);
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        }
+    }
+
     public abstract RemoteViews getRemoteViews();
 
     public Location getLocationNow() {
@@ -399,6 +470,84 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     }
     
     public abstract String getSharedPreferencesName();
+
+    private int indexValue(String[] values, String current) {
+        for (int i = 0; i < values.length; i ++) {
+            if (values[i].equals(current)) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private boolean isCustomSubtitle() {
+        for (String v : subtitleDataValues) {
+            if (!v.equals("custom") && v.equals(subtitleDataValueNow)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private String getSubtitleCustomKeywords() {
+        return getString(R.string.feedback_custom_subtitle_keyword_cw) +
+                getString(R.string.feedback_custom_subtitle_keyword_ct) +
+                getString(R.string.feedback_custom_subtitle_keyword_ctd) +
+                getString(R.string.feedback_custom_subtitle_keyword_at) +
+                getString(R.string.feedback_custom_subtitle_keyword_atd) +
+                getString(R.string.feedback_custom_subtitle_keyword_cpb) +
+                getString(R.string.feedback_custom_subtitle_keyword_cp) +
+                getString(R.string.feedback_custom_subtitle_keyword_cwd) +
+                getString(R.string.feedback_custom_subtitle_keyword_cuv) +
+                getString(R.string.feedback_custom_subtitle_keyword_ch) +
+                getString(R.string.feedback_custom_subtitle_keyword_cps) +
+                getString(R.string.feedback_custom_subtitle_keyword_cv) +
+                getString(R.string.feedback_custom_subtitle_keyword_cdp) +
+                getString(R.string.feedback_custom_subtitle_keyword_al) +
+                getString(R.string.feedback_custom_subtitle_keyword_als) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_l) +
+                getString(R.string.feedback_custom_subtitle_keyword_lat) +
+                getString(R.string.feedback_custom_subtitle_keyword_lon) +
+                getString(R.string.feedback_custom_subtitle_keyword_ut) +
+                getString(R.string.feedback_custom_subtitle_keyword_d) +
+                getString(R.string.feedback_custom_subtitle_keyword_lc) +
+                getString(R.string.feedback_custom_subtitle_keyword_w) +
+                getString(R.string.feedback_custom_subtitle_keyword_ws) +
+                getString(R.string.feedback_custom_subtitle_keyword_dd) +
+                getString(R.string.feedback_custom_subtitle_keyword_hd) +
+                getString(R.string.feedback_custom_subtitle_keyword_enter) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xdw) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xnw) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xdt) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xnt) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xdtd) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xntd) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xdp) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xnp) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xdwd) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xnwd) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xsr) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xss) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xmr) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xms) +
+                "\n" +
+                getString(R.string.feedback_custom_subtitle_keyword_xmp);
+    }
 
     // interface.
 
@@ -515,18 +664,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     private class SubtitleDataSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            if (subtitleDataValues[i].equals("custom")) {
-                bottomSheetBehavior.setPeekHeight(
-                        subtitleInputLayout.getMeasuredHeight() + bottomSheetScrollView.getWindowInsets().bottom,
-                        true
-                );
-                bottomSheetBehavior.setHideable(false);
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            } else {
-                bottomSheetBehavior.setPeekHeight(0);
-                bottomSheetBehavior.setHideable(true);
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-            }
+            setBottomSheetState(subtitleDataValues[i].equals("custom"));
+
             if (!subtitleDataValueNow.equals(subtitleDataValues[i])) {
                 if (subtitleDataValues[i].equals("custom")) {
                     Editable editable = subtitleInputter.getText();

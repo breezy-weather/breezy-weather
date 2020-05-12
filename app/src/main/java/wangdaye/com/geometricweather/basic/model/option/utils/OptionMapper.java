@@ -16,6 +16,7 @@ import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
 import wangdaye.com.geometricweather.basic.model.option.UpdateInterval;
 import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
+import wangdaye.com.geometricweather.basic.model.option.appearance.DailyTrendDisplay;
 import wangdaye.com.geometricweather.basic.model.option.appearance.Language;
 import wangdaye.com.geometricweather.basic.model.option.appearance.UIStyle;
 import wangdaye.com.geometricweather.basic.model.option.provider.LocationProvider;
@@ -293,6 +294,68 @@ public class OptionMapper {
         }
         return builder.toString().replace(",", ", ");
     }
+
+    @NonNull
+    public static List<DailyTrendDisplay> getDailyTrendDisplayList(String value) {
+        if (TextUtils.isEmpty(value)) {
+            return new ArrayList<>();
+        }
+        try {
+            String[] cards = value.split("&");
+
+            List<DailyTrendDisplay> list = new ArrayList<>();
+            for (String card : cards) {
+                switch (card) {
+                    case "temperature":
+                        list.add(DailyTrendDisplay.TAG_TEMPERATURE);
+                        break;
+
+                    case "air_quality":
+                        list.add(DailyTrendDisplay.TAG_AIR_QUALITY);
+                        break;
+
+                    case "wind":
+                        list.add(DailyTrendDisplay.TAG_WIND);
+                        break;
+
+                    case "uv_index":
+                        list.add(DailyTrendDisplay.TAG_UV_INDEX);
+                        break;
+
+                    case "precipitation":
+                        list.add(DailyTrendDisplay.TAG_PRECIPITATION);
+                        break;
+                }
+            }
+            return list;
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @NonNull
+    public static String getDailyTrendDisplayValue(@NonNull List<DailyTrendDisplay> list) {
+        StringBuilder builder = new StringBuilder();
+        for (DailyTrendDisplay v : list) {
+            builder.append("&").append(v.getTagValue());
+        }
+        if (builder.length() > 0 && builder.charAt(0) == '&') {
+            builder.deleteCharAt(0);
+        }
+        return builder.toString();
+    }
+
+    @NonNull
+    public static String getDailyTrendDisplaySummary(Context context, @NonNull List<DailyTrendDisplay> list) {
+        StringBuilder builder = new StringBuilder();
+        for (DailyTrendDisplay v : list) {
+            builder.append(",").append(v.getTagName(context));
+        }
+        if (builder.length() > 0 && builder.charAt(0) == ',') {
+            builder.deleteCharAt(0);
+        }
+        return builder.toString().replace(",", ", ");
+    }
     
     public static Language getLanguage(String value) {
         switch (value) {
@@ -361,6 +424,9 @@ public class OptionMapper {
 
             case "greek":
                 return Language.GREEK;
+
+            case "japanese":
+                return Language.JAPANESE;
 
             default:
                 return Language.FOLLOW_SYSTEM;

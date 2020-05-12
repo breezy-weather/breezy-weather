@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main.adapter.trend;
 
+import android.content.Context;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -67,9 +68,12 @@ public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
 
 class HourlyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter.trend.hourly.HourlyTemperatureAdapter {
 
+    private Context c;
+
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
                                     ResourceProvider provider, TemperatureUnit unit) {
         super(activity, parent, weather, true, provider, unit);
+        this.c = activity;
     }
 
     @Override
@@ -84,11 +88,11 @@ class HourlyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapte
 
     @Override
     protected String getTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getHourlyForecast().get(index).getTemperature().getTemperature(unit);
+        return weather.getHourlyForecast().get(index).getTemperature().getTemperature(c, unit);
     }
 
     @Override
     protected String getShortTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getHourlyForecast().get(index).getTemperature().getShortTemperature(unit);
+        return weather.getHourlyForecast().get(index).getTemperature().getShortTemperature(c, unit);
     }
 }

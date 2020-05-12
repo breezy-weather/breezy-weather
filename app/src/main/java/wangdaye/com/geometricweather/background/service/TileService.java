@@ -76,6 +76,7 @@ public class TileService extends android.service.quicksettings.TileService {
             );
             tile.setLabel(
                     weather.getCurrent().getTemperature().getTemperature(
+                            context,
                             SettingsOptionManager.getInstance(context).getTemperatureUnit())
             );
             tile.setState(Tile.STATE_INACTIVE);

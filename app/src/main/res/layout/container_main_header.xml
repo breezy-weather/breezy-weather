@@ -20,6 +20,7 @@
         android:focusableInTouchMode="true"
         android:focusable="true"
         android:includeFontPadding="false"
+        android:textAlignment="viewStart"
         style="@style/large_title_text"
         tools:text="30°"
         tools:ignore="RelativeOverlap,RtlHardcoded" />

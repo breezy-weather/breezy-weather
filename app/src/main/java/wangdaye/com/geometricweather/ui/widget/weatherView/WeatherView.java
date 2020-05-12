@@ -1,5 +1,8 @@
 package wangdaye.com.geometricweather.ui.widget.weatherView;
 
+import android.content.Context;
+import android.view.Window;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
@@ -68,4 +71,12 @@ public interface WeatherView {
     void setDrawable(boolean drawable);
 
     void setGravitySensorEnabled(boolean enabled);
+
+    void setSystemBarStyle(Context context, Window window,
+                           boolean statusShader, boolean lightStatus,
+                           boolean navigationShader, boolean lightNavigation);
+
+    void setSystemBarColor(Context context, Window window,
+                           boolean statusShader, boolean lightStatus,
+                           boolean navigationShader, boolean lightNavigation);
 }

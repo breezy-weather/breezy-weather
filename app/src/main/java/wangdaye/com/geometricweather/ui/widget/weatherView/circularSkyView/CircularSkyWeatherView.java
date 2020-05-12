@@ -20,6 +20,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
@@ -29,9 +30,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.databinding.ContainerCircularSkyViewBinding;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -49,10 +50,7 @@ public class CircularSkyWeatherView extends FrameLayout
     @ColorInt private int backgroundColor;
     private boolean daytime;
 
-    private WeatherIconControlView controlView;
-    private CircleView circleView;
-    private FrameLayout starContainer;
-    private AnimatableIconView flagIcon;
+    private ContainerCircularSkyViewBinding binding;
 
     @Size(3) private Drawable[] iconDrawables;
     @Size(3) private Animator[] iconAnimators;
@@ -74,7 +72,7 @@ public class CircularSkyWeatherView extends FrameLayout
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
             super.applyTransformation(interpolatedTime, t);
-            starContainer.setAlpha(startAlpha + (endAlpha - startAlpha) * interpolatedTime);
+            binding.starContainer.setAlpha(startAlpha + (endAlpha - startAlpha) * interpolatedTime);
         }
     }
 
@@ -119,30 +117,25 @@ public class CircularSkyWeatherView extends FrameLayout
         this.backgroundColor = getBackgroundColor();
         setBackgroundColor(backgroundColor);
 
+        this.binding = ContainerCircularSkyViewBinding.inflate(LayoutInflater.from(getContext()));
+        /*
         this.controlView = (WeatherIconControlView) LayoutInflater.from(getContext()).inflate(
-                R.layout.container_circular_sky_view, this, false);
-        controlView.setOnWeatherIconChangingListener(this);
-        addView(controlView);
+                R.layout.container_circular_sky_view, this, false);*/
+        binding.controller.setOnWeatherIconChangingListener(this);
+        addView(binding.getRoot());
 
-        this.controlView = findViewById(R.id.container_circular_sky_view_controller);
-
-        this.circleView = findViewById(R.id.container_circular_sky_view_circularSkyView);
-
-        this.starContainer = findViewById(R.id.container_circular_sky_view_starContainer);
         if (daytime) {
-            starContainer.setAlpha(0);
+            binding.starContainer.setAlpha(0);
         } else {
-            starContainer.setAlpha(1);
+            binding.starContainer.setAlpha(1);
         }
-
-        this.flagIcon = findViewById(R.id.container_circular_sky_view_icon);
 
         this.iconDrawables = new Drawable[] {null, null, null};
         this.iconAnimators = new Animator[] {null, null, null};
 
         AppCompatImageView[] starts = new AppCompatImageView[] {
-                findViewById(R.id.container_circular_sky_view_star_1),
-                findViewById(R.id.container_circular_sky_view_star_2)};
+                findViewById(R.id.star_1),
+                findViewById(R.id.star_2)};
         Glide.with(getContext())
                 .load(R.drawable.star_1)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -181,7 +174,8 @@ public class CircularSkyWeatherView extends FrameLayout
                 )
         );
 
-        this.firstCardMarginTop = (int) (circleView.getMeasuredHeight() - DisplayUtils.dpToPx(getContext(), 28));
+        this.firstCardMarginTop = (int) (
+                binding.circularSky.getMeasuredHeight() - DisplayUtils.dpToPx(getContext(), 28));
     }
 
     @Override
@@ -196,7 +190,7 @@ public class CircularSkyWeatherView extends FrameLayout
      * @return Return true whether execute switch animation.
      * */
     public boolean showCircles() {
-        if (circleView.showCircle(daytime)) {
+        if (binding.circularSky.showCircle(daytime)) {
             changeStarAlPha();
             return true;
         }
@@ -204,11 +198,12 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     private void changeStarAlPha() {
-        starContainer.clearAnimation();
+        binding.starContainer.clearAnimation();
 
-        StarAlphaAnimation animation = new StarAlphaAnimation(starContainer.getAlpha(), daytime ? 0 : 1);
+        StarAlphaAnimation animation = new StarAlphaAnimation(
+                binding.starContainer.getAlpha(), daytime ? 0 : 1);
         animation.setDuration(500);
-        starContainer.startAnimation(animation);
+        binding.starContainer.startAnimation(animation);
     }
 
     // interface.
@@ -234,7 +229,7 @@ public class CircularSkyWeatherView extends FrameLayout
         iconDrawables = ResourceHelper.getWeatherIcons(provider, weatherCode, daytime);
         iconAnimators = ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime);
 
-        controlView.showWeatherIcon();
+        binding.controller.showWeatherIcon();
 
         int newColor = getBackgroundColor();
         if (showCircles() || newColor != backgroundColor) {
@@ -259,14 +254,14 @@ public class CircularSkyWeatherView extends FrameLayout
 
     @Override
     public void onClick() {
-        circleView.touchCircle();
-        flagIcon.startAnimators();
+        binding.circularSky.touchCircle();
+        binding.icon.startAnimators();
     }
 
     @Override
     public void onScroll(int scrollY) {
-        controlView.setTranslationY(
-                -circleView.getMeasuredHeight()
+        binding.controller.setTranslationY(
+                -binding.circularSky.getMeasuredHeight()
                         * Math.min(1f, 1f * scrollY / firstCardMarginTop)
         );
     }
@@ -316,8 +311,24 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     @Override
+    public void setSystemBarStyle(Context context, Window window,
+                                  boolean statusShader, boolean lightStatus,
+                                  boolean navigationShader, boolean lightNavigation) {
+        DisplayUtils.setSystemBarStyle(context, window, true,
+                statusShader, lightNavigation, navigationShader, lightNavigation);
+    }
+
+    @Override
+    public void setSystemBarColor(Context context, Window window,
+                                  boolean statusShader, boolean lightStatus,
+                                  boolean navigationShader, boolean lightNavigation) {
+        DisplayUtils.setSystemBarColor(context, window, true,
+                statusShader, lightNavigation, navigationShader, lightNavigation);
+    }
+
+    @Override
     public void OnWeatherIconChanging() {
-        flagIcon.setAnimatableIcon(iconDrawables, iconAnimators);
-        flagIcon.startAnimators();
+        binding.icon.setAnimatableIcon(iconDrawables, iconAnimators);
+        binding.icon.startAnimators();
     }
 }

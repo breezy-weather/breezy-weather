@@ -146,7 +146,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
         );
         views.setTextViewText(
                 R.id.widget_clock_day_subtitle,
-                getSubtitleText(weather, viewStyle, temperatureUnit)
+                getSubtitleText(context, weather, viewStyle, temperatureUnit)
         );
         views.setTextViewText(
                 R.id.widget_clock_day_time,
@@ -262,18 +262,18 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
         }
         switch (viewStyle) {
             case "rectangle":
-                return WidgetUtils.buildWidgetDayStyleText(weather, unit)[0];
+                return WidgetUtils.buildWidgetDayStyleText(context, weather, unit)[0];
 
             case "symmetry":
                 return location.getCityName(context)
                         + "\n"
-                        + weather.getCurrent().getTemperature().getTemperature(unit);
+                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
 
             case "vertical":
             case "tile":
                 return weather.getCurrent().getWeatherText()
                         + " "
-                        + weather.getCurrent().getTemperature().getTemperature(unit);
+                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
 
             case "mini":
                 return weather.getCurrent().getWeatherText();
@@ -281,13 +281,15 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
         return "";
     }
 
-    private static String getSubtitleText(Weather weather, String viewStyle, TemperatureUnit unit) {
+    private static String getSubtitleText(Context context, Weather weather, String viewStyle,
+                                          TemperatureUnit unit) {
         switch (viewStyle) {
             case "rectangle":
-                return WidgetUtils.buildWidgetDayStyleText(weather, unit)[1];
+                return WidgetUtils.buildWidgetDayStyleText(context, weather, unit)[1];
 
             case "symmetry":
                 return weather.getCurrent().getWeatherText() + "\n" + Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                         unit
@@ -295,13 +297,14 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "tile":
                 return Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                         unit
                 );
 
             case "mini":
-                return weather.getCurrent().getTemperature().getTemperature(unit);
+                return weather.getCurrent().getTemperature().getTemperature(context, unit);
         }
         return "";
     }
@@ -372,7 +375,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
             case "sensible_time":
                 return context.getString(R.string.feels_like)
                         + " "
-                        + weather.getCurrent().getTemperature().getRealFeelTemperature(unit);
+                        + weather.getCurrent().getTemperature().getRealFeelTemperature(context, unit);
         }
         return getCustomSubtitle(context, subtitleData, location, weather);
     }

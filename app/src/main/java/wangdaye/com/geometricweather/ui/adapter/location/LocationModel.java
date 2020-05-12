@@ -54,7 +54,7 @@ public class LocationModel {
                 : location.getCityName(context));
         if (location.getWeather() != null) {
             builder.append(", ").append(
-                    location.getWeather().getCurrent().getTemperature().getTemperature(unit)
+                    location.getWeather().getCurrent().getTemperature().getTemperature(context, unit)
             );
         }
         title = builder.toString();

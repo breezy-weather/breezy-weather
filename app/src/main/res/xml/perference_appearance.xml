@@ -18,6 +18,22 @@
         android:title="@string/settings_title_card_display"
         android:key="@string/key_card_display" />
 
+    <Preference
+        android:title="@string/settings_title_daily_trend_display"
+        android:key="@string/key_daily_trend_display" />
+
+    <CheckBoxPreference
+        android:title="@string/settings_title_trend_horizontal_line_switch"
+        android:key="@string/key_trend_horizontal_line_switch"
+        android:summaryOn="@string/on"
+        android:summaryOff="@string/off"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:title="@string/settings_title_exchange_day_night_temp_switch"
+        android:key="@string/key_exchange_day_night_temp_switch"
+        android:defaultValue="false" />
+
     <CheckBoxPreference
         android:title="@string/settings_title_gravity_sensor_switch"
         android:key="@string/key_gravity_sensor_switch"

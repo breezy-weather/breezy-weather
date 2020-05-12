@@ -50,7 +50,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
             dailyItem.setChartItemView(polylineAndHistogramView);
         }
 
-        @SuppressLint("SetTextI18n, InflateParams")
+        @SuppressLint({"SetTextI18n, InflateParams", "DefaultLocale"})
         void onBindView(int position) {
             Context context = itemView.getContext();
             Daily daily = weather.getDailyForecast().get(position);
@@ -74,7 +74,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
                     null, null,
                     null, null,
                     (float) (index == null ? 0 : index),
-                    String.valueOf(index == null ? 0 : index),
+                    String.format("%d", index == null ? 0 : index),
                     (float) highestIndex,
                     0f
             );

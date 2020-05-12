@@ -144,6 +144,16 @@
         <item>°ف</item>
         <item>ك</item>
     </string-array>
+    <string-array name="temperature_units_short">
+        <item>°</item>
+        <item>°</item>
+        <item>ك</item>
+    </string-array>
+    <string-array name="temperature_units_long">
+        <item>°م</item>
+        <item>°ف</item>
+        <item>ك</item>
+    </string-array>
 
     <!-- distance unit. -->
     <string-array name="distance_units">
@@ -163,6 +173,11 @@
         <item>ملي متر زئبق</item>
         <item>بوصة من الزئبق</item>
         <item>كغم قوة/سم²</item>
+    </string-array>
+
+    <!-- pollen unit. -->
+    <string-array name="pollen_units">
+        <item>/m³</item>
     </string-array>
 
 </resources>

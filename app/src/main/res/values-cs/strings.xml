@@ -27,7 +27,7 @@
     <string name="wind_level">Síla větru</string>
     <string name="sensible_temp">Znatelná teplota</string>
     <string name="humidity">Vlhkost vzduchu</string>
-    <string name="uv_index">UV index</string>
+    <string name="uv_index">UV záření</string>
     <string name="hours_of_sun">Doba slunce</string>
     <string name="forecast">Předpověď</string>
     <string name="briefings">Instrukce</string>
@@ -102,11 +102,11 @@
 
     <string name="phase_new">Nový měsíc</string>
     <string name="phase_waxing_crescent">Dorustající čtvrtina</string>
-    <string name="phase_first">První čtvrtina</string>
-    <string name="phase_waxing_gibbous">Dorůstající polovina</string>
-    <string name="phase_full">Plný měsíc</string>
-    <string name="phase_waning_gibbous">Ubývající polovina</string>
-    <string name="phase_third">Tři čtvrtiny</string>
+    <string name="phase_first">Dorůstající polovina</string>
+    <string name="phase_waxing_gibbous">Dorůstající tři čtvrtiny</string>
+    <string name="phase_full">Úplněk</string>
+    <string name="phase_waning_gibbous">Ubývající tři čtvrtiny</string>
+    <string name="phase_third">Ubývající polovina</string>
     <string name="phase_waning_crescent">Ubývající čtvrtina</string>
 
     <string name="grass">Seno</string>
@@ -187,64 +187,46 @@
     <string name="feedback_text_size">Velikost písma</string>
     <string name="feedback_clock_font">Font hodin</string>
     <string name="feedback_custom_subtitle_explanation">Můžete napsat cokoliv, ale dávejte si prosím pozor na délku textu. Pokud chcete citovat data o počasí, tak prosím použijte znak $, aby jste odkazovaly na odpovídající klíčová slova.\n\nNa příklad, \"current weather = $cw$\" se ukáže jako \"current weather = Clear Day\".</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : Současné Počasí\n
-        $ct$ : Současná Teplota (℃/℉)\n
-        $ctd$ : Současná Teplota (°)\n
-        $at$ : Zdánlivá Teplota (℃/℉)\n
-        $atd$ : Zdánlivá Teplota (°)\n
-        $cpb$ : Současná Pravděpodobnost Srážek (%)\n
-        $cp$ : Současné Srážky (mm/L/m²)\n
-        $cwd$ : Současný Vítr\n
-        $cuv$ : Současné UV\n
-        $ch$ : Současná Vlhkost\n
-        $cps$ : Současný Tlak\n
-        $cv$ : Současná Viditelnost\n
-        $cdp$ : Současný Rosný Bod\n
-        \n
-        $l$ : Poloha\n
-        $lat$ : Zeměpisná Šířka\n
-        $lon$ : Zeměpisná délka\n
-        $ut$ : Čas Obnovy\n
-        $d$ : Datum\n
-        $lc$ : Lunarní Kalendář\n
-        $w$ : Týden\n
-        $ws$ : Týden (Krátký)\n
-        $dd$ : Popis Dní\n
-        $hd$ : Popis Hodin\n
-        $enter$ : Zadat\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \nDnešní Počasí Přes Den, Tmw, …, O 4 dny později\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \nDnešní Počasí Přes Noc, Tmw, …, O 4 dny později\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \nDnešní Teplota Přes Den, Tmw, …, O 4 dny později (℃/℉)\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \nDnešní Teplota Přes Noc, Tmw, …, O 4 dny později (℃/℉)\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \nDnešní Teplota Přes Den, Tmw, …, O 4 dny později (°)\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \nDnešní Teplota Přes Noc, Tmw, …, O 4 dny později (°)\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \Dnešní Srážky Přes Den, Tmw, …, O 4 dny později (%)\n
-        \n
-        $0np$, $1np$, …, $4np$ : \nDnešní srážky přes Noc, Tmw, …, O 4 dny později (%)\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \nDnešní vítr přes den, Tmw, …, O 4 dny později\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \nDnešní vítr přes noc, Tmw, …, O 4 dny později\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \nDnešní čas východu slunce, Tmw, …, O 4 dny později\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \nDnešní čas západu slunce Tmw, …, O 4 dny později\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \nDnešní čas východu měsíce, Tmw, …, O 4 dny později\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \nDnešní čas západu měsíce, Tmw, …, O 4 dny později\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \nDnešní fáze měsíce, Tmw, …, O 4 dny později\n
-    </string>
+
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Současné Počasí\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Současná Teplota (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Současná Teplota (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Zdánlivá Teplota (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Zdánlivá Teplota (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Současná Pravděpodobnost Srážek (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Současné Srážky (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Současný Vítr\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Současné UV\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Současná Vlhkost\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Současný Tlak\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Současná Viditelnost\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Současný Rosný Bod\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : Poloha\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Zeměpisná Šířka\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Zeměpisná délka\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Čas Obnovy\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : Datum\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Lunarní Kalendář\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : Týden\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Týden (Krátký)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Popis Dní\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Popis Hodin\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Zadat\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nDnešní Počasí Přes Den, Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nDnešní Počasí Přes Noc, Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nDnešní Teplota Přes Den, Tmw, …, O 4 dny později (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nDnešní Teplota Přes Noc, Tmw, …, O 4 dny později (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nDnešní Teplota Přes Den, Tmw, …, O 4 dny později (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nDnešní Teplota Přes Noc, Tmw, …, O 4 dny později (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \Dnešní Srážky Přes Den, Tmw, …, O 4 dny později (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nDnešní srážky přes Noc, Tmw, …, O 4 dny později (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nDnešní vítr přes den, Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nDnešní vítr přes noc, Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nDnešní čas východu slunce, Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nDnešní čas západu slunce Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nDnešní čas východu měsíce, Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nDnešní čas západu měsíce, Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nDnešní fáze měsíce, Tmw, …, O 4 dny později\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">Počasí</string>
     <string name="feedback_live_wallpaper_day_night_type">Čas</string>

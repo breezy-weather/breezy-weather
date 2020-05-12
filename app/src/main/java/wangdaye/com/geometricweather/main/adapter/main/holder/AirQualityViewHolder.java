@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -49,6 +50,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         this.recyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindView(GeoActivity activity, @NonNull Location location,
                            @NonNull ResourceProvider provider,
@@ -70,7 +72,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
         if (itemAnimationEnabled) {
             progress.setProgress(0);
-            progress.setText("0");
+            progress.setText(String.format("%d", 0));
             progress.setProgressColor(
                     ContextCompat.getColor(context, R.color.colorLevel_1),
                     themeManager.isLightTheme()
@@ -79,7 +81,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         } else {
             int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(progress.getContext());
             progress.setProgress(aqiIndex);
-            progress.setText(String.valueOf(aqiIndex));
+            progress.setText(String.format("%d", aqiIndex));
             progress.setProgressColor(aqiColor, themeManager.isLightTheme());
             progress.setArcBackgroundColor(
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
@@ -94,6 +96,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onEnterScreen() {
         if (itemAnimationEnabled && enable && weather != null) {
@@ -119,7 +122,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, aqiIndex);
             aqiNumber.addUpdateListener(animation -> {
                 progress.setProgress((Float) animation.getAnimatedValue());
-                progress.setText(Integer.toString((int) progress.getProgress()));
+                progress.setText(String.format("%d", (int) progress.getProgress()));
             });
 
             attachAnimatorSet = new AnimatorSet();

@@ -91,12 +91,14 @@ public class HourlyWeatherDialog extends DialogFragment {
         PrecipitationUnit precipitationUnit = settings.getPrecipitationUnit();
 
         StringBuilder builder = new StringBuilder(
-                hourly.getWeatherText() + "  " + hourly.getTemperature().getTemperature(temperatureUnit)
+                hourly.getWeatherText()
+                        + "  "
+                        + hourly.getTemperature().getTemperature(requireActivity(), temperatureUnit)
         );
         if (hourly.getTemperature().getRealFeelTemperature() != null) {
             builder.append("\n")
                     .append(getString(R.string.feels_like))
-                    .append(hourly.getTemperature().getRealFeelTemperature(temperatureUnit));
+                    .append(hourly.getTemperature().getRealFeelTemperature(requireActivity(), temperatureUnit));
         }
         if (hourly.getPrecipitation().getTotal() != null) {
             Float p = hourly.getPrecipitation().getTotal();
@@ -111,7 +113,7 @@ public class HourlyWeatherDialog extends DialogFragment {
             builder.append("\n")
                     .append(getString(R.string.precipitation_probability))
                     .append(" : ")
-                    .append(ProbabilityUnit.PERCENT.getProbabilityText(p));
+                    .append(ProbabilityUnit.PERCENT.getProbabilityText(requireActivity(), p));
         }
         weatherText.setText(builder.toString());
     }

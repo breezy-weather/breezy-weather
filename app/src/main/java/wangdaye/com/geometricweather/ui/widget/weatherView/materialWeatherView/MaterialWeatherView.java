@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.OrientationEventListener;
 import android.view.View;
+import android.view.Window;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
@@ -260,8 +261,8 @@ public class MaterialWeatherView extends View implements WeatherView {
         if (implementor != null && rotators != null) {
             canvas.save();
             canvas.translate(
-                    (getMeasuredWidth() - sizes[0]) / 2,
-                    (getMeasuredHeight() - sizes[1]) / 2
+                    (getMeasuredWidth() - sizes[0]) / 2f,
+                    (getMeasuredHeight() - sizes[1]) / 2f
             );
             implementor.draw(
                     sizes, canvas,
@@ -426,5 +427,21 @@ public class MaterialWeatherView extends View implements WeatherView {
     @Override
     public void setGravitySensorEnabled(boolean enabled) {
         this.gravitySensorEnabled = enabled;
+    }
+
+    @Override
+    public void setSystemBarStyle(Context context, Window window,
+                                  boolean statusShader, boolean lightStatus,
+                                  boolean navigationShader, boolean lightNavigation) {
+        DisplayUtils.setSystemBarStyle(context, window, true,
+                statusShader, lightNavigation, navigationShader, lightNavigation);
+    }
+
+    @Override
+    public void setSystemBarColor(Context context, Window window,
+                                  boolean statusShader, boolean lightStatus,
+                                  boolean navigationShader, boolean lightNavigation) {
+        DisplayUtils.setSystemBarColor(context, window, true,
+                statusShader, lightNavigation, navigationShader, lightNavigation);
     }
 }

@@ -17,8 +17,8 @@
     <string name="time">時間</string>
     <string name="day">白天</string>
     <string name="night">夜間</string>
-    <string name="wind">風況</string>
     <string name="temperature">氣溫</string>
+    <string name="wind">風況</string>
     <string name="wind_direction">風向</string>
     <string name="wind_speed">風速</string>
     <string name="wind_level">風力</string>
@@ -33,7 +33,7 @@
     <string name="publish_at">發布於</string>
     <string name="feels_like">體感</string>
     <string name="follow_system">跟隨系統</string>
-    <string name="background_information">後臺信息</string>
+    <string name="background_information">後台信息</string>
     <string name="pressure">氣壓</string>
     <string name="visibility">能見度</string>
     <string name="dew_point">露點</string>
@@ -43,20 +43,20 @@
     <string name="get_more_store">從應用商店獲取更多</string>
     <string name="get_more_github">從GitHub獲取更多</string>
     <string name="refresh">刷新數據</string>
-    <string name="restart">重啓</string>
+    <string name="restart">重啟</string>
     <string name="edit">編輯</string>
 
     <string name="of_clock">時</string>
     <string name="yesterday">昨日</string>
     <string name="tomorrow">明日</string>
-    <string name="week">周</string>
-    <string name="week_1">周一</string>
-    <string name="week_2">周二</string>
-    <string name="week_3">周三</string>
-    <string name="week_4">周四</string>
-    <string name="week_5">周五</string>
-    <string name="week_6">周六</string>
-    <string name="week_7">周日</string>
+    <string name="week">週</string>
+    <string name="week_1">週一</string>
+    <string name="week_2">週二</string>
+    <string name="week_3">週三</string>
+    <string name="week_4">週四</string>
+    <string name="week_5">週五</string>
+    <string name="week_6">週六</string>
+    <string name="week_7">週日</string>
 
     <string name="real_feel_temperature">體感溫度</string>
     <string name="real_feel_shader_temperature">陰面體感</string>
@@ -123,16 +123,16 @@
     <string name="next">下一步</string>
     <string name="done">完成</string>
     <string name="cancel">取消</string>
-    <string name="on">開啓</string>
+    <string name="on">開啟</string>
     <string name="off">關閉</string>
-    <string name="go_to_set">設置</string>
+    <string name="go_to_set">設定</string>
     <string name="help">幫助</string>
     <string name="learn_more">瞭解更多</string>
 
     <string name="about_app">概覽</string>
     <string name="introduce">介紹</string>
     <string name="email">E-mail</string>
-    <string name="donate">捐贈 (支付寶)</string>
+    <string name="donate">捐贈</string>
     <string name="gitHub">GitHub</string>
     <string name="translator">譯者</string>
     <string name="thanks">鳴謝</string>
@@ -160,7 +160,7 @@
     <!-- feedback. -->
     <string name="feedback_request_permission">授權</string>
     <string name="feedback_request_location">位置信息</string>
-    <string name="feedback_request_location_in_background">正在後臺進行定位</string>
+    <string name="feedback_request_location_in_background">正在後台進行定位</string>
     <string name="feedback_request_location_permission_success">獲取位置權限成功</string>
     <string name="feedback_request_location_permission_failed">獲取位置權限失敗</string>
 
@@ -168,7 +168,7 @@
     <string name="feedback_get_weather_failed">獲取天氣數據失敗</string>
     <string name="feedback_location_help_title">無法正常進行定位？</string>
     <string name="feedback_check_location_permission">檢查位置權限</string>
-    <string name="feedback_enable_location_information">開啓位置信息</string>
+    <string name="feedback_enable_location_information">開啟位置信息</string>
     <string name="feedback_select_location_provider">選擇位置信息提供商</string>
     <string name="feedback_add_location_manually">手動添加城市並刪除“$”</string>
 
@@ -180,65 +180,49 @@
     <string name="feedback_black_text">暗色字體</string>
     <string name="feedback_text_size">文字尺寸</string>
     <string name="feedback_clock_font">時鐘字體</string>
-    <string name="feedback_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。\n\n例如：若鍵入\"天氣為$cw$\"，副標題將顯示爲\"天氣為晴\"。</string>
-    <string name="feedback_custom_subtitle_keywords">
-        \n
-        $cw$ : 當天天氣\n
-        $ct$ : 當前溫度 (℃/℉)\n
-        $ctd$ : 當前溫度 (°)\n
-        $at$ : 體感溫度（℃/℉）\n
-        $atd$ : 體感溫度（°）\n
-        $cpb$ : 當前降水概率 (%)\n
-        $cp$ : 當前降水量 (mm/L/m²)\n
-        $cwd$ : 當前風況\n
-        $cuv$ : 當前紫外綫\n
-        $ch$ : 當前濕度\n
-        $cps$ : 當前氣壓\n
-        $cv$ : 當前能見度\n
-        $cdp$ : 當前露點\n
-        \n
-        $l$ : 地址\n
-        $lat$ : 緯度\n
-        $lon$ : 經度\n
-        $ut$ : 更新時間\n
-        $d$ : 日期\n
-        $lc$ : 農曆\n
-        $w$ : 星期\n
-        $ws$ : 星期（短）\n
-        $dd$ : 每日概覽\n
-        $hd$ : 小時概覽\n
-        $enter$ : 回車\n
-        \n
-        $0dw$, $1dw$, …, $4dw$ : \n今日白天天氣，明日，……，4天后\n
-        \n
-        $0nw$, $1nw$, …, $4nw$ : \n今日夜間天氣，明日，……，4天后\n
-        \n
-        $0dt$, $1dt$, …, $4dt$ : \n今日白天溫度，明日，……，4天后（℃/℉）\n
-        \n
-        $0nt$, $1nt$, …, $4nt$ : \n今日夜間溫度，明日，……，4天后（℃/℉）\n
-        \n
-        $0dtd$, $1dtd$, …, $4dtd$ : \n今日白天溫度，明日，……，4天后（°）\n
-        \n
-        $0ntd$, $1ntd$, …, $4ntd$ : \n今日夜間溫度，明日，……，4天后（°）\n
-        \n
-        $0dp$, $1dp$, …, $4dp$ : \n今日白天降水概率，明日，……，4天后（%）\n
-        \n
-        $0np$, $1np$, …, $4np$ : \n今日夜間降水概率，明日，……，4天后（%）\n
-        \n
-        $0dwd$, $1dwd$, …, $4dwd$ : \n今日白天風況，明日，……，4天后\n
-        \n
-        $0nwd$, $1nwd$, …, $4nwd$ : \n今日夜間風況，明日，……，4天后\n
-        \n
-        $0sr$, $1sr$, …, $4sr$ : \n今日日出時間，明日，……，4天后\n
-        \n
-        $0ss$, $1ss$, …, $4ss$ : \n今日日落時間，明日，……，4天后\n
-        \n
-        $0mr$, $1mr$, …, $4mr$ : \n今日月出時間，明日，……，4天后\n
-        \n
-        $0ms$, $1ms$, …, $4ms$ : \n今日月落時間，明日，……，4天后\n
-        \n
-        $0mp$, $1mp$, …, $4mp$ : \n今日月相，明日，……，4天后\n
-    </string>
+    <string name="feedback_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。\n\n例如：若鍵入\"天氣為$cw$\"，副標題將顯示為\"天氣為晴\"。</string>
+
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : 當天天氣\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : 當前溫度 (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : 當前溫度 (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : 體感溫度（℃/℉）\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : 體感溫度（°）\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : 當前降水概率 (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : 當前降水量 (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : 當前風況\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : 當前紫外綫\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : 當前濕度\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : 當前氣壓\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : 當前能見度\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : 當前露點\n</string>
+    <string name="feedback_custom_subtitle_keyword_al">$al$ : 預警\n</string>
+    <string name="feedback_custom_subtitle_keyword_als">$als$ : 預警 (短格式)\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : 地址\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : 緯度\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : 經度\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : 更新時間\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : 日期\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : 農曆\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : 星期\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : 星期（短）\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : 每日概覽\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : 小時概覽\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : 回車\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \n今日白天天氣，明日，……，4天後\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \n今日夜間天氣，明日，……，4天後\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \n今日白天溫度，明日，……，4天後（℃/℉）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \n今日夜間溫度，明日，……，4天後（℃/℉）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \n今日白天溫度，明日，……，4天後（°）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \n今日夜間溫度，明日，……，4天後（°）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \n今日白天降水概率，明日，……，4天後（%）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \n今日夜間降水概率，明日，……，4天後（%）\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \n今日白天風況，明日，……，4天後\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \n今日夜間風況，明日，……，4天後\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \n今日日出時間，明日，……，4天後\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \n今日日落時間，明日，……，4天後\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \n今日月出時間，明日，……，4天後\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \n今日月落時間，明日，……，4天後\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \n今日月相，明日，……，4天後\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">天氣</string>
     <string name="feedback_live_wallpaper_day_night_type">時間</string>
@@ -249,41 +233,41 @@
     <string name="feedback_collect_failed">地址已存在</string>
     <string name="feedback_collect_succeed">收藏成功</string>
     <string name="feedback_delete_succeed">刪除成功</string>
-    <string name="feedback_location_list_cannot_be_null">收藏地質不能爲空</string>
+    <string name="feedback_location_list_cannot_be_null">收藏地質不能留空</string>
 
     <string name="feedback_search_location">鍵入一個地址…</string>
     <string name="feedback_not_yet_location">尚未進行定位…</string>
-    <string name="feedback_search_nothing">搜索結果爲空…</string>
+    <string name="feedback_search_nothing">搜索結果為空…</string>
     <string name="feedback_initializing">初始化中…</string>
 
-    <string name="feedback_refresh_notification_after_back">返回主頁后刷新通知</string>
+    <string name="feedback_refresh_notification_after_back">返回主頁後刷新通知</string>
     <string name="feedback_refresh_notification_now">立即刷新通知</string>
-    <string name="feedback_refresh_ui_after_refresh">下次刷新后生效</string>
-    <string name="feedback_restart">重啓后生效</string>
+    <string name="feedback_refresh_ui_after_refresh">下次刷新後生效</string>
+    <string name="feedback_restart">重啟後生效</string>
     <string name="feedback_readd_location">請重新添加地址</string>
-    <string name="feedback_readd_location_after_changing_source">更換數據源后需重新添加地址</string>
+    <string name="feedback_readd_location_after_changing_source">更換數據源後需重新添加地址</string>
 
-    <string name="feedback_running_in_background">正在後臺運行以保持更新數據</string>
+    <string name="feedback_running_in_background">正在後台運行以保持更新數據</string>
     <string name="feedback_updating_weather_data">正在更新天氣數據</string>
-    <string name="feedback_updated_in_background">已在後臺完成更新</string>
+    <string name="feedback_updated_in_background">已在後台完成更新</string>
 
-    <string name="feedback_interpret_background_notification_content">關閉後臺純净后，部分設備的通知欄中可能會出現一個無法清除的通知</string>
+    <string name="feedback_interpret_background_notification_content">關閉後台純净後，部分設備的通知欄中可能會出現一個無法清除的通知</string>
     <string name="feedback_interpret_notification_group_title">關閉相應通知頻道</string>
-    <string name="feedback_interpret_notification_group_content">關閉後臺純净后，會出現一個標示後臺服務正在運行的通知，你可以在app相關頁面中找到通知設置，在其中關閉“後臺信息”這個頻道來隱藏這個通知</string>
+    <string name="feedback_interpret_notification_group_content">關閉後台純净後，會出現一個標示後台服務正在運行的通知，你可以在app相關頁面中找到通知設定，在其中關閉“後台信息”這個頻道來隱藏這個通知</string>
 
     <string name="feedback_ignore_battery_optimizations_title">忽略電池優化</string>
-    <string name="feedback_ignore_battery_optimizations_content">爲了保證後臺服務能夠持續工作，請為集合天氣選擇忽略電池優化</string>
+    <string name="feedback_ignore_battery_optimizations_content">為了保證後台服務能夠持續工作，請為集合天氣選擇忽略電池優化</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">無法啓動動態壁紙預覽程序</string>
+    <string name="feedback_cannot_start_live_wallpaper_activity">無法啟動動態壁紙預覽程序</string>
 
-    <string name="feedback_unusable_geocoder">本設備不包含有效的地址解析服務，已將位置提供商更改爲百度定位</string>
-    <string name="feedback_about_geocoder">地址解析服務，是一種將Android原生定位結果從經緯度格式轉換至XX省XX市XX區格式的服務組件。若缺少這項服務，在使用原生API作爲位置提供商時，只能通過AccuWeather獲取數據。</string>
+    <string name="feedback_unusable_geocoder">本設備不包含有效的地址解析服務，已將位置提供商更改為百度定位</string>
+    <string name="feedback_about_geocoder">地址解析服務，是一種將Android原生定位結果從經緯度格式轉換至XX省XX市XX區格式的服務組件。若缺少這項服務，在使用原生API作為位置提供商時，只能通過AccuWeather獲取數據。</string>
 
     <string name="feedback_today_precipitation_alert">今日可能出現降水</string>
     <string name="feedback_short_term_precipitation_alert">未來幾小時内可能出現降水</string>
 
-    <string name="feedback_resident_location">設置為常駐城市</string>
-    <string name="feedback_resident_location_description">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。\n例如將家鄉設置爲常駐城市後，可以在旅途中查看家鄉天氣，而在歸家后，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
+    <string name="feedback_resident_location">設定為常駐城市</string>
+    <string name="feedback_resident_location_description">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。\n例如將家鄉設定為常駐城市後，可以在旅途中查看家鄉天氣，而在歸家後，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
 
     <string name="feedback_click_to_get_more">點擊可獲取更多…</string>
 
@@ -291,19 +275,19 @@
     <string name="action_alert">預警</string>
     <string name="action_manage">地址管理</string>
     <string name="action_search">搜索</string>
-    <string name="action_settings">設置</string>
+    <string name="action_settings">設定</string>
     <string name="action_preview">預覽</string>
     <string name="action_about">關於</string>
     <string name="action_appStore">應用商店</string>
 
     <!-- widget -->
     <string name="widget_day">今日</string>
-    <string name="widget_week">一周</string>
-    <string name="widget_day_week">今日 + 一周</string>
+    <string name="widget_week">一週</string>
+    <string name="widget_day_week">今日 + 一週</string>
     <string name="widget_clock_day_horizontal">時鐘 + 今日 (水平排列)</string>
     <string name="widget_clock_day_details">時鐘 + 今日 (詳情)</string>
     <string name="widget_clock_day_vertical">時鐘 + 今日 (垂直排列)</string>
-    <string name="widget_clock_day_week">時鐘 + 今日 + 一周</string>
+    <string name="widget_clock_day_week">時鐘 + 今日 + 一週</string>
     <string name="widget_text">純文字</string>
     <string name="widget_trend_daily">每日趨勢</string>
     <string name="widget_trend_hourly">小時趨勢</string>
@@ -313,11 +297,11 @@
 
     <!-- settings -->
     <string name="settings_category_basic">基礎</string>
-    <string name="settings_title_background_free">後臺純净</string>
-    <string name="settings_summary_background_free_on">開啓\n若小部件和天氣通知無法自動更新，請關閉該選項</string>
-    <string name="settings_summary_background_free_off">關閉\n若不希望任何服務在後臺常駐，請開啓該選項</string>
+    <string name="settings_title_background_free">後台純净</string>
+    <string name="settings_summary_background_free_on">開啟\n若小部件和天氣通知無法自動更新，請關閉該選項</string>
+    <string name="settings_summary_background_free_off">關閉\n若不希望任何服務在後台常駐，請開啟該選項</string>
     <string name="settings_title_live_wallpaper">動態壁紙</string>
-    <string name="settings_summary_live_wallpaper">將Material天氣動畫設置爲動態壁紙</string>
+    <string name="settings_summary_live_wallpaper">將Material天氣動畫設定為動態壁紙</string>
     <string name="settings_title_service_provider">數據提供商</string>
     <string name="settings_summary_service_provider">選擇天氣數據和位置信息的數據提供商</string>
     <string name="settings_title_weather_source">天氣源</string>
@@ -329,34 +313,36 @@
     <string name="settings_title_icon_provider">圖標風格</string>
     <string name="settings_title_card_display">卡片顯示</string>
     <string name="settings_title_card_order">卡片順序</string>
+    <string name="settings_title_trend_horizontal_line_switch">趨勢圖橫綫</string>
+    <string name="settings_title_exchange_day_night_temp_switch">交換日間夜間氣溫</string>
     <string name="settings_title_gravity_sensor_switch">重力感應</string>
     <string name="settings_title_list_animation_switch">列表動畫</string>
     <string name="settings_title_item_animation_switch">組件動畫</string>
-    <string name="settings_title_alert_notification_switch">推送預警通知</string>
-    <string name="settings_title_precipitation_notification_switch">推送降水預報</string>
     <string name="settings_language">語言</string>
     <string name="settings_title_unit">單位</string>
-    <string name="settings_summary_unit">設置天氣數據的單位</string>
+    <string name="settings_summary_unit">設定天氣數據的單位</string>
     <string name="settings_title_temperature_unit">溫度單位</string>
     <string name="settings_title_distance_unit">距離單位</string>
     <string name="settings_title_precipitation_unit">降水單位</string>
     <string name="settings_title_pressure_unit">壓力單位</string>
     <string name="settings_title_speed_unit">速度單位</string>
     <string name="settings_title_refresh_rate">自動刷新頻率</string>
-    <string name="settings_title_permanent_service">後臺服務常駐</string>
+    <string name="settings_title_alert_notification_switch">推送預警通知</string>
+    <string name="settings_title_precipitation_notification_switch">推送降水預報</string>
+    <string name="settings_title_permanent_service">後台服務常駐</string>
     <string name="settings_category_forecast">預報</string>
     <string name="settings_title_forecast_today">定時預報(今日天氣)</string>
     <string name="settings_title_forecast_today_time">設定預報時間(今日天氣)</string>
     <string name="settings_title_forecast_tomorrow">定時預報(明日天氣)</string>
     <string name="settings_title_forecast_tomorrow_time">設定預報時間(明日天氣)</string>
     <string name="settings_category_widget">小部件</string>
-    <string name="settings_title_week_icon_mode">一周天氣圖標樣式</string>
+    <string name="settings_title_week_icon_mode">一週天氣圖標樣式</string>
     <string name="settings_title_minimal_icon">Minimal圖標</string>
     <string name="settings_title_click_widget_to_refresh">點擊小部件時進行刷新</string>
     <string name="settings_category_notification">通知</string>
-    <string name="settings_title_notification">開啓天氣通知</string>
+    <string name="settings_title_notification">開啟天氣通知</string>
     <string name="settings_title_notification_style">通知風格</string>
-    <string name="settings_title_notification_temp_icon">將溫度作爲通知小圖標</string>
+    <string name="settings_title_notification_temp_icon">將溫度作為通知小圖標</string>
     <string name="settings_title_notification_color">通知顔色</string>
     <string name="settings_title_notification_custom_color">自定義通知顔色</string>
     <string name="settings_title_notification_text_color">天氣通知字體顔色</string>
@@ -369,7 +355,7 @@
     <string name="settings_notification_hide_icon_on">隱藏通知圖標</string>
     <string name="settings_notification_hide_icon_off">顯示通知圖標</string>
     <string name="settings_title_notification_hide_in_lockScreen">隱藏鎖屏通知</string>
-    <string name="settings_notification_hide_in_lockScreen_on">在鎖屏界面隱藏(需在系統設置中隱藏敏感通知)</string>
+    <string name="settings_notification_hide_in_lockScreen_on">在鎖屏界面隱藏(需在系統設定中隱藏敏感通知)</string>
     <string name="settings_notification_hide_in_lockScreen_off">在鎖屏界面顯示</string>
     <string name="settings_title_notification_hide_big_view">隱藏大視圖</string>
     <string name="settings_notification_hide_big_view_on">隱藏</string>

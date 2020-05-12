@@ -83,14 +83,14 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                             Math.max(temperatureCFrom, Math.abs(temperatureCTo) / 10f * 1000)
                     )
             );
-            temperature.setPostfixString(unit.getUnitShortAbbreviation());
+            temperature.setPostfixString(unit.getShortAbbreviation(context));
 
             weather.setText(
                     location.getWeather().getCurrent().getWeatherText()
                             + ", "
                             + context.getString(R.string.feels_like)
                             + " "
-                            + location.getWeather().getCurrent().getTemperature().getShortRealFeeTemperature(unit)
+                            + location.getWeather().getCurrent().getTemperature().getShortRealFeeTemperature(context, unit)
             );
 
             if (location.getWeather().getCurrent().getAirQuality().getAqiText() == null) {
@@ -119,12 +119,13 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
         return a;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onEnterScreen() {
         super.onEnterScreen();
         temperature.setNumberString(
-                String.valueOf(unit.getTemperature(temperatureCFrom)),
-                String.valueOf(unit.getTemperature(temperatureCTo))
+                String.format("%d", unit.getTemperature(temperatureCFrom)),
+                String.format("%d", unit.getTemperature(temperatureCTo))
         );
     }
 

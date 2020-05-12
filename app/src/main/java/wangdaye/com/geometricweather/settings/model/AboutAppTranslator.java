@@ -128,6 +128,16 @@ public class AboutAppTranslator {
                 "istrios@gmail.com",
                 R.drawable.flag_el
         ));
+        list.add(new AboutAppTranslator(
+                "이서경",
+                "ng0972@naver.com",
+                R.drawable.flag_ko
+        ));
+        list.add(new AboutAppTranslator(
+                "rikupin1105",
+                "https://github.com/rikupin1105",
+                R.drawable.flag_ja
+        ));
         return list;
     }
 }

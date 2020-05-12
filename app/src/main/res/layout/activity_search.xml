@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_search_container"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorRoot">
@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
-            android:id="@+id/activity_search_searchBar"
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
@@ -22,13 +22,13 @@
             tools:targetApi="lollipop">
 
             <RelativeLayout
-                android:id="@+id/activity_search_searchContainer"
+                android:id="@+id/searchContainer"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:alpha="0">
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/activity_search_backBtn"
+                    android:id="@+id/backBtn"
                     android:src="@drawable/ic_back"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
@@ -36,7 +36,7 @@
                     tools:ignore="ContentDescription" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/activity_search_clearBtn"
+                    android:id="@+id/clearBtn"
                     android:src="@drawable/ic_close"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
@@ -44,7 +44,7 @@
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <EditText
-                    android:id="@+id/activity_search_editText"
+                    android:id="@+id/editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/feedback_search_location"
@@ -57,8 +57,8 @@
                     android:imeOptions="actionSearch"
                     android:background="@android:color/transparent"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/activity_search_backBtn"
-                    android:layout_toStartOf="@id/activity_search_clearBtn"
+                    android:layout_toEndOf="@id/backBtn"
+                    android:layout_toStartOf="@id/clearBtn"
                     tools:ignore="Autofill,RtlHardcoded" />
 
             </RelativeLayout>
@@ -70,7 +70,7 @@
             android:layout_height="match_parent">
 
             <com.github.rahatarmanahmed.cpv.CircularProgressView
-                android:id="@+id/activity_search_progress"
+                android:id="@+id/progress"
                 android:layout_width="@dimen/little_weather_icon_size"
                 android:layout_height="@dimen/little_weather_icon_size"
                 android:layout_centerInParent="true"
@@ -83,18 +83,18 @@
                 android:layout_height="match_parent">
 
                 <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView
-                    android:id="@+id/activity_search_recyclerView"
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
                     android:clipToPadding="false" />
 
                 <com.turingtechnologies.materialscrollbar.DragScrollBar
-                    android:id="@+id/activity_search_scrollBar"
+                    android:id="@+id/scrollBar"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
-                    app:msb_recyclerView="@id/activity_search_recyclerView"
+                    app:msb_recyclerView="@id/recyclerView"
                     app:msb_lightOnTouch="true"
                     app:msb_scrollMode="firstVisible"
                     app:msb_barColor="@color/colorTextSubtitle"

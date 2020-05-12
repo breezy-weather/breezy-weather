@@ -11,7 +11,6 @@ import android.os.Handler;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,12 +22,9 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.turingtechnologies.materialscrollbar.CustomIndicator;
-import com.turingtechnologies.materialscrollbar.DragScrollBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +32,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -47,16 +44,10 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
  * Search activity.
  * */
 
-public class SearcActivity extends GeoActivity
-        implements View.OnClickListener, EditText.OnEditorActionListener, 
-        WeatherHelper.OnRequestLocationListener {
+public class SearchActivity extends GeoActivity
+        implements EditText.OnEditorActionListener, WeatherHelper.OnRequestLocationListener {
 
-    private CoordinatorLayout container;
-    private RelativeLayout searchContainer;
-    private EditText editText;
-
-    private RecyclerView recyclerView;
-    private CircularProgressView progressView;
+    private ActivitySearchBinding binding;
 
     private LocationAdapter adapter;
     private WeatherHelper weatherHelper;
@@ -114,7 +105,8 @@ public class SearcActivity extends GeoActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        this.binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         boolean lightTheme = !DisplayUtils.isDarkMode(this);
         DisplayUtils.setSystemBarStyle(this, getWindow(),
@@ -142,7 +134,7 @@ public class SearcActivity extends GeoActivity
 
     @Override
     public View getSnackbarContainer() {
-        return container;
+        return binding.container;
     }
 
     // init.
@@ -155,26 +147,19 @@ public class SearcActivity extends GeoActivity
     }
 
     private void initWidget() {
-        this.container = findViewById(R.id.activity_search_container);
-
-        findViewById(R.id.activity_search_searchBar).setOnClickListener(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            findViewById(R.id.activity_search_searchBar)
-                    .setTransitionName(getString(R.string.transition_activity_search_bar));
+            binding.searchBar.setTransitionName(getString(R.string.transition_activity_search_bar));
         }
 
-        this.searchContainer = findViewById(R.id.activity_search_searchContainer);
+        binding.backBtn.setOnClickListener(v -> finishSelf(false));
+        binding.clearBtn.setOnClickListener(v -> binding.editText.setText(""));
 
-        findViewById(R.id.activity_search_backBtn).setOnClickListener(this);
-        findViewById(R.id.activity_search_clearBtn).setOnClickListener(this);
-
-        this.editText = findViewById(R.id.activity_search_editText);
-        editText.setOnEditorActionListener(this);
+        binding.editText.setOnEditorActionListener(this);
         new Handler().post(() -> {
-            editText.requestFocus();
+            binding.editText.requestFocus();
             InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             if (inputManager != null) {
-                inputManager.showSoftInput(editText, 0);
+                inputManager.showSoftInput(binding.editText, 0);
             }
         });
 
@@ -201,15 +186,14 @@ public class SearcActivity extends GeoActivity
                     }
                 }
         );
-        this.recyclerView = findViewById(R.id.activity_search_recyclerView);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new ListDecoration(this));
-        recyclerView.setAdapter(adapter);
+        binding.recyclerView.setLayoutManager(layoutManager);
+        binding.recyclerView.addItemDecoration(new ListDecoration(this));
+        binding.recyclerView.setAdapter(adapter);
 
-        DragScrollBar scrollBar = findViewById(R.id.activity_search_scrollBar);
-        scrollBar.setIndicator(new WeatherSourceIndicator(this).setTextSize(16), true);
+        binding.scrollBar.setIndicator(
+                new WeatherSourceIndicator(this).setTextSize(16), true);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @ColorInt int sourceColor = Color.TRANSPARENT;
             @ColorInt int color;
@@ -219,22 +203,21 @@ public class SearcActivity extends GeoActivity
                 super.onScrolled(recyclerView, dx, dy);
                 color = adapter.getItemSourceColor(layoutManager.findFirstVisibleItemPosition());
                 if (color != sourceColor) {
-                    scrollBar.setHandleColor(color);
-                    scrollBar.setHandleOffColor(color);
+                    binding.scrollBar.setHandleColor(color);
+                    binding.scrollBar.setHandleOffColor(color);
                 }
             }
         });
 
-        this.progressView = findViewById(R.id.activity_search_progress);
-        progressView.setAlpha(0);
+        binding.progress.setAlpha(0);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            searchContainer.setAlpha(1f);
+            binding.searchContainer.setAlpha(1f);
         } else {
             AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(
                     this, R.animator.search_container_in);
             animationSet.setStartDelay(350);
-            animationSet.setTarget(searchContainer);
+            animationSet.setTarget(binding.searchContainer);
             animationSet.start();
         }
     }
@@ -243,7 +226,7 @@ public class SearcActivity extends GeoActivity
 
     private void finishSelf(boolean selected) {
         setResult(selected ? RESULT_OK : RESULT_CANCELED, null);
-        searchContainer.setAlpha(0);
+        binding.searchContainer.setAlpha(0);
         ActivityCompat.finishAfterTransition(this);
     }
 
@@ -252,29 +235,29 @@ public class SearcActivity extends GeoActivity
             return;
         }
 
-        recyclerView.clearAnimation();
-        progressView.clearAnimation();
+        binding.recyclerView.clearAnimation();
+        binding.progress.clearAnimation();
 
         switch (stateTo) {
             case STATE_SHOWING:
                 if (state == STATE_LOADING) {
-                    recyclerView.setVisibility(View.VISIBLE);
+                    binding.recyclerView.setVisibility(View.VISIBLE);
 
-                    ShowAnimation show = new ShowAnimation(recyclerView);
+                    ShowAnimation show = new ShowAnimation(binding.recyclerView);
                     show.setDuration(150);
-                    recyclerView.startAnimation(show);
+                    binding.recyclerView.startAnimation(show);
 
-                    HideAnimation hide = new HideAnimation(progressView);
+                    HideAnimation hide = new HideAnimation(binding.progress);
                     hide.setDuration(150);
-                    progressView.startAnimation(hide);
+                    binding.progress.startAnimation(hide);
                 }
                 break;
 
             case STATE_LOADING:
                 if (state == STATE_SHOWING) {
-                    recyclerView.setAlpha(0);
-                    progressView.setAlpha(1);
-                    recyclerView.setVisibility(View.GONE);
+                    binding.recyclerView.setAlpha(0);
+                    binding.progress.setAlpha(1);
+                    binding.recyclerView.setVisibility(View.GONE);
                 }
                 break;
         }
@@ -283,21 +266,6 @@ public class SearcActivity extends GeoActivity
 
     // interface.
 
-    // on click listener.
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.activity_search_backBtn:
-                finishSelf(false);
-                break;
-
-            case R.id.activity_search_clearBtn:
-                editText.setText("");
-                break;
-        }
-    }
-
     // on editor action listener.
 
     @Override
@@ -305,7 +273,7 @@ public class SearcActivity extends GeoActivity
         if (!TextUtils.isEmpty(textView.getText().toString())) {
             InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             if (manager != null) {
-                manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                manager.hideSoftInputFromWindow(binding.editText.getWindowToken(), 0);
             }
 
             query = textView.getText().toString();

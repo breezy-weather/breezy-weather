@@ -152,13 +152,6 @@
         <item>L/m²</item>
     </string-array>
 
-    <!-- 온도 단위. -->
-    <string-array name="temperature_units">
-        <item>℃</item>
-        <item>℉</item>
-        <item>K</item>
-    </string-array>
-
     <!-- 거리 단위. -->
     <string-array name="distance_units">
         <item>km</item>

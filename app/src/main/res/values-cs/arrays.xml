@@ -141,7 +141,7 @@
         <item>km/h</item>
         <item>m/s</item>
         <item>kn</item>
-        <item>mi/h</item>
+        <item>mph</item>
         <item>ft/s</item>
     </string-array>
 
@@ -150,13 +150,6 @@
         <item>mm</item>
         <item>palce</item>
         <item>L/m²</item>
-    </string-array>
-
-    <!-- temperature unit. -->
-    <string-array name="temperature_units">
-        <item>℃</item>
-        <item>℉</item>
-        <item>K</item>
     </string-array>
 
     <!-- distance unit. -->

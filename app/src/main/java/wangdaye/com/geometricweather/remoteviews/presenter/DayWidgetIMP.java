@@ -178,7 +178,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         }
         views.setTextViewText(
                 R.id.widget_day_subtitle,
-                getSubtitleText(weather, viewStyle, temperatureUnit)
+                getSubtitleText(context, weather, viewStyle, temperatureUnit)
         );
         if (!viewStyle.equals("pixel")) {
             views.setTextViewText(
@@ -230,22 +230,22 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         }
         switch (viewStyle) {
             case "rectangle":
-                return WidgetUtils.buildWidgetDayStyleText(weather, unit)[0];
+                return WidgetUtils.buildWidgetDayStyleText(context, weather, unit)[0];
 
             case "symmetry":
                 return location.getCityName(context)
                         + "\n"
-                        + weather.getCurrent().getTemperature().getTemperature(unit);
+                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
 
             case "tile":
             case "mini":
                 return weather.getCurrent().getWeatherText()
                         + " "
-                        + weather.getCurrent().getTemperature().getTemperature(unit);
+                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
 
             case "nano":
             case "pixel":
-                return weather.getCurrent().getTemperature().getTemperature(unit);
+                return weather.getCurrent().getTemperature().getTemperature(context, unit);
 
             case "vertical":
                 return String.valueOf(
@@ -259,13 +259,14 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         return "";
     }
 
-    private static String getSubtitleText(Weather weather, String viewStyle, TemperatureUnit unit) {
+    private static String getSubtitleText(Context context, Weather weather, String viewStyle, TemperatureUnit unit) {
         switch (viewStyle) {
             case "rectangle":
-                return WidgetUtils.buildWidgetDayStyleText(weather, unit)[1];
+                return WidgetUtils.buildWidgetDayStyleText(context, weather, unit)[1];
 
             case "tile":
                 return Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                         unit
@@ -273,6 +274,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "symmetry":
                 return weather.getCurrent().getWeatherText() + "\n" + Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                         unit
@@ -280,16 +282,17 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "vertical":
                 return weather.getCurrent().getWeatherText() + " " + Temperature.getTrendTemperature(
+                        context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
                         weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
                         unit
                 );
 
             case "oreo":
-                return weather.getCurrent().getTemperature().getTemperature(unit);
+                return weather.getCurrent().getTemperature().getTemperature(context, unit);
 
             case "oreo_google_sans":
-                return unit.getLongTemperatureText(weather.getCurrent().getTemperature().getTemperature());
+                return unit.getLongTemperatureText(context, weather.getCurrent().getTemperature().getTemperature());
         }
         return "";
     }
@@ -356,7 +359,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "sensible_time":
                 return context.getString(R.string.feels_like) + " "
-                        + weather.getCurrent().getTemperature().getShortRealFeeTemperature(unit);
+                        + weather.getCurrent().getTemperature().getShortRealFeeTemperature(context, unit);
         }
         return getCustomSubtitle(context, subtitleData, location, weather);
     }
