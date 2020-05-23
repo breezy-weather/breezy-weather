@@ -97,16 +97,29 @@
             android:id="@+id/subtitle"
             android:layout_width="match_parent"
             android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
             android:textAlignment="viewStart"
             android:textColor="@color/colorTextContent"
             style="@style/subtitle_text"
             tools:text="中国 山东省 青岛市 李沧区"
             tools:ignore="RtlHardcoded" />
-
+<!--
+        <TextView
+            android:id="@+id/geo_position"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorTextSubtitle"
+            style="@style/subtitle_text"
+            tools:text="23.66 22.58, GMT+8"
+            tools:ignore="RtlHardcoded" />
+-->
         <TextView
             android:id="@+id/source"
             android:layout_width="match_parent"
             android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:textStyle="bold"
             android:textSize="10sp"

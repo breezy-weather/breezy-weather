@@ -52,13 +52,13 @@
     <string name="yesterday">Вчера</string>
     <string name="tomorrow">Завтра</string>
     <string name="week">Неделя</string>
-    <string name="week_1">ПН</string>
-    <string name="week_2">ВТ</string>
-    <string name="week_3">СР</string>
-    <string name="week_4">ЧТ</string>
-    <string name="week_5">ПТ</string>
-    <string name="week_6">СБ</string>
-    <string name="week_7">ВС</string>
+    <string name="week_1">Пн</string>
+    <string name="week_2">Вт</string>
+    <string name="week_3">Ср</string>
+    <string name="week_4">Чт</string>
+    <string name="week_5">Пт</string>
+    <string name="week_6">Сб</string>
+    <string name="week_7">Вс</string>
 
     <string name="real_feel_temperature">Ощущается как</string>
     <string name="real_feel_shader_temperature">Real feel shader</string>

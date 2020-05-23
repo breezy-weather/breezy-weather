@@ -67,9 +67,19 @@ public class GeometricWeather extends MultiDexApplication {
     public static final int WIDGET_DAY_PENDING_INTENT_CODE_CALENDAR = 13;
     // week.
     public static final int WIDGET_WEEK_PENDING_INTENT_CODE_WEATHER = 21;
+    public static final int WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1 = 211;
+    public static final int WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2 = 212;
+    public static final int WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3 = 213;
+    public static final int WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4 = 214;
+    public static final int WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5 = 215;
     public static final int WIDGET_WEEK_PENDING_INTENT_CODE_REFRESH = 22;
     // day + week.
     public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_WEATHER = 31;
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1 = 311;
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2 = 312;
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3 = 313;
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4 = 314;
+    public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5 = 315;
     public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_REFRESH = 32;
     public static final int WIDGET_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR = 33;
     // clock + day (vertical).
@@ -100,11 +110,17 @@ public class GeometricWeather extends MultiDexApplication {
     public static final int WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_BLACK = 76;
     // clock + day + week.
     public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_WEATHER = 81;
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1 = 821;
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2 = 822;
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3 = 823;
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4 = 824;
+    public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5 = 825;
     public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_REFRESH = 82;
     public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR = 83;
     public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_LIGHT = 84;
     public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_NORMAL = 85;
     public static final int WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_BLACK = 86;
+
     // text.
     public static final int WIDGET_TEXT_PENDING_INTENT_CODE_WEATHER = 91;
     public static final int WIDGET_TEXT_PENDING_INTENT_CODE_REFRESH = 92;

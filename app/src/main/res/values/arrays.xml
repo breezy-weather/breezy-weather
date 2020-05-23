@@ -207,6 +207,16 @@
         <item>oreo_google_sans</item>
     </string-array>
 
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>5 days</item>
+        <item>3 days</item>
+    </string-array>
+    <string-array name="week_widget_style_values">
+        <item>5_days</item>
+        <item>3_days</item>
+    </string-array>
+
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>Refresh time</item>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_week"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/widget_week_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
+    <RelativeLayout
+        android:id="@+id/widget_week_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tools:ignore="DisableBaselineAlignment">
+
+        <LinearLayout
+            android:id="@+id/widget_week_container"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/widget_week_icon"
+                android:layout_width="@dimen/widget_standard_weather_icon_size"
+                android:layout_height="@dimen/widget_standard_weather_icon_size"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/widget_week_temp"
+                android:text="@string/ellipsis"
+                android:textSize="@dimen/widget_standard_weather_icon_size"
+                android:textColor="@color/colorTextLight"
+                android:maxLines="1"
+                android:shadowColor="@color/colorTextDark2nd"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:layout_marginEnd="@dimen/normal_margin"
+                style="@style/content_text"
+                tools:text="18°"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/widget_week_container">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/widget_week_week_1"
+                    android:text="@string/ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    android:textColor="@color/colorTextLight"
+                    android:maxLines="1"
+                    android:shadowColor="@color/colorTextDark2nd"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    style="@style/content_text"
+                    tools:text="周三" />
+
+                <ImageView
+                    android:id="@+id/widget_week_icon_1"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_below="@id/widget_week_week_1"
+                    android:layout_centerHorizontal="true"
+                    android:padding="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/widget_week_temp_1"
+                    android:text="@string/ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    android:textColor="@color/colorTextLight"
+                    android:maxLines="1"
+                    android:shadowColor="@color/colorTextDark2nd"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:layout_below="@id/widget_week_icon_1"
+                    android:layout_centerHorizontal="true"
+                    style="@style/content_text"
+                    tools:text="4/9°" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/widget_week_week_2"
+                    android:text="@string/ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    android:textColor="@color/colorTextLight"
+                    android:maxLines="1"
+                    android:shadowColor="@color/colorTextDark2nd"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    style="@style/content_text"
+                    tools:text="周四" />
+
+                <ImageView
+                    android:id="@+id/widget_week_icon_2"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_below="@id/widget_week_week_2"
+                    android:layout_centerHorizontal="true"
+                    android:padding="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/widget_week_temp_2"
+                    android:text="@string/ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    android:textColor="@color/colorTextLight"
+                    android:maxLines="1"
+                    android:shadowColor="@color/colorTextDark2nd"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:layout_below="@id/widget_week_icon_2"
+                    android:layout_centerHorizontal="true"
+                    style="@style/content_text"
+                    tools:text="4/9°" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/widget_week_week_3"
+                    android:text="@string/ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    android:textColor="@color/colorTextLight"
+                    android:maxLines="1"
+                    android:shadowColor="@color/colorTextDark2nd"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    style="@style/content_text"
+                    tools:text="周五" />
+
+                <ImageView
+                    android:id="@+id/widget_week_icon_3"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_below="@id/widget_week_week_3"
+                    android:layout_centerHorizontal="true"
+                    android:padding="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/widget_week_temp_3"
+                    android:text="@string/ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    android:textColor="@color/colorTextLight"
+                    android:maxLines="1"
+                    android:shadowColor="@color/colorTextDark2nd"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:layout_below="@id/widget_week_icon_3"
+                    android:layout_centerHorizontal="true"
+                    style="@style/content_text"
+                    tools:text="4/9°" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -190,6 +190,16 @@ public abstract class AbstractRemoteViewsPresenter {
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    public static PendingIntent getDailyForecastPendingIntent(Context context,
+                                                              @Nullable Location location, int index,
+                                                              int requestCode) {
+        return PendingIntent.getActivity(
+                context,
+                requestCode,
+                IntentHelper.buildMainActivityShowDailyForecastIntent(location, index),
+                PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
     public static PendingIntent getRefreshPendingIntent(Context context, int requestCode) {
         return PendingIntent.getService(
                 context,

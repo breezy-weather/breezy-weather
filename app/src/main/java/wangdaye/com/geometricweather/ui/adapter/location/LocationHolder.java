@@ -79,6 +79,9 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         binding.subtitle.setTextColor(themeManager.getTextContentColor(context));
         binding.subtitle.setText(model.subtitle);
 
+        // binding.geoPosition.setText(model.latitude + ", " + model.longitude
+        //         + " - " + model.timeZone.getDisplayName(false, TimeZone.SHORT));
+
         // source.
         binding.source.setText("Powered by " + model.weatherSource.getSourceUrl());
         binding.source.setTextColor(model.weatherSource.getSourceColor());

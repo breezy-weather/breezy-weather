@@ -50,7 +50,7 @@ public class IntentHelper {
 
     public static void startMainActivity(Context context) {
         context.startActivity(
-                new Intent("com.wangdaye.geometricweather.Main")
+                new Intent(MainActivity.ACTION_MAIN)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         );
@@ -62,10 +62,36 @@ public class IntentHelper {
             formattedId = location.getFormattedId();
         }
 
-        return new Intent("com.wangdaye.geometricweather.Main")
+        return new Intent(MainActivity.ACTION_MAIN)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId);
+    }
+
+    public static Intent buildMainActivityShowAlertsIntent(@Nullable Location location) {
+        String formattedId = "";
+        if (location != null) {
+            formattedId = location.getFormattedId();
+        }
+
+        return new Intent(MainActivity.ACTION_SHOW_ALERTS)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId);
+    }
+
+    public static Intent buildMainActivityShowDailyForecastIntent(@Nullable Location location,
+                                                                  int index) {
+        String formattedId = "";
+        if (location != null) {
+            formattedId = location.getFormattedId();
+        }
+
+        return new Intent(MainActivity.ACTION_SHOW_DAILY_FORECAST)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
+                .putExtra(MainActivity.KEY_DAILY_INDEX, index);
     }
 
     public static Intent buildAwakeUpdateActivityIntent() {

@@ -74,7 +74,7 @@ public class NotificationUtils {
 
     private static NotificationCompat.Builder getNotificationBuilder(Context context, @DrawableRes int iconId,
                                                                      String title, String subtitle, String content,
-                                                                     Location location) {
+                                                                     PendingIntent intent) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(iconId)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))
@@ -91,12 +91,7 @@ public class NotificationUtils {
                 ).setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setContentIntent(getAlertNotificationPendingIntent(context, location));
-    }
-
-    private static PendingIntent getAlertNotificationPendingIntent(Context context, Location location) {
-        return PendingIntent.getActivity(context, 0,
-                IntentHelper.buildMainActivityIntent(location), 0);
+                .setContentIntent(intent);
     }
 
     // alert.
@@ -141,28 +136,45 @@ public class NotificationUtils {
             manager.createNotificationChannel(getAlertNotificationChannel(context));
         }
 
+        int notificationId = getAlertNotificationId(context);
         manager.notify(
-                getAlertNotificationId(context),
-                buildSingleAlertNotification(context, location, alert, inGroup)
+                notificationId,
+                buildSingleAlertNotification(context, location, alert, inGroup, notificationId)
         );
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             manager.notify(
                     GeometricWeather.NOTIFICATION_ID_ALERT_GROUP,
-                    buildAlertGroupSummaryNotification(context, location, alert)
+                    buildAlertGroupSummaryNotification(context, location, alert, notificationId)
             );
         }
     }
 
-    private static Notification buildSingleAlertNotification(Context context, Location location,
-                                                             Alert alert, boolean inGroup) {
+    private static Notification buildSingleAlertNotification(Context context,
+                                                             Location location,
+                                                             Alert alert,
+                                                             boolean inGroup,
+                                                             int notificationId) {
+        String time = DateFormat.getDateTimeInstance(
+                DateFormat.LONG, DateFormat.DEFAULT).format(alert.getDate());
+
         NotificationCompat.Builder builder = getNotificationBuilder(
                 context,
                 R.drawable.ic_alert,
-                context.getString(R.string.action_alert),
-                DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT).format(alert.getDate()),
+                alert.getDescription(),
+                time,
                 alert.getContent(),
-                location
+                PendingIntent.getActivity(
+                        context,
+                        notificationId,
+                        IntentHelper.buildMainActivityShowAlertsIntent(location),
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                )
+        ).setStyle(
+                new NotificationCompat.BigTextStyle()
+                        .setBigContentTitle(alert.getDescription())
+                        .setSummaryText(time)
+                        .bigText(alert.getContent())
         );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             builder.setGroup(NOTIFICATION_GROUP_KEY);
@@ -171,10 +183,12 @@ public class NotificationUtils {
     }
 
     private static Notification buildAlertGroupSummaryNotification(Context context,
-                                                                   Location location, Alert alert) {
+                                                                   Location location,
+                                                                   Alert alert,
+                                                                   int notificationId) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
-                .setContentTitle(alert.getContent())
+                .setContentTitle(alert.getDescription())
                 .setGroup(NOTIFICATION_GROUP_KEY)
                 .setColor(
                         ContextCompat.getColor(
@@ -185,8 +199,14 @@ public class NotificationUtils {
                         )
                 ).setGroupSummary(true)
                 .setOnlyAlertOnce(true)
-                .setContentIntent(getAlertNotificationPendingIntent(context, location))
-                .build();
+                .setContentIntent(
+                        PendingIntent.getActivity(
+                                context,
+                                notificationId,
+                                IntentHelper.buildMainActivityShowAlertsIntent(location),
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        )
+                ).build();
     }
 
     private static int getAlertNotificationId(Context context) {
@@ -238,7 +258,12 @@ public class NotificationUtils {
                             weather.getDailyForecast().get(0).getDate(
                                     context.getString(R.string.date_format_widget_long)),
                             context.getString(R.string.feedback_short_term_precipitation_alert),
-                            location
+                            PendingIntent.getActivity(
+                                    context,
+                                    GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
+                                    IntentHelper.buildMainActivityIntent(location),
+                                    PendingIntent.FLAG_UPDATE_CURRENT
+                            )
                     ).build()
             );
             sharedPreferences.edit()
@@ -260,7 +285,12 @@ public class NotificationUtils {
                             weather.getDailyForecast().get(0).getDate(
                                     context.getString(R.string.date_format_widget_long)),
                             context.getString(R.string.feedback_today_precipitation_alert),
-                            location
+                            PendingIntent.getActivity(
+                                    context,
+                                    GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
+                                    IntentHelper.buildMainActivityIntent(location),
+                                    PendingIntent.FLAG_UPDATE_CURRENT
+                            )
                     ).build()
             );
         }

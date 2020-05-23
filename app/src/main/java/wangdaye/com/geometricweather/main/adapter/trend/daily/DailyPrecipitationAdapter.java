@@ -131,32 +131,32 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_LIGHT,
-                        activity.getString(R.string.precipitation_light),
                         unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                        activity.getString(R.string.precipitation_light),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_HEAVY,
-                        activity.getString(R.string.precipitation_heavy),
                         unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                        activity.getString(R.string.precipitation_heavy),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Precipitation.PRECIPITATION_LIGHT,
-                        activity.getString(R.string.precipitation_light),
                         unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                        activity.getString(R.string.precipitation_light),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Precipitation.PRECIPITATION_HEAVY,
-                        activity.getString(R.string.precipitation_heavy),
                         unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                        activity.getString(R.string.precipitation_heavy),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );

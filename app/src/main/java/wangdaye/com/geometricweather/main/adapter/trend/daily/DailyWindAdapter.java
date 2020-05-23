@@ -146,32 +146,32 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_3,
-                        activity.getString(R.string.wind_3),
                         unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_3),
+                        activity.getString(R.string.wind_3),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_7,
-                        activity.getString(R.string.wind_7),
                         unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_7),
+                        activity.getString(R.string.wind_7),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_3,
-                        activity.getString(R.string.wind_3),
                         unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_3),
+                        activity.getString(R.string.wind_3),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_7,
-                        activity.getString(R.string.wind_7),
                         unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_7),
+                        activity.getString(R.string.wind_7),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );

@@ -183,10 +183,12 @@ public class AccuWeatherService extends WeatherService {
             e.printStackTrace();
         }
 
+        String zipCode = query.matches("[a-zA-Z0-9]*") ? query : null;
+
         List<Location> locationList = new ArrayList<>();
         if (resultList != null && resultList.size() != 0) {
             for (AccuLocationResult r : resultList) {
-                locationList.add(AccuResultConverter.convert(null, r));
+                locationList.add(AccuResultConverter.convert(null, r, zipCode));
             }
         }
         return locationList;
@@ -238,7 +240,7 @@ public class AccuWeatherService extends WeatherService {
                     public void onSucceed(AccuLocationResult accuLocationResult) {
                         if (accuLocationResult != null) {
                             List<Location> locationList = new ArrayList<>();
-                            locationList.add(AccuResultConverter.convert(location, accuLocationResult));
+                            locationList.add(AccuResultConverter.convert(location, accuLocationResult, null));
                             finalCallback.requestLocationSuccess(
                                     location.getLatitude() + "," + location.getLongitude(), locationList);
                         } else {
@@ -257,6 +259,8 @@ public class AccuWeatherService extends WeatherService {
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
         String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
+
         api.getWeatherLocation("Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
@@ -265,7 +269,7 @@ public class AccuWeatherService extends WeatherService {
                         if (accuLocationResults != null && accuLocationResults.size() != 0) {
                             List<Location> locationList = new ArrayList<>();
                             for (AccuLocationResult r : accuLocationResults) {
-                                locationList.add(AccuResultConverter.convert(null, r));
+                                locationList.add(AccuResultConverter.convert(null, r, zipCode));
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {

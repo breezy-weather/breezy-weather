@@ -86,6 +86,8 @@
             <intent-filter>
                 <!--<action android:name="com.wangdaye.geometricweather.ICON_PROVIDER" />-->
                 <action android:name="com.wangdaye.geometricweather.Main" />
+                <action android:name="com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS" />
+                <action android:name="com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

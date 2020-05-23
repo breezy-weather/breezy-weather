@@ -125,24 +125,24 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         AirQuality.AQI_INDEX_1,
-                        activity.getString(R.string.aqi_1),
                         String.valueOf(AirQuality.AQI_INDEX_1),
+                        activity.getString(R.string.aqi_1),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         AirQuality.AQI_INDEX_3,
-                        activity.getString(R.string.aqi_3),
                         String.valueOf(AirQuality.AQI_INDEX_3),
+                        activity.getString(R.string.aqi_3),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         AirQuality.AQI_INDEX_5,
-                        activity.getString(R.string.aqi_5),
                         String.valueOf(AirQuality.AQI_INDEX_5),
+                        activity.getString(R.string.aqi_5),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );

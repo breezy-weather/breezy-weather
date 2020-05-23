@@ -455,6 +455,53 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
+        // daily forecast.
+        views.setOnClickPendingIntent(
+                R.id.widget_day_week_icon_1,
+                getDailyForecastPendingIntent(
+                        context,
+                        location,
+                        0,
+                        GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
+                )
+        );
+        views.setOnClickPendingIntent(
+                R.id.widget_day_week_icon_2,
+                getDailyForecastPendingIntent(
+                        context,
+                        location,
+                        1,
+                        GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
+                )
+        );
+        views.setOnClickPendingIntent(
+                R.id.widget_day_week_icon_3,
+                getDailyForecastPendingIntent(
+                        context,
+                        location,
+                        2,
+                        GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
+                )
+        );
+        views.setOnClickPendingIntent(
+                R.id.widget_day_week_icon_4,
+                getDailyForecastPendingIntent(
+                        context,
+                        location,
+                        3,
+                        GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
+                )
+        );
+        views.setOnClickPendingIntent(
+                R.id.widget_day_week_icon_5,
+                getDailyForecastPendingIntent(
+                        context,
+                        location,
+                        4,
+                        GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
+                )
+        );
+
         // time.
         if (subtitleData.equals("lunar")) {
             views.setOnClickPendingIntent(

@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -37,6 +38,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.resource.Resource;
+import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
@@ -71,6 +73,9 @@ public class MainActivity extends GeoActivity
     private MainActivityViewModel viewModel;
     private ActivityMainBinding binding;
 
+    @Nullable private String pendingAction;
+    @Nullable private HashMap<String, Object> pendingExtraMap;
+
     @Nullable private LocationManageFragment manageFragment;
     private WeatherView weatherView;
     @Nullable private MainAdapter adapter;
@@ -91,12 +96,20 @@ public class MainActivity extends GeoActivity
 
     private static final long INVALID_CURRENT_WEATHER_TIME_STAMP = -1;
 
+    public static final String ACTION_MAIN = "com.wangdaye.geometricweather.Main";
     public static final String KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID
             = "MAIN_ACTIVITY_LOCATION_FORMATTED_ID";
 
     public static final String ACTION_UPDATE_WEATHER_IN_BACKGROUND
             = "com.wangdaye.geomtricweather.ACTION_UPDATE_WEATHER_IN_BACKGROUND";
     public static final String KEY_LOCATION_FORMATTED_ID = "LOCATION_FORMATTED_ID";
+
+    public static final String ACTION_SHOW_ALERTS
+            = "com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS";
+
+    public static final String ACTION_SHOW_DAILY_FORECAST
+            = "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST";
+    public static final String KEY_DAILY_INDEX = "DAILY_INDEX";
 
     private BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
         @Override
@@ -119,6 +132,8 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.pendingIntentAction(getIntent());
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -156,11 +171,13 @@ public class MainActivity extends GeoActivity
         );
         refreshBackgroundViews(true, viewModel.getLocationList(),
                 false, false);
+
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        this.pendingIntentAction(intent);
         resetUIUpdateFlag();
         viewModel.init(this, getLocationId(intent));
     }
@@ -309,6 +326,9 @@ public class MainActivity extends GeoActivity
             }
             return true;
         });
+        binding.toolbar.setOnClickListener(v -> {
+            NotificationUtils.checkAndSendAlert(this, viewModel.getCurrentLocationValue(), null);
+        });
 
         binding.switchLayout.setOnSwitchListener(switchListener);
 
@@ -360,6 +380,8 @@ public class MainActivity extends GeoActivity
             } else if (resource.status == Resource.Status.ERROR) {
                 SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
             }
+
+            consumeIntentAction();
         });
 
         viewModel.getIndicator().observe(this, resource -> {
@@ -555,6 +577,52 @@ public class MainActivity extends GeoActivity
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                 ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
+            }
+        }
+    }
+
+    private void pendingIntentAction(Intent intent) {
+        String action = intent.getAction();
+        if (TextUtils.isEmpty(action)) {
+            pendingAction = null;
+            pendingExtraMap = null;
+            return;
+        }
+
+        if (action.equals(ACTION_SHOW_ALERTS)) {
+            pendingAction = ACTION_SHOW_ALERTS;
+            pendingExtraMap = new HashMap<>();
+        } else if (action.equals(ACTION_SHOW_DAILY_FORECAST)) {
+            pendingAction = ACTION_SHOW_DAILY_FORECAST;
+
+            pendingExtraMap = new HashMap<>();
+            pendingExtraMap.put(KEY_DAILY_INDEX, intent.getIntExtra(KEY_DAILY_INDEX, 0));
+        }
+    }
+
+    private void consumeIntentAction() {
+        String action = pendingAction;
+        HashMap<String, Object> extraMap = pendingExtraMap;
+        pendingAction = null;
+        pendingExtraMap = null;
+        if (TextUtils.isEmpty(action) || extraMap == null) {
+            return;
+        }
+
+        if (action.equals(ACTION_SHOW_ALERTS)) {
+            Location location = viewModel.getCurrentLocationValue();
+            if (location != null) {
+                Weather weather = location.getWeather();
+                if (weather != null) {
+                    IntentHelper.startAlertActivity(this, weather);
+                }
+            }
+        } else if (action.equals(ACTION_SHOW_DAILY_FORECAST)) {
+            String formattedId = viewModel.getCurrentLocationFormattedId();
+            Integer index = (Integer) extraMap.get(KEY_DAILY_INDEX);
+            if (formattedId != null && index != null) {
+                IntentHelper.startDailyWeatherActivity(
+                        this, viewModel.getCurrentLocationFormattedId(), index);
             }
         }
     }

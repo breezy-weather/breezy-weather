@@ -78,6 +78,12 @@
         <item>奥利奥（Google字体）</item>
     </string-array>
 
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>五天</item>
+        <item>三天</item>
+    </string-array>
+
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>更新时间</item>

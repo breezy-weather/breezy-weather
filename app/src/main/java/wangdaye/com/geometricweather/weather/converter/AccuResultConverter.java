@@ -44,7 +44,8 @@ import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 
 public class AccuResultConverter {
 
-    public static Location convert(@Nullable Location location, AccuLocationResult result) {
+    public static Location convert(@Nullable Location location, AccuLocationResult result,
+                                   @Nullable String zipCode) {
         if (location != null
                 && !TextUtils.isEmpty(location.getProvince())
                 && !TextUtils.isEmpty(location.getCity())
@@ -57,7 +58,7 @@ public class AccuResultConverter {
                     result.Country.LocalizedName,
                     location.getProvince(),
                     location.getCity(),
-                    location.getDistrict(),
+                    location.getDistrict() + (zipCode == null ? "" : (" (" + zipCode + ")")),
                     null,
                     WeatherSource.ACCU,
                     false,
@@ -78,7 +79,7 @@ public class AccuResultConverter {
                     TimeZone.getTimeZone(result.TimeZone.Name),
                     result.Country.LocalizedName,
                     result.AdministrativeArea == null ? "" : result.AdministrativeArea.LocalizedName,
-                    result.LocalizedName,
+                    result.LocalizedName + (zipCode == null ? "" : (" (" + zipCode + ")")),
                     "",
                     null,
                     WeatherSource.ACCU,

@@ -126,8 +126,8 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         UV.UV_INDEX_HIGH,
-                        activity.getString(R.string.action_alert),
                         String.valueOf(UV.UV_INDEX_HIGH),
+                        activity.getString(R.string.action_alert),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );

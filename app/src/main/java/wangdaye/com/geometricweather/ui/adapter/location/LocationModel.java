@@ -27,6 +27,11 @@ public class LocationModel {
 
     public @NonNull String title;
     public @NonNull String subtitle;
+
+    // public float latitude;
+    // public float longitude;
+    // public TimeZone timeZone;
+
     public @Nullable String alerts;
 
     public boolean lightTheme;
@@ -74,6 +79,10 @@ public class LocationModel {
             subtitle = context.getString(R.string.feedback_not_yet_location);
         }
 
+        // latitude = location.getLatitude();
+        // longitude = location.getLongitude();
+        // timeZone = location.getTimeZone();
+
         if (location.getWeather() != null) {
             List<Alert> alertList = location.getWeather().getAlertList();
             if (alertList.size() > 0) {
@@ -119,6 +128,9 @@ public class LocationModel {
                 && isSameString(title, newItem.title)
                 && isSameString(subtitle, newItem.subtitle)
                 && isSameString(alerts, newItem.alerts)
+                // && latitude == newItem.latitude
+                // && longitude == newItem.longitude
+                // && timeZone.getID().equals(newItem.timeZone.getID())
                 && lightTheme == newItem.lightTheme
                 && !newItem.forceUpdate;
     }
