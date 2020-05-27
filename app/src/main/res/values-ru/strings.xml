@@ -182,6 +182,8 @@
     <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Давление\n</string>
     <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Видимость\n</string>
     <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Точка росы\n</string>
+    <string name="feedback_custom_subtitle_keyword_al">$al$ : Оповещение\n</string>
+    <string name="feedback_custom_subtitle_keyword_als">$als$ : Оповещение (Кратко)\n</string>
     <string name="feedback_custom_subtitle_keyword_l">$l$ : Местоположение\n</string>
     <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Широта\n</string>
     <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Долгота\n</string>
@@ -254,6 +256,7 @@
     <string name="feedback_resident_location_description">GeometricWeather будет автоматически показывать или скрывать место Вашего постоянного пребывания, основываясь на данных Вашего местоположения.\nНапример, Вы можете установить Ваш родной город как место Вашего постоянного пребывания. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
 
     <string name="feedback_click_to_get_more">Дополнительно…</string>
+    <string name="feedback_click_again_to_exit">Нажмите ещё раз для выхода</string>
 
     <!-- action -->
     <string name="action_alert">Оповещение</string>
@@ -273,8 +276,8 @@
     <string name="widget_clock_day_vertical">Время + День (Вертикальный)</string>
     <string name="widget_clock_day_week">Время + День + Неделя</string>
     <string name="widget_text">Текст</string>
-    <string name="widget_trend_daily">Дневная тенденция</string>
-    <string name="widget_trend_hourly">Часовая тенденция</string>
+    <string name="widget_trend_daily">Дневной тренд</string>
+    <string name="widget_trend_hourly">Часовой тренд</string>
     <string name="wait_refresh">Ждите</string>
     <string name="ellipsis">…</string>
 
@@ -295,6 +298,9 @@
     <string name="settings_title_appearance">Вид</string>
     <string name="settings_summary_appearance">Стиль интерфейса, сортировка карточек, язык…</string>
     <string name="settings_title_card_display">Отображаемые карточки</string>
+    <string name="settings_title_daily_trend_display">Показывать тренд</string>
+    <string name="settings_title_trend_horizontal_line_switch">Горизонтальные линии в тренде</string>
+    <string name="settings_title_exchange_day_night_temp_switch">Поменять местами мин/макс температуру</string>
     <string name="settings_title_card_order">Порядок карточек</string>
     <string name="settings_title_gravity_sensor_switch">Датчик гравитации</string>
     <string name="settings_title_list_animation_switch">Анимация списка</string>
@@ -320,6 +326,7 @@
     <string name="settings_title_week_icon_mode">Иконки прогноза на неделю</string>
     <string name="settings_title_minimal_icon">Минималистичные иконки</string>
     <string name="settings_title_click_widget_to_refresh">Обновлять виджет при нажатии</string>
+    <string name="settings_title_widget_config">Настройки виджета</string>
     <string name="settings_category_notification">Уведомления</string>
     <string name="settings_title_notification">Уведомление в строке состояния</string>
     <string name="settings_title_notification_style">Стиль уведомления</string>

@@ -326,9 +326,6 @@ public class MainActivity extends GeoActivity
             }
             return true;
         });
-        binding.toolbar.setOnClickListener(v -> {
-            NotificationUtils.checkAndSendAlert(this, viewModel.getCurrentLocationValue(), null);
-        });
 
         binding.switchLayout.setOnSwitchListener(switchListener);
 

@@ -57,6 +57,7 @@ public abstract class AbstractRemoteViewsPresenter {
         public boolean hideSubtitle;
         public String subtitleData;
         public String clockFont;
+        public boolean hideLunar;
     }
 
     public static class WidgetColor {
@@ -112,6 +113,10 @@ public abstract class AbstractRemoteViewsPresenter {
         config.clockFont = sharedPreferences.getString(
                 context.getString(R.string.key_clock_font),
                 "light"
+        );
+        config.hideLunar = sharedPreferences.getBoolean(
+                context.getString(R.string.key_hide_lunar),
+                false
         );
 
         return config;

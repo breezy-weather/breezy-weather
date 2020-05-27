@@ -39,7 +39,8 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         RemoteViews views = getRemoteViews(
                 context, location,
-                config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont
+                config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont,
+                config.hideLunar
         );
 
         AppWidgetManager.getInstance(context).updateAppWidget(
@@ -51,7 +52,8 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     public static RemoteViews getRemoteViews(Context context,
                                              Location location,
                                              String cardStyle, int cardAlpha,
-                                             String textColor, int textSize, String clockFont) {
+                                             String textColor, int textSize, String clockFont,
+                                             boolean hideLunar) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_week);
         Weather weather = location.getWeather();
         if (weather == null) {
@@ -89,7 +91,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         );
         views.setTextViewText(
                 R.id.widget_clock_day_week_lunar,
-                settings.getLanguage().getCode().startsWith("zh")
+                settings.getLanguage().isChinese() && !hideLunar
                         ? (" - " + LunarHelper.getLunarDate(new Date()))
                         : ""
         );

@@ -78,4 +78,8 @@ public enum Language {
                 R.array.language_values
         );
     }
+
+    public boolean isChinese() {
+        return getCode().startsWith("zh");
+    }
 }

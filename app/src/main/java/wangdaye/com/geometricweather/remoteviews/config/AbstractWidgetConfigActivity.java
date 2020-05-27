@@ -76,6 +76,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected RelativeLayout textColorContainer;
     protected RelativeLayout textSizeContainer;
     protected RelativeLayout clockFontContainer;
+    protected RelativeLayout hideLunarContainer;
 
     private BottomSheetBehavior bottomSheetBehavior;
     private FitBottomSystemBarNestedScrollView bottomSheetScrollView;
@@ -112,6 +113,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected String clockFontValueNow;
     protected String[] clockFonts;
     protected String[] clockFontValues;
+
+    protected boolean hideLunar;
 
     private long lastBackPressedTime = -1;
 
@@ -214,10 +217,9 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.hideSubtitle = false;
 
         this.subtitleDataValueNow = "time";
-        boolean chinese = SettingsOptionManager.getInstance(this).getLanguage().getCode().startsWith("zh");
         String[] data = res.getStringArray(R.array.subtitle_data);
         String[] dataValues = res.getStringArray(R.array.subtitle_data_values);
-        if (chinese) {
+        if (SettingsOptionManager.getInstance(this).getLanguage().isChinese()) {
             this.subtitleData = new String[] {
                     data[0], data[1], data[2], data[3], data[4], data[5]
             };
@@ -242,6 +244,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.clockFontValueNow = "light";
         this.clockFonts = res.getStringArray(R.array.clock_font);
         this.clockFontValues = res.getStringArray(R.array.clock_font_values);
+
+        this.hideLunar = false;
     }
 
     private void readConfig() {
@@ -254,6 +258,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textColorValueNow = sharedPreferences.getString(getString(R.string.key_text_color), textColorValueNow);
         textSize = sharedPreferences.getInt(getString(R.string.key_text_size), textSize);
         clockFontValueNow = sharedPreferences.getString(getString(R.string.key_clock_font), clockFontValueNow);
+        hideLunar = sharedPreferences.getBoolean(getString(R.string.key_hide_lunar), hideLunar);
     }
 
     @CallSuper
@@ -359,6 +364,16 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         );
         clockFontSpinner.setSelection(indexValue(clockFontValues, cardStyleValueNow), true);
 
+        this.hideLunarContainer = findViewById(R.id.activity_widget_config_hideLunarContainer);
+        hideLunarContainer.setVisibility(
+                SettingsOptionManager.getInstance(this).getLanguage().isChinese()
+                        ? View.VISIBLE
+                        : View.GONE
+        );
+        Switch hideLunarSwitch = findViewById(R.id.activity_widget_config_hideLunarSwitch);
+        hideLunarSwitch.setOnCheckedChangeListener(new HideLunarSwitchCheckListener());
+        hideLunarSwitch.setChecked(hideLunar);
+
         Button doneButton = findViewById(R.id.activity_widget_config_doneButton);
         doneButton.setOnClickListener(v -> {
             getSharedPreferences(getSharedPreferencesName(), MODE_PRIVATE)
@@ -371,6 +386,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                     .putString(getString(R.string.key_text_color), textColorValueNow)
                     .putInt(getString(R.string.key_text_size), textSize)
                     .putString(getString(R.string.key_clock_font), clockFontValueNow)
+                    .putBoolean(getString(R.string.key_hide_lunar), hideLunar)
                     .apply();
 
             Intent intent = getIntent();
@@ -625,6 +641,15 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             hideSubtitle = isChecked;
+            updateHostView();
+        }
+    }
+
+    private class HideLunarSwitchCheckListener implements CompoundButton.OnCheckedChangeListener {
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            hideLunar = isChecked;
             updateHostView();
         }
     }

@@ -40,9 +40,9 @@
         <item>3.5 часа</item>
         <item>4 часа</item>
         <item>4.5 часа</item>
-        <item>5 часа</item>
-        <item>5.5 часа</item>
-        <item>6 часа</item>
+        <item>5 часов</item>
+        <item>5.5 часов</item>
+        <item>6 часов</item>
     </string-array>
 
     <!-- widget week icon mode. -->
@@ -76,6 +76,12 @@
         <item>Вертикальный</item>
         <item>Oreo</item>
         <item>Oreo (Google sans)</item>
+    </string-array>
+
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>5 дней</item>
+        <item>3 дня</item>
     </string-array>
 
     <!-- Widget subtitle data. -->

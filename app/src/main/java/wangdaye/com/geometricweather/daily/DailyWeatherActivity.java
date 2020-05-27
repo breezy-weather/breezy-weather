@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -91,7 +90,7 @@ public class DailyWeatherActivity extends GeoActivity {
         title = findViewById(R.id.activity_weather_daily_title);
         subtitle = findViewById(R.id.activity_weather_daily_subtitle);
         indicator = findViewById(R.id.activity_weather_daily_indicator);
-        if (!SettingsOptionManager.getInstance(this).getLanguage().getCode().startsWith("zh")){
+        if (!SettingsOptionManager.getInstance(this).getLanguage().isChinese()){
             subtitle.setVisibility(View.GONE);
         }
         selectPage(

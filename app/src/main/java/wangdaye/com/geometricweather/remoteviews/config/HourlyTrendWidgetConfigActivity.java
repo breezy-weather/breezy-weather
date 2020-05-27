@@ -33,6 +33,7 @@ public class HourlyTrendWidgetConfigActivity extends AbstractWidgetConfigActivit
         textColorContainer.setVisibility(View.GONE);
         textSizeContainer.setVisibility(View.GONE);
         clockFontContainer.setVisibility(View.GONE);
+        hideLunarContainer.setVisibility(View.GONE);
     }
 
     @Override

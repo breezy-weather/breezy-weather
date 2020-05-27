@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string><!-- Do not translate. -->
-    <string name="version_code">v2.607</string><!-- Do not translate. -->
+    <string name="version_code">v2.608</string><!-- Do not translate. -->
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -201,6 +201,7 @@
     <string name="feedback_black_text">Text color</string>
     <string name="feedback_text_size">Text size</string>
     <string name="feedback_clock_font">Clock font</string>
+    <string name="feedback_hide_lunar">Hide lunar calendar</string>
     <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
@@ -410,6 +411,7 @@
     <string name="key_text_color">text_color</string>
     <string name="key_text_size">text_size</string>
     <string name="key_clock_font">clock_font</string>
+    <string name="key_hide_lunar">hide_lunar</string>
 
     <!-- Do not translate the following set of strings. -->
     <string name="key_background_free">background_free_3</string>

@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.remoteviews.config;
 
+import android.view.View;
 import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.R;
@@ -33,6 +34,12 @@ public class ClockDayVerticalWidgetConfigActivity extends AbstractWidgetConfigAc
                 widgetStyleValues[3],
                 widgetStyleValues[6]
         };
+    }
+
+    @Override
+    public void initView() {
+        super.initView();
+        hideLunarContainer.setVisibility(View.GONE);
     }
 
     @Override

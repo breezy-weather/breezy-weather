@@ -35,6 +35,7 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
         hideSubtitleContainer.setVisibility(View.GONE);
         subtitleDataContainer.setVisibility(View.GONE);
         clockFontContainer.setVisibility(View.GONE);
+        hideLunarContainer.setVisibility(View.GONE);
     }
 
     @Override

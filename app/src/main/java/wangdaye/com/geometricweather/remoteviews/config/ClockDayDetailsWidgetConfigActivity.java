@@ -38,7 +38,7 @@ public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigAct
                 this,
                 getLocationNow(),
                 cardStyleValueNow, cardAlpha,
-                textColorValueNow, textSize, clockFontValueNow
+                textColorValueNow, textSize, clockFontValueNow, hideLunar
         );
     }
 

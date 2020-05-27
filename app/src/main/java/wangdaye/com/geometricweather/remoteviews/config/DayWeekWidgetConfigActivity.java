@@ -36,6 +36,7 @@ public class DayWeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
     public void initView() {
         super.initView();
         clockFontContainer.setVisibility(View.GONE);
+        hideLunarContainer.setVisibility(View.GONE);
     }
 
     @Override

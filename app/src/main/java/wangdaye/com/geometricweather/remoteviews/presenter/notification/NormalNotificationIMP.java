@@ -255,7 +255,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         StringBuilder timeStr = new StringBuilder();
         timeStr.append(location.getCityName(context));
-        if (SettingsOptionManager.getInstance(context).getLanguage().getCode().startsWith("zh")) {
+        if (SettingsOptionManager.getInstance(context).getLanguage().isChinese()) {
             timeStr.append(", ")
                     .append(LunarHelper.getLunarDate(new Date()));
         } else {

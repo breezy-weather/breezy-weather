@@ -283,6 +283,29 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/activity_widget_config_hideLunarContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_widget_config_hideLunarTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_hide_lunar"
+                        android:layout_alignParentStart="true"
+                        style="@style/content_text" />
+
+                    <Switch
+                        android:id="@+id/activity_widget_config_hideLunarSwitch"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        style="@style/my_switch"
+                        tools:ignore="RtlHardcoded" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 

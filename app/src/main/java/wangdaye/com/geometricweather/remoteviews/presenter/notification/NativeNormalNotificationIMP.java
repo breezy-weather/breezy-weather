@@ -107,7 +107,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         StringBuilder subtitle = new StringBuilder();
         subtitle.append(location.getCityName(context));
-        if (SettingsOptionManager.getInstance(context).getLanguage().getCode().startsWith("zh")) {
+        if (SettingsOptionManager.getInstance(context).getLanguage().isChinese()) {
             subtitle.append(", ").append(LunarHelper.getLunarDate(new Date()));
         } else {
             subtitle.append(", ")
