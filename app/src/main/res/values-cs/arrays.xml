@@ -4,16 +4,11 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (Pouze pro Čínu)</item>
-        <item>caiyun.com (Pouze pro Čínu)</item>
         <item>accuweather.com</item>
     </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Baidu Poloha</item>
-        <item>Baidu IP Poloha (Pouze pro Čínu)</item>
-        <item>AMap Poloha</item>
         <item>Nativní API</item>
     </string-array>
 

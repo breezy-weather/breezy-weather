@@ -3,9 +3,6 @@
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Baidu Location</item>
-        <item>Baidu IP Location (Sólo para China)</item>
-        <item>AMap Location</item>
         <item>API Nativa</item>
     </string-array>
 

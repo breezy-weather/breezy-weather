@@ -3,16 +3,11 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>中國天氣網（僅中國地區）</item>
-        <item>彩雲天氣（僅中國地區）</item>
         <item>Accu Weather</item>
     </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>百度定位</item>
-        <item>百度IP定位（僅中國地區）</item>
-        <item>高德定位</item>
         <item>原生接口</item>
     </string-array>
 

@@ -7,16 +7,11 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (中国のみ)</item>
-        <item>caiyun.com (中国のみ)</item>
         <item>accuweather.com</item>
     </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Baidu Location</item>
-        <item>Baidu IP Location (中国のみ)</item>
-        <item>AMap Location</item>
         <item>ネイティブAPI</item>
     </string-array>
 

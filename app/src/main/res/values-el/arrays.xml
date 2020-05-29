@@ -4,16 +4,11 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (Μόνο για Κίνα)</item>
-        <item>caiyun.com (Μόνο για Κίνα)</item>
         <item>accuweather.com</item>
     </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Τοποθεσία Baidu</item>
-        <item>Τοποθεσία Baidu (Μόνο για Κίνα)</item>
-        <item>Τοποθεσία AMap</item>
         <item>Native API</item>
     </string-array>
 

@@ -4,9 +4,6 @@
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Baidu Location</item>
-        <item>Baidu IP Location (متاح للصين فقط)</item>
-        <item>AMap Location</item>
         <item>Native API</item>
     </string-array>
 

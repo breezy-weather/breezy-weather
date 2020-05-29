@@ -4,16 +4,11 @@
 
     <!-- 날씨 제공처. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (중국 내수용)</item>
-        <item>caiyun.com (중국 내수용)</item>
         <item>accuweather.com</item>
     </string-array>
 
     <!-- 위치 서비스. -->
     <string-array name="location_services">
-        <item>바이두 위치</item>
-        <item>바이두 IP 위치 (중국 내수용)</item>
-        <item>AMap 위치</item>
         <item>현지 API</item>
     </string-array>
 

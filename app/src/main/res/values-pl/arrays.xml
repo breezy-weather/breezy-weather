@@ -3,16 +3,11 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>Weather.com.cn (Tylko dla Chin)</item>
-        <item>Caiyun.com (Tylko dla Chin)</item>
         <item>Accuweather.com</item>
     </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Lokalizacja Baidu</item>
-        <item>Lokalizacja Baidu IP (Tylko dla Chin)</item>
-        <item>AMap</item>
         <item>Native API</item>
     </string-array>
 

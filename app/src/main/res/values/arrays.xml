@@ -7,27 +7,17 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (Only For China)</item>
-        <item>caiyun.com (Only For China)</item>
         <item>accuweather.com</item>
     </string-array>
     <string-array name="weather_source_values">
-        <item>cn</item>
-        <item>caiyun</item>
         <item>accu</item>
     </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Baidu Location</item>
-        <item>Baidu IP Location (Only For China)</item>
-        <item>AMap Location</item>
         <item>Native API</item>
     </string-array>
     <string-array name="location_service_values">
-        <item>baidu</item>
-        <item>baidu_ip</item>
-        <item>amap</item>
         <item>native</item>
     </string-array>
 
