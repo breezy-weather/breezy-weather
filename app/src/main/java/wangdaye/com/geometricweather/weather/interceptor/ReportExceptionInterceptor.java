@@ -4,13 +4,11 @@ import okhttp3.Interceptor;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.Response;
-import wangdaye.com.geometricweather.utils.helpter.BuglyHelper;
 
 abstract class ReportExceptionInterceptor implements Interceptor {
 
     void handleException(Exception e) {
         e.printStackTrace();
-        BuglyHelper.report(e);
     }
 
     Response nullResponse(Request request) {
