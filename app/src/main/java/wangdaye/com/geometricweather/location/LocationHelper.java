@@ -14,16 +14,11 @@ import java.util.TimeZone;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.location.service.AMapLocationService;
 import wangdaye.com.geometricweather.location.service.AndroidLocationService;
-import wangdaye.com.geometricweather.location.service.ip.BaiduIPLocationService;
-import wangdaye.com.geometricweather.location.service.BaiduLocationService;
 import wangdaye.com.geometricweather.location.service.LocationService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.NetworkUtils;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
-import wangdaye.com.geometricweather.weather.service.CNWeatherService;
-import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
 import wangdaye.com.geometricweather.weather.service.WeatherService;
 
 /**
@@ -34,30 +29,15 @@ public class LocationHelper {
 
     @NonNull private final LocationService locationService;
     @NonNull private final WeatherService accuWeather;
-    @NonNull private final WeatherService cnWeather;
-    @NonNull private final WeatherService caiyunWeather;
 
     public LocationHelper(Context context) {
         switch (SettingsOptionManager.getInstance(context).getLocationProvider()) {
-            case BAIDU:
-                locationService = new BaiduLocationService(context);
-                break;
-
-            case BAIDU_IP:
-                locationService = new BaiduIPLocationService();
-                break;
-
-            case AMAP:
-                locationService = new AMapLocationService(context);
-                break;
             default: // NATIVE
                 locationService = new AndroidLocationService(context);
                 break;
         }
 
         accuWeather = new AccuWeatherService();
-        cnWeather = new CNWeatherService();
-        caiyunWeather = new CaiYunWeatherService();
     }
 
     public void requestLocation(Context context, Location location, boolean background,
@@ -112,24 +92,12 @@ public class LocationHelper {
                 location.setWeatherSource(WeatherSource.ACCU);
                 accuWeather.requestLocation(context, location, new AccuLocationCallback(context, location, l));
                 break;
-
-            case CN:
-                location.setWeatherSource(WeatherSource.CN);
-                cnWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
-                break;
-
-            case CAIYUN:
-                location.setWeatherSource(WeatherSource.CAIYUN);
-                caiyunWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
-                break;
         }
     }
 
     public void cancel() {
         locationService.cancel();
         accuWeather.cancel();
-        cnWeather.cancel();
-        caiyunWeather.cancel();
     }
 
     public String[] getPermissions(boolean background) {

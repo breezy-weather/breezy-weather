@@ -33,14 +33,10 @@ android {
         abortOnError false
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'CN_WEATHER_BASE_URL', CN_WEATHER_BASE_URL
-        it.buildConfigField 'String', 'CAIYUN_WEATHER_BASE_URL', CAIYUN_WEATHER_BASE_URL
         it.buildConfigField 'String', 'ACCU_WEATHER_BASE_URL', ACCU_WEATHER_BASE_URL
         it.buildConfigField 'String', 'ACCU_WEATHER_KEY', ACCU_WEATHER_KEY
         it.buildConfigField 'String', 'ACCU_CURRENT_KEY', ACCU_CURRENT_KEY
         it.buildConfigField 'String', 'ACCU_AQI_KEY', ACCU_AQI_KEY
-        it.buildConfigField 'String', 'BAIDU_IP_LOCATION_BASE_URL', BAIDU_IP_LOCATION_BASE_URL
-        it.buildConfigField 'String', 'BAIDU_IP_LOCATION_AK', BAIDU_IP_LOCATION_AK
     }
     sourceSets{
         main{
@@ -103,9 +99,6 @@ dependencies {
 
     // multi dex.
     implementation 'com.android.support:multidex:1.0.3'
-
-    // a map.
-    implementation 'com.amap.api:location:4.7.2'
 
     // gms.
     implementation "com.google.android.gms:play-services-location:17.0.0"

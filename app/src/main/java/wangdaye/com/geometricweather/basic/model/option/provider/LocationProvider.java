@@ -9,9 +9,6 @@ import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum LocationProvider {
 
-    BAIDU("baidu"),
-    BAIDU_IP("baidu_ip"),
-    AMAP("amap"),
     NATIVE("native");
 
     private String providerId;

@@ -90,12 +90,6 @@ public class OptionMapper {
 
     public static WeatherSource getWeatherSource(String value) {
         switch (value) {
-            case "cn":
-                return WeatherSource.CN;
-
-            case "caiyun":
-                return WeatherSource.CAIYUN;
-
             default:
                 return WeatherSource.ACCU;
         }
@@ -103,15 +97,6 @@ public class OptionMapper {
 
     public static LocationProvider getLocationProvider(String value) {
         switch (value) {
-            case "baidu_ip":
-                return LocationProvider.BAIDU_IP;
-
-            case "baidu":
-                return LocationProvider.BAIDU;
-
-            case "amap":
-                return LocationProvider.AMAP;
-
             default:
                 return LocationProvider.NATIVE;
         }

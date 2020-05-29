@@ -37,32 +37,6 @@ public class ChineseCity {
         this.longitude = longitude;
     }
 
-    public enum CNWeatherSource {
-
-        CN(WeatherSource.CN),
-        CAIYUN(WeatherSource.CAIYUN);
-
-        CNWeatherSource(WeatherSource source) {
-            this.source = source;
-        }
-
-        private WeatherSource source;
-
-        private WeatherSource getSource() {
-            return source;
-        }
-    }
-
-    public Location toLocation(CNWeatherSource source) {
-        return new Location(
-                getCityId(),
-                Float.parseFloat(getLatitude()), Float.parseFloat(getLongitude()), TimeZone.getTimeZone("Asia/Shanghai"),
-                "中国", getProvince(), getCity(), getDistrict().equals("无") ? "" : getDistrict(),
-                null, source.getSource(),
-                false, false, true
-        );
-    }
-
     public String getCityId() {
         return cityId;
     }
