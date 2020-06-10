@@ -19,13 +19,6 @@ import androidx.annotation.WorkerThread;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -46,11 +39,9 @@ public class AndroidLocationService extends LocationService {
     private Handler timer;
 
     @Nullable private LocationManager locationManager;
-    @Nullable private FusedLocationProviderClient gmsLocationClient;
 
     @Nullable private LocationListener networkListener;
     @Nullable private LocationListener gpsListener;
-    @Nullable private GMSLocationListener gmsListener;
 
     @Nullable private LocationCallback locationCallback;
     @Nullable private Location lastKnownLocation;
@@ -83,23 +74,12 @@ public class AndroidLocationService extends LocationService {
         }
     }
 
-    private class GMSLocationListener extends com.google.android.gms.location.LocationCallback {
-
-        public void onLocationResult(LocationResult locationResult) {
-            if (locationResult != null && locationResult.getLocations().size() > 0) {
-                stopLocationUpdates();
-                handleLocation(locationResult.getLocations().get(0));
-            }
-        }
-    }
-
     public AndroidLocationService(Context c) {
         context = c;
         timer = new Handler(Looper.getMainLooper());
 
         networkListener = null;
         gpsListener = null;
-        gmsListener = null;
 
         locationCallback = null;
         lastKnownLocation = null;
@@ -108,9 +88,6 @@ public class AndroidLocationService extends LocationService {
     @Override
     public void requestLocation(Context context, @NonNull LocationCallback callback){
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        gmsLocationClient = gmsEnabled(context)
-                ? LocationServices.getFusedLocationProviderClient(context)
-                : null;
 
         if (locationManager == null
                 || !locationEnabled(context, locationManager)
@@ -121,14 +98,9 @@ public class AndroidLocationService extends LocationService {
 
         networkListener = new LocationListener();
         gpsListener = new LocationListener();
-        gmsListener = new GMSLocationListener();
 
         locationCallback = callback;
         lastKnownLocation = getLastKnownLocation();
-        if (lastKnownLocation == null && gmsLocationClient != null) {
-            gmsLocationClient.getLastLocation()
-                    .addOnSuccessListener(location -> lastKnownLocation = location);
-        }
 
         if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
@@ -137,15 +109,6 @@ public class AndroidLocationService extends LocationService {
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                     0, 0, gpsListener, Looper.getMainLooper());
-        }
-        if (gmsLocationClient != null) {
-            gmsLocationClient.requestLocationUpdates(
-                    LocationRequest.create()
-                            .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
-                            .setNumUpdates(1),
-                    gmsListener,
-                    Looper.getMainLooper()
-            );
         }
 
         timer.postDelayed(() -> {
@@ -188,10 +151,6 @@ public class AndroidLocationService extends LocationService {
                 locationManager.removeUpdates(gpsListener);
                 gpsListener = null;
             }
-        }
-        if (gmsLocationClient != null && gmsListener != null) {
-            gmsLocationClient.removeLocationUpdates(gmsListener);
-            gmsListener = null;
         }
     }
 
@@ -279,11 +238,6 @@ public class AndroidLocationService extends LocationService {
         }
 
         return result;
-    }
-
-    private static boolean gmsEnabled(Context context) {
-        return GoogleApiAvailability.getInstance()
-                .isGooglePlayServicesAvailable(context) == ConnectionResult.SUCCESS;
     }
 
     private static boolean locationEnabled(Context context, @NonNull LocationManager manager) {

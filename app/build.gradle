@@ -89,9 +89,6 @@ dependencies {
     // multi dex.
     implementation 'com.android.support:multidex:1.0.3'
 
-    // gms.
-    implementation "com.google.android.gms:play-services-location:17.0.0"
-
     // glide.
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
