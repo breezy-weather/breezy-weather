@@ -192,6 +192,8 @@
     <string name="feedback_enable_location_information">Enable Location Information</string>
     <string name="feedback_select_location_provider">Select Location Provider</string>
     <string name="feedback_add_location_manually">Add Location Manually And Delete \'$\'</string>
+    <string name="feedback_background_location_title">Access location in background</string>
+    <string name="feedback_background_location_summary">In order to allow the app to access location in background, please set location access as \"Allow all the time\".</string>
 
     <string name="feedback_view_style">View style</string>
     <string name="feedback_show_widget_card">Background color</string>

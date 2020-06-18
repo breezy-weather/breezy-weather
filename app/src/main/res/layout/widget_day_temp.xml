@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_day"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/black">
+
+    <TextView
+        android:id="@+id/widget_day_title"
+        android:text="@string/ellipsis"
+        android:textSize="@dimen/widget_large_title_text_size"
+        android:textStyle="bold"
+        android:textColor="@color/colorTextLight"
+        android:shadowColor="@color/colorTextDark2nd"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:layout_centerInParent="true"
+        style="@style/content_text"
+        tools:text="21°"
+        tools:ignore="RtlHardcoded" />
+
+</RelativeLayout>

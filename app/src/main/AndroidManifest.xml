@@ -269,16 +269,24 @@
         </activity>
 
         <!-- service -->
-        <service android:name=".background.polling.basic.AwakeForegroundUpdateService" />
+        <service
+            android:name=".background.polling.basic.AwakeForegroundUpdateService"
+            android:foregroundServiceType="location" />
 
         <service
             android:name=".background.polling.permanent.observer.TimeObserverService"
             android:process=":polling" />
-        <service android:name=".background.polling.permanent.observer.FakeForegroundService"
-            android:process=":polling" />
-        <service android:name=".background.polling.permanent.update.ForegroundNormalUpdateService" />
-        <service android:name=".background.polling.permanent.update.ForegroundTodayForecastUpdateService" />
-        <service android:name=".background.polling.permanent.update.ForegroundTomorrowForecastUpdateService" />
+        <service android:name=".background.polling.permanent.observer.FakeForegroundService" />
+
+        <service
+            android:name=".background.polling.permanent.update.ForegroundNormalUpdateService"
+            android:foregroundServiceType="location" />
+        <service
+            android:name=".background.polling.permanent.update.ForegroundTodayForecastUpdateService"
+            android:foregroundServiceType="location" />
+        <service
+            android:name=".background.polling.permanent.update.ForegroundTomorrowForecastUpdateService"
+            android:foregroundServiceType="location" />
 
         <service
             android:name=".background.service.TileService"

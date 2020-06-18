@@ -123,6 +123,10 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
             case "vertical":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_vertical);
                 break;
+
+            case "temp":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_temp);
+                break;
         }
         if (weather == null) {
             return views;
@@ -277,6 +281,9 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "mini":
                 return weather.getCurrent().getWeatherText();
+
+            case "temp":
+                return weather.getCurrent().getTemperature().getShortTemperature(context, unit);
         }
         return "";
     }
@@ -296,6 +303,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 );
 
             case "tile":
+            case "temp":
                 return Temperature.getTrendTemperature(
                         context,
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
@@ -388,6 +396,9 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
             case "mini":
             case "vertical":
                 return context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size);
+
+            case "temp":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_title_text_size);
         }
         return 0;
     }
@@ -399,6 +410,9 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
             case "tile":
             case "mini":
                 return context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size);
+
+            case "temp":
+                return context.getResources().getDimensionPixelSize(R.dimen.widget_subtitle_text_size);
         }
         return 0;
     }

@@ -25,14 +25,16 @@ public class ClockDayVerticalWidgetConfigActivity extends AbstractWidgetConfigAc
                 widgetStyles[1],
                 widgetStyles[2],
                 widgetStyles[3],
-                widgetStyles[6]
+                widgetStyles[6],
+                widgetStyles[9]
         };
         this.viewTypeValues = new String[] {
                 widgetStyleValues[0],
                 widgetStyleValues[1],
                 widgetStyleValues[2],
                 widgetStyleValues[3],
-                widgetStyleValues[6]
+                widgetStyleValues[6],
+                widgetStyleValues[9]
         };
     }
 

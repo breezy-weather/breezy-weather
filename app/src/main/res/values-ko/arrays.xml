@@ -77,6 +77,7 @@
         <item>세로</item>
         <item>오레오</item>
         <item>오레오 (구글 산스)</item>
+        <item>Temperature</item>
     </string-array>
 
     <!-- 위젯 표시 데이터. -->

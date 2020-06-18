@@ -715,8 +715,8 @@ public class MainActivity extends GeoActivity
 
         private int firstCardMarginTop;
 
-        private int oldScrollY;
         private int scrollY;
+        private float lastAppBarTranslationY;
 
         OnScrollListener() {
             super();
@@ -726,8 +726,8 @@ public class MainActivity extends GeoActivity
 
             this.firstCardMarginTop = 0;
 
-            this.oldScrollY = 0;
             this.scrollY = 0;
+            this.lastAppBarTranslationY = 0;
         }
 
         @Override
@@ -739,7 +739,7 @@ public class MainActivity extends GeoActivity
             }
 
             scrollY = recyclerView.computeVerticalScrollOffset();
-            oldScrollY = scrollY - dy;
+            lastAppBarTranslationY = binding.appBar.getTranslationY();
 
             weatherView.onScroll(scrollY);
             if (adapter != null) {
@@ -773,12 +773,9 @@ public class MainActivity extends GeoActivity
             if (firstCardMarginTop <= 0) {
                 topChanged = true;
                 topOverlap = false;
-            } else if (scrollY >= firstCardMarginTop) {
-                topChanged = oldScrollY < firstCardMarginTop;
-                topOverlap = true;
             } else {
-                topChanged = oldScrollY >= firstCardMarginTop;
-                topOverlap = false;
+                topChanged = (binding.appBar.getTranslationY() != 0) != (lastAppBarTranslationY != 0);
+                topOverlap = binding.appBar.getTranslationY() != 0;
             }
 
             if (topChanged) {

@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29 // 'android-R'
+    compileSdkVersion 30
     defaultConfig {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
-        targetSdkVersion 29 // 'R'
+        targetSdkVersion 30
         versionCode 26068
         versionName "2.608"
         multiDexEnabled true
@@ -84,7 +84,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // android x.
-    implementation 'com.google.android.material:material:1.2.0-alpha06'
+    implementation 'com.google.android.material:material:1.3.0-alpha01'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.1'

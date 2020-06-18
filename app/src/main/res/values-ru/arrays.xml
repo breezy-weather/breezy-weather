@@ -76,6 +76,7 @@
         <item>Вертикальный</item>
         <item>Oreo</item>
         <item>Oreo (Google sans)</item>
+        <item>Temperature</item>
     </string-array>
 
     <!-- week widget style. -->

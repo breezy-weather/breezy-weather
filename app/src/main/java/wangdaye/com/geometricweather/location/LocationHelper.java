@@ -62,20 +62,24 @@ public class LocationHelper {
 
     public void requestLocation(Context context, Location location, boolean background,
                                 @NonNull OnRequestLocationListener l) {
-        if (!NetworkUtils.isAvailable(context)
-                || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            l.requestLocationFailed(location);
-            return;
-        }
-        if (background
-                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            l.requestLocationFailed(location);
-            return;
+        if (locationService.getPermissions().length != 0) {
+            // if needs any location permission.
+            if (!NetworkUtils.isAvailable(context)
+                    || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED
+                    || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                l.requestLocationFailed(location);
+                return;
+            }
+            if (background) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                        && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    l.requestLocationFailed(location);
+                    return;
+                }
+            }
         }
 
         // 1. get location by location service.
@@ -128,18 +132,24 @@ public class LocationHelper {
         caiyunWeather.cancel();
     }
 
-    public String[] getPermissions() {
+    public String[] getPermissions(boolean background) {
         String[] permissions = locationService.getPermissions();
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || permissions.length == 0) {
             return permissions;
         }
 
-        String[] qPermissions = new String[permissions.length + 1];
-        System.arraycopy(permissions, 0, qPermissions, 0, permissions.length);
-        qPermissions[qPermissions.length - 1] = Manifest.permission.ACCESS_BACKGROUND_LOCATION;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            String[] qPermissions = new String[permissions.length + 1];
+            System.arraycopy(permissions, 0, qPermissions, 0, permissions.length);
+            qPermissions[qPermissions.length - 1] = Manifest.permission.ACCESS_BACKGROUND_LOCATION;
+            return qPermissions;
+        }
 
-        return qPermissions;
+        if (background) {
+            return new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+        } else {
+            return permissions;
+        }
     }
 
     // interface.

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_background_location_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorRoot">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_background_location_title"
+            android:text="@string/feedback_background_location_title"
+            android:textSize="@dimen/large_title_text_size"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/normal_margin"
+            style="@style/title_text" />
+
+        <TextView
+            android:id="@+id/dialog_background_location_summary"
+            android:text="@string/feedback_background_location_summary"
+            android:layout_margin="@dimen/normal_margin"
+            style="@style/content_text" />
+
+        <Button
+            android:id="@+id/dialog_background_location_setButton"
+            android:text="@string/go_to_set"
+            android:layout_gravity="end"
+            android:textColor="@color/striking_red"
+            style="@style/material_button"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

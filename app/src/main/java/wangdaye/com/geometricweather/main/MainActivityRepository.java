@@ -138,9 +138,9 @@ public class MainActivityRepository {
         return INVALID_LOCATION_INDEX;
     }
 
-    public List<String> getLocatePermissionList() {
+    public List<String> getLocatePermissionList(boolean background) {
         return new ArrayList<>(
-                Arrays.asList(locationHelper.getPermissions())
+                Arrays.asList(locationHelper.getPermissions(background))
         );
     }
 

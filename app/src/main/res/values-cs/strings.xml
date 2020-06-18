@@ -41,7 +41,7 @@
     <string name="visibility">Viditelnost</string>
     <string name="dew_point">Rosný bod</string>
     <string name="cloud_cover">Oblačnost</string>
-    <string name="ceiling">Strop</string>
+    <string name="ceiling">Výška mraků</string>
     <string name="get_more">Zjisti víc</string>
     <string name="get_more_store">Zjistit více v obchodu</string>
     <string name="get_more_github">Zjisti více na Githubu</string>
@@ -75,26 +75,26 @@
     <string name="ice">Led</string>
 
     <string name="wind_0">Bezvětří</string>
-    <string name="wind_1">Téměř bezvětrno</string>
-    <string name="wind_2">Lehký vánek</string>
-    <string name="wind_3">Citelný vánek</string>
-    <string name="wind_4">Lehký vítr</string>
+    <string name="wind_1">Vánek</string>
+    <string name="wind_2">Větřík</string>
+    <string name="wind_3">Slabý vítr</string>
+    <string name="wind_4">Mírný vítr</string>
     <string name="wind_5">Čerstvý vítr</string>
     <string name="wind_6">Silný vítr</string>
-    <string name="wind_7">Drsný vítr</string>
-    <string name="wind_8">Vichřice</string>
-    <string name="wind_9">Silná vichřice</string>
-    <string name="wind_10">Bouře</string>
-    <string name="wind_11">Drsná bouře</string>
-    <string name="wind_12">Hurikán</string>
+    <string name="wind_7">Prudký vítr</string>
+    <string name="wind_8">Bouřlivý vítr</string>
+    <string name="wind_9">Vichřice</string>
+    <string name="wind_10">Silná vichřice</string>
+    <string name="wind_11">Mohutná vichřice</string>
+    <string name="wind_12">Orkán</string>
 
     <string name="precipitation_light">Mrholení</string>
     <string name="precipitation_middle">Déšť</string>
     <string name="precipitation_heavy">Silný déšť</string>
     <string name="precipitation_rainstorm">Bouřka</string>
 
-    <string name="aqi_1">Velmi čistý vzduch</string>
-    <string name="aqi_2">Čistý vzduch</string>
+    <string name="aqi_1">Velmi čistý</string>
+    <string name="aqi_2">Převážně čistý</string>
     <string name="aqi_3">Jemně znečištěný</string>
     <string name="aqi_4">Středně znečištěný</string>
     <string name="aqi_5">Velmi znečištěný</string>
@@ -109,7 +109,7 @@
     <string name="phase_third">Ubývající polovina</string>
     <string name="phase_waning_crescent">Ubývající čtvrtina</string>
 
-    <string name="grass">Seno</string>
+    <string name="grass">Tráva</string>
     <string name="mold">Plísňe</string>
     <string name="ragweed">Ambrózie</string>
     <string name="tree">Pyl</string>
@@ -121,7 +121,7 @@
     <string name="air_quality">Kvalita vzduchu</string>
     <string name="allergen">Alergeny</string>
     <string name="life_details">Detaily</string>
-    <string name="sunrise_sunset">Slunce aamp; Měsíc</string>
+    <string name="sunrise_sunset">Slunce a Měsíc</string>
 
     <string name="next">DALŠÍ</string>
     <string name="done">HOTOVO</string>
@@ -157,7 +157,7 @@
     <string name="gson">Gson</string>
     <string name="about_gson">Knihovna serializace / deserializace Java, která umí přeměnit Java Objekty do formátu JSON a zpět.</string>
     <string name="greenDAO">GreenDAO</string>
-    <string name="about_greenDAO">greenDAO je jednoduché a rychlé řešení ORM pro Android, které mapuje objekty do databází SQLite.</string>
+    <string name="about_greenDAO">GreenDAO je jednoduché a rychlé řešení ORM pro Android, které mapuje objekty do databází SQLite.</string>
     <string name="page_indicator">InkPageIndicator</string>
     <string name="about_page_indicator">InkPageIndicator vytvořil @nickbutcher pro Plaid https://github.com/nickbutcher/plaid a backportován Davidem Pacioianou pro API 14+ (4.0+).</string>
     <string name="circular_progress_view">CircularProgressView</string>
@@ -329,17 +329,17 @@
     <string name="settings_title_alert_notification_switch">Ukázat upozornění</string>
     <string name="settings_title_precipitation_notification_switch">Ukázat předpověď srážek</string>
     <string name="settings_title_permanent_service">Trvalá služba</string>
-    <string name="settings_category_forecast">Předpověď</string>
+    <string name="settings_category_forecast">Pravidelné hlášení (oznámení)</string>
     <string name="settings_title_forecast_today">Předpověď pro dnešek</string>
     <string name="settings_title_forecast_today_time">Čas předpovědi pro dnešek</string>
     <string name="settings_title_forecast_tomorrow">Předpověď pro zítřek</string>
     <string name="settings_title_forecast_tomorrow_time">Čas předpovědi pro zítřek</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_week_icon_mode">Mód týdenních ikon</string>
+    <string name="settings_title_week_icon_mode">Typ ikon</string>
     <string name="settings_title_minimal_icon">Minimalistické ikony</string>
     <string name="settings_title_click_widget_to_refresh">Obnovit widget klepnutím</string>
     <string name="settings_category_notification">Oznámení</string>
-    <string name="settings_title_notification">Poslat oznámení</string>
+    <string name="settings_title_notification">Trvalé oznámení</string>
     <string name="settings_title_notification_style">Styl oznámení</string>
     <string name="settings_title_notification_temp_icon">Ikona teploty ve stavovém řádku</string>
     <string name="settings_title_notification_color">Barva oznámení</string>

@@ -194,6 +194,7 @@
         <item>Vertical</item>
         <item>Oreo</item>
         <item>Oreo (Google sans)</item>
+        <item>Temperature</item>
     </string-array>
     <string-array name="widget_style_values">
         <item>rectangle</item>
@@ -205,6 +206,7 @@
         <item>vertical</item>
         <item>oreo</item>
         <item>oreo_google_sans</item>
+        <item>temp</item>
     </string-array>
 
     <!-- week widget style. -->

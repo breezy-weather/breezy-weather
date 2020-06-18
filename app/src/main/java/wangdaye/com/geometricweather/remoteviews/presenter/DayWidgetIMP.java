@@ -64,7 +64,8 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
         WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
         if (viewStyle.equals("pixel") || viewStyle.equals("nano")
-                || viewStyle.equals("oreo") || viewStyle.equals("oreo_google_sans")) {
+                || viewStyle.equals("oreo") || viewStyle.equals("oreo_google_sans")
+                || viewStyle.equals("temp")) {
             color.showCard = false;
             color.darkText = textColor.equals("dark")
                     || (textColor.equals("auto") && isLightWallpaper(context));
@@ -136,6 +137,10 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "oreo_google_sans":
                 views = new RemoteViews(context.getPackageName(), R.layout.widget_day_oreo_google_sans);
+                break;
+
+            case "temp":
+                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_temp);
                 break;
         }
         Weather weather = location.getWeather();
@@ -246,6 +251,9 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "nano":
             case "pixel":
                 return weather.getCurrent().getTemperature().getTemperature(context, unit);
+
+            case "temp":
+                return weather.getCurrent().getTemperature().getShortTemperature(context, unit);
 
             case "vertical":
                 return String.valueOf(
@@ -383,6 +391,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "oreo":
             case "oreo_google_sans":
+            case "temp":
                 return context.getResources().getDimensionPixelSize(R.dimen.widget_large_title_text_size);
         }
         return 0;

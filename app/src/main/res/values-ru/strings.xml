@@ -167,6 +167,7 @@
     <string name="feedback_black_text">Цвет текста</string>
     <string name="feedback_text_size">Размер текста</string>
     <string name="feedback_clock_font">Шрифт чаcов</string>
+    <string name="feedback_hide_lunar">Скрыть лунный календарь</string>
     <string name="feedback_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.\n\nНапример, \"погода сейчас = $cw$\" будет показана как \"Погода сейчас = Ясный День\".</string>
 
     <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Погода сейчас\n</string>

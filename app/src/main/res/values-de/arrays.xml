@@ -58,6 +58,7 @@
         <item>Vertical</item>
         <item>Oreo</item>
         <item>Oreo (Google sans)</item>
+        <item>Temperature</item>
     </string-array>
 
     <string-array name="widget_text_colors">

@@ -247,6 +247,8 @@
     <string name="feedback_restart">重啟後生效</string>
     <string name="feedback_readd_location">請重新添加地址</string>
     <string name="feedback_readd_location_after_changing_source">更換數據源後需重新添加地址</string>
+    <string name="feedback_background_location_title">在後臺訪問位置</string>
+    <string name="feedback_background_location_summary">爲了讓app可以在後臺訪問您的位置信息，請將定位權限設置爲“始终允许”</string>
 
     <string name="feedback_running_in_background">正在後台運行以保持更新數據</string>
     <string name="feedback_updating_weather_data">正在更新天氣數據</string>

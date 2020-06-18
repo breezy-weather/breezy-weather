@@ -29,7 +29,8 @@ public class DayWidgetConfigActivity extends AbstractWidgetConfigActivity {
                     widgetStyles[4],
                     widgetStyles[5],
                     widgetStyles[6],
-                    widgetStyles[7]
+                    widgetStyles[7],
+                    widgetStyles[9]
             };
             this.viewTypeValues = new String[] {
                     widgetStyleValues[0],
@@ -39,7 +40,8 @@ public class DayWidgetConfigActivity extends AbstractWidgetConfigActivity {
                     widgetStyleValues[4],
                     widgetStyleValues[5],
                     widgetStyleValues[6],
-                    widgetStyleValues[7]
+                    widgetStyleValues[7],
+                    widgetStyleValues[9]
             };
         }
     }

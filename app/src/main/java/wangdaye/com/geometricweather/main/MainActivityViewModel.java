@@ -23,6 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.main.dialog.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.model.Indicator;
 import wangdaye.com.geometricweather.main.model.LocationResource;
 import wangdaye.com.geometricweather.main.model.LockableLocationList;
@@ -219,22 +220,16 @@ public class MainActivityViewModel extends ViewModel
         );
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && location.isCurrentPosition()) {
-            // check permissions.
-            List<String> permissionList = repository.getLocatePermissionList();
-            for (int i = permissionList.size() - 1; i >= 0; i --) {
-                if (ActivityCompat.checkSelfPermission(activity, permissionList.get(i))
-                        == PackageManager.PERMISSION_GRANTED) {
-                    permissionList.remove(i);
-                }
-            }
-
+            // check basic location permissions.
+            List<String> permissionList = getDeniedPermissionList(activity, false);
             if (permissionList.size() != 0) {
-                // request permission.
+                // request basic location permissions.
                 activity.requestPermissions(permissionList.toArray(new String[0]), 0,
                         (requestCode, permission, grantResult) -> {
                             for (int i = 0; i < permission.length && i < grantResult.length; i++) {
                                 if (isPivotalPermission(permission[i])
                                         && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
+                                    // denied basic location permissions.
                                     if (location.isUsable()) {
                                         repository.getWeather(activity,
                                                 currentLocation, lockableLocationList,false, this);
@@ -245,6 +240,23 @@ public class MainActivityViewModel extends ViewModel
                                     return;
                                 }
                             }
+
+                            // check background location permissions.
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                List<String> backgroundPermissionList = getDeniedPermissionList(activity, true);
+                                if (backgroundPermissionList.size() != 0) {
+                                    BackgroundLocationDialog dialog = new BackgroundLocationDialog();
+                                    dialog.setOnSetButtonClickListener(() ->
+                                            activity.requestPermissions(
+                                                    backgroundPermissionList.toArray(new String[0]),
+                                                    0,
+                                                    null
+                                            )
+                                    );
+                                    dialog.show(activity.getSupportFragmentManager(), null);
+                                }
+                            }
+
                             repository.getWeather(activity, currentLocation, lockableLocationList, true, this);
                         });
                 return;
@@ -252,6 +264,17 @@ public class MainActivityViewModel extends ViewModel
         }
 
         repository.getWeather(activity, currentLocation, lockableLocationList, location.isCurrentPosition(), this);
+    }
+
+    private List<String> getDeniedPermissionList(Context context, boolean background) {
+        List<String> permissionList = repository.getLocatePermissionList(background);
+        for (int i = permissionList.size() - 1; i >= 0; i --) {
+            if (ActivityCompat.checkSelfPermission(context, permissionList.get(i))
+                    == PackageManager.PERMISSION_GRANTED) {
+                permissionList.remove(i);
+            }
+        }
+        return permissionList;
     }
 
     private boolean isPivotalPermission(String permission) {
