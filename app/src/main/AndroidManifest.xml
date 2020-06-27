@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="wangdaye.com.geometricweather">
+    package="com.mbestavros.geometricweather">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -31,7 +31,7 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/geometric_weather"
-        android:name=".GeometricWeather"
+        android:name="com.mbestavros.geometricweather.GeometricWeather"
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/GeometricWeatherTheme"
@@ -42,23 +42,23 @@
         tools:targetApi="n">
 
         <meta-data
-            android:name="com.wangdaye.geometricweather.PROVIDER_CONFIG"
+            android:name="com.mbestavros.geometricweather.PROVIDER_CONFIG"
             android:resource="@xml/icon_provider_config" />
         <meta-data
-            android:name="com.wangdaye.geometricweather.DRAWABLE_FILTER"
+            android:name="com.mbestavros.geometricweather.DRAWABLE_FILTER"
             android:resource="@xml/icon_provider_drawable_filter" />
         <meta-data
-            android:name="com.wangdaye.geometricweather.ANIMATOR_FILTER"
+            android:name="com.mbestavros.geometricweather.ANIMATOR_FILTER"
             android:resource="@xml/icon_provider_animator_filter" />
         <meta-data
-            android:name="com.wangdaye.geometricweather.SHORTCUT_FILTER"
+            android:name="com.mbestavros.geometricweather.SHORTCUT_FILTER"
             android:resource="@xml/icon_provider_shortcut_filter" />
         <meta-data
-            android:name="com.wangdaye.geometricweather.SUN_MOON_FILTER"
+            android:name="com.mbestavros.geometricweather.SUN_MOON_FILTER"
             android:resource="@xml/icon_provider_sun_moon_filter" />
 
         <activity
-            android:name=".main.MainActivity"
+            android:name="com.mbestavros.geometricweather.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/GeometricWeatherTheme.Main"
             android:screenOrientation="user"
@@ -77,66 +77,66 @@
         </activity>
 
         <activity
-            android:name=".daily.DailyWeatherActivity"
+            android:name="com.mbestavros.geometricweather.daily.DailyWeatherActivity"
             android:label="@string/daily_overview"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activity.AlertActivity"
+            android:name="com.mbestavros.geometricweather.ui.activity.AlertActivity"
             android:label="@string/action_alert"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activity.AllergenActivity"
+            android:name="com.mbestavros.geometricweather.ui.activity.AllergenActivity"
             android:label="@string/allergen"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activity.ManageActivity"
+            android:name="com.mbestavros.geometricweather.ui.activity.ManageActivity"
             android:label="@string/action_manage"
             android:theme="@style/GeometricWeatherTheme" />
 
-        <activity android:name=".ui.activity.SearchActivity"
+        <activity android:name="com.mbestavros.geometricweather.ui.activity.SearchActivity"
             android:label="@string/action_search"
             android:theme="@style/GeometricWeatherTheme.Search" />
 
         <activity
-            android:name=".settings.activity.SettingsActivity"
+            android:name="com.mbestavros.geometricweather.settings.activity.SettingsActivity"
             android:label="@string/action_settings"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activity.CardDisplayManageActivity"
+            android:name="com.mbestavros.geometricweather.settings.activity.CardDisplayManageActivity"
             android:label="@string/settings_title_card_display"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activity.DailyTrendDisplayManageActivity"
+            android:name="com.mbestavros.geometricweather.settings.activity.DailyTrendDisplayManageActivity"
             android:label="@string/settings_title_daily_trend_display"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activity.SelectProviderActivity"
+            android:name="com.mbestavros.geometricweather.settings.activity.SelectProviderActivity"
             android:label="@string/settings_title_service_provider"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activity.PreviewIconActivity"
+            android:name="com.mbestavros.geometricweather.settings.activity.PreviewIconActivity"
             android:label="@string/action_preview"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".settings.activity.AboutActivity"
+            android:name="com.mbestavros.geometricweather.settings.activity.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".ui.activity.AwakeUpdateActivity"
+            android:name="com.mbestavros.geometricweather.ui.activity.AwakeUpdateActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="com.wangdaye.geometricweather.UPDATE" />
@@ -145,7 +145,7 @@
         </activity>
 
         <activity
-            android:name=".wallpaper.LiveWallpaperConfigActivity"
+            android:name="com.mbestavros.geometricweather.wallpaper.LiveWallpaperConfigActivity"
             android:label="@string/settings_title_live_wallpaper"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user"
@@ -154,7 +154,7 @@
         <!-- widget -->
 
         <activity
-            android:name=".remoteviews.config.DayWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.DayWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -163,7 +163,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.WeekWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.WeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -172,7 +172,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.DayWeekWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.DayWeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -181,7 +181,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.ClockDayHorizontalWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -190,7 +190,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.ClockDayDetailsWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -199,7 +199,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.ClockDayVerticalWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.ClockDayVerticalWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -208,7 +208,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.ClockDayWeekWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.ClockDayWeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -217,7 +217,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.TextWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.TextWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -226,7 +226,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.DailyTrendWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.DailyTrendWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -235,7 +235,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.HourlyTrendWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.HourlyTrendWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -244,7 +244,7 @@
         </activity>
 
         <activity
-            android:name=".remoteviews.config.MultiCityWidgetConfigActivity"
+            android:name="com.mbestavros.geometricweather.remoteviews.config.MultiCityWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user">
             <intent-filter>
@@ -254,26 +254,26 @@
 
         <!-- service -->
         <service
-            android:name=".background.polling.basic.AwakeForegroundUpdateService"
+            android:name="com.mbestavros.geometricweather.background.polling.basic.AwakeForegroundUpdateService"
             android:foregroundServiceType="location" />
 
         <service
-            android:name=".background.polling.permanent.observer.TimeObserverService"
+            android:name="com.mbestavros.geometricweather.background.polling.permanent.observer.TimeObserverService"
             android:process=":polling" />
-        <service android:name=".background.polling.permanent.observer.FakeForegroundService" />
+        <service android:name="com.mbestavros.geometricweather.background.polling.permanent.observer.FakeForegroundService" />
 
         <service
-            android:name=".background.polling.permanent.update.ForegroundNormalUpdateService"
+            android:name="com.mbestavros.geometricweather.background.polling.permanent.update.ForegroundNormalUpdateService"
             android:foregroundServiceType="location" />
         <service
-            android:name=".background.polling.permanent.update.ForegroundTodayForecastUpdateService"
+            android:name="com.mbestavros.geometricweather.background.polling.permanent.update.ForegroundTodayForecastUpdateService"
             android:foregroundServiceType="location" />
         <service
-            android:name=".background.polling.permanent.update.ForegroundTomorrowForecastUpdateService"
+            android:name="com.mbestavros.geometricweather.background.polling.permanent.update.ForegroundTomorrowForecastUpdateService"
             android:foregroundServiceType="location" />
 
         <service
-            android:name=".background.service.TileService"
+            android:name="com.mbestavros.geometricweather.background.service.TileService"
             android:label="@string/geometric_weather"
             android:icon="@drawable/weather_clear_day_mini_light"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -283,7 +283,7 @@
         </service>
 
         <service
-            android:name=".background.service.CMWeatherProviderService"
+            android:name="com.mbestavros.geometricweather.background.service.CMWeatherProviderService"
             android:permission="cyanogenmod.permission.BIND_WEATHER_PROVIDER_SERVICE">
             <intent-filter>
                 <action android:name="cyanogenmod.weatherservice.WeatherProviderService" />
@@ -294,7 +294,7 @@
         </service>
 
         <service
-            android:name=".wallpaper.material.MaterialLiveWallpaperService"
+            android:name="com.mbestavros.geometricweather.wallpaper.material.MaterialLiveWallpaperService"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
@@ -306,7 +306,7 @@
 
         <!-- receiver -->
         <receiver
-            android:name=".background.receiver.MainReceiver">
+            android:name="com.mbestavros.geometricweather.background.receiver.MainReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.WALLPAPER_CHANGED" />
@@ -315,7 +315,7 @@
 
         <!-- widget -->
         <receiver
-            android:name=".background.receiver.widget.WidgetDayProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetDayProvider"
             android:label="@string/widget_day">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -327,7 +327,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetWeekProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetWeekProvider"
             android:label="@string/widget_week">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -339,7 +339,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetDayWeekProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetDayWeekProvider"
             android:label="@string/widget_day_week">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -351,7 +351,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetClockDayHorizontalProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetClockDayHorizontalProvider"
             android:label="@string/widget_clock_day_horizontal">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -363,7 +363,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetClockDayDetailsProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetClockDayDetailsProvider"
             android:label="@string/widget_clock_day_details">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -375,7 +375,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetClockDayVerticalProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetClockDayVerticalProvider"
             android:label="@string/widget_clock_day_vertical">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -387,7 +387,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetClockDayWeekProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetClockDayWeekProvider"
             android:label="@string/widget_clock_day_week">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -399,7 +399,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetTextProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetTextProvider"
             android:label="@string/widget_text">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -411,7 +411,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetTrendDailyProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetTrendDailyProvider"
             android:label="@string/widget_trend_daily">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -423,7 +423,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetTrendHourlyProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetTrendHourlyProvider"
             android:label="@string/widget_trend_hourly">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -435,7 +435,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receiver.widget.WidgetMultiCityProvider"
+            android:name="com.mbestavros.geometricweather.background.receiver.widget.WidgetMultiCityProvider"
             android:label="@string/widget_multi_city">
             <meta-data
                 android:name="android.appwidget.provider"

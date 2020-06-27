@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView
+        <com.mbestavros.geometricweather.ui.widget.trend.TrendRecyclerView
             android:id="@+id/container_main_hourly_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/hourly_trend_item_height"
@@ -58,7 +58,7 @@
                 style="@style/content_text"
                 tools:ignore="RtlHardcoded" />
 
-            <wangdaye.com.geometricweather.ui.widget.PrecipitationBar
+            <com.mbestavros.geometricweather.ui.widget.PrecipitationBar
                 android:id="@+id/container_main_hourly_trend_card_minutelyBar"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"

@@ -23,7 +23,7 @@
         style="@style/title_text"
         tools:text="@string/grass"/>
 
-    <wangdaye.com.geometricweather.ui.widget.RoundProgress
+    <com.mbestavros.geometricweather.ui.widget.RoundProgress
         android:id="@+id/item_pollen_progress"
         android:layout_width="match_parent"
         android:layout_height="6dp"

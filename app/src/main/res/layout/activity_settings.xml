@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
+    <com.mbestavros.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -19,7 +19,7 @@
             app:title="@string/action_settings"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-    </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
+    </com.mbestavros.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_settings_container"

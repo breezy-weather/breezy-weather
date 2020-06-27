@@ -8,5 +8,5 @@
     android:initialLayout="@layout/widget_text"
     android:previewImage="@drawable/widget_text"
     android:resizeMode="horizontal|vertical"
-    android:configure="wangdaye.com.geometricweather.remoteviews.config.TextWidgetConfigActivity"
+    android:configure="com.mbestavros.geometricweather.remoteviews.config.TextWidgetConfigActivity"
     android:widgetCategory="home_screen|keyguard" />

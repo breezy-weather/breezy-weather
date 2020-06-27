@@ -24,17 +24,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout
+            <com.mbestavros.geometricweather.ui.widget.SwipeSwitchLayout
                 android:id="@+id/switch_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout
+                <com.mbestavros.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout
                     android:id="@+id/refresh_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView
+                    <com.mbestavros.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView
                         android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -42,11 +42,11 @@
                         android:fitsSystemWindows="true"
                         android:clipToPadding="false" />
 
-                </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout>
+                </com.mbestavros.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout>
 
-            </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
+            </com.mbestavros.geometricweather.ui.widget.SwipeSwitchLayout>
 
-            <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
+            <com.mbestavros.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
                 android:id="@+id/app_bar"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -63,9 +63,9 @@
                     app:theme="@style/GeometricWeatherTheme.AppbarTheme"
                     app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-            </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
+            </com.mbestavros.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
-            <wangdaye.com.geometricweather.ui.widget.InkPageIndicator
+            <com.mbestavros.geometricweather.ui.widget.InkPageIndicator
                 android:id="@+id/indicator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

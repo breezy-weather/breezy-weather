@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView
+        <com.mbestavros.geometricweather.ui.widget.trend.TrendRecyclerView
             android:id="@+id/container_main_daily_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/daily_trend_item_height"

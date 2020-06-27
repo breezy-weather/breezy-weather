@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
+    <com.mbestavros.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
         android:id="@+id/fragment_location_manage_appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,9 +67,9 @@
 
         </FrameLayout>
 
-    </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
+    </com.mbestavros.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
-    <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView
+    <com.mbestavros.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView
         android:id="@+id/fragment_location_manage_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

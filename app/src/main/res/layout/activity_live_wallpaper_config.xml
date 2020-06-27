@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorRoot">
 
-    <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
+    <com.mbestavros.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -21,14 +21,14 @@
             android:background="@color/colorPrimary"
             app:title="@string/settings_title_live_wallpaper" />
 
-    </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
+    </com.mbestavros.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_live_wallpaper_config_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView
+        <com.mbestavros.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView
             android:id="@+id/activity_live_wallpaper_config_scrollView"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
@@ -118,7 +118,7 @@
 
             </LinearLayout>
 
-        </wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView>
+        </com.mbestavros.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

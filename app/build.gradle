@@ -3,7 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 30
     defaultConfig {
-        applicationId "wangdaye.com.geometricweather"
+        applicationId "com.mbestavros.geometricweather"
+        versionNameSuffix "-foss"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 26068

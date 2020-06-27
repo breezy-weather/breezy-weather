@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.basic.deprecated;
+package com.mbestavros.geometricweather.basic.deprecated;
 /*
 import retrofit2.Call;
 import retrofit2.http.GET;
