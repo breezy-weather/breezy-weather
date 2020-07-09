@@ -56,6 +56,7 @@
     <!-- 알림 스타일. -->
     <string-array name="notification_styles">
         <item>지역</item>
+        <item>Cities</item>
         <item>@string/geometric_weather</item>
     </string-array>
 

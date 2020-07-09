@@ -153,10 +153,12 @@
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>Native</item>
+        <item>Cities</item>
         <item>@string/geometric_weather</item><!-- do not translate. -->
     </string-array>
     <string-array name="notification_style_values">
         <item>native</item>
+        <item>cities</item>
         <item>geometric</item>
     </string-array>
 

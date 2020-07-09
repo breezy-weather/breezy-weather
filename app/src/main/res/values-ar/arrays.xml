@@ -42,6 +42,7 @@
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>Native</item>
+        <item>Cities</item>
         <item>@string/geometric_weather</item>
     </string-array>
 

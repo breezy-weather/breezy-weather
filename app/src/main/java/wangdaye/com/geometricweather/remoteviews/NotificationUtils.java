@@ -47,9 +47,9 @@ public class NotificationUtils {
 
     // notification.
 
-    public static void updateNotificationIfNecessary(Context context, @NonNull Location location) {
+    public static void updateNotificationIfNecessary(Context context, @NonNull List<Location> locationList) {
         if (NormalNotificationIMP.isEnable(context)) {
-            NormalNotificationIMP.buildNotificationAndSendIt(context, location);
+            NormalNotificationIMP.buildNotificationAndSendIt(context, locationList);
         }
     }
 

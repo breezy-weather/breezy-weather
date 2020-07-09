@@ -55,6 +55,7 @@
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>Системное</item>
+        <item>Cities</item>
         <item>@string/geometric_weather</item>
     </string-array>
 

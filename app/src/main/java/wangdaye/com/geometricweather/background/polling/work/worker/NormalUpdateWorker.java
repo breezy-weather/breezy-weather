@@ -22,12 +22,12 @@ public class NormalUpdateWorker extends AsyncUpdateWorker {
     @Override
     public void updateView(Context context, Location location) {
         WidgetUtils.updateWidgetIfNecessary(context, location);
-        NotificationUtils.updateNotificationIfNecessary(context, location);
     }
 
     @Override
     public void updateView(Context context, List<Location> locationList) {
         WidgetUtils.updateWidgetIfNecessary(context, locationList);
+        NotificationUtils.updateNotificationIfNecessary(context, locationList);
     }
 
     @SuppressLint("RestrictedApi")

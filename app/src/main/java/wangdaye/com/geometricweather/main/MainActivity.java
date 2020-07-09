@@ -190,11 +190,11 @@ public class MainActivity extends GeoActivity
                 ensureResourceProvider();
                 updateThemeManager();
 
-                Location location = viewModel.getCurrentLocationValue();
-                if (location != null) {
-                    ThreadManager.getInstance().execute(() ->
-                            NotificationUtils.updateNotificationIfNecessary(this, location));
-                }
+                ThreadManager.getInstance().execute(() ->
+                        NotificationUtils.updateNotificationIfNecessary(
+                                this, viewModel.getLocationList()
+                        )
+                );
                 resetUIUpdateFlag();
                 viewModel.reset(this);
 
@@ -564,7 +564,7 @@ public class MainActivity extends GeoActivity
             Observable.create(emitter -> {
                 if (defaultLocationChanged) {
                     WidgetUtils.updateWidgetIfNecessary(this, locationList.get(0));
-                    NotificationUtils.updateNotificationIfNecessary(this, locationList.get(0));
+                    NotificationUtils.updateNotificationIfNecessary(this, locationList);
                 }
                 WidgetUtils.updateWidgetIfNecessary(this, locationList);
             }).subscribeOn(Schedulers.io())
