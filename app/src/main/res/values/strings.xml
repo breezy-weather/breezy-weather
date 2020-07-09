@@ -65,7 +65,7 @@
     <string name="week_7">Sun</string>
 
     <string name="real_feel_temperature">Real feel</string>
-    <string name="real_feel_shader_temperature">Real feel shader</string>
+    <string name="real_feel_shade_temperature">Real feel shade</string>
     <string name="apparent_temperature">Apparent</string>
     <string name="wind_chill_temperature">Wind chill</string>
     <string name="wet_bulb_temperature">Wet bulb</string>
@@ -85,11 +85,11 @@
     <string name="wind_5">Fresh breeze</string>
     <string name="wind_6">Strong breeze</string>
     <string name="wind_7">Moderate gale</string>
-    <string name="wind_8">Fresh gale</string>
+    <string name="wind_8">Gale</string>
     <string name="wind_9">Strong gale</string>
     <string name="wind_10">Storm</string>
     <string name="wind_11">Violent storm</string>
-    <string name="wind_12">Hurricane/Typhoon</string>
+    <string name="wind_12">Hurricane</string>
 
     <string name="precipitation_light">Drizzle</string>
     <string name="precipitation_middle">Rain</string>

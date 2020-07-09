@@ -62,7 +62,7 @@
     <string name="week_7">일</string>
 
     <string name="real_feel_temperature">체감 온도</string>
-    <string name="real_feel_shader_temperature">체감 표면 온도</string>
+    <string name="real_feel_shade_temperature">체감 표면 온도</string>
     <string name="apparent_temperature">겉보기 온도</string>
     <string name="wind_chill_temperature">풍속 냉각</string>
     <string name="wet_bulb_temperature">습구</string>

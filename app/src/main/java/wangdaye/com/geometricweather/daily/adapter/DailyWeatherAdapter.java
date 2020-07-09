@@ -188,7 +188,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             }
             if (temperature.getRealFeelShaderTemperature() != null) {
                 list.add(new Value(
-                        context.getString(R.string.real_feel_shader_temperature),
+                        context.getString(R.string.real_feel_shade_temperature),
                         temperatureUnit.getTemperatureText(context, temperature.getRealFeelShaderTemperature())
                 ));
             }

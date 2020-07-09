@@ -61,7 +61,7 @@
     <string name="week_7">Вс</string>
 
     <string name="real_feel_temperature">Ощущается как</string>
-    <string name="real_feel_shader_temperature">Real feel shader</string>
+    <string name="real_feel_shade_temperature">Real feel shader</string>
     <string name="apparent_temperature">Ощущается как</string>
     <string name="wind_chill_temperature">Ощущается при ветре</string>
     <string name="wet_bulb_temperature">Wet bulb</string>
@@ -158,6 +158,8 @@
     <string name="feedback_enable_location_information">Включить информацию местоположения</string>
     <string name="feedback_select_location_provider">Выбрать источник определения местоположения</string>
     <string name="feedback_add_location_manually">Добавить местоположение и удалить \'$\'</string>
+    <string name="feedback_background_location_title">Доступ к местоположению в фоне</string>
+    <string name="feedback_background_location_summary">Чтобы разрешить программе доступ к местоположению в фоне, включите доступ к местоположению \"Разрешить всегда\".</string>
 
     <string name="feedback_view_style">Стиль внешнего вида</string>
     <string name="feedback_show_widget_card">Цвет фона</string>

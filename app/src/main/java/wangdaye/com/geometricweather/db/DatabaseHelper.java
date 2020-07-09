@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.github.yuweiguocn.library.greendao.MigrationHelper;
+
 import org.greenrobot.greendao.DbUtils;
 import org.greenrobot.greendao.database.Database;
 
@@ -33,6 +35,7 @@ import wangdaye.com.geometricweather.db.converter.MinutelyEntityConverter;
 import wangdaye.com.geometricweather.db.converter.WeatherEntityConverter;
 import wangdaye.com.geometricweather.db.entity.AlertEntityDao;
 import wangdaye.com.geometricweather.db.entity.ChineseCityEntity;
+import wangdaye.com.geometricweather.db.entity.ChineseCityEntityDao;
 import wangdaye.com.geometricweather.db.entity.DailyEntityDao;
 import wangdaye.com.geometricweather.db.entity.DaoMaster;
 import wangdaye.com.geometricweather.db.entity.DaoSession;
@@ -40,6 +43,7 @@ import wangdaye.com.geometricweather.db.entity.HistoryEntity;
 import wangdaye.com.geometricweather.db.entity.HistoryEntityDao;
 import wangdaye.com.geometricweather.db.entity.HourlyEntityDao;
 import wangdaye.com.geometricweather.db.entity.LocationEntity;
+import wangdaye.com.geometricweather.db.entity.LocationEntityDao;
 import wangdaye.com.geometricweather.db.entity.MinutelyEntityDao;
 import wangdaye.com.geometricweather.db.entity.WeatherEntity;
 import wangdaye.com.geometricweather.db.entity.WeatherEntityDao;
@@ -316,7 +320,7 @@ public class DatabaseHelper {
     }
 }
 
-class DatabaseOpenHelper extends DaoMaster.DevOpenHelper {
+class DatabaseOpenHelper extends DaoMaster.OpenHelper {
 
     DatabaseOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
         super(context, name, factory);
@@ -325,6 +329,21 @@ class DatabaseOpenHelper extends DaoMaster.DevOpenHelper {
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
         switch (oldVersion) {
+            case 53:
+                MigrationHelper.migrate(db, new MigrationHelper.ReCreateAllTableListener() {
+                    @Override
+                    public void onCreateAllTables(Database db, boolean ifNotExists) {
+                        DaoMaster.createAllTables(db, ifNotExists);
+                    }
+
+                    @Override
+                    public void onDropAllTables(Database db, boolean ifExists) {
+                        DaoMaster.dropAllTables(db, ifExists);
+                    }
+                }, AlertEntityDao.class, ChineseCityEntityDao.class, DailyEntityDao.class,
+                        HistoryEntityDao.class, HourlyEntityDao.class, LocationEntityDao.class,
+                        MinutelyEntityDao.class, WeatherEntityDao.class);
+
             case 52:
             case 51:
             case 50:
@@ -347,7 +366,8 @@ class DatabaseOpenHelper extends DaoMaster.DevOpenHelper {
                 break;
 
             default:
-                super.onUpgrade(db, oldVersion, newVersion);
+                DaoMaster.dropAllTables(db, true);
+                onCreate(db);
                 break;
         }
     }

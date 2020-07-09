@@ -14,6 +14,7 @@ import wangdaye.com.geometricweather.basic.model.location.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
+import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 
 public class LocationModel {
@@ -59,7 +60,12 @@ public class LocationModel {
                 : location.getCityName(context));
         if (location.getWeather() != null) {
             builder.append(", ").append(
-                    location.getWeather().getCurrent().getTemperature().getTemperature(context, unit)
+                    Temperature.getTrendTemperature(
+                            context,
+                            location.getWeather().getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                            location.getWeather().getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            unit
+                    )
             );
         }
         title = builder.toString();

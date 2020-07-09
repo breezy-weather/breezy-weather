@@ -380,6 +380,7 @@ public class CNResultConverter {
         }
 
         Alert.deduplication(alertList);
+        Alert.descByTime(alertList);
         return alertList;
     }
 

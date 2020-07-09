@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.ColorInt;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -79,6 +80,22 @@ public class Alert implements Parcelable, Serializable {
                 if (alertList.get(j).getType().equals(type)) {
                     alertList.remove(j);
                 }
+            }
+        }
+    }
+
+    public static void descByTime(List<Alert> alertList) {
+        for (int i = 0; i < alertList.size(); i ++) {
+            long maxTime = alertList.get(i).time;
+            int maxIndex = i;
+            for (int j = i + 1; j < alertList.size(); j ++) {
+                if (maxTime < alertList.get(j).time) {
+                    maxTime = alertList.get(j).time;
+                    maxIndex = j;
+                }
+            }
+            if (maxIndex != i) {
+                Collections.swap(alertList, maxIndex, i);
             }
         }
     }

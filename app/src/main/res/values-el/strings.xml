@@ -62,7 +62,7 @@
     <string name="week_7">Κυρ</string>
 
     <string name="real_feel_temperature">Πραγματική αίσθηση</string>
-    <string name="real_feel_shader_temperature">Πραγματική αίσθηση υπό σκιά</string>
+    <string name="real_feel_shade_temperature">Πραγματική αίσθηση υπό σκιά</string>
     <string name="apparent_temperature">Αίσθηση σαν</string>
     <string name="wind_chill_temperature">θερμοκρασία ψύχους αέρα</string>
     <string name="wet_bulb_temperature">θερμοκρασία υγρού βολβού</string>

@@ -62,7 +62,7 @@
     <string name="week_7">Ne</string>
 
     <string name="real_feel_temperature">Pocitová teplota</string>
-    <string name="real_feel_shader_temperature">Pocitová teplota ve stínu</string>
+    <string name="real_feel_shade_temperature">Pocitová teplota ve stínu</string>
     <string name="apparent_temperature">Zdánlivá teplota</string>
     <string name="wind_chill_temperature">Ochlazení větrem</string>
     <string name="wet_bulb_temperature">Ochlazení vlhkostí</string>

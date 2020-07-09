@@ -68,7 +68,7 @@
     <string name="week_7">Niedz</string>
 
     <string name="real_feel_temperature">Odczuwalna temperatura</string>
-    <string name="real_feel_shader_temperature">Real feel shader</string>
+    <string name="real_feel_shade_temperature">Real feel shader</string>
     <string name="apparent_temperature">Pozorna temperatura</string>
     <string name="wind_chill_temperature">Chłód</string>
     <string name="wet_bulb_temperature">Temperatura termometru mokrego</string>

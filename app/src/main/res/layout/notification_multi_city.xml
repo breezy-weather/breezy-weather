@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notification_multi_city"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="82dp">
+
+        <include layout="@layout/notification_base" />
+
+    </FrameLayout>
+    
+    <LinearLayout
+        android:id="@+id/notification_multi_city_1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/normal_margin"
+        android:paddingVertical="@dimen/little_margin"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/notification_multi_city_icon_1"
+            android:layout_width="@dimen/material_icon_size"
+            android:layout_height="@dimen/material_icon_size"
+            tools:src="@drawable/weather_cloudy"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/notification_multi_city_text_1"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"
+            android:textSize="@dimen/content_text_size"
+            android:layout_marginStart="@dimen/normal_margin"
+            style="@style/notification_title_text"
+            tools:text="海淀区, 2°/16°" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/notification_multi_city_2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/normal_margin"
+        android:paddingVertical="@dimen/little_margin"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/notification_multi_city_icon_2"
+            android:layout_width="@dimen/material_icon_size"
+            android:layout_height="@dimen/material_icon_size"
+            tools:src="@drawable/weather_cloudy"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/notification_multi_city_text_2"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"
+            android:textSize="@dimen/content_text_size"
+            android:layout_marginStart="@dimen/normal_margin"
+            style="@style/notification_title_text"
+            tools:text="青岛, 2°/16°" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/notification_multi_city_3"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/normal_margin"
+        android:paddingVertical="@dimen/little_margin"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/notification_multi_city_icon_3"
+            android:layout_width="@dimen/material_icon_size"
+            android:layout_height="@dimen/material_icon_size"
+            tools:src="@drawable/weather_cloudy"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/notification_multi_city_text_3"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"
+            android:textSize="@dimen/content_text_size"
+            android:layout_marginStart="@dimen/normal_margin"
+            style="@style/notification_title_text"
+            tools:text="宣武区, 2°/16°" />
+
+    </LinearLayout>
+
+</LinearLayout>

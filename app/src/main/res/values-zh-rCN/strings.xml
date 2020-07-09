@@ -59,7 +59,7 @@
     <string name="week_7">周日</string>
 
     <string name="real_feel_temperature">体感温度</string>
-    <string name="real_feel_shader_temperature">阴面体感</string>
+    <string name="real_feel_shade_temperature">阴面体感</string>
     <string name="apparent_temperature">地表温度</string>
     <string name="wind_chill_temperature">风寒温度</string>
     <string name="wet_bulb_temperature">湿球温度</string>

@@ -77,7 +77,7 @@
                 android:layout_toEndOf="@id/weather_icon"
                 android:layout_toStartOf="@id/resident_icon"
                 style="@style/title_text"
-                tools:text="Current Location, 5°"
+                tools:text="Current Location, 5°/13°"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
