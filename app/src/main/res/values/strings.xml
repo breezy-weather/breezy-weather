@@ -12,7 +12,7 @@
     <string name="default_location">default location</string>
     <string name="live">Live</string>
     <string name="today">Today</string>
-    <string name="refresh_at">Refresh at</string>
+    <string name="refresh_at">Refreshed at</string>
     <string name="local_time">Local time</string>
     <string name="precipitation">Precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
