@@ -256,7 +256,7 @@
     <!-- widget card style. -->
     <string-array name="widget_card_styles">
         <item>Ninguno</item>
-        <item>Modo Día Noche</item>
+        <item>Automático</item>
         <item>Claro</item>
         <item>Oscuro</item>
     </string-array>
@@ -269,9 +269,9 @@
 
     <!-- widget clock font. -->
     <string-array name="widget_text_colors">
-        <item>Light</item>
-        <item>Dark</item>
-        <item>Automatic</item>
+        <item>Claro</item>
+        <item>Oscuro</item>
+        <item>Automático</item>
     </string-array>
     <string-array name="widget_text_color_values">
         <item>light</item>
