@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.wallpaper.material;
+package wangdaye.com.geometricweather.wallpaper;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
@@ -36,7 +36,6 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.W
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
-import wangdaye.com.geometricweather.wallpaper.LiveWallpaperConfigManager;
 
 public class MaterialLiveWallpaperService extends WallpaperService {
 

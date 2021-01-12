@@ -12,7 +12,7 @@
     <string name="default_location">default location</string>
     <string name="live">Live</string>
     <string name="today">Today</string>
-    <string name="refresh_at">Refresh at</string>
+    <string name="refresh_at">Refreshed at</string>
     <string name="local_time">Local time</string>
     <string name="precipitation">Precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
@@ -204,6 +204,7 @@
     <string name="feedback_text_size">Text size</string>
     <string name="feedback_clock_font">Clock font</string>
     <string name="feedback_hide_lunar">Hide lunar calendar</string>
+    <string name="feedback_align_end">Align End</string>
     <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
@@ -414,6 +415,7 @@
     <string name="key_text_size">text_size</string>
     <string name="key_clock_font">clock_font</string>
     <string name="key_hide_lunar">hide_lunar</string>
+    <string name="key_align_end">align_end</string>
 
     <!-- Do not translate the following set of strings. -->
     <string name="key_background_free">background_free_3</string>

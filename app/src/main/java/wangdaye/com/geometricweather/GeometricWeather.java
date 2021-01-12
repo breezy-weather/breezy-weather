@@ -228,6 +228,9 @@ public class GeometricWeather extends MultiDexApplication {
                 );
                 break;
 
+            case SYSTEM:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
             case LIGHT:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 break;

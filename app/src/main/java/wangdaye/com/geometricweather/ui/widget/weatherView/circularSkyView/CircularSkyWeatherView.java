@@ -25,9 +25,6 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.databinding.ContainerCircularSkyViewBinding;
@@ -36,6 +33,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.helpter.ImageHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
@@ -136,14 +134,8 @@ public class CircularSkyWeatherView extends FrameLayout
         AppCompatImageView[] starts = new AppCompatImageView[] {
                 findViewById(R.id.star_1),
                 findViewById(R.id.star_2)};
-        Glide.with(getContext())
-                .load(R.drawable.star_1)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(starts[0]);
-        Glide.with(getContext())
-                .load(R.drawable.star_2)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(starts[1]);
+        ImageHelper.load(getContext(), starts[0], R.drawable.star_1);
+        ImageHelper.load(getContext(), starts[1], R.drawable.star_2);
 
         this.starShineAnimators = new AnimatorSet[] {
                 (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.start_shine_1),
@@ -169,7 +161,8 @@ public class CircularSkyWeatherView extends FrameLayout
                 widthMeasureSpec,
                 MeasureSpec.makeMeasureSpec(
                         (int) (DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth())
-                                / Constants.UNIT_RADIUS_RATIO * 5 + insetTop),
+                                / Constants.UNIT_RADIUS_RATIO * 5
+                                + insetTop + DisplayUtils.dpToPx(getContext(), 56)),
                         MeasureSpec.AT_MOST
                 )
         );

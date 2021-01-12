@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.basic.model.location;
+package wangdaye.com.geometricweather.basic.model;
 
 import java.util.TimeZone;
 

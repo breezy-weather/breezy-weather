@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.adapter.location;
+package wangdaye.com.geometricweather.manage.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,7 +18,7 @@ import com.turingtechnologies.materialscrollbar.ICustomAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
@@ -34,15 +34,18 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
         implements ICustomAdapter {
 
-    private Context context;
-    private OnLocationItemClickListener listener = null;
+    private final Context context;
+    private final OnLocationItemClickListener clickListener;
+    private @Nullable final OnLocationItemDragListener dragListener;
 
-    private @NonNull ThemeManager themeManager;
-    private @NonNull ResourceProvider resourceProvider;
-    private @NonNull WeatherSource defaultSource;
-    private @NonNull TemperatureUnit temperatureUnit;
+    private @NonNull final ThemeManager themeManager;
+    private @NonNull final ResourceProvider resourceProvider;
+    private @NonNull final WeatherSource defaultSource;
+    private @NonNull final TemperatureUnit temperatureUnit;
 
-    public LocationAdapter(Context context, List<Location> locationList, OnLocationItemClickListener l) {
+    public LocationAdapter(Context context, List<Location> locationList,
+                           @NonNull OnLocationItemClickListener clickListener,
+                           @Nullable OnLocationItemDragListener dragListener) {
         super(new DiffUtil.ItemCallback<LocationModel>() {
             @Override
             public boolean areItemsTheSame(@NonNull LocationModel oldItem, @NonNull LocationModel newItem) {
@@ -55,11 +58,13 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
             }
         });
         this.context = context;
+        this.clickListener = clickListener;
+        this.dragListener = dragListener;
+
         this.themeManager = ThemeManager.getInstance(context);
         this.resourceProvider = ResourcesProviderFactory.getNewInstance();
         this.defaultSource = SettingsOptionManager.getInstance(context).getWeatherSource();
         this.temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
-        setOnLocationItemClickListener(l);
 
         update(locationList);
     }
@@ -69,7 +74,8 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
     public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LocationHolder(
                 ItemLocationBinding.inflate(LayoutInflater.from(parent.getContext())),
-                listener
+                clickListener,
+                dragListener
         );
     }
 
@@ -79,10 +85,12 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
     }
 
     public void update(@NonNull List<Location> newList) {
-        update(newList, null);
+        update(newList, null, null);
     }
 
-    public void update(@NonNull List<Location> newList, @Nullable String forceUpdateId) {
+    public void update(@NonNull List<Location> newList,
+                       @Nullable String selectedId,
+                       @Nullable String forceUpdateId) {
         List<LocationModel> modelList = new ArrayList<>(newList.size());
         for (Location l : newList) {
             modelList.add(
@@ -92,6 +100,7 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
                             temperatureUnit,
                             defaultSource,
                             themeManager.isLightTheme(),
+                            l.getFormattedId().equals(selectedId),
                             l.getFormattedId().equals(forceUpdateId)
                     )
             );
@@ -116,6 +125,10 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
         }
     }
 
+    protected Location getLocation(int position) {
+        return getCurrentList().get(position).location;
+    }
+
     protected List<Location> getLocationList() {
         return getLocationList(getCurrentList());
     }
@@ -134,8 +147,8 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
         void onClick(View view, String formattedId);
     }
 
-    private void setOnLocationItemClickListener(OnLocationItemClickListener l){
-        this.listener = l;
+    public interface OnLocationItemDragListener {
+        void onDrag(LocationHolder holder);
     }
 
     // I custom adapter.

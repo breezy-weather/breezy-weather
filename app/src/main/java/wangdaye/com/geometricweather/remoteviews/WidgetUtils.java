@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayDetailsWidgetIMP;

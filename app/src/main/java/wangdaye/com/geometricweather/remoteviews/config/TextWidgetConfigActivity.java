@@ -15,18 +15,14 @@ public class TextWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public void initView() {
         super.initView();
-        viewTypeContainer.setVisibility(View.GONE);
-        cardStyleContainer.setVisibility(View.GONE);
-        cardAlphaContainer.setVisibility(View.GONE);
-        hideSubtitleContainer.setVisibility(View.GONE);
-        subtitleDataContainer.setVisibility(View.GONE);
-        clockFontContainer.setVisibility(View.GONE);
-        hideLunarContainer.setVisibility(View.GONE);
+        textColorContainer.setVisibility(View.VISIBLE);
+        textSizeContainer.setVisibility(View.VISIBLE);
+        alignEndContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
     public RemoteViews getRemoteViews() {
-        return TextWidgetIMP.getRemoteViews(this, getLocationNow(), textColorValueNow, textSize);
+        return TextWidgetIMP.getRemoteViews(this, getLocationNow(), textColorValueNow, textSize, alignEnd);
     }
 
     @Override

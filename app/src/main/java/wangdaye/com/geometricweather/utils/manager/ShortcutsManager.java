@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.ResourceHelper;

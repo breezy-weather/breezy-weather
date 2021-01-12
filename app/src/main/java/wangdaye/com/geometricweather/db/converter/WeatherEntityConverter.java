@@ -2,7 +2,7 @@ package wangdaye.com.geometricweather.db.converter;
 
 import androidx.annotation.Nullable;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Current;

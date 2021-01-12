@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.fragment;
+package wangdaye.com.geometricweather.manage;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
@@ -31,18 +31,19 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.main.MainListDecoration;
-import wangdaye.com.geometricweather.ui.adapter.location.LocationAdapter;
-import wangdaye.com.geometricweather.ui.adapter.location.LocationTouchCallback;
+import wangdaye.com.geometricweather.manage.adapter.LocationAdapter;
+import wangdaye.com.geometricweather.manage.adapter.LocationItemTouchCallback;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class LocationManageFragment extends Fragment
-        implements LocationTouchCallback.OnLocationListChangedListener {
+        implements LocationItemTouchCallback.OnLocationListChangedListener {
 
     private CardView cardView;
     private AppCompatImageView searchIcon;
@@ -51,6 +52,7 @@ public class LocationManageFragment extends Fragment
     private RecyclerView recyclerView;
 
     private LocationAdapter adapter;
+    private ItemTouchHelper itemTouchHelper;
     private MainListDecoration decoration;
     private int searchRequestCode;
     private int providerSettingsRequestCode;
@@ -81,12 +83,21 @@ public class LocationManageFragment extends Fragment
     private void initWidget(View view) {
         AppBarLayout appBar = view.findViewById(R.id.fragment_location_manage_appBar);
         ViewCompat.setOnApplyWindowInsetsListener(appBar, (v, insets) -> {
-            v.setPadding(
-                    insets.getSystemWindowInsetLeft(),
-                    insets.getSystemWindowInsetTop(),
-                    drawerMode ? 0 : insets.getSystemWindowInsetRight(),
-                    0
-            );
+            if (DisplayUtils.isRtl(requireContext())) {
+                v.setPadding(
+                        drawerMode ? 0 : insets.getSystemWindowInsetLeft(),
+                        insets.getSystemWindowInsetTop(),
+                        insets.getSystemWindowInsetRight(),
+                        0
+                );
+            } else {
+                v.setPadding(
+                        insets.getSystemWindowInsetLeft(),
+                        insets.getSystemWindowInsetTop(),
+                        drawerMode ? 0 : insets.getSystemWindowInsetRight(),
+                        0
+                );
+            }
             return insets;
         });
 
@@ -106,6 +117,10 @@ public class LocationManageFragment extends Fragment
             addLocation();
         });
 
+        this.recyclerView = view.findViewById(R.id.fragment_location_manage_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(
+                requireActivity(), RecyclerView.VERTICAL, false));
+
         List<Location> locationList = readLocationList();
         adapter = new LocationAdapter(
                 requireActivity(),
@@ -114,31 +129,33 @@ public class LocationManageFragment extends Fragment
                     if (locationListChangedListener != null) {
                         locationListChangedListener.onSelectedLocation(formattedId);
                     }
-                }
+                },
+                holder -> itemTouchHelper.startDrag(holder)
         );
-        this.recyclerView = view.findViewById(R.id.fragment_location_manage_recyclerView);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(
-                requireActivity(), RecyclerView.VERTICAL, false));
+
+        this.itemTouchHelper = new ItemTouchHelper(
+                new LocationItemTouchCallback((GeoActivity) requireActivity(), adapter, this));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         ViewCompat.setOnApplyWindowInsetsListener(recyclerView, (v, insets) -> {
-            v.setPadding(
-                    insets.getSystemWindowInsetLeft(),
-                    0,
-                    drawerMode ? 0 : insets.getSystemWindowInsetRight(),
-                    insets.getSystemWindowInsetBottom()
-            );
+            if (DisplayUtils.isRtl(requireContext())) {
+                v.setPadding(
+                        drawerMode ? 0 : insets.getSystemWindowInsetLeft(),
+                        insets.getSystemWindowInsetTop(),
+                        insets.getSystemWindowInsetRight(),
+                        0
+                );
+            } else {
+                v.setPadding(
+                        insets.getSystemWindowInsetLeft(),
+                        0,
+                        drawerMode ? 0 : insets.getSystemWindowInsetRight(),
+                        insets.getSystemWindowInsetBottom()
+                );
+            }
             return insets;
         });
-
-        new ItemTouchHelper(
-                new LocationTouchCallback(
-                        (GeoActivity) requireActivity(),
-                        adapter,
-                        ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.START | ItemTouchHelper.END,
-                        this
-                )
-        ).attachToRecyclerView(recyclerView);
 
         setThemeStyle();
         onLocationListChanged(locationList, false, false);

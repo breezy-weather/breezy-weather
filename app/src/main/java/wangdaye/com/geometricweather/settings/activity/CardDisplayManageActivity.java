@@ -33,10 +33,14 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapter.CardDisplayAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.GridMarginsDecoration;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
+import wangdaye.com.geometricweather.ui.widget.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class CardDisplayManageActivity extends GeoActivity {
 
     private CardDisplayAdapter cardDisplayAdapter;
+    private ItemTouchHelper cardDisplayItemTouchHelper;
+
     private TagAdapter tagAdapter;
 
     private FrameLayout bottomBar;
@@ -57,11 +61,7 @@ public class CardDisplayManageActivity extends GeoActivity {
         }
     }
 
-    private class CardDisplaySwipeCallback extends ItemTouchHelper.SimpleCallback {
-
-        CardDisplaySwipeCallback(int dragDirs, int swipeDirs) {
-            super(dragDirs, swipeDirs);
-        }
+    private class CardDisplaySwipeCallback extends SlidingItemTouchCallback {
 
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView,
@@ -72,7 +72,6 @@ public class CardDisplayManageActivity extends GeoActivity {
             int toPosition = target.getAdapterPosition();
 
             cardDisplayAdapter.moveItem(fromPosition, toPosition);
-            ((CardDisplayAdapter.ViewHolder) viewHolder).drawDrag(CardDisplayManageActivity.this, false);
             return true;
         }
 
@@ -87,22 +86,11 @@ public class CardDisplayManageActivity extends GeoActivity {
                                 @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                                 float dX, float dY, int actionState, boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-            switch (actionState) {
-                case ItemTouchHelper.ACTION_STATE_SWIPE:
-                    ((CardDisplayAdapter.ViewHolder) viewHolder)
-                            .drawSwipe(dX);
-                    break;
-
-                case ItemTouchHelper.ACTION_STATE_DRAG:
-                    ((CardDisplayAdapter.ViewHolder) viewHolder)
-                            .drawDrag(CardDisplayManageActivity.this, dY != 0);
-                    break;
-
-                case ItemTouchHelper.ACTION_STATE_IDLE:
-                    ((CardDisplayAdapter.ViewHolder) viewHolder)
-                            .drawSwipe(0)
-                            .drawDrag(CardDisplayManageActivity.this, false);
-                    break;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                    && actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+                viewHolder.itemView.setElevation(
+                        DisplayUtils.dpToPx(CardDisplayManageActivity.this, dY == 0 ? 0 : 10)
+                );
             }
         }
     }
@@ -117,23 +105,23 @@ public class CardDisplayManageActivity extends GeoActivity {
         toolbar.setNavigationOnClickListener(view -> finish());
 
         List<CardDisplay> displayCards = SettingsOptionManager.getInstance(this).getCardDisplayList();
-        cardDisplayAdapter = new CardDisplayAdapter(displayCards, cardDisplay -> {
-            setResult(RESULT_OK);
-            tagAdapter.insertItem(new CardTag(cardDisplay));
-            resetBottomBarVisibility();
-        });
+        cardDisplayAdapter = new CardDisplayAdapter(
+                displayCards,
+                cardDisplay -> {
+                    setResult(RESULT_OK);
+                    tagAdapter.insertItem(new CardTag(cardDisplay));
+                    resetBottomBarVisibility();
+                },
+                holder -> cardDisplayItemTouchHelper.startDrag(holder)
+        );
 
         RecyclerView recyclerView = findViewById(R.id.activity_card_display_manage_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new ListDecoration(this));
         recyclerView.setAdapter(cardDisplayAdapter);
 
-        new ItemTouchHelper(
-                new CardDisplaySwipeCallback(
-                        ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
-                )
-        ).attachToRecyclerView(recyclerView);
+        this.cardDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
+        cardDisplayItemTouchHelper.attachToRecyclerView(recyclerView);
 
         List<CardDisplay> otherCards = new ArrayList<>();
         otherCards.add(CardDisplay.CARD_DAILY_OVERVIEW);

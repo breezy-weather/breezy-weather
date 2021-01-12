@@ -13,8 +13,8 @@ import org.greenrobot.greendao.database.Database;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.location.ChineseCity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.ChineseCity;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.History;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.controller.AlertEntityController;

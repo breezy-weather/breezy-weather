@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.api.AccuWeatherApi;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.weather.converter.AccuResultConverter;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAqiResult;

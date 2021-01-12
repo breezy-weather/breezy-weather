@@ -248,7 +248,7 @@ public class SettingsOptionManager {
 
         notificationStyle = OptionMapper.getNotificationStyle(
                 sharedPreferences.getString(
-                        context.getString(R.string.key_notification_style), "geometric")
+                        context.getString(R.string.key_notification_style), "daily")
         );
 
         notificationMinimalIconEnabled = sharedPreferences.getBoolean(

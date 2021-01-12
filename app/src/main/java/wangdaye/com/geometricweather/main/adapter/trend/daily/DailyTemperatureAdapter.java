@@ -16,6 +16,7 @@ import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
@@ -32,7 +33,7 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
  * Daily temperature adapter.
  * */
 
-public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatureAdapter.ViewHolder> {
+public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatureAdapter.ViewHolder> {
 
     private Weather weather;
     private TimeZone timeZone;
@@ -54,10 +55,10 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
 
         ViewHolder(View itemView) {
             super(itemView);
-            dailyItem = itemView.findViewById(R.id.item_trend_daily);
-            dailyItem.setParent(getTrendParent());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
+
+            dailyItem = itemView.findViewById(R.id.item_trend_daily);
             dailyItem.setChartItemView(polylineAndHistogramView);
         }
 
@@ -139,21 +140,25 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                                   ResourceProvider provider, TemperatureUnit unit) {
-        this(activity, parent, formattedId, weather, timeZone, true, provider, unit);
+    public DailyTemperatureAdapter(GeoActivity activity,
+                                   TrendRecyclerView parent,
+                                   Location location,
+                                   ResourceProvider provider,
+                                   TemperatureUnit unit) {
+        this(activity, parent, location, true, provider, unit);
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
+    public DailyTemperatureAdapter(GeoActivity activity,
+                                   TrendRecyclerView parent,
+                                   Location location,
                                    boolean showPrecipitationProbability,
-                                   ResourceProvider provider, TemperatureUnit unit) {
-        super(activity, parent, formattedId);
+                                   ResourceProvider provider,
+                                   TemperatureUnit unit) {
+        super(activity, location);
 
-        this.weather = weather;
-        this.timeZone = timeZone;
+        this.weather = location.getWeather();
+        this.timeZone = location.getTimeZone();
         this.provider = provider;
         this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;
@@ -242,19 +247,35 @@ public abstract class DailyTemperatureAdapter extends AbsDailyTrendAdapter<Daily
         return weather.getDailyForecast().size();
     }
 
-    protected abstract int getDaytimeTemperatureC(Weather weather, int index);
+    protected int getDaytimeTemperatureC(Weather weather, int index) {
+        return weather.getDailyForecast().get(index).day().getTemperature().getTemperature();
+    }
 
-    protected abstract int getNighttimeTemperatureC(Weather weather, int index);
-    
-    protected abstract int getDaytimeTemperature(Weather weather, int index, TemperatureUnit unit);
+    protected int getNighttimeTemperatureC(Weather weather, int index) {
+        return weather.getDailyForecast().get(index).night().getTemperature().getTemperature();
+    }
 
-    protected abstract int getNighttimeTemperature(Weather weather, int index, TemperatureUnit unit);
+    protected int getDaytimeTemperature(Weather weather, int index, TemperatureUnit unit) {
+        return unit.getTemperature(getDaytimeTemperatureC(weather, index));
+    }
 
-    protected abstract String getDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit);
+    protected int getNighttimeTemperature(Weather weather, int index, TemperatureUnit unit) {
+        return unit.getTemperature(getNighttimeTemperatureC(weather, index));
+    }
 
-    protected abstract String getNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit);
+    protected String getDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
+        return weather.getDailyForecast().get(index).day().getTemperature().getTemperature(getContext(), unit);
+    }
 
-    protected abstract String getShortDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit);
+    protected String getNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
+        return weather.getDailyForecast().get(index).night().getTemperature().getTemperature(getContext(), unit);
+    }
 
-    protected abstract String getShortNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit);
+    protected String getShortDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
+        return weather.getDailyForecast().get(index).day().getTemperature().getShortTemperature(getContext(), unit);
+    }
+
+    protected String getShortNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
+        return weather.getDailyForecast().get(index).night().getTemperature().getShortTemperature(getContext(), unit);
+    }
 }

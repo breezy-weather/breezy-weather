@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.utils.manager;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
@@ -56,16 +57,20 @@ public class ThemeManager {
         this.darkMode = SettingsOptionManager.getInstance(context).getDarkMode();
 
         switch (darkMode) {
+            case AUTO:
+                this.lightTheme = daytime;
+                break;
+
+            case SYSTEM:
+                this.lightTheme = isSystemLightMode(context);
+                break;
+
             case LIGHT:
                 this.lightTheme = true;
                 break;
 
             case DARK:
                 this.lightTheme = false;
-                break;
-
-            default:
-                this.lightTheme = daytime;
                 break;
         }
     }
@@ -201,5 +206,18 @@ public class ThemeManager {
                     - context.getResources().getDimensionPixelSize(R.dimen.main_location_container_width);
             return DisplayUtils.getTabletListAdaptiveWidth(context, containerWidth) - 2 * getCardMarginsHorizontal(context);
         }
+    }
+
+    public static boolean isSystemLightMode(Context context) {
+        Configuration configuration = context.getResources().getConfiguration();
+        int currentNightMode = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        switch (currentNightMode) {
+            case Configuration.UI_MODE_NIGHT_NO:
+                return true;
+
+            case Configuration.UI_MODE_NIGHT_YES:
+                return false;
+        }
+        return true;
     }
 }

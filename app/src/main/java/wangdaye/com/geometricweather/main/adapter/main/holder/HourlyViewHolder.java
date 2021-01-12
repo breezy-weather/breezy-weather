@@ -16,7 +16,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
@@ -112,7 +112,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             tagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
             tagView.setAdapter(
                     new TagAdapter(context, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
-                        setTrendAdapterByTag(weather, (MainTag) tagList.get(newPosition));
+                        setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
                         return false;
                     }, 0)
             );
@@ -128,7 +128,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         trendRecyclerView.setAdapter(trendAdapter);
         trendRecyclerView.setKeyLineVisibility(
                 SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
-        setTrendAdapterByTag(weather, (MainTag) tagList.get(0));
+        setTrendAdapterByTag(location, (MainTag) tagList.get(0));
 
         List<Minutely> minutelyList = weather.getMinutelyForecast();
         if (minutelyList.size() != 0 && needToShowMinutelyForecast(minutelyList)) {
@@ -159,12 +159,12 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         return false;
     }
 
-    private void setTrendAdapterByTag(Weather weather, MainTag tag) {
+    private void setTrendAdapterByTag(Location location, MainTag tag) {
         switch (tag.getType()) {
             case TEMPERATURE:
                 trendAdapter.temperature(
                         (GeoActivity) context, trendRecyclerView,
-                        weather,
+                        location,
                         provider,
                         SettingsOptionManager.getInstance(context).getTemperatureUnit()
                 );
@@ -173,7 +173,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             case PRECIPITATION:
                 trendAdapter.precipitation(
                         (GeoActivity) context, trendRecyclerView,
-                        weather,
+                        location,
                         provider,
                         SettingsOptionManager.getInstance(context).getPrecipitationUnit()
                 );

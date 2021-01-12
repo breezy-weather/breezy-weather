@@ -16,9 +16,6 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import java.util.List;
 
 import james.adaptiveicon.AdaptiveIcon;
@@ -26,6 +23,7 @@ import james.adaptiveicon.AdaptiveIconView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.helpter.ImageHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -93,27 +91,21 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         void onBindView() {
-            Glide.with(itemView.getContext())
-                    .load(R.drawable.ic_play_store)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(appStore);
+            ImageHelper.load(itemView.getContext(), appStore, R.drawable.ic_play_store);
             appStore.setOnClickListener(v ->
                     listener.onAppStoreItemClicked("Geometric Weather Icon"));
 
-            Glide.with(itemView.getContext())
-                    .load(
-                            DisplayUtils.isDarkMode(itemView.getContext())
-                                    ? R.drawable.ic_github_light
-                                    : R.drawable.ic_github_dark
-                    ).diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(gitHub);
+            ImageHelper.load(
+                    itemView.getContext(),
+                    gitHub,
+                    DisplayUtils.isDarkMode(itemView.getContext())
+                            ? R.drawable.ic_github_light
+                            : R.drawable.ic_github_dark
+            );
             gitHub.setOnClickListener(v ->
                     listener.onGitHubItemClicked("https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather"));
 
-            Glide.with(itemView.getContext())
-                    .load(R.drawable.ic_chronus)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(chronus);
+            ImageHelper.load(itemView.getContext(), chronus, R.drawable.ic_chronus);
             chronus.setOnClickListener(v ->
                     listener.onAppStoreItemClicked("Chronus Icon"));
         }

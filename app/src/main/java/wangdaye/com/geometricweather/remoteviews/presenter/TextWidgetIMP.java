@@ -11,7 +11,7 @@ import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTextProvider;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -26,23 +26,25 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
                 context.getString(R.string.sp_widget_text_setting)
         );
 
-        RemoteViews views = getRemoteViews(context, location, config.textColor, config.textSize);
+        RemoteViews views = getRemoteViews(
+                context, location, config.textColor, config.textSize, config.alignEnd);
 
-        if (views != null) {
-            AppWidgetManager.getInstance(context).updateAppWidget(
-                    new ComponentName(context, WidgetTextProvider.class),
-                    views
-            );
-        }
+        AppWidgetManager.getInstance(context).updateAppWidget(
+                new ComponentName(context, WidgetTextProvider.class),
+                views
+        );
     }
 
     public static RemoteViews getRemoteViews(Context context, Location location,
-                                             String textColor, int textSize) {
+                                             String textColor, int textSize, boolean alignEnd) {
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_text);
+        RemoteViews views = new RemoteViews(
+                context.getPackageName(),
+                alignEnd ? R.layout.widget_text_end : R.layout.widget_text
+        );
         Weather weather = location.getWeather();
         if (weather == null) {
             return views;

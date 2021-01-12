@@ -15,6 +15,7 @@ import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.UV;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -44,10 +45,10 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
 
         ViewHolder(View itemView) {
             super(itemView);
-            dailyItem = itemView.findViewById(R.id.item_trend_daily);
-            dailyItem.setParent(getTrendParent());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
+
+            dailyItem = itemView.findViewById(R.id.item_trend_daily);
             dailyItem.setChartItemView(polylineAndHistogramView);
         }
 
@@ -98,12 +99,11 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyUVAdapter(GeoActivity activity, TrendRecyclerView parent,
-                          String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone) {
-        super(activity, parent, formattedId);
+    public DailyUVAdapter(GeoActivity activity, TrendRecyclerView parent, Location location) {
+        super(activity, location);
 
-        this.weather = weather;
-        this.timeZone = timeZone;
+        this.weather = location.getWeather();
+        this.timeZone = location.getTimeZone();
         this.picker = ThemeManager.getInstance(activity);
 
         highestIndex = Integer.MIN_VALUE;

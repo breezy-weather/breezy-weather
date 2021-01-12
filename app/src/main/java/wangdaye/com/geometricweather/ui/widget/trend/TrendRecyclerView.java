@@ -19,15 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendParent;
+import wangdaye.com.geometricweather.ui.widget.trend.item.AbsTrendItemView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Trend recycler view.
  * */
 
-public class TrendRecyclerView extends RecyclerView
-        implements TrendParent {
+public class TrendRecyclerView extends RecyclerView {
 
     private Paint paint;
     @ColorInt private int lineColor;
@@ -55,6 +54,7 @@ public class TrendRecyclerView extends RecyclerView
     private static final int LINE_WIDTH_DIP = 1;
     private static final int TEXT_SIZE_DIP = 10;
     private static final int TEXT_MARGIN_DIP = 2;
+    public static final int ITEM_MARGIN_BOTTOM_DIP = 16;
 
     private static final String TAG = "TrendRecyclerView";
 
@@ -100,6 +100,9 @@ public class TrendRecyclerView extends RecyclerView
         this.textSize = (int) DisplayUtils.dpToPx(getContext(), TEXT_SIZE_DIP);
         this.textMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         this.lineWidth = (int) DisplayUtils.dpToPx(getContext(), LINE_WIDTH_DIP);
+
+        this.drawingBoundaryTop = -1;
+        this.drawingBoundaryBottom = -1;
 
         setLineColor(Color.GRAY);
 
@@ -181,6 +184,17 @@ public class TrendRecyclerView extends RecyclerView
             return;
         }
 
+        ViewHolder holder = findViewHolderForAdapterPosition(
+                ((TrendLayoutManager) getLayoutManager()).findFirstVisibleItemPosition()
+        );
+        if (holder != null && holder.itemView instanceof AbsTrendItemView) {
+            drawingBoundaryTop = ((AbsTrendItemView) holder.itemView).getChartTop();
+            drawingBoundaryBottom = ((AbsTrendItemView) holder.itemView).getChartBottom();
+        }
+        if (drawingBoundaryTop < 0 || drawingBoundaryBottom < 0) {
+            return;
+        }
+
         float dataRange = highestData - lowestData;
         float boundaryRange = drawingBoundaryBottom - drawingBoundaryTop;
         for (KeyLine line : keyLineList) {
@@ -253,16 +267,5 @@ public class TrendRecyclerView extends RecyclerView
     public void setLineColor(@ColorInt int lineColor) {
         this.lineColor = lineColor;
         invalidate();
-    }
-
-    // interface.
-
-    @Override
-    public void setDrawingBoundary(int top, int bottom) {
-        if (drawingBoundaryTop != top || drawingBoundaryBottom != bottom) {
-            drawingBoundaryTop = top;
-            drawingBoundaryBottom = bottom;
-            invalidate();
-        }
     }
 }

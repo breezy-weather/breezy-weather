@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.widget.trend.abs;
+package wangdaye.com.geometricweather.ui.widget.trend.chart;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,17 +6,17 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-public abstract class ChartItemView extends View {
+public abstract class AbsChartItemView extends View {
 
-    public ChartItemView(Context context) {
+    public AbsChartItemView(Context context) {
         super(context);
     }
 
-    public ChartItemView(Context context, @Nullable AttributeSet attrs) {
+    public AbsChartItemView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ChartItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public AbsChartItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

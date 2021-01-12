@@ -8,7 +8,7 @@
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>weather.com.cn (Only For China)</item>
-        <item>caiyun.com (Only For China)</item>
+        <item> caiyunapp.com (Only For China)</item>
         <item>accuweather.com</item>
     </string-array>
     <string-array name="weather_source_values">
@@ -34,11 +34,13 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Automatic</item>
+        <item>Follow system</item>
         <item>Always light</item>
         <item>Always dark</item>
     </string-array>
     <string-array name="dark_mode_values">
         <item>auto</item>
+        <item>system</item>
         <item>light</item>
         <item>dark</item>
     </string-array>
@@ -154,12 +156,14 @@
     <string-array name="notification_styles">
         <item>Native</item>
         <item>Cities</item>
-        <item>@string/geometric_weather</item><!-- do not translate. -->
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
     <string-array name="notification_style_values">
         <item>native</item>
         <item>cities</item>
-        <item>geometric</item>
+        <item>daily</item>
+        <item>hourly</item>
     </string-array>
 
     <!-- notification text color. -->
@@ -415,6 +419,14 @@
     </string-array>
     <string-array name="air_quality_unit_values">
         <item>mugpcum</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>mg/m³</item>
+    </string-array>
+    <string-array name="air_quality_co_unit_values">
+        <item>mgpcum</item>
     </string-array>
 
     <!-- duration unit. -->

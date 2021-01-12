@@ -4,12 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import wangdaye.com.geometricweather.ui.widget.trend.TrendLayoutManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
-public class TrendHorizontalLinearLayoutManager extends LinearLayoutManager {
+public class TrendHorizontalLinearLayoutManager extends TrendLayoutManager {
 
     private Context context;
     private int fillCount;
@@ -22,7 +22,7 @@ public class TrendHorizontalLinearLayoutManager extends LinearLayoutManager {
     }
 
     public TrendHorizontalLinearLayoutManager(Context context, int fillCount) {
-        super(context, RecyclerView.HORIZONTAL, false);
+        super(context);
         this.context = context;
         this.fillCount = fillCount;
     }

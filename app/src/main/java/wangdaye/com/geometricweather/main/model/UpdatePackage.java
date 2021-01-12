@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.main.model;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 
 public class UpdatePackage {
 

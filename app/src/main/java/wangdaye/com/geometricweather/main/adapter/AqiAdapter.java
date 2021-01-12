@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.model.option.unit.AirQualityCOUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.AirQualityUnit;
 import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -216,7 +217,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getCO(),
                                 90,
                                 "CO",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getCO()),
+                                AirQualityCOUnit.MGPCUM.getDensityText(context, airQuality.getCO()),
                                 executeAnimation
                         )
                 );

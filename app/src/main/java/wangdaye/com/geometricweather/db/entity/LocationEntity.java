@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.db.entity;
 import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.propertyConverter.TimeZoneConverter;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
@@ -16,7 +17,7 @@ import java.util.TimeZone;
 /**
  * Location entity.
  *
- * {@link wangdaye.com.geometricweather.basic.model.location.Location}.
+ * {@link Location}.
  * */
 
 @Entity

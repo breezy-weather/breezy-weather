@@ -9,7 +9,7 @@ import androidx.work.impl.utils.futures.SettableFuture;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 

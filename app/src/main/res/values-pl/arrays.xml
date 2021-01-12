@@ -4,7 +4,7 @@
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>Weather.com.cn (Tylko dla Chin)</item>
-        <item>Caiyun.com (Tylko dla Chin)</item>
+        <item> caiyunapp.com (Tylko dla Chin)</item>
         <item>Accuweather.com</item>
     </string-array>
 
@@ -19,6 +19,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Automatyczny</item>
+        <item>Follow system</item>
         <item>Zawsze jasny</item>
         <item>Zawsze ciemny</item>
     </string-array>
@@ -56,7 +57,8 @@
     <string-array name="notification_styles">
         <item>Natywny</item>
         <item>Cities</item>
-        <item>@string/geometric_weather</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->
@@ -176,6 +178,11 @@
     <!-- air quality unit. -->
     <string-array name="air_quality_units">
         <item>μg/m³</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>mg/m³</item>
     </string-array>
 
     <!-- duration unit. -->

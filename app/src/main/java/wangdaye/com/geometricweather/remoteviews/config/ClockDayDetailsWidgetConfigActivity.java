@@ -27,9 +27,14 @@ public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigAct
     @Override
     public void initView() {
         super.initView();
-        viewTypeContainer.setVisibility(View.GONE);
-        hideSubtitleContainer.setVisibility(View.GONE);
-        subtitleDataContainer.setVisibility(View.GONE);
+
+        viewTypeContainer.setVisibility(View.VISIBLE);
+        cardStyleContainer.setVisibility(View.VISIBLE);
+        cardAlphaContainer.setVisibility(View.VISIBLE);
+        textColorContainer.setVisibility(View.VISIBLE);
+        textSizeContainer.setVisibility(View.VISIBLE);
+        clockFontContainer.setVisibility(View.VISIBLE);
+        hideLunarContainer.setVisibility(isHideLunarContainerVisible());
     }
 
     @Override

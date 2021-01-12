@@ -5,7 +5,7 @@
     <!-- 날씨 제공처. -->
     <string-array name="weather_sources">
         <item>weather.com.cn (중국 내수용)</item>
-        <item>caiyun.com (중국 내수용)</item>
+        <item> caiyunapp.com (중국 내수용)</item>
         <item>accuweather.com</item>
     </string-array>
 
@@ -20,6 +20,7 @@
     <!-- 어두운 모드. -->
     <string-array name="dark_modes">
         <item>자동</item>
+        <item>Follow system</item>
         <item>언제나 밝게</item>
         <item>언제나 어둡게</item>
     </string-array>
@@ -57,7 +58,8 @@
     <string-array name="notification_styles">
         <item>지역</item>
         <item>Cities</item>
-        <item>@string/geometric_weather</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- 알림 글자 색상. -->
@@ -177,6 +179,11 @@
     <!-- 대기질 단위. -->
     <string-array name="air_quality_units">
         <item>μg/m³</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>mg/m³</item>
     </string-array>
 
     <!-- 시간 단위. -->

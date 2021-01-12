@@ -13,7 +13,7 @@ import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetWeekProvider;
 import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;

@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
 import wangdaye.com.geometricweather.basic.model.weather.Astro;

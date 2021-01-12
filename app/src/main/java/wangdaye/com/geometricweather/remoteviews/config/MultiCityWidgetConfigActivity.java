@@ -6,7 +6,7 @@ import android.widget.RemoteViews;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.remoteviews.presenter.MultiCityWidgetIMP;
 
@@ -29,11 +29,10 @@ public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity 
     @Override
     public void initView() {
         super.initView();
-        viewTypeContainer.setVisibility(View.GONE);
-        hideSubtitleContainer.setVisibility(View.GONE);
-        subtitleDataContainer.setVisibility(View.GONE);
-        clockFontContainer.setVisibility(View.GONE);
-        hideLunarContainer.setVisibility(View.GONE);
+        cardStyleContainer.setVisibility(View.VISIBLE);
+        cardAlphaContainer.setVisibility(View.VISIBLE);
+        textColorContainer.setVisibility(View.VISIBLE);
+        textSizeContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

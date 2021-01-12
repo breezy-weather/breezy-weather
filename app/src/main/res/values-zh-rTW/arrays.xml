@@ -19,6 +19,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>自動</item>
+        <item>跟隨系統</item>
         <item>亮色主題</item>
         <item>暗色主題</item>
     </string-array>
@@ -56,7 +57,8 @@
     <string-array name="notification_styles">
         <item>原生</item>
         <item>多城市</item>
-        <item>@string/geometric_weather</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->
@@ -174,6 +176,11 @@
     <!-- air quality unit. -->
     <string-array name="air_quality_units">
         <item>微克/米³</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>毫克/米³</item>
     </string-array>
 
     <!-- duration unit. -->

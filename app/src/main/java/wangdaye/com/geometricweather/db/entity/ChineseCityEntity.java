@@ -4,10 +4,12 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
+import wangdaye.com.geometricweather.basic.model.ChineseCity;
+
 /**
  * Chinese city entity.
  *
- * {@link wangdaye.com.geometricweather.basic.model.location.ChineseCity}.
+ * {@link ChineseCity}.
  * */
 
 @Entity

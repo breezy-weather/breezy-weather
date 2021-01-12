@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.main.adapter.DetailsAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.background.polling.basic.ForegroundUpdateService;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.background.polling.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;

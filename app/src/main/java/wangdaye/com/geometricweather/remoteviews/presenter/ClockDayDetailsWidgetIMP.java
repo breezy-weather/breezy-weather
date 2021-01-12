@@ -14,7 +14,7 @@ import java.util.Date;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayDetailsProvider;
 import wangdaye.com.geometricweather.basic.model.option.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
@@ -126,7 +126,7 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setTextViewText(
                 R.id.widget_clock_day_wind,
-                context.getString(R.string.wind) + " " + weather.getCurrent().getWind().getLevel()
+                weather.getCurrent().getWind().getShortWindDescription()
         );
 
         views.setTextColor(R.id.widget_clock_day_clock_light, textColorInt);

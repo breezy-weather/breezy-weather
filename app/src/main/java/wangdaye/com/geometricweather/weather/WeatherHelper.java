@@ -9,7 +9,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;

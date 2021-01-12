@@ -12,11 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.appearance.DailyTrendDisplay;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
@@ -97,8 +96,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             tagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
             tagView.setAdapter(
                     new TagAdapter(context, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
-                        setTrendAdapterByTag(location.getFormattedId(), weather,
-                                location.getTimeZone(), (MainTag) tagList.get(newPosition));
+                        setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
                         return false;
                     }, 0)
             );
@@ -114,18 +112,16 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         trendRecyclerView.setAdapter(trendAdapter);
         trendRecyclerView.setKeyLineVisibility(
                 SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
-        setTrendAdapterByTag(location.getFormattedId(), weather, location.getTimeZone(),
-                (MainTag) tagList.get(0));
+        setTrendAdapterByTag(location, (MainTag) tagList.get(0));
     }
 
-    private void setTrendAdapterByTag(String formattedId, Weather weather, TimeZone timeZone, MainTag tag) {
+    private void setTrendAdapterByTag(Location location, MainTag tag) {
         switch (tag.getType()) {
             case TEMPERATURE:
                 trendAdapter.temperature(
-                        (GeoActivity) context, trendRecyclerView,
-                        formattedId,
-                        weather,
-                        timeZone,
+                        (GeoActivity) context,
+                        trendRecyclerView,
+                        location,
                         provider,
                         SettingsOptionManager.getInstance(context).getTemperatureUnit()
                 );
@@ -133,41 +129,29 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
             case WIND:
                 trendAdapter.wind(
-                        (GeoActivity) context, trendRecyclerView,
-                        formattedId,
-                        weather,
-                        timeZone,
+                        (GeoActivity) context,
+                        trendRecyclerView,
+                        location,
                         SettingsOptionManager.getInstance(context).getSpeedUnit()
                 );
                 break;
 
             case PRECIPITATION:
                 trendAdapter.precipitation(
-                        (GeoActivity) context, trendRecyclerView,
-                        formattedId,
-                        weather,
-                        timeZone,
+                        (GeoActivity) context,
+                        trendRecyclerView,
+                        location,
                         provider,
                         SettingsOptionManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;
 
             case AIR_QUALITY:
-                trendAdapter.airQuality(
-                        (GeoActivity) context, trendRecyclerView,
-                        formattedId,
-                        weather,
-                        timeZone
-                );
+                trendAdapter.airQuality((GeoActivity) context, trendRecyclerView, location);
                 break;
 
             case UV_INDEX:
-                trendAdapter.uv(
-                        (GeoActivity) context, trendRecyclerView,
-                        formattedId,
-                        weather,
-                        timeZone
-                );
+                trendAdapter.uv((GeoActivity) context, trendRecyclerView, location);
                 break;
         }
         trendAdapter.notifyDataSetChanged();

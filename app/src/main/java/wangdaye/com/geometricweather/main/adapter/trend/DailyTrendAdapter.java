@@ -1,19 +1,17 @@
 package wangdaye.com.geometricweather.main.adapter.trend;
 
-import android.content.Context;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.TimeZone;
-
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.adapter.trend.daily.DailyTemperatureAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.main.adapter.trend.daily.AbsDailyTrendAdapter;
@@ -30,31 +28,26 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         adapter = null;
     }
 
-    public void temperature(GeoActivity activity, TrendRecyclerView parent,
-                            String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
+    public void temperature(GeoActivity activity, TrendRecyclerView parent, Location location,
                             ResourceProvider provider, TemperatureUnit unit) {
-        adapter = new DailyTemperatureAdapter(activity, parent, formattedId, weather, timeZone, provider, unit);
+        adapter = new DailyTemperatureAdapter(activity, parent, location, provider, unit);
     }
 
-    public void airQuality(GeoActivity activity, TrendRecyclerView parent,
-                           String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone) {
-        adapter = new DailyAirQualityAdapter(activity, parent, formattedId, weather, timeZone);
+    public void airQuality(GeoActivity activity, TrendRecyclerView parent, Location location) {
+        adapter = new DailyAirQualityAdapter(activity, parent, location);
     }
 
-    public void wind(GeoActivity activity, TrendRecyclerView parent,
-                     String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone, SpeedUnit unit) {
-        adapter = new DailyWindAdapter(activity, parent, formattedId, weather, timeZone, unit);
+    public void wind(GeoActivity activity, TrendRecyclerView parent, Location location, SpeedUnit unit) {
+        adapter = new DailyWindAdapter(activity, parent, location, unit);
     }
 
-    public void uv(GeoActivity activity, TrendRecyclerView parent,
-                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone) {
-        adapter = new DailyUVAdapter(activity, parent, formattedId, weather, timeZone);
+    public void uv(GeoActivity activity, TrendRecyclerView parent, Location location) {
+        adapter = new DailyUVAdapter(activity, parent, location);
     }
 
-    public void precipitation(GeoActivity activity, TrendRecyclerView parent,
-                              String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
+    public void precipitation(GeoActivity activity, TrendRecyclerView parent, Location location,
                               ResourceProvider provider, PrecipitationUnit unit) {
-        adapter = new DailyPrecipitationAdapter(activity, parent, formattedId, weather, timeZone, provider, unit);
+        adapter = new DailyPrecipitationAdapter(activity, parent, location, provider, unit);
     }
 
     @NonNull
@@ -91,57 +84,5 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             return 5;
         }
         return -1;
-    }
-}
-
-class DailyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter.trend.daily.DailyTemperatureAdapter {
-
-    private Context c;
-
-    public DailyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent,
-                                   String formattedId, @NonNull Weather weather, @NonNull TimeZone timeZone,
-                                   ResourceProvider provider, TemperatureUnit unit) {
-        super(activity, parent, formattedId, weather, timeZone, true, provider, unit);
-        this.c = activity;
-    }
-
-    @Override
-    protected int getDaytimeTemperatureC(Weather weather, int index) {
-        return weather.getDailyForecast().get(index).day().getTemperature().getTemperature();
-    }
-
-    @Override
-    protected int getNighttimeTemperatureC(Weather weather, int index) {
-        return weather.getDailyForecast().get(index).night().getTemperature().getTemperature();
-    }
-
-    @Override
-    protected int getDaytimeTemperature(Weather weather, int index, TemperatureUnit unit) {
-        return unit.getTemperature(getDaytimeTemperatureC(weather, index));
-    }
-
-    @Override
-    protected int getNighttimeTemperature(Weather weather, int index, TemperatureUnit unit) {
-        return unit.getTemperature(getNighttimeTemperatureC(weather, index));
-    }
-
-    @Override
-    protected String getDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).day().getTemperature().getTemperature(c, unit);
-    }
-
-    @Override
-    protected String getNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).night().getTemperature().getTemperature(c, unit);
-    }
-
-    @Override
-    protected String getShortDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).day().getTemperature().getShortTemperature(c, unit);
-    }
-
-    @Override
-    protected String getShortNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).night().getTemperature().getShortTemperature(c, unit);
     }
 }

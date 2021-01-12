@@ -17,13 +17,12 @@ import androidx.core.graphics.ColorUtils;
 import android.util.AttributeSet;
 
 import wangdaye.com.geometricweather.ui.widget.DayNightShaderWrapper;
-import wangdaye.com.geometricweather.ui.widget.trend.abs.ChartItemView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Polyline and histogram view.
  * */
-public class PolylineAndHistogramView extends ChartItemView {
+public class PolylineAndHistogramView extends AbsChartItemView {
 
     private Paint paint;
     private Path path;

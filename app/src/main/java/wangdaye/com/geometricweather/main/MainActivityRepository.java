@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.main.model.LocationResource;
 import wangdaye.com.geometricweather.main.model.LockableLocationList;

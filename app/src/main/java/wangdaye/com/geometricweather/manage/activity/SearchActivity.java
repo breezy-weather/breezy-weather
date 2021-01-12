@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.activity;
+package wangdaye.com.geometricweather.manage.activity;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
@@ -31,12 +31,12 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.ui.adapter.location.LocationAdapter;
+import wangdaye.com.geometricweather.manage.adapter.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
@@ -62,7 +62,7 @@ public class SearchActivity extends GeoActivity
 
     private static class ShowAnimation extends Animation {
         // widget
-        private View v;
+        private final View v;
 
         ShowAnimation(View v) {
             this.v = v;
@@ -77,7 +77,7 @@ public class SearchActivity extends GeoActivity
 
     private static class HideAnimation extends Animation {
         // widget
-        private View v;
+        private final View v;
 
         HideAnimation(View v) {
             this.v = v;
@@ -184,7 +184,8 @@ public class SearchActivity extends GeoActivity
                             return;
                         }
                     }
-                }
+                },
+                null
         );
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.addItemDecoration(new ListDecoration(this));
@@ -195,14 +196,13 @@ public class SearchActivity extends GeoActivity
 
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-            @ColorInt int sourceColor = Color.TRANSPARENT;
             @ColorInt int color;
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 color = adapter.getItemSourceColor(layoutManager.findFirstVisibleItemPosition());
-                if (color != sourceColor) {
+                if (color != Color.TRANSPARENT) {
                     binding.scrollBar.setHandleColor(color);
                     binding.scrollBar.setHandleOffColor(color);
                 }
@@ -290,7 +290,7 @@ public class SearchActivity extends GeoActivity
         if (this.query.equals(query)) {
             this.locationList.clear();
             this.locationList.addAll(locationList);
-            adapter.update(this.locationList, null);
+            adapter.update(this.locationList, null, null);
             setState(STATE_SHOWING);
             if (locationList.size() <= 0) {
                 SnackbarUtils.showSnackbar(this, getString(R.string.feedback_search_nothing));
@@ -302,7 +302,7 @@ public class SearchActivity extends GeoActivity
     public void requestLocationFailed(String query) {
         if (this.query.equals(query)) {
             this.locationList.clear();
-            adapter.update(this.locationList, null);
+            adapter.update(this.locationList, null, null);
             setState(STATE_SHOWING);
             SnackbarUtils.showSnackbar(this, getString(R.string.feedback_search_nothing));
         }

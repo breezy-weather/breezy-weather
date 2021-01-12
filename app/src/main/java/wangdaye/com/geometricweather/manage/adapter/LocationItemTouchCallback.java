@@ -1,6 +1,7 @@
-package wangdaye.com.geometricweather.ui.adapter.location;
+package wangdaye.com.geometricweather.manage.adapter;
 
 import android.graphics.Canvas;
+import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -12,20 +13,24 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.ui.dialog.LearnMoreAboutResidentLocationDialog;
+import wangdaye.com.geometricweather.ui.widget.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
-public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
+public class LocationItemTouchCallback extends SlidingItemTouchCallback {
 
-    private GeoActivity activity;
-    private LocationAdapter adapter;
-    private @Nullable OnLocationListChangedListener listener;
+    private final GeoActivity activity;
+    private final LocationAdapter adapter;
 
-    public LocationTouchCallback(GeoActivity activity, LocationAdapter adapter, int dragDirs, int swipeDirs,
-                                 @Nullable OnLocationListChangedListener l) {
-        super(dragDirs, swipeDirs);
+    @Nullable
+    private final OnLocationListChangedListener listener;
+
+    public LocationItemTouchCallback(GeoActivity activity, LocationAdapter adapter,
+                                     @Nullable OnLocationListChangedListener l) {
+        super();
         this.activity = activity;
         this.adapter = adapter;
         this.listener = l;
@@ -33,7 +38,8 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView,
-                          @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                          @NonNull RecyclerView.ViewHolder viewHolder,
+                          @NonNull RecyclerView.ViewHolder target) {
         List<Location> list = adapter.moveItem(viewHolder.getAdapterPosition(), target.getAdapterPosition());
         if (listener != null) {
             listener.onLocationSequenceChanged(list);
@@ -45,10 +51,13 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         switch (direction) {
             case ItemTouchHelper.START: {
-                Location location = ((LocationHolder) viewHolder).model.location;
+                int position = viewHolder.getAdapterPosition();
+                Location location = adapter.getLocation(position);
+
                 if (location.isCurrentPosition()) {
                     adapter.update(
                             adapter.getLocationList(),
+                            null,
                             location.getFormattedId()
                     );
                     if (listener != null) {
@@ -58,7 +67,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                     List<Location> list = adapter.getLocationList();
                     location = list.get(viewHolder.getAdapterPosition());
                     location.setResidentPosition(!location.isResidentPosition());
-                    adapter.update(list, location.getFormattedId());
+                    adapter.update(list, null, location.getFormattedId());
                     if (location.isResidentPosition()) {
                         SnackbarUtils.showSnackbar(
                                 activity,
@@ -79,7 +88,7 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                 if (adapter.getItemCount() <= 1) {
                     List<Location> list = adapter.getLocationList();
                     Location location = list.get(viewHolder.getAdapterPosition());
-                    adapter.update(list, location.getFormattedId());
+                    adapter.update(list, null, location.getFormattedId());
                     SnackbarUtils.showSnackbar(
                             activity, activity.getString(R.string.feedback_location_list_cannot_be_null));
                 } else {
@@ -87,12 +96,12 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                     Location location = list.remove(viewHolder.getAdapterPosition());
                     location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
 
-                    adapter.update(list, location.getFormattedId());
+                    adapter.update(list, null, location.getFormattedId());
                     SnackbarUtils.showSnackbar(
                             activity,
                             activity.getString(R.string.feedback_delete_succeed),
                             activity.getString(R.string.cancel),
-                            new CancelDeleteListener(location)
+                            new CancelDeleteListener(location, viewHolder.getAdapterPosition())
                     );
 
                     if (listener != null) {
@@ -108,17 +117,9 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
                             @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-        switch (actionState) {
-            case ItemTouchHelper.ACTION_STATE_SWIPE:
-                ((LocationHolder) viewHolder).drawSwipe(activity, dX);
-                break;
-
-            case ItemTouchHelper.ACTION_STATE_DRAG:
-                ((LocationHolder) viewHolder).drawDrag(activity, dY != 0);
-                break;
-
-            case ItemTouchHelper.ACTION_STATE_IDLE:
-                break;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                && actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+            viewHolder.itemView.setElevation(DisplayUtils.dpToPx(activity, dY == 0 ? 0 : 10));
         }
     }
 
@@ -134,16 +135,18 @@ public class LocationTouchCallback extends ItemTouchHelper.SimpleCallback {
 
     private class CancelDeleteListener implements View.OnClickListener {
 
-        private Location location;
+        private final Location location;
+        private final int position;
 
-        CancelDeleteListener(Location l) {
-            this.location = l;
+        CancelDeleteListener(Location location, int position) {
+            this.location = location;
+            this.position = position;
         }
 
         @Override
         public void onClick(View view) {
             List<Location> list = adapter.getLocationList();
-            list.add(location);
+            list.add(position, location);
             adapter.update(list);
 
             if (listener != null) {

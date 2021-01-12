@@ -1,25 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <!-- Do not translate those arrays which named "xxx_values". -->
+    <!-- Do not translate those items with a value of "@string/xxx". -->
+
+    <!-- Chinese source. -->
+    <string-array name="weather_sources">
+        <item>weather.com.cn (Solo para China)</item>
+        <item>caiyun.com (Solo para China)</item>
+        <item>accuweather.com</item>
+    </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Baidu Location</item>
-        <item>Baidu IP Location (Sólo para China)</item>
-        <item>AMap Location</item>
+        <item>Ubicación de Baidu</item>
+        <item>Ubicación por IP de Baidu (Solo para China)</item>
+        <item>Ubicación de AMap</item>
         <item>API Nativa</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Cielo circular</item>
-        <item>Animación estilo Material</item>
     </string-array>
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Automático</item>
+        <item>Follow system</item>
         <item>Siempre claro</item>
         <item>Siempre oscuro</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Circular sky</item>
+        <item>Material animation</item>
+    </string-array>
+
+    <!-- language. -->
+    <!-- Do not translate this array. -->
+    <string-array name="languages">
+        <item>@string/follow_system</item>
+        <item>中文</item>
+        <item>繁體中文</item>
+        <item>English (America)</item>
+        <item>English (Britain)</item>
+        <item>English (Australia)</item>
+        <item>Türkçe</item>
+        <item>Français</item>
+        <item>Pусский</item>
+        <item>Deutsch</item>
+        <item>Српски</item>
+        <item>Español</item>
+        <item>Italiano</item>
+        <item>Dutch</item>
+        <item>Magyar</item>
+        <item>Português</item>
+        <item>Português (Brasil)</item>
+        <item>Slovenščina</item>
+        <item>العربية</item>
+        <item>Čeština</item>
+        <item>Polski</item>
+        <item>한국어</item>
+        <item>Ελληνικά</item>
+        <item>日本語</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -38,6 +79,21 @@
         <item>6 horas</item>
     </string-array>
 
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automático</item>
+        <item>@string/daytime</item><!-- do not translate. -->
+        <item>@string/nighttime</item><!-- do not translate. -->
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Nativo</item>
+        <item>Ciudades</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
+    </string-array>
+
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
         <item>Oscuro</item>
@@ -45,9 +101,20 @@
         <item>Claro</item>
     </string-array>
 
+    <!-- notification background colors. -->
+    <!-- Do not translate this array. -->
+    <integer-array name="notification_background_colors">
+        <item>@color/notification_background_l</item>
+        <item>@color/notification_background_m</item>
+        <item>@color/notification_background_o</item>
+        <item>@color/notification_background_rootLight</item>
+        <item>@color/notification_background_rootDark</item>
+        <item>@color/notification_background_primary</item>
+    </integer-array>
+
     <!-- widget style. -->
     <string-array name="widget_styles">
-        <item>Rectágular</item>
+        <item>Rectangular</item>
         <item>Simétrico</item>
         <item>Mosaico</item>
         <item>Mini</item>
@@ -55,33 +122,71 @@
         <item>Pixel</item>
         <item>Vertical</item>
         <item>Oreo</item>
-        <item>Oreo (Google sans)</item>
-        <item>Temperature</item>
+        <item>Oreo (Google Sans)</item>
+        <item>Temperatura</item>
+    </string-array>
+
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>5 días</item>
+        <item>3 días</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>Tiempo de refresco</item>
-        <item>AQI (No disponible en algunas regiones).</item>
+        <item>AQI (No disponible en algunas áreas.)</item>
         <item>Viento</item>
-        <item>Sensación de la temperatura</item>
-        <item>Fase lunar</item>
-        <item>Custom</item>
+        <item>Sensación térmica</item>
+        <item>Calendario Lunar</item>
+        <item>Personalizado</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="clock_font">
+        <item>Sans-Serif-Light</item>
+        <item>Sans-Serif</item>
+        <item>Sans-Serif-Black</item>
+        <item>Analog</item>
     </string-array>
 
     <!-- widget card style. -->
     <string-array name="widget_card_styles">
         <item>Ninguno</item>
-        <item>Modo día/noche</item>
+        <item>Automático</item>
         <item>Claro</item>
         <item>Oscuro</item>
     </string-array>
 
-    <!-- widget text colors -->
+    <!-- widget clock font. -->
     <string-array name="widget_text_colors">
         <item>Claro</item>
         <item>Oscuro</item>
         <item>Automático</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automático</item>
+        <item>Despejado</item>
+        <item>Parcialmente nublado</item>
+        <item>Nublado</item>
+        <item>Lluvia</item>
+        <item>Nieve</item>
+        <item>Aguanieve</item>
+        <item>Granizo</item>
+        <item>Niebla</item>
+        <item>Neblina</item>
+        <item>Trueno</item>
+        <item>Tormenta</item>
+        <item>Viento</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automático</item>
+        <item>Siempre diurno</item>
+        <item>Siempre nocturno</item>
     </string-array>
 
 </resources>

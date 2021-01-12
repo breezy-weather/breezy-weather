@@ -11,13 +11,12 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
-import wangdaye.com.geometricweather.ui.widget.trend.abs.ChartItemView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Double histogram view.
  * */
-public class DoubleHistogramView extends ChartItemView {
+public class DoubleHistogramView extends AbsChartItemView {
 
     private Paint paint;
 

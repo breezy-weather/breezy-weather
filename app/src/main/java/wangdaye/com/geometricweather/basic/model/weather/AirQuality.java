@@ -14,7 +14,8 @@ import wangdaye.com.geometricweather.R;
 /**
  * DailyAirQuality quality.
  *
- * default unit : {@link wangdaye.com.geometricweather.basic.model.option.unit.AirQualityUnit#MUGPCUM}
+ * default unit : {@link wangdaye.com.geometricweather.basic.model.option.unit.AirQualityUnit#MUGPCUM},
+ *                {@link wangdaye.com.geometricweather.basic.model.option.unit.AirQualityCOUnit#MGPCUM}
  * */
 public class AirQuality implements Serializable {
 

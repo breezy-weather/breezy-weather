@@ -7,7 +7,7 @@ import android.service.quicksettings.Tile;
 
 import androidx.annotation.RequiresApi;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.ResourceHelper;

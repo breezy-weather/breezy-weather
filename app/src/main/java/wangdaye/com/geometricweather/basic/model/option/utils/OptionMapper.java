@@ -119,6 +119,9 @@ public class OptionMapper {
 
     public static DarkMode getDarkMode(String value) {
         switch (value) {
+            case "system":
+                return DarkMode.SYSTEM;
+
             case "light":
                 return DarkMode.LIGHT;
 
@@ -451,8 +454,14 @@ public class OptionMapper {
             case "native":
                 return NotificationStyle.NATIVE;
 
+            case "cities":
+                return NotificationStyle.CITIES;
+
+            case "daily":
+                return NotificationStyle.DAILY;
+
             default:
-                return NotificationStyle.CUSTOM;
+                return NotificationStyle.HOURLY;
         }
     }
 

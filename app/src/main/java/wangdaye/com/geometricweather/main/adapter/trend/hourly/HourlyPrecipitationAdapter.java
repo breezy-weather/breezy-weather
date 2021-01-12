@@ -13,6 +13,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
 import wangdaye.com.geometricweather.basic.model.weather.Precipitation;
@@ -44,10 +45,10 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
 
         ViewHolder(View itemView) {
             super(itemView);
-            hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
-            hourlyItem.setParent(getTrendParent());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
+
+            hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
             hourlyItem.setChartItemView(polylineAndHistogramView);
         }
 
@@ -91,11 +92,14 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
         }
     }
 
-    public HourlyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                                      ResourceProvider provider, PrecipitationUnit unit) {
-        super(activity, parent, weather);
+    public HourlyPrecipitationAdapter(GeoActivity activity,
+                                      TrendRecyclerView parent,
+                                      Location location,
+                                      ResourceProvider provider,
+                                      PrecipitationUnit unit) {
+        super(activity, location);
 
-        this.weather = weather;
+        this.weather = location.getWeather();
         this.provider = provider;
         this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;

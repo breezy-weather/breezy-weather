@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.adapter.main.holder.AbstractMainCardViewHolder;

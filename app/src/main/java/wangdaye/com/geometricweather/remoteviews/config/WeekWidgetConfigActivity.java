@@ -32,10 +32,11 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public void initView() {
         super.initView();
-        hideSubtitleContainer.setVisibility(View.GONE);
-        subtitleDataContainer.setVisibility(View.GONE);
-        clockFontContainer.setVisibility(View.GONE);
-        hideLunarContainer.setVisibility(View.GONE);
+        viewTypeContainer.setVisibility(View.VISIBLE);
+        cardStyleContainer.setVisibility(View.VISIBLE);
+        cardAlphaContainer.setVisibility(View.VISIBLE);
+        textColorContainer.setVisibility(View.VISIBLE);
+        textSizeContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

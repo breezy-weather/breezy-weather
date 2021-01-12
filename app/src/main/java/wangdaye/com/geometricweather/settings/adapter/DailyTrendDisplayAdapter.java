@@ -1,8 +1,8 @@
 package wangdaye.com.geometricweather.settings.adapter;
 
-import android.content.Context;
-import android.os.Build;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -10,65 +10,59 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.appearance.DailyTrendDisplay;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.ui.widget.slidingItem.SlidingItemContainerLayout;
 
 public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDisplayAdapter.ViewHolder> {
 
-    private List<DailyTrendDisplay> dailyTrendDisplayList;
-    private OnItemRemoveListener listener;
+    private final List<DailyTrendDisplay> dailyTrendDisplayList;
+    private final OnItemRemoveListener removeListener;
+    private final OnItemDragListener dragListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        RelativeLayout container;
-        AppCompatImageView deleteImageLeft;
-        AppCompatImageView deleteImageRight;
+        SlidingItemContainerLayout container;
         RelativeLayout item;
         TextView title;
+        ImageButton sortButton;
         ImageButton deleteButton;
 
+        @SuppressLint("ClickableViewAccessibility")
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             container = itemView.findViewById(R.id.item_card_display_container);
-            deleteImageLeft = itemView.findViewById(R.id.item_card_display_deleteIconLeft);
-            deleteImageRight = itemView.findViewById(R.id.item_card_display_deleteIconRight);
             item = itemView.findViewById(R.id.item_card_display);
             title = itemView.findViewById(R.id.item_card_display_title);
+            sortButton = itemView.findViewById(R.id.item_card_display_sortButton);
+            sortButton.setOnTouchListener((View v, MotionEvent event) -> {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    dragListener.onDrag(this);
+                }
+                return false;
+            });
             deleteButton = itemView.findViewById(R.id.item_card_display_deleteBtn);
             deleteButton.setOnClickListener(v -> removeItem(getAdapterPosition()));
         }
 
         void onBindView(DailyTrendDisplay dailyTrendDisplay) {
             title.setText(dailyTrendDisplay.getTagName(title.getContext()));
-            drawSwipe(0);
-            drawDrag(title.getContext(), false);
-        }
-
-        public ViewHolder drawDrag(Context context, boolean elevate) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                container.setElevation(DisplayUtils.dpToPx(context, elevate ? 10 : 0));
-            }
-            return this;
-        }
-
-        public ViewHolder drawSwipe(float dX) {
-            container.setTranslationX(0);
-            item.setTranslationX(dX);
-            deleteImageLeft.setTranslationX((float) Math.min(0.5 * (dX - deleteImageLeft.getMeasuredWidth()), 0));
-            deleteImageRight.setTranslationX((float) Math.max(0.5 * (dX + deleteImageRight.getMeasuredWidth()), 0));
-            return this;
+            container.setOnClickListener(v -> {
+                // do nothing.
+            });
         }
     }
 
-    public DailyTrendDisplayAdapter(List<DailyTrendDisplay> dailyTrendDisplayList, OnItemRemoveListener listener) {
+    public DailyTrendDisplayAdapter(List<DailyTrendDisplay> dailyTrendDisplayList,
+                                    OnItemRemoveListener removeListener,
+                                    OnItemDragListener dragListener) {
         this.dailyTrendDisplayList = dailyTrendDisplayList;
-        this.listener = listener;
+        this.removeListener = removeListener;
+        this.dragListener = dragListener;
     }
 
     @NonNull
@@ -100,7 +94,7 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
     public void removeItem(int adapterPosition) {
         DailyTrendDisplay dailyTrendDisplay = dailyTrendDisplayList.remove(adapterPosition);
         notifyItemRemoved(adapterPosition);
-        listener.onRemoved(dailyTrendDisplay);
+        removeListener.onRemoved(dailyTrendDisplay);
     }
 
     public void moveItem(int fromPosition, int toPosition) {
@@ -110,5 +104,9 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
 
     public interface OnItemRemoveListener {
         void onRemoved(DailyTrendDisplay dailyTrendDisplay);
+    }
+
+    public interface OnItemDragListener {
+        void onDrag(ViewHolder holder);
     }
 }

@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.db.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.location.ChineseCity;
+import wangdaye.com.geometricweather.basic.model.ChineseCity;
 import wangdaye.com.geometricweather.db.entity.ChineseCityEntity;
 
 public class ChineseCityEntityConverter {

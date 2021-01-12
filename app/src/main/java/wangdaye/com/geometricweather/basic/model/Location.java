@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.basic.model.location;
+package wangdaye.com.geometricweather.basic.model;
 
 import android.content.Context;
 import android.os.Parcel;
@@ -205,7 +205,16 @@ public class Location
     @NonNull
     @Override
     public String toString() {
-        return country + " " + province + " " + city + " " + district;
+        StringBuilder builder = new StringBuilder(getCountry() + " " + getProvince());
+        if (!getProvince().equals(getCity())
+                && !TextUtils.isEmpty(getCity())) {
+            builder.append(" ").append(getCity());
+        }
+        if (!getCity().equals(getDistrict())
+                && !TextUtils.isEmpty(getDistrict())) {
+            builder.append(" ").append(getDistrict());
+        }
+        return builder.toString();
     }
 
     public boolean hasGeocodeInformation() {

@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" tools:ignore="ProtectedPermissions" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -27,6 +27,9 @@
     <uses-feature android:name="android.software.live_wallpaper" android:required="true" />
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.location.network" />
+
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -108,11 +111,11 @@
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activity.ManageActivity"
+            android:name=".manage.activity.ManageActivity"
             android:label="@string/action_manage"
             android:theme="@style/GeometricWeatherTheme" />
 
-        <activity android:name=".ui.activity.SearchActivity"
+        <activity android:name=".manage.activity.SearchActivity"
             android:label="@string/action_search"
             android:theme="@style/GeometricWeatherTheme.Search" />
 
@@ -310,7 +313,7 @@
         </service>
 
         <service
-            android:name=".wallpaper.material.MaterialLiveWallpaperService"
+            android:name=".wallpaper.MaterialLiveWallpaperService"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />

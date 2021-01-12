@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +19,7 @@ import wangdaye.com.geometricweather.settings.model.AboutAppLibrary;
 import wangdaye.com.geometricweather.settings.model.AboutAppLink;
 import wangdaye.com.geometricweather.settings.model.AboutAppTranslator;
 import wangdaye.com.geometricweather.utils.helpter.DonateHelper;
+import wangdaye.com.geometricweather.utils.helpter.ImageHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
@@ -130,9 +129,7 @@ class HeaderHolder extends AboutAdapter.ViewHolder {
 
     @Override
     void onBindView(GeoActivity activity, Object model) {
-        Glide.with(activity)
-                .load(R.drawable.ic_launcher)
-                .into(image);
+        ImageHelper.load(activity, image, R.drawable.ic_launcher);
     }
 }
 
@@ -209,9 +206,7 @@ class TranslatorHolder extends AboutAdapter.ViewHolder implements View.OnClickLi
         AboutAppTranslator translator = (AboutAppTranslator) model;
         title.setText(translator.name);
         content.setText(translator.email);
-        Glide.with(activity)
-                .load(translator.flagResId)
-                .into(flag);
+        ImageHelper.load(activity, flag, translator.flagResId);
     }
 
     @Override

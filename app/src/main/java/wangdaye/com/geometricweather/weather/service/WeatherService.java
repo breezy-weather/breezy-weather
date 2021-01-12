@@ -9,7 +9,7 @@ import androidx.annotation.WorkerThread;
 import java.util.List;
 
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 
 /**
  * Weather service.

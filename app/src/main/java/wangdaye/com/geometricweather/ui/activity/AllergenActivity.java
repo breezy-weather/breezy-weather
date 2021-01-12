@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.ui.adapter.DailyPollenAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;

@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.adapter.trend;
 
-import android.content.Context;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,9 +7,10 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.main.adapter.trend.hourly.HourlyTemperatureAdapter;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.main.adapter.trend.hourly.AbsHourlyTrendAdapter;
@@ -24,14 +24,14 @@ public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
         adapter = null;
     }
 
-    public void temperature(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
+    public void temperature(GeoActivity activity, TrendRecyclerView parent, Location location,
                             ResourceProvider provider, TemperatureUnit unit) {
-        adapter = new HourlyTemperatureAdapter(activity, parent, weather, provider, unit);
+        adapter = new HourlyTemperatureAdapter(activity, parent, location, provider, unit);
     }
 
-    public void precipitation(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
+    public void precipitation(GeoActivity activity, TrendRecyclerView parent, Location location,
                               ResourceProvider provider, PrecipitationUnit unit) {
-        adapter = new HourlyPrecipitationAdapter(activity, parent, weather, provider, unit);
+        adapter = new HourlyPrecipitationAdapter(activity, parent, location, provider, unit);
     }
 
     @NonNull
@@ -64,35 +64,4 @@ public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
         return -1;
     }
 
-}
-
-class HourlyTemperatureAdapter extends wangdaye.com.geometricweather.main.adapter.trend.hourly.HourlyTemperatureAdapter {
-
-    private Context c;
-
-    public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
-                                    ResourceProvider provider, TemperatureUnit unit) {
-        super(activity, parent, weather, true, provider, unit);
-        this.c = activity;
-    }
-
-    @Override
-    protected int getTemperatureC(Weather weather, int index) {
-        return weather.getHourlyForecast().get(index).getTemperature().getTemperature();
-    }
-
-    @Override
-    protected int getTemperature(Weather weather, int index, TemperatureUnit unit) {
-        return unit.getTemperature(getTemperatureC(weather, index));
-    }
-
-    @Override
-    protected String getTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getHourlyForecast().get(index).getTemperature().getTemperature(c, unit);
-    }
-
-    @Override
-    protected String getShortTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getHourlyForecast().get(index).getTemperature().getShortTemperature(c, unit);
-    }
 }

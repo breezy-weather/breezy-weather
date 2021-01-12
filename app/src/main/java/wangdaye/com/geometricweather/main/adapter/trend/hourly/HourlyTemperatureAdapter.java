@@ -14,6 +14,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Hourly;
@@ -30,7 +31,7 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
  * Hourly temperature adapter.
  * */
 
-public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemperatureAdapter.ViewHolder> {
+public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemperatureAdapter.ViewHolder> {
 
     private Weather weather;
     private ResourceProvider provider;
@@ -50,10 +51,10 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
 
         ViewHolder(View itemView) {
             super(itemView);
-            hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
-            hourlyItem.setParent(getTrendParent());
 
             polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
+
+            hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
             hourlyItem.setChartItemView(polylineAndHistogramView);
         }
 
@@ -118,17 +119,20 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
         }
     }
 
-    public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
+    public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, Location location,
                                     ResourceProvider provider, TemperatureUnit unit) {
-        this(activity, parent, weather, true, provider, unit);
+        this(activity, parent, location, true, provider, unit);
     }
 
-    public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, @NonNull Weather weather,
+    public HourlyTemperatureAdapter(GeoActivity activity,
+                                    TrendRecyclerView parent,
+                                    Location location,
                                     boolean showPrecipitationProbability,
-                                    ResourceProvider provider, TemperatureUnit unit) {
-        super(activity, parent, weather);
+                                    ResourceProvider provider,
+                                    TemperatureUnit unit) {
+        super(activity, location);
 
-        this.weather = weather;
+        this.weather = location.getWeather();
         this.provider = provider;
         this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;
@@ -209,11 +213,19 @@ public abstract class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<Hou
         return weather.getHourlyForecast().size();
     }
 
-    protected abstract int getTemperatureC(Weather weather, int index);
+    protected int getTemperatureC(Weather weather, int index) {
+        return weather.getHourlyForecast().get(index).getTemperature().getTemperature();
+    }
 
-    protected abstract int getTemperature(Weather weather, int index, TemperatureUnit unit);
+    protected int getTemperature(Weather weather, int index, TemperatureUnit unit) {
+        return unit.getTemperature(getTemperatureC(weather, index));
+    }
 
-    protected abstract String getTemperatureString(Weather weather, int index, TemperatureUnit unit);
+    protected String getTemperatureString(Weather weather, int index, TemperatureUnit unit) {
+        return weather.getHourlyForecast().get(index).getTemperature().getTemperature(getContext(), unit);
+    }
 
-    protected abstract String getShortTemperatureString(Weather weather, int index, TemperatureUnit unit);
+    protected String getShortTemperatureString(Weather weather, int index, TemperatureUnit unit) {
+        return weather.getHourlyForecast().get(index).getTemperature().getShortTemperature(getContext(), unit);
+    }
 }

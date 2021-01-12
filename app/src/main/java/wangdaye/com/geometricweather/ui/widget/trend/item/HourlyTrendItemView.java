@@ -9,28 +9,21 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.image.AbstractIconTarget;
-import wangdaye.com.geometricweather.ui.widget.trend.abs.ChartItemView;
-import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendChild;
-import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendParent;
+import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
+import wangdaye.com.geometricweather.ui.widget.trend.chart.AbsChartItemView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Hourly trend item view.
  * */
-public class HourlyTrendItemView extends ViewGroup
-        implements TrendChild {
+public class HourlyTrendItemView extends AbsTrendItemView {
 
-    private @Nullable ChartItemView chartItem;
-    private TrendParent trendParent;
+    private @Nullable AbsChartItemView chartItem;
     private Paint paint;
 
     @Nullable private OnClickListener clickListener;
@@ -49,10 +42,12 @@ public class HourlyTrendItemView extends ViewGroup
 
     private int iconSize;
 
+    private int chartTop;
+    private int chartBottom;
+
     private static final int ICON_SIZE_DIP = 32;
     private static final int TEXT_MARGIN_DIP = 4;
     private static final int ICON_MARGIN_DIP = 8;
-    private static final int MARGIN_BOTTOM_DIP = 16;
 
     public HourlyTrendItemView(Context context) {
         super(context);
@@ -86,6 +81,9 @@ public class HourlyTrendItemView extends ViewGroup
         setTextColor(Color.BLACK);
 
         iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+
+        chartTop = 0;
+        chartBottom = 0;
     }
 
     @Override
@@ -115,7 +113,8 @@ public class HourlyTrendItemView extends ViewGroup
         }
 
         // margin bottom.
-        float marginBottom = DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
+        float marginBottom = DisplayUtils.dpToPx(
+                getContext(), TrendRecyclerView.ITEM_MARGIN_BOTTOM_DIP);
 
         // chartItem item view.
         if (chartItem != null) {
@@ -131,13 +130,10 @@ public class HourlyTrendItemView extends ViewGroup
         }
         trendViewTop = y;
 
+        chartTop = (int) (trendViewTop + chartItem.getMarginTop());
+        chartBottom = (int) (trendViewTop + chartItem.getMeasuredHeight() - chartItem.getMarginBottom());
+
         setMeasuredDimension(width, height);
-        if (trendParent != null) {
-            trendParent.setDrawingBoundary(
-                    (int) (trendViewTop + chartItem.getMarginTop()),
-                    (int) (trendViewTop + chartItem.getMeasuredHeight() - chartItem.getMarginBottom())
-            );
-        }
     }
 
     @Override
@@ -209,35 +205,6 @@ public class HourlyTrendItemView extends ViewGroup
         }
     }
 
-    public AbstractIconTarget getIconTarget() {
-        return new AbstractIconTarget(iconSize) {
-            @Override
-            public View getTarget() {
-                return HourlyTrendItemView.this;
-            }
-
-            @Override
-            public void setDrawableForTarget(Drawable d) {
-                setIconDrawable(d);
-            }
-
-            @Override
-            public Drawable getDrawableFromTarget() {
-                return iconDrawable;
-            }
-
-            @Override
-            public void setTagForTarget(Object tag) {
-                setTag(tag);
-            }
-
-            @Override
-            public Object getTagFromTarget() {
-                return getTag();
-            }
-        };
-    }
-
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
         clickListener = l;
@@ -245,12 +212,7 @@ public class HourlyTrendItemView extends ViewGroup
     }
 
     @Override
-    public void setParent(@NonNull TrendParent parent) {
-        trendParent = parent;
-    }
-
-    @Override
-    public void setChartItemView(ChartItemView t) {
+    public void setChartItemView(AbsChartItemView t) {
         chartItem = t;
         removeAllViews();
         addView(chartItem);
@@ -258,8 +220,18 @@ public class HourlyTrendItemView extends ViewGroup
     }
 
     @Override
-    public ChartItemView getChartItemView() {
+    public AbsChartItemView getChartItemView() {
         return chartItem;
+    }
+
+    @Override
+    public int getChartTop() {
+        return chartTop;
+    }
+
+    @Override
+    public int getChartBottom() {
+        return chartBottom;
     }
 }
 

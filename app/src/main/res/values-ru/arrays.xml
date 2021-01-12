@@ -4,7 +4,7 @@
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>weather.com.cn (Только для Китая)</item>
-        <item>caiyun.com (Только для Китая)</item>
+        <item> caiyunapp.com (Только для Китая)</item>
         <item>accuweather.com</item>
     </string-array>
 
@@ -19,6 +19,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Автоматически</item>
+        <item>Follow system</item>
         <item>Всегда светлая</item>
         <item>Всегда тёмная</item>
     </string-array>
@@ -55,8 +56,9 @@
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>Системное</item>
-        <item>Cities</item>
-        <item>@string/geometric_weather</item>
+        <item>Города</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->

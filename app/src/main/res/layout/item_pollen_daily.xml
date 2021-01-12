@@ -10,6 +10,7 @@
 
     <TextView
         android:id="@+id/title"
+        android:layout_width="match_parent"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
@@ -19,6 +20,7 @@
 
     <TextView
         android:id="@+id/subtitle"
+        android:layout_width="match_parent"
         android:layout_marginTop="2dp"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
@@ -46,11 +48,12 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_toEndOf="@id/grassIcon"
                 android:layout_centerVertical="true">
 
@@ -82,11 +85,12 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_toEndOf="@id/ragweedIcon"
                 android:layout_centerVertical="true">
 
@@ -127,11 +131,12 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_toEndOf="@id/treeIcon"
                 android:layout_centerVertical="true">
 
@@ -163,11 +168,12 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_toEndOf="@id/moldIcon"
                 android:layout_centerVertical="true">
 

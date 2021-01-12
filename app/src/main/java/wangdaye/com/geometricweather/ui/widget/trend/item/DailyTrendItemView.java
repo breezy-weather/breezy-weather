@@ -9,28 +9,21 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.image.AbstractIconTarget;
-import wangdaye.com.geometricweather.ui.widget.trend.abs.ChartItemView;
-import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendChild;
-import wangdaye.com.geometricweather.ui.widget.trend.abs.TrendParent;
+import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
+import wangdaye.com.geometricweather.ui.widget.trend.chart.AbsChartItemView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**
  * Daily trend item view.
  * */
-public class DailyTrendItemView extends ViewGroup
-        implements TrendChild {
+public class DailyTrendItemView extends AbsTrendItemView {
 
-    private @Nullable ChartItemView chartItem;
-    private TrendParent trendParent;
+    private @Nullable AbsChartItemView chartItem;
     private Paint paint;
 
     @Nullable private OnClickListener clickListener;
@@ -58,10 +51,12 @@ public class DailyTrendItemView extends ViewGroup
 
     private int iconSize;
 
+    private int chartTop;
+    private int chartBottom;
+
     private static final int ICON_SIZE_DIP = 32;
     private static final int TEXT_MARGIN_DIP = 4;
     private static final int ICON_MARGIN_DIP = 8;
-    private static final int MARGIN_BOTTOM_DIP = 16;
 
     public DailyTrendItemView(Context context) {
         super(context);
@@ -95,6 +90,9 @@ public class DailyTrendItemView extends ViewGroup
         setTextColor(Color.BLACK, Color.GRAY);
 
         iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+
+        chartTop = 0;
+        chartBottom = 0;
     }
 
     @Override
@@ -133,7 +131,8 @@ public class DailyTrendItemView extends ViewGroup
         consumedHeight = y;
 
         // margin bottom.
-        float marginBottom = DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
+        float marginBottom = DisplayUtils.dpToPx(
+                getContext(), TrendRecyclerView.ITEM_MARGIN_BOTTOM_DIP);
         consumedHeight += marginBottom;
 
         // night icon.
@@ -152,13 +151,10 @@ public class DailyTrendItemView extends ViewGroup
         }
         trendViewTop = y;
 
+        chartTop = (int) (trendViewTop + chartItem.getMarginTop());
+        chartBottom = (int) (trendViewTop + chartItem.getMeasuredHeight() - chartItem.getMarginBottom());
+
         setMeasuredDimension(width, height);
-        if (trendParent != null) {
-            trendParent.setDrawingBoundary(
-                    (int) (trendViewTop + chartItem.getMarginTop()),
-                    (int) (trendViewTop + chartItem.getMeasuredHeight() - chartItem.getMarginBottom())
-            );
-        }
     }
 
     @Override
@@ -269,64 +265,6 @@ public class DailyTrendItemView extends ViewGroup
         }
     }
 
-    public AbstractIconTarget getDayIconTarget() {
-        return new AbstractIconTarget(iconSize) {
-            @Override
-            public View getTarget() {
-                return DailyTrendItemView.this;
-            }
-
-            @Override
-            public void setDrawableForTarget(Drawable d) {
-                setDayIconDrawable(d);
-            }
-
-            @Override
-            public Drawable getDrawableFromTarget() {
-                return dayIconDrawable;
-            }
-
-            @Override
-            public void setTagForTarget(Object tag) {
-                setTag(R.id.tag_icon_day, tag);
-            }
-
-            @Override
-            public Object getTagFromTarget() {
-                return getTag(R.id.tag_icon_day);
-            }
-        };
-    }
-
-    public AbstractIconTarget getNightIconTarget() {
-        return new AbstractIconTarget(iconSize) {
-            @Override
-            public View getTarget() {
-                return DailyTrendItemView.this;
-            }
-
-            @Override
-            public void setDrawableForTarget(Drawable d) {
-                setNightIconDrawable(d);
-            }
-
-            @Override
-            public Drawable getDrawableFromTarget() {
-                return nightIconDrawable;
-            }
-
-            @Override
-            public void setTagForTarget(Object tag) {
-                setTag(R.id.tag_icon_night, tag);
-            }
-
-            @Override
-            public Object getTagFromTarget() {
-                return getTag(R.id.tag_icon_night);
-            }
-        };
-    }
-
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
         clickListener = l;
@@ -334,12 +272,7 @@ public class DailyTrendItemView extends ViewGroup
     }
 
     @Override
-    public void setParent(@NonNull TrendParent parent) {
-        trendParent = parent;
-    }
-
-    @Override
-    public void setChartItemView(ChartItemView t) {
+    public void setChartItemView(AbsChartItemView t) {
         chartItem = t;
         removeAllViews();
         addView(chartItem);
@@ -347,8 +280,18 @@ public class DailyTrendItemView extends ViewGroup
     }
 
     @Override
-    public ChartItemView getChartItemView() {
+    public AbsChartItemView getChartItemView() {
         return chartItem;
+    }
+
+    @Override
+    public int getChartTop() {
+        return chartTop;
+    }
+
+    @Override
+    public int getChartBottom() {
+        return chartBottom;
     }
 }
 

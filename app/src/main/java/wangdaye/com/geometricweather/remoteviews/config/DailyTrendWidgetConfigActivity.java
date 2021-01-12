@@ -27,13 +27,8 @@ public class DailyTrendWidgetConfigActivity extends AbstractWidgetConfigActivity
     @Override
     public void initView() {
         super.initView();
-        viewTypeContainer.setVisibility(View.GONE);
-        hideSubtitleContainer.setVisibility(View.GONE);
-        subtitleDataContainer.setVisibility(View.GONE);
-        textColorContainer.setVisibility(View.GONE);
-        textSizeContainer.setVisibility(View.GONE);
-        clockFontContainer.setVisibility(View.GONE);
-        hideLunarContainer.setVisibility(View.GONE);
+        cardStyleContainer.setVisibility(View.VISIBLE);
+        cardAlphaContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

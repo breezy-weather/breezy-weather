@@ -11,7 +11,7 @@ import androidx.core.app.ActivityCompat;
 import java.util.List;
 import java.util.TimeZone;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.service.AMapLocationService;

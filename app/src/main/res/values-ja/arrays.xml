@@ -8,7 +8,7 @@
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>weather.com.cn (中国のみ)</item>
-        <item>caiyun.com (中国のみ)</item>
+        <item> caiyunapp.com (中国のみ)</item>
         <item>accuweather.com</item>
     </string-array>
 
@@ -23,6 +23,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>自動</item>
+        <item>Follow system</item>
         <item>ライトモード</item>
         <item>ダークモード</item>
     </string-array>
@@ -60,7 +61,8 @@
     <string-array name="notification_styles">
         <item>Native</item>
         <item>Cities</item>
-        <item>@string/geometric_weather</item><!-- do not translate. -->
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->

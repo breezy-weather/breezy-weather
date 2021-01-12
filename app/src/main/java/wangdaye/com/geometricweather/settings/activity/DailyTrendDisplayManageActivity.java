@@ -32,11 +32,16 @@ import wangdaye.com.geometricweather.settings.adapter.DailyTrendDisplayAdapter;
 import wangdaye.com.geometricweather.ui.adapter.TagAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.GridMarginsDecoration;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
+import wangdaye.com.geometricweather.ui.widget.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class DailyTrendDisplayManageActivity extends GeoActivity {
 
     ActivityDailyTrendDisplayManageBinding binding;
+
     private DailyTrendDisplayAdapter dailyTrendDisplayAdapter;
+    private ItemTouchHelper dailyTrendDisplayItemTouchHelper;
+
     private TagAdapter tagAdapter;
 
     private @Nullable AnimatorSet bottomAnimator;
@@ -56,22 +61,18 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         }
     }
 
-    private class CardDisplaySwipeCallback extends ItemTouchHelper.SimpleCallback {
-
-        CardDisplaySwipeCallback(int dragDirs, int swipeDirs) {
-            super(dragDirs, swipeDirs);
-        }
+    private class CardDisplaySwipeCallback extends SlidingItemTouchCallback {
 
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView,
-                              @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                              @NonNull RecyclerView.ViewHolder viewHolder,
+                              @NonNull RecyclerView.ViewHolder target) {
             setResult(RESULT_OK);
 
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition = target.getAdapterPosition();
 
             dailyTrendDisplayAdapter.moveItem(fromPosition, toPosition);
-            ((DailyTrendDisplayAdapter.ViewHolder) viewHolder).drawDrag(DailyTrendDisplayManageActivity.this, false);
             return true;
         }
 
@@ -86,21 +87,11 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
                                 @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                                 float dX, float dY, int actionState, boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-            switch (actionState) {
-                case ItemTouchHelper.ACTION_STATE_SWIPE:
-                    ((DailyTrendDisplayAdapter.ViewHolder) viewHolder).drawSwipe(dX);
-                    break;
-
-                case ItemTouchHelper.ACTION_STATE_DRAG:
-                    ((DailyTrendDisplayAdapter.ViewHolder) viewHolder)
-                            .drawDrag(DailyTrendDisplayManageActivity.this, dY != 0);
-                    break;
-
-                case ItemTouchHelper.ACTION_STATE_IDLE:
-                    ((DailyTrendDisplayAdapter.ViewHolder) viewHolder)
-                            .drawSwipe(0)
-                            .drawDrag(DailyTrendDisplayManageActivity.this, false);
-                    break;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                    && actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+                viewHolder.itemView.setElevation(
+                        DisplayUtils.dpToPx(DailyTrendDisplayManageActivity.this, dY == 0 ? 0 : 10)
+                );
             }
         }
     }
@@ -116,22 +107,22 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         List<DailyTrendDisplay> displayTags
                 = SettingsOptionManager.getInstance(this).getDailyTrendDisplayList();
-        dailyTrendDisplayAdapter = new DailyTrendDisplayAdapter(displayTags, dailyTrendDisplay -> {
-            setResult(RESULT_OK);
-            tagAdapter.insertItem(new DailyTrendTag(dailyTrendDisplay));
-            resetBottomBarVisibility();
-        });
+        dailyTrendDisplayAdapter = new DailyTrendDisplayAdapter(
+                displayTags,
+                dailyTrendDisplay -> {
+                    setResult(RESULT_OK);
+                    tagAdapter.insertItem(new DailyTrendTag(dailyTrendDisplay));
+                    resetBottomBarVisibility();
+                },
+                holder -> dailyTrendDisplayItemTouchHelper.startDrag(holder)
+        );
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.addItemDecoration(new ListDecoration(this));
         binding.recyclerView.setAdapter(dailyTrendDisplayAdapter);
 
-        new ItemTouchHelper(
-                new CardDisplaySwipeCallback(
-                        ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
-                )
-        ).attachToRecyclerView(binding.recyclerView);
+        this.dailyTrendDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
+        dailyTrendDisplayItemTouchHelper.attachToRecyclerView(binding.recyclerView);
 
         List<DailyTrendDisplay> otherTags = new ArrayList<>();
         otherTags.add(DailyTrendDisplay.TAG_TEMPERATURE);

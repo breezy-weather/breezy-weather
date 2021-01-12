@@ -18,6 +18,7 @@ import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
@@ -49,10 +50,10 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
         ViewHolder(View itemView) {
             super(itemView);
-            dailyItem = itemView.findViewById(R.id.item_trend_daily);
-            dailyItem.setParent(getTrendParent());
 
             doubleHistogramView = new DoubleHistogramView(itemView.getContext());
+
+            dailyItem = itemView.findViewById(R.id.item_trend_daily);
             dailyItem.setChartItemView(doubleHistogramView);
         }
 
@@ -109,12 +110,12 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent, String formattedId,
-                            @NonNull Weather weather, @NonNull TimeZone timeZone, SpeedUnit unit) {
-        super(activity, parent, formattedId);
+    public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent,
+                            Location location, SpeedUnit unit) {
+        super(activity, location);
 
-        this.weather = weather;
-        this.timeZone = timeZone;
+        this.weather = location.getWeather();
+        this.timeZone = location.getTimeZone();
         this.themeManager = ThemeManager.getInstance(activity);
         this.unit = unit;
 

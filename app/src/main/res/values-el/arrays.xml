@@ -5,7 +5,7 @@
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>weather.com.cn (Μόνο για Κίνα)</item>
-        <item>caiyun.com (Μόνο για Κίνα)</item>
+        <item> caiyunapp.com (Μόνο για Κίνα)</item>
         <item>accuweather.com</item>
     </string-array>
 
@@ -20,6 +20,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Αυτόματο</item>
+        <item>Follow system</item>
         <item>Πάντα φωτεινό</item>
         <item>Πάντα σκοτεινό</item>
     </string-array>
@@ -57,7 +58,8 @@
     <string-array name="notification_styles">
         <item>Σύστημα</item>
         <item>Cities</item>
-        <item>@string/geometric_weather</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->
@@ -177,6 +179,11 @@
     <!-- air quality unit. -->
     <string-array name="air_quality_units">
         <item>μg/m³</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>mg/m³</item>
     </string-array>
 
     <!-- duration unit. -->

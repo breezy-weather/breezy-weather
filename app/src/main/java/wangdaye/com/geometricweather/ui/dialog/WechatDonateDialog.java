@@ -11,9 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.DialogFragment;
 
-import com.bumptech.glide.Glide;
-
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.utils.helpter.ImageHelper;
 
 public class WechatDonateDialog extends DialogFragment {
 
@@ -25,9 +24,7 @@ public class WechatDonateDialog extends DialogFragment {
                 .inflate(R.layout.dialog_donate_wechat, null, false);
 
         AppCompatImageView image = view.findViewById(R.id.dialog_donate_wechat_img);
-        Glide.with(getActivity())
-                .load(R.drawable.donate_wechat)
-                .into(image);
+        ImageHelper.load(requireActivity(), image, R.drawable.donate_wechat);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);

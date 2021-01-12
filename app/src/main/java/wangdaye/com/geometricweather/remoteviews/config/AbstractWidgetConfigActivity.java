@@ -46,7 +46,7 @@ import com.xw.repo.BubbleSeekBar;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout;
@@ -77,6 +77,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected RelativeLayout textSizeContainer;
     protected RelativeLayout clockFontContainer;
     protected RelativeLayout hideLunarContainer;
+    protected RelativeLayout alignEndContainer;
 
     private BottomSheetBehavior bottomSheetBehavior;
     private FitBottomSystemBarNestedScrollView bottomSheetScrollView;
@@ -115,6 +116,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected String[] clockFontValues;
 
     protected boolean hideLunar;
+
+    protected boolean alignEnd;
 
     private long lastBackPressedTime = -1;
 
@@ -246,6 +249,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.clockFontValues = res.getStringArray(R.array.clock_font_values);
 
         this.hideLunar = false;
+
+        this.alignEnd = false;
     }
 
     private void readConfig() {
@@ -259,8 +264,10 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textSize = sharedPreferences.getInt(getString(R.string.key_text_size), textSize);
         clockFontValueNow = sharedPreferences.getString(getString(R.string.key_clock_font), clockFontValueNow);
         hideLunar = sharedPreferences.getBoolean(getString(R.string.key_hide_lunar), hideLunar);
+        alignEnd = sharedPreferences.getBoolean(getString(R.string.key_align_end), alignEnd);
     }
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     @CallSuper
     public void initView() {
         this.wallpaper = findViewById(R.id.activity_widget_config_wall);
@@ -291,12 +298,14 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         this.scrollView = findViewById(R.id.activity_widget_config_scrollView);
 
         this.viewTypeContainer = findViewById(R.id.activity_widget_config_viewStyleContainer);
+        this.viewTypeContainer.setVisibility(View.GONE);
         AppCompatSpinner viewTypeSpinner = findViewById(R.id.activity_widget_config_styleSpinner);
         viewTypeSpinner.setOnItemSelectedListener(new ViewTypeSpinnerSelectedListener());
         viewTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, viewTypes));
         viewTypeSpinner.setSelection(indexValue(viewTypeValues, viewTypeValueNow), true);
 
         this.cardStyleContainer = findViewById(R.id.activity_widget_config_showCardContainer);
+        this.cardStyleContainer.setVisibility(View.GONE);
         AppCompatSpinner cardStyleSpinner = findViewById(R.id.activity_widget_config_showCardSpinner);
         cardStyleSpinner.setOnItemSelectedListener(new CardStyleSpinnerSelectedListener());
         cardStyleSpinner.setAdapter(
@@ -305,6 +314,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         cardStyleSpinner.setSelection(indexValue(cardStyleValues, cardStyleValueNow), true);
 
         this.cardAlphaContainer = findViewById(R.id.activity_widget_config_cardAlphaContainer);
+        this.cardAlphaContainer.setVisibility(View.GONE);
         BubbleSeekBar cardAlphaSeekBar = findViewById(R.id.activity_widget_config_cardAlphaSeekBar);
         cardAlphaSeekBar.setCustomSectionTextArray((sectionCount, array) -> {
             array.clear();
@@ -320,11 +330,13 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         cardAlphaSeekBar.setProgress(cardAlpha);
 
         this.hideSubtitleContainer = findViewById(R.id.activity_widget_config_hideSubtitleContainer);
+        this.hideSubtitleContainer.setVisibility(View.GONE);
         Switch hideSubtitleSwitch = findViewById(R.id.activity_widget_config_hideSubtitleSwitch);
         hideSubtitleSwitch.setOnCheckedChangeListener(new HideSubtitleSwitchCheckListener());
         hideSubtitleSwitch.setChecked(hideSubtitle);
 
         this.subtitleDataContainer = findViewById(R.id.activity_widget_config_subtitleDataContainer);
+        this.subtitleDataContainer.setVisibility(View.GONE);
         AppCompatSpinner subtitleDataSpinner = findViewById(R.id.activity_widget_config_subtitleDataSpinner);
         subtitleDataSpinner.setOnItemSelectedListener(new SubtitleDataSpinnerSelectedListener());
         subtitleDataSpinner.setAdapter(
@@ -336,6 +348,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         );
 
         this.textColorContainer = findViewById(R.id.activity_widget_config_blackTextContainer);
+        this.textColorContainer.setVisibility(View.GONE);
         AppCompatSpinner textStyleSpinner = findViewById(R.id.activity_widget_config_blackTextSpinner);
         textStyleSpinner.setOnItemSelectedListener(new TextColorSpinnerSelectedListener());
         textStyleSpinner.setAdapter(
@@ -344,6 +357,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textStyleSpinner.setSelection(indexValue(textColorValues, textColorValueNow), true);
 
         this.textSizeContainer = findViewById(R.id.activity_widget_config_textSizeContainer);
+        this.textSizeContainer.setVisibility(View.GONE);
         BubbleSeekBar textSizeSeekBar = findViewById(R.id.activity_widget_config_textSizeSeekBar);
         textSizeSeekBar.setCustomSectionTextArray((sectionCount, array) -> {
             array.clear();
@@ -357,6 +371,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textSizeSeekBar.setProgress(textSize);
 
         this.clockFontContainer = findViewById(R.id.activity_widget_config_clockFontContainer);
+        this.clockFontContainer.setVisibility(View.GONE);
         AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_widget_config_clockFontSpinner);
         clockFontSpinner.setOnItemSelectedListener(new ClockFontSpinnerSelectedListener());
         clockFontSpinner.setAdapter(
@@ -365,14 +380,16 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         clockFontSpinner.setSelection(indexValue(clockFontValues, cardStyleValueNow), true);
 
         this.hideLunarContainer = findViewById(R.id.activity_widget_config_hideLunarContainer);
-        hideLunarContainer.setVisibility(
-                SettingsOptionManager.getInstance(this).getLanguage().isChinese()
-                        ? View.VISIBLE
-                        : View.GONE
-        );
+        this.hideLunarContainer.setVisibility(View.GONE);
         Switch hideLunarSwitch = findViewById(R.id.activity_widget_config_hideLunarSwitch);
         hideLunarSwitch.setOnCheckedChangeListener(new HideLunarSwitchCheckListener());
         hideLunarSwitch.setChecked(hideLunar);
+
+        this.alignEndContainer = findViewById(R.id.activity_widget_config_alignEndContainer);
+        this.alignEndContainer.setVisibility(View.GONE);
+        Switch alignEndSwitch = findViewById(R.id.activity_widget_config_alignEndSwitch);
+        alignEndSwitch.setOnCheckedChangeListener(new AlignEndSwitchCheckListener());
+        alignEndSwitch.setChecked(alignEnd);
 
         Button doneButton = findViewById(R.id.activity_widget_config_doneButton);
         doneButton.setOnClickListener(v -> {
@@ -387,6 +404,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                     .putInt(getString(R.string.key_text_size), textSize)
                     .putString(getString(R.string.key_clock_font), clockFontValueNow)
                     .putBoolean(getString(R.string.key_hide_lunar), hideLunar)
+                    .putBoolean(getString(R.string.key_align_end), alignEnd)
                     .apply();
 
             Intent intent = getIntent();
@@ -565,6 +583,12 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                 getString(R.string.feedback_custom_subtitle_keyword_xmp);
     }
 
+    protected int isHideLunarContainerVisible() {
+        return SettingsOptionManager.getInstance(this).getLanguage().isChinese()
+                ? View.VISIBLE
+                : View.GONE;
+    }
+
     // interface.
 
     // on request weather listener.
@@ -650,6 +674,15 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             hideLunar = isChecked;
+            updateHostView();
+        }
+    }
+
+    private class AlignEndSwitchCheckListener implements CompoundButton.OnCheckedChangeListener {
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            alignEnd = isChecked;
             updateHostView();
         }
     }

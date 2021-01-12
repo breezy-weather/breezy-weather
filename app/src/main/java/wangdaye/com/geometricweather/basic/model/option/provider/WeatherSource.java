@@ -10,7 +10,7 @@ import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 public enum WeatherSource {
 
     CN("cn", 0xff033566, "weather.com.cn"),
-    CAIYUN("caiyun", 0xff5ebb8e, "caiyun.com"),
+    CAIYUN("caiyun", 0xff5ebb8e, " caiyunapp.com"),
     ACCU("accu", 0xffef5823, "accuweather.com");
 
     private String sourceId;

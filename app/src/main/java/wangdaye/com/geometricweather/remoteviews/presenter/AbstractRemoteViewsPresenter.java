@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.basic.model.option.unit.DistanceUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
@@ -58,6 +58,7 @@ public abstract class AbstractRemoteViewsPresenter {
         public String subtitleData;
         public String clockFont;
         public boolean hideLunar;
+        public boolean alignEnd;
     }
 
     public static class WidgetColor {
@@ -116,6 +117,10 @@ public abstract class AbstractRemoteViewsPresenter {
         );
         config.hideLunar = sharedPreferences.getBoolean(
                 context.getString(R.string.key_hide_lunar),
+                false
+        );
+        config.alignEnd = sharedPreferences.getBoolean(
+                context.getString(R.string.key_align_end),
                 false
         );
 
@@ -248,6 +253,7 @@ public abstract class AbstractRemoteViewsPresenter {
         PressureUnit pressureUnit = SettingsOptionManager.getInstance(context).getPressureUnit();
         DistanceUnit distanceUnit = SettingsOptionManager.getInstance(context).getDistanceUnit();
 
+        assert subtitle != null;
         subtitle = subtitle
                 .replace("$cw$", weather.getCurrent().getWeatherText())
                 .replace(

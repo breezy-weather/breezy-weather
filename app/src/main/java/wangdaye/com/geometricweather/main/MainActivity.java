@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -33,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.DarkMode;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
@@ -42,7 +43,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
-import wangdaye.com.geometricweather.ui.fragment.LocationManageFragment;
+import wangdaye.com.geometricweather.manage.LocationManageFragment;
 import wangdaye.com.geometricweather.main.layout.MainLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
@@ -234,6 +235,14 @@ public class MainActivity extends GeoActivity
     }
 
     @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        updateThemeManager();
+        resetUIUpdateFlag();
+        viewModel.reset(this);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         weatherView.setDrawable(true);
@@ -273,7 +282,7 @@ public class MainActivity extends GeoActivity
         return intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "NonConstantResourceId"})
     private void initView() {
         if (MainDisplayUtils.isMultiFragmentEnabled(this)) {
             binding.locationContainer.setVisibility(View.VISIBLE);
@@ -541,6 +550,10 @@ public class MainActivity extends GeoActivity
     private void setDarkMode(boolean dayTime) {
         if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.AUTO) {
             int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
+            getDelegate().setLocalNightMode(mode);
+            AppCompatDelegate.setDefaultNightMode(mode);
+        } else if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
+            int mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
             getDelegate().setLocalNightMode(mode);
             AppCompatDelegate.setDefaultNightMode(mode);
         }

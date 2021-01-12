@@ -12,6 +12,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Automatsko</item>
+        <item>Follow system</item>
         <item>Vedno svetel</item>
         <item>Vedno temen</item>
     </string-array>
@@ -42,7 +43,8 @@
     <string-array name="notification_styles">
         <item>Privzet</item>
         <item>Cities</item>
-        <item>@string/geometric_weather</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->

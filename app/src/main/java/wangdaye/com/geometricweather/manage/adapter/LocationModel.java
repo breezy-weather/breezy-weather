@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.adapter.location;
+package wangdaye.com.geometricweather.manage.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -10,12 +10,13 @@ import java.text.DateFormat;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.basic.model.weather.Alert;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class LocationModel {
 
@@ -36,14 +37,17 @@ public class LocationModel {
     public @Nullable String alerts;
 
     public boolean lightTheme;
-    private boolean forceUpdate;
+    public boolean selected;
+    private final boolean forceUpdate;
 
     public LocationModel(Context context, Location location, TemperatureUnit unit, WeatherSource defaultSource,
-                         boolean lightTheme, boolean forceUpdate) {
+                         boolean lightTheme, boolean selected, boolean forceUpdate) {
         this.location = location;
 
         if (location.getWeather() != null) {
-            this.weatherCode = location.getWeather().getCurrent().getWeatherCode();
+            this.weatherCode = TimeManager.isDaylight(location)
+                    ? location.getWeather().getDailyForecast().get(0).day().getWeatherCode()
+                    : location.getWeather().getDailyForecast().get(0).night().getWeatherCode();
         } else {
             this.weatherCode = null;
         }
@@ -71,16 +75,7 @@ public class LocationModel {
         title = builder.toString();
 
         if (!location.isCurrentPosition() || location.isUsable()) {
-            builder = new StringBuilder(location.getCountry() + " " + location.getProvince());
-            if (!location.getProvince().equals(location.getCity())
-                    && !TextUtils.isEmpty(location.getCity())) {
-                builder.append(" ").append(location.getCity());
-            }
-            if (!location.getCity().equals(location.getDistrict())
-                    && !TextUtils.isEmpty(location.getDistrict())) {
-                builder.append(" ").append(location.getDistrict());
-            }
-            subtitle = builder.toString();
+            subtitle = location.toString();
         } else {
             subtitle = context.getString(R.string.feedback_not_yet_location);
         }
@@ -119,6 +114,7 @@ public class LocationModel {
         }
 
         this.lightTheme = lightTheme;
+        this.selected = selected;
         this.forceUpdate = forceUpdate;
     }
 
@@ -138,6 +134,7 @@ public class LocationModel {
                 // && longitude == newItem.longitude
                 // && timeZone.getID().equals(newItem.timeZone.getID())
                 && lightTheme == newItem.lightTheme
+                && selected == newItem.selected
                 && !newItem.forceUpdate;
     }
 
