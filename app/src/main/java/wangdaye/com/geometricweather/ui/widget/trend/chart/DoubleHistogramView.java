@@ -78,6 +78,7 @@ public class DoubleHistogramView extends AbsChartItemView {
         this.paint = new Paint();
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
 
         histogramAlphas = new float[] {1, 1};
     }

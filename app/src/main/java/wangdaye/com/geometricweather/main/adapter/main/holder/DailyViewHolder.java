@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.adapter.main.MainTag;
 import wangdaye.com.geometricweather.main.adapter.trend.DailyTrendAdapter;
+import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.main.layout.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -40,6 +42,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
     private TrendRecyclerView trendRecyclerView;
     private DailyTrendAdapter trendAdapter;
+    private @Nullable TrendRecyclerViewScrollBar trendScrollBar;
 
     public DailyViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext())
@@ -113,6 +116,9 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         trendRecyclerView.setKeyLineVisibility(
                 SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
+
+        this.trendScrollBar = new TrendRecyclerViewScrollBar(context);
+        trendRecyclerView.addItemDecoration(trendScrollBar);
     }
 
     private void setTrendAdapterByTag(Location location, MainTag tag) {
@@ -211,6 +217,15 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             List<TagAdapter.Tag> list = new ArrayList<>();
             list.add(new MainTag(context.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
             return list;
+        }
+    }
+
+    @Override
+    public void onRecycleView() {
+        super.onRecycleView();
+        if (trendScrollBar != null) {
+            trendRecyclerView.removeItemDecoration(trendScrollBar);
+            trendScrollBar = null;
         }
     }
 }

@@ -90,26 +90,26 @@ public class SlidingItemContainerLayout extends FrameLayout {
         float progress = Math.abs(1.f * totalX / getMeasuredWidth());
         progress = (float)(1.0f - Math.pow((1.0f - progress), 4));
 
-        if (totalX > 0) { // + start.
-            if (swipeX <= 0 || updateFlag) {
+        if (totalX != 0) { // need to draw background and sliding icon.
+            if (totalX * swipeX <= 0 || updateFlag) { // need to set background and sliding icon.
                 updateFlag = false;
-                icon.setImageResource(iconResStart);
-                setBackgroundColor(backgroundColorStart);
+                if (DisplayUtils.isRtl(getContext())) {
+                    icon.setImageResource(totalX < 0 ? iconResStart : iconResEnd);
+                    setBackgroundColor(totalX < 0 ? backgroundColorStart : backgroundColorEnd);
+                } else {
+                    icon.setImageResource(totalX > 0 ? iconResStart : iconResEnd);
+                    setBackgroundColor(totalX > 0 ? backgroundColorStart : backgroundColorEnd);
+                }
             }
-
-            icon.setTranslationX((float) (
-                    0.5 * -icon.getMeasuredWidth() + 0.75 * icon.getMeasuredWidth() * progress
-            ));
-        } else if (totalX < 0) { // - end.
-            if (swipeX >= 0 || updateFlag) {
-                updateFlag = false;
-                icon.setImageResource(iconResEnd);
-                setBackgroundColor(backgroundColorEnd);
+            if (totalX > 0) {
+                icon.setTranslationX((float) (
+                        0.5 * -icon.getMeasuredWidth() + 0.75 * icon.getMeasuredWidth() * progress
+                ));
+            } else { // totalX < 0.
+                icon.setTranslationX((float) (
+                        getMeasuredWidth() - 0.5 * icon.getMeasuredWidth() - 0.75 * icon.getMeasuredWidth() * progress
+                ));
             }
-
-            icon.setTranslationX((float) (
-                    getMeasuredWidth() - 0.5 * icon.getMeasuredWidth() - 0.75 * icon.getMeasuredWidth() * progress
-            ));
         }
 
         swipeX = totalX;

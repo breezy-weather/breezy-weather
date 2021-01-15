@@ -179,10 +179,10 @@ public class SunMoonView extends View {
                 ? ColorUtils.setAlphaComponent(sunLineColor, (int) (255 * SHADOW_ALPHA_FACTOR_LIGHT))
                 : ColorUtils.setAlphaComponent(moonLineColor, (int) (255 * SHADOW_ALPHA_FACTOR_DARK));
 
-        x1ShaderColors[0] = blendColor(lineShadowShader, rootColor);
+        x1ShaderColors[0] = DisplayUtils.blendColor(lineShadowShader, rootColor);
         x1ShaderColors[1] = rootColor;
 
-        x2ShaderColors[0] = blendColor(lineShadowShader, x1ShaderColors[0]);
+        x2ShaderColors[0] = DisplayUtils.blendColor(lineShadowShader, x1ShaderColors[0]);
         x2ShaderColors[1] = rootColor;
 
         this.rootColor = rootColor;
@@ -217,21 +217,6 @@ public class SunMoonView extends View {
         }
     }
 
-    @ColorInt
-    public int blendColor(@ColorInt int foreground, @ColorInt int background) {
-        int scr = Color.red(foreground);
-        int scg = Color.green(foreground);
-        int scb = Color.blue(foreground);
-        int sa = foreground >>> 24;
-        int dcr = Color.red(background);
-        int dcg = Color.green(background);
-        int dcb = Color.blue(background);
-        int color_r = dcr * (0xff - sa) / 0xff + scr * sa / 0xff;
-        int color_g = dcg * (0xff - sa) / 0xff + scg * sa / 0xff;
-        int color_b = dcb * (0xff - sa) / 0xff + scb * sa / 0xff;
-        return ((color_r << 16) + (color_g << 8) + color_b) | (0xff000000);
-    }
-
     private void ensureProgress(int index) {
         maxes[index] = endTimes[index] - startTimes[index];
         progresses[index] = currentTimes[index] - startTimes[index];
@@ -257,11 +242,10 @@ public class SunMoonView extends View {
         if (iconDrawables[index] != null) {
             if (progressEndAngle < 270) {
                 iconPositions[index][0] = rectF.centerX() - deltaWidth - iconSize / 2f;
-                iconPositions[index][1] = rectF.centerY() - deltaHeight - iconSize / 2f;
             } else {
                 iconPositions[index][0] = rectF.centerX() + deltaWidth - iconSize / 2f;
-                iconPositions[index][1] = rectF.centerY() - deltaHeight - iconSize / 2f;
             }
+            iconPositions[index][1] = rectF.centerY() - deltaHeight - iconSize / 2f;
         }
     }
 

@@ -204,4 +204,19 @@ public class DisplayUtils {
                 )
         );
     }
+
+    @ColorInt
+    public static int blendColor(@ColorInt int foreground, @ColorInt int background) {
+        int scr = Color.red(foreground);
+        int scg = Color.green(foreground);
+        int scb = Color.blue(foreground);
+        int sa = foreground >>> 24;
+        int dcr = Color.red(background);
+        int dcg = Color.green(background);
+        int dcb = Color.blue(background);
+        int color_r = dcr * (0xff - sa) / 0xff + scr * sa / 0xff;
+        int color_g = dcg * (0xff - sa) / 0xff + scg * sa / 0xff;
+        int color_b = dcb * (0xff - sa) / 0xff + scb * sa / 0xff;
+        return ((color_r << 16) + (color_g << 8) + color_b) | (0xff000000);
+    }
 }

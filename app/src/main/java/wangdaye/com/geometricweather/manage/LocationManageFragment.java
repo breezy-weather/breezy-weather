@@ -33,9 +33,9 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.main.MainListDecoration;
 import wangdaye.com.geometricweather.manage.adapter.LocationAdapter;
 import wangdaye.com.geometricweather.manage.adapter.LocationItemTouchCallback;
+import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
@@ -43,7 +43,8 @@ import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class LocationManageFragment extends Fragment
-        implements LocationItemTouchCallback.OnLocationListChangedListener {
+        implements LocationItemTouchCallback.OnLocationListChangedListener,
+        LocationItemTouchCallback.SelectedIdGetter {
 
     private CardView cardView;
     private AppCompatImageView searchIcon;
@@ -53,12 +54,13 @@ public class LocationManageFragment extends Fragment
 
     private LocationAdapter adapter;
     private ItemTouchHelper itemTouchHelper;
-    private MainListDecoration decoration;
+    private ListDecoration decoration;
     private int searchRequestCode;
     private int providerSettingsRequestCode;
 
     private ValueAnimator colorAnimator;
 
+    private @Nullable String selectedId = null;
     private boolean drawerMode = false;
 
     private @Nullable LocationManageCallback locationListChangedListener;
@@ -125,7 +127,11 @@ public class LocationManageFragment extends Fragment
         adapter = new LocationAdapter(
                 requireActivity(),
                 locationList,
+                selectedId,
                 (v, formattedId) -> {
+                    if (selectedId != null) {
+                        updateView(formattedId);
+                    }
                     if (locationListChangedListener != null) {
                         locationListChangedListener.onSelectedLocation(formattedId);
                     }
@@ -135,7 +141,10 @@ public class LocationManageFragment extends Fragment
         recyclerView.setAdapter(adapter);
 
         this.itemTouchHelper = new ItemTouchHelper(
-                new LocationItemTouchCallback((GeoActivity) requireActivity(), adapter, this));
+                new LocationItemTouchCallback(
+                        (GeoActivity) requireActivity(), adapter, this, this
+                )
+        );
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         ViewCompat.setOnApplyWindowInsetsListener(recyclerView, (v, insets) -> {
@@ -205,7 +214,10 @@ public class LocationManageFragment extends Fragment
             recyclerView.removeItemDecoration(decoration);
             decoration = null;
         }
-        decoration = new MainListDecoration(requireActivity());
+        decoration = new ListDecoration(
+                requireActivity(),
+                ThemeManager.getInstance(requireActivity()).getLineColor(requireActivity())
+        );
         recyclerView.addItemDecoration(decoration);
     }
 
@@ -214,8 +226,15 @@ public class LocationManageFragment extends Fragment
         this.providerSettingsRequestCode = providerSettingsRequestCode;
     }
 
-    public void updateView(List<Location> newList) {
-        adapter.update(newList);
+    private void updateView(@Nullable String selectedId) {
+        this.selectedId = selectedId;
+        adapter.update(selectedId);
+        setThemeStyle();
+    }
+
+    public void updateView(List<Location> newList, @Nullable String selectedId) {
+        this.selectedId = selectedId;
+        adapter.update(newList, selectedId, null);
         setThemeStyle();
     }
 
@@ -227,7 +246,7 @@ public class LocationManageFragment extends Fragment
 
     public void resetLocationList() {
         List<Location> list = readLocationList();
-        adapter.update(list);
+        adapter.update(list, selectedId, null);
         onLocationListChanged(list, false, true);
     }
 
@@ -302,5 +321,13 @@ public class LocationManageFragment extends Fragment
     public void onSelectProviderActivityStarted() {
         IntentHelper.startSelectProviderActivityForResult(
                 requireActivity(), providerSettingsRequestCode);
+    }
+
+    // selected id getter.
+
+    @Nullable
+    @Override
+    public String getSelectedId() {
+        return selectedId;
     }
 }

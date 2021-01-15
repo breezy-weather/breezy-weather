@@ -169,6 +169,7 @@ public class SearchActivity extends GeoActivity
         this.adapter = new LocationAdapter(
                 this,
                 locationList,
+                null,
                 (view, formattedId) -> {
                     for (int i = 0; i < currentList.size(); i ++) {
                         if (currentList.get(i).equals(formattedId)) {

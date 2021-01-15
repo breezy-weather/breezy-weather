@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="@drawable/selectable_item_background"
     tools:ignore="UnusedAttribute">
 
     <TextView

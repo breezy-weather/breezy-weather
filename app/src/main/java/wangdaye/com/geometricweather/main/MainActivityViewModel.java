@@ -33,9 +33,9 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 public class MainActivityViewModel extends ViewModel
         implements MainActivityRepository.OnLocationCompletedListener {
 
-    private MutableLiveData<LocationResource> currentLocation;
-    private MutableLiveData<Indicator> indicator;
-    private LockableLocationList lockableLocationList;
+    private final MutableLiveData<LocationResource> currentLocation;
+    private final MutableLiveData<Indicator> indicator;
+    private final LockableLocationList lockableLocationList;
     private MainActivityRepository repository;
 
     private boolean newInstance;

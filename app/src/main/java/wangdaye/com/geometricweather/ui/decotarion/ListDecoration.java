@@ -20,20 +20,20 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class ListDecoration extends RecyclerView.ItemDecoration {
 
-    private Paint paint;
-    private @Px int decorationWidth;
+    private final Paint paint;
+    private @Px final int dividerDistance;
 
     public ListDecoration(Context context) {
         this(context, ThemeManager.getInstance(context).getLineColor(context));
     }
 
     public ListDecoration(Context context, @ColorInt int color) {
-        this.decorationWidth = (int) DisplayUtils.dpToPx(context, 1);
+        this.dividerDistance = (int) DisplayUtils.dpToPx(context, 1);
 
         this.paint = new Paint();
         paint.setColor(color);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(decorationWidth);
+        paint.setStrokeWidth(dividerDistance);
     }
 
     @Override
@@ -42,9 +42,9 @@ public class ListDecoration extends RecyclerView.ItemDecoration {
             View child = parent.getChildAt(i);
             c.drawLine(
                     child.getLeft(),
-                    child.getBottom() + decorationWidth / 2,
+                    child.getBottom() + dividerDistance / 2f,
                     child.getRight(),
-                    child.getBottom() + decorationWidth / 2,
+                    child.getBottom() + dividerDistance / 2f,
                     paint
             );
         }
@@ -53,6 +53,6 @@ public class ListDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
                                @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        outRect.set(0, 0, 0, decorationWidth);
+        outRect.set(0, 0, 0, dividerDistance);
     }
 }

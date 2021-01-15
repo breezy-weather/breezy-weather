@@ -28,11 +28,11 @@ import wangdaye.com.geometricweather.ui.widget.ArcProgress;
 
 public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
-    private CardView card;
-    private TextView title;
+    private final CardView card;
+    private final TextView title;
 
-    private ArcProgress progress;
-    private RecyclerView recyclerView;
+    private final ArcProgress progress;
+    private final RecyclerView recyclerView;
     private AqiAdapter adapter;
 
     @Nullable private Weather weather;

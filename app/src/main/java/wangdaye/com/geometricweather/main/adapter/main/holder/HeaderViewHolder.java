@@ -27,10 +27,10 @@ import wangdaye.com.geometricweather.ui.widget.NumberAnimTextView;
 
 public class HeaderViewHolder extends AbstractMainViewHolder {
 
-    private LinearLayout container;
-    private NumberAnimTextView temperature;
-    private TextView weather;
-    private TextView aqiOrWind;
+    private final LinearLayout container;
+    private final NumberAnimTextView temperature;
+    private final TextView weather;
+    private final TextView aqiOrWind;
 
     private int temperatureCFrom;
     private int temperatureCTo;

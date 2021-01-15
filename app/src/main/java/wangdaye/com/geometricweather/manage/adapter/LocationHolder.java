@@ -38,6 +38,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     protected void onBindView(Context context, LocationModel model, ResourceProvider resourceProvider) {
+        binding.container.swipe(0);
         binding.container.setIconResStart(R.drawable.ic_delete);
         if (model.currentPosition) {
             binding.container.setIconResEnd(R.drawable.ic_settings);

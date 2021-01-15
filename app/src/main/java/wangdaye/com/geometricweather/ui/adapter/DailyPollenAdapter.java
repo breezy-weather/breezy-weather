@@ -21,7 +21,7 @@ public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.
     private Weather weather;
     private PollenUnit unit;
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ItemPollenDailyBinding binding;
 

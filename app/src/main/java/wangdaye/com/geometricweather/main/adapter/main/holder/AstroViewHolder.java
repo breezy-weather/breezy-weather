@@ -35,17 +35,17 @@ import wangdaye.com.geometricweather.ui.widget.astro.SunMoonView;
 
 public class AstroViewHolder extends AbstractMainCardViewHolder {
 
-    private CardView card;
+    private final CardView card;
 
-    private TextView title;
-    private TextView phaseText;
-    private MoonPhaseView phaseView;
-    private SunMoonView sunMoonView;
+    private final TextView title;
+    private final TextView phaseText;
+    private final MoonPhaseView phaseView;
+    private final SunMoonView sunMoonView;
 
-    private RelativeLayout sunContainer;
-    private TextView sunTxt;
-    private RelativeLayout moonContainer;
-    private TextView moonTxt;
+    private final RelativeLayout sunContainer;
+    private final TextView sunTxt;
+    private final RelativeLayout moonContainer;
+    private final TextView moonTxt;
 
     @Nullable private Weather weather;
     @Nullable private TimeZone timeZone;
@@ -56,7 +56,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     @Size(2) private float[] animCurrentTimes;
     private int phaseAngle;
 
-    @Size(3) private AnimatorSet[] attachAnimatorSets;
+    @Size(3) private final AnimatorSet[] attachAnimatorSets;
 
     public AstroViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_sun_moon, parent, false));

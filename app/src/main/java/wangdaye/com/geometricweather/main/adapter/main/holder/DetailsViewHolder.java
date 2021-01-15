@@ -17,10 +17,10 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
 public class DetailsViewHolder extends AbstractMainCardViewHolder {
 
-    private CardView card;
+    private final CardView card;
 
-    private TextView title;
-    private RecyclerView detailsRecyclerView;
+    private final TextView title;
+    private final RecyclerView detailsRecyclerView;
 
     public DetailsViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(

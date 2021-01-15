@@ -107,6 +107,7 @@ public class PolylineAndHistogramView extends AbsChartItemView {
         this.paint = new Paint();
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
 
         this.path = new Path();
         this.shaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());

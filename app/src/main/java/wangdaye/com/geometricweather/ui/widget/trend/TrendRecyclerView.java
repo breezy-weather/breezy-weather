@@ -176,6 +176,10 @@ public class TrendRecyclerView extends RecyclerView {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        this.drawKeyLines(canvas);
+    }
+
+    private void drawKeyLines(Canvas canvas) {
         if (!keyLineVisibility
                 || keyLineList == null
                 || keyLineList.size() == 0
@@ -184,12 +188,9 @@ public class TrendRecyclerView extends RecyclerView {
             return;
         }
 
-        ViewHolder holder = findViewHolderForAdapterPosition(
-                ((TrendLayoutManager) getLayoutManager()).findFirstVisibleItemPosition()
-        );
-        if (holder != null && holder.itemView instanceof AbsTrendItemView) {
-            drawingBoundaryTop = ((AbsTrendItemView) holder.itemView).getChartTop();
-            drawingBoundaryBottom = ((AbsTrendItemView) holder.itemView).getChartBottom();
+        if (getChildCount() > 0) {
+            drawingBoundaryTop = ((AbsTrendItemView) getChildAt(0)).getChartTop();
+            drawingBoundaryBottom = ((AbsTrendItemView) getChildAt(0)).getChartBottom();
         }
         if (drawingBoundaryTop < 0 || drawingBoundaryBottom < 0) {
             return;

@@ -25,8 +25,8 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class FooterViewHolder extends AbstractMainViewHolder {
 
-    private TextView title;
-    private Button editButton;
+    private final TextView title;
+    private final Button editButton;
 
     public FooterViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_footer, parent, false));

@@ -112,7 +112,7 @@ public class MainActivity extends GeoActivity
             = "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST";
     public static final String KEY_DAILY_INDEX = "DAILY_INDEX";
 
-    private BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String formattedId = intent.getStringExtra(KEY_LOCATION_FORMATTED_ID);
@@ -156,7 +156,7 @@ public class MainActivity extends GeoActivity
                         ViewGroup.LayoutParams.MATCH_PARENT
                 )
         );
-        weatherView.setSystemBarStyle(MainActivity.this, getWindow(),
+        weatherView.setSystemBarStyle(this, getWindow(),
                 false, false, true, false);
 
         resetUIUpdateFlag();
@@ -372,6 +372,10 @@ public class MainActivity extends GeoActivity
             setRefreshing(resource.status == Resource.Status.LOADING);
             drawUI(resource.data, resource.isDefaultLocation(), updateInBackground);
 
+            if (manageFragment != null) {
+                manageFragment.updateView(viewModel.getLocationList(), resource.data.getFormattedId());
+            }
+
             if (resource.isLocateFailed()) {
                 SnackbarUtils.showSnackbar(
                         this,
@@ -445,9 +449,6 @@ public class MainActivity extends GeoActivity
         setDarkMode(daytime);
         if (oldDaytime != daytime) {
             updateThemeManager();
-        }
-        if (manageFragment != null) {
-            manageFragment.updateView(viewModel.getLocationList());
         }
 
         WeatherViewController.setWeatherCode(
@@ -641,7 +642,7 @@ public class MainActivity extends GeoActivity
 
     // on touch listener.
 
-    private View.OnTouchListener indicatorStateListener = new View.OnTouchListener() {
+    private final View.OnTouchListener indicatorStateListener = new View.OnTouchListener() {
 
         @SuppressLint("ClickableViewAccessibility")
         @Override
@@ -662,7 +663,7 @@ public class MainActivity extends GeoActivity
 
     // on swipe listener(swipe switch layout).
 
-    private SwipeSwitchLayout.OnSwitchListener switchListener = new SwipeSwitchLayout.OnSwitchListener() {
+    private final SwipeSwitchLayout.OnSwitchListener switchListener = new SwipeSwitchLayout.OnSwitchListener() {
 
         private Location location;
         private boolean indexSwitched;

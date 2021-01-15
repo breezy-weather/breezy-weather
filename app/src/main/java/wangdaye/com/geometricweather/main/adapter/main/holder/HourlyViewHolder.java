@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +25,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Minutely;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.adapter.main.MainTag;
 import wangdaye.com.geometricweather.main.adapter.trend.HourlyTrendAdapter;
+import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.main.layout.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -35,20 +37,21 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
-    private CardView card;
+    private final CardView card;
 
-    private TextView title;
-    private TextView subtitle;
-    private RecyclerView tagView;
+    private final TextView title;
+    private final TextView subtitle;
+    private final RecyclerView tagView;
 
-    private TrendRecyclerView trendRecyclerView;
-    private HourlyTrendAdapter trendAdapter;
+    private final TrendRecyclerView trendRecyclerView;
+    private final HourlyTrendAdapter trendAdapter;
+    private @Nullable TrendRecyclerViewScrollBar trendScrollBar;
 
-    private LinearLayout minutelyContainer;
-    private TextView minutelyTitle;
-    private PrecipitationBar precipitationBar;
-    private TextView minutelyStartText;
-    private TextView minutelyEndText;
+    private final LinearLayout minutelyContainer;
+    private final TextView minutelyTitle;
+    private final PrecipitationBar precipitationBar;
+    private final TextView minutelyStartText;
+    private final TextView minutelyEndText;
 
     public HourlyViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext())
@@ -130,6 +133,9 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                 SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
 
+        this.trendScrollBar = new TrendRecyclerViewScrollBar(context);
+        trendRecyclerView.addItemDecoration(trendScrollBar);
+
         List<Minutely> minutelyList = weather.getMinutelyForecast();
         if (minutelyList.size() != 0 && needToShowMinutelyForecast(minutelyList)) {
             minutelyContainer.setVisibility(View.VISIBLE);
@@ -201,6 +207,15 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             List<TagAdapter.Tag> list = new ArrayList<>();
             list.add(new MainTag(context.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
             return list;
+        }
+    }
+
+    @Override
+    public void onRecycleView() {
+        super.onRecycleView();
+        if (trendScrollBar != null) {
+            trendRecyclerView.removeItemDecoration(trendScrollBar);
+            trendScrollBar = null;
         }
     }
 }

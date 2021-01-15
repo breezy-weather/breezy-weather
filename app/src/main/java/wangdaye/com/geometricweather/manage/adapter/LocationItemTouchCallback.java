@@ -25,15 +25,19 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     private final GeoActivity activity;
     private final LocationAdapter adapter;
 
-    @Nullable
+    @NonNull
     private final OnLocationListChangedListener listener;
+    @NonNull
+    private final SelectedIdGetter getter;
 
     public LocationItemTouchCallback(GeoActivity activity, LocationAdapter adapter,
-                                     @Nullable OnLocationListChangedListener l) {
+                                     @NonNull OnLocationListChangedListener listener,
+                                     @NonNull SelectedIdGetter getter) {
         super();
         this.activity = activity;
         this.adapter = adapter;
-        this.listener = l;
+        this.listener = listener;
+        this.getter = getter;
     }
 
     @Override
@@ -41,9 +45,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                           @NonNull RecyclerView.ViewHolder viewHolder,
                           @NonNull RecyclerView.ViewHolder target) {
         List<Location> list = adapter.moveItem(viewHolder.getAdapterPosition(), target.getAdapterPosition());
-        if (listener != null) {
-            listener.onLocationSequenceChanged(list);
-        }
+        listener.onLocationSequenceChanged(list);
         return true;
     }
 
@@ -57,17 +59,15 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                 if (location.isCurrentPosition()) {
                     adapter.update(
                             adapter.getLocationList(),
-                            null,
+                            getter.getSelectedId(),
                             location.getFormattedId()
                     );
-                    if (listener != null) {
-                        listener.onSelectProviderActivityStarted();
-                    }
+                    listener.onSelectProviderActivityStarted();
                 } else {
                     List<Location> list = adapter.getLocationList();
                     location = list.get(viewHolder.getAdapterPosition());
                     location.setResidentPosition(!location.isResidentPosition());
-                    adapter.update(list, null, location.getFormattedId());
+                    adapter.update(list, getter.getSelectedId(), location.getFormattedId());
                     if (location.isResidentPosition()) {
                         SnackbarUtils.showSnackbar(
                                 activity,
@@ -78,9 +78,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                         );
                     }
 
-                    if (listener != null) {
-                        listener.onLocationChanged(list, location);
-                    }
+                    listener.onLocationChanged(list, location);
                 }
                 break;
             }
@@ -88,25 +86,29 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                 if (adapter.getItemCount() <= 1) {
                     List<Location> list = adapter.getLocationList();
                     Location location = list.get(viewHolder.getAdapterPosition());
-                    adapter.update(list, null, location.getFormattedId());
+                    adapter.update(list, getter.getSelectedId(), location.getFormattedId());
                     SnackbarUtils.showSnackbar(
-                            activity, activity.getString(R.string.feedback_location_list_cannot_be_null));
+                            activity,
+                            activity.getString(R.string.feedback_location_list_cannot_be_null)
+                    );
                 } else {
                     List<Location> list = adapter.getLocationList();
                     Location location = list.remove(viewHolder.getAdapterPosition());
                     location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
 
-                    adapter.update(list, null, location.getFormattedId());
+                    String selectedId = getter.getSelectedId();
+                    if (selectedId != null && location.getFormattedId().equals(selectedId)) {
+                        selectedId = list.get(0).getFormattedId();
+                    }
+                    adapter.update(list, selectedId, location.getFormattedId());
                     SnackbarUtils.showSnackbar(
                             activity,
                             activity.getString(R.string.feedback_delete_succeed),
                             activity.getString(R.string.cancel),
-                            new CancelDeleteListener(location, viewHolder.getAdapterPosition())
+                            new CancelDeleteListener(location)
                     );
 
-                    if (listener != null) {
-                        listener.onLocationRemoved(list, location);
-                    }
+                    listener.onLocationRemoved(list, location);
                 }
                 break;
         }
@@ -131,27 +133,27 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
         void onSelectProviderActivityStarted();
     }
 
+    public interface SelectedIdGetter {
+        @Nullable String getSelectedId();
+    }
+
     // on click listener.
 
     private class CancelDeleteListener implements View.OnClickListener {
 
         private final Location location;
-        private final int position;
 
-        CancelDeleteListener(Location location, int position) {
+        CancelDeleteListener(Location location) {
             this.location = location;
-            this.position = position;
         }
 
         @Override
         public void onClick(View view) {
             List<Location> list = adapter.getLocationList();
-            list.add(position, location);
-            adapter.update(list);
+            list.add(location);
+            adapter.update(list, getter.getSelectedId(), null);
 
-            if (listener != null) {
-                listener.onLocationInserted(list, location);
-            }
+            listener.onLocationInserted(list, location);
         }
     }
 }

@@ -43,7 +43,9 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
     private @NonNull final WeatherSource defaultSource;
     private @NonNull final TemperatureUnit temperatureUnit;
 
-    public LocationAdapter(Context context, List<Location> locationList,
+    public LocationAdapter(Context context,
+                           List<Location> locationList,
+                           @Nullable String selectedId,
                            @NonNull OnLocationItemClickListener clickListener,
                            @Nullable OnLocationItemDragListener dragListener) {
         super(new DiffUtil.ItemCallback<LocationModel>() {
@@ -66,7 +68,7 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
         this.defaultSource = SettingsOptionManager.getInstance(context).getWeatherSource();
         this.temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
 
-        update(locationList);
+        update(locationList, selectedId, null);
     }
 
     @NonNull
@@ -84,8 +86,22 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
         holder.onBindView(context, getItem(position), resourceProvider);
     }
 
-    public void update(@NonNull List<Location> newList) {
-        update(newList, null, null);
+    public void update(@Nullable String selectedId) {
+        List<LocationModel> modelList = new ArrayList<>(getItemCount());
+        for (LocationModel model : getCurrentList()) {
+            modelList.add(
+                    new LocationModel(
+                            context,
+                            model.location,
+                            temperatureUnit,
+                            defaultSource,
+                            themeManager.isLightTheme(),
+                            model.location.getFormattedId().equals(selectedId),
+                            false
+                    )
+            );
+        }
+        submitList(modelList);
     }
 
     public void update(@NonNull List<Location> newList,
