@@ -47,6 +47,7 @@ import wangdaye.com.geometricweather.db.entity.LocationEntityDao;
 import wangdaye.com.geometricweather.db.entity.MinutelyEntityDao;
 import wangdaye.com.geometricweather.db.entity.WeatherEntity;
 import wangdaye.com.geometricweather.db.entity.WeatherEntityDao;
+import wangdaye.com.geometricweather.utils.FileUtils;
 
 /**
  * Database helper
@@ -64,18 +65,17 @@ public class DatabaseHelper {
         return instance;
     }
 
-    private DatabaseOpenHelper openHelper;
+    private final DatabaseOpenHelper openHelper;
 
-    private LocationEntityController locationEntityController;
-    private ChineseCityEntityController chineseCityEntityController;
-    private WeatherEntityController weatherEntityController;
-    private DailyEntityController dailyEntityController;
-    private HourlyEntityController hourlyEntityController;
-    private MinutelyEntityController minutelyEntityController;
-    private AlertEntityController alertEntityController;
-    private HistoryEntityController historyEntityController;
+    private final LocationEntityController locationEntityController;
+    private final ChineseCityEntityController chineseCityEntityController;
+    private final WeatherEntityController weatherEntityController;
+    private final DailyEntityController dailyEntityController;
+    private final HourlyEntityController hourlyEntityController;
+    private final MinutelyEntityController minutelyEntityController;
+    private final AlertEntityController alertEntityController;
+    private final HistoryEntityController historyEntityController;
 
-    private boolean writingCityList;
     private final Object writingLock;
 
     private final static String DATABASE_NAME = "Geometric_Weather_db";
@@ -93,7 +93,6 @@ public class DatabaseHelper {
         alertEntityController = new AlertEntityController(session);
         historyEntityController = new HistoryEntityController(session);
 
-        writingCityList = false;
         writingLock = new Object();
     }
 
@@ -261,15 +260,15 @@ public class DatabaseHelper {
 
     // chinese city.
 
-    public void writeChineseCityList(@NonNull List<ChineseCity> list) {
-        if (!writingCityList) {
+    public void ensureChineseCityList(Context context) {
+        if (countChineseCity() < 3216) {
             synchronized (writingLock) {
-                if (!writingCityList) {
-                    writingCityList = true;
+                if (countChineseCity() < 3216) {
+                    List<ChineseCity> list = FileUtils.readCityList(context);
+
                     chineseCityEntityController.deleteChineseCityEntityList();
                     chineseCityEntityController.insertChineseCityEntityList(
                             ChineseCityEntityConverter.convertToEntityList(list));
-                    writingCityList = false;
                 }
             }
         }

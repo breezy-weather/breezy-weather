@@ -18,8 +18,8 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class MainActivityRepository {
 
-    private LocationHelper locationHelper;
-    private WeatherHelper weatherHelper;
+    private final LocationHelper locationHelper;
+    private final WeatherHelper weatherHelper;
 
     private static final int INVALID_LOCATION_INDEX = -1;
 
@@ -46,7 +46,13 @@ public class MainActivityRepository {
                                 return;
                             }
 
-                            currentLocation.setValue(LocationResource.loading(requestLocation, defaultLocation));
+                            currentLocation.setValue(
+                                    LocationResource.loading(
+                                            requestLocation,
+                                            defaultLocation,
+                                            LocationResource.Source.REFRESH
+                                    )
+                            );
                             lockableLocationList.write((getter, setter) -> {
                                 updateLocationList(context, requestLocation, getter, setter);
                                 if (l != null) {
@@ -66,10 +72,20 @@ public class MainActivityRepository {
 
                             if (requestLocation.isUsable()) {
                                 currentLocation.setValue(
-                                        LocationResource.loading(requestLocation, defaultLocation, true));
+                                        LocationResource.loading(
+                                                requestLocation,
+                                                defaultLocation,
+                                                LocationResource.Source.REFRESH
+                                        )
+                                );
                             } else {
                                 currentLocation.setValue(
-                                        LocationResource.error(requestLocation, defaultLocation, true));
+                                        LocationResource.error(
+                                                requestLocation,
+                                                defaultLocation,
+                                                LocationResource.Source.REFRESH
+                                        )
+                                );
                             }
 
                             lockableLocationList.write((getter, setter) ->
@@ -100,7 +116,13 @@ public class MainActivityRepository {
                     return;
                 }
 
-                currentLocation.setValue(LocationResource.success(requestLocation, defaultLocation));
+                currentLocation.setValue(
+                        LocationResource.success(
+                                requestLocation,
+                                defaultLocation,
+                                LocationResource.Source.REFRESH
+                        )
+                );
                 lockableLocationList.write((getter, setter) ->
                         updateLocationList(context, requestLocation, getter, setter));
             }
@@ -111,7 +133,13 @@ public class MainActivityRepository {
                     return;
                 }
 
-                currentLocation.setValue(LocationResource.error(requestLocation, defaultLocation));
+                currentLocation.setValue(
+                        LocationResource.error(
+                                requestLocation,
+                                defaultLocation,
+                                LocationResource.Source.REFRESH
+                        )
+                );
                 lockableLocationList.write((getter, setter) ->
                         updateLocationList(context, requestLocation, getter, setter));
             }

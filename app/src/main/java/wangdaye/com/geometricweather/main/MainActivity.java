@@ -43,6 +43,7 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
+import wangdaye.com.geometricweather.main.model.LocationResource;
 import wangdaye.com.geometricweather.manage.LocationManageFragment;
 import wangdaye.com.geometricweather.main.layout.MainLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
@@ -237,9 +238,11 @@ public class MainActivity extends GeoActivity
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        updateThemeManager();
-        resetUIUpdateFlag();
-        viewModel.reset(this);
+        if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
+            updateThemeManager();
+            resetUIUpdateFlag();
+            viewModel.reset(this);
+        }
     }
 
     @Override
@@ -367,10 +370,8 @@ public class MainActivity extends GeoActivity
         binding.indicator.setSwitchView(binding.switchLayout);
 
         viewModel.getCurrentLocation().observe(this, resource -> {
-            boolean updateInBackground = resource.consumeUpdatedInBackground();
-
             setRefreshing(resource.status == Resource.Status.LOADING);
-            drawUI(resource.data, resource.isDefaultLocation(), updateInBackground);
+            drawUI(resource.data, resource.isDefaultLocation(), resource.getSource());
 
             if (manageFragment != null) {
                 manageFragment.updateView(viewModel.getLocationList(), resource.data.getFormattedId());
@@ -414,7 +415,7 @@ public class MainActivity extends GeoActivity
     // control.
 
     @SuppressLint("SetTextI18n")
-    private void drawUI(Location location, boolean defaultLocation, boolean updatedInBackground) {
+    private void drawUI(Location location, boolean defaultLocation, LocationResource.Source source) {
         if (location.equals(currentLocationFormattedId)
                 && location.getWeatherSource() == currentWeatherSource
                 && location.getWeather() != null
@@ -461,12 +462,12 @@ public class MainActivity extends GeoActivity
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(this).isItemAnimationEnabled();
 
         if (adapter == null) {
-            adapter = new MainAdapter(
-                    this, location, resourceProvider, listAnimationEnabled, itemAnimationEnabled);
+            adapter = new MainAdapter(this, weatherView, location, resourceProvider,
+                    listAnimationEnabled, itemAnimationEnabled);
             binding.recyclerView.setAdapter(adapter);
         } else {
-            adapter.reset(
-                    this, location, resourceProvider, listAnimationEnabled, itemAnimationEnabled);
+            adapter.update(this, weatherView, location, resourceProvider,
+                    listAnimationEnabled, itemAnimationEnabled);
             adapter.notifyDataSetChanged();
         }
 
@@ -496,7 +497,7 @@ public class MainActivity extends GeoActivity
         }
 
         refreshBackgroundViews(false, viewModel.getLocationList(),
-                defaultLocation, !updatedInBackground);
+                defaultLocation, source != LocationResource.Source.BACKGROUND);
     }
 
     private void resetUI(Location location) {

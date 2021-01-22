@@ -26,10 +26,12 @@ import wangdaye.com.geometricweather.main.adapter.main.holder.HeaderViewHolder;
 import wangdaye.com.geometricweather.main.adapter.main.holder.HourlyViewHolder;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
     private @NonNull GeoActivity activity;
+    private @NonNull WeatherView weatherView;
     private @NonNull Location location;
     private @NonNull ResourceProvider provider;
 
@@ -40,16 +42,17 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private boolean listAnimationEnabled;
     private boolean itemAnimationEnabled;
 
-    public MainAdapter(@NonNull GeoActivity activity, @NonNull Location location,
-                       @NonNull ResourceProvider provider,
+    public MainAdapter(@NonNull GeoActivity activity, @NonNull WeatherView weatherView,
+                       @NonNull Location location, @NonNull ResourceProvider provider,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        reset(activity, location, provider, listAnimationEnabled, itemAnimationEnabled);
+        update(activity, weatherView, location, provider, listAnimationEnabled, itemAnimationEnabled);
     }
 
-    public void reset(@NonNull GeoActivity activity, @NonNull Location location,
-                      @NonNull ResourceProvider provider,
-                      boolean listAnimationEnabled, boolean itemAnimationEnabled) {
+    public void update(@NonNull GeoActivity activity, @NonNull WeatherView weatherView,
+                       @NonNull Location location, @NonNull ResourceProvider provider,
+                       boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         this.activity = activity;
+        this.weatherView = weatherView;
         this.location = location;
         this.provider = provider;
 
@@ -96,7 +99,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     public AbstractMainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case ViewType.HEADER:
-                return new HeaderViewHolder(parent);
+                return new HeaderViewHolder(parent, weatherView);
 
             case ViewType.DAILY:
                 return new DailyViewHolder(parent);

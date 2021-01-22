@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.weather.service;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,6 @@ import wangdaye.com.geometricweather.basic.model.ChineseCity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.weather.converter.CNResultConverter;
 import wangdaye.com.geometricweather.weather.json.cn.CNWeatherResult;
-import wangdaye.com.geometricweather.utils.FileUtils;
 import wangdaye.com.geometricweather.weather.interceptor.GzipInterceptor;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.observer.BaseObserver;
@@ -84,7 +82,7 @@ public class CNWeatherService extends WeatherService {
             return new ArrayList<>();
         }
 
-        ensureChineseCityDatabase(context);
+        DatabaseHelper.getInstance(context).ensureChineseCityList(context);
 
         List<Location> locationList = new ArrayList<>();
         List<ChineseCity> cityList = DatabaseHelper.getInstance(context).readChineseCityList(query);
@@ -127,7 +125,7 @@ public class CNWeatherService extends WeatherService {
         final String finalDistrict = formatLocationString(convertChinese(district));
 
         Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
-            ensureChineseCityDatabase(context);
+            DatabaseHelper.getInstance(context).ensureChineseCityList(context);
 
             List<Location> locationList = new ArrayList<>();
             ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(
@@ -162,7 +160,7 @@ public class CNWeatherService extends WeatherService {
         }
 
         Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
-            ensureChineseCityDatabase(context);
+            DatabaseHelper.getInstance(context).ensureChineseCityList(context);
 
             List<Location> locationList = new ArrayList<>();
             ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(latitude, longitude);
@@ -187,13 +185,6 @@ public class CNWeatherService extends WeatherService {
                         callback.requestLocationFailed(latitude + "," + longitude);
                     }
                 }));
-    }
-
-    @WorkerThread
-    private static void ensureChineseCityDatabase(Context context) {
-        if (DatabaseHelper.getInstance(context).countChineseCity() < 3216) {
-            DatabaseHelper.getInstance(context).writeChineseCityList(FileUtils.readCityList(context));
-        }
     }
 
     @Override

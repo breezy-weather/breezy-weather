@@ -100,8 +100,10 @@ public class Location
         this.china = china;
     }
 
-    public boolean equals(Location location) {
-        if (location.isCurrentPosition()) {
+    public boolean equals(@Nullable Location location) {
+        if (location == null) {
+            return false;
+        } else if (location.isCurrentPosition()) {
             return isCurrentPosition();
         } else {
             return !isCurrentPosition()

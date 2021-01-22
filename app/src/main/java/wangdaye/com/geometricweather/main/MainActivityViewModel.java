@@ -96,11 +96,12 @@ public class MainActivityViewModel extends ViewModel
             })
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(updatePackage -> setLocation(activity, updatePackage, false))
+                .doOnNext(updatePackage -> setLocation(activity, updatePackage, LocationResource.Source.REFRESH))
                 .subscribe();
     }
 
     public void setLocation(GeoActivity activity, int offset) {
+        Location old = getCurrentLocationValue();
         AtomicReference<UpdatePackage> pkg = new AtomicReference<>();
 
         lockableLocationList.write((getter, setter) -> {
@@ -111,10 +112,10 @@ public class MainActivityViewModel extends ViewModel
             ));
         });
 
-        setLocation(activity, pkg.get(), false);
+        setLocation(activity, pkg.get(), LocationResource.Source.SWITCH);
     }
 
-    private void setLocation(GeoActivity activity, UpdatePackage pkg, boolean updatedInBackground) {
+    private void setLocation(GeoActivity activity, UpdatePackage pkg, LocationResource.Source source) {
         Location current = pkg.location;
         Indicator i = indicator.getValue();
 
@@ -130,9 +131,9 @@ public class MainActivityViewModel extends ViewModel
                 && current.getWeather() != null
                 && current.getWeather().isValid(pollingIntervalInHour)) {
             repository.cancel();
-            currentLocation.setValue(LocationResource.success(current, defaultLocation, updatedInBackground));
+            currentLocation.setValue(LocationResource.success(current, defaultLocation, source));
         } else {
-            currentLocation.setValue(LocationResource.loading(current, defaultLocation));
+            currentLocation.setValue(LocationResource.loading(current, defaultLocation, source));
             updateWeather(activity);
         }
     }
@@ -173,7 +174,7 @@ public class MainActivityViewModel extends ViewModel
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(updatePackage -> setLocation(activity, updatePackage, true))
+                .doOnNext(updatePackage -> setLocation(activity, updatePackage, LocationResource.Source.BACKGROUND))
                 .subscribe();
     }
 
@@ -216,7 +217,11 @@ public class MainActivityViewModel extends ViewModel
         Location location = currentLocation.getValue().data;
 
         currentLocation.setValue(
-                LocationResource.loading(location, currentLocation.getValue().isDefaultLocation())
+                LocationResource.loading(
+                        location,
+                        currentLocation.getValue().isDefaultLocation(),
+                        LocationResource.Source.REFRESH
+                )
         );
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && location.isCurrentPosition()) {
@@ -235,7 +240,12 @@ public class MainActivityViewModel extends ViewModel
                                                 currentLocation, lockableLocationList,false, this);
                                     } else {
                                         currentLocation.setValue(
-                                                LocationResource.error(location, true));
+                                                LocationResource.error(
+                                                        location,
+                                                        true,
+                                                        LocationResource.Source.REFRESH
+                                                )
+                                        );
                                     }
                                     return;
                                 }

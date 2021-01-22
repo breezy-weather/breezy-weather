@@ -24,6 +24,7 @@ import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.NumberAnimTextView;
+import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 public class HeaderViewHolder extends AbstractMainViewHolder {
 
@@ -37,7 +38,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
     private TemperatureUnit unit;
     private @Nullable Disposable disposable;
 
-    public HeaderViewHolder(ViewGroup parent) {
+    public HeaderViewHolder(ViewGroup parent, WeatherView weatherView) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_header, parent, false));
 
         this.container = itemView.findViewById(R.id.container_main_header);
@@ -49,6 +50,8 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
         this.temperatureCTo = 0;
         this.unit = null;
         this.disposable = null;
+
+        container.setOnClickListener(v -> weatherView.onClick());
     }
 
     @SuppressLint("SetTextI18n")
@@ -60,11 +63,6 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) container.getLayoutParams();
         params.height = themeManager.getHeaderHeight();
         container.setLayoutParams(params);
-        container.setOnClickListener(v -> {
-            if (themeManager != null && themeManager.getWeatherView() != null) {
-                themeManager.getWeatherView().onClick();
-            }
-        });
 
         int textColor = themeManager.getHeaderTextColor(context);
         temperature.setTextColor(textColor);
@@ -79,8 +77,8 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
             temperature.setEnableAnim(itemAnimationEnabled);
             temperature.setDuration(
                     (long) Math.min(
-                            2000,
-                            Math.max(temperatureCFrom, Math.abs(temperatureCTo) / 10f * 1000)
+                            2000, // no longer than 2 seconds.
+                            Math.abs(temperatureCTo - temperatureCFrom) / 10f * 1000
                     )
             );
             temperature.setPostfixString(unit.getShortAbbreviation(context));

@@ -16,10 +16,10 @@ public class LockableLocationList {
     private List<Location> validList;
     private int currentIndex;
     private String formattedId;
-    private ReadWriteLock lock;
+    private final ReadWriteLock lock;
 
-    private Getter getter;
-    private Setter setter;
+    private final Getter getter;
+    private final Setter setter;
 
     public class Getter {
 
@@ -77,14 +77,20 @@ public class LockableLocationList {
 
     public void read(Reader r) {
         lock.readLock().lock();
-        r.read(getter);
-        lock.readLock().unlock();
+        try {
+            r.read(getter);
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 
     public void write(Writer w) {
         lock.writeLock().lock();
-        w.write(getter, setter);
-        lock.writeLock().unlock();
+        try {
+            w.write(getter, setter);
+        } finally {
+            lock.writeLock().unlock();
+        }
     }
 
     public interface Reader {
