@@ -122,6 +122,10 @@ dependencies {
     // db.
     implementation 'org.greenrobot:greendao:3.3.0'
     implementation 'io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1'
+    // implementation "androidx.room:room-runtime:2.2.6"
+    // annotationProcessor "androidx.room:room-compiler:2.2.6"
+    // implementation "androidx.room:room-rxjava2:2.2.6"
+    // testImplementation "androidx.room:room-testing:2.2.6"
 
     // gson.
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -134,7 +138,7 @@ dependencies {
     implementation 'com.tencent.bugly:nativecrashreport:3.6.0.1'
 
     // rx java.
-    implementation "io.reactivex.rxjava2:rxjava:2.2.7"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle:2.0'
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0'

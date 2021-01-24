@@ -66,11 +66,22 @@ public class MainActivityViewModel extends ViewModel
             repository = new MainActivityRepository(activity);
         }
 
+        final boolean[] firstInit = {true};
+
         List<Location> oldList = Collections.unmodifiableList(totalList);
         repository.getLocationList(activity, oldList, locationList -> {
+            if (locationList == null) {
+                return;
+            }
+
             List<Location> totalList = new ArrayList<>(locationList);
             List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
-            int validIndex = indexLocation(validList, formattedId);
+
+            int validIndex = firstInit[0]
+                    ? indexLocation(validList, formattedId)
+                    : indexLocation(this.validList, this.validList.get(this.validIndex).getFormattedId());
+            firstInit[0] = false;
+
             setLocation(activity, totalList, validList, validIndex,
                     LocationResource.Source.REFRESH, null);
         });
@@ -112,7 +123,6 @@ public class MainActivityViewModel extends ViewModel
 
         boolean defaultLocation = this.validIndex == 0;
         if (resource == null && MainModuleUtils.needUpdate(activity, current)) {
-            currentLocation.setValue(LocationResource.loading(current, defaultLocation, source));
             updateWeather(activity, false);
         } else if (resource == null) {
             repository.cancel();
@@ -128,6 +138,7 @@ public class MainActivityViewModel extends ViewModel
             return;
         }
 
+        assert formattedId != null;
         repository.getLocationAndWeatherCache(activity, formattedId, location -> {
 
             List<Location> totalList = new ArrayList<>(this.totalList);
@@ -324,6 +335,10 @@ public class MainActivityViewModel extends ViewModel
 
     private void callback(GeoActivity activity, Location location,
                           boolean locateFailed, boolean succeed, boolean done) {
+        if (validList.size() == 0) {
+            return;
+        }
+
         List<Location> totalList = new ArrayList<>(this.totalList);
         for (int i = 0; i < totalList.size(); i ++) {
             if (totalList.get(i).equals(location)) {
