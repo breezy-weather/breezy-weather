@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
-        android:id="@+id/fragment_location_manage_appBar"
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/fragment_location_manage_searchBar"
+                android:id="@+id/searchBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/little_margin"
@@ -30,7 +30,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/fragment_location_manage_searchIcon"
+                        android:id="@+id/searchIcon"
                         android:src="@drawable/ic_search"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
@@ -42,7 +42,7 @@
                         tools:ignore="ContentDescription" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/fragment_location_manage_currentLocationButton"
+                        android:id="@+id/currentLocationButton"
                         android:src="@drawable/ic_location"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
@@ -50,15 +50,15 @@
                         style="@style/material_image_button" />
 
                     <TextView
-                        android:id="@+id/fragment_location_manage_title"
+                        android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/feedback_search_location"
                         android:textSize="@dimen/content_text_size"
                         android:textColor="@color/colorTextSubtitle"
                         android:layout_centerVertical="true"
-                        android:layout_toEndOf="@id/fragment_location_manage_searchIcon"
-                        android:layout_toStartOf="@id/fragment_location_manage_currentLocationButton"
+                        android:layout_toEndOf="@id/searchIcon"
+                        android:layout_toStartOf="@id/currentLocationButton"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
@@ -70,7 +70,7 @@
     </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 
     <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView
-        android:id="@+id/fragment_location_manage_recyclerView"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorRoot"

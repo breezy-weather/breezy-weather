@@ -5,7 +5,6 @@ import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +13,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.manage.ManageFragmentViewModel;
 import wangdaye.com.geometricweather.ui.dialog.LearnMoreAboutResidentLocationDialog;
 import wangdaye.com.geometricweather.ui.widget.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -23,51 +22,61 @@ import wangdaye.com.geometricweather.utils.SnackbarUtils;
 public class LocationItemTouchCallback extends SlidingItemTouchCallback {
 
     private final GeoActivity activity;
-    private final LocationAdapter adapter;
+    private final ManageFragmentViewModel viewModel;
 
     @NonNull
     private final OnLocationListChangedListener listener;
-    @NonNull
-    private final SelectedIdGetter getter;
 
-    public LocationItemTouchCallback(GeoActivity activity, LocationAdapter adapter,
-                                     @NonNull OnLocationListChangedListener listener,
-                                     @NonNull SelectedIdGetter getter) {
+    public LocationItemTouchCallback(GeoActivity activity, ManageFragmentViewModel viewModel,
+                                     @NonNull OnLocationListChangedListener listener) {
         super();
         this.activity = activity;
-        this.adapter = adapter;
+        this.viewModel = viewModel;
         this.listener = listener;
-        this.getter = getter;
+    }
+
+    @Override
+    public int getMovementFlags(@NonNull RecyclerView recyclerView,
+                                @NonNull RecyclerView.ViewHolder viewHolder) {
+        if (viewModel.getListResource().getValue().dataList.size() == 0) {
+            return makeMovementFlags(
+                    ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                    ItemTouchHelper.START
+            );
+        }
+
+        return makeMovementFlags(
+                ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                ItemTouchHelper.START | ItemTouchHelper.END
+        );
     }
 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView,
                           @NonNull RecyclerView.ViewHolder viewHolder,
                           @NonNull RecyclerView.ViewHolder target) {
-        List<Location> list = adapter.moveItem(viewHolder.getAdapterPosition(), target.getAdapterPosition());
-        listener.onLocationSequenceChanged(list);
+        viewModel.moveLocation(activity, viewHolder.getAdapterPosition(), target.getAdapterPosition());
+        listener.onLocationSequenceChanged(viewModel.getListResource().getValue().dataList);
         return true;
     }
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+        int position = viewHolder.getAdapterPosition();
+        Location location = viewModel.getListResource().getValue().dataList.get(position);
+
         switch (direction) {
             case ItemTouchHelper.START: {
-                int position = viewHolder.getAdapterPosition();
-                Location location = adapter.getLocation(position);
-
-                if (location.isCurrentPosition()) {
-                    adapter.update(
-                            adapter.getLocationList(),
-                            getter.getSelectedId(),
-                            location.getFormattedId()
-                    );
+                if (viewModel.getListResource().getValue().dataList.get(position).isCurrentPosition()) {
+                    viewModel.forceUpdateLocation(activity, location, position);
                     listener.onSelectProviderActivityStarted();
                 } else {
-                    List<Location> list = adapter.getLocationList();
-                    location = list.get(viewHolder.getAdapterPosition());
-                    location.setResidentPosition(!location.isResidentPosition());
-                    adapter.update(list, getter.getSelectedId(), location.getFormattedId());
+                    location = new Location(
+                            location, location.isCurrentPosition(), !location.isResidentPosition());
+                    viewModel.forceUpdateLocation(activity, location, position);
+                    listener.onLocationChanged(
+                            viewModel.getListResource().getValue().dataList, location);
+
                     if (location.isResidentPosition()) {
                         SnackbarUtils.showSnackbar(
                                 activity,
@@ -77,38 +86,27 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                                         activity.getSupportFragmentManager(), null)
                         );
                     }
-
-                    listener.onLocationChanged(list, location);
                 }
                 break;
             }
             case ItemTouchHelper.END:
-                if (adapter.getItemCount() <= 1) {
-                    List<Location> list = adapter.getLocationList();
-                    Location location = list.get(viewHolder.getAdapterPosition());
-                    adapter.update(list, getter.getSelectedId(), location.getFormattedId());
+                if (viewModel.getListResource().getValue().dataList.size() <= 1) {
+                    viewModel.forceUpdateLocation(activity, location, position);
                     SnackbarUtils.showSnackbar(
                             activity,
                             activity.getString(R.string.feedback_location_list_cannot_be_null)
                     );
                 } else {
-                    List<Location> list = adapter.getLocationList();
-                    Location location = list.remove(viewHolder.getAdapterPosition());
-                    location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
-
-                    String selectedId = getter.getSelectedId();
-                    if (selectedId != null && location.getFormattedId().equals(selectedId)) {
-                        selectedId = list.get(0).getFormattedId();
-                    }
-                    adapter.update(list, selectedId, location.getFormattedId());
+                    location = viewModel.deleteLocation(activity, position);
                     SnackbarUtils.showSnackbar(
                             activity,
                             activity.getString(R.string.feedback_delete_succeed),
                             activity.getString(R.string.cancel),
-                            new CancelDeleteListener(location)
+                            new CancelDeleteListener(location, position)
                     );
 
-                    listener.onLocationRemoved(list, location);
+                    listener.onLocationRemoved(
+                            viewModel.getListResource().getValue().dataList, location);
                 }
                 break;
         }
@@ -133,27 +131,23 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
         void onSelectProviderActivityStarted();
     }
 
-    public interface SelectedIdGetter {
-        @Nullable String getSelectedId();
-    }
-
     // on click listener.
 
     private class CancelDeleteListener implements View.OnClickListener {
 
         private final Location location;
+        private final int index;
 
-        CancelDeleteListener(Location location) {
+        CancelDeleteListener(Location location, int index) {
             this.location = location;
+            this.index = index;
         }
 
         @Override
         public void onClick(View view) {
-            List<Location> list = adapter.getLocationList();
-            list.add(location);
-            adapter.update(list, getter.getSelectedId(), null);
-
-            listener.onLocationInserted(list, location);
+            viewModel.addLocation(activity, location, index);
+            listener.onLocationInserted(
+                    viewModel.getListResource().getValue().dataList, location);
         }
     }
 }

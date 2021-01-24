@@ -16,25 +16,25 @@ import java.io.Serializable;
  * */
 public class Current implements Serializable {
 
-    @NonNull private String weatherText;
-    @NonNull private WeatherCode weatherCode;
+    @NonNull private final String weatherText;
+    @NonNull private final WeatherCode weatherCode;
 
-    @NonNull private Temperature temperature;
-    @NonNull private Precipitation precipitation;
-    @NonNull private PrecipitationProbability precipitationProbability;
-    @NonNull private Wind wind;
-    @NonNull private UV uv;
-    @NonNull private AirQuality airQuality;
+    @NonNull private final Temperature temperature;
+    @NonNull private final Precipitation precipitation;
+    @NonNull private final PrecipitationProbability precipitationProbability;
+    @NonNull private final Wind wind;
+    @NonNull private final UV uv;
+    @NonNull private final AirQuality airQuality;
 
-    @Nullable private Float relativeHumidity;
-    @Nullable private Float pressure;
-    @Nullable private Float visibility;
-    @Nullable private Integer dewPoint;
-    @Nullable private Integer cloudCover;
-    @Nullable private Float ceiling;
+    @Nullable private final Float relativeHumidity;
+    @Nullable private final Float pressure;
+    @Nullable private final Float visibility;
+    @Nullable private final Integer dewPoint;
+    @Nullable private final Integer cloudCover;
+    @Nullable private final Float ceiling;
 
-    @Nullable private String dailyForecast;
-    @Nullable private String hourlyForecast;
+    @Nullable private final String dailyForecast;
+    @Nullable private final String hourlyForecast;
 
     public Current(@NonNull String weatherText, @NonNull WeatherCode weatherCode,
                    @NonNull Temperature temperature,

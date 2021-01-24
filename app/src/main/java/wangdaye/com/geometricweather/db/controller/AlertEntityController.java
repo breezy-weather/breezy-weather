@@ -12,31 +12,26 @@ import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter
 
 public class AlertEntityController extends AbsEntityController<AlertEntity> {
 
-    public AlertEntityController(DaoSession session) {
-        super(session);
-    }
-
     // insert.
 
-    public void insertAlertList(@NonNull String cityId, @NonNull WeatherSource source,
+    public void insertAlertList(@NonNull DaoSession session,
                                 @NonNull List<AlertEntity> entityList) {
-        deleteAlertList(cityId, source);
-        getSession().getAlertEntityDao().insertInTx(entityList);
-        getSession().clear();
+        session.getAlertEntityDao().insertInTx(entityList);
     }
 
     // delete.
 
-    public void deleteAlertList(@NonNull String cityId, @NonNull WeatherSource source) {
-        getSession().getAlertEntityDao().deleteInTx(searchLocationAlarmEntity(cityId, source));
-        getSession().clear();
+    public void deleteAlertList(@NonNull DaoSession session,
+                                @NonNull List<AlertEntity> entityList) {
+        session.getAlertEntityDao().deleteInTx(entityList);
     }
 
     // search.
 
-    public List<AlertEntity> searchLocationAlarmEntity(@NonNull String cityId, @NonNull WeatherSource source) {
+    public List<AlertEntity> selectLocationAlertEntity(@NonNull DaoSession session,
+                                                       @NonNull String cityId, @NonNull WeatherSource source) {
         return getNonNullList(
-                getSession().getAlertEntityDao()
+                session.getAlertEntityDao()
                         .queryBuilder()
                         .where(
                                 AlertEntityDao.Properties.CityId.eq(cityId),

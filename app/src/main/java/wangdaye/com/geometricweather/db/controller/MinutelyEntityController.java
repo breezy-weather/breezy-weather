@@ -11,32 +11,27 @@ import wangdaye.com.geometricweather.db.entity.MinutelyEntityDao;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class MinutelyEntityController extends AbsEntityController<MinutelyEntity> {
-    
-    public MinutelyEntityController(DaoSession session) {
-        super(session);
-    }
 
     // insert.
 
-    public void insertMinutelyList(@NonNull String cityId, @NonNull WeatherSource source,
+    public void insertMinutelyList(@NonNull DaoSession session,
                                    @NonNull List<MinutelyEntity> entityList) {
-        deleteMinutelyEntityList(cityId, source);
-        getSession().getMinutelyEntityDao().insertInTx(entityList);
-        getSession().clear();
+        session.getMinutelyEntityDao().insertInTx(entityList);
     }
 
     // delete.
 
-    public void deleteMinutelyEntityList(@NonNull String cityId, @NonNull WeatherSource source) {
-        getSession().getMinutelyEntityDao().deleteInTx(selectMinutelyEntityList(cityId, source));
-        getSession().clear();
+    public void deleteMinutelyEntityList(@NonNull DaoSession session,
+                                         @NonNull List<MinutelyEntity> entityList) {
+        session.getMinutelyEntityDao().deleteInTx(entityList);
     }
 
     // select.
 
-    public List<MinutelyEntity> selectMinutelyEntityList(@NonNull String cityId, @NonNull WeatherSource source) {
+    public List<MinutelyEntity> selectMinutelyEntityList(@NonNull DaoSession session,
+                                                         @NonNull String cityId, @NonNull WeatherSource source) {
         return getNonNullList(
-                getSession().getMinutelyEntityDao()
+                session.getMinutelyEntityDao()
                         .queryBuilder()
                         .where(
                                 MinutelyEntityDao.Properties.CityId.eq(cityId),

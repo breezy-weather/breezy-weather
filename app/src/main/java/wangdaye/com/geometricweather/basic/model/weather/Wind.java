@@ -20,10 +20,10 @@ import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
  * */
 public class Wind implements Serializable {
 
-    @NonNull private String direction;
-    @NonNull private WindDegree degree;
-    @Nullable private Float speed;
-    @NonNull private String level;
+    @NonNull private final String direction;
+    @NonNull private final WindDegree degree;
+    @Nullable private final Float speed;
+    @NonNull private final String level;
 
     public static final float WIND_SPEED_0 = 2;
     public static final float WIND_SPEED_1 = 6;

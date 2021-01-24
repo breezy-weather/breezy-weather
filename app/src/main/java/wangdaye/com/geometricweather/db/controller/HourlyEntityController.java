@@ -11,32 +11,27 @@ import wangdaye.com.geometricweather.db.entity.HourlyEntityDao;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class HourlyEntityController extends AbsEntityController<HourlyEntity> {
-    
-    public HourlyEntityController(DaoSession session) {
-        super(session);
-    }
 
     // insert.
 
-    public void insertHourlyList(@NonNull String cityId, @NonNull WeatherSource source,
+    public void insertHourlyList(@NonNull DaoSession session,
                                  @NonNull List<HourlyEntity> entityList) {
-        deleteHourlyEntityList(cityId, source);
-        getSession().getHourlyEntityDao().insertInTx(entityList);
-        getSession().clear();
+        session.getHourlyEntityDao().insertInTx(entityList);
     }
 
     // delete.
 
-    public void deleteHourlyEntityList(@NonNull String cityId, @NonNull WeatherSource source) {
-        getSession().getHourlyEntityDao().deleteInTx(selectHourlyEntityList(cityId, source));
-        getSession().clear();
+    public void deleteHourlyEntityList(@NonNull DaoSession session,
+                                       @NonNull List<HourlyEntity> entityList) {
+        session.getHourlyEntityDao().deleteInTx(entityList);
     }
 
     // select.
 
-    public List<HourlyEntity> selectHourlyEntityList(@NonNull String cityId, @NonNull WeatherSource source) {
+    public List<HourlyEntity> selectHourlyEntityList(@NonNull DaoSession session,
+                                                     @NonNull String cityId, @NonNull WeatherSource source) {
         return getNonNullList(
-                getSession().getHourlyEntityDao()
+                session.getHourlyEntityDao()
                         .queryBuilder()
                         .where(
                                 HourlyEntityDao.Properties.CityId.eq(cityId),

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.WindowInsets;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,6 +42,13 @@ public class FitBottomSystemBarNestedScrollView extends NestedScrollView {
     @Override
     public void setOnApplyWindowInsetsListener(OnApplyWindowInsetsListener listener) {
         super.setOnApplyWindowInsetsListener((v, insets) -> {
+            if (listener != null) {
+                WindowInsets result = listener.onApplyWindowInsets(v, insets);
+                fitSystemWindows(
+                        new Rect(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom()));
+                return result;
+            }
+
             Rect waterfull = Utils.getWaterfullInsets(insets);
             fitSystemWindows(
                     new Rect(
@@ -50,7 +58,7 @@ public class FitBottomSystemBarNestedScrollView extends NestedScrollView {
                             insets.getSystemWindowInsetBottom() + waterfull.bottom
                     )
             );
-            return listener == null ? insets : listener.onApplyWindowInsets(v, insets);
+            return insets;
         });
     }
 

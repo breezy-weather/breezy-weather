@@ -29,7 +29,7 @@ public class WeatherHelper {
     @Nullable private WeatherService weatherService;
 
     @Nullable private WeatherService[] searchServices;
-    private CompositeDisposable compositeDisposable;
+    private final CompositeDisposable compositeDisposable;
 
     public WeatherHelper() {
         weatherService = null;

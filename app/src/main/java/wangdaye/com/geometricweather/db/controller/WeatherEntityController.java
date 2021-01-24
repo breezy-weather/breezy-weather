@@ -12,32 +12,27 @@ import wangdaye.com.geometricweather.db.entity.WeatherEntityDao;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class WeatherEntityController extends AbsEntityController<WeatherEntity> {
-    
-    public WeatherEntityController(DaoSession session) {
-        super(session);
-    }
 
     // insert.
 
-    public void insertWeatherEntity(@NonNull String cityId, @NonNull WeatherSource source,
+    public void insertWeatherEntity(@NonNull DaoSession session,
                                     @NonNull WeatherEntity entity) {
-        deleteWeather(cityId, source);
-        getSession().getWeatherEntityDao().insert(entity);
-        getSession().clear();
+        session.getWeatherEntityDao().insert(entity);
     }
 
     // delete.
 
-    public void deleteWeather(@NonNull String cityId, @NonNull WeatherSource source) {
-        getSession().getWeatherEntityDao().deleteInTx(selectWeatherEntityList(cityId, source));
-        getSession().clear();
+    public void deleteWeather(@NonNull DaoSession session,
+                              @NonNull List<WeatherEntity> entityList) {
+        session.getWeatherEntityDao().deleteInTx(entityList);
     }
 
     // select.
 
     @Nullable
-    public WeatherEntity selectWeatherEntity(@NonNull String cityId, @NonNull WeatherSource source) {
-        List<WeatherEntity> entityList = selectWeatherEntityList(cityId, source);
+    public WeatherEntity selectWeatherEntity(@NonNull DaoSession session,
+                                             @NonNull String cityId, @NonNull WeatherSource source) {
+        List<WeatherEntity> entityList = selectWeatherEntityList(session, cityId, source);
         if (entityList.size() <= 0) {
             return null;
         } else {
@@ -46,9 +41,10 @@ public class WeatherEntityController extends AbsEntityController<WeatherEntity> 
     }
 
     @NonNull
-    private List<WeatherEntity> selectWeatherEntityList(@NonNull String cityId, @NonNull WeatherSource source) {
+    public List<WeatherEntity> selectWeatherEntityList(@NonNull DaoSession session,
+                                                        @NonNull String cityId, @NonNull WeatherSource source) {
         return getNonNullList(
-                getSession().getWeatherEntityDao().queryBuilder()
+                session.getWeatherEntityDao().queryBuilder()
                         .where(
                                 WeatherEntityDao.Properties.CityId.eq(cityId),
                                 WeatherEntityDao.Properties.WeatherSource.eq(

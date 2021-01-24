@@ -14,8 +14,8 @@ import wangdaye.com.geometricweather.R;
  * */
 public class MoonPhase implements Serializable {
 
-    @Nullable private Integer angle;
-    @Nullable private String description;
+    @Nullable private final Integer angle;
+    @Nullable private final String description;
 
     public MoonPhase(@Nullable Integer angle, @Nullable String description) {
         this.angle = angle;

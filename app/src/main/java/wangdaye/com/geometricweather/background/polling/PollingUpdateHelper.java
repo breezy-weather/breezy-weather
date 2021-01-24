@@ -21,12 +21,12 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class PollingUpdateHelper {
 
-    private Context context;
+    private final Context context;
 
-    private LocationHelper locationHelper;
-    private WeatherHelper weatherHelper;
+    private final LocationHelper locationHelper;
+    private final WeatherHelper weatherHelper;
 
-    private List<Location> locationList;
+    private final List<Location> locationList;
 
     private OnPollingUpdateListener listener;
 
@@ -82,8 +82,8 @@ public class PollingUpdateHelper {
 
     private class RequestLocationCallback implements LocationHelper.OnRequestLocationListener {
 
-        private int index;
-        private int total;
+        private final int index;
+        private final int total;
 
         RequestLocationCallback(int index, int total) {
             this.index = index;
@@ -120,9 +120,9 @@ public class PollingUpdateHelper {
 
     private class RequestWeatherCallback implements WeatherHelper.OnRequestWeatherListener {
 
-        @Nullable private Weather old;
-        private int index;
-        private int total;
+        @Nullable private final Weather old;
+        private final int index;
+        private final int total;
 
         RequestWeatherCallback(@Nullable Weather old, int index, int total) {
             this.old = old;

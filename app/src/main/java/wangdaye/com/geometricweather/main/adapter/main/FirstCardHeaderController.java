@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Base;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.MainDisplayUtils;
+import wangdaye.com.geometricweather.main.MainModuleUtils;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
@@ -53,7 +53,7 @@ public class FirstCardHeaderController
 
             view.setOnClickListener(v ->
                     IntentHelper.startManageActivityForResult(activity, MainActivity.MANAGE_ACTIVITY));
-            view.setEnabled(!MainDisplayUtils.isMultiFragmentEnabled(activity));
+            view.setEnabled(!MainModuleUtils.isMultiFragmentEnabled(activity));
 
             if (weather.getAlertList().size() == 0) {
                 timeIcon.setEnabled(false);

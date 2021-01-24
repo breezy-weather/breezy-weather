@@ -17,9 +17,9 @@ import wangdaye.com.geometricweather.R;
  * */
 public class UV implements Serializable {
 
-    @Nullable private Integer index;
-    @Nullable private String level;
-    @Nullable private String description;
+    @Nullable private final Integer index;
+    @Nullable private final String level;
+    @Nullable private final String description;
 
     public static final int UV_INDEX_LOW = 2;
     public static final int UV_INDEX_MIDDLE = 5;

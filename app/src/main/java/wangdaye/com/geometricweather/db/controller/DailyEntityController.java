@@ -11,33 +11,28 @@ import wangdaye.com.geometricweather.db.entity.DaoSession;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class DailyEntityController extends AbsEntityController<DailyEntity> {
-    
-    public DailyEntityController(DaoSession session) {
-        super(session);
-    }
 
     // insert.
 
-    public void insertDailyList(@NonNull String cityId, @NonNull WeatherSource source,
+    public void insertDailyList(@NonNull DaoSession session,
                                 @NonNull List<DailyEntity> entityList) {
-        deleteDailyEntityList(cityId, source);
-        getSession().getDailyEntityDao().insertInTx(entityList);
-        getSession().clear();
+        session.getDailyEntityDao().insertInTx(entityList);
     }
 
     // delete.
 
-    public void deleteDailyEntityList( @NonNull String cityId, @NonNull WeatherSource source) {
-        getSession().getDailyEntityDao().deleteInTx(selectDailyEntityList(cityId, source));
-        getSession().clear();
+    public void deleteDailyEntityList(@NonNull DaoSession session,
+                                      @NonNull List<DailyEntity> entityList) {
+        session.getDailyEntityDao().deleteInTx(entityList);
     }
 
     // select.
 
     @NonNull
-    public List<DailyEntity> selectDailyEntityList( @NonNull String cityId, @NonNull WeatherSource source) {
+    public List<DailyEntity> selectDailyEntityList(@NonNull DaoSession session,
+                                                   @NonNull String cityId, @NonNull WeatherSource source) {
         return getNonNullList(
-                getSession().getDailyEntityDao()
+                session.getDailyEntityDao()
                         .queryBuilder()
                         .where(
                                 DailyEntityDao.Properties.CityId.eq(cityId),

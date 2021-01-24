@@ -18,55 +18,26 @@ import wangdaye.com.geometricweather.db.entity.HistoryEntityDao;
 import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
 
 public class HistoryEntityController extends AbsEntityController<HistoryEntity> {
-    
-    public HistoryEntityController(DaoSession session) {
-        super(session);
-    }
 
     // insert.
 
-    public void insertTodayHistoryEntity(@NonNull String cityId, @NonNull WeatherSource source,
-                                         @NonNull Date currentDate, @NonNull HistoryEntity entity) {
-        HistoryEntity yesterday = selectYesterdayHistoryEntity(cityId, source, currentDate);
-        deleteLocationHistoryEntity(cityId, source);
-
-        HistoryEntityDao dao = getSession().getHistoryEntityDao();
-        if (yesterday != null) {
-            yesterday.id = null;
-            dao.insert(yesterday);
-        }
-        dao.insert(entity);
-
-        getSession().clear();
-    }
-
-    public void insertYesterdayHistoryEntity(@NonNull String cityId, @NonNull WeatherSource source,
-                                             @NonNull Date currentDate, @NonNull HistoryEntity entity) {
-        HistoryEntity today = selectTodayHistoryEntity(cityId, source, currentDate);
-        deleteLocationHistoryEntity(cityId, source);
-
-        HistoryEntityDao dao = getSession().getHistoryEntityDao();
-        dao.insert(entity);
-        if (today != null) {
-            today.id = null;
-            dao.insert(today);
-        }
-
-        getSession().clear();
+    public void insertHistoryEntity(@NonNull DaoSession session, @NonNull HistoryEntity entity) {
+        session.getHistoryEntityDao().insert(entity);
     }
 
     // delete.
 
-    public void deleteLocationHistoryEntity(@NonNull String cityId, @NonNull WeatherSource source) {
-        getSession().getHistoryEntityDao().deleteInTx(selectHistoryEntityList(cityId, source));
-        getSession().clear();
+    public void deleteLocationHistoryEntity(@NonNull DaoSession session,
+                                            @NonNull List<HistoryEntity> entityList) {
+        session.getHistoryEntityDao().deleteInTx(entityList);
     }
 
     // select.
 
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    public HistoryEntity selectYesterdayHistoryEntity(@NonNull String cityId, @NonNull WeatherSource source,
+    public HistoryEntity selectYesterdayHistoryEntity(@NonNull DaoSession session,
+                                                      @NonNull String cityId, @NonNull WeatherSource source,
                                                       @NonNull Date currentDate) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -80,7 +51,7 @@ public class HistoryEntityController extends AbsEntityController<HistoryEntity> 
             calendar.add(Calendar.DATE, -1);
             Date yesterday = calendar.getTime();
 
-            List<HistoryEntity> entityList = getSession().getHistoryEntityDao()
+            List<HistoryEntity> entityList = session.getHistoryEntityDao()
                     .queryBuilder()
                     .where(
                             HistoryEntityDao.Properties.Date.ge(yesterday),
@@ -104,7 +75,8 @@ public class HistoryEntityController extends AbsEntityController<HistoryEntity> 
 
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    private HistoryEntity selectTodayHistoryEntity(@NonNull String cityId, @NonNull WeatherSource source,
+    private HistoryEntity selectTodayHistoryEntity(@NonNull DaoSession session,
+                                                   @NonNull String cityId, @NonNull WeatherSource source,
                                                    @NonNull Date currentDate) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -118,7 +90,7 @@ public class HistoryEntityController extends AbsEntityController<HistoryEntity> 
             calendar.add(Calendar.DATE, +1);
             Date tomorrow = calendar.getTime();
 
-            List<HistoryEntity> entityList = getSession().getHistoryEntityDao()
+            List<HistoryEntity> entityList = session.getHistoryEntityDao()
                     .queryBuilder()
                     .where(
                             HistoryEntityDao.Properties.Date.ge(today),
@@ -140,9 +112,10 @@ public class HistoryEntityController extends AbsEntityController<HistoryEntity> 
     }
 
     @NonNull
-    private List<HistoryEntity> selectHistoryEntityList(@NonNull String cityId, @NonNull WeatherSource source) {
+    public List<HistoryEntity> selectHistoryEntityList(@NonNull DaoSession session,
+                                                       @NonNull String cityId, @NonNull WeatherSource source) {
         return getNonNullList(
-                getSession().getHistoryEntityDao()
+                session.getHistoryEntityDao()
                         .queryBuilder()
                         .where(
                                 HistoryEntityDao.Properties.CityId.eq(cityId),

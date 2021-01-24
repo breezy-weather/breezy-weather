@@ -10,16 +10,16 @@ import java.util.Date;
  * */
 public class Minutely implements Serializable {
 
-    private Date date;
-    private long time;
-    private boolean daylight;
+    private final Date date;
+    private final long time;
+    private final boolean daylight;
 
-    private String weatherText;
-    private WeatherCode weatherCode;
+    private final String weatherText;
+    private final WeatherCode weatherCode;
 
-    private int minuteInterval;
-    @Nullable private Integer dbz;
-    @Nullable private Integer cloudCover;
+    private final int minuteInterval;
+    @Nullable private final Integer dbz;
+    @Nullable private final Integer cloudCover;
 
     public Minutely(Date date, long time, boolean daylight,
                     String weatherText, WeatherCode weatherCode,

@@ -10,37 +10,45 @@ import wangdaye.com.geometricweather.db.entity.LocationEntity;
 import wangdaye.com.geometricweather.db.entity.LocationEntityDao;
 
 public class LocationEntityController extends AbsEntityController<LocationEntity> {
-    
-    public LocationEntityController(DaoSession session) {
-        super(session);
-    }
 
     // insert.
 
-    public void insertOrUpdateLocationEntity(@NonNull LocationEntity entity) {
-        getSession().getLocationEntityDao().insertOrReplace(entity);
-        getSession().clear();
+    public void insertLocationEntity(@NonNull DaoSession session,
+                                     @NonNull LocationEntity entity) {
+        session.getLocationEntityDao().insert(entity);
     }
 
-    public void insertOrUpdateLocationEntityList(@NonNull List<LocationEntity> entityList) {
+    public void insertLocationEntityList(@NonNull DaoSession session,
+                                         @NonNull List<LocationEntity> entityList) {
         if (entityList.size() != 0) {
-            getSession().getLocationEntityDao().insertOrReplaceInTx(entityList);
-            getSession().clear();
+            session.getLocationEntityDao().insertInTx(entityList);
         }
     }
 
     // delete.
 
-    public void deleteLocationEntity(@NonNull LocationEntity entity) {
-        getSession().getLocationEntityDao().deleteByKey(entity.formattedId);
-        getSession().clear();
+    public void deleteLocationEntity(@NonNull DaoSession session,
+                                     @NonNull LocationEntity entity) {
+        session.getLocationEntityDao().deleteByKey(entity.formattedId);
+    }
+
+    public void deleteLocationEntityList(@NonNull DaoSession session) {
+        session.getLocationEntityDao().deleteAll();
+    }
+
+    // update.
+
+    public void updateLocationEntity(@NonNull DaoSession session,
+                                     @NonNull LocationEntity entity) {
+        session.getLocationEntityDao().update(entity);
     }
 
     // select.
 
     @Nullable
-    public LocationEntity selectLocationEntity(@NonNull String formattedId) {
-        List<LocationEntity> entityList = getSession().getLocationEntityDao()
+    public LocationEntity selectLocationEntity(@NonNull DaoSession session,
+                                               @NonNull String formattedId) {
+        List<LocationEntity> entityList = session.getLocationEntityDao()
                 .queryBuilder()
                 .where(LocationEntityDao.Properties.FormattedId.eq(formattedId))
                 .list();
@@ -52,17 +60,16 @@ public class LocationEntityController extends AbsEntityController<LocationEntity
     }
 
     @NonNull
-    public List<LocationEntity> selectLocationEntityList() {
+    public List<LocationEntity> selectLocationEntityList(@NonNull DaoSession session) {
         return getNonNullList(
-                getSession().getLocationEntityDao()
+                session.getLocationEntityDao()
                         .queryBuilder()
-                        .orderAsc(LocationEntityDao.Properties.Sequence)
                         .list()
         );
     }
 
-    public int countLocationEntity() {
-        return (int) getSession().getLocationEntityDao()
+    public int countLocationEntity(@NonNull DaoSession session) {
+        return (int) session.getLocationEntityDao()
                 .queryBuilder()
                 .count();
     }

@@ -6,13 +6,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import androidx.fragment.app.FragmentTransaction;
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.manage.LocationManageFragment;
+import wangdaye.com.geometricweather.manage.ManageFragment;
 
 /**
  * Manage activity.
@@ -21,7 +20,7 @@ import wangdaye.com.geometricweather.manage.LocationManageFragment;
 public class ManageActivity extends GeoActivity {
 
     private CoordinatorLayout container;
-    private LocationManageFragment manageFragment;
+    private ManageFragment manageFragment;
 
     public static final int SEARCH_ACTIVITY = 1;
     public static final int SELECT_PROVIDER_ACTIVITY = 2;
@@ -33,10 +32,11 @@ public class ManageActivity extends GeoActivity {
 
         container = findViewById(R.id.activity_manage_container);
 
-        manageFragment = new LocationManageFragment();
+        manageFragment = (ManageFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_manage);
         manageFragment.setDrawerMode(false);
         manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
-        manageFragment.setOnLocationListChangedListener(new LocationManageFragment.LocationManageCallback() {
+        manageFragment.setOnLocationListChangedListener(new ManageFragment.LocationManageCallback() {
             @Override
             public void onSelectedLocation(@NonNull String formattedId) {
                 setResult(
@@ -51,12 +51,6 @@ public class ManageActivity extends GeoActivity {
                 setResult(RESULT_OK);
             }
         });
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .replace(R.id.activity_manage_container, manageFragment)
-                .commit();
     }
 
     @Override
@@ -65,12 +59,12 @@ public class ManageActivity extends GeoActivity {
         switch (requestCode) {
             case SEARCH_ACTIVITY:
                 if (resultCode == RESULT_OK) {
-                    manageFragment.addLocation();
+                    manageFragment.readAppendLocation();
                 }
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
-                manageFragment.resetLocationList();
+                manageFragment.resetLocationList(null);
                 break;
         }
     }

@@ -15,21 +15,21 @@ import wangdaye.com.geometricweather.R;
  * */
 public class Pollen implements Serializable {
 
-    @Nullable private Integer grassIndex;
-    @Nullable private Integer grassLevel;
-    @Nullable private String grassDescription;
+    @Nullable private final Integer grassIndex;
+    @Nullable private final Integer grassLevel;
+    @Nullable private final String grassDescription;
 
-    @Nullable private Integer moldIndex;
-    @Nullable private Integer moldLevel;
-    @Nullable private String moldDescription;
+    @Nullable private final Integer moldIndex;
+    @Nullable private final Integer moldLevel;
+    @Nullable private final String moldDescription;
 
-    @Nullable private Integer ragweedIndex;
-    @Nullable private Integer ragweedLevel;
-    @Nullable private String ragweedDescription;
+    @Nullable private final Integer ragweedIndex;
+    @Nullable private final Integer ragweedLevel;
+    @Nullable private final String ragweedDescription;
 
-    @Nullable private Integer treeIndex;
-    @Nullable private Integer treeLevel;
-    @Nullable private String treeDescription;
+    @Nullable private final Integer treeIndex;
+    @Nullable private final Integer treeLevel;
+    @Nullable private final String treeDescription;
 
     public Pollen(@Nullable Integer grassIndex, @Nullable Integer grassLevel, @Nullable String grassDescription,
                   @Nullable Integer moldIndex, @Nullable Integer moldLevel, @Nullable String moldDescription,

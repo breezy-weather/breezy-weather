@@ -10,11 +10,11 @@ import java.util.Date;
  * */
 public class History implements Serializable {
 
-    private Date date;
-    private long time;
+    private final Date date;
+    private final long time;
 
-    private int daytimeTemperature;
-    private int nighttimeTemperature;
+    private final int daytimeTemperature;
+    private final int nighttimeTemperature;
 
     public History(Date date, long time, int daytimeTemperature, int nighttimeTemperature) {
         this.date = date;

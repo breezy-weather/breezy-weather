@@ -13,42 +13,39 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.main.dialog.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.model.Indicator;
 import wangdaye.com.geometricweather.main.model.LocationResource;
-import wangdaye.com.geometricweather.main.model.LockableLocationList;
-import wangdaye.com.geometricweather.main.model.UpdatePackage;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public class MainActivityViewModel extends ViewModel
-        implements MainActivityRepository.OnLocationCompletedListener {
+        implements MainActivityRepository.WeatherRequestCallback {
 
     private final MutableLiveData<LocationResource> currentLocation;
     private final MutableLiveData<Indicator> indicator;
-    private final LockableLocationList lockableLocationList;
+
     private MainActivityRepository repository;
+
+    private @NonNull List<Location> totalList; // all locations.
+    private @NonNull List<Location> validList; // location list optimized for resident city.
+    private int validIndex; // current index for validList.
 
     private boolean newInstance;
 
-    private static final int INVALID_LOCATION_INDEX = -1;
-
     public MainActivityViewModel() {
         currentLocation = new MutableLiveData<>();
+        currentLocation.setValue(null);
 
         indicator = new MutableLiveData<>();
         indicator.setValue(new Indicator(1, 0));
 
-        lockableLocationList = new LockableLocationList();
+        totalList = new ArrayList<>();
+        validList = new ArrayList<>();
+        validIndex = -1;
 
         newInstance = true;
     }
@@ -69,118 +66,91 @@ public class MainActivityViewModel extends ViewModel
             repository = new MainActivityRepository(activity);
         }
 
-        Observable.create((ObservableOnSubscribe<UpdatePackage>) emitter ->
-            lockableLocationList.write((getter, setter) -> {
-                DatabaseHelper databaseHelper = DatabaseHelper.getInstance(activity);
-                List<Location> totalList = databaseHelper.readLocationList();
-                for (Location l : totalList) {
-                    l.setWeather(databaseHelper.readWeather(l));
-                }
-                setter.setLocationList(activity, totalList);
-                setter.setCurrentIndex(0);
-
-                List<Location> validList = getter.getValidList();
-                for (int i = 0; i < validList.size(); i ++) {
-                    if (validList.get(i).equals(formattedId)) {
-                        setter.setCurrentIndex(i);
-                        break;
-                    }
-                }
-
-                emitter.onNext(
-                        new UpdatePackage(
-                                validList.get(getter.getValidCurrentIndex()),
-                                getIndicatorInstance(getter)
-                        )
-                );
-            })
-        ).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(updatePackage -> setLocation(activity, updatePackage, LocationResource.Source.REFRESH))
-                .subscribe();
+        List<Location> oldList = Collections.unmodifiableList(totalList);
+        repository.getLocationList(activity, oldList, locationList -> {
+            List<Location> totalList = new ArrayList<>(locationList);
+            List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
+            int validIndex = indexLocation(validList, formattedId);
+            setLocation(activity, totalList, validList, validIndex,
+                    LocationResource.Source.REFRESH, null);
+        });
     }
 
     public void setLocation(GeoActivity activity, int offset) {
-        Location old = getCurrentLocationValue();
-        AtomicReference<UpdatePackage> pkg = new AtomicReference<>();
-
-        lockableLocationList.write((getter, setter) -> {
-            setter.setCurrentIndex(getLocationIndexFromList(getter, offset));
-            pkg.set(new UpdatePackage(
-                    getter.getValidList().get(getter.getValidCurrentIndex()),
-                    getIndicatorInstance(getter)
-            ));
-        });
-
-        setLocation(activity, pkg.get(), LocationResource.Source.SWITCH);
-    }
-
-    private void setLocation(GeoActivity activity, UpdatePackage pkg, LocationResource.Source source) {
-        Location current = pkg.location;
-        Indicator i = indicator.getValue();
-
-        if (i == null || !i.equals(pkg.indicator)) {
-            indicator.postValue(pkg.indicator);
+        if (totalList.size() == 0 || validList.size() == 0) {
+            return;
         }
 
-        float pollingIntervalInHour = SettingsOptionManager.getInstance(activity)
-                .getUpdateInterval()
-                .getIntervalInHour();
-        boolean defaultLocation = pkg.indicator.index == 0;
-        if (current.isUsable()
-                && current.getWeather() != null
-                && current.getWeather().isValid(pollingIntervalInHour)) {
+        int index = validIndex;
+        index = Math.max(index, 0);
+        index = Math.min(index, validList.size() - 1);
+        index += offset + validList.size();
+        index %= validList.size();
+
+        setLocation(
+                activity,
+                new ArrayList<>(totalList),
+                new ArrayList<>(validList),
+                index,
+                LocationResource.Source.REFRESH,
+                null
+        );
+    }
+
+    private void setLocation(GeoActivity activity,
+                             List<Location> totalList, List<Location> validList, int validIndex,
+                             LocationResource.Source source, @Nullable LocationResource resource) {
+        this.totalList = totalList;
+        this.validList = validList;
+
+        this.validIndex = validIndex;
+        this.validIndex = Math.max(this.validIndex, 0);
+        this.validIndex = Math.min(this.validIndex, validList.size() - 1);
+
+        Location current = this.validList.get(this.validIndex);
+        Indicator i = new Indicator(this.validList.size(), this.validIndex);
+
+        boolean defaultLocation = this.validIndex == 0;
+        if (resource == null && MainModuleUtils.needUpdate(activity, current)) {
+            currentLocation.setValue(LocationResource.loading(current, defaultLocation, source));
+            updateWeather(activity, false);
+        } else if (resource == null) {
             repository.cancel();
             currentLocation.setValue(LocationResource.success(current, defaultLocation, source));
         } else {
-            currentLocation.setValue(LocationResource.loading(current, defaultLocation, source));
-            updateWeather(activity);
+            currentLocation.setValue(resource);
         }
-    }
-
-    private Indicator getIndicatorInstance(LockableLocationList.Getter getter) {
-        return new Indicator(getter.getValidList().size(), getter.getValidCurrentIndex());
+        indicator.setValue(i);
     }
 
     public void updateLocationFromBackground(GeoActivity activity, @Nullable String formattedId) {
-        Observable.create((ObservableOnSubscribe<UpdatePackage>) emitter -> {
-            AtomicReference<UpdatePackage> pkg = new AtomicReference<>(null);
+        if (TextUtils.isEmpty(formattedId) || validList.size() == 0) {
+            return;
+        }
 
-            lockableLocationList.write((getter, setter) -> {
-                List<Location> totalList = new ArrayList<>(getter.getTotalList());
-                String currentId = getter.getValidFormattedId();
+        repository.getLocationAndWeatherCache(activity, formattedId, location -> {
 
-                int index = indexLocation(totalList, formattedId);
-                if (index == INVALID_LOCATION_INDEX) {
-                    return;
+            List<Location> totalList = new ArrayList<>(this.totalList);
+            for (int i = 0; i < totalList.size(); i ++) {
+                if (totalList.get(i).equals(location)) {
+                    totalList.set(i, location);
+                    break;
                 }
-
-                Location location = DatabaseHelper.getInstance(activity).readLocation(totalList.get(index));
-                if (location == null) {
-                    return;
-                }
-
-                location.setWeather(DatabaseHelper.getInstance(activity).readWeather(location));
-                totalList.set(index, location);
-                setter.setLocationList(activity, totalList);
-
-                if (currentId.equals(formattedId)) {
-                    pkg.set(new UpdatePackage(location, getIndicatorInstance(getter)));
-                }
-            });
-
-            if (pkg.get() != null) {
-                emitter.onNext(pkg.get());
             }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(updatePackage -> setLocation(activity, updatePackage, LocationResource.Source.BACKGROUND))
-                .subscribe();
+
+            List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
+
+            int validIndex = indexLocation(
+                    validList, this.validList.get(this.validIndex).getFormattedId());
+
+            setLocation(activity, totalList, validList, validIndex,
+                    LocationResource.Source.BACKGROUND, null);
+        });
     }
 
-    private int indexLocation(List<Location> locationList, @Nullable String formattedId) {
+    private static int indexLocation(List<Location> locationList, @Nullable String formattedId) {
         if (TextUtils.isEmpty(formattedId)) {
-            return INVALID_LOCATION_INDEX;
+            return -1;
         }
 
         for (int i = 0; i < locationList.size(); i ++) {
@@ -189,37 +159,30 @@ public class MainActivityViewModel extends ViewModel
             }
         }
 
-        return INVALID_LOCATION_INDEX;
+        return -1;
     }
 
-    private int getLocationIndexFromList(LockableLocationList.Getter getter, int offset) {
-        if (offset == 0) {
-            return getter.getValidCurrentIndex();
-        }
-        int validSize = getter.getValidList().size();
-        return (getter.getValidCurrentIndex() + validSize + offset) % validSize;
-    }
-
+    @Nullable
     public Location getLocationFromList(int offset) {
-        final Location[] location = new Location[1];
-        lockableLocationList.read(getter ->
-                location[0] = getter.getValidList().get(
-                        getLocationIndexFromList(getter, offset)
-                )
-        );
-        return location[0];
+        if (validList.size() == 0) {
+            return null;
+        }
+        return validList.get((validIndex + offset + validList.size()) % validList.size());
     }
 
-    public void updateWeather(GeoActivity activity) {
+    public void updateWeather(GeoActivity activity, boolean swipeToRefresh) {
+        if (currentLocation.getValue() == null) {
+            return;
+        }
+
         repository.cancel();
 
-        assert currentLocation.getValue() != null;
         Location location = currentLocation.getValue().data;
 
         currentLocation.setValue(
                 LocationResource.loading(
                         location,
-                        currentLocation.getValue().isDefaultLocation(),
+                        currentLocation.getValue().defaultLocation,
                         LocationResource.Source.REFRESH
                 )
         );
@@ -236,8 +199,8 @@ public class MainActivityViewModel extends ViewModel
                                         && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
                                     // denied basic location permissions.
                                     if (location.isUsable()) {
-                                        repository.getWeather(activity,
-                                                currentLocation, lockableLocationList,false, this);
+                                        repository.getWeather(
+                                                activity, location, false, swipeToRefresh, this);
                                     } else {
                                         currentLocation.setValue(
                                                 LocationResource.error(
@@ -267,13 +230,15 @@ public class MainActivityViewModel extends ViewModel
                                 }
                             }
 
-                            repository.getWeather(activity, currentLocation, lockableLocationList, true, this);
+                            repository.getWeather(
+                                    activity, location, true, swipeToRefresh, this);
                         });
                 return;
             }
         }
 
-        repository.getWeather(activity, currentLocation, lockableLocationList, location.isCurrentPosition(), this);
+        repository.getWeather(
+                activity, location, location.isCurrentPosition(), swipeToRefresh, this);
     }
 
     private List<String> getDeniedPermissionList(Context context, boolean background) {
@@ -320,26 +285,8 @@ public class MainActivityViewModel extends ViewModel
         }
     }
 
-    public int getIndicatorCountValue() {
-        if (indicator.getValue() != null) {
-            return indicator.getValue().total;
-        } else {
-            return 1;
-        }
-    }
-
-    public int getIndicatorIndexValue() {
-        if (indicator.getValue() != null) {
-            return indicator.getValue().index;
-        } else {
-            return 0;
-        }
-    }
-
     public List<Location> getLocationList() {
-        List<Location> locationList = new ArrayList<>();
-        lockableLocationList.read(getter -> locationList.addAll(getter.getValidList()));
-        return locationList;
+        return validList;
     }
 
     public boolean isNewInstance() {
@@ -358,17 +305,52 @@ public class MainActivityViewModel extends ViewModel
         }
     }
 
-    // on location completed listener.
+    // weather request callback.
 
     @Override
-    public void onCompleted(Context context) {
-        Indicator old = indicator.getValue();
-        final Indicator[] now = {null};
+    public void onReadCacheCompleted(GeoActivity activity, Location location, boolean succeed, boolean done) {
+        callback(activity, location, false, succeed, done);
+    }
 
-        lockableLocationList.read(getter -> now[0] = getIndicatorInstance(getter));
+    @Override
+    public void onLocationCompleted(GeoActivity activity, Location location, boolean succeed, boolean done) {
+        callback(activity, location, !succeed, succeed, done);
+    }
 
-        if (old == null || !old.equals(now[0])) {
-            indicator.setValue(now[0]);
+    @Override
+    public void onGetWeatherCompleted(GeoActivity activity, Location location, boolean succeed, boolean done) {
+        callback(activity, location, false, succeed, done);
+    }
+
+    private void callback(GeoActivity activity, Location location,
+                          boolean locateFailed, boolean succeed, boolean done) {
+        List<Location> totalList = new ArrayList<>(this.totalList);
+        for (int i = 0; i < totalList.size(); i ++) {
+            if (totalList.get(i).equals(location)) {
+                totalList.set(i, location);
+                break;
+            }
         }
+
+        List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
+
+        int validIndex = indexLocation(
+                validList, this.validList.get(this.validIndex).getFormattedId());
+
+        boolean defaultLocation = location.equals(validList.get(0));
+        LocationResource resource;
+        if (!done) {
+            resource = LocationResource.loading(
+                    location, defaultLocation, locateFailed, LocationResource.Source.REFRESH);
+        } else if (succeed) {
+            resource = LocationResource.success(
+                    location, defaultLocation, LocationResource.Source.REFRESH);
+        } else {
+            resource = LocationResource.error(
+                    location, defaultLocation, locateFailed, LocationResource.Source.REFRESH);
+        }
+
+        setLocation(activity, totalList, validList, validIndex,
+                LocationResource.Source.BACKGROUND, resource);
     }
 }

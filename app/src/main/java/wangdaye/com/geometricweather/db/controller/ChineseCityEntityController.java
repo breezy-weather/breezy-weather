@@ -16,37 +16,32 @@ import wangdaye.com.geometricweather.db.entity.ChineseCityEntity;
 import wangdaye.com.geometricweather.db.entity.DaoSession;
 
 public class ChineseCityEntityController extends AbsEntityController<ChineseCityEntity> {
-    
-    public ChineseCityEntityController(DaoSession session) {
-        super(session);
-    }
 
     // insert.
 
-    public void insertChineseCityEntityList(@NonNull List<ChineseCityEntity> entityList) {
+    public void insertChineseCityEntityList(@NonNull DaoSession session,
+                                            @NonNull List<ChineseCityEntity> entityList) {
         if (entityList.size() != 0) {
-            deleteChineseCityEntityList();
-            getSession().getChineseCityEntityDao().insertInTx(entityList);
-            getSession().clear();
+            session.getChineseCityEntityDao().insertInTx(entityList);
         }
     }
 
     // delete.
 
-    public void deleteChineseCityEntityList() {
-        getSession().getChineseCityEntityDao().deleteAll();
-        getSession().clear();
+    public void deleteChineseCityEntityList(@NonNull DaoSession session) {
+        session.getChineseCityEntityDao().deleteAll();
     }
 
     // select.
 
     @Nullable
-    public ChineseCityEntity selectChineseCityEntity(@NonNull String name) {
+    public ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+                                                     @NonNull String name) {
         if (TextUtils.isEmpty(name)) {
             return null;
         }
 
-        ChineseCityEntityDao dao = getSession().getChineseCityEntityDao();
+        ChineseCityEntityDao dao = session.getChineseCityEntityDao();
 
         QueryBuilder<ChineseCityEntity> builder = dao.queryBuilder();
         builder.whereOr(
@@ -63,10 +58,11 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
     }
 
     @Nullable
-    public ChineseCityEntity selectChineseCityEntity(@NonNull String province,
+    public ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+                                                     @NonNull String province,
                                                      @NonNull String city,
                                                      @NonNull String district) {
-        ChineseCityEntityDao dao = getSession().getChineseCityEntityDao();
+        ChineseCityEntityDao dao = session.getChineseCityEntityDao();
 
         List<WhereCondition> conditionList = new ArrayList<>();
         conditionList.add(
@@ -119,8 +115,14 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
     }
 
     @Nullable
-    public ChineseCityEntity selectChineseCityEntity(float latitude, float longitude) {
-        List<ChineseCityEntity> entityList = selectChineseCityEntityList();
+    public ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+                                                     float latitude, float longitude) {
+        List<ChineseCityEntity> entityList = getNonNullList(
+                session.getChineseCityEntityDao()
+                        .queryBuilder()
+                        .list()
+        );
+
         int minIndex = -1;
         double minDistance = Double.MAX_VALUE;
         for (int i = 0; i < entityList.size(); i ++) {
@@ -139,12 +141,13 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
     }
 
     @NonNull
-    public List<ChineseCityEntity> selectChineseCityEntityList(@NonNull String name) {
+    public List<ChineseCityEntity> selectChineseCityEntityList(@NonNull DaoSession session,
+                                                               @NonNull String name) {
         if (TextUtils.isEmpty(name)) {
             return new ArrayList<>();
         }
 
-        ChineseCityEntityDao dao = getSession().getChineseCityEntityDao();
+        ChineseCityEntityDao dao = session.getChineseCityEntityDao();
 
         QueryBuilder<ChineseCityEntity> builder = dao.queryBuilder();
         builder.whereOr(
@@ -155,16 +158,7 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
         return getNonNullList(builder.list());
     }
 
-    @NonNull
-    private List<ChineseCityEntity> selectChineseCityEntityList() {
-        return getNonNullList(
-                getSession().getChineseCityEntityDao()
-                        .queryBuilder()
-                        .list()
-        );
-    }
-
-    public int countChineseCityEntity() {
-        return (int) getSession().getChineseCityEntityDao().count();
+    public int countChineseCityEntity(@NonNull DaoSession session) {
+        return (int) session.getChineseCityEntityDao().count();
     }
 }

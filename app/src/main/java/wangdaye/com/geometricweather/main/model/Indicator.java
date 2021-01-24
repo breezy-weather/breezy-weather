@@ -4,8 +4,8 @@ import androidx.annotation.Nullable;
 
 public class Indicator {
 
-    public int total;
-    public int index;
+    public final int total;
+    public final int index;
 
     public Indicator(int total, int index) {
         this.total = total;

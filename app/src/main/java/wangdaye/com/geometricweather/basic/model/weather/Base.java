@@ -16,14 +16,14 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
  * */
 public class Base implements Serializable {
 
-    private String cityId;
-    private long timeStamp;
+    private final String cityId;
+    private final long timeStamp;
 
-    private Date publishDate; // device time.
-    private long publishTime; // device time.
+    private final Date publishDate; // device time.
+    private final long publishTime; // device time.
 
-    private Date updateDate; // device time.
-    private long updateTime; // device time.
+    private final Date updateDate; // device time.
+    private final long updateTime; // device time.
 
     public Base(String cityId, long timeStamp,
                 Date publishDate, long publishTime,

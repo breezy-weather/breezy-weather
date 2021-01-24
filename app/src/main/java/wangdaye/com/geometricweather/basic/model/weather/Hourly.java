@@ -19,16 +19,16 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
  * */
 public class Hourly implements Serializable {
 
-    private Date date;
-    private long time;
-    private boolean daylight;
+    private final Date date;
+    private final long time;
+    private final boolean daylight;
 
-    private String weatherText;
-    private WeatherCode weatherCode;
+    private final String weatherText;
+    private final WeatherCode weatherCode;
 
-    private Temperature temperature;
-    private Precipitation precipitation;
-    private PrecipitationProbability precipitationProbability;
+    private final Temperature temperature;
+    private final Precipitation precipitation;
+    private final PrecipitationProbability precipitationProbability;
 
     public Hourly(Date date, long time, boolean daylight,
                   String weatherText, WeatherCode weatherCode,

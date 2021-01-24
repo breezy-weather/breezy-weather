@@ -16,8 +16,8 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
  * */
 public class Astro implements Serializable {
 
-    @Nullable private Date riseDate;
-    @Nullable private Date setDate;
+    @Nullable private final Date riseDate;
+    @Nullable private final Date setDate;
 
     public Astro(@Nullable Date riseDate, @Nullable Date setDate) {
         this.riseDate = riseDate;

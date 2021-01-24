@@ -10,17 +10,17 @@ import java.io.Serializable;
  * */
 public class HalfDay implements Serializable {
 
-    @NonNull private String weatherText;
-    @NonNull private String weatherPhase;
-    @NonNull private WeatherCode weatherCode;
+    @NonNull private final String weatherText;
+    @NonNull private final String weatherPhase;
+    @NonNull private final WeatherCode weatherCode;
 
-    @NonNull private Temperature temperature;
-    @NonNull private Precipitation precipitation;
-    @NonNull private PrecipitationProbability precipitationProbability;
-    @NonNull private PrecipitationDuration precipitationDuration;
-    @NonNull private Wind wind;
+    @NonNull private final Temperature temperature;
+    @NonNull private final Precipitation precipitation;
+    @NonNull private final PrecipitationProbability precipitationProbability;
+    @NonNull private final PrecipitationDuration precipitationDuration;
+    @NonNull private final Wind wind;
 
-    @Nullable private Integer cloudCover;
+    @Nullable private final Integer cloudCover;
 
     public HalfDay(@NonNull String weatherText, @NonNull String weatherPhase, @NonNull WeatherCode weatherCode,
                    @NonNull Temperature temperature,

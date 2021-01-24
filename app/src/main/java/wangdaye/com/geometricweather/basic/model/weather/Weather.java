@@ -9,13 +9,13 @@ import java.util.List;
 public class Weather
         implements Serializable {
 
-    @NonNull private Base base;
-    @NonNull private Current current;
+    @NonNull private final Base base;
+    @NonNull private final Current current;
     @Nullable private History yesterday;
-    @NonNull private List<Daily> dailyForecast;
-    @NonNull private List<Hourly> hourlyForecast;
-    @NonNull private List<Minutely> minutelyForecast;
-    @NonNull private List<Alert> alertList;
+    @NonNull private final List<Daily> dailyForecast;
+    @NonNull private final List<Hourly> hourlyForecast;
+    @NonNull private final List<Minutely> minutelyForecast;
+    @NonNull private final List<Alert> alertList;
 
     public Weather(@NonNull Base base, @NonNull Current current, @Nullable History yesterday,
                    @NonNull List<Daily> dailyForecast,

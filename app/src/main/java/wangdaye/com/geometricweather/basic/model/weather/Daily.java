@@ -21,16 +21,16 @@ import wangdaye.com.geometricweather.utils.helpter.LunarHelper;
  * */
 public class Daily implements Serializable {
 
-    private Date date;
-    private long time;
+    private final Date date;
+    private final long time;
 
-    @Size(2) private HalfDay[] halfDays;
-    @Size(2) private Astro[] astros;
-    private MoonPhase moonPhase;
-    private AirQuality airQuality;
-    private Pollen pollen;
-    private UV uv;
-    private float hoursOfSun;
+    @Size(2) private final HalfDay[] halfDays;
+    @Size(2) private final Astro[] astros;
+    private final MoonPhase moonPhase;
+    private final AirQuality airQuality;
+    private final Pollen pollen;
+    private final UV uv;
+    private final float hoursOfSun;
 
     public Daily(Date date, long time,
                  HalfDay day, HalfDay night, Astro sun, Astro moon,

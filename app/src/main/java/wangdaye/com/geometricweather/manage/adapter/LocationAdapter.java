@@ -124,14 +124,6 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
         submitList(modelList);
     }
 
-    protected List<Location> moveItem(int from, int to) {
-        List<LocationModel> modelList = new ArrayList<>(getCurrentList());
-        modelList.add(to, modelList.remove(from));
-        submitList(modelList);
-
-        return getLocationList(modelList);
-    }
-
     @ColorInt
     public int getItemSourceColor(int position) {
         if (0 <= position && position < getItemCount()) {
@@ -139,22 +131,6 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
         } else {
             return Color.TRANSPARENT;
         }
-    }
-
-    protected Location getLocation(int position) {
-        return getCurrentList().get(position).location;
-    }
-
-    protected List<Location> getLocationList() {
-        return getLocationList(getCurrentList());
-    }
-
-    protected List<Location> getLocationList(List<LocationModel> modelList) {
-        List<Location> locationList = new ArrayList<>(getItemCount());
-        for (LocationModel m : modelList) {
-            locationList.add(m.location);
-        }
-        return locationList;
     }
 
     // interface.

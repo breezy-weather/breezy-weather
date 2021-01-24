@@ -14,6 +14,7 @@ import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.view.WindowInsetsCompat;
 
 import android.view.View;
 import android.view.Window;
@@ -28,6 +29,67 @@ public class DisplayUtils {
 
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512;
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600;
+
+    public static class RelativeInsets {
+
+        private final WindowInsetsCompat inner;
+        private final boolean zeroStart;
+        private final boolean zeroTop;
+        private final boolean zeroEnd;
+        private final boolean zeroBottom;
+
+        public RelativeInsets(WindowInsetsCompat inner,
+                              boolean zeroStart,
+                              boolean zeroTop,
+                              boolean zeroEnd,
+                              boolean zeroBottom) {
+            this.inner = inner;
+            this.zeroStart = zeroStart;
+            this.zeroTop = zeroTop;
+            this.zeroEnd = zeroEnd;
+            this.zeroBottom = zeroBottom;
+        }
+
+        public int getSystemWindowInsetLeft(Context context) {
+            if (isRtl(context)) {
+                return zeroEnd ? 0 : inner.getSystemWindowInsetRight();
+            } else {
+                return zeroStart ? 0 : inner.getSystemWindowInsetLeft();
+            }
+        }
+
+        public int getSystemWindowInsetTop() {
+            if (zeroTop) {
+                return 0;
+            }
+            return inner.getSystemWindowInsetTop();
+        }
+
+        public int getSystemWindowInsetRight(Context context) {
+            if (isRtl(context)) {
+                return zeroStart ? 0 : inner.getSystemWindowInsetLeft();
+            } else {
+                return zeroEnd ? 0 : inner.getSystemWindowInsetRight();
+            }
+        }
+
+        public int getSystemWindowInsetBottom() {
+            if (zeroBottom) {
+                return 0;
+            }
+            return inner.getSystemWindowInsetBottom();
+        }
+
+        public WindowInsetsCompat setPaddingRelative(View view) {
+            view.setPadding(
+                    getSystemWindowInsetLeft(view.getContext()),
+                    getSystemWindowInsetTop(),
+                    getSystemWindowInsetRight(view.getContext()),
+                    getSystemWindowInsetBottom()
+            );
+            return inner;
+        }
+    }
 
     public static float dpToPx(Context context, float dp) {
         return dp * (context.getResources().getDisplayMetrics().densityDpi / 160f);

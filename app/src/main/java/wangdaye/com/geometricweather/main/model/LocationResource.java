@@ -7,10 +7,10 @@ import wangdaye.com.geometricweather.basic.model.resource.Resource;
 
 public class LocationResource extends Resource<Location> {
 
-    private boolean defaultLocation;
-    private boolean locateFailed;
+    public final boolean defaultLocation;
+    public final boolean locateFailed;
 
-    private Source source;
+    public final Source source;
     public enum  Source {
         SWITCH, REFRESH, BACKGROUND
     }
@@ -41,17 +41,5 @@ public class LocationResource extends Resource<Location> {
 
     public static LocationResource loading(@NonNull Location data, boolean defaultLocation, boolean locateFailed, Source source) {
         return new LocationResource(data, Status.LOADING, defaultLocation, locateFailed, source);
-    }
-
-    public boolean isDefaultLocation() {
-        return defaultLocation;
-    }
-
-    public boolean isLocateFailed() {
-        return locateFailed;
-    }
-
-    public Source getSource() {
-        return source;
     }
 }

@@ -11,11 +11,11 @@ import java.io.Serializable;
  * */
 public class PrecipitationDuration implements Serializable {
 
-    @Nullable private Float total;
-    @Nullable private Float thunderstorm;
-    @Nullable private Float rain;
-    @Nullable private Float snow;
-    @Nullable private Float ice;
+    @Nullable private final Float total;
+    @Nullable private final Float thunderstorm;
+    @Nullable private final Float rain;
+    @Nullable private final Float snow;
+    @Nullable private final Float ice;
 
     public PrecipitationDuration(@Nullable Float total,
                                  @Nullable Float thunderstorm,

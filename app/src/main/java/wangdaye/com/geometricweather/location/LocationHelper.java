@@ -93,13 +93,10 @@ public class LocationHelper {
                         return;
                     }
 
-                    location.updateLocationResult(
-                            result.latitude, result.longitude, TimeZone.getDefault(),
-                            result.country, result.province, result.city, result.district,
-                            result.inChina
-                    );
-
-                    requestAvailableWeatherLocation(context, location, l);
+                    requestAvailableWeatherLocation(context, new Location(
+                            location, result.latitude, result.longitude, TimeZone.getDefault(),
+                            result.country, result.province, result.city, result.district, result.inChina
+                    ), l);
                 }
         );
     }
@@ -109,17 +106,17 @@ public class LocationHelper {
                                                  @NonNull OnRequestLocationListener l) {
         switch (SettingsOptionManager.getInstance(context).getWeatherSource()) {
             case ACCU:
-                location.setWeatherSource(WeatherSource.ACCU);
+                location = new Location(location, WeatherSource.ACCU);
                 accuWeather.requestLocation(context, location, new AccuLocationCallback(context, location, l));
                 break;
 
             case CN:
-                location.setWeatherSource(WeatherSource.CN);
+                location = new Location(location, WeatherSource.CN);
                 cnWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
                 break;
 
             case CAIYUN:
-                location.setWeatherSource(WeatherSource.CAIYUN);
+                location = new Location(location, WeatherSource.CAIYUN);
                 caiyunWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
                 break;
         }
@@ -162,9 +159,9 @@ public class LocationHelper {
 
 class AccuLocationCallback implements WeatherService.RequestLocationCallback {
 
-    private Context context;
-    private Location location;
-    private LocationHelper.OnRequestLocationListener listener;
+    private final Context context;
+    private final Location location;
+    private final LocationHelper.OnRequestLocationListener listener;
 
     AccuLocationCallback(Context context, Location location,
                          @NonNull LocationHelper.OnRequestLocationListener l) {
@@ -176,9 +173,10 @@ class AccuLocationCallback implements WeatherService.RequestLocationCallback {
     @Override
     public void requestLocationSuccess(String query, List<Location> locationList) {
         if (locationList.size() > 0) {
-            Location location = locationList.get(0).setCurrentPosition();
-            DatabaseHelper.getInstance(context).writeLocation(location);
-            listener.requestLocationSuccess(location);
+            Location src = locationList.get(0);
+            Location result = new Location(src, true, src.isResidentPosition());
+            DatabaseHelper.getInstance(context).writeLocation(result);
+            listener.requestLocationSuccess(result);
         } else {
             requestLocationFailed(query);
         }
@@ -192,9 +190,9 @@ class AccuLocationCallback implements WeatherService.RequestLocationCallback {
 
 class ChineseCityLocationCallback implements WeatherService.RequestLocationCallback {
 
-    private Context context;
-    private Location location;
-    private LocationHelper.OnRequestLocationListener listener;
+    private final Context context;
+    private final Location location;
+    private final LocationHelper.OnRequestLocationListener listener;
 
     ChineseCityLocationCallback(Context context, Location location,
                                 @NonNull LocationHelper.OnRequestLocationListener l) {
@@ -206,9 +204,10 @@ class ChineseCityLocationCallback implements WeatherService.RequestLocationCallb
     @Override
     public void requestLocationSuccess(String query, List<Location> locationList) {
         if (locationList.size() > 0) {
-            Location location = locationList.get(0).setCurrentPosition();
-            DatabaseHelper.getInstance(context).writeLocation(location);
-            listener.requestLocationSuccess(location);
+            Location src = locationList.get(0);
+            Location result = new Location(src, true, src.isResidentPosition());
+            DatabaseHelper.getInstance(context).writeLocation(result);
+            listener.requestLocationSuccess(result);
         } else {
             requestLocationFailed(query);
         }

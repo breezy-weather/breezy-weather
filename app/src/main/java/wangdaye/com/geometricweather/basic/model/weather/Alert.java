@@ -17,16 +17,16 @@ import java.util.List;
  * */
 public class Alert implements Parcelable, Serializable {
 
-    private long alertId;
-    private Date date;
-    private long time;
+    private final long alertId;
+    private final Date date;
+    private final long time;
 
-    private String description;
-    private String content;
+    private final String description;
+    private final String content;
 
-    private String type;
-    private int priority;
-    @ColorInt private int color;
+    private final String type;
+    private final int priority;
+    @ColorInt private final int color;
 
     public Alert(long alertId, Date date, long time,
                  String description, String content,

@@ -19,14 +19,14 @@ import wangdaye.com.geometricweather.R;
  * */
 public class AirQuality implements Serializable {
 
-    @Nullable private String aqiText;
-    @Nullable private Integer aqiIndex;
-    @Nullable private Float pm25;
-    @Nullable private Float pm10;
-    @Nullable private Float so2;
-    @Nullable private Float no2;
-    @Nullable private Float o3;
-    @Nullable private Float co;
+    @Nullable private final String aqiText;
+    @Nullable private final Integer aqiIndex;
+    @Nullable private final Float pm25;
+    @Nullable private final Float pm10;
+    @Nullable private final Float so2;
+    @Nullable private final Float no2;
+    @Nullable private final Float o3;
+    @Nullable private final Float co;
 
     public static final int AQI_INDEX_1 = 50;
     public static final int AQI_INDEX_2 = 100;

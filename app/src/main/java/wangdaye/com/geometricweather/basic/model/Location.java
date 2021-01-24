@@ -25,29 +25,47 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 public class Location
         implements Parcelable, Serializable {
 
-    private String cityId;
+    private final String cityId;
 
-    private float latitude;
-    private float longitude;
-    private TimeZone timeZone;
+    private final float latitude;
+    private final float longitude;
+    private final TimeZone timeZone;
 
-    private String country;
-    private String province;
-    private String city;
-    private String district;
+    private final String country;
+    private final String province;
+    private final String city;
+    private final String district;
 
     @Nullable private Weather weather;
-    private WeatherSource weatherSource;
+    private final WeatherSource weatherSource;
 
-    private boolean currentPosition;
-    private boolean residentPosition;
-    private boolean china;
+    private final boolean currentPosition;
+    private final boolean residentPosition;
+    private final boolean china;
 
     private static final String NULL_ID = "NULL_ID";
     public static final String CURRENT_POSITION_ID = "CURRENT_POSITION";
 
-    public Location(String cityId,
+    public Location(Location src, WeatherSource weatherSource) {
+        this(src.cityId, src.latitude, src.longitude, src.timeZone, src.country, src.province,
+                src.city, src.district, src.weather, weatherSource, src.currentPosition,
+                src.residentPosition, src.china);
+    }
+
+    public Location(Location src, boolean currentPosition, boolean residentPosition) {
+        this(src.cityId, src.latitude, src.longitude, src.timeZone, src.country, src.province,
+                src.city, src.district, src.weather, src.weatherSource,
+                currentPosition, residentPosition, src.china);
+    }
+
+    public Location(Location src,
                     float latitude, float longitude, TimeZone timeZone,
+                    String country, String province, String city, String district, boolean china) {
+        this(src.cityId, latitude, longitude, timeZone, country, province, city, district,
+                src.weather, src.weatherSource, src.currentPosition, src.residentPosition, china);
+    }
+
+    public Location(String cityId, float latitude, float longitude, TimeZone timeZone,
                     String country, String province, String city, String district,
                     @Nullable Weather weather, WeatherSource weatherSource,
                     boolean currentPosition, boolean residentPosition, boolean china) {
@@ -86,20 +104,6 @@ public class Location
         );
     }
 
-    public void updateLocationResult(float latitude, float longitude, TimeZone timeZone,
-                                     String country, String province, String city, String district,
-                                     boolean china) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.timeZone = timeZone;
-        this.country = country;
-        this.province = province;
-        this.city = city;
-        this.district = district;
-        this.currentPosition = true;
-        this.china = china;
-    }
-
     public boolean equals(@Nullable Location location) {
         if (location == null) {
             return false;
@@ -133,21 +137,12 @@ public class Location
         return isCurrentPosition() ? CURRENT_POSITION_ID : (cityId + "&" + weatherSource.name());
     }
 
-    public Location setCurrentPosition() {
-        currentPosition = true;
-        return this;
-    }
-
     public boolean isCurrentPosition() {
         return currentPosition;
     }
 
     public boolean isResidentPosition() {
         return residentPosition;
-    }
-
-    public void setResidentPosition(boolean residentPosition) {
-        this.residentPosition = residentPosition;
     }
 
     public boolean isUsable() {
@@ -235,10 +230,6 @@ public class Location
         this.weather = weather;
     }
 
-    public void setWeatherSource(WeatherSource source) {
-        this.weatherSource = source;
-    }
-
     public WeatherSource getWeatherSource() {
         return weatherSource;
     }
@@ -269,15 +260,14 @@ public class Location
         List<Location> result = new ArrayList<>(list.size());
         if (currentLocation == null) {
             result.addAll(list);
-            return result;
         } else {
             for (Location l : list) {
                 if (!l.isResidentPosition() || !l.isCloseTo(context, currentLocation)) {
                     result.add(l);
                 }
             }
-            return result;
         }
+        return result;
     }
 
     private boolean isCloseTo(Context c, Location location) {

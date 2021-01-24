@@ -15,13 +15,13 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
  * */
 public class Temperature implements Serializable {
 
-    private int temperature;
-    @Nullable private Integer realFeelTemperature;
-    @Nullable private Integer realFeelShaderTemperature;
-    @Nullable private Integer apparentTemperature;
-    @Nullable private Integer windChillTemperature;
-    @Nullable private Integer wetBulbTemperature;
-    @Nullable private Integer degreeDayTemperature;
+    private final int temperature;
+    @Nullable private final Integer realFeelTemperature;
+    @Nullable private final Integer realFeelShaderTemperature;
+    @Nullable private final Integer apparentTemperature;
+    @Nullable private final Integer windChillTemperature;
+    @Nullable private final Integer wetBulbTemperature;
+    @Nullable private final Integer degreeDayTemperature;
 
     public Temperature(int temperature,
                        @Nullable Integer realFeelTemperature,

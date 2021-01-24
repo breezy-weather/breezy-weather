@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,10 +28,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.R;
@@ -44,7 +40,7 @@ import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.adapter.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialog.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.model.LocationResource;
-import wangdaye.com.geometricweather.manage.LocationManageFragment;
+import wangdaye.com.geometricweather.manage.ManageFragment;
 import wangdaye.com.geometricweather.main.layout.MainLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
@@ -55,6 +51,7 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.Circu
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.utils.helpter.AsyncHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 import wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout;
@@ -78,7 +75,7 @@ public class MainActivity extends GeoActivity
     @Nullable private String pendingAction;
     @Nullable private HashMap<String, Object> pendingExtraMap;
 
-    @Nullable private LocationManageFragment manageFragment;
+    @Nullable private ManageFragment manageFragment;
     private WeatherView weatherView;
     @Nullable private MainAdapter adapter;
     @Nullable private AnimatorSet recyclerViewAnimator;
@@ -173,7 +170,6 @@ public class MainActivity extends GeoActivity
         );
         refreshBackgroundViews(true, viewModel.getLocationList(),
                 false, false);
-
     }
 
     @Override
@@ -223,13 +219,13 @@ public class MainActivity extends GeoActivity
 
             case SEARCH_ACTIVITY:
                 if (resultCode == RESULT_OK && manageFragment != null) {
-                    manageFragment.addLocation();
+                    manageFragment.readAppendLocation();
                 }
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
                 if (manageFragment != null) {
-                    manageFragment.resetLocationList();
+                    manageFragment.resetLocationList(viewModel.getCurrentLocationFormattedId());
                 }
                 break;
         }
@@ -287,13 +283,12 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint({"ClickableViewAccessibility", "NonConstantResourceId"})
     private void initView() {
-        if (MainDisplayUtils.isMultiFragmentEnabled(this)) {
-            binding.locationContainer.setVisibility(View.VISIBLE);
-
-            this.manageFragment = new LocationManageFragment();
+        this.manageFragment = (ManageFragment) getSupportFragmentManager().findFragmentById(
+                R.id.fragment_drawer);
+        if (manageFragment != null) {
             manageFragment.setDrawerMode(true);
             manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
-            manageFragment.setOnLocationListChangedListener(new LocationManageFragment.LocationManageCallback() {
+            manageFragment.setOnLocationListChangedListener(new ManageFragment.LocationManageCallback() {
                 @Override
                 public void onSelectedLocation(@NonNull String formattedId) {
                     viewModel.init(MainActivity.this, formattedId);
@@ -304,28 +299,14 @@ public class MainActivity extends GeoActivity
                     viewModel.init(MainActivity.this, viewModel.getCurrentLocationFormattedId());
                 }
             });
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .replace(R.id.location_container, manageFragment)
-                    .commit();
-        } else {
-            binding.locationContainer.setVisibility(View.GONE);
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.appBar, (v, insets) -> {
-            v.setPadding(
-                    manageFragment != null ? 0 : insets.getSystemWindowInsetLeft(),
-                    insets.getSystemWindowInsetTop(),
-                    insets.getSystemWindowInsetRight(),
-                    0
-            );
-            return insets;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(binding.appBar, (v, insets) -> new DisplayUtils.RelativeInsets(
+                insets, manageFragment != null, false, false, true).setPaddingRelative(v));
 
         binding.toolbar.inflateMenu(R.menu.activity_main);
         binding.toolbar.getMenu().getItem(0).setVisible(
-                !MainDisplayUtils.isMultiFragmentEnabled(this));
+                !MainModuleUtils.isMultiFragmentEnabled(this));
         binding.toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.action_manage:
@@ -341,43 +322,38 @@ public class MainActivity extends GeoActivity
 
         binding.switchLayout.setOnSwitchListener(switchListener);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            binding.refreshLayout.setOnApplyWindowInsetsListener((v, insets) -> {
-                int startPosition = insets.getSystemWindowInsetTop()
-                        + getResources().getDimensionPixelSize(R.dimen.normal_margin);
-                binding.refreshLayout.setProgressViewOffset(
-                        false,
-                        startPosition,
-                        (int) (startPosition + 64 * getResources().getDisplayMetrics().density)
-                );
-                return insets;
-            });
-        }
+        ViewCompat.setOnApplyWindowInsetsListener(binding.refreshLayout, (v, insets) -> {
+            int startPosition = insets.getSystemWindowInsetTop()
+                    + getResources().getDimensionPixelSize(R.dimen.normal_margin);
+            binding.refreshLayout.setProgressViewOffset(
+                    false,
+                    startPosition,
+                    (int) (startPosition + 64 * getResources().getDisplayMetrics().density)
+            );
+            return insets;
+        });
         binding.refreshLayout.setOnRefreshListener(this);
 
         binding.recyclerView.setLayoutManager(new MainLayoutManager());
         binding.recyclerView.setOnTouchListener(indicatorStateListener);
-        ViewCompat.setOnApplyWindowInsetsListener(binding.recyclerView, (v, insets) -> {
-            v.setPadding(
-                    manageFragment != null ? 0 : insets.getSystemWindowInsetLeft(),
-                    0,
-                    insets.getSystemWindowInsetRight(),
-                    insets.getSystemWindowInsetBottom()
-            );
-            return insets;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(binding.recyclerView, (v, insets) -> new DisplayUtils.RelativeInsets(
+                insets, manageFragment != null, true, false, false).setPaddingRelative(v));
 
         binding.indicator.setSwitchView(binding.switchLayout);
 
         viewModel.getCurrentLocation().observe(this, resource -> {
+            if (resource == null) {
+                return;
+            }
+
             setRefreshing(resource.status == Resource.Status.LOADING);
-            drawUI(resource.data, resource.isDefaultLocation(), resource.getSource());
+            drawUI(resource.data, resource.defaultLocation, resource.source);
 
             if (manageFragment != null) {
                 manageFragment.updateView(viewModel.getLocationList(), resource.data.getFormattedId());
             }
 
-            if (resource.isLocateFailed()) {
+            if (resource.locateFailed) {
                 SnackbarUtils.showSnackbar(
                         this,
                         getString(R.string.feedback_location_failed),
@@ -568,24 +544,19 @@ public class MainActivity extends GeoActivity
     private void refreshBackgroundViews(boolean resetBackground, List<Location> locationList,
                                         boolean defaultLocationChanged, boolean updateRemoteViews) {
         if (resetBackground) {
-            Observable.create(emitter -> PollingManager.resetAllBackgroundTask(this, false))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.io())
-                    .delay(1, TimeUnit.SECONDS)
-                    .subscribe();
+            AsyncHelper.delayRunOnIO(() -> PollingManager.resetAllBackgroundTask(
+                    this, false
+            ), 1000);
         }
 
         if (updateRemoteViews) {
-            Observable.create(emitter -> {
+            AsyncHelper.delayRunOnIO(() -> {
                 if (defaultLocationChanged) {
                     WidgetUtils.updateWidgetIfNecessary(this, locationList.get(0));
                     NotificationUtils.updateNotificationIfNecessary(this, locationList);
                 }
                 WidgetUtils.updateWidgetIfNecessary(this, locationList);
-            }).subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.io())
-                    .delay(1, TimeUnit.SECONDS)
-                    .subscribe();
+            }, 1000);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                 ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
@@ -666,7 +637,7 @@ public class MainActivity extends GeoActivity
 
     private final SwipeSwitchLayout.OnSwitchListener switchListener = new SwipeSwitchLayout.OnSwitchListener() {
 
-        private Location location;
+        private @Nullable Location location;
         private boolean indexSwitched;
 
         private float lastProgress = 0;
@@ -679,7 +650,8 @@ public class MainActivity extends GeoActivity
 
             if (progress >= 1 && lastProgress < 0.5) {
                 indexSwitched = true;
-                location = viewModel.getLocationFromList(swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
+                location = viewModel.getLocationFromList(
+                        swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
                 lastProgress = 1;
             } else if (progress < 0.5 && lastProgress >= 1) {
                 indexSwitched = true;
@@ -687,7 +659,7 @@ public class MainActivity extends GeoActivity
                 lastProgress = 0;
             }
 
-            if (indexSwitched) {
+            if (indexSwitched && location != null) {
                 binding.toolbar.setTitle(location.getCityName(MainActivity.this));
                 if (location.getWeather() != null) {
                     WeatherViewController.setWeatherCode(
@@ -718,7 +690,7 @@ public class MainActivity extends GeoActivity
 
     @Override
     public void onRefresh() {
-        viewModel.updateWeather(this);
+        viewModel.updateWeather(this, true);
     }
 
     // on scroll changed listener.
