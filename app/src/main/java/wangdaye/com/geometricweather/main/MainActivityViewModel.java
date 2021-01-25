@@ -30,9 +30,9 @@ public class MainActivityViewModel extends ViewModel
 
     private MainActivityRepository repository;
 
-    private @NonNull List<Location> totalList; // all locations.
-    private @NonNull List<Location> validList; // location list optimized for resident city.
-    private int validIndex; // current index for validList.
+    private @Nullable List<Location> totalList; // all locations.
+    private @Nullable List<Location> validList; // location list optimized for resident city.
+    private @Nullable Integer validIndex; // current index for validList.
 
     private boolean newInstance;
 
@@ -43,9 +43,9 @@ public class MainActivityViewModel extends ViewModel
         indicator = new MutableLiveData<>();
         indicator.setValue(new Indicator(1, 0));
 
-        totalList = new ArrayList<>();
-        validList = new ArrayList<>();
-        validIndex = -1;
+        totalList = null;
+        validList = null;
+        validIndex = null;
 
         newInstance = true;
     }
@@ -68,7 +68,9 @@ public class MainActivityViewModel extends ViewModel
 
         final boolean[] firstInit = {true};
 
-        List<Location> oldList = Collections.unmodifiableList(totalList);
+        List<Location> oldList = totalList == null
+                ? new ArrayList<>()
+                : Collections.unmodifiableList(totalList);
         repository.getLocationList(activity, oldList, locationList -> {
             if (locationList == null) {
                 return;
@@ -79,7 +81,7 @@ public class MainActivityViewModel extends ViewModel
 
             int validIndex = firstInit[0]
                     ? indexLocation(validList, formattedId)
-                    : indexLocation(this.validList, this.validList.get(this.validIndex).getFormattedId());
+                    : indexLocation(this.validList, getCurrentFormattedId());
             firstInit[0] = false;
 
             setLocation(activity, totalList, validList, validIndex,
@@ -88,7 +90,7 @@ public class MainActivityViewModel extends ViewModel
     }
 
     public void setLocation(GeoActivity activity, int offset) {
-        if (totalList.size() == 0 || validList.size() == 0) {
+        if (totalList == null || validList == null || validIndex == null) {
             return;
         }
 
@@ -109,20 +111,24 @@ public class MainActivityViewModel extends ViewModel
     }
 
     private void setLocation(GeoActivity activity,
-                             List<Location> totalList, List<Location> validList, int validIndex,
-                             LocationResource.Source source, @Nullable LocationResource resource) {
-        this.totalList = totalList;
-        this.validList = validList;
+                             @NonNull List<Location> newTotalList,
+                             @NonNull List<Location> newValidList,
+                             int newValidIndex,
+                             LocationResource.Source source,
+                             @Nullable LocationResource resource) {
+        totalList = newTotalList;
+        validList = newValidList;
 
-        this.validIndex = validIndex;
-        this.validIndex = Math.max(this.validIndex, 0);
-        this.validIndex = Math.min(this.validIndex, validList.size() - 1);
+        validIndex = newValidIndex;
+        validIndex = Math.max(validIndex, 0);
+        validIndex = Math.min(validIndex, newValidList.size() - 1);
 
-        Location current = this.validList.get(this.validIndex);
-        Indicator i = new Indicator(this.validList.size(), this.validIndex);
+        Location current = validList.get(validIndex);
+        Indicator i = new Indicator(validList.size(), validIndex);
 
-        boolean defaultLocation = this.validIndex == 0;
+        boolean defaultLocation = validIndex == 0;
         if (resource == null && MainModuleUtils.needUpdate(activity, current)) {
+            currentLocation.setValue(LocationResource.loading(current, defaultLocation, source));
             updateWeather(activity, false);
         } else if (resource == null) {
             repository.cancel();
@@ -134,7 +140,8 @@ public class MainActivityViewModel extends ViewModel
     }
 
     public void updateLocationFromBackground(GeoActivity activity, @Nullable String formattedId) {
-        if (TextUtils.isEmpty(formattedId) || validList.size() == 0) {
+        if (TextUtils.isEmpty(formattedId)
+                || totalList == null || validList == null || validIndex == null) {
             return;
         }
 
@@ -151,8 +158,7 @@ public class MainActivityViewModel extends ViewModel
 
             List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
 
-            int validIndex = indexLocation(
-                    validList, this.validList.get(this.validIndex).getFormattedId());
+            int validIndex = indexLocation(validList, getCurrentFormattedId());
 
             setLocation(activity, totalList, validList, validIndex,
                     LocationResource.Source.BACKGROUND, null);
@@ -175,7 +181,7 @@ public class MainActivityViewModel extends ViewModel
 
     @Nullable
     public Location getLocationFromList(int offset) {
-        if (validList.size() == 0) {
+        if (totalList == null || validList == null || validIndex == null) {
             return null;
         }
         return validList.get((validIndex + offset + validList.size()) % validList.size());
@@ -287,17 +293,23 @@ public class MainActivityViewModel extends ViewModel
     }
 
     @Nullable
-    public String getCurrentLocationFormattedId() {
+    public String getCurrentFormattedId() {
         Location location = getCurrentLocationValue();
         if (location != null) {
             return location.getFormattedId();
+        } else if (validList != null && validIndex != null) {
+            return validList.get(validIndex).getFormattedId();
         } else {
             return null;
         }
     }
 
-    public List<Location> getLocationList() {
-        return validList;
+    public @NonNull List<Location> getLocationList() {
+        if (validList != null) {
+            return Collections.unmodifiableList(validList);
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     public boolean isNewInstance() {
@@ -335,7 +347,7 @@ public class MainActivityViewModel extends ViewModel
 
     private void callback(GeoActivity activity, Location location,
                           boolean locateFailed, boolean succeed, boolean done) {
-        if (validList.size() == 0) {
+        if (totalList == null || validList == null || validIndex == null) {
             return;
         }
 
@@ -349,8 +361,7 @@ public class MainActivityViewModel extends ViewModel
 
         List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
 
-        int validIndex = indexLocation(
-                validList, this.validList.get(this.validIndex).getFormattedId());
+        int validIndex = indexLocation(validList, getCurrentFormattedId());
 
         boolean defaultLocation = location.equals(validList.get(0));
         LocationResource resource;

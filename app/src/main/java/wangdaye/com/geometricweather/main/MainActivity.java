@@ -119,7 +119,7 @@ public class MainActivity extends GeoActivity
                 getSnackbarContainer().postDelayed(() -> {
                     if (isForeground()
                             && formattedId != null
-                            && formattedId.equals(viewModel.getCurrentLocationFormattedId())) {
+                            && formattedId.equals(viewModel.getCurrentFormattedId())) {
                         SnackbarUtils.showSnackbar(
                                 MainActivity.this, getString(R.string.feedback_updated_in_background));
                     }
@@ -204,7 +204,7 @@ public class MainActivity extends GeoActivity
                 if (resultCode == RESULT_OK) {
                     String formattedId = getLocationId(data);
                     if (TextUtils.isEmpty(formattedId)) {
-                        formattedId = viewModel.getCurrentLocationFormattedId();
+                        formattedId = viewModel.getCurrentFormattedId();
                     }
                     viewModel.init(this, formattedId);
                 }
@@ -225,7 +225,7 @@ public class MainActivity extends GeoActivity
 
             case SELECT_PROVIDER_ACTIVITY:
                 if (manageFragment != null) {
-                    manageFragment.resetLocationList(viewModel.getCurrentLocationFormattedId());
+                    manageFragment.resetLocationList(viewModel.getCurrentFormattedId());
                 }
                 break;
         }
@@ -296,7 +296,7 @@ public class MainActivity extends GeoActivity
 
                 @Override
                 public void onLocationListChanged() {
-                    viewModel.init(MainActivity.this, viewModel.getCurrentLocationFormattedId());
+                    viewModel.init(MainActivity.this, viewModel.getCurrentFormattedId());
                 }
             });
         }
@@ -601,11 +601,11 @@ public class MainActivity extends GeoActivity
                 }
             }
         } else if (action.equals(ACTION_SHOW_DAILY_FORECAST)) {
-            String formattedId = viewModel.getCurrentLocationFormattedId();
+            String formattedId = viewModel.getCurrentFormattedId();
             Integer index = (Integer) extraMap.get(KEY_DAILY_INDEX);
             if (formattedId != null && index != null) {
                 IntentHelper.startDailyWeatherActivity(
-                        this, viewModel.getCurrentLocationFormattedId(), index);
+                        this, viewModel.getCurrentFormattedId(), index);
             }
         }
     }

@@ -36,6 +36,7 @@ import wangdaye.com.geometricweather.db.entity.HistoryEntity;
 import wangdaye.com.geometricweather.db.entity.LocationEntity;
 import wangdaye.com.geometricweather.db.entity.WeatherEntity;
 import wangdaye.com.geometricweather.utils.FileUtils;
+import wangdaye.com.geometricweather.utils.LogUtils;
 
 /**
  * Database helper
@@ -132,7 +133,10 @@ public class DatabaseHelper {
 
     @NonNull
     public List<Location> readLocationList() {
+        long t1 = System.currentTimeMillis();
         List<LocationEntity> entityList = locationEntityController.selectLocationEntityList(session);
+        long t2 = System.currentTimeMillis();
+        LogUtils.log(" " + (t2 - t1));
 
         if (entityList.size() == 0) {
             synchronized (writingLock) {
