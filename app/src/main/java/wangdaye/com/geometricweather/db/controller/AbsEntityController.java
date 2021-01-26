@@ -7,9 +7,9 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.db.entity.DaoSession;
 
-public abstract class AbsEntityController<E> {
+public abstract class AbsEntityController {
 
-    protected List<E> getNonNullList(@Nullable List<E> list) {
+    protected static <E> List<E> getNonNullList(@Nullable List<E> list) {
         return list == null ? new ArrayList<>() : list;
     }
 }

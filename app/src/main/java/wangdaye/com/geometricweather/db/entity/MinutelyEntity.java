@@ -6,9 +6,8 @@ import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
-import wangdaye.com.geometricweather.db.propertyConverter.WeatherCodeConverter;
+import wangdaye.com.geometricweather.db.converter.WeatherCodeConverter;
 
 import org.greenrobot.greendao.annotation.Generated;
 

@@ -33,6 +33,10 @@ public class ManageFragmentViewModel extends ViewModel {
 
     public void init(Context context, @Nullable String selectedId) {
         repository.readLocationList(context, locationList -> {
+            if (locationList == null) {
+                return;
+            }
+
             List<Location> list = new ArrayList<>(locationList);
             listResource.setValue(
                     new SelectableLocationListResource(list, selectedId, null));
@@ -40,29 +44,30 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public void readAppendCache(Context context) {
-        List<Location> oldList = Collections.unmodifiableList(listResource.getValue().dataList);
+        List<Location> oldList = Collections.unmodifiableList(getLocationList());
         repository.readAppendLocation(context, oldList, locationList -> {
+            if (locationList == null) {
+                return;
+            }
+
             List<Location> list = new ArrayList<>(locationList);
-            String selectedId = listResource.getValue().selectedId;
             listResource.setValue(
-                    new SelectableLocationListResource(list, selectedId, null));
+                    new SelectableLocationListResource(list, getSelectedId(), null));
         });
     }
 
     public void addLocation(Context context, Location location) {
-        addLocation(context, location, listResource.getValue().dataList.size());
+        addLocation(context, location, getLocationList().size());
     }
 
     public void addLocation(Context context, Location location, int position) {
-        List<Location> list = listResource.getValue().dataList;
+        List<Location> list = getLocationList();
         list.add(position, location);
 
-        String selectedId = listResource.getValue().selectedId;
-
         listResource.setValue(
-                new SelectableLocationListResource(list, selectedId, null));
+                new SelectableLocationListResource(list, getSelectedId(), null));
 
-        if (position == listResource.getValue().dataList.size() - 1) {
+        if (position == getLocationList().size() - 1) {
             repository.writeLocation(context, location);
         } else {
             repository.writeLocationList(context, list, position);
@@ -71,7 +76,7 @@ public class ManageFragmentViewModel extends ViewModel {
 
     public void updateLocation(Context context,
                                List<Location> locationList, @Nullable String selectedId) {
-        List<Location> oldList = listResource.getValue().dataList;
+        List<Location> oldList = getLocationList();
         List<Location> newList = new ArrayList<>(locationList);
 
         boolean needReadList = false;
@@ -94,10 +99,16 @@ public class ManageFragmentViewModel extends ViewModel {
         }
 
         if (needReadList) {
-            repository.readLocationList(context, newList, list -> listResource.setValue(
-                    new SelectableLocationListResource(
-                            new ArrayList<>(list), selectedId, null)
-            ));
+            repository.readLocationList(context, newList, list -> {
+                if (list == null) {
+                    return;
+                }
+                listResource.setValue(
+                        new SelectableLocationListResource(
+                                new ArrayList<>(list), selectedId, null
+                        )
+                );
+            });
         } else {
             listResource.setValue(
                     new SelectableLocationListResource(
@@ -107,27 +118,23 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public void moveLocation(Context context, int from, int to) {
-        List<Location> list = listResource.getValue().dataList;
+        List<Location> list = getLocationList();
         list.add(to, list.remove(from));
 
-        String selectedId = listResource.getValue().selectedId;
-
         listResource.setValue(
-                new SelectableLocationListResource(list, selectedId, null));
+                new SelectableLocationListResource(list, getSelectedId(), null));
 
         repository.writeLocationList(context, list);
     }
 
     public void forceUpdateLocation(Context context, Location location, int position) {
-        List<Location> list = listResource.getValue().dataList;
+        List<Location> list = getLocationList();
         list.set(position, location);
-
-        String selectedId = listResource.getValue().selectedId;
 
         listResource.setValue(
                 new SelectableLocationListResource(
                         list,
-                        selectedId,
+                        getSelectedId(),
                         list.get(position).getFormattedId()
                 )
         );
@@ -136,12 +143,12 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public Location deleteLocation(Context context, int position) {
-        List<Location> list = listResource.getValue().dataList;
+        List<Location> list = getLocationList();
         Location location = list.remove(position);
 
         location.setWeather(DatabaseHelper.getInstance(context).readWeather(location));
 
-        String selectedId = listResource.getValue().selectedId;
+        String selectedId = getSelectedId();
         if (selectedId != null && location.getFormattedId().equals(selectedId)) {
             selectedId = list.get(0).getFormattedId();
         }
@@ -155,6 +162,21 @@ public class ManageFragmentViewModel extends ViewModel {
 
     public MutableLiveData<SelectableLocationListResource> getListResource() {
         return listResource;
+    }
+
+    private List<Location> getLocationList() {
+        if (listResource.getValue() == null) {
+            return new ArrayList<>();
+        }
+        return listResource.getValue().dataList;
+    }
+
+    public String getSelectedId() {
+        if (listResource.getValue() == null) {
+            return null;
+        } else {
+            return listResource.getValue().selectedId;
+        }
     }
 
     public boolean isNewInstance() {

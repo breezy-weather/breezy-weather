@@ -14,8 +14,8 @@ import org.greenrobot.greendao.annotation.ToMany;
 
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
 import wangdaye.com.geometricweather.basic.model.weather.WindDegree;
-import wangdaye.com.geometricweather.db.propertyConverter.WeatherCodeConverter;
-import wangdaye.com.geometricweather.db.propertyConverter.WindDegreeConverter;
+import wangdaye.com.geometricweather.db.converter.WeatherCodeConverter;
+import wangdaye.com.geometricweather.db.converter.WindDegreeConverter;
 
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;

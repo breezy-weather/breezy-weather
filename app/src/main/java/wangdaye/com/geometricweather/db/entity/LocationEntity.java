@@ -5,8 +5,8 @@ import org.greenrobot.greendao.annotation.Entity;
 
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
-import wangdaye.com.geometricweather.db.propertyConverter.TimeZoneConverter;
-import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
+import wangdaye.com.geometricweather.db.converter.TimeZoneConverter;
+import wangdaye.com.geometricweather.db.converter.WeatherSourceConverter;
 
 import org.greenrobot.greendao.annotation.Id;
 

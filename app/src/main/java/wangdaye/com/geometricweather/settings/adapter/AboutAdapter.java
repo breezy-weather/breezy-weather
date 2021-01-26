@@ -53,14 +53,15 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         modelList.add(0);
         modelList.add(activity.getString(R.string.about_app));
         modelList.addAll(AboutAppLink.buildLinkList(activity));
+        modelList.add(0);
         modelList.add(activity.getString(R.string.donate));
         modelList.addAll(AboutAppLink.buildDonateLinkList(activity));
         modelList.add(0);
         modelList.add(activity.getString(R.string.translator));
         modelList.addAll(AboutAppTranslator.buildTranslatorList());
-        modelList.add(0);
-        modelList.add(activity.getString(R.string.thanks));
-        modelList.addAll(AboutAppLibrary.buildLibraryList(activity));
+        // modelList.add(0);
+        // modelList.add(activity.getString(R.string.thanks));
+        // modelList.addAll(AboutAppLibrary.buildLibraryList(activity));
     }
 
     @NonNull

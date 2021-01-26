@@ -9,29 +9,30 @@ import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.entity.DaoSession;
 import wangdaye.com.geometricweather.db.entity.WeatherEntity;
 import wangdaye.com.geometricweather.db.entity.WeatherEntityDao;
-import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
+import wangdaye.com.geometricweather.db.converter.WeatherSourceConverter;
 
-public class WeatherEntityController extends AbsEntityController<WeatherEntity> {
+public class WeatherEntityController extends AbsEntityController {
 
     // insert.
 
-    public void insertWeatherEntity(@NonNull DaoSession session,
-                                    @NonNull WeatherEntity entity) {
+    public static void insertWeatherEntity(@NonNull DaoSession session,
+                                           @NonNull WeatherEntity entity) {
         session.getWeatherEntityDao().insert(entity);
     }
 
     // delete.
 
-    public void deleteWeather(@NonNull DaoSession session,
-                              @NonNull List<WeatherEntity> entityList) {
+    public static void deleteWeather(@NonNull DaoSession session,
+                                     @NonNull List<WeatherEntity> entityList) {
         session.getWeatherEntityDao().deleteInTx(entityList);
     }
 
     // select.
 
     @Nullable
-    public WeatherEntity selectWeatherEntity(@NonNull DaoSession session,
-                                             @NonNull String cityId, @NonNull WeatherSource source) {
+    public static WeatherEntity selectWeatherEntity(@NonNull DaoSession session,
+                                                    @NonNull String cityId,
+                                                    @NonNull WeatherSource source) {
         List<WeatherEntity> entityList = selectWeatherEntityList(session, cityId, source);
         if (entityList.size() <= 0) {
             return null;
@@ -41,8 +42,9 @@ public class WeatherEntityController extends AbsEntityController<WeatherEntity> 
     }
 
     @NonNull
-    public List<WeatherEntity> selectWeatherEntityList(@NonNull DaoSession session,
-                                                        @NonNull String cityId, @NonNull WeatherSource source) {
+    public static List<WeatherEntity> selectWeatherEntityList(@NonNull DaoSession session,
+                                                              @NonNull String cityId,
+                                                              @NonNull WeatherSource source) {
         return getNonNullList(
                 session.getWeatherEntityDao().queryBuilder()
                         .where(

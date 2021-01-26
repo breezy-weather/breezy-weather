@@ -15,12 +15,12 @@ import wangdaye.com.geometricweather.db.entity.ChineseCityEntityDao;
 import wangdaye.com.geometricweather.db.entity.ChineseCityEntity;
 import wangdaye.com.geometricweather.db.entity.DaoSession;
 
-public class ChineseCityEntityController extends AbsEntityController<ChineseCityEntity> {
+public class ChineseCityEntityController extends AbsEntityController {
 
     // insert.
 
-    public void insertChineseCityEntityList(@NonNull DaoSession session,
-                                            @NonNull List<ChineseCityEntity> entityList) {
+    public static void insertChineseCityEntityList(@NonNull DaoSession session,
+                                                   @NonNull List<ChineseCityEntity> entityList) {
         if (entityList.size() != 0) {
             session.getChineseCityEntityDao().insertInTx(entityList);
         }
@@ -28,15 +28,15 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
 
     // delete.
 
-    public void deleteChineseCityEntityList(@NonNull DaoSession session) {
+    public static void deleteChineseCityEntityList(@NonNull DaoSession session) {
         session.getChineseCityEntityDao().deleteAll();
     }
 
     // select.
 
     @Nullable
-    public ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
-                                                     @NonNull String name) {
+    public static ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+                                                            @NonNull String name) {
         if (TextUtils.isEmpty(name)) {
             return null;
         }
@@ -58,10 +58,10 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
     }
 
     @Nullable
-    public ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
-                                                     @NonNull String province,
-                                                     @NonNull String city,
-                                                     @NonNull String district) {
+    public static ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+                                                            @NonNull String province,
+                                                            @NonNull String city,
+                                                            @NonNull String district) {
         ChineseCityEntityDao dao = session.getChineseCityEntityDao();
 
         List<WhereCondition> conditionList = new ArrayList<>();
@@ -115,8 +115,9 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
     }
 
     @Nullable
-    public ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
-                                                     float latitude, float longitude) {
+    public static ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+                                                            float latitude,
+                                                            float longitude) {
         List<ChineseCityEntity> entityList = getNonNullList(
                 session.getChineseCityEntityDao()
                         .queryBuilder()
@@ -141,8 +142,8 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
     }
 
     @NonNull
-    public List<ChineseCityEntity> selectChineseCityEntityList(@NonNull DaoSession session,
-                                                               @NonNull String name) {
+    public static List<ChineseCityEntity> selectChineseCityEntityList(@NonNull DaoSession session,
+                                                                      @NonNull String name) {
         if (TextUtils.isEmpty(name)) {
             return new ArrayList<>();
         }
@@ -158,7 +159,7 @@ public class ChineseCityEntityController extends AbsEntityController<ChineseCity
         return getNonNullList(builder.list());
     }
 
-    public int countChineseCityEntity(@NonNull DaoSession session) {
+    public static int countChineseCityEntity(@NonNull DaoSession session) {
         return (int) session.getChineseCityEntityDao().count();
     }
 }

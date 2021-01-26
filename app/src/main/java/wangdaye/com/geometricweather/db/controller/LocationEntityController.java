@@ -9,17 +9,17 @@ import wangdaye.com.geometricweather.db.entity.DaoSession;
 import wangdaye.com.geometricweather.db.entity.LocationEntity;
 import wangdaye.com.geometricweather.db.entity.LocationEntityDao;
 
-public class LocationEntityController extends AbsEntityController<LocationEntity> {
+public class LocationEntityController extends AbsEntityController {
 
     // insert.
 
-    public void insertLocationEntity(@NonNull DaoSession session,
-                                     @NonNull LocationEntity entity) {
+    public static void insertLocationEntity(@NonNull DaoSession session,
+                                            @NonNull LocationEntity entity) {
         session.getLocationEntityDao().insert(entity);
     }
 
-    public void insertLocationEntityList(@NonNull DaoSession session,
-                                         @NonNull List<LocationEntity> entityList) {
+    public static void insertLocationEntityList(@NonNull DaoSession session,
+                                                @NonNull List<LocationEntity> entityList) {
         if (entityList.size() != 0) {
             session.getLocationEntityDao().insertInTx(entityList);
         }
@@ -27,27 +27,27 @@ public class LocationEntityController extends AbsEntityController<LocationEntity
 
     // delete.
 
-    public void deleteLocationEntity(@NonNull DaoSession session,
-                                     @NonNull LocationEntity entity) {
+    public static void deleteLocationEntity(@NonNull DaoSession session,
+                                            @NonNull LocationEntity entity) {
         session.getLocationEntityDao().deleteByKey(entity.formattedId);
     }
 
-    public void deleteLocationEntityList(@NonNull DaoSession session) {
+    public static void deleteLocationEntityList(@NonNull DaoSession session) {
         session.getLocationEntityDao().deleteAll();
     }
 
     // update.
 
-    public void updateLocationEntity(@NonNull DaoSession session,
-                                     @NonNull LocationEntity entity) {
+    public static void updateLocationEntity(@NonNull DaoSession session,
+                                            @NonNull LocationEntity entity) {
         session.getLocationEntityDao().update(entity);
     }
 
     // select.
 
     @Nullable
-    public LocationEntity selectLocationEntity(@NonNull DaoSession session,
-                                               @NonNull String formattedId) {
+    public static LocationEntity selectLocationEntity(@NonNull DaoSession session,
+                                                      @NonNull String formattedId) {
         List<LocationEntity> entityList = session.getLocationEntityDao()
                 .queryBuilder()
                 .where(LocationEntityDao.Properties.FormattedId.eq(formattedId))
@@ -60,7 +60,7 @@ public class LocationEntityController extends AbsEntityController<LocationEntity
     }
 
     @NonNull
-    public List<LocationEntity> selectLocationEntityList(@NonNull DaoSession session) {
+    public static List<LocationEntity> selectLocationEntityList(@NonNull DaoSession session) {
         return getNonNullList(
                 session.getLocationEntityDao()
                         .queryBuilder()
@@ -68,7 +68,7 @@ public class LocationEntityController extends AbsEntityController<LocationEntity
         );
     }
 
-    public int countLocationEntity(@NonNull DaoSession session) {
+    public static int countLocationEntity(@NonNull DaoSession session) {
         return (int) session.getLocationEntityDao()
                 .queryBuilder()
                 .count();

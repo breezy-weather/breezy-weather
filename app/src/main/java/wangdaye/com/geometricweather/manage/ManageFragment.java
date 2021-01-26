@@ -105,7 +105,7 @@ public class ManageFragment extends Fragment
                         resource.dataList,
                         resource.selectedId,
                         (v, formattedId) -> { // on click.
-                            String selectedId = viewModel.getListResource().getValue().selectedId;
+                            String selectedId = viewModel.getSelectedId();
                             if (selectedId != null) {
                                 adapter.update(selectedId);
                                 setThemeStyle();
@@ -187,7 +187,7 @@ public class ManageFragment extends Fragment
     }
 
     public void readAppendLocation() {
-        viewModel.readAppendCache((GeoActivity) requireActivity());
+        viewModel.readAppendCache(requireActivity());
         SnackbarUtils.showSnackbar(
                 (GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
     }

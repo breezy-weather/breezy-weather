@@ -15,20 +15,20 @@ import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.entity.DaoSession;
 import wangdaye.com.geometricweather.db.entity.HistoryEntity;
 import wangdaye.com.geometricweather.db.entity.HistoryEntityDao;
-import wangdaye.com.geometricweather.db.propertyConverter.WeatherSourceConverter;
+import wangdaye.com.geometricweather.db.converter.WeatherSourceConverter;
 
-public class HistoryEntityController extends AbsEntityController<HistoryEntity> {
+public class HistoryEntityController extends AbsEntityController {
 
     // insert.
 
-    public void insertHistoryEntity(@NonNull DaoSession session, @NonNull HistoryEntity entity) {
+    public static void insertHistoryEntity(@NonNull DaoSession session, @NonNull HistoryEntity entity) {
         session.getHistoryEntityDao().insert(entity);
     }
 
     // delete.
 
-    public void deleteLocationHistoryEntity(@NonNull DaoSession session,
-                                            @NonNull List<HistoryEntity> entityList) {
+    public static void deleteLocationHistoryEntity(@NonNull DaoSession session,
+                                                   @NonNull List<HistoryEntity> entityList) {
         session.getHistoryEntityDao().deleteInTx(entityList);
     }
 
@@ -36,9 +36,10 @@ public class HistoryEntityController extends AbsEntityController<HistoryEntity> 
 
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    public HistoryEntity selectYesterdayHistoryEntity(@NonNull DaoSession session,
-                                                      @NonNull String cityId, @NonNull WeatherSource source,
-                                                      @NonNull Date currentDate) {
+    public static HistoryEntity selectYesterdayHistoryEntity(@NonNull DaoSession session,
+                                                             @NonNull String cityId,
+                                                             @NonNull WeatherSource source,
+                                                             @NonNull Date currentDate) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date today = format.parse(format.format(currentDate));
@@ -75,9 +76,10 @@ public class HistoryEntityController extends AbsEntityController<HistoryEntity> 
 
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    private HistoryEntity selectTodayHistoryEntity(@NonNull DaoSession session,
-                                                   @NonNull String cityId, @NonNull WeatherSource source,
-                                                   @NonNull Date currentDate) {
+    private static HistoryEntity selectTodayHistoryEntity(@NonNull DaoSession session,
+                                                          @NonNull String cityId,
+                                                          @NonNull WeatherSource source,
+                                                          @NonNull Date currentDate) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date today = format.parse(format.format(currentDate));
@@ -112,8 +114,9 @@ public class HistoryEntityController extends AbsEntityController<HistoryEntity> 
     }
 
     @NonNull
-    public List<HistoryEntity> selectHistoryEntityList(@NonNull DaoSession session,
-                                                       @NonNull String cityId, @NonNull WeatherSource source) {
+    public static List<HistoryEntity> selectHistoryEntityList(@NonNull DaoSession session,
+                                                              @NonNull String cityId,
+                                                              @NonNull WeatherSource source) {
         return getNonNullList(
                 session.getHistoryEntityDao()
                         .queryBuilder()
