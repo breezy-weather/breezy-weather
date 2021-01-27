@@ -34,23 +34,27 @@ public class ManageActivity extends GeoActivity {
 
         manageFragment = (ManageFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_manage);
-        manageFragment.setDrawerMode(false);
-        manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
-        manageFragment.setOnLocationListChangedListener(new ManageFragment.LocationManageCallback() {
-            @Override
-            public void onSelectedLocation(@NonNull String formattedId) {
-                setResult(
-                        RESULT_OK,
-                        new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
-                );
-                finish();
-            }
+        if (manageFragment == null) {
+            finish();
+        } else {
+            manageFragment.setDrawerMode(false);
+            manageFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
+            manageFragment.setOnLocationListChangedListener(new ManageFragment.LocationManageCallback() {
+                @Override
+                public void onSelectedLocation(@NonNull String formattedId) {
+                    setResult(
+                            RESULT_OK,
+                            new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
+                    );
+                    finish();
+                }
 
-            @Override
-            public void onLocationListChanged() {
-                setResult(RESULT_OK);
-            }
-        });
+                @Override
+                public void onLocationListChanged() {
+                    setResult(RESULT_OK);
+                }
+            });
+        }
     }
 
     @Override

@@ -117,14 +117,16 @@ public class ManageFragmentViewModel extends ViewModel {
         }
     }
 
-    public void moveLocation(Context context, int from, int to) {
+    public void moveLocation(int from, int to) {
         List<Location> list = getLocationList();
         list.add(to, list.remove(from));
 
         listResource.setValue(
                 new SelectableLocationListResource(list, getSelectedId(), null));
+    }
 
-        repository.writeLocationList(context, list);
+    public void moveLocationFinish(Context context) {
+        repository.writeLocationList(context, getLocationList());
     }
 
     public void forceUpdateLocation(Context context, Location location, int position) {
@@ -164,7 +166,7 @@ public class ManageFragmentViewModel extends ViewModel {
         return listResource;
     }
 
-    private List<Location> getLocationList() {
+    public List<Location> getLocationList() {
         if (listResource.getValue() == null) {
             return new ArrayList<>();
         }

@@ -28,9 +28,6 @@
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.location.network" />
 
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/geometric_weather"

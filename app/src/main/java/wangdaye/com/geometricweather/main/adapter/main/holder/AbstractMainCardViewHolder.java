@@ -59,8 +59,7 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
     public void onBindView(Context context, @NonNull Location location,
                            @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        onBindView((GeoActivity) context, location, provider,
-                listAnimationEnabled, itemAnimationEnabled, false);
+        throw new RuntimeException("Deprecated method.");
     }
 
     @Override

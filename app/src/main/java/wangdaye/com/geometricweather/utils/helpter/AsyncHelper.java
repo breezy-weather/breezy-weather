@@ -13,20 +13,24 @@ import io.reactivex.schedulers.Schedulers;
 
 public class AsyncHelper {
 
+    private static class Data<T> {
+        final T t;
+
+        Data(T t) {
+            this.t = t;
+        }
+    }
+
     public static class Emitter<T> {
 
-        final @NonNull ObservableEmitter<T> inner;
+        final @NonNull ObservableEmitter<Data<T>> inner;
 
-        Emitter(@NonNull ObservableEmitter<T> inner) {
+        Emitter(@NonNull ObservableEmitter<Data<T>> inner) {
             this.inner = inner;
         }
 
         public void send(@Nullable T t) {
-            if (t == null) {
-                inner.onComplete();
-            } else {
-                inner.onNext(t);
-            }
+            inner.onNext(new Data<>(t));
         }
     }
 
@@ -39,11 +43,10 @@ public class AsyncHelper {
     }
 
     public static <T> void runOnIO(Task<T> task, Callback<T> callback) {
-        Observable.create((ObservableOnSubscribe<T>) emitter -> task.execute(new Emitter<>(emitter)))
+        Observable.create((ObservableOnSubscribe<Data<T>>) emitter -> task.execute(new Emitter<>(emitter)))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(callback::call)
-                .doOnComplete(() -> callback.call(null))
+                .doOnNext(data -> callback.call(data.t))
                 .subscribe();
     }
 

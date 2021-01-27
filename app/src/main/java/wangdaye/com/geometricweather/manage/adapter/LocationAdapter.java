@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
@@ -40,7 +39,6 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
 
     private @NonNull final ThemeManager themeManager;
     private @NonNull final ResourceProvider resourceProvider;
-    private @NonNull final WeatherSource defaultSource;
     private @NonNull final TemperatureUnit temperatureUnit;
 
     public LocationAdapter(Context context,
@@ -65,7 +63,6 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
 
         this.themeManager = ThemeManager.getInstance(context);
         this.resourceProvider = ResourcesProviderFactory.getNewInstance();
-        this.defaultSource = SettingsOptionManager.getInstance(context).getWeatherSource();
         this.temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
 
         update(locationList, selectedId, null);
@@ -94,7 +91,6 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
                             context,
                             model.location,
                             temperatureUnit,
-                            defaultSource,
                             themeManager.isLightTheme(),
                             model.location.getFormattedId().equals(selectedId),
                             false
@@ -114,7 +110,6 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
                             context,
                             l,
                             temperatureUnit,
-                            defaultSource,
                             themeManager.isLightTheme(),
                             l.getFormattedId().equals(selectedId),
                             l.getFormattedId().equals(forceUpdateId)

@@ -34,14 +34,14 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class DailyViewHolder extends AbstractMainCardViewHolder {
 
-    private CardView card;
+    private final CardView card;
 
-    private TextView title;
-    private TextView subtitle;
-    private RecyclerView tagView;
+    private final TextView title;
+    private final TextView subtitle;
+    private final RecyclerView tagView;
 
-    private TrendRecyclerView trendRecyclerView;
-    private DailyTrendAdapter trendAdapter;
+    private final TrendRecyclerView trendRecyclerView;
+    private final DailyTrendAdapter trendAdapter;
     private @Nullable TrendRecyclerViewScrollBar trendScrollBar;
 
     public DailyViewHolder(ViewGroup parent) {

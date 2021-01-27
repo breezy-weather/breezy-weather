@@ -29,9 +29,9 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 public class FirstCardHeaderController
         implements View.OnClickListener {
 
-    private GeoActivity activity;
-    private View view;
-    @Nullable private Weather weather;
+    private final GeoActivity activity;
+    private final View view;
+    private @Nullable Weather weather;
 
     private @Nullable LinearLayout container;
 

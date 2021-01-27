@@ -47,6 +47,9 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             for (int i = 0; i < locationList.size(); i ++) {
                 Location src = locationList.get(i);
                 if (src.isCurrentPosition()) {
+                    if (src.getWeatherSource() != null) {
+                        DatabaseHelper.getInstance(requireActivity()).deleteWeather(src);
+                    }
                     locationList.set(i, new Location(src, source));
                     break;
                 }
