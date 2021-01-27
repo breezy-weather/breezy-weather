@@ -30,6 +30,7 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.databinding.FragmentManageBinding;
 import wangdaye.com.geometricweather.manage.adapter.LocationAdapter;
 import wangdaye.com.geometricweather.manage.adapter.LocationItemTouchCallback;
+import wangdaye.com.geometricweather.manage.model.SelectableLocationListResource;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
@@ -117,6 +118,10 @@ public class ManageFragment extends Fragment
                         holder -> itemTouchHelper.startDrag(holder) // on drag.
                 );
                 binding.recyclerView.setAdapter(adapter);
+            } else if (resource.source instanceof SelectableLocationListResource.ItemMoved) {
+                SelectableLocationListResource.ItemMoved source
+                        = (SelectableLocationListResource.ItemMoved) resource.source;
+                adapter.notifyItemMoved(source.from, source.to);
             } else {
                 adapter.update(resource.dataList, resource.selectedId, resource.forceUpdateId);
             }

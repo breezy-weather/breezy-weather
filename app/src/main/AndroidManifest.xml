@@ -28,6 +28,17 @@
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.location.network" />
 
+    <queries>
+        <intent>
+            <!-- Geometric Weather Icon Packs. -->
+            <action android:name="com.wangdaye.geometricweather.ICON_PROVIDER" />
+        </intent>
+        <intent>
+            <!-- Chronus Icon Packs. -->
+            <action android:name="android.intent.action.MAIN" />
+        </intent>
+    </queries>
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/geometric_weather"

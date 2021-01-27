@@ -118,11 +118,15 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public void moveLocation(int from, int to) {
-        List<Location> list = getLocationList();
-        list.add(to, list.remove(from));
-
+        Collections.swap(getLocationList(), from, to);
         listResource.setValue(
-                new SelectableLocationListResource(list, getSelectedId(), null));
+                new SelectableLocationListResource(
+                        getLocationList(),
+                        getSelectedId(),
+                        null,
+                        new SelectableLocationListResource.ItemMoved(from, to)
+                )
+        );
     }
 
     public void moveLocationFinish(Context context) {
