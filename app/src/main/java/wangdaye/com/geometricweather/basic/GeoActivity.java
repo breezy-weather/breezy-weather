@@ -82,7 +82,6 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permission, grantResult);
         if (permissionsListener != null) {
             permissionsListener.onRequestPermissionsResult(requestCode, permission, grantResult);
-            permissionsListener = null;
         }
     }
 

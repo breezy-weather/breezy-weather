@@ -7,7 +7,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +23,14 @@ import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.adapter.SyncListAdapter;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
  * Location adapter.
  * */
 
-public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
+public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHolder>
         implements ICustomAdapter {
 
     private final Context context;
@@ -46,7 +46,7 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
                            @Nullable String selectedId,
                            @NonNull OnLocationItemClickListener clickListener,
                            @Nullable OnLocationItemDragListener dragListener) {
-        super(new DiffUtil.ItemCallback<LocationModel>() {
+        super(new ArrayList<>(), new DiffUtil.ItemCallback<LocationModel>() {
             @Override
             public boolean areItemsTheSame(@NonNull LocationModel oldItem, @NonNull LocationModel newItem) {
                 return oldItem.areItemsTheSame(newItem);
@@ -117,6 +117,15 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationHolder>
             );
         }
         submitList(modelList);
+    }
+
+    public void update(int from, int to) {
+        submitMove(from, to);
+    }
+
+    @Override
+    public void submitList(@NonNull List<LocationModel> newList) {
+        super.submitList(newList);
     }
 
     @ColorInt

@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class FitBottomSystemBarRecyclerView extends RecyclerView {
 
-    private Rect windowInsets;
+    private Rect windowInsets = new Rect(0, 0, 0, 0);
     private boolean adaptiveWidthEnabled = true;
 
     public FitBottomSystemBarRecyclerView(@NonNull Context context) {

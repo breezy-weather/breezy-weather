@@ -39,22 +39,6 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     }
 
     @Override
-    public int getMovementFlags(@NonNull RecyclerView recyclerView,
-                                @NonNull RecyclerView.ViewHolder viewHolder) {
-        if (viewModel.getLocationList().size() == 0) {
-            return makeMovementFlags(
-                    ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                    ItemTouchHelper.START
-            );
-        }
-
-        return makeMovementFlags(
-                ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                ItemTouchHelper.START | ItemTouchHelper.END
-        );
-    }
-
-    @Override
     public void onSelectedChanged(@Nullable RecyclerView.ViewHolder viewHolder, int actionState) {
         super.onSelectedChanged(viewHolder, actionState);
         switch (actionState) {
@@ -62,6 +46,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                 if (dragged) {
                     dragged = false;
                     viewModel.moveLocationFinish(activity);
+                    listener.onLocationSequenceChanged(viewModel.getLocationList());
                 }
                 break;
 
@@ -76,18 +61,17 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                           @NonNull RecyclerView.ViewHolder viewHolder,
                           @NonNull RecyclerView.ViewHolder target) {
         viewModel.moveLocation(viewHolder.getAdapterPosition(), target.getAdapterPosition());
-        listener.onLocationSequenceChanged(viewModel.getLocationList());
         return true;
     }
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
-        Location location = viewModel.getLocationList().get(position);
+        Location location = viewModel.getLocation(position);
 
         switch (direction) {
             case ItemTouchHelper.START: {
-                if (viewModel.getLocationList().get(position).isCurrentPosition()) {
+                if (viewModel.getLocation(position).isCurrentPosition()) {
                     viewModel.forceUpdateLocation(activity, location, position);
                     listener.onSelectProviderActivityStarted();
                 } else {
@@ -109,7 +93,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                 break;
             }
             case ItemTouchHelper.END:
-                if (viewModel.getLocationList().size() <= 1) {
+                if (viewModel.getLocationCount() <= 1) {
                     viewModel.forceUpdateLocation(activity, location, position);
                     SnackbarUtils.showSnackbar(
                             activity,

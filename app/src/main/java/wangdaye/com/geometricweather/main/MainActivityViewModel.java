@@ -187,7 +187,7 @@ public class MainActivityViewModel extends ViewModel
         return validList.get((validIndex + offset + validList.size()) % validList.size());
     }
 
-    public void updateWeather(GeoActivity activity, boolean swipeToRefresh) {
+    public void updateWeather(GeoActivity activity, boolean triggeredByUser) {
         if (currentLocation.getValue() == null) {
             return;
         }
@@ -204,58 +204,65 @@ public class MainActivityViewModel extends ViewModel
                 )
         );
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && location.isCurrentPosition()) {
-            // check basic location permissions.
-            List<String> permissionList = getDeniedPermissionList(activity, false);
-            if (permissionList.size() != 0) {
-                // request basic location permissions.
-                activity.requestPermissions(permissionList.toArray(new String[0]), 0,
-                        (requestCode, permission, grantResult) -> {
-                            for (int i = 0; i < permission.length && i < grantResult.length; i++) {
-                                if (isPivotalPermission(permission[i])
-                                        && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
-                                    // denied basic location permissions.
-                                    if (location.isUsable()) {
-                                        repository.getWeather(
-                                                activity, location, false, swipeToRefresh, this);
-                                    } else {
-                                        currentLocation.setValue(
-                                                LocationResource.error(
-                                                        location,
-                                                        true,
-                                                        LocationResource.Source.REFRESH
-                                                )
-                                        );
-                                    }
-                                    return;
-                                }
-                            }
-
-                            // check background location permissions.
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                List<String> backgroundPermissionList = getDeniedPermissionList(activity, true);
-                                if (backgroundPermissionList.size() != 0) {
-                                    BackgroundLocationDialog dialog = new BackgroundLocationDialog();
-                                    dialog.setOnSetButtonClickListener(() ->
-                                            activity.requestPermissions(
-                                                    backgroundPermissionList.toArray(new String[0]),
-                                                    0,
-                                                    null
-                                            )
-                                    );
-                                    dialog.show(activity.getSupportFragmentManager(), null);
-                                }
-                            }
-
-                            repository.getWeather(
-                                    activity, location, true, swipeToRefresh, this);
-                        });
-                return;
-            }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !location.isCurrentPosition()) {
+            // don't need to request any permission -> request data directly.
+            repository.getWeather(
+                    activity, location, location.isCurrentPosition(), triggeredByUser, this);
+            return;
         }
 
-        repository.getWeather(
-                activity, location, location.isCurrentPosition(), swipeToRefresh, this);
+        // check basic location permissions.
+        List<String> permissionList = getDeniedPermissionList(activity, false);
+        if (permissionList.size() == 0) {
+            // already got all permissions -> request data directly.
+            repository.getWeather(
+                    activity, location, true, triggeredByUser, this);
+            return;
+        }
+
+        // need request permissions -> request basic location permissions.
+        String[] permissions = permissionList.toArray(new String[0]);
+        activity.requestPermissions(permissions, 0, (requestCode, permission, grantResult) -> {
+
+            for (int i = 0; i < permission.length && i < grantResult.length; i++) {
+                if (isPivotalPermission(permission[i])
+                        && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
+                    // denied basic location permissions.
+                    if (location.isUsable()) {
+                        repository.getWeather(
+                                activity, location, false, triggeredByUser, this);
+                    } else {
+                        currentLocation.setValue(
+                                LocationResource.error(
+                                        location,
+                                        true,
+                                        LocationResource.Source.REFRESH
+                                )
+                        );
+                    }
+                    return;
+                }
+            }
+
+            // check background location permissions.
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                List<String> backgroundPermissionList = getDeniedPermissionList(activity, true);
+                if (backgroundPermissionList.size() != 0) {
+                    BackgroundLocationDialog dialog = new BackgroundLocationDialog();
+                    dialog.setOnSetButtonClickListener(() ->
+                            activity.requestPermissions(
+                                    backgroundPermissionList.toArray(new String[0]),
+                                    0,
+                                    null
+                            )
+                    );
+                    dialog.show(activity.getSupportFragmentManager(), null);
+                }
+            }
+
+            repository.getWeather(
+                    activity, location, true, triggeredByUser, this);
+        });
     }
 
     private List<String> getDeniedPermissionList(Context context, boolean background) {

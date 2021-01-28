@@ -100,6 +100,7 @@ public class ManageFragment extends Fragment
                 insets, false, true, drawerMode, false).setPaddingRelative(v));
 
         viewModel.getListResource().observe(getViewLifecycleOwner(), resource -> {
+
             if (adapter == null) {
                 adapter = new LocationAdapter(
                         requireActivity(),
@@ -121,7 +122,7 @@ public class ManageFragment extends Fragment
             } else if (resource.source instanceof SelectableLocationListResource.ItemMoved) {
                 SelectableLocationListResource.ItemMoved source
                         = (SelectableLocationListResource.ItemMoved) resource.source;
-                adapter.notifyItemMoved(source.from, source.to);
+                adapter.update(source.from, source.to);
             } else {
                 adapter.update(resource.dataList, resource.selectedId, resource.forceUpdateId);
             }

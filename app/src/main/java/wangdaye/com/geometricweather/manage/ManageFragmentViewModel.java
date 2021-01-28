@@ -44,7 +44,7 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public void readAppendCache(Context context) {
-        List<Location> oldList = Collections.unmodifiableList(getLocationList());
+        List<Location> oldList = getLocationList();
         repository.readAppendLocation(context, oldList, locationList -> {
             if (locationList == null) {
                 return;
@@ -57,20 +57,20 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public void addLocation(Context context, Location location) {
-        addLocation(context, location, getLocationList().size());
+        addLocation(context, location, getLocationCount());
     }
 
     public void addLocation(Context context, Location location, int position) {
-        List<Location> list = getLocationList();
+        List<Location> list = innerGetLocationList();
         list.add(position, location);
 
         listResource.setValue(
                 new SelectableLocationListResource(list, getSelectedId(), null));
 
-        if (position == getLocationList().size() - 1) {
+        if (position == getLocationCount() - 1) {
             repository.writeLocation(context, location);
         } else {
-            repository.writeLocationList(context, list, position);
+            repository.writeLocationList(context, Collections.unmodifiableList(list), position);
         }
     }
 
@@ -118,10 +118,11 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public void moveLocation(int from, int to) {
-        Collections.swap(getLocationList(), from, to);
+        List<Location> list = innerGetLocationList();
+        Collections.swap(list, from, to);
         listResource.setValue(
                 new SelectableLocationListResource(
-                        getLocationList(),
+                        list,
                         getSelectedId(),
                         null,
                         new SelectableLocationListResource.ItemMoved(from, to)
@@ -134,7 +135,7 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public void forceUpdateLocation(Context context, Location location, int position) {
-        List<Location> list = getLocationList();
+        List<Location> list = innerGetLocationList();
         list.set(position, location);
 
         listResource.setValue(
@@ -149,7 +150,7 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public Location deleteLocation(Context context, int position) {
-        List<Location> list = getLocationList();
+        List<Location> list = innerGetLocationList();
         Location location = list.remove(position);
 
         location.setWeather(DatabaseHelper.getInstance(context).readWeather(location));
@@ -166,15 +167,27 @@ public class ManageFragmentViewModel extends ViewModel {
         return location;
     }
 
+    private List<Location> innerGetLocationList() {
+        if (listResource.getValue() == null) {
+            return new ArrayList<>();
+        }
+        return listResource.getValue().dataList;
+    }
+
     public MutableLiveData<SelectableLocationListResource> getListResource() {
         return listResource;
     }
 
     public List<Location> getLocationList() {
-        if (listResource.getValue() == null) {
-            return new ArrayList<>();
-        }
-        return listResource.getValue().dataList;
+        return Collections.unmodifiableList(innerGetLocationList());
+    }
+
+    public Location getLocation(int position) {
+        return innerGetLocationList().get(position);
+    }
+
+    public int getLocationCount() {
+        return innerGetLocationList().size();
     }
 
     public String getSelectedId() {

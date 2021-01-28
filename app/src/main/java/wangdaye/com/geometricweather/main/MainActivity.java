@@ -390,7 +390,7 @@ public class MainActivity extends GeoActivity
 
     // control.
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     private void drawUI(Location location, boolean defaultLocation, LocationResource.Source source) {
         if (location.equals(currentLocationFormattedId)
                 && location.getWeatherSource() == currentWeatherSource
@@ -411,7 +411,18 @@ public class MainActivity extends GeoActivity
 
         if (location.getWeather() == null) {
             resetUI(location);
+
+            binding.recyclerView.setOnTouchListener((v, event) -> {
+                if (event.getAction() == MotionEvent.ACTION_DOWN
+                        && !binding.refreshLayout.isRefreshing()) {
+                    viewModel.updateWeather(this, true);
+                }
+                return false;
+            });
+
             return;
+        } else {
+            binding.recyclerView.setOnTouchListener(null);
         }
 
         if (needToResetUI) {

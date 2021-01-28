@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "wangdaye.com.geometricweather",
+  "variantName": "processDebugResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 27003,
+      "versionName": "2.703",
+      "outputFile": "GeometricWeather 2.703.apk"
+    }
+  ]
+}

@@ -18,7 +18,7 @@ import java.util.List;
 
 public class FitBottomSystemBarViewPager extends ViewPager {
 
-    private Rect windowInsets;
+    private Rect windowInsets = new Rect(0, 0, 0, 0);
 
     public static class FitBottomSystemBarPagerAdapter extends PagerAdapter {
 

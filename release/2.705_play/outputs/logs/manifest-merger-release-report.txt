@@ -1,0 +1,1152 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+MERGED from [androidx.databinding:viewbinding:4.1.2] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0d722eb07064ae5f384fae6a76444a81\jetified-viewbinding-4.1.2\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.turing-tech:MaterialScrollBar:13.3.2] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\63388fb9aadf04b18cbe6060efe323e4\jetified-MaterialScrollBar-13.3.2\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.material:material:1.3.0-alpha03] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e62c41a6cf096f82b97e8aae7168f302\material-1.3.0-alpha03\AndroidManifest.xml:17:1-24:12
+MERGED from [com.jaredrummler:colorpicker:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4c4e866b72590babe6658970031f438a\jetified-colorpicker-1.1.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.preference:preference:1.1.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28b4ce958cb1df5b3c5f9f782cae07e8\preference-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.xw.repo:bubbleseekbar:3.20-lite] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a53e7d9c63b72cd3ec4d7e56192dee19\jetified-bubbleseekbar-3.20-lite\AndroidManifest.xml:2:1-13:12
+MERGED from [me.jfenn:AdaptiveIconView:0.0.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5a6c1bab9fb050407fe279b1a1953d8e\jetified-AdaptiveIconView-0.0.1\AndroidManifest.xml:2:1-12:12
+MERGED from [com.github.didikee:AndroidDonate:0.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54c518d30a8815a3cb5485f80d95ac1a\jetified-AndroidDonate-0.1.0\AndroidManifest.xml:2:1-17:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\99b678bde5f3bda19424a53d0bd841d8\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9892df923b1360176da4e51ebb8d1da9\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\17d61f73df6e63f587c262e83e8a4207\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\f3536b3708a15a91dca847fbf8825f66\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:17:1-143:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0af7d4ef720aa62f1bf3d51dc04417d3\lifecycle-extensions-2.2.0\AndroidManifest.xml:17:1-27:12
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d629d61a929be1bb53a8053e26dfeb3e\jetified-okhttp3-integration-4.11.0\AndroidManifest.xml:2:1-16:12
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b6a63f7cf4f276f36c44b750897ba489\jetified-glide-4.11.0\AndroidManifest.xml:2:1-12:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\33ca10bc4cc92d3a881e951486632f84\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\35d0c55e93db421071cd79b1ba1c4ca9\jetified-play-services-location-17.1.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\6d989a938801bb85e6e28367d8115725\jetified-play-services-places-placereport-17.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e010cfff24ae143bc5a2277e1279b99e\jetified-play-services-tasks-17.1.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d7e22db838493bede041d924a55c0ff8\jetified-play-services-basement-17.3.0\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0ca316cfbca56ae01ac53807d661fe9c\fragment-1.2.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\3d5b33ab48a1a971c150a2aebb40bb2d\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\48818b3736ad77aadc2d446480e9748e\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5f1deb9b4eb0ffebc4d9aec1eb091285\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\c998b96582b5da414a681c47eb85b8fc\jetified-activity-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0a972ba52e04d7b0ab5cdd13cdb47f83\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\216e11f70d2e04935dc7edc81bbc1e33\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-reactivestreams:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\39a1dc7a43eacd92b46e357adc50e0c0\lifecycle-reactivestreams-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\59b8e65112ee0fc53097d2a4def55160\lifecycle-livedata-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\60579da555a6d9567baa49fb9ecb6ec6\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:17:1-32:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a776ababcd67475c0ab365a730d7e6ab\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28953d6c1ed797f01256c13636ecc482\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\fa07aab26845a8f8d38f00b4cefa88aa\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\335ffcb2d58248ab79355b48ba65426d\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\2ff202ab2e20bee1db28a39da6f8a38c\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\da483a5c424b75bed66aa45c777290dd\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a6583cba06ce0f1c587b088a055cf7ae\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\fb50dbd83ff9830ab13e78c2b54c0be5\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9da0a87ec0b484e83a56ba8dcf7dac6c\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.3.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\55a4c36e3d4a9cf6e01d0c3eac828386\core-1.3.1\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28d730fbc9a0cf7f99a06a0c740fab8d\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4a658a990d8806127a63a2dd3656b651\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\20e68b212f4468763da35765e881b402\jetified-GreenDaoUpgradeHelper-v2.2.1\AndroidManifest.xml:2:1-16:12
+MERGED from [org.cyanogenmod:platform.sdk:5.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\f4c0a1e9620bb963a4037bffc28e2266\jetified-platform.sdk-5.0\AndroidManifest.xml:19:1-22:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\db07a7eab0e74b2b1137a545728a2cf0\jetified-rxandroid-2.1.1\AndroidManifest.xml:15:1-20:12
+MERGED from [com.github.nekocode.rxlifecycle:rxlifecycle:2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e46ff745c6501b88e6fd808972382746\jetified-rxlifecycle-2.0\AndroidManifest.xml:2:1-12:12
+MERGED from [com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\8b90293fbc354d028ba8e20321c9f2f3\jetified-rxlifecycle-compact-2.0\AndroidManifest.xml:2:1-12:12
+MERGED from [com.github.rahatarmanahmed:circularprogressview:2.5.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\1b2acbb628df4414b51bf10b11b92c72\jetified-circularprogressview-2.5.0\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\aa622b857a694bda6b975eef59168c52\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a9b22ba7e1b10546ca91286ff1ba604b\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\61ae4848ced7fe2897a739df5dc9f5c3\sqlite-framework-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\99b10fad6f7860bdc02c1af3bab96c25\sqlite-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\8d62eca97046053e7b1a0d978e71565b\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9b4e4f651483e0806b0d8799ca790134\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e1f189a805070c1a0c22a2fc727407f3\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\2a3b2b2ff523c264db395f14105a98ff\jetified-gifdecoder-4.11.0\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\747934d78f1b2abcf849af2973142f67\exifinterface-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b3745ed2630421c5fde6c9b7b8604720\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\451243bedd7c6b2c39424331f6e58ba5\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5ed28e807f974994bf59e686f42ce55d\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4a1166dc1ac5ae9d0a6de3af277af634\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\7fd6953f670a0c60623f99e8044472e0\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+	package
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:4:5-44
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:1-478:12
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:6:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:7:22-78
+uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:8:5-85
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:8:22-82
+uses-permission#android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:10:5-95
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:10:22-92
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:12:5-79
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:26:5-79
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:26:5-79
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:12:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:13:5-76
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:13:22-73
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:14:5-76
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:14:22-73
+uses-permission#android.permission.INTERNET
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:15:5-67
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:15:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:17:5-110
+	tools:ignore
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:17:79-107
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:17:22-78
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:18:5-120
+	tools:ignore
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:18:82-117
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:18:22-81
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:20:5-81
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:27:5-81
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:27:5-81
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:20:22-78
+uses-permission#android.permission.EXPAND_STATUS_BAR
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:21:5-76
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:21:22-73
+uses-permission#com.android.alarm.permission.SET_ALARM
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:22:5-78
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:22:22-75
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:23:5-77
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:28:5-77
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:28:5-77
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:23:22-74
+uses-permission#android.permission.INSTANT_APP_FOREGROUND_SERVICE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:24:5-125
+	tools:ignore
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:24:87-122
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:24:22-86
+uses-permission#android.permission.READ_LOGS
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:25:5-104
+	tools:ignore
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:25:66-101
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:25:22-65
+uses-feature#android.software.live_wallpaper
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:27:5-92
+	android:required
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:27:66-89
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:27:19-65
+uses-feature#android.hardware.location.gps
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:28:5-66
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:28:19-63
+uses-feature#android.hardware.location.network
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:29:5-70
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:29:19-67
+queries
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:31:5-40:15
+intent#action:name:com.wangdaye.geometricweather.ICON_PROVIDER
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:32:9-35:18
+action#com.wangdaye.geometricweather.ICON_PROVIDER
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:34:13-82
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:34:21-79
+intent#action:name:android.intent.action.MAIN
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:36:9-39:18
+action#android.intent.action.MAIN
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:38:13-65
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:38:21-62
+application
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:42:5-476:19
+MERGED from [com.google.android.material:material:1.3.0-alpha03] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e62c41a6cf096f82b97e8aae7168f302\material-1.3.0-alpha03\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.3.0-alpha03] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e62c41a6cf096f82b97e8aae7168f302\material-1.3.0-alpha03\AndroidManifest.xml:22:5-20
+MERGED from [com.xw.repo:bubbleseekbar:3.20-lite] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a53e7d9c63b72cd3ec4d7e56192dee19\jetified-bubbleseekbar-3.20-lite\AndroidManifest.xml:11:5-20
+MERGED from [com.xw.repo:bubbleseekbar:3.20-lite] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a53e7d9c63b72cd3ec4d7e56192dee19\jetified-bubbleseekbar-3.20-lite\AndroidManifest.xml:11:5-20
+MERGED from [com.github.didikee:AndroidDonate:0.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54c518d30a8815a3cb5485f80d95ac1a\jetified-AndroidDonate-0.1.0\AndroidManifest.xml:11:5-15:19
+MERGED from [com.github.didikee:AndroidDonate:0.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54c518d30a8815a3cb5485f80d95ac1a\jetified-AndroidDonate-0.1.0\AndroidManifest.xml:11:5-15:19
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\99b678bde5f3bda19424a53d0bd841d8\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\99b678bde5f3bda19424a53d0bd841d8\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:30:5-141:19
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:30:5-141:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0af7d4ef720aa62f1bf3d51dc04417d3\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0af7d4ef720aa62f1bf3d51dc04417d3\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d629d61a929be1bb53a8053e26dfeb3e\jetified-okhttp3-integration-4.11.0\AndroidManifest.xml:10:5-14:19
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d629d61a929be1bb53a8053e26dfeb3e\jetified-okhttp3-integration-4.11.0\AndroidManifest.xml:10:5-14:19
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b6a63f7cf4f276f36c44b750897ba489\jetified-glide-4.11.0\AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b6a63f7cf4f276f36c44b750897ba489\jetified-glide-4.11.0\AndroidManifest.xml:10:5-20
+MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\35d0c55e93db421071cd79b1ba1c4ca9\jetified-play-services-location-17.1.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\35d0c55e93db421071cd79b1ba1c4ca9\jetified-play-services-location-17.1.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\6d989a938801bb85e6e28367d8115725\jetified-play-services-places-placereport-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\6d989a938801bb85e6e28367d8115725\jetified-play-services-places-placereport-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e010cfff24ae143bc5a2277e1279b99e\jetified-play-services-tasks-17.1.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e010cfff24ae143bc5a2277e1279b99e\jetified-play-services-tasks-17.1.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d7e22db838493bede041d924a55c0ff8\jetified-play-services-basement-17.3.0\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d7e22db838493bede041d924a55c0ff8\jetified-play-services-basement-17.3.0\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
+MERGED from [androidx.core:core:1.3.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\55a4c36e3d4a9cf6e01d0c3eac828386\core-1.3.1\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\55a4c36e3d4a9cf6e01d0c3eac828386\core-1.3.1\AndroidManifest.xml:24:5-89
+MERGED from [io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\20e68b212f4468763da35765e881b402\jetified-GreenDaoUpgradeHelper-v2.2.1\AndroidManifest.xml:11:5-14:19
+MERGED from [io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\20e68b212f4468763da35765e881b402\jetified-GreenDaoUpgradeHelper-v2.2.1\AndroidManifest.xml:11:5-14:19
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\2a3b2b2ff523c264db395f14105a98ff\jetified-gifdecoder-4.11.0\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\2a3b2b2ff523c264db395f14105a98ff\jetified-gifdecoder-4.11.0\AndroidManifest.xml:9:5-20
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b3745ed2630421c5fde6c9b7b8604720\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b3745ed2630421c5fde6c9b7b8604720\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+	android:requestLegacyExternalStorage
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:50:9-52
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.3.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\55a4c36e3d4a9cf6e01d0c3eac828386\core-1.3.1\AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:46:9-35
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:44:9-50
+		REJECTED from [com.github.didikee:AndroidDonate:0.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54c518d30a8815a3cb5485f80d95ac1a\jetified-AndroidDonate-0.1.0\AndroidManifest.xml:13:9-41
+	tools:ignore
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:51:9-104
+	android:allowBackup
+		ADDED from [com.github.didikee:AndroidDonate:0.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54c518d30a8815a3cb5485f80d95ac1a\jetified-AndroidDonate-0.1.0\AndroidManifest.xml:12:9-35
+	tools:targetApi
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:53:9-28
+	android:largeHeap
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:47:9-33
+	android:icon
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:43:9-43
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:48:9-53
+	android:networkSecurityConfig
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:49:9-69
+	tools:replace
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:52:9-38
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:45:9-41
+meta-data#com.wangdaye.geometricweather.PROVIDER_CONFIG
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:55:9-57:60
+	android:resource
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:57:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:56:13-73
+meta-data#com.wangdaye.geometricweather.DRAWABLE_FILTER
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:58:9-60:69
+	android:resource
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:60:13-66
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:59:13-73
+meta-data#com.wangdaye.geometricweather.ANIMATOR_FILTER
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:61:9-63:69
+	android:resource
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:63:13-66
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:62:13-73
+meta-data#com.wangdaye.geometricweather.SHORTCUT_FILTER
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:64:9-66:69
+	android:resource
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:66:13-66
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:65:13-73
+meta-data#com.wangdaye.geometricweather.SUN_MOON_FILTER
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:67:9-69:69
+	android:resource
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:69:13-66
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:68:13-73
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:71:9-73:56
+	android:value
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:73:13-53
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:72:13-52
+service#com.baidu.location.f
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:74:9-78:76
+	android:process
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:77:13-38
+	android:enabled
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:76:13-35
+	android:networkSecurityConfig
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:78:13-73
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:75:13-48
+meta-data#com.amap.api.v2.apikey
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:80:9-82:64
+	android:value
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:82:13-61
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:81:13-50
+service#com.amap.api.location.APSService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:83:9-85:76
+	android:networkSecurityConfig
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:85:13-73
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:84:13-60
+activity#wangdaye.com.geometricweather.main.MainActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:87:9-104:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:91:13-45
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:89:13-45
+	android:configChanges
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:92:13-43
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:90:13-62
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:88:13-46
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:93:13-96:29
+category#android.intent.category.LAUNCHER
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:95:17-77
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:95:27-74
+intent-filter#action:name:com.wangdaye.geometricweather.Main+action:name:com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS+action:name:com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST+category:name:android.intent.category.DEFAULT
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:97:13-103:29
+action#com.wangdaye.geometricweather.Main
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:99:17-77
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:99:25-74
+action#com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:100:17-90
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:100:25-87
+action#com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:101:17-98
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:101:25-95
+category#android.intent.category.DEFAULT
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:102:17-76
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:102:27-73
+activity#wangdaye.com.geometricweather.daily.DailyWeatherActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:106:9-109:60
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:108:13-51
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:109:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:107:13-55
+activity#wangdaye.com.geometricweather.ui.activity.AlertActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:111:9-114:60
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:113:13-49
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:114:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:112:13-54
+activity#wangdaye.com.geometricweather.ui.activity.AllergenActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:116:9-119:60
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:118:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:119:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:117:13-57
+activity#wangdaye.com.geometricweather.manage.activity.ManageActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:121:9-124:60
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:123:13-50
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:124:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:122:13-59
+activity#wangdaye.com.geometricweather.manage.activity.SearchActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:126:9-128:67
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:127:13-50
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:128:13-64
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:126:19-65
+activity#wangdaye.com.geometricweather.settings.activity.SettingsActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:130:9-134:48
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:134:13-45
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:132:13-52
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:133:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:131:13-63
+activity#wangdaye.com.geometricweather.settings.activity.CardDisplayManageActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:136:9-140:48
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:140:13-45
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:138:13-64
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:139:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:137:13-72
+activity#wangdaye.com.geometricweather.settings.activity.DailyTrendDisplayManageActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:142:9-146:48
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:146:13-45
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:144:13-71
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:145:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:143:13-78
+activity#wangdaye.com.geometricweather.settings.activity.SelectProviderActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:148:9-152:48
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:152:13-45
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:150:13-68
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:151:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:149:13-69
+activity#wangdaye.com.geometricweather.settings.activity.PreviewIconActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:154:9-157:60
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:156:13-51
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:157:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:155:13-66
+activity#wangdaye.com.geometricweather.settings.activity.AboutActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:159:9-163:48
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:163:13-45
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:161:13-49
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:162:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:160:13-60
+activity#wangdaye.com.geometricweather.ui.activity.AwakeUpdateActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:165:9-172:20
+	android:launchMode
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:167:13-48
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:166:13-60
+intent-filter#action:name:com.wangdaye.geometricweather.UPDATE+category:name:android.intent.category.DEFAULT
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:168:13-171:29
+action#com.wangdaye.geometricweather.UPDATE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:169:17-79
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:169:25-76
+activity#wangdaye.com.geometricweather.wallpaper.LiveWallpaperConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:174:9-179:39
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:178:13-45
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:176:13-66
+	android:exported
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:179:13-36
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:177:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:175:13-66
+activity#wangdaye.com.geometricweather.remoteviews.config.DayWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:183:9-190:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:186:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:185:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:184:13-71
+intent-filter#action:name:andorid.appwidget.action.APPWIDGET_CONFIGURE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:187:13-189:29
+action#andorid.appwidget.action.APPWIDGET_CONFIGURE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:188:17-87
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:188:25-84
+activity#wangdaye.com.geometricweather.remoteviews.config.WeekWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:192:9-199:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:195:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:194:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:193:13-72
+activity#wangdaye.com.geometricweather.remoteviews.config.DayWeekWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:201:9-208:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:204:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:203:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:202:13-75
+activity#wangdaye.com.geometricweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:210:9-217:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:213:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:212:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:211:13-86
+activity#wangdaye.com.geometricweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:219:9-226:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:222:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:221:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:220:13-83
+activity#wangdaye.com.geometricweather.remoteviews.config.ClockDayVerticalWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:228:9-235:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:231:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:230:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:229:13-84
+activity#wangdaye.com.geometricweather.remoteviews.config.ClockDayWeekWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:237:9-244:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:240:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:239:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:238:13-80
+activity#wangdaye.com.geometricweather.remoteviews.config.TextWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:246:9-253:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:249:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:248:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:247:13-72
+activity#wangdaye.com.geometricweather.remoteviews.config.DailyTrendWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:255:9-262:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:258:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:257:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:256:13-78
+activity#wangdaye.com.geometricweather.remoteviews.config.HourlyTrendWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:264:9-271:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:267:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:266:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:265:13-79
+activity#wangdaye.com.geometricweather.remoteviews.config.MultiCityWidgetConfigActivity
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:273:9-280:20
+	android:screenOrientation
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:276:13-45
+	android:theme
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:275:13-57
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:274:13-77
+service#wangdaye.com.geometricweather.background.polling.basic.AwakeForegroundUpdateService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:283:9-285:56
+	android:foregroundServiceType
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:285:13-53
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:284:13-82
+service#wangdaye.com.geometricweather.background.polling.permanent.observer.TimeObserverService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:287:9-289:42
+	android:process
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:289:13-39
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:288:13-86
+service#wangdaye.com.geometricweather.background.polling.permanent.observer.FakeForegroundService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:290:9-96
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:290:18-93
+service#wangdaye.com.geometricweather.background.polling.permanent.update.ForegroundNormalUpdateService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:292:9-294:56
+	android:foregroundServiceType
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:294:13-53
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:293:13-94
+service#wangdaye.com.geometricweather.background.polling.permanent.update.ForegroundTodayForecastUpdateService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:295:9-297:56
+	android:foregroundServiceType
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:297:13-53
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:296:13-101
+service#wangdaye.com.geometricweather.background.polling.permanent.update.ForegroundTomorrowForecastUpdateService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:298:9-300:56
+	android:foregroundServiceType
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:300:13-53
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:299:13-104
+service#wangdaye.com.geometricweather.background.service.TileService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:302:9-310:19
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:304:13-54
+	android:permission
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:306:13-77
+	android:icon
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:305:13-66
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:303:13-59
+intent-filter#action:name:android.service.quicksettings.action.QS_TILE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:307:13-309:29
+action#android.service.quicksettings.action.QS_TILE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:308:17-87
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:308:25-84
+service#wangdaye.com.geometricweather.background.service.CMWeatherProviderService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:312:9-321:19
+	android:permission
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:314:13-86
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:313:13-72
+intent-filter#action:name:cyanogenmod.weatherservice.WeatherProviderService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:315:13-317:29
+action#cyanogenmod.weatherservice.WeatherProviderService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:316:17-92
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:316:25-89
+meta-data#cyanogenmod.weatherservice
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:318:13-320:71
+	android:resource
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:320:17-68
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:319:17-58
+service#wangdaye.com.geometricweather.wallpaper.MaterialLiveWallpaperService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:323:9-332:19
+	android:permission
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:325:13-67
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:324:13-67
+intent-filter#action:name:android.service.wallpaper.WallpaperService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:326:13-328:29
+action#android.service.wallpaper.WallpaperService
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:327:17-85
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:327:25-82
+meta-data#android.service.wallpaper
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:329:13-331:58
+	android:resource
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:331:17-55
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:330:17-57
+receiver#wangdaye.com.geometricweather.background.receiver.MainReceiver
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:335:9-341:20
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:336:13-61
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.WALLPAPER_CHANGED
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:337:13-340:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:338:17-79
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:338:25-76
+action#android.intent.action.WALLPAPER_CHANGED
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:339:17-82
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:339:25-79
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetDayProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:344:9-354:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:346:13-47
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:345:13-73
+meta-data#android.appwidget.provider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:347:13-349:54
+	android:resource
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:349:17-51
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:348:17-58
+intent-filter#action:name:android.appwidget.action.ACTION_APPWIDGET_DISABLED+action:name:android.appwidget.action.APPWIDGET_UPDATE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:350:13-353:29
+action#android.appwidget.action.APPWIDGET_UPDATE
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:351:17-84
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:351:25-81
+action#android.appwidget.action.ACTION_APPWIDGET_DISABLED
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:352:17-93
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:352:25-90
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetWeekProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:356:9-366:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:358:13-48
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:357:13-74
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetDayWeekProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:368:9-378:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:370:13-52
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:369:13-77
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayHorizontalProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:380:9-390:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:382:13-64
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:381:13-88
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayDetailsProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:392:9-402:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:394:13-61
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:393:13-85
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayVerticalProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:404:9-414:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:406:13-62
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:405:13-86
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayWeekProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:416:9-426:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:418:13-58
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:417:13-82
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetTextProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:428:9-438:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:430:13-48
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:429:13-74
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendDailyProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:440:9-450:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:442:13-55
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:441:13-80
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendHourlyProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:452:9-462:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:454:13-56
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:453:13-81
+receiver#wangdaye.com.geometricweather.background.receiver.widget.WidgetMultiCityProvider
+ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:464:9-474:20
+	android:label
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:466:13-54
+	android:name
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:465:13-79
+uses-sdk
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+MERGED from [androidx.databinding:viewbinding:4.1.2] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0d722eb07064ae5f384fae6a76444a81\jetified-viewbinding-4.1.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:4.1.2] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0d722eb07064ae5f384fae6a76444a81\jetified-viewbinding-4.1.2\AndroidManifest.xml:20:5-44
+MERGED from [com.github.turing-tech:MaterialScrollBar:13.3.2] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\63388fb9aadf04b18cbe6060efe323e4\jetified-MaterialScrollBar-13.3.2\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.turing-tech:MaterialScrollBar:13.3.2] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\63388fb9aadf04b18cbe6060efe323e4\jetified-MaterialScrollBar-13.3.2\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.android.material:material:1.3.0-alpha03] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e62c41a6cf096f82b97e8aae7168f302\material-1.3.0-alpha03\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.3.0-alpha03] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e62c41a6cf096f82b97e8aae7168f302\material-1.3.0-alpha03\AndroidManifest.xml:20:5-44
+MERGED from [com.jaredrummler:colorpicker:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4c4e866b72590babe6658970031f438a\jetified-colorpicker-1.1.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.jaredrummler:colorpicker:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4c4e866b72590babe6658970031f438a\jetified-colorpicker-1.1.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.preference:preference:1.1.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28b4ce958cb1df5b3c5f9f782cae07e8\preference-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.preference:preference:1.1.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28b4ce958cb1df5b3c5f9f782cae07e8\preference-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.xw.repo:bubbleseekbar:3.20-lite] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a53e7d9c63b72cd3ec4d7e56192dee19\jetified-bubbleseekbar-3.20-lite\AndroidManifest.xml:7:5-9:41
+MERGED from [com.xw.repo:bubbleseekbar:3.20-lite] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a53e7d9c63b72cd3ec4d7e56192dee19\jetified-bubbleseekbar-3.20-lite\AndroidManifest.xml:7:5-9:41
+MERGED from [me.jfenn:AdaptiveIconView:0.0.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5a6c1bab9fb050407fe279b1a1953d8e\jetified-AdaptiveIconView-0.0.1\AndroidManifest.xml:8:5-10:41
+MERGED from [me.jfenn:AdaptiveIconView:0.0.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5a6c1bab9fb050407fe279b1a1953d8e\jetified-AdaptiveIconView-0.0.1\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.didikee:AndroidDonate:0.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54c518d30a8815a3cb5485f80d95ac1a\jetified-AndroidDonate-0.1.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.didikee:AndroidDonate:0.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54c518d30a8815a3cb5485f80d95ac1a\jetified-AndroidDonate-0.1.0\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\99b678bde5f3bda19424a53d0bd841d8\constraintlayout-2.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\99b678bde5f3bda19424a53d0bd841d8\constraintlayout-2.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9892df923b1360176da4e51ebb8d1da9\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9892df923b1360176da4e51ebb8d1da9\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\17d61f73df6e63f587c262e83e8a4207\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\17d61f73df6e63f587c262e83e8a4207\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\f3536b3708a15a91dca847fbf8825f66\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\f3536b3708a15a91dca847fbf8825f66\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0af7d4ef720aa62f1bf3d51dc04417d3\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0af7d4ef720aa62f1bf3d51dc04417d3\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d629d61a929be1bb53a8053e26dfeb3e\jetified-okhttp3-integration-4.11.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d629d61a929be1bb53a8053e26dfeb3e\jetified-okhttp3-integration-4.11.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b6a63f7cf4f276f36c44b750897ba489\jetified-glide-4.11.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b6a63f7cf4f276f36c44b750897ba489\jetified-glide-4.11.0\AndroidManifest.xml:6:5-8:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\33ca10bc4cc92d3a881e951486632f84\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\33ca10bc4cc92d3a881e951486632f84\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\35d0c55e93db421071cd79b1ba1c4ca9\jetified-play-services-location-17.1.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\35d0c55e93db421071cd79b1ba1c4ca9\jetified-play-services-location-17.1.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\6d989a938801bb85e6e28367d8115725\jetified-play-services-places-placereport-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\6d989a938801bb85e6e28367d8115725\jetified-play-services-places-placereport-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e010cfff24ae143bc5a2277e1279b99e\jetified-play-services-tasks-17.1.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e010cfff24ae143bc5a2277e1279b99e\jetified-play-services-tasks-17.1.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d7e22db838493bede041d924a55c0ff8\jetified-play-services-basement-17.3.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d7e22db838493bede041d924a55c0ff8\jetified-play-services-basement-17.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0ca316cfbca56ae01ac53807d661fe9c\fragment-1.2.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.4] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0ca316cfbca56ae01ac53807d661fe9c\fragment-1.2.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\3d5b33ab48a1a971c150a2aebb40bb2d\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\3d5b33ab48a1a971c150a2aebb40bb2d\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\48818b3736ad77aadc2d446480e9748e\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\48818b3736ad77aadc2d446480e9748e\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5f1deb9b4eb0ffebc4d9aec1eb091285\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5f1deb9b4eb0ffebc4d9aec1eb091285\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\c998b96582b5da414a681c47eb85b8fc\jetified-activity-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\c998b96582b5da414a681c47eb85b8fc\jetified-activity-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0a972ba52e04d7b0ab5cdd13cdb47f83\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\0a972ba52e04d7b0ab5cdd13cdb47f83\jetified-lifecycle-viewmodel-savedstate-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\216e11f70d2e04935dc7edc81bbc1e33\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\216e11f70d2e04935dc7edc81bbc1e33\lifecycle-viewmodel-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-reactivestreams:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\39a1dc7a43eacd92b46e357adc50e0c0\lifecycle-reactivestreams-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-reactivestreams:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\39a1dc7a43eacd92b46e357adc50e0c0\lifecycle-reactivestreams-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\59b8e65112ee0fc53097d2a4def55160\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\59b8e65112ee0fc53097d2a4def55160\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\60579da555a6d9567baa49fb9ecb6ec6\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\60579da555a6d9567baa49fb9ecb6ec6\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a776ababcd67475c0ab365a730d7e6ab\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a776ababcd67475c0ab365a730d7e6ab\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28953d6c1ed797f01256c13636ecc482\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28953d6c1ed797f01256c13636ecc482\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\fa07aab26845a8f8d38f00b4cefa88aa\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\fa07aab26845a8f8d38f00b4cefa88aa\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\335ffcb2d58248ab79355b48ba65426d\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\335ffcb2d58248ab79355b48ba65426d\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\2ff202ab2e20bee1db28a39da6f8a38c\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\2ff202ab2e20bee1db28a39da6f8a38c\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\da483a5c424b75bed66aa45c777290dd\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\da483a5c424b75bed66aa45c777290dd\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a6583cba06ce0f1c587b088a055cf7ae\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a6583cba06ce0f1c587b088a055cf7ae\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\fb50dbd83ff9830ab13e78c2b54c0be5\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\fb50dbd83ff9830ab13e78c2b54c0be5\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9da0a87ec0b484e83a56ba8dcf7dac6c\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9da0a87ec0b484e83a56ba8dcf7dac6c\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.3.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\55a4c36e3d4a9cf6e01d0c3eac828386\core-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\55a4c36e3d4a9cf6e01d0c3eac828386\core-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28d730fbc9a0cf7f99a06a0c740fab8d\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\28d730fbc9a0cf7f99a06a0c740fab8d\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4a658a990d8806127a63a2dd3656b651\multidex-2.0.0\AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4a658a990d8806127a63a2dd3656b651\multidex-2.0.0\AndroidManifest.xml:20:5-43
+MERGED from [io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\20e68b212f4468763da35765e881b402\jetified-GreenDaoUpgradeHelper-v2.2.1\AndroidManifest.xml:7:5-9:41
+MERGED from [io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\20e68b212f4468763da35765e881b402\jetified-GreenDaoUpgradeHelper-v2.2.1\AndroidManifest.xml:7:5-9:41
+MERGED from [org.cyanogenmod:platform.sdk:5.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\f4c0a1e9620bb963a4037bffc28e2266\jetified-platform.sdk-5.0\AndroidManifest.xml:21:5-43
+MERGED from [org.cyanogenmod:platform.sdk:5.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\f4c0a1e9620bb963a4037bffc28e2266\jetified-platform.sdk-5.0\AndroidManifest.xml:21:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\db07a7eab0e74b2b1137a545728a2cf0\jetified-rxandroid-2.1.1\AndroidManifest.xml:18:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\db07a7eab0e74b2b1137a545728a2cf0\jetified-rxandroid-2.1.1\AndroidManifest.xml:18:5-43
+MERGED from [com.github.nekocode.rxlifecycle:rxlifecycle:2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e46ff745c6501b88e6fd808972382746\jetified-rxlifecycle-2.0\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.nekocode.rxlifecycle:rxlifecycle:2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e46ff745c6501b88e6fd808972382746\jetified-rxlifecycle-2.0\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\8b90293fbc354d028ba8e20321c9f2f3\jetified-rxlifecycle-compact-2.0\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\8b90293fbc354d028ba8e20321c9f2f3\jetified-rxlifecycle-compact-2.0\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.rahatarmanahmed:circularprogressview:2.5.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\1b2acbb628df4414b51bf10b11b92c72\jetified-circularprogressview-2.5.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.rahatarmanahmed:circularprogressview:2.5.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\1b2acbb628df4414b51bf10b11b92c72\jetified-circularprogressview-2.5.0\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\aa622b857a694bda6b975eef59168c52\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\aa622b857a694bda6b975eef59168c52\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a9b22ba7e1b10546ca91286ff1ba604b\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\a9b22ba7e1b10546ca91286ff1ba604b\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\61ae4848ced7fe2897a739df5dc9f5c3\sqlite-framework-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\61ae4848ced7fe2897a739df5dc9f5c3\sqlite-framework-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\99b10fad6f7860bdc02c1af3bab96c25\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\99b10fad6f7860bdc02c1af3bab96c25\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\8d62eca97046053e7b1a0d978e71565b\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\8d62eca97046053e7b1a0d978e71565b\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9b4e4f651483e0806b0d8799ca790134\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\9b4e4f651483e0806b0d8799ca790134\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e1f189a805070c1a0c22a2fc727407f3\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\e1f189a805070c1a0c22a2fc727407f3\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\2a3b2b2ff523c264db395f14105a98ff\jetified-gifdecoder-4.11.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\2a3b2b2ff523c264db395f14105a98ff\jetified-gifdecoder-4.11.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\747934d78f1b2abcf849af2973142f67\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\747934d78f1b2abcf849af2973142f67\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b3745ed2630421c5fde6c9b7b8604720\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\b3745ed2630421c5fde6c9b7b8604720\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\451243bedd7c6b2c39424331f6e58ba5\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\451243bedd7c6b2c39424331f6e58ba5\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5ed28e807f974994bf59e686f42ce55d\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5ed28e807f974994bf59e686f42ce55d\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4a1166dc1ac5ae9d0a6de3af277af634\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\4a1166dc1ac5ae9d0a6de3af277af634\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\7fd6953f670a0c60623f99e8044472e0\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\7fd6953f670a0c60623f99e8044472e0\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+		INJECTED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:25:5-68
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:25:22-65
+provider#androidx.work.impl.WorkManagerInitializer
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:31:9-37:35
+	android:authorities
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:33:13-68
+	android:multiprocess
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:36:13-40
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:35:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:37:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:34:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:32:13-69
+service#androidx.work.impl.background.systemalarm.SystemAlarmService
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:39:9-44:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:42:13-72
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:43:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:44:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:41:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:40:13-88
+service#androidx.work.impl.background.systemjob.SystemJobService
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:45:9-51:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:48:13-70
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:49:13-36
+	android:permission
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:50:13-69
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:51:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:47:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:46:13-84
+service#androidx.work.impl.foreground.SystemForegroundService
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:52:9-57:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:55:13-77
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:56:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:57:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:54:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:53:13-81
+receiver#androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:59:9-64:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:62:13-35
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:63:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:64:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:61:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:60:13-88
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:65:9-75:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:68:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:69:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:70:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:67:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:66:13-106
+intent-filter#action:name:android.intent.action.ACTION_POWER_CONNECTED+action:name:android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:71:13-74:29
+action#android.intent.action.ACTION_POWER_CONNECTED
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:72:17-87
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:72:25-84
+action#android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:73:17-90
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:73:25-87
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:76:9-86:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:79:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:80:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:81:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:78:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:77:13-104
+intent-filter#action:name:android.intent.action.BATTERY_LOW+action:name:android.intent.action.BATTERY_OKAY
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:82:13-85:29
+action#android.intent.action.BATTERY_OKAY
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:83:17-77
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:83:25-74
+action#android.intent.action.BATTERY_LOW
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:84:17-76
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:84:25-73
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:87:9-97:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:90:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:91:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:92:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:89:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:88:13-104
+intent-filter#action:name:android.intent.action.DEVICE_STORAGE_LOW+action:name:android.intent.action.DEVICE_STORAGE_OK
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:93:13-96:29
+action#android.intent.action.DEVICE_STORAGE_LOW
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:94:17-83
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:94:25-80
+action#android.intent.action.DEVICE_STORAGE_OK
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:95:17-82
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:95:25-79
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:98:9-107:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:101:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:102:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:103:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:100:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:99:13-103
+intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:104:13-106:29
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:105:17-79
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:105:25-76
+receiver#androidx.work.impl.background.systemalarm.RescheduleReceiver
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:108:9-119:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:111:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:112:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:113:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:110:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:109:13-88
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.TIMEZONE_CHANGED+action:name:android.intent.action.TIME_SET
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:114:13-118:29
+action#android.intent.action.TIME_SET
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:116:17-73
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:116:25-70
+action#android.intent.action.TIMEZONE_CHANGED
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:117:17-81
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:117:25-78
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:120:9-129:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:123:13-72
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:124:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:125:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:122:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:121:13-99
+intent-filter#action:name:androidx.work.impl.background.systemalarm.UpdateProxies
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:126:13-128:29
+action#androidx.work.impl.background.systemalarm.UpdateProxies
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:127:17-98
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:127:25-95
+receiver#androidx.work.impl.diagnostics.DiagnosticsReceiver
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:130:9-140:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:133:13-35
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:134:13-36
+	android:permission
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:135:13-57
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:136:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:132:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:131:13-78
+intent-filter#action:name:androidx.work.diagnostics.REQUEST_DIAGNOSTICS
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:137:13-139:29
+action#androidx.work.diagnostics.REQUEST_DIAGNOSTICS
+ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:138:17-88
+	android:name
+		ADDED from [androidx.work:work-runtime:2.4.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\27f6f4c95c8e7ba2b30cacb814a40439\work-runtime-2.4.0\AndroidManifest.xml:138:25-85
+meta-data#com.bumptech.glide.integration.okhttp3.OkHttpGlideModule
+ADDED from [com.github.bumptech.glide:okhttp3-integration:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d629d61a929be1bb53a8053e26dfeb3e\jetified-okhttp3-integration-4.11.0\AndroidManifest.xml:11:9-13:43
+	android:value
+		ADDED from [com.github.bumptech.glide:okhttp3-integration:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d629d61a929be1bb53a8053e26dfeb3e\jetified-okhttp3-integration-4.11.0\AndroidManifest.xml:13:13-40
+	android:name
+		ADDED from [com.github.bumptech.glide:okhttp3-integration:4.11.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d629d61a929be1bb53a8053e26dfeb3e\jetified-okhttp3-integration-4.11.0\AndroidManifest.xml:12:13-84
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\54426eabc3f4c10ecd4c46161c3aadaf\jetified-play-services-base-17.3.0\AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d7e22db838493bede041d924a55c0ff8\jetified-play-services-basement-17.3.0\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d7e22db838493bede041d924a55c0ff8\jetified-play-services-basement-17.3.0\AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.3.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\d7e22db838493bede041d924a55c0ff8\jetified-play-services-basement-17.3.0\AndroidManifest.xml:24:13-58
+provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+	android:authorities
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+	android:multiprocess
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+	android:exported
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\df201b1d53b2e1209e54167b6675075a\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\wangy\.gradle\caches\transforms-2\files-2.1\5936a1174450ebe43f881b3f94e6a4c5\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
