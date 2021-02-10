@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
@@ -21,7 +24,10 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public abstract class GeoActivity extends AppCompatActivity {
 
-    private boolean mForeground;
+    private Set<GeoDialog> mDialogSet;
+
+    private boolean mStarted = false;
+    private boolean mForeground = false;
 
     private @Nullable OnRequestPermissionsResultListener mPermissionsListener;
 
@@ -31,6 +37,7 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         GeometricWeather.getInstance().addActivity(this);
+        mDialogSet = new HashSet<>();
 
         LanguageUtils.setLanguage(
                 this,
@@ -40,6 +47,12 @@ public abstract class GeoActivity extends AppCompatActivity {
         boolean darkMode = DisplayUtils.isDarkMode(this);
         DisplayUtils.setSystemBarStyle(this, getWindow(),
                 false, false, true, !darkMode);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mStarted = true;
     }
 
     @CallSuper
@@ -56,6 +69,12 @@ public abstract class GeoActivity extends AppCompatActivity {
         mForeground = false;
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mStarted = false;
+    }
+
     @CallSuper
     @Override
     protected void onDestroy() {
@@ -65,8 +84,41 @@ public abstract class GeoActivity extends AppCompatActivity {
 
     public abstract View getSnackbarContainer();
 
+    public View provideSnackbarContainer(boolean[] fromActivity) {
+        GeoDialog topDialog = getTopDialog();
+        if (topDialog == null) {
+            fromActivity[0] = true;
+            return getSnackbarContainer();
+        } else {
+            fromActivity[0] = false;
+            return topDialog.getSnackbarContainer();
+        }
+    }
+
+    public boolean isStarted() {
+        return mStarted;
+    }
+
     public boolean isForeground() {
         return mForeground;
+    }
+
+    public void addDialog(GeoDialog d) {
+        mDialogSet.add(d);
+    }
+
+    public void removeDialog(GeoDialog d) {
+        mDialogSet.remove(d);
+    }
+
+    @Nullable
+    private GeoDialog getTopDialog() {
+        for (GeoDialog dialog : mDialogSet) {
+            if (dialog.isForeground()) {
+                return dialog;
+            }
+        }
+        return null;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

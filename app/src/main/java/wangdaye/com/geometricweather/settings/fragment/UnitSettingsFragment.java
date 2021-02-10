@@ -5,9 +5,8 @@ import android.os.Bundle;
 import androidx.preference.ListPreference;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
 
 /**
  * Unit settings fragment.
@@ -30,8 +29,7 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
             temperature.setSummary(
                     getSettingsOptionManager().getTemperatureUnit().getAbbreviation(requireActivity())
             );
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+            SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
             return true;
         });
 
@@ -41,8 +39,7 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
         distance.setOnPreferenceChangeListener((p, newValue) -> {
             getSettingsOptionManager().setDistanceUnit(OptionMapper.getDistanceUnit((String) newValue));
             distance.setSummary(getSettingsOptionManager().getDistanceUnit().getAbbreviation(requireActivity()));
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+            SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
             return true;
         });
 
@@ -52,8 +49,7 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
         precipitation.setOnPreferenceChangeListener((p, newValue) -> {
             getSettingsOptionManager().setPrecipitationUnit(OptionMapper.getPrecipitationUnit((String) newValue));
             precipitation.setSummary(getSettingsOptionManager().getPrecipitationUnit().getAbbreviation(requireActivity()));
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+            SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
             return true;
         });
 
@@ -63,8 +59,7 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
         pressure.setOnPreferenceChangeListener((p, newValue) -> {
             getSettingsOptionManager().setPressureUnit(OptionMapper.getPressureUnit((String) newValue));
             pressure.setSummary(getSettingsOptionManager().getPressureUnit().getAbbreviation(requireActivity()));
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+            SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
             return true;
         });
 
@@ -74,8 +69,7 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
         speed.setOnPreferenceChangeListener((p, newValue) -> {
             getSettingsOptionManager().setSpeedUnit(OptionMapper.getSpeedUnit((String) newValue));
             speed.setSummary(getSettingsOptionManager().getSpeedUnit().getAbbreviation(requireActivity()));
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_refresh_ui_after_refresh));
+            SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
             return true;
         });
     }

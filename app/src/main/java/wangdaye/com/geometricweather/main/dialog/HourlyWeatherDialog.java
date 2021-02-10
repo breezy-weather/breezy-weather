@@ -11,11 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.DialogFragment;
 
 import java.text.SimpleDateFormat;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
@@ -33,7 +33,7 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
  * Hourly weather dialog.
  * */
 
-public class HourlyWeatherDialog extends DialogFragment {
+public class HourlyWeatherDialog extends GeoDialog {
 
     private AnimatableIconView mWeatherIcon;
 
@@ -122,5 +122,10 @@ public class HourlyWeatherDialog extends DialogFragment {
         mWeather = weather;
         mPosition = position;
         mWeatherColor = weatherColor;
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_weather_hourly_container);
     }
 }

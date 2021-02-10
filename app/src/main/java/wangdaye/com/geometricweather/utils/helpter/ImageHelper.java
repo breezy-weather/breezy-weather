@@ -14,8 +14,4 @@ public class ImageHelper {
                 .load(resId)
                 .into(target);
     }
-
-    public static void release(Context context, ImageView target) {
-        Glide.with(context).clear(target);
-    }
 }

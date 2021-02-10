@@ -7,13 +7,12 @@ import androidx.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.weather.Temperature;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.dialog.ProvidersPreviewerDialog;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
@@ -33,8 +32,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         uiStyle.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setUiStyle(OptionMapper.getUIStyle((String) newValue));
             preference.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(getActivity()));
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(),
+            SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_restart),
                     getString(R.string.restart),
                     v -> GeometricWeather.getInstance().recreateAllActivities()
@@ -101,8 +99,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         language.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setLanguage(OptionMapper.getLanguage((String) newValue));
             preference.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(getActivity()));
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(),
+            SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_restart),
                     getString(R.string.restart),
                     v -> GeometricWeather.getInstance().recreateAllActivities()
@@ -156,10 +153,8 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                         .putString(getString(R.string.key_icon_provider), iconProvider1)
                         .apply();
                 initIconProviderPreference();
-                SnackbarUtils.showSnackbar(
-                        (GeoActivity) requireActivity(), 
-                        getString(R.string.feedback_refresh_ui_after_refresh)
-                );
+                SnackbarHelper.showSnackbar(
+                        getString(R.string.feedback_refresh_ui_after_refresh));
             });
             dialog.show(getParentFragmentManager(), null);
             return true;

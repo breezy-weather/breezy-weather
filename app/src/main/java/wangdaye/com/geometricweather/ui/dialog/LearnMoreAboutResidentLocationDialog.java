@@ -8,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 
 /**
  * Learn more about resident location dialog.
  * */
-public class LearnMoreAboutResidentLocationDialog extends DialogFragment {
+public class LearnMoreAboutResidentLocationDialog extends GeoDialog {
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -26,5 +26,10 @@ public class LearnMoreAboutResidentLocationDialog extends DialogFragment {
                 .inflate(R.layout.dialog_resident_location, null, false);
         builder.setView(view);
         return builder.create();
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_resident_location_container);
     }
 }

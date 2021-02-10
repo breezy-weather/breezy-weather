@@ -9,12 +9,12 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.fragment.app.DialogFragment;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.utils.helpter.ImageHelper;
 
-public class WechatDonateDialog extends DialogFragment {
+public class WechatDonateDialog extends GeoDialog {
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -29,5 +29,10 @@ public class WechatDonateDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
         return builder.create();
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_donate_wechat);
     }
 }

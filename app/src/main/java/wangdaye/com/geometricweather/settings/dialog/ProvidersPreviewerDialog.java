@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,22 +22,18 @@ import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 import java.util.List;
 
-import cn.nekocode.rxlifecycle.LifecycleEvent;
-import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact;
-import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.adapter.IconProviderAdapter;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.helpter.AsyncHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
-public class ProvidersPreviewerDialog extends DialogFragment {
+public class ProvidersPreviewerDialog extends GeoDialog {
 
     private CircularProgressView mProgress;
     private RecyclerView mList;
@@ -82,18 +77,9 @@ public class ProvidersPreviewerDialog extends DialogFragment {
             }
             mList.setVisibility(View.GONE);
 
-            Observable.create((ObservableOnSubscribe<List<ResourceProvider>>) emitter ->
-                    emitter.onNext(
-                            ResourcesProviderFactory.getProviderList(
-                                    GeometricWeather.getInstance()
-                            )
-                    )
-            ).compose(RxLifecycleCompact.bind(this).disposeObservableWhen(LifecycleEvent.DESTROY))
-                    .subscribeOn(Schedulers.io())
-                    .unsubscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnNext(this::bindAdapter)
-                    .subscribe();
+            AsyncHelper.runOnIO(emitter -> emitter.send(
+                    ResourcesProviderFactory.getProviderList(GeometricWeather.getInstance())
+            ), this::bindAdapter);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -143,6 +129,11 @@ public class ProvidersPreviewerDialog extends DialogFragment {
         show.setInterpolator(new FastOutSlowInInterpolator());
         mProgress.startAnimation(out);
         mProgress.setVisibility(View.GONE);
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_providers_previewer_container);
     }
 
     public interface OnIconProviderChangedListener {

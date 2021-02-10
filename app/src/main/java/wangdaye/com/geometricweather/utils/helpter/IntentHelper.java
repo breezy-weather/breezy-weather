@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.basic.AwakeForegroundUpdateService;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.daily.DailyWeatherActivity;
@@ -40,7 +39,6 @@ import wangdaye.com.geometricweather.manage.ManageActivity;
 import wangdaye.com.geometricweather.settings.activity.PreviewIconActivity;
 import wangdaye.com.geometricweather.manage.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.activity.SettingsActivity;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
 /**
  * Intent helper.
@@ -197,76 +195,73 @@ public class IntentHelper {
         context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
     }
 
-    public static void startLiveWallpaperActivity(GeoActivity activity) {
+    public static void startLiveWallpaperActivity(Context context) {
         Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER).putExtra(
                 WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                new ComponentName(activity, MaterialLiveWallpaperService.class)
+                new ComponentName(context, MaterialLiveWallpaperService.class)
         );
-        if (isIntentAvailable(activity, intent)) {
-            activity.startActivity(intent);
+        if (isIntentAvailable(context, intent)) {
+            context.startActivity(intent);
         } else {
-            SnackbarUtils.showSnackbar(
-                    activity,
-                    activity.getString(R.string.feedback_cannot_start_live_wallpaper_activity)
-            );
+            SnackbarHelper.showSnackbar(context.getString(R.string.feedback_cannot_start_live_wallpaper_activity));
         }
     }
 
-    public static void startAppStoreDetailsActivity(GeoActivity activity) {
-        startAppStoreDetailsActivity(activity, activity.getPackageName());
+    public static void startAppStoreDetailsActivity(Context context) {
+        startAppStoreDetailsActivity(context, context.getPackageName());
     }
 
-    public static void startAppStoreDetailsActivity(GeoActivity activity, String packageName) {
+    public static void startAppStoreDetailsActivity(Context context, String packageName) {
         Intent intent = new Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("market://details?id=" + packageName)
         );
-        if (isIntentAvailable(activity, intent)) {
-            activity.startActivity(intent);
+        if (isIntentAvailable(context, intent)) {
+            context.startActivity(intent);
         } else {
-            SnackbarUtils.showSnackbar(activity, "Unavailable AppStore.");
+            SnackbarHelper.showSnackbar("Unavailable AppStore.");
         }
     }
 
-    public static void startAppStoreSearchActivity(GeoActivity activity, String query) {
+    public static void startAppStoreSearchActivity(Context context, String query) {
         Intent intent = new Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("market://search?q=" + query)
         );
-        if (isIntentAvailable(activity, intent)) {
-            activity.startActivity(intent);
+        if (isIntentAvailable(context, intent)) {
+            context.startActivity(intent);
         } else {
-            SnackbarUtils.showSnackbar(activity, "Unavailable AppStore.");
+            SnackbarHelper.showSnackbar("Unavailable AppStore.");
         }
     }
 
-    public static void startWebViewActivity(GeoActivity activity, String url) {
+    public static void startWebViewActivity(Context context, String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        if (isIntentAvailable(activity, intent)) {
-            activity.startActivity(intent);
+        if (isIntentAvailable(context, intent)) {
+            context.startActivity(intent);
         } else {
-            SnackbarUtils.showSnackbar(activity, "Unavailable internet browser.");
+            SnackbarHelper.showSnackbar("Unavailable internet browser.");
         }
     }
 
-    public static void startEmailActivity(GeoActivity activity, String url) {
+    public static void startEmailActivity(Context context, String url) {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-        if (isIntentAvailable(activity, intent)) {
-            activity.startActivity(intent);
+        if (isIntentAvailable(context, intent)) {
+            context.startActivity(intent);
         } else {
-            SnackbarUtils.showSnackbar(activity, "Unavailable e-mail.");
+            SnackbarHelper.showSnackbar("Unavailable e-mail.");
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("BatteryLife")
-    public static void startBatteryOptimizationActivity(GeoActivity activity) {
+    public static void startBatteryOptimizationActivity(Context context) {
         Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-        intent.setData(Uri.parse("package:" + activity.getPackageName()));
-        if (isIntentAvailable(activity, intent)) {
-            activity.startActivity(intent);
+        intent.setData(Uri.parse("package:" + context.getPackageName()));
+        if (isIntentAvailable(context, intent)) {
+            context.startActivity(intent);
         } else {
-            SnackbarUtils.showSnackbar(activity, "Unavailable battery optimization activity.");
+            SnackbarHelper.showSnackbar("Unavailable battery optimization activity.");
         }
     }
 

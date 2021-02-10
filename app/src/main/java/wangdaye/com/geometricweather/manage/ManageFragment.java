@@ -33,7 +33,7 @@ import wangdaye.com.geometricweather.manage.adapter.LocationItemTouchCallback;
 import wangdaye.com.geometricweather.manage.model.SelectableLocationListResource;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
@@ -85,8 +85,7 @@ public class ManageFragment extends Fragment
 
         mBinding.currentLocationButton.setOnClickListener(v -> {
             mViewModel.addLocation(requireActivity(), Location.buildLocal());
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
+            SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
         });
 
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(
@@ -194,8 +193,7 @@ public class ManageFragment extends Fragment
 
     public void readAppendLocation() {
         mViewModel.readAppendCache(requireActivity());
-        SnackbarUtils.showSnackbar(
-                (GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
+        SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
     }
 
     public void resetLocationList(@Nullable String selectedId) {

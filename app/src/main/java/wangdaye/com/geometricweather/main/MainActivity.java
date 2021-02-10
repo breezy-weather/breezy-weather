@@ -53,7 +53,7 @@ import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.utils.helpter.AsyncHelper;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
 import wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
@@ -120,8 +120,7 @@ public class MainActivity extends GeoActivity
                     if (isForeground()
                             && formattedId != null
                             && formattedId.equals(mViewModel.getCurrentFormattedId())) {
-                        SnackbarUtils.showSnackbar(
-                                MainActivity.this, getString(R.string.feedback_updated_in_background));
+                        SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background));
                     }
                 }, 1200);
             }
@@ -354,8 +353,7 @@ public class MainActivity extends GeoActivity
             }
 
             if (resource.locateFailed) {
-                SnackbarUtils.showSnackbar(
-                        this,
+                SnackbarHelper.showSnackbar(
                         getString(R.string.feedback_location_failed),
                         getString(R.string.help),
                         v -> {
@@ -365,7 +363,7 @@ public class MainActivity extends GeoActivity
                         }
                 );
             } else if (resource.status == Resource.Status.ERROR) {
-                SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
+                SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
             }
 
             consumeIntentAction();
@@ -603,7 +601,7 @@ public class MainActivity extends GeoActivity
             return;
         }
 
-        if (action.equals(ACTION_SHOW_ALERTS)) {
+        if (ACTION_SHOW_ALERTS.equals(action)) {
             Location location = mViewModel.getCurrentLocationValue();
             if (location != null) {
                 Weather weather = location.getWeather();
@@ -611,7 +609,7 @@ public class MainActivity extends GeoActivity
                     IntentHelper.startAlertActivity(this, weather);
                 }
             }
-        } else if (action.equals(ACTION_SHOW_DAILY_FORECAST)) {
+        } else if (ACTION_SHOW_DAILY_FORECAST.equals(action)) {
             String formattedId = mViewModel.getCurrentFormattedId();
             Integer index = (Integer) extraMap.get(KEY_DAILY_INDEX);
             if (formattedId != null && index != null) {
@@ -648,35 +646,35 @@ public class MainActivity extends GeoActivity
 
     private final SwipeSwitchLayout.OnSwitchListener switchListener = new SwipeSwitchLayout.OnSwitchListener() {
 
-        private @Nullable Location location;
-        private boolean indexSwitched;
+        private @Nullable Location mLocation;
+        private boolean mIndexSwitched;
 
-        private float lastProgress = 0;
+        private float mLastProgress = 0;
 
         @Override
         public void onSwipeProgressChanged(int swipeDirection, float progress) {
             mBinding.indicator.setDisplayState(progress != 0);
 
-            indexSwitched = false;
+            mIndexSwitched = false;
 
-            if (progress >= 1 && lastProgress < 0.5) {
-                indexSwitched = true;
-                location = mViewModel.getLocationFromList(
+            if (progress >= 1 && mLastProgress < 0.5) {
+                mIndexSwitched = true;
+                mLocation = mViewModel.getLocationFromList(
                         swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
-                lastProgress = 1;
-            } else if (progress < 0.5 && lastProgress >= 1) {
-                indexSwitched = true;
-                location = mViewModel.getLocationFromList(0);
-                lastProgress = 0;
+                mLastProgress = 1;
+            } else if (progress < 0.5 && mLastProgress >= 1) {
+                mIndexSwitched = true;
+                mLocation = mViewModel.getLocationFromList(0);
+                mLastProgress = 0;
             }
 
-            if (indexSwitched && location != null) {
-                mBinding.toolbar.setTitle(location.getCityName(MainActivity.this));
-                if (location.getWeather() != null) {
+            if (mIndexSwitched && mLocation != null) {
+                mBinding.toolbar.setTitle(mLocation.getCityName(MainActivity.this));
+                if (mLocation.getWeather() != null) {
                     WeatherViewController.setWeatherCode(
                             mWeatherView,
-                            location.getWeather(),
-                            TimeManager.isDaylight(location),
+                            mLocation.getWeather(),
+                            TimeManager.isDaylight(mLocation),
                             mResourceProvider
                     );
                 }

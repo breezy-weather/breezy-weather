@@ -8,11 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 
-public class BackgroundLocationDialog extends DialogFragment {
+public class BackgroundLocationDialog extends GeoDialog {
 
     private OnSetButtonClickListener mListener;
 
@@ -30,6 +30,11 @@ public class BackgroundLocationDialog extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .create();
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_background_location_container);
     }
 
     public interface OnSetButtonClickListener {

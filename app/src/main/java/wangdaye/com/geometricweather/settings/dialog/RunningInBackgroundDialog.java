@@ -7,20 +7,20 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * Running in background dialog.
  * */
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class RunningInBackgroundDialog extends DialogFragment {
+public class RunningInBackgroundDialog extends GeoDialog {
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -37,4 +37,8 @@ public class RunningInBackgroundDialog extends DialogFragment {
     }
 
 
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_running_in_background_container);
+    }
 }

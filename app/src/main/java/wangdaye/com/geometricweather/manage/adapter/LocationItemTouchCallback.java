@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.manage.ManageFragmentViewModel;
 import wangdaye.com.geometricweather.ui.dialog.LearnMoreAboutResidentLocationDialog;
 import wangdaye.com.geometricweather.ui.widget.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
 
 public class LocationItemTouchCallback extends SlidingItemTouchCallback {
 
@@ -80,8 +80,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                     mListener.onLocationChanged(mViewModel.getLocationList(), location);
 
                     if (location.isResidentPosition()) {
-                        SnackbarUtils.showSnackbar(
-                                mActivity,
+                        SnackbarHelper.showSnackbar(
                                 mActivity.getString(R.string.feedback_resident_location),
                                 mActivity.getString(R.string.learn_more),
                                 v -> new LearnMoreAboutResidentLocationDialog().show(
@@ -94,14 +93,12 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
             case ItemTouchHelper.END:
                 if (mViewModel.getLocationCount() <= 1) {
                     mViewModel.forceUpdateLocation(mActivity, location, position);
-                    SnackbarUtils.showSnackbar(
-                            mActivity,
+                    SnackbarHelper.showSnackbar(
                             mActivity.getString(R.string.feedback_location_list_cannot_be_null)
                     );
                 } else {
                     location = mViewModel.deleteLocation(mActivity, position);
-                    SnackbarUtils.showSnackbar(
-                            mActivity,
+                    SnackbarHelper.showSnackbar(
                             mActivity.getString(R.string.feedback_delete_succeed),
                             mActivity.getString(R.string.cancel),
                             new CancelDeleteListener(location, position)

@@ -6,18 +6,18 @@ import android.app.Dialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
-public class LocationHelpDialog extends DialogFragment {
+public class LocationHelpDialog extends GeoDialog {
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -69,5 +69,10 @@ public class LocationHelpDialog extends DialogFragment {
                         "$", getString(R.string.current_location)
                 )
         );
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_location_help_container);
     }
 }

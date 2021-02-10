@@ -11,21 +11,18 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Process;
 import android.service.wallpaper.WallpaperService;
-import androidx.annotation.IntDef;
-import androidx.annotation.Nullable;
-import androidx.annotation.Size;
-
 import android.text.TextUtils;
 import android.view.OrientationEventListener;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
-import java.util.concurrent.TimeUnit;
+import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
+import androidx.annotation.Size;
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
@@ -33,8 +30,8 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.D
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.IntervalComputer;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.WeatherImplementorFactory;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.helpter.AsyncHelper;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class MaterialLiveWallpaperService extends WallpaperService {
@@ -83,9 +80,9 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
         private DeviceOrientation mDeviceOrientation;
 
-        @Nullable private Disposable mDisposable;
+        @Nullable private AsyncHelper.Controller mIntervalController;
         private HandlerThread mHandlerThread;
-        private final Handler mHandler;
+        private Handler mHandler;
         private final Runnable mDrawableRunnable = new Runnable() {
 
             private Canvas mCanvas;
@@ -210,19 +207,6 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             }
         };
 
-        WeatherEngine() {
-            super();
-
-            mDeviceOrientation = DeviceOrientation.TOP;
-
-            mHandlerThread = new HandlerThread(
-                    String.valueOf(System.currentTimeMillis()),
-                    Process.THREAD_PRIORITY_FOREGROUND
-            );
-            mHandlerThread.start();
-            mHandler = new Handler(mHandlerThread.getLooper());
-        }
-
         private void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime) {
             mWeatherKind = weatherKind;
             mDaytime = daytime;
@@ -251,6 +235,15 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
         @Override
         public void onCreate(SurfaceHolder surfaceHolder) {
+            mDeviceOrientation = DeviceOrientation.TOP;
+
+            mHandlerThread = new HandlerThread(
+                    String.valueOf(System.currentTimeMillis()),
+                    Process.THREAD_PRIORITY_FOREGROUND
+            );
+            mHandlerThread.start();
+            mHandler = new Handler(mHandlerThread.getLooper());
+
             mSizes = new int[] {0, 0};
 
             mHolder = surfaceHolder;
@@ -355,15 +348,15 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     if (screenRefreshRate < 60) {
                         screenRefreshRate = 60;
                     }
-                    mDisposable = Observable.interval(
-                            0,
+                    mIntervalController = AsyncHelper.intervalRunOnUI(
+                            () -> mHandler.post(mDrawableRunnable),
                             (long) (1000.0 / screenRefreshRate),
-                            TimeUnit.MILLISECONDS
-                    ).subscribe(aLong -> mHandler.post(mDrawableRunnable));
+                            0
+                    );
                 } else {
-                    if (mDisposable != null) {
-                        mDisposable.dispose();
-                        mDisposable = null;
+                    if (mIntervalController != null) {
+                        mIntervalController.cancel();
+                        mIntervalController = null;
                     }
                     mHandler.removeCallbacksAndMessages(null);
                     if (mSensorManager != null) {
@@ -377,6 +370,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
         @Override
         public void onDestroy() {
             onVisibilityChanged(false);
+            mHandlerThread.quit();
         }
     }
 }

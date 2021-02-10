@@ -7665,7 +7665,7 @@ androidx.annotation.LayoutRes
 io.reactivex.internal.operators.single.SingleDoAfterSuccess$DoAfterObserver
 com.google.android.material.datepicker.MaterialDatePicker$Builder
 wangdaye.com.geometricweather.databinding.NotificationBigBinding
-wangdaye.com.geometricweather.utils.LogUtils
+wangdaye.com.geometricweather.utils.helpter.LogHelper
 wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.implementor.MeteorShowerImplementor:
     private static final float INITIAL_ROTATION_3D
 androidx.core.app.RemoteActionCompat:
@@ -13585,7 +13585,7 @@ com.google.android.gms.tasks.zzi:
     public final void zza()
 androidx.core.app.JobIntentService$WorkEnqueuer:
     abstract void enqueueWork(android.content.Intent)
-wangdaye.com.geometricweather.utils.SnackbarUtils:
+wangdaye.com.geometricweather.utils.helpter.SnackbarHelper:
     public void <init>()
 androidx.appcompat.app.ToolbarActionBar:
     void <init>(androidx.appcompat.widget.Toolbar,java.lang.CharSequence,android.view.Window$Callback)

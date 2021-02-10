@@ -8,11 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 
-public class LocationPermissionStatementDialog extends DialogFragment {
+public class LocationPermissionStatementDialog extends GeoDialog {
 
     private OnNextButtonClickListener mListener;
 
@@ -30,6 +30,11 @@ public class LocationPermissionStatementDialog extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .create();
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_location_permission_statement_container);
     }
 
     public interface OnNextButtonClickListener {

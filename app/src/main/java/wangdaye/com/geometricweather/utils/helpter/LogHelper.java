@@ -1,8 +1,8 @@
-package wangdaye.com.geometricweather.utils;
+package wangdaye.com.geometricweather.utils.helpter;
 
 import android.util.Log;
 
-public class LogUtils {
+public class LogHelper {
 
     private static final boolean DEBUG = true;
 

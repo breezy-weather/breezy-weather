@@ -51,7 +51,7 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
@@ -156,7 +156,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
 
         mLastBackPressedTime = time;
-        SnackbarUtils.showSnackbar(this, getString(R.string.feedback_click_again_to_exit));
+        SnackbarHelper.showSnackbar(getString(R.string.feedback_click_again_to_exit));
     }
 
     @Override
@@ -614,7 +614,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
         locationNow = requestLocation;
         updateHostView();
-        SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
+        SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
     }
 
     private void bindWallpaper(boolean checkPermissions) {

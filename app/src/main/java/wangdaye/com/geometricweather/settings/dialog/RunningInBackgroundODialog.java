@@ -9,20 +9,20 @@ import android.os.Bundle;
 import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 /**
  * Running in background O dialog.
  * */
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class RunningInBackgroundODialog extends DialogFragment
+public class RunningInBackgroundODialog extends GeoDialog
         implements View.OnClickListener {
 
     @NonNull
@@ -58,5 +58,10 @@ public class RunningInBackgroundODialog extends DialogFragment
                 IntentHelper.startBatteryOptimizationActivity((GeoActivity) requireActivity());
                 break;
         }
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_running_in_background_o_container);
     }
 }

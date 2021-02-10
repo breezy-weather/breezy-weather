@@ -8,12 +8,11 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
 
 /**
  * Service provider settings fragment.
@@ -64,8 +63,7 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
         locationService.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setLocationProvider(OptionMapper.getLocationProvider((String) newValue));
             preference.setSummary(getSettingsOptionManager().getLocationProvider().getProviderName(getActivity()));
-            SnackbarUtils.showSnackbar(
-                    (GeoActivity) requireActivity(),
+            SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_restart),
                     getString(R.string.restart),
                     v -> GeometricWeather.getInstance().recreateAllActivities()

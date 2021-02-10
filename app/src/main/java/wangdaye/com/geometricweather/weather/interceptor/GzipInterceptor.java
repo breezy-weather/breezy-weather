@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.weather.interceptor;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
@@ -20,18 +21,14 @@ public class GzipInterceptor extends ReportExceptionInterceptor {
 
     @NotNull
     @Override
-    public Response intercept(Chain chain) {
+    public Response intercept(Chain chain) throws IOException {
         Request request = chain.request()
                 .newBuilder()
                 .build();
-        try {
-            return buildResponse(request, chain.proceed(request));
-        } catch (Exception e) {
-            return nullResponse(request);
-        }
+        return buildResponse(request, chain.proceed(request));
     }
 
-    private Response buildResponse(Request request, Response response) throws Exception {
+    private Response buildResponse(Request request, Response response) throws IOException {
         ResponseBody body = response.body();
         if (body == null) {
             return response;

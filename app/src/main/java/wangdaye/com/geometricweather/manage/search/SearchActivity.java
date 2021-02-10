@@ -36,7 +36,7 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.manage.model.LoadableLocationList;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.manage.adapter.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
@@ -213,7 +213,7 @@ public class SearchActivity extends GeoActivity
                         (view, formattedId) -> {
                             for (int i = 0; i < mCurrentList.size(); i ++) {
                                 if (mCurrentList.get(i).equals(formattedId)) {
-                                    SnackbarUtils.showSnackbar(this, getString(R.string.feedback_collect_failed));
+                                    SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_failed));
                                     return;
                                 }
                             }
@@ -283,7 +283,7 @@ public class SearchActivity extends GeoActivity
                 mBinding.progress.startAnimation(hide);
             }
             if (newStatus == LoadableLocationList.Status.ERROR) {
-                SnackbarUtils.showSnackbar(this, getString(R.string.feedback_search_nothing));
+                SnackbarHelper.showSnackbar(getString(R.string.feedback_search_nothing));
             }
         }
         mStatus = newStatus;

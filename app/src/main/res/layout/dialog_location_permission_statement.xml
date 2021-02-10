@@ -17,13 +17,16 @@
             android:text="@string/feedback_location_permissions_title"
             android:textSize="@dimen/large_title_text_size"
             android:textStyle="bold"
-            android:layout_margin="@dimen/normal_margin"
+            android:layout_margin="@dimen/large_margin"
             style="@style/title_text" />
 
         <TextView
             android:id="@+id/dialog_location_permission_statement_summary"
             android:text="@string/feedback_location_permissions_statement"
-            android:layout_margin="@dimen/normal_margin"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/large_margin"
             style="@style/content_text" />
 
         <Button

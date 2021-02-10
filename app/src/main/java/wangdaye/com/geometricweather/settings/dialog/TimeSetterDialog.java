@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
 import android.view.LayoutInflater;
@@ -17,13 +16,14 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Time setter dialog.
  * */
 
-public class TimeSetterDialog extends DialogFragment
+public class TimeSetterDialog extends GeoDialog
         implements View.OnClickListener, TimePicker.OnTimeChangedListener {
 
     private OnTimeChangedListener mListener;
@@ -66,6 +66,11 @@ public class TimeSetterDialog extends DialogFragment
         TimePicker timePicker = view.findViewById(R.id.dialog_time_setter_time_picker);
         timePicker.setIs24HourView(true);
         timePicker.setOnTimeChangedListener(this);
+    }
+
+    @Override
+    public View getSnackbarContainer() {
+        return requireDialog().findViewById(R.id.dialog_time_setter_container);
     }
 
     // interface.

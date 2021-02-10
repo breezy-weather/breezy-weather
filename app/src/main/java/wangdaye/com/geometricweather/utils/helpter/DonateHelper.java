@@ -5,7 +5,6 @@ import android.didikee.donate.WeiXinDonate;
 
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.dialog.WechatDonateDialog;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
 
 /**
  * Donate helper.
@@ -17,7 +16,7 @@ public class DonateHelper {
         if (AlipayDonate.hasInstalledAlipayClient(activity)) {
             AlipayDonate.startAlipayClient(activity, "fkx02882gqdh6imokjddj2a");
         } else {
-            SnackbarUtils.showSnackbar(activity, "Alipay is not installed.");
+            SnackbarHelper.showSnackbar("Alipay is not installed.");
         }
     }
 
@@ -25,7 +24,7 @@ public class DonateHelper {
         if (WeiXinDonate.hasInstalledWeiXinClient(activity)) {
             new WechatDonateDialog().show(activity.getSupportFragmentManager(), null);
         } else {
-            SnackbarUtils.showSnackbar(activity, "WeChat is not installed.");
+            SnackbarHelper.showSnackbar("WeChat is not installed.");
         }
     }
 }

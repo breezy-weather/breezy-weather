@@ -10,16 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
+import wangdaye.com.geometricweather.background.polling.PollingUpdateHelper;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.background.polling.PollingUpdateHelper;
+import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
+import wangdaye.com.geometricweather.utils.helpter.AsyncHelper;
 import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 
 /**
@@ -31,7 +28,7 @@ public abstract class UpdateService extends Service
 
     private PollingUpdateHelper mHelper;
     private List<Location> mLocationList;
-    private Disposable mDisposable;
+    private AsyncHelper.Controller mDelayController;
     private boolean mFailed;
 
     @Override
@@ -46,19 +43,15 @@ public abstract class UpdateService extends Service
         mHelper.setOnPollingUpdateListener(this);
         mHelper.pollingUpdate();
 
-        mDisposable = Observable.timer(30, TimeUnit.SECONDS)
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete(() -> stopService(true))
-                .subscribe();
+        mDelayController = AsyncHelper.delayRunOnIO(() -> stopService(true), 30 * 1000);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mDisposable != null) {
-            mDisposable.dispose();
-            mDisposable = null;
+        if (mDelayController != null) {
+            mDelayController.cancel();
+            mDelayController = null;
         }
         if (mHelper != null) {
             mHelper.setOnPollingUpdateListener(null);

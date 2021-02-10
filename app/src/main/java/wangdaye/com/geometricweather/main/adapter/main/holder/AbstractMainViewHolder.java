@@ -15,14 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.helpter.AsyncHelper;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
@@ -34,7 +31,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     private boolean mInScreen;
 
     private @Nullable Animator mItemAnimator;
-    private @Nullable Disposable mDisposable;
+    private @Nullable AsyncHelper.Controller mDelayController;
 
     @SuppressLint("ObjectAnimatorBinding")
     public AbstractMainViewHolder(@NonNull View view) {
@@ -50,7 +47,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         mProvider = provider;
         mItemAnimationEnabled = itemAnimationEnabled;
         mInScreen = false;
-        mDisposable = null;
+        mDelayController = null;
 
         if (listAnimationEnabled) {
             itemView.setAlpha(0f);
@@ -84,13 +81,10 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        mDisposable = Observable.timer(mItemAnimator.getStartDelay(), TimeUnit.MILLISECONDS)
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete(() -> {
-                    pendingAnimatorList.remove(mItemAnimator);
-                    onEnterScreen();
-                }).subscribe();
+        mDelayController = AsyncHelper.delayRunOnUI(() -> {
+            pendingAnimatorList.remove(mItemAnimator);
+            onEnterScreen();
+        }, mItemAnimator.getStartDelay());
 
         pendingAnimatorList.add(mItemAnimator);
         mItemAnimator.start();
@@ -116,9 +110,9 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onRecycleView() {
-        if (mDisposable != null) {
-            mDisposable.dispose();
-            mDisposable = null;
+        if (mDelayController != null) {
+            mDelayController.cancel();
+            mDelayController = null;
         }
         if (mItemAnimator != null) {
             mItemAnimator.cancel();

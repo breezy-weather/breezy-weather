@@ -9,9 +9,23 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class AsyncHelper {
+
+    public static class Controller {
+
+        final Disposable inner;
+
+        Controller(Disposable inner) {
+            this.inner = inner;
+        }
+
+        public void cancel() {
+            inner.dispose();
+        }
+    }
 
     private static class Data<T> {
 
@@ -43,26 +57,52 @@ public class AsyncHelper {
         void call(@Nullable T t);
     }
 
-    public static <T> void runOnIO(Task<T> task, Callback<T> callback) {
-        Observable.create((ObservableOnSubscribe<Data<T>>) emitter -> task.execute(new Emitter<>(emitter)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(data -> callback.call(data.t))
-                .subscribe();
+    public static <T> Controller runOnIO(Task<T> task, Callback<T> callback) {
+        return new Controller(
+                Observable.create((ObservableOnSubscribe<Data<T>>) emitter -> task.execute(new Emitter<>(emitter)))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext(data -> callback.call(data.t))
+                        .subscribe()
+        );
     }
 
-    public static <T> void runOnIO(Runnable runnable) {
-        Observable.create((ObservableOnSubscribe<T>) emitter -> runnable.run())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
+    public static Controller runOnIO(Runnable runnable) {
+        return new Controller(
+                Observable.create(emitter -> runnable.run())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe()
+        );
     }
 
-    public static <T> void delayRunOnIO(Runnable runnable, long milliSeconds) {
-        Observable.create((ObservableOnSubscribe<T>) emitter -> runnable.run())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .delay(milliSeconds, TimeUnit.MILLISECONDS)
-                .subscribe();
+    public static <T> Controller delayRunOnIO(Runnable runnable, long milliSeconds) {
+        return new Controller(
+                Observable.create((ObservableOnSubscribe<T>) emitter -> runnable.run())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .delay(milliSeconds, TimeUnit.MILLISECONDS)
+                        .subscribe()
+        );
+    }
+
+    public static Controller delayRunOnUI(Runnable runnable, long milliSeconds) {
+        return new Controller(
+                Observable.timer(milliSeconds, TimeUnit.MILLISECONDS)
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnComplete(runnable::run)
+                        .subscribe()
+        );
+    }
+
+    public static Controller intervalRunOnUI(Runnable runnable,
+                                             long intervalMilliSeconds, long initDelayMilliSeconds) {
+        return new Controller(
+                Observable.interval(initDelayMilliSeconds, intervalMilliSeconds, TimeUnit.MILLISECONDS)
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(aLong -> runnable.run())
+        );
     }
 }

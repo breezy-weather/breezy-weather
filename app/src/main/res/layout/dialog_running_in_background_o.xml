@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextTitle"
             android:textStyle="bold"
-            android:layout_margin="@dimen/normal_margin"
+            android:textSize="@dimen/large_title_text_size"
+            android:layout_margin="@dimen/large_margin"
             style="@style/large_title_text" />
 
         <TextView
@@ -26,8 +27,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextContent"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/large_margin"
             style="@style/content_text" />
 
         <Button
@@ -44,7 +47,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextTitle"
             android:textStyle="bold"
-            android:layout_margin="@dimen/normal_margin"
+            android:textSize="@dimen/large_title_text_size"
+            android:layout_margin="@dimen/large_margin"
             style="@style/large_title_text" />
 
         <TextView
@@ -52,8 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextContent"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/large_margin"
             style="@style/content_text" />
 
         <Button

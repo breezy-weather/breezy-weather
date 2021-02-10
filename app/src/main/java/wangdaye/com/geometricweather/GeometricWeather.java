@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather;
 import android.app.Activity;
 import android.content.Context;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDexApplication;
 
@@ -172,6 +173,16 @@ public class GeometricWeather extends MultiDexApplication {
 
     public void removeActivity(GeoActivity a) {
         mActivitySet.remove(a);
+    }
+
+    @Nullable
+    public GeoActivity getTopActivity() {
+        for (GeoActivity activity : mActivitySet) {
+            if (activity.isStarted()) {
+                return activity;
+            }
+        }
+        return null;
     }
 
     public OkHttpClient getOkHttpClient() {

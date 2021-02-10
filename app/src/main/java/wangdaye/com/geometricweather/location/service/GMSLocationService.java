@@ -24,11 +24,8 @@ import com.google.android.gms.location.LocationServices;
 import java.io.IOException;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
+import wangdaye.com.geometricweather.utils.helpter.AsyncHelper;
 
 public class GMSLocationService extends LocationService {
 
@@ -116,12 +113,7 @@ public class GMSLocationService extends LocationService {
             return;
         }
 
-        Observable.create((ObservableOnSubscribe<Result>) emitter ->
-                emitter.onNext(buildResult(location))
-        ).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(this::handleResultIfNecessary)
-                .subscribe();
+        AsyncHelper.runOnIO(emitter -> emitter.send(buildResult(location)), this::handleResultIfNecessary);
     }
 
     private void handleResultIfNecessary(@Nullable Result result) {
