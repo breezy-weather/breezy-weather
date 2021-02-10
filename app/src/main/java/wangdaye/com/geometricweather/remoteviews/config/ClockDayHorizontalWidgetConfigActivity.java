@@ -27,12 +27,12 @@ public class ClockDayHorizontalWidgetConfigActivity extends AbstractWidgetConfig
     @Override
     public void initView() {
         super.initView();
-        cardStyleContainer.setVisibility(View.VISIBLE);
-        cardAlphaContainer.setVisibility(View.VISIBLE);
-        textColorContainer.setVisibility(View.VISIBLE);
-        textSizeContainer.setVisibility(View.VISIBLE);
-        clockFontContainer.setVisibility(View.VISIBLE);
-        hideLunarContainer.setVisibility(isHideLunarContainerVisible());
+        mCardStyleContainer.setVisibility(View.VISIBLE);
+        mCardAlphaContainer.setVisibility(View.VISIBLE);
+        mTextColorContainer.setVisibility(View.VISIBLE);
+        mTextSizeContainer.setVisibility(View.VISIBLE);
+        mClockFontContainer.setVisibility(View.VISIBLE);
+        mHideLunarContainer.setVisibility(isHideLunarContainerVisible());
     }
 
     @Override

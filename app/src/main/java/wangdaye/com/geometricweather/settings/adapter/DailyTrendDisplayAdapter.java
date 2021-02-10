@@ -20,9 +20,9 @@ import wangdaye.com.geometricweather.ui.widget.slidingItem.SlidingItemContainerL
 
 public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDisplayAdapter.ViewHolder> {
 
-    private final List<DailyTrendDisplay> dailyTrendDisplayList;
-    private final OnItemRemoveListener removeListener;
-    private final OnItemDragListener dragListener;
+    private final List<DailyTrendDisplay> mDailyTrendDisplayList;
+    private final OnItemRemoveListener mRemoveListener;
+    private final OnItemDragListener mDragListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -41,7 +41,7 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
             sortButton = itemView.findViewById(R.id.item_card_display_sortButton);
             sortButton.setOnTouchListener((View v, MotionEvent event) -> {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dragListener.onDrag(this);
+                    mDragListener.onDrag(this);
                 }
                 return false;
             });
@@ -62,9 +62,9 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
     public DailyTrendDisplayAdapter(List<DailyTrendDisplay> dailyTrendDisplayList,
                                     OnItemRemoveListener removeListener,
                                     OnItemDragListener dragListener) {
-        this.dailyTrendDisplayList = dailyTrendDisplayList;
-        this.removeListener = removeListener;
-        this.dragListener = dragListener;
+        mDailyTrendDisplayList = dailyTrendDisplayList;
+        mRemoveListener = removeListener;
+        mDragListener = dragListener;
     }
 
     @NonNull
@@ -76,31 +76,31 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(dailyTrendDisplayList.get(position));
+        holder.onBindView(mDailyTrendDisplayList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return dailyTrendDisplayList.size();
+        return mDailyTrendDisplayList.size();
     }
 
     public List<DailyTrendDisplay> getDailyTrendDisplayList() {
-        return dailyTrendDisplayList;
+        return mDailyTrendDisplayList;
     }
 
     public void insertItem(DailyTrendDisplay dailyTrendDisplay) {
-        dailyTrendDisplayList.add(dailyTrendDisplay);
-        notifyItemInserted(dailyTrendDisplayList.size() - 1);
+        mDailyTrendDisplayList.add(dailyTrendDisplay);
+        notifyItemInserted(mDailyTrendDisplayList.size() - 1);
     }
 
     public void removeItem(int adapterPosition) {
-        DailyTrendDisplay dailyTrendDisplay = dailyTrendDisplayList.remove(adapterPosition);
+        DailyTrendDisplay dailyTrendDisplay = mDailyTrendDisplayList.remove(adapterPosition);
         notifyItemRemoved(adapterPosition);
-        removeListener.onRemoved(dailyTrendDisplay);
+        mRemoveListener.onRemoved(dailyTrendDisplay);
     }
 
     public void moveItem(int fromPosition, int toPosition) {
-        dailyTrendDisplayList.add(toPosition, dailyTrendDisplayList.remove(fromPosition));
+        mDailyTrendDisplayList.add(toPosition, mDailyTrendDisplayList.remove(fromPosition));
         notifyItemMoved(fromPosition, toPosition);
     }
 

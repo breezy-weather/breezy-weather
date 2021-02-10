@@ -16,33 +16,33 @@ import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
 
 public class OverviewHolder extends DailyWeatherAdapter.ViewHolder {
 
-    private AnimatableIconView icon;
-    private TextView title;
+    private AnimatableIconView mIcon;
+    private final TextView mTitle;
 
-    private ResourceProvider provider;
-    private TemperatureUnit unit;
+    private final ResourceProvider mProvider;
+    private final TemperatureUnit mTemperatureUnit;
 
     public OverviewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_weather_daily_overview, parent, false));
-        itemView.setOnClickListener(v -> icon.startAnimators());
+        itemView.setOnClickListener(v -> mIcon.startAnimators());
 
-        icon = itemView.findViewById(R.id.item_weather_daily_overview_icon);
-        title = itemView.findViewById(R.id.item_weather_daily_overview_text);
+        mIcon = itemView.findViewById(R.id.item_weather_daily_overview_icon);
+        mTitle = itemView.findViewById(R.id.item_weather_daily_overview_text);
 
-        provider = ResourcesProviderFactory.getNewInstance();
-        unit = SettingsOptionManager.getInstance(parent.getContext()).getTemperatureUnit();
+        mProvider = ResourcesProviderFactory.getNewInstance();
+        mTemperatureUnit = SettingsOptionManager.getInstance(parent.getContext()).getTemperatureUnit();
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindView(DailyWeatherAdapter.ViewModel model, int position) {
         Overview overview = (Overview) model;
-        icon.setAnimatableIcon(
-                provider.getWeatherIcons(overview.getHalfDay().getWeatherCode(), overview.isDaytime()),
-                provider.getWeatherAnimators(overview.getHalfDay().getWeatherCode(), overview.isDaytime())
+        mIcon.setAnimatableIcon(
+                mProvider.getWeatherIcons(overview.getHalfDay().getWeatherCode(), overview.isDaytime()),
+                mProvider.getWeatherAnimators(overview.getHalfDay().getWeatherCode(), overview.isDaytime())
         );
-        title.setText(overview.getHalfDay().getWeatherText()
-                + " " + overview.getHalfDay().getTemperature().getTemperature(title.getContext(), unit));
+        mTitle.setText(overview.getHalfDay().getWeatherText()
+                + " " + overview.getHalfDay().getTemperature().getTemperature(mTitle.getContext(), mTemperatureUnit));
     }
 }

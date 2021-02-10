@@ -14,6 +14,7 @@ import io.reactivex.schedulers.Schedulers;
 public class AsyncHelper {
 
     private static class Data<T> {
+
         final T t;
 
         Data(T t) {

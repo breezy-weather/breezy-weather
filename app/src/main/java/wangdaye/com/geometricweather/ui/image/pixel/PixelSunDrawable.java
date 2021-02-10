@@ -14,57 +14,57 @@ import androidx.annotation.Nullable;
 
 public class PixelSunDrawable extends Drawable {
 
-    private Paint paint;
+    private final Paint mPaint;
 
-    @ColorInt private int color;
+    @ColorInt private final int mColor;
 
-    private float alpha;
-    private Rect bounds;
+    private float mAlpha;
+    private Rect mBounds;
 
-    private float radius;
-    private float cx, cy;
+    private float mRadius;
+    private float mCX, mCY;
 
     public PixelSunDrawable() {
-        this.paint = new Paint();
-        paint.setAntiAlias(true);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
 
-        this.color = Color.rgb(255, 215, 5);
+        mColor = Color.rgb(255, 215, 5);
 
-        this.alpha = 1;
-        this.bounds = getBounds();
+        mAlpha = 1;
+        mBounds = getBounds();
 
-        ensurePosition(bounds);
+        ensurePosition(mBounds);
     }
 
     private void ensurePosition(Rect bounds) {
         float boundSize = Math.min(bounds.width(), bounds.height());
-        radius = (float) ((Math.sin(Math.PI / 4) * boundSize / 2 + boundSize / 2) / 2 - 2);
-        cx = (float) (1.0 * bounds.width() / 2 + bounds.left);
-        cy = (float) (1.0 * bounds.height() / 2 + bounds.top);
+        mRadius = (float) ((Math.sin(Math.PI / 4) * boundSize / 2 + boundSize / 2) / 2 - 2);
+        mCX = (float) (1.0 * bounds.width() / 2 + bounds.left);
+        mCY = (float) (1.0 * bounds.height() / 2 + bounds.top);
     }
 
     @Override
     protected void onBoundsChange(Rect bounds) {
-        this.bounds = bounds;
+        mBounds = bounds;
         ensurePosition(bounds);
     }
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        paint.setAlpha((int) (alpha * 255));
+        mPaint.setAlpha((int) (mAlpha * 255));
 
-        paint.setColor(color);
-        canvas.drawCircle(cx, cy, radius, paint);
+        mPaint.setColor(mColor);
+        canvas.drawCircle(mCX, mCY, mRadius, mPaint);
     }
 
     @Override
     public void setAlpha(int alpha) {
-        this.alpha = alpha;
+        mAlpha = alpha;
     }
 
     @Override
     public void setColorFilter(@Nullable ColorFilter colorFilter) {
-        paint.setColorFilter(colorFilter);
+        mPaint.setColorFilter(colorFilter);
     }
 
     @Override
@@ -74,11 +74,11 @@ public class PixelSunDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return bounds.width();
+        return mBounds.width();
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return bounds.height();
+        return mBounds.height();
     }
 }

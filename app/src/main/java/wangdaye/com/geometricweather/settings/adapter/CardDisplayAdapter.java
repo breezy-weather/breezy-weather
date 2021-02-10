@@ -20,9 +20,9 @@ import wangdaye.com.geometricweather.ui.widget.slidingItem.SlidingItemContainerL
 
 public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.ViewHolder> {
 
-    private final List<CardDisplay> cardDisplayList;
-    private final OnItemRemoveListener removeListener;
-    private final OnItemDragListener dragListener;
+    private final List<CardDisplay> mCardDisplayList;
+    private final OnItemRemoveListener mRemoveListener;
+    private final OnItemDragListener mDragListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -41,7 +41,7 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
             sortButton = itemView.findViewById(R.id.item_card_display_sortButton);
             sortButton.setOnTouchListener((View v, MotionEvent event) -> {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dragListener.onDrag(this);
+                    mDragListener.onDrag(this);
                 }
                 return false;
             });
@@ -62,9 +62,9 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
     public CardDisplayAdapter(List<CardDisplay> cardDisplayList,
                               OnItemRemoveListener removeListener,
                               OnItemDragListener dragListener) {
-        this.cardDisplayList = cardDisplayList;
-        this.removeListener = removeListener;
-        this.dragListener = dragListener;
+        mCardDisplayList = cardDisplayList;
+        mRemoveListener = removeListener;
+        mDragListener = dragListener;
     }
 
     @NonNull
@@ -76,31 +76,31 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(cardDisplayList.get(position));
+        holder.onBindView(mCardDisplayList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return cardDisplayList.size();
+        return mCardDisplayList.size();
     }
 
     public List<CardDisplay> getCardDisplayList() {
-        return cardDisplayList;
+        return mCardDisplayList;
     }
 
     public void insertItem(CardDisplay cardDisplay) {
-        cardDisplayList.add(cardDisplay);
-        notifyItemInserted(cardDisplayList.size() - 1);
+        mCardDisplayList.add(cardDisplay);
+        notifyItemInserted(mCardDisplayList.size() - 1);
     }
 
     public void removeItem(int adapterPosition) {
-        CardDisplay cardDisplay = cardDisplayList.remove(adapterPosition);
+        CardDisplay cardDisplay = mCardDisplayList.remove(adapterPosition);
         notifyItemRemoved(adapterPosition);
-        removeListener.onRemoved(cardDisplay);
+        mRemoveListener.onRemoved(cardDisplay);
     }
 
     public void moveItem(int fromPosition, int toPosition) {
-        cardDisplayList.add(toPosition, cardDisplayList.remove(fromPosition));
+        mCardDisplayList.add(toPosition, mCardDisplayList.remove(fromPosition));
         notifyItemMoved(fromPosition, toPosition);
     }
 

@@ -21,56 +21,53 @@ import wangdaye.com.geometricweather.utils.helpter.BuglyHelper;
  * */
 public class AMapLocationService extends LocationService {
 
-    private AMapLocationClient client;
-    private NotificationManagerCompat manager;
-    private LocationCallback callback;
+    private LocationCallback mLocationCallback;
 
-    private AMapLocationListener listener = new AMapLocationListener () {
+    private final NotificationManagerCompat mNotificationManager;
+
+    private AMapLocationClient mAMAPClient;
+    private final AMapLocationListener mAMAPListener = new AMapLocationListener () {
 
         @Override
         public void onLocationChanged(AMapLocation aMapLocation) {
             cancel();
-            if (callback != null) {
-                switch (aMapLocation.getErrorCode()) {
-                    case 0:
-                        Result result = new Result(
-                                (float) aMapLocation.getLatitude(),
-                                (float) aMapLocation.getLongitude()
-                        );
-                        result.setGeocodeInformation(
-                                aMapLocation.getCountry(),
-                                aMapLocation.getProvince(),
-                                aMapLocation.getCity(),
-                                aMapLocation.getDistrict()
-                        );
-                        result.inChina = CoordinateConverter.isAMapDataAvailable(
-                                aMapLocation.getLatitude(),
-                                aMapLocation.getLongitude()
-                        );
-                        callback.onCompleted(result);
-                        break;
-
-                    default:
-                        BuglyHelper.report(
-                                new LocationException(
-                                        aMapLocation.getErrorCode(),
-                                        aMapLocation.getErrorInfo()
-                                )
-                        );
-                        callback.onCompleted(null);
-                        break;
+            if (mLocationCallback != null) {
+                if (aMapLocation.getErrorCode() == 0) {
+                    Result result = new Result(
+                            (float) aMapLocation.getLatitude(),
+                            (float) aMapLocation.getLongitude()
+                    );
+                    result.setGeocodeInformation(
+                            aMapLocation.getCountry(),
+                            aMapLocation.getProvince(),
+                            aMapLocation.getCity(),
+                            aMapLocation.getDistrict()
+                    );
+                    result.inChina = CoordinateConverter.isAMapDataAvailable(
+                            aMapLocation.getLatitude(),
+                            aMapLocation.getLongitude()
+                    );
+                    mLocationCallback.onCompleted(result);
+                } else {
+                    BuglyHelper.report(
+                            new LocationException(
+                                    aMapLocation.getErrorCode(),
+                                    aMapLocation.getErrorInfo()
+                            )
+                    );
+                    mLocationCallback.onCompleted(null);
                 }
             }
         }
     };
     public AMapLocationService(Context context) {
-        manager = NotificationManagerCompat.from(context);
+        mNotificationManager = NotificationManagerCompat.from(context);
     }
 
 
     @Override
     public void requestLocation(Context context, @NonNull LocationCallback callback){
-        this.callback = callback;
+        mLocationCallback = callback;
 
         AMapLocationClientOption option = new AMapLocationClientOption();
         option.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
@@ -79,28 +76,28 @@ public class AMapLocationService extends LocationService {
         option.setNeedAddress(true);
         option.setMockEnable(false);
         option.setLocationCacheEnable(false);
-        client = new AMapLocationClient(context.getApplicationContext());
-        client.setLocationOption(option);
-        client.setLocationListener(listener);
+        mAMAPClient = new AMapLocationClient(context.getApplicationContext());
+        mAMAPClient.setLocationOption(option);
+        mAMAPClient.setLocationListener(mAMAPListener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            manager.createNotificationChannel(getLocationNotificationChannel(context));
-            client.enableBackgroundLocation(
+            mNotificationManager.createNotificationChannel(getLocationNotificationChannel(context));
+            mAMAPClient.enableBackgroundLocation(
                     GeometricWeather.NOTIFICATION_ID_LOCATION,
                     getLocationNotification(context));
         }
-        client.startLocation();
+        mAMAPClient.startLocation();
     }
 
     @Override
     public void cancel() {
-        if (client != null) {
+        if (mAMAPClient != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                client.disableBackgroundLocation(true);
+                mAMAPClient.disableBackgroundLocation(true);
             }
-            client.stopLocation();
-            client.onDestroy();
-            client = null;
+            mAMAPClient.stopLocation();
+            mAMAPClient.onDestroy();
+            mAMAPClient = null;
         }
     }
 

@@ -24,9 +24,9 @@ import wangdaye.com.geometricweather.R;
  * */
 public class AdaptiveIconDialog extends DialogFragment {
 
-    private String title;
-    private Drawable foregroundDrawable;
-    private Drawable backgroundDrawable;
+    private String mTitle;
+    private Drawable mForegroundDrawable;
+    private Drawable mBackgroundDrawable;
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -34,7 +34,7 @@ public class AdaptiveIconDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_adaptive_icon, null, false);
-        this.initWidget(view);
+        initWidget(view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
@@ -43,18 +43,18 @@ public class AdaptiveIconDialog extends DialogFragment {
 
     private void initWidget(View view) {
         TextView titleView = view.findViewById(R.id.dialog_adaptive_icon_title);
-        titleView.setText(title);
+        titleView.setText(mTitle);
 
         AdaptiveIconView iconView = view.findViewById(R.id.dialog_adaptive_icon_icon);
-        iconView.setIcon(new AdaptiveIcon(foregroundDrawable, backgroundDrawable, 0.5));
+        iconView.setIcon(new AdaptiveIcon(mForegroundDrawable, mBackgroundDrawable, 0.5));
         iconView.setPath(new Random().nextInt(AdaptiveIconView.PATH_TEARDROP + 1));
     }
 
     public void setData(@NonNull String title,
                         @NonNull Drawable foregroundDrawable,
                         @Nullable Drawable backgroundDrawable) {
-        this.title = title;
-        this.foregroundDrawable = foregroundDrawable;
-        this.backgroundDrawable = backgroundDrawable;
+        mTitle = title;
+        mForegroundDrawable = foregroundDrawable;
+        mBackgroundDrawable = backgroundDrawable;
     }
 }

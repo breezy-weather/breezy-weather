@@ -22,6 +22,7 @@
             android:id="@+id/sort_button"
             android:src="@drawable/ic_drag"
             android:layout_margin="0dp"
+            android:contentDescription="@string/content_des_drag_flag"
             style="@style/material_image_button"
             tools:ignore="ContentDescription" />
 

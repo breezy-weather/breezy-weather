@@ -18,28 +18,28 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
  * */
 public class DoubleHistogramView extends AbsChartItemView {
 
-    private Paint paint;
+    private Paint mPaint;
 
-    private @Nullable Float highHistogramValue;
-    private @Nullable Float lowHistogramValue;
-    private @Nullable String highHistogramValueStr;
-    private @Nullable String lowHistogramValueStr;
-    private @Nullable Float highestHistogramValue;
+    private @Nullable Float mHighHistogramValue;
+    private @Nullable Float mLowHistogramValue;
+    private @Nullable String mHighHistogramValueStr;
+    private @Nullable String mLowHistogramValueStr;
+    private @Nullable Float mHighestHistogramValue;
 
-    private int highHistogramY;
-    private int lowHistogramY;
+    private int mHighHistogramY;
+    private int mLowHistogramY;
 
-    private int margins;
-    private int marginCenter;
-    private int histogramWidth;
-    private int histogramTextSize;
-    private int chartLineWith;
-    private int textMargin;
+    private int mMargins;
+    private int mMarginCenter;
+    private int mHistogramWidth;
+    private int mHistogramTextSize;
+    private int mChartLineWith;
+    private int mTextMargin;
 
-    private int[] lineColors;
-    private int textColor;
-    private int textShadowColor;
-    private @Size(2) float[] histogramAlphas;
+    private int[] mLineColors;
+    private int mTextColor;
+    private int mTextShadowColor;
+    private @Size(2) float[] mHistogramAlphas;
 
     private static final float MARGIN_DIP = 24;
     private static final float MARGIN_CENTER_DIP = 4;
@@ -50,47 +50,47 @@ public class DoubleHistogramView extends AbsChartItemView {
 
     public DoubleHistogramView(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public DoubleHistogramView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public DoubleHistogramView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initialize();
+        initialize();
     }
 
     private void initialize() {
-        lineColors = new int[] {Color.BLACK, Color.DKGRAY, Color.LTGRAY};
+        mLineColors = new int[] {Color.BLACK, Color.DKGRAY, Color.LTGRAY};
 
         setTextColors(Color.BLACK);
 
-        this.margins = (int) DisplayUtils.dpToPx(getContext(), MARGIN_DIP);
-        this.marginCenter = (int) DisplayUtils.dpToPx(getContext(), MARGIN_CENTER_DIP);
-        this.histogramWidth = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
-        this.histogramTextSize = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
-        this.chartLineWith = (int) DisplayUtils.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
-        this.textMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
+        mMargins = (int) DisplayUtils.dpToPx(getContext(), MARGIN_DIP);
+        mMarginCenter = (int) DisplayUtils.dpToPx(getContext(), MARGIN_CENTER_DIP);
+        mHistogramWidth = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
+        mHistogramTextSize = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
+        mChartLineWith = (int) DisplayUtils.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
+        mTextMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
 
-        this.paint = new Paint();
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setAntiAlias(true);
-        paint.setFilterBitmap(true);
+        mPaint = new Paint();
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setAntiAlias(true);
+        mPaint.setFilterBitmap(true);
 
-        histogramAlphas = new float[] {1, 1};
+        mHistogramAlphas = new float[] {1, 1};
     }
 
     @Override
     public int getMarginTop() {
-        return margins;
+        return mMargins;
     }
 
     @Override
     public int getMarginBottom() {
-        return margins;
+        return mMargins;
     }
 
     @Override
@@ -101,84 +101,84 @@ public class DoubleHistogramView extends AbsChartItemView {
 
         drawTimeLine(canvas);
 
-        if (highestHistogramValue != null) {
-            if (highHistogramValue != null && highHistogramValue != 0 && highHistogramValueStr != null) {
+        if (mHighestHistogramValue != null) {
+            if (mHighHistogramValue != null && mHighHistogramValue != 0 && mHighHistogramValueStr != null) {
                 drawHighHistogram(canvas);
             }
-            if (lowHistogramValue != null && lowHistogramValue != 0 && lowHistogramValueStr != null) {
+            if (mLowHistogramValue != null && mLowHistogramValue != 0 && mLowHistogramValueStr != null) {
                 drawLowHistogram(canvas);
             }
         }
     }
 
     private void drawTimeLine(Canvas canvas) {
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(chartLineWith);
-        paint.setColor(lineColors[2]);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(mChartLineWith);
+        mPaint.setColor(mLineColors[2]);
 
         canvas.drawLine(
-                getMeasuredWidth() / 2.f, margins,
-                getMeasuredWidth() / 2.f, getMeasuredHeight() - margins,
-                paint
+                getMeasuredWidth() / 2.f, mMargins,
+                getMeasuredWidth() / 2.f, getMeasuredHeight() - mMargins,
+                mPaint
         );
     }
 
     private void drawHighHistogram(Canvas canvas) {
-        assert highHistogramValue != null;
-        assert highHistogramValueStr != null;
+        assert mHighHistogramValue != null;
+        assert mHighHistogramValueStr != null;
 
         float cx = getMeasuredWidth() / 2f;
-        float cy = getMeasuredHeight() / 2f - marginCenter / 2f;
+        float cy = getMeasuredHeight() / 2f - mMarginCenter / 2f;
 
         // histogram.
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(lineColors[0]);
-        paint.setAlpha((int) (255 * histogramAlphas[0]));
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(mLineColors[0]);
+        mPaint.setAlpha((int) (255 * mHistogramAlphas[0]));
         canvas.drawRoundRect(
-                new RectF(cx - histogramWidth / 2f, highHistogramY, cx + histogramWidth / 2f, cy),
-                histogramWidth / 2f, histogramWidth / 2f,
-                paint
+                new RectF(cx - mHistogramWidth / 2f, mHighHistogramY, cx + mHistogramWidth / 2f, cy),
+                mHistogramWidth / 2f, mHistogramWidth / 2f,
+                mPaint
         );
 
         // text.
-        paint.setColor(textColor);
-        paint.setAlpha(255);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(histogramTextSize);
-        paint.setShadowLayer(2, 0, 1, textShadowColor);
+        mPaint.setColor(mTextColor);
+        mPaint.setAlpha(255);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(mHistogramTextSize);
+        mPaint.setShadowLayer(2, 0, 1, mTextShadowColor);
         canvas.drawText(
-                highHistogramValueStr, cx, highHistogramY - paint.getFontMetrics().bottom - textMargin, paint);
-        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+                mHighHistogramValueStr, cx, mHighHistogramY - mPaint.getFontMetrics().bottom - mTextMargin, mPaint);
+        mPaint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
     }
 
     private void drawLowHistogram(Canvas canvas) {
-        assert lowHistogramValue != null;
-        assert lowHistogramValueStr != null;
+        assert mLowHistogramValue != null;
+        assert mLowHistogramValueStr != null;
 
         float cx = getMeasuredWidth() / 2f;
-        float cy = getMeasuredHeight() / 2f + marginCenter / 2f;
+        float cy = getMeasuredHeight() / 2f + mMarginCenter / 2f;
 
         // histogram.
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(lineColors[1]);
-        paint.setAlpha((int) (255 * histogramAlphas[1]));
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(mLineColors[1]);
+        mPaint.setAlpha((int) (255 * mHistogramAlphas[1]));
         canvas.drawRoundRect(
-                new RectF(cx - histogramWidth / 2f, cy, cx + histogramWidth / 2f, lowHistogramY),
-                histogramWidth / 2f, histogramWidth / 2f,
-                paint
+                new RectF(cx - mHistogramWidth / 2f, cy, cx + mHistogramWidth / 2f, mLowHistogramY),
+                mHistogramWidth / 2f, mHistogramWidth / 2f,
+                mPaint
         );
 
         // text.
-        paint.setColor(textColor);
-        paint.setAlpha(255);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(histogramTextSize);
-        paint.setShadowLayer(2, 0, 1, textShadowColor);
+        mPaint.setColor(mTextColor);
+        mPaint.setAlpha(255);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(mHistogramTextSize);
+        mPaint.setShadowLayer(2, 0, 1, mTextShadowColor);
         canvas.drawText(
-                lowHistogramValueStr, cx, lowHistogramY - paint.getFontMetrics().top + textMargin, paint);
-        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+                mLowHistogramValueStr, cx, mLowHistogramY - mPaint.getFontMetrics().top + mTextMargin, mPaint);
+        mPaint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
     }
 
     // control.
@@ -188,45 +188,45 @@ public class DoubleHistogramView extends AbsChartItemView {
                         @Nullable String highHistogramValueStr,
                         @Nullable String lowHistogramValueStr,
                         @Nullable Float highestHistogramValue) {
-        this.highHistogramValue = highHistogramValues;
-        this.lowHistogramValue = lowHistogramValues;
-        this.highHistogramValueStr = highHistogramValueStr;
-        this.lowHistogramValueStr = lowHistogramValueStr;
-        this.highestHistogramValue = highestHistogramValue;
+        mHighHistogramValue = highHistogramValues;
+        mLowHistogramValue = lowHistogramValues;
+        mHighHistogramValueStr = highHistogramValueStr;
+        mLowHistogramValueStr = lowHistogramValueStr;
+        mHighestHistogramValue = highestHistogramValue;
         invalidate();
     }
 
     public void setLineColors(@ColorInt int colorHigh, @ColorInt int colorLow,
                               @ColorInt int colorSubLine) {
-        lineColors[0] = colorHigh;
-        lineColors[1] = colorLow;
-        lineColors[2] = colorSubLine;
+        mLineColors[0] = colorHigh;
+        mLineColors[1] = colorLow;
+        mLineColors[2] = colorSubLine;
         invalidate();
     }
 
     public void setTextColors(@ColorInt int textColor) {
-        this.textColor = textColor;
-        this.textShadowColor = Color.argb((int) (255 * 0.2), 0, 0, 0);
+        mTextColor = textColor;
+        mTextShadowColor = Color.argb((int) (255 * 0.2), 0, 0, 0);
         invalidate();
     }
 
     public void setHistogramAlphas(float highAlpha, float lowAlpha) {
-        this.histogramAlphas = new float[] {highAlpha, lowAlpha};
+        mHistogramAlphas = new float[] {highAlpha, lowAlpha};
     }
 
     private void computeCoordinates() {
-        float canvasHeight = (getMeasuredHeight() - margins * 2 - marginCenter) / 2f;
+        float canvasHeight = (getMeasuredHeight() - mMargins * 2 - mMarginCenter) / 2f;
         float cy = getMeasuredHeight() / 2f;
 
-        if (highestHistogramValue != null) {
-            if (highHistogramValue != null) {
-                highHistogramY = (int) (
-                        cy - marginCenter / 2f - canvasHeight * highHistogramValue / highestHistogramValue
+        if (mHighestHistogramValue != null) {
+            if (mHighHistogramValue != null) {
+                mHighHistogramY = (int) (
+                        cy - mMarginCenter / 2f - canvasHeight * mHighHistogramValue / mHighestHistogramValue
                 );
             }
-            if (lowHistogramValue != null) {
-                lowHistogramY = (int) (
-                        cy + marginCenter / 2f + canvasHeight * lowHistogramValue / highestHistogramValue
+            if (mLowHistogramValue != null) {
+                mLowHistogramY = (int) (
+                        cy + mMarginCenter / 2f + canvasHeight * mLowHistogramValue / mHighestHistogramValue
                 );
             }
         }

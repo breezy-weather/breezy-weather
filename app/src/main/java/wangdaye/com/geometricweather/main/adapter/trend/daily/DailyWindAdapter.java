@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.adapter.trend.daily;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.LayoutInflater;
@@ -10,11 +9,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -26,7 +23,6 @@ import wangdaye.com.geometricweather.basic.model.weather.Wind;
 import wangdaye.com.geometricweather.ui.image.RotateDrawable;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.DoubleHistogramView;
-import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
@@ -34,78 +30,70 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
  * */
 public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.ViewHolder> {
 
-    private Weather weather;
-    private TimeZone timeZone;
-    private ThemeManager themeManager;
-    private SpeedUnit unit;
+    private final ThemeManager mThemeManager;
+    private final SpeedUnit mSpeedUnit;
 
-    private float highestWindSpeed;
+    private float mHighestWindSpeed;
+    private int mSize;
 
-    private int size;
+    class ViewHolder extends AbsDailyTrendAdapter.ViewHolder {
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        private DailyTrendItemView dailyItem;
-        private DoubleHistogramView doubleHistogramView;
+        private final DoubleHistogramView mDoubleHistogramView;
 
         ViewHolder(View itemView) {
             super(itemView);
 
-            doubleHistogramView = new DoubleHistogramView(itemView.getContext());
-
-            dailyItem = itemView.findViewById(R.id.item_trend_daily);
-            dailyItem.setChartItemView(doubleHistogramView);
+            mDoubleHistogramView = new DoubleHistogramView(itemView.getContext());
+            dailyItem.setChartItemView(mDoubleHistogramView);
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(int position) {
-            Context context = itemView.getContext();
+        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+            StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_wind));
+
+            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+
+            Weather weather = location.getWeather();
+            assert weather != null;
             Daily daily = weather.getDailyForecast().get(position);
 
-            if (daily.isToday(timeZone)) {
-                dailyItem.setWeekText(context.getString(R.string.today));
-            } else {
-                dailyItem.setWeekText(daily.getWeek(context));
-            }
+            talkBackBuilder
+                    .append(", ").append(activity.getString(R.string.daytime))
+                    .append(" : ").append(daily.day().getWind().getWindDescription(activity, mSpeedUnit))
+                    .append(", ").append(activity.getString(R.string.nighttime))
+                    .append(" : ").append(daily.night().getWind().getWindDescription(activity, mSpeedUnit));
 
-            dailyItem.setDateText(daily.getShortDate(context));
-
-            dailyItem.setTextColor(
-                    themeManager.getTextContentColor(context),
-                    themeManager.getTextSubtitleColor(context)
-            );
-
-            int daytimeWindColor = daily.day().getWind().getWindColor(context);
-            int nighttimeWindColor = daily.night().getWind().getWindColor(context);
+            int daytimeWindColor = daily.day().getWind().getWindColor(activity);
+            int nighttimeWindColor = daily.night().getWind().getWindColor(activity);
 
             RotateDrawable dayIcon = daily.day().getWind().isValidSpeed()
-                    ? new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_navigation))
-                    : new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_circle_medium));
+                    ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))
+                    : new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium));
             dayIcon.rotate(daily.day().getWind().getDegree().getDegree() + 180);
             dayIcon.setColorFilter(new PorterDuffColorFilter(daytimeWindColor, PorterDuff.Mode.SRC_ATOP));
             dailyItem.setDayIconDrawable(dayIcon);
 
             Float daytimeWindSpeed = weather.getDailyForecast().get(position).day().getWind().getSpeed();
             Float nighttimeWindSpeed = weather.getDailyForecast().get(position).night().getWind().getSpeed();
-            doubleHistogramView.setData(
+            mDoubleHistogramView.setData(
                     weather.getDailyForecast().get(position).day().getWind().getSpeed(),
                     weather.getDailyForecast().get(position).night().getWind().getSpeed(),
-                    unit.getSpeedTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
-                    unit.getSpeedTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
-                    highestWindSpeed
+                    mSpeedUnit.getSpeedTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
+                    mSpeedUnit.getSpeedTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
+                    mHighestWindSpeed
             );
-            doubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, themeManager.getLineColor(context));
-            doubleHistogramView.setTextColors(themeManager.getTextContentColor(context));
-            doubleHistogramView.setHistogramAlphas(1f, 0.5f);
+            mDoubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, mThemeManager.getLineColor(activity));
+            mDoubleHistogramView.setTextColors(mThemeManager.getTextContentColor(activity));
+            mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
             RotateDrawable nightIcon = daily.night().getWind().isValidSpeed()
-                    ? new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_navigation))
-                    : new RotateDrawable(ContextCompat.getDrawable(context, R.drawable.ic_circle_medium));
+                    ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))
+                    : new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium));
             nightIcon.rotate(daily.night().getWind().getDegree().getDegree() + 180);
             nightIcon.setColorFilter(new PorterDuffColorFilter(nighttimeWindColor, PorterDuff.Mode.SRC_ATOP));
             dailyItem.setNightIconDrawable(nightIcon);
 
-            dailyItem.setOnClickListener(v -> onItemClicked(getAdapterPosition()));
+            dailyItem.setContentDescription(talkBackBuilder.toString());
         }
     }
 
@@ -114,33 +102,33 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
                             Location location, SpeedUnit unit) {
         super(activity, location);
 
-        this.weather = location.getWeather();
-        this.timeZone = location.getTimeZone();
-        this.themeManager = ThemeManager.getInstance(activity);
-        this.unit = unit;
+        Weather weather = location.getWeather();
+        assert weather != null;
+        mThemeManager = ThemeManager.getInstance(activity);
+        mSpeedUnit = unit;
 
-        highestWindSpeed = Integer.MIN_VALUE;
+        mHighestWindSpeed = Integer.MIN_VALUE;
         Float daytimeWindSpeed;
         Float nighttimeWindSpeed;
         boolean valid = false;
         for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
             daytimeWindSpeed = weather.getDailyForecast().get(i).day().getWind().getSpeed();
             nighttimeWindSpeed = weather.getDailyForecast().get(i).night().getWind().getSpeed();
-            if (daytimeWindSpeed != null && daytimeWindSpeed > highestWindSpeed) {
-                highestWindSpeed = daytimeWindSpeed;
+            if (daytimeWindSpeed != null && daytimeWindSpeed > mHighestWindSpeed) {
+                mHighestWindSpeed = daytimeWindSpeed;
             }
-            if (nighttimeWindSpeed != null && nighttimeWindSpeed > highestWindSpeed) {
-                highestWindSpeed = nighttimeWindSpeed;
+            if (nighttimeWindSpeed != null && nighttimeWindSpeed > mHighestWindSpeed) {
+                mHighestWindSpeed = nighttimeWindSpeed;
             }
             if ((daytimeWindSpeed != null && daytimeWindSpeed != 0)
                     || (nighttimeWindSpeed != null && nighttimeWindSpeed != 0)
                     || valid) {
                 valid = true;
-                size ++;
+                mSize++;
             }
         }
-        if (highestWindSpeed == 0) {
-            highestWindSpeed = Wind.WIND_SPEED_11;
+        if (mHighestWindSpeed == 0) {
+            mHighestWindSpeed = Wind.WIND_SPEED_11;
         }
 
         List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
@@ -176,8 +164,8 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
-        parent.setLineColor(themeManager.getLineColor(activity));
-        parent.setData(keyLineList, highestWindSpeed, -highestWindSpeed);
+        parent.setLineColor(mThemeManager.getLineColor(activity));
+        parent.setData(keyLineList, mHighestWindSpeed, -mHighestWindSpeed);
     }
 
     @NonNull
@@ -190,11 +178,11 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull DailyWindAdapter.ViewHolder holder, int position) {
-        holder.onBindView(position);
+        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
     }
 
     @Override
     public int getItemCount() {
-        return size;
+        return mSize;
     }
 }

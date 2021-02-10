@@ -28,50 +28,50 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Activity activity;
-    private List<ResourceProvider> providerList;
-    private OnItemClickedListener listener;
+    private final Activity mActivity;
+    private final List<ResourceProvider> mProviderList;
+    private final OnItemClickedListener mListener;
 
     // holder.
 
     private class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout container;
-        private AdaptiveIconView icon;
-        private TextView title;
-        private AppCompatImageButton previewButton;
+        private final RelativeLayout mContainer;
+        private final AdaptiveIconView mIcon;
+        private final TextView mTitle;
+        private final AppCompatImageButton mPreviewButton;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            container = itemView.findViewById(R.id.item_icon_provider_container);
-            icon = itemView.findViewById(R.id.item_icon_provider_clearIcon);
-            title = itemView.findViewById(R.id.item_icon_provider_title);
-            previewButton = itemView.findViewById(R.id.item_icon_provider_previewButton);
+            mContainer = itemView.findViewById(R.id.item_icon_provider_container);
+            mIcon = itemView.findViewById(R.id.item_icon_provider_clearIcon);
+            mTitle = itemView.findViewById(R.id.item_icon_provider_title);
+            mPreviewButton = itemView.findViewById(R.id.item_icon_provider_previewButton);
         }
 
         void onBindView() {
-            ResourceProvider provider = providerList.get(getAdapterPosition());
+            ResourceProvider provider = mProviderList.get(getAdapterPosition());
 
-            container.setOnClickListener(v -> listener.onItemClicked(provider, getAdapterPosition()));
+            mContainer.setOnClickListener(v -> mListener.onItemClicked(provider, getAdapterPosition()));
 
             Drawable drawable = provider.getProviderIcon();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
                     && drawable instanceof AdaptiveIconDrawable) {
-                icon.setIcon(new AdaptiveIcon(
+                mIcon.setIcon(new AdaptiveIcon(
                         ((AdaptiveIconDrawable) drawable).getForeground(),
                         ((AdaptiveIconDrawable) drawable).getBackground(),
                         0.5
                 ));
-                icon.setPath(AdaptiveIconView.PATH_CIRCLE);
+                mIcon.setPath(AdaptiveIconView.PATH_CIRCLE);
             } else {
-                icon.setIcon(new AdaptiveIcon(drawable, null, 1));
+                mIcon.setIcon(new AdaptiveIcon(drawable, null, 1));
             }
 
-            title.setText(provider.getProviderName());
+            mTitle.setText(provider.getProviderName());
 
-            previewButton.setOnClickListener(v ->
-                    IntentHelper.startPreviewIconActivity(activity, provider.getPackageName()));
+            mPreviewButton.setOnClickListener(v ->
+                    IntentHelper.startPreviewIconActivity(mActivity, provider.getPackageName()));
         }
     }
 
@@ -93,7 +93,7 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         void onBindView() {
             ImageHelper.load(itemView.getContext(), appStore, R.drawable.ic_play_store);
             appStore.setOnClickListener(v ->
-                    listener.onAppStoreItemClicked("Geometric Weather Icon"));
+                    mListener.onAppStoreItemClicked("Geometric Weather Icon"));
 
             ImageHelper.load(
                     itemView.getContext(),
@@ -103,11 +103,11 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             : R.drawable.ic_github_dark
             );
             gitHub.setOnClickListener(v ->
-                    listener.onGitHubItemClicked("https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather"));
+                    mListener.onGitHubItemClicked("https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather"));
 
             ImageHelper.load(itemView.getContext(), chronus, R.drawable.ic_chronus);
             chronus.setOnClickListener(v ->
-                    listener.onAppStoreItemClicked("Chronus Icon"));
+                    mListener.onAppStoreItemClicked("Chronus Icon"));
         }
     }
 
@@ -116,9 +116,9 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public IconProviderAdapter(Activity activity,
                                @NonNull List<ResourceProvider> providerList,
                                @Nullable OnItemClickedListener l) {
-        this.activity = activity;
-        this.providerList = providerList;
-        this.listener = l;
+        mActivity = activity;
+        mProviderList = providerList;
+        mListener = l;
     }
 
     @NonNull
@@ -148,12 +148,12 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return providerList.size() + 1;
+        return mProviderList.size() + 1;
     }
 
     @Override
     public int getItemViewType(int position) {
-        return position < providerList.size() ? 1 : -1;
+        return position < mProviderList.size() ? 1 : -1;
     }
 
     public interface OnItemClickedListener {

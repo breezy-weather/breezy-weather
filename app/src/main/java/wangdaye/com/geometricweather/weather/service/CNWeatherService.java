@@ -32,11 +32,11 @@ import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
 
 public class CNWeatherService extends WeatherService {
 
-    private CNWeatherApi api;
-    private CompositeDisposable compositeDisposable;
+    private final CNWeatherApi mApi;
+    private final CompositeDisposable mCompositeDisposable;
 
     public CNWeatherService() {
-        api = new Retrofit.Builder()
+        mApi = new Retrofit.Builder()
                 .baseUrl(BuildConfig.CN_WEATHER_BASE_URL)
                 .client(
                         GeometricWeather.getInstance()
@@ -48,15 +48,15 @@ public class CNWeatherService extends WeatherService {
                 .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
                 .build()
                 .create((CNWeatherApi.class));
-        compositeDisposable = new CompositeDisposable();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void requestWeather(Context context,
                                Location location, @NonNull RequestWeatherCallback callback) {
-        api.getWeather(location.getCityId())
+        mApi.getWeather(location.getCityId())
                 .compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<CNWeatherResult>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<CNWeatherResult>() {
                     @Override
                     public void onSucceed(CNWeatherResult cnWeatherResult) {
                         Weather weather = CNResultConverter.convert(context, location, cnWeatherResult);
@@ -136,7 +136,7 @@ public class CNWeatherService extends WeatherService {
 
             emitter.onNext(locationList);
         }).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<Location>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<Location>>() {
                     @Override
                     public void onSucceed(List<Location> locations) {
                         if (locations.size() > 0) {
@@ -170,7 +170,7 @@ public class CNWeatherService extends WeatherService {
 
             emitter.onNext(locationList);
         }).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<Location>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<Location>>() {
                     @Override
                     public void onSucceed(List<Location> locations) {
                         if (locations.size() > 0) {
@@ -189,7 +189,7 @@ public class CNWeatherService extends WeatherService {
 
     @Override
     public void cancel() {
-        compositeDisposable.clear();
+        mCompositeDisposable.clear();
     }
 
     public ChineseCity.CNWeatherSource getSource() {

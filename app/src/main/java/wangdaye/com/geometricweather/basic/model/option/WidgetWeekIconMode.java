@@ -8,11 +8,12 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum WidgetWeekIconMode {
+
     AUTO("auto"),
     DAY("day"),
     NIGHT("night");
 
-    private String modeId;
+    private final String modeId;
 
     WidgetWeekIconMode(String modeId) {
         this.modeId = modeId;

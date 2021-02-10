@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.R;
 
 public abstract class LocationService {
 
-    public class Result {
+    public static class Result {
 
         public float latitude;
         public float longitude;

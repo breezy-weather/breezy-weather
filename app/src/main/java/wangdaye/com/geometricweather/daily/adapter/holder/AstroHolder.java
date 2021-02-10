@@ -20,26 +20,26 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
 
-    private LinearLayout sun;
-    private TextView sunText;
+    private final LinearLayout mSun;
+    private final TextView mSunText;
 
-    private LinearLayout moon;
-    private TextView moonText;
+    private final LinearLayout mMoon;
+    private final TextView mMoonText;
 
-    private LinearLayout moonPhase;
-    private MoonPhaseView moonPhaseIcon;
-    private TextView moonPhaseText;
+    private final LinearLayout mMoonPhase;
+    private final MoonPhaseView mMoonPhaseIcon;
+    private final TextView mMoonPhaseText;
 
     public AstroHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_weather_daily_astro, parent, false));
-        sun = itemView.findViewById(R.id.item_weather_daily_astro_sun);
-        sunText = itemView.findViewById(R.id.item_weather_daily_astro_sunText);
-        moon = itemView.findViewById(R.id.item_weather_daily_astro_moon);
-        moonText = itemView.findViewById(R.id.item_weather_daily_astro_moonText);
-        moonPhase = itemView.findViewById(R.id.item_weather_daily_astro_moonPhase);
-        moonPhaseIcon = itemView.findViewById(R.id.item_weather_daily_astro_moonPhaseIcon);
-        moonPhaseText = itemView.findViewById(R.id.item_weather_daily_astro_moonPhaseText);
+        mSun = itemView.findViewById(R.id.item_weather_daily_astro_sun);
+        mSunText = itemView.findViewById(R.id.item_weather_daily_astro_sunText);
+        mMoon = itemView.findViewById(R.id.item_weather_daily_astro_moon);
+        mMoonText = itemView.findViewById(R.id.item_weather_daily_astro_moonText);
+        mMoonPhase = itemView.findViewById(R.id.item_weather_daily_astro_moonPhase);
+        mMoonPhaseIcon = itemView.findViewById(R.id.item_weather_daily_astro_moonPhaseIcon);
+        mMoonPhaseText = itemView.findViewById(R.id.item_weather_daily_astro_moonPhaseText);
     }
 
     @SuppressLint("SetTextI18n")
@@ -50,29 +50,49 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
         Astro m = ((DailyAstro) model).getMoon();
         MoonPhase p = ((DailyAstro) model).getMoonPhase();
 
+        StringBuilder talkBackBuilder = new StringBuilder(context.getString(R.string.sunrise_sunset));
+
         if (s.isValid()) {
-            sun.setVisibility(View.VISIBLE);
-            sunText.setText(s.getRiseTime(context) + "↑ / " + s.getSetTime(context) + "↓");
+            talkBackBuilder
+                    .append(", ")
+                    .append(context.getString(R.string.content_des_sunrise).replace("$", s.getRiseTime(context)))
+                    .append(", ")
+                    .append(context.getString(R.string.content_des_sunset).replace("$", s.getSetTime(context)));
+
+            mSun.setVisibility(View.VISIBLE);
+            mSunText.setText(s.getRiseTime(context) + "↑ / " + s.getSetTime(context) + "↓");
         } else {
-            sun.setVisibility(View.GONE);
+            mSun.setVisibility(View.GONE);
         }
+
         if (m.isValid()) {
-            moon.setVisibility(View.VISIBLE);
-            moonText.setText(m.getRiseTime(context) + "↑ / " + m.getSetTime(context) + "↓");
+            talkBackBuilder
+                    .append(", ")
+                    .append(context.getString(R.string.content_des_moonrise).replace("$", m.getRiseTime(context)))
+                    .append(", ")
+                    .append(context.getString(R.string.content_des_moonset).replace("$", m.getSetTime(context)));
+
+            mMoon.setVisibility(View.VISIBLE);
+            mMoonText.setText(m.getRiseTime(context) + "↑ / " + m.getSetTime(context) + "↓");
         } else {
-            moon.setVisibility(View.GONE);
+            mMoon.setVisibility(View.GONE);
         }
+
         if (p.isValid()) {
-            moonPhase.setVisibility(View.VISIBLE);
-            moonPhaseIcon.setSurfaceAngle(p.getAngle());
-            moonPhaseIcon.setColor(
+            talkBackBuilder.append(", ").append(p.getMoonPhase(context));
+
+            mMoonPhase.setVisibility(View.VISIBLE);
+            mMoonPhaseIcon.setSurfaceAngle(p.getAngle());
+            mMoonPhaseIcon.setColor(
                     ContextCompat.getColor(context, R.color.colorTextContent_dark),
                     ContextCompat.getColor(context, R.color.colorTextContent_light),
                     ThemeManager.getInstance(context).getTextContentColor(context)
             );
-            moonPhaseText.setText(p.getMoonPhase(context));
+            mMoonPhaseText.setText(p.getMoonPhase(context));
         } else {
-            moonPhase.setVisibility(View.GONE);
+            mMoonPhase.setVisibility(View.GONE);
         }
+
+        itemView.setContentDescription(talkBackBuilder.toString());
     }
 }

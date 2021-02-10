@@ -4,7 +4,7 @@ public enum CloudCoverUnit {
 
     PERCENT("%");
 
-    private String unitAbbreviation;
+    private final String unitAbbreviation;
 
     CloudCoverUnit(String abbreviation) {
         unitAbbreviation = abbreviation;

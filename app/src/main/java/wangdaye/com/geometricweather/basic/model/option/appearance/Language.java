@@ -42,10 +42,11 @@ public enum Language {
     POLISH("polish", new Locale("pl")),
     KOREAN("korean", new Locale("ko")),
     GREEK("greek", new Locale("el")),
-    JAPANESE("japanese", new Locale("ja"));
+    JAPANESE("japanese", new Locale("ja")),
+    ROMANIAN("romanian", new Locale("ro"));
 
-    private String languageId;
-    private Locale locale;
+    private final String languageId;
+    private final Locale locale;
 
     Language(String languageId, Locale locale) {
         this.languageId = languageId;

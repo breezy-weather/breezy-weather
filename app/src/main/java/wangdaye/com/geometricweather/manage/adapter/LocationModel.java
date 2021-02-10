@@ -39,7 +39,8 @@ public class LocationModel {
 
     public boolean lightTheme;
     public boolean selected;
-    private final boolean forceUpdate;
+
+    private final boolean mForceUpdate;
 
     public LocationModel(@NonNull Context context,
                          @NonNull Location location,
@@ -118,7 +119,8 @@ public class LocationModel {
 
         this.lightTheme = lightTheme;
         this.selected = selected;
-        this.forceUpdate = forceUpdate;
+
+        mForceUpdate = forceUpdate;
     }
 
     public boolean areItemsTheSame(@NonNull LocationModel newItem) {
@@ -138,7 +140,7 @@ public class LocationModel {
                 // && timeZone.getID().equals(newItem.timeZone.getID())
                 && lightTheme == newItem.lightTheme
                 && selected == newItem.selected
-                && !newItem.forceUpdate;
+                && !newItem.mForceUpdate;
     }
 
     private static boolean isSameString(String a, String b) {

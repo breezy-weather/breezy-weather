@@ -4,8 +4,9 @@
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>Weather.com.cn (Tylko dla Chin)</item>
-        <item> caiyunapp.com (Tylko dla Chin)</item>
+        <item>caiyunapp.com (Tylko dla Chin)</item>
         <item>Accuweather.com</item>
+        <item>Météo France</item>
     </string-array>
 
     <!-- Location service. -->

@@ -19,6 +19,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:title="@string/allergen"
+            app:navigationIcon="@drawable/ic_toolbar_back"
+            app:navigationContentDescription="@string/content_desc_back"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
     </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>

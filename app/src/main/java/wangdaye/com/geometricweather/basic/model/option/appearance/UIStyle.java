@@ -8,10 +8,11 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum UIStyle {
+
     CIRCULAR("circular"),
     MATERIAL("material");
 
-    private String styleId;
+    private final String styleId;
 
     UIStyle(String styleId) {
         this.styleId = styleId;

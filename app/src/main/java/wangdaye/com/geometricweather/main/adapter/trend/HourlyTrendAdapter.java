@@ -18,47 +18,47 @@ import wangdaye.com.geometricweather.main.adapter.trend.hourly.HourlyPrecipitati
 
 public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private @Nullable AbsHourlyTrendAdapter adapter;
+    private @Nullable AbsHourlyTrendAdapter mAdapter;
 
     public HourlyTrendAdapter() {
-        adapter = null;
+        mAdapter = null;
     }
 
     public void temperature(GeoActivity activity, TrendRecyclerView parent, Location location,
                             ResourceProvider provider, TemperatureUnit unit) {
-        adapter = new HourlyTemperatureAdapter(activity, parent, location, provider, unit);
+        mAdapter = new HourlyTemperatureAdapter(activity, parent, location, provider, unit);
     }
 
     public void precipitation(GeoActivity activity, TrendRecyclerView parent, Location location,
                               ResourceProvider provider, PrecipitationUnit unit) {
-        adapter = new HourlyPrecipitationAdapter(activity, parent, location, provider, unit);
+        mAdapter = new HourlyPrecipitationAdapter(activity, parent, location, provider, unit);
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        assert adapter != null;
-        return adapter.onCreateViewHolder(parent, viewType);
+        assert mAdapter != null;
+        return mAdapter.onCreateViewHolder(parent, viewType);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        assert adapter != null;
-        adapter.onBindViewHolder(holder, position);
+        assert mAdapter != null;
+        mAdapter.onBindViewHolder(holder, position);
     }
 
     @Override
     public int getItemCount() {
-        return adapter == null ? 0 : adapter.getItemCount();
+        return mAdapter == null ? 0 : mAdapter.getItemCount();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (adapter == null) {
+        if (mAdapter == null) {
             return 0;
-        } else if (adapter instanceof HourlyTemperatureAdapter) {
+        } else if (mAdapter instanceof HourlyTemperatureAdapter) {
             return 1;
-        } else if (adapter instanceof HourlyPrecipitationAdapter) {
+        } else if (mAdapter instanceof HourlyPrecipitationAdapter) {
             return 2;
         }
         return -1;

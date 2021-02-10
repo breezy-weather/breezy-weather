@@ -29,21 +29,24 @@ import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 public abstract class UpdateService extends Service
         implements PollingUpdateHelper.OnPollingUpdateListener {
 
-    private PollingUpdateHelper helper;
-    private List<Location> locationList;
-    private Disposable disposable;
-    private boolean failed;
+    private PollingUpdateHelper mHelper;
+    private List<Location> mLocationList;
+    private Disposable mDisposable;
+    private boolean mFailed;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        failed = false;
-        locationList = DatabaseHelper.getInstance(this).readLocationList();
-        helper = new PollingUpdateHelper(this, locationList);
-        helper.setOnPollingUpdateListener(this);
-        helper.pollingUpdate();
 
-        disposable = Observable.timer(30, TimeUnit.SECONDS)
+        mFailed = false;
+
+        mLocationList = DatabaseHelper.getInstance(this).readLocationList();
+
+        mHelper = new PollingUpdateHelper(this, mLocationList);
+        mHelper.setOnPollingUpdateListener(this);
+        mHelper.pollingUpdate();
+
+        mDisposable = Observable.timer(30, TimeUnit.SECONDS)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(() -> stopService(true))
@@ -53,14 +56,14 @@ public abstract class UpdateService extends Service
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposable != null) {
-            disposable.dispose();
-            disposable = null;
+        if (mDisposable != null) {
+            mDisposable.dispose();
+            mDisposable = null;
         }
-        if (helper != null) {
-            helper.setOnPollingUpdateListener(null);
-            helper.cancel();
-            helper = null;
+        if (mHelper != null) {
+            mHelper.setOnPollingUpdateListener(null);
+            mHelper.cancel();
+            mHelper = null;
         }
     }
 
@@ -90,16 +93,16 @@ public abstract class UpdateService extends Service
     @Override
     public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                   boolean succeed, int index, int total) {
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).equals(location)) {
-                locationList.set(i, location);
+        for (int i = 0; i < mLocationList.size(); i ++) {
+            if (mLocationList.get(i).equals(location)) {
+                mLocationList.set(i, location);
                 if (i == 0) {
                     updateView(this, location);
                     if (succeed) {
                         NotificationUtils.checkAndSendAlert(this, location, old);
                         NotificationUtils.checkAndSendPrecipitationForecast(this, location, old);
                     } else {
-                        failed = true;
+                        mFailed = true;
                     }
                 }
                 return;
@@ -109,10 +112,10 @@ public abstract class UpdateService extends Service
 
     @Override
     public void onPollingCompleted() {
-        updateView(this, locationList);
+        updateView(this, mLocationList);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
+            ShortcutsManager.refreshShortcutsInNewThread(this, mLocationList);
         }
-        stopService(failed);
+        stopService(mFailed);
     }
 }

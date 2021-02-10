@@ -21,27 +21,27 @@ import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
 public abstract class AsyncUpdateWorker extends AsyncWorker
         implements PollingUpdateHelper.OnPollingUpdateListener {
 
-    private PollingUpdateHelper helper;
-    private List<Location> locationList;
+    private final PollingUpdateHelper mPollingUpdateHelper;
+    private final List<Location> mLocationList;
 
-    private SettableFuture<Result> future;
-    private boolean failed;
+    private SettableFuture<Result> mFuture;
+    private boolean mFailed;
 
     public AsyncUpdateWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
 
-        locationList = DatabaseHelper.getInstance(context).readLocationList();
+        mLocationList = DatabaseHelper.getInstance(context).readLocationList();
 
-        helper = new PollingUpdateHelper(context, locationList);
-        helper.setOnPollingUpdateListener(this);
+        mPollingUpdateHelper = new PollingUpdateHelper(context, mLocationList);
+        mPollingUpdateHelper.setOnPollingUpdateListener(this);
     }
 
     @Override
     public void doAsyncWork(SettableFuture<Result> f) {
-        future = f;
-        failed = false;
+        mFuture = f;
+        mFailed = false;
 
-        helper.pollingUpdate();
+        mPollingUpdateHelper.pollingUpdate();
     }
 
     // control.
@@ -62,16 +62,16 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
     @Override
     public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                   boolean succeed, int index, int total) {
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).equals(location)) {
-                locationList.set(i, location);
+        for (int i = 0; i < mLocationList.size(); i ++) {
+            if (mLocationList.get(i).equals(location)) {
+                mLocationList.set(i, location);
                 if (i == 0) {
                     updateView(getApplicationContext(), location);
                     if (succeed) {
                         NotificationUtils.checkAndSendAlert(getApplicationContext(), location, old);
                         NotificationUtils.checkAndSendPrecipitationForecast(getApplicationContext(), location, old);
                     } else {
-                        failed = true;
+                        mFailed = true;
                     }
                 }
                 return;
@@ -82,10 +82,10 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
     @SuppressLint("RestrictedApi")
     @Override
     public void onPollingCompleted() {
-        updateView(getApplicationContext(), locationList);
+        updateView(getApplicationContext(), mLocationList);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcutsInNewThread(getApplicationContext(), locationList);
+            ShortcutsManager.refreshShortcutsInNewThread(getApplicationContext(), mLocationList);
         }
-        handleUpdateResult(future, failed);
+        handleUpdateResult(mFuture, mFailed);
     }
 }

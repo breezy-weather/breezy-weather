@@ -26,11 +26,11 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 public class TimeSetterDialog extends DialogFragment
         implements View.OnClickListener, TimePicker.OnTimeChangedListener {
 
-    private OnTimeChangedListener listener;
+    private OnTimeChangedListener mListener;
 
-    private int hour;
-    private int minute;
-    private boolean today = true;
+    private int mHour;
+    private int mMinute;
+    private boolean mToday = true;
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -38,8 +38,8 @@ public class TimeSetterDialog extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_time_setter, null, false);
-        this.initData();
-        this.initWidget(view);
+        initData();
+        initWidget(view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
@@ -47,13 +47,13 @@ public class TimeSetterDialog extends DialogFragment
     }
 
     public void setIsToday(boolean today) {
-        this.today = today;
+        mToday = today;
     }
 
     private void initData() {
         Calendar calendar = Calendar.getInstance();
-        this.hour = calendar.get(Calendar.HOUR_OF_DAY);
-        this.minute = calendar.get(Calendar.MINUTE);
+        mHour = calendar.get(Calendar.HOUR_OF_DAY);
+        mMinute = calendar.get(Calendar.MINUTE);
     }
 
     private void initWidget(View view) {
@@ -77,15 +77,15 @@ public class TimeSetterDialog extends DialogFragment
     }
 
     public void setOnTimeChangedListener(OnTimeChangedListener l) {
-        this.listener = l;
+        mListener = l;
     }
 
     // on time changed listener.
 
     @Override
     public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-        this.hour = i;
-        this.minute = i1;
+        mHour = i;
+        mMinute = i1;
     }
 
     // on click.
@@ -101,21 +101,21 @@ public class TimeSetterDialog extends DialogFragment
                 String hourText;
                 String minuteText;
 
-                if (hour < 10) {
-                    hourText = "0" + hour;
+                if (mHour < 10) {
+                    hourText = "0" + mHour;
                 } else {
-                    hourText = Integer.toString(hour);
+                    hourText = Integer.toString(mHour);
                 }
 
-                if (minute < 10) {
-                    minuteText = "0" + minute;
+                if (mMinute < 10) {
+                    minuteText = "0" + mMinute;
                 } else {
-                    minuteText = Integer.toString(minute);
+                    minuteText = Integer.toString(mMinute);
                 }
 
                 SharedPreferences.Editor editor
                         = PreferenceManager.getDefaultSharedPreferences(requireActivity()).edit();
-                if (today) {
+                if (mToday) {
                     SettingsOptionManager.getInstance(requireActivity())
                             .setTodayForecastTime(hourText + ":" + minuteText);
                     editor.putString(getString(R.string.key_forecast_today_time), hourText + ":" + minuteText);
@@ -126,8 +126,8 @@ public class TimeSetterDialog extends DialogFragment
                 }
                 editor.apply();
 
-                if (listener != null) {
-                    listener.timeChanged();
+                if (mListener != null) {
+                    mListener.timeChanged();
                 }
 
                 dismiss();

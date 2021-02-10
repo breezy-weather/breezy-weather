@@ -18,24 +18,24 @@ import java.util.List;
 
 public class FitBottomSystemBarViewPager extends ViewPager {
 
-    private Rect windowInsets = new Rect(0, 0, 0, 0);
+    private Rect mWindowInsets = new Rect(0, 0, 0, 0);
 
     public static class FitBottomSystemBarPagerAdapter extends PagerAdapter {
 
-        private FitBottomSystemBarViewPager pager;
-        private List<View> viewList;
-        public List<String> titleList;
+        private final FitBottomSystemBarViewPager mPager;
+        private final List<View> mViewList;
+        public List<String> mTitleList;
 
         public FitBottomSystemBarPagerAdapter(FitBottomSystemBarViewPager pager,
                                               List<View> viewList, List<String> titleList) {
-            this.pager = pager;
-            this.viewList = viewList;
-            this.titleList = titleList;
+            mPager = pager;
+            mViewList = viewList;
+            mTitleList = titleList;
         }
 
         @Override
         public int getCount() {
-            return viewList.size();
+            return mViewList.size();
         }
 
         @Override
@@ -46,19 +46,19 @@ public class FitBottomSystemBarViewPager extends ViewPager {
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            setWindowInsetsForViewTree(viewList.get(position), pager.getWindowInsets());
-            container.addView(viewList.get(position));
-            return viewList.get(position);
+            setWindowInsetsForViewTree(mViewList.get(position), mPager.getWindowInsets());
+            container.addView(mViewList.get(position));
+            return mViewList.get(position);
         }
 
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-            container.removeView(viewList.get(position));
+            container.removeView(mViewList.get(position));
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return titleList.get(position);
+            return mTitleList.get(position);
         }
 
         private void setWindowInsetsForViewTree(View view, Rect insets) {
@@ -83,13 +83,13 @@ public class FitBottomSystemBarViewPager extends ViewPager {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     public FitBottomSystemBarViewPager(@NonNull Context context) {
         super(context);
-        this.setOnApplyWindowInsetsListener(null);
+        setOnApplyWindowInsetsListener(null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     public FitBottomSystemBarViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.setOnApplyWindowInsetsListener(null);
+        setOnApplyWindowInsetsListener(null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
@@ -118,11 +118,11 @@ public class FitBottomSystemBarViewPager extends ViewPager {
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        windowInsets = insets;
+        mWindowInsets = insets;
         return false;
     }
 
     public Rect getWindowInsets() {
-        return windowInsets;
+        return mWindowInsets;
     }
 }

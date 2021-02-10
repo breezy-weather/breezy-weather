@@ -21,16 +21,17 @@ import wangdaye.com.geometricweather.utils.helpter.BuglyHelper;
 
 public class BaiduLocationService extends LocationService {
 
-    private LocationClient client;
-    private NotificationManagerCompat manager;
-    private LocationCallback callback;
+    private LocationCallback mLocationCallback;
 
-    private BDAbstractLocationListener listener = new BDAbstractLocationListener() {
+    private final NotificationManagerCompat mNotificationManager;
+
+    private LocationClient mBaiduClient;
+    private final BDAbstractLocationListener mBaiduListener = new BDAbstractLocationListener() {
 
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
             cancel();
-            if (callback != null) {
+            if (mLocationCallback != null) {
                 switch (bdLocation.getLocType()) {
                     case 61:
                     case 161:
@@ -45,7 +46,7 @@ public class BaiduLocationService extends LocationService {
                                 bdLocation.getDistrict()
                         );
                         result.inChina = bdLocation.getLocationWhere() == BDLocation.LOCATION_WHERE_IN_CN;
-                        callback.onCompleted(result);
+                        mLocationCallback.onCompleted(result);
                         break;
 
                     default:
@@ -55,7 +56,7 @@ public class BaiduLocationService extends LocationService {
                                         bdLocation.getLocTypeDescription()
                                 )
                         );
-                        callback.onCompleted(null);
+                        mLocationCallback.onCompleted(null);
                         break;
                 }
             }
@@ -63,12 +64,12 @@ public class BaiduLocationService extends LocationService {
     };
 
     public BaiduLocationService(Context context) {
-        manager = NotificationManagerCompat.from(context);
+        mNotificationManager = NotificationManagerCompat.from(context);
     }
 
     @Override
     public void requestLocation(Context context, @NonNull LocationCallback callback){
-        this.callback = callback;
+        mLocationCallback = callback;
 
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Battery_Saving); // 可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
@@ -83,27 +84,27 @@ public class BaiduLocationService extends LocationService {
         option.SetIgnoreCacheException(true); // 可选，默认false，设置是否收集CRASH信息，默认收集
         option.setEnableSimulateGps(false); // 可选，默认false，设置是否需要过滤gps仿真结果，默认需要
         option.setWifiCacheTimeOut(5 * 60 * 1000); // 可选，如果设置了该接口，首次启动定位时，会先判断当前WiFi是否超出有效期，若超出有效期，会先重新扫描WiFi，然后定位
-        client = new LocationClient(context.getApplicationContext());
-        client.setLocOption(option);
-        client.registerLocationListener(listener);
+        mBaiduClient = new LocationClient(context.getApplicationContext());
+        mBaiduClient.setLocOption(option);
+        mBaiduClient.registerLocationListener(mBaiduListener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            manager.createNotificationChannel(getLocationNotificationChannel(context));
-            client.enableLocInForeground(
+            mNotificationManager.createNotificationChannel(getLocationNotificationChannel(context));
+            mBaiduClient.enableLocInForeground(
                     GeometricWeather.NOTIFICATION_ID_LOCATION,
                     getLocationNotification(context));
         }
-        client.start();
+        mBaiduClient.start();
     }
 
     @Override
     public void cancel() {
-        if (client != null) {
+        if (mBaiduClient != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                client.disableLocInForeground(true);
+                mBaiduClient.disableLocInForeground(true);
             }
-            client.stop();
-            client = null;
+            mBaiduClient.stop();
+            mBaiduClient = null;
         }
     }
 

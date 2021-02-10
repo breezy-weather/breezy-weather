@@ -23,36 +23,36 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
  * */
 public class DailyTrendItemView extends AbsTrendItemView {
 
-    private @Nullable AbsChartItemView chartItem;
-    private Paint paint;
+    private @Nullable AbsChartItemView mChartItem;
+    private Paint mPaint;
 
-    @Nullable private OnClickListener clickListener;
+    @Nullable private OnClickListener mClickListener;
 
-    @Nullable private String weekText;
-    @Nullable private String dateText;
+    @Nullable private String mWeekText;
+    @Nullable private String mDateText;
 
-    @Nullable private Drawable dayIconDrawable;
-    @Nullable private Drawable nightIconDrawable;
+    @Nullable private Drawable mDayIconDrawable;
+    @Nullable private Drawable mNightIconDrawable;
 
-    @ColorInt private int contentColor;
-    @ColorInt private int subTitleColor;
+    @ColorInt private int mContentColor;
+    @ColorInt private int mSubTitleColor;
 
-    private float weekTextBaseLine;
+    private float mWeekTextBaseLine;
 
-    private float dateTextBaseLine;
+    private float mDateTextBaseLine;
 
-    private float dayIconLeft;
-    private float dayIconTop;
+    private float mDayIconLeft;
+    private float mDayIconTop;
 
-    private float trendViewTop;
+    private float mTrendViewTop;
 
-    private float nightIconLeft;
-    private float nightIconTop;
+    private float mNightIconLeft;
+    private float mNightIconTop;
 
-    private int iconSize;
+    private int mIconSize;
 
-    private int chartTop;
-    private int chartBottom;
+    private int mChartTop;
+    private int mChartBottom;
 
     private static final int ICON_SIZE_DIP = 32;
     private static final int TEXT_MARGIN_DIP = 4;
@@ -60,39 +60,39 @@ public class DailyTrendItemView extends AbsTrendItemView {
 
     public DailyTrendItemView(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public DailyTrendItemView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public DailyTrendItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initialize();
+        initialize();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public DailyTrendItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
+        initialize();
     }
 
     private void initialize() {
         setWillNotDraw(false);
 
-        paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setTextSize(getResources().getDimensionPixelSize(R.dimen.content_text_size));
-        paint.setTextAlign(Paint.Align.CENTER);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.content_text_size));
+        mPaint.setTextAlign(Paint.Align.CENTER);
 
         setTextColor(Color.BLACK, Color.GRAY);
 
-        iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        mIconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
 
-        chartTop = 0;
-        chartBottom = 0;
+        mChartTop = 0;
+        mChartBottom = 0;
     }
 
     @Override
@@ -105,26 +105,26 @@ public class DailyTrendItemView extends AbsTrendItemView {
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
 
-        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
 
         // week text.
         y += textMargin;
-        weekTextBaseLine = y - fontMetrics.top;
+        mWeekTextBaseLine = y - fontMetrics.top;
         y += fontMetrics.bottom - fontMetrics.top;
         y += textMargin;
 
         // date text.
         y += textMargin;
-        dateTextBaseLine = y - fontMetrics.top;
+        mDateTextBaseLine = y - fontMetrics.top;
         y += fontMetrics.bottom - fontMetrics.top;
         y += textMargin;
 
         // day icon.
-        if (dayIconDrawable != null) {
+        if (mDayIconDrawable != null) {
             y += iconMargin;
-            dayIconLeft = (width - iconSize) / 2f;
-            dayIconTop = y;
-            y += iconSize;
+            mDayIconLeft = (width - mIconSize) / 2f;
+            mDayIconTop = y;
+            y += mIconSize;
             y += iconMargin;
         }
 
@@ -136,35 +136,35 @@ public class DailyTrendItemView extends AbsTrendItemView {
         consumedHeight += marginBottom;
 
         // night icon.
-        if (nightIconDrawable != null) {
-            nightIconLeft = (width - iconSize) / 2f;
-            nightIconTop = height - marginBottom - iconMargin - iconSize;
-            consumedHeight += iconSize + 2 * iconMargin;
+        if (mNightIconDrawable != null) {
+            mNightIconLeft = (width - mIconSize) / 2f;
+            mNightIconTop = height - marginBottom - iconMargin - mIconSize;
+            consumedHeight += mIconSize + 2 * iconMargin;
         }
 
         // chartItem item view.
-        if (chartItem != null) {
-            chartItem.measure(
+        if (mChartItem != null) {
+            mChartItem.measure(
                     MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec((int) (height - consumedHeight), MeasureSpec.EXACTLY)
             );
         }
-        trendViewTop = y;
+        mTrendViewTop = y;
 
-        chartTop = (int) (trendViewTop + chartItem.getMarginTop());
-        chartBottom = (int) (trendViewTop + chartItem.getMeasuredHeight() - chartItem.getMarginBottom());
+        mChartTop = (int) (mTrendViewTop + mChartItem.getMarginTop());
+        mChartBottom = (int) (mTrendViewTop + mChartItem.getMeasuredHeight() - mChartItem.getMarginBottom());
 
         setMeasuredDimension(width, height);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        if (chartItem != null) {
-            chartItem.layout(
+        if (mChartItem != null) {
+            mChartItem.layout(
                     0,
-                    (int) trendViewTop,
-                    chartItem.getMeasuredWidth(),
-                    (int) trendViewTop + chartItem.getMeasuredHeight()
+                    (int) mTrendViewTop,
+                    mChartItem.getMeasuredWidth(),
+                    (int) mTrendViewTop + mChartItem.getMeasuredHeight()
             );
         }
     }
@@ -172,32 +172,32 @@ public class DailyTrendItemView extends AbsTrendItemView {
     @Override
     protected void onDraw(Canvas canvas) {
         // week text.
-        if (weekText != null) {
-            paint.setColor(contentColor);
-            canvas.drawText(weekText, getMeasuredWidth() / 2f, weekTextBaseLine, paint);
+        if (mWeekText != null) {
+            mPaint.setColor(mContentColor);
+            canvas.drawText(mWeekText, getMeasuredWidth() / 2f, mWeekTextBaseLine, mPaint);
         }
 
         // date text.
-        if (dateText != null) {
-            paint.setColor(subTitleColor);
-            canvas.drawText(dateText, getMeasuredWidth() / 2f, dateTextBaseLine, paint);
+        if (mDateText != null) {
+            mPaint.setColor(mSubTitleColor);
+            canvas.drawText(mDateText, getMeasuredWidth() / 2f, mDateTextBaseLine, mPaint);
         }
 
         int restoreCount;
 
         // day icon.
-        if (dayIconDrawable != null) {
+        if (mDayIconDrawable != null) {
             restoreCount = canvas.save();
-            canvas.translate(dayIconLeft, dayIconTop);
-            dayIconDrawable.draw(canvas);
+            canvas.translate(mDayIconLeft, mDayIconTop);
+            mDayIconDrawable.draw(canvas);
             canvas.restoreToCount(restoreCount);
         }
 
         // night icon.
-        if (nightIconDrawable != null) {
+        if (mNightIconDrawable != null) {
             restoreCount = canvas.save();
-            canvas.translate(nightIconLeft, nightIconTop);
-            nightIconDrawable.draw(canvas);
+            canvas.translate(mNightIconLeft, mNightIconTop);
+            mNightIconDrawable.draw(canvas);
             canvas.restoreToCount(restoreCount);
         }
     }
@@ -207,8 +207,8 @@ public class DailyTrendItemView extends AbsTrendItemView {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
-                if (clickListener != null) {
-                    clickListener.onClick(this);
+                if (mClickListener != null) {
+                    mClickListener.onClick(this);
                 }
                 break;
         }
@@ -216,29 +216,29 @@ public class DailyTrendItemView extends AbsTrendItemView {
     }
 
     public void setWeekText(String weekText) {
-        this.weekText = weekText;
+        mWeekText = weekText;
         invalidate();
     }
 
     public void setDateText(String dateText) {
-        this.dateText = dateText;
+        mDateText = dateText;
         invalidate();
     }
 
     public void setTextColor(@ColorInt int contentColor, @ColorInt int subTitleColor) {
-        this.contentColor = contentColor;
-        this.subTitleColor = subTitleColor;
+        mContentColor = contentColor;
+        mSubTitleColor = subTitleColor;
         invalidate();
     }
 
     public void setDayIconDrawable(@Nullable Drawable d) {
-        boolean nullDrawable = dayIconDrawable == null;
+        boolean nullDrawable = mDayIconDrawable == null;
 
-        dayIconDrawable = d;
+        mDayIconDrawable = d;
         if (d != null) {
             d.setVisible(true, true);
             d.setCallback(this);
-            d.setBounds(0, 0, iconSize, iconSize);
+            d.setBounds(0, 0, mIconSize, mIconSize);
         }
 
         if (nullDrawable != (d == null)) {
@@ -249,13 +249,13 @@ public class DailyTrendItemView extends AbsTrendItemView {
     }
 
     public void setNightIconDrawable(@Nullable Drawable d) {
-        boolean nullDrawable = nightIconDrawable == null;
+        boolean nullDrawable = mNightIconDrawable == null;
 
-        nightIconDrawable = d;
+        mNightIconDrawable = d;
         if (d != null) {
             d.setVisible(true, true);
             d.setCallback(this);
-            d.setBounds(0, 0, iconSize, iconSize);
+            d.setBounds(0, 0, mIconSize, mIconSize);
         }
 
         if (nullDrawable != (d == null)) {
@@ -267,31 +267,31 @@ public class DailyTrendItemView extends AbsTrendItemView {
 
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
-        clickListener = l;
+        mClickListener = l;
         super.setOnClickListener(v -> {});
     }
 
     @Override
     public void setChartItemView(AbsChartItemView t) {
-        chartItem = t;
+        mChartItem = t;
         removeAllViews();
-        addView(chartItem);
+        addView(mChartItem);
         requestLayout();
     }
 
     @Override
     public AbsChartItemView getChartItemView() {
-        return chartItem;
+        return mChartItem;
     }
 
     @Override
     public int getChartTop() {
-        return chartTop;
+        return mChartTop;
     }
 
     @Override
     public int getChartBottom() {
-        return chartBottom;
+        return mChartBottom;
     }
 }
 

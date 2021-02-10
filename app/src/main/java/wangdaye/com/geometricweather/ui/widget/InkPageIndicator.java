@@ -44,56 +44,56 @@ public class InkPageIndicator extends View
     private static final float MINIMAL_REVEAL = 0.00001f;
 
     // configurable attributes
-    private int dotDiameter;
-    private int gap;
-    private long animDuration;
-    private int unselectedColour;
-    private int selectedColour;
+    private int mDotDiameter;
+    private int mGap;
+    private long mAnimDuration;
+    private int mUnselectedColour;
+    private int mSelectedColour;
 
     // derived from attributes
-    private float dotRadius;
-    private float halfDotRadius;
-    private long animHalfDuration;
-    private float dotTopY;
-    private float dotCenterY;
-    private float dotBottomY;
+    private float mDotRadius;
+    private float mHalfDotRadius;
+    private long mAnimHalfDuration;
+    private float mDotTopY;
+    private float mDotCenterY;
+    private float mDotBottomY;
 
     // ViewPager
-    private SwipeSwitchLayout switchView;
+    private SwipeSwitchLayout mSwitchView;
 
     // state
-    private int pageCount;
-    private int currentPage;
-    private int previousPage;
-    private float selectedDotX;
-    private boolean selectedDotInPosition;
-    private float[] dotCenterX;
-    private float[] joiningFractions;
-    private float retreatingJoinX1;
-    private float retreatingJoinX2;
-    private float[] dotRevealFractions;
-    private boolean isAttachedToWindow;
-    private boolean pageChanging;
-    private boolean showing;
+    private int mPageCount;
+    private int mCurrentPage;
+    private int mPreviousPage;
+    private float mSelectedDotX;
+    private boolean mSelectedDotInPosition;
+    private float[] mDotCenterX;
+    private float[] mJoiningFractions;
+    private float mRetreatingJoinX1;
+    private float mRetreatingJoinX2;
+    private float[] mDotRevealFractions;
+    private boolean mIsAttachedToWindow;
+    private boolean mPageChanging;
+    private boolean mShowing;
 
     // drawing
-    private final Paint unselectedPaint;
-    private final Paint selectedPaint;
-    private final Paint textPaint;
-    private Path combinedUnselectedPath;
-    private final Path unselectedDotPath;
-    private final Path unselectedDotLeftPath;
-    private final Path unselectedDotRightPath;
-    private final RectF rectF;
+    private final Paint mUnselectedPaint;
+    private final Paint mSelectedPaint;
+    private final Paint mTextPaint;
+    private Path mCombinedUnselectedPath;
+    private final Path mUnselectedDotPath;
+    private final Path mUnselectedDotLeftPath;
+    private final Path mUnselectedDotRightPath;
+    private final RectF mRectF;
 
     // animation
-    private ValueAnimator moveAnimation;
-    private AnimatorSet joiningAnimationSet;
-    private PendingRetreatAnimator retreatAnimation;
-    private PendingRevealAnimator[] revealAnimations;
-    private final Interpolator interpolator;
-    private ObjectAnimator showAnimator;
-    private ObjectAnimator dismissAnimator;
+    private ValueAnimator mMoveAnimation;
+    private AnimatorSet mJoiningAnimationSet;
+    private PendingRetreatAnimator mRetreatAnimation;
+    private PendingRevealAnimator[] mRevealAnimations;
+    private final Interpolator mInterpolator;
+    private ObjectAnimator mShowAnimator;
+    private ObjectAnimator mDismissAnimator;
 
     // working values for beziers
     float endX1;
@@ -124,87 +124,87 @@ public class InkPageIndicator extends View
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.InkPageIndicator, defStyle, 0);
 
-        dotDiameter = a.getDimensionPixelSize(R.styleable.InkPageIndicator_dotDiameter,
+        mDotDiameter = a.getDimensionPixelSize(R.styleable.InkPageIndicator_dotDiameter,
                 DEFAULT_DOT_SIZE * density);
-        dotRadius = dotDiameter / 2f;
-        halfDotRadius = dotRadius / 2f;
-        gap = a.getDimensionPixelSize(R.styleable.InkPageIndicator_dotGap,
+        mDotRadius = mDotDiameter / 2f;
+        mHalfDotRadius = mDotRadius / 2f;
+        mGap = a.getDimensionPixelSize(R.styleable.InkPageIndicator_dotGap,
                 DEFAULT_GAP * density);
-        animDuration = (long) a.getInteger(R.styleable.InkPageIndicator_animationDuration,
+        mAnimDuration = (long) a.getInteger(R.styleable.InkPageIndicator_animationDuration,
                 DEFAULT_ANIM_DURATION);
-        animHalfDuration = animDuration / 2;
-        unselectedColour = a.getColor(R.styleable.InkPageIndicator_pageIndicatorColor,
+        mAnimHalfDuration = mAnimDuration / 2;
+        mUnselectedColour = a.getColor(R.styleable.InkPageIndicator_pageIndicatorColor,
                 DEFAULT_UNSELECTED_COLOUR);
-        selectedColour = a.getColor(R.styleable.InkPageIndicator_currentPageIndicatorColor,
+        mSelectedColour = a.getColor(R.styleable.InkPageIndicator_currentPageIndicatorColor,
                 DEFAULT_SELECTED_COLOUR);
 
         a.recycle();
 
-        unselectedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        unselectedPaint.setColor(unselectedColour);
-        selectedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        selectedPaint.setColor(selectedColour);
-        textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setColor(selectedColour);
-        interpolator = new FastOutSlowInInterpolator();
+        mUnselectedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mUnselectedPaint.setColor(mUnselectedColour);
+        mSelectedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mSelectedPaint.setColor(mSelectedColour);
+        mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mTextPaint.setColor(mSelectedColour);
+        mInterpolator = new FastOutSlowInInterpolator();
 
         // create paths & rect now – reuse & rewind later
-        combinedUnselectedPath = new Path();
-        unselectedDotPath = new Path();
-        unselectedDotLeftPath = new Path();
-        unselectedDotRightPath = new Path();
-        rectF = new RectF();
+        mCombinedUnselectedPath = new Path();
+        mUnselectedDotPath = new Path();
+        mUnselectedDotLeftPath = new Path();
+        mUnselectedDotRightPath = new Path();
+        mRectF = new RectF();
 
         addOnAttachStateChangeListener(this);
 
-        this.showing = false;
+        mShowing = false;
         setAlpha(0);
 
-        showAnimator = ObjectAnimator.ofFloat(
+        mShowAnimator = ObjectAnimator.ofFloat(
                 this, "alpha", 0, MAX_ALPHA
         ).setDuration(100);
 
-        dismissAnimator = ObjectAnimator.ofFloat(
+        mDismissAnimator = ObjectAnimator.ofFloat(
                 this, "alpha", MAX_ALPHA, 0
         ).setDuration(200);
-        dismissAnimator.setStartDelay(600);
+        mDismissAnimator.setStartDelay(600);
     }
 
     public void setSwitchView(SwipeSwitchLayout switchView) {
-        this.switchView = switchView;
+        mSwitchView = switchView;
         switchView.setOnPageSwipeListener(this);
         setPageCount(switchView.getTotalCount());
         setCurrentPageImmediate();
     }
 
     public void setDisplayState(boolean show) {
-        if (showing == show) {
+        if (mShowing == show) {
             return;
         }
 
-        showing = show;
+        mShowing = show;
 
-        dismissAnimator.cancel();
+        mDismissAnimator.cancel();
         if (show) {
-            showAnimator.cancel();
+            mShowAnimator.cancel();
             if (getAlpha() != MAX_ALPHA) {
-                showAnimator.setFloatValues(getAlpha(), 0.7f);
-                showAnimator.start();
+                mShowAnimator.setFloatValues(getAlpha(), 0.7f);
+                mShowAnimator.start();
             }
         } else {
-            dismissAnimator.start();
+            mDismissAnimator.start();
         }
     }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        if (isAttachedToWindow) {
-            if (position < 0 || position > pageCount - 1) {
+        if (mIsAttachedToWindow) {
+            if (position < 0 || position > mPageCount - 1) {
                 return;
             }
 
             float fraction = positionOffset;
-            int currentPosition = pageChanging ? previousPage : currentPage;
+            int currentPosition = mPageChanging ? mPreviousPage : mCurrentPage;
             int leftDotPosition = position;
             // when swiping from #2 to #1 ViewPager reports position as 1 and a descending offset
             // need to convert this into our left-dot-based 'coordinate space'
@@ -223,7 +223,7 @@ public class InkPageIndicator extends View
 
     @Override
     public void onPageSelected(int position) {
-        if (isAttachedToWindow) {
+        if (mIsAttachedToWindow) {
             // this is the main event we're interested in!
             setSelectedPage(position);
         } else {
@@ -233,19 +233,19 @@ public class InkPageIndicator extends View
     }
 
     private void setPageCount(int pages) {
-        pageCount = pages;
+        mPageCount = pages;
         resetState();
         requestLayout();
     }
 
     public void setCurrentIndicatorColor(@ColorInt int color) {
-        selectedPaint.setColor(color);
-        textPaint.setColor(color);
+        mSelectedPaint.setColor(color);
+        mTextPaint.setColor(color);
         invalidate();
     }
 
     public void setIndicatorColor(@ColorInt int color) {
-        unselectedPaint.setColor(color);
+        mUnselectedPaint.setColor(color);
         invalidate();
     }
 
@@ -256,39 +256,39 @@ public class InkPageIndicator extends View
         int bottom = height - getPaddingBottom();
 
         int requiredWidth = getRequiredWidth();
-        float startLeft = left + ((right - left - requiredWidth) / 2f) + dotRadius;
+        float startLeft = left + ((right - left - requiredWidth) / 2f) + mDotRadius;
 
-        dotCenterX = new float[pageCount];
-        for (int i = 0; i < pageCount; i++) {
-            dotCenterX[i] = startLeft + i * (dotDiameter + gap);
+        mDotCenterX = new float[mPageCount];
+        for (int i = 0; i < mPageCount; i++) {
+            mDotCenterX[i] = startLeft + i * (mDotDiameter + mGap);
         }
         // todo just top aligning for now… should make this smarter
-        dotTopY = top;
-        dotCenterY = top + dotRadius;
-        dotBottomY = top + dotDiameter;
+        mDotTopY = top;
+        mDotCenterY = top + mDotRadius;
+        mDotBottomY = top + mDotDiameter;
 
         setCurrentPageImmediate();
     }
 
     private void setCurrentPageImmediate() {
-        if (switchView != null) {
-            currentPage = switchView.getPosition();
+        if (mSwitchView != null) {
+            mCurrentPage = mSwitchView.getPosition();
         } else {
-            currentPage = 0;
+            mCurrentPage = 0;
         }
-        if (dotCenterX != null && dotCenterX.length > 0 && (moveAnimation == null || !moveAnimation.isStarted())) {
-            selectedDotX = dotCenterX[currentPage];
+        if (mDotCenterX != null && mDotCenterX.length > 0 && (mMoveAnimation == null || !mMoveAnimation.isStarted())) {
+            mSelectedDotX = mDotCenterX[mCurrentPage];
         }
     }
 
     private void resetState() {
-        joiningFractions = new float[pageCount - 1];
-        Arrays.fill(joiningFractions, 0f);
-        dotRevealFractions = new float[pageCount];
-        Arrays.fill(dotRevealFractions, 0f);
-        retreatingJoinX1 = INVALID_FRACTION;
-        retreatingJoinX2 = INVALID_FRACTION;
-        selectedDotInPosition = true;
+        mJoiningFractions = new float[mPageCount - 1];
+        Arrays.fill(mJoiningFractions, 0f);
+        mDotRevealFractions = new float[mPageCount];
+        Arrays.fill(mDotRevealFractions, 0f);
+        mRetreatingJoinX1 = INVALID_FRACTION;
+        mRetreatingJoinX2 = INVALID_FRACTION;
+        mSelectedDotInPosition = true;
         if (getMeasuredHeight() != 0 || getMeasuredWidth() != 0) {
             calculateDotPositions(getMeasuredWidth(), getMeasuredHeight());
         }
@@ -335,11 +335,11 @@ public class InkPageIndicator extends View
     }
 
     private int getDesiredHeight() {
-        return getPaddingTop() + dotDiameter + getPaddingBottom();
+        return getPaddingTop() + mDotDiameter + getPaddingBottom();
     }
 
     private int getRequiredWidth() {
-        return pageCount * dotDiameter + (pageCount - 1) * gap;
+        return mPageCount * mDotDiameter + (mPageCount - 1) * mGap;
     }
 
     private int getDesiredWidth() {
@@ -348,26 +348,26 @@ public class InkPageIndicator extends View
 
     @Override
     public void onViewAttachedToWindow(View view) {
-        isAttachedToWindow = true;
+        mIsAttachedToWindow = true;
     }
 
     @Override
     public void onViewDetachedFromWindow(View view) {
-        isAttachedToWindow = false;
+        mIsAttachedToWindow = false;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (switchView == null || pageCount == 0) return;
-        if (pageCount > 7) {
+        if (mSwitchView == null || mPageCount == 0) return;
+        if (mPageCount > 7) {
             int cx = getMeasuredWidth() / 2;
             int cy = getMeasuredHeight() / 2;
 
-            textPaint.setTextAlign(Paint.Align.CENTER);
-            textPaint.setTextSize(dotDiameter + gap / 2);
-            Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+            mTextPaint.setTextAlign(Paint.Align.CENTER);
+            mTextPaint.setTextSize(mDotDiameter + mGap / 2);
+            Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
             int baseLineY = (int) (cy - fontMetrics.top - fontMetrics.bottom);
-            canvas.drawText((currentPage + 1) + "/" + pageCount, cx, baseLineY, textPaint);
+            canvas.drawText((mCurrentPage + 1) + "/" + mPageCount, cx, baseLineY, mTextPaint);
 
             return;
         }
@@ -378,26 +378,26 @@ public class InkPageIndicator extends View
 
     private void drawUnselected(Canvas canvas) {
 
-        combinedUnselectedPath.rewind();
+        mCombinedUnselectedPath.rewind();
 
         // draw any settled, revealing or joining dots
-        for (int page = 0; page < pageCount; page++) {
-            int nextXIndex = page == pageCount - 1 ? page : page + 1;
+        for (int page = 0; page < mPageCount; page++) {
+            int nextXIndex = page == mPageCount - 1 ? page : page + 1;
             Path unselectedPath = getUnselectedPath(page,
-                    dotCenterX[page],
-                    dotCenterX[nextXIndex],
-                    page == pageCount - 1 ? INVALID_FRACTION : joiningFractions[page],
-                    dotRevealFractions[page]);
-            unselectedPath.addPath(combinedUnselectedPath);
-            combinedUnselectedPath.addPath(unselectedPath);
+                    mDotCenterX[page],
+                    mDotCenterX[nextXIndex],
+                    page == mPageCount - 1 ? INVALID_FRACTION : mJoiningFractions[page],
+                    mDotRevealFractions[page]);
+            unselectedPath.addPath(mCombinedUnselectedPath);
+            mCombinedUnselectedPath.addPath(unselectedPath);
         }
         // draw any retreating joins
-        if (retreatingJoinX1 != INVALID_FRACTION) {
+        if (mRetreatingJoinX1 != INVALID_FRACTION) {
             Path retreatingJoinPath = getRetreatingJoinPath();
-            combinedUnselectedPath.addPath(retreatingJoinPath);
+            mCombinedUnselectedPath.addPath(retreatingJoinPath);
         }
 
-        canvas.drawPath(combinedUnselectedPath, unselectedPaint);
+        canvas.drawPath(mCombinedUnselectedPath, mUnselectedPaint);
     }
 
     /**
@@ -426,91 +426,91 @@ public class InkPageIndicator extends View
                                    float joiningFraction,
                                    float dotRevealFraction) {
 
-        unselectedDotPath.rewind();
+        mUnselectedDotPath.rewind();
 
         if ((joiningFraction == 0f || joiningFraction == INVALID_FRACTION)
                 && dotRevealFraction == 0f
-                && !(page == currentPage && selectedDotInPosition == true)) {
+                && !(page == mCurrentPage && mSelectedDotInPosition == true)) {
 
             // case #1 – At rest
-            unselectedDotPath.addCircle(dotCenterX[page], dotCenterY, dotRadius, Path.Direction.CW);
+            mUnselectedDotPath.addCircle(mDotCenterX[page], mDotCenterY, mDotRadius, Path.Direction.CW);
         }
 
         if (joiningFraction > 0f && joiningFraction <= 0.5f
-                && retreatingJoinX1 == INVALID_FRACTION) {
+                && mRetreatingJoinX1 == INVALID_FRACTION) {
 
             // case #2 – Joining neighbour, still separate
 
             // start with the left dot
-            unselectedDotLeftPath.rewind();
+            mUnselectedDotLeftPath.rewind();
 
             // start at the bottom center
-            unselectedDotLeftPath.moveTo(centerX, dotBottomY);
+            mUnselectedDotLeftPath.moveTo(centerX, mDotBottomY);
 
             // semi circle to the top center
-            rectF.set(centerX - dotRadius, dotTopY, centerX + dotRadius, dotBottomY);
-            unselectedDotLeftPath.arcTo(rectF, 90, 180, true);
+            mRectF.set(centerX - mDotRadius, mDotTopY, centerX + mDotRadius, mDotBottomY);
+            mUnselectedDotLeftPath.arcTo(mRectF, 90, 180, true);
 
             // cubic to the right middle
-            endX1 = centerX + dotRadius + (joiningFraction * gap);
-            endY1 = dotCenterY;
-            controlX1 = centerX + halfDotRadius;
-            controlY1 = dotTopY;
+            endX1 = centerX + mDotRadius + (joiningFraction * mGap);
+            endY1 = mDotCenterY;
+            controlX1 = centerX + mHalfDotRadius;
+            controlY1 = mDotTopY;
             controlX2 = endX1;
-            controlY2 = endY1 - halfDotRadius;
-            unselectedDotLeftPath.cubicTo(controlX1, controlY1,
+            controlY2 = endY1 - mHalfDotRadius;
+            mUnselectedDotLeftPath.cubicTo(controlX1, controlY1,
                     controlX2, controlY2,
                     endX1, endY1);
 
             // cubic back to the bottom center
             endX2 = centerX;
-            endY2 = dotBottomY;
+            endY2 = mDotBottomY;
             controlX1 = endX1;
-            controlY1 = endY1 + halfDotRadius;
-            controlX2 = centerX + halfDotRadius;
-            controlY2 = dotBottomY;
-            unselectedDotLeftPath.cubicTo(controlX1, controlY1,
+            controlY1 = endY1 + mHalfDotRadius;
+            controlX2 = centerX + mHalfDotRadius;
+            controlY2 = mDotBottomY;
+            mUnselectedDotLeftPath.cubicTo(controlX1, controlY1,
                     controlX2, controlY2,
                     endX2, endY2);
 
-            unselectedDotPath.addPath(unselectedDotLeftPath);
+            mUnselectedDotPath.addPath(mUnselectedDotLeftPath);
 
             // now do the next dot to the right
-            unselectedDotRightPath.rewind();
+            mUnselectedDotRightPath.rewind();
 
             // start at the bottom center
-            unselectedDotRightPath.moveTo(nextCenterX, dotBottomY);
+            mUnselectedDotRightPath.moveTo(nextCenterX, mDotBottomY);
 
             // semi circle to the top center
-            rectF.set(nextCenterX - dotRadius, dotTopY, nextCenterX + dotRadius, dotBottomY);
-            unselectedDotRightPath.arcTo(rectF, 90, -180, true);
+            mRectF.set(nextCenterX - mDotRadius, mDotTopY, nextCenterX + mDotRadius, mDotBottomY);
+            mUnselectedDotRightPath.arcTo(mRectF, 90, -180, true);
 
             // cubic to the left middle
-            endX1 = nextCenterX - dotRadius - (joiningFraction * gap);
-            endY1 = dotCenterY;
-            controlX1 = nextCenterX - halfDotRadius;
-            controlY1 = dotTopY;
+            endX1 = nextCenterX - mDotRadius - (joiningFraction * mGap);
+            endY1 = mDotCenterY;
+            controlX1 = nextCenterX - mHalfDotRadius;
+            controlY1 = mDotTopY;
             controlX2 = endX1;
-            controlY2 = endY1 - halfDotRadius;
-            unselectedDotRightPath.cubicTo(controlX1, controlY1,
+            controlY2 = endY1 - mHalfDotRadius;
+            mUnselectedDotRightPath.cubicTo(controlX1, controlY1,
                     controlX2, controlY2,
                     endX1, endY1);
 
             // cubic back to the bottom center
             endX2 = nextCenterX;
-            endY2 = dotBottomY;
+            endY2 = mDotBottomY;
             controlX1 = endX1;
-            controlY1 = endY1 + halfDotRadius;
-            controlX2 = endX2 - halfDotRadius;
-            controlY2 = dotBottomY;
-            unselectedDotRightPath.cubicTo(controlX1, controlY1,
+            controlY1 = endY1 + mHalfDotRadius;
+            controlX2 = endX2 - mHalfDotRadius;
+            controlY2 = mDotBottomY;
+            mUnselectedDotRightPath.cubicTo(controlX1, controlY1,
                     controlX2, controlY2,
                     endX2, endY2);
-            unselectedDotPath.addPath(unselectedDotRightPath);
+            mUnselectedDotPath.addPath(mUnselectedDotRightPath);
         }
 
         if (joiningFraction > 0.5f && joiningFraction < 1f
-                && retreatingJoinX1 == INVALID_FRACTION) {
+                && mRetreatingJoinX1 == INVALID_FRACTION) {
 
             // case #3 – Joining neighbour, combined curved
 
@@ -518,67 +518,67 @@ public class InkPageIndicator extends View
             float adjustedFraction = (joiningFraction - 0.2f) * 1.25f;
 
             // start in the bottom left
-            unselectedDotPath.moveTo(centerX, dotBottomY);
+            mUnselectedDotPath.moveTo(centerX, mDotBottomY);
 
             // semi-circle to the top left
-            rectF.set(centerX - dotRadius, dotTopY, centerX + dotRadius, dotBottomY);
-            unselectedDotPath.arcTo(rectF, 90, 180, true);
+            mRectF.set(centerX - mDotRadius, mDotTopY, centerX + mDotRadius, mDotBottomY);
+            mUnselectedDotPath.arcTo(mRectF, 90, 180, true);
 
             // bezier to the middle top of the join
-            endX1 = centerX + dotRadius + (gap / 2);
-            endY1 = dotCenterY - (adjustedFraction * dotRadius);
-            controlX1 = endX1 - (adjustedFraction * dotRadius);
-            controlY1 = dotTopY;
-            controlX2 = endX1 - ((1 - adjustedFraction) * dotRadius);
+            endX1 = centerX + mDotRadius + (mGap / 2);
+            endY1 = mDotCenterY - (adjustedFraction * mDotRadius);
+            controlX1 = endX1 - (adjustedFraction * mDotRadius);
+            controlY1 = mDotTopY;
+            controlX2 = endX1 - ((1 - adjustedFraction) * mDotRadius);
             controlY2 = endY1;
-            unselectedDotPath.cubicTo(controlX1, controlY1,
+            mUnselectedDotPath.cubicTo(controlX1, controlY1,
                     controlX2, controlY2,
                     endX1, endY1);
 
             // bezier to the top right of the join
             endX2 = nextCenterX;
-            endY2 = dotTopY;
-            controlX1 = endX1 + ((1 - adjustedFraction) * dotRadius);
+            endY2 = mDotTopY;
+            controlX1 = endX1 + ((1 - adjustedFraction) * mDotRadius);
             controlY1 = endY1;
-            controlX2 = endX1 + (adjustedFraction * dotRadius);
-            controlY2 = dotTopY;
-            unselectedDotPath.cubicTo(controlX1, controlY1,
+            controlX2 = endX1 + (adjustedFraction * mDotRadius);
+            controlY2 = mDotTopY;
+            mUnselectedDotPath.cubicTo(controlX1, controlY1,
                     controlX2, controlY2,
                     endX2, endY2);
 
             // semi-circle to the bottom right
-            rectF.set(nextCenterX - dotRadius, dotTopY, nextCenterX + dotRadius, dotBottomY);
-            unselectedDotPath.arcTo(rectF, 270, 180, true);
+            mRectF.set(nextCenterX - mDotRadius, mDotTopY, nextCenterX + mDotRadius, mDotBottomY);
+            mUnselectedDotPath.arcTo(mRectF, 270, 180, true);
 
             // bezier to the middle bottom of the join
             // endX1 stays the same
-            endY1 = dotCenterY + (adjustedFraction * dotRadius);
-            controlX1 = endX1 + (adjustedFraction * dotRadius);
-            controlY1 = dotBottomY;
-            controlX2 = endX1 + ((1 - adjustedFraction) * dotRadius);
+            endY1 = mDotCenterY + (adjustedFraction * mDotRadius);
+            controlX1 = endX1 + (adjustedFraction * mDotRadius);
+            controlY1 = mDotBottomY;
+            controlX2 = endX1 + ((1 - adjustedFraction) * mDotRadius);
             controlY2 = endY1;
-            unselectedDotPath.cubicTo(controlX1, controlY1,
+            mUnselectedDotPath.cubicTo(controlX1, controlY1,
                     controlX2, controlY2,
                     endX1, endY1);
 
             // bezier back to the start point in the bottom left
             endX2 = centerX;
-            endY2 = dotBottomY;
-            controlX1 = endX1 - ((1 - adjustedFraction) * dotRadius);
+            endY2 = mDotBottomY;
+            controlX1 = endX1 - ((1 - adjustedFraction) * mDotRadius);
             controlY1 = endY1;
-            controlX2 = endX1 - (adjustedFraction * dotRadius);
+            controlX2 = endX1 - (adjustedFraction * mDotRadius);
             controlY2 = endY2;
-            unselectedDotPath.cubicTo(controlX1, controlY1,
+            mUnselectedDotPath.cubicTo(controlX1, controlY1,
                     controlX2, controlY2,
                     endX2, endY2);
         }
-        if (joiningFraction == 1 && retreatingJoinX1 == INVALID_FRACTION) {
+        if (joiningFraction == 1 && mRetreatingJoinX1 == INVALID_FRACTION) {
 
             // case #4 Joining neighbour, combined straight technically we could use case 3 for this
             // situation as well but assume that this is an optimization rather than faffing around
             // with beziers just to draw a rounded rect
-            rectF.set(centerX - dotRadius, dotTopY, nextCenterX + dotRadius, dotBottomY);
-            unselectedDotPath.addRoundRect(rectF, dotRadius, dotRadius, Path.Direction.CW);
+            mRectF.set(centerX - mDotRadius, mDotTopY, nextCenterX + mDotRadius, mDotBottomY);
+            mUnselectedDotPath.addRoundRect(mRectF, mDotRadius, mDotRadius, Path.Direction.CW);
         }
 
         // case #5 is handled by #getRetreatingJoinPath()
@@ -588,40 +588,40 @@ public class InkPageIndicator extends View
         if (dotRevealFraction > MINIMAL_REVEAL) {
 
             // case #6 – previously hidden dot revealing
-            unselectedDotPath.addCircle(centerX, dotCenterY, dotRevealFraction * dotRadius,
+            mUnselectedDotPath.addCircle(centerX, mDotCenterY, dotRevealFraction * mDotRadius,
                     Path.Direction.CW);
         }
 
-        return unselectedDotPath;
+        return mUnselectedDotPath;
     }
 
     private Path getRetreatingJoinPath() {
-        unselectedDotPath.rewind();
-        rectF.set(retreatingJoinX1, dotTopY, retreatingJoinX2, dotBottomY);
-        unselectedDotPath.addRoundRect(rectF, dotRadius, dotRadius, Path.Direction.CW);
-        return unselectedDotPath;
+        mUnselectedDotPath.rewind();
+        mRectF.set(mRetreatingJoinX1, mDotTopY, mRetreatingJoinX2, mDotBottomY);
+        mUnselectedDotPath.addRoundRect(mRectF, mDotRadius, mDotRadius, Path.Direction.CW);
+        return mUnselectedDotPath;
     }
 
     private void drawSelected(Canvas canvas) {
-        canvas.drawCircle(selectedDotX, dotCenterY, dotRadius, selectedPaint);
+        canvas.drawCircle(mSelectedDotX, mDotCenterY, mDotRadius, mSelectedPaint);
     }
 
     private void setSelectedPage(int now) {
-        if (now == currentPage) return;
+        if (now == mCurrentPage) return;
 
-        pageChanging = true;
-        previousPage = currentPage;
-        currentPage = now;
-        final int steps = Math.abs(now - previousPage);
+        mPageChanging = true;
+        mPreviousPage = mCurrentPage;
+        mCurrentPage = now;
+        final int steps = Math.abs(now - mPreviousPage);
 
         if (steps > 1) {
-            if (now > previousPage) {
+            if (now > mPreviousPage) {
                 for (int i = 0; i < steps; i++) {
-                    setJoiningFraction(previousPage + i, 1f);
+                    setJoiningFraction(mPreviousPage + i, 1f);
                 }
             } else {
                 for (int i = -1; i > -steps; i--) {
-                    setJoiningFraction(previousPage + i, 1f);
+                    setJoiningFraction(mPreviousPage + i, 1f);
                 }
             }
         }
@@ -630,34 +630,34 @@ public class InkPageIndicator extends View
         // retreat animations when it has moved 75% of the way.
         // The retreat animation in turn will kick of reveal anims when the
         // retreat has passed any dots to be revealed
-        moveAnimation = createMoveSelectedAnimator(dotCenterX[now], previousPage, now, steps);
-        moveAnimation.start();
+        mMoveAnimation = createMoveSelectedAnimator(mDotCenterX[now], mPreviousPage, now, steps);
+        mMoveAnimation.start();
     }
 
     private ValueAnimator createMoveSelectedAnimator(
             final float moveTo, int was, int now, int steps) {
 
         // create the actual move animator
-        ValueAnimator moveSelected = ValueAnimator.ofFloat(selectedDotX, moveTo);
+        ValueAnimator moveSelected = ValueAnimator.ofFloat(mSelectedDotX, moveTo);
 
         // also set up a pending retreat anim – this starts when the move is 75% complete
-        retreatAnimation = new PendingRetreatAnimator(was, now, steps,
+        mRetreatAnimation = new PendingRetreatAnimator(was, now, steps,
                 now > was ?
-                        new RightwardStartPredicate(moveTo - ((moveTo - selectedDotX) * 0.25f)) :
-                        new LeftwardStartPredicate(moveTo + ((selectedDotX - moveTo) * 0.25f)));
-        retreatAnimation.addListener(new AnimatorListenerAdapter() {
+                        new RightwardStartPredicate(moveTo - ((moveTo - mSelectedDotX) * 0.25f)) :
+                        new LeftwardStartPredicate(moveTo + ((mSelectedDotX - moveTo) * 0.25f)));
+        mRetreatAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 resetState();
-                pageChanging = false;
+                mPageChanging = false;
             }
         });
         moveSelected.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 // todo avoid autoboxing
-                selectedDotX = (Float) valueAnimator.getAnimatedValue();
-                retreatAnimation.startIfNecessary(selectedDotX);
+                mSelectedDotX = (Float) valueAnimator.getAnimatedValue();
+                mRetreatAnimation.startIfNecessary(mSelectedDotX);
                 ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
             }
         });
@@ -666,51 +666,51 @@ public class InkPageIndicator extends View
             public void onAnimationStart(Animator animation) {
                 // set a flag so that we continue to draw the unselected dot in the target position
                 // until the selected dot has finished moving into place
-                selectedDotInPosition = false;
+                mSelectedDotInPosition = false;
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
                 // set a flag when anim finishes so that we don't draw both selected & unselected
                 // page dots
-                selectedDotInPosition = true;
+                mSelectedDotInPosition = true;
             }
         });
         // slightly delay the start to give the joins a chance to run
         // unless dot isn't in position yet – then don't delay!
-        moveSelected.setStartDelay(selectedDotInPosition ? animDuration / 4l : 0l);
-        moveSelected.setDuration(animDuration * 3l / 4l);
-        moveSelected.setInterpolator(interpolator);
+        moveSelected.setStartDelay(mSelectedDotInPosition ? mAnimDuration / 4l : 0l);
+        moveSelected.setDuration(mAnimDuration * 3l / 4l);
+        moveSelected.setInterpolator(mInterpolator);
         return moveSelected;
     }
 
     private void setJoiningFraction(int leftDot, float fraction) {
-        if (leftDot < joiningFractions.length) {
+        if (leftDot < mJoiningFractions.length) {
 
             if (leftDot == 1) {
                 //Log.d("PageIndicator", "dot 1 fraction:\t" + fraction);
             }
 
-            joiningFractions[leftDot] = fraction;
+            mJoiningFractions[leftDot] = fraction;
             ViewCompat.postInvalidateOnAnimation(this);
         }
     }
 
     private void clearJoiningFractions() {
-        Arrays.fill(joiningFractions, 0f);
+        Arrays.fill(mJoiningFractions, 0f);
         ViewCompat.postInvalidateOnAnimation(this);
     }
 
     private void setDotRevealFraction(int dot, float fraction) {
-        if(dot < dotRevealFractions.length) {
-            dotRevealFractions[dot] = fraction;
+        if(dot < mDotRevealFractions.length) {
+            mDotRevealFractions[dot] = fraction;
         }
         ViewCompat.postInvalidateOnAnimation(this);
     }
 
     private void cancelJoiningAnimations() {
-        if (joiningAnimationSet != null && joiningAnimationSet.isRunning()) {
-            joiningAnimationSet.cancel();
+        if (mJoiningAnimationSet != null && mJoiningAnimationSet.isRunning()) {
+            mJoiningAnimationSet.cancel();
         }
     }
 
@@ -745,22 +745,22 @@ public class InkPageIndicator extends View
 
         public PendingRetreatAnimator(int was, int now, int steps, StartPredicate predicate) {
             super(predicate);
-            setDuration(animHalfDuration);
-            setInterpolator(interpolator);
+            setDuration(mAnimHalfDuration);
+            setInterpolator(mInterpolator);
 
             // work out the start/end values of the retreating join from the direction we're
             // travelling in.  Also look at the current selected dot position, i.e. we're moving on
             // before a prior anim has finished.
-            final float initialX1 = now > was ? Math.min(dotCenterX[was], selectedDotX) - dotRadius
-                    : dotCenterX[now] - dotRadius;
-            final float finalX1 = now > was ? dotCenterX[now] - dotRadius
-                    : dotCenterX[now] - dotRadius;
-            final float initialX2 = now > was ? dotCenterX[now] + dotRadius
-                    : Math.max(dotCenterX[was], selectedDotX) + dotRadius;
-            final float finalX2 = now > was ? dotCenterX[now] + dotRadius
-                    : dotCenterX[now] + dotRadius;
+            final float initialX1 = now > was ? Math.min(mDotCenterX[was], mSelectedDotX) - mDotRadius
+                    : mDotCenterX[now] - mDotRadius;
+            final float finalX1 = now > was ? mDotCenterX[now] - mDotRadius
+                    : mDotCenterX[now] - mDotRadius;
+            final float initialX2 = now > was ? mDotCenterX[now] + mDotRadius
+                    : Math.max(mDotCenterX[was], mSelectedDotX) + mDotRadius;
+            final float finalX2 = now > was ? mDotCenterX[now] + mDotRadius
+                    : mDotCenterX[now] + mDotRadius;
 
-            revealAnimations = new PendingRevealAnimator[steps];
+            mRevealAnimations = new PendingRevealAnimator[steps];
             // hold on to the indexes of the dots that will be hidden by the retreat so that
             // we can initialize their revealFraction's i.e. make sure they're hidden while the
             // reveal animation runs
@@ -769,19 +769,19 @@ public class InkPageIndicator extends View
                 setFloatValues(initialX1, finalX1);
                 // create the reveal animations that will run when the retreat passes them
                 for (int i = 0; i < steps; i++) {
-                    revealAnimations[i] = new PendingRevealAnimator(was + i,
-                            new RightwardStartPredicate(dotCenterX[was + i]));
+                    mRevealAnimations[i] = new PendingRevealAnimator(was + i,
+                            new RightwardStartPredicate(mDotCenterX[was + i]));
                     dotsToHide[i] = was + i;
                 }
                 addUpdateListener(new AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
                         // todo avoid autoboxing
-                        retreatingJoinX1 = (Float) valueAnimator.getAnimatedValue();
+                        mRetreatingJoinX1 = (Float) valueAnimator.getAnimatedValue();
                         ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
                         // start any reveal animations if we've passed them
-                        for (PendingRevealAnimator pendingReveal : revealAnimations) {
-                            pendingReveal.startIfNecessary(retreatingJoinX1);
+                        for (PendingRevealAnimator pendingReveal : mRevealAnimations) {
+                            pendingReveal.startIfNecessary(mRetreatingJoinX1);
                         }
                     }
                 });
@@ -789,19 +789,19 @@ public class InkPageIndicator extends View
                 setFloatValues(initialX2, finalX2);
                 // create the reveal animations that will run when the retreat passes them
                 for (int i = 0; i < steps; i++) {
-                    revealAnimations[i] = new PendingRevealAnimator(was - i,
-                            new LeftwardStartPredicate(dotCenterX[was - i]));
+                    mRevealAnimations[i] = new PendingRevealAnimator(was - i,
+                            new LeftwardStartPredicate(mDotCenterX[was - i]));
                     dotsToHide[i] = was - i;
                 }
                 addUpdateListener(new AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
                         // todo avoid autoboxing
-                        retreatingJoinX2 = (Float) valueAnimator.getAnimatedValue();
+                        mRetreatingJoinX2 = (Float) valueAnimator.getAnimatedValue();
                         ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
                         // start any reveal animations if we've passed them
-                        for (PendingRevealAnimator pendingReveal : revealAnimations) {
-                            pendingReveal.startIfNecessary(retreatingJoinX2);
+                        for (PendingRevealAnimator pendingReveal : mRevealAnimations) {
+                            pendingReveal.startIfNecessary(mRetreatingJoinX2);
                         }
                     }
                 });
@@ -816,15 +816,15 @@ public class InkPageIndicator extends View
                     for (int dot : dotsToHide) {
                         setDotRevealFraction(dot, MINIMAL_REVEAL);
                     }
-                    retreatingJoinX1 = initialX1;
-                    retreatingJoinX2 = initialX2;
+                    mRetreatingJoinX1 = initialX1;
+                    mRetreatingJoinX2 = initialX2;
                     ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
                 }
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    retreatingJoinX1 = INVALID_FRACTION;
-                    retreatingJoinX2 = INVALID_FRACTION;
+                    mRetreatingJoinX1 = INVALID_FRACTION;
+                    mRetreatingJoinX2 = INVALID_FRACTION;
                     ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
                 }
             });
@@ -836,26 +836,26 @@ public class InkPageIndicator extends View
      */
     public class PendingRevealAnimator extends PendingStartAnimator {
 
-        private int dot;
+        private int mDot;
 
         public PendingRevealAnimator(int dot, StartPredicate predicate) {
             super(predicate);
             setFloatValues(MINIMAL_REVEAL, 1f);
-            this.dot = dot;
-            setDuration(animHalfDuration);
-            setInterpolator(interpolator);
+            mDot = dot;
+            setDuration(mAnimHalfDuration);
+            setInterpolator(mInterpolator);
             addUpdateListener(new AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
                     // todo avoid autoboxing
-                    setDotRevealFraction(PendingRevealAnimator.this.dot,
+                    setDotRevealFraction(mDot,
                             (Float) valueAnimator.getAnimatedValue());
                 }
             });
             addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    setDotRevealFraction(PendingRevealAnimator.this.dot, 0f);
+                    setDotRevealFraction(mDot, 0f);
                     ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
                 }
             });
@@ -909,7 +909,7 @@ public class InkPageIndicator extends View
     public void onRestoreInstanceState(Parcelable state) {
         SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
-        currentPage = savedState.currentPage;
+        mCurrentPage = savedState.currentPage;
         requestLayout();
     }
 
@@ -917,7 +917,7 @@ public class InkPageIndicator extends View
     public Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
         SavedState savedState = new SavedState(superState);
-        savedState.currentPage = currentPage;
+        savedState.currentPage = mCurrentPage;
         return savedState;
     }
 

@@ -19,9 +19,9 @@ import wangdaye.com.geometricweather.basic.model.weather.Alert;
 
 public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> {
 
-    private List<Alert> alertList;
+    private final List<Alert> mAlertList;
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         // widget
         TextView title;
         TextView subtitle;
@@ -36,7 +36,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
     }
 
     public AlertAdapter(List<Alert> list) {
-        this.alertList = list;
+        mAlertList = list;
     }
 
     @NonNull
@@ -49,18 +49,18 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(alertList.get(position).getDescription());
+        holder.title.setText(mAlertList.get(position).getDescription());
         holder.subtitle.setText(
                 DateFormat.getDateTimeInstance(
                         DateFormat.LONG, DateFormat.DEFAULT
-                ).format(alertList.get(position).getDate())
+                ).format(mAlertList.get(position).getDate())
         );
-        holder.content.setText(alertList.get(position).getContent());
+        holder.content.setText(mAlertList.get(position).getContent());
     }
 
     @Override
     public int getItemCount() {
-        return alertList.size();
+        return mAlertList.size();
     }
 }
 

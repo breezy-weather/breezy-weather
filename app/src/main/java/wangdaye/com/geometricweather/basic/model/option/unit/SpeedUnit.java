@@ -12,9 +12,9 @@ public enum SpeedUnit {
     MPH("mph", 3, 1f / 1.609f),
     FTPS("ftps", 4, 0.9113f);
 
-    private String unitId;
-    private int unitArrayIndex;
-    private float unitFactor; // actual speed = speed(km/h) * factor.
+    private final String unitId;
+    private final int unitArrayIndex;
+    private final float unitFactor; // actual speed = speed(km/h) * factor.
 
     SpeedUnit(String id, int arrayIndex, float factor) {
         unitId = id;
@@ -40,5 +40,10 @@ public enum SpeedUnit {
 
     public String getAbbreviation(Context context) {
         return context.getResources().getStringArray(R.array.speed_units)[unitArrayIndex];
+    }
+
+    public String getSpeedVoice(Context context, float kph) {
+        return getSpeedTextWithoutUnit(kph)
+                + context.getResources().getStringArray(R.array.speed_unit_voices)[unitArrayIndex];
     }
 }

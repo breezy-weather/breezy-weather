@@ -7,18 +7,18 @@ import wangdaye.com.geometricweather.basic.model.Location;
 public abstract class TrendRecyclerViewAdapter<VH extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<VH> {
 
-    private Location location;
+    private Location mLocation;
 
     public TrendRecyclerViewAdapter(Location location) {
-        this.location = location;
+        mLocation = location;
     }
 
     public Location getLocation() {
-        return location;
+        return mLocation;
     }
 
     public void setLocation(Location location) {
-        this.location = location;
-        this.notifyDataSetChanged();
+        mLocation = location;
+        notifyDataSetChanged();
     }
 }

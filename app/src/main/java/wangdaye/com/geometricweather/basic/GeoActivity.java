@@ -21,9 +21,9 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public abstract class GeoActivity extends AppCompatActivity {
 
-    private boolean foreground;
+    private boolean mForeground;
 
-    @Nullable private OnRequestPermissionsResultListener permissionsListener;
+    private @Nullable OnRequestPermissionsResultListener mPermissionsListener;
 
     @CallSuper
     @Override
@@ -46,14 +46,14 @@ public abstract class GeoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        foreground = true;
+        mForeground = true;
     }
 
     @CallSuper
     @Override
     protected void onPause() {
         super.onPause();
-        foreground = false;
+        mForeground = false;
     }
 
     @CallSuper
@@ -66,13 +66,13 @@ public abstract class GeoActivity extends AppCompatActivity {
     public abstract View getSnackbarContainer();
 
     public boolean isForeground() {
-        return foreground;
+        return mForeground;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void requestPermissions(@NonNull String[] permissions, int requestCode,
                                    @Nullable OnRequestPermissionsResultListener l) {
-        permissionsListener = l;
+        mPermissionsListener = l;
         requestPermissions(permissions, requestCode);
     }
 
@@ -80,8 +80,8 @@ public abstract class GeoActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permission, @NonNull int[] grantResult) {
         super.onRequestPermissionsResult(requestCode, permission, grantResult);
-        if (permissionsListener != null) {
-            permissionsListener.onRequestPermissionsResult(requestCode, permission, grantResult);
+        if (mPermissionsListener != null) {
+            mPermissionsListener.onRequestPermissionsResult(requestCode, permission, grantResult);
         }
     }
 

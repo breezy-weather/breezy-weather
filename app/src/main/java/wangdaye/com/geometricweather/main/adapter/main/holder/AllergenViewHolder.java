@@ -24,13 +24,13 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView card;
-    private final TextView title;
-    private final TextView subtitle;
-    private final TextView indicator;
-    private final ViewPager2 pager;
+    private final CardView mCard;
+    private final TextView mTitle;
+    private final TextView mSubtitle;
+    private final TextView mIndicator;
+    private final ViewPager2 mPager;
 
-    private @Nullable DailyPollenPageChangeCallback callback;
+    private @Nullable DailyPollenPageChangeCallback mCallback;
 
     private static class DailyPollenPagerAdapter extends DailyPollenAdapter {
 
@@ -54,26 +54,26 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
     private class DailyPollenPageChangeCallback extends ViewPager2.OnPageChangeCallback {
 
-        private final Context context;
-        private final Location location;
+        private final Context mContext;
+        private final Location mLocation;
 
         DailyPollenPageChangeCallback(Context context, Location location) {
-            this.context = context;
-            this.location = location;
+            mContext = context;
+            mLocation = location;
         }
 
         @SuppressLint("SetTextI18n")
         @Override
         public void onPageSelected(int position) {
-            assert location.getWeather() != null;
+            assert mLocation.getWeather() != null;
 
-            TimeZone timeZone = location.getTimeZone();
-            Daily daily = location.getWeather().getDailyForecast().get(position);
+            TimeZone timeZone = mLocation.getTimeZone();
+            Daily daily = mLocation.getWeather().getDailyForecast().get(position);
 
             if (timeZone != null && daily.isToday(timeZone)) {
-                indicator.setText(context.getString(R.string.today));
+                mIndicator.setText(mContext.getString(R.string.today));
             } else {
-                indicator.setText((position + 1) + "/" + location.getWeather().getDailyForecast().size());
+                mIndicator.setText((position + 1) + "/" + mLocation.getWeather().getDailyForecast().size());
             }
         }
     }
@@ -81,13 +81,13 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
     public AllergenViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_pollen, parent, false));
 
-        this.card = itemView.findViewById(R.id.container_main_pollen);
-        this.title = itemView.findViewById(R.id.container_main_pollen_title);
-        this.subtitle = itemView.findViewById(R.id.container_main_pollen_subtitle);
-        this.indicator = itemView.findViewById(R.id.container_main_pollen_indicator);
-        this.pager = itemView.findViewById(R.id.container_main_pollen_pager);
+        mCard = itemView.findViewById(R.id.container_main_pollen);
+        mTitle = itemView.findViewById(R.id.container_main_pollen_title);
+        mSubtitle = itemView.findViewById(R.id.container_main_pollen_subtitle);
+        mIndicator = itemView.findViewById(R.id.container_main_pollen_indicator);
+        mPager = itemView.findViewById(R.id.container_main_pollen_pager);
 
-        this.callback = null;
+        mCallback = null;
     }
 
     @SuppressLint("SetTextI18n")
@@ -100,25 +100,26 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
         assert location.getWeather() != null;
 
-        card.setCardBackgroundColor(themeManager.getRootColor(context));
-        title.setTextColor(themeManager.getWeatherThemeColors()[0]);
-        subtitle.setTextColor(themeManager.getTextSubtitleColor(context));
+        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
+        mTitle.setTextColor(mThemeManager.getWeatherThemeColors()[0]);
+        mSubtitle.setTextColor(mThemeManager.getTextSubtitleColor(mContext));
 
-        pager.setAdapter(new DailyPollenPagerAdapter(location.getWeather()));
-        pager.setCurrentItem(0);
+        mPager.setAdapter(new DailyPollenPagerAdapter(location.getWeather()));
+        mPager.setCurrentItem(0);
 
-        callback = new DailyPollenPageChangeCallback(activity, location);
-        pager.registerOnPageChangeCallback(callback);
+        mCallback = new DailyPollenPageChangeCallback(activity, location);
+        mPager.registerOnPageChangeCallback(mCallback);
 
-        itemView.setOnClickListener(v -> IntentHelper.startAllergenActivity((GeoActivity) context, location));
+        itemView.setContentDescription(mTitle.getText());
+        itemView.setOnClickListener(v -> IntentHelper.startAllergenActivity((GeoActivity) mContext, location));
     }
 
     @Override
     public void onRecycleView() {
         super.onRecycleView();
-        if (callback != null) {
-            pager.unregisterOnPageChangeCallback(callback);
-            callback = null;
+        if (mCallback != null) {
+            mPager.unregisterOnPageChangeCallback(mCallback);
+            mCallback = null;
         }
     }
 }

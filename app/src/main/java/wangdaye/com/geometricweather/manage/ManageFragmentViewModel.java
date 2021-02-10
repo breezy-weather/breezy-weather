@@ -16,42 +16,42 @@ import wangdaye.com.geometricweather.manage.model.SelectableLocationListResource
 
 public class ManageFragmentViewModel extends ViewModel {
 
-    private final MutableLiveData<SelectableLocationListResource> listResource;
-    private final ManageFragmentRepository repository;
+    private final MutableLiveData<SelectableLocationListResource> mListResource;
+    private final ManageFragmentRepository mRepository;
 
-    private boolean newInstance;
+    private boolean mNewInstance;
 
     public ManageFragmentViewModel() {
-        listResource = new MutableLiveData<>();
-        listResource.setValue(new SelectableLocationListResource(
+        mListResource = new MutableLiveData<>();
+        mListResource.setValue(new SelectableLocationListResource(
                 new ArrayList<>(), null, null));
 
-        repository = new ManageFragmentRepository();
+        mRepository = new ManageFragmentRepository();
 
-        newInstance = true;
+        mNewInstance = true;
     }
 
     public void init(Context context, @Nullable String selectedId) {
-        repository.readLocationList(context, locationList -> {
+        mRepository.readLocationList(context, locationList -> {
             if (locationList == null) {
                 return;
             }
 
             List<Location> list = new ArrayList<>(locationList);
-            listResource.setValue(
+            mListResource.setValue(
                     new SelectableLocationListResource(list, selectedId, null));
         });
     }
 
     public void readAppendCache(Context context) {
         List<Location> oldList = getLocationList();
-        repository.readAppendLocation(context, oldList, locationList -> {
+        mRepository.readAppendLocation(context, oldList, locationList -> {
             if (locationList == null) {
                 return;
             }
 
             List<Location> list = new ArrayList<>(locationList);
-            listResource.setValue(
+            mListResource.setValue(
                     new SelectableLocationListResource(list, getSelectedId(), null));
         });
     }
@@ -64,13 +64,13 @@ public class ManageFragmentViewModel extends ViewModel {
         List<Location> list = innerGetLocationList();
         list.add(position, location);
 
-        listResource.setValue(
+        mListResource.setValue(
                 new SelectableLocationListResource(list, getSelectedId(), null));
 
         if (position == getLocationCount() - 1) {
-            repository.writeLocation(context, location);
+            mRepository.writeLocation(context, location);
         } else {
-            repository.writeLocationList(context, Collections.unmodifiableList(list), position);
+            mRepository.writeLocationList(context, Collections.unmodifiableList(list), position);
         }
     }
 
@@ -99,18 +99,18 @@ public class ManageFragmentViewModel extends ViewModel {
         }
 
         if (needReadList) {
-            repository.readLocationList(context, newList, list -> {
+            mRepository.readLocationList(context, newList, list -> {
                 if (list == null) {
                     return;
                 }
-                listResource.setValue(
+                mListResource.setValue(
                         new SelectableLocationListResource(
                                 new ArrayList<>(list), selectedId, null
                         )
                 );
             });
         } else {
-            listResource.setValue(
+            mListResource.setValue(
                     new SelectableLocationListResource(
                             new ArrayList<>(newList), selectedId, null)
             );
@@ -120,7 +120,7 @@ public class ManageFragmentViewModel extends ViewModel {
     public void moveLocation(int from, int to) {
         List<Location> list = innerGetLocationList();
         Collections.swap(list, from, to);
-        listResource.setValue(
+        mListResource.setValue(
                 new SelectableLocationListResource(
                         list,
                         getSelectedId(),
@@ -131,14 +131,14 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public void moveLocationFinish(Context context) {
-        repository.writeLocationList(context, getLocationList());
+        mRepository.writeLocationList(context, getLocationList());
     }
 
     public void forceUpdateLocation(Context context, Location location, int position) {
         List<Location> list = innerGetLocationList();
         list.set(position, location);
 
-        listResource.setValue(
+        mListResource.setValue(
                 new SelectableLocationListResource(
                         list,
                         getSelectedId(),
@@ -146,7 +146,7 @@ public class ManageFragmentViewModel extends ViewModel {
                 )
         );
 
-        repository.writeLocation(context, location);
+        mRepository.writeLocation(context, location);
     }
 
     public Location deleteLocation(Context context, int position) {
@@ -160,22 +160,22 @@ public class ManageFragmentViewModel extends ViewModel {
             selectedId = list.get(0).getFormattedId();
         }
 
-        listResource.setValue(
+        mListResource.setValue(
                 new SelectableLocationListResource(list, selectedId, null));
 
-        repository.deleteLocation(context, location);
+        mRepository.deleteLocation(context, location);
         return location;
     }
 
     private List<Location> innerGetLocationList() {
-        if (listResource.getValue() == null) {
+        if (mListResource.getValue() == null) {
             return new ArrayList<>();
         }
-        return listResource.getValue().dataList;
+        return mListResource.getValue().dataList;
     }
 
     public MutableLiveData<SelectableLocationListResource> getListResource() {
-        return listResource;
+        return mListResource;
     }
 
     public List<Location> getLocationList() {
@@ -191,16 +191,16 @@ public class ManageFragmentViewModel extends ViewModel {
     }
 
     public String getSelectedId() {
-        if (listResource.getValue() == null) {
+        if (mListResource.getValue() == null) {
             return null;
         } else {
-            return listResource.getValue().selectedId;
+            return mListResource.getValue().selectedId;
         }
     }
 
     public boolean isNewInstance() {
-        if (newInstance) {
-            newInstance = false;
+        if (mNewInstance) {
+            mNewInstance = false;
             return true;
         }
         return false;

@@ -20,45 +20,45 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class CircleView extends View {
 
-    private Paint paint;
+    private Paint mPaint;
 
-    private float[] initRadius = new float[4];
-    private float[] realRadius = new float[4];
-    private int[] colors;
-    private int paintAlpha = 255;
-    private float cX, cY;
-    private boolean dayTime;
-    private boolean animating = false;
+    private final float[] mInitRadius = new float[4];
+    private final float[] mRealRadius = new float[4];
+    private int[] mColors;
+    private int mPaintAlpha = 255;
+    private float mCX, mCY;
+    private boolean mDayTime;
+    private boolean mAnimating = false;
 
     private static final int SHOW_ANIM_DURATION = 400;
     private static final int HIDE_ANIM_DURATION = 400;
     private static final int TOUCH_ANIM_DURATION = 1500;
 
-    private Animation animShow = new Animation() {
+    private final Animation mAnimShow = new Animation() {
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
             super.applyTransformation(interpolatedTime, t);
-            paintAlpha = (int) (255 * interpolatedTime);
+            mPaintAlpha = (int) (255 * interpolatedTime);
             calcRadiusWhenShowing(interpolatedTime);
             invalidate();
         }
     };
 
-    private Animation animHide = new Animation() {
+    private final Animation mAnimHide = new Animation() {
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
             super.applyTransformation(interpolatedTime, t);
-            paintAlpha = (int) (255 * (1 - interpolatedTime));
+            mPaintAlpha = (int) (255 * (1 - interpolatedTime));
             calcRadiusWhenHiding(interpolatedTime);
             invalidate();
         }
     };
 
-    private Animation animTouch = new Animation() {
+    private final Animation mAnimTouch = new Animation() {
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
             super.applyTransformation(interpolatedTime, t);
-            paintAlpha = 255;
+            mPaintAlpha = 255;
             calcRadiusWhenTouching(interpolatedTime);
             invalidate();
         }
@@ -66,27 +66,27 @@ public class CircleView extends View {
 
     public CircleView(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public CircleView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public CircleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initialize();
+        initialize();
     }
 
     // init.
 
     private void initialize() {
-        this.paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setAntiAlias(true);
 
-        this.dayTime = TimeManager.getInstance(getContext()).isDayTime();
+        mDayTime = TimeManager.getInstance(getContext()).isDayTime();
         setColor();
     }
 
@@ -97,11 +97,11 @@ public class CircleView extends View {
         float unitRadius = DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth())
                 / Constants.UNIT_RADIUS_RATIO;
         for (int i = 0; i < 4; i ++) {
-            initRadius[i] = unitRadius * (i + 1);
-            realRadius[i] = initRadius[i];
+            mInitRadius[i] = unitRadius * (i + 1);
+            mRealRadius[i] = mInitRadius[i];
         }
-        cX = getMeasuredWidth() / 2;
-        cY = getMeasuredHeight();
+        mCX = getMeasuredWidth() / 2;
+        mCY = getMeasuredHeight();
     }
 
     // control.
@@ -110,7 +110,7 @@ public class CircleView extends View {
      * @return Return true whether execute switch animation.
      * */
     public boolean showCircle(boolean dayTime) {
-        if (this.dayTime != dayTime) {
+        if (mDayTime != dayTime) {
             doHide(dayTime);
             return true;
         }
@@ -118,26 +118,26 @@ public class CircleView extends View {
     }
 
     public void touchCircle() {
-        if (!animating) {
+        if (!mAnimating) {
             doTouch();
         }
     }
 
     private void doShow(boolean dayTime) {
-        this.dayTime = dayTime;
+        mDayTime = dayTime;
         setColor();
 
-        animShow.setDuration(SHOW_ANIM_DURATION);
-        animShow.setInterpolator(new AccelerateDecelerateInterpolator());
-        animShow.setAnimationListener(new Animation.AnimationListener() {
+        mAnimShow.setDuration(SHOW_ANIM_DURATION);
+        mAnimShow.setInterpolator(new AccelerateDecelerateInterpolator());
+        mAnimShow.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                animating = true;
+                mAnimating = true;
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                animating = false;
+                mAnimating = false;
             }
 
             @Override
@@ -147,21 +147,21 @@ public class CircleView extends View {
         });
 
         clearAnimation();
-        startAnimation(animShow);
+        startAnimation(mAnimShow);
     }
 
     private void doHide(final boolean dayTime) {
-        animHide.setDuration(HIDE_ANIM_DURATION);
-        animHide.setInterpolator(new AccelerateDecelerateInterpolator());
-        animHide.setAnimationListener(new Animation.AnimationListener() {
+        mAnimHide.setDuration(HIDE_ANIM_DURATION);
+        mAnimHide.setInterpolator(new AccelerateDecelerateInterpolator());
+        mAnimHide.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                animating = true;
+                mAnimating = true;
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                animating = false;
+                mAnimating = false;
                 doShow(dayTime);
             }
 
@@ -172,21 +172,21 @@ public class CircleView extends View {
         });
 
         clearAnimation();
-        startAnimation(animHide);
+        startAnimation(mAnimHide);
     }
 
     private void doTouch() {
-        animTouch.setDuration(TOUCH_ANIM_DURATION);
-        animTouch.setInterpolator(new AccelerateDecelerateInterpolator());
-        animTouch.setAnimationListener(new Animation.AnimationListener() {
+        mAnimTouch.setDuration(TOUCH_ANIM_DURATION);
+        mAnimTouch.setInterpolator(new AccelerateDecelerateInterpolator());
+        mAnimTouch.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                animating = true;
+                mAnimating = true;
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                animating = false;
+                mAnimating = false;
             }
 
             @Override
@@ -196,19 +196,19 @@ public class CircleView extends View {
         });
 
         clearAnimation();
-        startAnimation(animTouch);
+        startAnimation(mAnimTouch);
     }
 
     private void setColor() {
-        if (dayTime) {
-            colors = new int[] {
+        if (mDayTime) {
+            mColors = new int[] {
                     ContextCompat.getColor(getContext(), R.color.lightPrimary_1),
                     ContextCompat.getColor(getContext(), R.color.lightPrimary_2),
                     ContextCompat.getColor(getContext(), R.color.lightPrimary_3),
                     ContextCompat.getColor(getContext(), R.color.lightPrimary_4),
                     ContextCompat.getColor(getContext(), R.color.lightPrimary_5)};
         } else {
-            colors = new int[] {
+            mColors = new int[] {
                     ContextCompat.getColor(getContext(), R.color.darkPrimary_1),
                     ContextCompat.getColor(getContext(), R.color.darkPrimary_2),
                     ContextCompat.getColor(getContext(), R.color.darkPrimary_3),
@@ -228,114 +228,114 @@ public class CircleView extends View {
     }
 
     private void drawBackground(Canvas canvas) {
-        paint.setColor(colors[4]);
-        paint.setAlpha(paintAlpha);
-        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
+        mPaint.setColor(mColors[4]);
+        mPaint.setAlpha(mPaintAlpha);
+        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), mPaint);
     }
 
     private void drawFourthFloor(Canvas canvas) {
-        paint.setColor(colors[3]);
-        paint.setAlpha(paintAlpha);
-        canvas.drawCircle(cX, cY, realRadius[3], paint);
+        mPaint.setColor(mColors[3]);
+        mPaint.setAlpha(mPaintAlpha);
+        canvas.drawCircle(mCX, mCY, mRealRadius[3], mPaint);
     }
 
     private void drawThirdFloor(Canvas canvas) {
-        paint.setColor(colors[2]);
-        paint.setAlpha(paintAlpha);
-        canvas.drawCircle(cX, cY, realRadius[2], paint);
+        mPaint.setColor(mColors[2]);
+        mPaint.setAlpha(mPaintAlpha);
+        canvas.drawCircle(mCX, mCY, mRealRadius[2], mPaint);
     }
 
     private void drawSecondFloor(Canvas canvas) {
-        paint.setColor(colors[1]);
-        paint.setAlpha(paintAlpha);
-        canvas.drawCircle(cX, cY, realRadius[1], paint);
+        mPaint.setColor(mColors[1]);
+        mPaint.setAlpha(mPaintAlpha);
+        canvas.drawCircle(mCX, mCY, mRealRadius[1], mPaint);
     }
 
     private void drawFirstFloor(Canvas canvas) {
-        paint.setColor(colors[0]);
-        paint.setAlpha(paintAlpha);
-        canvas.drawCircle(cX, cY, realRadius[0], paint);
+        mPaint.setColor(mColors[0]);
+        mPaint.setAlpha(mPaintAlpha);
+        canvas.drawCircle(mCX, mCY, mRealRadius[0], mPaint);
     }
 
     private void calcRadiusWhenShowing(float animTime) {
-        realRadius[0] = (float) (initRadius[0] * (0.5 * animTime + 0.5));
-        realRadius[1] = (float) (initRadius[1] * (0.5 * animTime + 0.5));
-        realRadius[2] = (float) (initRadius[2] * (0.5 * animTime + 0.5));
-        realRadius[3] = (float) (initRadius[3] * (0.5 * animTime + 0.5));
+        mRealRadius[0] = (float) (mInitRadius[0] * (0.5 * animTime + 0.5));
+        mRealRadius[1] = (float) (mInitRadius[1] * (0.5 * animTime + 0.5));
+        mRealRadius[2] = (float) (mInitRadius[2] * (0.5 * animTime + 0.5));
+        mRealRadius[3] = (float) (mInitRadius[3] * (0.5 * animTime + 0.5));
     }
 
     private void calcRadiusWhenHiding(float animTime) {
-        realRadius[0] = (float) (initRadius[0] * (1 - 0.5 * animTime));
-        realRadius[1] = (float) (initRadius[1] * (1 - 0.5 * animTime));
-        realRadius[2] = (float) (initRadius[2] * (1 - 0.5 * animTime));
-        realRadius[3] = (float) (initRadius[3] * (1 - 0.5 * animTime));
+        mRealRadius[0] = (float) (mInitRadius[0] * (1 - 0.5 * animTime));
+        mRealRadius[1] = (float) (mInitRadius[1] * (1 - 0.5 * animTime));
+        mRealRadius[2] = (float) (mInitRadius[2] * (1 - 0.5 * animTime));
+        mRealRadius[3] = (float) (mInitRadius[3] * (1 - 0.5 * animTime));
     }
 
     private void calcRadiusWhenTouching(float animTime) {
         float partTime = (float) (1.0 / 6.0);
-        if (dayTime) {
+        if (mDayTime) {
             if (animTime < partTime) {
-                realRadius[0] = (float) (initRadius[0] * (1 + 0.15 * (animTime / partTime)));
-                realRadius[1] = initRadius[1];
-                realRadius[2] = initRadius[2];
-                realRadius[3] = initRadius[3];
+                mRealRadius[0] = (float) (mInitRadius[0] * (1 + 0.15 * (animTime / partTime)));
+                mRealRadius[1] = mInitRadius[1];
+                mRealRadius[2] = mInitRadius[2];
+                mRealRadius[3] = mInitRadius[3];
             } else if (animTime < partTime * 2) {
-                realRadius[0] = (float) (initRadius[0] * (1.15 - 0.25 * ((animTime - partTime) / partTime)));
-                realRadius[1] = (float) (initRadius[0] * (2 + 0.2 * ((animTime - partTime) / partTime)));
-                realRadius[2] = initRadius[2];
-                realRadius[3] = initRadius[3];
+                mRealRadius[0] = (float) (mInitRadius[0] * (1.15 - 0.25 * ((animTime - partTime) / partTime)));
+                mRealRadius[1] = (float) (mInitRadius[0] * (2 + 0.2 * ((animTime - partTime) / partTime)));
+                mRealRadius[2] = mInitRadius[2];
+                mRealRadius[3] = mInitRadius[3];
             } else if (animTime < partTime * 3) {
-                realRadius[0] = (float) (initRadius[0] * (0.9 + 0.1 * ((animTime - 2 * partTime) / partTime)));
-                realRadius[1] = (float) (initRadius[0] * (2.2 - 0.3 * ((animTime - 2 * partTime) / partTime)));
-                realRadius[2] = (float) (initRadius[0] * (3 + 0.25 * ((animTime - 2 * partTime) / partTime)));
-                realRadius[3] = initRadius[3];
+                mRealRadius[0] = (float) (mInitRadius[0] * (0.9 + 0.1 * ((animTime - 2 * partTime) / partTime)));
+                mRealRadius[1] = (float) (mInitRadius[0] * (2.2 - 0.3 * ((animTime - 2 * partTime) / partTime)));
+                mRealRadius[2] = (float) (mInitRadius[0] * (3 + 0.25 * ((animTime - 2 * partTime) / partTime)));
+                mRealRadius[3] = mInitRadius[3];
             } else if (animTime < partTime * 4) {
-                realRadius[0] = initRadius[0];
-                realRadius[1] = (float) (initRadius[0] * (1.9 + 0.1 * ((animTime - 3 * partTime) / partTime)));
-                realRadius[2] = (float) (initRadius[0] * (3.25 - 0.35 * ((animTime - 3 * partTime) / partTime)));
-                realRadius[3] = (float) (initRadius[0] * (4 + 0.3 * ((animTime - 3 * partTime) / partTime)));
+                mRealRadius[0] = mInitRadius[0];
+                mRealRadius[1] = (float) (mInitRadius[0] * (1.9 + 0.1 * ((animTime - 3 * partTime) / partTime)));
+                mRealRadius[2] = (float) (mInitRadius[0] * (3.25 - 0.35 * ((animTime - 3 * partTime) / partTime)));
+                mRealRadius[3] = (float) (mInitRadius[0] * (4 + 0.3 * ((animTime - 3 * partTime) / partTime)));
             } else if (animTime < partTime * 5) {
-                realRadius[0] = initRadius[0];
-                realRadius[1] = initRadius[1];
-                realRadius[2] = (float) (initRadius[0] * (2.9 + 0.1 * ((animTime - 4 * partTime) / partTime)));
-                realRadius[3] = (float) (initRadius[0] * (4.3 - 0.4 * ((animTime - 4 * partTime) / partTime)));
+                mRealRadius[0] = mInitRadius[0];
+                mRealRadius[1] = mInitRadius[1];
+                mRealRadius[2] = (float) (mInitRadius[0] * (2.9 + 0.1 * ((animTime - 4 * partTime) / partTime)));
+                mRealRadius[3] = (float) (mInitRadius[0] * (4.3 - 0.4 * ((animTime - 4 * partTime) / partTime)));
             } else {
-                realRadius[0] = initRadius[0];
-                realRadius[1] = initRadius[1];
-                realRadius[2] = initRadius[2];
-                realRadius[3] = (float) (initRadius[0] * (3.9 + 0.1 * ((animTime - 5 * partTime) / partTime)));
+                mRealRadius[0] = mInitRadius[0];
+                mRealRadius[1] = mInitRadius[1];
+                mRealRadius[2] = mInitRadius[2];
+                mRealRadius[3] = (float) (mInitRadius[0] * (3.9 + 0.1 * ((animTime - 5 * partTime) / partTime)));
             }
         } else {
             if (animTime < partTime) {
-                realRadius[0] = (float) (initRadius[0] * (1 + 0.15 * (animTime / partTime)));
-                realRadius[1] = initRadius[1];
-                realRadius[2] = initRadius[2];
-                realRadius[3] = initRadius[3];
+                mRealRadius[0] = (float) (mInitRadius[0] * (1 + 0.15 * (animTime / partTime)));
+                mRealRadius[1] = mInitRadius[1];
+                mRealRadius[2] = mInitRadius[2];
+                mRealRadius[3] = mInitRadius[3];
             } else if (animTime < partTime * 2) {
-                realRadius[0] = (float) (initRadius[0] * (1.15 - 0.2 * ((animTime - partTime) / partTime)));
-                realRadius[1] = (float) (initRadius[0] * (2 + 0.12 * ((animTime - partTime) / partTime)));
-                realRadius[2] = initRadius[2];
-                realRadius[3] = initRadius[3];
+                mRealRadius[0] = (float) (mInitRadius[0] * (1.15 - 0.2 * ((animTime - partTime) / partTime)));
+                mRealRadius[1] = (float) (mInitRadius[0] * (2 + 0.12 * ((animTime - partTime) / partTime)));
+                mRealRadius[2] = mInitRadius[2];
+                mRealRadius[3] = mInitRadius[3];
             } else if (animTime < partTime * 3) {
-                realRadius[0] = (float) (initRadius[0] * (0.95 + 0.05 * ((animTime - 2 * partTime) / partTime)));
-                realRadius[1] = (float) (initRadius[0] * (2.12 - 0.17 * ((animTime - 2 * partTime) / partTime)));
-                realRadius[2] = (float) (initRadius[0] * (3 + 0.09 * ((animTime - 2 * partTime) / partTime)));
-                realRadius[3] = initRadius[3];
+                mRealRadius[0] = (float) (mInitRadius[0] * (0.95 + 0.05 * ((animTime - 2 * partTime) / partTime)));
+                mRealRadius[1] = (float) (mInitRadius[0] * (2.12 - 0.17 * ((animTime - 2 * partTime) / partTime)));
+                mRealRadius[2] = (float) (mInitRadius[0] * (3 + 0.09 * ((animTime - 2 * partTime) / partTime)));
+                mRealRadius[3] = mInitRadius[3];
             } else if (animTime < partTime * 4) {
-                realRadius[0] = initRadius[0];
-                realRadius[1] = (float) (initRadius[0] * (1.95 + 0.05 * ((animTime - 3 * partTime) / partTime)));
-                realRadius[2] = (float) (initRadius[0] * (3.09 - 0.14 * ((animTime - 3 * partTime) / partTime)));
-                realRadius[3] = (float) (initRadius[0] * (4 + 0.06 * ((animTime - 3 * partTime) / partTime)));
+                mRealRadius[0] = mInitRadius[0];
+                mRealRadius[1] = (float) (mInitRadius[0] * (1.95 + 0.05 * ((animTime - 3 * partTime) / partTime)));
+                mRealRadius[2] = (float) (mInitRadius[0] * (3.09 - 0.14 * ((animTime - 3 * partTime) / partTime)));
+                mRealRadius[3] = (float) (mInitRadius[0] * (4 + 0.06 * ((animTime - 3 * partTime) / partTime)));
             } else if (animTime < partTime * 5) {
-                realRadius[0] = initRadius[0];
-                realRadius[1] = initRadius[1];
-                realRadius[2] = (float) (initRadius[0] * (2.95 + 0.05 * ((animTime - 4 * partTime) / partTime)));
-                realRadius[3] = (float) (initRadius[0] * (4.06 - 0.11 * ((animTime - 4 * partTime) / partTime)));
+                mRealRadius[0] = mInitRadius[0];
+                mRealRadius[1] = mInitRadius[1];
+                mRealRadius[2] = (float) (mInitRadius[0] * (2.95 + 0.05 * ((animTime - 4 * partTime) / partTime)));
+                mRealRadius[3] = (float) (mInitRadius[0] * (4.06 - 0.11 * ((animTime - 4 * partTime) / partTime)));
             } else {
-                realRadius[0] = initRadius[0];
-                realRadius[1] = initRadius[1];
-                realRadius[2] = initRadius[2];
-                realRadius[3] = (float) (initRadius[0] * (3.95 + 0.05 * ((animTime - 5 * partTime) / partTime)));
+                mRealRadius[0] = mInitRadius[0];
+                mRealRadius[1] = mInitRadius[1];
+                mRealRadius[2] = mInitRadius[2];
+                mRealRadius[3] = (float) (mInitRadius[0] * (3.95 + 0.05 * ((animTime - 5 * partTime) / partTime)));
             }
         }
     }

@@ -11,8 +11,8 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class TrendHorizontalLinearLayoutManager extends TrendLayoutManager {
 
-    private Context context;
-    private int fillCount;
+    private final Context mContext;
+    private final int mFillCount;
 
     private static final int MIN_ITEM_WIDTH = 56;
     private static final int MIN_ITEM_HEIGHT = 144;
@@ -23,8 +23,8 @@ public class TrendHorizontalLinearLayoutManager extends TrendLayoutManager {
 
     public TrendHorizontalLinearLayoutManager(Context context, int fillCount) {
         super(context);
-        this.context = context;
-        this.fillCount = fillCount;
+        mContext = context;
+        mFillCount = fillCount;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class TrendHorizontalLinearLayoutManager extends TrendLayoutManager {
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-        if (fillCount > 0) {
-            int minWidth = (int) DisplayUtils.dpToPx(context, MIN_ITEM_WIDTH);
-            int minHeight = (int) DisplayUtils.dpToPx(context, MIN_ITEM_HEIGHT);
+        if (mFillCount > 0) {
+            int minWidth = (int) DisplayUtils.dpToPx(mContext, MIN_ITEM_WIDTH);
+            int minHeight = (int) DisplayUtils.dpToPx(mContext, MIN_ITEM_HEIGHT);
             return new RecyclerView.LayoutParams(
-                    Math.max(minWidth, getWidth() / fillCount),
+                    Math.max(minWidth, getWidth() / mFillCount),
                     getHeight() > minHeight ? ViewGroup.LayoutParams.MATCH_PARENT : minHeight
             );
         } else {

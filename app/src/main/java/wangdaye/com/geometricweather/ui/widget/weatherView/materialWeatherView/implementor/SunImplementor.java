@@ -15,29 +15,29 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.M
 
 public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplementor {
 
-    private Paint paint;
-    private float[] angles;
-    private float[] unitSizes;
+    private final Paint mPaint;
+    private final float[] mAngles;
+    private final float[] mUnitSizes;
 
     public SunImplementor(@Size(2) int[] canvasSizes) {
-        this.paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
-        paint.setColor(Color.rgb(253, 84, 17));
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setAntiAlias(true);
+        mPaint.setColor(Color.rgb(253, 84, 17));
 
-        this.angles = new float[3];
+        mAngles = new float[3];
 
-        this.unitSizes = new float[3];
-        unitSizes[0] = (float) (0.5 * 0.47 * canvasSizes[0]);
-        unitSizes[1] = (float) (1.7794 * unitSizes[0]);
-        unitSizes[2] = (float) (3.0594 * unitSizes[0]);
+        mUnitSizes = new float[3];
+        mUnitSizes[0] = (float) (0.5 * 0.47 * canvasSizes[0]);
+        mUnitSizes[1] = (float) (1.7794 * mUnitSizes[0]);
+        mUnitSizes[2] = (float) (3.0594 * mUnitSizes[0]);
     }
 
     @Override
     public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
-        for (int i = 0; i < angles.length; i ++) {
-            angles[i] = (float) ((angles[i] + (90.0 / (3000 + 1000 * i) * interval)) % 90);
+        for (int i = 0; i < mAngles.length; i ++) {
+            mAngles[i] = (float) ((mAngles[i] + (90.0 / (3000 + 1000 * i) * interval)) % 90);
         }
     }
 
@@ -55,29 +55,29 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
                     canvasSizes[0] + deltaX,
                     (float) (0.0333 * canvasSizes[0] + deltaY));
 
-            paint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.40));
-            canvas.rotate(angles[0]);
+            mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.40));
+            canvas.rotate(mAngles[0]);
             for (int i = 0; i < 4; i ++) {
-                canvas.drawRect(-unitSizes[0], -unitSizes[0], unitSizes[0], unitSizes[0], paint);
+                canvas.drawRect(-mUnitSizes[0], -mUnitSizes[0], mUnitSizes[0], mUnitSizes[0], mPaint);
                 canvas.rotate(22.5F);
             }
-            canvas.rotate(-90 - angles[0]);
+            canvas.rotate(-90 - mAngles[0]);
 
-            paint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.16));
-            canvas.rotate(angles[1]);
+            mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.16));
+            canvas.rotate(mAngles[1]);
             for (int i = 0; i < 4; i ++) {
-                canvas.drawRect(-unitSizes[1], -unitSizes[1], unitSizes[1], unitSizes[1], paint);
+                canvas.drawRect(-mUnitSizes[1], -mUnitSizes[1], mUnitSizes[1], mUnitSizes[1], mPaint);
                 canvas.rotate(22.5F);
             }
-            canvas.rotate(-90 - angles[1]);
+            canvas.rotate(-90 - mAngles[1]);
 
-            paint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.08));
-            canvas.rotate(angles[2]);
+            mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.08));
+            canvas.rotate(mAngles[2]);
             for (int i = 0; i < 4; i ++) {
-                canvas.drawRect(-unitSizes[2], -unitSizes[2], unitSizes[2], unitSizes[2], paint);
+                canvas.drawRect(-mUnitSizes[2], -mUnitSizes[2], mUnitSizes[2], mUnitSizes[2], mPaint);
                 canvas.rotate(22.5F);
             }
-            canvas.rotate(-90 - angles[2]);
+            canvas.rotate(-90 - mAngles[2]);
         }
     }
 

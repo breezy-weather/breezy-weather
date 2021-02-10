@@ -24,9 +24,9 @@ import wangdaye.com.geometricweather.ui.decotarion.ListDecoration;
 
 public class AlertActivity extends GeoActivity {
 
-    private CoordinatorLayout container;
+    private CoordinatorLayout mContainer;
 
-    private List<Alert> alarmList;
+    private List<Alert> mAlarmList;
     public static final String KEY_ALERT_ACTIVITY_ALERT_LIST = "ALERT_ACTIVITY_ALERT_LIST";
 
     @Override
@@ -45,23 +45,22 @@ public class AlertActivity extends GeoActivity {
 
     @Override
     public View getSnackbarContainer() {
-        return container;
+        return mContainer;
     }
 
     private void initData() {
-        this.alarmList = getIntent().getParcelableArrayListExtra(KEY_ALERT_ACTIVITY_ALERT_LIST);
+        mAlarmList = getIntent().getParcelableArrayListExtra(KEY_ALERT_ACTIVITY_ALERT_LIST);
     }
 
     private void initWidget() {
-        this.container = findViewById(R.id.activity_alert_container);
+        mContainer = findViewById(R.id.activity_alert_container);
 
         Toolbar toolbar = findViewById(R.id.activity_alert_toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         RecyclerView recyclerView = findViewById(R.id.activity_alert_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.addItemDecoration(new ListDecoration(this));
-        recyclerView.setAdapter(new AlertAdapter(alarmList));
+        recyclerView.setAdapter(new AlertAdapter(mAlarmList));
     }
 }

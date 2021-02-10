@@ -138,6 +138,16 @@ public class AboutAppTranslator {
                 "https://github.com/rikupin1105",
                 R.drawable.flag_ja
         ));
+        list.add(new AboutAppTranslator(
+                "Julien Papasian",
+                "https://github.com/papjul",
+                R.drawable.flag_fr
+        ));
+        list.add(new AboutAppTranslator(
+                "alexandru l",
+                "sandu.lulu@gmail.com",
+                R.drawable.flag_ro
+        ));
         return list;
     }
 }

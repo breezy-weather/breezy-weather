@@ -19,19 +19,19 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.M
 
 public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimationImplementor {
 
-    private Paint paint;
-    private Meteor[] meteors;
-    private Star[] stars;
+    private final Paint mPaint;
+    private final Meteor[] mMeteors;
+    private final Star[] mStars;
 
-    private float lastDisplayRate;
+    private float mLastDisplayRate;
 
-    private float lastRotation3D;
+    private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
 
     @ColorInt
-    private int backgroundColor;
+    private final int mBackgroundColor;
 
-    private class Meteor {
+    private static class Meteor {
 
         float x;
         float y;
@@ -45,19 +45,19 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
         int color;
         float scale;
 
-        private int viewWidth;
-        private int viewHeight;
+        private int mViewWidth;
+        private int mViewHeight;
 
-        private int canvasSize;
+        private int mCanvasSize;
 
         private final float MAX_HEIGHT;
         private final float MIN_HEIGHT;
 
         private Meteor(int viewWidth, int viewHeight, @ColorInt int color, float scale) { // 1, 0.7, 0.4
-            this.viewWidth = viewWidth;
-            this.viewHeight = viewHeight;
+            mViewWidth = viewWidth;
+            mViewHeight = viewHeight;
 
-            this.canvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
+            mCanvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
 
             this.width = (float) (viewWidth * 0.0088 * scale);
 
@@ -69,14 +69,14 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
             this.MAX_HEIGHT = (float) (1.1 * viewWidth / Math.cos(60.0 * Math.PI / 180.0));
             this.MIN_HEIGHT = (float) (MAX_HEIGHT * 0.7);
 
-            this.init(true);
+            init(true);
         }
 
         private void init(boolean firstTime) {
             Random r = new Random();
-            x = r.nextInt(canvasSize);
+            x = r.nextInt(mCanvasSize);
             if (firstTime) {
-                y = r.nextInt(canvasSize) - MAX_HEIGHT - canvasSize;
+                y = r.nextInt(mCanvasSize) - MAX_HEIGHT - mCanvasSize;
             } else {
                 y = -MAX_HEIGHT;
             }
@@ -86,8 +86,8 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
         }
 
         private void buildRectF() {
-            float x = (float) (this.x - (canvasSize - viewWidth) * 0.5);
-            float y = (float) (this.y - (canvasSize - viewHeight) * 0.5);
+            float x = (float) (this.x - (mCanvasSize - mViewWidth) * 0.5);
+            float y = (float) (this.y - (mCanvasSize - mViewHeight) * 0.5);
             rectF.set(x, y, x + width, y + height);
         }
 
@@ -98,7 +98,7 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
                     * (Math.pow(scale, 0.5)
                     - 5 * Math.sin(deltaRotation3D * Math.PI / 180.0) * Math.sin(60 * Math.PI / 180.0));
 
-            if (y >= canvasSize) {
+            if (y >= mCanvasSize) {
                 init(false);
             } else {
                 buildRectF();
@@ -106,7 +106,7 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
         }
     }
 
-    private class Star {
+    private static class Star {
 
         float centerX;
         float centerY;
@@ -151,10 +151,10 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
     }
 
     public MeteorShowerImplementor(@Size(2) int[] canvasSizes) {
-        this.paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setAntiAlias(true);
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setAntiAlias(true);
 
         Random random = new Random();
         int viewWidth = canvasSizes[0];
@@ -176,54 +176,54 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
                 Color.rgb(255, 255, 255),
                 Color.rgb(255, 255, 255)};
         */
-        this.meteors = new Meteor[15];
-        for (int i = 0; i < meteors.length; i ++) {
-            meteors[i] = new Meteor(
+        mMeteors = new Meteor[15];
+        for (int i = 0; i < mMeteors.length; i ++) {
+            mMeteors[i] = new Meteor(
                     viewWidth, viewHeight,
                     colors[random.nextInt(colors.length)], random.nextFloat());
         }
-        this.stars = new Star[100];
+        mStars = new Star[100];
         int canvasSize = (int) Math.pow(
                 Math.pow(viewWidth, 2) + Math.pow(viewHeight, 2),
                 0.5);
         int width = (int) (1.0 * canvasSize);
         int height = (int) ((canvasSize - viewHeight) * 0.5 + viewWidth * 1.1111);
         float radius = (float) (0.0028 * viewWidth);
-        for (int i = 0; i < stars.length; i ++) {
+        for (int i = 0; i < mStars.length; i ++) {
             int x = (int) (random.nextInt(width) - 0.5 * (canvasSize - viewWidth));
             int y = (int) (random.nextInt(height) - 0.5 * (canvasSize - viewHeight));
             boolean newPosition = true;
             for (int j = 0; j < i; j ++) {
-                if (stars[j].centerX == x && stars[j].centerY == y) {
+                if (mStars[j].centerX == x && mStars[j].centerY == y) {
                     newPosition = false;
                     break;
                 }
             }
             if (newPosition) {
                 long duration = 1500 + random.nextInt(3) * 500;
-                stars[i] = new Star(x, y, radius, colors[random.nextInt(colors.length)], duration, random.nextInt());
+                mStars[i] = new Star(x, y, radius, colors[random.nextInt(colors.length)], duration, random.nextInt());
             } else {
                 i --;
             }
         }
 
-        this.lastDisplayRate = 0;
-        this.lastRotation3D = INITIAL_ROTATION_3D;
+        mLastDisplayRate = 0;
+        mLastRotation3D = INITIAL_ROTATION_3D;
 
-        this.backgroundColor = getThemeColor();
+        mBackgroundColor = getThemeColor();
     }
 
     @Override
     public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
 
-        for (Meteor m : meteors) {
-            m.move(interval, lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
+        for (Meteor m : mMeteors) {
+            m.move(interval, mLastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - mLastRotation3D);
         }
-        for (Star s : stars) {
+        for (Star s : mStars) {
             s.shine(interval);
         }
-        lastRotation3D = rotation3D;
+        mLastRotation3D = rotation3D;
     }
 
     @Override
@@ -231,11 +231,11 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
 
         if (displayRate >= 1) {
-            canvas.drawColor(backgroundColor);
+            canvas.drawColor(mBackgroundColor);
         } else {
             canvas.drawColor(
                     ColorUtils.setAlphaComponent(
-                            backgroundColor,
+                            mBackgroundColor,
                             (int) (displayRate * 255)));
         }
 
@@ -244,33 +244,33 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
                     rotation2D,
                     canvasSizes[0] * 0.5F,
                     canvasSizes[1] * 0.5F);
-            for (Star s : stars) {
-                paint.setColor(s.color);
-                paint.setAlpha((int) (displayRate * (1 - scrollRate) * s.alpha * 255));
-                paint.setStrokeWidth(s.radius * 2);
-                canvas.drawPoint(s.centerX, s.centerY, paint);
+            for (Star s : mStars) {
+                mPaint.setColor(s.color);
+                mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * s.alpha * 255));
+                mPaint.setStrokeWidth(s.radius * 2);
+                canvas.drawPoint(s.centerX, s.centerY, mPaint);
             }
 
             canvas.rotate(
                     60,
                     canvasSizes[0] * 0.5F,
                     canvasSizes[1] * 0.5F);
-            for (Meteor m : meteors) {
-                paint.setColor(m.color);
-                paint.setStrokeWidth(m.rectF.width());
-                if (displayRate < lastDisplayRate) {
-                    paint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
+            for (Meteor m : mMeteors) {
+                mPaint.setColor(m.color);
+                mPaint.setStrokeWidth(m.rectF.width());
+                if (displayRate < mLastDisplayRate) {
+                    mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
                 } else {
-                    paint.setAlpha((int) ((1 - scrollRate) * 255));
+                    mPaint.setAlpha((int) ((1 - scrollRate) * 255));
                 }
                 canvas.drawLine(
                         m.rectF.centerX(), m.rectF.top,
                         m.rectF.centerX(), m.rectF.bottom,
-                        paint);
+                        mPaint);
             }
         }
 
-        lastDisplayRate = displayRate;
+        mLastDisplayRate = displayRate;
     }
 
     @ColorInt

@@ -24,42 +24,42 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
  * */
 public class PolylineAndHistogramView extends AbsChartItemView {
 
-    private Paint paint;
-    private Path path;
-    private DayNightShaderWrapper shaderWrapper;
+    private Paint mPaint;
+    private Path mPath;
+    private DayNightShaderWrapper mShaderWrapper;
 
-    private @Nullable @Size(3) Float[] highPolylineValues = new Float[3];
-    private @Nullable @Size(3) Float[] lowPolylineValues = new Float[3];
-    private @Nullable String highPolylineValueStr;
-    private @Nullable String lowPolylineValueStr;
-    private @Nullable Float highestPolylineValue;
-    private @Nullable Float lowestPolylineValue;
+    private @Nullable @Size(3) Float[] mHighPolylineValues = new Float[3];
+    private @Nullable @Size(3) Float[] mLowPolylineValues = new Float[3];
+    private @Nullable String mHighPolylineValueStr;
+    private @Nullable String mLowPolylineValueStr;
+    private @Nullable Float mHighestPolylineValue;
+    private @Nullable Float mLowestPolylineValue;
 
-    private @Nullable Float histogramValue;
-    private @Nullable String histogramValueStr;
-    private @Nullable Float highestHistogramValue;
-    private @Nullable Float lowestHistogramValue;
+    private @Nullable Float mHistogramValue;
+    private @Nullable String mHistogramValueStr;
+    private @Nullable Float mHighestHistogramValue;
+    private @Nullable Float mLowestHistogramValue;
 
-    private int[] highPolylineY = new int[3];
-    private int[] lowPolylineY = new int[3];
-    private int histogramY;
+    private final int[] mHighPolylineY = new int[3];
+    private final int[] mLowPolylineY = new int[3];
+    private int mHistogramY;
 
-    private int marginTop;
-    private int marginBottom;
-    private int polylineWidth;
-    private int polylineTextSize;
-    private int histogramWidth;
-    private int histogramTextSize;
-    private int chartLineWith;
-    private int textMargin;
+    private int mMarginTop;
+    private int mMarginBottom;
+    private int mPolylineWidth;
+    private int mPolylineTextSize;
+    private int mHistogramWidth;
+    private int mHistogramTextSize;
+    private int mChartLineWith;
+    private int mTextMargin;
 
-    private int[] lineColors;
-    private int[] shadowColors;
-    private int textColor;
-    private int textShadowColor;
-    private int histogramTextColor;
+    private int[] mLineColors;
+    private int[] mShadowColors;
+    private int mTextColor;
+    private int mTextShadowColor;
+    private int mHistogramTextColor;
 
-    private float histogramAlpha;
+    private float mHistogramAlpha;
 
     private static final float MARGIN_TOP_DIP = 24;
     private static final float MARGIN_BOTTOM_DIP = 36;
@@ -75,270 +75,270 @@ public class PolylineAndHistogramView extends AbsChartItemView {
 
     public PolylineAndHistogramView(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public PolylineAndHistogramView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public PolylineAndHistogramView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initialize();
+        initialize();
     }
 
     private void initialize() {
-        lineColors = new int[] {Color.BLACK, Color.DKGRAY, Color.LTGRAY};
-        shadowColors = new int[] {Color.BLACK, Color.WHITE};
+        mLineColors = new int[] {Color.BLACK, Color.DKGRAY, Color.LTGRAY};
+        mShadowColors = new int[] {Color.BLACK, Color.WHITE};
 
         setTextColors(Color.BLACK, Color.GRAY);
         setHistogramAlpha(0.33f);
 
-        this.marginTop = (int) DisplayUtils.dpToPx(getContext(), MARGIN_TOP_DIP);
-        this.marginBottom = (int) DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
-        this.polylineTextSize = (int) DisplayUtils.dpToPx(getContext(), POLYLINE_TEXT_SIZE_DIP);
-        this.histogramTextSize = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
-        this.polylineWidth = (int) DisplayUtils.dpToPx(getContext(), POLYLINE_SIZE_DIP);
-        this.histogramWidth = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
-        this.chartLineWith = (int) DisplayUtils.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
-        this.textMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
+        mMarginTop = (int) DisplayUtils.dpToPx(getContext(), MARGIN_TOP_DIP);
+        mMarginBottom = (int) DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
+        mPolylineTextSize = (int) DisplayUtils.dpToPx(getContext(), POLYLINE_TEXT_SIZE_DIP);
+        mHistogramTextSize = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
+        mPolylineWidth = (int) DisplayUtils.dpToPx(getContext(), POLYLINE_SIZE_DIP);
+        mHistogramWidth = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
+        mChartLineWith = (int) DisplayUtils.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
+        mTextMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
 
-        this.paint = new Paint();
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setAntiAlias(true);
-        paint.setFilterBitmap(true);
+        mPaint = new Paint();
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setAntiAlias(true);
+        mPaint.setFilterBitmap(true);
 
-        this.path = new Path();
-        this.shaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
+        mPath = new Path();
+        mShaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
         setShadowColors(Color.BLACK, Color.GRAY, true);
     }
 
     @Override
     public int getMarginTop() {
-        return marginTop;
+        return mMarginTop;
     }
 
     @Override
     public int getMarginBottom() {
-        return marginBottom;
+        return mMarginBottom;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        ensureShader(shaderWrapper.isLightTheme());
+        ensureShader(mShaderWrapper.isLightTheme());
         computeCoordinates();
 
         drawTimeLine(canvas);
 
-        if (histogramValue != null && histogramValue != 0 && histogramValueStr != null
-                && highestHistogramValue != null && lowestHistogramValue != null) {
+        if (mHistogramValue != null && mHistogramValue != 0 && mHistogramValueStr != null
+                && mHighestHistogramValue != null && mLowestHistogramValue != null) {
             drawHistogram(canvas);
         }
-        if (highestPolylineValue != null && lowestPolylineValue != null) {
-            if (highPolylineValues != null && highPolylineValueStr != null) {
+        if (mHighestPolylineValue != null && mLowestPolylineValue != null) {
+            if (mHighPolylineValues != null && mHighPolylineValueStr != null) {
                 drawHighPolyLine(canvas);
             }
-            if (lowPolylineValues != null && lowPolylineValueStr != null) {
+            if (mLowPolylineValues != null && mLowPolylineValueStr != null) {
                 drawLowPolyline(canvas);
             }
         }
     }
 
     private void drawTimeLine(Canvas canvas) {
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(chartLineWith);
-        paint.setColor(lineColors[2]);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(mChartLineWith);
+        mPaint.setColor(mLineColors[2]);
 
         canvas.drawLine(
-                getMeasuredWidth() / 2.f, marginTop,
-                getMeasuredWidth() / 2.f, getMeasuredHeight() - marginBottom,
-                paint
+                getMeasuredWidth() / 2.f, mMarginTop,
+                getMeasuredWidth() / 2.f, getMeasuredHeight() - mMarginBottom,
+                mPaint
         );
     }
 
     private void drawHighPolyLine(Canvas canvas) {
-        assert highPolylineValues != null;
-        assert highPolylineValueStr != null;
-        if (highPolylineValues[0] != null && highPolylineValues[2] != null) {
+        assert mHighPolylineValues != null;
+        assert mHighPolylineValueStr != null;
+        if (mHighPolylineValues[0] != null && mHighPolylineValues[2] != null) {
             // shadow.
-            paint.setColor(Color.BLACK);
-            paint.setShader(shaderWrapper.getShader());
-            paint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.BLACK);
+            mPaint.setShader(mShaderWrapper.getShader());
+            mPaint.setStyle(Paint.Style.FILL);
 
-            path.reset();
-            path.moveTo(getRTLCompactX(0), highPolylineY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), highPolylineY[2]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - marginBottom);
-            path.lineTo(getRTLCompactX(0), getMeasuredHeight() - marginBottom);
-            path.close();
-            canvas.drawPath(path, paint);
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX(0), mHighPolylineY[0]);
+            mPath.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mHighPolylineY[1]);
+            mPath.lineTo(getRTLCompactX(getMeasuredWidth()), mHighPolylineY[2]);
+            mPath.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - mMarginBottom);
+            mPath.lineTo(getRTLCompactX(0), getMeasuredHeight() - mMarginBottom);
+            mPath.close();
+            canvas.drawPath(mPath, mPaint);
 
             // line.
-            paint.setShader(null);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(polylineWidth);
-            paint.setColor(lineColors[0]);
+            mPaint.setShader(null);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setStrokeWidth(mPolylineWidth);
+            mPaint.setColor(mLineColors[0]);
 
-            path.reset();
-            path.moveTo(getRTLCompactX(0), highPolylineY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), highPolylineY[2]);
-            canvas.drawPath(path, paint);
-        } else if (highPolylineValues[0] == null) {
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX(0), mHighPolylineY[0]);
+            mPath.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mHighPolylineY[1]);
+            mPath.lineTo(getRTLCompactX(getMeasuredWidth()), mHighPolylineY[2]);
+            canvas.drawPath(mPath, mPaint);
+        } else if (mHighPolylineValues[0] == null) {
             // shadow.
-            paint.setColor(Color.BLACK);
-            paint.setShader(shaderWrapper.getShader());
-            paint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.BLACK);
+            mPaint.setShader(mShaderWrapper.getShader());
+            mPaint.setStyle(Paint.Style.FILL);
 
-            path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), highPolylineY[2]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - marginBottom);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - marginBottom);
-            path.close();
-            canvas.drawPath(path, paint);
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mHighPolylineY[1]);
+            mPath.lineTo(getRTLCompactX(getMeasuredWidth()), mHighPolylineY[2]);
+            mPath.lineTo(getRTLCompactX(getMeasuredWidth()), getMeasuredHeight() - mMarginBottom);
+            mPath.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - mMarginBottom);
+            mPath.close();
+            canvas.drawPath(mPath, mPaint);
 
             // line.
-            paint.setShader(null);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(polylineWidth);
-            paint.setColor(lineColors[0]);
+            mPaint.setShader(null);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setStrokeWidth(mPolylineWidth);
+            mPaint.setColor(mLineColors[0]);
 
-            path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), highPolylineY[2]);
-            canvas.drawPath(path, paint);
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mHighPolylineY[1]);
+            mPath.lineTo(getRTLCompactX(getMeasuredWidth()), mHighPolylineY[2]);
+            canvas.drawPath(mPath, mPaint);
         } else {
             // shadow.
-            paint.setColor(Color.BLACK);
-            paint.setShader(shaderWrapper.getShader());
-            paint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(Color.BLACK);
+            mPaint.setShader(mShaderWrapper.getShader());
+            mPaint.setStyle(Paint.Style.FILL);
 
-            path.reset();
-            path.moveTo(getRTLCompactX(0), highPolylineY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - marginBottom);
-            path.lineTo(getRTLCompactX(0), getMeasuredHeight() - marginBottom);
-            path.close();
-            canvas.drawPath(path, paint);
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX(0), mHighPolylineY[0]);
+            mPath.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mHighPolylineY[1]);
+            mPath.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), getMeasuredHeight() - mMarginBottom);
+            mPath.lineTo(getRTLCompactX(0), getMeasuredHeight() - mMarginBottom);
+            mPath.close();
+            canvas.drawPath(mPath, mPaint);
 
             // line.
-            paint.setShader(null);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(polylineWidth);
-            paint.setColor(lineColors[0]);
+            mPaint.setShader(null);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setStrokeWidth(mPolylineWidth);
+            mPaint.setColor(mLineColors[0]);
 
-            path.reset();
-            path.moveTo(getRTLCompactX(0), highPolylineY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), highPolylineY[1]);
-            canvas.drawPath(path, paint);
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX(0), mHighPolylineY[0]);
+            mPath.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mHighPolylineY[1]);
+            canvas.drawPath(mPath, mPaint);
         }
 
         // text.
-        paint.setColor(textColor);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(polylineTextSize);
-        paint.setShadowLayer(2, 0, 1, textShadowColor);
+        mPaint.setColor(mTextColor);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(mPolylineTextSize);
+        mPaint.setShadowLayer(2, 0, 1, mTextShadowColor);
         canvas.drawText(
-                highPolylineValueStr,
+                mHighPolylineValueStr,
                 getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
-                highPolylineY[1] - paint.getFontMetrics().bottom - textMargin,
-                paint
+                mHighPolylineY[1] - mPaint.getFontMetrics().bottom - mTextMargin,
+                mPaint
         );
-        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+        mPaint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
     }
 
     private void drawLowPolyline(Canvas canvas) {
-        assert lowPolylineValues != null;
-        assert lowPolylineValueStr != null;
-        if (lowPolylineValues[0] != null && lowPolylineValues[2] != null) {
-            paint.setShader(null);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(polylineWidth);
-            paint.setColor(lineColors[1]);
+        assert mLowPolylineValues != null;
+        assert mLowPolylineValueStr != null;
+        if (mLowPolylineValues[0] != null && mLowPolylineValues[2] != null) {
+            mPaint.setShader(null);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setStrokeWidth(mPolylineWidth);
+            mPaint.setColor(mLineColors[1]);
 
-            path.reset();
-            path.moveTo(getRTLCompactX(0), lowPolylineY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), lowPolylineY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), lowPolylineY[2]);
-            canvas.drawPath(path, paint);
-        } else if (lowPolylineValues[0] == null) {
-            paint.setShader(null);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(polylineWidth);
-            paint.setColor(lineColors[1]);
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX(0), mLowPolylineY[0]);
+            mPath.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mLowPolylineY[1]);
+            mPath.lineTo(getRTLCompactX(getMeasuredWidth()), mLowPolylineY[2]);
+            canvas.drawPath(mPath, mPaint);
+        } else if (mLowPolylineValues[0] == null) {
+            mPaint.setShader(null);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setStrokeWidth(mPolylineWidth);
+            mPaint.setColor(mLineColors[1]);
 
-            path.reset();
-            path.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), lowPolylineY[1]);
-            path.lineTo(getRTLCompactX(getMeasuredWidth()), lowPolylineY[2]);
-            canvas.drawPath(path, paint);
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mLowPolylineY[1]);
+            mPath.lineTo(getRTLCompactX(getMeasuredWidth()), mLowPolylineY[2]);
+            canvas.drawPath(mPath, mPaint);
         } else {
-            paint.setShader(null);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(polylineWidth);
-            paint.setColor(lineColors[1]);
+            mPaint.setShader(null);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setStrokeWidth(mPolylineWidth);
+            mPaint.setColor(mLineColors[1]);
 
-            path.reset();
-            path.moveTo(getRTLCompactX(0), lowPolylineY[0]);
-            path.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), lowPolylineY[1]);
-            canvas.drawPath(path, paint);
+            mPath.reset();
+            mPath.moveTo(getRTLCompactX(0), mLowPolylineY[0]);
+            mPath.lineTo(getRTLCompactX((float) (getMeasuredWidth() / 2.0)), mLowPolylineY[1]);
+            canvas.drawPath(mPath, mPaint);
         }
 
         // text.
-        paint.setColor(textColor);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(polylineTextSize);
-        paint.setShadowLayer(2, 0, 1, textShadowColor);
+        mPaint.setColor(mTextColor);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(mPolylineTextSize);
+        mPaint.setShadowLayer(2, 0, 1, mTextShadowColor);
         canvas.drawText(
-                lowPolylineValueStr,
+                mLowPolylineValueStr,
                 getRTLCompactX((float) (getMeasuredWidth() / 2.0)),
-                lowPolylineY[1] - paint.getFontMetrics().top + textMargin,
-                paint
+                mLowPolylineY[1] - mPaint.getFontMetrics().top + mTextMargin,
+                mPaint
         );
-        paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+        mPaint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
     }
 
     private void drawHistogram(Canvas canvas) {
-        assert histogramValueStr != null;
+        assert mHistogramValueStr != null;
 
-        paint.setColor(lineColors[1]);
-        paint.setAlpha((int) (255 * histogramAlpha));
-        paint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(mLineColors[1]);
+        mPaint.setAlpha((int) (255 * mHistogramAlpha));
+        mPaint.setStyle(Paint.Style.FILL);
 
         canvas.drawRoundRect(
                 new RectF(
-                        (float) (getMeasuredWidth() / 2.0 - histogramWidth),
-                        histogramY,
-                        (float) (getMeasuredWidth() / 2.0 + histogramWidth),
-                        getMeasuredHeight() - marginBottom
+                        (float) (getMeasuredWidth() / 2.0 - mHistogramWidth),
+                        mHistogramY,
+                        (float) (getMeasuredWidth() / 2.0 + mHistogramWidth),
+                        getMeasuredHeight() - mMarginBottom
                 ),
-                histogramWidth, histogramWidth,
-                paint
+                mHistogramWidth, mHistogramWidth,
+                mPaint
         );
 
-        paint.setColor(histogramTextColor);
-        paint.setAlpha(255);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(histogramTextSize);
+        mPaint.setColor(mHistogramTextColor);
+        mPaint.setAlpha(255);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(mHistogramTextSize);
         canvas.drawText(
-                histogramValueStr,
+                mHistogramValueStr,
                 (float) (getMeasuredWidth() / 2.0),
                 (float) (
                         getMeasuredHeight()
-                                - marginBottom
-                                - paint.getFontMetrics().top
-                                + 2.0 * textMargin
-                                + polylineTextSize
-                ), paint
+                                - mMarginBottom
+                                - mPaint.getFontMetrics().top
+                                + 2.0 * mTextMargin
+                                + mPolylineTextSize
+                ), mPaint
         );
 
-        paint.setAlpha(255);
+        mPaint.setAlpha(255);
     }
 
     // control.
@@ -353,101 +353,101 @@ public class PolylineAndHistogramView extends AbsChartItemView {
                         @Nullable String histogramValueStr,
                         @Nullable Float highestHistogramValue,
                         @Nullable Float lowestHistogramValue) {
-        this.highPolylineValues = highPolylineValues;
-        this.lowPolylineValues = lowPolylineValues;
-        this.highPolylineValueStr = highPolylineValueStr;
-        this.lowPolylineValueStr = lowPolylineValueStr;
-        this.highestPolylineValue = highestPolylineValue;
-        this.lowestPolylineValue = lowestPolylineValue;
-        this.histogramValue = histogramValue;
-        this.histogramValueStr = histogramValueStr;
-        this.highestHistogramValue = highestHistogramValue;
-        this.lowestHistogramValue = lowestHistogramValue;
+        mHighPolylineValues = highPolylineValues;
+        mLowPolylineValues = lowPolylineValues;
+        mHighPolylineValueStr = highPolylineValueStr;
+        mLowPolylineValueStr = lowPolylineValueStr;
+        mHighestPolylineValue = highestPolylineValue;
+        mLowestPolylineValue = lowestPolylineValue;
+        mHistogramValue = histogramValue;
+        mHistogramValueStr = histogramValueStr;
+        mHighestHistogramValue = highestHistogramValue;
+        mLowestHistogramValue = lowestHistogramValue;
         invalidate();
     }
 
     public void setLineColors(@ColorInt int colorHigh, @ColorInt int colorLow,
                               @ColorInt int colorSubLine) {
-        lineColors[0] = colorHigh;
-        lineColors[1] = colorLow;
-        lineColors[2] = colorSubLine;
+        mLineColors[0] = colorHigh;
+        mLineColors[1] = colorLow;
+        mLineColors[2] = colorSubLine;
         invalidate();
     }
 
     public void setShadowColors(@ColorInt int colorHigh, @ColorInt int colorLow, boolean lightTheme) {
-        shadowColors[0] = lightTheme
+        mShadowColors[0] = lightTheme
                 ? ColorUtils.setAlphaComponent(colorHigh, (int) (255 * SHADOW_ALPHA_FACTOR_LIGHT))
                 : ColorUtils.setAlphaComponent(colorLow, (int) (255 * SHADOW_ALPHA_FACTOR_DARK));
-        shadowColors[1] = Color.TRANSPARENT;
+        mShadowColors[1] = Color.TRANSPARENT;
 
         ensureShader(lightTheme);
         invalidate();
     }
 
     public void setTextColors(@ColorInt int textColor, @ColorInt int histogramTextColor) {
-        this.textColor = textColor;
-        this.textShadowColor = Color.argb((int) (255 * 0.2), 0, 0, 0);
-        this.histogramTextColor = histogramTextColor;
+        mTextColor = textColor;
+        mTextShadowColor = Color.argb((int) (255 * 0.2), 0, 0, 0);
+        mHistogramTextColor = histogramTextColor;
         invalidate();
     }
 
     public void setHistogramAlpha(@FloatRange(from = 0, to = 1) float histogramAlpha) {
-        this.histogramAlpha = histogramAlpha;
+        mHistogramAlpha = histogramAlpha;
         invalidate();
     }
 
     private void ensureShader(boolean lightTheme) {
-        if (shaderWrapper.isDifferent(
-                getMeasuredWidth(), getMeasuredHeight(), lightTheme, shadowColors)) {
-            shaderWrapper.setShader(
+        if (mShaderWrapper.isDifferent(
+                getMeasuredWidth(), getMeasuredHeight(), lightTheme, mShadowColors)) {
+            mShaderWrapper.setShader(
                     new LinearGradient(
-                            0, marginTop,
-                            0, getMeasuredHeight() - marginBottom,
-                            shadowColors[0], shadowColors[1],
+                            0, mMarginTop,
+                            0, getMeasuredHeight() - mMarginBottom,
+                            mShadowColors[0], mShadowColors[1],
                             Shader.TileMode.CLAMP
                     ),
                     getMeasuredWidth(), getMeasuredHeight(),
                     lightTheme,
-                    shadowColors
+                    mShadowColors
             );
         }
     }
 
     private void computeCoordinates() {
-        float canvasHeight = getMeasuredHeight() - marginTop - marginBottom;
-        if (highestPolylineValue != null && lowestPolylineValue != null) {
-            if (highPolylineValues != null) {
-                for (int i = 0; i < highPolylineValues.length; i ++) {
-                    if (highPolylineValues[i] == null) {
-                        highPolylineY[i] = 0;
+        float canvasHeight = getMeasuredHeight() - mMarginTop - mMarginBottom;
+        if (mHighestPolylineValue != null && mLowestPolylineValue != null) {
+            if (mHighPolylineValues != null) {
+                for (int i = 0; i < mHighPolylineValues.length; i ++) {
+                    if (mHighPolylineValues[i] == null) {
+                        mHighPolylineY[i] = 0;
                     } else {
-                        highPolylineY[i] = computeSingleCoordinate(
-                                canvasHeight, highPolylineValues[i], highestPolylineValue, lowestPolylineValue);
+                        mHighPolylineY[i] = computeSingleCoordinate(
+                                canvasHeight, mHighPolylineValues[i], mHighestPolylineValue, mLowestPolylineValue);
                     }
                 }
             }
-            if (lowPolylineValues != null) {
-                for (int i = 0; i < lowPolylineValues.length; i ++) {
-                    if (lowPolylineValues[i] == null) {
-                        lowPolylineY[i] = 0;
+            if (mLowPolylineValues != null) {
+                for (int i = 0; i < mLowPolylineValues.length; i ++) {
+                    if (mLowPolylineValues[i] == null) {
+                        mLowPolylineY[i] = 0;
                     } else {
-                        lowPolylineY[i] = computeSingleCoordinate(
-                                canvasHeight, lowPolylineValues[i], highestPolylineValue, lowestPolylineValue);
+                        mLowPolylineY[i] = computeSingleCoordinate(
+                                canvasHeight, mLowPolylineValues[i], mHighestPolylineValue, mLowestPolylineValue);
                     }
                 }
             }
         }
 
-        if (histogramValue != null && highestHistogramValue != null && lowestHistogramValue != null) {
-            histogramY = computeSingleCoordinate(
-                    canvasHeight, histogramValue, highestHistogramValue, lowestHistogramValue);
+        if (mHistogramValue != null && mHighestHistogramValue != null && mLowestHistogramValue != null) {
+            mHistogramY = computeSingleCoordinate(
+                    canvasHeight, mHistogramValue, mHighestHistogramValue, mLowestHistogramValue);
         }
     }
 
     private int computeSingleCoordinate(float canvasHeight, float value, float max, float min) {
         return (int) (
                 getMeasuredHeight()
-                        - marginBottom
+                        - mMarginBottom
                         - canvasHeight * (value - min) / (max - min)
         );
     }

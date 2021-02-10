@@ -1,18 +1,15 @@
 package wangdaye.com.geometricweather.main.adapter.trend.daily;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -22,7 +19,6 @@ import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
@@ -31,68 +27,55 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQualityAdapter.ViewHolder> {
 
-    private Weather weather;
-    private TimeZone timeZone;
-    private ThemeManager themeManager;
-    private int highestIndex;
-    private int size;
+    private final ThemeManager mThemeManager;
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    private int mHighestIndex;
+    private int mSize;
 
-        private DailyTrendItemView dailyItem;
-        private PolylineAndHistogramView polylineAndHistogramView;
+    class ViewHolder extends AbsDailyTrendAdapter.ViewHolder {
+
+        private final PolylineAndHistogramView mPolylineAndHistogramView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
-
-            dailyItem = itemView.findViewById(R.id.item_trend_daily);
-            dailyItem.setChartItemView(polylineAndHistogramView);
+            mPolylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
+            dailyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
-        @SuppressLint({"SetTextI18n, InflateParams", "DefaultLocale"})
-        void onBindView(int position) {
-            Context context = itemView.getContext();
-            Daily daily = weather.getDailyForecast().get(position);
+        @SuppressLint("DefaultLocale")
+        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+            StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_aqi));
 
-            if (daily.isToday(timeZone)) {
-                dailyItem.setWeekText(context.getString(R.string.today));
-            } else {
-                dailyItem.setWeekText(daily.getWeek(context));
-            }
+            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
 
-            dailyItem.setDateText(daily.getShortDate(context));
-
-            dailyItem.setTextColor(
-                    themeManager.getTextContentColor(context),
-                    themeManager.getTextSubtitleColor(context)
-            );
-
+            assert location.getWeather() != null;
+            Daily daily = location.getWeather().getDailyForecast().get(position);
             Integer index = daily.getAirQuality().getAqiIndex();
-            polylineAndHistogramView.setData(
+            talkBackBuilder.append(", ").append(index).append(", ").append(daily.getAirQuality().getAqiText());
+            mPolylineAndHistogramView.setData(
                     null, null,
                     null, null,
                     null, null,
                     (float) (index == null ? 0 : index),
                     String.format("%d", index == null ? 0 : index),
-                    (float) highestIndex,
+                    (float) mHighestIndex,
                     0f
             );
-            polylineAndHistogramView.setLineColors(
-                    daily.getAirQuality().getAqiColor(context),
-                    daily.getAirQuality().getAqiColor(context),
-                    themeManager.getLineColor(context)
+            mPolylineAndHistogramView.setLineColors(
+                    daily.getAirQuality().getAqiColor(activity),
+                    daily.getAirQuality().getAqiColor(activity),
+                    mThemeManager.getLineColor(activity)
             );
-            int[] themeColors = themeManager.getWeatherThemeColors();
-            polylineAndHistogramView.setShadowColors(
-                    themeColors[1], themeColors[2], themeManager.isLightTheme());
-            polylineAndHistogramView.setTextColors(
-                    themeManager.getTextContentColor(context),
-                    themeManager.getTextSubtitleColor(context)
+            int[] themeColors = mThemeManager.getWeatherThemeColors();
+            mPolylineAndHistogramView.setShadowColors(
+                    themeColors[1], themeColors[2], mThemeManager.isLightTheme());
+            mPolylineAndHistogramView.setTextColors(
+                    mThemeManager.getTextContentColor(activity),
+                    mThemeManager.getTextSubtitleColor(activity)
             );
-            polylineAndHistogramView.setHistogramAlpha(themeManager.isLightTheme() ? 1f : 0.5f);
+            mPolylineAndHistogramView.setHistogramAlpha(mThemeManager.isLightTheme() ? 1f : 0.5f);
 
-            dailyItem.setOnClickListener(v -> onItemClicked(getAdapterPosition()));
+            dailyItem.setContentDescription(talkBackBuilder.toString());
         }
     }
 
@@ -100,24 +83,24 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
     public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent, Location location) {
         super(activity, location);
 
-        this.weather = location.getWeather();
-        this.timeZone = location.getTimeZone();
-        this.themeManager = ThemeManager.getInstance(activity);
+        Weather weather = location.getWeather();
+        assert weather != null;
+        mThemeManager = ThemeManager.getInstance(activity);
 
-        highestIndex = Integer.MIN_VALUE;
+        mHighestIndex = Integer.MIN_VALUE;
         boolean valid = false;
         for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
             Integer index = weather.getDailyForecast().get(i).getAirQuality().getAqiIndex();
-            if (index != null && index > highestIndex) {
-                highestIndex = index;
+            if (index != null && index > mHighestIndex) {
+                mHighestIndex = index;
             }
             if ((index != null && index != 0) || valid) {
                 valid = true;
-                size ++;
+                mSize++;
             }
         }
-        if (highestIndex == 0) {
-            highestIndex = AirQuality.AQI_INDEX_5;
+        if (mHighestIndex == 0) {
+            mHighestIndex = AirQuality.AQI_INDEX_5;
         }
 
         List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
@@ -145,8 +128,8 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(themeManager.getLineColor(activity));
-        parent.setData(keyLineList, highestIndex, 0);
+        parent.setLineColor(mThemeManager.getLineColor(activity));
+        parent.setData(keyLineList, mHighestIndex, 0);
     }
 
     @NonNull
@@ -159,11 +142,11 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(position);
+        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
     }
 
     @Override
     public int getItemCount() {
-        return size;
+        return mSize;
     }
 }

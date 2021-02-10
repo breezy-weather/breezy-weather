@@ -8,12 +8,13 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum NotificationStyle {
+
     NATIVE("native"),
     CITIES("cities"),
     DAILY("daily"),
     HOURLY("hourly");
 
-    private String styleId;
+    private final String styleId;
 
     NotificationStyle(String styleId) {
         this.styleId = styleId;

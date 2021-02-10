@@ -29,10 +29,10 @@ public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity 
     @Override
     public void initView() {
         super.initView();
-        cardStyleContainer.setVisibility(View.VISIBLE);
-        cardAlphaContainer.setVisibility(View.VISIBLE);
-        textColorContainer.setVisibility(View.VISIBLE);
-        textSizeContainer.setVisibility(View.VISIBLE);
+        mCardStyleContainer.setVisibility(View.VISIBLE);
+        mCardAlphaContainer.setVisibility(View.VISIBLE);
+        mTextColorContainer.setVisibility(View.VISIBLE);
+        mTextSizeContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

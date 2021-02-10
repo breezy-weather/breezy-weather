@@ -151,18 +151,17 @@
     <string name="tag_aqi">@string/air_quality</string>
     <string name="tag_uv">@string/uv_index</string>
 
-    <!-- about. -->
-    <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
-    <string name="glide">Glide</string>
-    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
-
     <!-- feedback. -->
     <string name="feedback_request_permission">授权</string>
     <string name="feedback_request_location">位置信息</string>
     <string name="feedback_request_location_in_background">正在后台进行定位</string>
     <string name="feedback_request_location_permission_success">获取位置权限成功</string>
     <string name="feedback_request_location_permission_failed">获取位置权限失败</string>
+
+    <string name="feedback_location_permissions_title">获取位置信息</string>
+    <string name="feedback_location_permissions_statement">几何天气需要在前台和后台获取您的位置信息以提供您所在位置的天气数据。为此，我们需要请求一些权限。您的位置信息将仅被用于获取天气数据。如果您不希望我们获取您的位置信息，可以拒绝这些权限请求并手动在管理页面中设置您的位置。</string>
+    <string name="feedback_background_location_title">在后台访问位置</string>
+    <string name="feedback_background_location_summary">为了让app可以在后台访问您的位置信息,以便我们能够即使感知您的位置变化并为您提供有效的天气数据，请将位置权限设置为“始终允许”。</string>
 
     <string name="feedback_location_failed">定位失败</string>
     <string name="feedback_get_weather_failed">获取天气数据失败</string>
@@ -248,8 +247,6 @@
     <string name="feedback_restart">重启后生效</string>
     <string name="feedback_readd_location">请重新添加地址</string>
     <string name="feedback_readd_location_after_changing_source">更换数据源后需重新添加地址</string>
-    <string name="feedback_background_location_title">在后台访问位置</string>
-    <string name="feedback_background_location_summary">为了让app可以在后台访问您的位置信息，请将位置权限设置为“始终允许”</string>
 
     <string name="feedback_running_in_background">正在后台运行以保持更新数据</string>
     <string name="feedback_updating_weather_data">正在更新天气数据</string>
@@ -274,6 +271,36 @@
     <string name="feedback_resident_location_description">常驻城市的天气将会根据您当前的位置来进行显示和隐藏。\n例如将家乡设置为常驻城市后，可以在旅途中查看家乡天气，而在回家后，家乡的天气数据将被当前位置替代并进行隐藏。</string>
 
     <string name="feedback_click_to_get_more">点击可获取更多…</string>
+
+    <!-- content description -->
+    <string name="content_desc_back">返回</string>
+    <string name="content_desc_check_details">查看详情</string>
+    <string name="content_desc_weather_alert_button">$条天气预警</string>
+    <string name="content_des_pm25">PM二点五</string>
+    <string name="content_des_pm10">PM十</string>
+    <string name="content_des_so2">二氧化硫</string>
+    <string name="content_des_no2">二氧化氮</string>
+    <string name="content_des_o3">臭氧</string>
+    <string name="content_des_co">一氧化碳</string>
+    <string name="content_des_sunrise">$日出</string>
+    <string name="content_des_sunset">$日落</string>
+    <string name="content_des_moonrise">$月出</string>
+    <string name="content_des_moonset">$月落</string>
+    <string name="content_des_no_precipitation">无降水</string>
+    <string name="content_des_minutely_precipitation">$1至$2间存在降水</string>
+    <string name="content_des_add_current_location">添加当前位置</string>
+    <string name="content_des_drag_flag">轻触以对列表项进行拖拽排序</string>
+    <string name="content_des_delete_flag">删除此项</string>
+    <string name="content_des_swipe_left_to_delete">你可以向左滑动以删除该项</string>
+    <string name="content_des_swipe_right_to_delete">你可以向右滑动以删除该项</string>
+    <string name="content_desc_search_filter_on">仅显示默认天气源的地址</string>
+    <string name="content_desc_search_filter_off">显示所有天气源的地址</string>
+    <string name="content_desc_powered_by">由$提供</string>
+    <string name="content_desc_wechat_payment_code">微信付款二维码</string>
+    <string name="content_desc_weather_icon">天气图标</string>
+    <string name="content_desc_weather_icon_light">亮色图标</string>
+    <string name="content_desc_weather_icon_grey">灰色图标</string>
+    <string name="content_desc_weather_icon_dark">暗色图标</string>
 
     <!-- action -->
     <string name="action_alert">预警</string>

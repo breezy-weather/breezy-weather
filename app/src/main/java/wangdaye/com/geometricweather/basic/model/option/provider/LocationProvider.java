@@ -14,7 +14,7 @@ public enum LocationProvider {
     AMAP("amap"),
     NATIVE("native");
 
-    private String providerId;
+    private final String providerId;
 
     LocationProvider(String id) {
         providerId = id;

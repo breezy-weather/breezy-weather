@@ -59,6 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/material_icon_size"
+                    android:contentDescription="@string/content_desc_weather_icon_light"
                     tools:background="@drawable/weather_clear_day_mini_light"/>
 
             </wangdaye.com.geometricweather.ui.widget.SquareFrameLayout>
@@ -73,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/material_icon_size"
+                    android:contentDescription="@string/content_desc_weather_icon_grey"
                     tools:background="@drawable/weather_clear_day_mini_grey"/>
 
             </wangdaye.com.geometricweather.ui.widget.SquareFrameLayout>
@@ -87,6 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/material_icon_size"
+                    android:contentDescription="@string/content_desc_weather_icon_dark"
                     tools:background="@drawable/weather_clear_day_mini_dark"/>
 
             </wangdaye.com.geometricweather.ui.widget.SquareFrameLayout>

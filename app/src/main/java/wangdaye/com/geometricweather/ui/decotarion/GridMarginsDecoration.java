@@ -12,8 +12,8 @@ import wangdaye.com.geometricweather.R;
 
 public class GridMarginsDecoration extends RecyclerView.ItemDecoration {
 
-    private @Px float marginsVertical;
-    private @Px float marginsHorizontal;
+    private @Px final float mMarginsVertical;
+    private @Px final float mMarginsHorizontal;
 
     public GridMarginsDecoration(Context context, RecyclerView recyclerView) {
         this(context.getResources().getDimensionPixelSize(R.dimen.little_margin), recyclerView);
@@ -24,8 +24,8 @@ public class GridMarginsDecoration extends RecyclerView.ItemDecoration {
     }
 
     public GridMarginsDecoration(@Px float marginsVertical, @Px float marginsHorizontal, RecyclerView recyclerView) {
-        this.marginsVertical = marginsVertical;
-        this.marginsHorizontal = marginsHorizontal;
+        mMarginsVertical = marginsVertical;
+        mMarginsHorizontal = marginsHorizontal;
         recyclerView.setClipToPadding(false);
         recyclerView.setPadding(
                 (int) marginsHorizontal / 2,
@@ -40,10 +40,10 @@ public class GridMarginsDecoration extends RecyclerView.ItemDecoration {
                                @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         outRect.set(
-                (int) (marginsHorizontal / 2),
-                (int) (marginsVertical / 2),
-                (int) (marginsHorizontal / 2),
-                (int) (marginsVertical / 2)
+                (int) (mMarginsHorizontal / 2),
+                (int) (mMarginsVertical / 2),
+                (int) (mMarginsHorizontal / 2),
+                (int) (mMarginsVertical / 2)
         );
     }
 }

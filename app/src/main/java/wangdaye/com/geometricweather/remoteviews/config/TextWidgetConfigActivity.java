@@ -15,9 +15,9 @@ public class TextWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public void initView() {
         super.initView();
-        textColorContainer.setVisibility(View.VISIBLE);
-        textSizeContainer.setVisibility(View.VISIBLE);
-        alignEndContainer.setVisibility(View.VISIBLE);
+        mTextColorContainer.setVisibility(View.VISIBLE);
+        mTextSizeContainer.setVisibility(View.VISIBLE);
+        mAlignEndContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

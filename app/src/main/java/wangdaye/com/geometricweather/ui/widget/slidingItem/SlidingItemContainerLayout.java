@@ -21,18 +21,18 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class SlidingItemContainerLayout extends FrameLayout {
 
-    private final AppCompatImageView icon;
-    private @Nullable View child;
+    private final AppCompatImageView mIcon;
+    private @Nullable View mChild;
 
-    private float swipeX;  // total swipe distance: + start, - end
+    private float mSwipeX;  // total swipe distance: + start, - end
 
-    private @DrawableRes int iconResStart;
-    private @DrawableRes int iconResEnd;
+    private @DrawableRes int mIconResStart;
+    private @DrawableRes int mIconResEnd;
 
-    private @ColorInt int backgroundColorStart;
-    private @ColorInt int backgroundColorEnd;
+    private @ColorInt int mBackgroundColorStart;
+    private @ColorInt int mBackgroundColorEnd;
 
-    private boolean updateFlag;
+    private boolean mUpdateFlag;
 
     public SlidingItemContainerLayout(Context context) {
         this(context, null);
@@ -48,109 +48,109 @@ public class SlidingItemContainerLayout extends FrameLayout {
         int iconSize = (int) DisplayUtils.dpToPx(context, 56);
         int iconPadding = (int) DisplayUtils.dpToPx(context, 16);
 
-        this.icon = new AppCompatImageView(context);
-        icon.setPadding(iconPadding, iconPadding, iconPadding, iconPadding);
-        ImageViewCompat.setImageTintList(icon, ColorStateList.valueOf(Color.WHITE));
-        addView(icon, new LayoutParams(iconSize, iconSize, Gravity.CENTER_VERTICAL));
+        mIcon = new AppCompatImageView(context);
+        mIcon.setPadding(iconPadding, iconPadding, iconPadding, iconPadding);
+        ImageViewCompat.setImageTintList(mIcon, ColorStateList.valueOf(Color.WHITE));
+        addView(mIcon, new LayoutParams(iconSize, iconSize, Gravity.CENTER_VERTICAL));
 
         setBackgroundColor(ThemeManager.getInstance(context).getRootColor(context));
 
-        this.child = null;
+        mChild = null;
 
-        this.swipeX = 0;
+        mSwipeX = 0;
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingItemContainerLayout, defStyleAttr, 0);
-        this.iconResStart = a.getResourceId(R.styleable.SlidingItemContainerLayout_iconResStart, 0);
-        this.iconResEnd = a.getResourceId(R.styleable.SlidingItemContainerLayout_iconResEnd, 0);
-        this.backgroundColorStart = a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorStart, Color.DKGRAY);
-        this.backgroundColorEnd = a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorEnd, Color.DKGRAY);
+        mIconResStart = a.getResourceId(R.styleable.SlidingItemContainerLayout_iconResStart, 0);
+        mIconResEnd = a.getResourceId(R.styleable.SlidingItemContainerLayout_iconResEnd, 0);
+        mBackgroundColorStart = a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorStart, Color.DKGRAY);
+        mBackgroundColorEnd = a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorEnd, Color.DKGRAY);
         a.recycle();
 
-        this.updateFlag = true;
+        mUpdateFlag = true;
     }
 
     public void swipe(float totalX) {
-        if (swipeX == totalX) {
+        if (mSwipeX == totalX) {
             return;
         }
-        if (child == null) {
+        if (mChild == null) {
             for (int i = 0; i < getChildCount(); i ++) {
                 View v = getChildAt(i);
-                if (v != icon) {
-                    child = v;
+                if (v != mIcon) {
+                    mChild = v;
                     break;
                 }
             }
         }
-        if (child == null) {
+        if (mChild == null) {
             return;
         }
 
-        child.setTranslationX(totalX);
+        mChild.setTranslationX(totalX);
 
         float progress = Math.abs(1.f * totalX / getMeasuredWidth());
         progress = (float)(1.0f - Math.pow((1.0f - progress), 4));
 
         if (totalX != 0) { // need to draw background and sliding icon.
-            if (totalX * swipeX <= 0 || updateFlag) { // need to set background and sliding icon.
-                updateFlag = false;
+            if (totalX * mSwipeX <= 0 || mUpdateFlag) { // need to set background and sliding icon.
+                mUpdateFlag = false;
                 if (DisplayUtils.isRtl(getContext())) {
-                    icon.setImageResource(totalX < 0 ? iconResStart : iconResEnd);
-                    setBackgroundColor(totalX < 0 ? backgroundColorStart : backgroundColorEnd);
+                    mIcon.setImageResource(totalX < 0 ? mIconResStart : mIconResEnd);
+                    setBackgroundColor(totalX < 0 ? mBackgroundColorStart : mBackgroundColorEnd);
                 } else {
-                    icon.setImageResource(totalX > 0 ? iconResStart : iconResEnd);
-                    setBackgroundColor(totalX > 0 ? backgroundColorStart : backgroundColorEnd);
+                    mIcon.setImageResource(totalX > 0 ? mIconResStart : mIconResEnd);
+                    setBackgroundColor(totalX > 0 ? mBackgroundColorStart : mBackgroundColorEnd);
                 }
             }
             if (totalX > 0) {
-                icon.setTranslationX((float) (
-                        0.5 * -icon.getMeasuredWidth() + 0.75 * icon.getMeasuredWidth() * progress
+                mIcon.setTranslationX((float) (
+                        0.5 * -mIcon.getMeasuredWidth() + 0.75 * mIcon.getMeasuredWidth() * progress
                 ));
             } else { // totalX < 0.
-                icon.setTranslationX((float) (
-                        getMeasuredWidth() - 0.5 * icon.getMeasuredWidth() - 0.75 * icon.getMeasuredWidth() * progress
+                mIcon.setTranslationX((float) (
+                        getMeasuredWidth() - 0.5 * mIcon.getMeasuredWidth() - 0.75 * mIcon.getMeasuredWidth() * progress
                 ));
             }
         } else {
             setBackgroundColor(ThemeManager.getInstance(getContext()).getRootColor(getContext()));
         }
 
-        swipeX = totalX;
+        mSwipeX = totalX;
     }
 
     public int getIconResStart() {
-        return iconResStart;
+        return mIconResStart;
     }
 
     public void setIconResStart(int iconResStart) {
-        this.iconResStart = iconResStart;
-        this.updateFlag = true;
+        mIconResStart = iconResStart;
+        mUpdateFlag = true;
     }
 
     public int getIconResEnd() {
-        return iconResEnd;
+        return mIconResEnd;
     }
 
     public void setIconResEnd(int iconResEnd) {
-        this.iconResEnd = iconResEnd;
-        this.updateFlag = true;
+        mIconResEnd = iconResEnd;
+        mUpdateFlag = true;
     }
 
     public int getBackgroundColorStart() {
-        return backgroundColorStart;
+        return mBackgroundColorStart;
     }
 
     public void setBackgroundColorStart(int backgroundColorStart) {
-        this.backgroundColorStart = backgroundColorStart;
-        this.updateFlag = true;
+        mBackgroundColorStart = backgroundColorStart;
+        mUpdateFlag = true;
     }
 
     public int getBackgroundColorEnd() {
-        return backgroundColorEnd;
+        return mBackgroundColorEnd;
     }
 
     public void setBackgroundColorEnd(int backgroundColorEnd) {
-        this.backgroundColorEnd = backgroundColorEnd;
-        this.updateFlag = true;
+        mBackgroundColorEnd = backgroundColorEnd;
+        mUpdateFlag = true;
     }
 }

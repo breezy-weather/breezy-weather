@@ -18,10 +18,10 @@ import wangdaye.com.geometricweather.basic.model.weather.Minutely;
 
 public class PrecipitationBar extends View {
 
-    @Nullable private List<Minutely> minutelyList;
-    private Paint paint;
-    @ColorInt private int precipitationColor;
-    @ColorInt private int backgroundColor;
+    @Nullable private List<Minutely> mMinutelyList;
+    private final Paint mPaint;
+    @ColorInt private int mPrecipitationColor;
+    @ColorInt private int mBackgroundColor;
 
     public PrecipitationBar(Context context) {
         this(context, null);
@@ -33,7 +33,7 @@ public class PrecipitationBar extends View {
 
     public PrecipitationBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        paint = new Paint();
+        mPaint = new Paint();
     }
 
     @Override
@@ -59,28 +59,28 @@ public class PrecipitationBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (minutelyList == null || minutelyList.size() == 0) {
+        if (mMinutelyList == null || mMinutelyList.size() == 0) {
             return;
         }
 
-        float itemWidth = getMeasuredWidth() / minutelyList.size();
+        float itemWidth = getMeasuredWidth() / mMinutelyList.size();
         float itemHeight = getMeasuredHeight();
 
-        canvas.drawColor(backgroundColor);
-        paint.setColor(precipitationColor);
+        canvas.drawColor(mBackgroundColor);
+        mPaint.setColor(mPrecipitationColor);
         if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
             float x = getMeasuredWidth();
-            for (Minutely m : minutelyList) {
+            for (Minutely m : mMinutelyList) {
                 if (m.isPrecipitation()) {
                     x -= itemWidth;
-                    canvas.drawRect(x, 0, x + itemWidth, itemHeight, paint);
+                    canvas.drawRect(x, 0, x + itemWidth, itemHeight, mPaint);
                 }
             }
         } else {
             float x = 0;
-            for (Minutely m : minutelyList) {
+            for (Minutely m : mMinutelyList) {
                 if (m.isPrecipitation()) {
-                    canvas.drawRect(x, 0, x + itemWidth, itemHeight, paint);
+                    canvas.drawRect(x, 0, x + itemWidth, itemHeight, mPaint);
                     x += itemWidth;
                 }
             }
@@ -88,18 +88,18 @@ public class PrecipitationBar extends View {
     }
 
     public void setMinutelyList(@Nullable List<Minutely> minutelyList) {
-        this.minutelyList = minutelyList;
+        mMinutelyList = minutelyList;
         invalidate();
     }
 
     public void setPrecipitationColor(@ColorInt int precipitationColor) {
-        this.precipitationColor = precipitationColor;
+        mPrecipitationColor = precipitationColor;
         invalidate();
     }
 
     @Override
     public void setBackgroundColor(@ColorInt int backgroundColor) {
-        this.backgroundColor = backgroundColor;
+        mBackgroundColor = backgroundColor;
         invalidate();
     }
 }

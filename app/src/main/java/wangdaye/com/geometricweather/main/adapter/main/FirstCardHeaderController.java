@@ -29,33 +29,33 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 public class FirstCardHeaderController
         implements View.OnClickListener {
 
-    private final GeoActivity activity;
-    private final View view;
-    private @Nullable Weather weather;
+    private final GeoActivity mActivity;
+    private final View mView;
+    private @Nullable Weather mWeather;
 
-    private @Nullable LinearLayout container;
+    private @Nullable LinearLayout mContainer;
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
     public FirstCardHeaderController(@NonNull GeoActivity activity, @NonNull Location location) {
-        this.activity = activity;
-        this.view = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
+        mActivity = activity;
+        mView = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
 
-        AppCompatImageView timeIcon = view.findViewById(R.id.container_main_first_card_header_timeIcon);
-        TextView refreshTime = view.findViewById(R.id.container_main_first_card_header_timeText);
-        TextClock localTime = view.findViewById(R.id.container_main_first_card_header_localTimeText);
-        TextView alert = view.findViewById(R.id.container_main_first_card_header_alert);
-        View line = view.findViewById(R.id.container_main_first_card_header_line);
+        AppCompatImageView timeIcon = mView.findViewById(R.id.container_main_first_card_header_timeIcon);
+        TextView refreshTime = mView.findViewById(R.id.container_main_first_card_header_timeText);
+        TextClock localTime = mView.findViewById(R.id.container_main_first_card_header_localTimeText);
+        TextView alert = mView.findViewById(R.id.container_main_first_card_header_alert);
+        View line = mView.findViewById(R.id.container_main_first_card_header_line);
 
         ThemeManager themeManager = ThemeManager.getInstance(activity);
 
         if (location.getWeather() != null) {
-            this.weather = location.getWeather();
+            mWeather = location.getWeather();
 
-            view.setOnClickListener(v ->
+            mView.setOnClickListener(v ->
                     IntentHelper.startManageActivityForResult(activity, MainActivity.MANAGE_ACTIVITY));
-            view.setEnabled(!MainModuleUtils.isMultiFragmentEnabled(activity));
+            mView.setEnabled(!MainModuleUtils.isMultiFragmentEnabled(activity));
 
-            if (weather.getAlertList().size() == 0) {
+            if (mWeather.getAlertList().size() == 0) {
                 timeIcon.setEnabled(false);
                 timeIcon.setImageResource(R.drawable.ic_time);
             } else {
@@ -66,12 +66,16 @@ public class FirstCardHeaderController
                     timeIcon,
                     ColorStateList.valueOf(themeManager.getTextContentColor(activity))
             );
+            timeIcon.setContentDescription(
+                    activity.getString(R.string.content_desc_weather_alert_button)
+                            .replace("$", "" + mWeather.getAlertList().size())
+            );
             timeIcon.setOnClickListener(this);
 
             refreshTime.setText(
                     activity.getString(R.string.refresh_at)
                             + " "
-                            + Base.getTime(activity, weather.getBase().getUpdateDate())
+                            + Base.getTime(activity, mWeather.getBase().getUpdateDate())
             );
             refreshTime.setTextColor(themeManager.getTextContentColor(activity));
 
@@ -91,22 +95,22 @@ public class FirstCardHeaderController
                 );
             }
 
-            if (weather.getAlertList().size() == 0) {
+            if (mWeather.getAlertList().size() == 0) {
                 alert.setVisibility(View.GONE);
                 line.setVisibility(View.GONE);
             } else {
                 alert.setVisibility(View.VISIBLE);
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < weather.getAlertList().size(); i ++) {
-                    builder.append(weather.getAlertList().get(i).getDescription())
+                for (int i = 0; i < mWeather.getAlertList().size(); i ++) {
+                    builder.append(mWeather.getAlertList().get(i).getDescription())
                             .append(", ")
                             .append(
                                     DateFormat.getDateTimeInstance(
                                             DateFormat.LONG,
                                             DateFormat.DEFAULT
-                                    ).format(weather.getAlertList().get(i).getDate())
+                                    ).format(mWeather.getAlertList().get(i).getDate())
                             );
-                    if (i != weather.getAlertList().size() - 1) {
+                    if (i != mWeather.getAlertList().size() - 1) {
                         builder.append("\n");
                     }
                 }
@@ -121,14 +125,14 @@ public class FirstCardHeaderController
     }
 
     public void bind(LinearLayout firstCardContainer) {
-        container = firstCardContainer;
-        container.addView(view, 0);
+        mContainer = firstCardContainer;
+        mContainer.addView(mView, 0);
     }
 
     public void unbind() {
-        if (container != null) {
-            container.removeViewAt(0);
-            container = null;
+        if (mContainer != null) {
+            mContainer.removeViewAt(0);
+            mContainer = null;
         }
     }
 
@@ -140,8 +144,8 @@ public class FirstCardHeaderController
         switch (v.getId()) {
             case R.id.container_main_first_card_header_timeIcon:
             case R.id.container_main_first_card_header_alert:
-                if (weather != null) {
-                    IntentHelper.startAlertActivity(activity, weather);
+                if (mWeather != null) {
+                    IntentHelper.startAlertActivity(mActivity, mWeather);
                 }
                 break;
         }

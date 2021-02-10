@@ -55,9 +55,6 @@ public class SettingsActivity extends GeoActivity
 
     private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.activity_settings_toolbar);
-        toolbar.setTitle(getString(R.string.action_settings));
-        toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
-        toolbar.setNavigationOnClickListener(view -> finish());
         toolbar.inflateMenu(R.menu.activity_settings);
         toolbar.setOnMenuItemClickListener(this);
     }

@@ -14,9 +14,9 @@ public enum PressureUnit {
     INHG("inhg", 5, 0.02953f),
     KGFPSQCM("kgfpsqcm", 6, 0.00102f);
 
-    private String unitId;
-    private int unitArrayIndex;
-    private float unitFactor; // actual pressure = pressure(mb) * factor.
+    private final String unitId;
+    private final int unitArrayIndex;
+    private final float unitFactor; // actual pressure = pressure(mb) * factor.
 
     PressureUnit(String id, int arrayIndex, float factor) {
         unitId = id;
@@ -38,5 +38,10 @@ public enum PressureUnit {
 
     public String getAbbreviation(Context context) {
         return context.getResources().getStringArray(R.array.pressure_units)[unitArrayIndex];
+    }
+
+    public String getPressureVoice(Context context, float mb) {
+        return UnitUtils.formatFloat(mb * unitFactor)
+                + context.getResources().getStringArray(R.array.pressure_unit_voices)[unitArrayIndex];
     }
 }

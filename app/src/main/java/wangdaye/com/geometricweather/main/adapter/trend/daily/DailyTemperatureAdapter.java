@@ -1,18 +1,15 @@
 package wangdaye.com.geometricweather.main.adapter.trend.daily;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Size;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -26,7 +23,6 @@ import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
@@ -35,53 +31,47 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatureAdapter.ViewHolder> {
 
-    private Weather weather;
-    private TimeZone timeZone;
-    private ResourceProvider provider;
-    private ThemeManager themeManager;
-    private TemperatureUnit unit;
+    private final ResourceProvider mResourceProvider;
+    private final ThemeManager mThemeManager;
+    private final TemperatureUnit mTemperatureUnit;
 
-    private float[] daytimeTemperatures;
-    private float[] nighttimeTemperatures;
-    private int highestTemperature;
-    private int lowestTemperature;
+    private final float[] mDaytimeTemperatures;
+    private final float[] mNighttimeTemperatures;
+    private int mHighestTemperature;
+    private int mLowestTemperature;
 
-    private boolean showPrecipitationProbability;
+    private final boolean mShowPrecipitationProbability;
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends AbsDailyTrendAdapter.ViewHolder {
 
-        private DailyTrendItemView dailyItem;
-        private PolylineAndHistogramView polylineAndHistogramView;
+        private final PolylineAndHistogramView mPolylineAndHistogramView;
 
         ViewHolder(View itemView) {
             super(itemView);
-
-            polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
-
-            dailyItem = itemView.findViewById(R.id.item_trend_daily);
-            dailyItem.setChartItemView(polylineAndHistogramView);
+            mPolylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
+            dailyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(int position) {
-            Context context = itemView.getContext();
+        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+            StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_temperature));
+
+            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+
+            Weather weather = location.getWeather();
+            assert weather != null;
             Daily daily = weather.getDailyForecast().get(position);
 
-            if (daily.isToday(timeZone)) {
-                dailyItem.setWeekText(context.getString(R.string.today));
-            } else {
-                dailyItem.setWeekText(daily.getWeek(context));
-            }
-
-            dailyItem.setDateText(daily.getShortDate(context));
-
-            dailyItem.setTextColor(
-                    themeManager.getTextContentColor(context),
-                    themeManager.getTextSubtitleColor(context)
-            );
+            talkBackBuilder
+                    .append(", ").append(activity.getString(R.string.daytime))
+                    .append(" : ").append(daily.day().getWeatherText())
+                    .append(", ").append(getDaytimeTemperatureString(weather, position, mTemperatureUnit))
+                    .append(", ").append(activity.getString(R.string.nighttime))
+                    .append(" : ").append(daily.night().getWeatherText())
+                    .append(", ").append(getNighttimeTemperatureString(weather, position, mTemperatureUnit));
 
             dailyItem.setDayIconDrawable(
-                    ResourceHelper.getWeatherIcon(provider, daily.day().getWeatherCode(), true));
+                    ResourceHelper.getWeatherIcon(mResourceProvider, daily.day().getWeatherCode(), true));
 
             Float daytimePrecipitationProbability = daily.day().getPrecipitationProbability().getTotal();
             Float nighttimePrecipitationProbability = daily.night().getPrecipitationProbability().getTotal();
@@ -89,36 +79,36 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                     daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
                     nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
             );
-            if (!showPrecipitationProbability) {
+            if (!mShowPrecipitationProbability) {
                 p = 0;
             }
-            polylineAndHistogramView.setData(
-                    buildTemperatureArrayForItem(daytimeTemperatures, position),
-                    buildTemperatureArrayForItem(nighttimeTemperatures, position),
-                    getShortDaytimeTemperatureString(weather, position, unit),
-                    getShortNighttimeTemperatureString(weather, position, unit),
-                    (float) highestTemperature,
-                    (float) lowestTemperature,
+            mPolylineAndHistogramView.setData(
+                    buildTemperatureArrayForItem(mDaytimeTemperatures, position),
+                    buildTemperatureArrayForItem(mNighttimeTemperatures, position),
+                    getShortDaytimeTemperatureString(weather, position, mTemperatureUnit),
+                    getShortNighttimeTemperatureString(weather, position, mTemperatureUnit),
+                    (float) mHighestTemperature,
+                    (float) mLowestTemperature,
                     p < 5 ? null : p,
-                    p < 5 ? null : ProbabilityUnit.PERCENT.getProbabilityText(context, p),
+                    p < 5 ? null : ProbabilityUnit.PERCENT.getProbabilityText(activity, p),
                     100f,
                     0f
             );
-            int[] themeColors = themeManager.getWeatherThemeColors();
-            polylineAndHistogramView.setLineColors(
-                    themeColors[1], themeColors[2], themeManager.getLineColor(context));
-            polylineAndHistogramView.setShadowColors(
-                    themeColors[1], themeColors[2], themeManager.isLightTheme());
-            polylineAndHistogramView.setTextColors(
-                    themeManager.getTextContentColor(context),
-                    themeManager.getTextSubtitleColor(context)
+            int[] themeColors = mThemeManager.getWeatherThemeColors();
+            mPolylineAndHistogramView.setLineColors(
+                    themeColors[1], themeColors[2], mThemeManager.getLineColor(activity));
+            mPolylineAndHistogramView.setShadowColors(
+                    themeColors[1], themeColors[2], mThemeManager.isLightTheme());
+            mPolylineAndHistogramView.setTextColors(
+                    mThemeManager.getTextContentColor(activity),
+                    mThemeManager.getTextSubtitleColor(activity)
             );
-            polylineAndHistogramView.setHistogramAlpha(themeManager.isLightTheme() ? 0.2f : 0.5f);
+            mPolylineAndHistogramView.setHistogramAlpha(mThemeManager.isLightTheme() ? 0.2f : 0.5f);
 
             dailyItem.setNightIconDrawable(
-                    ResourceHelper.getWeatherIcon(provider, daily.night().getWeatherCode(), false));
+                    ResourceHelper.getWeatherIcon(mResourceProvider, daily.night().getWeatherCode(), false));
 
-            dailyItem.setOnClickListener(v -> onItemClicked(getAdapterPosition()));
+            dailyItem.setContentDescription(talkBackBuilder.toString());
         }
 
         @Size(3)
@@ -157,46 +147,46 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                                    TemperatureUnit unit) {
         super(activity, location);
 
-        this.weather = location.getWeather();
-        this.timeZone = location.getTimeZone();
-        this.provider = provider;
-        this.themeManager = ThemeManager.getInstance(activity);
-        this.unit = unit;
+        Weather weather = location.getWeather();
+        assert weather != null;
+        mResourceProvider = provider;
+        mThemeManager = ThemeManager.getInstance(activity);
+        mTemperatureUnit = unit;
 
-        this.daytimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
-        for (int i = 0; i < daytimeTemperatures.length; i += 2) {
-            daytimeTemperatures[i] = getDaytimeTemperatureC(weather, i / 2);
+        mDaytimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
+        for (int i = 0; i < mDaytimeTemperatures.length; i += 2) {
+            mDaytimeTemperatures[i] = getDaytimeTemperatureC(weather, i / 2);
         }
-        for (int i = 1; i < daytimeTemperatures.length; i += 2) {
-            daytimeTemperatures[i] = (daytimeTemperatures[i - 1] + daytimeTemperatures[i + 1]) * 0.5F;
-        }
-
-        this.nighttimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
-        for (int i = 0; i < nighttimeTemperatures.length; i += 2) {
-            nighttimeTemperatures[i] = getNighttimeTemperatureC(weather, i / 2);
-        }
-        for (int i = 1; i < nighttimeTemperatures.length; i += 2) {
-            nighttimeTemperatures[i] = (nighttimeTemperatures[i - 1] + nighttimeTemperatures[i + 1]) * 0.5F;
+        for (int i = 1; i < mDaytimeTemperatures.length; i += 2) {
+            mDaytimeTemperatures[i] = (mDaytimeTemperatures[i - 1] + mDaytimeTemperatures[i + 1]) * 0.5F;
         }
 
-        highestTemperature = weather.getYesterday() == null
+        mNighttimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
+        for (int i = 0; i < mNighttimeTemperatures.length; i += 2) {
+            mNighttimeTemperatures[i] = getNighttimeTemperatureC(weather, i / 2);
+        }
+        for (int i = 1; i < mNighttimeTemperatures.length; i += 2) {
+            mNighttimeTemperatures[i] = (mNighttimeTemperatures[i - 1] + mNighttimeTemperatures[i + 1]) * 0.5F;
+        }
+
+        mHighestTemperature = weather.getYesterday() == null
                 ? Integer.MIN_VALUE
                 : weather.getYesterday().getDaytimeTemperature();
-        lowestTemperature = weather.getYesterday() == null
+        mLowestTemperature = weather.getYesterday() == null
                 ? Integer.MAX_VALUE
                 : weather.getYesterday().getNighttimeTemperature();
         for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
-            if (getDaytimeTemperatureC(weather, i) > highestTemperature) {
-                highestTemperature = getDaytimeTemperatureC(weather, i);
+            if (getDaytimeTemperatureC(weather, i) > mHighestTemperature) {
+                mHighestTemperature = getDaytimeTemperatureC(weather, i);
             }
-            if (getNighttimeTemperatureC(weather, i) < lowestTemperature) {
-                lowestTemperature = getNighttimeTemperatureC(weather, i);
+            if (getNighttimeTemperatureC(weather, i) < mLowestTemperature) {
+                mLowestTemperature = getNighttimeTemperatureC(weather, i);
             }
         }
 
-        this.showPrecipitationProbability = showPrecipitationProbability;
+        mShowPrecipitationProbability = showPrecipitationProbability;
 
-        parent.setLineColor(themeManager.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getLineColor(activity));
         if (weather.getYesterday() == null) {
             parent.setData(null,0, 0);
         } else {
@@ -225,7 +215,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                             TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                     )
             );
-            parent.setData(keyLineList, highestTemperature, lowestTemperature);
+            parent.setData(keyLineList, mHighestTemperature, mLowestTemperature);
         }
     }
 
@@ -239,12 +229,13 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(position);
+        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
     }
 
     @Override
     public int getItemCount() {
-        return weather.getDailyForecast().size();
+        assert getLocation().getWeather() != null;
+        return getLocation().getWeather().getDailyForecast().size();
     }
 
     protected int getDaytimeTemperatureC(Weather weather, int index) {
@@ -264,18 +255,18 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
     }
 
     protected String getDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).day().getTemperature().getTemperature(getContext(), unit);
+        return weather.getDailyForecast().get(index).day().getTemperature().getTemperature(getActivity(), unit);
     }
 
     protected String getNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).night().getTemperature().getTemperature(getContext(), unit);
+        return weather.getDailyForecast().get(index).night().getTemperature().getTemperature(getActivity(), unit);
     }
 
     protected String getShortDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).day().getTemperature().getShortTemperature(getContext(), unit);
+        return weather.getDailyForecast().get(index).day().getTemperature().getShortTemperature(getActivity(), unit);
     }
 
     protected String getShortNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getDailyForecast().get(index).night().getTemperature().getShortTemperature(getContext(), unit);
+        return weather.getDailyForecast().get(index).night().getTemperature().getShortTemperature(getActivity(), unit);
     }
 }

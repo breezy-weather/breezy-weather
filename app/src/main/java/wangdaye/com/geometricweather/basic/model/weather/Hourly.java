@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.BidiFormatter;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -97,5 +98,18 @@ public class Hourly implements Serializable {
         } else {
             return hour + c.getString(R.string.of_clock);
         }
+    }
+
+    public String getLongDate(Context context) {
+        return getDate(context.getString(R.string.date_format_long));
+    }
+
+    public String getShortDate(Context context) {
+        return getDate(context.getString(R.string.date_format_short));
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public String getDate(String format) {
+        return new SimpleDateFormat(format).format(date);
     }
 }

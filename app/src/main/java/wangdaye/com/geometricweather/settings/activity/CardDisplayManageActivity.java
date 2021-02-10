@@ -38,14 +38,14 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class CardDisplayManageActivity extends GeoActivity {
 
-    private CardDisplayAdapter cardDisplayAdapter;
-    private ItemTouchHelper cardDisplayItemTouchHelper;
+    private CardDisplayAdapter mCardDisplayAdapter;
+    private ItemTouchHelper mCardDisplayItemTouchHelper;
 
-    private TagAdapter tagAdapter;
+    private TagAdapter mTagAdapter;
 
-    private FrameLayout bottomBar;
-    private @Nullable AnimatorSet bottomAnimator;
-    private @Nullable Boolean bottomBarVisibility;
+    private FrameLayout mBottomBar;
+    private @Nullable AnimatorSet mBottomAnimator;
+    private @Nullable Boolean mBottomBarVisibility;
 
     private class CardTag implements TagAdapter.Tag {
 
@@ -71,14 +71,14 @@ public class CardDisplayManageActivity extends GeoActivity {
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition = target.getAdapterPosition();
 
-            cardDisplayAdapter.moveItem(fromPosition, toPosition);
+            mCardDisplayAdapter.moveItem(fromPosition, toPosition);
             return true;
         }
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             setResult(RESULT_OK);
-            cardDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
+            mCardDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
         }
 
         @Override
@@ -101,27 +101,26 @@ public class CardDisplayManageActivity extends GeoActivity {
         this.setContentView(R.layout.activity_card_display_manage);
 
         Toolbar toolbar = findViewById(R.id.activity_card_display_manage_toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         toolbar.setNavigationOnClickListener(view -> finish());
 
         List<CardDisplay> displayCards = SettingsOptionManager.getInstance(this).getCardDisplayList();
-        cardDisplayAdapter = new CardDisplayAdapter(
+        mCardDisplayAdapter = new CardDisplayAdapter(
                 displayCards,
                 cardDisplay -> {
                     setResult(RESULT_OK);
-                    tagAdapter.insertItem(new CardTag(cardDisplay));
+                    mTagAdapter.insertItem(new CardTag(cardDisplay));
                     resetBottomBarVisibility();
                 },
-                holder -> cardDisplayItemTouchHelper.startDrag(holder)
+                holder -> mCardDisplayItemTouchHelper.startDrag(holder)
         );
 
         RecyclerView recyclerView = findViewById(R.id.activity_card_display_manage_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new ListDecoration(this));
-        recyclerView.setAdapter(cardDisplayAdapter);
+        recyclerView.setAdapter(mCardDisplayAdapter);
 
-        this.cardDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
-        cardDisplayItemTouchHelper.attachToRecyclerView(recyclerView);
+        this.mCardDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
+        mCardDisplayItemTouchHelper.attachToRecyclerView(recyclerView);
 
         List<CardDisplay> otherCards = new ArrayList<>();
         otherCards.add(CardDisplay.CARD_DAILY_OVERVIEW);
@@ -142,18 +141,18 @@ public class CardDisplayManageActivity extends GeoActivity {
         for (CardDisplay card : otherCards) {
             tagList.add(new CardTag(card));
         }
-        tagAdapter = new TagAdapter(this, tagList, (checked, oldPosition, newPosition) -> {
+        mTagAdapter = new TagAdapter(this, tagList, (checked, oldPosition, newPosition) -> {
             setResult(RESULT_OK);
-            CardTag tag = (CardTag) tagAdapter.removeItem(newPosition);
-            cardDisplayAdapter.insertItem(tag.card);
+            CardTag tag = (CardTag) mTagAdapter.removeItem(newPosition);
+            mCardDisplayAdapter.insertItem(tag.card);
             resetBottomBarVisibility();
             return true;
         });
 
-        bottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
+        mBottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            bottomBar.setOnApplyWindowInsetsListener((v, insets) -> {
-                bottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
+            mBottomBar.setOnApplyWindowInsetsListener((v, insets) -> {
+                mBottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
                 return insets;
             });
         }
@@ -166,10 +165,10 @@ public class CardDisplayManageActivity extends GeoActivity {
                         getResources().getDimension(R.dimen.normal_margin), bottomRecyclerView
                 )
         );
-        bottomRecyclerView.setAdapter(tagAdapter);
+        bottomRecyclerView.setAdapter(mTagAdapter);
 
-        bottomAnimator = null;
-        bottomBarVisibility = false;
+        mBottomAnimator = null;
+        mBottomBarVisibility = false;
         bottomRecyclerView.post(this::resetBottomBarVisibility);
     }
 
@@ -180,9 +179,9 @@ public class CardDisplayManageActivity extends GeoActivity {
                 .edit()
                 .putString(
                         getString(R.string.key_card_display),
-                        OptionMapper.getCardDisplayValue(cardDisplayAdapter.getCardDisplayList())
+                        OptionMapper.getCardDisplayValue(mCardDisplayAdapter.getCardDisplayList())
                 ).apply();
-        SettingsOptionManager.getInstance(this).setCardDisplayList(cardDisplayAdapter.getCardDisplayList());
+        SettingsOptionManager.getInstance(this).setCardDisplayList(mCardDisplayAdapter.getCardDisplayList());
     }
 
     @Override
@@ -197,25 +196,25 @@ public class CardDisplayManageActivity extends GeoActivity {
     }
 
     private void resetBottomBarVisibility() {
-        boolean visible = tagAdapter.getItemCount() != 0;
-        if (bottomBarVisibility == null || bottomBarVisibility != visible) {
-            bottomBarVisibility = visible;
+        boolean visible = mTagAdapter.getItemCount() != 0;
+        if (mBottomBarVisibility == null || mBottomBarVisibility != visible) {
+            mBottomBarVisibility = visible;
 
-            if (bottomAnimator != null) {
-                bottomAnimator.cancel();
+            if (mBottomAnimator != null) {
+                mBottomAnimator.cancel();
             }
-            bottomAnimator = new AnimatorSet();
-            bottomAnimator.playTogether(
-                    ObjectAnimator.ofFloat(bottomBar, "alpha",
-                            bottomBar.getAlpha(), visible ? 1 : 0),
-                    ObjectAnimator.ofFloat(bottomBar, "translationY",
-                            bottomBar.getTranslationY(), visible ? 0 : bottomBar.getMeasuredHeight())
+            mBottomAnimator = new AnimatorSet();
+            mBottomAnimator.playTogether(
+                    ObjectAnimator.ofFloat(mBottomBar, "alpha",
+                            mBottomBar.getAlpha(), visible ? 1 : 0),
+                    ObjectAnimator.ofFloat(mBottomBar, "translationY",
+                            mBottomBar.getTranslationY(), visible ? 0 : mBottomBar.getMeasuredHeight())
             );
-            bottomAnimator.setDuration(visible ? 350 : 150);
-            bottomAnimator.setInterpolator(visible
+            mBottomAnimator.setDuration(visible ? 350 : 150);
+            mBottomAnimator.setInterpolator(visible
                     ? new DecelerateInterpolator(2f)
                     : new AccelerateInterpolator(2f));
-            bottomAnimator.start();
+            mBottomAnimator.start();
         }
     }
 }

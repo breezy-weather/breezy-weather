@@ -36,9 +36,9 @@ import wangdaye.com.geometricweather.settings.activity.AboutActivity;
 import wangdaye.com.geometricweather.ui.activity.AlertActivity;
 import wangdaye.com.geometricweather.settings.activity.SelectProviderActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.manage.activity.ManageActivity;
+import wangdaye.com.geometricweather.manage.ManageActivity;
 import wangdaye.com.geometricweather.settings.activity.PreviewIconActivity;
-import wangdaye.com.geometricweather.manage.activity.SearchActivity;
+import wangdaye.com.geometricweather.manage.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.activity.SettingsActivity;
 import wangdaye.com.geometricweather.utils.SnackbarUtils;
 

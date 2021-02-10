@@ -27,8 +27,8 @@ public class HourlyTrendWidgetConfigActivity extends AbstractWidgetConfigActivit
     @Override
     public void initView() {
         super.initView();
-        cardStyleContainer.setVisibility(View.VISIBLE);
-        cardAlphaContainer.setVisibility(View.VISIBLE);
+        mCardStyleContainer.setVisibility(View.VISIBLE);
+        mCardAlphaContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

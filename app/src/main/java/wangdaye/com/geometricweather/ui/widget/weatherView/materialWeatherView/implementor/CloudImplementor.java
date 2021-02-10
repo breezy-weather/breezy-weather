@@ -24,14 +24,14 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.M
 
 public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplementor {
 
-    private Paint paint;
-    private Cloud[] clouds;
-    private Star[] stars;
-    private Thunder thunder;
-    private Random random;
+    private Paint mPaint;
+    private Cloud[] mClouds;
+    private Star[] mStars;
+    private final Thunder mThunder;
+    private final Random mRandom;
 
     @ColorInt
-    private int backgroundColor;
+    private int mBackgroundColor;
 
     public static final int TYPE_CLOUD_DAY = 1;
     public static final int TYPE_CLOUD_NIGHT = 2;
@@ -44,10 +44,10 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     @IntDef({TYPE_CLOUD_DAY, TYPE_CLOUD_NIGHT, TYPE_CLOUDY_DAY, TYPE_CLOUDY_NIGHT, TYPE_THUNDER, TYPE_FOG, TYPE_HAZE})
     @interface TypeRule {}
 
-    private class Cloud {
+    private static class Cloud {
 
-        private float initCX;
-        private float initCY;
+        private final float mInitCX;
+        private final float mInitCY;
 
         float centerX;
         float centerY;
@@ -69,8 +69,8 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
               @ColorInt int color, float alpha,
               long duration, long initProgress) {
 
-            this.initCX = centerX;
-            this.initCY = centerY;
+            mInitCX = centerX;
+            mInitCY = centerY;
 
             this.centerX = centerX;
             this.centerY = centerY;
@@ -89,8 +89,8 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         }
 
         void move(long interval, float rotation2D, float rotation3D) {
-            centerX = (float) (initCX + Math.sin(rotation2D * Math.PI / 180.0) * 0.40 * radius * moveFactor);
-            centerY = (float) (initCY - Math.sin(rotation3D * Math.PI / 180.0) * 0.50 * radius * moveFactor);
+            centerX = (float) (mInitCX + Math.sin(rotation2D * Math.PI / 180.0) * 0.40 * radius * moveFactor);
+            centerY = (float) (mInitCY - Math.sin(rotation3D * Math.PI / 180.0) * 0.50 * radius * moveFactor);
             progress = (progress + interval) % duration;
             computeRadius(duration, progress);
         }
@@ -104,7 +104,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         }
     }
 
-    private class Star {
+    private static class Star {
 
         float centerX;
         float centerY;
@@ -147,7 +147,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         }
     }
 
-    private class Thunder {
+    private static class Thunder {
 
         int r;
         int g;
@@ -161,7 +161,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         Thunder() {
             this.r = 81;
             this.g = 67;
-            this. b = 108;
+            this.b = 108;
             init();
             computeFrame();
         }
@@ -201,7 +201,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     public CloudImplementor(@Size(2) int[] canvasSizes, @TypeRule int type) {
         int viewWidth = canvasSizes[0];
         int viewHeight = canvasSizes[1];
-        this.random = new Random();
+        mRandom = new Random();
 
         if (type == TYPE_FOG || type == TYPE_HAZE) {
             int backgroundColor = type == TYPE_FOG ?
@@ -275,7 +275,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
                     cloudColors[0], cloudAlphas[0],
                     7000, 2000);
 
-            this.initialize(clouds, null, backgroundColor);
+            initialize(clouds, null, backgroundColor);
         } else if (type == TYPE_CLOUDY_DAY || type == TYPE_CLOUDY_NIGHT || type == TYPE_THUNDER) {
             int backgroundColor = Color.BLACK;
             int[] cloudColors = new int[] {Color.DKGRAY, Color.LTGRAY};
@@ -348,17 +348,16 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
                     cloudColors[0], cloudAlphas[0],
                     7000, 2000);
 
-            this.initialize(clouds, null, backgroundColor);
+            initialize(clouds, null, backgroundColor);
         } else {
             int cloudColor;
             float[] cloudAlphas;
             if (type == TYPE_CLOUD_DAY) {
                 cloudColor = Color.rgb(203, 245, 255);
-                cloudAlphas = new float[] {0.40F, 0.10F};
             } else {
                 cloudColor = Color.rgb(151, 168, 202);
-                cloudAlphas = new float[] {0.40F, 0.10F};
             }
+            cloudAlphas = new float[] {0.40F, 0.10F};
 
             Cloud[] clouds = new Cloud[6];
             clouds[0] = new Cloud(
@@ -399,7 +398,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
                     7000, 2000);
 
             if (type == TYPE_CLOUD_DAY) {
-                this.initialize(clouds, null, Color.rgb(0, 165, 217));
+                initialize(clouds, null, Color.rgb(0, 165, 217));
             } else {
                 Star[] stars = new Star[30];
                 Random r = new Random();
@@ -425,47 +424,47 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
                         i --;
                     }
                 }
-                this.initialize(clouds, stars, Color.rgb(34, 45, 67));
+                initialize(clouds, stars, Color.rgb(34, 45, 67));
             }
         }
 
         if (type == TYPE_THUNDER) {
-            thunder = new Thunder();
+            mThunder = new Thunder();
         } else {
-            thunder = null;
+            mThunder = null;
         }
     }
 
     private void initialize(Cloud[] clouds, @Nullable Star[] stars, @ColorInt int backgroundColor) {
-        this.paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setAntiAlias(true);
 
-        this.clouds = clouds;
+        mClouds = clouds;
 
         if (stars == null) {
             stars = new Star[0];
         }
-        this.stars = stars;
+        mStars = stars;
 
-        this.backgroundColor = backgroundColor;
+        mBackgroundColor = backgroundColor;
     }
 
     private float getRandomFactor(float from, float to) {
-        return from + random.nextFloat() % (to - from);
+        return from + mRandom.nextFloat() % (to - from);
     }
 
     @Override
     public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
-        for (Cloud c : clouds) {
+        for (Cloud c : mClouds) {
             c.move(interval, rotation2D, rotation3D);
         }
-        for (Star s : stars) {
+        for (Star s : mStars) {
             s.shine(interval);
         }
-        if (thunder != null) {
-            thunder.shine(interval);
+        if (mThunder != null) {
+            mThunder.shine(interval);
         }
     }
 
@@ -473,32 +472,32 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
         if (displayRate >=1) {
-            canvas.drawColor(backgroundColor);
+            canvas.drawColor(mBackgroundColor);
         } else {
             canvas.drawColor(
                     ColorUtils.setAlphaComponent(
-                            backgroundColor,
+                            mBackgroundColor,
                             (int) (displayRate * 255)));
         }
 
         if (scrollRate < 1) {
-            if (thunder != null) {
+            if (mThunder != null) {
                 canvas.drawColor(
                         Color.argb(
-                                (int) (displayRate * (1 - scrollRate) * thunder.alpha * 255),
-                                thunder.r,
-                                thunder.g,
-                                thunder.b));
+                                (int) (displayRate * (1 - scrollRate) * mThunder.alpha * 255),
+                                mThunder.r,
+                                mThunder.g,
+                                mThunder.b));
             }
-            for (Star s : stars) {
-                paint.setColor(s.color);
-                paint.setAlpha((int) (displayRate * (1 - scrollRate) * s.alpha * 255));
-                canvas.drawCircle(s.centerX, s.centerY, s.radius, paint);
+            for (Star s : mStars) {
+                mPaint.setColor(s.color);
+                mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * s.alpha * 255));
+                canvas.drawCircle(s.centerX, s.centerY, s.radius, mPaint);
             }
-            for (Cloud c : clouds) {
-                paint.setColor(c.color);
-                paint.setAlpha((int) (displayRate * (1 - scrollRate) * c.alpha * 255));
-                canvas.drawCircle(c.centerX, c.centerY, c.radius, paint);
+            for (Cloud c : mClouds) {
+                mPaint.setColor(c.color);
+                mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * c.alpha * 255));
+                canvas.drawCircle(c.centerX, c.centerY, c.radius, mPaint);
             }
         }
     }

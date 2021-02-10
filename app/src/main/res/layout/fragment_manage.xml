@@ -47,6 +47,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_margin="0dp"
+                        android:contentDescription="@string/content_des_add_current_location"
                         style="@style/material_image_button" />
 
                     <TextView

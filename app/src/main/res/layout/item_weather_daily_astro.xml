@@ -24,6 +24,7 @@
             android:layout_marginTop="@dimen/little_margin"
             android:layout_marginBottom="@dimen/little_margin"
             android:layout_marginEnd="@dimen/normal_margin"
+            android:importantForAccessibility="no"
             style="@style/title_text"
             tools:text="06:00↑ / 18:00↓" />
 
@@ -47,6 +48,7 @@
             android:layout_marginTop="@dimen/little_margin"
             android:layout_marginBottom="@dimen/little_margin"
             android:layout_marginEnd="@dimen/normal_margin"
+            android:importantForAccessibility="no"
             style="@style/title_text"
             tools:text="06:00↑ / 18:00↓" />
 
@@ -71,6 +73,7 @@
             android:layout_marginTop="@dimen/little_margin"
             android:layout_marginBottom="@dimen/little_margin"
             android:layout_marginEnd="@dimen/normal_margin"
+            android:importantForAccessibility="no"
             style="@style/title_text"
             tools:text="@string/phase_waxing_crescent" />
 

@@ -32,13 +32,13 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public class GMSLocationService extends LocationService {
 
-    private Context context;
-    private Handler timer;
+    private final Context mContext;
+    private final Handler mTimer;
 
-    private FusedLocationProviderClient client;
-    @Nullable private GMSLocationListener locationListener;
-    @Nullable private LocationCallback locationCallback;
-    @Nullable private Location lastKnownLocation;
+    private final FusedLocationProviderClient mGMSClient;
+    @Nullable private GMSLocationListener mGMSLocationListener;
+    @Nullable private LocationCallback mLocationCallback;
+    @Nullable private Location mLastKnownLocation;
 
     private static final long TIMEOUT_MILLIS = 10 * 1000;
 
@@ -52,13 +52,13 @@ public class GMSLocationService extends LocationService {
     }
 
     public GMSLocationService(Context c) {
-        context = c;
-        timer = new Handler(Looper.getMainLooper());
+        mContext = c;
+        mTimer = new Handler(Looper.getMainLooper());
 
-        client = LocationServices.getFusedLocationProviderClient(context);
-        locationListener = null;
-        locationCallback = null;
-        lastKnownLocation = null;
+        mGMSClient = LocationServices.getFusedLocationProviderClient(mContext);
+        mGMSLocationListener = null;
+        mLocationCallback = null;
+        mLastKnownLocation = null;
     }
 
     @SuppressLint("MissingPermission")
@@ -69,37 +69,37 @@ public class GMSLocationService extends LocationService {
             return;
         }
 
-        locationListener = new GMSLocationListener();
-        locationCallback = callback;
-        lastKnownLocation = null;
+        mGMSLocationListener = new GMSLocationListener();
+        mLocationCallback = callback;
+        mLastKnownLocation = null;
 
-        client.getLastLocation().addOnSuccessListener(location -> lastKnownLocation = location);
+        mGMSClient.getLastLocation().addOnSuccessListener(location -> mLastKnownLocation = location);
 
         LocationRequest request = LocationRequest.create();
         request.setNumUpdates(1);
         request.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-        client.requestLocationUpdates(request, locationListener, Looper.getMainLooper());
+        mGMSClient.requestLocationUpdates(request, mGMSLocationListener, Looper.getMainLooper());
 
-        timer.postDelayed(() -> {
-            if (locationListener != null) {
-                client.removeLocationUpdates(locationListener);
-                locationListener = null;
+        mTimer.postDelayed(() -> {
+            if (mGMSLocationListener != null) {
+                mGMSClient.removeLocationUpdates(mGMSLocationListener);
+                mGMSLocationListener = null;
             }
-            handleLocation(lastKnownLocation);
+            handleLocation(mLastKnownLocation);
         }, TIMEOUT_MILLIS);
     }
 
     @Override
     public void cancel() {
-        timer.removeCallbacksAndMessages(null);
+        mTimer.removeCallbacksAndMessages(null);
 
-        if (locationListener != null) {
-            client.removeLocationUpdates(locationListener);
-            locationListener = null;
+        if (mGMSLocationListener != null) {
+            mGMSClient.removeLocationUpdates(mGMSLocationListener);
+            mGMSLocationListener = null;
         }
 
-        locationCallback = null;
+        mLocationCallback = null;
     }
 
     @Override
@@ -125,9 +125,9 @@ public class GMSLocationService extends LocationService {
     }
 
     private void handleResultIfNecessary(@Nullable Result result) {
-        if (locationCallback != null) {
-            locationCallback.onCompleted(result);
-            locationCallback = null;
+        if (mLocationCallback != null) {
+            mLocationCallback.onCompleted(result);
+            mLocationCallback = null;
         }
     }
 
@@ -142,7 +142,7 @@ public class GMSLocationService extends LocationService {
 
         List<Address> addressList = null;
         try {
-            addressList = new Geocoder(context, LanguageUtils.getCurrentLocale(context))
+            addressList = new Geocoder(mContext, LanguageUtils.getCurrentLocale(mContext))
                     .getFromLocation(
                             location.getLatitude(),
                             location.getLongitude(),

@@ -19,18 +19,18 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.M
 
 public class WindImplementor extends MaterialWeatherView.WeatherAnimationImplementor {
 
-    private Paint paint;
-    private Wind[] winds;
+    private final Paint mPaint;
+    private final Wind[] mWinds;
 
-    private float lastDisplayRate;
+    private float mLastDisplayRate;
 
-    private float lastRotation3D;
+    private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
 
     @ColorInt
-    private int backgroundColor;
+    private final int mBackgroundColor;
 
-    private class Wind {
+    private static class Wind {
 
         float x;
         float y;
@@ -44,10 +44,10 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         int color;
         float scale;
 
-        private int viewWidth;
-        private int viewHeight;
+        private final int mViewWidth;
+        private final int mViewHeight;
 
-        private int canvasSize;
+        private final int mCanvasSize;
 
         private final float MAX_WIDTH;
         private final float MIN_WIDTH;
@@ -55,10 +55,10 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         private final float MIN_HEIGHT;
 
         private Wind(int viewWidth, int viewHeight, @ColorInt int color, float scale) {
-            this.viewWidth = viewWidth;
-            this.viewHeight = viewHeight;
+            mViewWidth = viewWidth;
+            mViewHeight = viewHeight;
 
-            this.canvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
+            mCanvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
 
             this.rectF = new RectF();
             this.speed = (float) (viewWidth / 100.0);
@@ -70,14 +70,14 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             this.MAX_WIDTH = MAX_HEIGHT * 20;
             this.MIN_WIDTH = MIN_HEIGHT * 15;
 
-            this.init(true);
+            init(true);
         }
 
         private void init(boolean firstTime) {
             Random r = new Random();
-            y = r.nextInt(canvasSize);
+            y = r.nextInt(mCanvasSize);
             if (firstTime) {
-                x = r.nextInt((int) (canvasSize - MAX_HEIGHT)) - canvasSize;
+                x = r.nextInt((int) (mCanvasSize - MAX_HEIGHT)) - mCanvasSize;
             } else {
                 x = -MAX_HEIGHT;
             }
@@ -88,8 +88,8 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
 
         private void buildRectF() {
-            float x = (float) (this.x - (canvasSize - viewWidth) * 0.5);
-            float y = (float) (this.y - (canvasSize - viewHeight) * 0.5);
+            float x = (float) (this.x - (mCanvasSize - mViewWidth) * 0.5);
+            float y = (float) (this.y - (mCanvasSize - mViewHeight) * 0.5);
             rectF.set(x, y, x + width * scale, y + height * scale);
         }
 
@@ -100,7 +100,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             y -= speed * interval
                     * 5 * Math.sin(deltaRotation3D * Math.PI / 180.0) * Math.sin(16 * Math.PI / 180.0);
 
-            if (x >= canvasSize) {
+            if (x >= mCanvasSize) {
                 init(false);
             } else {
                 buildRectF();
@@ -109,35 +109,35 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     public WindImplementor(@Size(2) int[] canvasSizes) {
-        this.paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setAntiAlias(true);
 
-        backgroundColor = Color.rgb(233, 158, 60);
+        mBackgroundColor = Color.rgb(233, 158, 60);
         int[] colors = new int[] {
                 Color.rgb(240, 200, 148),
                 Color.rgb(237, 178, 100),
                 Color.rgb(209, 142, 54),};
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
-        this.winds = new Wind[51];
-        for (int i = 0; i < winds.length; i ++) {
-            winds[i] = new Wind(
+        mWinds = new Wind[51];
+        for (int i = 0; i < mWinds.length; i ++) {
+            mWinds[i] = new Wind(
                     canvasSizes[0], canvasSizes[1],
-                    colors[i * 3 / winds.length], scales[i * 3 / winds.length]);
+                    colors[i * 3 / mWinds.length], scales[i * 3 / mWinds.length]);
         }
 
-        this.lastDisplayRate = 0;
-        this.lastRotation3D = INITIAL_ROTATION_3D;
+        mLastDisplayRate = 0;
+        mLastRotation3D = INITIAL_ROTATION_3D;
     }
 
     @Override
     public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
-        for (Wind w : winds) {
-            w.move(interval, lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
+        for (Wind w : mWinds) {
+            w.move(interval, mLastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - mLastRotation3D);
         }
-        lastRotation3D = rotation3D;
+        mLastRotation3D = rotation3D;
     }
 
     @Override
@@ -145,11 +145,11 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
 
         if (displayRate >= 1) {
-            canvas.drawColor(backgroundColor);
+            canvas.drawColor(mBackgroundColor);
         } else {
             canvas.drawColor(
                     ColorUtils.setAlphaComponent(
-                            backgroundColor,
+                            mBackgroundColor,
                             (int) (displayRate * 255)));
         }
 
@@ -160,18 +160,18 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                     canvasSizes[0] * 0.5F,
                     canvasSizes[1] * 0.5F);
 
-            for (Wind w : winds) {
-                paint.setColor(w.color);
-                if (displayRate < lastDisplayRate) {
-                    paint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
+            for (Wind w : mWinds) {
+                mPaint.setColor(w.color);
+                if (displayRate < mLastDisplayRate) {
+                    mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
                 } else {
-                    paint.setAlpha((int) ((1 - scrollRate) * 255));
+                    mPaint.setAlpha((int) ((1 - scrollRate) * 255));
                 }
-                canvas.drawRect(w.rectF, paint);
+                canvas.drawRect(w.rectF, mPaint);
             }
         }
 
-        lastDisplayRate = displayRate;
+        mLastDisplayRate = displayRate;
     }
 
     @ColorInt

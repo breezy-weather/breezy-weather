@@ -20,11 +20,11 @@ import wangdaye.com.geometricweather.R;
  * */
 public class MinimalIconDialog extends DialogFragment {
 
-    private String title;
-    private Drawable xmlIconDrawable;
-    private Drawable lightDrawable;
-    private Drawable greyDrawable;
-    private Drawable darkDrawable;
+    private String mTitle;
+    private Drawable mXmlIconDrawable;
+    private Drawable mLightDrawable;
+    private Drawable mGreyDrawable;
+    private Drawable mDarkDrawable;
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -32,7 +32,7 @@ public class MinimalIconDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_minimal_icon, null, false);
-        this.initWidget(view);
+        initWidget(view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
@@ -45,19 +45,19 @@ public class MinimalIconDialog extends DialogFragment {
         }
 
         AppCompatImageView xmlIcon = view.findViewById(R.id.dialog_minimal_icon_xmlIcon);
-        xmlIcon.setImageDrawable(xmlIconDrawable);
+        xmlIcon.setImageDrawable(mXmlIconDrawable);
 
         TextView titleView = view.findViewById(R.id.dialog_minimal_icon_title);
-        titleView.setText(title);
+        titleView.setText(mTitle);
 
         AppCompatImageView lightIconView = view.findViewById(R.id.dialog_minimal_icon_lightIcon);
-        lightIconView.setImageDrawable(lightDrawable);
+        lightIconView.setImageDrawable(mLightDrawable);
 
         AppCompatImageView greyIconView = view.findViewById(R.id.dialog_minimal_icon_greyIcon);
-        greyIconView.setImageDrawable(greyDrawable);
+        greyIconView.setImageDrawable(mGreyDrawable);
 
         AppCompatImageView darkIconView = view.findViewById(R.id.dialog_minimal_icon_darkIcon);
-        darkIconView.setImageDrawable(darkDrawable);
+        darkIconView.setImageDrawable(mDarkDrawable);
     }
 
     public void setData(@NonNull String title,
@@ -65,10 +65,10 @@ public class MinimalIconDialog extends DialogFragment {
                         @NonNull Drawable lightDrawable,
                         @NonNull Drawable greyDrawable,
                         @NonNull Drawable darkDrawable) {
-        this.title = title;
-        this.xmlIconDrawable = xmlIconDrawable;
-        this.lightDrawable = lightDrawable;
-        this.greyDrawable = greyDrawable;
-        this.darkDrawable = darkDrawable;
+        mTitle = title;
+        mXmlIconDrawable = xmlIconDrawable;
+        mLightDrawable = lightDrawable;
+        mGreyDrawable = greyDrawable;
+        mDarkDrawable = darkDrawable;
     }
 }

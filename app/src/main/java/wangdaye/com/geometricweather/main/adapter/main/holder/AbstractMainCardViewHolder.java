@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
 public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder {
 
-    private FirstCardHeaderController firstCardHeaderController;
+    private FirstCardHeaderController mFirstCardHeaderController;
 
     @SuppressLint("ObjectAnimatorBinding")
     public AbstractMainCardViewHolder(@NonNull View view) {
@@ -33,23 +33,23 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
 
         CardView card = (CardView) itemView;
 
-        card.setRadius(themeManager.getCardRadius(activity));
+        card.setRadius(mThemeManager.getCardRadius(activity));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            card.setElevation(themeManager.getCardElevation(activity));
+            card.setElevation(mThemeManager.getCardElevation(activity));
         }
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
         params.setMargins(
-                themeManager.getCardMarginsHorizontal(activity),
+                mThemeManager.getCardMarginsHorizontal(activity),
                 0,
-                themeManager.getCardMarginsHorizontal(activity),
-                themeManager.getCardMarginsVertical(activity)
+                mThemeManager.getCardMarginsHorizontal(activity),
+                mThemeManager.getCardMarginsVertical(activity)
         );
         card.setLayoutParams(params);
 
         if (firstCard) {
-            firstCardHeaderController = new FirstCardHeaderController(activity, location);
-            firstCardHeaderController.bind((LinearLayout) card.getChildAt(0));
+            mFirstCardHeaderController = new FirstCardHeaderController(activity, location);
+            mFirstCardHeaderController.bind((LinearLayout) card.getChildAt(0));
         }
     }
 
@@ -65,9 +65,9 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
     @Override
     public void onRecycleView() {
         super.onRecycleView();
-        if (firstCardHeaderController != null) {
-            firstCardHeaderController.unbind();
-            firstCardHeaderController = null;
+        if (mFirstCardHeaderController != null) {
+            mFirstCardHeaderController.unbind();
+            mFirstCardHeaderController = null;
         }
     }
 }

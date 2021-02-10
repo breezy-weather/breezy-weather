@@ -6,65 +6,65 @@ package wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView;
 
 public class DelayRotateController extends MaterialWeatherView.RotateController {
 
-    private double targetRotation;
-    private double currentRotation;
-    private double velocity;
-    private double acceleration;
+    private double mTargetRotation;
+    private double mCurrentRotation;
+    private double mVelocity;
+    private double mAcceleration;
 
     private static final double DEFAULT_ABS_ACCELERATION = 90.0 / 200.0 / 800.0;
 
     public DelayRotateController(double initRotation) {
-        targetRotation = getRotationInScope(initRotation);
-        currentRotation = targetRotation;
-        velocity = 0;
-        acceleration = 0;
+        mTargetRotation = getRotationInScope(initRotation);
+        mCurrentRotation = mTargetRotation;
+        mVelocity = 0;
+        mAcceleration = 0;
     }
 
     @Override
     public void updateRotation(double rotation, double interval) {
-        targetRotation = getRotationInScope(rotation);
+        mTargetRotation = getRotationInScope(rotation);
 
-        if (targetRotation == currentRotation) {
+        if (mTargetRotation == mCurrentRotation) {
             // no need to move.
-            acceleration = 0;
-            velocity = 0;
+            mAcceleration = 0;
+            mVelocity = 0;
             return;
         }
 
         double d;
-        if (velocity == 0 || (targetRotation - currentRotation) * velocity < 0) {
+        if (mVelocity == 0 || (mTargetRotation - mCurrentRotation) * mVelocity < 0) {
             // start or turn around.
-            acceleration = (targetRotation > currentRotation ? 1 : -1) * DEFAULT_ABS_ACCELERATION;
-            d = acceleration * Math.pow(interval, 2) / 2.0;
-            velocity = acceleration * interval;
+            mAcceleration = (mTargetRotation > mCurrentRotation ? 1 : -1) * DEFAULT_ABS_ACCELERATION;
+            d = mAcceleration * Math.pow(interval, 2) / 2.0;
+            mVelocity = mAcceleration * interval;
 
-        } else if (Math.pow(Math.abs(velocity), 2) / (2 * DEFAULT_ABS_ACCELERATION)
-                < Math.abs(targetRotation - currentRotation)) {
+        } else if (Math.pow(Math.abs(mVelocity), 2) / (2 * DEFAULT_ABS_ACCELERATION)
+                < Math.abs(mTargetRotation - mCurrentRotation)) {
             // speed up.
-            acceleration = (targetRotation > currentRotation ? 1 : -1) * DEFAULT_ABS_ACCELERATION;
-            d = velocity * interval + acceleration * Math.pow(interval, 2) / 2.0;
-            velocity += acceleration * interval;
+            mAcceleration = (mTargetRotation > mCurrentRotation ? 1 : -1) * DEFAULT_ABS_ACCELERATION;
+            d = mVelocity * interval + mAcceleration * Math.pow(interval, 2) / 2.0;
+            mVelocity += mAcceleration * interval;
 
         } else {
             // slow down.
-            acceleration = (targetRotation > currentRotation ? -1 : 1)
-                    * Math.pow(velocity, 2) / (2.0 * Math.abs(targetRotation - currentRotation));
-            d = velocity * interval + acceleration * Math.pow(interval, 2) / 2.0;
-            velocity += acceleration * interval;
+            mAcceleration = (mTargetRotation > mCurrentRotation ? -1 : 1)
+                    * Math.pow(mVelocity, 2) / (2.0 * Math.abs(mTargetRotation - mCurrentRotation));
+            d = mVelocity * interval + mAcceleration * Math.pow(interval, 2) / 2.0;
+            mVelocity += mAcceleration * interval;
         }
 
-        if (Math.abs(d) > Math.abs(targetRotation - currentRotation)) {
-            acceleration = 0;
-            currentRotation = targetRotation;
-            velocity = 0;
+        if (Math.abs(d) > Math.abs(mTargetRotation - mCurrentRotation)) {
+            mAcceleration = 0;
+            mCurrentRotation = mTargetRotation;
+            mVelocity = 0;
         } else {
-            currentRotation += d;
+            mCurrentRotation += d;
         }
     }
 
     @Override
     public double getRotation() {
-        return currentRotation;
+        return mCurrentRotation;
     }
 
     private double getRotationInScope(double rotation) {

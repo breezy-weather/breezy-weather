@@ -10,9 +10,9 @@ public enum AirQualityCOUnit {
 
     MGPCUM("mgpcum", 0, 1f);
 
-    private String unitId;
-    private int unitArrayIndex;
-    private float unitFactor; // actual air quality CO = quality(mg/m³) * factor.
+    private final String unitId;
+    private final int unitArrayIndex;
+    private final float unitFactor; // actual air quality CO = quality(mg/m³) * factor.
 
     AirQualityCOUnit(String id, int arrayIndex, float factor) {
         unitId = id;
@@ -32,10 +32,21 @@ public enum AirQualityCOUnit {
         if (DisplayUtils.isRtl(context)) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(mgpcum * unitFactor, 1)
-            ) + context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
+            ) + context.getResources().getStringArray(R.array.air_quality_co_units)[unitArrayIndex];
         } else {
             return UnitUtils.formatFloat(mgpcum * unitFactor, 1)
-                    + context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
+                    + context.getResources().getStringArray(R.array.air_quality_co_units)[unitArrayIndex];
+        }
+    }
+
+    public String getDensityVoice(Context context, float mgpcum) {
+        if (DisplayUtils.isRtl(context)) {
+            return BidiFormatter.getInstance().unicodeWrap(
+                    UnitUtils.formatFloat(mgpcum * unitFactor, 1)
+            ) + context.getResources().getStringArray(R.array.air_quality_co_unit_voices)[unitArrayIndex];
+        } else {
+            return UnitUtils.formatFloat(mgpcum * unitFactor, 1)
+                    + context.getResources().getStringArray(R.array.air_quality_co_unit_voices)[unitArrayIndex];
         }
     }
 }

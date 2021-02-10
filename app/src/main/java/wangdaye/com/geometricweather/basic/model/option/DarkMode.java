@@ -8,12 +8,13 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
 
 public enum DarkMode {
+
     AUTO("auto"),
     SYSTEM("system"),
     LIGHT("light"),
     DARK("dark");
 
-    private String modeId;
+    private final String modeId;
 
     DarkMode(String modeId) {
         this.modeId = modeId;

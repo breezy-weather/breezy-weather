@@ -18,8 +18,8 @@ import wangdaye.com.geometricweather.R;
 
 public class AnimatableIconView extends FrameLayout {
 
-    @Size(3) private AppCompatImageView[] iconImageViews;
-    @Size(3) private Animator[] iconAnimators;
+    @Size(3) private AppCompatImageView[] mIconImageViews;
+    @Size(3) private Animator[] mIconAnimators;
 
     public AnimatableIconView(@NonNull Context context) {
         this(context, null);
@@ -45,15 +45,15 @@ public class AnimatableIconView extends FrameLayout {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         params.setMargins(innerMargin, innerMargin, innerMargin, innerMargin);
 
-        iconImageViews = new AppCompatImageView[] {
+        mIconImageViews = new AppCompatImageView[] {
                 new AppCompatImageView(getContext()),
                 new AppCompatImageView(getContext()),
                 new AppCompatImageView(getContext())
         };
-        iconAnimators = new Animator[] {null, null, null};
+        mIconAnimators = new Animator[] {null, null, null};
 
-        for (int i = iconImageViews.length - 1; i >= 0; i --) {
-            addView(iconImageViews[i], params);
+        for (int i = mIconImageViews.length - 1; i >= 0; i --) {
+            addView(mIconImageViews[i], params);
         }
     }
 
@@ -61,36 +61,36 @@ public class AnimatableIconView extends FrameLayout {
                                   @NonNull @Size(3) Animator[] animators) {
         endAnimators();
         for (int i = 0; i < drawables.length; i ++) {
-            iconImageViews[i].setImageDrawable(drawables[i]);
-            iconImageViews[i].setVisibility(drawables[i] == null ? GONE : VISIBLE);
+            mIconImageViews[i].setImageDrawable(drawables[i]);
+            mIconImageViews[i].setVisibility(drawables[i] == null ? GONE : VISIBLE);
 
-            iconAnimators[i] = animators[i];
-            if (iconAnimators[i] != null) {
-                iconAnimators[i].setTarget(iconImageViews[i]);
+            mIconAnimators[i] = animators[i];
+            if (mIconAnimators[i] != null) {
+                mIconAnimators[i].setTarget(mIconImageViews[i]);
             }
         }
     }
 
     public void startAnimators() {
-        for (Animator a : iconAnimators) {
+        for (Animator a : mIconAnimators) {
             if (a != null && a.isStarted()) {
                 // animating.
                 return;
             }
         }
-        for (int i = 0; i < iconAnimators.length; i ++) {
-            if (iconAnimators[i] != null && iconImageViews[i].getVisibility() == VISIBLE) {
-                iconAnimators[i].start();
+        for (int i = 0; i < mIconAnimators.length; i ++) {
+            if (mIconAnimators[i] != null && mIconImageViews[i].getVisibility() == VISIBLE) {
+                mIconAnimators[i].start();
             }
         }
     }
 
     private void endAnimators() {
-        for (int i = 0; i < iconImageViews.length; i ++) {
-            if (iconAnimators[i] != null && iconAnimators[i].isStarted()) {
-                iconAnimators[i].cancel();
+        for (int i = 0; i < mIconImageViews.length; i ++) {
+            if (mIconAnimators[i] != null && mIconAnimators[i].isStarted()) {
+                mIconAnimators[i].cancel();
             }
-            resetView(iconImageViews[i]);
+            resetView(mIconImageViews[i]);
         }
     }
 

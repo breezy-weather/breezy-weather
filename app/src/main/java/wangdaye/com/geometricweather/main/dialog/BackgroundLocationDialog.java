@@ -14,7 +14,7 @@ import wangdaye.com.geometricweather.R;
 
 public class BackgroundLocationDialog extends DialogFragment {
 
-    private OnSetButtonClickListener listener;
+    private OnSetButtonClickListener mListener;
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -23,13 +23,13 @@ public class BackgroundLocationDialog extends DialogFragment {
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_background_location, null, false);
         view.findViewById(R.id.dialog_background_location_setButton).setOnClickListener(v -> {
-            listener.onSetButtonClicked();
             dismiss();
+            mListener.onSetButtonClicked();
         });
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+        return new AlertDialog.Builder(getActivity())
+                .setView(view)
+                .create();
     }
 
     public interface OnSetButtonClickListener {
@@ -37,6 +37,6 @@ public class BackgroundLocationDialog extends DialogFragment {
     }
 
     public void setOnSetButtonClickListener(OnSetButtonClickListener l) {
-        this.listener = l;
+        mListener = l;
     }
 }

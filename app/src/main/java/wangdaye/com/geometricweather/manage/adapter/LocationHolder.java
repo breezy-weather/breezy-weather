@@ -16,38 +16,47 @@ import androidx.recyclerview.widget.RecyclerView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class LocationHolder extends RecyclerView.ViewHolder {
 
-    private final ItemLocationBinding binding;
-    private final ThemeManager themeManager;
-    private final LocationAdapter.OnLocationItemClickListener clickListener;
-    private @Nullable final LocationAdapter.OnLocationItemDragListener dragListener;
+    private final ItemLocationBinding mBinding;
+    private final ThemeManager mThemeManager;
+    private final LocationAdapter.OnLocationItemClickListener mClickListener;
+    private @Nullable final LocationAdapter.OnLocationItemDragListener mDragListener;
 
     protected LocationHolder(ItemLocationBinding binding,
                              @NonNull LocationAdapter.OnLocationItemClickListener clickListener,
                              @Nullable LocationAdapter.OnLocationItemDragListener dragListener) {
         super(binding.getRoot());
-        this.binding = binding;
-        this.themeManager = ThemeManager.getInstance(binding.getRoot().getContext());
-        this.clickListener = clickListener;
-        this.dragListener = dragListener;
+        mBinding = binding;
+        mThemeManager = ThemeManager.getInstance(binding.getRoot().getContext());
+        mClickListener = clickListener;
+        mDragListener = dragListener;
     }
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     protected void onBindView(Context context, LocationModel model, ResourceProvider resourceProvider) {
-        binding.container.swipe(0);
-        binding.container.setIconResStart(R.drawable.ic_delete);
+        StringBuilder talkBackBuilder = new StringBuilder(model.subtitle);
         if (model.currentPosition) {
-            binding.container.setIconResEnd(R.drawable.ic_settings);
+            talkBackBuilder.append(", ").append(context.getString(R.string.current_location));
+        }
+        talkBackBuilder.append(", ").append(
+                context.getString(R.string.content_desc_powered_by).replace("$", model.weatherSource.getSourceVoice(context))
+        );
+
+        mBinding.container.swipe(0);
+        mBinding.container.setIconResStart(R.drawable.ic_delete);
+        if (model.currentPosition) {
+            mBinding.container.setIconResEnd(R.drawable.ic_settings);
         } else {
-            binding.container.setIconResEnd(
+            mBinding.container.setIconResEnd(
                     model.residentPosition ? R.drawable.ic_tag_off : R.drawable.ic_tag_plus);
         }
-        binding.container.setBackgroundColorStart(ContextCompat.getColor(context, R.color.striking_red));
-        binding.container.setBackgroundColorEnd(
+        mBinding.container.setBackgroundColorStart(ContextCompat.getColor(context, R.color.striking_red));
+        mBinding.container.setBackgroundColorEnd(
                 ContextCompat.getColor(
                         context,
                         model.location.isCurrentPosition()
@@ -56,64 +65,76 @@ public class LocationHolder extends RecyclerView.ViewHolder {
                 )
         );
 
-        binding.item.setBackgroundColor(
-                model.selected ? themeManager.getLineColor(context) : themeManager.getRootColor(context)
+        mBinding.item.setBackgroundColor(
+                model.selected ? mThemeManager.getLineColor(context) : mThemeManager.getRootColor(context)
         );
 
         ImageViewCompat.setImageTintList(
-                binding.sortButton,
-                ColorStateList.valueOf(themeManager.getTextContentColor(context))
+                mBinding.sortButton,
+                ColorStateList.valueOf(mThemeManager.getTextContentColor(context))
         );
-        if (dragListener == null) {
-            binding.sortButton.setVisibility(View.GONE);
-            binding.content.setPaddingRelative(
+        if (mDragListener == null) {
+            mBinding.sortButton.setVisibility(View.GONE);
+            mBinding.content.setPaddingRelative(
                     context.getResources().getDimensionPixelSize(R.dimen.normal_margin), 0, 0, 0);
         } else {
-            binding.sortButton.setVisibility(View.VISIBLE);
-            binding.content.setPaddingRelative(0, 0, 0, 0);
+            mBinding.sortButton.setVisibility(View.VISIBLE);
+            mBinding.content.setPaddingRelative(0, 0, 0, 0);
         }
 
-        binding.residentIcon.setVisibility(model.residentPosition ? View.VISIBLE : View.GONE);
+        mBinding.residentIcon.setVisibility(model.residentPosition ? View.VISIBLE : View.GONE);
 
         if (model.weatherCode != null) {
-            binding.weatherIcon.setVisibility(View.VISIBLE);
-            binding.weatherIcon.setImageDrawable(
+            mBinding.weatherIcon.setVisibility(View.VISIBLE);
+            mBinding.weatherIcon.setImageDrawable(
                     resourceProvider.getWeatherIcon(
                             model.weatherCode,
                             TimeManager.isDaylight(model.location)
                     )
             );
         } else {
-            binding.weatherIcon.setVisibility(View.GONE);
+            mBinding.weatherIcon.setVisibility(View.GONE);
         }
 
-        binding.title.setTextColor(themeManager.getTextTitleColor(context));
-        binding.title.setText(model.title);
+        mBinding.title.setTextColor(mThemeManager.getTextTitleColor(context));
+        mBinding.title.setText(model.title);
 
-        binding.alerts.setTextColor(themeManager.getTextSubtitleColor(context));
+        mBinding.alerts.setTextColor(mThemeManager.getTextSubtitleColor(context));
         if (!TextUtils.isEmpty(model.alerts)) {
-            binding.alerts.setVisibility(View.VISIBLE);
-            binding.alerts.setText(model.alerts);
+            mBinding.alerts.setVisibility(View.VISIBLE);
+            mBinding.alerts.setText(model.alerts);
+
+            talkBackBuilder.append(", ").append(model.alerts);
         } else {
-            binding.alerts.setVisibility(View.GONE);
+            mBinding.alerts.setVisibility(View.GONE);
         }
 
-        binding.subtitle.setTextColor(themeManager.getTextContentColor(context));
-        binding.subtitle.setText(model.subtitle);
+        mBinding.subtitle.setTextColor(mThemeManager.getTextContentColor(context));
+        mBinding.subtitle.setText(model.subtitle);
 
         // binding.geoPosition.setText(model.latitude + ", " + model.longitude
         //         + " - " + model.timeZone.getDisplayName(false, TimeZone.SHORT));
 
         // source.
-        binding.source.setText("Powered by " + model.weatherSource.getSourceUrl());
-        binding.source.setTextColor(model.weatherSource.getSourceColor());
+        mBinding.source.setText("Powered by " + model.weatherSource.getSourceUrl());
+        mBinding.source.setTextColor(model.weatherSource.getSourceColor());
 
-        binding.container.setOnClickListener(v -> clickListener.onClick(v, model.location.getFormattedId()));
-        binding.sortButton.setOnTouchListener(dragListener == null ? null : ((View v, MotionEvent event) -> {
+        mBinding.container.setOnClickListener(v -> mClickListener.onClick(v, model.location.getFormattedId()));
+        mBinding.sortButton.setOnTouchListener(mDragListener == null ? null : ((View v, MotionEvent event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                dragListener.onDrag(this);
+                mDragListener.onDrag(this);
             }
             return false;
         }));
+
+        if (mDragListener != null) {
+            talkBackBuilder.append(", ").append(context.getString(
+                    DisplayUtils.isRtl(context)
+                            ? R.string.content_des_swipe_left_to_delete
+                            : R.string.content_des_swipe_right_to_delete
+            ));
+        }
+
+        itemView.setContentDescription(talkBackBuilder.toString());
     }
 }

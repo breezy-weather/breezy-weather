@@ -32,52 +32,52 @@ public class DisplayUtils {
 
     public static class RelativeInsets {
 
-        private final WindowInsetsCompat inner;
-        private final boolean zeroStart;
-        private final boolean zeroTop;
-        private final boolean zeroEnd;
-        private final boolean zeroBottom;
+        private final WindowInsetsCompat mInner;
+        private final boolean mZeroStart;
+        private final boolean mZeroTop;
+        private final boolean mZeroEnd;
+        private final boolean mZeroBottom;
 
         public RelativeInsets(WindowInsetsCompat inner,
                               boolean zeroStart,
                               boolean zeroTop,
                               boolean zeroEnd,
                               boolean zeroBottom) {
-            this.inner = inner;
-            this.zeroStart = zeroStart;
-            this.zeroTop = zeroTop;
-            this.zeroEnd = zeroEnd;
-            this.zeroBottom = zeroBottom;
+            mInner = inner;
+            mZeroStart = zeroStart;
+            mZeroTop = zeroTop;
+            mZeroEnd = zeroEnd;
+            mZeroBottom = zeroBottom;
         }
 
         public int getSystemWindowInsetLeft(Context context) {
             if (isRtl(context)) {
-                return zeroEnd ? 0 : inner.getSystemWindowInsetRight();
+                return mZeroEnd ? 0 : mInner.getSystemWindowInsetRight();
             } else {
-                return zeroStart ? 0 : inner.getSystemWindowInsetLeft();
+                return mZeroStart ? 0 : mInner.getSystemWindowInsetLeft();
             }
         }
 
         public int getSystemWindowInsetTop() {
-            if (zeroTop) {
+            if (mZeroTop) {
                 return 0;
             }
-            return inner.getSystemWindowInsetTop();
+            return mInner.getSystemWindowInsetTop();
         }
 
         public int getSystemWindowInsetRight(Context context) {
             if (isRtl(context)) {
-                return zeroStart ? 0 : inner.getSystemWindowInsetLeft();
+                return mZeroStart ? 0 : mInner.getSystemWindowInsetLeft();
             } else {
-                return zeroEnd ? 0 : inner.getSystemWindowInsetRight();
+                return mZeroEnd ? 0 : mInner.getSystemWindowInsetRight();
             }
         }
 
         public int getSystemWindowInsetBottom() {
-            if (zeroBottom) {
+            if (mZeroBottom) {
                 return 0;
             }
-            return inner.getSystemWindowInsetBottom();
+            return mInner.getSystemWindowInsetBottom();
         }
 
         public WindowInsetsCompat setPaddingRelative(View view) {
@@ -87,7 +87,7 @@ public class DisplayUtils {
                     getSystemWindowInsetRight(view.getContext()),
                     getSystemWindowInsetBottom()
             );
-            return inner;
+            return mInner;
         }
     }
 

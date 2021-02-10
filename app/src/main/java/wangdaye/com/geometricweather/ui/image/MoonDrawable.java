@@ -17,78 +17,78 @@ import androidx.annotation.Nullable;
 
 public class MoonDrawable extends Drawable {
 
-    private Paint paint;
-    private Xfermode clearXfermode;
+    private final Paint mPaint;
+    private final Xfermode mClearXfermode;
 
-    @ColorInt private int coreColor;
+    @ColorInt private final int mCoreColor;
 
-    private float alpha;
-    private Rect bounds;
+    private float mAlpha;
+    private Rect mBounds;
 
-    private float coreRadius;
-    private float coreCenterX, coreCenterY;
+    private float mCoreRadius;
+    private float mCoreCenterX, mCoreCenterY;
 
-    private float shaderRadius;
-    private float shaderCenterX, shaderCenterY;
+    private float mShaderRadius;
+    private float mShaderCenterX, mShaderCenterY;
 
     public MoonDrawable() {
-        this.paint = new Paint();
-        paint.setAntiAlias(true);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
 
-        this.clearXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
+        mClearXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
 
-        this.coreColor = Color.rgb(171, 202, 247);
+        mCoreColor = Color.rgb(171, 202, 247);
 
-        this.alpha = 1;
-        this.bounds = getBounds();
+        mAlpha = 1;
+        mBounds = getBounds();
 
-        ensurePosition(bounds);
+        ensurePosition(mBounds);
     }
 
     private void ensurePosition(Rect bounds) {
         float boundSize = Math.min(bounds.width(), bounds.height());
-        coreRadius = (float) ((Math.sin(Math.PI / 4) * boundSize / 2 + boundSize / 2) / 2 - 2);
-        coreCenterX = (float) (1.0 * bounds.width() / 2 + bounds.left);
-        coreCenterY = (float) (1.0 * bounds.height() / 2 + bounds.top);
+        mCoreRadius = (float) ((Math.sin(Math.PI / 4) * boundSize / 2 + boundSize / 2) / 2 - 2);
+        mCoreCenterX = (float) (1.0 * bounds.width() / 2 + bounds.left);
+        mCoreCenterY = (float) (1.0 * bounds.height() / 2 + bounds.top);
 
-        shaderRadius = coreRadius * 0.9050f;
-        shaderCenterX = coreCenterX + coreRadius * 0.5914f;
-        shaderCenterY = coreCenterY - coreRadius * 0.5932f;
+        mShaderRadius = mCoreRadius * 0.9050f;
+        mShaderCenterX = mCoreCenterX + mCoreRadius * 0.5914f;
+        mShaderCenterY = mCoreCenterY - mCoreRadius * 0.5932f;
     }
 
     @Override
     protected void onBoundsChange(Rect bounds) {
-        this.bounds = bounds;
+        mBounds = bounds;
         ensurePosition(bounds);
     }
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        paint.setAlpha((int) (alpha * 255));
+        mPaint.setAlpha((int) (mAlpha * 255));
 
         int layerId = canvas.saveLayer(
-                bounds.left, bounds.top, bounds.right, bounds.bottom,
+                mBounds.left, mBounds.top, mBounds.right, mBounds.bottom,
                 null, Canvas.ALL_SAVE_FLAG
         );
 
-        paint.setColor(coreColor);
-        canvas.drawCircle(coreCenterX, coreCenterY, coreRadius, paint);
+        mPaint.setColor(mCoreColor);
+        canvas.drawCircle(mCoreCenterX, mCoreCenterY, mCoreRadius, mPaint);
 
-        paint.setXfermode(clearXfermode);
-        canvas.drawCircle(shaderCenterX, shaderCenterY, shaderRadius, paint);
-        paint.setXfermode(null);
+        mPaint.setXfermode(mClearXfermode);
+        canvas.drawCircle(mShaderCenterX, mShaderCenterY, mShaderRadius, mPaint);
+        mPaint.setXfermode(null);
 
         canvas.restoreToCount(layerId);
     }
 
     @Override
     public void setAlpha(int alpha) {
-        this.alpha = alpha;
+        mAlpha = alpha;
     }
 
     @Override
     public void setColorFilter(@Nullable ColorFilter colorFilter) {
-        paint.setColorFilter(colorFilter);
+        mPaint.setColorFilter(colorFilter);
     }
 
     @Override
@@ -98,11 +98,11 @@ public class MoonDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return bounds.width();
+        return mBounds.width();
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return bounds.height();
+        return mBounds.height();
     }
 }

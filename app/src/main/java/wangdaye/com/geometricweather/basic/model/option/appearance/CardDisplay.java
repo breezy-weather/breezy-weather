@@ -15,8 +15,8 @@ public enum CardDisplay {
     CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.sunrise_sunset),
     CARD_LIFE_DETAILS("life_details", R.string.life_details);
 
-    private String value;
-    private @StringRes int nameId;
+    private final String value;
+    private @StringRes final int nameId;
 
     CardDisplay(String value, int nameId) {
         this.value = value;

@@ -17,15 +17,15 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class RoundProgress extends View {
 
-    private Paint progressPaint;
+    private Paint mProgressPaint;
 
-    private RectF backgroundRectF = new RectF();
-    private RectF progressRectF = new RectF();
+    private final RectF mBackgroundRectF = new RectF();
+    private final RectF mProgressRectF = new RectF();
 
-    private float progress;
-    private float max;
-    @ColorInt private int progressColor;
-    @ColorInt private int backgroundColor;
+    private float mProgress;
+    private float mMax;
+    @ColorInt private int mProgressColor;
+    @ColorInt private int mBackgroundColor;
 
     public RoundProgress(Context context) {
         this(context, null);
@@ -42,57 +42,57 @@ public class RoundProgress extends View {
     }
 
     private void initialize() {
-        progress = 0;
-        max = 100;
-        progressColor = Color.BLACK;
-        backgroundColor = Color.GRAY;
+        mProgress = 0;
+        mMax = 100;
+        mProgressColor = Color.BLACK;
+        mBackgroundColor = Color.GRAY;
     }
 
     private void initPaint() {
-        progressPaint = new Paint();
-        progressPaint.setAntiAlias(true);
-        progressPaint.setStyle(Paint.Style.FILL);
-        progressPaint.setStrokeCap(Paint.Cap.ROUND);
+        mProgressPaint = new Paint();
+        mProgressPaint.setAntiAlias(true);
+        mProgressPaint.setStyle(Paint.Style.FILL);
+        mProgressPaint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public float getProgress() {
-        return progress;
+        return mProgress;
     }
 
     public void setProgress(float progress) {
-        this.progress = progress;
-        if (this.progress > getMax()) {
-            this.progress = getMax();
+        mProgress = progress;
+        if (mProgress > getMax()) {
+            mProgress = getMax();
         }
         invalidate();
     }
 
     public float getMax() {
-        return max;
+        return mMax;
     }
 
     public void setMax(float max) {
         if (max > 0) {
-            this.max = max;
+            mMax = max;
             invalidate();
         }
     }
 
     public void setProgressColor(@ColorInt int progressColor) {
-        this.progressColor = progressColor;
-        this.invalidate();
+        mProgressColor = progressColor;
+        invalidate();
     }
 
     public void setProgressBackgroundColor(@ColorInt int backgroundColor) {
-        this.backgroundColor = backgroundColor;
-        this.invalidate();
+        mBackgroundColor = backgroundColor;
+        invalidate();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int padding = (int) DisplayUtils.dpToPx(getContext(), 2);
-        backgroundRectF.set(
+        mBackgroundRectF.set(
                 padding,
                 padding,
                 getMeasuredWidth() - padding,
@@ -103,26 +103,26 @@ public class RoundProgress extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float radius = backgroundRectF.height() / 2f;
-        progressPaint.setColor(backgroundColor);
-        canvas.drawRoundRect(backgroundRectF, radius, radius, progressPaint);
+        float radius = mBackgroundRectF.height() / 2f;
+        mProgressPaint.setColor(mBackgroundColor);
+        canvas.drawRoundRect(mBackgroundRectF, radius, radius, mProgressPaint);
 
-        progressRectF.set(
-                backgroundRectF.left,
-                backgroundRectF.top,
-                backgroundRectF.left + backgroundRectF.width() * progress / max,
-                backgroundRectF.bottom
+        mProgressRectF.set(
+                mBackgroundRectF.left,
+                mBackgroundRectF.top,
+                mBackgroundRectF.left + mBackgroundRectF.width() * mProgress / mMax,
+                mBackgroundRectF.bottom
         );
-        progressPaint.setColor(progressColor);
-        if (progressRectF.width() < 2 * radius) {
+        mProgressPaint.setColor(mProgressColor);
+        if (mProgressRectF.width() < 2 * radius) {
             canvas.drawCircle(
-                    progressRectF.left + radius,
-                    progressRectF.top + radius,
+                    mProgressRectF.left + radius,
+                    mProgressRectF.top + radius,
                     radius,
-                    progressPaint
+                    mProgressPaint
             );
         } else {
-            canvas.drawRoundRect(progressRectF, radius, radius, progressPaint);
+            canvas.drawRoundRect(mProgressRectF, radius, radius, mProgressPaint);
         }
     }
 }

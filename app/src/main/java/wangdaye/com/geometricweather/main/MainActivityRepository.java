@@ -18,14 +18,14 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class MainActivityRepository {
 
-    private final LocationHelper locationHelper;
-    private final WeatherHelper weatherHelper;
+    private final LocationHelper mLocationHelper;
+    private final WeatherHelper mWeatherHelper;
 
-    private long readCacheTimeStampFlag = -1;
+    private long mReadCacheTimeStampFlag = -1;
 
     public MainActivityRepository(Context context) {
-        locationHelper = new LocationHelper(context);
-        weatherHelper = new WeatherHelper();
+        mLocationHelper = new LocationHelper(context);
+        mWeatherHelper = new WeatherHelper();
     }
 
     public void getLocationList(Context context, List<Location> oldList,
@@ -72,12 +72,12 @@ public class MainActivityRepository {
 
         // if cache is null, we need to read cache from database first.
         final long timeStampFlag = System.currentTimeMillis();
-        readCacheTimeStampFlag = timeStampFlag;
+        mReadCacheTimeStampFlag = timeStampFlag;
         AsyncHelper.runOnIO(
                 emitter -> emitter.send(DatabaseHelper.getInstance(activity).readWeather(location)),
                 (AsyncHelper.Callback<Weather>) weather -> {
                     location.setWeather(weather);
-                    if (timeStampFlag != readCacheTimeStampFlag) {
+                    if (timeStampFlag != mReadCacheTimeStampFlag) {
                         return;
                     }
 
@@ -103,7 +103,7 @@ public class MainActivityRepository {
 
     private void ensureValidLocationInformation(GeoActivity activity, Location location,
                                                 WeatherRequestCallback callback) {
-        locationHelper.requestLocation(activity, location, false,
+        mLocationHelper.requestLocation(activity, location, false,
                 new LocationHelper.OnRequestLocationListener() {
                     @Override
                     public void requestLocationSuccess(Location requestLocation) {
@@ -131,7 +131,7 @@ public class MainActivityRepository {
 
     private void getWeatherWithValidLocationInformation(GeoActivity activity, Location location,
                                                         WeatherRequestCallback callback) {
-        weatherHelper.requestWeather(activity, location, new WeatherHelper.OnRequestWeatherListener() {
+        mWeatherHelper.requestWeather(activity, location, new WeatherHelper.OnRequestWeatherListener() {
             @Override
             public void requestWeatherSuccess(@NonNull Location requestLocation) {
                 if (!requestLocation.equals(location)) {
@@ -152,14 +152,14 @@ public class MainActivityRepository {
 
     public List<String> getLocatePermissionList(boolean background) {
         return new ArrayList<>(
-                Arrays.asList(locationHelper.getPermissions(background))
+                Arrays.asList(mLocationHelper.getPermissions(background))
         );
     }
 
     public void cancel() {
-        locationHelper.cancel();
-        weatherHelper.cancel();
-        readCacheTimeStampFlag = -1;
+        mLocationHelper.cancel();
+        mWeatherHelper.cancel();
+        mReadCacheTimeStampFlag = -1;
     }
 
     public interface WeatherRequestCallback {

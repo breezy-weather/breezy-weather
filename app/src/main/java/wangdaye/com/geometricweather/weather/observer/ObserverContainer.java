@@ -8,8 +8,8 @@ import io.reactivex.observers.DisposableObserver;
 
 public class ObserverContainer<T> extends DisposableObserver<T> {
 
-    @NonNull private CompositeDisposable compositeDisposable;
-    @Nullable private Observer<T> observer;
+    @NonNull private final CompositeDisposable compositeDisposable;
+    @Nullable private final Observer<T> observer;
 
     public ObserverContainer(@NonNull CompositeDisposable disposable, @Nullable Observer<T> observer) {
         this.compositeDisposable = disposable;

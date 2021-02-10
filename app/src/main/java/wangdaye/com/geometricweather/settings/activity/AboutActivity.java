@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.settings.adapter.AboutAdapter;
 public class AboutActivity extends GeoActivity
         implements View.OnClickListener {
 
-    private CoordinatorLayout container;
+    private CoordinatorLayout mContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +38,13 @@ public class AboutActivity extends GeoActivity
 
     @Override
     public View getSnackbarContainer() {
-        return container;
+        return mContainer;
     }
 
     private void initWidget() {
-        this.container = findViewById(R.id.activity_about_container);
+        mContainer = findViewById(R.id.activity_about_container);
 
         Toolbar toolbar = findViewById(R.id.activity_about_toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
-        toolbar.setTitle(R.string.action_about);
         toolbar.setNavigationOnClickListener(this);
 
         RecyclerView recyclerView = findViewById(R.id.activity_about_recyclerView);

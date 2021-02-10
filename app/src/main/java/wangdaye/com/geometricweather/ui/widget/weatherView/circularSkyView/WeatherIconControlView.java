@@ -16,36 +16,36 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class WeatherIconControlView extends FrameLayout {
 
-    private OnWeatherIconChangingListener iconListener;
-    private AnimListener animListener;
+    private OnWeatherIconChangingListener mIconListener;
+    private AnimListener mAnimListener;
 
-    private boolean rose = false;
+    private boolean mRose = false;
 
-    private float currentAngle;
-    private int iconX;
-    private int iconY;
-    private int iconSize;
-    private int radius;
+    private float mCurrentAngle;
+    private int mIconX;
+    private int mIconY;
+    private int mIconSize;
+    private int mRadius;
 
     private class AnimRise extends Animation {
 
         //     90
         // 180      0
         //------------
-        private float angleFrom;
-        private float angleTo;
+        private final float mAngleFrom;
+        private final float mAngleTo;
 
         AnimRise() {
-            angleFrom = 180;
-            angleTo = 90;
+            mAngleFrom = 180;
+            mAngleTo = 90;
         }
 
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
-            ensureIconOffset(angleFrom, angleTo, interpolatedTime);
+            ensureIconOffset(mAngleFrom, mAngleTo, interpolatedTime);
 
-            getChildAt(2).setTranslationX(iconX + iconSize);
-            getChildAt(2).setTranslationY(iconY + iconSize);
+            getChildAt(2).setTranslationX(mIconX + mIconSize);
+            getChildAt(2).setTranslationY(mIconY + mIconSize);
         }
     }
 
@@ -54,34 +54,34 @@ public class WeatherIconControlView extends FrameLayout {
         //     90
         // 180      0
         //------------
-        private float angleFrom;
-        private float angleTo;
+        private final float mAngleFrom;
+        private final float mAngleTo;
 
         AnimFall() {
-            angleFrom = currentAngle;
-            angleTo = 0;
+            mAngleFrom = mCurrentAngle;
+            mAngleTo = 0;
         }
 
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
-            ensureIconOffset(angleFrom, angleTo, interpolatedTime);
+            ensureIconOffset(mAngleFrom, mAngleTo, interpolatedTime);
 
-            getChildAt(2).setTranslationX(iconX + iconSize);
-            getChildAt(2).setTranslationY(iconY + iconSize);
+            getChildAt(2).setTranslationX(mIconX + mIconSize);
+            getChildAt(2).setTranslationY(mIconY + mIconSize);
         }
     }
 
     private class AnimListener implements Animation.AnimationListener {
 
-        private boolean canceled;
-        private int type;
+        private boolean mCanceled;
+        private final int mType;
 
         static final int END_TYPE = 0;
         static final int CONTINUE_TYPE = 1;
 
         AnimListener(int type) {
-            this.canceled = false;
-            this.type = type;
+            mCanceled = false;
+            mType = type;
         }
 
         @Override
@@ -91,8 +91,8 @@ public class WeatherIconControlView extends FrameLayout {
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            if (!canceled) {
-                switch (type) {
+            if (!mCanceled) {
+                switch (mType) {
                     case END_TYPE:
                         break;
 
@@ -128,20 +128,20 @@ public class WeatherIconControlView extends FrameLayout {
         int width = DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth());
 
         if (DisplayUtils.isTabletDevice(getContext())) {
-            iconSize = (int) (width / Constants.UNIT_RADIUS_RATIO * 1.3);
+            mIconSize = (int) (width / Constants.UNIT_RADIUS_RATIO * 1.3);
         } else {
-            iconSize = (int) (width / Constants.UNIT_RADIUS_RATIO * 1.8);
+            mIconSize = (int) (width / Constants.UNIT_RADIUS_RATIO * 1.8);
         }
 
-        currentAngle = 0;
-        iconX = -iconSize;
-        iconY = -iconSize;
-        radius = (int) (width / Constants.UNIT_RADIUS_RATIO * 4);
+        mCurrentAngle = 0;
+        mIconX = -mIconSize;
+        mIconY = -mIconSize;
+        mRadius = (int) (width / Constants.UNIT_RADIUS_RATIO * 4);
 
         // animatable icon.
         getChildAt(2).measure(
-                MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY)
+                MeasureSpec.makeMeasureSpec(mIconSize, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(mIconSize, MeasureSpec.EXACTLY)
         );
     }
 
@@ -156,56 +156,56 @@ public class WeatherIconControlView extends FrameLayout {
         child.layout(0, 0, child.getMeasuredWidth(), child.getMeasuredHeight());
 
         child = getChildAt(2);
-        child.layout(-iconSize, -iconSize, 0, 0);
+        child.layout(-mIconSize, -mIconSize, 0, 0);
     }
 
     // control.
 
     public void showWeatherIcon() {
-        if (rose) {
+        if (mRose) {
             animFall();
         } else {
-            rose = true;
+            mRose = true;
             animRise();
         }
     }
 
     private void ensureIconOffset(float angleFrom, float angleTo, float time) {
-        currentAngle = angleFrom + (angleTo - angleFrom) * time;
-        double radians = Math.toRadians(currentAngle);
-        iconX = (int) (getMeasuredWidth() / 2 + radius * Math.cos(radians) - iconSize / 2);
-        iconY = (int) (getMeasuredHeight() - radius * Math.sin(radians) - iconSize / 2);
+        mCurrentAngle = angleFrom + (angleTo - angleFrom) * time;
+        double radians = Math.toRadians(mCurrentAngle);
+        mIconX = (int) (getMeasuredWidth() / 2 + mRadius * Math.cos(radians) - mIconSize / 2);
+        mIconY = (int) (getMeasuredHeight() - mRadius * Math.sin(radians) - mIconSize / 2);
     }
 
     private void animRise() {
-        if (iconListener != null) {
-            iconListener.OnWeatherIconChanging();
+        if (mIconListener != null) {
+            mIconListener.OnWeatherIconChanging();
         }
 
-        if (animListener != null) {
-            animListener.canceled = true;
+        if (mAnimListener != null) {
+            mAnimListener.mCanceled = true;
         }
-        animListener =  new AnimListener(AnimListener.END_TYPE);
+        mAnimListener =  new AnimListener(AnimListener.END_TYPE);
 
         AnimRise animation = new AnimRise();
         animation.setDuration(800);
         animation.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation.setAnimationListener(animListener);
+        animation.setAnimationListener(mAnimListener);
 
         clearAnimation();
         startAnimation(animation);
     }
 
     private void animFall() {
-        if (animListener != null) {
-            animListener.canceled = true;
+        if (mAnimListener != null) {
+            mAnimListener.mCanceled = true;
         }
-        animListener =  new AnimListener(AnimListener.CONTINUE_TYPE);
+        mAnimListener =  new AnimListener(AnimListener.CONTINUE_TYPE);
 
         AnimFall animation = new AnimFall();
         animation.setDuration(400);
         animation.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation.setAnimationListener(animListener);
+        animation.setAnimationListener(mAnimListener);
 
         clearAnimation();
         startAnimation(animation);
@@ -218,6 +218,6 @@ public class WeatherIconControlView extends FrameLayout {
     }
 
     public void setOnWeatherIconChangingListener(OnWeatherIconChangingListener l) {
-        iconListener = l;
+        mIconListener = l;
     }
 }

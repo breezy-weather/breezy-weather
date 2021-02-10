@@ -41,90 +41,90 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 public class ManageFragment extends Fragment
         implements LocationItemTouchCallback.OnLocationListChangedListener {
 
-    private FragmentManageBinding binding;
-    private ManageFragmentViewModel viewModel;
+    private FragmentManageBinding mBinding;
+    private ManageFragmentViewModel mViewModel;
 
-    private @Nullable LocationAdapter adapter;
-    private ItemTouchHelper itemTouchHelper;
-    private ListDecoration decoration;
-    private int searchRequestCode;
-    private int providerSettingsRequestCode;
+    private @Nullable LocationAdapter mAdapter;
+    private ItemTouchHelper mItemTouchHelper;
+    private ListDecoration mItemDecoration;
+    private int mSearchRequestCode;
+    private int mProviderSettingsRequestCode;
 
-    private ValueAnimator colorAnimator;
+    private ValueAnimator mColorAnimator;
 
-    private boolean drawerMode = false;
+    private boolean mDrawerMode = false;
 
-    private @Nullable LocationManageCallback locationListChangedListener;
+    private @Nullable LocationManageCallback mLocationListChangedListener;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentManageBinding.inflate(getLayoutInflater(), container, false);
+        mBinding = FragmentManageBinding.inflate(getLayoutInflater(), container, false);
         initModel();
         initView();
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     private void initModel() {
-        viewModel = new ViewModelProvider(requireActivity()).get(ManageFragmentViewModel.class);
-        if (viewModel.isNewInstance()) {
-            viewModel.init(requireActivity(), null);
+        mViewModel = new ViewModelProvider(requireActivity()).get(ManageFragmentViewModel.class);
+        if (mViewModel.isNewInstance()) {
+            mViewModel.init(requireActivity(), null);
         }
     }
 
     private void initView() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.appBar, (v, insets) -> new DisplayUtils.RelativeInsets(
-                insets, false, false, drawerMode, true).setPaddingRelative(v));
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.appBar, (v, insets) -> new DisplayUtils.RelativeInsets(
+                insets, false, false, mDrawerMode, true).setPaddingRelative(v));
 
-        binding.searchBar.setOnClickListener(v -> IntentHelper.startSearchActivityForResult(
-                requireActivity(), binding.searchBar, searchRequestCode));
+        mBinding.searchBar.setOnClickListener(v -> IntentHelper.startSearchActivityForResult(
+                requireActivity(), mBinding.searchBar, mSearchRequestCode));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            binding.searchBar.setTransitionName(getString(R.string.transition_activity_search_bar));
+            mBinding.searchBar.setTransitionName(getString(R.string.transition_activity_search_bar));
         }
 
-        binding.currentLocationButton.setOnClickListener(v -> {
-            viewModel.addLocation(requireActivity(), Location.buildLocal());
+        mBinding.currentLocationButton.setOnClickListener(v -> {
+            mViewModel.addLocation(requireActivity(), Location.buildLocal());
             SnackbarUtils.showSnackbar(
                     (GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
         });
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(
+        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(
                 requireActivity(), RecyclerView.VERTICAL, false));
 
-        this.itemTouchHelper = new ItemTouchHelper(new LocationItemTouchCallback(
-                (GeoActivity) requireActivity(), viewModel, this));
-        itemTouchHelper.attachToRecyclerView(binding.recyclerView);
+        mItemTouchHelper = new ItemTouchHelper(new LocationItemTouchCallback(
+                (GeoActivity) requireActivity(), mViewModel, this));
+        mItemTouchHelper.attachToRecyclerView(mBinding.recyclerView);
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.recyclerView, (v, insets) -> new DisplayUtils.RelativeInsets(
-                insets, false, true, drawerMode, false).setPaddingRelative(v));
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.recyclerView, (v, insets) -> new DisplayUtils.RelativeInsets(
+                insets, false, true, mDrawerMode, false).setPaddingRelative(v));
 
-        viewModel.getListResource().observe(getViewLifecycleOwner(), resource -> {
+        mViewModel.getListResource().observe(getViewLifecycleOwner(), resource -> {
 
-            if (adapter == null) {
-                adapter = new LocationAdapter(
+            if (mAdapter == null) {
+                mAdapter = new LocationAdapter(
                         requireActivity(),
                         resource.dataList,
                         resource.selectedId,
                         (v, formattedId) -> { // on click.
-                            String selectedId = viewModel.getSelectedId();
+                            String selectedId = mViewModel.getSelectedId();
                             if (selectedId != null) {
-                                adapter.update(selectedId);
+                                mAdapter.update(selectedId);
                                 setThemeStyle();
                             }
-                            if (locationListChangedListener != null) {
-                                locationListChangedListener.onSelectedLocation(formattedId);
+                            if (mLocationListChangedListener != null) {
+                                mLocationListChangedListener.onSelectedLocation(formattedId);
                             }
                         },
-                        holder -> itemTouchHelper.startDrag(holder) // on drag.
+                        holder -> mItemTouchHelper.startDrag(holder) // on drag.
                 );
-                binding.recyclerView.setAdapter(adapter);
+                mBinding.recyclerView.setAdapter(mAdapter);
             } else if (resource.source instanceof SelectableLocationListResource.ItemMoved) {
                 SelectableLocationListResource.ItemMoved source
                         = (SelectableLocationListResource.ItemMoved) resource.source;
-                adapter.update(source.from, source.to);
+                mAdapter.update(source.from, source.to);
             } else {
-                adapter.update(resource.dataList, resource.selectedId, resource.forceUpdateId);
+                mAdapter.update(resource.dataList, resource.selectedId, resource.forceUpdateId);
             }
 
             setThemeStyle();
@@ -136,70 +136,70 @@ public class ManageFragment extends Fragment
         ThemeManager themeManager = ThemeManager.getInstance(requireActivity());
 
         ImageViewCompat.setImageTintList(
-                binding.searchIcon,
+                mBinding.searchIcon,
                 ColorStateList.valueOf(themeManager.getTextContentColor(requireActivity()))
         );
         ImageViewCompat.setImageTintList(
-                binding.currentLocationButton,
+                mBinding.currentLocationButton,
                 ColorStateList.valueOf(themeManager.getTextContentColor(requireActivity()))
         );
-        binding.title.setTextColor(
+        mBinding.title.setTextColor(
                 ColorStateList.valueOf(themeManager.getTextSubtitleColor(requireActivity())));
 
         // background.
-        if (colorAnimator != null) {
-            colorAnimator.cancel();
-            colorAnimator = null;
+        if (mColorAnimator != null) {
+            mColorAnimator.cancel();
+            mColorAnimator = null;
         }
 
         int oldColor = Color.TRANSPARENT;
-        Drawable background = binding.recyclerView.getBackground();
+        Drawable background = mBinding.recyclerView.getBackground();
         if (background instanceof ColorDrawable) {
             oldColor = ((ColorDrawable) background).getColor();
         }
         int newColor = themeManager.getRootColor(requireActivity());
 
         if (newColor != oldColor) {
-            colorAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), oldColor, newColor);
-            colorAnimator.addUpdateListener(animation -> {
-                binding.searchBar.setCardBackgroundColor((Integer) animation.getAnimatedValue());
-                binding.recyclerView.setBackgroundColor((Integer) animation.getAnimatedValue());
+            mColorAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), oldColor, newColor);
+            mColorAnimator.addUpdateListener(animation -> {
+                mBinding.searchBar.setCardBackgroundColor((Integer) animation.getAnimatedValue());
+                mBinding.recyclerView.setBackgroundColor((Integer) animation.getAnimatedValue());
             });
-            colorAnimator.setDuration(450);
-            colorAnimator.start();
+            mColorAnimator.setDuration(450);
+            mColorAnimator.start();
         } else {
-            binding.searchBar.setCardBackgroundColor(newColor);
-            binding.recyclerView.setBackgroundColor(newColor);
+            mBinding.searchBar.setCardBackgroundColor(newColor);
+            mBinding.recyclerView.setBackgroundColor(newColor);
         }
 
-        if (decoration != null) {
-            binding.recyclerView.removeItemDecoration(decoration);
-            decoration = null;
+        if (mItemDecoration != null) {
+            mBinding.recyclerView.removeItemDecoration(mItemDecoration);
+            mItemDecoration = null;
         }
-        decoration = new ListDecoration(
+        mItemDecoration = new ListDecoration(
                 requireActivity(),
                 ThemeManager.getInstance(requireActivity()).getLineColor(requireActivity())
         );
-        binding.recyclerView.addItemDecoration(decoration);
+        mBinding.recyclerView.addItemDecoration(mItemDecoration);
     }
 
     public void setRequestCodes(int searchRequestCode, int providerSettingsRequestCode) {
-        this.searchRequestCode = searchRequestCode;
-        this.providerSettingsRequestCode = providerSettingsRequestCode;
+        mSearchRequestCode = searchRequestCode;
+        mProviderSettingsRequestCode = providerSettingsRequestCode;
     }
 
     public void updateView(List<Location> newList, @Nullable String selectedId) {
-        viewModel.updateLocation(requireActivity(), newList, selectedId);
+        mViewModel.updateLocation(requireActivity(), newList, selectedId);
     }
 
     public void readAppendLocation() {
-        viewModel.readAppendCache(requireActivity());
+        mViewModel.readAppendCache(requireActivity());
         SnackbarUtils.showSnackbar(
                 (GeoActivity) requireActivity(), getString(R.string.feedback_collect_succeed));
     }
 
     public void resetLocationList(@Nullable String selectedId) {
-        viewModel.init(requireActivity(), selectedId);
+        mViewModel.init(requireActivity(), selectedId);
     }
 
     private void onLocationListChanged(List<Location> list, boolean updateShortcuts, boolean notifyOutside) {
@@ -207,8 +207,8 @@ public class ManageFragment extends Fragment
         if (updateShortcuts && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutsManager.refreshShortcutsInNewThread(requireActivity(), list);
         }
-        if (notifyOutside && locationListChangedListener != null) {
-            locationListChangedListener.onLocationListChanged();
+        if (notifyOutside && mLocationListChangedListener != null) {
+            mLocationListChangedListener.onLocationListChanged();
         }
     }
 
@@ -220,12 +220,12 @@ public class ManageFragment extends Fragment
                 break;
             }
         }
-        binding.currentLocationButton.setEnabled(enabled);
-        binding.currentLocationButton.setAlpha(enabled ? 1 : .5f);
+        mBinding.currentLocationButton.setEnabled(enabled);
+        mBinding.currentLocationButton.setAlpha(enabled ? 1 : .5f);
     }
 
     public void setDrawerMode(boolean drawerMode) {
-        this.drawerMode = drawerMode;
+        mDrawerMode = drawerMode;
     }
 
     // interface.
@@ -236,7 +236,7 @@ public class ManageFragment extends Fragment
     }
 
     public void setOnLocationListChangedListener(LocationManageCallback l) {
-        this.locationListChangedListener = l;
+        mLocationListChangedListener = l;
     }
 
     // on location list changed listener.
@@ -264,6 +264,6 @@ public class ManageFragment extends Fragment
     @Override
     public void onSelectProviderActivityStarted() {
         IntentHelper.startSelectProviderActivityForResult(
-                requireActivity(), providerSettingsRequestCode);
+                requireActivity(), mProviderSettingsRequestCode);
     }
 }

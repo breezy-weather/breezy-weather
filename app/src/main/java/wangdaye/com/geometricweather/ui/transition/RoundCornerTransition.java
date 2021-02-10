@@ -20,8 +20,8 @@ import wangdaye.com.geometricweather.R;
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class RoundCornerTransition extends Transition {
 
-    private final float radiusFrom;
-    private final float radiusTo;
+    private final float mRadiusFrom;
+    private final float mRadiusTo;
 
     private static final String PROPNAME_RADIUS = "geometricweather:roundCorner:radius";
 
@@ -32,8 +32,8 @@ public class RoundCornerTransition extends Transition {
     public RoundCornerTransition(Context context, AttributeSet attrs) {
         super(context, attrs);
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundCornerTransition);
-        radiusFrom = a.getDimension(R.styleable.RoundCornerTransition_radius_from, 0f);
-        radiusTo = a.getDimension(R.styleable.RoundCornerTransition_radius_to, 0f);
+        mRadiusFrom = a.getDimension(R.styleable.RoundCornerTransition_radius_from, 0f);
+        mRadiusTo = a.getDimension(R.styleable.RoundCornerTransition_radius_to, 0f);
         a.recycle();
     }
 
@@ -44,12 +44,12 @@ public class RoundCornerTransition extends Transition {
 
     @Override
     public void captureStartValues(TransitionValues transitionValues) {
-        transitionValues.values.put(PROPNAME_RADIUS, radiusFrom);
+        transitionValues.values.put(PROPNAME_RADIUS, mRadiusFrom);
     }
 
     @Override
     public void captureEndValues(TransitionValues transitionValues) {
-        transitionValues.values.put(PROPNAME_RADIUS, radiusTo);
+        transitionValues.values.put(PROPNAME_RADIUS, mRadiusTo);
     }
 
     @Override

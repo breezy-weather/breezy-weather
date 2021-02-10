@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,43 +17,44 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.appearance.DailyTrendDisplay;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Daily;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.adapter.main.MainTag;
 import wangdaye.com.geometricweather.main.adapter.trend.DailyTrendAdapter;
-import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.main.layout.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.adapter.TagAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.GridMarginsDecoration;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
+import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class DailyViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView card;
+    private final CardView mCard;
 
-    private final TextView title;
-    private final TextView subtitle;
-    private final RecyclerView tagView;
+    private final TextView mTitle;
+    private final TextView mSubtitle;
+    private final RecyclerView mTagView;
 
-    private final TrendRecyclerView trendRecyclerView;
-    private final DailyTrendAdapter trendAdapter;
-    private @Nullable TrendRecyclerViewScrollBar trendScrollBar;
+    private final TrendRecyclerView mTrendRecyclerView;
+    private final DailyTrendAdapter mTrendAdapter;
 
     public DailyViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.container_main_daily_trend_card, parent, false));
 
-        this.card = itemView.findViewById(R.id.container_main_daily_trend_card);
-        this.title = itemView.findViewById(R.id.container_main_daily_trend_card_title);
-        this.subtitle = itemView.findViewById(R.id.container_main_daily_trend_card_subtitle);
-        this.tagView = itemView.findViewById(R.id.container_main_daily_trend_card_tagView);
+        mCard = itemView.findViewById(R.id.container_main_daily_trend_card);
+        mTitle = itemView.findViewById(R.id.container_main_daily_trend_card_title);
+        mSubtitle = itemView.findViewById(R.id.container_main_daily_trend_card_subtitle);
+        mTagView = itemView.findViewById(R.id.container_main_daily_trend_card_tagView);
 
-        this.trendRecyclerView = itemView.findViewById(R.id.container_main_daily_trend_card_trendRecyclerView);
-        this.trendAdapter = new DailyTrendAdapter();
+        mTrendRecyclerView = itemView.findViewById(R.id.container_main_daily_trend_card_trendRecyclerView);
+        mTrendRecyclerView.addItemDecoration(new TrendRecyclerViewScrollBar(parent.getContext()));
+        mTrendRecyclerView.setHasFixedSize(true);
+
+        mTrendAdapter = new DailyTrendAdapter();
     }
 
     @Override
@@ -66,138 +66,144 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = themeManager.getWeatherThemeColors()[0];
+        int weatherColor = mThemeManager.getWeatherThemeColors()[0];
 
-        card.setCardBackgroundColor(themeManager.getRootColor(context));
+        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
 
-        title.setTextColor(weatherColor);
+        mTitle.setTextColor(weatherColor);
 
         if (TextUtils.isEmpty(weather.getCurrent().getDailyForecast())) {
-            subtitle.setVisibility(View.GONE);
+            mSubtitle.setVisibility(View.GONE);
         } else {
-            subtitle.setVisibility(View.VISIBLE);
-            subtitle.setText(weather.getCurrent().getDailyForecast());
+            mSubtitle.setVisibility(View.VISIBLE);
+            mSubtitle.setText(weather.getCurrent().getDailyForecast());
         }
 
-        List<TagAdapter.Tag> tagList = getTagList(weather, location.getWeatherSource());
+        List<TagAdapter.Tag> tagList = getTagList(weather);
         if (tagList.size() < 2) {
-            tagView.setVisibility(View.GONE);
+            mTagView.setVisibility(View.GONE);
         } else {
-            tagView.setVisibility(View.VISIBLE);
-            int decorCount = tagView.getItemDecorationCount();
+            mTagView.setVisibility(View.VISIBLE);
+            int decorCount = mTagView.getItemDecorationCount();
             for (int i = 0; i < decorCount; i++) {
-                tagView.removeItemDecorationAt(0);
+                mTagView.removeItemDecorationAt(0);
             }
-            tagView.addItemDecoration(
+            mTagView.addItemDecoration(
                     new GridMarginsDecoration(
-                            context.getResources().getDimension(R.dimen.little_margin),
-                            context.getResources().getDimension(R.dimen.normal_margin),
-                            tagView
+                            mContext.getResources().getDimension(R.dimen.little_margin),
+                            mContext.getResources().getDimension(R.dimen.normal_margin),
+                            mTagView
                     )
             );
 
-            tagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
-            tagView.setAdapter(
-                    new TagAdapter(context, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
+            mTagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(mContext));
+            mTagView.setAdapter(
+                    new TagAdapter(mContext, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
                         return false;
                     }, 0)
             );
         }
 
-        trendRecyclerView.setHasFixedSize(true);
-        trendRecyclerView.setLayoutManager(
+        mTrendRecyclerView.setLayoutManager(
                 new TrendHorizontalLinearLayoutManager(
-                        context,
-                        DisplayUtils.isLandscape(context) ? 7 : 5
+                        mContext,
+                        DisplayUtils.isLandscape(mContext) ? 7 : 5
                 )
         );
-        trendRecyclerView.setAdapter(trendAdapter);
-        trendRecyclerView.setKeyLineVisibility(
-                SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
+        mTrendRecyclerView.setAdapter(mTrendAdapter);
+        mTrendRecyclerView.setKeyLineVisibility(
+                SettingsOptionManager.getInstance(mContext).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
-
-        this.trendScrollBar = new TrendRecyclerViewScrollBar(context);
-        trendRecyclerView.addItemDecoration(trendScrollBar);
     }
 
     private void setTrendAdapterByTag(Location location, MainTag tag) {
         switch (tag.getType()) {
             case TEMPERATURE:
-                trendAdapter.temperature(
-                        (GeoActivity) context,
-                        trendRecyclerView,
+                mTrendAdapter.temperature(
+                        (GeoActivity) mContext,
+                        mTrendRecyclerView,
                         location,
-                        provider,
-                        SettingsOptionManager.getInstance(context).getTemperatureUnit()
+                        mProvider,
+                        SettingsOptionManager.getInstance(mContext).getTemperatureUnit()
                 );
                 break;
 
             case WIND:
-                trendAdapter.wind(
-                        (GeoActivity) context,
-                        trendRecyclerView,
+                mTrendAdapter.wind(
+                        (GeoActivity) mContext,
+                        mTrendRecyclerView,
                         location,
-                        SettingsOptionManager.getInstance(context).getSpeedUnit()
+                        SettingsOptionManager.getInstance(mContext).getSpeedUnit()
                 );
                 break;
 
             case PRECIPITATION:
-                trendAdapter.precipitation(
-                        (GeoActivity) context,
-                        trendRecyclerView,
+                mTrendAdapter.precipitation(
+                        (GeoActivity) mContext,
+                        mTrendRecyclerView,
                         location,
-                        provider,
-                        SettingsOptionManager.getInstance(context).getPrecipitationUnit()
+                        mProvider,
+                        SettingsOptionManager.getInstance(mContext).getPrecipitationUnit()
                 );
                 break;
 
             case AIR_QUALITY:
-                trendAdapter.airQuality((GeoActivity) context, trendRecyclerView, location);
+                mTrendAdapter.airQuality((GeoActivity) mContext, mTrendRecyclerView, location);
                 break;
 
             case UV_INDEX:
-                trendAdapter.uv((GeoActivity) context, trendRecyclerView, location);
+                mTrendAdapter.uv((GeoActivity) mContext, mTrendRecyclerView, location);
                 break;
         }
-        trendAdapter.notifyDataSetChanged();
+        mTrendAdapter.notifyDataSetChanged();
     }
 
-    private List<TagAdapter.Tag> getTagList(Weather weather, WeatherSource source) {
+    private List<TagAdapter.Tag> getTagList(Weather weather) {
         List<TagAdapter.Tag> tagList = new ArrayList<>();
         List<DailyTrendDisplay> displayList
-                = SettingsOptionManager.getInstance(context).getDailyTrendDisplayList();
-        for (DailyTrendDisplay d : displayList) {
-            switch (d) {
+                = SettingsOptionManager.getInstance(mContext).getDailyTrendDisplayList();
+        for (DailyTrendDisplay display : displayList) {
+            switch (display) {
                 case TAG_TEMPERATURE:
-                    tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
+                    tagList.add(new MainTag(mContext.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
                     break;
 
                 case TAG_AIR_QUALITY:
-                    tagList.add(new MainTag(context.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
+                    for (Daily daily : weather.getDailyForecast()) {
+                        if (daily.getAirQuality().isValid()) {
+                            tagList.add(new MainTag(mContext.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
+                            break;
+                        }
+                    }
                     break;
 
                 case TAG_WIND:
-                    if (source == WeatherSource.ACCU) {
-                        tagList.add(new MainTag(context.getString(R.string.tag_wind), MainTag.Type.WIND));
+                    for (Daily daily : weather.getDailyForecast()) {
+                        if (daily.day().getWind().isValidSpeed()
+                                && daily.night().getWind().isValidSpeed() ) {
+                            tagList.add(new MainTag(mContext.getString(R.string.tag_wind), MainTag.Type.WIND));
+                            break;
+                        }
                     }
                     break;
 
                 case TAG_UV_INDEX:
-                    if (source == WeatherSource.ACCU) {
-                        tagList.add(new MainTag(context.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
+                    for (Daily daily : weather.getDailyForecast()) {
+                        if (daily.getUV().isValid()) {
+                            tagList.add(new MainTag(mContext.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
+                            break;
+                        }
                     }
                     break;
 
                 case TAG_PRECIPITATION:
-                    if (source == WeatherSource.ACCU) {
-                        tagList.addAll(getPrecipitationTagList(weather));
-                    }
+                    tagList.addAll(getPrecipitationTagList(weather));
                     break;
             }
         }
         if (tagList.size() == 0) {
-            tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
+            tagList.add(new MainTag(mContext.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
         }
 
         return tagList;
@@ -206,7 +212,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
     private List<TagAdapter.Tag> getPrecipitationTagList(Weather weather) {
         int precipitationCount = 0;
         for (Daily d : weather.getDailyForecast()) {
-            if ((d.day().getWeatherCode().isPercipitation() || d.night().getWeatherCode().isPercipitation())
+            if ((d.day().getWeatherCode().isPrecipitation() || d.night().getWeatherCode().isPrecipitation())
                     && (d.day().getPrecipitation().isValid() || d.night().getPrecipitation().isValid())) {
                 precipitationCount ++;
             }
@@ -215,17 +221,8 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             return new ArrayList<>();
         } else {
             List<TagAdapter.Tag> list = new ArrayList<>();
-            list.add(new MainTag(context.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
+            list.add(new MainTag(mContext.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
             return list;
-        }
-    }
-
-    @Override
-    public void onRecycleView() {
-        super.onRecycleView();
-        if (trendScrollBar != null) {
-            trendRecyclerView.removeItemDecoration(trendScrollBar);
-            trendScrollBar = null;
         }
     }
 }

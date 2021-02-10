@@ -16,8 +16,8 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class FitBottomSystemBarRecyclerView extends RecyclerView {
 
-    private Rect windowInsets = new Rect(0, 0, 0, 0);
-    private boolean adaptiveWidthEnabled = true;
+    private Rect mWindowInsets = new Rect(0, 0, 0, 0);
+    private boolean mAdaptiveWidthEnabled = true;
 
     public FitBottomSystemBarRecyclerView(@NonNull Context context) {
         super(context);
@@ -34,8 +34,8 @@ public class FitBottomSystemBarRecyclerView extends RecyclerView {
         ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
-    public void setAdaptiveWidthEnabled(boolean enabled) {
-        this.adaptiveWidthEnabled = enabled;
+    public void setmAdaptiveWidthEnabled(boolean enabled) {
+        mAdaptiveWidthEnabled = enabled;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
@@ -64,7 +64,7 @@ public class FitBottomSystemBarRecyclerView extends RecyclerView {
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        windowInsets = insets;
+        mWindowInsets = insets;
         requestLayout();
         return false;
     }
@@ -75,16 +75,16 @@ public class FitBottomSystemBarRecyclerView extends RecyclerView {
 
         int viewWidth = getMeasuredWidth();
         int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(getContext(), viewWidth);
-        int paddingHorizontal = adaptiveWidthEnabled ? ((viewWidth - adaptiveWidth) / 2) : 0;
+        int paddingHorizontal = mAdaptiveWidthEnabled ? ((viewWidth - adaptiveWidth) / 2) : 0;
         setPadding(
-                Math.max(paddingHorizontal, windowInsets.left),
+                Math.max(paddingHorizontal, mWindowInsets.left),
                 0,
-                Math.max(paddingHorizontal, windowInsets.right),
-                windowInsets.bottom
+                Math.max(paddingHorizontal, mWindowInsets.right),
+                mWindowInsets.bottom
         );
     }
 
     public Rect getWindowInsets() {
-        return windowInsets;
+        return mWindowInsets;
     }
 }

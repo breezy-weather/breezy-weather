@@ -28,30 +28,31 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
 
 public class HeaderViewHolder extends AbstractMainViewHolder {
 
-    private final LinearLayout container;
-    private final NumberAnimTextView temperature;
-    private final TextView weather;
-    private final TextView aqiOrWind;
+    private final LinearLayout mContainer;
+    private final NumberAnimTextView mTemperature;
+    private final TextView mWeather;
+    private final TextView mAqiOrWind;
 
-    private int temperatureCFrom;
-    private int temperatureCTo;
-    private TemperatureUnit unit;
-    private @Nullable Disposable disposable;
+    private int mTemperatureCFrom;
+    private int mTemperatureCTo;
+    private TemperatureUnit mTemperatureUnit;
+    private @Nullable Disposable mDisposable;
 
     public HeaderViewHolder(ViewGroup parent, WeatherView weatherView) {
-        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_header, parent, false));
+        super(LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.container_main_header, parent, false));
 
-        this.container = itemView.findViewById(R.id.container_main_header);
-        this.temperature = itemView.findViewById(R.id.container_main_header_tempTxt);
-        this.weather = itemView.findViewById(R.id.container_main_header_weatherTxt);
-        this.aqiOrWind = itemView.findViewById(R.id.container_main_header_aqiOrWindTxt);
+        mContainer = itemView.findViewById(R.id.container_main_header);
+        mTemperature = itemView.findViewById(R.id.container_main_header_tempTxt);
+        mWeather = itemView.findViewById(R.id.container_main_header_weatherTxt);
+        mAqiOrWind = itemView.findViewById(R.id.container_main_header_aqiOrWindTxt);
 
-        this.temperatureCFrom = 0;
-        this.temperatureCTo = 0;
-        this.unit = null;
-        this.disposable = null;
+        mTemperatureCFrom = 0;
+        mTemperatureCTo = 0;
+        mTemperatureUnit = null;
+        mDisposable = null;
 
-        container.setOnClickListener(v -> weatherView.onClick());
+        mContainer.setOnClickListener(v -> weatherView.onClick());
     }
 
     @SuppressLint("SetTextI18n")
@@ -60,50 +61,56 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) container.getLayoutParams();
-        params.height = themeManager.getHeaderHeight();
-        container.setLayoutParams(params);
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mContainer.getLayoutParams();
+        params.height = mThemeManager.getHeaderHeight();
+        mContainer.setLayoutParams(params);
 
-        int textColor = themeManager.getHeaderTextColor(context);
-        temperature.setTextColor(textColor);
-        weather.setTextColor(textColor);
-        aqiOrWind.setTextColor(textColor);
+        int textColor = mThemeManager.getHeaderTextColor(context);
+        mTemperature.setTextColor(textColor);
+        mWeather.setTextColor(textColor);
+        mAqiOrWind.setTextColor(textColor);
 
-        unit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+        mTemperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
         if (location.getWeather() != null) {
-            temperatureCFrom = temperatureCTo;
-            temperatureCTo = location.getWeather().getCurrent().getTemperature().getTemperature();
+            mTemperatureCFrom = mTemperatureCTo;
+            mTemperatureCTo = location.getWeather().getCurrent().getTemperature().getTemperature();
 
-            temperature.setEnableAnim(itemAnimationEnabled);
-            temperature.setDuration(
+            mTemperature.setEnableAnim(itemAnimationEnabled);
+            mTemperature.setDuration(
                     (long) Math.min(
                             2000, // no longer than 2 seconds.
-                            Math.abs(temperatureCTo - temperatureCFrom) / 10f * 1000
+                            Math.abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000
                     )
             );
-            temperature.setPostfixString(unit.getShortAbbreviation(context));
+            mTemperature.setPostfixString(mTemperatureUnit.getShortAbbreviation(context));
 
-            weather.setText(
-                    location.getWeather().getCurrent().getWeatherText()
-                            + ", "
-                            + context.getString(R.string.feels_like)
-                            + " "
-                            + location.getWeather().getCurrent().getTemperature().getShortRealFeeTemperature(context, unit)
-            );
+            StringBuilder title = new StringBuilder(location.getWeather().getCurrent().getWeatherText());
+            if (location.getWeather().getCurrent().getTemperature().getRealFeelTemperature() != null) {
+                title.append(", ")
+                        .append(context.getString(R.string.feels_like))
+                        .append(" ")
+                        .append(location.getWeather().getCurrent().getTemperature().getShortRealFeeTemperature(context, mTemperatureUnit));
+            }
+            mWeather.setText(title.toString());
 
             if (location.getWeather().getCurrent().getAirQuality().getAqiText() == null) {
-                aqiOrWind.setText(
+                mAqiOrWind.setText(
                         context.getString(R.string.wind)
                                 + " - "
                                 + location.getWeather().getCurrent().getWind().getShortWindDescription()
                 );
             } else {
-                aqiOrWind.setText(
+                mAqiOrWind.setText(
                         context.getString(R.string.air_quality)
                                 + " - "
                                 + location.getWeather().getCurrent().getAirQuality().getAqiText()
                 );
             }
+
+            itemView.setContentDescription(location.getCityName(context)
+                    + ", " + location.getWeather().getCurrent().getTemperature().getTemperature(context, mTemperatureUnit)
+                    + ", " + mWeather.getText()
+                    + ", " + mAqiOrWind.getText());
         }
     }
 
@@ -121,21 +128,21 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
     @Override
     public void onEnterScreen() {
         super.onEnterScreen();
-        temperature.setNumberString(
-                String.format("%d", unit.getTemperature(temperatureCFrom)),
-                String.format("%d", unit.getTemperature(temperatureCTo))
+        mTemperature.setNumberString(
+                String.format("%d", mTemperatureUnit.getTemperature(mTemperatureCFrom)),
+                String.format("%d", mTemperatureUnit.getTemperature(mTemperatureCTo))
         );
     }
 
     @Override
     public void onRecycleView() {
-        if (disposable != null) {
-            disposable.dispose();
-            disposable = null;
+        if (mDisposable != null) {
+            mDisposable.dispose();
+            mDisposable = null;
         }
     }
 
     public int getCurrentTemperatureHeight() {
-        return container.getMeasuredHeight() - temperature.getTop();
+        return mContainer.getMeasuredHeight() - mTemperature.getTop();
     }
 }

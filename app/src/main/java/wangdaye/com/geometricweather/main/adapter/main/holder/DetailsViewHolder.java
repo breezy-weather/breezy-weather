@@ -17,18 +17,18 @@ import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 
 public class DetailsViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView card;
+    private final CardView mCard;
 
-    private final TextView title;
-    private final RecyclerView detailsRecyclerView;
+    private final TextView mTitle;
+    private final RecyclerView mDetailsRecyclerView;
 
     public DetailsViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.container_main_details, parent, false));
 
-        this.card = itemView.findViewById(R.id.container_main_details);
-        this.title = itemView.findViewById(R.id.container_main_details_title);
-        this.detailsRecyclerView = itemView.findViewById(R.id.container_main_details_recyclerView);
+        mCard = itemView.findViewById(R.id.container_main_details);
+        mTitle = itemView.findViewById(R.id.container_main_details_title);
+        mDetailsRecyclerView = itemView.findViewById(R.id.container_main_details_recyclerView);
     }
 
     @Override
@@ -38,12 +38,12 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         if (location.getWeather() != null) {
-            card.setCardBackgroundColor(themeManager.getRootColor(context));
+            mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
 
-            title.setTextColor(themeManager.getWeatherThemeColors()[0]);
+            mTitle.setTextColor(mThemeManager.getWeatherThemeColors()[0]);
 
-            detailsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-            detailsRecyclerView.setAdapter(new DetailsAdapter(context, location.getWeather()));
+            mDetailsRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+            mDetailsRecyclerView.setAdapter(new DetailsAdapter(mContext, location.getWeather()));
         }
     }
 }

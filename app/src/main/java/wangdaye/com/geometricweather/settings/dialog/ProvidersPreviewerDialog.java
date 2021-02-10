@@ -40,8 +40,8 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class ProvidersPreviewerDialog extends DialogFragment {
 
-    private CircularProgressView progress;
-    private RecyclerView list;
+    private CircularProgressView mProgress;
+    private RecyclerView mList;
 
     @Nullable private OnIconProviderChangedListener listener;
 
@@ -60,27 +60,27 @@ public class ProvidersPreviewerDialog extends DialogFragment {
                 title.setTranslationZ(0);
             }
 
-            this.progress = view.findViewById(R.id.dialog_providers_previewer_progress);
-            progress.setVisibility(View.VISIBLE);
+            mProgress = view.findViewById(R.id.dialog_providers_previewer_progress);
+            mProgress.setVisibility(View.VISIBLE);
 
-            this.list = view.findViewById(R.id.dialog_providers_previewer_list);
-            list.setLayoutManager(new LinearLayoutManager(context));
+            mList = view.findViewById(R.id.dialog_providers_previewer_list);
+            mList.setLayoutManager(new LinearLayoutManager(context));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                mList.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-                    float elevation = DisplayUtils.dpToPx(context, 2);
+                    final float elevation = DisplayUtils.dpToPx(context, 2);
 
                     @Override
                     public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                        if (!list.canScrollVertically(-1)) {
-                            list.setTranslationZ(0);
+                        if (!mList.canScrollVertically(-1)) {
+                            mList.setTranslationZ(0);
                         } else {
-                            list.setTranslationZ(elevation);
+                            mList.setTranslationZ(elevation);
                         }
                     }
                 });
             }
-            list.setVisibility(View.GONE);
+            mList.setVisibility(View.GONE);
 
             Observable.create((ObservableOnSubscribe<List<ResourceProvider>>) emitter ->
                     emitter.onNext(
@@ -102,7 +102,7 @@ public class ProvidersPreviewerDialog extends DialogFragment {
     }
 
     private void bindAdapter(List<ResourceProvider> providerList) {
-        list.setAdapter(new IconProviderAdapter(
+        mList.setAdapter(new IconProviderAdapter(
                 getActivity(),
                 providerList,
                 new IconProviderAdapter.OnItemClickedListener() {
@@ -135,14 +135,14 @@ public class ProvidersPreviewerDialog extends DialogFragment {
         Animation show = new AlphaAnimation(0f, 1f);
         show.setDuration(300);
         show.setInterpolator(new FastOutSlowInInterpolator());
-        list.startAnimation(show);
-        list.setVisibility(View.VISIBLE);
+        mList.startAnimation(show);
+        mList.setVisibility(View.VISIBLE);
 
         Animation out = new AlphaAnimation(1f, 0f);
         show.setDuration(300);
         show.setInterpolator(new FastOutSlowInInterpolator());
-        progress.startAnimation(out);
-        progress.setVisibility(View.GONE);
+        mProgress.startAnimation(out);
+        mProgress.setVisibility(View.GONE);
     }
 
     public interface OnIconProviderChangedListener {

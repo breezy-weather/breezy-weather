@@ -10,9 +10,9 @@ public enum PrecipitationUnit {
     IN("in", 1, 0.0394f),
     LPSQM("lpsqm", 2, 1f);
 
-    private String unitId;
-    private int unitArrayIndex;
-    private float unitFactor; // actual precipitation = precipitation(mm) * factor.
+    private final String unitId;
+    private final int unitArrayIndex;
+    private final float unitFactor; // actual precipitation = precipitation(mm) * factor.
 
     PrecipitationUnit(String id, int arrayIndex, float factor) {
         unitId = id;
@@ -38,5 +38,10 @@ public enum PrecipitationUnit {
 
     public String getAbbreviation(Context context) {
         return context.getResources().getStringArray(R.array.precipitation_units)[unitArrayIndex];
+    }
+
+    public String getPrecipitationVoice(Context context, float mm) {
+        return getPrecipitationTextWithoutUnit(mm)
+                + context.getResources().getStringArray(R.array.precipitation_unit_voices)[unitArrayIndex];
     }
 }

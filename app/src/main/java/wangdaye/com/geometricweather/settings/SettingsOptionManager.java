@@ -30,17 +30,17 @@ import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
 
 public class SettingsOptionManager {
 
-    private static volatile SettingsOptionManager instance;
+    private static volatile SettingsOptionManager sInstance;
 
     public static SettingsOptionManager getInstance(Context context) {
-        if (instance == null) {
+        if (sInstance == null) {
             synchronized (SettingsOptionManager.class) {
-                if (instance == null) {
-                    instance = new SettingsOptionManager(context);
+                if (sInstance == null) {
+                    sInstance = new SettingsOptionManager(context);
                 }
             }
         }
-        return instance;
+        return sInstance;
     }
 
     // basic.

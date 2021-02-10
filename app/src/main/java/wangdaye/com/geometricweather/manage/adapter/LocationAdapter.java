@@ -33,13 +33,13 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHolder>
         implements ICustomAdapter {
 
-    private final Context context;
-    private final OnLocationItemClickListener clickListener;
-    private @Nullable final OnLocationItemDragListener dragListener;
+    private final Context mContext;
+    private final OnLocationItemClickListener mClickListener;
+    private @Nullable final OnLocationItemDragListener mDragListener;
 
-    private @NonNull final ThemeManager themeManager;
-    private @NonNull final ResourceProvider resourceProvider;
-    private @NonNull final TemperatureUnit temperatureUnit;
+    private @NonNull final ThemeManager mThemeManager;
+    private @NonNull final ResourceProvider mResourceProvider;
+    private @NonNull final TemperatureUnit mTemperatureUnit;
 
     public LocationAdapter(Context context,
                            List<Location> locationList,
@@ -57,13 +57,13 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
                 return oldItem.areContentsTheSame(newItem);
             }
         });
-        this.context = context;
-        this.clickListener = clickListener;
-        this.dragListener = dragListener;
+        mContext = context;
+        mClickListener = clickListener;
+        mDragListener = dragListener;
 
-        this.themeManager = ThemeManager.getInstance(context);
-        this.resourceProvider = ResourcesProviderFactory.getNewInstance();
-        this.temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+        mThemeManager = ThemeManager.getInstance(context);
+        mResourceProvider = ResourcesProviderFactory.getNewInstance();
+        mTemperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
 
         update(locationList, selectedId, null);
     }
@@ -73,14 +73,14 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LocationHolder(
                 ItemLocationBinding.inflate(LayoutInflater.from(parent.getContext())),
-                clickListener,
-                dragListener
+                mClickListener,
+                mDragListener
         );
     }
 
     @Override
     public void onBindViewHolder(@NonNull LocationHolder holder, int position) {
-        holder.onBindView(context, getItem(position), resourceProvider);
+        holder.onBindView(mContext, getItem(position), mResourceProvider);
     }
 
     public void update(@Nullable String selectedId) {
@@ -88,10 +88,10 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         for (LocationModel model : getCurrentList()) {
             modelList.add(
                     new LocationModel(
-                            context,
+                            mContext,
                             model.location,
-                            temperatureUnit,
-                            themeManager.isLightTheme(),
+                            mTemperatureUnit,
+                            mThemeManager.isLightTheme(),
                             model.location.getFormattedId().equals(selectedId),
                             false
                     )
@@ -107,10 +107,10 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         for (Location l : newList) {
             modelList.add(
                     new LocationModel(
-                            context,
+                            mContext,
                             l,
-                            temperatureUnit,
-                            themeManager.isLightTheme(),
+                            mTemperatureUnit,
+                            mThemeManager.isLightTheme(),
                             l.getFormattedId().equals(selectedId),
                             l.getFormattedId().equals(forceUpdateId)
                     )

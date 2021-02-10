@@ -27,30 +27,30 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
-    protected Context context;
-    protected ResourceProvider provider;
-    protected ThemeManager themeManager;
-    protected boolean itemAnimationEnabled;
-    private boolean inScreen;
+    protected Context mContext;
+    protected ResourceProvider mProvider;
+    protected ThemeManager mThemeManager;
+    protected boolean mItemAnimationEnabled;
+    private boolean mInScreen;
 
-    private @Nullable Animator itemAnimator;
-    private @Nullable Disposable disposable;
+    private @Nullable Animator mItemAnimator;
+    private @Nullable Disposable mDisposable;
 
     @SuppressLint("ObjectAnimatorBinding")
     public AbstractMainViewHolder(@NonNull View view) {
         super(view);
-        this.themeManager = ThemeManager.getInstance(view.getContext());
+        mThemeManager = ThemeManager.getInstance(view.getContext());
     }
 
     @CallSuper
     public void onBindView(Context context, @NonNull Location location,
                            @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        this.context = context;
-        this.provider = provider;
-        this.itemAnimationEnabled = itemAnimationEnabled;
-        this.inScreen = false;
-        this.disposable = null;
+        mContext = context;
+        mProvider = provider;
+        mItemAnimationEnabled = itemAnimationEnabled;
+        mInScreen = false;
+        mDisposable = null;
 
         if (listAnimationEnabled) {
             itemView.setAlpha(0f);
@@ -63,8 +63,8 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
     public final void enterScreen(List<Animator> pendingAnimatorList,
                                   boolean listAnimationEnabled) {
-        if (!inScreen) {
-            inScreen = true;
+        if (!mInScreen) {
+            mInScreen = true;
             if (listAnimationEnabled) {
                 executeEnterAnimator(pendingAnimatorList);
             } else {
@@ -76,24 +76,24 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     public final void executeEnterAnimator(List<Animator> pendingAnimatorList) {
         itemView.setAlpha(0f);
 
-        itemAnimator = getEnterAnimator(pendingAnimatorList);
-        itemAnimator.addListener(new AnimatorListenerAdapter() {
+        mItemAnimator = getEnterAnimator(pendingAnimatorList);
+        mItemAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationCancel(Animator animation) {
-                pendingAnimatorList.remove(itemAnimator);
+                pendingAnimatorList.remove(mItemAnimator);
             }
         });
 
-        disposable = Observable.timer(itemAnimator.getStartDelay(), TimeUnit.MILLISECONDS)
+        mDisposable = Observable.timer(mItemAnimator.getStartDelay(), TimeUnit.MILLISECONDS)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(() -> {
-                    pendingAnimatorList.remove(itemAnimator);
+                    pendingAnimatorList.remove(mItemAnimator);
                     onEnterScreen();
                 }).subscribe();
 
-        pendingAnimatorList.add(itemAnimator);
-        itemAnimator.start();
+        pendingAnimatorList.add(mItemAnimator);
+        mItemAnimator.start();
     }
 
     @NonNull
@@ -102,7 +102,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         set.playTogether(
                 ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f),
                 ObjectAnimator.ofFloat(
-                        itemView, "translationY", DisplayUtils.dpToPx(context, 40), 0f
+                        itemView, "translationY", DisplayUtils.dpToPx(mContext, 40), 0f
                 )
         );
         set.setDuration(450);
@@ -116,13 +116,13 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onRecycleView() {
-        if (disposable != null) {
-            disposable.dispose();
-            disposable = null;
+        if (mDisposable != null) {
+            mDisposable.dispose();
+            mDisposable = null;
         }
-        if (itemAnimator != null) {
-            itemAnimator.cancel();
-            itemAnimator = null;
+        if (mItemAnimator != null) {
+            mItemAnimator.cancel();
+            mItemAnimator = null;
         }
     }
 }

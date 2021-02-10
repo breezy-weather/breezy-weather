@@ -37,8 +37,8 @@ import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
 
 public class AccuWeatherService extends WeatherService {
 
-    private AccuWeatherApi api;
-    private CompositeDisposable compositeDisposable;
+    private final AccuWeatherApi mApi;
+    private final CompositeDisposable mCompositeDisposable;
 
     private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
     private static final String KEY_OLD_DISTRICT = "OLD_DISTRICT";
@@ -46,48 +46,48 @@ public class AccuWeatherService extends WeatherService {
     private static final String KEY_OLD_PROVINCE = "OLD_PROVINCE";
     private static final String KEY_OLD_KEY = "OLD_KEY";
 
-    private class CacheLocationRequestCallback implements RequestLocationCallback {
+    private static class CacheLocationRequestCallback implements RequestLocationCallback {
 
-        private Context context;
-        @NonNull private RequestLocationCallback callback;
+        private final Context mContext;
+        private @NonNull final RequestLocationCallback mCallback;
 
         CacheLocationRequestCallback(Context context, @NonNull RequestLocationCallback callback) {
-            this.context = context;
-            this.callback = callback;
+            mContext = context;
+            mCallback = callback;
         }
 
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (!TextUtils.isEmpty(locationList.get(0).getCityId())) {
-                context.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
+                mContext.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
                         .edit()
                         .putString(KEY_OLD_KEY, locationList.get(0).getCityId())
                         .apply();
             }
-            callback.requestLocationSuccess(query, locationList);
+            mCallback.requestLocationSuccess(query, locationList);
         }
 
         @Override
         public void requestLocationFailed(String query) {
-            context.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
+            mContext.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
                     .edit()
                     .putString(KEY_OLD_DISTRICT, "")
                     .putString(KEY_OLD_CITY, "")
                     .putString(KEY_OLD_PROVINCE, "")
                     .putString(KEY_OLD_KEY, "")
                     .apply();
-            callback.requestLocationFailed(query);
+            mCallback.requestLocationFailed(query);
         }
     }
 
-    private class EmptyMinuteResult extends AccuMinuteResult {
+    private static class EmptyMinuteResult extends AccuMinuteResult {
     }
 
-    private class EmptyAqiResult extends AccuAqiResult {
+    private static class EmptyAqiResult extends AccuAqiResult {
     }
 
     public AccuWeatherService() {
-        api = new Retrofit.Builder()
+        mApi = new Retrofit.Builder()
                 .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
                 .client(
                         GeometricWeather.getInstance()
@@ -99,23 +99,23 @@ public class AccuWeatherService extends WeatherService {
                 .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
                 .build()
                 .create((AccuWeatherApi.class));
-        compositeDisposable = new CompositeDisposable();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
         String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
 
-        Observable<List<AccuCurrentResult>> realtime = api.getCurrent(
+        Observable<List<AccuCurrentResult>> realtime = mApi.getCurrent(
                 location.getCityId(), BuildConfig.ACCU_CURRENT_KEY, languageCode, true);
 
-        Observable<AccuDailyResult> daily = api.getDaily(
+        Observable<AccuDailyResult> daily = mApi.getDaily(
                 location.getCityId(), BuildConfig.ACCU_WEATHER_KEY, languageCode, true, true);
 
-        Observable<List<AccuHourlyResult>> hourly = api.getHourly(
+        Observable<List<AccuHourlyResult>> hourly = mApi.getHourly(
                 location.getCityId(), BuildConfig.ACCU_WEATHER_KEY, languageCode, true);
 
-        Observable<AccuMinuteResult> minute = api.getMinutely(
+        Observable<AccuMinuteResult> minute = mApi.getMinutely(
                 BuildConfig.ACCU_WEATHER_KEY,
                 languageCode,
                 true,
@@ -124,10 +124,10 @@ public class AccuWeatherService extends WeatherService {
                 Observable.create(emitter -> emitter.onNext(new EmptyMinuteResult()))
         );
 
-        Observable<List<AccuAlertResult>> alert = api.getAlert(
+        Observable<List<AccuAlertResult>> alert = mApi.getAlert(
                 location.getCityId(), BuildConfig.ACCU_WEATHER_KEY, languageCode, true);
 
-        Observable<AccuAqiResult> aqi = api.getAirQuality(
+        Observable<AccuAqiResult> aqi = mApi.getAirQuality(
                 location.getCityId(),
                 BuildConfig.ACCU_AQI_KEY
         ).onExceptionResumeNext(
@@ -149,7 +149,7 @@ public class AccuWeatherService extends WeatherService {
                          accuAlertResults
                  )
         ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<Weather>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<Weather>() {
                     @Override
                     public void onSucceed(Weather weather) {
                         if (weather != null) {
@@ -173,7 +173,7 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
         List<AccuLocationResult> resultList = null;
         try {
-            resultList = api.callWeatherLocation(
+            resultList = mApi.callWeatherLocation(
                     "Always",
                     BuildConfig.ACCU_WEATHER_KEY,
                     query,
@@ -229,13 +229,13 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
         final CacheLocationRequestCallback finalCallback = new CacheLocationRequestCallback(context, callback);
 
-        api.getWeatherLocationByGeoPosition(
+        mApi.getWeatherLocationByGeoPosition(
                 "Always",
                 BuildConfig.ACCU_WEATHER_KEY,
                 location.getLatitude() + "," + location.getLongitude(),
                 languageCode
         ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<AccuLocationResult>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<AccuLocationResult>() {
                     @Override
                     public void onSucceed(AccuLocationResult accuLocationResult) {
                         if (accuLocationResult != null) {
@@ -261,9 +261,9 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
         String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
 
-        api.getWeatherLocation("Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)
+        mApi.getWeatherLocation("Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)
                 .compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
                     @Override
                     public void onSucceed(List<AccuLocationResult> accuLocationResults) {
                         if (accuLocationResults != null && accuLocationResults.size() != 0) {
@@ -286,7 +286,7 @@ public class AccuWeatherService extends WeatherService {
 
     @Override
     public void cancel() {
-        compositeDisposable.clear();
+        mCompositeDisposable.clear();
     }
 
     private boolean queryEquals(String a, String b) {

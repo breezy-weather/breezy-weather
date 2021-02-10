@@ -14,8 +14,8 @@ public enum DailyTrendDisplay {
     TAG_UV_INDEX("uv_index", R.string.uv_index),
     TAG_PRECIPITATION("precipitation", R.string.precipitation);
 
-    private String value;
-    private @StringRes int nameId;
+    private final String value;
+    private @StringRes final int nameId;
 
     DailyTrendDisplay(String value, int nameId) {
         this.value = value;

@@ -19,38 +19,37 @@ import wangdaye.com.geometricweather.basic.model.weather.Weather;
 
 public class TimeManager {
 
-    private static volatile TimeManager instance;
-
+    private static volatile TimeManager sInstance;
     public static synchronized TimeManager getInstance(Context context) {
         synchronized (TimeManager.class) {
-            if (instance == null) {
-                instance = new TimeManager(context);
+            if (sInstance == null) {
+                sInstance = new TimeManager(context);
             }
         }
-        return instance;
+        return sInstance;
     }
 
-    private boolean dayTime;
+    private boolean mDayTime;
 
     private static final String PREFERENCE_NAME = "time_preference";
     private static final String KEY_DAY_TIME = "day_time";
 
     private TimeManager(Context context) {
-        dayTime = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        mDayTime = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
                 .getBoolean(KEY_DAY_TIME, true);
     }
 
     public boolean isDayTime() {
-        return dayTime;
+        return mDayTime;
     }
 
     public TimeManager update(Context context, @NonNull Location location) {
-        dayTime = isDaylight(location);
+        mDayTime = isDaylight(location);
 
         SharedPreferences.Editor editor = context.getSharedPreferences(
                 PREFERENCE_NAME, Context.MODE_PRIVATE
         ).edit();
-        editor.putBoolean(KEY_DAY_TIME, dayTime);
+        editor.putBoolean(KEY_DAY_TIME, mDayTime);
         editor.apply();
         return this;
     }

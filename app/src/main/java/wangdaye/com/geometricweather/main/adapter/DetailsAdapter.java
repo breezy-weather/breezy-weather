@@ -30,74 +30,90 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
-    private List<Index> indexList;
-    private ThemeManager themeManager;
+    private final List<Index> mIndexList;
+    private final ThemeManager mThemeManager;
 
     private static class Index {
         @DrawableRes int iconId;
         String title;
         String content;
+        String talkBack;
 
         Index(@DrawableRes int iconId, String title, String content) {
             this.iconId = iconId;
             this.title = title;
             this.content = content;
+            this.talkBack = title + ", " + content;
+        }
+
+        Index(@DrawableRes int iconId, String title, String content, String talkBack) {
+            this.iconId = iconId;
+            this.title = title;
+            this.content = content;
+            this.talkBack = talkBack;
         }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private AppCompatImageView icon;
-        private TextView title;
-        private TextView content;
+        private final AppCompatImageView mIcon;
+        private final TextView mTitle;
+        private final TextView mContent;
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.icon = itemView.findViewById(R.id.item_details_icon);
-            this.title = itemView.findViewById(R.id.item_details_title);
-            this.content = itemView.findViewById(R.id.item_details_content);
+            mIcon = itemView.findViewById(R.id.item_details_icon);
+            mTitle = itemView.findViewById(R.id.item_details_title);
+            mContent = itemView.findViewById(R.id.item_details_content);
         }
 
         void onBindView(Index index) {
             Context context = itemView.getContext();
 
-            icon.setImageResource(index.iconId);
+            itemView.setContentDescription(index.talkBack);
+
+            mIcon.setImageResource(index.iconId);
             ImageViewCompat.setImageTintList(
-                    icon,
-                    ColorStateList.valueOf(themeManager.getTextContentColor(context))
+                    mIcon,
+                    ColorStateList.valueOf(mThemeManager.getTextContentColor(context))
             );
 
-            title.setText(index.title);
-            title.setTextColor(themeManager.getTextContentColor(context));
+            mTitle.setText(index.title);
+            mTitle.setTextColor(mThemeManager.getTextContentColor(context));
 
-            content.setText(index.content);
-            content.setTextColor(themeManager.getTextSubtitleColor(context));
+            mContent.setText(index.content);
+            mContent.setTextColor(mThemeManager.getTextSubtitleColor(context));
         }
     }
 
     public DetailsAdapter(Context context, @NonNull Weather weather) {
-        this.indexList = new ArrayList<>();
+        mIndexList = new ArrayList<>();
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
 
         SpeedUnit speedUnit = settings.getSpeedUnit();
-        indexList.add(
+        String windTitle = context.getString(R.string.live)
+                + " : "
+                + weather.getCurrent().getWind().getWindDescription(context, speedUnit);
+        String windContent = context.getString(R.string.daytime)
+                + " : "
+                + weather.getDailyForecast().get(0).day().getWind().getWindDescription(context, speedUnit)
+                + "\n"
+                + context.getString(R.string.nighttime)
+                + " : "
+                + weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit);
+        mIndexList.add(
                 new Index(
                         R.drawable.ic_wind,
-                        context.getString(R.string.live)
-                                + " : "
-                                + weather.getCurrent().getWind().getWindDescription(context, speedUnit),
-                        context.getString(R.string.daytime)
-                                + " : "
-                                + weather.getDailyForecast().get(0).day().getWind().getWindDescription(context, speedUnit)
-                                + "\n"
-                                + context.getString(R.string.nighttime)
-                                + " : "
-                                + weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit)
+                        windTitle,
+                        windContent,
+                        context.getString(R.string.wind)
+                                + ", " + windTitle
+                                + ", " + windContent.replace("\n", ", ")
                 )
         );
 
         if (weather.getCurrent().getRelativeHumidity() != null) {
-            indexList.add(
+            mIndexList.add(
                     new Index(
                             R.drawable.ic_water_percent,
                             context.getString(R.string.humidity),
@@ -109,7 +125,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
 
         if (weather.getCurrent().getUV().isValid()) {
-            indexList.add(
+            mIndexList.add(
                     new Index(
                             R.drawable.ic_uv,
                             context.getString(R.string.uv_index),
@@ -119,27 +135,31 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
 
         if (weather.getCurrent().getPressure() != null) {
-            indexList.add(
+            mIndexList.add(
                     new Index(
                             R.drawable.ic_gauge,
                             context.getString(R.string.pressure),
-                            settings.getPressureUnit().getPressureText(context, weather.getCurrent().getPressure())
+                            settings.getPressureUnit().getPressureText(context, weather.getCurrent().getPressure()),
+                            context.getString(R.string.pressure)
+                                    + ", " + settings.getPressureUnit().getPressureVoice(context, weather.getCurrent().getPressure())
                     )
             );
         }
 
         if (weather.getCurrent().getVisibility() != null) {
-            indexList.add(
+            mIndexList.add(
                     new Index(
                             R.drawable.ic_eye,
                             context.getString(R.string.visibility),
-                            settings.getDistanceUnit().getDistanceText(context, weather.getCurrent().getVisibility())
+                            settings.getDistanceUnit().getDistanceText(context, weather.getCurrent().getVisibility()),
+                            context.getString(R.string.visibility)
+                                    + ", " + settings.getDistanceUnit().getDistanceVoice(context, weather.getCurrent().getVisibility())
                     )
             );
         }
 
         if (weather.getCurrent().getDewPoint() != null) {
-            indexList.add(
+            mIndexList.add(
                     new Index(
                             R.drawable.ic_water,
                             context.getString(R.string.dew_point),
@@ -152,7 +172,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
 
         if (weather.getCurrent().getCloudCover() != null) {
-            indexList.add(
+            mIndexList.add(
                     new Index(
                             R.drawable.ic_cloud,
                             context.getString(R.string.cloud_cover),
@@ -164,19 +184,21 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
 
         if (weather.getCurrent().getCeiling() != null) {
-            indexList.add(
+            mIndexList.add(
                     new Index(
                             R.drawable.ic_top,
                             context.getString(R.string.ceiling),
                             settings.getDistanceUnit().getDistanceText(
                                     context,
                                     weather.getCurrent().getCeiling()
-                            )
+                            ),
+                            context.getString(R.string.ceiling) + ", " + settings.getDistanceUnit().getDistanceVoice(
+                                    context, weather.getCurrent().getCeiling())
                     )
             );
         }
 
-        this.themeManager = ThemeManager.getInstance(context);
+        mThemeManager = ThemeManager.getInstance(context);
     }
 
     @NonNull
@@ -189,11 +211,11 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(indexList.get(position));
+        holder.onBindView(mIndexList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return indexList.size();
+        return mIndexList.size();
     }
 }

@@ -23,17 +23,17 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class TrendLinearLayout extends LinearLayout {
 
-    private Paint paint;
+    private Paint mPaint;
 
-    private int[] historyTemps;
-    private int[] historyTempYs;
+    private int[] mHistoryTemps;
+    private int[] mHistoryTempYs;
 
-    private int highestTemp;
-    private int lowestTemp;
-    private TemperatureUnit unit;
+    private int mHighestTemp;
+    private int mLowestTemp;
+    private TemperatureUnit mTemperatureUnit;
 
-    @ColorInt private int lineColor;
-    @ColorInt private int textColor;
+    @ColorInt private int mLineColor;
+    @ColorInt private int mTextColor;
 
     private float TREND_ITEM_HEIGHT;
     private float BOTTOM_MARGIN;
@@ -45,91 +45,91 @@ public class TrendLinearLayout extends LinearLayout {
 
     public TrendLinearLayout(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public TrendLinearLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public TrendLinearLayout(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        this.initialize();
+        initialize();
     }
 
     private void initialize() {
         setWillNotDraw(false);
 
-        this.paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setTextSize(TEXT_SIZE);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setTextSize(TEXT_SIZE);
 
-        this.unit = TemperatureUnit.C;
+        mTemperatureUnit = TemperatureUnit.C;
 
         setColor(true);
 
-        this.TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
-        this.TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
-        this.TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) TEXT_SIZE);
-        this.CHART_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE);
-        this.MARGIN_TEXT = DisplayUtils.dpToPx(getContext(), (int) MARGIN_TEXT);
+        TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
+        TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
+        TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) TEXT_SIZE);
+        CHART_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE);
+        MARGIN_TEXT = DisplayUtils.dpToPx(getContext(), (int) MARGIN_TEXT);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (historyTemps == null) {
+        if (mHistoryTemps == null) {
             return;
         }
 
         computeCoordinates();
 
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(CHART_LINE_SIZE);
-        paint.setColor(lineColor);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(CHART_LINE_SIZE);
+        mPaint.setColor(mLineColor);
         canvas.drawLine(
-                0, historyTempYs[0],
-                getMeasuredWidth(), historyTempYs[0],
-                paint
+                0, mHistoryTempYs[0],
+                getMeasuredWidth(), mHistoryTempYs[0],
+                mPaint
         );
         canvas.drawLine(
-                0, historyTempYs[1],
-                getMeasuredWidth(), historyTempYs[1],
-                paint
+                0, mHistoryTempYs[1],
+                getMeasuredWidth(), mHistoryTempYs[1],
+                mPaint
         );
 
 
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(TEXT_SIZE);
-        paint.setTextAlign(Paint.Align.LEFT);
-        paint.setColor(textColor);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setTextSize(TEXT_SIZE);
+        mPaint.setTextAlign(Paint.Align.LEFT);
+        mPaint.setColor(mTextColor);
         canvas.drawText(
-                Temperature.getShortTemperature(getContext(), historyTemps[0], unit),
+                Temperature.getShortTemperature(getContext(), mHistoryTemps[0], mTemperatureUnit),
                 2 * MARGIN_TEXT,
-                historyTempYs[0] - paint.getFontMetrics().bottom - MARGIN_TEXT,
-                paint
+                mHistoryTempYs[0] - mPaint.getFontMetrics().bottom - MARGIN_TEXT,
+                mPaint
         );
         canvas.drawText(
-                Temperature.getShortTemperature(getContext(), historyTemps[1], unit),
+                Temperature.getShortTemperature(getContext(), mHistoryTemps[1], mTemperatureUnit),
                 2 * MARGIN_TEXT,
-                historyTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
-                paint
+                mHistoryTempYs[1] - mPaint.getFontMetrics().top + MARGIN_TEXT,
+                mPaint
         );
 
-        paint.setTextAlign(Paint.Align.RIGHT);
+        mPaint.setTextAlign(Paint.Align.RIGHT);
         canvas.drawText(
                 getContext().getString(R.string.yesterday),
                 getMeasuredWidth() - 2 * MARGIN_TEXT,
-                historyTempYs[0] - paint.getFontMetrics().bottom - MARGIN_TEXT,
-                paint
+                mHistoryTempYs[0] - mPaint.getFontMetrics().bottom - MARGIN_TEXT,
+                mPaint
         );
         canvas.drawText(
                 getContext().getString(R.string.yesterday),
                 getMeasuredWidth() - 2 * MARGIN_TEXT,
-                historyTempYs[1] - paint.getFontMetrics().top + MARGIN_TEXT,
-                paint
+                mHistoryTempYs[1] - mPaint.getFontMetrics().top + MARGIN_TEXT,
+                mPaint
         );
     }
 
@@ -137,43 +137,43 @@ public class TrendLinearLayout extends LinearLayout {
 
     public void setColor(boolean lightTheme) {
         if (lightTheme) {
-            lineColor = ColorUtils.setAlphaComponent(Color.BLACK, (int) (255 * 0.05));
-            textColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_light);
+            mLineColor = ColorUtils.setAlphaComponent(Color.BLACK, (int) (255 * 0.05));
+            mTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_light);
         } else {
-            lineColor = ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.1));
-            textColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_dark);
+            mLineColor = ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.1));
+            mTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_dark);
         }
     }
 
     public void setData(@Nullable int[] historyTemps,
                         int highestTemp, int lowestTemp, TemperatureUnit unit,
                         boolean daily) {
-        this.historyTemps = historyTemps;
-        this.highestTemp = highestTemp;
-        this.lowestTemp = lowestTemp;
-        this.unit = unit;
+        mHistoryTemps = historyTemps;
+        mHighestTemp = highestTemp;
+        mLowestTemp = lowestTemp;
+        mTemperatureUnit = unit;
         if (daily) {
-            this.TREND_ITEM_HEIGHT = DisplayUtils.dpToPx(
+            TREND_ITEM_HEIGHT = DisplayUtils.dpToPx(
                     getContext(), WidgetItemView.TREND_VIEW_HEIGHT_DIP_2X);
-            this.BOTTOM_MARGIN = DisplayUtils.dpToPx(
+            BOTTOM_MARGIN = DisplayUtils.dpToPx(
                     getContext(),
                     WidgetItemView.ICON_SIZE_DIP
                             + WidgetItemView.ICON_MARGIN_DIP
                             + WidgetItemView.MARGIN_VERTICAL_DIP
             );
         } else {
-            this.TREND_ITEM_HEIGHT = DisplayUtils.dpToPx(
+            TREND_ITEM_HEIGHT = DisplayUtils.dpToPx(
                     getContext(), WidgetItemView.TREND_VIEW_HEIGHT_DIP_1X);
-            this.BOTTOM_MARGIN = DisplayUtils.dpToPx(
+            BOTTOM_MARGIN = DisplayUtils.dpToPx(
                     getContext(), WidgetItemView.MARGIN_VERTICAL_DIP);
         }
         invalidate();
     }
 
     private void computeCoordinates() {
-        historyTempYs = new int[] {
-                computeSingleCoordinate(historyTemps[0], highestTemp, lowestTemp),
-                computeSingleCoordinate(historyTemps[1], highestTemp, lowestTemp)
+        mHistoryTempYs = new int[] {
+                computeSingleCoordinate(mHistoryTemps[0], mHighestTemp, mLowestTemp),
+                computeSingleCoordinate(mHistoryTemps[1], mHighestTemp, mLowestTemp)
         };
     }
 

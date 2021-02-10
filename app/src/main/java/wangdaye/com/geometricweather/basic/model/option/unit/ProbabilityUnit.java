@@ -9,7 +9,7 @@ public enum ProbabilityUnit {
 
     PERCENT("%");
 
-    private String unitAbbreviation;
+    private final String unitAbbreviation;
 
     ProbabilityUnit(String abbreviation) {
         unitAbbreviation = abbreviation;

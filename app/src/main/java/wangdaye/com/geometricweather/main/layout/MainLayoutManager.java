@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainLayoutManager extends RecyclerView.LayoutManager {
 
-    private @Px int scrollOffset;
-    private @Px int measuredHeight;
-    private boolean dataSetChanged;
+    private @Px int mScrollOffset;
+    private @Px int mMeasuredHeight;
+    private boolean mDataSetChanged;
 
     public MainLayoutManager() {
         super();
-        this.scrollOffset = 0;
-        this.measuredHeight = 0;
-        this.dataSetChanged = true;
+        mScrollOffset = 0;
+        mMeasuredHeight = 0;
+        mDataSetChanged = true;
     }
 
     @Override
@@ -36,20 +36,20 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
     @Override
     public void onAdapterChanged(@Nullable RecyclerView.Adapter oldAdapter, @Nullable RecyclerView.Adapter newAdapter) {
         super.onAdapterChanged(oldAdapter, newAdapter);
-        this.dataSetChanged = true;
+        mDataSetChanged = true;
     }
 
     @Override
     public void onItemsChanged(@NonNull RecyclerView recyclerView) {
         super.onItemsChanged(recyclerView);
-        this.dataSetChanged = true;
+        mDataSetChanged = true;
     }
 
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         super.onLayoutChildren(recycler, state);
 
-        if (dataSetChanged) {
+        if (mDataSetChanged) {
             removeAndRecycleAllViews(recycler);
         } else {
             detachAndScrapAttachedViews(recycler);
@@ -91,14 +91,14 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
             y += getPaddingBottom();
         }
 
-        measuredHeight = y;
+        mMeasuredHeight = y;
 
-        if (dataSetChanged) {
-            scrollOffset = 0;
-            dataSetChanged = false;
+        if (mDataSetChanged) {
+            mScrollOffset = 0;
+            mDataSetChanged = false;
         } else {
-            int oldOffset = scrollOffset;
-            scrollOffset = 0;
+            int oldOffset = mScrollOffset;
+            mScrollOffset = 0;
             scrollVerticallyBy(oldOffset, recycler, state);
         }
     }
@@ -117,12 +117,12 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
         }
 
         int consumed = dy;
-        if (scrollOffset + consumed + getHeight() > measuredHeight) {
-            consumed = measuredHeight - scrollOffset - getHeight();
-        } else if (scrollOffset + consumed < 0) {
-            consumed = -scrollOffset;
+        if (mScrollOffset + consumed + getHeight() > mMeasuredHeight) {
+            consumed = mMeasuredHeight - mScrollOffset - getHeight();
+        } else if (mScrollOffset + consumed < 0) {
+            consumed = -mScrollOffset;
         }
-        scrollOffset += consumed;
+        mScrollOffset += consumed;
 
         offsetChildrenVertical(-consumed);
         return consumed;
@@ -130,17 +130,17 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
     @Px
     public int getScrollOffset() {
-        return scrollOffset;
+        return mScrollOffset;
     }
 
     @Override
     public int computeVerticalScrollOffset(@NonNull RecyclerView.State state) {
-        return scrollOffset;
+        return mScrollOffset;
     }
 
     @Override
     public int computeVerticalScrollRange(@NonNull RecyclerView.State state) {
-        return measuredHeight;
+        return mMeasuredHeight;
     }
 
     @Override

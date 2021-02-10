@@ -18,8 +18,8 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 
 public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private GeoActivity activity;
-    private List<Item> itemList;
+    private final GeoActivity mActivity;
+    private final List<Item> mItemList;
 
     // item.
 
@@ -37,6 +37,7 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public static abstract class WeatherIcon implements Item {
 
         public abstract Drawable getDrawable();
+        public abstract String getContentDescription();
 
         public abstract void onItemClicked(GeoActivity activity);
     }
@@ -47,35 +48,37 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     class TitleHolder extends RecyclerView.ViewHolder {
 
-        private TextView title;
+        private final TextView mTitle;
 
         TitleHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.item_weather_icon_title);
+            mTitle = itemView.findViewById(R.id.item_weather_icon_title);
         }
 
         void onBindView() {
-            Title t = (Title) itemList.get(getAdapterPosition());
-            title.setText(t.content);
+            Title t = (Title) mItemList.get(getAdapterPosition());
+            mTitle.setText(t.content);
         }
     }
 
     class IconHolder extends RecyclerView.ViewHolder {
 
-        private AppCompatImageView imageView;
+        private final AppCompatImageView mImageView;
 
         IconHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.item_weather_icon_image);
+            mImageView = itemView.findViewById(R.id.item_weather_icon_image);
         }
 
         void onBindView() {
             if (getAdapterPosition() == RecyclerView.NO_POSITION) {
                 return;
             }
-            WeatherIcon icon = (WeatherIcon) itemList.get(getAdapterPosition());
-            imageView.setImageDrawable(icon.getDrawable());
-            itemView.setOnClickListener(v -> icon.onItemClicked(activity));
+            WeatherIcon icon = (WeatherIcon) mItemList.get(getAdapterPosition());
+            mImageView.setImageDrawable(icon.getDrawable());
+
+            itemView.setContentDescription(icon.getContentDescription());
+            itemView.setOnClickListener(v -> icon.onItemClicked(mActivity));
         }
     }
 
@@ -89,8 +92,8 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     // adapter.
 
     public WeatherIconAdapter(GeoActivity activity, List<Item> itemList) {
-        this.activity = activity;
-        this.itemList = itemList;
+        mActivity = activity;
+        mItemList = itemList;
     }
 
     @NonNull
@@ -128,15 +131,15 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return mItemList.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (itemList.get(position) instanceof Title) {
+        if (mItemList.get(position) instanceof Title) {
             return 1;
         }
-        if (itemList.get(position) instanceof Line) {
+        if (mItemList.get(position) instanceof Line) {
             return -1;
         }
         return 0;
@@ -150,19 +153,19 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 class SpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
 
-    private int columnCount;
-    private List<WeatherIconAdapter.Item> itemList;
+    private final int mColumnCount;
+    private final List<WeatherIconAdapter.Item> mItemList;
 
     SpanSizeLookup(int columnCount, List<WeatherIconAdapter.Item> itemList) {
-        this.columnCount = columnCount;
-        this.itemList = itemList;
+        mColumnCount = columnCount;
+        mItemList = itemList;
     }
 
     @Override
     public int getSpanSize(int position) {
-        if (itemList.get(position) instanceof WeatherIconAdapter.Title
-                || itemList.get(position) instanceof WeatherIconAdapter.Line) {
-            return columnCount;
+        if (mItemList.get(position) instanceof WeatherIconAdapter.Title
+                || mItemList.get(position) instanceof WeatherIconAdapter.Line) {
+            return mColumnCount;
         }
         return 1;
     }

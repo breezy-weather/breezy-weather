@@ -37,15 +37,15 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class DailyTrendDisplayManageActivity extends GeoActivity {
 
-    ActivityDailyTrendDisplayManageBinding binding;
+    private ActivityDailyTrendDisplayManageBinding mBinding;
 
-    private DailyTrendDisplayAdapter dailyTrendDisplayAdapter;
-    private ItemTouchHelper dailyTrendDisplayItemTouchHelper;
+    private DailyTrendDisplayAdapter mDailyTrendDisplayAdapter;
+    private ItemTouchHelper mDailyTrendDisplayItemTouchHelper;
 
-    private TagAdapter tagAdapter;
+    private TagAdapter mTagAdapter;
 
-    private @Nullable AnimatorSet bottomAnimator;
-    private @Nullable Boolean bottomBarVisibility;
+    private @Nullable AnimatorSet mBottomAnimator;
+    private @Nullable Boolean mBottomBarVisibility;
 
     private class DailyTrendTag implements TagAdapter.Tag {
 
@@ -72,14 +72,14 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition = target.getAdapterPosition();
 
-            dailyTrendDisplayAdapter.moveItem(fromPosition, toPosition);
+            mDailyTrendDisplayAdapter.moveItem(fromPosition, toPosition);
             return true;
         }
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             setResult(RESULT_OK);
-            dailyTrendDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
+            mDailyTrendDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
         }
 
         @Override
@@ -99,30 +99,29 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.binding = ActivityDailyTrendDisplayManageBinding.inflate(getLayoutInflater());
-        this.setContentView(binding.getRoot());
+        mBinding = ActivityDailyTrendDisplayManageBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
-        binding.toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
-        binding.toolbar.setNavigationOnClickListener(view -> finish());
+        mBinding.toolbar.setNavigationOnClickListener(view -> finish());
 
         List<DailyTrendDisplay> displayTags
                 = SettingsOptionManager.getInstance(this).getDailyTrendDisplayList();
-        dailyTrendDisplayAdapter = new DailyTrendDisplayAdapter(
+        mDailyTrendDisplayAdapter = new DailyTrendDisplayAdapter(
                 displayTags,
                 dailyTrendDisplay -> {
                     setResult(RESULT_OK);
-                    tagAdapter.insertItem(new DailyTrendTag(dailyTrendDisplay));
+                    mTagAdapter.insertItem(new DailyTrendTag(dailyTrendDisplay));
                     resetBottomBarVisibility();
                 },
-                holder -> dailyTrendDisplayItemTouchHelper.startDrag(holder)
+                holder -> mDailyTrendDisplayItemTouchHelper.startDrag(holder)
         );
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerView.addItemDecoration(new ListDecoration(this));
-        binding.recyclerView.setAdapter(dailyTrendDisplayAdapter);
+        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mBinding.recyclerView.addItemDecoration(new ListDecoration(this));
+        mBinding.recyclerView.setAdapter(mDailyTrendDisplayAdapter);
 
-        this.dailyTrendDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
-        dailyTrendDisplayItemTouchHelper.attachToRecyclerView(binding.recyclerView);
+        mDailyTrendDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
+        mDailyTrendDisplayItemTouchHelper.attachToRecyclerView(mBinding.recyclerView);
 
         List<DailyTrendDisplay> otherTags = new ArrayList<>();
         otherTags.add(DailyTrendDisplay.TAG_TEMPERATURE);
@@ -142,33 +141,33 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         for (DailyTrendDisplay tag : otherTags) {
             tagList.add(new DailyTrendTag(tag));
         }
-        tagAdapter = new TagAdapter(this, tagList, (checked, oldPosition, newPosition) -> {
+        mTagAdapter = new TagAdapter(this, tagList, (checked, oldPosition, newPosition) -> {
             setResult(RESULT_OK);
-            DailyTrendTag tag = (DailyTrendTag) tagAdapter.removeItem(newPosition);
-            dailyTrendDisplayAdapter.insertItem(tag.tag);
+            DailyTrendTag tag = (DailyTrendTag) mTagAdapter.removeItem(newPosition);
+            mDailyTrendDisplayAdapter.insertItem(tag.tag);
             resetBottomBarVisibility();
             return true;
         });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            binding.bottomBar.setOnApplyWindowInsetsListener((v, insets) -> {
-                binding.bottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
+            mBinding.bottomBar.setOnApplyWindowInsetsListener((v, insets) -> {
+                mBinding.bottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
                 return insets;
             });
         }
 
-        binding.bottomRecyclerView.setLayoutManager(
+        mBinding.bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        binding.bottomRecyclerView.addItemDecoration(
+        mBinding.bottomRecyclerView.addItemDecoration(
                 new GridMarginsDecoration(
-                        getResources().getDimension(R.dimen.normal_margin), binding.bottomRecyclerView
+                        getResources().getDimension(R.dimen.normal_margin), mBinding.bottomRecyclerView
                 )
         );
-        binding.bottomRecyclerView.setAdapter(tagAdapter);
+        mBinding.bottomRecyclerView.setAdapter(mTagAdapter);
 
-        bottomAnimator = null;
-        bottomBarVisibility = false;
-        binding.bottomRecyclerView.post(this::resetBottomBarVisibility);
+        mBottomAnimator = null;
+        mBottomBarVisibility = false;
+        mBinding.bottomRecyclerView.post(this::resetBottomBarVisibility);
     }
 
     @Override
@@ -178,15 +177,15 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
                 .edit()
                 .putString(
                         getString(R.string.key_daily_trend_display),
-                        OptionMapper.getDailyTrendDisplayValue(dailyTrendDisplayAdapter.getDailyTrendDisplayList())
+                        OptionMapper.getDailyTrendDisplayValue(mDailyTrendDisplayAdapter.getDailyTrendDisplayList())
                 ).apply();
         SettingsOptionManager.getInstance(this).setDailyTrendDisplayList(
-                dailyTrendDisplayAdapter.getDailyTrendDisplayList());
+                mDailyTrendDisplayAdapter.getDailyTrendDisplayList());
     }
 
     @Override
     public View getSnackbarContainer() {
-        return binding.container;
+        return mBinding.container;
     }
 
     @SuppressLint("MissingSuperCall")
@@ -196,25 +195,25 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
     }
 
     private void resetBottomBarVisibility() {
-        boolean visible = tagAdapter.getItemCount() != 0;
-        if (bottomBarVisibility == null || bottomBarVisibility != visible) {
-            bottomBarVisibility = visible;
+        boolean visible = mTagAdapter.getItemCount() != 0;
+        if (mBottomBarVisibility == null || mBottomBarVisibility != visible) {
+            mBottomBarVisibility = visible;
 
-            if (bottomAnimator != null) {
-                bottomAnimator.cancel();
+            if (mBottomAnimator != null) {
+                mBottomAnimator.cancel();
             }
-            bottomAnimator = new AnimatorSet();
-            bottomAnimator.playTogether(
-                    ObjectAnimator.ofFloat(binding.bottomBar, "alpha",
-                            binding.bottomBar.getAlpha(), visible ? 1 : 0),
-                    ObjectAnimator.ofFloat(binding.bottomBar, "translationY",
-                            binding.bottomBar.getTranslationY(), visible ? 0 : binding.bottomBar.getMeasuredHeight())
+            mBottomAnimator = new AnimatorSet();
+            mBottomAnimator.playTogether(
+                    ObjectAnimator.ofFloat(mBinding.bottomBar, "alpha",
+                            mBinding.bottomBar.getAlpha(), visible ? 1 : 0),
+                    ObjectAnimator.ofFloat(mBinding.bottomBar, "translationY",
+                            mBinding.bottomBar.getTranslationY(), visible ? 0 : mBinding.bottomBar.getMeasuredHeight())
             );
-            bottomAnimator.setDuration(visible ? 350 : 150);
-            bottomAnimator.setInterpolator(visible
+            mBottomAnimator.setDuration(visible ? 350 : 150);
+            mBottomAnimator.setInterpolator(visible
                     ? new DecelerateInterpolator(2f)
                     : new AccelerateInterpolator(2f));
-            bottomAnimator.start();
+            mBottomAnimator.start();
         }
     }
 }

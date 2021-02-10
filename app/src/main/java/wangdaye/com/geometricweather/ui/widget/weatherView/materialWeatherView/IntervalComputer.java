@@ -5,19 +5,19 @@ import android.view.WindowManager;
 
 public class IntervalComputer {
 
-    private long currentTime;
-    private long lastTime;
+    private long mCurrentTime;
+    private long mLastTime;
 
-    private double defaultInterval;
-    private double interval;
+    private double mDefaultInterval;
+    private double mInterval;
 
     public IntervalComputer(Context context) {
         reset(context);
     }
 
     public void reset(Context context) {
-        currentTime = -1;
-        lastTime = -1;
+        mCurrentTime = -1;
+        mLastTime = -1;
 
         double screenRefreshRate = 60;
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -28,17 +28,17 @@ public class IntervalComputer {
             screenRefreshRate = 60;
         }
 
-        defaultInterval = 1000.0 / screenRefreshRate;
-        interval = defaultInterval;
+        mDefaultInterval = 1000.0 / screenRefreshRate;
+        mInterval = mDefaultInterval;
     }
 
     public void invalidate() {
-        currentTime = System.currentTimeMillis();
-        interval = lastTime == -1 ? defaultInterval : (currentTime - lastTime);
-        lastTime = currentTime;
+        mCurrentTime = System.currentTimeMillis();
+        mInterval = mLastTime == -1 ? mDefaultInterval : (mCurrentTime - mLastTime);
+        mLastTime = mCurrentTime;
     }
 
     public double getInterval() {
-        return interval;
+        return mInterval;
     }
 }

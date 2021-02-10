@@ -298,7 +298,7 @@ public class NotificationUtils {
 
     private static boolean isShortTermLiquid(Weather weather) {
         for (int i = 0; i < 4; i ++) {
-            if (weather.getHourlyForecast().get(i).getWeatherCode().isPercipitation()) {
+            if (weather.getHourlyForecast().get(i).getWeatherCode().isPrecipitation()) {
                 return true;
             }
         }
@@ -312,7 +312,7 @@ public class NotificationUtils {
     }
 
     private static boolean isLiquidDay(Weather weather) {
-        return weather.getDailyForecast().get(0).day().getWeatherCode().isPercipitation()
-                || weather.getDailyForecast().get(0).night().getWeatherCode().isPercipitation();
+        return weather.getDailyForecast().get(0).day().getWeatherCode().isPrecipitation()
+                || weather.getDailyForecast().get(0).night().getWeatherCode().isPrecipitation();
     }
 }

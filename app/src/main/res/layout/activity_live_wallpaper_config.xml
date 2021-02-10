@@ -19,7 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            app:title="@string/settings_title_live_wallpaper" />
+            app:title="@string/settings_title_live_wallpaper"
+            app:navigationIcon="@drawable/ic_toolbar_back"
+            app:navigationContentDescription="@string/content_desc_back" />
 
     </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
 

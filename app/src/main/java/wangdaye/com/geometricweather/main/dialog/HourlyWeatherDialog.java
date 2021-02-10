@@ -35,12 +35,12 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class HourlyWeatherDialog extends DialogFragment {
 
-    private AnimatableIconView weatherIcon;
+    private AnimatableIconView mWeatherIcon;
 
-    private Weather weather;
-    private int position;
+    private Weather mWeather;
+    private int mPosition;
 
-    @ColorInt private int weatherColor;
+    private @ColorInt int mWeatherColor;
 
     @SuppressLint("InflateParams")
     @NonNull
@@ -60,25 +60,25 @@ public class HourlyWeatherDialog extends DialogFragment {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        Hourly hourly = weather.getHourlyForecast().get(position);
+        Hourly hourly = mWeather.getHourlyForecast().get(mPosition);
 
         CoordinatorLayout container = view.findViewById(R.id.dialog_weather_hourly_container);
         container.setBackgroundColor(ThemeManager.getInstance(requireActivity()).getRootColor(getActivity()));
 
         TextView title = view.findViewById(R.id.dialog_weather_hourly_title);
         title.setText(hourly.getHour(getActivity()));
-        title.setTextColor(weatherColor);
+        title.setTextColor(mWeatherColor);
 
         TextView subtitle = view.findViewById(R.id.dialog_weather_hourly_subtitle);
         subtitle.setText(new SimpleDateFormat(getString(R.string.date_format_widget_long)).format(hourly.getDate()));
         subtitle.setTextColor(ThemeManager.getInstance(requireActivity()).getTextSubtitleColor(getActivity()));
 
-        view.findViewById(R.id.dialog_weather_hourly_weatherContainer).setOnClickListener(v -> weatherIcon.startAnimators());
+        view.findViewById(R.id.dialog_weather_hourly_weatherContainer).setOnClickListener(v -> mWeatherIcon.startAnimators());
 
-        this.weatherIcon = view.findViewById(R.id.dialog_weather_hourly_icon);
+        mWeatherIcon = view.findViewById(R.id.dialog_weather_hourly_icon);
         WeatherCode weatherCode = hourly.getWeatherCode();
         boolean daytime = hourly.isDaylight();
-        weatherIcon.setAnimatableIcon(
+        mWeatherIcon.setAnimatableIcon(
                 ResourceHelper.getWeatherIcons(provider, weatherCode, daytime),
                 ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime)
         );
@@ -119,8 +119,8 @@ public class HourlyWeatherDialog extends DialogFragment {
     }
 
     public void setData(Weather weather, int position, @ColorInt int weatherColor) {
-        this.weather = weather;
-        this.position = position;
-        this.weatherColor = weatherColor;
+        mWeather = weather;
+        mPosition = position;
+        mWeatherColor = weatherColor;
     }
 }

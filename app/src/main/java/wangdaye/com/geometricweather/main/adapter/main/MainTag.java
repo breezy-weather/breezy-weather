@@ -4,8 +4,8 @@ import wangdaye.com.geometricweather.ui.adapter.TagAdapter;
 
 public class MainTag implements TagAdapter.Tag {
 
-    private String name;
-    private Type type;
+    private final String name;
+    private final Type type;
 
     public enum Type {TEMPERATURE, WIND, PRECIPITATION, AIR_QUALITY, UV_INDEX}
 

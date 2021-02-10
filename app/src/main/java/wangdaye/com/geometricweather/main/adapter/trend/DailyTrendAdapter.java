@@ -22,65 +22,65 @@ import wangdaye.com.geometricweather.main.adapter.trend.daily.DailyWindAdapter;
 
 public class DailyTrendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    @Nullable private AbsDailyTrendAdapter adapter;
+    @Nullable private AbsDailyTrendAdapter mAdapter;
 
     public DailyTrendAdapter() {
-        adapter = null;
+        mAdapter = null;
     }
 
     public void temperature(GeoActivity activity, TrendRecyclerView parent, Location location,
                             ResourceProvider provider, TemperatureUnit unit) {
-        adapter = new DailyTemperatureAdapter(activity, parent, location, provider, unit);
+        mAdapter = new DailyTemperatureAdapter(activity, parent, location, provider, unit);
     }
 
     public void airQuality(GeoActivity activity, TrendRecyclerView parent, Location location) {
-        adapter = new DailyAirQualityAdapter(activity, parent, location);
+        mAdapter = new DailyAirQualityAdapter(activity, parent, location);
     }
 
     public void wind(GeoActivity activity, TrendRecyclerView parent, Location location, SpeedUnit unit) {
-        adapter = new DailyWindAdapter(activity, parent, location, unit);
+        mAdapter = new DailyWindAdapter(activity, parent, location, unit);
     }
 
     public void uv(GeoActivity activity, TrendRecyclerView parent, Location location) {
-        adapter = new DailyUVAdapter(activity, parent, location);
+        mAdapter = new DailyUVAdapter(activity, parent, location);
     }
 
     public void precipitation(GeoActivity activity, TrendRecyclerView parent, Location location,
                               ResourceProvider provider, PrecipitationUnit unit) {
-        adapter = new DailyPrecipitationAdapter(activity, parent, location, provider, unit);
+        mAdapter = new DailyPrecipitationAdapter(activity, parent, location, provider, unit);
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        assert adapter != null;
-        return adapter.onCreateViewHolder(parent, viewType);
+        assert mAdapter != null;
+        return mAdapter.onCreateViewHolder(parent, viewType);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        assert adapter != null;
-        adapter.onBindViewHolder(holder, position);
+        assert mAdapter != null;
+        mAdapter.onBindViewHolder(holder, position);
     }
 
     @Override
     public int getItemCount() {
-        return adapter == null ? 0 : adapter.getItemCount();
+        return mAdapter == null ? 0 : mAdapter.getItemCount();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (adapter == null) {
+        if (mAdapter == null) {
             return 0;
-        } else if (adapter instanceof DailyTemperatureAdapter) {
+        } else if (mAdapter instanceof DailyTemperatureAdapter) {
             return 1;
-        } else if (adapter instanceof DailyAirQualityAdapter) {
+        } else if (mAdapter instanceof DailyAirQualityAdapter) {
             return 2;
-        } else if (adapter instanceof DailyWindAdapter) {
+        } else if (mAdapter instanceof DailyWindAdapter) {
             return 3;
-        } else if (adapter instanceof DailyUVAdapter) {
+        } else if (mAdapter instanceof DailyUVAdapter) {
             return 4;
-        } else if (adapter instanceof DailyPrecipitationAdapter) {
+        } else if (mAdapter instanceof DailyPrecipitationAdapter) {
             return 5;
         }
         return -1;

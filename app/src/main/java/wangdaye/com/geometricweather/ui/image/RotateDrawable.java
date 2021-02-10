@@ -11,41 +11,41 @@ import androidx.annotation.Nullable;
 
 public class RotateDrawable extends Drawable {
 
-    private @Nullable Drawable drawable;
-    private float degree;
+    private @Nullable final Drawable mDrawable;
+    private float mDegree;
 
     public RotateDrawable(@Nullable Drawable drawable) {
-        this.drawable = drawable;
-        this.degree = 0;
+        mDrawable = drawable;
+        mDegree = 0;
     }
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        if (drawable == null) {
+        if (mDrawable == null) {
             return;
         }
 
-        final Rect innerBounds = drawable.getBounds();
+        final Rect innerBounds = mDrawable.getBounds();
         final float cx = (innerBounds.right - innerBounds.left) / 2f;
         final float cy = (innerBounds.bottom - innerBounds.top) / 2f;
 
         final int saveCount = canvas.save();
-        canvas.rotate(degree, cx + innerBounds.left, cy + innerBounds.top);
-        drawable.draw(canvas);
+        canvas.rotate(mDegree, cx + innerBounds.left, cy + innerBounds.top);
+        mDrawable.draw(canvas);
         canvas.restoreToCount(saveCount);
     }
 
     @Override
     public void setAlpha(int alpha) {
-        if (drawable != null) {
-            drawable.setAlpha(alpha);
+        if (mDrawable != null) {
+            mDrawable.setAlpha(alpha);
         }
     }
 
     @Override
     public void setColorFilter(@Nullable ColorFilter colorFilter) {
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
+        if (mDrawable != null) {
+            mDrawable.setColorFilter(colorFilter);
         }
     }
 
@@ -56,8 +56,8 @@ public class RotateDrawable extends Drawable {
 
     @Override
     public void setBounds(int left, int top, int right, int bottom) {
-        if (drawable != null) {
-            drawable.setBounds(left, top, right, bottom);
+        if (mDrawable != null) {
+            mDrawable.setBounds(left, top, right, bottom);
         }
     }
 
@@ -67,6 +67,6 @@ public class RotateDrawable extends Drawable {
     }
 
     public void rotate(float degree) {
-        this.degree = degree;
+        mDegree = degree;
     }
 }

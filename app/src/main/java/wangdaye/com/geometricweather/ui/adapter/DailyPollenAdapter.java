@@ -18,8 +18,8 @@ import wangdaye.com.geometricweather.databinding.ItemPollenDailyBinding;
 
 public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.ViewHolder> {
 
-    private Weather weather;
-    private PollenUnit unit;
+    private final Weather mWeather;
+    private final PollenUnit mPollenUnit;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -42,35 +42,54 @@ public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.
                     Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel())
             ));
             binding.grassTitle.setText(context.getString(R.string.grass));
-            binding.grassValue.setText(unit.getPollenText(context, pollen.getGrassIndex())
+            binding.grassValue.setText(mPollenUnit.getPollenText(context, pollen.getGrassIndex())
                     + " - " + pollen.getGrassDescription());
 
             binding.ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel())
             ));
             binding.ragweedTitle.setText(context.getString(R.string.ragweed));
-            binding.ragweedValue.setText(unit.getPollenText(context, pollen.getRagweedIndex())
+            binding.ragweedValue.setText(mPollenUnit.getPollenText(context, pollen.getRagweedIndex())
                     + " - " + pollen.getRagweedDescription());
 
             binding.treeIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel())
             ));
             binding.treeTitle.setText(context.getString(R.string.tree));
-            binding.treeValue.setText(unit.getPollenText(context, pollen.getTreeIndex())
+            binding.treeValue.setText(mPollenUnit.getPollenText(context, pollen.getTreeIndex())
                     + " - " + pollen.getTreeDescription());
 
             binding.moldIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel())
             ));
             binding.moldTitle.setText(context.getString(R.string.mold));
-            binding.moldValue.setText(unit.getPollenText(context, pollen.getMoldIndex())
+            binding.moldValue.setText(mPollenUnit.getPollenText(context, pollen.getMoldIndex())
                     + " - " + pollen.getMoldDescription());
+
+            itemView.setContentDescription(binding.title.getText()
+                    //
+                    + ", " + context.getString(R.string.grass)
+                    + " : " + mPollenUnit.getPollenVoice(context, pollen.getGrassIndex())
+                    + " - " + pollen.getGrassDescription()
+                    //
+                    + ", " + context.getString(R.string.ragweed)
+                    + " : " + mPollenUnit.getPollenVoice(context, pollen.getRagweedIndex())
+                    + " - " + pollen.getRagweedDescription()
+                    //
+                    + ", " + context.getString(R.string.tree)
+                    + " : " + mPollenUnit.getPollenVoice(context, pollen.getTreeIndex())
+                    + " - " + pollen.getTreeDescription()
+                    //
+                    + ", " + context.getString(R.string.mold)
+                    + " : " + mPollenUnit.getPollenVoice(context, pollen.getMoldIndex())
+                    + " - " + pollen.getMoldDescription()
+            );
         }
     }
 
     public DailyPollenAdapter(Weather weather) {
-        this.weather = weather;
-        this.unit = PollenUnit.PPCM;
+        this.mWeather = weather;
+        this.mPollenUnit = PollenUnit.PPCM;
     }
 
     @NonNull
@@ -85,11 +104,11 @@ public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(weather.getDailyForecast().get(position));
+        holder.onBindView(mWeather.getDailyForecast().get(position));
     }
 
     @Override
     public int getItemCount() {
-        return weather.getDailyForecast().size();
+        return mWeather.getDailyForecast().size();
     }
 }

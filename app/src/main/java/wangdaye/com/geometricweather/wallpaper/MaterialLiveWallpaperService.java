@@ -58,78 +58,78 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
     private class WeatherEngine extends Engine {
 
-        private SurfaceHolder holder;
-        @Nullable private IntervalComputer intervalComputer;
+        private SurfaceHolder mHolder;
+        @Nullable private IntervalComputer mIntervalComputer;
 
-        @Nullable private MaterialWeatherView.WeatherAnimationImplementor implementor;
-        @Nullable private MaterialWeatherView.RotateController[] rotators;
+        @Nullable private MaterialWeatherView.WeatherAnimationImplementor mImplementor;
+        @Nullable private MaterialWeatherView.RotateController[] mRotators;
 
-        private boolean openGravitySensor;
-        @Nullable private SensorManager sensorManager;
-        @Nullable private Sensor gravitySensor;
+        private boolean mOpenGravitySensor;
+        @Nullable private SensorManager mSensorManager;
+        @Nullable private Sensor mGravitySensor;
 
-        @Size(2) private int[] sizes;
-        private float rotation2D;
-        private float rotation3D;
+        @Size(2) private int[] mSizes;
+        private float mRotation2D;
+        private float mRotation3D;
 
-        @WeatherView.WeatherKindRule private int weatherKind;
-        private boolean daytime;
+        @WeatherView.WeatherKindRule private int mWeatherKind;
+        private boolean mDaytime;
 
-        private float displayRate;
+        private float mDisplayRate;
 
         @StepRule
-        private int step;
-        private boolean visible;
+        private int mStep;
+        private boolean mVisible;
 
-        private DeviceOrientation deviceOrientation;
+        private DeviceOrientation mDeviceOrientation;
 
-        @Nullable private Disposable disposable;
-        private HandlerThread handlerThread;
-        private Handler handler;
-        private Runnable drawableRunnable = new Runnable() {
+        @Nullable private Disposable mDisposable;
+        private HandlerThread mHandlerThread;
+        private final Handler mHandler;
+        private final Runnable mDrawableRunnable = new Runnable() {
 
-            private Canvas canvas;
+            private Canvas mCanvas;
 
             @Override
             public void run() {
-                if (intervalComputer == null
-                        || implementor == null
-                        || rotators == null
-                        || handler == null) {
+                if (mIntervalComputer == null
+                        || mImplementor == null
+                        || mRotators == null
+                        || mHandler == null) {
                     return;
                 }
 
-                intervalComputer.invalidate();
+                mIntervalComputer.invalidate();
 
-                rotators[0].updateRotation(rotation2D, intervalComputer.getInterval());
-                rotators[1].updateRotation(rotation3D, intervalComputer.getInterval());
+                mRotators[0].updateRotation(mRotation2D, mIntervalComputer.getInterval());
+                mRotators[1].updateRotation(mRotation3D, mIntervalComputer.getInterval());
 
-                implementor.updateData(
-                        sizes, (long) intervalComputer.getInterval(),
-                        (float) rotators[0].getRotation(), (float) rotators[1].getRotation()
+                mImplementor.updateData(
+                        mSizes, (long) mIntervalComputer.getInterval(),
+                        (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
                 );
 
-                displayRate = (float) (displayRate
-                        + (step == STEP_DISPLAY ? 1f : -1f)
-                        * intervalComputer.getInterval()
+                mDisplayRate = (float) (mDisplayRate
+                        + (mStep == STEP_DISPLAY ? 1f : -1f)
+                        * mIntervalComputer.getInterval()
                         / SWITCH_ANIMATION_DURATION);
-                displayRate = Math.max(0, displayRate);
-                displayRate = Math.min(1, displayRate);
-                if (displayRate == 0) {
+                mDisplayRate = Math.max(0, mDisplayRate);
+                mDisplayRate = Math.min(1, mDisplayRate);
+                if (mDisplayRate == 0) {
                     setWeatherImplementor();
                 }
 
                 try {
-                    canvas = holder.lockCanvas();
-                    if (canvas != null) {
-                        sizes[0] = canvas.getWidth();
-                        sizes[1] = canvas.getHeight();
-                        implementor.draw(
-                                sizes, canvas,
-                                displayRate, 0,
-                                (float) rotators[0].getRotation(), (float) rotators[1].getRotation()
+                    mCanvas = mHolder.lockCanvas();
+                    if (mCanvas != null) {
+                        mSizes[0] = mCanvas.getWidth();
+                        mSizes[1] = mCanvas.getHeight();
+                        mImplementor.draw(
+                                mSizes, mCanvas,
+                                mDisplayRate, 0,
+                                (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
                         );
-                        holder.unlockCanvasAndPost(canvas);
+                        mHolder.unlockCanvasAndPost(mCanvas);
                     }
                 } catch (Exception ignored) {
                     // do nothing.
@@ -137,7 +137,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             }
         };
 
-        private SensorEventListener gravityListener = new SensorEventListener() {
+        private final SensorEventListener mGravityListener = new SensorEventListener() {
 
             @Override
             public void onSensorChanged(SensorEvent ev) {
@@ -146,7 +146,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                 // z : (+) look down / (-) look up.
                 // rotation2D : (+) anticlockwise / (-) clockwise.
                 // rotation3D : (+) look down / (-) look up.
-                if (openGravitySensor) {
+                if (mOpenGravitySensor) {
                     float aX = ev.values[0];
                     float aY = ev.values[1];
                     float aZ = ev.values[2];
@@ -154,36 +154,36 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     double g3D = Math.sqrt(aX * aX + aY * aY + aZ * aZ);
                     double cos2D = Math.max(Math.min(1, aY / g2D), -1);
                     double cos3D = Math.max(Math.min(1, g2D * (aY >= 0 ? 1 : -1) / g3D), -1);
-                    rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
-                    rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
+                    mRotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
+                    mRotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
 
-                    switch (deviceOrientation) {
+                    switch (mDeviceOrientation) {
                         case TOP:
                             break;
 
                         case LEFT:
-                            rotation2D -= 90;
+                            mRotation2D -= 90;
                             break;
 
                         case RIGHT:
-                            rotation2D += 90;
+                            mRotation2D += 90;
                             break;
 
                         case BOTTOM:
-                            if (rotation2D > 0) {
-                                rotation2D -= 180;
+                            if (mRotation2D > 0) {
+                                mRotation2D -= 180;
                             } else {
-                                rotation2D += 180;
+                                mRotation2D += 180;
                             }
                             break;
                     }
 
-                    if (60 < Math.abs(rotation3D) && Math.abs(rotation3D) < 120) {
-                        rotation2D *= Math.abs(Math.abs(rotation3D) - 90) / 30.0;
+                    if (60 < Math.abs(mRotation3D) && Math.abs(mRotation3D) < 120) {
+                        mRotation2D *= Math.abs(Math.abs(mRotation3D) - 90) / 30.0;
                     }
                 } else {
-                    rotation2D = 0;
-                    rotation3D = 0;
+                    mRotation2D = 0;
+                    mRotation3D = 0;
                 }
             }
 
@@ -193,10 +193,10 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             }
         };
 
-        private OrientationEventListener orientationListener = new OrientationEventListener(getApplicationContext()) {
+        private final OrientationEventListener mOrientationListener = new OrientationEventListener(getApplicationContext()) {
             @Override
             public void onOrientationChanged(int orientation) {
-                deviceOrientation = getDeviceOrientation(orientation);
+                mDeviceOrientation = getDeviceOrientation(orientation);
             }
 
             private DeviceOrientation getDeviceOrientation(int orientation) {
@@ -213,48 +213,48 @@ public class MaterialLiveWallpaperService extends WallpaperService {
         WeatherEngine() {
             super();
 
-            deviceOrientation = DeviceOrientation.TOP;
+            mDeviceOrientation = DeviceOrientation.TOP;
 
-            handlerThread = new HandlerThread(
+            mHandlerThread = new HandlerThread(
                     String.valueOf(System.currentTimeMillis()),
                     Process.THREAD_PRIORITY_FOREGROUND
             );
-            handlerThread.start();
-            handler = new Handler(handlerThread.getLooper());
+            mHandlerThread.start();
+            mHandler = new Handler(mHandlerThread.getLooper());
         }
 
         private void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime) {
-            this.weatherKind = weatherKind;
-            this.daytime = daytime;
+            mWeatherKind = weatherKind;
+            mDaytime = daytime;
         }
 
         private void setWeatherImplementor() {
-            step = STEP_DISPLAY;
-            implementor = WeatherImplementorFactory.getWeatherImplementor(weatherKind, daytime, sizes);
-            rotators = new MaterialWeatherView.RotateController[] {
-                    new DelayRotateController(rotation2D),
-                    new DelayRotateController(rotation3D)
+            mStep = STEP_DISPLAY;
+            mImplementor = WeatherImplementorFactory.getWeatherImplementor(mWeatherKind, mDaytime, mSizes);
+            mRotators = new MaterialWeatherView.RotateController[] {
+                    new DelayRotateController(mRotation2D),
+                    new DelayRotateController(mRotation3D)
             };
         }
 
         private void setIntervalComputer() {
-            if (intervalComputer == null) {
-                intervalComputer = new IntervalComputer(getApplicationContext());
+            if (mIntervalComputer == null) {
+                mIntervalComputer = new IntervalComputer(getApplicationContext());
             } else {
-                intervalComputer.reset(getApplicationContext());
+                mIntervalComputer.reset(getApplicationContext());
             }
         }
 
         private void setOpenGravitySensor(boolean openGravitySensor) {
-            this.openGravitySensor = openGravitySensor;
+            mOpenGravitySensor = openGravitySensor;
         }
 
         @Override
         public void onCreate(SurfaceHolder surfaceHolder) {
-            this.sizes = new int[] {0, 0};
+            mSizes = new int[] {0, 0};
 
-            this.holder = surfaceHolder;
-            holder.addCallback(new SurfaceHolder.Callback() {
+            mHolder = surfaceHolder;
+            mHolder.addCallback(new SurfaceHolder.Callback() {
                 @Override
                 public void surfaceCreated(SurfaceHolder holder) {
 
@@ -262,8 +262,8 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
                 @Override
                 public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-                    sizes[0] = width;
-                    sizes[1] = height;
+                    mSizes[0] = width;
+                    mSizes[1] = height;
                     setWeatherImplementor();
                 }
 
@@ -272,32 +272,32 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
                 }
             });
-            holder.setFormat(PixelFormat.RGBA_8888);
+            mHolder.setFormat(PixelFormat.RGBA_8888);
 
-            this.sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-            if (sensorManager != null) {
-                this.openGravitySensor = true;
-                this.gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+            mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+            if (mSensorManager != null) {
+                mOpenGravitySensor = true;
+                mGravitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
             }
 
-            this.step = STEP_DISPLAY;
-            this.visible = false;
+            mStep = STEP_DISPLAY;
+            mVisible = false;
             setWeather(WeatherView.WEATHER_KING_NULL, true);
         }
 
         @Override
         public void onVisibilityChanged(boolean visible) {
-            if (this.visible != visible) {
-                this.visible = visible;
+            if (mVisible != visible) {
+                mVisible = visible;
                 if (visible) {
-                    this.rotation2D = 0;
-                    this.rotation3D = 0;
-                    if (sensorManager != null) {
-                        sensorManager.registerListener(
-                                gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+                    mRotation2D = 0;
+                    mRotation3D = 0;
+                    if (mSensorManager != null) {
+                        mSensorManager.registerListener(
+                                mGravityListener, mGravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
                     }
-                    if (orientationListener.canDetectOrientation()) {
-                        orientationListener.enable();
+                    if (mOrientationListener.canDetectOrientation()) {
+                        mOrientationListener.enable();
                     }
 
                     Location location = DatabaseHelper.getInstance(MaterialLiveWallpaperService.this)
@@ -355,21 +355,21 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     if (screenRefreshRate < 60) {
                         screenRefreshRate = 60;
                     }
-                    disposable = Observable.interval(
+                    mDisposable = Observable.interval(
                             0,
                             (long) (1000.0 / screenRefreshRate),
                             TimeUnit.MILLISECONDS
-                    ).subscribe(aLong -> handler.post(drawableRunnable));
+                    ).subscribe(aLong -> mHandler.post(mDrawableRunnable));
                 } else {
-                    if (disposable != null) {
-                        disposable.dispose();
-                        disposable = null;
+                    if (mDisposable != null) {
+                        mDisposable.dispose();
+                        mDisposable = null;
                     }
-                    handler.removeCallbacksAndMessages(null);
-                    if (sensorManager != null) {
-                        sensorManager.unregisterListener(gravityListener, gravitySensor);
+                    mHandler.removeCallbacksAndMessages(null);
+                    if (mSensorManager != null) {
+                        mSensorManager.unregisterListener(mGravityListener, mGravitySensor);
                     }
-                    orientationListener.disable();
+                    mOrientationListener.disable();
                 }
             }
         }

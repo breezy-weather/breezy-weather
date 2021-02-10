@@ -1,0 +1,484 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <!-- app. -->
+    <string name="app_name">Meteo</string>
+    <string name="geometric_weather">Geometric Weather</string>
+
+    <!-- keyword. -->
+    <string name="current_location">Locația curentă</string>
+    <string name="resident_location">Acasă</string>
+    <string name="default_location">Locația implicită</string>
+    <string name="live">Live</string>
+    <string name="today">Azi</string>
+    <string name="refresh_at">Actualizat la</string>
+    <string name="local_time">Ora locală</string>
+    <string name="precipitation">Precipitaţii</string>
+    <string name="precipitation_probability">Probabilitate precipitaţii</string>
+    <string name="precipitation_duration">Durată Precipitaţii</string>
+    <string name="maxi_temp">zi</string>
+    <string name="mini_temp">noapte</string>
+    <string name="time">ora</string>
+    <string name="day">zi</string>
+    <string name="night">noapte</string>
+    <string name="temperature">Temperatură</string>
+    <string name="wind">Vânt</string>
+    <string name="wind_direction">Direcție vânt</string>
+    <string name="wind_speed">Vitezâ vânt</string>
+    <string name="wind_level">Vânt</string>
+    <string name="sensible_temp">Temp. resimțită</string>
+    <string name="humidity">Umiditate</string>
+    <string name="uv_index">Index UV</string>
+    <string name="hours_of_sun">Ore cu soare</string>
+    <string name="forecast">Prognoză</string>
+    <string name="briefings">Pe scurt</string>
+    <string name="daytime">Zi</string>
+    <string name="nighttime">Noapte</string>
+    <string name="publish_at">Publicat la</string>
+    <string name="feels_like">Resimțită ca</string>
+    <string name="follow_system">La fel ca sistemul</string>
+    <string name="background_information">Informații generale</string>
+    <string name="pressure">Presiune atmospherică</string>
+    <string name="visibility">Vizibilitate</string>
+    <string name="dew_point">Punct de rouă</string>
+    <string name="cloud_cover">Acoperire nori</string>
+    <string name="ceiling">Plafon</string>
+    <string name="get_more">Mai mult…</string>
+    <string name="get_more_store">Mai multe din magazinul de aplicații</string>
+    <string name="get_more_github">Mai multe de pe GitHub</string>
+    <string name="refresh">Reactualizează</string>
+    <string name="restart">Repornește</string>
+    <string name="edit">Editează</string>
+
+    <!-- The following set of strings should be as short as possible. -->
+    <string name="of_clock">:00</string>
+    <string name="yesterday">ieri</string>
+    <string name="tomorrow">mâine</string>
+    <string name="week">săpt</string>
+    <string name="week_1">Lu</string>
+    <string name="week_2">Ma</string>
+    <string name="week_3">Mi</string>
+    <string name="week_4">Jo</string>
+    <string name="week_5">Vi</string>
+    <string name="week_6">Sâ</string>
+    <string name="week_7">Du</string>
+
+    <string name="real_feel_temperature">Temp. resimțită</string>
+    <string name="real_feel_shade_temperature">Temp. resimțită la umbră</string>
+    <string name="apparent_temperature">Temp. aparentă</string>
+    <string name="wind_chill_temperature">Punct de răcire</string>
+    <string name="wet_bulb_temperature">Temp. la umed</string>
+    <string name="degree_day_temperature">Zi-grad</string>
+
+    <string name="total">Total</string>
+    <string name="thunderstorm">Furtună</string>
+    <string name="rain">Ploaie</string>
+    <string name="snow">Ninsoare</string>
+    <string name="ice">Gheață</string>
+
+    <string name="wind_0">Calm</string>
+    <string name="wind_1">Adiere ușoară</string>
+    <string name="wind_2">Briză ușoară</string>
+    <string name="wind_3">Vânt slab</string>
+    <string name="wind_4">Vânt moderat</string>
+    <string name="wind_5">Vânt tare</string>
+    <string name="wind_6">Vânt foarte tare</string>
+    <string name="wind_7">Vânt puternic</string>
+    <string name="wind_8">Vânt foarte puternic</string>
+    <string name="wind_9">Furtună</string>
+    <string name="wind_10">Furtună puternică</string>
+    <string name="wind_11">Furtună violentă </string>
+    <string name="wind_12">Uragan</string>
+
+    <string name="precipitation_light">Ploi uşoare</string>
+    <string name="precipitation_middle">Ploi moderate</string>
+    <string name="precipitation_heavy">Ploi intense</string>
+    <string name="precipitation_rainstorm">Ploi violente (Furtună)</string>
+
+    <string name="aqi_1">Aer curat</string>
+    <string name="aqi_2">Aer bun</string>
+    <string name="aqi_3">Poluare slabă</string>
+    <string name="aqi_4">Poluare moderată</string>
+    <string name="aqi_5">Poluare puternică</string>
+    <string name="aqi_6">Poluare severă</string>
+
+    <string name="phase_new">Lună nouă</string>
+    <string name="phase_waxing_crescent">Semilună în creștere</string>
+    <string name="phase_first">Primul pătrar</string>
+    <string name="phase_waxing_gibbous">Lună în creștere</string>
+    <string name="phase_full">Full moon</string>
+    <string name="phase_waning_gibbous">Lună în descreștere</string>
+    <string name="phase_third">Ultimul pătrar</string>
+    <string name="phase_waning_crescent">Semilună în descreștere</string>
+
+    <string name="grass">Iarbă</string>
+    <string name="mold">Mucegai</string>
+    <string name="ragweed">Ambrozie</string>
+    <string name="tree">Copac</string>
+
+    <string name="daily_overview">Prognoza zilnică</string>
+    <string name="hourly_overview">Prognoza pe ore</string>
+    <string name="minutely_overview">Prognoza pe minut</string>
+    <string name="precipitation_overview">Prognoza precipitații</string>
+    <string name="air_quality">Calitatea aerului</string>
+    <string name="allergen">Alergeni</string>
+    <string name="life_details">Detalii</string>
+    <string name="sunrise_sunset">Soare &amp; Lună</string>
+
+    <string name="next">MAI DEPARTE</string>
+    <string name="done">TERMINAT</string>
+    <string name="cancel" tools:ignore="ButtonCase">ANULARE</string>
+    <string name="on">Activat</string>
+    <string name="off">Dezactivat</string>
+    <string name="go_to_set">ACCEPTĂ</string>
+    <string name="help">AJUTOR</string>
+    <string name="learn_more">AFLĂ MAI MULTE</string>
+
+    <string name="about_app">DESPRE APLICAȚIE</string>
+    <string name="introduce">introdu</string>
+    <string name="email">E-mail</string>
+    <string name="donate">Donează</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">Traducători</string>
+    <string name="thanks">Mulțumiri</string>
+
+    <string name="alipay">Alipay</string>
+    <string name="wechat">Wechat</string>
+
+    <!-- Date format strings. -->
+    <!-- Month : MMM(long) / M(short). -->
+    <!-- Day   : dd(long) / d(short). -->
+    <!-- Week  : EEEE(long) / EEE(short). -->
+    <string name="date_format_short">L-z</string>
+    <string name="date_format_long">LLL z</string>
+    <string name="date_format_widget_short">SSSS, LLL z</string>
+    <string name="date_format_widget_long">SSSS, LLL z</string>
+    <string name="date_format_widget_oreo_style">SSSS, LLL d│</string>
+
+    <!-- Do not translate the following set of strings. -->
+    <string name="tag_temperature">@string/temperature</string>
+    <string name="tag_wind">@string/wind</string>
+    <string name="tag_precipitation">@string/precipitation</string>
+    <string name="tag_aqi">@string/air_quality</string>
+    <string name="tag_uv">@string/uv_index</string>
+
+    <!-- about. -->
+    <!-- Optional, the following set of strings are not necessarily translated. -->
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
+    <string name="page_indicator">InkPageIndicator</string>
+    <string name="about_page_indicator">InkPageIndicator created by @nickbutcher for Plaid https://github.com/nickbutcher/plaid and backported by David Pacioianu for API 14+ (4.0+).</string>
+    <string name="circular_progress_view">CircularProgressView</string>
+    <string name="about_circular_progress_view">Material style circular progress bar for Android.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">Permisiuni</string>
+    <string name="feedback_request_location">Locație</string>
+    <string name="feedback_request_location_in_background">Localizare în fundal</string>
+    <string name="feedback_request_location_permission_success">Cerere acces localizare - Succes</string>
+    <string name="feedback_request_location_permission_failed">Cerere acces localizare - Eșuat</string>
+
+    <string name="feedback_location_permissions_title">Accesare informații despre locație.</string>
+    <string name="feedback_location_permissions_statement">Geometric Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>
+    <string name="feedback_background_location_title">Accesare locație în fundal.</string>
+    <string name="feedback_background_location_summary">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca \ "Permiteți tot timpul \". </string>
+
+    <string name="feedback_location_failed">Localizarea a eșuat.</string>
+    <string name="feedback_get_weather_failed">Solicitarea datelor meteo a eșuat.</string>
+    <string name="feedback_location_help_title">Datele de localizare nu sunt corecte?</string>
+    <string name="feedback_check_location_permission">Verifică permisiunile de Localizare.</string>
+    <string name="feedback_enable_location_information">Activați informațiile despre locație</string>
+    <string name="feedback_select_location_provider">Selectați furnizorul de servicii de localizare</string>
+    <string name="feedback_add_location_manually">Adăugați locația manual și ștergeți \'$ \'</string>
+    <string name="feedback_view_style">Tip vizualizare</string>
+    <string name="feedback_show_widget_card">Culoare fundal</string>
+    <string name="feedback_show_widget_card_alpha">Transparență</string>
+    <string name="feedback_hide_subtitle">Ascunde subtitlul</string>
+    <string name="feedback_subtitle_data">Date subtitlu</string>
+    <string name="feedback_black_text">Culoare text</string>
+    <string name="feedback_text_size">Mărime text</string>
+    <string name="feedback_clock_font">Font ceas</string>
+    <string name="feedback_hide_lunar">Ascunde calendarul lunar</string>
+    <string name="feedback_align_end">Aliniați la sfârșit</string>
+    <string name="feedback_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să acordați atenție lungimii textului. Dacă doriți să citați datele meteo, vă rugăm să folosiți $ pentru a face referire la cuvântul cheie corespunzător. \n\De exemplu, \"Starea vremii = $cw$\" va fi afișat ca \"Starea vremii = cer senin\".</string>
+    <!-- keep those content with the format "$xxx$". -->
+    <!-- keep "\n" -->
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Starea vremii\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Temperatura curentă (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatura curentă (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Temp. resimțită (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temp. resimțită (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Probabilitate precipitații  (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Pprecipitații (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Vânt\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Index UV\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Umiditate\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Presiune atmosferică\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Vizibilitate\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Punct de rouă\n</string>
+    <string name="feedback_custom_subtitle_keyword_al">$al$ : Alerte\n</string>
+    <string name="feedback_custom_subtitle_keyword_als">$als$ : Alerte (Pe scurt)\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : Locație\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Latitudine\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Longitudine\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Oră actualizare\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : Data\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Calendar lunar\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : Săptămână\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Săptămână (Pe scurt)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Date pe zile\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Date pe ore\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Selectează\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nVremea azi, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nVremea la noapte, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nTemperatura azi, Mâine, …, 4 zile mai târziu (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nTemperatura la noapte, Mâine, …, 4 zile mai târziu (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nTemperatura azi, Mâine, …, 4 zile mai târziu (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nTemperatura la noapte, Mâine, …, 4 zile mai târziu (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nPrecipitații azi, Mâine, …, 4 zile mai târziu (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nPrecipitații la noapte, Mâine, …, 4 zile mai târziu (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nVânt azi, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nVânt la noapte, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nRăsărit azi, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nApus azi, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nRăsărit Lună azi, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nApus lună azi, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nFaza lunară azi, Mâine, …, 4 zile mai târziu\n</string>
+
+    <string name="feedback_live_wallpaper_weather_kind">Vremea</string>
+    <string name="feedback_live_wallpaper_day_night_type">Ora</string>
+
+    <string name="feedback_click_toggle">Atingeți tabelul pentru a selecta datele</string>
+    <string name="feedback_no_data">DATE LIPSĂ</string>
+
+    <string name="feedback_collect_failed">Această locație a fost deja adaugată</string>
+    <string name="feedback_collect_succeed">Locația a fost adăugată cu succes</string>
+    <string name="feedback_delete_succeed">Locația a fost ștearsă</string>
+    <string name="feedback_location_list_cannot_be_null">Lista locațiilor nu poate fi goală</string>
+
+    <string name="feedback_search_location">Caută locația…</string>
+    <string name="feedback_not_yet_location">Fără locații momentan…</string>
+    <string name="feedback_search_nothing">Locația nu a fost gasită</string>
+    <string name="feedback_initializing">Inițializare…</string>
+
+    <string name="feedback_refresh_notification_after_back">Modificările vor fi vizibile când reveniți la pagina principală</string>
+    <string name="feedback_refresh_notification_now">Reactualizează acum</string>
+    <string name="feedback_refresh_ui_after_refresh">Modificările vor fi vizibile odata cu actualizarea datelor</string>
+    <string name="feedback_restart">Modificările vor fi vizibile după repornirea aplicației</string>
+    <string name="feedback_readd_location">Vă rugăm să adăugați din nou locațiile </string>
+    <string name="feedback_readd_location_after_changing_source">Vă rugăm să re-adăugați locațiile după modificarea sursei de date</string>
+
+    <string name="feedback_running_in_background">Datele se actualizează în fundal</string>
+    <string name="feedback_updating_weather_data">Se actualizează datele meteo</string>
+    <string name="feedback_updated_in_background">Date actualizate n fundal</string>
+
+    <!-- there should be a "\" before single or double quotes. -->
+    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
+    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
+    <string name="feedback_interpret_background_notification_content">În unele dispozitive, după deselectarea opțiunii \'Activitate fundal gestionată de sistem\', ar putea apărea o notificare ce nu poate fi ștearsă din bara de notificări.</string>
+    <string name="feedback_interpret_notification_group_title">Blochează  notificarea de fundal</string>
+    <string name="feedback_interpret_notification_group_content">După deselectarea opțiunii \"Activitate fundal gestionată de sistem\", o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări. </string>
+
+    <string name="feedback_ignore_battery_optimizations_title">Ignorați optimizarea bateriei</string>
+    <string name="feedback_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru GeometricWeather. </string>
+    
+    <string name="feedback_cannot_start_live_wallpaper_activity">Pornirea previzualizării Tapetului dinamic (live wallpaper) a eșuat.</string>
+
+    <string name="feedback_unusable_geocoder">Acest dispozitiv nu are un geocoder valid. Furnizorul de locație a fost înlocuit cu  Baidu.</string>
+    <string name="feedback_about_geocoder">Geocoderul este o componentă care convertește rezultatul locației din formatul lat-lon într-un format precum \'XX oraș, YY județ \'. În absența acestei componente, puteți obține date despre vreme doar prin AccuWeather atunci când utilizați API-ul nativ ca furnizor de locație.</string>
+
+    <string name="feedback_today_precipitation_alert">Posibile precipitații in decursul zilei</string>
+    <string name="feedback_short_term_precipitation_alert">Posibile precipitații în următoarele ore.</string>
+
+    <string name="feedback_resident_location">Selectat ca oraș de rezidență (Acasă)</string>
+    <string name="feedback_resident_location_description">GeometricWeather va afișa și ascunde automat orașele de rezidență (Acasă) pe baza locației dvs. actuale. \ nDe exemplu, vă puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul dvs. natal în timp ce călătoriți. Când ajungeți acasă, vremea din orașul dvs. natal va fi ascunsă și înlocuită de vremea pentru locația dvs. actuală.</string>
+
+    <string name="feedback_click_to_get_more">Atingeți pentru mai multe informatii…</string>
+    <string name="feedback_click_again_to_exit">Repetați actiunea pentru a ieși</string>
+
+    <!-- action -->
+    <string name="action_alert">Alertă</string>
+    <string name="action_manage">Gestionnează</string>
+    <string name="action_search">Căutare</string>
+    <string name="action_settings">Setări</string>
+    <string name="action_preview">Previzualizare</string>
+    <string name="action_about">Despre</string>
+    <string name="action_appStore">Magazin aplicații</string>
+
+    <!-- widget -->
+    <string name="widget_day">Zilnic</string>
+    <string name="widget_week">Săptămânal</string>
+    <string name="widget_day_week">Zilnic + Săptămânal</string>
+    <string name="widget_clock_day_horizontal">Ceas + Zilnic (orizontal)</string>
+    <string name="widget_clock_day_details">Ceas + Zilnic (Detalii)</string>
+    <string name="widget_clock_day_vertical">Ceas + Zilnic (vertical)</string>
+    <string name="widget_clock_day_week">Ceas + Zilnic + Săptămânal</string>
+    <string name="widget_text">Text</string>
+    <string name="widget_trend_daily">Trend zilnic</string>
+    <string name="widget_trend_hourly">Trend pe ore</string>
+    <string name="widget_multi_city">Locații multiple</string>
+    <string name="wait_refresh">în așteptare</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">Setări de bază</string>
+    <string name="settings_title_background_free">Activitate fundal gestionată de sistem</string>
+    <string name="settings_summary_background_free_on">Activat\nDacă widgeturile și notificările nu se actualizează automat, vă rugăm să dezactivați această opțiune. </string>
+    <string name="settings_summary_background_free_off">Dezactivat\nDacă nu doriți ca serviciile aplicației să continue să lucreze în fundal, activați această opțiune. </string>
+    <string name="settings_title_live_wallpaper">Tapet dinamic (Live wallpaper)</string>
+    <string name="settings_summary_live_wallpaper">Setați animația meteo ca Imagine de fundal dinamică</string>
+    <string name="settings_title_service_provider">Furnizor de servicii</string>
+    <string name="settings_summary_service_provider">Selectați furnizorul de servicii Meteo și locație</string>
+    <string name="settings_title_weather_source">Sursa Meteo</string>
+    <string name="settings_title_location_service">Serviciu locație</string>
+    <string name="settings_title_dark_mode">Mod întunecat (Temă)</string>
+    <string name="settings_title_ui_style">Tip interfață</string>
+    <string name="settings_title_icon_provider">Pachet de pictograme (icoane)</string>
+    <string name="settings_title_appearance">Aspect interfață</string>
+    <string name="settings_summary_appearance">Tip interfeță, ordine file, limbă…</string>
+    <string name="settings_title_card_display">File afișate</string>
+    <string name="settings_title_daily_trend_display">Afișează tendința zilnică</string>
+    <string name="settings_title_trend_horizontal_line_switch">Linii orizontale în grafic</string>
+    <string name="settings_title_exchange_day_night_temp_switch">Inversează temperaturile pentru zi și noapte</string>
+    <string name="settings_title_card_order">Ordinea filelor</string>
+    <string name="settings_title_gravity_sensor_switch">Senzor de gravitație </string>
+    <string name="settings_title_list_animation_switch">Animare listă</string>
+    <string name="settings_title_item_animation_switch">Animare elemente</string>
+    <string name="settings_language">Limba</string>
+    <string name="settings_title_unit">Unități de măsură</string>
+    <string name="settings_summary_unit">Alegeți unitățile de măsură pentru datele meteo</string>
+    <string name="settings_title_temperature_unit">Temperatură</string>
+    <string name="settings_title_distance_unit">Distanță</string>
+    <string name="settings_title_precipitation_unit">Precipitatții</string>
+    <string name="settings_title_pressure_unit">Presiune</string>
+    <string name="settings_title_speed_unit">Viteză</string>
+    <string name="settings_title_refresh_rate">Interval actualizare automată</string>
+    <string name="settings_title_alert_notification_switch">Alerte meteo</string>
+    <string name="settings_title_precipitation_notification_switch">Notificare precipitații</string>
+    <string name="settings_title_permanent_service">Serviciu permanent</string>
+    <string name="settings_category_forecast">Prognoza meteo</string>
+    <string name="settings_title_forecast_today">Prognoza pt. azi</string>
+    <string name="settings_title_forecast_today_time">Oră notif azi</string>
+    <string name="settings_title_forecast_tomorrow">Prognoză pt. mâine</string>
+    <string name="settings_title_forecast_tomorrow_time">Oră notif. mâine</string>
+    <string name="settings_category_widget">Widget</string>
+    <string name="settings_title_week_icon_mode">Mod icoane sapt.</string>
+    <string name="settings_title_minimal_icon">Icoane tip minimal</string>
+    <string name="settings_title_click_widget_to_refresh">Atinge pt. actualizare</string>
+    <string name="settings_title_widget_config">Configurare Widget</string>
+    <string name="settings_category_notification">Notificări</string>
+    <string name="settings_title_notification">Trimite notificări</string>
+    <string name="settings_title_notification_style">Tip notificări</string>
+    <string name="settings_title_notification_temp_icon">Temperatura în status</string>
+    <string name="settings_title_notification_color">Culoare notificări</string>
+    <string name="settings_title_notification_custom_color">Culoare personalizată</string>
+    <string name="settings_title_notification_text_color">Culoare text</string>
+    <string name="settings_title_notification_background">Culoare fundal</string>
+    <string name="settings_notification_background_off">La fel ca sistemul</string>
+    <string name="settings_title_notification_can_be_cleared">Persistență</string>
+    <string name="settings_notification_can_be_cleared_on">Poate fi ștearsă prin glisare</string>
+    <string name="settings_notification_can_be_cleared_off">Notif. persistentă</string>
+    <string name="settings_title_notification_hide_icon">Ascunde icoana notificării</string>
+    <string name="settings_notification_hide_icon_on">Ascuns</string>
+    <string name="settings_notification_hide_icon_off">Afișat</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Ascunde pe ecranul de blocare</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Ascus (trebuie modificat în setările de sistem) </string>
+    <string name="settings_notification_hide_in_lockScreen_off">Afișat</string>
+    <string name="settings_title_notification_hide_big_view">Notif. extinsă</string>
+    <string name="settings_notification_hide_big_view_on">Ascuns</string>
+    <string name="settings_notification_hide_big_view_off">Afișat</string>
+
+    <!--share preference-->
+    <!-- Do not translate the following set of strings. -->
+    <string name="sp_widget_day_setting">widget_day_setting</string>
+    <string name="sp_widget_week_setting">widget_week_setting</string>
+    <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
+    <string name="sp_widget_clock_day_horizontal_setting">widget_clock_day_horizontal_setting</string>
+    <string name="sp_widget_clock_day_details_setting">widget_clock_day_details_setting</string>
+    <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
+    <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
+    <string name="sp_widget_text_setting">widget_text_setting</string>
+    <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
+    <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
+    <string name="sp_widget_multi_city">widget_multi_city</string>
+    <string name="key_view_type">view_type</string>
+    <string name="key_card_style">card_style</string>
+    <string name="key_card_alpha">card_alpha_1</string>
+    <string name="key_hide_subtitle">hide_refresh_time</string>
+    <string name="key_subtitle_data">subtitle_data</string>
+    <string name="key_text_color">text_color</string>
+    <string name="key_text_size">text_size</string>
+    <string name="key_clock_font">clock_font</string>
+    <string name="key_hide_lunar">hide_lunar</string>
+    <string name="key_align_end">align_end</string>
+
+    <!-- Do not translate the following set of strings. -->
+    <string name="key_background_free">background_free_3</string>
+    <string name="key_live_wallpaper">live_wallpaper</string>
+    <string name="key_service_provider">service_provider</string>
+    <string name="key_weather_source">weather_source</string>
+    <string name="key_location_service">location_service</string>
+    <string name="key_dark_mode">dark_mode</string>
+    <string name="key_ui_style">ui_style</string>
+    <string name="key_icon_provider">icon_provider</string>
+    <string name="key_appearance">appearance</string>
+    <string name="key_card_display">card_display_2</string>
+    <string name="key_daily_trend_display">daily_trend_display</string>
+    <string name="key_trend_horizontal_line_switch">trend_horizontal_line_switch</string>
+    <string name="key_exchange_day_night_temp_switch">exchange_day_night_temp_switch</string>
+    <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
+    <string name="key_list_animation_switch">list_animation_switch</string>
+    <string name="key_item_animation_switch">item_animation_switch</string>
+    <string name="key_language">language</string>
+    <string name="key_unit">unit</string>
+    <string name="key_temperature_unit">temperature_unit</string>
+    <string name="key_distance_unit">distance_unit</string>
+    <string name="key_precipitation_unit">precipitation_unit</string>
+    <string name="key_pressure_unit">pressure_unit</string>
+    <string name="key_speed_unit">speed_unit</string>
+    <string name="key_refresh_rate">refresh_rate</string>
+    <string name="key_alert_notification_switch">alert_notification_switch</string>
+    <string name="key_precipitation_notification_switch">precipitation_notification_switch</string>
+    <string name="key_forecast_today">timing_forecast_switch_today</string>
+    <string name="key_forecast_today_time">forecast_time_today</string>
+    <string name="key_forecast_tomorrow">timing_forecast_switch_tomorrow</string>
+    <string name="key_forecast_tomorrow_time">forecast_time_tomorrow</string>
+    <string name="key_week_icon_mode">week_icon_mode</string>
+    <string name="key_widget_minimal_icon">widget_minimal_icon</string>
+    <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
+    <string name="key_widget_config">widget_config</string>
+    <string name="key_widget_day">widget_day</string>
+    <string name="key_widget_week">widget_week</string>
+    <string name="key_widget_day_week">widget_day_week</string>
+    <string name="key_widget_clock_day_horizontal">widget_clock_day_horizontal</string>
+    <string name="key_widget_clock_day_details">widget_clock_day_details</string>
+    <string name="key_widget_clock_day_vertical">widget_clock_day_vertical</string>
+    <string name="key_widget_clock_day_week">widget_clock_day_week</string>
+    <string name="key_widget_text">widget_text</string>
+    <string name="key_widget_trend_daily">widget_trend_daily</string>
+    <string name="key_widget_trend_hourly">widget_trend_hourly</string>
+    <string name="key_widget_multi_city">widget_multi_city</string>
+    <string name="key_notification">notification_switch</string>
+    <string name="key_notification_style">notification_style</string>
+    <string name="key_notification_minimal_icon">notification_minimal_icon</string>
+    <string name="key_notification_temp_icon">notification_temp_icon_switch</string>
+    <string name="key_notification_color">notification_color</string>
+    <string name="key_notification_custom_color">notification_custom_color</string>
+    <string name="key_notification_background_color">notification_background_color</string>
+    <string name="key_notification_text_color">notification_text_color</string>
+    <string name="key_notification_can_be_cleared">notification_can_clear_switch</string>
+    <string name="key_notification_hide_icon">hide_notification_icon</string>
+    <string name="key_notification_hide_in_lockScreen">hide_notification_in_lockScreen</string>
+    <string name="key_notification_hide_big_view">hide_notification_big_view</string>
+
+    <!-- transition. -->
+    <!-- Do not translate the following set of strings. -->
+    <string name="transition_activity_search_bar">activity_search_bar</string>
+    <string name="transition_activity_search_txt">activity_search_txt</string>
+
+</resources>

@@ -13,13 +13,13 @@ import wangdaye.com.geometricweather.databinding.ItemWeatherDailyPollenBinding;
 
 public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
 
-    private ItemWeatherDailyPollenBinding binding;
-    private PollenUnit unit;
+    private final ItemWeatherDailyPollenBinding mBinding;
+    private final PollenUnit mPollenUnit;
 
     public PollenHolder(ItemWeatherDailyPollenBinding binding) {
         super(binding.getRoot());
-        this.binding = binding;
-        this.unit = PollenUnit.PPCM;
+        mBinding = binding;
+        mPollenUnit = PollenUnit.PPCM;
     }
 
     @SuppressLint({"SetTextI18n", "RestrictedApi"})
@@ -28,32 +28,32 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         Context context = itemView.getContext();
         Pollen pollen = ((DailyPollen) model).getPollen();
 
-        binding.grassIcon.setSupportImageTintList(ColorStateList.valueOf(
+        mBinding.grassIcon.setSupportImageTintList(ColorStateList.valueOf(
                 Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel())
         ));
-        binding.grassTitle.setText(context.getString(R.string.grass));
-        binding.grassValue.setText(unit.getPollenText(context, pollen.getGrassIndex())
+        mBinding.grassTitle.setText(context.getString(R.string.grass));
+        mBinding.grassValue.setText(mPollenUnit.getPollenText(context, pollen.getGrassIndex())
                 + " - " + pollen.getGrassDescription());
 
-        binding.ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
+        mBinding.ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
                 Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel())
         ));
-        binding.ragweedTitle.setText(context.getString(R.string.ragweed));
-        binding.ragweedValue.setText(unit.getPollenText(context, pollen.getRagweedIndex())
+        mBinding.ragweedTitle.setText(context.getString(R.string.ragweed));
+        mBinding.ragweedValue.setText(mPollenUnit.getPollenText(context, pollen.getRagweedIndex())
                 + " - " + pollen.getRagweedDescription());
 
-        binding.treeIcon.setSupportImageTintList(ColorStateList.valueOf(
+        mBinding.treeIcon.setSupportImageTintList(ColorStateList.valueOf(
                 Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel())
         ));
-        binding.treeTitle.setText(context.getString(R.string.tree));
-        binding.treeValue.setText(unit.getPollenText(context, pollen.getTreeIndex())
+        mBinding.treeTitle.setText(context.getString(R.string.tree));
+        mBinding.treeValue.setText(mPollenUnit.getPollenText(context, pollen.getTreeIndex())
                 + " - " + pollen.getTreeDescription());
 
-        binding.moldIcon.setSupportImageTintList(ColorStateList.valueOf(
+        mBinding.moldIcon.setSupportImageTintList(ColorStateList.valueOf(
                 Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel())
         ));
-        binding.moldTitle.setText(context.getString(R.string.mold));
-        binding.moldValue.setText(unit.getPollenText(context, pollen.getMoldIndex())
+        mBinding.moldTitle.setText(context.getString(R.string.mold));
+        mBinding.moldValue.setText(mPollenUnit.getPollenText(context, pollen.getMoldIndex())
                 + " - " + pollen.getMoldDescription());
     }
 }

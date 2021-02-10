@@ -119,11 +119,11 @@
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".manage.activity.ManageActivity"
+            android:name=".manage.ManageActivity"
             android:label="@string/action_manage"
             android:theme="@style/GeometricWeatherTheme" />
 
-        <activity android:name=".manage.activity.SearchActivity"
+        <activity android:name=".manage.search.SearchActivity"
             android:label="@string/action_search"
             android:theme="@style/GeometricWeatherTheme.Search" />
 

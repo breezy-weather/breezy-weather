@@ -22,16 +22,16 @@ import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.M
 
 public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImplementor {
 
-    private Paint paint;
-    private Snow[] snows;
+    private final Paint mPaint;
+    private final Snow[] mSnows;
 
-    private float lastDisplayRate;
+    private float mLastDisplayRate;
 
-    private float lastRotation3D;
+    private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
 
     @ColorInt
-    private int backgroundColor;
+    private int mBackgroundColor;
 
     public static final int TYPE_SNOW_DAY = 1;
     public static final int TYPE_SNOW_NIGHT = 2;
@@ -39,10 +39,10 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     @IntDef({TYPE_SNOW_DAY, TYPE_SNOW_NIGHT})
     @interface TypeRule {}
 
-    private class Snow {
+    private static class Snow {
 
-        private float cX;
-        private float cY;
+        private float mCX;
+        private float mCY;
 
         float centerX;
         float centerY;
@@ -55,16 +55,16 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         float speedX;
         float speedY;
 
-        private int viewWidth;
-        private int viewHeight;
+        private final int mViewWidth;
+        private final int mViewHeight;
 
-        private int canvasSize;
+        private final int mCanvasSize;
 
         private Snow(int viewWidth, int viewHeight, @ColorInt int color, float scale) {
-            this.viewWidth = viewWidth;
-            this.viewHeight = viewHeight;
+            mViewWidth = viewWidth;
+            mViewHeight = viewHeight;
 
-            this.canvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
+            mCanvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
 
             this.radius = (float) (viewWidth * 0.0213 * scale);
 
@@ -73,16 +73,16 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
             this.speedY = viewWidth / 350f;
 
-            this.init(true);
+            init(true);
         }
 
         private void init(boolean firstTime) {
             Random r = new Random();
-            cX = r.nextInt(canvasSize);
+            mCX = r.nextInt(mCanvasSize);
             if (firstTime) {
-                cY = r.nextInt((int) (canvasSize - radius)) - canvasSize;
+                mCY = r.nextInt((int) (mCanvasSize - radius)) - mCanvasSize;
             } else {
-                cY = -radius;
+                mCY = -radius;
             }
             speedX = r.nextInt((int) (2 * speedY)) - speedY;
 
@@ -90,15 +90,15 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
 
         private void computeCenterPosition() {
-            centerX = (int) (cX - (canvasSize - viewWidth) * 0.5);
-            centerY = (int) (cY - (canvasSize - viewHeight) * 0.5);
+            centerX = (int) (mCX - (mCanvasSize - mViewWidth) * 0.5);
+            centerY = (int) (mCY - (mCanvasSize - mViewHeight) * 0.5);
         }
 
         void move(long interval, float deltaRotation3D) {
-            cX += speedX * interval * Math.pow(scale, 1.5);
-            cY += speedY * interval * (Math.pow(scale, 1.5) - 5 * Math.sin(deltaRotation3D * Math.PI / 180.0));
+            mCX += speedX * interval * Math.pow(scale, 1.5);
+            mCY += speedY * interval * (Math.pow(scale, 1.5) - 5 * Math.sin(deltaRotation3D * Math.PI / 180.0));
 
-            if (centerY >= canvasSize) {
+            if (centerY >= mCanvasSize) {
                 init(false);
             } else {
                 computeCenterPosition();
@@ -107,14 +107,14 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     public SnowImplementor(@Size(2) int[] canvasSizes, @TypeRule int type) {
-        this.paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setAntiAlias(true);
 
         int[] colors = new int[3];
         switch (type) {
             case TYPE_SNOW_DAY:
-                backgroundColor = Color.rgb(104, 186, 255);
+                mBackgroundColor = Color.rgb(104, 186, 255);
                 colors = new int[] {
                         Color.rgb(128, 197, 255),
                         Color.rgb(185, 222, 255),
@@ -122,7 +122,7 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                 break;
 
             case TYPE_SNOW_NIGHT:
-                backgroundColor = Color.rgb(26, 91, 146);
+                mBackgroundColor = Color.rgb(26, 91, 146);
                 colors = new int[] {
                         Color.rgb(40, 102, 155),
                         Color.rgb(99, 144, 182),
@@ -131,24 +131,24 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
-        this.snows = new Snow[51];
-        for (int i = 0; i < snows.length; i ++) {
-            snows[i] = new Snow(
+        mSnows = new Snow[51];
+        for (int i = 0; i < mSnows.length; i ++) {
+            mSnows[i] = new Snow(
                     canvasSizes[0], canvasSizes[1],
-                    colors[i * 3 / snows.length], scales[i * 3 / snows.length]);
+                    colors[i * 3 / mSnows.length], scales[i * 3 / mSnows.length]);
         }
 
-        this.lastDisplayRate = 0;
-        this.lastRotation3D = INITIAL_ROTATION_3D;
+        mLastDisplayRate = 0;
+        mLastRotation3D = INITIAL_ROTATION_3D;
     }
 
     @Override
     public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
-        for (Snow s : snows) {
-            s.move(interval, lastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - lastRotation3D);
+        for (Snow s : mSnows) {
+            s.move(interval, mLastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - mLastRotation3D);
         }
-        lastRotation3D = rotation3D;
+        mLastRotation3D = rotation3D;
     }
 
     @Override
@@ -156,11 +156,11 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                      float displayRate, float scrollRate, float rotation2D, float rotation3D) {
 
         if (displayRate >= 1) {
-            canvas.drawColor(backgroundColor);
+            canvas.drawColor(mBackgroundColor);
         } else {
             canvas.drawColor(
                     ColorUtils.setAlphaComponent(
-                            backgroundColor,
+                            mBackgroundColor,
                             (int) (displayRate * 255)));
         }
 
@@ -169,18 +169,18 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                     rotation2D,
                     canvasSizes[0] * 0.5F,
                     canvasSizes[1] * 0.5F);
-            for (Snow s : snows) {
-                paint.setColor(s.color);
-                if (displayRate < lastDisplayRate) {
-                    paint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
+            for (Snow s : mSnows) {
+                mPaint.setColor(s.color);
+                if (displayRate < mLastDisplayRate) {
+                    mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
                 } else {
-                    paint.setAlpha((int) ((1 - scrollRate) * 255));
+                    mPaint.setAlpha((int) ((1 - scrollRate) * 255));
                 }
-                canvas.drawCircle(s.centerX, s.centerY, s.radius, paint);
+                canvas.drawCircle(s.centerX, s.centerY, s.radius, mPaint);
             }
         }
 
-        lastDisplayRate = displayRate;
+        mLastDisplayRate = displayRate;
     }
 
     @ColorInt

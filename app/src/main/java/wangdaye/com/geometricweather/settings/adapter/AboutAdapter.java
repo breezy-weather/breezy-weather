@@ -28,8 +28,8 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> {
 
-    private GeoActivity activity;
-    private List<Object> modelList;
+    private final GeoActivity mActivity;
+    private final List<Object> mModelList;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -46,19 +46,19 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
     }
 
     public AboutAdapter(GeoActivity activity) {
-        this.activity = activity;
+        mActivity = activity;
 
-        this.modelList = new ArrayList<>();
-        modelList.add(1);
-        modelList.add(0);
-        modelList.add(activity.getString(R.string.about_app));
-        modelList.addAll(AboutAppLink.buildLinkList(activity));
-        modelList.add(0);
-        modelList.add(activity.getString(R.string.donate));
-        modelList.addAll(AboutAppLink.buildDonateLinkList(activity));
-        modelList.add(0);
-        modelList.add(activity.getString(R.string.translator));
-        modelList.addAll(AboutAppTranslator.buildTranslatorList());
+        mModelList = new ArrayList<>();
+        mModelList.add(1);
+        mModelList.add(0);
+        mModelList.add(activity.getString(R.string.about_app));
+        mModelList.addAll(AboutAppLink.buildLinkList(activity));
+        mModelList.add(0);
+        mModelList.add(activity.getString(R.string.donate));
+        mModelList.addAll(AboutAppLink.buildDonateLinkList(activity));
+        mModelList.add(0);
+        mModelList.add(activity.getString(R.string.translator));
+        mModelList.addAll(AboutAppTranslator.buildTranslatorList());
         // modelList.add(0);
         // modelList.add(activity.getString(R.string.thanks));
         // modelList.addAll(AboutAppLibrary.buildLibraryList(activity));
@@ -67,37 +67,37 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Object model = modelList.get(viewType);
+        Object model = mModelList.get(viewType);
         if (model instanceof Integer) {
             if (((Integer) model) == 1) {
                 return new HeaderHolder(
-                        activity,
+                        mActivity,
                         LayoutInflater.from(parent.getContext())
                                 .inflate(R.layout.item_about_header, parent, false));
             } else {
                 return new ViewHolder(
-                        activity,
+                        mActivity,
                         LayoutInflater.from(parent.getContext())
                                 .inflate(R.layout.item_about_line, parent, false));
             }
         } else if (model instanceof String) {
             return new TitleHolder(
-                    activity,
+                    mActivity,
                     LayoutInflater.from(parent.getContext())
                             .inflate(R.layout.item_about_title, parent, false));
         } else if (model instanceof AboutAppLink) {
             return new LinkHolder(
-                    activity,
+                    mActivity,
                     LayoutInflater.from(parent.getContext())
                             .inflate(R.layout.item_about_link, parent, false));
         } else if (model instanceof AboutAppTranslator) {
             return new TranslatorHolder(
-                    activity,
+                    mActivity,
                     LayoutInflater.from(parent.getContext())
                             .inflate(R.layout.item_about_translator, parent, false));
         } else {
             return new LibraryHolder(
-                    activity,
+                    mActivity,
                     LayoutInflater.from(parent.getContext())
                             .inflate(R.layout.item_about_library, parent, false));
         }
@@ -105,12 +105,12 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(activity, modelList.get(position));
+        holder.onBindView(mActivity, mModelList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return modelList.size();
+        return mModelList.size();
     }
 
     @Override
@@ -121,104 +121,104 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
 
 class HeaderHolder extends AboutAdapter.ViewHolder {
 
-    private AppCompatImageView image;
+    private final AppCompatImageView mImage;
 
     HeaderHolder(GeoActivity activity, View itemView) {
         super(activity, itemView);
-        this.image = itemView.findViewById(R.id.item_about_header_appIcon);
+        mImage = itemView.findViewById(R.id.item_about_header_appIcon);
     }
 
     @Override
     void onBindView(GeoActivity activity, Object model) {
-        ImageHelper.load(activity, image, R.drawable.ic_launcher);
+        ImageHelper.load(activity, mImage, R.drawable.ic_launcher);
     }
 }
 
 class TitleHolder extends AboutAdapter.ViewHolder {
 
-    private TextView title;
+    private final TextView mTitle;
 
     TitleHolder(GeoActivity activity, View itemView) {
         super(activity, itemView);
-        this.title = itemView.findViewById(R.id.item_about_title);
+        mTitle = itemView.findViewById(R.id.item_about_title);
     }
 
     @Override
     void onBindView(GeoActivity activity, Object model) {
-        title.setText((String) model);
+        mTitle.setText((String) model);
     }
 }
 
 class LinkHolder extends AboutAdapter.ViewHolder
         implements View.OnClickListener {
 
-    private AppCompatImageView icon;
-    private TextView title;
+    private final AppCompatImageView mIcon;
+    private final TextView mTitle;
 
-    private String url;
-    private boolean email;
+    private String mUrl;
+    private boolean mEmail;
 
     LinkHolder(GeoActivity activity, View itemView) {
         super(activity, itemView);
         itemView.findViewById(R.id.item_about_link).setOnClickListener(this);
-        this.icon = itemView.findViewById(R.id.item_about_link_icon);
-        this.title = itemView.findViewById(R.id.item_about_link_text);
+        mIcon = itemView.findViewById(R.id.item_about_link_icon);
+        mTitle = itemView.findViewById(R.id.item_about_link_text);
     }
 
     @Override
     void onBindView(GeoActivity activity, Object model) {
         AboutAppLink link = (AboutAppLink) model;
-        icon.setImageResource(link.iconRes);
-        title.setText(link.title);
-        url = link.url;
-        email = link.email;
+        mIcon.setImageResource(link.iconRes);
+        mTitle.setText(link.title);
+        mUrl = link.url;
+        mEmail = link.email;
     }
 
     @Override
     public void onClick(View v) {
-        if (url.equals(AboutAppLink.LINK_ALIPAY)) {
+        if (mUrl.equals(AboutAppLink.LINK_ALIPAY)) {
             DonateHelper.donateByAlipay(activity);
-        } else if (url.equals(AboutAppLink.LINK_WECHAT)) {
+        } else if (mUrl.equals(AboutAppLink.LINK_WECHAT)) {
             DonateHelper.donateByWechat(activity);
-        } else if (email) {
-            IntentHelper.startWebViewActivity(activity, url);
+        } else if (mEmail) {
+            IntentHelper.startWebViewActivity(activity, mUrl);
         } else {
-            IntentHelper.startWebViewActivity(activity, url);
+            IntentHelper.startWebViewActivity(activity, mUrl);
         }
     }
 }
 
 class TranslatorHolder extends AboutAdapter.ViewHolder implements View.OnClickListener {
 
-    private TextView title;
-    private TextView content;
-    private AppCompatImageView flag;
+    private final TextView mTitle;
+    private final TextView mContent;
+    private final AppCompatImageView mFlag;
 
     TranslatorHolder(GeoActivity activity, View itemView) {
         super(activity, itemView);
         itemView.findViewById(R.id.item_about_translator).setOnClickListener(this);
-        this.title = itemView.findViewById(R.id.item_about_translator_title);
-        this.content = itemView.findViewById(R.id.item_about_translator_subtitle);
-        this.flag = itemView.findViewById(R.id.item_about_translator_flag);
+        mTitle = itemView.findViewById(R.id.item_about_translator_title);
+        mContent = itemView.findViewById(R.id.item_about_translator_subtitle);
+        mFlag = itemView.findViewById(R.id.item_about_translator_flag);
     }
 
     @Override
     void onBindView(GeoActivity activity, Object model) {
         AboutAppTranslator translator = (AboutAppTranslator) model;
-        title.setText(translator.name);
-        content.setText(translator.email);
-        ImageHelper.load(activity, flag, translator.flagResId);
+        mTitle.setText(translator.name);
+        mContent.setText(translator.email);
+        ImageHelper.load(activity, mFlag, translator.flagResId);
     }
 
     @Override
     public void onClick(View v) {
-        if (isEmail(content.getText().toString())) {
+        if (isEmail(mContent.getText().toString())) {
             IntentHelper.startEmailActivity(
                     activity,
-                    Uri.parse("mailto:" + content.getText()).toString()
+                    Uri.parse("mailto:" + mContent.getText()).toString()
             );
         } else {
-            IntentHelper.startWebViewActivity(activity, content.getText().toString());
+            IntentHelper.startWebViewActivity(activity, mContent.getText().toString());
         }
     }
 
@@ -234,28 +234,28 @@ class TranslatorHolder extends AboutAdapter.ViewHolder implements View.OnClickLi
 
 class LibraryHolder extends AboutAdapter.ViewHolder implements View.OnClickListener {
 
-    private TextView title;
-    private TextView content;
+    private final TextView mTitle;
+    private final TextView mContent;
 
-    private String url;
+    private String mUrl;
 
     LibraryHolder(GeoActivity activity, View itemView) {
         super(activity, itemView);
         itemView.findViewById(R.id.item_about_library).setOnClickListener(this);
-        this.title = itemView.findViewById(R.id.item_about_library_title);
-        this.content = itemView.findViewById(R.id.item_about_library_content);
+        mTitle = itemView.findViewById(R.id.item_about_library_title);
+        mContent = itemView.findViewById(R.id.item_about_library_content);
     }
 
     @Override
     void onBindView(GeoActivity activity, Object model) {
         AboutAppLibrary library = (AboutAppLibrary) model;
-        title.setText(library.title);
-        content.setText(library.content);
-        url = library.url;
+        mTitle.setText(library.title);
+        mContent.setText(library.content);
+        mUrl = library.url;
     }
 
     @Override
     public void onClick(View v) {
-        IntentHelper.startWebViewActivity(activity, url);
+        IntentHelper.startWebViewActivity(activity, mUrl);
     }
 }

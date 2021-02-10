@@ -19,52 +19,61 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public class WindHolder extends DailyWeatherAdapter.ViewHolder {
 
-    private AppCompatImageView icon;
+    private final AppCompatImageView mIcon;
 
-    private TextView directionText;
+    private final TextView mDirectionText;
 
-    private LinearLayout speed;
-    private TextView speedText;
+    private final LinearLayout mSpeed;
+    private final TextView mSpeedText;
 
-    private TextView gaugeText;
+    private final TextView mGaugeText;
 
-    private SpeedUnit unit;
+    private final SpeedUnit mSpeedUnit;
 
     public WindHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_weather_daily_wind, parent, false));
 
-        icon = itemView.findViewById(R.id.item_weather_daily_wind_arrow);
-        directionText = itemView.findViewById(R.id.item_weather_daily_wind_directionValue);
-        speed = itemView.findViewById(R.id.item_weather_daily_wind_speed);
-        speedText = itemView.findViewById(R.id.item_weather_daily_wind_speedValue);
-        gaugeText = itemView.findViewById(R.id.item_weather_daily_wind_levelValue);
+        mIcon = itemView.findViewById(R.id.item_weather_daily_wind_arrow);
+        mDirectionText = itemView.findViewById(R.id.item_weather_daily_wind_directionValue);
+        mSpeed = itemView.findViewById(R.id.item_weather_daily_wind_speed);
+        mSpeedText = itemView.findViewById(R.id.item_weather_daily_wind_speedValue);
+        mGaugeText = itemView.findViewById(R.id.item_weather_daily_wind_levelValue);
 
-        unit = SettingsOptionManager.getInstance(parent.getContext()).getSpeedUnit();
+        mSpeedUnit = SettingsOptionManager.getInstance(parent.getContext()).getSpeedUnit();
     }
 
     @SuppressLint({"SetTextI18n", "RestrictedApi"})
     @Override
     public void onBindView(DailyWeatherAdapter.ViewModel model, int position) {
         Wind wind = ((DailyWind) model).getWind();
+        StringBuilder talkBackBuilder = new StringBuilder(
+                itemView.getContext().getString(R.string.wind));
 
-        icon.setSupportImageTintList(ColorStateList.valueOf(wind.getWindColor(itemView.getContext())));
-        icon.setRotation(wind.getDegree().getDegree() + 180);
+        mIcon.setSupportImageTintList(ColorStateList.valueOf(wind.getWindColor(itemView.getContext())));
+        mIcon.setRotation(wind.getDegree().getDegree() + 180);
 
+        talkBackBuilder.append(", ").append(wind.getDirection());
         if (wind.getDegree().isNoDirection() || wind.getDegree().getDegree() % 45 == 0) {
-            directionText.setText(wind.getDirection());
+            mDirectionText.setText(wind.getDirection());
         } else {
-            directionText.setText(wind.getDirection()
+            mDirectionText.setText(wind.getDirection()
                     + " (" + (int) (wind.getDegree().getDegree() % 360) + "°)");
         }
 
         if (wind.getSpeed() != null && wind.getSpeed() > 0) {
-            speed.setVisibility(View.VISIBLE);
-            speedText.setText(unit.getSpeedText(speedText.getContext(), wind.getSpeed()));
+            talkBackBuilder.append(", ")
+                    .append(mSpeedUnit.getSpeedText(mSpeedText.getContext(), wind.getSpeed()));
+
+            mSpeed.setVisibility(View.VISIBLE);
+            mSpeedText.setText(mSpeedUnit.getSpeedText(mSpeedText.getContext(), wind.getSpeed()));
         } else {
-            speed.setVisibility(View.GONE);
+            mSpeed.setVisibility(View.GONE);
         }
 
-        gaugeText.setText(wind.getLevel());
+        talkBackBuilder.append(", ").append(wind.getLevel());
+        mGaugeText.setText(wind.getLevel());
+
+        itemView.setContentDescription(talkBackBuilder.toString());
     }
 }

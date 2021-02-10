@@ -10,7 +10,7 @@
         android:id="@+id/dialog_donate_wechat_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:src="@drawable/donate_wechat"
-        tools:ignore="ContentDescription" />
+        android:contentDescription="@string/content_desc_wechat_payment_code"
+        tools:src="@drawable/donate_wechat" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

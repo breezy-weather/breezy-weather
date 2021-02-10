@@ -11,9 +11,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,35 +25,26 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class TrendRecyclerView extends RecyclerView {
 
-    private Paint paint;
-    @ColorInt private int lineColor;
+    private Paint mPaint;
+    @ColorInt private int mLineColor;
 
-    private int drawingBoundaryTop;
-    private int drawingBoundaryBottom;
+    private int mDrawingBoundaryTop;
+    private int mDrawingBoundaryBottom;
 
-    private @Nullable List<KeyLine> keyLineList;
-    private boolean keyLineVisibility = true;
+    private @Nullable List<KeyLine> mKeyLineList;
+    private boolean mKeyLineVisibility = true;
 
-    private @Nullable Float highestData;
-    private @Nullable Float lowestData;
+    private @Nullable Float mHighestData;
+    private @Nullable Float mLowestData;
 
-    private int textSize;
-    private int textMargin;
-    private int lineWidth;
-
-    private int pointerId;
-    private float initialX;
-    private float initialY;
-    private int touchSlop;
-    private boolean isBeingDragged;
-    private boolean isHorizontalDragged;
+    private int mTextSize;
+    private int mTextMargin;
+    private int mLineWidth;
 
     private static final int LINE_WIDTH_DIP = 1;
     private static final int TEXT_SIZE_DIP = 10;
     private static final int TEXT_MARGIN_DIP = 2;
     public static final int ITEM_MARGIN_BOTTOM_DIP = 16;
-
-    private static final String TAG = "TrendRecyclerView";
 
     public static class KeyLine {
 
@@ -77,174 +65,110 @@ public class TrendRecyclerView extends RecyclerView {
 
     public TrendRecyclerView(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public TrendRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public TrendRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        this.initialize();
+        initialize();
     }
 
     private void initialize() {
         setWillNotDraw(false);
 
-        this.paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
 
-        this.textSize = (int) DisplayUtils.dpToPx(getContext(), TEXT_SIZE_DIP);
-        this.textMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
-        this.lineWidth = (int) DisplayUtils.dpToPx(getContext(), LINE_WIDTH_DIP);
+        mTextSize = (int) DisplayUtils.dpToPx(getContext(), TEXT_SIZE_DIP);
+        mTextMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
+        mLineWidth = (int) DisplayUtils.dpToPx(getContext(), LINE_WIDTH_DIP);
 
-        this.drawingBoundaryTop = -1;
-        this.drawingBoundaryBottom = -1;
+        mDrawingBoundaryTop = -1;
+        mDrawingBoundaryBottom = -1;
 
         setLineColor(Color.GRAY);
 
-        this.keyLineList = new ArrayList<>();
-        this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        switch (ev.getActionMasked()) {
-            case MotionEvent.ACTION_DOWN:
-                isBeingDragged = false;
-                isHorizontalDragged = false;
-
-                pointerId = ev.getPointerId(0);
-                initialX = ev.getX();
-                initialY = ev.getY();
-                break;
-
-            case MotionEvent.ACTION_POINTER_DOWN: {
-                int index = ev.getActionIndex();
-                pointerId = ev.getPointerId(index);
-                initialX = ev.getX(index);
-                initialY = ev.getY(index);
-                break;
-            }
-            case MotionEvent.ACTION_MOVE: {
-                int index = ev.findPointerIndex(pointerId);
-                if (index == -1) {
-                    Log.e(TAG, "Invalid pointerId=" + pointerId + " in onTouchEvent");
-                    break;
-                }
-
-                float x = ev.getX(index);
-                float y = ev.getY(index);
-
-                if (!isBeingDragged && !isHorizontalDragged) {
-                    if (Math.abs(x - initialX) > touchSlop || Math.abs(y - initialY) > touchSlop) {
-                        isBeingDragged = true;
-                        if (Math.abs(x - initialX) > Math.abs(y - initialY)) {
-                            isHorizontalDragged = true;
-                            getParent().requestDisallowInterceptTouchEvent(true);
-                        }
-                    }
-                }
-                break;
-            }
-            case MotionEvent.ACTION_POINTER_UP: {
-                int index = ev.getActionIndex();
-                int id = ev.getPointerId(index);
-                if (pointerId == id) {
-                    int newIndex = index == 0 ? 1 : 0;
-
-                    this.pointerId = ev.getPointerId(newIndex);
-                    initialX = (int) ev.getX(newIndex);
-                    initialY = (int) ev.getY(newIndex);
-                }
-                break;
-            }
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL:
-                isBeingDragged = false;
-                isHorizontalDragged = false;
-                getParent().requestDisallowInterceptTouchEvent(false);
-                break;
-        }
-
-        return super.onInterceptTouchEvent(ev) && isBeingDragged && isHorizontalDragged;
+        mKeyLineList = new ArrayList<>();
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.drawKeyLines(canvas);
+        drawKeyLines(canvas);
     }
 
     private void drawKeyLines(Canvas canvas) {
-        if (!keyLineVisibility
-                || keyLineList == null
-                || keyLineList.size() == 0
-                || highestData == null
-                || lowestData == null) {
+        if (!mKeyLineVisibility
+                || mKeyLineList == null
+                || mKeyLineList.size() == 0
+                || mHighestData == null
+                || mLowestData == null) {
             return;
         }
 
         if (getChildCount() > 0) {
-            drawingBoundaryTop = ((AbsTrendItemView) getChildAt(0)).getChartTop();
-            drawingBoundaryBottom = ((AbsTrendItemView) getChildAt(0)).getChartBottom();
+            mDrawingBoundaryTop = ((AbsTrendItemView) getChildAt(0)).getChartTop();
+            mDrawingBoundaryBottom = ((AbsTrendItemView) getChildAt(0)).getChartBottom();
         }
-        if (drawingBoundaryTop < 0 || drawingBoundaryBottom < 0) {
+        if (mDrawingBoundaryTop < 0 || mDrawingBoundaryBottom < 0) {
             return;
         }
 
-        float dataRange = highestData - lowestData;
-        float boundaryRange = drawingBoundaryBottom - drawingBoundaryTop;
-        for (KeyLine line : keyLineList) {
-            if (line.value > highestData || line.value < lowestData) {
+        float dataRange = mHighestData - mLowestData;
+        float boundaryRange = mDrawingBoundaryBottom - mDrawingBoundaryTop;
+        for (KeyLine line : mKeyLineList) {
+            if (line.value > mHighestData || line.value < mLowestData) {
                 continue;
             }
 
-            int y = (int) (drawingBoundaryBottom - (line.value - lowestData) / dataRange * boundaryRange);
+            int y = (int) (mDrawingBoundaryBottom - (line.value - mLowestData) / dataRange * boundaryRange);
 
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(lineWidth);
-            paint.setColor(lineColor);
-            canvas.drawLine(0, y, getMeasuredWidth(), y, paint);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setStrokeWidth(mLineWidth);
+            mPaint.setColor(mLineColor);
+            canvas.drawLine(0, y, getMeasuredWidth(), y, mPaint);
 
-            paint.setStyle(Paint.Style.FILL);
-            paint.setTextSize(textSize);
-            paint.setColor(ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd));
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setTextSize(mTextSize);
+            mPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd));
             switch (line.contentPosition) {
                 case ABOVE_LINE:
-                    paint.setTextAlign(Paint.Align.LEFT);
+                    mPaint.setTextAlign(Paint.Align.LEFT);
                     canvas.drawText(
                             line.contentLeft,
-                            2 * textMargin,
-                            y - paint.getFontMetrics().bottom - textMargin,
-                            paint
+                            2 * mTextMargin,
+                            y - mPaint.getFontMetrics().bottom - mTextMargin,
+                            mPaint
                     );
-                    paint.setTextAlign(Paint.Align.RIGHT);
+                    mPaint.setTextAlign(Paint.Align.RIGHT);
                     canvas.drawText(
                             line.contentRight,
-                            getMeasuredWidth() - 2 * textMargin,
-                            y - paint.getFontMetrics().bottom - textMargin,
-                            paint
+                            getMeasuredWidth() - 2 * mTextMargin,
+                            y - mPaint.getFontMetrics().bottom - mTextMargin,
+                            mPaint
                     );
                     break;
 
                 case BELOW_LINE:
-                    paint.setTextAlign(Paint.Align.LEFT);
+                    mPaint.setTextAlign(Paint.Align.LEFT);
                     canvas.drawText(
                             line.contentLeft,
-                            2 * textMargin,
-                            y - paint.getFontMetrics().top + textMargin,
-                            paint
+                            2 * mTextMargin,
+                            y - mPaint.getFontMetrics().top + mTextMargin,
+                            mPaint
                     );
-                    paint.setTextAlign(Paint.Align.RIGHT);
+                    mPaint.setTextAlign(Paint.Align.RIGHT);
                     canvas.drawText(
                             line.contentRight,
-                            getMeasuredWidth() - 2 * textMargin,
-                            y - paint.getFontMetrics().top + textMargin,
-                            paint
+                            getMeasuredWidth() - 2 * mTextMargin,
+                            y - mPaint.getFontMetrics().top + mTextMargin,
+                            mPaint
                     );
                     break;
             }
@@ -254,19 +178,19 @@ public class TrendRecyclerView extends RecyclerView {
     // control.
 
     public void setData(List<KeyLine> keyLineList, float highestData, float lowestData) {
-        this.keyLineList = keyLineList;
-        this.highestData = highestData;
-        this.lowestData = lowestData;
+        mKeyLineList = keyLineList;
+        mHighestData = highestData;
+        mLowestData = lowestData;
         invalidate();
     }
 
     public void setKeyLineVisibility(boolean visibility) {
-        this.keyLineVisibility = visibility;
+        mKeyLineVisibility = visibility;
         invalidate();
     }
 
     public void setLineColor(@ColorInt int lineColor) {
-        this.lineColor = lineColor;
+        mLineColor = lineColor;
         invalidate();
     }
 }

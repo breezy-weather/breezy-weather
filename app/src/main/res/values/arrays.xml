@@ -8,13 +8,21 @@
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>weather.com.cn (Only For China)</item>
-        <item> caiyunapp.com (Only For China)</item>
+        <item>caiyunapp.com (Only For China)</item>
         <item>accuweather.com</item>
+        <item>Météo France</item>
+    </string-array>
+    <string-array name="weather_source_voices">
+        <item>weather.com.CN</item>
+        <item>CaiYun App.com</item>
+        <item>ACCU weather.com</item>
+        <item>Météo France</item>
     </string-array>
     <string-array name="weather_source_values">
         <item>cn</item>
         <item>caiyun</item>
         <item>accu</item>
+        <item>mf</item>
     </string-array>
 
     <!-- Location service. -->
@@ -82,6 +90,7 @@
         <item>한국어</item>
         <item>Ελληνικά</item>
         <item>日本語</item>
+        <item>Română</item>
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
@@ -108,6 +117,7 @@
         <item>korean</item>
         <item>greek</item>
         <item>japanese</item>
+        <item>romanian</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -335,6 +345,13 @@
         <item>mph</item>
         <item>ft/s</item>
     </string-array>
+    <string-array name="speed_unit_voices">
+        <item>Kilometers per hour</item>
+        <item>Meters per second</item>
+        <item>Knots</item>
+        <item>Miles per hour</item>
+        <item>Feet per second</item>
+    </string-array>
     <string-array name="speed_unit_values">
         <item>kph</item>
         <item>mps</item>
@@ -348,6 +365,11 @@
         <item>mm</item>
         <item>inch</item>
         <item>L/m²</item>
+    </string-array>
+    <string-array name="precipitation_unit_voices">
+        <item>Millimeters</item>
+        <item>Inches</item>
+        <item>Liters per square meter</item>
     </string-array>
     <string-array name="precipitation_unit_values">
         <item>mm</item>
@@ -385,6 +407,13 @@
         <item>nmi</item>
         <item>ft</item>
     </string-array>
+    <string-array name="distance_unit_voices">
+        <item>Kilometers</item>
+        <item>Meters</item>
+        <item>Miles</item>
+        <item>Nautical miles</item>
+        <item>Feet</item>
+    </string-array>
     <string-array name="distance_unit_values">
         <item>km</item>
         <item>m</item>
@@ -403,6 +432,15 @@
         <item>inHg</item>
         <item>kgf/cm²</item>
     </string-array>
+    <string-array name="pressure_unit_voices">
+        <item>Millibars</item>
+        <item>kilo pascals</item>
+        <item>Hecto pascals</item>
+        <item>Atmospheres</item>
+        <item>Millimeters of mercury</item>
+        <item>Inches of mercury</item>
+        <item>Kilogram force per square centimetre</item>
+    </string-array>
     <string-array name="pressure_unit_values">
         <item>mb</item>
         <item>kpa</item>
@@ -417,6 +455,9 @@
     <string-array name="air_quality_units">
         <item>μg/m³</item>
     </string-array>
+    <string-array name="air_quality_unit_voices">
+        <item>Micrograms per cubic meter</item>
+    </string-array>
     <string-array name="air_quality_unit_values">
         <item>mugpcum</item>
     </string-array>
@@ -424,6 +465,9 @@
     <!-- air quality co unit. -->
     <string-array name="air_quality_co_units">
         <item>mg/m³</item>
+    </string-array>
+    <string-array name="air_quality_co_unit_voices">
+        <item>Milligrams per cubic meter</item>
     </string-array>
     <string-array name="air_quality_co_unit_values">
         <item>mgpcum</item>
@@ -433,6 +477,9 @@
     <string-array name="duration_units">
         <item>h</item> <!-- hour -->
     </string-array>
+    <string-array name="duration_unit_voices">
+        <item>hours</item>
+    </string-array>
     <string-array name="duration_unit_values">
         <item>h</item>
     </string-array>
@@ -440,6 +487,9 @@
     <!-- pollen unit. -->
     <string-array name="pollen_units">
         <item>/m³</item>
+    </string-array>
+    <string-array name="pollen_unit_voices">
+        <item>Per cubic meter</item>
     </string-array>
     <string-array name="pollen_unit_values">
         <item>ppcm</item>

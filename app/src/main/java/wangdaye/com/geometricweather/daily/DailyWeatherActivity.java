@@ -36,13 +36,14 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class DailyWeatherActivity extends GeoActivity {
 
-    private CoordinatorLayout container;
-    private TextView title;
-    private TextView subtitle;
-    private TextView indicator;
+    private CoordinatorLayout mContainer;
+    private Toolbar mToolbar;
+    private TextView mTitle;
+    private TextView mSubtitle;
+    private TextView mIndicator;
 
-    private String formattedId;
-    private int position;
+    private String mFormattedId;
+    private int mPosition;
 
     public static final String KEY_FORMATTED_LOCATION_ID = "FORMATTED_LOCATION_ID";
     public static final String KEY_CURRENT_DAILY_INDEX = "CURRENT_DAILY_INDEX";
@@ -57,28 +58,28 @@ public class DailyWeatherActivity extends GeoActivity {
 
     @Override
     public View getSnackbarContainer() {
-        return container;
+        return mContainer;
     }
 
     private void initData() {
-        formattedId = getIntent().getStringExtra(KEY_FORMATTED_LOCATION_ID);
-        position = getIntent().getIntExtra(KEY_CURRENT_DAILY_INDEX, 0);
+        mFormattedId = getIntent().getStringExtra(KEY_FORMATTED_LOCATION_ID);
+        mPosition = getIntent().getIntExtra(KEY_CURRENT_DAILY_INDEX, 0);
     }
 
     private void initWidget() {
-        container = findViewById(R.id.activity_weather_daily_container);
+        mContainer = findViewById(R.id.activity_weather_daily_container);
 
-        Toolbar toolbar = findViewById(R.id.activity_weather_daily_toolbar);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        mToolbar = findViewById(R.id.activity_weather_daily_toolbar);
+        mToolbar.setNavigationOnClickListener(v -> finish());
 
-        title = findViewById(R.id.activity_weather_daily_title);
-        subtitle = findViewById(R.id.activity_weather_daily_subtitle);
-        indicator = findViewById(R.id.activity_weather_daily_indicator);
+        mTitle = findViewById(R.id.activity_weather_daily_title);
+        mSubtitle = findViewById(R.id.activity_weather_daily_subtitle);
+        mIndicator = findViewById(R.id.activity_weather_daily_indicator);
         if (!SettingsOptionManager.getInstance(this).getLanguage().isChinese()){
-            subtitle.setVisibility(View.GONE);
+            mSubtitle.setVisibility(View.GONE);
         }
 
-        String formattedId = this.formattedId;
+        String formattedId = mFormattedId;
         AsyncHelper.runOnIO(emitter -> {
             Location location = null;
 
@@ -104,9 +105,9 @@ public class DailyWeatherActivity extends GeoActivity {
             }
 
             selectPage(
-                    weather.getDailyForecast().get(position),
+                    weather.getDailyForecast().get(mPosition),
                     location.getTimeZone(),
-                    position,
+                    mPosition,
                     weather.getDailyForecast().size()
             );
 
@@ -132,7 +133,7 @@ public class DailyWeatherActivity extends GeoActivity {
             pager.setAdapter(new FitBottomSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
             pager.setPageMargin((int) DisplayUtils.dpToPx(this, 1));
             pager.setPageMarginDrawable(new ColorDrawable(ThemeManager.getInstance(this).getLineColor(this)));
-            pager.setCurrentItem(position);
+            pager.setCurrentItem(mPosition);
             pager.clearOnPageChangeListeners();
             pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
@@ -160,12 +161,15 @@ public class DailyWeatherActivity extends GeoActivity {
 
     @SuppressLint("SetTextI18n")
     private void selectPage(Daily daily, TimeZone timeZone, int position, int size) {
-        title.setText(daily.getDate(getString(R.string.date_format_widget_long)));
-        subtitle.setText(daily.getLunar());
+        mTitle.setText(daily.getDate(getString(R.string.date_format_widget_long)));
+        mSubtitle.setText(daily.getLunar());
+
+        mToolbar.setContentDescription(mTitle.getText() + ", " + mSubtitle.getText());
+
         if (timeZone != null && daily.isToday(timeZone)) {
-            indicator.setText(getString(R.string.today));
+            mIndicator.setText(getString(R.string.today));
         } else {
-            indicator.setText((position + 1) + "/" + size);
+            mIndicator.setText((position + 1) + "/" + size);
         }
     }
 }

@@ -32,15 +32,15 @@
                     android:src="@drawable/ic_back"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    style="@style/material_image_button"
-                    tools:ignore="ContentDescription" />
+                    android:contentDescription="@string/content_desc_back"
+                    style="@style/material_image_button" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/clearBtn"
-                    android:src="@drawable/ic_close"
+                    android:id="@+id/filterBtn"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     style="@style/material_image_button"
+                    tools:src="@drawable/ic_filter"
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <EditText
@@ -58,7 +58,7 @@
                     android:background="@android:color/transparent"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/backBtn"
-                    android:layout_toStartOf="@id/clearBtn"
+                    android:layout_toStartOf="@id/filterBtn"
                     tools:ignore="Autofill,RtlHardcoded" />
 
             </RelativeLayout>

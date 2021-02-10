@@ -31,42 +31,42 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class MaterialWeatherView extends View implements WeatherView {
 
-    @Nullable private IntervalComputer intervalComputer;
+    @Nullable private IntervalComputer mIntervalComputer;
 
-    @Nullable private WeatherAnimationImplementor implementor;
-    @Nullable private RotateController[] rotators;
+    @Nullable private WeatherAnimationImplementor mImplementor;
+    @Nullable private RotateController[] mRotators;
 
-    private boolean gravitySensorEnabled;
-    @Nullable private SensorManager sensorManager;
-    @Nullable private Sensor gravitySensor;
+    private boolean mGravitySensorEnabled;
+    @Nullable private SensorManager mSensorManager;
+    @Nullable private Sensor mGravitySensor;
 
-    @Size(2) int[] sizes;
-    private float rotation2D;
-    private float rotation3D;
+    @Size(2) int[] mSizes;
+    private float mRotation2D;
+    private float mRotation3D;
 
-    @WeatherKindRule private int weatherKind;
-    private boolean daytime;
-    @ColorInt private int backgroundColor;
+    @WeatherKindRule private int mWeatherKind;
+    private boolean mDaytime;
+    @ColorInt private int mBackgroundColor;
 
-    private float displayRate;
+    private float mDisplayRate;
 
     @StepRule
-    private int step;
+    private int mStep;
     private static final int STEP_DISPLAY = 1;
     private static final int STEP_DISMISS = -1;
 
     @IntDef({STEP_DISPLAY, STEP_DISMISS})
     private  @interface StepRule {}
 
-    private int firstCardMarginTop;
-    private int scrollTransparentTriggerDistance;
+    private int mFirstCardMarginTop;
+    private int mScrollTransparentTriggerDistance;
 
-    private float lastScrollRate;
-    private float scrollRate;
+    private float mLastScrollRate;
+    private float mScrollRate;
 
-    private boolean drawable;
+    private boolean mDrawable;
 
-    private DeviceOrientation deviceOrientation;
+    private DeviceOrientation mDeviceOrientation;
     private enum DeviceOrientation {
         TOP, LEFT, BOTTOM, RIGHT
     }
@@ -94,7 +94,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         public abstract double getRotation();
     }
 
-    private SensorEventListener gravityListener = new SensorEventListener() {
+    private final SensorEventListener mGravityListener = new SensorEventListener() {
 
         @Override
         public void onSensorChanged(SensorEvent ev) {
@@ -103,7 +103,7 @@ public class MaterialWeatherView extends View implements WeatherView {
             // z : (+) look down / (-) look up.
             // rotation2D : (+) anticlockwise / (-) clockwise.
             // rotation3D : (+) look down / (-) look up.
-            if (gravitySensorEnabled) {
+            if (mGravitySensorEnabled) {
                 float aX = ev.values[0];
                 float aY = ev.values[1];
                 float aZ = ev.values[2];
@@ -111,36 +111,36 @@ public class MaterialWeatherView extends View implements WeatherView {
                 double g3D = Math.sqrt(aX * aX + aY * aY + aZ * aZ);
                 double cos2D = Math.max(Math.min(1, aY / g2D), -1);
                 double cos3D = Math.max(Math.min(1, g2D * (aY >= 0 ? 1 : -1) / g3D), -1);
-                rotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
-                rotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
+                mRotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
+                mRotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
 
-                switch (deviceOrientation) {
+                switch (mDeviceOrientation) {
                     case TOP:
                         break;
 
                     case LEFT:
-                        rotation2D -= 90;
+                        mRotation2D -= 90;
                         break;
 
                     case RIGHT:
-                        rotation2D += 90;
+                        mRotation2D += 90;
                         break;
 
                     case BOTTOM:
-                        if (rotation2D > 0) {
-                            rotation2D -= 180;
+                        if (mRotation2D > 0) {
+                            mRotation2D -= 180;
                         } else {
-                            rotation2D += 180;
+                            mRotation2D += 180;
                         }
                         break;
                 }
 
-                if (60 < Math.abs(rotation3D) && Math.abs(rotation3D) < 120) {
-                    rotation2D *= Math.abs(Math.abs(rotation3D) - 90) / 30.0;
+                if (60 < Math.abs(mRotation3D) && Math.abs(mRotation3D) < 120) {
+                    mRotation2D *= Math.abs(Math.abs(mRotation3D) - 90) / 30.0;
                 }
             } else {
-                rotation2D = 0;
-                rotation3D = 0;
+                mRotation2D = 0;
+                mRotation3D = 0;
             }
         }
 
@@ -150,10 +150,10 @@ public class MaterialWeatherView extends View implements WeatherView {
         }
     };
 
-    private OrientationEventListener orientationListener = new OrientationEventListener(getContext()) {
+    private final OrientationEventListener mOrientationListener = new OrientationEventListener(getContext()) {
         @Override
         public void onOrientationChanged(int orientation) {
-            deviceOrientation = getDeviceOrientation(orientation);
+            mDeviceOrientation = getDeviceOrientation(orientation);
         }
 
         private DeviceOrientation getDeviceOrientation(int orientation) {
@@ -169,47 +169,47 @@ public class MaterialWeatherView extends View implements WeatherView {
 
     public MaterialWeatherView(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public MaterialWeatherView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public MaterialWeatherView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initialize();
+        initialize();
     }
 
     private void initialize() {
-        this.sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
-        if (sensorManager != null) {
-            this.gravitySensorEnabled = true;
-            this.gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+        mSensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager != null) {
+            mGravitySensorEnabled = true;
+            mGravitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
         }
 
-        this.step = STEP_DISPLAY;
+        mStep = STEP_DISPLAY;
         setWeather(WeatherView.WEATHER_KING_NULL, true, null);
 
         Resources res = getResources();
         DisplayMetrics metrics = res.getDisplayMetrics();
-        this.sizes = new int[] {metrics.widthPixels, metrics.heightPixels};
+        mSizes = new int[] {metrics.widthPixels, metrics.heightPixels};
 
-        this.firstCardMarginTop = (int) (res.getDisplayMetrics().heightPixels * 0.55);
-        this.scrollTransparentTriggerDistance = firstCardMarginTop;
+        mFirstCardMarginTop = (int) (res.getDisplayMetrics().heightPixels * 0.55);
+        mScrollTransparentTriggerDistance = mFirstCardMarginTop;
 
-        this.lastScrollRate = 0;
-        this.scrollRate = 0;
+        mLastScrollRate = 0;
+        mScrollRate = 0;
 
-        this.drawable = false;
+        mDrawable = false;
 
-        this.deviceOrientation = DeviceOrientation.TOP;
+        mDeviceOrientation = DeviceOrientation.TOP;
     }
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        this.scrollTransparentTriggerDistance = firstCardMarginTop - insets.top;
+        mScrollTransparentTriggerDistance = mFirstCardMarginTop - insets.top;
         return false;
     }
 
@@ -217,11 +217,11 @@ public class MaterialWeatherView extends View implements WeatherView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
-            sizes[0] = Math.min(
+            mSizes[0] = Math.min(
                     getMeasuredWidth(),
                     DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth())
             );
-            sizes[1] = getMeasuredHeight();
+            mSizes[1] = getMeasuredHeight();
         }
         setWeatherImplementor();
     }
@@ -230,66 +230,66 @@ public class MaterialWeatherView extends View implements WeatherView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (intervalComputer == null || rotators == null || implementor == null) {
+        if (mIntervalComputer == null || mRotators == null || mImplementor == null) {
             canvas.drawColor(getBackgroundColor());
             return;
         }
 
-        intervalComputer.invalidate();
-        rotators[0].updateRotation(rotation2D, intervalComputer.getInterval());
-        rotators[1].updateRotation(rotation3D, intervalComputer.getInterval());
+        mIntervalComputer.invalidate();
+        mRotators[0].updateRotation(mRotation2D, mIntervalComputer.getInterval());
+        mRotators[1].updateRotation(mRotation3D, mIntervalComputer.getInterval());
 
-        implementor.updateData(
-                sizes, (long) intervalComputer.getInterval(),
-                (float) rotators[0].getRotation(), (float) rotators[1].getRotation()
+        mImplementor.updateData(
+                mSizes, (long) mIntervalComputer.getInterval(),
+                (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
         );
 
-        displayRate = (float) (
-                displayRate
-                        + (step == STEP_DISPLAY ? 1f : -1f)
-                        * intervalComputer.getInterval()
+        mDisplayRate = (float) (
+                mDisplayRate
+                        + (mStep == STEP_DISPLAY ? 1f : -1f)
+                        * mIntervalComputer.getInterval()
                         / SWITCH_ANIMATION_DURATION
         );
-        displayRate = Math.max(0, displayRate);
-        displayRate = Math.min(1, displayRate);
+        mDisplayRate = Math.max(0, mDisplayRate);
+        mDisplayRate = Math.min(1, mDisplayRate);
 
-        if (displayRate == 0) {
+        if (mDisplayRate == 0) {
             setWeatherImplementor();
         }
 
-        canvas.drawColor(backgroundColor);
-        if (implementor != null && rotators != null) {
+        canvas.drawColor(mBackgroundColor);
+        if (mImplementor != null && mRotators != null) {
             canvas.save();
             canvas.translate(
-                    (getMeasuredWidth() - sizes[0]) / 2f,
-                    (getMeasuredHeight() - sizes[1]) / 2f
+                    (getMeasuredWidth() - mSizes[0]) / 2f,
+                    (getMeasuredHeight() - mSizes[1]) / 2f
             );
-            implementor.draw(
-                    sizes, canvas,
-                    displayRate, scrollRate,
-                    (float) rotators[0].getRotation(), (float) rotators[1].getRotation()
+            mImplementor.draw(
+                    mSizes, canvas,
+                    mDisplayRate, mScrollRate,
+                    (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
             );
             canvas.restore();
         }
-        if (lastScrollRate >= 1 && scrollRate >= 1) {
-            lastScrollRate = scrollRate;
+        if (mLastScrollRate >= 1 && mScrollRate >= 1) {
+            mLastScrollRate = mScrollRate;
             setIntervalComputer();
             return;
         }
 
-        lastScrollRate = scrollRate;
+        mLastScrollRate = mScrollRate;
 
         postInvalidate();
     }
 
     private void resetDrawer() {
-        rotation2D = rotation3D = 0;
-        if (sensorManager != null) {
-            sensorManager.registerListener(
-                    gravityListener, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+        mRotation2D = mRotation3D = 0;
+        if (mSensorManager != null) {
+            mSensorManager.registerListener(
+                    mGravityListener, mGravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
         }
-        if (orientationListener.canDetectOrientation()) {
-            orientationListener.enable();
+        if (mOrientationListener.canDetectOrientation()) {
+            mOrientationListener.enable();
         }
 
         setWeatherImplementor();
@@ -299,22 +299,22 @@ public class MaterialWeatherView extends View implements WeatherView {
     }
 
     private void setWeatherImplementor() {
-        implementor = WeatherImplementorFactory.getWeatherImplementor(weatherKind, daytime, sizes);
-        rotators = new RotateController[] {
-                new DelayRotateController(rotation2D),
-                new DelayRotateController(rotation3D)
+        mImplementor = WeatherImplementorFactory.getWeatherImplementor(mWeatherKind, mDaytime, mSizes);
+        mRotators = new RotateController[] {
+                new DelayRotateController(mRotation2D),
+                new DelayRotateController(mRotation3D)
         };
-        if (implementor != null) {
-            step = STEP_DISPLAY;
-            backgroundColor = getBackgroundColor();
+        if (mImplementor != null) {
+            mStep = STEP_DISPLAY;
+            mBackgroundColor = getBackgroundColor();
         }
     }
 
     private void setIntervalComputer() {
-        if (intervalComputer == null) {
-            intervalComputer = new IntervalComputer(getContext());
+        if (mIntervalComputer == null) {
+            mIntervalComputer = new IntervalComputer(getContext());
         } else {
-            intervalComputer.reset(getContext());
+            mIntervalComputer.reset(getContext());
         }
     }
 
@@ -333,21 +333,21 @@ public class MaterialWeatherView extends View implements WeatherView {
     @Override
     public void setWeather(@WeatherKindRule int weatherKind, boolean daytime,
                            @Nullable ResourceProvider provider) {
-        if (this.weatherKind == weatherKind && this.daytime == daytime) {
+        if (mWeatherKind == weatherKind && mDaytime == daytime) {
             return;
         }
 
-        this.weatherKind = weatherKind;
-        this.daytime = daytime;
-        this.backgroundColor = getBackgroundColor();
+        mWeatherKind = weatherKind;
+        mDaytime = daytime;
+        mBackgroundColor = getBackgroundColor();
 
-        if (drawable) {
-            if (implementor == null) {
+        if (mDrawable) {
+            if (mImplementor == null) {
                 resetDrawer();
             } else {
                 // Set step to dismiss. The implementor will execute exit animation and call weather
                 // view to resetWidget it.
-                step = STEP_DISMISS;
+                mStep = STEP_DISMISS;
             }
         }
     }
@@ -359,15 +359,15 @@ public class MaterialWeatherView extends View implements WeatherView {
 
     @Override
     public void onScroll(int scrollY) {
-        scrollRate = (float) (Math.min(1, 1.0 * scrollY / scrollTransparentTriggerDistance));
-        if (lastScrollRate >= 1 && scrollRate < 1) {
+        mScrollRate = (float) (Math.min(1, 1.0 * scrollY / mScrollTransparentTriggerDistance));
+        if (mLastScrollRate >= 1 && mScrollRate < 1) {
             postInvalidate();
         }
     }
 
     @Override
     public int getWeatherKind() {
-        return weatherKind;
+        return mWeatherKind;
     }
 
     @Override
@@ -394,7 +394,7 @@ public class MaterialWeatherView extends View implements WeatherView {
 
     @Override
     public int getBackgroundColor() {
-        return innerGetBackgroundColor(getContext(), weatherKind, daytime);
+        return innerGetBackgroundColor(getContext(), mWeatherKind, mDaytime);
     }
 
     private static int innerGetBackgroundColor(Context context,
@@ -404,29 +404,29 @@ public class MaterialWeatherView extends View implements WeatherView {
 
     @Override
     public int getHeaderHeight() {
-        return firstCardMarginTop;
+        return mFirstCardMarginTop;
     }
 
     public void setDrawable(boolean drawable) {
-        if (this.drawable == drawable) {
+        if (mDrawable == drawable) {
             return;
         }
-        this.drawable = drawable;
+        mDrawable = drawable;
 
         if (drawable) {
             resetDrawer();
         } else {
             // !drawable
-            if (sensorManager != null) {
-                sensorManager.unregisterListener(gravityListener, gravitySensor);
+            if (mSensorManager != null) {
+                mSensorManager.unregisterListener(mGravityListener, mGravitySensor);
             }
-            orientationListener.disable();
+            mOrientationListener.disable();
         }
     }
 
     @Override
     public void setGravitySensorEnabled(boolean enabled) {
-        this.gravitySensorEnabled = enabled;
+        mGravitySensorEnabled = enabled;
     }
 
     @Override

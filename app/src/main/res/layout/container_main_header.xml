@@ -17,8 +17,6 @@
         android:id="@+id/container_main_header_tempTxt"
         android:layout_width="match_parent"
         android:textSize="@dimen/main_title_text_size"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
         android:includeFontPadding="false"
         android:textAlignment="viewStart"
         style="@style/large_title_text"

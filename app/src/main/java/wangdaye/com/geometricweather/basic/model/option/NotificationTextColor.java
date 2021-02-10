@@ -14,9 +14,9 @@ public enum NotificationTextColor {
     GREY("grey", R.color.colorTextGrey, R.color.colorTextGrey2nd),
     LIGHT("light", R.color.colorTextLight, R.color.colorTextLight2nd);
 
-    private String colorId;
-    @ColorRes private int mainTextColorResId;
-    @ColorRes private int subTextColorResId;
+    private final String colorId;
+    @ColorRes private final int mainTextColorResId;
+    @ColorRes private final int subTextColorResId;
 
     NotificationTextColor(String colorId, int mainTextColorResId, int subTextColorResId) {
         this.colorId = colorId;

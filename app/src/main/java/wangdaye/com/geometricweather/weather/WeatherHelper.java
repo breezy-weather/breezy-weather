@@ -13,11 +13,13 @@ import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.observer.BaseObserver;
 import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
 import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
 import wangdaye.com.geometricweather.weather.service.CNWeatherService;
 import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
+import wangdaye.com.geometricweather.weather.service.MfWeatherService;
 import wangdaye.com.geometricweather.weather.service.WeatherService;
 
 /**
@@ -26,9 +28,8 @@ import wangdaye.com.geometricweather.weather.service.WeatherService;
 
 public class WeatherHelper {
 
-    @Nullable private WeatherService weatherService;
-
-    @Nullable private WeatherService[] searchServices;
+    private @Nullable WeatherService weatherService;
+    private @Nullable WeatherService[] searchServices;
     private final CompositeDisposable compositeDisposable;
 
     public WeatherHelper() {
@@ -38,8 +39,11 @@ public class WeatherHelper {
     }
 
     @NonNull
-    private static WeatherService getWeatherService(WeatherSource source) {
+    public static WeatherService getWeatherService(WeatherSource source) {
         switch (source) {
+            case MF:
+                return new MfWeatherService();
+
             case CN:
                 return new CNWeatherService();
 
@@ -78,27 +82,42 @@ public class WeatherHelper {
         });
     }
 
-    public void requestLocation(Context context, String query, @NonNull final OnRequestLocationListener l) {
-        searchServices = new WeatherService[] {
-                getWeatherService(WeatherSource.ACCU),
-                getWeatherService(WeatherSource.CN),
-                getWeatherService(WeatherSource.CAIYUN)
-        };
+    public void requestLocation(Context context, String query, boolean multiSource,
+                                @NonNull final OnRequestLocationListener l) {
+        // build weather source list.
+        List<WeatherSource> sourceList = new ArrayList<>();
+        // default weather source at first index.
+        sourceList.add(SettingsOptionManager.getInstance(context).getWeatherSource());
+        if (multiSource) {
+            // ensure no duplicates.
+            for (WeatherSource source : WeatherSource.values()) {
+                if (sourceList.get(0) != source) {
+                    sourceList.add(source);
+                }
+            }
+        }
 
-        Observable<List<Location>> accu = Observable.create(emitter ->
-                emitter.onNext(searchServices[0].requestLocation(context, query)));
+        // generate weather services.
+        searchServices = new WeatherService[sourceList.size()];
+        for (int i = 0; i < searchServices.length; i ++) {
+            searchServices[i] = getWeatherService(sourceList.get(i));
+        }
 
-        Observable<List<Location>> cn = Observable.create(emitter ->
-                emitter.onNext(searchServices[1].requestLocation(context, query)));
+        // generate observable list.
+        List<Observable<List<Location>>> observableList = new ArrayList<>();
+        for (int i = 0; i < searchServices.length; i ++) {
+            int finalI = i;
+            observableList.add(
+                    Observable.create(emitter ->
+                            emitter.onNext(searchServices[finalI].requestLocation(context, query)))
+            );
+        }
 
-        Observable<List<Location>> caiyun = Observable.create(emitter ->
-                emitter.onNext(searchServices[2].requestLocation(context, query)));
-
-        Observable.zip(accu, cn, caiyun, (accuList, cnList, caiyunList) -> {
+        Observable.zip(observableList, objects -> {
             List<Location> locationList = new ArrayList<>();
-            locationList.addAll(accuList);
-            locationList.addAll(cnList);
-            locationList.addAll(caiyunList);
+            for (Object o : objects) {
+                locationList.addAll((List<Location>) o);
+            }
             return locationList;
         }).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<Location>>() {

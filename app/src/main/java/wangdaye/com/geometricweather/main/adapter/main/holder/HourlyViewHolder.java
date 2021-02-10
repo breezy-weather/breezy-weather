@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +24,6 @@ import wangdaye.com.geometricweather.basic.model.weather.Minutely;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.main.adapter.main.MainTag;
 import wangdaye.com.geometricweather.main.adapter.trend.HourlyTrendAdapter;
-import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.main.layout.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -33,44 +31,48 @@ import wangdaye.com.geometricweather.ui.adapter.TagAdapter;
 import wangdaye.com.geometricweather.ui.decotarion.GridMarginsDecoration;
 import wangdaye.com.geometricweather.ui.widget.PrecipitationBar;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
+import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView card;
+    private final CardView mCard;
 
-    private final TextView title;
-    private final TextView subtitle;
-    private final RecyclerView tagView;
+    private final TextView mTitle;
+    private final TextView mSubtitle;
+    private final RecyclerView mTagView;
 
-    private final TrendRecyclerView trendRecyclerView;
-    private final HourlyTrendAdapter trendAdapter;
-    private @Nullable TrendRecyclerViewScrollBar trendScrollBar;
+    private final TrendRecyclerView mTrendRecyclerView;
+    private final HourlyTrendAdapter mTrendAdapter;
 
-    private final LinearLayout minutelyContainer;
-    private final TextView minutelyTitle;
-    private final PrecipitationBar precipitationBar;
-    private final TextView minutelyStartText;
-    private final TextView minutelyEndText;
+    private final LinearLayout mMinutelyContainer;
+    private final TextView mMinutelyTitle;
+    private final PrecipitationBar mPrecipitationBar;
+    private final TextView mMinutelyStartText;
+    private final TextView mMinutelyEndText;
 
     public HourlyViewHolder(ViewGroup parent) {
-        super(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.container_main_hourly_trend_card, parent, false));
+        super(LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.container_main_hourly_trend_card, parent, false));
 
-        this.card = itemView.findViewById(R.id.container_main_hourly_trend_card);
-        this.title = itemView.findViewById(R.id.container_main_hourly_trend_card_title);
-        this.subtitle = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle);
-        this.tagView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView);
-        this.trendRecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_trendRecyclerView);
-        this.minutelyContainer = itemView.findViewById(R.id.container_main_hourly_trend_card_minutely);
-        this.minutelyTitle = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyTitle);
-        this.precipitationBar = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyBar);
-        this.minutelyStartText = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyStartText);
-        this.minutelyEndText = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyEndText);
+        mCard = itemView.findViewById(R.id.container_main_hourly_trend_card);
+        mTitle = itemView.findViewById(R.id.container_main_hourly_trend_card_title);
+        mSubtitle = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle);
+        mTagView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView);
 
-        this.trendAdapter = new HourlyTrendAdapter();
+        mTrendRecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_trendRecyclerView);
+        mTrendRecyclerView.addItemDecoration(new TrendRecyclerViewScrollBar(parent.getContext()));
+        mTrendRecyclerView.setHasFixedSize(true);
 
-        minutelyContainer.setOnClickListener(v -> {
+        mMinutelyContainer = itemView.findViewById(R.id.container_main_hourly_trend_card_minutely);
+        mMinutelyTitle = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyTitle);
+        mPrecipitationBar = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyBar);
+        mMinutelyStartText = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyStartText);
+        mMinutelyEndText = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyEndText);
+
+        mTrendAdapter = new HourlyTrendAdapter();
+
+        mMinutelyContainer.setOnClickListener(v -> {
 
         });
     }
@@ -83,76 +85,81 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = themeManager.getWeatherThemeColors()[0];
+        int weatherColor = mThemeManager.getWeatherThemeColors()[0];
 
-        card.setCardBackgroundColor(themeManager.getRootColor(context));
+        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
 
-        title.setTextColor(weatherColor);
+        mTitle.setTextColor(weatherColor);
 
         if (TextUtils.isEmpty(weather.getCurrent().getHourlyForecast())) {
-            subtitle.setVisibility(View.GONE);
+            mSubtitle.setVisibility(View.GONE);
         } else {
-            subtitle.setVisibility(View.VISIBLE);
-            subtitle.setText(weather.getCurrent().getHourlyForecast());
+            mSubtitle.setVisibility(View.VISIBLE);
+            mSubtitle.setText(weather.getCurrent().getHourlyForecast());
         }
 
         List<TagAdapter.Tag> tagList = getTagList(weather, location.getWeatherSource());
         if (tagList.size() < 2) {
-            tagView.setVisibility(View.GONE);
+            mTagView.setVisibility(View.GONE);
         } else {
-            int decorCount = tagView.getItemDecorationCount();
+            int decorCount = mTagView.getItemDecorationCount();
             for (int i = 0; i < decorCount; i++) {
-                tagView.removeItemDecorationAt(0);
+                mTagView.removeItemDecorationAt(0);
             }
-            tagView.addItemDecoration(
+            mTagView.addItemDecoration(
                     new GridMarginsDecoration(
-                            context.getResources().getDimension(R.dimen.little_margin),
-                            context.getResources().getDimension(R.dimen.normal_margin),
-                            tagView
+                            mContext.getResources().getDimension(R.dimen.little_margin),
+                            mContext.getResources().getDimension(R.dimen.normal_margin),
+                            mTagView
                     )
             );
 
-            tagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
-            tagView.setAdapter(
-                    new TagAdapter(context, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
+            mTagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(mContext));
+            mTagView.setAdapter(
+                    new TagAdapter(mContext, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
                         return false;
                     }, 0)
             );
         }
 
-        trendRecyclerView.setHasFixedSize(true);
-        trendRecyclerView.setLayoutManager(
+        mTrendRecyclerView.setLayoutManager(
                 new TrendHorizontalLinearLayoutManager(
-                        context,
-                        DisplayUtils.isLandscape(context) ? 7 : 5
+                        mContext,
+                        DisplayUtils.isLandscape(mContext) ? 7 : 5
                 )
         );
-        trendRecyclerView.setAdapter(trendAdapter);
-        trendRecyclerView.setKeyLineVisibility(
-                SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
+        mTrendRecyclerView.setAdapter(mTrendAdapter);
+        mTrendRecyclerView.setKeyLineVisibility(
+                SettingsOptionManager.getInstance(mContext).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
 
-        this.trendScrollBar = new TrendRecyclerViewScrollBar(context);
-        trendRecyclerView.addItemDecoration(trendScrollBar);
+        // trendScrollBar = new TrendRecyclerViewScrollBar(context);
+        // trendRecyclerView.addItemDecoration(trendScrollBar);
 
         List<Minutely> minutelyList = weather.getMinutelyForecast();
         if (minutelyList.size() != 0 && needToShowMinutelyForecast(minutelyList)) {
-            minutelyContainer.setVisibility(View.VISIBLE);
+            mMinutelyContainer.setVisibility(View.VISIBLE);
 
-            minutelyTitle.setTextColor(themeManager.getTextContentColor(context));
+            mMinutelyTitle.setTextColor(mThemeManager.getTextContentColor(mContext));
 
-            precipitationBar.setBackgroundColor(themeManager.getLineColor(context));
-            precipitationBar.setPrecipitationColor(themeManager.getWeatherThemeColors()[0]);
-            precipitationBar.setMinutelyList(minutelyList);
+            mPrecipitationBar.setBackgroundColor(mThemeManager.getLineColor(mContext));
+            mPrecipitationBar.setPrecipitationColor(mThemeManager.getWeatherThemeColors()[0]);
+            mPrecipitationBar.setMinutelyList(minutelyList);
 
             int size = minutelyList.size();
-            minutelyStartText.setText(Base.getTime(context, minutelyList.get(0).getDate()));
-            minutelyStartText.setTextColor(themeManager.getTextSubtitleColor(context));
-            minutelyEndText.setText(Base.getTime(context, minutelyList.get(size - 1).getDate()));
-            minutelyEndText.setTextColor(themeManager.getTextSubtitleColor(context));
+            mMinutelyStartText.setText(Base.getTime(mContext, minutelyList.get(0).getDate()));
+            mMinutelyStartText.setTextColor(mThemeManager.getTextSubtitleColor(mContext));
+            mMinutelyEndText.setText(Base.getTime(mContext, minutelyList.get(size - 1).getDate()));
+            mMinutelyEndText.setTextColor(mThemeManager.getTextSubtitleColor(mContext));
+
+            mMinutelyContainer.setContentDescription(
+                    activity.getString(R.string.content_des_minutely_precipitation)
+                            .replace("$1", Base.getTime(mContext, minutelyList.get(0).getDate()))
+                            .replace("$2", Base.getTime(mContext, minutelyList.get(size - 1).getDate()))
+            );
         } else {
-            minutelyContainer.setVisibility(View.GONE);
+            mMinutelyContainer.setVisibility(View.GONE);
         }
     }
 
@@ -168,20 +175,20 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
     private void setTrendAdapterByTag(Location location, MainTag tag) {
         switch (tag.getType()) {
             case TEMPERATURE:
-                trendAdapter.temperature(
-                        (GeoActivity) context, trendRecyclerView,
+                mTrendAdapter.temperature(
+                        (GeoActivity) mContext, mTrendRecyclerView,
                         location,
-                        provider,
-                        SettingsOptionManager.getInstance(context).getTemperatureUnit()
+                        mProvider,
+                        SettingsOptionManager.getInstance(mContext).getTemperatureUnit()
                 );
                 break;
 
             case PRECIPITATION:
-                trendAdapter.precipitation(
-                        (GeoActivity) context, trendRecyclerView,
+                mTrendAdapter.precipitation(
+                        (GeoActivity) mContext, mTrendRecyclerView,
                         location,
-                        provider,
-                        SettingsOptionManager.getInstance(context).getPrecipitationUnit()
+                        mProvider,
+                        SettingsOptionManager.getInstance(mContext).getPrecipitationUnit()
                 );
                 break;
         }
@@ -189,7 +196,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
     private List<TagAdapter.Tag> getTagList(Weather weather, WeatherSource source) {
         List<TagAdapter.Tag> tagList = new ArrayList<>();
-        tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
+        tagList.add(new MainTag(mContext.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
         // tagList.addAll(getPrecipitationTagList(weather));
         return tagList;
     }
@@ -197,7 +204,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
     private List<TagAdapter.Tag> getPrecipitationTagList(Weather weather) {
         int precipitationCount = 0;
         for (Hourly h : weather.getHourlyForecast()) {
-            if (h.getWeatherCode().isPercipitation() && h.getPrecipitation().isValid()) {
+            if (h.getWeatherCode().isPrecipitation() && h.getPrecipitation().isValid()) {
                 precipitationCount ++;
             }
         }
@@ -205,17 +212,8 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             return new ArrayList<>();
         } else {
             List<TagAdapter.Tag> list = new ArrayList<>();
-            list.add(new MainTag(context.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
+            list.add(new MainTag(mContext.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
             return list;
-        }
-    }
-
-    @Override
-    public void onRecycleView() {
-        super.onRecycleView();
-        if (trendScrollBar != null) {
-            trendRecyclerView.removeItemDecoration(trendScrollBar);
-            trendScrollBar = null;
         }
     }
 }

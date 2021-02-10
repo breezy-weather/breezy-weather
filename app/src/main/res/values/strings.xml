@@ -4,7 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
     <string name="package_name">wangdaye.com.geometricweather</string><!-- Do not translate. -->
-    <string name="version_code">v2.705</string><!-- Do not translate. -->
+    <string name="version_code">v2.707</string><!-- Do not translate. -->
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -185,6 +185,11 @@
     <string name="feedback_request_location_permission_success">Location permissions request success</string>
     <string name="feedback_request_location_permission_failed">Location permissions request failed</string>
 
+    <string name="feedback_location_permissions_title">Access location information</string>
+    <string name="feedback_location_permissions_statement">Geometric Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don\'t want us to obtain your location information, you can deny those requirements and manually set your location in the management page.</string>
+    <string name="feedback_background_location_title">Access location in background</string>
+    <string name="feedback_background_location_summary">In order to allow the app to access location information in background, so that we can perceive changes in location and provide you with valid weather data, please set location access as \"Allow all the time\".</string>
+
     <string name="feedback_location_failed">Location failed</string>
     <string name="feedback_get_weather_failed">Request weather data failed</string>
     <string name="feedback_location_help_title">Cannot get location correctly?</string>
@@ -192,9 +197,6 @@
     <string name="feedback_enable_location_information">Enable Location Information</string>
     <string name="feedback_select_location_provider">Select Location Provider</string>
     <string name="feedback_add_location_manually">Add Location Manually And Delete \'$\'</string>
-    <string name="feedback_background_location_title">Access location in background</string>
-    <string name="feedback_background_location_summary">In order to allow the app to access location in background, please set location access as \"Allow all the time\".</string>
-
     <string name="feedback_view_style">View style</string>
     <string name="feedback_show_widget_card">Background color</string>
     <string name="feedback_show_widget_card_alpha">Transparency</string>
@@ -300,6 +302,38 @@
 
     <string name="feedback_click_to_get_more">Click to get more…</string>
     <string name="feedback_click_again_to_exit">Click again to exit</string>
+
+    <!-- content description -->
+    <string name="content_desc_back">Back</string>
+    <string name="content_desc_check_details">Check details</string>
+    <string name="content_desc_weather_alert_button">$ weather alerts</string> <!-- $ = alert count. -->
+    <string name="content_des_pm25">PM two point five</string>
+    <string name="content_des_pm10">PM ten</string>
+    <string name="content_des_so2">Sulfur dioxide</string>
+    <string name="content_des_no2">Nitrogen dioxide</string>
+    <string name="content_des_o3">Ozone</string>
+    <string name="content_des_co">Carbon monoxide</string>
+    <string name="content_des_m3">Carbon monoxide</string>
+    <string name="content_des_sunrise">Sunrise at $</string> <!-- $ = time. -->
+    <string name="content_des_sunset">Sunset at $</string> <!-- $ = time. -->
+    <string name="content_des_moonrise">Moonrise at $</string> <!-- $ = time. -->
+    <string name="content_des_moonset">Moonset at $</string> <!-- $ = time. -->
+    <string name="content_des_no_precipitation">No precipitation</string>
+    <string name="content_des_minutely_precipitation">Precipitation between $1 and $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="content_des_add_current_location">Add current location</string>
+    <string name="content_des_drag_flag">Tap to drag the list items to sort</string>
+    <string name="content_des_delete_flag">Delete this item</string>
+    <string name="content_des_swipe_left_to_delete">You can swipe left to delete this item</string>
+    <string name="content_des_swipe_right_to_delete">You can swipe right to delete this item</string>
+    <string name="content_desc_search_filter_on">Only show locations from default weather source</string>
+    <string name="content_desc_search_filter_off">Show locations from all weather sources</string>
+    <string name="content_desc_powered_by">Powered by $</string> <!-- $ = weather source. -->
+    <string name="content_desc_app_store">@string/action_appStore</string>
+    <string name="content_desc_wechat_payment_code">Payment QR code of wechat</string>
+    <string name="content_desc_weather_icon">Weather icon</string>
+    <string name="content_desc_weather_icon_light">Light icon</string>
+    <string name="content_desc_weather_icon_grey">Grey icon</string>
+    <string name="content_desc_weather_icon_dark">Dark icon</string>
 
     <!-- action -->
     <string name="action_alert">Alert</string>

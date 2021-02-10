@@ -12,8 +12,8 @@ public enum PollenUnit {
 
     PPCM("ppcm", 0);
 
-    private String unitId;
-    private int unitArrayIndex;
+    private final String unitId;
+    private final int unitArrayIndex;
 
     PollenUnit(String id, int arrayIndex) {
         unitId = id;
@@ -39,6 +39,24 @@ public enum PollenUnit {
             return getPollenText(context, 0);
         } else {
             return getPollenText(context, (int) value);
+        }
+    }
+
+    public String getPollenVoice(Context context, int value) {
+        if (DisplayUtils.isRtl(context)) {
+            return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt(value))
+                    + context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
+        } else {
+            return UnitUtils.formatInt(value)
+                    + context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
+        }
+    }
+
+    public String getPollenVoice(Context context, @Nullable Integer value) {
+        if (value == null) {
+            return getPollenVoice(context, 0);
+        } else {
+            return getPollenVoice(context, (int) value);
         }
     }
 }

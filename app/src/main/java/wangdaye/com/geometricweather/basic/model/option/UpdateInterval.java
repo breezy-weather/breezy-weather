@@ -22,8 +22,8 @@ public enum UpdateInterval {
     INTERVAL_5_30("5:30", 5.5f),
     INTERVAL_6_00("6:00", 6.0f);
 
-    private String value;
-    private float intervalInHour;
+    private final String value;
+    private final float intervalInHour;
 
     UpdateInterval(String value, float intervalInHour) {
         this.value = value;

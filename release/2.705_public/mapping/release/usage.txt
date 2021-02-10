@@ -358,7 +358,7 @@ io.reactivex.internal.schedulers.SchedulerWhen$DelayedAction
 org.greenrobot.greendao.rx.RxDao$20
 io.reactivex.internal.operators.maybe.MaybeTakeUntilMaybe
 com.google.android.material.transition.FitModeResult
-wangdaye.com.geometricweather.manage.activity.ManageActivity:
+wangdaye.com.geometricweather.manage.ManageActivity:
     public static final int SEARCH_ACTIVITY
     public static final int SELECT_PROVIDER_ACTIVITY
 androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver:
@@ -7562,7 +7562,7 @@ androidx.appcompat.graphics.drawable.DrawableContainer:
     private static final boolean DEFAULT_DITHER
 io.reactivex.internal.operators.single.SingleDelayWithPublisher
 com.google.android.gms.location.zzc
-wangdaye.com.geometricweather.manage.activity.SearchActivity:
+wangdaye.com.geometricweather.manage.search.SearchActivity:
     private static final int STATE_SHOWING
     private static final int STATE_LOADING
 io.reactivex.internal.operators.single.SingleOnErrorReturn

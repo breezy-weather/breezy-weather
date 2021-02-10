@@ -30,16 +30,16 @@ import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 public class GeometricWeather extends MultiDexApplication {
 
-    private static GeometricWeather instance;
+    private static GeometricWeather sInstance;
     public static GeometricWeather getInstance() {
-        return instance;
+        return sInstance;
     }
 
-    private Set<GeoActivity> activitySet;
+    private Set<GeoActivity> mActivitySet;
 
-    private OkHttpClient okHttpClient;
-    private GsonConverterFactory gsonConverterFactory;
-    private RxJava2CallAdapterFactory rxJava2CallAdapterFactory;
+    private OkHttpClient mOkHttpClient;
+    private GsonConverterFactory mGsonConverterFactory;
+    private RxJava2CallAdapterFactory mRxJava2CallAdapterFactory;
 
     public static final String NOTIFICATION_CHANNEL_ID_NORMALLY = "normally";
     public static final String NOTIFICATION_CHANNEL_ID_ALERT = "alert";
@@ -151,14 +151,14 @@ public class GeometricWeather extends MultiDexApplication {
     }
 
     private void initialize() {
-        instance = this;
-        activitySet = new HashSet<>();
+        sInstance = this;
+        mActivitySet = new HashSet<>();
 
-        okHttpClient = TLSCompactHelper.getClientBuilder().build();
-        gsonConverterFactory = GsonConverterFactory.create(
+        mOkHttpClient = TLSCompactHelper.getClientBuilder().build();
+        mGsonConverterFactory = GsonConverterFactory.create(
                 new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create());
                 // new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").create());
-        rxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create();
+        mRxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create();
 
         LanguageUtils.setLanguage(
                 this, SettingsOptionManager.getInstance(this).getLanguage().getLocale());
@@ -167,23 +167,23 @@ public class GeometricWeather extends MultiDexApplication {
     }
 
     public void addActivity(GeoActivity a) {
-        activitySet.add(a);
+        mActivitySet.add(a);
     }
 
     public void removeActivity(GeoActivity a) {
-        activitySet.remove(a);
+        mActivitySet.remove(a);
     }
 
     public OkHttpClient getOkHttpClient() {
-        return okHttpClient;
+        return mOkHttpClient;
     }
 
     public GsonConverterFactory getGsonConverterFactory() {
-        return gsonConverterFactory;
+        return mGsonConverterFactory;
     }
 
     public RxJava2CallAdapterFactory getRxJava2CallAdapterFactory() {
-        return rxJava2CallAdapterFactory;
+        return mRxJava2CallAdapterFactory;
     }
 
     public static String getProcessName() {
@@ -242,7 +242,7 @@ public class GeometricWeather extends MultiDexApplication {
     }
 
     public void recreateAllActivities() {
-        for (Activity a : activitySet) {
+        for (Activity a : mActivitySet) {
             a.recreate();
         }
     }

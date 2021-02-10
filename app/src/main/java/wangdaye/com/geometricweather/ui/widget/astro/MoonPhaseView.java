@@ -13,14 +13,14 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class MoonPhaseView extends View {
 
-    private Paint paint;
-    private RectF foregroundRectF = new RectF();
-    private RectF backgroundRectF = new RectF();
+    private Paint mPaint;
+    private RectF mForegroundRectF = new RectF();
+    private RectF mBackgroundRectF = new RectF();
 
-    private float surfaceAngle; // head of light surface, clockwise.
-    @ColorInt private int lightColor;
-    @ColorInt private int darkColor;
-    @ColorInt private int strokeColor;
+    private float mSurfaceAngle; // head of light surface, clockwise.
+    @ColorInt private int mLightColor;
+    @ColorInt private int mDarkColor;
+    @ColorInt private int mStrokeColor;
 
     private float LINE_WIDTH = 1;
 
@@ -42,29 +42,29 @@ public class MoonPhaseView extends View {
         setColor(Color.WHITE, Color.BLACK, Color.GRAY);
         setSurfaceAngle(0); // from 0 -> phase : 🌑 (new)
 
-        foregroundRectF = new RectF();
-        backgroundRectF = new RectF();
+        mForegroundRectF = new RectF();
+        mBackgroundRectF = new RectF();
 
         LINE_WIDTH = DisplayUtils.dpToPx(getContext(), (int) LINE_WIDTH);
     }
 
     private void initPaint() {
-        paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public void setColor(@ColorInt int lightColor, @ColorInt int darkColor,
                          @ColorInt int strokeColor) {
-        this.lightColor = lightColor;
-        this.darkColor = darkColor;
-        this.strokeColor = strokeColor;
+        mLightColor = lightColor;
+        mDarkColor = darkColor;
+        mStrokeColor = strokeColor;
     }
 
     public void setSurfaceAngle(float surfaceAngle) {
-        this.surfaceAngle = surfaceAngle;
-        if (this.surfaceAngle >= 360) {
-            this.surfaceAngle %= 360;
+        mSurfaceAngle = surfaceAngle;
+        if (mSurfaceAngle >= 360) {
+            mSurfaceAngle %= 360;
         }
         invalidate();
     }
@@ -73,7 +73,7 @@ public class MoonPhaseView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
         int padding = (int) DisplayUtils.dpToPx(getContext(), 4);
-        backgroundRectF.set(
+        mBackgroundRectF.set(
                 padding,
                 padding,
                 getMeasuredWidth() - padding,
@@ -85,124 +85,124 @@ public class MoonPhaseView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        paint.setStyle(Paint.Style.FILL);
-        if (surfaceAngle == 0) { // 🌑
+        mPaint.setStyle(Paint.Style.FILL);
+        if (mSurfaceAngle == 0) { // 🌑
             drawDarkCircle(canvas);
-        } else if (surfaceAngle < 90) { // 🌒
+        } else if (mSurfaceAngle < 90) { // 🌒
             drawLightCircle(canvas);
 
-            paint.setColor(darkColor);
-            canvas.drawArc(backgroundRectF, 90, 180, true, paint);
+            mPaint.setColor(mDarkColor);
+            canvas.drawArc(mBackgroundRectF, 90, 180, true, mPaint);
             float halfWidth = (float) (
-                    backgroundRectF.width() / 2 * Math.cos(Math.toRadians(surfaceAngle))
+                    mBackgroundRectF.width() / 2 * Math.cos(Math.toRadians(mSurfaceAngle))
             );
-            foregroundRectF.set(
-                    backgroundRectF.centerX() - halfWidth,
-                    backgroundRectF.top,
-                    backgroundRectF.centerX() + halfWidth,
-                    backgroundRectF.bottom
+            mForegroundRectF.set(
+                    mBackgroundRectF.centerX() - halfWidth,
+                    mBackgroundRectF.top,
+                    mBackgroundRectF.centerX() + halfWidth,
+                    mBackgroundRectF.bottom
             );
-            canvas.drawArc(foregroundRectF, 270, 180, true, paint);
-        } else if (surfaceAngle == 90) { // 🌓
+            canvas.drawArc(mForegroundRectF, 270, 180, true, mPaint);
+        } else if (mSurfaceAngle == 90) { // 🌓
             drawDarkCircle(canvas);
-            paint.setColor(lightColor);
-            canvas.drawArc(backgroundRectF, 270, 180, true, paint);
-        } else if (surfaceAngle < 180) { // 🌔
+            mPaint.setColor(mLightColor);
+            canvas.drawArc(mBackgroundRectF, 270, 180, true, mPaint);
+        } else if (mSurfaceAngle < 180) { // 🌔
             drawDarkCircle(canvas);
 
-            paint.setColor(lightColor);
-            canvas.drawArc(backgroundRectF, 270, 180, true, paint);
+            mPaint.setColor(mLightColor);
+            canvas.drawArc(mBackgroundRectF, 270, 180, true, mPaint);
             float halfWidth = (float) (
-                    backgroundRectF.width() / 2 * Math.sin(Math.toRadians(surfaceAngle - 90))
+                    mBackgroundRectF.width() / 2 * Math.sin(Math.toRadians(mSurfaceAngle - 90))
             );
-            foregroundRectF.set(
-                    backgroundRectF.centerX() - halfWidth,
-                    backgroundRectF.top,
-                    backgroundRectF.centerX() + halfWidth,
-                    backgroundRectF.bottom
+            mForegroundRectF.set(
+                    mBackgroundRectF.centerX() - halfWidth,
+                    mBackgroundRectF.top,
+                    mBackgroundRectF.centerX() + halfWidth,
+                    mBackgroundRectF.bottom
             );
-            canvas.drawArc(foregroundRectF, 90, 180, true, paint);
-        } else if (surfaceAngle == 180) { // 🌕
+            canvas.drawArc(mForegroundRectF, 90, 180, true, mPaint);
+        } else if (mSurfaceAngle == 180) { // 🌕
             drawLightCircle(canvas);
-        } else if (surfaceAngle < 270) { // 🌖
+        } else if (mSurfaceAngle < 270) { // 🌖
             drawDarkCircle(canvas);
 
-            paint.setColor(lightColor);
-            canvas.drawArc(backgroundRectF, 90, 180, true, paint);
+            mPaint.setColor(mLightColor);
+            canvas.drawArc(mBackgroundRectF, 90, 180, true, mPaint);
             float halfWidth = (float) (
-                    backgroundRectF.width() / 2 * Math.cos(Math.toRadians(surfaceAngle - 180))
+                    mBackgroundRectF.width() / 2 * Math.cos(Math.toRadians(mSurfaceAngle - 180))
             );
-            foregroundRectF.set(
-                    backgroundRectF.centerX() - halfWidth,
-                    backgroundRectF.top,
-                    backgroundRectF.centerX() + halfWidth,
-                    backgroundRectF.bottom
+            mForegroundRectF.set(
+                    mBackgroundRectF.centerX() - halfWidth,
+                    mBackgroundRectF.top,
+                    mBackgroundRectF.centerX() + halfWidth,
+                    mBackgroundRectF.bottom
             );
-            canvas.drawArc(foregroundRectF, 270, 180, true, paint);
-        } else if (surfaceAngle == 270) { // 🌗
+            canvas.drawArc(mForegroundRectF, 270, 180, true, mPaint);
+        } else if (mSurfaceAngle == 270) { // 🌗
             drawDarkCircle(canvas);
-            paint.setColor(lightColor);
-            canvas.drawArc(backgroundRectF, 90, 180, true, paint);
+            mPaint.setColor(mLightColor);
+            canvas.drawArc(mBackgroundRectF, 90, 180, true, mPaint);
         } else { // surface angle < 360. 🌘
             drawLightCircle(canvas);
 
-            paint.setColor(darkColor);
-            canvas.drawArc(backgroundRectF, 270, 180, true, paint);
+            mPaint.setColor(mDarkColor);
+            canvas.drawArc(mBackgroundRectF, 270, 180, true, mPaint);
             float halfWidth = (float) (
-                    backgroundRectF.width() / 2 * Math.cos(Math.toRadians(360 - surfaceAngle))
+                    mBackgroundRectF.width() / 2 * Math.cos(Math.toRadians(360 - mSurfaceAngle))
             );
-            foregroundRectF.set(
-                    backgroundRectF.centerX() - halfWidth,
-                    backgroundRectF.top,
-                    backgroundRectF.centerX() + halfWidth,
-                    backgroundRectF.bottom
+            mForegroundRectF.set(
+                    mBackgroundRectF.centerX() - halfWidth,
+                    mBackgroundRectF.top,
+                    mBackgroundRectF.centerX() + halfWidth,
+                    mBackgroundRectF.bottom
             );
-            canvas.drawArc(foregroundRectF, 90, 180, true, paint);
+            canvas.drawArc(mForegroundRectF, 90, 180, true, mPaint);
         }
 
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(LINE_WIDTH);
-        if (surfaceAngle < 90 || 270 < surfaceAngle) {
-            paint.setColor(darkColor);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(LINE_WIDTH);
+        if (mSurfaceAngle < 90 || 270 < mSurfaceAngle) {
+            mPaint.setColor(mDarkColor);
             canvas.drawLine(
-                    backgroundRectF.centerX(), backgroundRectF.top,
-                    backgroundRectF.centerX(), backgroundRectF.bottom,
-                    paint
+                    mBackgroundRectF.centerX(), mBackgroundRectF.top,
+                    mBackgroundRectF.centerX(), mBackgroundRectF.bottom,
+                    mPaint
             );
-        } else if (90 < surfaceAngle && surfaceAngle < 270) {
-            paint.setColor(lightColor);
+        } else if (90 < mSurfaceAngle && mSurfaceAngle < 270) {
+            mPaint.setColor(mLightColor);
             canvas.drawLine(
-                    backgroundRectF.centerX(), backgroundRectF.top,
-                    backgroundRectF.centerX(), backgroundRectF.bottom,
-                    paint
+                    mBackgroundRectF.centerX(), mBackgroundRectF.top,
+                    mBackgroundRectF.centerX(), mBackgroundRectF.bottom,
+                    mPaint
             );
         }
-        paint.setColor(strokeColor);
+        mPaint.setColor(mStrokeColor);
         canvas.drawCircle(
-                backgroundRectF.centerX(),
-                backgroundRectF.centerY(),
-                backgroundRectF.width() / 2,
-                paint
+                mBackgroundRectF.centerX(),
+                mBackgroundRectF.centerY(),
+                mBackgroundRectF.width() / 2,
+                mPaint
         );
     }
 
     private void drawLightCircle(Canvas canvas) {
-        paint.setColor(lightColor);
+        mPaint.setColor(mLightColor);
         canvas.drawCircle(
-                backgroundRectF.centerX(),
-                backgroundRectF.centerY(),
-                backgroundRectF.width() / 2,
-                paint
+                mBackgroundRectF.centerX(),
+                mBackgroundRectF.centerY(),
+                mBackgroundRectF.width() / 2,
+                mPaint
         );
     }
 
     private void drawDarkCircle(Canvas canvas) {
-        paint.setColor(darkColor);
+        mPaint.setColor(mDarkColor);
         canvas.drawCircle(
-                backgroundRectF.centerX(),
-                backgroundRectF.centerY(),
-                backgroundRectF.width() / 2,
-                paint
+                mBackgroundRectF.centerX(),
+                mBackgroundRectF.centerY(),
+                mBackgroundRectF.width() / 2,
+                mPaint
         );
     }
 }

@@ -42,18 +42,18 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 @SuppressLint("MissingPermission")
 public class AndroidLocationService extends LocationService {
 
-    private Context context;
-    private Handler timer;
+    private final Context mContext;
+    private final Handler mTimer;
 
-    @Nullable private LocationManager locationManager;
-    @Nullable private FusedLocationProviderClient gmsLocationClient;
+    @Nullable private LocationManager mLocationManager;
+    @Nullable private FusedLocationProviderClient mGMSClient;
 
-    @Nullable private LocationListener networkListener;
-    @Nullable private LocationListener gpsListener;
-    @Nullable private GMSLocationListener gmsListener;
+    @Nullable private LocationListener mNetworkListener;
+    @Nullable private LocationListener mGPSListener;
+    @Nullable private GMSLocationListener mGMSListener;
 
-    @Nullable private LocationCallback locationCallback;
-    @Nullable private Location lastKnownLocation;
+    @Nullable private LocationCallback mLocationCallback;
+    @Nullable private Location mLastKnownLocation;
 
     private static final long TIMEOUT_MILLIS = 10 * 1000;
 
@@ -94,104 +94,104 @@ public class AndroidLocationService extends LocationService {
     }
 
     public AndroidLocationService(Context c) {
-        context = c;
-        timer = new Handler(Looper.getMainLooper());
+        mContext = c;
+        mTimer = new Handler(Looper.getMainLooper());
 
-        networkListener = null;
-        gpsListener = null;
-        gmsListener = null;
+        mNetworkListener = null;
+        mGPSListener = null;
+        mGMSListener = null;
 
-        locationCallback = null;
-        lastKnownLocation = null;
+        mLocationCallback = null;
+        mLastKnownLocation = null;
     }
 
     @Override
     public void requestLocation(Context context, @NonNull LocationCallback callback){
-        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        gmsLocationClient = gmsEnabled(context)
+        mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        mGMSClient = gmsEnabled(context)
                 ? LocationServices.getFusedLocationProviderClient(context)
                 : null;
 
-        if (locationManager == null
-                || !locationEnabled(context, locationManager)
+        if (mLocationManager == null
+                || !locationEnabled(context, mLocationManager)
                 || !hasPermissions(context)) {
             callback.onCompleted(null);
             return;
         }
 
-        networkListener = new LocationListener();
-        gpsListener = new LocationListener();
-        gmsListener = new GMSLocationListener();
+        mNetworkListener = new LocationListener();
+        mGPSListener = new LocationListener();
+        mGMSListener = new GMSLocationListener();
 
-        locationCallback = callback;
-        lastKnownLocation = getLastKnownLocation();
-        if (lastKnownLocation == null && gmsLocationClient != null) {
-            gmsLocationClient.getLastLocation()
-                    .addOnSuccessListener(location -> lastKnownLocation = location);
+        mLocationCallback = callback;
+        mLastKnownLocation = getLastKnownLocation();
+        if (mLastKnownLocation == null && mGMSClient != null) {
+            mGMSClient.getLastLocation()
+                    .addOnSuccessListener(location -> mLastKnownLocation = location);
         }
 
-        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                    0, 0, networkListener, Looper.getMainLooper());
+        if (mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                    0, 0, mNetworkListener, Looper.getMainLooper());
         }
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                    0, 0, gpsListener, Looper.getMainLooper());
+        if (mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                    0, 0, mGPSListener, Looper.getMainLooper());
         }
-        if (gmsLocationClient != null) {
-            gmsLocationClient.requestLocationUpdates(
+        if (mGMSClient != null) {
+            mGMSClient.requestLocationUpdates(
                     LocationRequest.create()
                             .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
                             .setNumUpdates(1),
-                    gmsListener,
+                    mGMSListener,
                     Looper.getMainLooper()
             );
         }
 
-        timer.postDelayed(() -> {
+        mTimer.postDelayed(() -> {
             stopLocationUpdates();
-            handleLocation(lastKnownLocation);
+            handleLocation(mLastKnownLocation);
         }, TIMEOUT_MILLIS);
     }
 
     @Nullable
     private Location getLastKnownLocation() {
-        if (locationManager == null) {
+        if (mLocationManager == null) {
             return null;
         }
 
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if (location != null) {
             return location;
         }
-        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        location = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         if (location != null) {
             return location;
         }
-        return locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        return mLocationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
     }
 
     @Override
     public void cancel() {
         stopLocationUpdates();
-        locationCallback = null;
-        timer.removeCallbacksAndMessages(null);
+        mLocationCallback = null;
+        mTimer.removeCallbacksAndMessages(null);
     }
 
     private void stopLocationUpdates() {
-        if (locationManager != null) {
-            if (networkListener != null) {
-                locationManager.removeUpdates(networkListener);
-                networkListener = null;
+        if (mLocationManager != null) {
+            if (mNetworkListener != null) {
+                mLocationManager.removeUpdates(mNetworkListener);
+                mNetworkListener = null;
             }
-            if (gpsListener != null) {
-                locationManager.removeUpdates(gpsListener);
-                gpsListener = null;
+            if (mGPSListener != null) {
+                mLocationManager.removeUpdates(mGPSListener);
+                mGPSListener = null;
             }
         }
-        if (gmsLocationClient != null && gmsListener != null) {
-            gmsLocationClient.removeLocationUpdates(gmsListener);
-            gmsListener = null;
+        if (mGMSClient != null && mGMSListener != null) {
+            mGMSClient.removeLocationUpdates(mGMSListener);
+            mGMSListener = null;
         }
     }
 
@@ -218,9 +218,9 @@ public class AndroidLocationService extends LocationService {
     }
 
     private void handleResultIfNecessary(@Nullable Result result) {
-        if (locationCallback != null) {
-            locationCallback.onCompleted(result);
-            locationCallback = null;
+        if (mLocationCallback != null) {
+            mLocationCallback.onCompleted(result);
+            mLocationCallback = null;
         }
     }
 
@@ -235,7 +235,7 @@ public class AndroidLocationService extends LocationService {
 
         List<Address> addressList = null;
         try {
-            addressList = new Geocoder(context, LanguageUtils.getCurrentLocale(context))
+            addressList = new Geocoder(mContext, LanguageUtils.getCurrentLocale(mContext))
                     .getFromLocation(
                             location.getLatitude(),
                             location.getLongitude(),

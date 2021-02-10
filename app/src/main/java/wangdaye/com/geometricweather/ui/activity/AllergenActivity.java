@@ -20,9 +20,9 @@ import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecycler
 
 public class AllergenActivity extends GeoActivity {
     
-    private CoordinatorLayout container;
+    private CoordinatorLayout mContainer;
 
-    private Location location;
+    private Location mLocation;
     public static final String KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID = "ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID";
 
     @Override
@@ -41,32 +41,31 @@ public class AllergenActivity extends GeoActivity {
 
     @Override
     public View getSnackbarContainer() {
-        return container;
+        return mContainer;
     }
 
     private void initData() {
         String formattedId = getIntent().getStringExtra(KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID);
         if (!TextUtils.isEmpty(formattedId)) {
-            location = DatabaseHelper.getInstance(this).readLocation(formattedId);
+            mLocation = DatabaseHelper.getInstance(this).readLocation(formattedId);
         }
-        if (location == null) {
-            location = DatabaseHelper.getInstance(this).readLocationList().get(0);
+        if (mLocation == null) {
+            mLocation = DatabaseHelper.getInstance(this).readLocationList().get(0);
         }
-        location.setWeather(DatabaseHelper.getInstance(this).readWeather(location));
+        mLocation.setWeather(DatabaseHelper.getInstance(this).readWeather(mLocation));
     }
 
     private void initWidget() {
-        this.container = findViewById(R.id.activity_allergen_container);
+        mContainer = findViewById(R.id.activity_allergen_container);
 
         Toolbar toolbar = findViewById(R.id.activity_allergen_toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        if (location.getWeather() != null) {
+        if (mLocation.getWeather() != null) {
             FitBottomSystemBarRecyclerView recyclerView = findViewById(R.id.activity_allergen_recyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.addItemDecoration(new ListDecoration(this));
-            recyclerView.setAdapter(new DailyPollenAdapter(location.getWeather()));
+            recyclerView.setAdapter(new DailyPollenAdapter(mLocation.getWeather()));
         } else {
             finish();
         }

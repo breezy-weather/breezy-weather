@@ -23,27 +23,27 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
  * */
 public class HourlyTrendItemView extends AbsTrendItemView {
 
-    private @Nullable AbsChartItemView chartItem;
-    private Paint paint;
+    private @Nullable AbsChartItemView mChartItem;
+    private Paint mPaint;
 
-    @Nullable private OnClickListener clickListener;
+    @Nullable private OnClickListener mClickListener;
 
-    @Nullable private String hourText;
-    @Nullable private Drawable iconDrawable;
+    @Nullable private String mHourText;
+    @Nullable private Drawable mIconDrawable;
 
-    @ColorInt private int contentColor;
+    @ColorInt private int mContentColor;
 
-    private float hourTextBaseLine;
+    private float mHourTextBaseLine;
 
-    private float iconLeft;
-    private float iconTop;
+    private float mIconLeft;
+    private float mIconTop;
 
-    private float trendViewTop;
+    private float mTrendViewTop;
 
-    private int iconSize;
+    private int mIconSize;
 
-    private int chartTop;
-    private int chartBottom;
+    private int mChartTop;
+    private int mChartBottom;
 
     private static final int ICON_SIZE_DIP = 32;
     private static final int TEXT_MARGIN_DIP = 4;
@@ -51,39 +51,39 @@ public class HourlyTrendItemView extends AbsTrendItemView {
 
     public HourlyTrendItemView(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public HourlyTrendItemView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public HourlyTrendItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initialize();
+        initialize();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public HourlyTrendItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
+        initialize();
     }
 
     private void initialize() {
         setWillNotDraw(false);
 
-        paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setTextSize(getResources().getDimensionPixelSize(R.dimen.content_text_size));
-        paint.setTextAlign(Paint.Align.CENTER);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.content_text_size));
+        mPaint.setTextAlign(Paint.Align.CENTER);
 
         setTextColor(Color.BLACK);
 
-        iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        mIconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
 
-        chartTop = 0;
-        chartBottom = 0;
+        mChartTop = 0;
+        mChartBottom = 0;
     }
 
     @Override
@@ -95,20 +95,20 @@ public class HourlyTrendItemView extends AbsTrendItemView {
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
 
-        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
 
         // week text.
         y += textMargin;
-        hourTextBaseLine = y - fontMetrics.top;
+        mHourTextBaseLine = y - fontMetrics.top;
         y += fontMetrics.bottom - fontMetrics.top;
         y += textMargin;
 
         // day icon.
-        if (iconDrawable != null) {
+        if (mIconDrawable != null) {
             y += iconMargin;
-            iconLeft = (width - iconSize) / 2f;
-            iconTop = y;
-            y += iconSize;
+            mIconLeft = (width - mIconSize) / 2f;
+            mIconTop = y;
+            y += mIconSize;
             y += iconMargin;
         }
 
@@ -117,8 +117,8 @@ public class HourlyTrendItemView extends AbsTrendItemView {
                 getContext(), TrendRecyclerView.ITEM_MARGIN_BOTTOM_DIP);
 
         // chartItem item view.
-        if (chartItem != null) {
-            chartItem.measure(
+        if (mChartItem != null) {
+            mChartItem.measure(
                     MeasureSpec.makeMeasureSpec(
                             width,
                             MeasureSpec.EXACTLY
@@ -128,22 +128,22 @@ public class HourlyTrendItemView extends AbsTrendItemView {
                     )
             );
         }
-        trendViewTop = y;
+        mTrendViewTop = y;
 
-        chartTop = (int) (trendViewTop + chartItem.getMarginTop());
-        chartBottom = (int) (trendViewTop + chartItem.getMeasuredHeight() - chartItem.getMarginBottom());
+        mChartTop = (int) (mTrendViewTop + mChartItem.getMarginTop());
+        mChartBottom = (int) (mTrendViewTop + mChartItem.getMeasuredHeight() - mChartItem.getMarginBottom());
 
         setMeasuredDimension(width, height);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        if (chartItem != null) {
-            chartItem.layout(
+        if (mChartItem != null) {
+            mChartItem.layout(
                     0,
-                    (int) trendViewTop,
-                    chartItem.getMeasuredWidth(),
-                    (int) trendViewTop + chartItem.getMeasuredHeight()
+                    (int) mTrendViewTop,
+                    mChartItem.getMeasuredWidth(),
+                    (int) mTrendViewTop + mChartItem.getMeasuredHeight()
             );
         }
     }
@@ -151,16 +151,16 @@ public class HourlyTrendItemView extends AbsTrendItemView {
     @Override
     protected void onDraw(Canvas canvas) {
         // week text.
-        if (hourText != null) {
-            paint.setColor(contentColor);
-            canvas.drawText(hourText, getMeasuredWidth() / 2f, hourTextBaseLine, paint);
+        if (mHourText != null) {
+            mPaint.setColor(mContentColor);
+            canvas.drawText(mHourText, getMeasuredWidth() / 2f, mHourTextBaseLine, mPaint);
         }
 
         // day icon.
-        if (iconDrawable != null) {
+        if (mIconDrawable != null) {
             int restoreCount = canvas.save();
-            canvas.translate(iconLeft, iconTop);
-            iconDrawable.draw(canvas);
+            canvas.translate(mIconLeft, mIconTop);
+            mIconDrawable.draw(canvas);
             canvas.restoreToCount(restoreCount);
         }
     }
@@ -170,8 +170,8 @@ public class HourlyTrendItemView extends AbsTrendItemView {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
-                if (clickListener != null) {
-                    clickListener.onClick(this);
+                if (mClickListener != null) {
+                    mClickListener.onClick(this);
                 }
                 break;
         }
@@ -179,23 +179,23 @@ public class HourlyTrendItemView extends AbsTrendItemView {
     }
 
     public void setHourText(String hourText) {
-        this.hourText = hourText;
+        mHourText = hourText;
         invalidate();
     }
 
     public void setTextColor(@ColorInt int contentColor) {
-        this.contentColor = contentColor;
+        mContentColor = contentColor;
         invalidate();
     }
 
     public void setIconDrawable(@Nullable Drawable d) {
-        boolean nullDrawable = iconDrawable == null;
+        boolean nullDrawable = mIconDrawable == null;
 
-        iconDrawable = d;
+        mIconDrawable = d;
         if (d != null) {
             d.setVisible(true, true);
             d.setCallback(this);
-            d.setBounds(0, 0, iconSize, iconSize);
+            d.setBounds(0, 0, mIconSize, mIconSize);
         }
 
         if (nullDrawable != (d == null)) {
@@ -207,31 +207,31 @@ public class HourlyTrendItemView extends AbsTrendItemView {
 
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
-        clickListener = l;
+        mClickListener = l;
         super.setOnClickListener(v -> {});
     }
 
     @Override
     public void setChartItemView(AbsChartItemView t) {
-        chartItem = t;
+        mChartItem = t;
         removeAllViews();
-        addView(chartItem);
+        addView(mChartItem);
         requestLayout();
     }
 
     @Override
     public AbsChartItemView getChartItemView() {
-        return chartItem;
+        return mChartItem;
     }
 
     @Override
     public int getChartTop() {
-        return chartTop;
+        return mChartTop;
     }
 
     @Override
     public int getChartBottom() {
-        return chartBottom;
+        return mChartBottom;
     }
 }
 

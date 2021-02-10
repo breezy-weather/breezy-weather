@@ -33,10 +33,10 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class PreviewIconActivity extends GeoActivity {
 
-    private CoordinatorLayout container;
+    private CoordinatorLayout mContainer;
 
-    private ResourceProvider provider;
-    private List<WeatherIconAdapter.Item> itemList;
+    private ResourceProvider mProvider;
+    private List<WeatherIconAdapter.Item> mItemList;
 
     public static final String KEY_ICON_PREVIEW_ACTIVITY_PACKAGE_NAME
             = "ICON_PREVIEW_ACTIVITY_PACKAGE_NAME";
@@ -57,137 +57,137 @@ public class PreviewIconActivity extends GeoActivity {
 
     @Override
     public View getSnackbarContainer() {
-        return container;
+        return mContainer;
     }
 
     private void initData() {
-        provider = ResourcesProviderFactory.getNewInstance(
+        mProvider = ResourcesProviderFactory.getNewInstance(
                 getIntent().getStringExtra(KEY_ICON_PREVIEW_ACTIVITY_PACKAGE_NAME)
         );
-        itemList = new ArrayList<>();
+        mItemList = new ArrayList<>();
 
-        itemList.add(new WeatherIconAdapter.Title(getString(R.string.daytime)));
-        itemList.add(new WeatherIcon(provider, WeatherCode.CLEAR, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.PARTLY_CLOUDY, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.CLOUDY, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.WIND, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.RAIN, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.SNOW, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.SLEET, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.HAIL, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.THUNDER, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.THUNDERSTORM, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.FOG, true));
-        itemList.add(new WeatherIcon(provider, WeatherCode.HAZE, true));
-        itemList.add(new WeatherIconAdapter.Line());
+        mItemList.add(new WeatherIconAdapter.Title(getString(R.string.daytime)));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.CLEAR, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.PARTLY_CLOUDY, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.CLOUDY, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.WIND, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.RAIN, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.SNOW, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.SLEET, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.HAIL, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.THUNDER, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.THUNDERSTORM, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.FOG, true));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.HAZE, true));
+        mItemList.add(new WeatherIconAdapter.Line());
 
-        itemList.add(new WeatherIconAdapter.Title(getString(R.string.nighttime)));
-        itemList.add(new WeatherIcon(provider, WeatherCode.CLEAR, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.PARTLY_CLOUDY, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.CLOUDY, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.WIND, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.RAIN, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.SNOW, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.SLEET, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.HAIL, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.THUNDER, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.THUNDERSTORM, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.FOG, false));
-        itemList.add(new WeatherIcon(provider, WeatherCode.HAZE, false));
-        itemList.add(new WeatherIconAdapter.Line());
+        mItemList.add(new WeatherIconAdapter.Title(getString(R.string.nighttime)));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.CLEAR, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.PARTLY_CLOUDY, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.CLOUDY, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.WIND, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.RAIN, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.SNOW, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.SLEET, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.HAIL, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.THUNDER, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.THUNDERSTORM, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.FOG, false));
+        mItemList.add(new WeatherIcon(mProvider, WeatherCode.HAZE, false));
+        mItemList.add(new WeatherIconAdapter.Line());
 
         boolean darkMode = DisplayUtils.isDarkMode(this);
 
-        itemList.add(new WeatherIconAdapter.Title("Minimal " + getString(R.string.daytime)));
-        itemList.add(new MinimalIcon(provider, WeatherCode.CLEAR, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.PARTLY_CLOUDY, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.CLOUDY, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.WIND, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.RAIN, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.SNOW, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.SLEET, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.HAIL, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.THUNDER, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.THUNDERSTORM, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.FOG, true, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.HAZE, true, darkMode));
-        itemList.add(new WeatherIconAdapter.Line());
+        mItemList.add(new WeatherIconAdapter.Title("Minimal " + getString(R.string.daytime)));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.CLEAR, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.PARTLY_CLOUDY, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.CLOUDY, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.WIND, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.RAIN, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.SNOW, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.SLEET, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.HAIL, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.THUNDER, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.THUNDERSTORM, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.FOG, true, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.HAZE, true, darkMode));
+        mItemList.add(new WeatherIconAdapter.Line());
 
-        itemList.add(new WeatherIconAdapter.Title("Minimal " + getString(R.string.nighttime)));
-        itemList.add(new MinimalIcon(provider, WeatherCode.CLEAR, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.PARTLY_CLOUDY, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.CLOUDY, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.WIND, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.RAIN, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.SNOW, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.SLEET, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.HAIL, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.THUNDER, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.THUNDERSTORM, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.FOG, false, darkMode));
-        itemList.add(new MinimalIcon(provider, WeatherCode.HAZE, false, darkMode));
-        itemList.add(new WeatherIconAdapter.Line());
+        mItemList.add(new WeatherIconAdapter.Title("Minimal " + getString(R.string.nighttime)));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.CLEAR, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.PARTLY_CLOUDY, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.CLOUDY, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.WIND, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.RAIN, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.SNOW, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.SLEET, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.HAIL, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.THUNDER, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.THUNDERSTORM, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.FOG, false, darkMode));
+        mItemList.add(new MinimalIcon(mProvider, WeatherCode.HAZE, false, darkMode));
+        mItemList.add(new WeatherIconAdapter.Line());
 
-        itemList.add(new WeatherIconAdapter.Title("Shortcuts " + getString(R.string.daytime)));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.CLEAR, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.PARTLY_CLOUDY, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.CLOUDY, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.WIND, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.RAIN, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.SNOW, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.SLEET, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.HAIL, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.THUNDER, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.THUNDERSTORM, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.FOG, true));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.HAZE, true));
-        itemList.add(new WeatherIconAdapter.Line());
+        mItemList.add(new WeatherIconAdapter.Title("Shortcuts " + getString(R.string.daytime)));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.CLEAR, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.PARTLY_CLOUDY, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.CLOUDY, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.WIND, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.RAIN, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.SNOW, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.SLEET, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.HAIL, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.THUNDER, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.THUNDERSTORM, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.FOG, true));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.HAZE, true));
+        mItemList.add(new WeatherIconAdapter.Line());
 
-        itemList.add(new WeatherIconAdapter.Title("Shortcuts " + getString(R.string.nighttime)));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.CLEAR, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.PARTLY_CLOUDY, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.CLOUDY, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.WIND, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.RAIN, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.SNOW, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.SLEET, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.HAIL, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.THUNDER, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.THUNDERSTORM, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.FOG, false));
-        itemList.add(new ShortcutIcon(provider, WeatherCode.HAZE, false));
-        itemList.add(new WeatherIconAdapter.Line());
+        mItemList.add(new WeatherIconAdapter.Title("Shortcuts " + getString(R.string.nighttime)));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.CLEAR, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.PARTLY_CLOUDY, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.CLOUDY, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.WIND, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.RAIN, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.SNOW, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.SLEET, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.HAIL, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.THUNDER, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.THUNDERSTORM, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.FOG, false));
+        mItemList.add(new ShortcutIcon(mProvider, WeatherCode.HAZE, false));
+        mItemList.add(new WeatherIconAdapter.Line());
 
-        itemList.add(new WeatherIconAdapter.Title(getString(R.string.sunrise_sunset)));
-        itemList.add(new SunIcon(provider));
-        itemList.add(new MoonIcon(provider));
+        mItemList.add(new WeatherIconAdapter.Title(getString(R.string.sunrise_sunset)));
+        mItemList.add(new SunIcon(mProvider));
+        mItemList.add(new MoonIcon(mProvider));
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void initWidget() {
-        this.container = findViewById(R.id.activity_preview_icon_container);
+        mContainer = findViewById(R.id.activity_preview_icon_container);
 
         Toolbar toolbar = findViewById(R.id.activity_preview_icon_toolbar);
-        toolbar.setTitle(provider.getProviderName());
-        toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
+        toolbar.setTitle(mProvider.getProviderName());
         toolbar.setNavigationOnClickListener(v -> finish());
         toolbar.inflateMenu(R.menu.activity_preview_icon);
         toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.action_appStore:
-                    if (provider instanceof DefaultResourceProvider
-                            || provider instanceof PixelResourcesProvider) {
+                    if (mProvider instanceof DefaultResourceProvider
+                            || mProvider instanceof PixelResourcesProvider) {
                         IntentHelper.startAppStoreDetailsActivity(this);
                     } else {
-                        IntentHelper.startAppStoreDetailsActivity(this, provider.getPackageName());
+                        IntentHelper.startAppStoreDetailsActivity(this, mProvider.getPackageName());
                     }
                     break;
 
                 case R.id.action_about:
-                    if (provider instanceof DefaultResourceProvider
-                            || provider instanceof PixelResourcesProvider) {
+                    if (mProvider instanceof DefaultResourceProvider
+                            || mProvider instanceof PixelResourcesProvider) {
                         IntentHelper.startApplicationDetailsActivity(this);
                     } else {
-                        IntentHelper.startApplicationDetailsActivity(this, provider.getPackageName());
+                        IntentHelper.startApplicationDetailsActivity(this, mProvider.getPackageName());
                     }
                     break;
             }
@@ -196,9 +196,9 @@ public class PreviewIconActivity extends GeoActivity {
 
         RecyclerView recyclerView = findViewById(R.id.activity_preview_icon_recyclerView);
         GridLayoutManager manager = new GridLayoutManager(this, 4);
-        manager.setSpanSizeLookup(WeatherIconAdapter.getSpanSizeLookup(4, itemList));
+        manager.setSpanSizeLookup(WeatherIconAdapter.getSpanSizeLookup(4, mItemList));
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(new WeatherIconAdapter(this, itemList));
+        recyclerView.setAdapter(new WeatherIconAdapter(this, mItemList));
     }
 }
 
@@ -212,6 +212,12 @@ abstract class BaseWeatherIcon extends WeatherIconAdapter.WeatherIcon {
         this.provider = provider;
         this.weatherCode = weatherCode;
         this.daytime = daytime;
+    }
+
+    @Override
+    public String getContentDescription() {
+        String name = weatherCode.name().toLowerCase().replace("_", " ");
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 }
 
@@ -240,17 +246,17 @@ class WeatherIcon extends BaseWeatherIcon {
 
 class MinimalIcon extends BaseWeatherIcon {
 
-    private boolean darkMode;
+    private final boolean mDarkMode;
 
     MinimalIcon(ResourceProvider provider, WeatherCode weatherCode, boolean daytime, boolean darkMode) {
         super(provider, weatherCode, daytime);
-        this.darkMode = darkMode;
+        mDarkMode = darkMode;
     }
 
     @Override
     public Drawable getDrawable() {
         return ResourceHelper.getWidgetNotificationIcon(
-                provider, weatherCode, daytime, true, !darkMode);
+                provider, weatherCode, daytime, true, !mDarkMode);
     }
 
     @Override
@@ -307,6 +313,11 @@ class SunIcon extends WeatherIconAdapter.WeatherIcon {
     }
 
     @Override
+    public String getContentDescription() {
+        return "Sun";
+    }
+
+    @Override
     public void onItemClicked(GeoActivity activity) {
         // do nothing.
     }
@@ -321,5 +332,10 @@ class MoonIcon extends SunIcon {
     @Override
     public Drawable getDrawable() {
         return ResourceHelper.getMoonDrawable(provider);
+    }
+
+    @Override
+    public String getContentDescription() {
+        return "Moon";
     }
 }

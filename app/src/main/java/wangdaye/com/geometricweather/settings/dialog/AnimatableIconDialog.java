@@ -23,9 +23,9 @@ import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
  * */
 public class AnimatableIconDialog extends DialogFragment {
 
-    private String title;
-    @Size(3) private Drawable[] iconDrawables;
-    @Size(3) private Animator[] iconAnimators;
+    private String mTitle;
+    @Size(3) private Drawable[] mIconDrawables;
+    @Size(3) private Animator[] mIconAnimators;
 
     @NonNull
     @SuppressLint("InflateParams")
@@ -33,7 +33,7 @@ public class AnimatableIconDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_animatable_icon, null, false);
-        this.initWidget(view);
+        initWidget(view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
@@ -42,10 +42,10 @@ public class AnimatableIconDialog extends DialogFragment {
 
     private void initWidget(View view) {
         TextView titleView = view.findViewById(R.id.dialog_animatable_icon_title);
-        titleView.setText(title);
+        titleView.setText(mTitle);
 
         AnimatableIconView iconView = view.findViewById(R.id.dialog_animatable_icon_icon);
-        iconView.setAnimatableIcon(iconDrawables, iconAnimators);
+        iconView.setAnimatableIcon(mIconDrawables, mIconAnimators);
 
         CoordinatorLayout container = view.findViewById(R.id.dialog_animatable_icon_container);
         container.setOnClickListener(v -> iconView.startAnimators());
@@ -54,8 +54,8 @@ public class AnimatableIconDialog extends DialogFragment {
     public void setData(@NonNull String title,
                         @NonNull @Size(3) Drawable[] iconDrawables,
                         @NonNull @Size(3) Animator[] iconAnimators) {
-        this.title = title;
-        this.iconDrawables = iconDrawables;
-        this.iconAnimators = iconAnimators;
+        mTitle = title;
+        mIconDrawables = iconDrawables;
+        mIconAnimators = iconAnimators;
     }
 }

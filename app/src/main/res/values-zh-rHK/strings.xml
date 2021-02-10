@@ -164,6 +164,11 @@
     <string name="feedback_request_location_permission_success">獲取位置權限成功</string>
     <string name="feedback_request_location_permission_failed">獲取位置權限失敗</string>
 
+    <string name="feedback_location_permissions_title">獲取位置信息</string>
+    <string name="feedback_location_permissions_statement">幾何天氣需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
+    <string name="feedback_background_location_title">在後臺訪問位置</string>
+    <string name="feedback_background_location_summary">爲了讓app可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設置爲“始终允许”。</string>
+
     <string name="feedback_location_failed">定位失敗</string>
     <string name="feedback_get_weather_failed">獲取天氣數據失敗</string>
     <string name="feedback_location_help_title">無法正常進行定位？</string>
@@ -248,8 +253,6 @@
     <string name="feedback_restart">重啟後生效</string>
     <string name="feedback_readd_location">請重新添加地址</string>
     <string name="feedback_readd_location_after_changing_source">更換數據源後需重新添加地址</string>
-    <string name="feedback_background_location_title">在後臺訪問位置</string>
-    <string name="feedback_background_location_summary">爲了讓app可以在後臺訪問您的位置信息，請將定位權限設置爲“始终允许”</string>
 
     <string name="feedback_running_in_background">正在後台運行以保持更新數據</string>
     <string name="feedback_updating_weather_data">正在更新天氣數據</string>
@@ -274,6 +277,36 @@
     <string name="feedback_resident_location_description">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。\n例如將家鄉設定為常駐城市後，可以在旅途中查看家鄉天氣，而在歸家後，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
 
     <string name="feedback_click_to_get_more">點擊可獲取更多…</string>
+
+    <!-- content description -->
+    <string name="content_desc_back">回退</string>
+    <string name="content_desc_check_details">視檢詳情</string>
+    <string name="content_desc_weather_alert_button">$條天氣預警</string>
+    <string name="content_des_pm25">PM二點五</string>
+    <string name="content_des_pm10">PM十</string>
+    <string name="content_des_so2">二氧化硫</string>
+    <string name="content_des_no2">二氧化氮</string>
+    <string name="content_des_o3">臭氧</string>
+    <string name="content_des_co">一氧化碳</string>
+    <string name="content_des_sunrise">$日出</string>
+    <string name="content_des_sunset">$日落</string>
+    <string name="content_des_moonrise">$月出</string>
+    <string name="content_des_moonset">$月落</string>
+    <string name="content_des_no_precipitation">無降水</string>
+    <string name="content_des_minutely_precipitation">$1至$2間存在降水</string>
+    <string name="content_des_add_current_location">添加當前位置</string>
+    <string name="content_des_drag_flag">輕觸以對列表進行拖拽排序</string>
+    <string name="content_des_delete_flag">刪除此項</string>
+    <string name="content_des_swipe_left_to_delete">你可以向左滑動以刪除該項</string>
+    <string name="content_des_swipe_right_to_delete">你可以向右滑動以刪除該項</string>
+    <string name="content_desc_search_filter_on">僅顯示默認天氣源的地址</string>
+    <string name="content_desc_search_filter_off">顯示所有天氣源的地址</string>
+    <string name="content_desc_powered_by">由$提供</string>
+    <string name="content_desc_wechat_payment_code">微信付款二維碼</string>
+    <string name="content_desc_weather_icon">天氣圖標</string>
+    <string name="content_desc_weather_icon_light">亮色圖標</string>
+    <string name="content_desc_weather_icon_grey">灰色圖標</string>
+    <string name="content_desc_weather_icon_dark">暗色圖標</string>
 
     <!-- action -->
     <string name="action_alert">預警</string>

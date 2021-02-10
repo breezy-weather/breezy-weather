@@ -31,12 +31,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:id="@+id/refresh_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView
+                    <wangdaye.com.geometricweather.ui.widget.insets.FitSystemBarRecyclerView
                         android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -44,7 +44,7 @@
                         android:fitsSystemWindows="true"
                         android:clipToPadding="false" />
 
-                </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout>
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
 

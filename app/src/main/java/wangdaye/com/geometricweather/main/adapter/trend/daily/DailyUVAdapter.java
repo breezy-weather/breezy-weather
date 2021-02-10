@@ -1,17 +1,14 @@
 package wangdaye.com.geometricweather.main.adapter.trend.daily;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
@@ -21,7 +18,6 @@ import wangdaye.com.geometricweather.basic.model.weather.UV;
 import wangdaye.com.geometricweather.basic.model.weather.Weather;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.ui.widget.trend.item.DailyTrendItemView;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
@@ -30,48 +26,34 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHolder> {
 
-    private Weather weather;
-    private TimeZone timeZone;
-    private ThemeManager picker;
+    private final ThemeManager mThemeManager;
 
     private int highestIndex;
+    private int mSize;
 
-    private int size;
+    class ViewHolder extends AbsDailyTrendAdapter.ViewHolder {
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        private DailyTrendItemView dailyItem;
-        private PolylineAndHistogramView polylineAndHistogramView;
+        private final PolylineAndHistogramView mPolylineAndHistogramView;
 
         ViewHolder(View itemView) {
             super(itemView);
-
-            polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
-
-            dailyItem = itemView.findViewById(R.id.item_trend_daily);
-            dailyItem.setChartItemView(polylineAndHistogramView);
+            mPolylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
+            dailyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
         @SuppressLint({"SetTextI18n, InflateParams", "DefaultLocale"})
-        void onBindView(int position) {
-            Context context = itemView.getContext();
+        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+            StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_uv));
+
+            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+
+            Weather weather = location.getWeather();
+            assert weather != null;
             Daily daily = weather.getDailyForecast().get(position);
 
-            if (daily.isToday(timeZone)) {
-                dailyItem.setWeekText(context.getString(R.string.today));
-            } else {
-                dailyItem.setWeekText(daily.getWeek(context));
-            }
-
-            dailyItem.setDateText(daily.getShortDate(context));
-
-            dailyItem.setTextColor(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
-            );
-
             Integer index = daily.getUV().getIndex();
-            polylineAndHistogramView.setData(
+            talkBackBuilder.append(", ").append(index).append(", ").append(daily.getUV().getLevel());
+            mPolylineAndHistogramView.setData(
                     null, null,
                     null, null,
                     null, null,
@@ -80,21 +62,21 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
                     (float) highestIndex,
                     0f
             );
-            polylineAndHistogramView.setLineColors(
-                    daily.getUV().getUVColor(context),
-                    daily.getUV().getUVColor(context),
-                    picker.getLineColor(context)
+            mPolylineAndHistogramView.setLineColors(
+                    daily.getUV().getUVColor(activity),
+                    daily.getUV().getUVColor(activity),
+                    mThemeManager.getLineColor(activity)
             );
-            int[] themeColors = picker.getWeatherThemeColors();
-            polylineAndHistogramView.setShadowColors(
-                    themeColors[1], themeColors[2], picker.isLightTheme());
-            polylineAndHistogramView.setTextColors(
-                    picker.getTextContentColor(context),
-                    picker.getTextSubtitleColor(context)
+            int[] themeColors = mThemeManager.getWeatherThemeColors();
+            mPolylineAndHistogramView.setShadowColors(
+                    themeColors[1], themeColors[2], mThemeManager.isLightTheme());
+            mPolylineAndHistogramView.setTextColors(
+                    mThemeManager.getTextContentColor(activity),
+                    mThemeManager.getTextSubtitleColor(activity)
             );
-            polylineAndHistogramView.setHistogramAlpha(picker.isLightTheme() ? 1f : 0.5f);
+            mPolylineAndHistogramView.setHistogramAlpha(mThemeManager.isLightTheme() ? 1f : 0.5f);
 
-            dailyItem.setOnClickListener(v -> onItemClicked(getAdapterPosition()));
+            dailyItem.setContentDescription(talkBackBuilder.toString());
         }
     }
 
@@ -102,9 +84,9 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
     public DailyUVAdapter(GeoActivity activity, TrendRecyclerView parent, Location location) {
         super(activity, location);
 
-        this.weather = location.getWeather();
-        this.timeZone = location.getTimeZone();
-        this.picker = ThemeManager.getInstance(activity);
+        Weather weather = location.getWeather();
+        assert weather != null;
+        mThemeManager = ThemeManager.getInstance(activity);
 
         highestIndex = Integer.MIN_VALUE;
         boolean valid = false;
@@ -115,7 +97,7 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
             }
             if ((index != null && index != 0) || valid) {
                 valid = true;
-                size ++;
+                mSize ++;
             }
         }
         if (highestIndex == 0) {
@@ -131,7 +113,7 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(picker.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getLineColor(activity));
         parent.setData(keyLineList, highestIndex, 0);
     }
 
@@ -145,11 +127,11 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(position);
+        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
     }
 
     @Override
     public int getItemCount() {
-        return size;
+        return mSize;
     }
 }

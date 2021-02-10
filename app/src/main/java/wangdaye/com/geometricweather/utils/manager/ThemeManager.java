@@ -20,24 +20,24 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class ThemeManager {
 
-    private static volatile ThemeManager instance;
+    private static volatile ThemeManager sInstance;
     public static ThemeManager getInstance(Context context) {
-        if (instance == null) {
+        if (sInstance == null) {
             synchronized (ThemeManager.class) {
-                instance = new ThemeManager(context);
+                sInstance = new ThemeManager(context);
             }
         }
-        return instance;
+        return sInstance;
     }
 
-    private @Nullable WeatherView weatherView;
-    private boolean daytime;
-    private DarkMode darkMode;
+    private @Nullable WeatherView mWeatherView;
+    private boolean mDaytime;
+    private DarkMode mDarkMode;
 
-    private boolean lightTheme;
+    private boolean mLightTheme;
 
     public ThemeManager(Context context) {
-        this.weatherView = null;
+        mWeatherView = null;
         update(context);
     }
 
@@ -51,45 +51,45 @@ public class ThemeManager {
 
     public void innerUpdate(Context context, @Nullable WeatherView weatherView) {
         if (weatherView != null) {
-            this.weatherView = weatherView;
+            mWeatherView = weatherView;
         }
-        this.daytime = TimeManager.getInstance(context).isDayTime();
-        this.darkMode = SettingsOptionManager.getInstance(context).getDarkMode();
+        mDaytime = TimeManager.getInstance(context).isDayTime();
+        mDarkMode = SettingsOptionManager.getInstance(context).getDarkMode();
 
-        switch (darkMode) {
+        switch (mDarkMode) {
             case AUTO:
-                this.lightTheme = daytime;
+                mLightTheme = mDaytime;
                 break;
 
             case SYSTEM:
-                this.lightTheme = isSystemLightMode(context);
+                mLightTheme = isSystemLightMode(context);
                 break;
 
             case LIGHT:
-                this.lightTheme = true;
+                mLightTheme = true;
                 break;
 
             case DARK:
-                this.lightTheme = false;
+                mLightTheme = false;
                 break;
         }
     }
 
     @Nullable
     public WeatherView getWeatherView() {
-        return weatherView;
+        return mWeatherView;
     }
 
     public boolean isDaytime() {
-        return daytime;
+        return mDaytime;
     }
 
     public DarkMode getDarkMode() {
-        return darkMode;
+        return mDarkMode;
     }
 
     public boolean isLightTheme() {
-        return lightTheme;
+        return mLightTheme;
     }
 
     @ColorInt
@@ -114,24 +114,24 @@ public class ThemeManager {
      * */
     @ColorInt @Size(3)
     public int[] getWeatherThemeColors() {
-        if (weatherView != null) {
-            return weatherView.getThemeColors(lightTheme);
+        if (mWeatherView != null) {
+            return mWeatherView.getThemeColors(mLightTheme);
         }
         return new int[] {Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT};
     }
 
     @ColorInt
     public int getWeatherBackgroundColor() {
-        if (weatherView != null) {
-            return weatherView.getBackgroundColor();
+        if (mWeatherView != null) {
+            return mWeatherView.getBackgroundColor();
         }
         return Color.TRANSPARENT;
     }
 
     @Px
     public int getHeaderHeight() {
-        if (weatherView != null) {
-            return weatherView.getHeaderHeight();
+        if (mWeatherView != null) {
+            return mWeatherView.getHeaderHeight();
         }
         return 0;
     }

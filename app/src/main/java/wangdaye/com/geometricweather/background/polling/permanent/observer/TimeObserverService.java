@@ -31,12 +31,12 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public class TimeObserverService extends Service {
 
-    private static TimeTickReceiver receiver;
+    private static TimeTickReceiver sReceiver;
 
-    private static float pollingRate;
-    private static long lastUpdateNormalViewTime;
-    private static String todayForecastTime;
-    private static String tomorrowForecastTime;
+    private static float sPollingRate;
+    private static long sLastUpdateNormalViewTime;
+    private static String sTodayForecastTime;
+    private static String sTomorrowForecastTime;
 
     public static final String KEY_CONFIG_CHANGED = "config_changed";
     public static final String KEY_POLLING_FAILED = "polling_failed";
@@ -59,7 +59,7 @@ public class TimeObserverService extends Service {
 
                 case Intent.ACTION_TIME_CHANGED:
                 case Intent.ACTION_TIMEZONE_CHANGED:
-                    lastUpdateNormalViewTime = -1;
+                    sLastUpdateNormalViewTime = -1;
                     doRefreshWork();
                     break;
             }
@@ -96,29 +96,29 @@ public class TimeObserverService extends Service {
     }
 
     private void initData() {
-        pollingRate = 1.5f;
-        todayForecastTime = SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME;
-        tomorrowForecastTime = SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME;
-        lastUpdateNormalViewTime = System.currentTimeMillis();
+        sPollingRate = 1.5f;
+        sTodayForecastTime = SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME;
+        sTomorrowForecastTime = SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME;
+        sLastUpdateNormalViewTime = System.currentTimeMillis();
     }
 
     private void readData(Intent intent) {
         if (intent != null) {
             if (intent.getBooleanExtra(KEY_CONFIG_CHANGED, false)) {
-                pollingRate = intent.getFloatExtra(KEY_POLLING_RATE, 1.5f);
-                todayForecastTime = intent.getStringExtra(KEY_TODAY_FORECAST_TIME);
-                tomorrowForecastTime = intent.getStringExtra(KEY_TOMORROW_FORECAST_TIME);
+                sPollingRate = intent.getFloatExtra(KEY_POLLING_RATE, 1.5f);
+                sTodayForecastTime = intent.getStringExtra(KEY_TODAY_FORECAST_TIME);
+                sTomorrowForecastTime = intent.getStringExtra(KEY_TOMORROW_FORECAST_TIME);
             }
             if (intent.getBooleanExtra(KEY_POLLING_FAILED, false)) {
-                lastUpdateNormalViewTime = System.currentTimeMillis() - getPollingInterval() + 15 * 60 * 1000;
+                sLastUpdateNormalViewTime = System.currentTimeMillis() - getPollingInterval() + 15 * 60 * 1000;
             }
         }
     }
 
     private void doRefreshWork() {
-        if (lastUpdateNormalViewTime < 0
-                || System.currentTimeMillis() - lastUpdateNormalViewTime > getPollingInterval()) {
-            lastUpdateNormalViewTime = System.currentTimeMillis();
+        if (sLastUpdateNormalViewTime < 0
+                || System.currentTimeMillis() - sLastUpdateNormalViewTime > getPollingInterval()) {
+            sLastUpdateNormalViewTime = System.currentTimeMillis();
             Intent intent = new Intent(this, ForegroundNormalUpdateService.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForegroundService(intent);
@@ -126,7 +126,7 @@ public class TimeObserverService extends Service {
                 startService(intent);
             }
         }
-        if (!TextUtils.isEmpty(todayForecastTime) && isForecastTime(todayForecastTime)) {
+        if (!TextUtils.isEmpty(sTodayForecastTime) && isForecastTime(sTodayForecastTime)) {
             Intent intent = new Intent(this, ForegroundTodayForecastUpdateService.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForegroundService(intent);
@@ -134,7 +134,7 @@ public class TimeObserverService extends Service {
                 startService(intent);
             }
         }
-        if (!TextUtils.isEmpty(tomorrowForecastTime) && isForecastTime(tomorrowForecastTime)) {
+        if (!TextUtils.isEmpty(sTomorrowForecastTime) && isForecastTime(sTomorrowForecastTime)) {
             Intent intent = new Intent(this, ForegroundTomorrowForecastUpdateService.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForegroundService(intent);
@@ -149,14 +149,14 @@ public class TimeObserverService extends Service {
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
-        receiver = new TimeTickReceiver();
-        registerReceiver(receiver, filter);
+        sReceiver = new TimeTickReceiver();
+        registerReceiver(sReceiver, filter);
     }
 
     private void unregisterReceiver() {
-        if (receiver != null) {
-            unregisterReceiver(receiver);
-            receiver = null;
+        if (sReceiver != null) {
+            unregisterReceiver(sReceiver);
+            sReceiver = null;
         }
     }
 
@@ -206,7 +206,7 @@ public class TimeObserverService extends Service {
     }
 
     private long getPollingInterval() {
-        return (long) (pollingRate * 1000 * 60 * 60);
+        return (long) (sPollingRate * 1000 * 60 * 60);
     }
 
     private static boolean isForecastTime(String time) {

@@ -4,7 +4,7 @@ public enum RelativeHumidityUnit {
 
     PERCENT("%");
 
-    private String unitAbbreviation;
+    private final String unitAbbreviation;
 
     RelativeHumidityUnit(String abbreviation) {
         unitAbbreviation = abbreviation;

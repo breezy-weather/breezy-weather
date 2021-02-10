@@ -22,6 +22,7 @@
         android:src="@drawable/ic_search"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
+        android:contentDescription="@string/content_desc_check_details"
         style="@style/material_image_button" />
 
     <TextView

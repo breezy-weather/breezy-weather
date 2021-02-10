@@ -28,18 +28,18 @@ public class CMWeatherProviderService extends WeatherProviderService
         implements WeatherHelper.OnRequestWeatherListener {
 
     @Nullable
-    private ServiceRequest request;
+    private ServiceRequest mRequest;
 
-    private LocationHelper locationHelper;
-    private WeatherHelper weatherHelper;
+    private LocationHelper mLocationHelper;
+    private WeatherHelper mWeatherHelper;
 
-    private LocationHelper.OnRequestLocationListener locationListener
+    private final LocationHelper.OnRequestLocationListener locationListener
             = new LocationHelper.OnRequestLocationListener() {
 
         @Override
         public void requestLocationSuccess(Location requestLocation) {
-            if (request != null) {
-                weatherHelper.requestWeather(
+            if (mRequest != null) {
+                mWeatherHelper.requestWeather(
                         CMWeatherProviderService.this,
                         requestLocation,
                         CMWeatherProviderService.this);
@@ -48,19 +48,19 @@ public class CMWeatherProviderService extends WeatherProviderService
 
         @Override
         public void requestLocationFailed(Location requestLocation) {
-            if (request != null) {
-                request.fail();
+            if (mRequest != null) {
+                mRequest.fail();
             }
         }
     };
 
-    private WeatherHelper.OnRequestLocationListener weatherLocationListener
+    private final WeatherHelper.OnRequestLocationListener weatherLocationListener
             = new WeatherHelper.OnRequestLocationListener() {
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
-            if (request != null) {
+            if (mRequest != null) {
                 if (locationList != null && locationList.size() > 0) {
-                    weatherHelper.requestWeather(
+                    mWeatherHelper.requestWeather(
                             CMWeatherProviderService.this,
                             locationList.get(0),
                             CMWeatherProviderService.this);
@@ -72,8 +72,8 @@ public class CMWeatherProviderService extends WeatherProviderService
 
         @Override
         public void requestLocationFailed(String query) {
-            if (request != null) {
-                request.fail();
+            if (mRequest != null) {
+                mRequest.fail();
             }
         }
     };
@@ -81,9 +81,9 @@ public class CMWeatherProviderService extends WeatherProviderService
     @Override
     public void onCreate() {
         super.onCreate();
-        request = null;
-        locationHelper = new LocationHelper(this);
-        weatherHelper = new WeatherHelper();
+        mRequest = null;
+        mLocationHelper = new LocationHelper(this);
+        mWeatherHelper = new WeatherHelper();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class CMWeatherProviderService extends WeatherProviderService
     @Override
     protected void onRequestSubmitted(ServiceRequest serviceRequest) {
         cancelRequest();
-        request = serviceRequest;
+        mRequest = serviceRequest;
 
         RequestInfo info = serviceRequest.getRequestInfo();
         switch (info.getRequestType()) {
@@ -125,21 +125,21 @@ public class CMWeatherProviderService extends WeatherProviderService
     // control.
 
     private void requestLocation() {
-        locationHelper.requestLocation(this, Location.buildLocal(), true, locationListener);
+        mLocationHelper.requestLocation(this, Location.buildLocal(), true, locationListener);
     }
 
     private void requestWeather(String cityName) {
         if (!TextUtils.isEmpty(cityName)) {
-            weatherHelper.requestLocation(this, cityName, weatherLocationListener);
-        } else if (request != null) {
-            request.fail();
+            mWeatherHelper.requestLocation(this, cityName, true, weatherLocationListener);
+        } else if (mRequest != null) {
+            mRequest.fail();
         }
     }
 
     private void cancelRequest() {
-        request = null;
-        locationHelper.cancel();
-        weatherHelper.cancel();
+        mRequest = null;
+        mLocationHelper.cancel();
+        mWeatherHelper.cancel();
     }
 
     // interface.
@@ -150,7 +150,7 @@ public class CMWeatherProviderService extends WeatherProviderService
     public void requestWeatherSuccess(@NonNull Location requestLocation) {
         try {
             Weather weather = requestLocation.getWeather();
-            if (request != null && weather != null) {
+            if (mRequest != null && weather != null) {
                 List<WeatherInfo.DayForecast> forecastList = new ArrayList<>();
                 for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
                     forecastList.add(
@@ -187,7 +187,7 @@ public class CMWeatherProviderService extends WeatherProviderService
                     ).setForecast(forecastList);
                 }
 
-                request.complete(new ServiceRequestResult.Builder(builder.build()).build());
+                mRequest.complete(new ServiceRequestResult.Builder(builder.build()).build());
             }
         } catch (Exception ignore) {
             requestWeatherFailed(requestLocation);
@@ -196,8 +196,8 @@ public class CMWeatherProviderService extends WeatherProviderService
 
     @Override
     public void requestWeatherFailed(@NonNull Location requestLocation) {
-        if (request != null) {
-            request.fail();
+        if (mRequest != null) {
+            mRequest.fail();
         }
     }
 }

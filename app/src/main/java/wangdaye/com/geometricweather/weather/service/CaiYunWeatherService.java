@@ -27,11 +27,11 @@ import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
 
 public class CaiYunWeatherService extends CNWeatherService {
 
-    private CaiYunApi api;
-    private CompositeDisposable compositeDisposable;
+    private final CaiYunApi mApi;
+    private final CompositeDisposable mCompositeDisposable;
 
     public CaiYunWeatherService() {
-        api = new Retrofit.Builder()
+        mApi = new Retrofit.Builder()
                 .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
                 .client(
                         GeometricWeather.getInstance()
@@ -43,13 +43,13 @@ public class CaiYunWeatherService extends CNWeatherService {
                 .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
                 .build()
                 .create((CaiYunApi.class));
-        compositeDisposable = new CompositeDisposable();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void requestWeather(Context context,
                                Location location, @NonNull RequestWeatherCallback callback) {
-        Observable<CaiYunMainlyResult> mainly = api.getMainlyWeather(
+        Observable<CaiYunMainlyResult> mainly = mApi.getMainlyWeather(
                 String.valueOf(location.getLatitude()),
                 String.valueOf(location.getLongitude()),
                 location.isCurrentPosition(),
@@ -65,7 +65,7 @@ public class CaiYunWeatherService extends CNWeatherService {
                 "",
                 "zh_cn"
         );
-        Observable<CaiYunForecastResult> forecast = api.getForecastWeather(
+        Observable<CaiYunForecastResult> forecast = mApi.getForecastWeather(
                 String.valueOf(location.getLatitude()),
                 String.valueOf(location.getLongitude()),
                 "zh_cn",
@@ -78,7 +78,7 @@ public class CaiYunWeatherService extends CNWeatherService {
         Observable.zip(mainly, forecast, (mainlyResult, forecastResult) ->
                 CaiyunResultConverter.convert(context, location, mainlyResult, forecastResult)
         ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<Weather>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<Weather>() {
                     @Override
                     public void onSucceed(Weather weather) {
                         if (weather != null) {
@@ -99,7 +99,7 @@ public class CaiYunWeatherService extends CNWeatherService {
     @Override
     public void cancel() {
         super.cancel();
-        compositeDisposable.clear();
+        mCompositeDisposable.clear();
     }
 
     @Override

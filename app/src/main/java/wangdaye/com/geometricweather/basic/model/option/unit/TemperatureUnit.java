@@ -12,9 +12,9 @@ public enum TemperatureUnit {
     F("f", 1, c -> (int) (32 + c * 1.8f)),
     K("k", 2, c -> (int) (273.15 + c));
 
-    private String unitId;
-    private int unitArrayIndex;
-    private Calculator unitCalculator;
+    private final String unitId;
+    private final int unitArrayIndex;
+    private final Calculator unitCalculator;
 
     public interface Calculator {
         int getTemperature(int c);

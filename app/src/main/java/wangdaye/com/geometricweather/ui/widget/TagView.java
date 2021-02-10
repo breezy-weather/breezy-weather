@@ -22,15 +22,15 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class TagView extends AppCompatTextView {
 
-    private RectF outline;
+    private final RectF mOutline;
 
-    private Paint paint;
+    private final Paint mPaint;
 
-    private boolean checked;
-    private @Px float strokeWidth;
+    private boolean mChecked;
+    private @Px final float mStrokeWidth;
 
-    private @ColorInt int checkedBackgroundColor;
-    private @ColorInt int uncheckedBackgroundColor;
+    private @ColorInt int mCheckedBackgroundColor;
+    private @ColorInt int mUncheckedBackgroundColor;
 
     public TagView(Context context) {
         this(context, null);
@@ -43,12 +43,12 @@ public class TagView extends AppCompatTextView {
     public TagView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        outline = new RectF();
+        mOutline = new RectF();
 
-        paint = new Paint();
-        paint.setAntiAlias(true);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
 
-        strokeWidth = DisplayUtils.dpToPx(context, 5);
+        mStrokeWidth = DisplayUtils.dpToPx(context, 5);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TagView, defStyleAttr, 0);
         setChecked(a.getBoolean(R.styleable.TagView_checked, false));
@@ -61,7 +61,7 @@ public class TagView extends AppCompatTextView {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        outline.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        mOutline.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setClipToOutline(true);
@@ -69,11 +69,11 @@ public class TagView extends AppCompatTextView {
                 @Override
                 public void getOutline(View view, Outline viewOutline) {
                     viewOutline.setRoundRect(
-                            (int) outline.left,
-                            (int) outline.top,
-                            (int) outline.right,
-                            (int) outline.bottom,
-                            outline.height() / 2
+                            (int) mOutline.left,
+                            (int) mOutline.top,
+                            (int) mOutline.right,
+                            (int) mOutline.bottom,
+                            mOutline.height() / 2
                     );
                 }
             });
@@ -82,60 +82,60 @@ public class TagView extends AppCompatTextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (checked) {
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(uncheckedBackgroundColor);
-            paint.setAlpha(255);
+        if (mChecked) {
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(mUncheckedBackgroundColor);
+            mPaint.setAlpha(255);
             canvas.drawRoundRect(
-                    outline, outline.height() / 2, outline.height() / 2, paint);
+                    mOutline, mOutline.height() / 2, mOutline.height() / 2, mPaint);
 
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(checkedBackgroundColor);
-            paint.setAlpha((int) (255 * 0.1));
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(mCheckedBackgroundColor);
+            mPaint.setAlpha((int) (255 * 0.1));
             canvas.drawRoundRect(
-                    outline, outline.height() / 2, outline.height() / 2, paint);
+                    mOutline, mOutline.height() / 2, mOutline.height() / 2, mPaint);
 
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(strokeWidth);
-            paint.setColor(checkedBackgroundColor);
-            paint.setAlpha((int) (255 * 0f));
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setStrokeWidth(mStrokeWidth);
+            mPaint.setColor(mCheckedBackgroundColor);
+            mPaint.setAlpha((int) (255 * 0f));
             canvas.drawRoundRect(
-                    outline, outline.height() / 2, outline.height() / 2, paint);
+                    mOutline, mOutline.height() / 2, mOutline.height() / 2, mPaint);
         } else {
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(uncheckedBackgroundColor);
-            paint.setAlpha(255);
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(mUncheckedBackgroundColor);
+            mPaint.setAlpha(255);
             canvas.drawRoundRect(
-                    outline, outline.height() / 2, outline.height() / 2, paint);
+                    mOutline, mOutline.height() / 2, mOutline.height() / 2, mPaint);
         }
 
         super.onDraw(canvas);
     }
 
     public final boolean isChecked() {
-        return checked;
+        return mChecked;
     }
 
     public void setChecked(boolean checked) {
-        this.checked = checked;
+        mChecked = checked;
         invalidate();
     }
 
     public int getCheckedBackgroundColor() {
-        return checkedBackgroundColor;
+        return mCheckedBackgroundColor;
     }
 
     public void setCheckedBackgroundColor(int checkedBackgroundColor) {
-        this.checkedBackgroundColor = checkedBackgroundColor;
+        mCheckedBackgroundColor = checkedBackgroundColor;
         invalidate();
     }
 
     public int getUncheckedBackgroundColor() {
-        return uncheckedBackgroundColor;
+        return mUncheckedBackgroundColor;
     }
 
     public void setUncheckedBackgroundColor(int uncheckedBackgroundColor) {
-        this.uncheckedBackgroundColor = uncheckedBackgroundColor;
+        mUncheckedBackgroundColor = uncheckedBackgroundColor;
         invalidate();
     }
 }

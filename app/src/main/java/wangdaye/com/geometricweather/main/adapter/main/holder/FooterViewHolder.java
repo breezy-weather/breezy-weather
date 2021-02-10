@@ -25,14 +25,14 @@ import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
 
 public class FooterViewHolder extends AbstractMainViewHolder {
 
-    private final TextView title;
-    private final Button editButton;
+    private final TextView mTitle;
+    private final Button mEditButton;
 
     public FooterViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_footer, parent, false));
 
-        this.title = itemView.findViewById(R.id.container_main_footer_title);
-        this.editButton = itemView.findViewById(R.id.container_main_footer_editButton);
+        mTitle = itemView.findViewById(R.id.container_main_footer_title);
+        mEditButton = itemView.findViewById(R.id.container_main_footer_editButton);
     }
 
     @SuppressLint("SetTextI18n")
@@ -41,18 +41,18 @@ public class FooterViewHolder extends AbstractMainViewHolder {
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
-        float cardMarginsVertical = themeManager.getCardMarginsVertical(context);
+        float cardMarginsVertical = mThemeManager.getCardMarginsVertical(context);
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
         if (cardMarginsVertical != 0) {
             params.setMargins(0, (int) -cardMarginsVertical, 0, 0);
         }
         itemView.setLayoutParams(params);
 
-        title.setTextColor(themeManager.getHeaderTextColor(title.getContext()));
-        title.setText("* Powered by " + location.getWeatherSource().getSourceUrl());
+        mTitle.setTextColor(mThemeManager.getHeaderTextColor(mTitle.getContext()));
+        mTitle.setText("* Powered by " + location.getWeatherSource().getSourceUrl());
 
-        editButton.setTextColor(themeManager.getHeaderTextColor(editButton.getContext()));
-        editButton.setOnClickListener(v -> IntentHelper.startCardDisplayManageActivityForResult(
+        mEditButton.setTextColor(mThemeManager.getHeaderTextColor(mEditButton.getContext()));
+        mEditButton.setOnClickListener(v -> IntentHelper.startCardDisplayManageActivityForResult(
                 (Activity) context,
                 MainActivity.CARD_MANAGE_ACTIVITY
         ));

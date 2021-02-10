@@ -35,43 +35,44 @@ import wangdaye.com.geometricweather.ui.widget.astro.SunMoonView;
 
 public class AstroViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView card;
+    private final CardView mCard;
 
-    private final TextView title;
-    private final TextView phaseText;
-    private final MoonPhaseView phaseView;
-    private final SunMoonView sunMoonView;
+    private final TextView mTitle;
+    private final TextView mPhaseText;
+    private final MoonPhaseView mPhaseView;
+    private final SunMoonView mSunMoonView;
 
-    private final RelativeLayout sunContainer;
-    private final TextView sunTxt;
-    private final RelativeLayout moonContainer;
-    private final TextView moonTxt;
+    private final RelativeLayout mSunContainer;
+    private final TextView mSunTxt;
+    private final RelativeLayout mMoonContainer;
+    private final TextView mMoonTxt;
 
-    @Nullable private Weather weather;
-    @Nullable private TimeZone timeZone;
+    @Nullable private Weather mWeather;
+    @Nullable private TimeZone mTimeZone;
 
-    @Size(2) private float[] startTimes;
-    @Size(2) private float[] endTimes;
-    @Size(2) private float[] currentTimes;
-    @Size(2) private float[] animCurrentTimes;
-    private int phaseAngle;
+    @Size(2) private float[] mStartTimes;
+    @Size(2) private float[] mEndTimes;
+    @Size(2) private float[] mCurrentTimes;
+    @Size(2) private float[] mAnimCurrentTimes;
+    private int mPhaseAngle;
 
-    @Size(3) private final AnimatorSet[] attachAnimatorSets;
+    @Size(3) private final AnimatorSet[] mAttachAnimatorSets;
 
     public AstroViewHolder(ViewGroup parent) {
-        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_sun_moon, parent, false));
+        super(LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.container_main_sun_moon, parent, false));
 
-        this.card = itemView.findViewById(R.id.container_main_sun_moon);
-        this.title = itemView.findViewById(R.id.container_main_sun_moon_title);
-        this.phaseText = itemView.findViewById(R.id.container_main_sun_moon_phaseText);
-        this.phaseView = itemView.findViewById(R.id.container_main_sun_moon_phaseView);
-        this.sunMoonView = itemView.findViewById(R.id.container_main_sun_moon_controlView);
-        this.sunContainer = itemView.findViewById(R.id.container_main_sun_moon_sunContainer);
-        this.sunTxt = itemView.findViewById(R.id.container_main_sun_moon_sunrise_sunset);
-        this.moonContainer = itemView.findViewById(R.id.container_main_sun_moon_moonContainer);
-        this.moonTxt = itemView.findViewById(R.id.container_main_sun_moon_moonrise_moonset);
+        mCard = itemView.findViewById(R.id.container_main_sun_moon);
+        mTitle = itemView.findViewById(R.id.container_main_sun_moon_title);
+        mPhaseText = itemView.findViewById(R.id.container_main_sun_moon_phaseText);
+        mPhaseView = itemView.findViewById(R.id.container_main_sun_moon_phaseView);
+        mSunMoonView = itemView.findViewById(R.id.container_main_sun_moon_controlView);
+        mSunContainer = itemView.findViewById(R.id.container_main_sun_moon_sunContainer);
+        mSunTxt = itemView.findViewById(R.id.container_main_sun_moon_sunrise_sunset);
+        mMoonContainer = itemView.findViewById(R.id.container_main_sun_moon_moonContainer);
+        mMoonTxt = itemView.findViewById(R.id.container_main_sun_moon_moonrise_moonset);
 
-        this.attachAnimatorSets = new AnimatorSet[] {null, null, null};
+        mAttachAnimatorSets = new AnimatorSet[] {null, null, null};
     }
 
     @SuppressLint("SetTextI18n")
@@ -82,142 +83,159 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         super.onBindView(activity, location, provider,
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
-        weather = location.getWeather();
-        timeZone = location.getTimeZone();
-        assert weather != null;
+        mWeather = location.getWeather();
+        mTimeZone = location.getTimeZone();
+        assert mWeather != null;
 
-        int[] themeColors = themeManager.getWeatherThemeColors();
+        int[] themeColors = mThemeManager.getWeatherThemeColors();
+        StringBuilder talkBackBuilder = new StringBuilder(mTitle.getText());
 
-        ensureTime(weather);
-        ensurePhaseAngle(weather);
+        ensureTime(mWeather);
+        ensurePhaseAngle(mWeather);
 
-        card.setCardBackgroundColor(themeManager.getRootColor(context));
+        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
 
-        title.setTextColor(themeColors[0]);
+        mTitle.setTextColor(themeColors[0]);
 
-        if (!weather.getDailyForecast().get(0).getMoonPhase().isValid()) {
-            phaseText.setVisibility(View.GONE);
-            phaseView.setVisibility(View.GONE);
+        if (!mWeather.getDailyForecast().get(0).getMoonPhase().isValid()) {
+            mPhaseText.setVisibility(View.GONE);
+            mPhaseView.setVisibility(View.GONE);
         } else {
-            phaseText.setVisibility(View.VISIBLE);
-            phaseText.setTextColor(themeManager.getTextContentColor(context));
-            phaseText.setText(weather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
-            phaseView.setVisibility(View.VISIBLE);
-            phaseView.setColor(
-                    ContextCompat.getColor(context, R.color.colorTextContent_dark),
-                    ContextCompat.getColor(context, R.color.colorTextContent_light),
-                    themeManager.getTextContentColor(context)
+            mPhaseText.setVisibility(View.VISIBLE);
+            mPhaseText.setTextColor(mThemeManager.getTextContentColor(mContext));
+            mPhaseText.setText(mWeather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(mContext));
+            mPhaseView.setVisibility(View.VISIBLE);
+            mPhaseView.setColor(
+                    ContextCompat.getColor(mContext, R.color.colorTextContent_dark),
+                    ContextCompat.getColor(mContext, R.color.colorTextContent_light),
+                    mThemeManager.getTextContentColor(mContext)
             );
+
+            talkBackBuilder.append(", ").append(mPhaseText.getText());
         }
 
-        sunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider));
-        sunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider));
+        mSunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider));
+        mSunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider));
 
         if (itemAnimationEnabled) {
-            sunMoonView.setTime(startTimes, endTimes, startTimes);
-            sunMoonView.setDayIndicatorRotation(0);
-            sunMoonView.setNightIndicatorRotation(0);
-            phaseView.setSurfaceAngle(0);
+            mSunMoonView.setTime(mStartTimes, mEndTimes, mStartTimes);
+            mSunMoonView.setDayIndicatorRotation(0);
+            mSunMoonView.setNightIndicatorRotation(0);
+            mPhaseView.setSurfaceAngle(0);
         } else {
-            sunMoonView.post(() -> sunMoonView.setTime(startTimes, endTimes, currentTimes));
-            sunMoonView.setDayIndicatorRotation(0);
-            sunMoonView.setNightIndicatorRotation(0);
-            phaseView.setSurfaceAngle(phaseAngle);
+            mSunMoonView.post(() -> mSunMoonView.setTime(mStartTimes, mEndTimes, mCurrentTimes));
+            mSunMoonView.setDayIndicatorRotation(0);
+            mSunMoonView.setNightIndicatorRotation(0);
+            mPhaseView.setSurfaceAngle(mPhaseAngle);
         }
-        if (themeManager.isLightTheme()) {
-            sunMoonView.setColors(
+        if (mThemeManager.isLightTheme()) {
+            mSunMoonView.setColors(
                     themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                    themeManager.getRootColor(context),
-                    themeManager.isLightTheme()
+                    mThemeManager.getRootColor(mContext),
+                    mThemeManager.isLightTheme()
             );
         } else {
-            sunMoonView.setColors(
+            mSunMoonView.setColors(
                     themeColors[2],
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
-                    themeManager.getRootColor(context),
-                    themeManager.isLightTheme()
+                    mThemeManager.getRootColor(mContext),
+                    mThemeManager.isLightTheme()
             );
         }
 
-        if (weather.getDailyForecast().get(0).sun().isValid()) {
-            sunContainer.setVisibility(View.VISIBLE);
-            sunTxt.setText(
-                    weather.getDailyForecast().get(0).sun().getRiseTime(context) + "↑"
-                            + "\n"
-                            + weather.getDailyForecast().get(0).sun().getSetTime(context) + "↓"
-            );
+        if (mWeather.getDailyForecast().get(0).sun().isValid()) {
+            String sunriseTime = mWeather.getDailyForecast().get(0).sun().getRiseTime(mContext);
+            String sunsetTime = mWeather.getDailyForecast().get(0).sun().getSetTime(mContext);
+
+            mSunContainer.setVisibility(View.VISIBLE);
+            mSunTxt.setText(sunriseTime + "↑" + "\n" + sunsetTime + "↓");
+
+            assert sunriseTime != null && sunsetTime != null;
+            talkBackBuilder
+                    .append(", ")
+                    .append(activity.getString(R.string.content_des_sunrise).replace("$", sunriseTime))
+                    .append(", ")
+                    .append(activity.getString(R.string.content_des_sunset).replace("$", sunsetTime));
         } else {
-            sunContainer.setVisibility(View.GONE);
+            mSunContainer.setVisibility(View.GONE);
         }
-        if (weather.getDailyForecast().get(0).moon().isValid()) {
-            moonContainer.setVisibility(View.VISIBLE);
-            moonTxt.setText(
-                    weather.getDailyForecast().get(0).moon().getRiseTime(context) + "↑"
-                            + "\n"
-                            + weather.getDailyForecast().get(0).moon().getSetTime(context) + "↓"
-            );
+        if (mWeather.getDailyForecast().get(0).moon().isValid()) {
+            String moonriseTime = mWeather.getDailyForecast().get(0).moon().getRiseTime(mContext);
+            String moonsetTime = mWeather.getDailyForecast().get(0).moon().getSetTime(mContext);
+
+            mMoonContainer.setVisibility(View.VISIBLE);
+            mMoonTxt.setText(moonriseTime + "↑" + "\n" + moonsetTime + "↓");
+
+            assert moonriseTime != null && moonsetTime != null;
+            talkBackBuilder
+                    .append(", ")
+                    .append(activity.getString(R.string.content_des_moonrise).replace("$", moonriseTime))
+                    .append(", ")
+                    .append(activity.getString(R.string.content_des_moonset).replace("$", moonsetTime));
         } else {
-            moonContainer.setVisibility(View.GONE);
+            mMoonContainer.setVisibility(View.GONE);
         }
+
+        itemView.setContentDescription(talkBackBuilder.toString());
     }
 
     @Override
     public void onEnterScreen() {
-        if (itemAnimationEnabled && weather != null) {
-            ValueAnimator timeDay = ValueAnimator.ofObject(new FloatEvaluator(), startTimes[0], currentTimes[0]);
+        if (mItemAnimationEnabled && mWeather != null) {
+            ValueAnimator timeDay = ValueAnimator.ofObject(new FloatEvaluator(), mStartTimes[0], mCurrentTimes[0]);
             timeDay.addUpdateListener(animation -> {
-                animCurrentTimes[0] = (Float) animation.getAnimatedValue();
-                sunMoonView.setTime(startTimes, endTimes, animCurrentTimes);
+                mAnimCurrentTimes[0] = (Float) animation.getAnimatedValue();
+                mSunMoonView.setTime(mStartTimes, mEndTimes, mAnimCurrentTimes);
             });
 
-            double totalRotationDay = 360.0 * 7 * (currentTimes[0] - startTimes[0]) / (endTimes[0] - startTimes[0]);
+            double totalRotationDay = 360.0 * 7 * (mCurrentTimes[0] - mStartTimes[0]) / (mEndTimes[0] - mStartTimes[0]);
             ValueAnimator rotateDay = ValueAnimator.ofObject(
                     new FloatEvaluator(), 0, (int) (totalRotationDay - totalRotationDay % 360)
             );
             rotateDay.addUpdateListener(animation ->
-                    sunMoonView.setDayIndicatorRotation((Float) animation.getAnimatedValue())
+                    mSunMoonView.setDayIndicatorRotation((Float) animation.getAnimatedValue())
             );
 
-            attachAnimatorSets[0] = new AnimatorSet();
-            attachAnimatorSets[0].playTogether(timeDay, rotateDay);
-            attachAnimatorSets[0].setInterpolator(new OvershootInterpolator(1f));
-            attachAnimatorSets[0].setDuration(getPathAnimatorDuration(0));
-            attachAnimatorSets[0].start();
+            mAttachAnimatorSets[0] = new AnimatorSet();
+            mAttachAnimatorSets[0].playTogether(timeDay, rotateDay);
+            mAttachAnimatorSets[0].setInterpolator(new OvershootInterpolator(1f));
+            mAttachAnimatorSets[0].setDuration(getPathAnimatorDuration(0));
+            mAttachAnimatorSets[0].start();
 
-            ValueAnimator timeNight = ValueAnimator.ofObject(new FloatEvaluator(), startTimes[1], currentTimes[1]);
+            ValueAnimator timeNight = ValueAnimator.ofObject(new FloatEvaluator(), mStartTimes[1], mCurrentTimes[1]);
             timeNight.addUpdateListener(animation -> {
-                animCurrentTimes[1] = (Float) animation.getAnimatedValue();
-                sunMoonView.setTime(startTimes, endTimes, animCurrentTimes);
+                mAnimCurrentTimes[1] = (Float) animation.getAnimatedValue();
+                mSunMoonView.setTime(mStartTimes, mEndTimes, mAnimCurrentTimes);
             });
 
-            double totalRotationNight = 360.0 * 4 * (currentTimes[1] - startTimes[1]) / (endTimes[1] - startTimes[1]);
+            double totalRotationNight = 360.0 * 4 * (mCurrentTimes[1] - mStartTimes[1]) / (mEndTimes[1] - mStartTimes[1]);
             ValueAnimator rotateNight = ValueAnimator.ofObject(
                     new FloatEvaluator(), 0, (int) (totalRotationNight - totalRotationNight % 360)
             );
             rotateNight.addUpdateListener(animation ->
-                    sunMoonView.setNightIndicatorRotation(-1 * (Float) animation.getAnimatedValue())
+                    mSunMoonView.setNightIndicatorRotation(-1 * (Float) animation.getAnimatedValue())
             );
 
-            attachAnimatorSets[1] = new AnimatorSet();
-            attachAnimatorSets[1].playTogether(timeNight, rotateNight);
-            attachAnimatorSets[1].setInterpolator(new OvershootInterpolator(1f));
-            attachAnimatorSets[1].setDuration(getPathAnimatorDuration(1));
-            attachAnimatorSets[1].start();
+            mAttachAnimatorSets[1] = new AnimatorSet();
+            mAttachAnimatorSets[1].playTogether(timeNight, rotateNight);
+            mAttachAnimatorSets[1].setInterpolator(new OvershootInterpolator(1f));
+            mAttachAnimatorSets[1].setDuration(getPathAnimatorDuration(1));
+            mAttachAnimatorSets[1].start();
 
-            if (phaseAngle > 0) {
-                ValueAnimator moonAngle = ValueAnimator.ofObject(new FloatEvaluator(), 0, phaseAngle);
+            if (mPhaseAngle > 0) {
+                ValueAnimator moonAngle = ValueAnimator.ofObject(new FloatEvaluator(), 0, mPhaseAngle);
                 moonAngle.addUpdateListener(animation ->
-                        phaseView.setSurfaceAngle((Float) animation.getAnimatedValue())
+                        mPhaseView.setSurfaceAngle((Float) animation.getAnimatedValue())
                 );
 
-                attachAnimatorSets[2] = new AnimatorSet();
-                attachAnimatorSets[2].playTogether(moonAngle);
-                attachAnimatorSets[2].setInterpolator(new DecelerateInterpolator());
-                attachAnimatorSets[2].setDuration(getPhaseAnimatorDuration());
-                attachAnimatorSets[2].start();
+                mAttachAnimatorSets[2] = new AnimatorSet();
+                mAttachAnimatorSets[2].playTogether(moonAngle);
+                mAttachAnimatorSets[2].setInterpolator(new DecelerateInterpolator());
+                mAttachAnimatorSets[2].setDuration(getPhaseAnimatorDuration());
+                mAttachAnimatorSets[2].start();
             }
         }
     }
@@ -225,11 +243,11 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     @Override
     public void onRecycleView() {
         super.onRecycleView();
-        for (int i = 0; i < attachAnimatorSets.length; i ++) {
-            if (attachAnimatorSets[i] != null && attachAnimatorSets[i].isRunning()) {
-                attachAnimatorSets[i].cancel();
+        for (int i = 0; i < mAttachAnimatorSets.length; i ++) {
+            if (mAttachAnimatorSets[i] != null && mAttachAnimatorSets[i].isRunning()) {
+                mAttachAnimatorSets[i].cancel();
             }
-            attachAnimatorSets[i] = null;
+            mAttachAnimatorSets[i] = null;
         }
     }
 
@@ -238,8 +256,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         Daily tomorrow = weather.getDailyForecast().get(1);
 
         Calendar calendar = Calendar.getInstance();
-        if (timeZone != null) {
-            calendar.setTimeZone(timeZone);
+        if (mTimeZone != null) {
+            calendar.setTimeZone(mTimeZone);
         }
         int currentTime = SunMoonView.decodeTime(calendar);
         calendar.setTimeZone(TimeZone.getDefault());
@@ -250,13 +268,13 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         calendar.setTime(Objects.requireNonNull(today.sun().getSetDate()));
         int sunsetTime = SunMoonView.decodeTime(calendar);
 
-        startTimes = new float[2];
-        endTimes = new float[2];
-        currentTimes = new float[] {currentTime, currentTime};
+        mStartTimes = new float[2];
+        mEndTimes = new float[2];
+        mCurrentTimes = new float[] {currentTime, currentTime};
 
         // sun.
-        startTimes[0] = sunriseTime;
-        endTimes[0] = sunsetTime;
+        mStartTimes[0] = sunriseTime;
+        mEndTimes[0] = sunsetTime;
 
         // moon.
         if (!today.moon().isValid() || !tomorrow.moon().isValid()) {
@@ -266,19 +284,19 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                 calendar.setTime(Objects.requireNonNull(
                         today.sun().getSetDate()
                 ));
-                startTimes[1] = SunMoonView.decodeTime(calendar) - 24 * 60;
-                endTimes[1] = sunriseTime;
+                mStartTimes[1] = SunMoonView.decodeTime(calendar) - 24 * 60;
+                mEndTimes[1] = sunriseTime;
             } else {
                 // moon move from [sunset of today] to [sunrise of tomorrow]
                 calendar.setTime(Objects.requireNonNull(
                         today.sun().getSetDate()
                 ));
-                startTimes[1] = SunMoonView.decodeTime(calendar);
+                mStartTimes[1] = SunMoonView.decodeTime(calendar);
 
                 calendar.setTime(Objects.requireNonNull(
                         tomorrow.sun().getRiseDate()
                 ));
-                endTimes[1] = SunMoonView.decodeTime(calendar) + 24 * 60;
+                mEndTimes[1] = SunMoonView.decodeTime(calendar) + 24 * 60;
             }
         } else {
             // have moonrise and moonset data.
@@ -287,52 +305,52 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                 calendar.setTime(Objects.requireNonNull(
                         today.moon().getRiseDate()
                 ));
-                startTimes[1] = SunMoonView.decodeTime(calendar) - 24 * 60;
+                mStartTimes[1] = SunMoonView.decodeTime(calendar) - 24 * 60;
 
                 calendar.setTime(Objects.requireNonNull(
                         today.moon().getSetDate()
                 ));
-                endTimes[1] = SunMoonView.decodeTime(calendar);
-                if (endTimes[1] < startTimes[1]) {
-                    endTimes[1] += 24 * 60;
+                mEndTimes[1] = SunMoonView.decodeTime(calendar);
+                if (mEndTimes[1] < mStartTimes[1]) {
+                    mEndTimes[1] += 24 * 60;
                 }
             } else {
                 // moon move from [moonrise of today] to [moonset of tomorrow].
                 calendar.setTime(Objects.requireNonNull(
                         today.moon().getRiseDate()
                 ));
-                startTimes[1] = SunMoonView.decodeTime(calendar);
+                mStartTimes[1] = SunMoonView.decodeTime(calendar);
 
                 calendar.setTime(Objects.requireNonNull(
                         tomorrow.moon().getSetDate()
                 ));
-                endTimes[1] = SunMoonView.decodeTime(calendar);
-                if (endTimes[1] < startTimes[1]) {
-                    endTimes[1] += 24 * 60;
+                mEndTimes[1] = SunMoonView.decodeTime(calendar);
+                if (mEndTimes[1] < mStartTimes[1]) {
+                    mEndTimes[1] += 24 * 60;
                 }
             }
         }
 
-        animCurrentTimes = new float[] {currentTimes[0], currentTimes[1]};
+        mAnimCurrentTimes = new float[] {mCurrentTimes[0], mCurrentTimes[1]};
     }
 
     private void ensurePhaseAngle(@NonNull Weather weather) {
         Integer angle = weather.getDailyForecast().get(0).getMoonPhase().getAngle();
-        phaseAngle = angle == null ? 0 : angle;
+        mPhaseAngle = angle == null ? 0 : angle;
     }
 
     private long getPathAnimatorDuration(int index) {
         long duration = (long) Math.max(
                 1000 + 3000.0
-                        * (currentTimes[index] - startTimes[index])
-                        / (endTimes[index] - startTimes[index]),
+                        * (mCurrentTimes[index] - mStartTimes[index])
+                        / (mEndTimes[index] - mStartTimes[index]),
                 0
         );
         return Math.min(duration, 4000);
     }
 
     private long getPhaseAnimatorDuration() {
-        long duration = (long) Math.max(0, phaseAngle / 360.0 * 1000 + 1000);
+        long duration = (long) Math.max(0, mPhaseAngle / 360.0 * 1000 + 1000);
         return Math.min(duration, 2000);
     }
 }

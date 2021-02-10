@@ -12,9 +12,9 @@ public enum DistanceUnit {
     NMI("nmi", 3, 0.5399f),
     FT("ft", 4, 3280.8398f);
 
-    private String unitId;
-    private int unitArrayIndex;
-    private float unitFactor; // actual distance = distance(km) * factor.
+    private final String unitId;
+    private final int unitArrayIndex;
+    private final float unitFactor; // actual distance = distance(km) * factor.
 
     DistanceUnit(String id, int arrayIndex, float factor) {
         unitId = id;
@@ -36,5 +36,10 @@ public enum DistanceUnit {
 
     public String getAbbreviation(Context context) {
         return context.getResources().getStringArray(R.array.distance_units)[unitArrayIndex];
+    }
+
+    public String getDistanceVoice(Context context, float km) {
+        return UnitUtils.formatFloat(km * unitFactor, 2)
+                + context.getResources().getStringArray(R.array.distance_unit_voices)[unitArrayIndex];
     }
 }

@@ -36,9 +36,9 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
-    private List<AqiItem> itemList;
-    private List<ViewHolder> holderList;
-    private ThemeManager themeManager;
+    private final List<AqiItem> mItemList;
+    private final List<ViewHolder> mHolderList;
+    private final ThemeManager mThemeManager;
 
     private static class AqiItem {
         @ColorInt int color;
@@ -46,186 +46,202 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         float max;
         String title;
         String content;
+        String talkBack;
 
         boolean executeAnimation;
 
         AqiItem(@ColorInt int color, float progress, float max, String title, String content,
-                boolean executeAnimation) {
+                String talkBack, boolean executeAnimation) {
             this.color = color;
             this.progress = progress;
             this.max = max;
             this.title = title;
             this.content = content;
+            this.talkBack = talkBack;
             this.executeAnimation = executeAnimation;
         }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @Nullable AqiItem item;
-        private boolean executeAnimation;
-        @Nullable private AnimatorSet attachAnimatorSet;
+        private @Nullable AqiItem mItem;
+        private boolean mExecuteAnimation;
+        @Nullable private AnimatorSet mAttachAnimatorSet;
 
-        private TextView title;
-        private TextView content;
-        private RoundProgress progress;
+        private final TextView mTitle;
+        private final TextView mContent;
+        private final RoundProgress mProgress;
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.title = itemView.findViewById(R.id.item_aqi_title);
-            this.content = itemView.findViewById(R.id.item_aqi_content);
-            this.progress = itemView.findViewById(R.id.item_aqi_progress);
+            mTitle = itemView.findViewById(R.id.item_aqi_title);
+            mContent = itemView.findViewById(R.id.item_aqi_content);
+            mProgress = itemView.findViewById(R.id.item_aqi_progress);
         }
 
         void onBindView(AqiItem item) {
             Context context = itemView.getContext();
 
-            this.item = item;
-            this.executeAnimation = item.executeAnimation;
+            mItem = item;
+            mExecuteAnimation = item.executeAnimation;
 
-            title.setText(item.title);
-            title.setTextColor(themeManager.getTextContentColor(context));
+            itemView.setContentDescription(item.talkBack);
 
-            content.setText(item.content);
-            content.setTextColor(themeManager.getTextSubtitleColor(context));
+            mTitle.setText(item.title);
+            mTitle.setTextColor(mThemeManager.getTextContentColor(context));
 
-            if (executeAnimation) {
-                progress.setProgress(0);
-                progress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
-                progress.setProgressBackgroundColor(themeManager.getLineColor(context));
+            mContent.setText(item.content);
+            mContent.setTextColor(mThemeManager.getTextSubtitleColor(context));
+
+            if (mExecuteAnimation) {
+                mProgress.setProgress(0);
+                mProgress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
+                mProgress.setProgressBackgroundColor(mThemeManager.getLineColor(context));
             } else {
-                progress.setProgress((int) (100.0 * item.progress / item.max));
-                progress.setProgressColor(item.color);
-                progress.setProgressBackgroundColor(
+                mProgress.setProgress((int) (100.0 * item.progress / item.max));
+                mProgress.setProgressColor(item.color);
+                mProgress.setProgressBackgroundColor(
                         ColorUtils.setAlphaComponent(item.color, (int) (255 * 0.1))
                 );
             }
         }
 
         void executeAnimation() {
-            if (executeAnimation && item != null) {
-                executeAnimation = false;
+            if (mExecuteAnimation && mItem != null) {
+                mExecuteAnimation = false;
 
                 ValueAnimator progressColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
                         ContextCompat.getColor(itemView.getContext(), R.color.colorLevel_1),
-                        item.color
+                        mItem.color
                 );
                 progressColor.addUpdateListener(animation ->
-                        progress.setProgressColor((Integer) animation.getAnimatedValue())
+                        mProgress.setProgressColor((Integer) animation.getAnimatedValue())
                 );
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
-                        themeManager.getLineColor(itemView.getContext()),
-                        ColorUtils.setAlphaComponent(item.color, (int) (255 * 0.1))
+                        mThemeManager.getLineColor(itemView.getContext()),
+                        ColorUtils.setAlphaComponent(mItem.color, (int) (255 * 0.1))
                 );
                 backgroundColor.addUpdateListener(animation ->
-                        progress.setProgressBackgroundColor((Integer) animation.getAnimatedValue())
+                        mProgress.setProgressBackgroundColor((Integer) animation.getAnimatedValue())
                 );
 
-                ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, item.progress);
+                ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, mItem.progress);
                 aqiNumber.addUpdateListener(animation ->
-                        progress.setProgress(
-                                100.0f * ((Float) animation.getAnimatedValue()) / item.max
+                        mProgress.setProgress(
+                                100.0f * ((Float) animation.getAnimatedValue()) / mItem.max
                         )
                 );
 
-                attachAnimatorSet = new AnimatorSet();
-                attachAnimatorSet.playTogether(progressColor, backgroundColor, aqiNumber);
-                attachAnimatorSet.setInterpolator(new DecelerateInterpolator(3));
-                attachAnimatorSet.setDuration((long) (item.progress / item.max * 5000));
-                attachAnimatorSet.start();
+                mAttachAnimatorSet = new AnimatorSet();
+                mAttachAnimatorSet.playTogether(progressColor, backgroundColor, aqiNumber);
+                mAttachAnimatorSet.setInterpolator(new DecelerateInterpolator(3));
+                mAttachAnimatorSet.setDuration((long) (mItem.progress / mItem.max * 5000));
+                mAttachAnimatorSet.start();
             }
         }
 
         void cancelAnimation() {
-            if (attachAnimatorSet != null && attachAnimatorSet.isRunning()) {
-                attachAnimatorSet.cancel();
+            if (mAttachAnimatorSet != null && mAttachAnimatorSet.isRunning()) {
+                mAttachAnimatorSet.cancel();
             }
-            attachAnimatorSet = null;
+            mAttachAnimatorSet = null;
         }
     }
 
     public AqiAdapter(Context context, @Nullable Weather weather, boolean executeAnimation) {
-        this.itemList = new ArrayList<>();
+        mItemList = new ArrayList<>();
         if (weather != null && weather.getCurrent().getAirQuality().isValid()) {
             AirQuality airQuality = weather.getCurrent().getAirQuality();
             if (airQuality.getPM25() != null) {
-                itemList.add(
+                mItemList.add(
                         new AqiItem(
                                 airQuality.getPm25Color(context),
                                 airQuality.getPM25(),
                                 250,
                                 "PM2.5",
                                 AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getPM25()),
+                                context.getString(R.string.content_des_pm25)
+                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getPM25()),
                                 executeAnimation
                         )
                 );
             }
             if (airQuality.getPM10() != null) {
-                itemList.add(
+                mItemList.add(
                         new AqiItem(
                                 airQuality.getPm10Color(context),
                                 airQuality.getPM10(),
                                 420,
                                 "PM10",
                                 AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getPM10()),
+                                context.getString(R.string.content_des_pm10)
+                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getPM10()),
                                 executeAnimation
                         )
                 );
             }
             if (airQuality.getSO2() != null) {
-                itemList.add(
+                mItemList.add(
                         new AqiItem(
                                 airQuality.getSo2Color(context),
                                 airQuality.getSO2(),
                                 1600,
                                 "SO₂",
                                 AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getSO2()),
+                                context.getString(R.string.content_des_so2)
+                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getSO2()),
                                 executeAnimation
                         )
                 );
             }
             if (airQuality.getNO2() != null) {
-                itemList.add(
+                mItemList.add(
                         new AqiItem(
                                 airQuality.getNo2Color(context),
                                 airQuality.getNO2(),
                                 565,
                                 "NO₂",
                                 AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getNO2()),
+                                context.getString(R.string.content_des_no2)
+                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getNO2()),
                                 executeAnimation
                         )
                 );
             }
             if (airQuality.getO3() != null) {
-                itemList.add(
+                mItemList.add(
                         new AqiItem(
                                 airQuality.getO3Color(context),
                                 airQuality.getO3(),
                                 800,
                                 "O₃",
                                 AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getO3()),
+                                context.getString(R.string.content_des_o3)
+                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getO3()),
                                 executeAnimation
                         )
                 );
             }
             if (airQuality.getCO() != null) {
-                itemList.add(
+                mItemList.add(
                         new AqiItem(
                                 airQuality.getCOColor(context),
                                 airQuality.getCO(),
                                 90,
                                 "CO",
                                 AirQualityCOUnit.MGPCUM.getDensityText(context, airQuality.getCO()),
+                                context.getString(R.string.content_des_co)
+                                        + ", " + AirQualityCOUnit.MGPCUM.getDensityVoice(context, airQuality.getCO()),
                                 executeAnimation
                         )
                 );
             }
         }
 
-        this.holderList = new ArrayList<>();
-        this.themeManager = ThemeManager.getInstance(context);
+        mHolderList = new ArrayList<>();
+        mThemeManager = ThemeManager.getInstance(context);
     }
 
     @NonNull
@@ -237,27 +253,27 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(itemList.get(position));
-        if (itemList.get(position).executeAnimation) {
-            holderList.add(holder);
+        holder.onBindView(mItemList.get(position));
+        if (mItemList.get(position).executeAnimation) {
+            mHolderList.add(holder);
         }
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return mItemList.size();
     }
 
     public void executeAnimation() {
-        for (int i = 0; i < holderList.size(); i++) {
-            holderList.get(i).executeAnimation();
+        for (int i = 0; i < mHolderList.size(); i++) {
+            mHolderList.get(i).executeAnimation();
         }
     }
 
     public void cancelAnimation() {
-        for (int i = 0; i < holderList.size(); i++) {
-            holderList.get(i).cancelAnimation();
+        for (int i = 0; i < mHolderList.size(); i++) {
+            mHolderList.get(i).cancelAnimation();
         }
-        holderList.clear();
+        mHolderList.clear();
     }
 }

@@ -90,6 +90,9 @@ public class OptionMapper {
 
     public static WeatherSource getWeatherSource(String value) {
         switch (value) {
+            case "mf":
+                return WeatherSource.MF;
+
             case "cn":
                 return WeatherSource.CN;
 
@@ -430,6 +433,9 @@ public class OptionMapper {
 
             case "japanese":
                 return Language.JAPANESE;
+
+            case "romanian":
+                return Language.ROMANIAN;
 
             default:
                 return Language.FOLLOW_SYSTEM;

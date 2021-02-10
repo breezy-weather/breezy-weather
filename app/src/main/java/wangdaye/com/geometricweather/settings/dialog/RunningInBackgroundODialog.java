@@ -31,7 +31,7 @@ public class RunningInBackgroundODialog extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_running_in_background_o, null, false);
-        this.initWidget(view);
+        initWidget(view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
@@ -43,6 +43,7 @@ public class RunningInBackgroundODialog extends DialogFragment
         view.findViewById(R.id.dialog_running_in_background_o_ignoreBatteryOptBtn).setOnClickListener(this);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

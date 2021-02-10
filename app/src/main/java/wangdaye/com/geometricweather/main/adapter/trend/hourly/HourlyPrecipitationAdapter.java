@@ -1,12 +1,10 @@
 package wangdaye.com.geometricweather.main.adapter.trend.hourly;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,6 @@ import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
 import wangdaye.com.geometricweather.ui.widget.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.ui.widget.trend.item.HourlyTrendItemView;
 import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 /**
@@ -31,64 +28,70 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrecipitationAdapter.ViewHolder> {
 
-    private Weather weather;
-    private ResourceProvider provider;
-    private ThemeManager themeManager;
-    private PrecipitationUnit unit;
+    private final ResourceProvider mResourceProvider;
+    private final ThemeManager mThemeManager;
+    private final PrecipitationUnit mPrecipitationUnit;
 
     private float highestPrecipitation;
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends AbsHourlyTrendAdapter.ViewHolder {
 
-        private HourlyTrendItemView hourlyItem;
-        private PolylineAndHistogramView polylineAndHistogramView;
+        private final PolylineAndHistogramView mPolylineAndHistogramView;
 
         ViewHolder(View itemView) {
             super(itemView);
-
-            polylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
-
-            hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
-            hourlyItem.setChartItemView(polylineAndHistogramView);
+            mPolylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
+            hourlyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
-        void onBindView(int position) {
-            Context context = itemView.getContext();
+        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+            StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_precipitation));
+
+            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+
+            Weather weather = location.getWeather();
+            assert weather != null;
             Hourly hourly = weather.getHourlyForecast().get(position);
 
-            hourlyItem.setHourText(hourly.getHour(context));
-
-            hourlyItem.setTextColor(themeManager.getTextContentColor(context));
-
             hourlyItem.setIconDrawable(
-                    ResourceHelper.getWeatherIcon(provider, hourly.getWeatherCode(), hourly.isDaylight())
+                    ResourceHelper.getWeatherIcon(mResourceProvider, hourly.getWeatherCode(), hourly.isDaylight())
             );
 
             Float precipitation = weather.getHourlyForecast().get(position).getPrecipitation().getTotal();
-            polylineAndHistogramView.setData(
+            precipitation = precipitation == null ? 0 : precipitation;
+
+            if (precipitation != 0) {
+                talkBackBuilder.append(", ")
+                        .append(mPrecipitationUnit.getPrecipitationVoice(activity, precipitation));
+            } else {
+                talkBackBuilder.append(", ")
+                        .append(activity.getString(R.string.content_des_no_precipitation));
+            }
+
+            mPolylineAndHistogramView.setData(
                     null, null,
                     null, null,
                     null, null,
                     precipitation,
-                    unit.getPrecipitationTextWithoutUnit(precipitation == null ? 0 : precipitation),
+                    mPrecipitationUnit.getPrecipitationTextWithoutUnit(precipitation),
                     highestPrecipitation,
                     0f
             );
-            polylineAndHistogramView.setLineColors(
-                    hourly.getPrecipitation().getPrecipitationColor(context),
-                    hourly.getPrecipitation().getPrecipitationColor(context),
-                    themeManager.getLineColor(context)
+            mPolylineAndHistogramView.setLineColors(
+                    hourly.getPrecipitation().getPrecipitationColor(activity),
+                    hourly.getPrecipitation().getPrecipitationColor(activity),
+                    mThemeManager.getLineColor(activity)
             );
-            int[] themeColors = themeManager.getWeatherThemeColors();
-            polylineAndHistogramView.setShadowColors(
-                    themeColors[themeManager.isLightTheme() ? 1 : 2], themeColors[2], themeManager.isLightTheme());
-            polylineAndHistogramView.setTextColors(
-                    themeManager.getTextContentColor(context),
-                    themeManager.getTextSubtitleColor(context)
+            int[] themeColors = mThemeManager.getWeatherThemeColors();
+            mPolylineAndHistogramView.setShadowColors(
+                    themeColors[mThemeManager.isLightTheme() ? 1 : 2], themeColors[2], mThemeManager.isLightTheme());
+            mPolylineAndHistogramView.setTextColors(
+                    mThemeManager.getTextContentColor(activity),
+                    mThemeManager.getTextSubtitleColor(activity)
             );
-            polylineAndHistogramView.setHistogramAlpha(themeManager.isLightTheme() ? 1f : 0.5f);
+            mPolylineAndHistogramView.setHistogramAlpha(mThemeManager.isLightTheme() ? 1f : 0.5f);
 
-            hourlyItem.setOnClickListener(v -> onItemClicked(getAdapterPosition()));
+            hourlyItem.setContentDescription(talkBackBuilder.toString());
         }
     }
 
@@ -99,10 +102,11 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                                       PrecipitationUnit unit) {
         super(activity, location);
 
-        this.weather = location.getWeather();
-        this.provider = provider;
-        this.themeManager = ThemeManager.getInstance(activity);
-        this.unit = unit;
+        Weather weather = location.getWeather();
+        assert weather != null;
+        mResourceProvider = provider;
+        mThemeManager = ThemeManager.getInstance(activity);
+        mPrecipitationUnit = unit;
 
         highestPrecipitation = Integer.MIN_VALUE;
         Float precipitation;
@@ -133,7 +137,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(themeManager.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getLineColor(activity));
         parent.setData(keyLineList, highestPrecipitation, 0f);
     }
 
@@ -147,11 +151,12 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(position);
+        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
     }
 
     @Override
     public int getItemCount() {
-        return weather.getHourlyForecast().size();
+        assert getLocation().getWeather() != null;
+        return getLocation().getWeather().getHourlyForecast().size();
     }
 }

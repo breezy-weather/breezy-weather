@@ -9,26 +9,26 @@ import java.util.concurrent.Executors;
 
 public class ThreadManager {
 
-    private static ThreadManager instance;
+    private static ThreadManager sInstance;
 
     public static ThreadManager getInstance() {
-        if (instance == null) {
+        if (sInstance == null) {
             synchronized (ThreadManager.class) {
-                if (instance == null) {
-                    instance = new ThreadManager();
+                if (sInstance == null) {
+                    sInstance = new ThreadManager();
                 }
             }
         }
-        return instance;
+        return sInstance;
     }
 
-    private ExecutorService threadPool;
+    private final ExecutorService mThreadPool;
 
     private ThreadManager() {
-        this.threadPool = Executors.newCachedThreadPool();
+        this.mThreadPool = Executors.newCachedThreadPool();
     }
 
     public void execute(Runnable runnable) {
-        threadPool.execute(runnable);
+        mThreadPool.execute(runnable);
     }
 }

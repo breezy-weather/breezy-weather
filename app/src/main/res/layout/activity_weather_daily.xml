@@ -22,7 +22,8 @@
                 android:id="@+id/activity_weather_daily_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:navigationIcon="@drawable/ic_toolbar_back">
+                app:navigationIcon="@drawable/ic_toolbar_back"
+                app:navigationContentDescription="@string/content_desc_back">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -52,6 +53,7 @@
                             android:layout_width="match_parent"
                             android:textStyle="bold"
                             android:textColor="@android:color/white"
+                            android:importantForAccessibility="no"
                             style="@style/title_text"
                             tools:text="12-24 周五" />
 
@@ -59,6 +61,7 @@
                             android:id="@+id/activity_weather_daily_subtitle"
                             android:layout_width="match_parent"
                             android:layout_marginTop="2dp"
+                            android:importantForAccessibility="no"
                             style="@style/subtitle_text"
                             tools:text="十一月初七"
                             tools:ignore="RtlHardcoded" />

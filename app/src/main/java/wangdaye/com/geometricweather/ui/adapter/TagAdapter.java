@@ -19,52 +19,52 @@ import wangdaye.com.geometricweather.utils.manager.ThemeManager;
 
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
-    private List<Tag> tagList;
-    private @ColorInt int checkedBackgroundColor;
-    private OnTagCheckedListener listener;
-    private @Nullable ThemeManager themeManager;
-    private int checkedIndex;
+    private final List<Tag> mTagList;
+    private @ColorInt final int mCheckedBackgroundColor;
+    private final OnTagCheckedListener mListener;
+    private @Nullable final ThemeManager mThemeManager;
+    private int mCheckedIndex;
 
     public static final int UNCHECKABLE_INDEX = -1;
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TagView tagView;
+        private final TagView mTagView;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tagView = itemView.findViewById(R.id.item_tag);
-            tagView.setOnClickListener(v -> {
+            mTagView = itemView.findViewById(R.id.item_tag);
+            mTagView.setOnClickListener(v -> {
                 boolean consumed = false;
-                if (listener != null) {
-                    consumed = listener.onItemChecked(!tagView.isChecked(), checkedIndex, getAdapterPosition());
+                if (mListener != null) {
+                    consumed = mListener.onItemChecked(!mTagView.isChecked(), mCheckedIndex, getAdapterPosition());
                 }
-                if (!consumed && checkedIndex != getAdapterPosition()) {
-                    int i = checkedIndex;
-                    checkedIndex = getAdapterPosition();
+                if (!consumed && mCheckedIndex != getAdapterPosition()) {
+                    int i = mCheckedIndex;
+                    mCheckedIndex = getAdapterPosition();
                     notifyItemChanged(i);
-                    notifyItemChanged(checkedIndex);
+                    notifyItemChanged(mCheckedIndex);
                 }
             });
         }
 
         void onBindView(Tag tag, boolean checked) {
-            tagView.setText(tag.getName());
+            mTagView.setText(tag.getName());
             setChecked(checked);
 
-            if (themeManager != null) {
-                tagView.setCheckedBackgroundColor(checkedBackgroundColor);
-                tagView.setUncheckedBackgroundColor(themeManager.getLineColor(tagView.getContext()));
+            if (mThemeManager != null) {
+                mTagView.setCheckedBackgroundColor(mCheckedBackgroundColor);
+                mTagView.setUncheckedBackgroundColor(mThemeManager.getLineColor(mTagView.getContext()));
             }
         }
 
         public void setChecked(boolean checked) {
-            tagView.setChecked(checked);
-            if (themeManager != null) {
+            mTagView.setChecked(checked);
+            if (mThemeManager != null) {
                 if (checked) {
-                    tagView.setTextColor(themeManager.getTextContentColor(tagView.getContext()));
+                    mTagView.setTextColor(mThemeManager.getTextContentColor(mTagView.getContext()));
                 } else {
-                    tagView.setTextColor(themeManager.getTextSubtitleColor(tagView.getContext()));
+                    mTagView.setTextColor(mThemeManager.getTextSubtitleColor(mTagView.getContext()));
                 }
             }
         }
@@ -76,11 +76,11 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
     public TagAdapter(Context context, List<Tag> tagList, @ColorInt int checkedBackgroundColor,
                       OnTagCheckedListener listener, int checkedIndex) {
-        this.tagList = tagList;
-        this.checkedBackgroundColor = checkedBackgroundColor;
-        this.listener = listener;
-        this.themeManager = ThemeManager.getInstance(context);
-        this.checkedIndex = checkedIndex;
+        mTagList = tagList;
+        mCheckedBackgroundColor = checkedBackgroundColor;
+        mListener = listener;
+        mThemeManager = ThemeManager.getInstance(context);
+        mCheckedIndex = checkedIndex;
     }
 
     @NonNull
@@ -94,21 +94,21 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(tagList.get(position), position == checkedIndex);
+        holder.onBindView(mTagList.get(position), position == mCheckedIndex);
     }
 
     @Override
     public int getItemCount() {
-        return tagList.size();
+        return mTagList.size();
     }
 
     public void insertItem(Tag tag) {
-        tagList.add(tag);
-        notifyItemInserted(tagList.size() - 1);
+        mTagList.add(tag);
+        notifyItemInserted(mTagList.size() - 1);
     }
 
     public Tag removeItem(int position) {
-        Tag tag = tagList.remove(position);
+        Tag tag = mTagList.remove(position);
         notifyItemRemoved(position);
         return tag;
     }

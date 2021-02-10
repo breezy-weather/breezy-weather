@@ -28,26 +28,26 @@ import wangdaye.com.geometricweather.ui.widget.ArcProgress;
 
 public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView card;
-    private final TextView title;
+    private final CardView mCard;
+    private final TextView mTitle;
 
-    private final ArcProgress progress;
-    private final RecyclerView recyclerView;
-    private AqiAdapter adapter;
+    private final ArcProgress mProgress;
+    private final RecyclerView mRecyclerView;
+    private AqiAdapter mAdapter;
 
-    @Nullable private Weather weather;
-    private int aqiIndex;
+    @Nullable private Weather mWeather;
+    private int mAqiIndex;
 
-    private boolean enable;
-    @Nullable private AnimatorSet attachAnimatorSet;
+    private boolean mEnable;
+    @Nullable private AnimatorSet mAttachAnimatorSet;
 
     public AirQualityViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_aqi, parent, false));
 
-        this.card = itemView.findViewById(R.id.container_main_aqi);
-        this.title = itemView.findViewById(R.id.container_main_aqi_title);
-        this.progress = itemView.findViewById(R.id.container_main_aqi_progress);
-        this.recyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView);
+        mCard = itemView.findViewById(R.id.container_main_aqi);
+        mTitle = itemView.findViewById(R.id.container_main_aqi_title);
+        mProgress = itemView.findViewById(R.id.container_main_aqi_progress);
+        mRecyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView);
     }
 
     @SuppressLint("DefaultLocale")
@@ -58,92 +58,93 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         super.onBindView(activity, location, provider,
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
-        weather = location.getWeather();
-        assert weather != null;
+        mWeather = location.getWeather();
+        assert mWeather != null;
 
-        aqiIndex = weather.getCurrent().getAirQuality().getAqiIndex() == null
+        mAqiIndex = mWeather.getCurrent().getAirQuality().getAqiIndex() == null
                 ? 0
-                : weather.getCurrent().getAirQuality().getAqiIndex();
+                : mWeather.getCurrent().getAirQuality().getAqiIndex();
 
-        enable = true;
+        mEnable = true;
 
-        card.setCardBackgroundColor(themeManager.getRootColor(context));
-        title.setTextColor(themeManager.getWeatherThemeColors()[0]);
+        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
+        mTitle.setTextColor(mThemeManager.getWeatherThemeColors()[0]);
 
         if (itemAnimationEnabled) {
-            progress.setProgress(0);
-            progress.setText(String.format("%d", 0));
-            progress.setProgressColor(
-                    ContextCompat.getColor(context, R.color.colorLevel_1),
-                    themeManager.isLightTheme()
+            mProgress.setProgress(0);
+            mProgress.setText(String.format("%d", 0));
+            mProgress.setProgressColor(
+                    ContextCompat.getColor(mContext, R.color.colorLevel_1),
+                    mThemeManager.isLightTheme()
             );
-            progress.setArcBackgroundColor(themeManager.getLineColor(context));
+            mProgress.setArcBackgroundColor(mThemeManager.getLineColor(mContext));
         } else {
-            int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(progress.getContext());
-            progress.setProgress(aqiIndex);
-            progress.setText(String.format("%d", aqiIndex));
-            progress.setProgressColor(aqiColor, themeManager.isLightTheme());
-            progress.setArcBackgroundColor(
+            int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
+            mProgress.setProgress(mAqiIndex);
+            mProgress.setText(String.format("%d", mAqiIndex));
+            mProgress.setProgressColor(aqiColor, mThemeManager.isLightTheme());
+            mProgress.setArcBackgroundColor(
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
         }
-        progress.setTextColor(themeManager.getTextContentColor(context));
-        progress.setBottomText(weather.getCurrent().getAirQuality().getAqiText());
-        progress.setBottomTextColor(themeManager.getTextSubtitleColor(context));
+        mProgress.setTextColor(mThemeManager.getTextContentColor(mContext));
+        mProgress.setBottomText(mWeather.getCurrent().getAirQuality().getAqiText());
+        mProgress.setBottomTextColor(mThemeManager.getTextSubtitleColor(mContext));
+        mProgress.setContentDescription(mAqiIndex + ", " + mWeather.getCurrent().getAirQuality().getAqiText());
 
-        adapter = new AqiAdapter(context, weather, itemAnimationEnabled);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mAdapter = new AqiAdapter(mContext, mWeather, itemAnimationEnabled);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
     @SuppressLint("DefaultLocale")
     @Override
     public void onEnterScreen() {
-        if (itemAnimationEnabled && enable && weather != null) {
-            int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(progress.getContext());
+        if (mItemAnimationEnabled && mEnable && mWeather != null) {
+            int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
 
             ValueAnimator progressColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    ContextCompat.getColor(context, R.color.colorLevel_1),
+                    ContextCompat.getColor(mContext, R.color.colorLevel_1),
                     aqiColor
             );
-            progressColor.addUpdateListener(animation -> progress.setProgressColor(
-                    (Integer) animation.getAnimatedValue(), themeManager.isLightTheme()));
+            progressColor.addUpdateListener(animation -> mProgress.setProgressColor(
+                    (Integer) animation.getAnimatedValue(), mThemeManager.isLightTheme()));
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    themeManager.getLineColor(context),
+                    mThemeManager.getLineColor(mContext),
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
             backgroundColor.addUpdateListener(animation ->
-                    progress.setArcBackgroundColor((Integer) animation.getAnimatedValue())
+                    mProgress.setArcBackgroundColor((Integer) animation.getAnimatedValue())
             );
 
-            ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, aqiIndex);
+            ValueAnimator aqiNumber = ValueAnimator.ofObject(new FloatEvaluator(), 0, mAqiIndex);
             aqiNumber.addUpdateListener(animation -> {
-                progress.setProgress((Float) animation.getAnimatedValue());
-                progress.setText(String.format("%d", (int) progress.getProgress()));
+                mProgress.setProgress((Float) animation.getAnimatedValue());
+                mProgress.setText(String.format("%d", (int) mProgress.getProgress()));
             });
 
-            attachAnimatorSet = new AnimatorSet();
-            attachAnimatorSet.playTogether(progressColor, backgroundColor, aqiNumber);
-            attachAnimatorSet.setInterpolator(new DecelerateInterpolator());
-            attachAnimatorSet.setDuration((long) (1500 + aqiIndex / 400f * 1500));
-            attachAnimatorSet.start();
+            mAttachAnimatorSet = new AnimatorSet();
+            mAttachAnimatorSet.playTogether(progressColor, backgroundColor, aqiNumber);
+            mAttachAnimatorSet.setInterpolator(new DecelerateInterpolator());
+            mAttachAnimatorSet.setDuration((long) (1500 + mAqiIndex / 400f * 1500));
+            mAttachAnimatorSet.start();
 
-            adapter.executeAnimation();
+            mAdapter.executeAnimation();
         }
     }
 
     @Override
     public void onRecycleView() {
         super.onRecycleView();
-        if (attachAnimatorSet != null && attachAnimatorSet.isRunning()) {
-            attachAnimatorSet.cancel();
+        if (mAttachAnimatorSet != null && mAttachAnimatorSet.isRunning()) {
+            mAttachAnimatorSet.cancel();
         }
-        attachAnimatorSet = null;
-        if (adapter != null) {
-            adapter.cancelAnimation();
+        mAttachAnimatorSet = null;
+        if (mAdapter != null) {
+            mAdapter.cancelAnimation();
         }
     }
 }

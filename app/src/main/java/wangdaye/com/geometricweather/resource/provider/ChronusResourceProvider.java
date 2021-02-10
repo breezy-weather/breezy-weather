@@ -26,34 +26,34 @@ import wangdaye.com.geometricweather.resource.ResourceUtils;
 
 public class ChronusResourceProvider extends ResourceProvider {
 
-    private ResourceProvider defaultProvider;
+    private final ResourceProvider mDefaultProvider;
 
-    private Context context;
-    private String providerName;
-    @Nullable private Drawable iconDrawable;
+    private Context mContext;
+    private String mProviderName;
+    @Nullable private Drawable mIconDrawable;
 
     ChronusResourceProvider(@NonNull Context c, @NonNull String pkgName,
                             @NonNull ResourceProvider defaultProvider) {
-        this.defaultProvider = defaultProvider;
+        mDefaultProvider = defaultProvider;
 
         try {
-            context = c.createPackageContext(
+            mContext = c.createPackageContext(
                     pkgName, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
 
-            PackageManager manager = context.getPackageManager();
+            PackageManager manager = mContext.getPackageManager();
             ApplicationInfo info = manager.getApplicationInfo(pkgName, PackageManager.GET_META_DATA);
-            providerName = manager.getApplicationLabel(info).toString();
+            mProviderName = manager.getApplicationLabel(info).toString();
 
-            iconDrawable = context.getApplicationInfo().loadIcon(context.getPackageManager());
+            mIconDrawable = mContext.getApplicationInfo().loadIcon(mContext.getPackageManager());
         } catch (Exception e) {
             buildDefaultInstance(c);
         }
     }
 
     private void buildDefaultInstance(@NonNull Context c) {
-        context = c.getApplicationContext();
-        providerName = c.getString(R.string.geometric_weather);
-        iconDrawable = defaultProvider.getProviderIcon();
+        mContext = c.getApplicationContext();
+        mProviderName = c.getString(R.string.geometric_weather);
+        mIconDrawable = mDefaultProvider.getProviderIcon();
     }
 
     @NonNull
@@ -94,20 +94,20 @@ public class ChronusResourceProvider extends ResourceProvider {
 
     @Override
     public String getPackageName() {
-        return context.getPackageName();
+        return mContext.getPackageName();
     }
 
     @Override
     public String getProviderName() {
-        return providerName;
+        return mProviderName;
     }
 
     @Override
     public Drawable getProviderIcon() {
-        if (iconDrawable == null) {
+        if (mIconDrawable == null) {
             return getWeatherIcon(WeatherCode.CLEAR, true);
         } else {
-            return iconDrawable;
+            return mIconDrawable;
         }
     }
 
@@ -124,18 +124,18 @@ public class ChronusResourceProvider extends ResourceProvider {
 
         }
 
-        return defaultProvider.getWeatherIcon(code, dayTime);
+        return mDefaultProvider.getWeatherIcon(code, dayTime);
     }
 
     @NonNull
     @Override
     public Uri getWeatherIconUri(WeatherCode code, boolean dayTime) {
         String resName = getWeatherIconName(code, dayTime);
-        int resId = getResId(context, resName, "drawable");
+        int resId = getResId(mContext, resName, "drawable");
         if (resId != 0) {
             return getDrawableUri(resName);
         } else {
-            return defaultProvider.getWeatherIconUri(code, dayTime);
+            return mDefaultProvider.getWeatherIconUri(code, dayTime);
         }
     }
 
@@ -148,8 +148,8 @@ public class ChronusResourceProvider extends ResourceProvider {
     private Drawable getDrawable(@NonNull String resName) {
         try {
             return ResourcesCompat.getDrawable(
-                    context.getResources(),
-                    ResourceUtils.nonNull(getResId(context, resName, "drawable")),
+                    mContext.getResources(),
+                    ResourceUtils.nonNull(getResId(mContext, resName, "drawable")),
                     null
             );
         } catch (Exception e) {
@@ -214,50 +214,50 @@ public class ChronusResourceProvider extends ResourceProvider {
     @NonNull
     @Override
     public Drawable getMinimalLightIcon(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getMinimalLightIcon(code, dayTime);
+        return mDefaultProvider.getMinimalLightIcon(code, dayTime);
     }
 
     @NonNull
     @Override
     public Uri getMinimalLightIconUri(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getMinimalLightIconUri(code, dayTime);
+        return mDefaultProvider.getMinimalLightIconUri(code, dayTime);
     }
 
     @NonNull
     @Override
     public Drawable getMinimalGreyIcon(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getMinimalGreyIcon(code, dayTime);
+        return mDefaultProvider.getMinimalGreyIcon(code, dayTime);
     }
 
     @NonNull
     @Override
     public Uri getMinimalGreyIconUri(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getMinimalGreyIconUri(code, dayTime);
+        return mDefaultProvider.getMinimalGreyIconUri(code, dayTime);
     }
 
     @NonNull
     @Override
     public Drawable getMinimalDarkIcon(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getMinimalDarkIcon(code, dayTime);
+        return mDefaultProvider.getMinimalDarkIcon(code, dayTime);
     }
 
     @NonNull
     @Override
     public Uri getMinimalDarkIconUri(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getMinimalDarkIconUri(code, dayTime);
+        return mDefaultProvider.getMinimalDarkIconUri(code, dayTime);
     }
 
     @NonNull
     @Override
     public Drawable getMinimalXmlIcon(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getMinimalXmlIcon(code, dayTime);
+        return mDefaultProvider.getMinimalXmlIcon(code, dayTime);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @NonNull
     @Override
     public Icon getMinimalIcon(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getMinimalIcon(code, dayTime);
+        return mDefaultProvider.getMinimalIcon(code, dayTime);
     }
 
     // shortcut.
@@ -265,13 +265,13 @@ public class ChronusResourceProvider extends ResourceProvider {
     @NonNull
     @Override
     public Drawable getShortcutsIcon(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getShortcutsIcon(code, dayTime);
+        return mDefaultProvider.getShortcutsIcon(code, dayTime);
     }
 
     @NonNull
     @Override
     public Drawable getShortcutsForegroundIcon(WeatherCode code, boolean dayTime) {
-        return defaultProvider.getShortcutsForegroundIcon(code, dayTime);
+        return mDefaultProvider.getShortcutsForegroundIcon(code, dayTime);
     }
 
     @NonNull

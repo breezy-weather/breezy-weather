@@ -26,32 +26,32 @@ import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 public class ArcProgress extends View {
 
-    private Paint progressPaint;
-    private Paint shadowPaint;
-    private Paint textPaint;
+    private Paint mProgressPaint;
+    private Paint mShadowPaint;
+    private Paint mTextPaint;
 
-    private DayNightShaderWrapper shaderWrapper;
+    private final DayNightShaderWrapper mShaderWrapper;
 
-    private RectF rectF = new RectF();
-    private float arcBottomHeight;
+    private final RectF mRectF = new RectF();
+    private float mArcBottomHeight;
 
-    private float progress;
-    private float max;
-    private float arcAngle;
-    private float progressWidth;
-    @ColorInt private int progressColor;
-    @ColorInt private int shadowColor;
-    @ColorInt private int shaderColor;
-    @ColorInt private int backgroundColor;
+    private float mProgress;
+    private float mMax;
+    private float mArcAngle;
+    private float mProgressWidth;
+    @ColorInt private int mProgressColor;
+    @ColorInt private int mShadowColor;
+    @ColorInt private int mShaderColor;
+    @ColorInt private int mBackgroundColor;
 
-    private String text;
-    private float textSize;
-    @ColorInt private int textColor;
-    @Size(2) private int[] shaderColors;
+    private String mText;
+    private float mTextSize;
+    @ColorInt private int mTextColor;
+    @Size(2) private final int[] mShaderColors;
 
-    private String bottomText;
-    private float bottomTextSize;
-    @ColorInt private int bottomTextColor;
+    private String mBottomText;
+    private float mBottomTextSize;
+    @ColorInt private int mBottomTextColor;
 
     private static final float SHADOW_ALPHA_FACTOR_LIGHT = 0.1f;
     private static final float SHADOW_ALPHA_FACTOR_DARK = 0.1f;
@@ -74,81 +74,81 @@ public class ArcProgress extends View {
 
         initPaint();
 
-        shaderColors = new int[] {Color.BLACK, Color.WHITE};
-        shaderWrapper = new DayNightShaderWrapper(
-                null, getMeasuredWidth(), getMeasuredHeight(), true, shaderColors);
+        mShaderColors = new int[] {Color.BLACK, Color.WHITE};
+        mShaderWrapper = new DayNightShaderWrapper(
+                null, getMeasuredWidth(), getMeasuredHeight(), true, mShaderColors);
     }
 
     private void initialize(TypedArray attributes) {
-        progress = attributes.getInt(R.styleable.ArcProgress_progress, 0);
-        max = attributes.getInt(R.styleable.ArcProgress_max, 100);
-        arcAngle = attributes.getFloat(R.styleable.ArcProgress_arc_angle, 360 * 0.8f);
-        progressWidth = attributes.getDimension(
+        mProgress = attributes.getInt(R.styleable.ArcProgress_progress, 0);
+        mMax = attributes.getInt(R.styleable.ArcProgress_max, 100);
+        mArcAngle = attributes.getFloat(R.styleable.ArcProgress_arc_angle, 360 * 0.8f);
+        mProgressWidth = attributes.getDimension(
                 R.styleable.ArcProgress_progress_width, DisplayUtils.dpToPx(getContext(), 8));
-        progressColor = attributes.getColor(R.styleable.ArcProgress_progress_color, Color.BLACK);
-        shadowColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
-        shaderColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
-        backgroundColor = attributes.getColor(
+        mProgressColor = attributes.getColor(R.styleable.ArcProgress_progress_color, Color.BLACK);
+        mShadowColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
+        mShaderColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
+        mBackgroundColor = attributes.getColor(
                 R.styleable.ArcProgress_background_color, Color.GRAY);
 
-        text = attributes.getString(R.styleable.ArcProgress_text);
-        textSize = attributes.getDimension(
+        mText = attributes.getString(R.styleable.ArcProgress_text);
+        mTextSize = attributes.getDimension(
                 R.styleable.ArcProgress_text_size, DisplayUtils.dpToPx(getContext(), 36));
-        textColor = attributes.getColor(R.styleable.ArcProgress_text_color, Color.DKGRAY);
+        mTextColor = attributes.getColor(R.styleable.ArcProgress_text_color, Color.DKGRAY);
 
-        bottomText = attributes.getString(R.styleable.ArcProgress_bottom_text);
-        bottomTextSize = attributes.getDimension(
+        mBottomText = attributes.getString(R.styleable.ArcProgress_bottom_text);
+        mBottomTextSize = attributes.getDimension(
                 R.styleable.ArcProgress_bottom_text_size, DisplayUtils.dpToPx(getContext(), 12));
-        bottomTextColor = attributes.getColor(R.styleable.ArcProgress_bottom_text_color, Color.DKGRAY);
+        mBottomTextColor = attributes.getColor(R.styleable.ArcProgress_bottom_text_color, Color.DKGRAY);
     }
 
     private void initPaint() {
-        progressPaint = new Paint();
-        progressPaint.setAntiAlias(true);
-        progressPaint.setStrokeWidth(progressWidth);
-        progressPaint.setStyle(Paint.Style.STROKE);
-        progressPaint.setStrokeCap(Paint.Cap.ROUND);
+        mProgressPaint = new Paint();
+        mProgressPaint.setAntiAlias(true);
+        mProgressPaint.setStrokeWidth(mProgressWidth);
+        mProgressPaint.setStyle(Paint.Style.STROKE);
+        mProgressPaint.setStrokeCap(Paint.Cap.ROUND);
 
-        shadowPaint = new Paint();
-        shadowPaint.setAntiAlias(true);
-        shadowPaint.setStyle(Paint.Style.FILL);
+        mShadowPaint = new Paint();
+        mShadowPaint.setAntiAlias(true);
+        mShadowPaint.setStyle(Paint.Style.FILL);
 
-        textPaint = new TextPaint();
-        textPaint.setTextSize(textSize);
-        textPaint.setAntiAlias(true);
+        mTextPaint = new TextPaint();
+        mTextPaint.setTextSize(mTextSize);
+        mTextPaint.setAntiAlias(true);
     }
 
     public float getProgress() {
-        return progress;
+        return mProgress;
     }
 
     public void setProgress(float progress) {
-        this.progress = progress;
-        if (this.progress > getMax()) {
-            this.progress = getMax();
+        mProgress = progress;
+        if (mProgress > getMax()) {
+            mProgress = getMax();
         }
         invalidate();
     }
 
     public float getMax() {
-        return max;
+        return mMax;
     }
 
     public void setMax(float max) {
         if (max > 0) {
-            this.max = max;
+            mMax = max;
             invalidate();
         }
     }
 
     public void setProgressColor(@ColorInt int progressColor, boolean lightTheme) {
-        this.progressColor = progressColor;
-        this.shadowColor = getDarkerColor(progressColor);
-        this.shaderColor = ColorUtils.setAlphaComponent(
+        mProgressColor = progressColor;
+        mShadowColor = getDarkerColor(progressColor);
+        mShaderColor = ColorUtils.setAlphaComponent(
                 progressColor,
                 (int) (255 * (lightTheme ? SHADOW_ALPHA_FACTOR_LIGHT : SHADOW_ALPHA_FACTOR_DARK))
         );
-        this.invalidate();
+        invalidate();
     }
 
     private int getDarkerColor(@ColorInt int color){
@@ -160,46 +160,46 @@ public class ArcProgress extends View {
     }
 
     public void setArcBackgroundColor(@ColorInt int backgroundColor) {
-        this.backgroundColor = backgroundColor;
-        this.invalidate();
+        mBackgroundColor = backgroundColor;
+        invalidate();
     }
 
     public void setText(String text) {
-        this.text = text;
-        this.invalidate();
+        mText = text;
+        invalidate();
     }
 
     public void setTextColor(@ColorInt int textColor) {
-        this.textColor = textColor;
-        this.invalidate();
+        mTextColor = textColor;
+        invalidate();
     }
 
     public void setBottomText(String bottomText) {
-        this.bottomText = bottomText;
-        this.invalidate();
+        mBottomText = bottomText;
+        invalidate();
     }
 
     public void setBottomTextColor(@ColorInt int bottomTextColor) {
-        this.bottomTextColor = bottomTextColor;
-        this.invalidate();
+        mBottomTextColor = bottomTextColor;
+        invalidate();
     }
 
     private void ensureShadowShader() {
-        shaderColors[0] = shaderColor;
-        shaderColors[1] = Color.TRANSPARENT;
+        mShaderColors[0] = mShaderColor;
+        mShaderColors[1] = Color.TRANSPARENT;
 
-        if (shaderWrapper.isDifferent(
-                getMeasuredWidth(), getMeasuredHeight(), false, shaderColors)) {
-            shaderWrapper.setShader(
+        if (mShaderWrapper.isDifferent(
+                getMeasuredWidth(), getMeasuredHeight(), false, mShaderColors)) {
+            mShaderWrapper.setShader(
                     new LinearGradient(
-                            0, rectF.top,
-                            0, rectF.bottom,
-                            shaderColors[0], shaderColors[1],
+                            0, mRectF.top,
+                            0, mRectF.bottom,
+                            mShaderColors[0], mShaderColors[1],
                             Shader.TileMode.CLAMP
                     ),
                     getMeasuredWidth(), getMeasuredHeight(),
                     false,
-                    shaderColors
+                    mShaderColors
             );
         }
     }
@@ -219,15 +219,15 @@ public class ArcProgress extends View {
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int arcPadding = (int) DisplayUtils.dpToPx(getContext(), 4);
-        rectF.set(
-                progressWidth / 2f + arcPadding,
-                progressWidth / 2f + arcPadding,
-                width - progressWidth / 2f - arcPadding,
-                MeasureSpec.getSize(heightMeasureSpec) - progressWidth / 2f - arcPadding
+        mRectF.set(
+                mProgressWidth / 2f + arcPadding,
+                mProgressWidth / 2f + arcPadding,
+                width - mProgressWidth / 2f - arcPadding,
+                MeasureSpec.getSize(heightMeasureSpec) - mProgressWidth / 2f - arcPadding
         );
         float radius = (width - 2 * arcPadding) / 2f;
-        float angle = (360 - arcAngle) / 2f;
-        arcBottomHeight = radius * (float) (1 - Math.cos(angle / 180 * Math.PI));
+        float angle = (360 - mArcAngle) / 2f;
+        mArcBottomHeight = radius * (float) (1 - Math.cos(angle / 180 * Math.PI));
 
         ensureShadowShader();
     }
@@ -235,69 +235,69 @@ public class ArcProgress extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float startAngle = 270 - arcAngle / 2f;
-        float progressSweepAngle = (float) (1.0 * progress / getMax() * arcAngle);
+        float startAngle = 270 - mArcAngle / 2f;
+        float progressSweepAngle = (float) (1.0 * mProgress / getMax() * mArcAngle);
         float progressEndAngle = startAngle + progressSweepAngle;
-        float deltaAngle = (float) (progressWidth / 2 / Math.PI / (rectF.width() / 2) * 180);
+        float deltaAngle = (float) (mProgressWidth / 2 / Math.PI / (mRectF.width() / 2) * 180);
 
-        if (progress > 0) {
+        if (mProgress > 0) {
             ensureShadowShader();
-            shadowPaint.setShader(shaderWrapper.getShader());
+            mShadowPaint.setShader(mShaderWrapper.getShader());
             if (progressEndAngle + deltaAngle >= 360) {
                 canvas.drawCircle(
-                        rectF.centerX(),
-                        rectF.centerY(),
-                        rectF.width() / 2,
-                        shadowPaint
+                        mRectF.centerX(),
+                        mRectF.centerY(),
+                        mRectF.width() / 2,
+                        mShadowPaint
                 );
             } else if (progressEndAngle + deltaAngle > 180) {
                 canvas.drawArc(
-                        rectF,
+                        mRectF,
                         360 - progressEndAngle - deltaAngle,
                         360 - 2 * (360 - progressEndAngle - deltaAngle),
                         false,
-                        shadowPaint
+                        mShadowPaint
                 );
             }
         }
 
-        progressPaint.setColor(backgroundColor);
-        canvas.drawArc(rectF, startAngle, arcAngle, false, progressPaint);
-        if (progress > 0) {
-            progressPaint.setColor(progressColor);
-            canvas.drawArc(rectF, startAngle, progressSweepAngle, false, progressPaint);
+        mProgressPaint.setColor(mBackgroundColor);
+        canvas.drawArc(mRectF, startAngle, mArcAngle, false, mProgressPaint);
+        if (mProgress > 0) {
+            mProgressPaint.setColor(mProgressColor);
+            canvas.drawArc(mRectF, startAngle, progressSweepAngle, false, mProgressPaint);
         }
 
-        if (!TextUtils.isEmpty(text)) {
-            textPaint.setColor(textColor);
-            textPaint.setTextSize(textSize);
-            float textHeight = textPaint.descent() + textPaint.ascent();
+        if (!TextUtils.isEmpty(mText)) {
+            mTextPaint.setColor(mTextColor);
+            mTextPaint.setTextSize(mTextSize);
+            float textHeight = mTextPaint.descent() + mTextPaint.ascent();
             float textBaseline = (getHeight() - textHeight) / 2.0f;
             canvas.drawText(
-                    text,
-                    (getWidth() - textPaint.measureText(text)) / 2.0f,
+                    mText,
+                    (getWidth() - mTextPaint.measureText(mText)) / 2.0f,
                     textBaseline,
-                    textPaint
+                    mTextPaint
             );
         }
 
-        if(arcBottomHeight == 0) {
+        if(mArcBottomHeight == 0) {
             float radius = getWidth() / 2f;
-            float angle = (360 - arcAngle) / 2f;
-            arcBottomHeight = radius * (float) (1 - Math.cos(angle / 180 * Math.PI));
+            float angle = (360 - mArcAngle) / 2f;
+            mArcBottomHeight = radius * (float) (1 - Math.cos(angle / 180 * Math.PI));
         }
 
-        if (!TextUtils.isEmpty(bottomText)) {
-            textPaint.setColor(bottomTextColor);
-            textPaint.setTextSize(bottomTextSize);
+        if (!TextUtils.isEmpty(mBottomText)) {
+            mTextPaint.setColor(mBottomTextColor);
+            mTextPaint.setTextSize(mBottomTextSize);
             float bottomTextBaseline = getHeight()
-                    - arcBottomHeight
-                    - (textPaint.descent() + textPaint.ascent()) / 2;
+                    - mArcBottomHeight
+                    - (mTextPaint.descent() + mTextPaint.ascent()) / 2;
             canvas.drawText(
-                    bottomText,
-                    (getWidth() - textPaint.measureText(bottomText)) / 2.0f,
+                    mBottomText,
+                    (getWidth() - mTextPaint.measureText(mBottomText)) / 2.0f,
                     bottomTextBaseline,
-                    textPaint
+                    mTextPaint
             );
         }
     }
