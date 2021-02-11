@@ -1,73 +1,80 @@
 package wangdaye.com.geometricweather.main;
 
-import android.Manifest;
-import android.content.Context;
+import android.app.Application;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.main.dialog.BackgroundLocationDialog;
-import wangdaye.com.geometricweather.main.dialog.LocationPermissionStatementDialog;
-import wangdaye.com.geometricweather.main.model.Indicator;
-import wangdaye.com.geometricweather.main.model.LocationResource;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.main.models.Indicator;
+import wangdaye.com.geometricweather.main.models.LocationResource;
+import wangdaye.com.geometricweather.main.models.PermissionsRequest;
+import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 
-public class MainActivityViewModel extends ViewModel
+public class MainActivityViewModel extends AndroidViewModel
         implements MainActivityRepository.WeatherRequestCallback {
 
     private final MutableLiveData<LocationResource> mCurrentLocation;
     private final MutableLiveData<Indicator> mIndicator;
+    private final MutableLiveData<PermissionsRequest> mPermissionsRequest;
 
-    private MainActivityRepository mRepository;
+    private final MainActivityRepository mRepository;
+
+    private @Nullable AsyncHelper.Controller mIOController;
 
     private @Nullable List<Location> mTotalList; // all locations.
     private @Nullable List<Location> mValidList; // location list optimized for resident city.
     private @Nullable Integer mValidIndex; // current index for validList.
 
-    private boolean mNewInstance;
-    private boolean mRequestingPermissions;
+    public MainActivityViewModel(@NonNull Application application) {
+        super(application);
 
-    public MainActivityViewModel() {
         mCurrentLocation = new MutableLiveData<>();
         mCurrentLocation.setValue(null);
 
         mIndicator = new MutableLiveData<>();
         mIndicator.setValue(new Indicator(1, 0));
 
+        mPermissionsRequest = new MutableLiveData<>();
+        mPermissionsRequest.setValue(
+                new PermissionsRequest(new ArrayList<>(), null, false));
+
+        mRepository = new MainActivityRepository(getApplication());
+
+        mIOController = null;
+
         mTotalList = null;
         mValidList = null;
         mValidIndex = null;
 
-        mNewInstance = true;
-        mRequestingPermissions = false;
+        init((String) null);
     }
 
-    public void reset(GeoActivity activity) {
+    public void reset() {
         LocationResource resource = mCurrentLocation.getValue();
         if (resource != null) {
-            init(activity, resource.data);
+            init(resource.data);
         }
     }
 
-    public void init(GeoActivity activity, @NonNull Location location) {
-        init(activity, location.getFormattedId());
+    public void init(@NonNull Location location) {
+        init(location.getFormattedId());
     }
 
-    public void init(GeoActivity activity, @Nullable String formattedId) {
-        if (mRepository == null) {
-            mRepository = new MainActivityRepository(activity);
+    public void init(@Nullable String formattedId) {
+        if (mIOController != null) {
+            mIOController.cancel();
+            mIOController = null;
         }
 
         final boolean[] firstInit = {true};
@@ -75,25 +82,38 @@ public class MainActivityViewModel extends ViewModel
         List<Location> oldList = mTotalList == null
                 ? new ArrayList<>()
                 : Collections.unmodifiableList(mTotalList);
-        mRepository.getLocationList(activity, oldList, locationList -> {
+        mIOController = mRepository.getLocationList(getApplication(), oldList, locationList -> {
             if (locationList == null) {
                 return;
             }
 
             List<Location> totalList = new ArrayList<>(locationList);
-            List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
+            List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
 
             int validIndex = firstInit[0]
                     ? indexLocation(validList, formattedId)
                     : indexLocation(mValidList, getCurrentFormattedId());
             firstInit[0] = false;
 
-            setLocation(activity, totalList, validList, validIndex,
-                    LocationResource.Source.REFRESH, null);
+            setLocation(totalList, validList, validIndex, LocationResource.Source.REFRESH, null);
         });
     }
 
-    public void setLocation(GeoActivity activity, int offset) {
+    public void init(List<Location> locationList, @Nullable String formattedId) {
+        if (mIOController != null) {
+            mIOController.cancel();
+            mIOController = null;
+        }
+
+        List<Location> totalList = new ArrayList<>(locationList);
+        List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
+
+        int validIndex = indexLocation(validList, formattedId);
+
+        setLocation(totalList, validList, validIndex, LocationResource.Source.REFRESH, null);
+    }
+
+    public void setLocation(int offset) {
         if (mTotalList == null || mValidList == null || mValidIndex == null) {
             return;
         }
@@ -105,7 +125,6 @@ public class MainActivityViewModel extends ViewModel
         index %= mValidList.size();
 
         setLocation(
-                activity,
                 new ArrayList<>(mTotalList),
                 new ArrayList<>(mValidList),
                 index,
@@ -114,8 +133,7 @@ public class MainActivityViewModel extends ViewModel
         );
     }
 
-    private void setLocation(GeoActivity activity,
-                             @NonNull List<Location> newTotalList,
+    private void setLocation(@NonNull List<Location> newTotalList,
                              @NonNull List<Location> newValidList,
                              int newValidIndex,
                              LocationResource.Source source,
@@ -131,11 +149,11 @@ public class MainActivityViewModel extends ViewModel
         Indicator i = new Indicator(mValidList.size(), mValidIndex);
 
         boolean defaultLocation = mValidIndex == 0;
-        if (resource == null && MainModuleUtils.needUpdate(activity, current)) {
+        if (resource == null && MainModuleUtils.needUpdate(getApplication(), current)) {
             mCurrentLocation.setValue(LocationResource.loading(current, defaultLocation, source));
-            updateWeather(activity, false);
+            updateWeather(false, true);
         } else if (resource == null) {
-            mRepository.cancel();
+            mRepository.cancelWeatherRequest();
             mCurrentLocation.setValue(LocationResource.success(current, defaultLocation, source));
         } else {
             mCurrentLocation.setValue(resource);
@@ -143,14 +161,19 @@ public class MainActivityViewModel extends ViewModel
         mIndicator.setValue(i);
     }
 
-    public void updateLocationFromBackground(GeoActivity activity, @Nullable String formattedId) {
+    public void updateLocationFromBackground(@Nullable String formattedId) {
         if (TextUtils.isEmpty(formattedId)
                 || mTotalList == null || mValidList == null || mValidIndex == null) {
             return;
         }
 
+        if (mIOController != null) {
+            mIOController.cancel();
+            mIOController = null;
+        }
+
         assert formattedId != null;
-        mRepository.getLocationAndWeatherCache(activity, formattedId, location -> {
+        mIOController = mRepository.getLocationAndWeatherCache(getApplication(), formattedId, location -> {
 
             List<Location> totalList = new ArrayList<>(mTotalList);
             for (int i = 0; i < totalList.size(); i ++) {
@@ -160,11 +183,11 @@ public class MainActivityViewModel extends ViewModel
                 }
             }
 
-            List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
+            List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
 
             int validIndex = indexLocation(validList, getCurrentFormattedId());
 
-            setLocation(activity, totalList, validList, validIndex,
+            setLocation(totalList, validList, validIndex,
                     LocationResource.Source.BACKGROUND, null);
         });
     }
@@ -191,12 +214,12 @@ public class MainActivityViewModel extends ViewModel
         return mValidList.get((mValidIndex + offset + mValidList.size()) % mValidList.size());
     }
 
-    public void updateWeather(GeoActivity activity, boolean triggeredByUser) {
+    public void updateWeather(boolean triggeredByUser, boolean checkPermissions) {
         if (mCurrentLocation.getValue() == null) {
             return;
         }
 
-        mRepository.cancel();
+        mRepository.cancelWeatherRequest();
 
         Location location = mCurrentLocation.getValue().data;
 
@@ -208,112 +231,47 @@ public class MainActivityViewModel extends ViewModel
                 )
         );
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !location.isCurrentPosition()) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
+                || !location.isCurrentPosition()
+                || !checkPermissions) {
             // don't need to request any permission -> request data directly.
             mRepository.getWeather(
-                    activity, location, location.isCurrentPosition(), triggeredByUser, this);
+                    getApplication(), location, location.isCurrentPosition(), triggeredByUser, this);
             return;
         }
 
-        // check basic location permissions.
-        List<String> permissionList = getDeniedPermissionList(activity, false);
+        // check permissions.
+        List<String> permissionList = getDeniedPermissionList();
         if (permissionList.size() == 0) {
             // already got all permissions -> request data directly.
             mRepository.getWeather(
-                    activity, location, true, triggeredByUser, this);
+                    getApplication(), location, true, triggeredByUser, this);
             return;
         }
 
-        // only show dialog if we need request location permissions.
-        boolean needShowDialog = false;
-        for (String permission : permissionList) {
-            if (isNecessaryPermission(permission)) {
-                needShowDialog = true;
-                break;
-            }
-        }
-        if (needShowDialog) {
-            // only show dialog once.
-            if (!mRequestingPermissions) {
-                mRequestingPermissions = true;
-                // need request permissions -> request basic location permissions.
-                LocationPermissionStatementDialog dialog = new LocationPermissionStatementDialog();
-                dialog.setOnSetButtonClickListener(() -> {
-                    mRequestingPermissions = false;
-                    requireLocationPermissionsAndUpdate(activity, permissionList, location, triggeredByUser);
-                });
-                dialog.setCancelable(false);
-                dialog.show(activity.getSupportFragmentManager(), null);
-            }
-        } else {
-            requireLocationPermissionsAndUpdate(activity, permissionList, location, triggeredByUser);
-        }
+        // request permissions.
+        mPermissionsRequest.setValue(new PermissionsRequest(permissionList, location, triggeredByUser));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requireLocationPermissionsAndUpdate(GeoActivity activity,
-                                                     List<String> permissionList,
-                                                     Location location,
-                                                     boolean triggeredByUser) {
-        String[] permissions = permissionList.toArray(new String[0]);
-
-        activity.requestPermissions(permissions, 0, (requestCode, permission, grantResult) -> {
-
-            for (int i = 0; i < permission.length && i < grantResult.length; i++) {
-                if (isNecessaryPermission(permission[i])
-                        && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
-                    // denied basic location permissions.
-                    if (location.isUsable()) {
-                        mRepository.getWeather(
-                                activity, location, false, triggeredByUser, this);
-                    } else {
-                        mCurrentLocation.setValue(
-                                LocationResource.error(
-                                        location,
-                                        true,
-                                        LocationResource.Source.REFRESH
-                                )
-                        );
-                    }
-                    return;
-                }
-            }
-
-            // check background location permissions.
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                List<String> backgroundPermissionList = getDeniedPermissionList(activity, true);
-                if (backgroundPermissionList.size() != 0) {
-                    BackgroundLocationDialog dialog = new BackgroundLocationDialog();
-                    dialog.setOnSetButtonClickListener(() ->
-                            activity.requestPermissions(
-                                    backgroundPermissionList.toArray(new String[0]),
-                                    0,
-                                    null
-                            )
-                    );
-                    dialog.show(activity.getSupportFragmentManager(), null);
-                }
-            }
-
-            mRepository.getWeather(
-                    activity, location, true, triggeredByUser, this);
-        });
+    public void requestPermissionsFailed(Location location) {
+        mCurrentLocation.setValue(
+                LocationResource.error(
+                        location,
+                        true,
+                        LocationResource.Source.REFRESH
+                )
+        );
     }
 
-    private List<String> getDeniedPermissionList(Context context, boolean background) {
-        List<String> permissionList = mRepository.getLocatePermissionList(background);
+    private List<String> getDeniedPermissionList() {
+        List<String> permissionList = mRepository.getLocatePermissionList();
         for (int i = permissionList.size() - 1; i >= 0; i --) {
-            if (ActivityCompat.checkSelfPermission(context, permissionList.get(i))
+            if (ActivityCompat.checkSelfPermission(getApplication(), permissionList.get(i))
                     == PackageManager.PERMISSION_GRANTED) {
                 permissionList.remove(i);
             }
         }
         return permissionList;
-    }
-
-    private boolean isNecessaryPermission(String permission) {
-        return permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION)
-                || permission.equals(Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
     public MutableLiveData<LocationResource> getCurrentLocation() {
@@ -322,6 +280,10 @@ public class MainActivityViewModel extends ViewModel
 
     public MutableLiveData<Indicator> getIndicator() {
         return mIndicator;
+    }
+
+    public MutableLiveData<PermissionsRequest> getPermissionsRequest() {
+        return mPermissionsRequest;
     }
 
     @Nullable
@@ -346,7 +308,15 @@ public class MainActivityViewModel extends ViewModel
         }
     }
 
-    public @NonNull List<Location> getLocationList() {
+    public @NonNull List<Location> getTotalLocationList() {
+        if (mTotalList != null) {
+            return Collections.unmodifiableList(mTotalList);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public @NonNull List<Location> getValidLocationList() {
         if (mValidList != null) {
             return Collections.unmodifiableList(mValidList);
         } else {
@@ -354,40 +324,32 @@ public class MainActivityViewModel extends ViewModel
         }
     }
 
-    public boolean isNewInstance() {
-        if (mNewInstance) {
-            mNewInstance = false;
-            return true;
-        }
-        return false;
-    }
-
     @Override
     protected void onCleared() {
         super.onCleared();
         if (mRepository != null) {
-            mRepository.cancel();
+            mRepository.cancelWeatherRequest();
         }
     }
 
     // weather request callback.
 
     @Override
-    public void onReadCacheCompleted(GeoActivity activity, Location location, boolean succeed, boolean done) {
-        callback(activity, location, false, succeed, done);
+    public void onReadCacheCompleted(Location location, boolean succeed, boolean done) {
+        callback(location, false, succeed, done);
     }
 
     @Override
-    public void onLocationCompleted(GeoActivity activity, Location location, boolean succeed, boolean done) {
-        callback(activity, location, !succeed, succeed, done);
+    public void onLocationCompleted(Location location, boolean succeed, boolean done) {
+        callback(location, !succeed, succeed, done);
     }
 
     @Override
-    public void onGetWeatherCompleted(GeoActivity activity, Location location, boolean succeed, boolean done) {
-        callback(activity, location, false, succeed, done);
+    public void onGetWeatherCompleted(Location location, boolean succeed, boolean done) {
+        callback(location, false, succeed, done);
     }
 
-    private void callback(GeoActivity activity, Location location,
+    private void callback(Location location,
                           boolean locateFailed, boolean succeed, boolean done) {
         if (mTotalList == null || mValidList == null || mValidIndex == null) {
             return;
@@ -401,7 +363,7 @@ public class MainActivityViewModel extends ViewModel
             }
         }
 
-        List<Location> validList = Location.excludeInvalidResidentLocation(activity, totalList);
+        List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
 
         int validIndex = indexLocation(validList, getCurrentFormattedId());
 
@@ -418,7 +380,6 @@ public class MainActivityViewModel extends ViewModel
                     location, defaultLocation, locateFailed, LocationResource.Source.REFRESH);
         }
 
-        setLocation(activity, totalList, validList, validIndex,
-                LocationResource.Source.BACKGROUND, resource);
+        setLocation(totalList, validList, validIndex, LocationResource.Source.BACKGROUND, resource);
     }
 }

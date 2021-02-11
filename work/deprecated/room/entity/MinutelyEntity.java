@@ -6,13 +6,13 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
 
 /**
  * Minutely entity.
  *
- * {@link wangdaye.com.geometricweather.basic.model.weather.Minutely}.
+ * {@link wangdaye.com.geometricweather.basic.models.weather.Minutely}.
  * */
 @Entity(tableName = "MINUTELY_ENTITY")
 public class MinutelyEntity {

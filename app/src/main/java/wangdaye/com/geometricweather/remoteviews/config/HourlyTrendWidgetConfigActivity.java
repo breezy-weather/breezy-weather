@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.remoteviews.presenter.HourlyTrendWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.HourlyTrendWidgetIMP;
 
 /**
  * Hourly trend widget config activity.

@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.unit.PollenUnit;
-import wangdaye.com.geometricweather.basic.model.weather.Pollen;
+import wangdaye.com.geometricweather.basic.models.options.unit.PollenUnit;
+import wangdaye.com.geometricweather.basic.models.weather.Pollen;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyPollen;
 import wangdaye.com.geometricweather.databinding.ItemWeatherDailyPollenBinding;

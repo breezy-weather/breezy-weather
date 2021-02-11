@@ -8,11 +8,11 @@ import android.widget.Toast;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
+import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**

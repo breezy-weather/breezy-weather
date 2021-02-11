@@ -2,7 +2,7 @@ package wangdaye.com.geometricweather.room.converter;
 
 import androidx.room.TypeConverter;
 
-import wangdaye.com.geometricweather.basic.model.weather.WindDegree;
+import wangdaye.com.geometricweather.basic.models.weather.WindDegree;
 
 public class WindDegreeConverter {
 

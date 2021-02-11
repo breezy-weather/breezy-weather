@@ -7,14 +7,14 @@ import android.service.quicksettings.Tile;
 
 import androidx.annotation.RequiresApi;
 
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
-import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
+import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 /**
  * Tile service.

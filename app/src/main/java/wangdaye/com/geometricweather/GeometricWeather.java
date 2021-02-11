@@ -20,10 +20,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.helpter.BuglyHelper;
+import wangdaye.com.geometricweather.utils.helpters.BuglyHelper;
 import wangdaye.com.geometricweather.weather.TLSCompactHelper;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
+import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 /**
  * Geometric weather application class.

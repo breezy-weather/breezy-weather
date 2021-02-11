@@ -7,7 +7,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.room.entity.HourlyEntity;
 
 @Dao

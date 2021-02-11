@@ -8,20 +8,20 @@ import java.util.Date;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayDetailsWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.DailyTrendWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.HourlyTrendWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayHorizontalWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayVerticalWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayWeekWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.DayWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.DayWeekWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.MultiCityWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.TextWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayDetailsWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.DailyTrendWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.HourlyTrendWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayVerticalWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayWeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.DayWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.DayWeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.TextWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
 
 /**
  * Widget utils.

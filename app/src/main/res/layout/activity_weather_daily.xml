@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
+        <wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
@@ -72,9 +72,9 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-        </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
+        </wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout>
 
-        <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarViewPager
+        <wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarViewPager
             android:id="@+id/activity_weather_daily_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

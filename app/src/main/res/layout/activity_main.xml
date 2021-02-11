@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorRoot">
 
-    <wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout
+    <wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout
         android:id="@+id/switch_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <wangdaye.com.geometricweather.ui.widget.insets.FitSystemBarRecyclerView
+            <wangdaye.com.geometricweather.ui.widgets.insets.FitSystemBarRecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -27,9 +27,9 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
+    </wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout>
 
-    <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
+    <wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout
         android:id="@+id/app_bar"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -46,16 +46,16 @@
             app:theme="@style/GeometricWeatherTheme.AppbarTheme"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-    </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
+    </wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout>
 
-    <wangdaye.com.geometricweather.ui.widget.InkPageIndicator
+    <wangdaye.com.geometricweather.ui.widgets.InkPageIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/normal_margin"
         android:alpha="0"
         android:fitsSystemWindows="true"
-        app:layout_behavior=".ui.behavior.InkPageIndicatorBehavior"
+        app:layout_behavior=".ui.behaviors.InkPageIndicatorBehavior"
         app:dotDiameter="8dp"
         app:dotGap="8dp"
         app:animationDuration="300" />

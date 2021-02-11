@@ -5,7 +5,7 @@ import android.content.Context;
 import wangdaye.com.geometricweather.background.polling.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
+import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 /**
  * Background manager.

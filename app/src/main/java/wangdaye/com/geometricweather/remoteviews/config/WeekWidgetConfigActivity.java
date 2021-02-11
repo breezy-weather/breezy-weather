@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
 
 /**
  * Week widget config activity.

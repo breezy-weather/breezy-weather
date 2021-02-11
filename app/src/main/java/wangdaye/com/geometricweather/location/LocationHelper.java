@@ -12,18 +12,18 @@ import androidx.core.app.ActivityCompat;
 import java.util.List;
 import java.util.TimeZone;
 
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.location.service.AMapLocationService;
-import wangdaye.com.geometricweather.location.service.AndroidLocationService;
-import wangdaye.com.geometricweather.location.service.ip.BaiduIPLocationService;
-import wangdaye.com.geometricweather.location.service.BaiduLocationService;
-import wangdaye.com.geometricweather.location.service.LocationService;
+import wangdaye.com.geometricweather.location.services.AMapLocationService;
+import wangdaye.com.geometricweather.location.services.AndroidLocationService;
+import wangdaye.com.geometricweather.location.services.ip.BaiduIPLocationService;
+import wangdaye.com.geometricweather.location.services.BaiduLocationService;
+import wangdaye.com.geometricweather.location.services.LocationService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.utils.NetworkUtils;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
-import wangdaye.com.geometricweather.weather.service.WeatherService;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 /**
  * Location helper.
@@ -131,9 +131,16 @@ public class LocationHelper {
         }
     }
 
-    public String[] getPermissions(boolean background) {
+    public String[] getPermissions() {
+        // if IP:    none.
+        // else:
+        //      R:   foreground location. (set background location enabled manually)
+        //      Q:   foreground location + background location.
+        //      K-P: foreground location.
+
         String[] permissions = mLocationService.getPermissions();
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || permissions.length == 0) {
+            // device has no background location permission or locate by IP.
             return permissions;
         }
 
@@ -144,11 +151,7 @@ public class LocationHelper {
             return qPermissions;
         }
 
-        if (background) {
-            return new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION};
-        } else {
-            return permissions;
-        }
+        return permissions;
     }
 
     // interface.

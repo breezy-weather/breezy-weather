@@ -6,14 +6,14 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
-import wangdaye.com.geometricweather.basic.model.weather.WindDegree;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.basic.models.weather.WindDegree;
 
 /**
  * Daily entity.
  *
- * {@link wangdaye.com.geometricweather.basic.model.weather.Daily}.
+ * {@link wangdaye.com.geometricweather.basic.models.weather.Daily}.
  * */
 @Entity(tableName = "DAILY_ENTITY")
 public class DailyEntity {

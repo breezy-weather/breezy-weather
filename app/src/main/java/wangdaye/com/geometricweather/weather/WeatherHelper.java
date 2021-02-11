@@ -9,18 +9,18 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.weather.observer.BaseObserver;
-import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
-import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
-import wangdaye.com.geometricweather.weather.service.CNWeatherService;
-import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
-import wangdaye.com.geometricweather.weather.service.MfWeatherService;
-import wangdaye.com.geometricweather.weather.service.WeatherService;
+import wangdaye.com.geometricweather.weather.observers.BaseObserver;
+import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
+import wangdaye.com.geometricweather.weather.services.AccuWeatherService;
+import wangdaye.com.geometricweather.weather.services.CNWeatherService;
+import wangdaye.com.geometricweather.weather.services.CaiYunWeatherService;
+import wangdaye.com.geometricweather.weather.services.MfWeatherService;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 /**
  * Weather helper.

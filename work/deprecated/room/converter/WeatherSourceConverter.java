@@ -2,7 +2,7 @@ package wangdaye.com.geometricweather.room.converter;
 
 import androidx.room.TypeConverter;
 
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 
 public class WeatherSourceConverter {
 

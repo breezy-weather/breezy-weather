@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey;
 
 import java.util.TimeZone;
 
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 
 /**
  * Location entity.

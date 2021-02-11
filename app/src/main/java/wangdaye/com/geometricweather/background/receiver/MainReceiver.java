@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import wangdaye.com.geometricweather.utils.helpter.IntentHelper;
+import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 /**
  * Main receiver.

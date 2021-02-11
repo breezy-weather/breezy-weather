@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.Overview;
-import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
-import wangdaye.com.geometricweather.resource.provider.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.AnimatableIconView;
+import wangdaye.com.geometricweather.ui.widgets.AnimatableIconView;
 
 public class OverviewHolder extends DailyWeatherAdapter.ViewHolder {
 

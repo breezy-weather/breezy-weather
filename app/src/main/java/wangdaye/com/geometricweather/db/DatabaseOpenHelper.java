@@ -7,15 +7,15 @@ import com.github.yuweiguocn.library.greendao.MigrationHelper;
 
 import org.greenrobot.greendao.database.Database;
 
-import wangdaye.com.geometricweather.db.entity.AlertEntityDao;
-import wangdaye.com.geometricweather.db.entity.ChineseCityEntityDao;
-import wangdaye.com.geometricweather.db.entity.DailyEntityDao;
-import wangdaye.com.geometricweather.db.entity.DaoMaster;
-import wangdaye.com.geometricweather.db.entity.HistoryEntityDao;
-import wangdaye.com.geometricweather.db.entity.HourlyEntityDao;
-import wangdaye.com.geometricweather.db.entity.LocationEntityDao;
-import wangdaye.com.geometricweather.db.entity.MinutelyEntityDao;
-import wangdaye.com.geometricweather.db.entity.WeatherEntityDao;
+import wangdaye.com.geometricweather.db.entities.AlertEntityDao;
+import wangdaye.com.geometricweather.db.entities.ChineseCityEntityDao;
+import wangdaye.com.geometricweather.db.entities.DailyEntityDao;
+import wangdaye.com.geometricweather.db.entities.DaoMaster;
+import wangdaye.com.geometricweather.db.entities.HistoryEntityDao;
+import wangdaye.com.geometricweather.db.entities.HourlyEntityDao;
+import wangdaye.com.geometricweather.db.entities.LocationEntityDao;
+import wangdaye.com.geometricweather.db.entities.MinutelyEntityDao;
+import wangdaye.com.geometricweather.db.entities.WeatherEntityDao;
 
 class DatabaseOpenHelper extends DaoMaster.OpenHelper {
 

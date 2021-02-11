@@ -20,19 +20,19 @@ import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.WeatherViewController;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.DelayRotateController;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.IntervalComputer;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.MaterialWeatherView;
-import wangdaye.com.geometricweather.ui.widget.weatherView.materialWeatherView.WeatherImplementorFactory;
+import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
+import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherViewController;
+import wangdaye.com.geometricweather.ui.widgets.weatherView.materialWeatherView.DelayRotateController;
+import wangdaye.com.geometricweather.ui.widgets.weatherView.materialWeatherView.IntervalComputer;
+import wangdaye.com.geometricweather.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
+import wangdaye.com.geometricweather.ui.widgets.weatherView.materialWeatherView.WeatherImplementorFactory;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpter.AsyncHelper;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
+import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 public class MaterialLiveWallpaperService extends WallpaperService {
 

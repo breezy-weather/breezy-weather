@@ -13,8 +13,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.model.weather.Temperature;
+import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
 /**

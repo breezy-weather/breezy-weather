@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.daily.adapter.model;
 
-import wangdaye.com.geometricweather.basic.model.weather.Pollen;
+import wangdaye.com.geometricweather.basic.models.weather.Pollen;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 
 public class DailyPollen implements DailyWeatherAdapter.ViewModel {

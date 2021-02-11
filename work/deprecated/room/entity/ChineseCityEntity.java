@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import wangdaye.com.geometricweather.basic.model.ChineseCity;
+import wangdaye.com.geometricweather.basic.models.ChineseCity;
 
 /**
  * Chinese city entity.

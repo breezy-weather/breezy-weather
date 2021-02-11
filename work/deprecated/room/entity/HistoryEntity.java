@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 
 /**
  * History entity.
  *
- * {@link wangdaye.com.geometricweather.basic.model.weather.History}.
+ * {@link wangdaye.com.geometricweather.basic.models.weather.History}.
  * */
 
 @Entity(tableName = "HISTORY_ENTITY")

@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 
 /**
  * Alert entity.
  *
- * {@link wangdaye.com.geometricweather.basic.model.weather.Alert}
+ * {@link wangdaye.com.geometricweather.basic.models.weather.Alert}
  * */
 @Entity(tableName = "ALERT_ENTITY")
 public class AlertEntity {

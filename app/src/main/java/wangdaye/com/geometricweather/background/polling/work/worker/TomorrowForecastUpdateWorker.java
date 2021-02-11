@@ -10,8 +10,8 @@ import androidx.work.impl.utils.futures.SettableFuture;
 import java.util.List;
 
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.remoteviews.presenter.notification.ForecastNotificationIMP;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.remoteviews.presenters.notification.ForecastNotificationIMP;
 
 public class TomorrowForecastUpdateWorker extends AsyncUpdateWorker {
 

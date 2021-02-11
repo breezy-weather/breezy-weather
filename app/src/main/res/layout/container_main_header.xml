@@ -13,7 +13,7 @@
     tools:background="@android:color/black"
     tools:ignore="UnusedAttribute">
 
-    <wangdaye.com.geometricweather.ui.widget.NumberAnimTextView
+    <wangdaye.com.geometricweather.ui.widgets.NumberAnimTextView
         android:id="@+id/container_main_header_tempTxt"
         android:layout_width="match_parent"
         android:textSize="@dimen/main_title_text_size"

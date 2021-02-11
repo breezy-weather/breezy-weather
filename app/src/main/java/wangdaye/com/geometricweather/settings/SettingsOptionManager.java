@@ -10,23 +10,22 @@ import androidx.preference.PreferenceManager;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.WidgetWeekIconMode;
-import wangdaye.com.geometricweather.basic.model.option.appearance.DailyTrendDisplay;
-import wangdaye.com.geometricweather.basic.model.option.utils.OptionMapper;
-import wangdaye.com.geometricweather.basic.model.option.appearance.CardDisplay;
-import wangdaye.com.geometricweather.basic.model.option.appearance.Language;
-import wangdaye.com.geometricweather.basic.model.option.NotificationStyle;
-import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
-import wangdaye.com.geometricweather.basic.model.option.appearance.UIStyle;
-import wangdaye.com.geometricweather.basic.model.option.provider.LocationProvider;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.model.option.DarkMode;
-import wangdaye.com.geometricweather.basic.model.option.UpdateInterval;
-import wangdaye.com.geometricweather.basic.model.option.unit.DistanceUnit;
-import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
-import wangdaye.com.geometricweather.basic.model.option.unit.PressureUnit;
-import wangdaye.com.geometricweather.basic.model.option.unit.SpeedUnit;
-import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.basic.models.options.DarkMode;
+import wangdaye.com.geometricweather.basic.models.options.NotificationStyle;
+import wangdaye.com.geometricweather.basic.models.options.NotificationTextColor;
+import wangdaye.com.geometricweather.basic.models.options.UpdateInterval;
+import wangdaye.com.geometricweather.basic.models.options.WidgetWeekIconMode;
+import wangdaye.com.geometricweather.basic.models.options.appearance.CardDisplay;
+import wangdaye.com.geometricweather.basic.models.options.appearance.DailyTrendDisplay;
+import wangdaye.com.geometricweather.basic.models.options.appearance.Language;
+import wangdaye.com.geometricweather.basic.models.options.appearance.UIStyle;
+import wangdaye.com.geometricweather.basic.models.options.provider.LocationProvider;
+import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.options.unit.DistanceUnit;
+import wangdaye.com.geometricweather.basic.models.options.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.basic.models.options.unit.PressureUnit;
+import wangdaye.com.geometricweather.basic.models.options.unit.SpeedUnit;
+import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
 
 public class SettingsOptionManager {
 
@@ -126,54 +125,54 @@ public class SettingsOptionManager {
         precipitationPushEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_precipitation_notification_switch), false);
 
-        updateInterval = OptionMapper.getUpdateInterval(
+        updateInterval = UpdateInterval.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_refresh_rate), "1:30")
         );
 
-        darkMode = OptionMapper.getDarkMode(
+        darkMode = DarkMode.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_dark_mode), "auto")
         );
 
         // service provider.
 
-        weatherSource = OptionMapper.getWeatherSource(
+        weatherSource = WeatherSource.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_weather_source), "accu")
         );
 
-        locationProvider = OptionMapper.getLocationProvider(
+        locationProvider = LocationProvider.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_location_service), "native")
         );
 
         // unit.
 
-        temperatureUnit = OptionMapper.getTemperatureUnit(
+        temperatureUnit = TemperatureUnit.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_temperature_unit), "c")
         );
-        distanceUnit = OptionMapper.getDistanceUnit(
+        distanceUnit = DistanceUnit.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_distance_unit), "km")
         );
-        precipitationUnit = OptionMapper.getPrecipitationUnit(
+        precipitationUnit = PrecipitationUnit.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_precipitation_unit), "mm")
         );
-        pressureUnit = OptionMapper.getPressureUnit(
+        pressureUnit = PressureUnit.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_pressure_unit), "mb")
         );
-        speedUnit = OptionMapper.getSpeedUnit(
+        speedUnit = SpeedUnit.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_speed_unit), "mps")
         );
 
         // appearance.
 
-        uiStyle = OptionMapper.getUIStyle(
+        uiStyle = UIStyle.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_ui_style), "material")
         );
@@ -183,11 +182,11 @@ public class SettingsOptionManager {
                 context.getPackageName()
         );
 
-        cardDisplayList = OptionMapper.getCardDisplayList(
+        cardDisplayList = CardDisplay.toCardDisplayList(
                 sharedPreferences.getString(context.getString(R.string.key_card_display), DEFAULT_CARD_DISPLAY)
         );
 
-        dailyTrendDisplayList = OptionMapper.getDailyTrendDisplayList(
+        dailyTrendDisplayList = DailyTrendDisplay.toDailyTrendDisplayList(
                 sharedPreferences.getString(
                         context.getString(R.string.key_daily_trend_display),
                         DEFAULT_DAILY_TREND_DISPLAY
@@ -209,7 +208,7 @@ public class SettingsOptionManager {
         itemAnimationEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_item_animation_switch), true);
 
-        language = OptionMapper.getLanguage(
+        language = Language.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_language), "follow_system")
         );
@@ -230,7 +229,7 @@ public class SettingsOptionManager {
 
         // widget.
 
-        widgetWeekIconMode = OptionMapper.getWidgetWeekIconMode(
+        widgetWeekIconMode = WidgetWeekIconMode.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_week_icon_mode), "auto")
         );
@@ -246,7 +245,7 @@ public class SettingsOptionManager {
         notificationEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_notification), false);
 
-        notificationStyle = OptionMapper.getNotificationStyle(
+        notificationStyle = NotificationStyle.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_notification_style), "daily")
         );
@@ -264,7 +263,7 @@ public class SettingsOptionManager {
                 context.getString(R.string.key_notification_background_color),
                 ContextCompat.getColor(context, R.color.notification_background_l));
 
-        notificationTextColor = OptionMapper.getNotificationTextColor(
+        notificationTextColor = NotificationTextColor.getInstance(
                 sharedPreferences.getString(
                         context.getString(R.string.key_notification_text_color), "dark")
         );

@@ -12,11 +12,11 @@ import androidx.work.impl.utils.futures.SettableFuture;
 import java.util.List;
 
 import wangdaye.com.geometricweather.background.polling.PollingUpdateHelper;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.utils.manager.ShortcutsManager;
+import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
 
 public abstract class AsyncUpdateWorker extends AsyncWorker
         implements PollingUpdateHelper.OnPollingUpdateListener {

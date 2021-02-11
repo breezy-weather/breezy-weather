@@ -109,61 +109,61 @@
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activity.AlertActivity"
+            android:name=".ui.activities.AlertActivity"
             android:label="@string/action_alert"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activity.AllergenActivity"
+            android:name=".ui.activities.AllergenActivity"
             android:label="@string/allergen"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".manage.ManageActivity"
+            android:name=".management.ManagementActivity"
             android:label="@string/action_manage"
             android:theme="@style/GeometricWeatherTheme" />
 
-        <activity android:name=".manage.search.SearchActivity"
+        <activity android:name=".management.search.SearchActivity"
             android:label="@string/action_search"
             android:theme="@style/GeometricWeatherTheme.Search" />
 
         <activity
-            android:name=".settings.activity.SettingsActivity"
+            android:name=".settings.activities.SettingsActivity"
             android:label="@string/action_settings"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activity.CardDisplayManageActivity"
+            android:name=".settings.activities.CardDisplayManageActivity"
             android:label="@string/settings_title_card_display"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activity.DailyTrendDisplayManageActivity"
+            android:name=".settings.activities.DailyTrendDisplayManageActivity"
             android:label="@string/settings_title_daily_trend_display"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activity.SelectProviderActivity"
+            android:name=".settings.activities.SelectProviderActivity"
             android:label="@string/settings_title_service_provider"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activity.PreviewIconActivity"
+            android:name=".settings.activities.PreviewIconActivity"
             android:label="@string/action_preview"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".settings.activity.AboutActivity"
+            android:name=".settings.activities.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/GeometricWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
-            android:name=".ui.activity.AwakeUpdateActivity"
+            android:name=".ui.activities.AwakeUpdateActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="com.wangdaye.geometricweather.UPDATE" />

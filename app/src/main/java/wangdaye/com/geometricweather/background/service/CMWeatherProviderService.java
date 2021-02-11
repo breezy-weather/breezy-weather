@@ -13,12 +13,12 @@ import cyanogenmod.weather.WeatherInfo;
 import cyanogenmod.weatherservice.ServiceRequest;
 import cyanogenmod.weatherservice.ServiceRequestResult;
 import cyanogenmod.weatherservice.WeatherProviderService;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
-import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
+import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 /**
  * CM weather provider service.

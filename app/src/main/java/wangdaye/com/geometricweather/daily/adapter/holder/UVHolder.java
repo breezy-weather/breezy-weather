@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.widget.ImageViewCompat;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.weather.UV;
+import wangdaye.com.geometricweather.basic.models.weather.UV;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyUV;
 

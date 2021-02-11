@@ -6,9 +6,9 @@ import android.widget.RemoteViews;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.remoteviews.presenter.MultiCityWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
 
 /**
  * Multi city widget config activity.

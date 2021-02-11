@@ -9,8 +9,8 @@ import java.util.List;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.basic.ForegroundUpdateService;
-import wangdaye.com.geometricweather.basic.model.Location;
-import wangdaye.com.geometricweather.remoteviews.presenter.notification.ForecastNotificationIMP;
+import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.remoteviews.presenters.notification.ForecastNotificationIMP;
 
 /**
  * Foreground Today forecast update service.

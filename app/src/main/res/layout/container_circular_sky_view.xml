@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.WeatherIconControlView
+<wangdaye.com.geometricweather.ui.widgets.weatherView.circularSkyView.WeatherIconControlView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.CircleView
+    <wangdaye.com.geometricweather.ui.widgets.weatherView.circularSkyView.CircleView
         android:id="@+id/circular_sky"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -35,7 +35,7 @@
 
     </FrameLayout>
 
-    <wangdaye.com.geometricweather.ui.widget.AnimatableIconView
+    <wangdaye.com.geometricweather.ui.widgets.AnimatableIconView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,4 +44,4 @@
         tools:layout_width="80dp"
         tools:layout_height="80dp" />
 
-</wangdaye.com.geometricweather.ui.widget.weatherView.circularSkyView.WeatherIconControlView>
+</wangdaye.com.geometricweather.ui.widgets.weatherView.circularSkyView.WeatherIconControlView>

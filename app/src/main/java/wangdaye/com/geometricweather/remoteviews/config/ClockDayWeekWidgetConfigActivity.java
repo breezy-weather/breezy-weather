@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayWeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayWeekWidgetIMP;
 
 /**
  * Clock day week widget config activity.

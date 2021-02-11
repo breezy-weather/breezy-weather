@@ -46,12 +46,12 @@ import com.xw.repo.BubbleSeekBar;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.Location;
+import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView;
-import wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout;
+import wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpter.SnackbarHelper;
+import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
