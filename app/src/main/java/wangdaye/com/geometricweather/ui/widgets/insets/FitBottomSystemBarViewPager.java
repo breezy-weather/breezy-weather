@@ -11,6 +11,7 @@ import android.view.WindowInsets;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -83,13 +84,13 @@ public class FitBottomSystemBarViewPager extends ViewPager {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     public FitBottomSystemBarViewPager(@NonNull Context context) {
         super(context);
-        setOnApplyWindowInsetsListener(null);
+        ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     public FitBottomSystemBarViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        setOnApplyWindowInsetsListener(null);
+        ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)

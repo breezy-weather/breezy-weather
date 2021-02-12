@@ -1,15 +1,13 @@
 package wangdaye.com.geometricweather.basic;
 
-import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,12 +22,10 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 public abstract class GeoActivity extends AppCompatActivity {
 
-    private Set<GeoDialog> mDialogSet;
+    private @Nullable Set<GeoDialog> mDialogSet;
 
     private boolean mStarted = false;
     private boolean mForeground = false;
-
-    private @Nullable OnRequestPermissionsResultListener mPermissionsListener;
 
     @CallSuper
     @Override
@@ -37,7 +33,6 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         GeometricWeather.getInstance().addActivity(this);
-        mDialogSet = new HashSet<>();
 
         LanguageUtils.setLanguage(
                 this,
@@ -104,15 +99,25 @@ public abstract class GeoActivity extends AppCompatActivity {
     }
 
     public void addDialog(GeoDialog d) {
+        if (mDialogSet == null) {
+            mDialogSet = new HashSet<>();
+        }
         mDialogSet.add(d);
     }
 
     public void removeDialog(GeoDialog d) {
+        if (mDialogSet == null) {
+            mDialogSet = new HashSet<>();
+        }
         mDialogSet.remove(d);
     }
 
     @Nullable
     private GeoDialog getTopDialog() {
+        if (mDialogSet == null) {
+            mDialogSet = new HashSet<>();
+        }
+
         for (GeoDialog dialog : mDialogSet) {
             if (dialog.isForeground()) {
                 return dialog;
@@ -121,24 +126,10 @@ public abstract class GeoActivity extends AppCompatActivity {
         return null;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void requestPermissions(@NonNull String[] permissions, int requestCode,
-                                   @Nullable OnRequestPermissionsResultListener l) {
-        mPermissionsListener = l;
-        requestPermissions(permissions, requestCode);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permission, @NonNull int[] grantResult) {
-        super.onRequestPermissionsResult(requestCode, permission, grantResult);
-        if (mPermissionsListener != null) {
-            mPermissionsListener.onRequestPermissionsResult(requestCode, permission, grantResult);
+    protected Set<GeoDialog> getDialogSet() {
+        if (mDialogSet == null) {
+            mDialogSet = new HashSet<>();
         }
-    }
-
-    public interface OnRequestPermissionsResultListener {
-        void onRequestPermissionsResult(int requestCode,
-                                        @NonNull String[] permission, @NonNull int[] grantResult);
+        return Collections.unmodifiableSet(mDialogSet);
     }
 }

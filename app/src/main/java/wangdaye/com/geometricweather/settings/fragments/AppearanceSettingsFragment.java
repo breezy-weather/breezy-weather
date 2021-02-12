@@ -1,7 +1,12 @@
 package wangdaye.com.geometricweather.settings.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
@@ -24,17 +29,41 @@ import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 public class AppearanceSettingsFragment extends AbstractSettingsFragment {
 
+    private final BroadcastReceiver selectResourceProviderCallback = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String packageName = intent.getStringExtra(ProvidersPreviewerDialog.KEY_PACKAGE_NAME);
+            if (packageName == null) {
+                return;
+            }
+
+            getSettingsOptionManager().setIconProvider(packageName);
+            PreferenceManager.getDefaultSharedPreferences(requireActivity())
+                    .edit()
+                    .putString(getString(R.string.key_icon_provider), packageName)
+                    .apply();
+            initIconProviderPreference();
+            SnackbarHelper.showSnackbar(
+                    getString(R.string.feedback_refresh_ui_after_refresh));
+        }
+    };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.perference_appearance);
 
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
+                selectResourceProviderCallback,
+                new IntentFilter(ProvidersPreviewerDialog.ACTION_RESOURCE_PROVIDER_CHANGED)
+        );
+
         // ui style.
         Preference uiStyle = findPreference(getString(R.string.key_ui_style));
-        uiStyle.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(getActivity()));
+        uiStyle.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(requireActivity()));
         uiStyle.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setUiStyle(UIStyle.getInstance((String) newValue));
-            preference.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(getActivity()));
+            preference.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(requireActivity()));
             SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_restart),
                     getString(R.string.restart),
@@ -98,10 +127,10 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
 
         // language.
         Preference language = findPreference(getString(R.string.key_language));
-        language.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(getActivity()));
+        language.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(requireActivity()));
         language.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setLanguage(Language.getInstance((String) newValue));
-            preference.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(getActivity()));
+            preference.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(requireActivity()));
             SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_restart),
                     getString(R.string.restart),
@@ -118,8 +147,8 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         // card display.
         Preference cardDisplay = findPreference(getString(R.string.key_card_display));
         cardDisplay.setSummary(CardDisplay.getSummary(
-                getActivity(),
-                SettingsOptionManager.getInstance(getActivity()).getCardDisplayList()
+                requireActivity(),
+                SettingsOptionManager.getInstance(requireActivity()).getCardDisplayList()
         ));
         cardDisplay.setOnPreferenceClickListener(preference -> {
             IntentHelper.startCardDisplayManageActivityForResult(requireActivity(), 0);
@@ -129,8 +158,8 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         // daily trend display.
         Preference dailyTrendDisplay = findPreference(getString(R.string.key_daily_trend_display));
         dailyTrendDisplay.setSummary(DailyTrendDisplay.getSummary(
-                getActivity(),
-                SettingsOptionManager.getInstance(getActivity()).getDailyTrendDisplayList()
+                requireActivity(),
+                SettingsOptionManager.getInstance(requireActivity()).getDailyTrendDisplayList()
         ));
         dailyTrendDisplay.setOnPreferenceClickListener(preference -> {
             IntentHelper.startDailyTrendDisplayManageActivityForResult(requireActivity(), 1);
@@ -143,23 +172,19 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         // do nothing.
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(
+                selectResourceProviderCallback);
+    }
+
     private void initIconProviderPreference() {
         Preference iconProvider = findPreference(getString(R.string.key_icon_provider));
         iconProvider.setSummary(ResourcesProviderFactory.getNewInstance().getProviderName());
         
         iconProvider.setOnPreferenceClickListener(preference -> {
-            ProvidersPreviewerDialog dialog = new ProvidersPreviewerDialog();
-            dialog.setOnIconProviderChangedListener(iconProvider1 -> {
-                getSettingsOptionManager().setIconProvider(iconProvider1);
-                PreferenceManager.getDefaultSharedPreferences(requireActivity())
-                        .edit()
-                        .putString(getString(R.string.key_icon_provider), iconProvider1)
-                        .apply();
-                initIconProviderPreference();
-                SnackbarHelper.showSnackbar(
-                        getString(R.string.feedback_refresh_ui_after_refresh));
-            });
-            dialog.show(getParentFragmentManager(), null);
+            new ProvidersPreviewerDialog().show(getParentFragmentManager(), null);
             return true;
         });
     }

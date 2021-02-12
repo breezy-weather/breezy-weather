@@ -68,6 +68,9 @@ public class ManagementFragment extends Fragment
 
     private void initModel() {
         mViewModel = new ViewModelProvider(requireActivity()).get(ManagementFragmentViewModel.class);
+        if (mViewModel.checkIsNewInstance()) {
+            mViewModel.resetLocationList(null);
+        }
     }
 
     private void initView() {

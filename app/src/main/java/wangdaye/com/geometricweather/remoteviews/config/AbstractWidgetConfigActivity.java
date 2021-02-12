@@ -619,12 +619,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     private void bindWallpaper(boolean checkPermissions) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
-            boolean hasPermission = checkPermissions((requestCode, permission, grantResult) -> {
-                bindWallpaper(false);
-                if (textColorValueNow.equals("auto")) {
-                    updateHostView();
-                }
-            });
+            boolean hasPermission = checkPermissions(0);
             if (!hasPermission) {
                 return;
             }
@@ -648,14 +643,35 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
      *         false: request permissions.
      * */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private boolean checkPermissions(@NonNull OnRequestPermissionsResultListener l) {
+    private boolean checkPermissions(int requestCode) {
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0, l);
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, requestCode);
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case 0:
+                bindWallpaper(false);
+                if (textColorValueNow.equals("auto")) {
+                    updateHostView();
+                }
+                break;
+
+            case 1:
+                bindWallpaper(false);
+                updateHostView();
+                break;
+        }
     }
 
     // on check changed listener(switch).
@@ -757,10 +773,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
                 boolean hasPermission = true;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    hasPermission = checkPermissions((requestCode, permission, grantResult) -> {
-                        bindWallpaper(false);
-                        updateHostView();
-                    });
+                    hasPermission = checkPermissions(1);
                 }
                 if (hasPermission) {
                     updateHostView();

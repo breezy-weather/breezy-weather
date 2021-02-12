@@ -35,7 +35,11 @@ public enum TemperatureUnit {
     }
 
     public String getTemperatureText(Context context, int c) {
-        if (DisplayUtils.isRtl(context)) {
+        return getTemperatureText(context, c, DisplayUtils.isRtl(context));
+    }
+
+    private String getTemperatureText(Context context, int c, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatInt(getTemperature(c))
             ) + getAbbreviation(context);
@@ -45,7 +49,11 @@ public enum TemperatureUnit {
     }
 
     public String getLongTemperatureText(Context context, int c) {
-        if (DisplayUtils.isRtl(context)) {
+        return getLongTemperatureText(context, c, DisplayUtils.isRtl(context));
+    }
+
+    private String getLongTemperatureText(Context context, int c, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatInt(getTemperature(c))
             ) + getLongAbbreviation(context);
@@ -55,7 +63,11 @@ public enum TemperatureUnit {
     }
 
     public String getShortTemperatureText(Context context, int c) {
-        if (DisplayUtils.isRtl(context)) {
+        return getShortTemperatureText(context, c, DisplayUtils.isRtl(context));
+    }
+
+    private String getShortTemperatureText(Context context, int c, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatInt(getTemperature(c))
             ) + getShortAbbreviation(context);

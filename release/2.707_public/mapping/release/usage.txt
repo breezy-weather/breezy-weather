@@ -9483,7 +9483,7 @@ com.google.gson.internal.bind.TypeAdapters$27:
 androidx.constraintlayout.widget.R
 androidx.transition.PropertyValuesHolderUtils:
     private void <init>()
-wangdaye.com.geometricweather.main.MainModuleUtils:
+wangdaye.com.geometricweather.main.utils.MainModuleUtils:
     public void <init>()
 com.google.android.material.internal.Experimental
 com.google.android.gms.signin.internal.zah:

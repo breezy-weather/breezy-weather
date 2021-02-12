@@ -157,7 +157,7 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public interface OnItemClickedListener {
-        void onItemClicked(ResourceProvider helper, int adapterPosition);
+        void onItemClicked(ResourceProvider provider, int adapterPosition);
         void onAppStoreItemClicked(String query);
         void onGitHubItemClicked(String query);
     }

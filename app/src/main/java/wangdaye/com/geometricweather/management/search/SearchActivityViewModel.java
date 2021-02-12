@@ -3,17 +3,17 @@ package wangdaye.com.geometricweather.management.search;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.GeoViewModel;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.management.models.LoadableLocationList;
 
-public class SearchActivityViewModel extends AndroidViewModel {
+public class SearchActivityViewModel extends GeoViewModel {
 
     private final MutableLiveData<LoadableLocationList> mListResource;
     private final MutableLiveData<String> mQuery;

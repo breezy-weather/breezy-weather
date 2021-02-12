@@ -1,15 +1,16 @@
 package wangdaye.com.geometricweather.main.dialogs;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import java.text.SimpleDateFormat;
@@ -37,37 +38,58 @@ public class HourlyWeatherDialog extends GeoDialog {
 
     private AnimatableIconView mWeatherIcon;
 
-    private Weather mWeather;
-    private int mPosition;
+    private static final String KEY_WEATHER = "weather";
+    private static final String KEY_POSITION = "position";
+    private static final String KEY_COLOR = "color";
 
-    private @ColorInt int mWeatherColor;
+    public static HourlyWeatherDialog getInstance(Weather weather, int position, @ColorInt int color) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_WEATHER, weather);
+        bundle.putInt(KEY_POSITION, position);
+        bundle.putInt(KEY_COLOR, color);
 
-    @SuppressLint("InflateParams")
-    @NonNull
+        HourlyWeatherDialog dialog = new HourlyWeatherDialog();
+        dialog.setArguments(bundle);
+        return dialog;
+    }
+
+    @Nullable
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_weather_hourly, null, false);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        View view = LayoutInflater.from(getActivity()).inflate(
+                R.layout.dialog_weather_hourly, container, false);
         initWidget(view);
-        return new AlertDialog.Builder(getActivity()).setView(view).create();
+        return view;
     }
 
     @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     private void initWidget(View view) {
-        if (getActivity() == null) {
+        Bundle bundle = getArguments();
+        if (bundle == null) {
+            return;
+        }
+
+        Weather weather = (Weather) bundle.getSerializable(KEY_WEATHER);
+        int position = bundle.getInt(KEY_POSITION, 0);
+        int color = bundle.getInt(KEY_COLOR, Color.TRANSPARENT);
+        if (weather == null) {
             return;
         }
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        Hourly hourly = mWeather.getHourlyForecast().get(mPosition);
+        Hourly hourly = weather.getHourlyForecast().get(position);
 
         CoordinatorLayout container = view.findViewById(R.id.dialog_weather_hourly_container);
         container.setBackgroundColor(ThemeManager.getInstance(requireActivity()).getRootColor(getActivity()));
 
         TextView title = view.findViewById(R.id.dialog_weather_hourly_title);
         title.setText(hourly.getHour(getActivity()));
-        title.setTextColor(mWeatherColor);
+        title.setTextColor(color);
 
         TextView subtitle = view.findViewById(R.id.dialog_weather_hourly_subtitle);
         subtitle.setText(new SimpleDateFormat(getString(R.string.date_format_widget_long)).format(hourly.getDate()));
@@ -116,12 +138,6 @@ public class HourlyWeatherDialog extends GeoDialog {
                     .append(ProbabilityUnit.PERCENT.getProbabilityText(requireActivity(), p));
         }
         weatherText.setText(builder.toString());
-    }
-
-    public void setData(Weather weather, int position, @ColorInt int weatherColor) {
-        mWeather = weather;
-        mPosition = position;
-        mWeatherColor = weatherColor;
     }
 
     @Override

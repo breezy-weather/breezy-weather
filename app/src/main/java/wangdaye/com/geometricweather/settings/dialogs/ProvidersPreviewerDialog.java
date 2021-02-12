@@ -1,13 +1,12 @@
 package wangdaye.com.geometricweather.settings.dialogs;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +24,6 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
@@ -38,14 +37,19 @@ public class ProvidersPreviewerDialog extends GeoDialog {
     private CircularProgressView mProgress;
     private RecyclerView mList;
 
-    @Nullable private OnIconProviderChangedListener listener;
+    public static final String ACTION_RESOURCE_PROVIDER_CHANGED
+            = "com.wangdaye.geometricweather.RESOURCE_PROVIDER_CHANGED";
+    public static final String KEY_PACKAGE_NAME = "package_name";
 
-    @NonNull
-    @SuppressLint("InflateParams")
+    @Nullable
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_providers_previewer, null, false);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        View view = LayoutInflater.from(getActivity()).inflate(
+                R.layout.dialog_providers_previewer, container, false);
 
         if (getActivity() != null) {
             Context context = getActivity();
@@ -81,10 +85,7 @@ public class ProvidersPreviewerDialog extends GeoDialog {
                     ResourcesProviderFactory.getProviderList(GeometricWeather.getInstance())
             ), this::bindAdapter);
         }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+        return view;
     }
 
     private void bindAdapter(List<ResourceProvider> providerList) {
@@ -93,27 +94,24 @@ public class ProvidersPreviewerDialog extends GeoDialog {
                 providerList,
                 new IconProviderAdapter.OnItemClickedListener() {
                     @Override
-                    public void onItemClicked(ResourceProvider helper, int adapterPosition) {
-                        if (listener != null) {
-                            listener.onIconProviderChanged(helper.getPackageName());
-                        }
+                    public void onItemClicked(ResourceProvider provider, int adapterPosition) {
+                        Intent intent = new Intent(ACTION_RESOURCE_PROVIDER_CHANGED);
+                        intent.putExtra(KEY_PACKAGE_NAME, provider.getPackageName());
+                        LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
+
                         dismiss();
                     }
 
                     @Override
                     public void onAppStoreItemClicked(String query) {
-                        if (getActivity() != null) {
-                            IntentHelper.startAppStoreSearchActivity((GeoActivity) getActivity(), query);
-                            dismiss();
-                        }
+                        IntentHelper.startAppStoreSearchActivity(requireContext(), query);
+                        dismiss();
                     }
 
                     @Override
                     public void onGitHubItemClicked(String query) {
-                        if (getActivity() != null) {
-                            IntentHelper.startWebViewActivity((GeoActivity) getActivity(), query);
-                            dismiss();
-                        }
+                        IntentHelper.startWebViewActivity(requireContext(), query);
+                        dismiss();
                     }
                 }
         ));
@@ -134,13 +132,5 @@ public class ProvidersPreviewerDialog extends GeoDialog {
     @Override
     public View getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_providers_previewer_container);
-    }
-
-    public interface OnIconProviderChangedListener {
-        void onIconProviderChanged(String iconProvider);
-    }
-
-    public void setOnIconProviderChangedListener(@Nullable OnIconProviderChangedListener l) {
-        listener = l;
     }
 }

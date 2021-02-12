@@ -1,13 +1,12 @@
 package wangdaye.com.geometricweather.ui.dialogs;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialog;
@@ -17,15 +16,14 @@ import wangdaye.com.geometricweather.basic.GeoDialog;
  * */
 public class LearnMoreAboutResidentLocationDialog extends GeoDialog {
 
-    @NonNull
-    @SuppressLint("InflateParams")
+    @Nullable
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_resident_location, null, false);
-        builder.setView(view);
-        return builder.create();
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        return LayoutInflater.from(getActivity()).inflate(
+                R.layout.dialog_resident_location, container, false);
     }
 
     @Override

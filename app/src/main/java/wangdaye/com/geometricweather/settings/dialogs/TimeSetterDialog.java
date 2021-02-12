@@ -1,17 +1,19 @@
 package wangdaye.com.geometricweather.settings.dialogs;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TimePicker;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.preference.PreferenceManager;
 
 import java.util.Calendar;
 
@@ -26,34 +28,49 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 public class TimeSetterDialog extends GeoDialog
         implements View.OnClickListener, TimePicker.OnTimeChangedListener {
 
-    private OnTimeChangedListener mListener;
-
     private int mHour;
     private int mMinute;
     private boolean mToday = true;
 
-    @NonNull
-    @SuppressLint("InflateParams")
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_time_setter, null, false);
-        initData();
-        initWidget(view);
+    public static final String ACTION_SET_TIME = "com.wangdaye.geometricweather.SET_TIME";
+    public static final String KEY_HOUR = "hour";
+    public static final String KEY_MINUTE = "minute";
+    public static final String KEY_TODAY = "today";
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+    public static TimeSetterDialog getInstance(boolean today) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(KEY_TODAY, today);
+
+        TimeSetterDialog dialog = new TimeSetterDialog();
+        dialog.setArguments(bundle);
+        return dialog;
     }
 
-    public void setIsToday(boolean today) {
-        mToday = today;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        View view = LayoutInflater.from(getActivity()).inflate(
+                R.layout.dialog_time_setter, container, false);
+        initData();
+        initWidget(view);
+        return view;
     }
 
     private void initData() {
         Calendar calendar = Calendar.getInstance();
         mHour = calendar.get(Calendar.HOUR_OF_DAY);
         mMinute = calendar.get(Calendar.MINUTE);
+
+        Bundle bundle = getArguments();
+        if (bundle == null) {
+            mToday = true;
+        } else {
+            mToday = bundle.getBoolean(KEY_TODAY, true);
+        }
     }
 
     private void initWidget(View view) {
@@ -77,16 +94,6 @@ public class TimeSetterDialog extends GeoDialog
 
     // on time changed listener.
 
-    public interface OnTimeChangedListener {
-        void timeChanged();
-    }
-
-    public void setOnTimeChangedListener(OnTimeChangedListener l) {
-        mListener = l;
-    }
-
-    // on time changed listener.
-
     @Override
     public void onTimeChanged(TimePicker timePicker, int i, int i1) {
         mHour = i;
@@ -95,6 +102,7 @@ public class TimeSetterDialog extends GeoDialog
 
     // on click.
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -131,9 +139,11 @@ public class TimeSetterDialog extends GeoDialog
                 }
                 editor.apply();
 
-                if (mListener != null) {
-                    mListener.timeChanged();
-                }
+                Intent intent = new Intent(ACTION_SET_TIME);
+                intent.putExtra(KEY_HOUR, mHour);
+                intent.putExtra(KEY_MINUTE, mMinute);
+                intent.putExtra(KEY_TODAY, mToday);
+                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
 
                 dismiss();
                 break;

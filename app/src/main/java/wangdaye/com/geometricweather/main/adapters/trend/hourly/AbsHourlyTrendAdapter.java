@@ -53,13 +53,11 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
 
     protected static void onItemClicked(GeoActivity activity, Location location, int adapterPosition) {
         if (activity.isForeground()) {
-            HourlyWeatherDialog dialog = new HourlyWeatherDialog();
-            dialog.setData(
+            HourlyWeatherDialog.getInstance(
                     location.getWeather(),
                     adapterPosition,
                     ThemeManager.getInstance(activity).getWeatherThemeColors()[0]
-            );
-            dialog.show(activity.getSupportFragmentManager(), null);
+            ).show(activity.getSupportFragmentManager(), null);
         }
     }
 

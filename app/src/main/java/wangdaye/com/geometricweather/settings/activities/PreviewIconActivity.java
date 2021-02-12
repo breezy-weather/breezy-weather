@@ -1,8 +1,6 @@
 package wangdaye.com.geometricweather.settings.activities;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -20,9 +18,9 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.PixelResourcesProvider;
+import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.adapters.WeatherIconAdapter;
 import wangdaye.com.geometricweather.settings.dialogs.AdaptiveIconDialog;
@@ -234,13 +232,8 @@ class WeatherIcon extends BaseWeatherIcon {
 
     @Override
     public void onItemClicked(GeoActivity activity) {
-        AnimatableIconDialog dialog = new AnimatableIconDialog();
-        dialog.setData(
-                weatherCode + "_" + (daytime ? "DAY" : "NIGHT"),
-                ResourceHelper.getWeatherIcons(provider, weatherCode, daytime),
-                ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime)
-        );
-        dialog.show(activity.getSupportFragmentManager(), null);
+        AnimatableIconDialog.getInstance(weatherCode, daytime, provider)
+                .show(activity.getSupportFragmentManager(), null);
     }
 }
 
@@ -261,18 +254,8 @@ class MinimalIcon extends BaseWeatherIcon {
 
     @Override
     public void onItemClicked(GeoActivity activity) {
-        MinimalIconDialog dialog = new MinimalIconDialog();
-        dialog.setData(
-                weatherCode + "_" + (daytime ? "DAY" : "NIGHT"),
-                ResourceHelper.getMinimalXmlIcon(provider, weatherCode, daytime),
-                ResourceHelper.getWidgetNotificationIcon(
-                        provider, weatherCode, daytime, true, "light"),
-                ResourceHelper.getWidgetNotificationIcon(
-                        provider, weatherCode, daytime, true, "grey"),
-                ResourceHelper.getWidgetNotificationIcon(
-                        provider, weatherCode, daytime, true, "dark")
-        );
-        dialog.show(activity.getSupportFragmentManager(), null);
+        MinimalIconDialog.getInstance(weatherCode, daytime, provider)
+                .show(activity.getSupportFragmentManager(), null);
     }
 }
 
@@ -289,13 +272,8 @@ class ShortcutIcon extends BaseWeatherIcon {
 
     @Override
     public void onItemClicked(GeoActivity activity) {
-        AdaptiveIconDialog dialog = new AdaptiveIconDialog();
-        dialog.setData(
-                weatherCode + "_" + (daytime ? "DAY" : "NIGHT"),
-                ResourceHelper.getShortcutsForegroundIcon(provider, weatherCode, daytime),
-                new ColorDrawable(Color.TRANSPARENT)
-        );
-        dialog.show(activity.getSupportFragmentManager(), null);
+        AdaptiveIconDialog.getInstance(weatherCode, daytime, provider).show(
+                activity.getSupportFragmentManager(), null);
     }
 }
 

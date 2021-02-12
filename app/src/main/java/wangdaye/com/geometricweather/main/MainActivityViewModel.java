@@ -8,20 +8,21 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.GeoViewModel;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.main.models.Indicator;
 import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 
-public class MainActivityViewModel extends AndroidViewModel
+public class MainActivityViewModel extends GeoViewModel
         implements MainActivityRepository.WeatherRequestCallback {
 
     private final MutableLiveData<LocationResource> mCurrentLocation;
@@ -56,8 +57,6 @@ public class MainActivityViewModel extends AndroidViewModel
         mTotalList = null;
         mValidList = null;
         mValidIndex = null;
-
-        init((String) null);
     }
 
     public void reset() {
@@ -322,6 +321,10 @@ public class MainActivityViewModel extends AndroidViewModel
         } else {
             return new ArrayList<>();
         }
+    }
+
+    public PermissionsRequest getPermissionsRequestValue() {
+        return mPermissionsRequest.getValue();
     }
 
     @Override

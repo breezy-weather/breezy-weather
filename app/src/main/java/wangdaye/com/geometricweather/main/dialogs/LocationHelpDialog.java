@@ -1,15 +1,15 @@
 package wangdaye.com.geometricweather.main.dialogs;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialog;
@@ -19,25 +19,21 @@ import wangdaye.com.geometricweather.utils.managers.ThemeManager;
 
 public class LocationHelpDialog extends GeoDialog {
 
-    @NonNull
-    @SuppressLint("InflateParams")
+    @Nullable
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_location_help, null, false);
-        initWidget(view);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+        View view = LayoutInflater.from(getActivity()).inflate(
+                R.layout.dialog_location_help, container, false);
+        initWidget(view);
+        return view;
     }
 
     @SuppressLint("SetTextI18n")
     private void initWidget(View view) {
-        if (getActivity() == null) {
-            return;
-        }
-
         CoordinatorLayout container = view.findViewById(R.id.dialog_location_help_container);
         container.setBackgroundColor(ThemeManager.getInstance(requireActivity()).getRootColor(getActivity()));
 
@@ -50,17 +46,17 @@ public class LocationHelpDialog extends GeoDialog {
                 ThemeManager.getInstance(requireActivity()).getTextContentColor(getActivity()));
 
         view.findViewById(R.id.dialog_location_help_locationContainer)
-                .setOnClickListener(v -> IntentHelper.startLocationSettingsActivity(getActivity()));
+                .setOnClickListener(v -> IntentHelper.startLocationSettingsActivity(requireContext()));
         ((TextView) view.findViewById(R.id.dialog_location_help_locationTitle)).setTextColor(
                 ThemeManager.getInstance(requireActivity()).getTextContentColor(getActivity()));
 
         view.findViewById(R.id.dialog_location_help_providerContainer)
-                .setOnClickListener(v -> IntentHelper.startSelectProviderActivity(getActivity()));
+                .setOnClickListener(v -> IntentHelper.startSelectProviderActivity(requireActivity()));
         ((TextView) view.findViewById(R.id.dialog_location_help_providerTitle)).setTextColor(
                 ThemeManager.getInstance(requireActivity()).getTextContentColor(getActivity()));
 
         view.findViewById(R.id.dialog_location_help_manageContainer).setOnClickListener(v ->
-                IntentHelper.startManageActivityForResult(getActivity(), MainActivity.MANAGE_ACTIVITY)
+                IntentHelper.startManageActivityForResult(requireActivity(), MainActivity.MANAGE_ACTIVITY)
         );
         ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setTextColor(
                 ThemeManager.getInstance(requireActivity()).getTextContentColor(getActivity()));

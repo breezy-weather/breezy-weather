@@ -1,18 +1,16 @@
 package wangdaye.com.geometricweather.settings.dialogs;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
@@ -22,20 +20,19 @@ import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class RunningInBackgroundDialog extends GeoDialog {
 
-    @NonNull
-    @SuppressLint("InflateParams")
+    @Nullable
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_running_in_background, null, false);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        View view = LayoutInflater.from(getActivity()).inflate(
+                R.layout.dialog_running_in_background, container, false);
         view.findViewById(R.id.dialog_running_in_background_setBtn).setOnClickListener(v ->
-                IntentHelper.startBatteryOptimizationActivity((GeoActivity) requireActivity()));
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+                IntentHelper.startBatteryOptimizationActivity(requireActivity()));
+        return view;
     }
-
 
     @Override
     public View getSnackbarContainer() {

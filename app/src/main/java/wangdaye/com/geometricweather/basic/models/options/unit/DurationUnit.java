@@ -25,7 +25,11 @@ public enum DurationUnit {
     }
 
     public String getDurationText(Context context, float h) {
-        if (DisplayUtils.isRtl(context)) {
+        return getDurationText(context, h, DisplayUtils.isRtl(context));
+    }
+
+    private String getDurationText(Context context, float h, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(h * unitFactor, 1)
             ) + context.getResources().getStringArray(R.array.duration_units)[unitArrayIndex];
@@ -36,7 +40,11 @@ public enum DurationUnit {
     }
 
     public String getDurationVoice(Context context, float h) {
-        if (DisplayUtils.isRtl(context)) {
+        return getDurationVoice(context, h, DisplayUtils.isRtl(context));
+    }
+
+    private String getDurationVoice(Context context, float h, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(h * unitFactor, 1)
             ) + context.getResources().getStringArray(R.array.duration_unit_voices)[unitArrayIndex];

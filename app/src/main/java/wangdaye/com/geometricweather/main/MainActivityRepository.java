@@ -12,6 +12,7 @@ import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 

@@ -38,26 +38,36 @@ public class Astro implements Serializable {
         return riseDate != null && setDate != null;
     }
 
+    @Nullable
+    public String getRiseTime(Context context) {
+        return getRiseTime(TimeManager.is12Hour(context));
+    }
+
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    public String getRiseTime(Context c) {
+    private String getRiseTime(boolean twelveHour) {
         if (riseDate == null) {
             return null;
         }
-        if (TimeManager.is12Hour(c)) {
+        if (twelveHour) {
             return new SimpleDateFormat("h:mm aa").format(riseDate);
         } else {
             return new SimpleDateFormat("HH:mm").format(riseDate);
         }
     }
 
+    @Nullable
+    public String getSetTime(Context context) {
+        return getSetTime(TimeManager.is12Hour(context));
+    }
+
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    public String getSetTime(Context c) {
+    private String getSetTime(boolean twelveHour) {
         if (setDate == null) {
             return null;
         }
-        if (TimeManager.is12Hour(c)) {
+        if (twelveHour) {
             return new SimpleDateFormat("h:mm aa").format(setDate);
         } else {
             return new SimpleDateFormat("HH:mm").format(setDate);

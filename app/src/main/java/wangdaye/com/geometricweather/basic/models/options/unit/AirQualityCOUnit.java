@@ -29,7 +29,11 @@ public enum AirQualityCOUnit {
     }
 
     public String getDensityText(Context context, float mgpcum) {
-        if (DisplayUtils.isRtl(context)) {
+        return getDensityText(context, mgpcum, DisplayUtils.isRtl(context));
+    }
+
+    private String getDensityText(Context context, float mgpcum, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(mgpcum * unitFactor, 1)
             ) + context.getResources().getStringArray(R.array.air_quality_co_units)[unitArrayIndex];
@@ -40,7 +44,11 @@ public enum AirQualityCOUnit {
     }
 
     public String getDensityVoice(Context context, float mgpcum) {
-        if (DisplayUtils.isRtl(context)) {
+        return getDensityVoice(context, mgpcum, DisplayUtils.isRtl(context));
+    }
+
+    private String getDensityVoice(Context context, float mgpcum, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(mgpcum * unitFactor, 1)
             ) + context.getResources().getStringArray(R.array.air_quality_co_unit_voices)[unitArrayIndex];

@@ -12,30 +12,33 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.view.ViewCompat;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.background.polling.PollingManager;
+import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.GeoDialog;
+import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.models.resources.Resource;
@@ -45,35 +48,38 @@ import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
-import wangdaye.com.geometricweather.main.models.LocationResource;
-import wangdaye.com.geometricweather.management.ManagementFragment;
 import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
+import wangdaye.com.geometricweather.main.models.LocationResource;
+import wangdaye.com.geometricweather.main.models.PermissionsRequest;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.utils.StatementManager;
+import wangdaye.com.geometricweather.management.ManagementFragment;
+import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
+import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
-import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.background.polling.PollingManager;
+import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
 import wangdaye.com.geometricweather.utils.managers.ThemeManager;
 import wangdaye.com.geometricweather.utils.managers.ThreadManager;
 import wangdaye.com.geometricweather.utils.managers.TimeManager;
-import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
 
 /**
  * Main activity.
  * */
 
 public class MainActivity extends GeoActivity
-        implements SwipeRefreshLayout.OnRefreshListener {
+        implements SwipeRefreshLayout.OnRefreshListener, LocationPermissionStatementDialog.Callback,
+        BackgroundLocationDialog.Callback {
 
     private MainActivityViewModel mViewModel;
     private ActivityMainBinding mBinding;
@@ -92,7 +98,6 @@ public class MainActivity extends GeoActivity
     private @Nullable String mCurrentLocationFormattedId;
     private @Nullable WeatherSource mCurrentWeatherSource;
     private long mCurrentWeatherTimeStamp;
-    private boolean mShowingPermissionsStatement = false;
 
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int MANAGE_ACTIVITY = 2;
@@ -170,7 +175,7 @@ public class MainActivity extends GeoActivity
         initModel();
         initView();
 
-        registerReceiver(
+        LocalBroadcastManager.getInstance(this).registerReceiver(
                 backgroundUpdateReceiver,
                 new IntentFilter(ACTION_UPDATE_WEATHER_IN_BACKGROUND)
         );
@@ -262,7 +267,7 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(backgroundUpdateReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(backgroundUpdateReceiver);
     }
 
     @Override
@@ -274,10 +279,8 @@ public class MainActivity extends GeoActivity
 
     private void initModel() {
         mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
-        String formattedId = getLocationId(getIntent());
-        if (!TextUtils.isEmpty(formattedId)) {
-            mViewModel.init(formattedId);
+        if (mViewModel.checkIsNewInstance()) {
+            mViewModel.init(getLocationId(getIntent()));
         }
     }
 
@@ -397,85 +400,77 @@ public class MainActivity extends GeoActivity
         mViewModel.getPermissionsRequest().observe(this, request -> {
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                    || request.permissionList.size() == 0) {
+                    || request.permissionList.size() == 0
+                    || !request.consume()) {
                 return;
             }
 
             // only show dialog if we need request basic location permissions.
             boolean needShowDialog = false;
             for (String permission : request.permissionList) {
-                if (isNecessaryPermission(permission)) {
+                if (isLocationPermission(permission)) {
                     needShowDialog = true;
                     break;
                 }
             }
-            if (needShowDialog) {
+            if (needShowDialog
+                    && !StatementManager.getInstance(this).isLocationPermissionDeclared()) {
                 // only show dialog once.
-
-                if (!mShowingPermissionsStatement) {
-                    mShowingPermissionsStatement = true;
-                    // need request permissions -> request basic location permissions.
-                    LocationPermissionStatementDialog dialog = new LocationPermissionStatementDialog();
-                    dialog.setOnSetButtonClickListener(() -> {
-                        mShowingPermissionsStatement = false;
-                        requireLocationPermissions(
-                                request.permissionList, request.target, request.triggeredByUser);
-                    });
-                    dialog.setCancelable(false);
-                    dialog.show(getSupportFragmentManager(), null);
-                }
+                LocationPermissionStatementDialog dialog = new LocationPermissionStatementDialog();
+                dialog.setCancelable(false);
+                dialog.show(getSupportFragmentManager(), null);
             } else {
-                requireLocationPermissions(
-                        request.permissionList, request.target, request.triggeredByUser);
+                requestPermissions(request.permissionList.toArray(new String[0]), 0);
             }
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requireLocationPermissions(List<String> permissionList,
-                                            Location target,
-                                            boolean triggeredByUser) {
-        String[] permissions = permissionList.toArray(new String[0]);
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        requestPermissions(permissions, 0, (requestCode, permission, grantResult) -> {
+        PermissionsRequest request = mViewModel.getPermissionsRequestValue();
+        if (request.permissionList.size() == 0 || request.target == null) {
+            return;
+        }
 
-            for (int i = 0; i < permission.length && i < grantResult.length; i++) {
-                if (isNecessaryPermission(permission[i])
-                        && grantResult[i] != PackageManager.PERMISSION_GRANTED) {
-                    // denied basic location permissions.
-                    if (target.isUsable()) {
-                        mViewModel.updateWeather(triggeredByUser, false);
-                    } else {
-                        mViewModel.requestPermissionsFailed(target);
-                    }
-                    return;
+        for (int i = 0; i < permissions.length && i < grantResults.length; i++) {
+            if (isForegroundLocationPermission(permissions[i])
+                    && grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                // denied basic location permissions.
+                if (request.target.isUsable()) {
+                    mViewModel.updateWeather(request.triggeredByUser, false);
+                } else {
+                    mViewModel.requestPermissionsFailed(request.target);
                 }
+                return;
             }
+        }
 
-            // check background location permissions.
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        // check background location permissions.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                && !StatementManager.getInstance(this).isBackgroundLocationDeclared()
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            new BackgroundLocationDialog().show(getSupportFragmentManager(), null);
+        }
 
-                List<String> backgroundPermissionList = new ArrayList<>();
-                backgroundPermissionList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-
-                if (backgroundPermissionList.size() != 0) {
-                    BackgroundLocationDialog dialog = new BackgroundLocationDialog();
-                    dialog.setOnSetButtonClickListener(() ->
-                            requestPermissions(
-                                    backgroundPermissionList.toArray(new String[0]),
-                                    0,
-                                    null
-                            )
-                    );
-                    dialog.show(getSupportFragmentManager(), null);
-                }
-            }
-
-            mViewModel.updateWeather(triggeredByUser, false);
-        });
+        mViewModel.updateWeather(request.triggeredByUser, false);
     }
 
-    private boolean isNecessaryPermission(String permission) {
+    private boolean isLocationPermission(String permission) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    || permission.equals(Manifest.permission.ACCESS_FINE_LOCATION)
+                    || permission.equals(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+        } else {
+            return isForegroundLocationPermission(permission);
+        }
+    }
+
+    private boolean isForegroundLocationPermission(String permission) {
         return permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION)
                 || permission.equals(Manifest.permission.ACCESS_FINE_LOCATION);
     }
@@ -868,6 +863,44 @@ public class MainActivity extends GeoActivity
             if (mTopChanged) {
                 mWeatherView.setSystemBarColor(MainActivity.this, getWindow(),
                         mTopOverlap, false, true, false);
+            }
+        }
+    }
+
+    // location permissions statement callback.
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void requestLocationPermissions() {
+        StatementManager.getInstance(this).setLocationPermissionDeclared(this);
+
+        PermissionsRequest request = mViewModel.getPermissionsRequestValue();
+        if (request.permissionList.size() != 0 && request.target != null) {
+            requestPermissions(request.permissionList.toArray(new String[0]), 0);
+        }
+
+        for (GeoDialog dialog : getDialogSet()) {
+            if (dialog instanceof LocationPermissionStatementDialog) {
+                dialog.dismiss();
+            }
+        }
+    }
+
+    // background location permissions callback.
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    @Override
+    public void requestBackgroundLocationPermission() {
+        StatementManager.getInstance(this).setBackgroundLocationDeclared(this);
+
+        List<String> permissionList = new ArrayList<>();
+        permissionList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+
+        requestPermissions(permissionList.toArray(new String[0]), 0);
+
+        for (GeoDialog dialog : getDialogSet()) {
+            if (dialog instanceof BackgroundLocationDialog) {
+                dialog.dismiss();
             }
         }
     }

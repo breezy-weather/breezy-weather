@@ -1,9 +1,13 @@
 package wangdaye.com.geometricweather.settings.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -11,7 +15,6 @@ import androidx.preference.Preference;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.basic.models.options.NotificationStyle;
 import wangdaye.com.geometricweather.basic.models.options.UpdateInterval;
@@ -50,10 +53,35 @@ import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 public class SettingsFragment extends AbstractSettingsFragment {
 
+    private final BroadcastReceiver setTimeCallback = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean today = intent.getBooleanExtra(TimeSetterDialog.KEY_TODAY, true);
+
+            initForecastPart();
+            if (today) {
+                if (getSettingsOptionManager().isTodayForecastEnabled()) {
+                    PollingManager.resetTodayForecastBackgroundTask(
+                            requireActivity(), false, false);
+                }
+            } else {
+                if (getSettingsOptionManager().isTomorrowForecastEnabled()) {
+                    PollingManager.resetTomorrowForecastBackgroundTask(
+                            requireActivity(), false, false);
+                }
+            }
+        }
+    };
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.perference);
+
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
+                setTimeCallback,
+                new IntentFilter(TimeSetterDialog.ACTION_SET_TIME)
+        );
 
         initBasicPart();
         initForecastPart();
@@ -64,6 +92,12 @@ public class SettingsFragment extends AbstractSettingsFragment {
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         // do nothing.
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(setTimeCallback);
     }
 
     private void initBasicPart() {
@@ -97,20 +131,20 @@ public class SettingsFragment extends AbstractSettingsFragment {
 
         // update interval.
         Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));
-        refreshRate.setSummary(getSettingsOptionManager().getUpdateInterval().getUpdateIntervalName(getActivity()));
+        refreshRate.setSummary(getSettingsOptionManager().getUpdateInterval().getUpdateIntervalName(requireActivity()));
         refreshRate.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setUpdateInterval(UpdateInterval.getInstance((String) newValue));
-            preference.setSummary(getSettingsOptionManager().getUpdateInterval().getUpdateIntervalName(getActivity()));
+            preference.setSummary(getSettingsOptionManager().getUpdateInterval().getUpdateIntervalName(requireActivity()));
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             return true;
         });
 
         // dark mode.
         Preference darkMode = findPreference(getString(R.string.key_dark_mode));
-        darkMode.setSummary(getSettingsOptionManager().getDarkMode().getDarkModeName(getActivity()));
+        darkMode.setSummary(getSettingsOptionManager().getDarkMode().getDarkModeName(requireActivity()));
         darkMode.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setDarkMode(DarkMode.getInstance((String) newValue));
-            preference.setSummary(getSettingsOptionManager().getDarkMode().getDarkModeName(getActivity()));
+            preference.setSummary(getSettingsOptionManager().getDarkMode().getDarkModeName(requireActivity()));
             GeometricWeather.getInstance().resetDayNightMode();
             GeometricWeather.getInstance().recreateAllActivities();
             return true;
@@ -118,7 +152,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
 
         // live wallpaper.
         findPreference(getString(R.string.key_live_wallpaper)).setOnPreferenceClickListener(preference -> {
-            IntentHelper.startLiveWallpaperActivity((GeoActivity) requireActivity());
+            IntentHelper.startLiveWallpaperActivity(requireContext());
             return true;
         });
 
@@ -154,16 +188,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         Preference todayForecastTime = findPreference(getString(R.string.key_forecast_today_time));
         todayForecastTime.setSummary(getSettingsOptionManager().getTodayForecastTime());
         todayForecastTime.setOnPreferenceClickListener(preference -> {
-            TimeSetterDialog dialog = new TimeSetterDialog();
-            dialog.setIsToday(true);
-            dialog.setOnTimeChangedListener(() -> {
-                initForecastPart();
-                if (getSettingsOptionManager().isTodayForecastEnabled()) {
-                    PollingManager.resetTodayForecastBackgroundTask(
-                            requireActivity(), false, false);
-                }
-            });
-            dialog.show(getParentFragmentManager(), null);
+            TimeSetterDialog.getInstance(true).show(getParentFragmentManager(), null);
             return true;
         });
         todayForecastTime.setEnabled(getSettingsOptionManager().isTodayForecastEnabled());
@@ -180,16 +205,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         Preference tomorrowForecastTime = findPreference(getString(R.string.key_forecast_tomorrow_time));
         tomorrowForecastTime.setSummary(getSettingsOptionManager().getTomorrowForecastTime());
         tomorrowForecastTime.setOnPreferenceClickListener(preference -> {
-            TimeSetterDialog dialog = new TimeSetterDialog();
-            dialog.setIsToday(false);
-            dialog.setOnTimeChangedListener(() -> {
-                initForecastPart();
-                if (getSettingsOptionManager().isTomorrowForecastEnabled()) {
-                    PollingManager.resetTomorrowForecastBackgroundTask(
-                            requireActivity(), false, false);
-                }
-            });
-            dialog.show(getParentFragmentManager(), null);
+            TimeSetterDialog.getInstance(false).show(getParentFragmentManager(), null);
             return true;
         });
         tomorrowForecastTime.setEnabled(getSettingsOptionManager().isTomorrowForecastEnabled());
@@ -199,13 +215,13 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // widget week icon mode.
         ListPreference widgetWeekIconMode = findPreference(getString(R.string.key_week_icon_mode));
         widgetWeekIconMode.setSummary(
-                getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(getActivity())
+                getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(requireActivity())
         );
         widgetWeekIconMode.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setWidgetWeekIconMode(WidgetWeekIconMode.getInstance((String) newValue));
             initWidgetPart();
             preference.setSummary(
-                    getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(getActivity())
+                    getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(requireActivity())
             );
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
@@ -333,13 +349,13 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // notification style.
         ListPreference notificationStyle = findPreference(getString(R.string.key_notification_style));
         notificationStyle.setSummary(
-                getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(getActivity())
+                getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(requireActivity())
         );
         notificationStyle.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setNotificationStyle(NotificationStyle.getInstance((String) newValue));
             initNotificationPart();
             preference.setSummary(
-                    getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(getActivity())
+                    getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(requireActivity())
             );
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;

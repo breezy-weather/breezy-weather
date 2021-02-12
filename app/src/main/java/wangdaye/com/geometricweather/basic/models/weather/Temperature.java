@@ -114,10 +114,19 @@ public class Temperature implements Serializable {
     public static String getTrendTemperature(Context context,
                                              @Nullable Integer night, @Nullable Integer day,
                                              TemperatureUnit unit) {
+        return getTrendTemperature(context, night, day, unit,
+                SettingsOptionManager.getInstance(context).isExchangeDayNightTempEnabled());
+    }
+
+    @Nullable
+    private static String getTrendTemperature(Context context,
+                                              @Nullable Integer night, @Nullable Integer day,
+                                              TemperatureUnit unit,
+                                              boolean switchDayNight) {
         if (night == null || day == null) {
             return null;
         }
-        if (SettingsOptionManager.getInstance(context).isExchangeDayNightTempEnabled()) {
+        if (switchDayNight) {
             return getShortTemperature(context, day, unit) + "/" + getShortTemperature(context, night, unit);
         } else {
             return getShortTemperature(context, night, unit) + "/" + getShortTemperature(context, day, unit);

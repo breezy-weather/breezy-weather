@@ -16,7 +16,11 @@ public enum ProbabilityUnit {
     }
 
     public String getProbabilityText(Context context, float percent) {
-        if (DisplayUtils.isRtl(context)) {
+        return getProbabilityText(context, percent, DisplayUtils.isRtl(context));
+    }
+
+    private String getProbabilityText(Context context, float percent, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt((int) percent))
                     + unitAbbreviation;
         } else {

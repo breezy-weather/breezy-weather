@@ -18,6 +18,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import android.view.View;
 
 import java.util.ArrayList;
@@ -266,9 +268,9 @@ public class IntentHelper {
     }
 
     public static void sendBackgroundUpdateBroadcast(Context context, Location location) {
-        context.sendBroadcast(
-                new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND)
-                        .putExtra(MainActivity.KEY_LOCATION_FORMATTED_ID, location.getFormattedId())
+        LocalBroadcastManager.getInstance(context).sendBroadcast(
+                new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND).putExtra(
+                        MainActivity.KEY_LOCATION_FORMATTED_ID, location.getFormattedId())
         );
     }
 

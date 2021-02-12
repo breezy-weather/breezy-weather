@@ -24,16 +24,6 @@ public enum PollenUnit {
         return unitId;
     }
 
-    public String getPollenText(Context context, int value) {
-        if (DisplayUtils.isRtl(context)) {
-            return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt(value))
-                    + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
-        } else {
-            return UnitUtils.formatInt(value)
-                    + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
-        }
-    }
-
     public String getPollenText(Context context, @Nullable Integer value) {
         if (value == null) {
             return getPollenText(context, 0);
@@ -42,13 +32,17 @@ public enum PollenUnit {
         }
     }
 
-    public String getPollenVoice(Context context, int value) {
-        if (DisplayUtils.isRtl(context)) {
+    public String getPollenText(Context context, int value) {
+        return getPollenText(context, value, DisplayUtils.isRtl(context));
+    }
+
+    private String getPollenText(Context context, int value, boolean rtl) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt(value))
-                    + context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
+                    + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
         } else {
             return UnitUtils.formatInt(value)
-                    + context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
+                    + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
         }
     }
 
@@ -57,6 +51,20 @@ public enum PollenUnit {
             return getPollenVoice(context, 0);
         } else {
             return getPollenVoice(context, (int) value);
+        }
+    }
+
+    public String getPollenVoice(Context context, int value) {
+        return getPollenVoice(context, value, DisplayUtils.isRtl(context));
+    }
+
+    private String getPollenVoice(Context context, int value, boolean rtl) {
+        if (rtl) {
+            return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt(value))
+                    + context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
+        } else {
+            return UnitUtils.formatInt(value)
+                    + context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
         }
     }
 }

@@ -61,8 +61,13 @@ public class Base implements Serializable {
     }
 
     @SuppressLint("SimpleDateFormat")
-    public static String getTime(Context c, Date date) {
-        if (TimeManager.is12Hour(c)) {
+    public static String getTime(Context context, Date date) {
+        return getTime(date, TimeManager.is12Hour(context));
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private static String getTime(Date date, boolean twelveHour) {
+        if (twelveHour) {
             return new SimpleDateFormat("h:mm aa").format(date);
         } else {
             return new SimpleDateFormat("HH:mm").format(date);

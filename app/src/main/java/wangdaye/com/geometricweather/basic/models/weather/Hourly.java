@@ -77,13 +77,17 @@ public class Hourly implements Serializable {
         return precipitationProbability;
     }
 
+    public String getHour(Context context) {
+        return getHour(context, TimeManager.is12Hour(context), DisplayUtils.isRtl(context));
+    }
+
     @SuppressLint("DefaultLocale")
-    public String getHour(Context c) {
+    private String getHour(Context context, boolean twelveHour, boolean rtl) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
         int hour;
-        if (TimeManager.is12Hour(c)) {
+        if (twelveHour) {
             hour = calendar.get(Calendar.HOUR);
             if (hour == 0) {
                 hour = 12;
@@ -92,11 +96,11 @@ public class Hourly implements Serializable {
             hour = calendar.get(Calendar.HOUR_OF_DAY);
         }
 
-        if (DisplayUtils.isRtl(c)) {
+        if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(String.format("%d", hour))
-                    + c.getString(R.string.of_clock);
+                    + context.getString(R.string.of_clock);
         } else {
-            return hour + c.getString(R.string.of_clock);
+            return hour + context.getString(R.string.of_clock);
         }
     }
 

@@ -3,18 +3,18 @@ package wangdaye.com.geometricweather.management;
 import android.app.Application;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import wangdaye.com.geometricweather.basic.GeoViewModel;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.management.models.SelectableLocationListResource;
 
-public class ManagementFragmentViewModel extends AndroidViewModel {
+public class ManagementFragmentViewModel extends GeoViewModel {
 
     private final MutableLiveData<SelectableLocationListResource> mListResource;
     private final ManagementFragmentRepository mRepository;
@@ -26,7 +26,6 @@ public class ManagementFragmentViewModel extends AndroidViewModel {
                 new ArrayList<>(), null, null));
 
         mRepository = new ManagementFragmentRepository();
-        resetLocationList(null);
     }
 
     public void resetLocationList(@Nullable String selectedId) {

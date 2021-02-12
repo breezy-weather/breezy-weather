@@ -1,20 +1,19 @@
 package wangdaye.com.geometricweather.settings.dialogs;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
@@ -25,17 +24,17 @@ import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 public class RunningInBackgroundODialog extends GeoDialog
         implements View.OnClickListener {
 
-    @NonNull
-    @SuppressLint("InflateParams")
+    @Nullable
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_running_in_background_o, null, false);
-        initWidget(view);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+        View view = LayoutInflater.from(getActivity()).inflate(
+                R.layout.dialog_running_in_background_o, container, false);
+        initWidget(view);
+        return view;
     }
 
     private void initWidget(View view) {
@@ -55,7 +54,7 @@ public class RunningInBackgroundODialog extends GeoDialog
                 break;
 
             case R.id.dialog_running_in_background_o_ignoreBatteryOptBtn:
-                IntentHelper.startBatteryOptimizationActivity((GeoActivity) requireActivity());
+                IntentHelper.startBatteryOptimizationActivity(requireContext());
                 break;
         }
     }

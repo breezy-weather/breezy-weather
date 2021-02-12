@@ -1,21 +1,23 @@
 package wangdaye.com.geometricweather.settings.dialogs;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Size;
+import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoDialog;
+import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.resource.ResourceHelper;
+import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
+import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.ui.widgets.AnimatableIconView;
 
 /**
@@ -23,40 +25,64 @@ import wangdaye.com.geometricweather.ui.widgets.AnimatableIconView;
  * */
 public class AnimatableIconDialog extends GeoDialog {
 
-    private String mTitle;
-    @Size(3) private Drawable[] mIconDrawables;
-    @Size(3) private Animator[] mIconAnimators;
+    private static final String KEY_WEATHER_CODE = "weather_code";
+    private static final String KEY_DAYTIME = "daytime";
+    private static final String KEY_RESOURCE_PROVIDER = "resource_provider";
 
-    @NonNull
-    @SuppressLint("InflateParams")
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_animatable_icon, null, false);
-        initWidget(view);
+    public static AnimatableIconDialog getInstance(WeatherCode code,
+                                                   boolean daytime,
+                                                   ResourceProvider provider) {
+        Bundle bundle = new Bundle();
+        bundle.putString(KEY_WEATHER_CODE, code.name());
+        bundle.putBoolean(KEY_DAYTIME, daytime);
+        bundle.putString(KEY_RESOURCE_PROVIDER, provider.getPackageName());
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(view);
-        return builder.create();
+        AnimatableIconDialog dialog = new AnimatableIconDialog();
+        dialog.setArguments(bundle);
+        return dialog;
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        View view = LayoutInflater.from(getActivity()).inflate(
+                R.layout.dialog_animatable_icon, container, false);
+        initWidget(view);
+        return view;
+    }
+
+    @SuppressLint("SetTextI18n")
     private void initWidget(View view) {
+        Bundle bundle = getArguments();
+        if (bundle == null) {
+            return;
+        }
+
+        String codeName = bundle.getString(KEY_WEATHER_CODE);
+        WeatherCode code = codeName == null ? WeatherCode.CLEAR : WeatherCode.valueOf(codeName);
+
+        boolean daytime = bundle.getBoolean(KEY_DAYTIME, true);
+
+        String providerPackageName = bundle.getString(KEY_RESOURCE_PROVIDER);
+        ResourceProvider provider = providerPackageName == null
+                ? new DefaultResourceProvider()
+                : ResourcesProviderFactory.getNewInstance(providerPackageName);
+
         TextView titleView = view.findViewById(R.id.dialog_animatable_icon_title);
-        titleView.setText(mTitle);
+        titleView.setText(code.name() + (daytime ? "_DAY" : "_NIGHT"));
 
         AnimatableIconView iconView = view.findViewById(R.id.dialog_animatable_icon_icon);
-        iconView.setAnimatableIcon(mIconDrawables, mIconAnimators);
+        iconView.setAnimatableIcon(
+                ResourceHelper.getWeatherIcons(provider, code, daytime),
+                ResourceHelper.getWeatherAnimators(provider, code, daytime)
+        );
 
         CoordinatorLayout container = view.findViewById(R.id.dialog_animatable_icon_container);
         container.setOnClickListener(v -> iconView.startAnimators());
-    }
-
-    public void setData(@NonNull String title,
-                        @NonNull @Size(3) Drawable[] iconDrawables,
-                        @NonNull @Size(3) Animator[] iconAnimators) {
-        mTitle = title;
-        mIconDrawables = iconDrawables;
-        mIconAnimators = iconAnimators;
     }
 
     @Override
