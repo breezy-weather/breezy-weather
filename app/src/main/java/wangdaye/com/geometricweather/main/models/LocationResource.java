@@ -9,37 +9,33 @@ public class LocationResource extends Resource<Location> {
 
     public final boolean defaultLocation;
     public final boolean locateFailed;
-
-    public final Source source;
-    public enum  Source {
-        SWITCH, REFRESH, BACKGROUND
-    }
+    public final boolean fromBackgroundUpdate;
 
     private LocationResource(@NonNull Location data, @NonNull Status status,
-                             boolean defaultLocation, boolean locateFailed, Source source) {
+                             boolean defaultLocation, boolean locateFailed, boolean fromBackgroundUpdate) {
         super(data, status);
         this.defaultLocation = defaultLocation;
         this.locateFailed = locateFailed;
-        this.source = source;
+        this.fromBackgroundUpdate = fromBackgroundUpdate;
     }
 
-    public static LocationResource success(@NonNull Location data, boolean defaultLocation, Source source) {
-        return new LocationResource(data, Status.SUCCESS, defaultLocation, false, source);
+    public static LocationResource success(@NonNull Location data, boolean defaultLocation, boolean fromBackgroundUpdate) {
+        return new LocationResource(data, Status.SUCCESS, defaultLocation, false, fromBackgroundUpdate);
     }
 
-    public static LocationResource error(@NonNull Location data, boolean defaultLocation, Source source) {
-        return error(data, defaultLocation, false, source);
+    public static LocationResource error(@NonNull Location data, boolean defaultLocation, boolean fromBackgroundUpdate) {
+        return error(data, defaultLocation, false, fromBackgroundUpdate);
     }
 
-    public static LocationResource error(@NonNull Location data, boolean defaultLocation, boolean locateFailed, Source source) {
-        return new LocationResource(data, Status.ERROR, defaultLocation, locateFailed, source);
+    public static LocationResource error(@NonNull Location data, boolean defaultLocation, boolean locateFailed, boolean fromBackgroundUpdate) {
+        return new LocationResource(data, Status.ERROR, defaultLocation, locateFailed, fromBackgroundUpdate);
     }
 
-    public static LocationResource loading(@NonNull Location data, boolean defaultLocation, Source source) {
-        return loading(data, defaultLocation, false, source);
+    public static LocationResource loading(@NonNull Location data, boolean defaultLocation, boolean fromBackgroundUpdate) {
+        return loading(data, defaultLocation, false, fromBackgroundUpdate);
     }
 
-    public static LocationResource loading(@NonNull Location data, boolean defaultLocation, boolean locateFailed, Source source) {
-        return new LocationResource(data, Status.LOADING, defaultLocation, locateFailed, source);
+    public static LocationResource loading(@NonNull Location data, boolean defaultLocation, boolean locateFailed, boolean fromBackgroundUpdate) {
+        return new LocationResource(data, Status.LOADING, defaultLocation, locateFailed, fromBackgroundUpdate);
     }
 }

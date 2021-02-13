@@ -22,6 +22,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.view.View;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import wangdaye.com.geometricweather.R;
@@ -188,8 +189,8 @@ public class IntentHelper {
 
     public static void startApplicationDetailsActivity(Context context, String pkgName) {
         context.startActivity(
-                new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        .setData(Uri.fromParts("package", pkgName, null))
+                new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(
+                        Uri.fromParts("package", pkgName, null))
         );
     }
 
@@ -269,8 +270,8 @@ public class IntentHelper {
 
     public static void sendBackgroundUpdateBroadcast(Context context, Location location) {
         LocalBroadcastManager.getInstance(context).sendBroadcast(
-                new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND).putExtra(
-                        MainActivity.KEY_LOCATION_FORMATTED_ID, location.getFormattedId())
+                new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND)
+                        .putExtra(MainActivity.KEY_LOCATION, (Serializable) location)
         );
     }
 

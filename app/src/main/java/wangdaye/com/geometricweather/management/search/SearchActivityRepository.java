@@ -28,12 +28,12 @@ public class SearchActivityRepository {
         mWeatherHelper.requestLocation(context, query, multiSource, new WeatherHelper.OnRequestLocationListener() {
             @Override
             public void requestLocationSuccess(String query, List<Location> locationList) {
-                callback.call(locationList);
+                callback.call(locationList, true);
             }
 
             @Override
             public void requestLocationFailed(String query) {
-                callback.call(null);
+                callback.call(null, true);
             }
         });
     }

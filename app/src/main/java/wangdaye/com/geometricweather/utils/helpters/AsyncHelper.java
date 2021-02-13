@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.utils.helpters;
 
 import androidx.annotation.Nullable;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -30,9 +31,11 @@ public class AsyncHelper {
     private static class Data<T> {
 
         final T t;
+        final boolean done;
 
-        Data(T t) {
+        Data(T t, boolean done) {
             this.t = t;
+            this.done = done;
         }
     }
 
@@ -44,8 +47,8 @@ public class AsyncHelper {
             this.inner = inner;
         }
 
-        public void send(@Nullable T t) {
-            inner.onNext(new Data<>(t));
+        public void send(@Nullable T t, boolean done) {
+            inner.onNext(new Data<>(t, done));
         }
     }
 
@@ -54,7 +57,7 @@ public class AsyncHelper {
     }
 
     public interface Callback<T> {
-        void call(@Nullable T t);
+        void call(@Nullable T t, boolean done);
     }
 
     public static <T> Controller runOnIO(Task<T> task, Callback<T> callback) {
@@ -62,7 +65,7 @@ public class AsyncHelper {
                 Observable.create((ObservableOnSubscribe<Data<T>>) emitter -> task.execute(new Emitter<>(emitter)))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doOnNext(data -> callback.call(data.t))
+                        .doOnNext(data -> callback.call(data.t, data.done))
                         .subscribe()
         );
     }
@@ -71,6 +74,25 @@ public class AsyncHelper {
         return new Controller(
                 Observable.create(emitter -> runnable.run())
                         .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe()
+        );
+    }
+
+    public static <T> Controller runOnExecutor(Task<T> task, Callback<T> callback, Executor executor) {
+        return new Controller(
+                Observable.create((ObservableOnSubscribe<Data<T>>) emitter -> task.execute(new Emitter<>(emitter)))
+                        .subscribeOn(Schedulers.from(executor))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext(data -> callback.call(data.t, data.done))
+                        .subscribe()
+        );
+    }
+
+    public static Controller runOnExecutor(Runnable runnable, Executor executor) {
+        return new Controller(
+                Observable.create(emitter -> runnable.run())
+                        .subscribeOn(Schedulers.from(executor))
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe()
         );

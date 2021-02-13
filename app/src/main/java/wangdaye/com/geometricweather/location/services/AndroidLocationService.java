@@ -206,7 +206,10 @@ public class AndroidLocationService extends LocationService {
             return;
         }
 
-        AsyncHelper.runOnIO(emitter -> emitter.send(buildResult(location)), this::handleResultIfNecessary);
+        AsyncHelper.runOnIO(
+                (AsyncHelper.Task<Result>) emitter -> emitter.send(buildResult(location), true),
+                (result, done) -> handleResultIfNecessary(result)
+        );
     }
 
     private void handleResultIfNecessary(@Nullable Result result) {

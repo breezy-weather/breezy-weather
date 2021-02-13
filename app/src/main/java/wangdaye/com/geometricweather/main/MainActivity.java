@@ -49,7 +49,6 @@ import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
 import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
-import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.StatementManager;
@@ -113,7 +112,7 @@ public class MainActivity extends GeoActivity
 
     public static final String ACTION_UPDATE_WEATHER_IN_BACKGROUND
             = "com.wangdaye.geomtricweather.ACTION_UPDATE_WEATHER_IN_BACKGROUND";
-    public static final String KEY_LOCATION_FORMATTED_ID = "LOCATION_FORMATTED_ID";
+    public static final String KEY_LOCATION = "LOCATION";
 
     public static final String ACTION_SHOW_ALERTS
             = "com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS";
@@ -125,16 +124,15 @@ public class MainActivity extends GeoActivity
     private final BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String formattedId = intent.getStringExtra(KEY_LOCATION_FORMATTED_ID);
-            mViewModel.updateLocationFromBackground(formattedId);
-            if (isForeground()) {
-                getSnackbarContainer().postDelayed(() -> {
-                    if (isForeground()
-                            && formattedId != null
-                            && formattedId.equals(mViewModel.getCurrentFormattedId())) {
-                        SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background));
-                    }
-                }, 1200);
+            Location location = (Location) intent.getSerializableExtra(KEY_LOCATION);
+            if (location == null) {
+                return;
+            }
+
+            mViewModel.updateLocationFromBackground(location);
+            if (isForeground()
+                    && location.getFormattedId().equals(mViewModel.getCurrentFormattedId())) {
+                SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background));
             }
         }
     };
@@ -172,7 +170,7 @@ public class MainActivity extends GeoActivity
         ensureResourceProvider();
         updateThemeManager();
 
-        initModel();
+        initModel(savedInstanceState == null);
         initView();
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
@@ -205,7 +203,7 @@ public class MainActivity extends GeoActivity
                         )
                 );
                 resetUIUpdateFlag();
-                mViewModel.reset();
+                mViewModel.init();
 
                 refreshBackgroundViews(true, mViewModel.getValidLocationList(),
                         true, true);
@@ -224,7 +222,7 @@ public class MainActivity extends GeoActivity
             case CARD_MANAGE_ACTIVITY:
                 if (resultCode == RESULT_OK) {
                     resetUIUpdateFlag();
-                    mViewModel.reset();
+                    mViewModel.init();
                 }
                 break;
 
@@ -248,7 +246,7 @@ public class MainActivity extends GeoActivity
         if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
             updateThemeManager();
             resetUIUpdateFlag();
-            mViewModel.reset();
+            mViewModel.init();
         }
     }
 
@@ -277,10 +275,16 @@ public class MainActivity extends GeoActivity
 
     // init.
 
-    private void initModel() {
+    private void initModel(boolean newActivity) {
         mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        if (mViewModel.checkIsNewInstance()) {
+        if (!mViewModel.checkIsNewInstance()) {
+            return;
+        }
+
+        if (newActivity) {
             mViewModel.init(getLocationId(getIntent()));
+        } else {
+            mViewModel.init();
         }
     }
 
@@ -302,12 +306,12 @@ public class MainActivity extends GeoActivity
             mManagementFragment.setOnLocationListChangedListener(new ManagementFragment.LocationManageCallback() {
                 @Override
                 public void onSelectedLocation(@NonNull String formattedId) {
-                    mViewModel.init(formattedId);
+                    mViewModel.setLocation(formattedId);
                 }
 
                 @Override
                 public void onLocationListChanged(List<Location> locationList) {
-                    mViewModel.init(locationList, mViewModel.getCurrentFormattedId());
+                    mViewModel.updateLocationList(locationList);
                 }
             });
         }
@@ -358,10 +362,11 @@ public class MainActivity extends GeoActivity
             }
 
             setRefreshing(resource.status == Resource.Status.LOADING);
-            drawUI(resource.data, resource.defaultLocation, resource.source);
+            drawUI(resource.data, resource.defaultLocation, resource.fromBackgroundUpdate);
 
             if (mManagementFragment != null) {
-                mManagementFragment.updateView(mViewModel.getTotalLocationList(), resource.data.getFormattedId());
+                mManagementFragment.updateView(
+                        mViewModel.getTotalLocationList(), mViewModel.getCurrentFormattedId());
             }
 
             if (resource.locateFailed) {
@@ -478,7 +483,7 @@ public class MainActivity extends GeoActivity
     // control.
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
-    private void drawUI(Location location, boolean defaultLocation, LocationResource.Source source) {
+    private void drawUI(Location location, boolean defaultLocation, boolean fromBackgroundUpdate) {
         if (location.equals(mCurrentLocationFormattedId)
                 && location.getWeatherSource() == mCurrentWeatherSource
                 && location.getWeather() != null
@@ -571,7 +576,7 @@ public class MainActivity extends GeoActivity
         }
 
         refreshBackgroundViews(false, mViewModel.getValidLocationList(),
-                defaultLocation, source != LocationResource.Source.BACKGROUND);
+                defaultLocation, !fromBackgroundUpdate);
     }
 
     private void resetUI(Location location) {

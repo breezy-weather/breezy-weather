@@ -20,16 +20,21 @@ public class ManagementFragmentViewModel extends GeoViewModel {
     private final ManagementFragmentRepository mRepository;
 
     public ManagementFragmentViewModel(Application application) {
+        this(application, new ManagementFragmentRepository());
+    }
+
+    public ManagementFragmentViewModel(Application application,
+                                       ManagementFragmentRepository repository) {
         super(application);
         mListResource = new MutableLiveData<>();
         mListResource.setValue(new SelectableLocationListResource(
                 new ArrayList<>(), null, null));
 
-        mRepository = new ManagementFragmentRepository();
+        mRepository = repository;
     }
 
     public void resetLocationList(@Nullable String selectedId) {
-        mRepository.readLocationList(getApplication(), locationList -> {
+        mRepository.readLocationList(getApplication(), (locationList, done) -> {
             if (locationList == null) {
                 return;
             }
@@ -42,7 +47,7 @@ public class ManagementFragmentViewModel extends GeoViewModel {
 
     public void readAppendCache() {
         List<Location> oldList = getLocationList();
-        mRepository.readAppendLocation(getApplication(), oldList, locationList -> {
+        mRepository.readAppendLocation(getApplication(), oldList, (locationList, done) -> {
             if (locationList == null) {
                 return;
             }
@@ -95,7 +100,7 @@ public class ManagementFragmentViewModel extends GeoViewModel {
         }
 
         if (needReadList) {
-            mRepository.readLocationList(getApplication(), newList, list -> {
+            mRepository.readLocationList(getApplication(), newList, (list, done) -> {
                 if (list == null) {
                     return;
                 }

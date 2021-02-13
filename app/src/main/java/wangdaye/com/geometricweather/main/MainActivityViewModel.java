@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.SavedStateHandle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +21,6 @@ import wangdaye.com.geometricweather.main.models.Indicator;
 import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
-import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 
 public class MainActivityViewModel extends GeoViewModel
         implements MainActivityRepository.WeatherRequestCallback {
@@ -29,15 +29,27 @@ public class MainActivityViewModel extends GeoViewModel
     private final MutableLiveData<Indicator> mIndicator;
     private final MutableLiveData<PermissionsRequest> mPermissionsRequest;
 
+    private final SavedStateHandle mSavedStateHandle;
     private final MainActivityRepository mRepository;
 
-    private @Nullable AsyncHelper.Controller mIOController;
-
+    // inner data.
+    private Status mStatus;
+    private @Nullable String mFormattedId; // current formatted id.
     private @Nullable List<Location> mTotalList; // all locations.
     private @Nullable List<Location> mValidList; // location list optimized for resident city.
-    private @Nullable Integer mValidIndex; // current index for validList.
 
-    public MainActivityViewModel(@NonNull Application application) {
+    private static final String KEY_FORMATTED_ID = "formatted_id";
+
+    private enum Status {
+        NEW_INSTANCE, INITIALIZING, INITIALIZE_DONE
+    }
+
+    public MainActivityViewModel(@NonNull Application application, SavedStateHandle handle) {
+        this(application, handle, new MainActivityRepository(application));
+    }
+
+    public MainActivityViewModel(@NonNull Application application, SavedStateHandle handle,
+                                 MainActivityRepository repository) {
         super(application);
 
         mCurrentLocation = new MutableLiveData<>();
@@ -50,129 +62,139 @@ public class MainActivityViewModel extends GeoViewModel
         mPermissionsRequest.setValue(
                 new PermissionsRequest(new ArrayList<>(), null, false));
 
-        mRepository = new MainActivityRepository(getApplication());
+        mSavedStateHandle = handle;
+        mRepository = repository;
 
-        mIOController = null;
+        mStatus = Status.NEW_INSTANCE;
+        mFormattedId = mSavedStateHandle.get(KEY_FORMATTED_ID);
 
         mTotalList = null;
         mValidList = null;
-        mValidIndex = null;
     }
 
-    public void reset() {
-        LocationResource resource = mCurrentLocation.getValue();
-        if (resource != null) {
-            init(resource.data);
-        }
-    }
-
-    public void init(@NonNull Location location) {
-        init(location.getFormattedId());
+    public void init() {
+        init(mFormattedId);
     }
 
     public void init(@Nullable String formattedId) {
-        if (mIOController != null) {
-            mIOController.cancel();
-            mIOController = null;
-        }
+        setFormattedId(formattedId);
 
-        final boolean[] firstInit = {true};
+        if (mTotalList == null || mValidList == null) {
+            mStatus = Status.INITIALIZING;
+        }
 
         List<Location> oldList = mTotalList == null
                 ? new ArrayList<>()
                 : Collections.unmodifiableList(mTotalList);
-        mIOController = mRepository.getLocationList(getApplication(), oldList, locationList -> {
+
+        mRepository.getLocationList(getApplication(), oldList, (locationList, done) -> {
             if (locationList == null) {
                 return;
             }
 
             List<Location> totalList = new ArrayList<>(locationList);
             List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
+            int validIndex = indexLocation(validList, mFormattedId);
 
-            int validIndex = firstInit[0]
-                    ? indexLocation(validList, formattedId)
-                    : indexLocation(mValidList, getCurrentFormattedId());
-            firstInit[0] = false;
+            setInnerData(totalList, validList, validIndex, done ? Status.INITIALIZE_DONE : Status.INITIALIZING);
 
-            setLocation(totalList, validList, validIndex, LocationResource.Source.REFRESH, null);
+            Location current = validList.get(validIndex);
+            Indicator indicator = new Indicator(validList.size(), validIndex);
+            boolean defaultLocation = validIndex == 0;
+
+            mIndicator.setValue(indicator);
+
+            if (!done) {
+                mCurrentLocation.setValue(
+                        LocationResource.loading(current, defaultLocation, false));
+                return;
+            }
+
+            // done.
+            if (MainModuleUtils.needUpdate(getApplication(), current)) {
+                updateWeather(false, true);
+            } else {
+                mCurrentLocation.setValue(
+                        LocationResource.success(current, defaultLocation, false));
+            }
         });
     }
 
-    public void init(List<Location> locationList, @Nullable String formattedId) {
-        if (mIOController != null) {
-            mIOController.cancel();
-            mIOController = null;
+    public void setLocation(@NonNull String formattedId) {
+        if (mTotalList == null || mValidList == null) {
+            return;
         }
 
-        List<Location> totalList = new ArrayList<>(locationList);
-        List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-
+        List<Location> totalList = new ArrayList<>(mTotalList);
+        List<Location> validList = new ArrayList<>(mValidList);
         int validIndex = indexLocation(validList, formattedId);
 
-        setLocation(totalList, validList, validIndex, LocationResource.Source.REFRESH, null);
+        setInnerData(totalList, validList, validIndex, mStatus);
+
+        Location current = validList.get(validIndex);
+        Indicator indicator = new Indicator(validList.size(), validIndex);
+        boolean defaultLocation = validIndex == 0;
+
+        if (MainModuleUtils.needUpdate(getApplication(), current)) {
+            updateWeather(false, true);
+        } else {
+            mCurrentLocation.setValue(
+                    LocationResource.success(current, defaultLocation, false));
+        }
+        mIndicator.setValue(indicator);
     }
 
     public void setLocation(int offset) {
-        if (mTotalList == null || mValidList == null || mValidIndex == null) {
+        if (mTotalList == null || mValidList == null) {
             return;
         }
 
-        int index = mValidIndex;
-        index = Math.max(index, 0);
-        index = Math.min(index, mValidList.size() - 1);
-        index += offset + mValidList.size();
-        index %= mValidList.size();
+        int validIndex = indexLocation(mValidList, mFormattedId);
+        validIndex += offset + mValidList.size();
+        validIndex %= mValidList.size();
 
-        setLocation(
-                new ArrayList<>(mTotalList),
-                new ArrayList<>(mValidList),
-                index,
-                LocationResource.Source.SWITCH,
-                null
-        );
-    }
+        List<Location> totalList = new ArrayList<>(mTotalList);
+        List<Location> validList = new ArrayList<>(mValidList);
 
-    private void setLocation(@NonNull List<Location> newTotalList,
-                             @NonNull List<Location> newValidList,
-                             int newValidIndex,
-                             LocationResource.Source source,
-                             @Nullable LocationResource resource) {
-        mTotalList = newTotalList;
-        mValidList = newValidList;
+        setInnerData(totalList, validList, validIndex, mStatus);
 
-        mValidIndex = newValidIndex;
-        mValidIndex = Math.max(mValidIndex, 0);
-        mValidIndex = Math.min(mValidIndex, newValidList.size() - 1);
+        Location current = validList.get(validIndex);
+        Indicator indicator = new Indicator(validList.size(), validIndex);
+        boolean defaultLocation = validIndex == 0;
 
-        Location current = mValidList.get(mValidIndex);
-        Indicator i = new Indicator(mValidList.size(), mValidIndex);
-
-        boolean defaultLocation = mValidIndex == 0;
-        if (resource == null && MainModuleUtils.needUpdate(getApplication(), current)) {
-            mCurrentLocation.setValue(LocationResource.loading(current, defaultLocation, source));
+        if (MainModuleUtils.needUpdate(getApplication(), current)) {
             updateWeather(false, true);
-        } else if (resource == null) {
-            mRepository.cancelWeatherRequest();
-            mCurrentLocation.setValue(LocationResource.success(current, defaultLocation, source));
         } else {
-            mCurrentLocation.setValue(resource);
+            mCurrentLocation.setValue(
+                    LocationResource.success(current, defaultLocation, false));
         }
-        mIndicator.setValue(i);
+        mIndicator.setValue(indicator);
     }
 
-    public void updateLocationFromBackground(@Nullable String formattedId) {
-        if (TextUtils.isEmpty(formattedId)
-                || mTotalList == null || mValidList == null || mValidIndex == null) {
-            return;
-        }
+    public void updateLocationList(List<Location> locationList) {
+        mRepository.queue((aVoid, done) -> {
 
-        if (mIOController != null) {
-            mIOController.cancel();
-            mIOController = null;
-        }
+            List<Location> totalList = new ArrayList<>(locationList);
+            List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
+            int validIndex = indexLocation(validList, mFormattedId);
 
-        assert formattedId != null;
-        mIOController = mRepository.getLocationAndWeatherCache(getApplication(), formattedId, location -> {
+            setInnerData(totalList, validList, validIndex, Status.INITIALIZE_DONE);
+
+            Location current = validList.get(validIndex);
+            Indicator indicator = new Indicator(validList.size(), validIndex);
+            boolean defaultLocation = validIndex == 0;
+
+            mCurrentLocation.setValue(
+                    LocationResource.success(current, defaultLocation, false));
+            mIndicator.setValue(indicator);
+        });
+    }
+
+    public void updateLocationFromBackground(Location location) {
+        mRepository.queue((aVoid, done) -> {
+            if (mTotalList == null || mValidList == null) {
+                return;
+            }
 
             List<Location> totalList = new ArrayList<>(mTotalList);
             for (int i = 0; i < totalList.size(); i ++) {
@@ -184,33 +206,18 @@ public class MainActivityViewModel extends GeoViewModel
 
             List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
 
-            int validIndex = indexLocation(validList, getCurrentFormattedId());
+            int validIndex = indexLocation(validList, mFormattedId);
 
-            setLocation(totalList, validList, validIndex,
-                    LocationResource.Source.BACKGROUND, null);
+            setInnerData(totalList, validList, validIndex, Status.INITIALIZE_DONE);
+
+            Location current = validList.get(validIndex);
+            Indicator indicator = new Indicator(validList.size(), validIndex);
+            boolean defaultLocation = validIndex == 0;
+
+            mCurrentLocation.setValue(
+                    LocationResource.success(current, defaultLocation, true));
+            mIndicator.setValue(indicator);
         });
-    }
-
-    private static int indexLocation(List<Location> locationList, @Nullable String formattedId) {
-        if (TextUtils.isEmpty(formattedId)) {
-            return -1;
-        }
-
-        for (int i = 0; i < locationList.size(); i ++) {
-            if (locationList.get(i).equals(formattedId)) {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-
-    @Nullable
-    public Location getLocationFromList(int offset) {
-        if (mTotalList == null || mValidList == null || mValidIndex == null) {
-            return null;
-        }
-        return mValidList.get((mValidIndex + offset + mValidList.size()) % mValidList.size());
     }
 
     public void updateWeather(boolean triggeredByUser, boolean checkPermissions) {
@@ -226,7 +233,7 @@ public class MainActivityViewModel extends GeoViewModel
                 LocationResource.loading(
                         location,
                         mCurrentLocation.getValue().defaultLocation,
-                        LocationResource.Source.REFRESH
+                        false
                 )
         );
 
@@ -235,7 +242,7 @@ public class MainActivityViewModel extends GeoViewModel
                 || !checkPermissions) {
             // don't need to request any permission -> request data directly.
             mRepository.getWeather(
-                    getApplication(), location, location.isCurrentPosition(), triggeredByUser, this);
+                    getApplication(), location, location.isCurrentPosition(), this);
             return;
         }
 
@@ -244,7 +251,7 @@ public class MainActivityViewModel extends GeoViewModel
         if (permissionList.size() == 0) {
             // already got all permissions -> request data directly.
             mRepository.getWeather(
-                    getApplication(), location, true, triggeredByUser, this);
+                    getApplication(), location, true, this);
             return;
         }
 
@@ -253,13 +260,44 @@ public class MainActivityViewModel extends GeoViewModel
     }
 
     public void requestPermissionsFailed(Location location) {
+        if (mTotalList == null || mValidList == null) {
+            return;
+        }
+
         mCurrentLocation.setValue(
                 LocationResource.error(
                         location,
-                        true,
-                        LocationResource.Source.REFRESH
+                        location.equals(mValidList.get(0)),
+                        false
                 )
         );
+    }
+
+    private void setFormattedId(@Nullable String formattedId) {
+        mFormattedId = formattedId;
+        mSavedStateHandle.set(KEY_FORMATTED_ID, formattedId);
+    }
+
+    private void setInnerData(@NonNull List<Location> totalList, @NonNull List<Location> validList,
+                              int validIndex, Status status) {
+        mTotalList = totalList;
+        mValidList = validList;
+        setFormattedId(validList.get(validIndex).getFormattedId());
+        mStatus = status;
+    }
+
+    private static int indexLocation(List<Location> locationList, @Nullable String formattedId) {
+        if (TextUtils.isEmpty(formattedId)) {
+            return 0;
+        }
+
+        for (int i = 0; i < locationList.size(); i ++) {
+            if (locationList.get(i).equals(formattedId)) {
+                return i;
+            }
+        }
+
+        return 0;
     }
 
     private List<String> getDeniedPermissionList() {
@@ -271,6 +309,18 @@ public class MainActivityViewModel extends GeoViewModel
             }
         }
         return permissionList;
+    }
+
+    @Nullable
+    public Location getLocationFromList(int offset) {
+        if (mTotalList == null || mValidList == null) {
+            return null;
+        }
+
+        int validIndex = indexLocation(mValidList, mFormattedId);
+        return mValidList.get(
+                (validIndex + offset + mValidList.size()) % mValidList.size()
+        );
     }
 
     public MutableLiveData<LocationResource> getCurrentLocation() {
@@ -300,8 +350,10 @@ public class MainActivityViewModel extends GeoViewModel
         Location location = getCurrentLocationValue();
         if (location != null) {
             return location.getFormattedId();
-        } else if (mValidList != null && mValidIndex != null) {
-            return mValidList.get(mValidIndex).getFormattedId();
+        } else if (mFormattedId != null) {
+            return mFormattedId;
+        } else if (mValidList != null) {
+            return mValidList.get(0).getFormattedId();
         } else {
             return null;
         }
@@ -338,11 +390,6 @@ public class MainActivityViewModel extends GeoViewModel
     // weather request callback.
 
     @Override
-    public void onReadCacheCompleted(Location location, boolean succeed, boolean done) {
-        callback(location, false, succeed, done);
-    }
-
-    @Override
     public void onLocationCompleted(Location location, boolean succeed, boolean done) {
         callback(location, !succeed, succeed, done);
     }
@@ -354,7 +401,7 @@ public class MainActivityViewModel extends GeoViewModel
 
     private void callback(Location location,
                           boolean locateFailed, boolean succeed, boolean done) {
-        if (mTotalList == null || mValidList == null || mValidIndex == null) {
+        if (mTotalList == null || mValidList == null) {
             return;
         }
 
@@ -367,22 +414,26 @@ public class MainActivityViewModel extends GeoViewModel
         }
 
         List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-
         int validIndex = indexLocation(validList, getCurrentFormattedId());
-
         boolean defaultLocation = location.equals(validList.get(0));
+
+        setInnerData(totalList, validList, validIndex, Status.INITIALIZE_DONE);
+
         LocationResource resource;
         if (!done) {
             resource = LocationResource.loading(
-                    location, defaultLocation, locateFailed, LocationResource.Source.REFRESH);
+                    location, defaultLocation, locateFailed, false);
         } else if (succeed) {
             resource = LocationResource.success(
-                    location, defaultLocation, LocationResource.Source.REFRESH);
+                    location, defaultLocation, false);
         } else {
             resource = LocationResource.error(
-                    location, defaultLocation, locateFailed, LocationResource.Source.REFRESH);
+                    location, defaultLocation, locateFailed, false);
         }
 
-        setLocation(totalList, validList, validIndex, LocationResource.Source.BACKGROUND, resource);
+        Indicator indicator = new Indicator(validList.size(), validIndex);
+
+        mCurrentLocation.setValue(resource);
+        mIndicator.setValue(indicator);
     }
 }

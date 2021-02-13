@@ -82,8 +82,11 @@ public class ProvidersPreviewerDialog extends GeoDialog {
             mList.setVisibility(View.GONE);
 
             AsyncHelper.runOnIO(emitter -> emitter.send(
-                    ResourcesProviderFactory.getProviderList(GeometricWeather.getInstance())
-            ), this::bindAdapter);
+                    ResourcesProviderFactory.getProviderList(GeometricWeather.getInstance()),
+                    true
+            ), (AsyncHelper.Callback<List<ResourceProvider>>) (resourceProviders, done) -> bindAdapter(
+                    resourceProviders
+            ));
         }
         return view;
     }

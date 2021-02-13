@@ -21,9 +21,11 @@ public class SearchActivityViewModel extends GeoViewModel {
     private final SearchActivityRepository mRepository;
 
     public SearchActivityViewModel(Application application) {
-        super(application);
+        this(application, new SearchActivityRepository(application));
+    }
 
-        mRepository = new SearchActivityRepository(application);
+    public SearchActivityViewModel(Application application, SearchActivityRepository repository) {
+        super(application);
 
         mListResource = new MutableLiveData<>();
         mListResource.setValue(
@@ -33,14 +35,16 @@ public class SearchActivityViewModel extends GeoViewModel {
         mQuery.setValue("");
 
         mMultiSourceEnabled = new MutableLiveData<>();
-        mMultiSourceEnabled.setValue(mRepository.isMultiSourceEnabled());
+        mMultiSourceEnabled.setValue(repository.isMultiSourceEnabled());
+
+        mRepository = repository;
     }
 
     public void requestLocationList(String query) {
         List<Location> oldList = innerGetLocationList();
 
         mRepository.cancel();
-        mRepository.searchLocationList(getApplication(), query, isMultiSourceEnabled(), locationList -> {
+        mRepository.searchLocationList(getApplication(), query, isMultiSourceEnabled(), (locationList, done) -> {
             if (locationList != null) {
                 mListResource.setValue(
                         new LoadableLocationList(locationList, LoadableLocationList.Status.SUCCESS));
