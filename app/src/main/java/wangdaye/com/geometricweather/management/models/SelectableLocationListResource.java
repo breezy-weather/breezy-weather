@@ -12,6 +12,7 @@ public class SelectableLocationListResource extends ListResource<Location> {
 
     public final @Nullable String selectedId;
     public final @Nullable String forceUpdateId;
+    public final boolean notifyOutsider;
     public final @NonNull Source source;
 
     public interface Source {
@@ -33,20 +34,20 @@ public class SelectableLocationListResource extends ListResource<Location> {
 
     public SelectableLocationListResource(@NonNull List<Location> dataList,
                                           @Nullable String selectedId,
-                                          @Nullable String forceUpdateId) {
-        super(dataList);
-        this.selectedId = selectedId;
-        this.forceUpdateId = forceUpdateId;
-        this.source = new DataSetChanged();
+                                          @Nullable String forceUpdateId,
+                                          boolean notifyOutsider) {
+        this(dataList, selectedId, forceUpdateId, notifyOutsider, new DataSetChanged());
     }
 
     public SelectableLocationListResource(@NonNull List<Location> dataList,
                                           @Nullable String selectedId,
                                           @Nullable String forceUpdateId,
+                                          boolean notifyOutsider,
                                           @NonNull Source source) {
         super(dataList);
         this.selectedId = selectedId;
         this.forceUpdateId = forceUpdateId;
+        this.notifyOutsider = notifyOutsider;
         this.source = source;
     }
 }

@@ -271,7 +271,7 @@ public class IntentHelper {
     public static void sendBackgroundUpdateBroadcast(Context context, Location location) {
         LocalBroadcastManager.getInstance(context).sendBroadcast(
                 new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND)
-                        .putExtra(MainActivity.KEY_LOCATION, (Serializable) location)
+                        .putExtra(MainActivity.KEY_LOCATION, location)
         );
     }
 

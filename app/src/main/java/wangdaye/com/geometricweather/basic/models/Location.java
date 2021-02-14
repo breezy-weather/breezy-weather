@@ -8,14 +8,13 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.utils.LanguageUtils;
 
 /**
@@ -23,7 +22,7 @@ import wangdaye.com.geometricweather.utils.LanguageUtils;
  * */
 
 public class Location
-        implements Parcelable, Serializable {
+        implements Parcelable {
 
     private final String cityId;
 
@@ -107,12 +106,8 @@ public class Location
     public boolean equals(@Nullable Location location) {
         if (location == null) {
             return false;
-        } else if (location.isCurrentPosition()) {
-            return isCurrentPosition();
         } else {
-            return !isCurrentPosition()
-                    && cityId.equals(location.cityId)
-                    && weatherSource == location.weatherSource;
+            return equals(location.getFormattedId());
         }
     }
 
@@ -124,6 +119,7 @@ public class Location
             return isCurrentPosition();
         }
         try {
+            assert formattedId != null;
             String[] keys = formattedId.split("&");
             return !isCurrentPosition()
                     && cityId.equals(keys[0])

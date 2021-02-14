@@ -69,7 +69,8 @@ public class ManagementFragment extends Fragment
     private void initModel() {
         mViewModel = new ViewModelProvider(requireActivity()).get(ManagementFragmentViewModel.class);
         if (mViewModel.checkIsNewInstance()) {
-            mViewModel.resetLocationList(null);
+            mViewModel.init(null);
+            mViewModel.setSelectable(mDrawerMode);
         }
     }
 
@@ -127,7 +128,9 @@ public class ManagementFragment extends Fragment
             }
 
             setThemeStyle();
-            onLocationListChanged(resource.dataList, false, false);
+            if (mViewModel.isInitializeDone()) {
+                onLocationListChanged(resource.dataList, false, resource.notifyOutsider);
+            }
         });
     }
 
@@ -187,17 +190,17 @@ public class ManagementFragment extends Fragment
         mProviderSettingsRequestCode = providerSettingsRequestCode;
     }
 
-    public void updateView(List<Location> newList, @Nullable String selectedId) {
-        mViewModel.updateLocation(newList, selectedId);
+    public void updateLocationList(List<Location> newList, @Nullable String selectedId) {
+        mViewModel.updateFromOutside(newList, selectedId);
     }
 
-    public void readAppendLocation() {
-        mViewModel.readAppendCache();
+    public void updateLocation(Location location) {
+        mViewModel.forceUpdateLocation(location);
+    }
+
+    public void addLocation(Location location) {
+        mViewModel.addLocation(location);
         SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
-    }
-
-    public void resetLocationList(@Nullable String selectedId) {
-        mViewModel.resetLocationList(selectedId);
     }
 
     private void onLocationListChanged(List<Location> list, boolean updateShortcuts, boolean notifyOutside) {
@@ -224,6 +227,9 @@ public class ManagementFragment extends Fragment
 
     public void setDrawerMode(boolean drawerMode) {
         mDrawerMode = drawerMode;
+        if (mViewModel != null) {
+            mViewModel.setSelectable(drawerMode);
+        }
     }
 
     // interface.

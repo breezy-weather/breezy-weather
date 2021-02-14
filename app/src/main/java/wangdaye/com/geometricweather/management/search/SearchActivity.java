@@ -4,18 +4,11 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +19,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.turingtechnologies.materialscrollbar.CustomIndicator;
 
 import java.util.List;
@@ -34,12 +35,12 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
-import wangdaye.com.geometricweather.management.models.LoadableLocationList;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.management.adapter.LocationAdapter;
+import wangdaye.com.geometricweather.management.models.LoadableLocationList;
 import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 
 /**
  * Search activity.
@@ -55,6 +56,8 @@ public class SearchActivity extends GeoActivity
     private List<Location> mCurrentList;
 
     private @Nullable LoadableLocationList.Status mStatus;
+
+    public static final String KEY_LOCATION = "location";
 
     private static class ShowAnimation extends Animation {
 
@@ -124,7 +127,7 @@ public class SearchActivity extends GeoActivity
     public void onBackPressed() {
         if (getWindow().getAttributes().softInputMode
                 != WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE) {
-            finishSelf(false);
+            finishSelf(null);
         } else {
             super.onBackPressed();
         }
@@ -146,7 +149,7 @@ public class SearchActivity extends GeoActivity
             mBinding.searchBar.setTransitionName(getString(R.string.transition_activity_search_bar));
         }
 
-        mBinding.backBtn.setOnClickListener(v -> finishSelf(false));
+        mBinding.backBtn.setOnClickListener(v -> finishSelf(null));
         mBinding.filterBtn.setOnClickListener(v -> {
             mViewModel.switchMultiSourceEnabled();
             if (!TextUtils.isEmpty(mViewModel.getQueryValue())) {
@@ -220,8 +223,7 @@ public class SearchActivity extends GeoActivity
 
                             for (Location l : mViewModel.getLocationList()) {
                                 if (l.equals(formattedId)) {
-                                    DatabaseHelper.getInstance(this).writeLocation(l);
-                                    finishSelf(true);
+                                    finishSelf(l);
                                     return;
                                 }
                             }
@@ -250,8 +252,11 @@ public class SearchActivity extends GeoActivity
 
     // control.
 
-    private void finishSelf(boolean selected) {
-        setResult(selected ? RESULT_OK : RESULT_CANCELED, null);
+    private void finishSelf(@Nullable Location location) {
+        setResult(
+                location != null ? RESULT_OK : RESULT_CANCELED,
+                new Intent().putExtra(KEY_LOCATION, location)
+        );
         mBinding.searchContainer.setAlpha(0);
         ActivityCompat.finishAfterTransition(this);
     }

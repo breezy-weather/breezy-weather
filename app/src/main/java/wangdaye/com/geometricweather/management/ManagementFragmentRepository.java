@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import wangdaye.com.geometricweather.basic.models.Location;
@@ -13,12 +13,16 @@ import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 
 public class ManagementFragmentRepository {
     
-    private final Executor mSingleThreadExecutor;
+    private final ExecutorService mSingleThreadExecutor;
 
     public ManagementFragmentRepository() {
         mSingleThreadExecutor = Executors.newSingleThreadExecutor();
     }
-    
+
+    public void destroy() {
+        mSingleThreadExecutor.shutdown();
+    }
+
     public void readLocationList(Context context, AsyncHelper.Callback<List<Location>> callback) {
         AsyncHelper.runOnExecutor(emitter -> {
             List<Location> locationList = DatabaseHelper.getInstance(context).readLocationList();
@@ -29,42 +33,6 @@ public class ManagementFragmentRepository {
                 l.setWeather(DatabaseHelper.getInstance(context).readWeather(l));
             }
             emitter.send(list, true);
-        }, callback, mSingleThreadExecutor);
-    }
-
-    public void readLocationList(Context context, List<Location> locationList, 
-                                 AsyncHelper.Callback<List<Location>> callback) {
-        AsyncHelper.runOnExecutor(emitter -> {
-            List<Location> list = new ArrayList<>(locationList);
-            for (Location l : list) {
-                if (l.getWeather() == null) {
-                    l.setWeather(DatabaseHelper.getInstance(context).readWeather(l));
-                }
-            }
-            emitter.send(list, true);
-        }, callback, mSingleThreadExecutor);
-    }
-    
-    public void readAppendLocation(Context context, List<Location> oldList, 
-                                   AsyncHelper.Callback<List<Location>> callback) {
-        AsyncHelper.runOnExecutor(emitter -> {
-            List<Location> newList = DatabaseHelper.getInstance(context).readLocationList();
-
-            for (Location newOne : newList) {
-                boolean hasWeather = false;
-                for (Location oldOne : oldList) {
-                    if (newOne.equals(oldOne)) {
-                        hasWeather = true;
-                        newOne.setWeather(oldOne.getWeather());
-                        break;
-                    }
-                }
-                if (!hasWeather) {
-                    newOne.setWeather(DatabaseHelper.getInstance(context).readWeather(newOne));
-                }
-            }
-
-            emitter.send(newList, true);
         }, callback, mSingleThreadExecutor);
     }
 

@@ -1,9 +1,11 @@
 package wangdaye.com.geometricweather.settings.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
+
+import androidx.appcompat.widget.Toolbar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,12 +19,19 @@ import wangdaye.com.geometricweather.settings.fragments.ServiceProviderSettingsF
 
 public class SelectProviderActivity extends GeoActivity {
 
+    public static final String KEY_LOCATION = "location";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_settings);
+
         initToolbar();
+
         ServiceProviderSettingsFragment f = new ServiceProviderSettingsFragment();
+        f.setOnWeatherSourceChangedListener(location ->
+                setResult(RESULT_OK, new Intent().putExtra(KEY_LOCATION, location))
+        );
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.activity_settings_container, f)

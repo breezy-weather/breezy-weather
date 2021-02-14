@@ -98,13 +98,15 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                     );
                 } else {
                     location = mViewModel.deleteLocation(position);
-                    SnackbarHelper.showSnackbar(
-                            mActivity.getString(R.string.feedback_delete_succeed),
-                            mActivity.getString(R.string.cancel),
-                            new CancelDeleteListener(location, position)
-                    );
+                    if (location != null) {
+                        SnackbarHelper.showSnackbar(
+                                mActivity.getString(R.string.feedback_delete_succeed),
+                                mActivity.getString(R.string.cancel),
+                                new CancelDeleteListener(location, position)
+                        );
 
-                    mListener.onLocationRemoved(mViewModel.getLocationList(), location);
+                        mListener.onLocationRemoved(mViewModel.getLocationList(), location);
+                    }
                 }
                 break;
         }

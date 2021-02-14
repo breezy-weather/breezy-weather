@@ -11,8 +11,8 @@ public class LocationResource extends Resource<Location> {
     public final boolean locateFailed;
     public final boolean fromBackgroundUpdate;
 
-    private LocationResource(@NonNull Location data, @NonNull Status status,
-                             boolean defaultLocation, boolean locateFailed, boolean fromBackgroundUpdate) {
+    public LocationResource(@NonNull Location data, @NonNull Status status,
+                            boolean defaultLocation, boolean locateFailed, boolean fromBackgroundUpdate) {
         super(data, status);
         this.defaultLocation = defaultLocation;
         this.locateFailed = locateFailed;

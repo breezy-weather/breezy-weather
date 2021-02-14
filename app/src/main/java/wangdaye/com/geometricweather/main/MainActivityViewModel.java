@@ -17,6 +17,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.basic.GeoViewModel;
 import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.resources.Resource;
 import wangdaye.com.geometricweather.main.models.Indicator;
 import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
@@ -33,16 +34,16 @@ public class MainActivityViewModel extends GeoViewModel
     private final MainActivityRepository mRepository;
 
     // inner data.
-    private Status mStatus;
     private @Nullable String mFormattedId; // current formatted id.
     private @Nullable List<Location> mTotalList; // all locations.
     private @Nullable List<Location> mValidList; // location list optimized for resident city.
 
-    private static final String KEY_FORMATTED_ID = "formatted_id";
-
+    private Status mStatus;
     private enum Status {
-        NEW_INSTANCE, INITIALIZING, INITIALIZE_DONE
+        INITIALIZING, IMPLICIT_INITIALIZING, IDLE
     }
+
+    private static final String KEY_FORMATTED_ID = "formatted_id";
 
     public MainActivityViewModel(@NonNull Application application, SavedStateHandle handle) {
         this(application, handle, new MainActivityRepository(application));
@@ -65,11 +66,17 @@ public class MainActivityViewModel extends GeoViewModel
         mSavedStateHandle = handle;
         mRepository = repository;
 
-        mStatus = Status.NEW_INSTANCE;
         mFormattedId = mSavedStateHandle.get(KEY_FORMATTED_ID);
-
         mTotalList = null;
         mValidList = null;
+
+        mStatus = Status.IDLE;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        mRepository.destroy();
     }
 
     public void init() {
@@ -79,15 +86,16 @@ public class MainActivityViewModel extends GeoViewModel
     public void init(@Nullable String formattedId) {
         setFormattedId(formattedId);
 
-        if (mTotalList == null || mValidList == null) {
-            mStatus = Status.INITIALIZING;
-        }
-
         List<Location> oldList = mTotalList == null
                 ? new ArrayList<>()
                 : Collections.unmodifiableList(mTotalList);
 
+        mStatus = Status.INITIALIZING;
         mRepository.getLocationList(getApplication(), oldList, (locationList, done) -> {
+            if (done) {
+                mStatus = Status.IDLE;
+            }
+
             if (locationList == null) {
                 return;
             }
@@ -96,27 +104,76 @@ public class MainActivityViewModel extends GeoViewModel
             List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
             int validIndex = indexLocation(validList, mFormattedId);
 
-            setInnerData(totalList, validList, validIndex, done ? Status.INITIALIZE_DONE : Status.INITIALIZING);
+            setInnerData(totalList, validList, validIndex);
 
             Location current = validList.get(validIndex);
             Indicator indicator = new Indicator(validList.size(), validIndex);
             boolean defaultLocation = validIndex == 0;
 
-            mIndicator.setValue(indicator);
+            setLocationResourceWithVerification(current, defaultLocation, false,
+                    indicator);
+        });
+    }
 
-            if (!done) {
-                mCurrentLocation.setValue(
-                        LocationResource.loading(current, defaultLocation, false));
+    public void updateLocationList(List<Location> locationList) {
+        mStatus = Status.IMPLICIT_INITIALIZING;
+        mRepository.ensureWeatherCache(getApplication(), locationList, (newList, done) -> {
+            if (done) {
+                mStatus = Status.IDLE;
+            }
+
+            if (newList == null) {
                 return;
             }
 
-            // done.
-            if (MainModuleUtils.needUpdate(getApplication(), current)) {
-                updateWeather(false, true);
-            } else {
-                mCurrentLocation.setValue(
-                        LocationResource.success(current, defaultLocation, false));
+            List<Location> totalList = new ArrayList<>(newList);
+            List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
+            int validIndex = indexLocation(validList, mFormattedId);
+
+            setInnerData(totalList, validList, validIndex);
+
+            Location current = validList.get(validIndex);
+            Indicator indicator = new Indicator(validList.size(), validIndex);
+            boolean defaultLocation = validIndex == 0;
+
+            setLocationResourceWithVerification(current, defaultLocation, false,
+                    indicator);
+        });
+    }
+
+    public void updateLocationFromBackground(Location location) {
+        mStatus = Status.IMPLICIT_INITIALIZING;
+        mRepository.readWeatherCache(getApplication(), location, (weather, done) -> {
+            if (done) {
+                mStatus = Status.IDLE;
             }
+
+            if (mTotalList == null || mValidList == null) {
+                return;
+            }
+
+            location.setWeather(weather);
+
+            List<Location> totalList = new ArrayList<>(mTotalList);
+            for (int i = 0; i < totalList.size(); i ++) {
+                if (totalList.get(i).equals(location)) {
+                    totalList.set(i, location);
+                    break;
+                }
+            }
+
+            List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
+
+            int validIndex = indexLocation(validList, mFormattedId);
+
+            setInnerData(totalList, validList, validIndex);
+
+            Location current = validList.get(validIndex);
+            Indicator indicator = new Indicator(validList.size(), validIndex);
+            boolean defaultLocation = validIndex == 0;
+
+            setLocationResourceWithVerification(current, defaultLocation, true,
+                    indicator);
         });
     }
 
@@ -129,19 +186,14 @@ public class MainActivityViewModel extends GeoViewModel
         List<Location> validList = new ArrayList<>(mValidList);
         int validIndex = indexLocation(validList, formattedId);
 
-        setInnerData(totalList, validList, validIndex, mStatus);
+        setInnerData(totalList, validList, validIndex);
 
         Location current = validList.get(validIndex);
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        if (MainModuleUtils.needUpdate(getApplication(), current)) {
-            updateWeather(false, true);
-        } else {
-            mCurrentLocation.setValue(
-                    LocationResource.success(current, defaultLocation, false));
-        }
-        mIndicator.setValue(indicator);
+        setLocationResourceWithVerification(current, defaultLocation, false,
+                indicator);
     }
 
     public void setLocation(int offset) {
@@ -156,68 +208,14 @@ public class MainActivityViewModel extends GeoViewModel
         List<Location> totalList = new ArrayList<>(mTotalList);
         List<Location> validList = new ArrayList<>(mValidList);
 
-        setInnerData(totalList, validList, validIndex, mStatus);
+        setInnerData(totalList, validList, validIndex);
 
         Location current = validList.get(validIndex);
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        if (MainModuleUtils.needUpdate(getApplication(), current)) {
-            updateWeather(false, true);
-        } else {
-            mCurrentLocation.setValue(
-                    LocationResource.success(current, defaultLocation, false));
-        }
-        mIndicator.setValue(indicator);
-    }
-
-    public void updateLocationList(List<Location> locationList) {
-        mRepository.queue((aVoid, done) -> {
-
-            List<Location> totalList = new ArrayList<>(locationList);
-            List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-            int validIndex = indexLocation(validList, mFormattedId);
-
-            setInnerData(totalList, validList, validIndex, Status.INITIALIZE_DONE);
-
-            Location current = validList.get(validIndex);
-            Indicator indicator = new Indicator(validList.size(), validIndex);
-            boolean defaultLocation = validIndex == 0;
-
-            mCurrentLocation.setValue(
-                    LocationResource.success(current, defaultLocation, false));
-            mIndicator.setValue(indicator);
-        });
-    }
-
-    public void updateLocationFromBackground(Location location) {
-        mRepository.queue((aVoid, done) -> {
-            if (mTotalList == null || mValidList == null) {
-                return;
-            }
-
-            List<Location> totalList = new ArrayList<>(mTotalList);
-            for (int i = 0; i < totalList.size(); i ++) {
-                if (totalList.get(i).equals(location)) {
-                    totalList.set(i, location);
-                    break;
-                }
-            }
-
-            List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-
-            int validIndex = indexLocation(validList, mFormattedId);
-
-            setInnerData(totalList, validList, validIndex, Status.INITIALIZE_DONE);
-
-            Location current = validList.get(validIndex);
-            Indicator indicator = new Indicator(validList.size(), validIndex);
-            boolean defaultLocation = validIndex == 0;
-
-            mCurrentLocation.setValue(
-                    LocationResource.success(current, defaultLocation, true));
-            mIndicator.setValue(indicator);
-        });
+        setLocationResourceWithVerification(current, defaultLocation, false,
+                indicator);
     }
 
     public void updateWeather(boolean triggeredByUser, boolean checkPermissions) {
@@ -279,11 +277,42 @@ public class MainActivityViewModel extends GeoViewModel
     }
 
     private void setInnerData(@NonNull List<Location> totalList, @NonNull List<Location> validList,
-                              int validIndex, Status status) {
+                              int validIndex) {
         mTotalList = totalList;
         mValidList = validList;
         setFormattedId(validList.get(validIndex).getFormattedId());
-        mStatus = status;
+    }
+
+    private void setLocationResourceWithVerification(Location location,
+                                                     boolean defaultLocation,
+                                                     boolean fromBackgroundUpdate,
+                                                     Indicator indicator) {
+        switch (mStatus) {
+            case INITIALIZING:
+                mCurrentLocation.setValue(
+                        LocationResource.loading(location, defaultLocation, fromBackgroundUpdate));
+                break;
+
+            case IMPLICIT_INITIALIZING:
+                LocationResource resource = mCurrentLocation.getValue();
+                Resource.Status status = resource == null ? Resource.Status.SUCCESS : resource.status;
+                mCurrentLocation.setValue(
+                        new LocationResource(location, status, defaultLocation, false, fromBackgroundUpdate));
+                break;
+
+            case IDLE:
+                if (MainModuleUtils.needUpdate(getApplication(), location)) {
+                    mCurrentLocation.setValue(
+                            LocationResource.loading(location, defaultLocation, fromBackgroundUpdate));
+                    updateWeather(false, true);
+                } else {
+                    mCurrentLocation.setValue(
+                            LocationResource.success(location, defaultLocation, fromBackgroundUpdate));
+                }
+                break;
+        }
+
+        mIndicator.setValue(indicator);
     }
 
     private static int indexLocation(List<Location> locationList, @Nullable String formattedId) {
@@ -379,12 +408,8 @@ public class MainActivityViewModel extends GeoViewModel
         return mPermissionsRequest.getValue();
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        if (mRepository != null) {
-            mRepository.cancelWeatherRequest();
-        }
+    public boolean isInitializeDone() {
+        return mStatus == Status.IDLE;
     }
 
     // weather request callback.
@@ -417,7 +442,7 @@ public class MainActivityViewModel extends GeoViewModel
         int validIndex = indexLocation(validList, getCurrentFormattedId());
         boolean defaultLocation = location.equals(validList.get(0));
 
-        setInnerData(totalList, validList, validIndex, Status.INITIALIZE_DONE);
+        setInnerData(totalList, validList, validIndex);
 
         LocationResource resource;
         if (!done) {

@@ -14,6 +14,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.management.search.SearchActivity;
+import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 
 /**
  * Manage activity.
@@ -38,25 +40,25 @@ public class ManagementActivity extends GeoActivity {
                 .findFragmentById(R.id.fragment_management);
         if (mManagementFragment == null) {
             finish();
-        } else {
-            mManagementFragment.setDrawerMode(false);
-            mManagementFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
-            mManagementFragment.setOnLocationListChangedListener(new ManagementFragment.LocationManageCallback() {
-                @Override
-                public void onSelectedLocation(@NonNull String formattedId) {
-                    setResult(
-                            RESULT_OK,
-                            new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
-                    );
-                    finish();
-                }
-
-                @Override
-                public void onLocationListChanged(List<Location> locationList) {
-                    setResult(RESULT_OK);
-                }
-            });
+            return;
         }
+        mManagementFragment.setDrawerMode(false);
+        mManagementFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
+        mManagementFragment.setOnLocationListChangedListener(new ManagementFragment.LocationManageCallback() {
+            @Override
+            public void onSelectedLocation(@NonNull String formattedId) {
+                setResult(
+                        RESULT_OK,
+                        new Intent().putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
+                );
+                finish();
+            }
+
+            @Override
+            public void onLocationListChanged(List<Location> locationList) {
+                setResult(RESULT_OK);
+            }
+        });
     }
 
     @Override
@@ -64,13 +66,17 @@ public class ManagementActivity extends GeoActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SEARCH_ACTIVITY:
-                if (resultCode == RESULT_OK) {
-                    mManagementFragment.readAppendLocation();
+                if (resultCode == RESULT_OK && data != null) {
+                    Location location = data.getParcelableExtra(SearchActivity.KEY_LOCATION);
+                    mManagementFragment.addLocation(location);
                 }
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
-                mManagementFragment.resetLocationList(null);
+                if (resultCode == RESULT_OK && data != null) {
+                    Location location = data.getParcelableExtra(SelectProviderActivity.KEY_LOCATION);
+                    mManagementFragment.updateLocation(location);
+                }
                 break;
         }
     }

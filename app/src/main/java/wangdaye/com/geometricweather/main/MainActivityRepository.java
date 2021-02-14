@@ -7,10 +7,11 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
@@ -20,12 +21,17 @@ public class MainActivityRepository {
 
     private final LocationHelper mLocationHelper;
     private final WeatherHelper mWeatherHelper;
-    private final Executor mSingleThreadExecutor;
+    private final ExecutorService mSingleThreadExecutor;
 
     public MainActivityRepository(Context context) {
         mLocationHelper = new LocationHelper(context);
         mWeatherHelper = new WeatherHelper();
         mSingleThreadExecutor = Executors.newSingleThreadExecutor();
+    }
+
+    public void destroy() {
+        mSingleThreadExecutor.shutdown();
+        cancelWeatherRequest();
     }
 
     public void getLocationList(Context context, List<Location> oldList,
@@ -51,9 +57,21 @@ public class MainActivityRepository {
         }, callback, mSingleThreadExecutor);
     }
 
-    public void queue(AsyncHelper.Callback<Void> callback) {
+    public void readWeatherCache(Context context, Location location,
+                                 AsyncHelper.Callback<Weather> callback) {
+        AsyncHelper.runOnExecutor(emitter -> emitter.send(
+                DatabaseHelper.getInstance(context).readWeather(location), true
+        ), callback, mSingleThreadExecutor);
+    }
+
+    public void ensureWeatherCache(Context context, List<Location> list,
+                                   AsyncHelper.Callback<List<Location>> callback) {
         AsyncHelper.runOnExecutor(emitter -> {
-            // do nothing.
+            // read weather cache and callback.
+            for (Location location : list) {
+                location.setWeather(DatabaseHelper.getInstance(context).readWeather(location));
+            }
+            emitter.send(list, true);
         }, callback, mSingleThreadExecutor);
     }
 

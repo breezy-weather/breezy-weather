@@ -53,11 +53,13 @@ import wangdaye.com.geometricweather.main.models.PermissionsRequest;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.StatementManager;
 import wangdaye.com.geometricweather.management.ManagementFragment;
+import wangdaye.com.geometricweather.management.search.SearchActivity;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 import wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherViewController;
@@ -227,14 +229,16 @@ public class MainActivity extends GeoActivity
                 break;
 
             case SEARCH_ACTIVITY:
-                if (resultCode == RESULT_OK && mManagementFragment != null) {
-                    mManagementFragment.readAppendLocation();
+                if (resultCode == RESULT_OK && data != null && mManagementFragment != null) {
+                    Location location = data.getParcelableExtra(SearchActivity.KEY_LOCATION);
+                    mManagementFragment.addLocation(location);
                 }
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
-                if (mManagementFragment != null) {
-                    mManagementFragment.resetLocationList(mViewModel.getCurrentFormattedId());
+                if (resultCode == RESULT_OK && data != null && mManagementFragment != null) {
+                    Location location = data.getParcelableExtra(SelectProviderActivity.KEY_LOCATION);
+                    mManagementFragment.updateLocation(location);
                 }
                 break;
         }
@@ -364,8 +368,8 @@ public class MainActivity extends GeoActivity
             setRefreshing(resource.status == Resource.Status.LOADING);
             drawUI(resource.data, resource.defaultLocation, resource.fromBackgroundUpdate);
 
-            if (mManagementFragment != null) {
-                mManagementFragment.updateView(
+            if (mManagementFragment != null && mViewModel.isInitializeDone()) {
+                mManagementFragment.updateLocationList(
                         mViewModel.getTotalLocationList(), mViewModel.getCurrentFormattedId());
             }
 
