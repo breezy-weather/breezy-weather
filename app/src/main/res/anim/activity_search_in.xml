@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:duration="200"
-    android:shareInterpolator="@android:interpolator/fast_out_slow_in"
+    android:duration="300"
+    android:interpolator="@anim/x2_decelerate_interpolator"
     android:fillAfter="true"
     tools:ignore="NewApi">
 

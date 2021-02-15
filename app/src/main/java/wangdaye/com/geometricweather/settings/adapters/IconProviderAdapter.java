@@ -111,6 +111,14 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
+    // interface.
+
+    public interface OnItemClickedListener {
+        void onItemClicked(ResourceProvider provider, int adapterPosition);
+        void onAppStoreItemClicked(String query);
+        void onGitHubItemClicked(String query);
+    }
+
     // adapter.
 
     public IconProviderAdapter(Activity activity,
@@ -154,11 +162,5 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemViewType(int position) {
         return position < mProviderList.size() ? 1 : -1;
-    }
-
-    public interface OnItemClickedListener {
-        void onItemClicked(ResourceProvider provider, int adapterPosition);
-        void onAppStoreItemClicked(String query);
-        void onGitHubItemClicked(String query);
     }
 }

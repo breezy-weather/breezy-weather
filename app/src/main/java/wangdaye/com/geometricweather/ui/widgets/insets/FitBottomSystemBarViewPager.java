@@ -81,13 +81,10 @@ public class FitBottomSystemBarViewPager extends ViewPager {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     public FitBottomSystemBarViewPager(@NonNull Context context) {
-        super(context);
-        ViewCompat.setOnApplyWindowInsetsListener(this, null);
+        this(context, null);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     public FitBottomSystemBarViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         ViewCompat.setOnApplyWindowInsetsListener(this, null);

@@ -55,9 +55,13 @@ public class LocationHelpDialog extends GeoDialog {
         ((TextView) view.findViewById(R.id.dialog_location_help_providerTitle)).setTextColor(
                 ThemeManager.getInstance(requireActivity()).getTextContentColor(getActivity()));
 
-        view.findViewById(R.id.dialog_location_help_manageContainer).setOnClickListener(v ->
-                IntentHelper.startManageActivityForResult(requireActivity(), MainActivity.MANAGE_ACTIVITY)
-        );
+        view.findViewById(R.id.dialog_location_help_manageContainer).setOnClickListener(v -> {
+            if (requireActivity() instanceof MainActivity) {
+                // TODO: 2021/2/15
+                ((MainActivity) requireActivity()).setManagementFragmentVisibility(true);
+                dismiss();
+            }
+        });
         ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setTextColor(
                 ThemeManager.getInstance(requireActivity()).getTextContentColor(getActivity()));
         ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setText(

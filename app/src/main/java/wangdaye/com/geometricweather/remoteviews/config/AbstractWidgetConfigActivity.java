@@ -281,12 +281,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         int paddingHorizontal = (screenWidth - adaptiveWidth) / 2;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
             mTopContainer.setOnApplyWindowInsetsListener((v, insets) -> {
-                mWidgetContainer.setPadding(
-                        Math.max(paddingHorizontal, insets.getSystemWindowInsetLeft()),
-                        insets.getSystemWindowInsetTop(),
-                        Math.max(paddingHorizontal, insets.getSystemWindowInsetRight()),
-                        0
-                );
+                mWidgetContainer.setPadding(paddingHorizontal, insets.getSystemWindowInsetTop(),
+                        paddingHorizontal, 0);
                 return insets;
             });
         } else {

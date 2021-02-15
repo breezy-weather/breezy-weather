@@ -217,13 +217,14 @@ public class MaterialWeatherView extends View implements WeatherView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
-            mSizes[0] = Math.min(
-                    getMeasuredWidth(),
-                    DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth())
-            );
-            mSizes[1] = getMeasuredHeight();
+            final int width = DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth());
+            final int height = getMeasuredHeight();
+            if (mSizes[0] != width || mSizes[1] != height) {
+                mSizes[0] = width;
+                mSizes[1] = height;
+                setWeatherImplementor();
+            }
         }
-        setWeatherImplementor();
     }
 
     @Override

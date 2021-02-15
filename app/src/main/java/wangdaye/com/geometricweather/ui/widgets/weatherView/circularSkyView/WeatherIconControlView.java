@@ -155,8 +155,14 @@ public class WeatherIconControlView extends FrameLayout {
         child = getChildAt(1);
         child.layout(0, 0, child.getMeasuredWidth(), child.getMeasuredHeight());
 
+        final int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth());
         child = getChildAt(2);
-        child.layout(-mIconSize, -mIconSize, 0, 0);
+        child.layout(
+                (getMeasuredWidth() - adaptiveWidth) / 2 - mIconSize,
+                -mIconSize,
+                (getMeasuredWidth() - adaptiveWidth) / 2,
+                0
+        );
     }
 
     // control.

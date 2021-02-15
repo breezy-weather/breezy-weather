@@ -1,39 +1,49 @@
 package wangdaye.com.geometricweather.ui.widgets.insets;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
+import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.ColorInt;
 import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 
-public class FitSystemBarRecyclerView extends RecyclerView {
+public class FitHorizontalSystemBarRootLayout extends FrameLayout {
 
+    private final Paint mPaint;
     private Rect mWindowInsets = new Rect(0, 0, 0, 0);
-    private boolean mAdaptiveWidthEnabled = true;
 
-    public FitSystemBarRecyclerView(@NonNull Context context) {
+    private @ColorInt int mRootColor;
+    private @ColorInt int mLineColor;
+
+    public FitHorizontalSystemBarRootLayout(Context context) {
         this(context, null);
     }
 
-    public FitSystemBarRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FitHorizontalSystemBarRootLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FitSystemBarRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public FitHorizontalSystemBarRootLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        ViewCompat.setOnApplyWindowInsetsListener(this, null);
-    }
 
-    public void setAdaptiveWidthEnabled(boolean enabled) {
-        mAdaptiveWidthEnabled = enabled;
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(DisplayUtils.dpToPx(context, 2));
+
+        mRootColor = Color.TRANSPARENT;
+        mLineColor = Color.GRAY;
+
+        setWillNotDraw(false);
+        ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
@@ -63,18 +73,35 @@ public class FitSystemBarRecyclerView extends RecyclerView {
     @Override
     protected boolean fitSystemWindows(Rect insets) {
         mWindowInsets = insets;
-        requestLayout();
+        setPadding(insets.left, 0, insets.right, 0);
+        invalidate();
         return false;
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
 
-        int viewWidth = getMeasuredWidth();
-        int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(getContext(), viewWidth);
-        int paddingHorizontal = mAdaptiveWidthEnabled ? ((viewWidth - adaptiveWidth) / 2) : 0;
-        setPadding(paddingHorizontal, mWindowInsets.top, paddingHorizontal, mWindowInsets.bottom);
+        canvas.drawColor(mRootColor);
+
+        mPaint.setColor(mLineColor);
+        if (getPaddingLeft() > 0) {
+            canvas.drawLine(getPaddingLeft(), 0, getPaddingLeft(), getMeasuredHeight(), mPaint);
+        }
+        if (getPaddingRight() > 0) {
+            canvas.drawLine(getMeasuredWidth() - getPaddingRight(), 0,
+                    getMeasuredWidth() - getPaddingRight(), getMeasuredHeight(), mPaint);
+        }
+    }
+
+    public void setLineColor(@ColorInt int lineColor) {
+        mLineColor = lineColor;
+        invalidate();
+    }
+
+    public void setRootColor(@ColorInt int rootColor) {
+        mRootColor = rootColor;
+        invalidate();
     }
 
     public Rect getWindowInsets() {

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.provider.Settings;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -18,11 +19,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import android.view.View;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import wangdaye.com.geometricweather.R;
@@ -30,18 +27,17 @@ import wangdaye.com.geometricweather.background.polling.basic.AwakeForegroundUpd
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.daily.DailyWeatherActivity;
+import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.management.search.SearchActivity;
+import wangdaye.com.geometricweather.settings.activities.AboutActivity;
 import wangdaye.com.geometricweather.settings.activities.CardDisplayManageActivity;
 import wangdaye.com.geometricweather.settings.activities.DailyTrendDisplayManageActivity;
+import wangdaye.com.geometricweather.settings.activities.PreviewIconActivity;
+import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
+import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
+import wangdaye.com.geometricweather.ui.activities.AlertActivity;
 import wangdaye.com.geometricweather.ui.activities.AllergenActivity;
 import wangdaye.com.geometricweather.wallpaper.MaterialLiveWallpaperService;
-import wangdaye.com.geometricweather.settings.activities.AboutActivity;
-import wangdaye.com.geometricweather.ui.activities.AlertActivity;
-import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
-import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.management.ManagementActivity;
-import wangdaye.com.geometricweather.settings.activities.PreviewIconActivity;
-import wangdaye.com.geometricweather.management.search.SearchActivity;
-import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
 
 /**
  * Intent helper.
@@ -123,10 +119,6 @@ public class IntentHelper {
                 location.getFormattedId()
         );
         activity.startActivity(intent);
-    }
-
-    public static void startManageActivityForResult(Activity activity, int requestCode) {
-        activity.startActivityForResult(new Intent(activity, ManagementActivity.class), requestCode);
     }
 
     public static void startSearchActivityForResult(Activity activity, View bar, int requestCode) {
@@ -269,7 +261,7 @@ public class IntentHelper {
     }
 
     public static void sendBackgroundUpdateBroadcast(Context context, Location location) {
-        LocalBroadcastManager.getInstance(context).sendBroadcast(
+        context.sendBroadcast(
                 new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND)
                         .putExtra(MainActivity.KEY_LOCATION, location)
         );

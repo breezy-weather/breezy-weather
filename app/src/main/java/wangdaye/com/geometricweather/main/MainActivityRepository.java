@@ -23,6 +23,11 @@ public class MainActivityRepository {
     private final WeatherHelper mWeatherHelper;
     private final ExecutorService mSingleThreadExecutor;
 
+    public interface WeatherRequestCallback {
+        void onLocationCompleted(Location location, boolean succeed, boolean done);
+        void onGetWeatherCompleted(Location location, boolean succeed, boolean done);
+    }
+
     public MainActivityRepository(Context context) {
         mLocationHelper = new LocationHelper(context);
         mWeatherHelper = new WeatherHelper();
@@ -73,6 +78,38 @@ public class MainActivityRepository {
             }
             emitter.send(list, true);
         }, callback, mSingleThreadExecutor);
+    }
+
+    public void writeLocation(Context context, Location location) {
+        AsyncHelper.runOnExecutor(() -> {
+            DatabaseHelper.getInstance(context).writeLocation(location);
+            if (location.getWeather() != null) {
+                DatabaseHelper.getInstance(context).writeWeather(location, location.getWeather());
+            }
+        }, mSingleThreadExecutor);
+    }
+
+    public void writeLocationList(Context context, List<Location> locationList) {
+        AsyncHelper.runOnExecutor(() -> DatabaseHelper.getInstance(context).writeLocationList(locationList),
+                mSingleThreadExecutor);
+    }
+
+    public void writeLocationList(Context context, List<Location> locationList, int newIndex) {
+        AsyncHelper.runOnExecutor(() -> {
+            DatabaseHelper.getInstance(context).writeLocationList(locationList);
+
+            Location newItem = locationList.get(newIndex);
+            if (newItem.getWeather() != null) {
+                DatabaseHelper.getInstance(context).writeWeather(newItem, newItem.getWeather());
+            }
+        }, mSingleThreadExecutor);
+    }
+
+    public void deleteLocation(Context context, Location location) {
+        AsyncHelper.runOnExecutor(() -> {
+            DatabaseHelper.getInstance(context).deleteLocation(location);
+            DatabaseHelper.getInstance(context).deleteWeather(location);
+        }, mSingleThreadExecutor);
     }
 
     public void getWeather(Context context, Location location, boolean locate,
@@ -142,10 +179,5 @@ public class MainActivityRepository {
     public void cancelWeatherRequest() {
         mLocationHelper.cancel();
         mWeatherHelper.cancel();
-    }
-
-    public interface WeatherRequestCallback {
-        void onLocationCompleted(Location location, boolean succeed, boolean done);
-        void onGetWeatherCompleted(Location location, boolean succeed, boolean done);
     }
 }

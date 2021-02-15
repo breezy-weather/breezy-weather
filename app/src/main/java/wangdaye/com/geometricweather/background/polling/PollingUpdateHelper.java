@@ -30,6 +30,12 @@ public class PollingUpdateHelper {
 
     private OnPollingUpdateListener mListener;
 
+    public interface OnPollingUpdateListener {
+        void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
+                               boolean succeed, int index, int total);
+        void onPollingCompleted();
+    }
+
     public PollingUpdateHelper(Context context, List<Location> locationList) {
         mContext = context;
         mLocationHelper = new LocationHelper(context);
@@ -67,12 +73,6 @@ public class PollingUpdateHelper {
     }
 
     // interface.
-
-    public interface OnPollingUpdateListener {
-        void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
-                               boolean succeed, int index, int total);
-        void onPollingCompleted();
-    }
 
     public void setOnPollingUpdateListener(OnPollingUpdateListener l) {
         mListener = l;

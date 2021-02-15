@@ -17,6 +17,16 @@ import wangdaye.com.geometricweather.basic.models.Location;
 
 public abstract class WeatherService {
 
+    public interface RequestWeatherCallback {
+        void requestWeatherSuccess(@NonNull Location requestLocation);
+        void requestWeatherFailed(@NonNull Location requestLocation);
+    }
+
+    public interface RequestLocationCallback {
+        void requestLocationSuccess(String query, List<Location> locationList);
+        void requestLocationFailed(String query);
+    }
+
     public abstract void requestWeather(Context context, Location location,
                                         @NonNull RequestWeatherCallback callback);
 
@@ -133,15 +143,5 @@ public abstract class WeatherService {
         } catch (Exception e) {
             return text;
         }
-    }
-
-    public interface RequestWeatherCallback {
-        void requestWeatherSuccess(@NonNull Location requestLocation);
-        void requestWeatherFailed(@NonNull Location requestLocation);
-    }
-
-    public interface RequestLocationCallback {
-        void requestLocationSuccess(String query, List<Location> locationList);
-        void requestLocationFailed(String query);
     }
 }

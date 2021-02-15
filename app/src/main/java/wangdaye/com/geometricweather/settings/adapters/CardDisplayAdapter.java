@@ -24,6 +24,14 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
     private final OnItemRemoveListener mRemoveListener;
     private final OnItemDragListener mDragListener;
 
+    public interface OnItemRemoveListener {
+        void onRemoved(CardDisplay cardDisplay);
+    }
+
+    public interface OnItemDragListener {
+        void onDrag(ViewHolder holder);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         SlidingItemContainerLayout container;
@@ -102,13 +110,5 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
     public void moveItem(int fromPosition, int toPosition) {
         mCardDisplayList.add(toPosition, mCardDisplayList.remove(fromPosition));
         notifyItemMoved(fromPosition, toPosition);
-    }
-
-    public interface OnItemRemoveListener {
-        void onRemoved(CardDisplay cardDisplay);
-    }
-
-    public interface OnItemDragListener {
-        void onDrag(ViewHolder holder);
     }
 }

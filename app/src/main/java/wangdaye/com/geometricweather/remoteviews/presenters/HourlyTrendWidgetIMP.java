@@ -31,7 +31,7 @@ import wangdaye.com.geometricweather.remoteviews.trend.TrendLinearLayout;
 import wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.managers.ThreadManager;
+import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
@@ -42,7 +42,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             return;
         }
 
-        ThreadManager.getInstance().execute(() -> innerUpdateWidget(context, location));
+        AsyncHelper.runOnIO(() -> innerUpdateWidget(context, location));
     }
 
     @WorkerThread

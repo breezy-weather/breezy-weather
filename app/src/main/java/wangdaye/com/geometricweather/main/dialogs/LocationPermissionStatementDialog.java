@@ -16,6 +16,11 @@ import wangdaye.com.geometricweather.basic.GeoDialog;
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class LocationPermissionStatementDialog extends GeoDialog {
 
+    public interface Callback {
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        void requestLocationPermissions();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,10 +40,5 @@ public class LocationPermissionStatementDialog extends GeoDialog {
     @Override
     public View getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_location_permission_statement_container);
-    }
-
-    public interface Callback {
-        @RequiresApi(api = Build.VERSION_CODES.M)
-        void requestLocationPermissions();
     }
 }

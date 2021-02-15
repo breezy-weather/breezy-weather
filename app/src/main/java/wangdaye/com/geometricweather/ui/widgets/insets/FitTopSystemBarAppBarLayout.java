@@ -14,11 +14,11 @@ import com.google.android.material.appbar.AppBarLayout;
 public class FitTopSystemBarAppBarLayout extends AppBarLayout {
 
     public FitTopSystemBarAppBarLayout(@NonNull Context context) {
-        super(context);
+        this(context, null);
     }
 
     public FitTopSystemBarAppBarLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public FitTopSystemBarAppBarLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -29,19 +29,14 @@ public class FitTopSystemBarAppBarLayout extends AppBarLayout {
     @Override
     public void setOnApplyWindowInsetsListener(OnApplyWindowInsetsListener listener) {
         super.setOnApplyWindowInsetsListener((v, insets) -> {
-            setPadding(
-                    insets.getSystemWindowInsetLeft(),
-                    0,
-                    insets.getSystemWindowInsetRight(),
-                    0
-            );
+            setPadding(0, 0, 0, 0);
             return listener == null ? insets : listener.onApplyWindowInsets(v, insets);
         });
     }
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        setPadding(insets.left, insets.top, insets.right, 0);
+        setPadding(0, insets.top, 0, 0);
         return false;
     }
 }

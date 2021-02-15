@@ -2,30 +2,30 @@ package wangdaye.com.geometricweather.settings.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.appcompat.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceFragmentCompat;
 
 import org.jetbrains.annotations.NotNull;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.fragments.SettingsFragment;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 /**
  * Settings activity.
  * */
 
-public class SettingsActivity extends GeoActivity
-        implements Toolbar.OnMenuItemClickListener {
+public class SettingsActivity extends GeoActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_settings);
-        initToolbar();
+        setContentView(R.layout.activity_settings);
+
+        ((Toolbar) findViewById(R.id.activity_settings_toolbar)).setNavigationOnClickListener(v -> finish());
+
         SettingsFragment settingsFragment = new SettingsFragment();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -53,12 +53,6 @@ public class SettingsActivity extends GeoActivity
         // do nothing.
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.activity_settings_toolbar);
-        toolbar.inflateMenu(R.menu.activity_settings);
-        toolbar.setOnMenuItemClickListener(this);
-    }
-
     public void pushFragment(PreferenceFragmentCompat f, String tag) {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -66,15 +60,5 @@ public class SettingsActivity extends GeoActivity
                 .replace(R.id.activity_settings_container, f)
                 .addToBackStack(tag)
                 .commit();
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.action_about:
-                IntentHelper.startAboutActivity(this);
-                break;
-        }
-        return true;
     }
 }

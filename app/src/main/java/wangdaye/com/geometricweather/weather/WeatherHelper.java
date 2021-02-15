@@ -32,6 +32,16 @@ public class WeatherHelper {
     private @Nullable WeatherService[] searchServices;
     private final CompositeDisposable compositeDisposable;
 
+    public interface OnRequestWeatherListener {
+        void requestWeatherSuccess(@NonNull Location requestLocation);
+        void requestWeatherFailed(@NonNull Location requestLocation);
+    }
+
+    public interface OnRequestLocationListener {
+        void requestLocationSuccess(String query, List<Location> locationList);
+        void requestLocationFailed(String query);
+    }
+
     public WeatherHelper() {
         weatherService = null;
         searchServices = null;
@@ -149,17 +159,5 @@ public class WeatherHelper {
             }
         }
         compositeDisposable.clear();
-    }
-
-    // interface.
-
-    public interface OnRequestWeatherListener {
-        void requestWeatherSuccess(@NonNull Location requestLocation);
-        void requestWeatherFailed(@NonNull Location requestLocation);
-    }
-
-    public interface OnRequestLocationListener {
-        void requestLocationSuccess(String query, List<Location> locationList);
-        void requestLocationFailed(String query);
     }
 }

@@ -34,6 +34,11 @@ public class LocationHelper {
     private final @NonNull LocationService mLocationService;
     private @Nullable WeatherService mWeatherService;
 
+    public interface OnRequestLocationListener {
+        void requestLocationSuccess(Location requestLocation);
+        void requestLocationFailed(Location requestLocation);
+    }
+
     public LocationHelper(Context context) {
         switch (SettingsOptionManager.getInstance(context).getLocationProvider()) {
             case BAIDU:
@@ -152,12 +157,5 @@ public class LocationHelper {
         }
 
         return permissions;
-    }
-
-    // interface.
-
-    public interface OnRequestLocationListener {
-        void requestLocationSuccess(Location requestLocation);
-        void requestLocationFailed(Location requestLocation);
     }
 }

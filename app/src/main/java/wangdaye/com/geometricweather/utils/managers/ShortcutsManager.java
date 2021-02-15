@@ -25,6 +25,7 @@ import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 /**
@@ -35,7 +36,7 @@ import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 public class ShortcutsManager {
 
     public static void refreshShortcutsInNewThread(final Context c, List<Location> locationList) {
-        ThreadManager.getInstance().execute(() -> {
+        AsyncHelper.runOnIO(() -> {
             ShortcutManager shortcutManager = c.getSystemService(ShortcutManager.class);
             if (shortcutManager == null) {
                 return;

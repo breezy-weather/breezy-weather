@@ -60,4 +60,9 @@
         <attr name="backgroundColorEnd" format="color" />
     </declare-styleable>
 
+    <!-- Drawer layout. -->
+    <declare-styleable name="DrawerLayout">
+        <attr name="unfold" format="boolean" />
+    </declare-styleable>
+
 </resources>

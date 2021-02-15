@@ -196,18 +196,6 @@ public class ThemeManager {
         return (int) DisplayUtils.dpToPx(context, 2);
     }
 
-    @Px
-    public int getListItemAdaptiveWidth(Context context) {
-        if (!DisplayUtils.isLandscape(context)) {
-            int containerWidth = context.getResources().getDisplayMetrics().widthPixels;
-            return DisplayUtils.getTabletListAdaptiveWidth(context, containerWidth) - 2 * getCardMarginsHorizontal(context);
-        } else {
-            int containerWidth = context.getResources().getDisplayMetrics().widthPixels
-                    - context.getResources().getDimensionPixelSize(R.dimen.main_location_container_width);
-            return DisplayUtils.getTabletListAdaptiveWidth(context, containerWidth) - 2 * getCardMarginsHorizontal(context);
-        }
-    }
-
     public static boolean isSystemLightMode(Context context) {
         Configuration configuration = context.getResources().getConfiguration();
         int currentNightMode = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;

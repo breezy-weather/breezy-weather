@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:duration="450"
+    android:interpolator="@anim/x2_decelerate_interpolator"
+    android:transitionOrdering="together"
+    tools:ignore="NewApi">
+
+    <slide>
+        <targets>
+            <target android:targetId="@android:id/statusBarBackground" />
+            <target android:targetId="@id/appBar" />
+            <target android:targetId="@id/recyclerView" />
+        </targets>
+    </slide>
+
+    <fade android:duration="150" />
+
+</transitionSet>

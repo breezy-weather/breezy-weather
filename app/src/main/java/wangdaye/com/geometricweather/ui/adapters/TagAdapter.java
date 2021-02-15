@@ -70,6 +70,14 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         }
     }
 
+    public interface OnTagCheckedListener {
+        boolean onItemChecked(boolean checked, int oldPosition, int newPosition);
+    }
+
+    public interface Tag {
+        String getName();
+    }
+
     public TagAdapter(Context context, List<Tag> tagList, OnTagCheckedListener listener) {
         this(context, tagList, Color.TRANSPARENT, listener, UNCHECKABLE_INDEX);
     }
@@ -111,13 +119,5 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         Tag tag = mTagList.remove(position);
         notifyItemRemoved(position);
         return tag;
-    }
-
-    public interface OnTagCheckedListener {
-        boolean onItemChecked(boolean checked, int oldPosition, int newPosition);
-    }
-
-    public interface Tag {
-        String getName();
     }
 }

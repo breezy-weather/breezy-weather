@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.management.models;
+package wangdaye.com.geometricweather.main.models;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +12,6 @@ public class SelectableLocationListResource extends ListResource<Location> {
 
     public final @Nullable String selectedId;
     public final @Nullable String forceUpdateId;
-    public final boolean notifyOutsider;
     public final @NonNull Source source;
 
     public interface Source {
@@ -34,20 +33,17 @@ public class SelectableLocationListResource extends ListResource<Location> {
 
     public SelectableLocationListResource(@NonNull List<Location> dataList,
                                           @Nullable String selectedId,
-                                          @Nullable String forceUpdateId,
-                                          boolean notifyOutsider) {
-        this(dataList, selectedId, forceUpdateId, notifyOutsider, new DataSetChanged());
+                                          @Nullable String forceUpdateId) {
+        this(dataList, selectedId, forceUpdateId, new DataSetChanged());
     }
 
     public SelectableLocationListResource(@NonNull List<Location> dataList,
                                           @Nullable String selectedId,
                                           @Nullable String forceUpdateId,
-                                          boolean notifyOutsider,
                                           @NonNull Source source) {
         super(dataList);
         this.selectedId = selectedId;
         this.forceUpdateId = forceUpdateId;
-        this.notifyOutsider = notifyOutsider;
         this.source = source;
     }
 }

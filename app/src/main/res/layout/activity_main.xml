@@ -1,63 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorRoot">
 
-    <wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout
-        android:id="@+id/switch_layout"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <wangdaye.com.geometricweather.ui.widgets.insets.FitSystemBarRecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none"
-                android:fitsSystemWindows="true"
-                android:clipToPadding="false" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    </wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout>
-
-    <wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout
-        android:id="@+id/app_bar"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:background="@android:color/transparent"
-        app:elevation="0dp">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
-            app:theme="@style/GeometricWeatherTheme.AppbarTheme"
-            app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
-
-    </wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout>
-
-    <wangdaye.com.geometricweather.ui.widgets.InkPageIndicator
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/normal_margin"
-        android:alpha="0"
-        android:fitsSystemWindows="true"
-        app:layout_behavior=".ui.behaviors.InkPageIndicatorBehavior"
-        app:dotDiameter="8dp"
-        app:dotGap="8dp"
-        app:animationDuration="300" />
+        android:layout_height="match_parent"
+        tools:ignore="UnusedAttribute" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

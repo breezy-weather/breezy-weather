@@ -1,8 +1,6 @@
 package wangdaye.com.geometricweather.main;
 
 import android.Manifest;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,22 +11,14 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
-import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,73 +30,43 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.options.DarkMode;
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.models.resources.Resource;
 import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
-import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
-import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
-import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
+import wangdaye.com.geometricweather.main.fragments.MainFragment;
+import wangdaye.com.geometricweather.main.fragments.ManagementFragment;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.StatementManager;
-import wangdaye.com.geometricweather.management.ManagementFragment;
 import wangdaye.com.geometricweather.management.search.SearchActivity;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
-import wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherViewController;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
-import wangdaye.com.geometricweather.utils.managers.ThreadManager;
-import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 /**
  * Main activity.
  * */
 
 public class MainActivity extends GeoActivity
-        implements SwipeRefreshLayout.OnRefreshListener, LocationPermissionStatementDialog.Callback,
-        BackgroundLocationDialog.Callback {
+        implements MainFragment.Callback, ManagementFragment.Callback,
+        LocationPermissionStatementDialog.Callback, BackgroundLocationDialog.Callback {
 
-    private MainActivityViewModel mViewModel;
     private ActivityMainBinding mBinding;
+    private MainActivityViewModel mViewModel;
 
     private @Nullable String mPendingAction;
     private @Nullable HashMap<String, Object> mPendingExtraMap;
-
-    private @Nullable ManagementFragment mManagementFragment;
-    private WeatherView mWeatherView;
-    private @Nullable MainAdapter mAdapter;
-    private @Nullable AnimatorSet mRecyclerViewAnimator;
-
-    private ResourceProvider mResourceProvider;
-    private ThemeManager mThemeManager;
-
-    private @Nullable String mCurrentLocationFormattedId;
-    private @Nullable WeatherSource mCurrentWeatherSource;
-    private long mCurrentWeatherTimeStamp;
 
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int MANAGE_ACTIVITY = 2;
     public static final int CARD_MANAGE_ACTIVITY = 3;
     public static final int SEARCH_ACTIVITY = 4;
     public static final int SELECT_PROVIDER_ACTIVITY = 5;
-
-    private static final long INVALID_CURRENT_WEATHER_TIME_STAMP = -1;
 
     public static final String ACTION_MAIN = "com.wangdaye.geometricweather.Main";
     public static final String KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID
@@ -122,6 +82,9 @@ public class MainActivity extends GeoActivity
     public static final String ACTION_SHOW_DAILY_FORECAST
             = "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST";
     public static final String KEY_DAILY_INDEX = "DAILY_INDEX";
+
+    private static final String TAG_FRAGMENT_MAIN = "tag_fragment_main";
+    private static final String TAG_FRAGMENT_MANAGEMENT = "tag_fragment_management";
 
     private final BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
         @Override
@@ -147,35 +110,10 @@ public class MainActivity extends GeoActivity
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-        // attach weather view.
-        switch (SettingsOptionManager.getInstance(this).getUiStyle()) {
-            case MATERIAL:
-                mWeatherView = new MaterialWeatherView(this);
-                break;
-
-            case CIRCULAR:
-                mWeatherView = new CircularSkyWeatherView(this);
-                break;
-        }
-        ((CoordinatorLayout) mBinding.switchLayout.getParent()).addView(
-                (View) mWeatherView,
-                0,
-                new CoordinatorLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                )
-        );
-        mWeatherView.setSystemBarStyle(this, getWindow(),
-                false, false, true, false);
-
-        resetUIUpdateFlag();
-        ensureResourceProvider();
-        updateThemeManager();
-
         initModel(savedInstanceState == null);
         initView();
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(
+        registerReceiver(
                 backgroundUpdateReceiver,
                 new IntentFilter(ACTION_UPDATE_WEATHER_IN_BACKGROUND)
         );
@@ -187,7 +125,10 @@ public class MainActivity extends GeoActivity
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         pendingIntentAction(intent);
-        resetUIUpdateFlag();
+        MainFragment f = findMainFragment();
+        if (f != null) {
+            f.resetUIUpdateFlag();
+        }
         mViewModel.init(getLocationId(intent));
     }
 
@@ -195,22 +136,26 @@ public class MainActivity extends GeoActivity
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case SETTINGS_ACTIVITY:
-                ensureResourceProvider();
-                updateThemeManager();
+            case SETTINGS_ACTIVITY: {
+                MainFragment f = findMainFragment();
+                if (f != null) {
+                    f.ensureResourceProvider();
+                    f.updateThemeManager();
+                    f.resetUIUpdateFlag();
+                }
 
-                ThreadManager.getInstance().execute(() ->
-                        NotificationUtils.updateNotificationIfNecessary(
-                                this, mViewModel.getValidLocationList()
-                        )
-                );
-                resetUIUpdateFlag();
                 mViewModel.init();
 
+                // update notification immediately.
+                if (mViewModel.getValidLocationList() != null) {
+                    AsyncHelper.runOnIO(() -> NotificationUtils.updateNotificationIfNecessary(
+                            this, mViewModel.getValidLocationList()
+                    ));
+                }
                 refreshBackgroundViews(true, mViewModel.getValidLocationList(),
                         true, true);
                 break;
-
+            }
             case MANAGE_ACTIVITY:
                 if (resultCode == RESULT_OK) {
                     String formattedId = getLocationId(data);
@@ -223,22 +168,26 @@ public class MainActivity extends GeoActivity
 
             case CARD_MANAGE_ACTIVITY:
                 if (resultCode == RESULT_OK) {
-                    resetUIUpdateFlag();
+                    MainFragment f = findMainFragment();
+                    if (f != null) {
+                        f.resetUIUpdateFlag();
+                    }
                     mViewModel.init();
                 }
                 break;
 
             case SEARCH_ACTIVITY:
-                if (resultCode == RESULT_OK && data != null && mManagementFragment != null) {
+                if (resultCode == RESULT_OK && data != null) {
                     Location location = data.getParcelableExtra(SearchActivity.KEY_LOCATION);
-                    mManagementFragment.addLocation(location);
+                    mViewModel.addLocation(location);
+                    SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
                 }
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
-                if (resultCode == RESULT_OK && data != null && mManagementFragment != null) {
+                if (resultCode == RESULT_OK && data != null) {
                     Location location = data.getParcelableExtra(SelectProviderActivity.KEY_LOCATION);
-                    mManagementFragment.updateLocation(location);
+                    mViewModel.forceUpdateLocation(location);
                 }
                 break;
         }
@@ -248,28 +197,19 @@ public class MainActivity extends GeoActivity
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
-            updateThemeManager();
-            resetUIUpdateFlag();
+            MainFragment f = findMainFragment();
+            if (f != null) {
+                f.updateThemeManager();
+                f.resetUIUpdateFlag();
+            }
             mViewModel.init();
         }
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mWeatherView.setDrawable(true);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mWeatherView.setDrawable(false);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(backgroundUpdateReceiver);
+        unregisterReceiver(backgroundUpdateReceiver);
     }
 
     @Override
@@ -302,108 +242,24 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint({"ClickableViewAccessibility", "NonConstantResourceId"})
     private void initView() {
-        mManagementFragment = (ManagementFragment) getSupportFragmentManager().findFragmentById(
-                R.id.fragment_drawer);
-        if (mManagementFragment != null) {
-            mManagementFragment.setDrawerMode(true);
-            mManagementFragment.setRequestCodes(SEARCH_ACTIVITY, SELECT_PROVIDER_ACTIVITY);
-            mManagementFragment.setOnLocationListChangedListener(new ManagementFragment.LocationManageCallback() {
-                @Override
-                public void onSelectedLocation(@NonNull String formattedId) {
-                    mViewModel.setLocation(formattedId);
-                }
-
-                @Override
-                public void onLocationListChanged(List<Location> locationList) {
-                    mViewModel.updateLocationList(locationList);
-                }
-            });
+        if (mBinding.drawerLayout == null
+                && getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT_MAIN) == null
+                && getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT_MANAGEMENT) == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment, MainFragment.class, null, TAG_FRAGMENT_MAIN)
+                    .commit();
         }
-
-        ViewCompat.setOnApplyWindowInsetsListener(mBinding.appBar, (v, insets) -> new DisplayUtils.RelativeInsets(
-                insets, mManagementFragment != null, false, false, true).setPaddingRelative(v));
-
-        mBinding.toolbar.inflateMenu(R.menu.activity_main);
-        mBinding.toolbar.getMenu().getItem(0).setVisible(
-                !MainModuleUtils.isMultiFragmentEnabled(this));
-        mBinding.toolbar.setOnMenuItemClickListener(menuItem -> {
-            switch (menuItem.getItemId()) {
-                case R.id.action_manage:
-                    IntentHelper.startManageActivityForResult(this, MANAGE_ACTIVITY);
-                    break;
-
-                case R.id.action_settings:
-                    IntentHelper.startSettingsActivityForResult(this, SETTINGS_ACTIVITY);
-                    break;
-            }
-            return true;
-        });
-
-        mBinding.switchLayout.setOnSwitchListener(switchListener);
-
-        ViewCompat.setOnApplyWindowInsetsListener(mBinding.refreshLayout, (v, insets) -> {
-            int startPosition = insets.getSystemWindowInsetTop()
-                    + getResources().getDimensionPixelSize(R.dimen.normal_margin);
-            mBinding.refreshLayout.setProgressViewOffset(
-                    false,
-                    startPosition,
-                    (int) (startPosition + 64 * getResources().getDisplayMetrics().density)
-            );
-            return insets;
-        });
-        mBinding.refreshLayout.setOnRefreshListener(this);
-
-        mBinding.recyclerView.setLayoutManager(new MainLayoutManager());
-        mBinding.recyclerView.setOnTouchListener(indicatorStateListener);
-        ViewCompat.setOnApplyWindowInsetsListener(mBinding.recyclerView, (v, insets) -> new DisplayUtils.RelativeInsets(
-                insets, mManagementFragment != null, true, false, false).setPaddingRelative(v));
-
-        mBinding.indicator.setSwitchView(mBinding.switchLayout);
 
         mViewModel.getCurrentLocation().observe(this, resource -> {
             if (resource == null) {
                 return;
             }
 
-            setRefreshing(resource.status == Resource.Status.LOADING);
-            drawUI(resource.data, resource.defaultLocation, resource.fromBackgroundUpdate);
-
-            if (mManagementFragment != null && mViewModel.isInitializeDone()) {
-                mManagementFragment.updateLocationList(
-                        mViewModel.getTotalLocationList(), mViewModel.getCurrentFormattedId());
-            }
-
-            if (resource.locateFailed) {
-                SnackbarHelper.showSnackbar(
-                        getString(R.string.feedback_location_failed),
-                        getString(R.string.help),
-                        v -> {
-                            if (isForeground()) {
-                                new LocationHelpDialog().show(getSupportFragmentManager(), null);
-                            }
-                        }
-                );
-            } else if (resource.status == Resource.Status.ERROR) {
-                SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
-            }
+            refreshBackgroundViews(false, mViewModel.getValidLocationList(),
+                    resource.defaultLocation, !resource.fromBackgroundUpdate);
 
             consumeIntentAction();
-        });
-
-        mViewModel.getIndicator().observe(this, resource -> {
-            mBinding.switchLayout.setEnabled(resource.total > 1);
-
-            if (mBinding.switchLayout.getTotalCount() != resource.total
-                    || mBinding.switchLayout.getPosition() != resource.index) {
-                mBinding.switchLayout.setData(resource.index, resource.total);
-                mBinding.indicator.setSwitchView(mBinding.switchLayout);
-            }
-
-            if (resource.total > 1) {
-                mBinding.indicator.setVisibility(View.VISIBLE);
-            } else {
-                mBinding.indicator.setVisibility(View.GONE);
-            }
         });
 
         mViewModel.getPermissionsRequest().observe(this, request -> {
@@ -486,169 +342,56 @@ public class MainActivity extends GeoActivity
 
     // control.
 
-    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
-    private void drawUI(Location location, boolean defaultLocation, boolean fromBackgroundUpdate) {
-        if (location.equals(mCurrentLocationFormattedId)
-                && location.getWeatherSource() == mCurrentWeatherSource
-                && location.getWeather() != null
-                && location.getWeather().getBase().getTimeStamp() == mCurrentWeatherTimeStamp) {
-            return;
-        }
-
-        boolean needToResetUI = !location.equals(mCurrentLocationFormattedId)
-                || mCurrentWeatherSource != location.getWeatherSource()
-                || mCurrentWeatherTimeStamp != INVALID_CURRENT_WEATHER_TIME_STAMP;
-
-        mCurrentLocationFormattedId = location.getFormattedId();
-        mCurrentWeatherSource = location.getWeatherSource();
-        mCurrentWeatherTimeStamp = location.getWeather() != null
-                ? location.getWeather().getBase().getTimeStamp()
-                : INVALID_CURRENT_WEATHER_TIME_STAMP;
-
-        if (location.getWeather() == null) {
-            resetUI(location);
-
-            mBinding.recyclerView.setOnTouchListener((v, event) -> {
-                if (event.getAction() == MotionEvent.ACTION_DOWN
-                        && !mBinding.refreshLayout.isRefreshing()) {
-                    mViewModel.updateWeather(true, true);
-                }
-                return false;
-            });
-
-            return;
+    private boolean isManagementFragmentVisible() {
+        if (mBinding.drawerLayout != null) {
+            return mBinding.drawerLayout.isUnfold();
         } else {
-            mBinding.recyclerView.setOnTouchListener(null);
+            Fragment f = findManagementFragment();
+            return f != null && f.isVisible();
         }
+    }
 
-        if (needToResetUI) {
-            resetUI(location);
+    public void setManagementFragmentVisibility(boolean visible) {
+        if (mBinding.drawerLayout != null) {
+            mBinding.drawerLayout.setUnfold(visible);
+        } else if (visible != isManagementFragmentVisible()) {
+            if (visible) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        // .setCustomAnimations(
+                        //         R.anim.fragment_manange_enter,
+                        //         0,
+                        //         0,
+                        //         R.anim.fragment_manange_pop_exit
+                        // )
+                        .add(R.id.fragment, ManagementFragment.class, null, TAG_FRAGMENT_MANAGEMENT)
+                        .addToBackStack(null)
+                        .commit();
+            } else {
+                getSupportFragmentManager().popBackStack();
+            }
         }
+    }
 
-        boolean oldDaytime = TimeManager.getInstance(this).isDayTime();
-        boolean daytime = TimeManager.getInstance(this)
-                .update(this, location)
-                .isDayTime();
-
-        setDarkMode(daytime);
-        if (oldDaytime != daytime) {
-            updateThemeManager();
-        }
-
-        WeatherViewController.setWeatherCode(
-                mWeatherView, location.getWeather(), daytime, mResourceProvider);
-
-        mBinding.refreshLayout.setColorSchemeColors(mWeatherView.getThemeColors(mThemeManager.isLightTheme())[0]);
-        mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(mThemeManager.getRootColor(this));
-
-        boolean listAnimationEnabled = SettingsOptionManager.getInstance(this).isListAnimationEnabled();
-        boolean itemAnimationEnabled = SettingsOptionManager.getInstance(this).isItemAnimationEnabled();
-
-        if (mAdapter == null) {
-            mAdapter = new MainAdapter(this, mWeatherView, location, mResourceProvider,
-                    listAnimationEnabled, itemAnimationEnabled);
-            mBinding.recyclerView.setAdapter(mAdapter);
+    @Nullable
+    private MainFragment findMainFragment() {
+        if (mBinding.drawerLayout == null) {
+            return (MainFragment) getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT_MAIN);
         } else {
-            mAdapter.update(this, mWeatherView, location, mResourceProvider,
-                    listAnimationEnabled, itemAnimationEnabled);
-            mAdapter.notifyDataSetChanged();
-        }
-
-        OnScrollListener l = new OnScrollListener();
-        mBinding.recyclerView.clearOnScrollListeners();
-        mBinding.recyclerView.addOnScrollListener(l);
-        mBinding.recyclerView.post(() -> l.onScrolled(mBinding.recyclerView, 0, 0));
-
-        mBinding.indicator.setCurrentIndicatorColor(mThemeManager.getAccentColor(this));
-        mBinding.indicator.setIndicatorColor(mThemeManager.getTextSubtitleColor(this));
-
-        if (!listAnimationEnabled) {
-            mBinding.recyclerView.setAlpha(0f);
-            mRecyclerViewAnimator = new AnimatorSet();
-            mRecyclerViewAnimator.playTogether(
-                    ObjectAnimator.ofFloat(mBinding.recyclerView, "alpha", 0f, 1f),
-                    ObjectAnimator.ofFloat(
-                            mBinding.recyclerView,
-                            "translationY",
-                            DisplayUtils.dpToPx(this, 40), 0f
-                    )
-            );
-            mRecyclerViewAnimator.setDuration(450);
-            mRecyclerViewAnimator.setInterpolator(new DecelerateInterpolator(2f));
-            mRecyclerViewAnimator.setStartDelay(150);
-            mRecyclerViewAnimator.start();
-        }
-
-        refreshBackgroundViews(false, mViewModel.getValidLocationList(),
-                defaultLocation, !fromBackgroundUpdate);
-    }
-
-    private void resetUI(Location location) {
-        if (mWeatherView.getWeatherKind() == WeatherView.WEATHER_KING_NULL
-                && location.getWeather() == null) {
-            WeatherViewController.setWeatherCode(
-                    mWeatherView, null, mThemeManager.isLightTheme(), mResourceProvider);
-            mBinding.refreshLayout.setColorSchemeColors(
-                    mWeatherView.getThemeColors(mThemeManager.isLightTheme())[0]);
-            mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(
-                    mThemeManager.getRootColor(this));
-        }
-        mWeatherView.setGravitySensorEnabled(
-                SettingsOptionManager.getInstance(this).isGravitySensorEnabled());
-
-        mBinding.toolbar.setTitle(location.getCityName(this));
-
-        mBinding.switchLayout.reset();
-
-        if (mRecyclerViewAnimator != null) {
-            mRecyclerViewAnimator.cancel();
-            mRecyclerViewAnimator = null;
-        }
-        if (mAdapter != null) {
-            mAdapter.setNullWeather();
-            mAdapter.notifyDataSetChanged();
+            return (MainFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_main);
         }
     }
 
-    private void resetUIUpdateFlag() {
-        mCurrentLocationFormattedId = null;
-        mCurrentWeatherSource = null;
-        mCurrentWeatherTimeStamp = INVALID_CURRENT_WEATHER_TIME_STAMP;
-    }
-
-    private void ensureResourceProvider() {
-        String iconProvider = SettingsOptionManager.getInstance(this).getIconProvider();
-        if (mResourceProvider == null
-                || !mResourceProvider.getPackageName().equals(iconProvider)) {
-            mResourceProvider = ResourcesProviderFactory.getNewInstance();
+    @Nullable
+    private ManagementFragment findManagementFragment() {
+        if (mBinding.drawerLayout == null) {
+            return (ManagementFragment) getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT_MANAGEMENT);
+        } else {
+            return (ManagementFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_drawer);
         }
     }
 
-    private void updateThemeManager() {
-        if (mThemeManager == null) {
-            mThemeManager = ThemeManager.getInstance(this);
-        }
-        mThemeManager.update(this, mWeatherView);
-    }
-
-    @SuppressLint("RestrictedApi")
-    private void setDarkMode(boolean dayTime) {
-        if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.AUTO) {
-            int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
-            getDelegate().setLocalNightMode(mode);
-            AppCompatDelegate.setDefaultNightMode(mode);
-        } else if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
-            int mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
-            getDelegate().setLocalNightMode(mode);
-            AppCompatDelegate.setDefaultNightMode(mode);
-        }
-    }
-
-    private void setRefreshing(final boolean b) {
-        mBinding.refreshLayout.post(() -> mBinding.refreshLayout.setRefreshing(b));
-    }
-
-    private void refreshBackgroundViews(boolean resetBackground, List<Location> locationList,
+    private void refreshBackgroundViews(boolean resetBackground, @Nullable List<Location> locationList,
                                         boolean defaultLocationChanged, boolean updateRemoteViews) {
         if (resetBackground) {
             AsyncHelper.delayRunOnIO(() -> PollingManager.resetAllBackgroundTask(
@@ -656,7 +399,7 @@ public class MainActivity extends GeoActivity
             ), 1000);
         }
 
-        if (updateRemoteViews) {
+        if (updateRemoteViews && locationList != null && locationList.size() > 0) {
             AsyncHelper.delayRunOnIO(() -> {
                 if (defaultLocationChanged) {
                     WidgetUtils.updateWidgetIfNecessary(this, locationList.get(0));
@@ -719,161 +462,33 @@ public class MainActivity extends GeoActivity
 
     // interface.
 
-    // on touch listener.
-
-    private final View.OnTouchListener indicatorStateListener = new View.OnTouchListener() {
-
-        @SuppressLint("ClickableViewAccessibility")
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_MOVE:
-                    mBinding.indicator.setDisplayState(true);
-                    break;
-
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
-                    mBinding.indicator.setDisplayState(false);
-                    break;
-            }
-            return false;
-        }
-    };
-
-    // on swipe listener(swipe switch layout).
-
-    private final SwipeSwitchLayout.OnSwitchListener switchListener = new SwipeSwitchLayout.OnSwitchListener() {
-
-        private @Nullable Location mLocation;
-        private boolean mIndexSwitched;
-
-        private float mLastProgress = 0;
-
-        @Override
-        public void onSwipeProgressChanged(int swipeDirection, float progress) {
-            mBinding.indicator.setDisplayState(progress != 0);
-
-            mIndexSwitched = false;
-
-            if (progress >= 1 && mLastProgress < 0.5) {
-                mIndexSwitched = true;
-                mLocation = mViewModel.getLocationFromList(
-                        swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
-                mLastProgress = 1;
-            } else if (progress < 0.5 && mLastProgress >= 1) {
-                mIndexSwitched = true;
-                mLocation = mViewModel.getLocationFromList(0);
-                mLastProgress = 0;
-            }
-
-            if (mIndexSwitched && mLocation != null) {
-                mBinding.toolbar.setTitle(mLocation.getCityName(MainActivity.this));
-                if (mLocation.getWeather() != null) {
-                    WeatherViewController.setWeatherCode(
-                            mWeatherView,
-                            mLocation.getWeather(),
-                            TimeManager.isDaylight(mLocation),
-                            mResourceProvider
-                    );
-                }
-            }
-        }
-
-        @Override
-        public void onSwipeReleased(int swipeDirection, boolean doSwitch) {
-            if (doSwitch) {
-                resetUIUpdateFlag();
-
-                mBinding.indicator.setDisplayState(false);
-                mViewModel.setLocation(swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
-            }
-        }
-    };
-
-    // on refresh listener.
+    // main fragment callback.
 
     @Override
-    public void onRefresh() {
-        mViewModel.updateWeather(true, true);
+    public void onNavigationIconClicked() {
+        setManagementFragmentVisibility(!isManagementFragmentVisible());
     }
 
-    // on scroll changed listener.
+    @Override
+    public void onSettingsIconClicked() {
+        IntentHelper.startSettingsActivityForResult(this, SETTINGS_ACTIVITY);
+    }
 
-    private class OnScrollListener extends RecyclerView.OnScrollListener {
+    @Override
+    public void onAboutIconClicked() {
+        IntentHelper.startAboutActivity(this);
+    }
 
-        private @Nullable Boolean mTopChanged;
-        private boolean mTopOverlap;
+    // management fragment callback.
 
-        private int mFirstCardMarginTop;
+    @Override
+    public void onSearchBarClicked(View searchBar) {
+        IntentHelper.startSearchActivityForResult(this, searchBar, SEARCH_ACTIVITY);
+    }
 
-        private int mScrollY;
-        private float mLastAppBarTranslationY;
-
-        OnScrollListener() {
-            super();
-
-            mTopChanged = null;
-            mTopOverlap = false;
-
-            mFirstCardMarginTop = 0;
-
-            mScrollY = 0;
-            mLastAppBarTranslationY = 0;
-        }
-
-        @Override
-        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-            if (recyclerView.getChildCount() > 0) {
-                mFirstCardMarginTop = recyclerView.getChildAt(0).getMeasuredHeight();
-            } else {
-                mFirstCardMarginTop = -1;
-            }
-
-            mScrollY = recyclerView.computeVerticalScrollOffset();
-            mLastAppBarTranslationY = mBinding.appBar.getTranslationY();
-
-            mWeatherView.onScroll(mScrollY);
-            if (mAdapter != null) {
-                mAdapter.onScroll(recyclerView);
-            }
-
-            // set translation y of toolbar.
-            if (mAdapter != null && mFirstCardMarginTop > 0) {
-                if (mFirstCardMarginTop
-                        >= mBinding.appBar.getMeasuredHeight() + mAdapter.getCurrentTemperatureTextHeight(recyclerView)) {
-                    if (mScrollY < mFirstCardMarginTop
-                            - mBinding.appBar.getMeasuredHeight()
-                            - mAdapter.getCurrentTemperatureTextHeight(recyclerView)) {
-                        mBinding.appBar.setTranslationY(0);
-                    } else if (mScrollY > mFirstCardMarginTop - mBinding.appBar.getY()) {
-                        mBinding.appBar.setTranslationY(-mBinding.appBar.getMeasuredHeight());
-                    } else {
-                        mBinding.appBar.setTranslationY(
-                                mFirstCardMarginTop
-                                        - mAdapter.getCurrentTemperatureTextHeight(recyclerView)
-                                        - mScrollY
-                                        - mBinding.appBar.getMeasuredHeight()
-                        );
-                    }
-                } else {
-                    mBinding.appBar.setTranslationY(-mScrollY);
-                }
-            }
-
-            // set system bar style.
-            if (mFirstCardMarginTop <= 0) {
-                mTopChanged = true;
-                mTopOverlap = false;
-            } else {
-                mTopChanged = (mBinding.appBar.getTranslationY() != 0) != (mLastAppBarTranslationY != 0);
-                mTopOverlap = mBinding.appBar.getTranslationY() != 0;
-            }
-
-            if (mTopChanged) {
-                mWeatherView.setSystemBarColor(MainActivity.this, getWindow(),
-                        mTopOverlap, false, true, false);
-            }
-        }
+    @Override
+    public void onSelectProviderActivityStarted() {
+        IntentHelper.startSelectProviderActivityForResult(this, SELECT_PROVIDER_ACTIVITY);
     }
 
     // location permissions statement callback.

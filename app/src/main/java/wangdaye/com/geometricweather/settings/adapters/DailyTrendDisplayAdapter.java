@@ -24,6 +24,14 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
     private final OnItemRemoveListener mRemoveListener;
     private final OnItemDragListener mDragListener;
 
+    public interface OnItemRemoveListener {
+        void onRemoved(DailyTrendDisplay dailyTrendDisplay);
+    }
+
+    public interface OnItemDragListener {
+        void onDrag(ViewHolder holder);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         SlidingItemContainerLayout container;
@@ -102,13 +110,5 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
     public void moveItem(int fromPosition, int toPosition) {
         mDailyTrendDisplayList.add(toPosition, mDailyTrendDisplayList.remove(fromPosition));
         notifyItemMoved(fromPosition, toPosition);
-    }
-
-    public interface OnItemRemoveListener {
-        void onRemoved(DailyTrendDisplay dailyTrendDisplay);
-    }
-
-    public interface OnItemDragListener {
-        void onDrag(ViewHolder holder);
     }
 }

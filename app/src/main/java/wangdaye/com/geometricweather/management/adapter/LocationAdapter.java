@@ -41,6 +41,14 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     private @NonNull final ResourceProvider mResourceProvider;
     private @NonNull final TemperatureUnit mTemperatureUnit;
 
+    public interface OnLocationItemClickListener {
+        void onClick(View view, String formattedId);
+    }
+
+    public interface OnLocationItemDragListener {
+        void onDrag(LocationHolder holder);
+    }
+
     public LocationAdapter(Context context,
                            List<Location> locationList,
                            @Nullable String selectedId,
@@ -135,16 +143,6 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         } else {
             return Color.TRANSPARENT;
         }
-    }
-
-    // interface.
-
-    public interface OnLocationItemClickListener {
-        void onClick(View view, String formattedId);
-    }
-
-    public interface OnLocationItemDragListener {
-        void onDrag(LocationHolder holder);
     }
 
     // I custom adapter.

@@ -33,12 +33,7 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
         rv.setFitsSystemWindows(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
             rv.setOnApplyWindowInsetsListener((v, insets) -> {
-                v.setPadding(
-                        insets.getSystemWindowInsetLeft(),
-                        0,
-                        insets.getSystemWindowInsetRight(),
-                        insets.getSystemWindowInsetBottom()
-                );
+                v.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
                 return insets;
             });
         }

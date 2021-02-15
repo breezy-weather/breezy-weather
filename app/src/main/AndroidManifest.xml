@@ -118,11 +118,6 @@
             android:label="@string/allergen"
             android:theme="@style/GeometricWeatherTheme" />
 
-        <activity
-            android:name=".management.ManagementActivity"
-            android:label="@string/action_manage"
-            android:theme="@style/GeometricWeatherTheme" />
-
         <activity android:name=".management.search.SearchActivity"
             android:label="@string/action_search"
             android:theme="@style/GeometricWeatherTheme.Search" />

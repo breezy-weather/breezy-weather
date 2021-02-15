@@ -20,13 +20,11 @@ public class FitBottomSystemBarRecyclerView extends RecyclerView {
     private boolean mAdaptiveWidthEnabled = true;
 
     public FitBottomSystemBarRecyclerView(@NonNull Context context) {
-        super(context);
-        ViewCompat.setOnApplyWindowInsetsListener(this, null);
+        this(context, null);
     }
 
     public FitBottomSystemBarRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        ViewCompat.setOnApplyWindowInsetsListener(this, null);
+        this(context, attrs, 0);
     }
 
     public FitBottomSystemBarRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -34,7 +32,7 @@ public class FitBottomSystemBarRecyclerView extends RecyclerView {
         ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
-    public void setmAdaptiveWidthEnabled(boolean enabled) {
+    public void setAdaptiveWidthEnabled(boolean enabled) {
         mAdaptiveWidthEnabled = enabled;
     }
 
@@ -76,12 +74,7 @@ public class FitBottomSystemBarRecyclerView extends RecyclerView {
         int viewWidth = getMeasuredWidth();
         int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(getContext(), viewWidth);
         int paddingHorizontal = mAdaptiveWidthEnabled ? ((viewWidth - adaptiveWidth) / 2) : 0;
-        setPadding(
-                Math.max(paddingHorizontal, mWindowInsets.left),
-                0,
-                Math.max(paddingHorizontal, mWindowInsets.right),
-                mWindowInsets.bottom
-        );
+        setPadding(paddingHorizontal, 0, paddingHorizontal, mWindowInsets.bottom);
     }
 
     public Rect getWindowInsets() {

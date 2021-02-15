@@ -70,6 +70,16 @@ public class SwipeSwitchLayout extends FrameLayout
         }
     }
 
+    public interface OnSwitchListener {
+        void onSwipeProgressChanged(int swipeDirection, float progress);
+        void onSwipeReleased(int swipeDirection, boolean doSwitch);
+    }
+
+    public interface OnPagerSwipeListener {
+        void onPageScrolled(int position, float positionOffset, int positionOffsetPixels);
+        void onPageSelected(int position);
+    }
+
     public SwipeSwitchLayout(Context context) {
         super(context);
         initialize();
@@ -310,22 +320,8 @@ public class SwipeSwitchLayout extends FrameLayout
 
     // interface.
 
-    // on switch listener.
-
-    public interface OnSwitchListener {
-        void onSwipeProgressChanged(int swipeDirection, float progress);
-        void onSwipeReleased(int swipeDirection, boolean doSwitch);
-    }
-
     public void setOnSwitchListener(OnSwitchListener l) {
         mSwitchListener = l;
-    }
-
-    // on swipe listener.
-
-    public interface OnPagerSwipeListener {
-        void onPageScrolled(int position, float positionOffset, int positionOffsetPixels);
-        void onPageSelected(int position);
     }
 
     public void setOnPageSwipeListener(OnPagerSwipeListener l) {

@@ -7,6 +7,7 @@ import android.view.DisplayCutout;
 import android.view.WindowInsets;
 
 class Utils {
+
     static Rect getWaterfullInsets(WindowInsets insets) {
         Rect waterfull = new Rect();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

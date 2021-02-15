@@ -543,7 +543,7 @@ public static java.lang.String TABLENAME;
 
 -keep class james.adaptiveicon.AdaptiveIconView { <init>(android.content.Context, android.util.AttributeSet); }
 
--keep class wangdaye.com.geometricweather.management.ManagementFragment { <init>(); }
+-keep class wangdaye.com.geometricweather.main.fragments.ManagementFragment { <init>(); }
 
 -keep class wangdaye.com.geometricweather.remoteviews.trend.TrendLinearLayout { <init>(android.content.Context, android.util.AttributeSet); }
 

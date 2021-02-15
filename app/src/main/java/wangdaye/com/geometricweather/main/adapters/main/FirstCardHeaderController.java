@@ -51,8 +51,7 @@ public class FirstCardHeaderController
         if (location.getWeather() != null) {
             mWeather = location.getWeather();
 
-            mView.setOnClickListener(v ->
-                    IntentHelper.startManageActivityForResult(activity, MainActivity.MANAGE_ACTIVITY));
+            mView.setOnClickListener(v -> ((MainActivity) activity).setManagementFragmentVisibility(true));
             mView.setEnabled(!MainModuleUtils.isMultiFragmentEnabled(activity));
 
             if (mWeather.getAlertList().size() == 0) {

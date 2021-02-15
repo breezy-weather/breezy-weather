@@ -8,16 +8,15 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
+import android.view.View;
+import android.view.Window;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
-import androidx.core.view.WindowInsetsCompat;
-
-import android.view.View;
-import android.view.Window;
 
 import wangdaye.com.geometricweather.R;
 
@@ -29,67 +28,6 @@ public class DisplayUtils {
 
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512;
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600;
-
-    public static class RelativeInsets {
-
-        private final WindowInsetsCompat mInner;
-        private final boolean mZeroStart;
-        private final boolean mZeroTop;
-        private final boolean mZeroEnd;
-        private final boolean mZeroBottom;
-
-        public RelativeInsets(WindowInsetsCompat inner,
-                              boolean zeroStart,
-                              boolean zeroTop,
-                              boolean zeroEnd,
-                              boolean zeroBottom) {
-            mInner = inner;
-            mZeroStart = zeroStart;
-            mZeroTop = zeroTop;
-            mZeroEnd = zeroEnd;
-            mZeroBottom = zeroBottom;
-        }
-
-        public int getSystemWindowInsetLeft(Context context) {
-            if (isRtl(context)) {
-                return mZeroEnd ? 0 : mInner.getSystemWindowInsetRight();
-            } else {
-                return mZeroStart ? 0 : mInner.getSystemWindowInsetLeft();
-            }
-        }
-
-        public int getSystemWindowInsetTop() {
-            if (mZeroTop) {
-                return 0;
-            }
-            return mInner.getSystemWindowInsetTop();
-        }
-
-        public int getSystemWindowInsetRight(Context context) {
-            if (isRtl(context)) {
-                return mZeroStart ? 0 : mInner.getSystemWindowInsetLeft();
-            } else {
-                return mZeroEnd ? 0 : mInner.getSystemWindowInsetRight();
-            }
-        }
-
-        public int getSystemWindowInsetBottom() {
-            if (mZeroBottom) {
-                return 0;
-            }
-            return mInner.getSystemWindowInsetBottom();
-        }
-
-        public WindowInsetsCompat setPaddingRelative(View view) {
-            view.setPadding(
-                    getSystemWindowInsetLeft(view.getContext()),
-                    getSystemWindowInsetTop(),
-                    getSystemWindowInsetRight(view.getContext()),
-                    getSystemWindowInsetBottom()
-            );
-            return mInner;
-        }
-    }
 
     public static float dpToPx(Context context, float dp) {
         return dp * (context.getResources().getDisplayMetrics().densityDpi / 160f);

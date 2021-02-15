@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.management;
+package wangdaye.com.geometricweather.main.fragments;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
@@ -14,13 +14,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionInflater;
 
 import java.util.List;
 
@@ -28,33 +28,40 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
+import wangdaye.com.geometricweather.main.MainActivityViewModel;
+import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
+import wangdaye.com.geometricweather.main.utils.LocationItemTouchCallback;
 import wangdaye.com.geometricweather.management.adapter.LocationAdapter;
-import wangdaye.com.geometricweather.management.adapter.LocationItemTouchCallback;
-import wangdaye.com.geometricweather.management.models.SelectableLocationListResource;
 import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
 import wangdaye.com.geometricweather.utils.managers.ThemeManager;
 
 public class ManagementFragment extends Fragment
-        implements LocationItemTouchCallback.OnLocationListChangedListener {
+        implements LocationItemTouchCallback.OnSelectProviderActivityStartedCallback {
 
     private FragmentManagementBinding mBinding;
-    private ManagementFragmentViewModel mViewModel;
+    private MainActivityViewModel mViewModel;
 
     private @Nullable LocationAdapter mAdapter;
     private ItemTouchHelper mItemTouchHelper;
     private ListDecoration mItemDecoration;
-    private int mSearchRequestCode;
-    private int mProviderSettingsRequestCode;
 
     private ValueAnimator mColorAnimator;
 
-    private boolean mDrawerMode = false;
+    private @Nullable Callback mCallback;
 
-    private @Nullable LocationManageCallback mLocationListChangedListener;
+    public interface Callback {
+        void onSearchBarClicked(View searchBar);
+        void onSelectProviderActivityStarted();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TransitionInflater inflater = TransitionInflater.from(requireContext());
+        setEnterTransition(inflater.inflateTransition(R.transition.manage_fragment_in));
+        setExitTransition(inflater.inflateTransition(R.transition.manage_fragment_out));
+    }
 
     @Nullable
     @Override
@@ -63,23 +70,20 @@ public class ManagementFragment extends Fragment
         mBinding = FragmentManagementBinding.inflate(getLayoutInflater(), container, false);
         initModel();
         initView();
+        setCallback((Callback) requireActivity());
         return mBinding.getRoot();
     }
 
     private void initModel() {
-        mViewModel = new ViewModelProvider(requireActivity()).get(ManagementFragmentViewModel.class);
-        if (mViewModel.checkIsNewInstance()) {
-            mViewModel.init(null);
-            mViewModel.setSelectable(mDrawerMode);
-        }
+        mViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }
 
     private void initView() {
-        ViewCompat.setOnApplyWindowInsetsListener(mBinding.appBar, (v, insets) -> new DisplayUtils.RelativeInsets(
-                insets, false, false, mDrawerMode, true).setPaddingRelative(v));
-
-        mBinding.searchBar.setOnClickListener(v -> IntentHelper.startSearchActivityForResult(
-                requireActivity(), mBinding.searchBar, mSearchRequestCode));
+        mBinding.searchBar.setOnClickListener(v -> {
+            if (mCallback != null) {
+                mCallback.onSearchBarClicked(mBinding.searchBar);
+            }
+        });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mBinding.searchBar.setTransitionName(getString(R.string.transition_activity_search_bar));
         }
@@ -96,9 +100,6 @@ public class ManagementFragment extends Fragment
                 (GeoActivity) requireActivity(), mViewModel, this));
         mItemTouchHelper.attachToRecyclerView(mBinding.recyclerView);
 
-        ViewCompat.setOnApplyWindowInsetsListener(mBinding.recyclerView, (v, insets) -> new DisplayUtils.RelativeInsets(
-                insets, false, true, mDrawerMode, false).setPaddingRelative(v));
-
         mViewModel.getListResource().observe(getViewLifecycleOwner(), resource -> {
 
             if (mAdapter == null) {
@@ -107,18 +108,11 @@ public class ManagementFragment extends Fragment
                         resource.dataList,
                         resource.selectedId,
                         (v, formattedId) -> { // on click.
-                            String selectedId = mViewModel.getSelectedId();
-                            if (selectedId != null) {
-                                mAdapter.update(selectedId);
-                                setThemeStyle();
-                            }
-                            if (mLocationListChangedListener != null) {
-                                mLocationListChangedListener.onSelectedLocation(formattedId);
-                            }
+                            mViewModel.setLocation(formattedId);
+                            getParentFragmentManager().popBackStack();
                         },
                         holder -> mItemTouchHelper.startDrag(holder) // on drag.
                 );
-                mBinding.recyclerView.setAdapter(mAdapter);
             } else if (resource.source instanceof SelectableLocationListResource.ItemMoved) {
                 SelectableLocationListResource.ItemMoved source
                         = (SelectableLocationListResource.ItemMoved) resource.source;
@@ -126,11 +120,14 @@ public class ManagementFragment extends Fragment
             } else {
                 mAdapter.update(resource.dataList, resource.selectedId, resource.forceUpdateId);
             }
+            if (mBinding.recyclerView.getAdapter() != mAdapter) {
+                mBinding.recyclerView.setAdapter(mAdapter);
+            } else {
+                mAdapter.notifyDataSetChanged();
+            }
 
             setThemeStyle();
-            if (mViewModel.isInitializeDone()) {
-                onLocationListChanged(resource.dataList, false, resource.notifyOutsider);
-            }
+            setCurrentLocationButtonEnabled(resource.dataList);
         });
     }
 
@@ -185,34 +182,6 @@ public class ManagementFragment extends Fragment
         mBinding.recyclerView.addItemDecoration(mItemDecoration);
     }
 
-    public void setRequestCodes(int searchRequestCode, int providerSettingsRequestCode) {
-        mSearchRequestCode = searchRequestCode;
-        mProviderSettingsRequestCode = providerSettingsRequestCode;
-    }
-
-    public void updateLocationList(List<Location> newList, @Nullable String selectedId) {
-        mViewModel.updateFromOutside(newList, selectedId);
-    }
-
-    public void updateLocation(Location location) {
-        mViewModel.forceUpdateLocation(location);
-    }
-
-    public void addLocation(Location location) {
-        mViewModel.addLocation(location);
-        SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
-    }
-
-    private void onLocationListChanged(List<Location> list, boolean updateShortcuts, boolean notifyOutside) {
-        setCurrentLocationButtonEnabled(list);
-        if (updateShortcuts && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcutsInNewThread(requireActivity(), list);
-        }
-        if (notifyOutside && mLocationListChangedListener != null) {
-            mLocationListChangedListener.onLocationListChanged(list);
-        }
-    }
-
     private void setCurrentLocationButtonEnabled(List<Location> list) {
         boolean enabled = list.size() != 0;
         for (int i = 0; i < list.size(); i ++) {
@@ -225,49 +194,18 @@ public class ManagementFragment extends Fragment
         mBinding.currentLocationButton.setAlpha(enabled ? 1 : .5f);
     }
 
-    public void setDrawerMode(boolean drawerMode) {
-        mDrawerMode = drawerMode;
-        if (mViewModel != null) {
-            mViewModel.setSelectable(drawerMode);
-        }
-    }
-
     // interface.
 
-    public interface LocationManageCallback {
-        void onSelectedLocation(@NonNull String formattedId);
-        void onLocationListChanged(List<Location> locationList);
-    }
-
-    public void setOnLocationListChangedListener(LocationManageCallback l) {
-        mLocationListChangedListener = l;
+    public void setCallback(Callback l) {
+        mCallback = l;
     }
 
     // on location list changed listener.
 
     @Override
-    public void onLocationSequenceChanged(List<Location> locationList) {
-        onLocationListChanged(locationList, true, true);
-    }
-
-    @Override
-    public void onLocationInserted(List<Location> locationList, Location location) {
-        onLocationListChanged(locationList, true, true);
-    }
-
-    @Override
-    public void onLocationRemoved(List<Location> locationList, Location location) {
-        onLocationListChanged(locationList, true, true);
-    }
-
-    @Override
-    public void onLocationChanged(List<Location> locationList, Location location) {
-        onLocationListChanged(locationList, true, true);
-    }
-
-    @Override
     public void onSelectProviderActivityStarted() {
-        IntentHelper.startSelectProviderActivityForResult(
-                requireActivity(), mProviderSettingsRequestCode);
+        if (mCallback != null) {
+            mCallback.onSelectProviderActivityStarted();
+        }
     }
 }

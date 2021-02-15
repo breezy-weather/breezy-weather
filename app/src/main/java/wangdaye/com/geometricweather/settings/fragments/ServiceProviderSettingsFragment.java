@@ -23,6 +23,10 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
 
     private @Nullable OnWeatherSourceChangedListener mListener;
 
+    public interface OnWeatherSourceChangedListener {
+        void onWeatherSourceChanged(Location location);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +80,6 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             );
             return true;
         });
-    }
-
-    public interface OnWeatherSourceChangedListener {
-        void onWeatherSourceChanged(Location location);
     }
 
     public void setOnWeatherSourceChangedListener(@Nullable OnWeatherSourceChangedListener l) {

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:shareInterpolator="@android:interpolator/fast_out_slow_in"
-    android:duration="350"
-    tools:ignore="NewApi">
+    android:interpolator="@anim/x2_decelerate_interpolator"
+    android:duration="350">
 
     <alpha
         android:fromAlpha="1"

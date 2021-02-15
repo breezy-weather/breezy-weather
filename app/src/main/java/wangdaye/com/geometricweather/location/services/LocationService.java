@@ -57,6 +57,10 @@ public abstract class LocationService {
         }
     }
 
+    public interface LocationCallback {
+        void onCompleted(@Nullable Result result);
+    }
+
     public abstract void requestLocation(Context context, @NonNull LocationCallback callback);
 
     public abstract void cancel();
@@ -96,11 +100,5 @@ public abstract class LocationService {
                 .setAutoCancel(true)
                 .setProgress(0, 0, true)
                 .build();
-    }
-
-    // interface.
-
-    public interface LocationCallback {
-        void onCompleted(@Nullable Result result);
     }
 }
