@@ -5,12 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -27,9 +24,8 @@ public abstract class GeoActivity extends AppCompatActivity {
 
     private FitHorizontalSystemBarRootLayout mFitHorizontalSystemBarRootLayout;
 
-    private @Nullable Set<GeoDialog> mDialogSet;
+    private @Nullable GeoDialog mTopDialog;
 
-    private boolean mStarted = false;
     private boolean mForeground = false;
 
     @CallSuper
@@ -73,7 +69,7 @@ public abstract class GeoActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mStarted = true;
+        GeometricWeather.getInstance().setTopActivity(this);
     }
 
     @CallSuper
@@ -81,6 +77,7 @@ public abstract class GeoActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mForeground = true;
+        GeometricWeather.getInstance().setTopActivity(this);
     }
 
     @CallSuper
@@ -88,12 +85,7 @@ public abstract class GeoActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mForeground = false;
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mStarted = false;
+        GeometricWeather.getInstance().checkToCleanTopActivity(this);
     }
 
     @CallSuper
@@ -116,47 +108,23 @@ public abstract class GeoActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isStarted() {
-        return mStarted;
-    }
-
     public boolean isForeground() {
         return mForeground;
     }
 
-    public void addDialog(GeoDialog d) {
-        if (mDialogSet == null) {
-            mDialogSet = new HashSet<>();
-        }
-        mDialogSet.add(d);
-    }
-
-    public void removeDialog(GeoDialog d) {
-        if (mDialogSet == null) {
-            mDialogSet = new HashSet<>();
-        }
-        mDialogSet.remove(d);
-    }
-
     @Nullable
     private GeoDialog getTopDialog() {
-        if (mDialogSet == null) {
-            mDialogSet = new HashSet<>();
-        }
-
-        for (GeoDialog dialog : mDialogSet) {
-            if (dialog.isForeground()) {
-                return dialog;
-            }
-        }
-        return null;
+        return mTopDialog;
     }
 
-    protected Set<GeoDialog> getDialogSet() {
-        if (mDialogSet == null) {
-            mDialogSet = new HashSet<>();
+    public void setTopDialog(@NonNull GeoDialog d) {
+        mTopDialog = d;
+    }
+
+    public void checkToCleanTopDialog(@NonNull GeoDialog d) {
+        if (mTopDialog == d) {
+            mTopDialog = null;
         }
-        return Collections.unmodifiableSet(mDialogSet);
     }
 
     public FitHorizontalSystemBarRootLayout getFitHorizontalSystemBarRootLayout() {

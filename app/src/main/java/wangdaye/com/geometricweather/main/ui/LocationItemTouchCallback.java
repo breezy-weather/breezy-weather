@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.main.utils;
+package wangdaye.com.geometricweather.main.ui;
 
 import android.graphics.Canvas;
 import android.os.Build;
@@ -67,6 +67,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
+        assert mViewModel.getTotalLocationList() != null;
         Location location = mViewModel.getTotalLocationList().get(position);
 
         switch (direction) {
@@ -91,6 +92,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                 break;
             }
             case ItemTouchHelper.END:
+                assert mViewModel.getTotalLocationList() != null;
                 if (mViewModel.getTotalLocationList().size() <= 1) {
                     mViewModel.forceUpdateLocation(location, position);
                     SnackbarHelper.showSnackbar(

@@ -30,26 +30,26 @@ import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
 
 public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
-    private @NonNull GeoActivity mActivity;
-    private @NonNull WeatherView mWeatherView;
-    private @NonNull Location mLocation;
-    private @NonNull ResourceProvider mProvider;
+    private GeoActivity mActivity;
+    private WeatherView mWeatherView;
+    private @Nullable Location mLocation;
+    private ResourceProvider mProvider;
 
-    private @NonNull List<Integer> mViewTypeList;
+    private List<Integer> mViewTypeList;
     private @Nullable Integer mFirstCardPosition;
-    private @NonNull List<Animator> mPendingAnimatorList;
+    private List<Animator> mPendingAnimatorList;
     private int mHeaderCurrentTemperatureTextHeight;
     private boolean mListAnimationEnabled;
     private boolean mItemAnimationEnabled;
 
     public MainAdapter(@NonNull GeoActivity activity, @NonNull WeatherView weatherView,
-                       @NonNull Location location, @NonNull ResourceProvider provider,
+                       @Nullable Location location, @NonNull ResourceProvider provider,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         update(activity, weatherView, location, provider, listAnimationEnabled, itemAnimationEnabled);
     }
 
     public void update(@NonNull GeoActivity activity, @NonNull WeatherView weatherView,
-                       @NonNull Location location, @NonNull ResourceProvider provider,
+                       @Nullable Location location, @NonNull ResourceProvider provider,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         mActivity = activity;
         mWeatherView = weatherView;
@@ -63,7 +63,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         mListAnimationEnabled = listAnimationEnabled;
         mItemAnimationEnabled = itemAnimationEnabled;
 
-        if (location.getWeather() != null) {
+        if (location != null && location.getWeather() != null) {
             Weather weather = location.getWeather();
             List<CardDisplay> cardDisplayList = SettingsOptionManager.getInstance(activity).getCardDisplayList();
             mViewTypeList.add(ViewType.HEADER);
@@ -126,6 +126,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AbstractMainViewHolder holder, int position) {
+        assert mLocation != null;
         if (holder instanceof AbstractMainCardViewHolder) {
             ((AbstractMainCardViewHolder) holder).onBindView(
                     mActivity,

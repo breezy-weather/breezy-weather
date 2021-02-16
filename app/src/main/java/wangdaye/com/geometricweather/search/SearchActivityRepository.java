@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.management.search;
+package wangdaye.com.geometricweather.search;
 
 import android.content.Context;
 import android.content.SharedPreferences;

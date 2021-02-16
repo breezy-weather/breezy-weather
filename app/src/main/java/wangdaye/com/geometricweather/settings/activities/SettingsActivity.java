@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.fragments.SettingsFragment;
+import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 /**
  * Settings activity.
@@ -24,7 +25,15 @@ public class SettingsActivity extends GeoActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        ((Toolbar) findViewById(R.id.activity_settings_toolbar)).setNavigationOnClickListener(v -> finish());
+        Toolbar toolbar = findViewById(R.id.activity_settings_toolbar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.inflateMenu(R.menu.activity_settings);
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_about) {
+                IntentHelper.startAboutActivity(this);
+            }
+            return true;
+        });
 
         SettingsFragment settingsFragment = new SettingsFragment();
         getSupportFragmentManager()

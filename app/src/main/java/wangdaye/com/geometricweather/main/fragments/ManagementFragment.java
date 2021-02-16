@@ -20,8 +20,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionInflater;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -29,9 +29,10 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
+import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper;
 import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
-import wangdaye.com.geometricweather.main.utils.LocationItemTouchCallback;
-import wangdaye.com.geometricweather.management.adapter.LocationAdapter;
+import wangdaye.com.geometricweather.main.ui.LocationItemTouchCallback;
+import wangdaye.com.geometricweather.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.managers.ThemeManager;
@@ -42,9 +43,9 @@ public class ManagementFragment extends Fragment
     private FragmentManagementBinding mBinding;
     private MainActivityViewModel mViewModel;
 
-    private @Nullable LocationAdapter mAdapter;
+    private LocationAdapter mAdapter;
     private ItemTouchHelper mItemTouchHelper;
-    private ListDecoration mItemDecoration;
+    private @Nullable RecyclerView.ItemDecoration mItemDecoration;
 
     private ValueAnimator mColorAnimator;
 
@@ -53,14 +54,6 @@ public class ManagementFragment extends Fragment
     public interface Callback {
         void onSearchBarClicked(View searchBar);
         void onSelectProviderActivityStarted();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        TransitionInflater inflater = TransitionInflater.from(requireContext());
-        setEnterTransition(inflater.inflateTransition(R.transition.manage_fragment_in));
-        setExitTransition(inflater.inflateTransition(R.transition.manage_fragment_out));
     }
 
     @Nullable
@@ -72,6 +65,14 @@ public class ManagementFragment extends Fragment
         initView();
         setCallback((Callback) requireActivity());
         return mBinding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (mItemDecoration != null) {
+            mBinding.recyclerView.removeItemDecoration(mItemDecoration);
+        }
     }
 
     private void initModel() {
@@ -93,6 +94,17 @@ public class ManagementFragment extends Fragment
             SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
         });
 
+        mAdapter = new LocationAdapter(
+                requireActivity(),
+                new ArrayList<>(),
+                null,
+                (v, formattedId) -> { // on click.
+                    mViewModel.setLocation(formattedId);
+                    getParentFragmentManager().popBackStack();
+                },
+                holder -> mItemTouchHelper.startDrag(holder) // on drag.
+        );
+        mBinding.recyclerView.setAdapter(new LocationAdapterAnimWrapper(requireContext(), mAdapter));
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(
                 requireActivity(), RecyclerView.VERTICAL, false));
 
@@ -102,28 +114,12 @@ public class ManagementFragment extends Fragment
 
         mViewModel.getListResource().observe(getViewLifecycleOwner(), resource -> {
 
-            if (mAdapter == null) {
-                mAdapter = new LocationAdapter(
-                        requireActivity(),
-                        resource.dataList,
-                        resource.selectedId,
-                        (v, formattedId) -> { // on click.
-                            mViewModel.setLocation(formattedId);
-                            getParentFragmentManager().popBackStack();
-                        },
-                        holder -> mItemTouchHelper.startDrag(holder) // on drag.
-                );
-            } else if (resource.source instanceof SelectableLocationListResource.ItemMoved) {
+            if (resource.source instanceof SelectableLocationListResource.ItemMoved) {
                 SelectableLocationListResource.ItemMoved source
                         = (SelectableLocationListResource.ItemMoved) resource.source;
                 mAdapter.update(source.from, source.to);
             } else {
                 mAdapter.update(resource.dataList, resource.selectedId, resource.forceUpdateId);
-            }
-            if (mBinding.recyclerView.getAdapter() != mAdapter) {
-                mBinding.recyclerView.setAdapter(mAdapter);
-            } else {
-                mAdapter.notifyDataSetChanged();
             }
 
             setThemeStyle();
@@ -173,7 +169,6 @@ public class ManagementFragment extends Fragment
 
         if (mItemDecoration != null) {
             mBinding.recyclerView.removeItemDecoration(mItemDecoration);
-            mItemDecoration = null;
         }
         mItemDecoration = new ListDecoration(
                 requireActivity(),

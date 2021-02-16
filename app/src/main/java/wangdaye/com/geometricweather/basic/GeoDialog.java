@@ -1,11 +1,9 @@
 package wangdaye.com.geometricweather.basic;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.LifecycleEventObserver;
 
@@ -36,27 +34,17 @@ public abstract class GeoDialog extends DialogFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ((GeoActivity) requireActivity()).addDialog(this);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         mForeground = true;
+        ((GeoActivity) requireActivity()).setTopDialog(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mForeground = false;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ((GeoActivity) requireActivity()).removeDialog(this);
+        ((GeoActivity) requireActivity()).checkToCleanTopDialog(this);
     }
 
     public abstract View getSnackbarContainer();

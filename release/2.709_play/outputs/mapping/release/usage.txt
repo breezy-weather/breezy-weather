@@ -7846,7 +7846,7 @@ com.google.android.material.transition.FitModeEvaluators$2
 org.greenrobot.greendao.query.LazyList
 androidx.annotation.StyleRes
 androidx.core.app.NotificationCompat$NotificationVisibility
-wangdaye.com.geometricweather.management.search.SearchActivityViewModel:
+wangdaye.com.geometricweather.management.SearchActivityViewModel:
     public int getLocationCount()
 com.google.android.gms.tasks.zzo
 androidx.recyclerview.widget.MessageThreadUtil$2
@@ -9598,7 +9598,7 @@ io.reactivex.internal.operators.single.SingleFlatMapMaybe$FlatMapSingleObserver
 com.google.android.material.transition.platform.MaterialContainerTransform$TransitionDrawable
 io.reactivex.internal.operators.single.SingleEquals$InnerObserver
 io.reactivex.subjects.CompletableSubject
-wangdaye.com.geometricweather.management.search.SearchActivityRepository:
+wangdaye.com.geometricweather.management.SearchActivityRepository:
     private static final java.lang.String PREFERENCE_SEARCH_CONFIG
     private static final java.lang.String KEY_MULTI_SOURCE_ENABLED
 io.reactivex.internal.operators.flowable.FlowableSequenceEqual
@@ -14858,8 +14858,8 @@ wangdaye.com.geometricweather.ui.widgets.InkPageIndicator$PendingRevealAnimator$
     final synthetic wangdaye.com.geometricweather.ui.widgets.InkPageIndicator val$this$0
 wangdaye.com.geometricweather.databinding.ItemPollenDailyBinding:
     public final android.widget.LinearLayout itemPollenDaily
-wangdaye.com.geometricweather.management.search.SearchActivityRepository$1:
-    final synthetic wangdaye.com.geometricweather.management.search.SearchActivityRepository this$0
+wangdaye.com.geometricweather.management.SearchActivityRepository$1:
+    final synthetic wangdaye.com.geometricweather.management.SearchActivityRepository this$0
 com.google.android.gms.common.api.internal.BasePendingResult:
     private final java.lang.ref.WeakReference zad
     private com.google.android.gms.common.internal.ICancelToken zan

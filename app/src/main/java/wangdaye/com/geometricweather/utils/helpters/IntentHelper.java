@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.daily.DailyWeatherActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.management.search.SearchActivity;
+import wangdaye.com.geometricweather.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.activities.AboutActivity;
 import wangdaye.com.geometricweather.settings.activities.CardDisplayManageActivity;
 import wangdaye.com.geometricweather.settings.activities.DailyTrendDisplayManageActivity;

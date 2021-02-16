@@ -41,6 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
+            app:navigationIcon="@drawable/ic_building"
+            app:navigationContentDescription="@string/action_manage"
             app:theme="@style/GeometricWeatherTheme.AppbarTheme"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 

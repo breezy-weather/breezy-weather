@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.management.search;
+package wangdaye.com.geometricweather.search;
 
 import android.app.Application;
 
@@ -11,7 +11,6 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.basic.GeoViewModel;
 import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.management.models.LoadableLocationList;
 
 public class SearchActivityViewModel extends GeoViewModel {
 

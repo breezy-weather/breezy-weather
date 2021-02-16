@@ -115,8 +115,11 @@ public class MainActivityViewModel extends GeoViewModel
             Location current = validList.get(validIndex);
             Indicator indicator = new Indicator(validList.size(), validIndex);
             boolean defaultLocation = validIndex == 0;
+            LocationResource.Event event = done
+                    ? LocationResource.Event.INITIALIZE
+                    : LocationResource.Event.UPDATE;
 
-            setLocationResourceWithVerification(current, defaultLocation, false,
+            setLocationResourceWithVerification(current, defaultLocation, event,
                     indicator, null, new SelectableLocationListResource.DataSetChanged());
         });
     }
@@ -143,7 +146,6 @@ public class MainActivityViewModel extends GeoViewModel
             }
 
             List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-
             int validIndex = indexLocation(validList, mFormattedId);
 
             setInnerData(totalList, validList, validIndex);
@@ -152,7 +154,7 @@ public class MainActivityViewModel extends GeoViewModel
             Indicator indicator = new Indicator(validList.size(), validIndex);
             boolean defaultLocation = validIndex == 0;
 
-            setLocationResourceWithVerification(current, defaultLocation, true,
+            setLocationResourceWithVerification(current, defaultLocation, LocationResource.Event.BACKGROUND_UPDATE,
                     indicator, null, new SelectableLocationListResource.DataSetChanged());
         });
     }
@@ -172,7 +174,7 @@ public class MainActivityViewModel extends GeoViewModel
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        setLocationResourceWithVerification(current, defaultLocation, false,
+        setLocationResourceWithVerification(current, defaultLocation, LocationResource.Event.UPDATE,
                 indicator, null, new SelectableLocationListResource.DataSetChanged());
     }
 
@@ -194,7 +196,7 @@ public class MainActivityViewModel extends GeoViewModel
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        setLocationResourceWithVerification(current, defaultLocation, false,
+        setLocationResourceWithVerification(current, defaultLocation, LocationResource.Event.UPDATE,
                 indicator, null, new SelectableLocationListResource.DataSetChanged());
     }
 
@@ -211,7 +213,7 @@ public class MainActivityViewModel extends GeoViewModel
                 LocationResource.loading(
                         location,
                         mCurrentLocation.getValue().defaultLocation,
-                        false
+                        LocationResource.Event.UPDATE
                 )
         );
 
@@ -246,7 +248,7 @@ public class MainActivityViewModel extends GeoViewModel
                 LocationResource.error(
                         location,
                         location.equals(mValidList.get(0)),
-                        false
+                        LocationResource.Event.UPDATE
                 )
         );
     }
@@ -256,6 +258,7 @@ public class MainActivityViewModel extends GeoViewModel
             return;
         }
 
+        assert mTotalList != null;
         addLocation(location, mTotalList.size());
     }
 
@@ -263,12 +266,13 @@ public class MainActivityViewModel extends GeoViewModel
         if (mStatus == Status.INITIALIZING) {
             return;
         }
+        assert mTotalList != null;
 
         List<Location> totalList = new ArrayList<>(mTotalList);
         totalList.add(position, location);
 
         List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-        int validIndex = indexLocation(mValidList, mFormattedId);
+        int validIndex = indexLocation(validList, mFormattedId);
 
         setInnerData(totalList, validList, validIndex);
 
@@ -276,7 +280,7 @@ public class MainActivityViewModel extends GeoViewModel
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        setLocationResourceWithVerification(current, defaultLocation, false,
+        setLocationResourceWithVerification(current, defaultLocation, LocationResource.Event.UPDATE,
                 indicator, null, new SelectableLocationListResource.DataSetChanged());
 
         if (position == mTotalList.size() - 1) {
@@ -290,12 +294,30 @@ public class MainActivityViewModel extends GeoViewModel
         if (mStatus == Status.INITIALIZING) {
             return;
         }
+        assert mTotalList != null;
 
         List<Location> totalList = new ArrayList<>(mTotalList);
         Collections.swap(totalList, from, to);
 
         List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-        int validIndex = indexLocation(mValidList, mFormattedId);
+        int validIndex = indexLocation(validList, mFormattedId);
+
+        setInnerData(totalList, validList, validIndex);
+
+        mListResource.setValue(new SelectableLocationListResource(
+                totalList, mFormattedId, null,
+                new SelectableLocationListResource.ItemMoved(from, to)));
+    }
+
+    public void moveLocationFinish() {
+        if (mStatus == Status.INITIALIZING) {
+            return;
+        }
+        assert mTotalList != null;
+
+        List<Location> totalList = new ArrayList<>(mTotalList);
+        List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
+        int validIndex = indexLocation(validList, mFormattedId);
 
         setInnerData(totalList, validList, validIndex);
 
@@ -303,14 +325,8 @@ public class MainActivityViewModel extends GeoViewModel
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        setLocationResourceWithVerification(current, defaultLocation, false,
-                indicator, null, new SelectableLocationListResource.ItemMoved(from, to));
-    }
-
-    public void moveLocationFinish() {
-        if (mStatus == Status.INITIALIZING) {
-            return;
-        }
+        setLocationResourceWithVerification(current, defaultLocation, LocationResource.Event.UPDATE,
+                indicator, null, new SelectableLocationListResource.DataSetChanged());
 
         mRepository.writeLocationList(getApplication(), mTotalList);
     }
@@ -319,6 +335,7 @@ public class MainActivityViewModel extends GeoViewModel
         if (mStatus == Status.INITIALIZING) {
             return;
         }
+        assert mTotalList != null;
 
         List<Location> totalList = new ArrayList<>(mTotalList);
         for (int i = 0; i < totalList.size(); i ++) {
@@ -329,7 +346,7 @@ public class MainActivityViewModel extends GeoViewModel
         }
 
         List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-        int validIndex = indexLocation(mValidList, mFormattedId);
+        int validIndex = indexLocation(validList, mFormattedId);
 
         setInnerData(totalList, validList, validIndex);
 
@@ -337,7 +354,7 @@ public class MainActivityViewModel extends GeoViewModel
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        setLocationResourceWithVerification(current, defaultLocation, false,
+        setLocationResourceWithVerification(current, defaultLocation, LocationResource.Event.UPDATE,
                 indicator, location.getFormattedId(), new SelectableLocationListResource.DataSetChanged());
 
         mRepository.writeLocation(getApplication(), location);
@@ -347,12 +364,13 @@ public class MainActivityViewModel extends GeoViewModel
         if (mStatus == Status.INITIALIZING) {
             return;
         }
+        assert mTotalList != null;
 
         List<Location> totalList = new ArrayList<>(mTotalList);
         totalList.set(position, location);
 
         List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-        int validIndex = indexLocation(mValidList, mFormattedId);
+        int validIndex = indexLocation(validList, mFormattedId);
 
         setInnerData(totalList, validList, validIndex);
 
@@ -360,7 +378,7 @@ public class MainActivityViewModel extends GeoViewModel
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        setLocationResourceWithVerification(current, defaultLocation, false,
+        setLocationResourceWithVerification(current, defaultLocation, LocationResource.Event.UPDATE,
                 indicator, location.getFormattedId(), new SelectableLocationListResource.DataSetChanged());
 
         mRepository.writeLocation(getApplication(), location);
@@ -371,6 +389,7 @@ public class MainActivityViewModel extends GeoViewModel
         if (mStatus == Status.INITIALIZING) {
             return null;
         }
+        assert mTotalList != null;
 
         List<Location> totalList = new ArrayList<>(mTotalList);
         Location location = totalList.remove(position);
@@ -379,7 +398,7 @@ public class MainActivityViewModel extends GeoViewModel
         }
 
         List<Location> validList = Location.excludeInvalidResidentLocation(getApplication(), totalList);
-        int validIndex = indexLocation(mValidList, mFormattedId);
+        int validIndex = indexLocation(validList, mFormattedId);
 
         setInnerData(totalList, validList, validIndex);
 
@@ -387,7 +406,7 @@ public class MainActivityViewModel extends GeoViewModel
         Indicator indicator = new Indicator(validList.size(), validIndex);
         boolean defaultLocation = validIndex == 0;
 
-        setLocationResourceWithVerification(current, defaultLocation, false,
+        setLocationResourceWithVerification(current, defaultLocation, LocationResource.Event.UPDATE,
                 indicator, location.getFormattedId(), new SelectableLocationListResource.DataSetChanged());
 
         mRepository.deleteLocation(getApplication(), location);
@@ -409,37 +428,41 @@ public class MainActivityViewModel extends GeoViewModel
 
     private void setLocationResourceWithVerification(Location location,
                                                      boolean defaultLocation,
-                                                     boolean fromBackgroundUpdate,
+                                                     LocationResource.Event event,
                                                      Indicator indicator,
                                                      @Nullable String forceUpdateId,
                                                      @NonNull SelectableLocationListResource.Source source) {
         switch (mStatus) {
             case INITIALIZING:
                 mCurrentLocation.setValue(
-                        LocationResource.loading(location, defaultLocation, fromBackgroundUpdate));
+                        LocationResource.loading(location, defaultLocation, event));
                 break;
 
             case IMPLICIT_INITIALIZING:
                 LocationResource resource = mCurrentLocation.getValue();
                 Resource.Status status = resource == null ? Resource.Status.SUCCESS : resource.status;
                 mCurrentLocation.setValue(
-                        new LocationResource(location, status, defaultLocation, false, fromBackgroundUpdate));
+                        new LocationResource(location, status, defaultLocation, false, event));
                 break;
 
             case IDLE:
                 if (MainModuleUtils.needUpdate(getApplication(), location)) {
                     mCurrentLocation.setValue(
-                            LocationResource.loading(location, defaultLocation, fromBackgroundUpdate));
+                            LocationResource.loading(location, defaultLocation, event));
                     updateWeather(false, true);
                 } else {
                     mCurrentLocation.setValue(
-                            LocationResource.success(location, defaultLocation, fromBackgroundUpdate));
+                            LocationResource.success(location, defaultLocation, event));
                 }
                 break;
         }
 
-        mListResource.setValue(new SelectableLocationListResource(
-                new ArrayList<>(mTotalList), location.getFormattedId(), forceUpdateId, source));
+        assert mTotalList != null;
+        if (mStatus != Status.INITIALIZING) {
+            mListResource.setValue(new SelectableLocationListResource(
+                    new ArrayList<>(mTotalList), location.getFormattedId(), forceUpdateId, source));
+        }
+
         mIndicator.setValue(indicator);
     }
 
@@ -579,18 +602,21 @@ public class MainActivityViewModel extends GeoViewModel
         LocationResource resource;
         if (!done) {
             resource = LocationResource.loading(
-                    location, defaultLocation, locateFailed, false);
+                    location, defaultLocation, locateFailed, LocationResource.Event.UPDATE);
         } else if (succeed) {
             resource = LocationResource.success(
-                    location, defaultLocation, false);
+                    location, defaultLocation, LocationResource.Event.UPDATE);
         } else {
             resource = LocationResource.error(
-                    location, defaultLocation, locateFailed, false);
+                    location, defaultLocation, locateFailed, LocationResource.Event.UPDATE);
         }
 
         Indicator indicator = new Indicator(validList.size(), validIndex);
 
         mCurrentLocation.setValue(resource);
         mIndicator.setValue(indicator);
+        mListResource.setValue(new SelectableLocationListResource(
+                totalList, mFormattedId, null,
+                new SelectableLocationListResource.DataSetChanged()));
     }
 }

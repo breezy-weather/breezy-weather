@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather;
 import android.app.Activity;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDexApplication;
@@ -36,7 +37,8 @@ public class GeometricWeather extends MultiDexApplication {
         return sInstance;
     }
 
-    private Set<GeoActivity> mActivitySet;
+    private @Nullable Set<GeoActivity> mActivitySet;
+    private @Nullable GeoActivity mTopActivity;
 
     private OkHttpClient mOkHttpClient;
     private GsonConverterFactory mGsonConverterFactory;
@@ -153,7 +155,6 @@ public class GeometricWeather extends MultiDexApplication {
 
     private void initialize() {
         sInstance = this;
-        mActivitySet = new HashSet<>();
 
         mOkHttpClient = TLSCompactHelper.getClientBuilder().build();
         mGsonConverterFactory = GsonConverterFactory.create(
@@ -168,21 +169,32 @@ public class GeometricWeather extends MultiDexApplication {
     }
 
     public void addActivity(GeoActivity a) {
+        if (mActivitySet == null) {
+            mActivitySet = new HashSet<>();
+        }
         mActivitySet.add(a);
     }
 
     public void removeActivity(GeoActivity a) {
+        if (mActivitySet == null) {
+            mActivitySet = new HashSet<>();
+        }
         mActivitySet.remove(a);
     }
 
     @Nullable
     public GeoActivity getTopActivity() {
-        for (GeoActivity activity : mActivitySet) {
-            if (activity.isStarted()) {
-                return activity;
-            }
+        return mTopActivity;
+    }
+
+    public void setTopActivity(@NonNull GeoActivity a) {
+        mTopActivity = a;
+    }
+
+    public void checkToCleanTopActivity(@NonNull GeoActivity a) {
+        if (mTopActivity == a) {
+            mTopActivity = null;
         }
-        return null;
     }
 
     public OkHttpClient getOkHttpClient() {
@@ -253,6 +265,9 @@ public class GeometricWeather extends MultiDexApplication {
     }
 
     public void recreateAllActivities() {
+        if (mActivitySet == null) {
+            mActivitySet = new HashSet<>();
+        }
         for (Activity a : mActivitySet) {
             a.recreate();
         }

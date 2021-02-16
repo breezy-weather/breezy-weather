@@ -390,7 +390,7 @@ ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:1
 		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:124:13-57
 	android:name
 		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:122:13-58
-activity#wangdaye.com.geometricweather.management.search.SearchActivity
+activity#wangdaye.com.geometricweather.management.SearchActivity
 ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:126:9-128:67
 	android:label
 		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:127:13-50

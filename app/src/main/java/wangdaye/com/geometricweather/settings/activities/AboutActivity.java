@@ -8,6 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 
 import wangdaye.com.geometricweather.R;
@@ -18,8 +19,7 @@ import wangdaye.com.geometricweather.settings.adapters.AboutAdapter;
  * About activity.
  * */
 
-public class AboutActivity extends GeoActivity
-        implements View.OnClickListener {
+public class AboutActivity extends GeoActivity {
 
     private CoordinatorLayout mContainer;
 
@@ -45,23 +45,10 @@ public class AboutActivity extends GeoActivity
         mContainer = findViewById(R.id.activity_about_container);
 
         Toolbar toolbar = findViewById(R.id.activity_about_toolbar);
-        toolbar.setNavigationOnClickListener(this);
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         RecyclerView recyclerView = findViewById(R.id.activity_about_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new AboutAdapter(this));
-    }
-
-    // interface.
-
-    // on click listener.
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case -1:
-                finish();
-                break;
-        }
     }
 }

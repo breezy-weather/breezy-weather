@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.management.models;
+package wangdaye.com.geometricweather.search;
 
 import androidx.annotation.NonNull;
 

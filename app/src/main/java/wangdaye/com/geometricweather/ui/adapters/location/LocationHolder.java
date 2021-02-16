@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.management.adapter;
+package wangdaye.com.geometricweather.ui.adapters.location;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

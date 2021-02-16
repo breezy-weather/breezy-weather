@@ -396,7 +396,7 @@ public static java.lang.String TABLENAME;
 -keep class wangdaye.com.geometricweather.daily.DailyWeatherActivity { <init>(); }
 -keep class wangdaye.com.geometricweather.main.MainActivity { <init>(); }
 -keep class wangdaye.com.geometricweather.management.ManagementActivity { <init>(); }
--keep class wangdaye.com.geometricweather.management.search.SearchActivity { <init>(); }
+-keep class wangdaye.com.geometricweather.management.SearchActivity { <init>(); }
 -keep class wangdaye.com.geometricweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity { <init>(); }
 -keep class wangdaye.com.geometricweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity { <init>(); }
 -keep class wangdaye.com.geometricweather.remoteviews.config.ClockDayVerticalWidgetConfigActivity { <init>(); }

@@ -30,6 +30,7 @@ import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
+import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -50,7 +51,7 @@ public class MainFragment extends Fragment {
     private MainActivityViewModel mViewModel;
 
     private WeatherView mWeatherView;
-    private @Nullable MainAdapter mAdapter;
+    private MainAdapter mAdapter;
     private @Nullable AnimatorSet mRecyclerViewAnimator;
 
     private ResourceProvider mResourceProvider;
@@ -65,9 +66,8 @@ public class MainFragment extends Fragment {
     private static final long INVALID_CURRENT_WEATHER_TIME_STAMP = -1;
 
     public interface Callback {
-        void onNavigationIconClicked();
+        void onManageIconClicked();
         void onSettingsIconClicked();
-        void onAboutIconClicked();
     }
 
     @Nullable
@@ -110,14 +110,14 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         mWeatherView.setDrawable(true);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         mWeatherView.setDrawable(false);
     }
 
@@ -131,21 +131,21 @@ public class MainFragment extends Fragment {
     private void initView() {
         mBinding.toolbar.setNavigationOnClickListener(v -> {
             if (mCallback != null) {
-                mCallback.onNavigationIconClicked();
+                mCallback.onManageIconClicked();
             }
         });
         mBinding.toolbar.inflateMenu(R.menu.activity_main);
         mBinding.toolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
-                case R.id.action_settings:
+                case R.id.action_manage:
                     if (mCallback != null) {
-                        mCallback.onSettingsIconClicked();
+                        mCallback.onManageIconClicked();
                     }
                     break;
 
-                case R.id.action_about:
+                case R.id.action_settings:
                     if (mCallback != null) {
-                        mCallback.onAboutIconClicked();
+                        mCallback.onSettingsIconClicked();
                     }
                     break;
             }
@@ -167,6 +167,12 @@ public class MainFragment extends Fragment {
         mBinding.refreshLayout.setOnRefreshListener(() ->
                 mViewModel.updateWeather(true, true));
 
+        boolean listAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isListAnimationEnabled();
+        boolean itemAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isItemAnimationEnabled();
+        mAdapter = new MainAdapter((GeoActivity) requireActivity(), mWeatherView, null, mResourceProvider,
+                listAnimationEnabled, itemAnimationEnabled);
+
+        mBinding.recyclerView.setAdapter(mAdapter);
         mBinding.recyclerView.setLayoutManager(new MainLayoutManager());
         mBinding.recyclerView.setOnTouchListener(indicatorStateListener);
 
@@ -178,7 +184,7 @@ public class MainFragment extends Fragment {
             }
 
             setRefreshing(resource.status == Resource.Status.LOADING);
-            drawUI(resource.data);
+            drawUI(resource.data, resource.event == LocationResource.Event.INITIALIZE);
 
             if (resource.locateFailed) {
                 SnackbarHelper.showSnackbar(
@@ -211,7 +217,7 @@ public class MainFragment extends Fragment {
     // control.
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
-    private void drawUI(Location location) {
+    private void drawUI(Location location, boolean initialize) {
         if (location.equals(mCurrentLocationFormattedId)
                 && location.getWeatherSource() == mCurrentWeatherSource
                 && location.getWeather() != null
@@ -255,7 +261,12 @@ public class MainFragment extends Fragment {
                 .isDayTime();
 
         setDarkMode(daytime);
-        if (oldDaytime != daytime) {
+
+        if (initialize) {
+            resetUIUpdateFlag();
+            ensureResourceProvider();
+        }
+        if (initialize || oldDaytime != daytime) {
             updateThemeManager();
 
             FitHorizontalSystemBarRootLayout rootLayout = ((GeoActivity) requireActivity())
@@ -272,19 +283,9 @@ public class MainFragment extends Fragment {
 
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isItemAnimationEnabled();
-
-        if (mAdapter == null) {
-            mAdapter = new MainAdapter((GeoActivity) requireActivity(), mWeatherView, location, mResourceProvider,
-                    listAnimationEnabled, itemAnimationEnabled);
-        } else {
-            mAdapter.update((GeoActivity) requireActivity(), mWeatherView, location, mResourceProvider,
-                    listAnimationEnabled, itemAnimationEnabled);
-        }
-        if (mBinding.recyclerView.getAdapter() != mAdapter) {
-            mBinding.recyclerView.setAdapter(mAdapter);
-        } else {
-            mAdapter.notifyDataSetChanged();
-        }
+        mAdapter.update((GeoActivity) requireActivity(), mWeatherView, location, mResourceProvider,
+                listAnimationEnabled, itemAnimationEnabled);
+        mAdapter.notifyDataSetChanged();
 
         OnScrollListener l = new OnScrollListener();
         mBinding.recyclerView.clearOnScrollListeners();
@@ -333,10 +334,8 @@ public class MainFragment extends Fragment {
             mRecyclerViewAnimator.cancel();
             mRecyclerViewAnimator = null;
         }
-        if (mAdapter != null) {
-            mAdapter.setNullWeather();
-            mAdapter.notifyDataSetChanged();
-        }
+        mAdapter.setNullWeather();
+        mAdapter.notifyDataSetChanged();
     }
 
     public void resetUIUpdateFlag() {

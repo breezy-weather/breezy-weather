@@ -1,8 +1,7 @@
-package wangdaye.com.geometricweather.management.search;
+package wangdaye.com.geometricweather.search;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.turingtechnologies.materialscrollbar.CustomIndicator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -36,8 +36,7 @@ import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.management.adapter.LocationAdapter;
-import wangdaye.com.geometricweather.management.models.LoadableLocationList;
+import wangdaye.com.geometricweather.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
 import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
@@ -117,12 +116,6 @@ public class SearchActivity extends GeoActivity
         initView();
     }
 
-    @SuppressLint("MissingSuperCall")
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        // do nothing.
-    }
-
     @Override
     public void onBackPressed() {
         if (getWindow().getAttributes().softInputMode
@@ -166,16 +159,40 @@ public class SearchActivity extends GeoActivity
             }
         });
 
+        mAdapter = new LocationAdapter(
+                this,
+                new ArrayList<>(),
+                null,
+                (view, formattedId) -> {
+                    for (int i = 0; i < mCurrentList.size(); i ++) {
+                        if (mCurrentList.get(i).equals(formattedId)) {
+                            SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_failed));
+                            return;
+                        }
+                    }
+
+                    for (Location l : mViewModel.getLocationList()) {
+                        if (l.equals(formattedId)) {
+                            finishSelf(l);
+                            return;
+                        }
+                    }
+                },
+                null
+        );
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 this, RecyclerView.VERTICAL, false);
 
-        mBinding.recyclerView.setLayoutManager(layoutManager);
-        mBinding.recyclerView.addItemDecoration(new ListDecoration(this));
         mBinding.recyclerView.setAdapter(mAdapter);
+        mBinding.recyclerView.setLayoutManager(layoutManager);
+        while (mBinding.recyclerView.getItemDecorationCount() > 0) {
+            mBinding.recyclerView.removeItemDecorationAt(0);
+        }
+        mBinding.recyclerView.addItemDecoration(new ListDecoration(this));
 
         mBinding.scrollBar.setIndicator(
                 new WeatherSourceIndicator(this).setTextSize(16), true);
-
         mBinding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @ColorInt int color;
@@ -204,36 +221,9 @@ public class SearchActivity extends GeoActivity
         }
 
         mViewModel.getListResource().observe(this, loadableLocationList -> {
-
             setStatus(loadableLocationList.status);
             mBinding.filterBtn.setEnabled(loadableLocationList.status != LoadableLocationList.Status.LOADING);
-
-            if (mAdapter == null) {
-                mAdapter = new LocationAdapter(
-                        this,
-                        loadableLocationList.dataList,
-                        null,
-                        (view, formattedId) -> {
-                            for (int i = 0; i < mCurrentList.size(); i ++) {
-                                if (mCurrentList.get(i).equals(formattedId)) {
-                                    SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_failed));
-                                    return;
-                                }
-                            }
-
-                            for (Location l : mViewModel.getLocationList()) {
-                                if (l.equals(formattedId)) {
-                                    finishSelf(l);
-                                    return;
-                                }
-                            }
-                        },
-                        null
-                );
-                mBinding.recyclerView.setAdapter(mAdapter);
-            } else {
-                mAdapter.update(loadableLocationList.dataList, null, null);
-            }
+            mAdapter.update(loadableLocationList.dataList, null, null);
         });
 
         mViewModel.getMultiSourceEnabled().observe(this, enabled -> {

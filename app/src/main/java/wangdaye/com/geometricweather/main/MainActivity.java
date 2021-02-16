@@ -27,7 +27,6 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.GeoDialog;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.basic.models.weather.Weather;
@@ -36,11 +35,12 @@ import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
 import wangdaye.com.geometricweather.main.fragments.MainFragment;
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment;
+import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
 import wangdaye.com.geometricweather.main.utils.StatementManager;
-import wangdaye.com.geometricweather.management.search.SearchActivity;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
@@ -63,7 +63,6 @@ public class MainActivity extends GeoActivity
     private @Nullable HashMap<String, Object> mPendingExtraMap;
 
     public static final int SETTINGS_ACTIVITY = 1;
-    public static final int MANAGE_ACTIVITY = 2;
     public static final int CARD_MANAGE_ACTIVITY = 3;
     public static final int SEARCH_ACTIVITY = 4;
     public static final int SELECT_PROVIDER_ACTIVITY = 5;
@@ -125,10 +124,6 @@ public class MainActivity extends GeoActivity
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         pendingIntentAction(intent);
-        MainFragment f = findMainFragment();
-        if (f != null) {
-            f.resetUIUpdateFlag();
-        }
         mViewModel.init(getLocationId(intent));
     }
 
@@ -137,13 +132,6 @@ public class MainActivity extends GeoActivity
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SETTINGS_ACTIVITY: {
-                MainFragment f = findMainFragment();
-                if (f != null) {
-                    f.ensureResourceProvider();
-                    f.updateThemeManager();
-                    f.resetUIUpdateFlag();
-                }
-
                 mViewModel.init();
 
                 // update notification immediately.
@@ -156,22 +144,8 @@ public class MainActivity extends GeoActivity
                         true, true);
                 break;
             }
-            case MANAGE_ACTIVITY:
-                if (resultCode == RESULT_OK) {
-                    String formattedId = getLocationId(data);
-                    if (TextUtils.isEmpty(formattedId)) {
-                        formattedId = mViewModel.getCurrentFormattedId();
-                    }
-                    mViewModel.init(formattedId);
-                }
-                break;
-
             case CARD_MANAGE_ACTIVITY:
                 if (resultCode == RESULT_OK) {
-                    MainFragment f = findMainFragment();
-                    if (f != null) {
-                        f.resetUIUpdateFlag();
-                    }
                     mViewModel.init();
                 }
                 break;
@@ -197,11 +171,6 @@ public class MainActivity extends GeoActivity
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
-            MainFragment f = findMainFragment();
-            if (f != null) {
-                f.updateThemeManager();
-                f.resetUIUpdateFlag();
-            }
             mViewModel.init();
         }
     }
@@ -242,9 +211,7 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint({"ClickableViewAccessibility", "NonConstantResourceId"})
     private void initView() {
-        if (mBinding.drawerLayout == null
-                && getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT_MAIN) == null
-                && getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT_MANAGEMENT) == null) {
+        if (findMainFragment() == null && findManagementFragment() == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment, MainFragment.class, null, TAG_FRAGMENT_MAIN)
@@ -256,8 +223,9 @@ public class MainActivity extends GeoActivity
                 return;
             }
 
-            refreshBackgroundViews(false, mViewModel.getValidLocationList(),
-                    resource.defaultLocation, !resource.fromBackgroundUpdate);
+            refreshBackgroundViews(
+                    false, mViewModel.getValidLocationList(), resource.defaultLocation,
+                    resource.event != LocationResource.Event.BACKGROUND_UPDATE);
 
             consumeIntentAction();
         });
@@ -358,12 +326,12 @@ public class MainActivity extends GeoActivity
             if (visible) {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        // .setCustomAnimations(
-                        //         R.anim.fragment_manange_enter,
-                        //         0,
-                        //         0,
-                        //         R.anim.fragment_manange_pop_exit
-                        // )
+                        .setCustomAnimations(
+                                R.anim.fragment_manange_enter,
+                                0,
+                                0,
+                                R.anim.fragment_manange_pop_exit
+                        )
                         .add(R.id.fragment, ManagementFragment.class, null, TAG_FRAGMENT_MANAGEMENT)
                         .addToBackStack(null)
                         .commit();
@@ -465,18 +433,13 @@ public class MainActivity extends GeoActivity
     // main fragment callback.
 
     @Override
-    public void onNavigationIconClicked() {
+    public void onManageIconClicked() {
         setManagementFragmentVisibility(!isManagementFragmentVisible());
     }
 
     @Override
     public void onSettingsIconClicked() {
         IntentHelper.startSettingsActivityForResult(this, SETTINGS_ACTIVITY);
-    }
-
-    @Override
-    public void onAboutIconClicked() {
-        IntentHelper.startAboutActivity(this);
     }
 
     // management fragment callback.
@@ -502,12 +465,6 @@ public class MainActivity extends GeoActivity
         if (request.permissionList.size() != 0 && request.target != null) {
             requestPermissions(request.permissionList.toArray(new String[0]), 0);
         }
-
-        for (GeoDialog dialog : getDialogSet()) {
-            if (dialog instanceof LocationPermissionStatementDialog) {
-                dialog.dismiss();
-            }
-        }
     }
 
     // background location permissions callback.
@@ -521,11 +478,5 @@ public class MainActivity extends GeoActivity
         permissionList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
 
         requestPermissions(permissionList.toArray(new String[0]), 0);
-
-        for (GeoDialog dialog : getDialogSet()) {
-            if (dialog instanceof BackgroundLocationDialog) {
-                dialog.dismiss();
-            }
-        }
     }
 }

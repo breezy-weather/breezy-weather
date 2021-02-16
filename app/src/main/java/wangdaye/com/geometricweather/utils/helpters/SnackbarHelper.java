@@ -26,21 +26,35 @@ public class SnackbarHelper {
         showSnackbar(content, null, null);
     }
 
+    public static void showSnackbar(GeoActivity activity, String content) {
+        showSnackbar(activity, content, null, null);
+    }
+
     public static void showSnackbar(String content,
                                     @Nullable String action, @Nullable View.OnClickListener l) {
         showSnackbar(content, action, l, null);
     }
 
+    public static void showSnackbar(GeoActivity activity, String content,
+                                    @Nullable String action, @Nullable View.OnClickListener l) {
+        showSnackbar(activity, content, action, l, null);
+    }
+
     public static void showSnackbar(String content,
+                                    @Nullable String action, @Nullable View.OnClickListener l,
+                                    @Nullable Snackbar.Callback callback) {
+
+        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
+        if (activity != null) {
+            showSnackbar(activity, content, action, l, callback);
+        }
+    }
+
+    public static void showSnackbar(GeoActivity activity, String content,
                                     @Nullable String action, @Nullable View.OnClickListener l,
                                     @Nullable Snackbar.Callback callback) {
         if (action != null && l == null) {
             throw new RuntimeException("Must send a non null listener as parameter.");
-        }
-
-        GeoActivity activity = GeometricWeather.getInstance().getTopActivity();
-        if (activity == null) {
-            return;
         }
 
         if (callback == null) {
