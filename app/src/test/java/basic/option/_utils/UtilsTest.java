@@ -9,7 +9,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options._utils.Utils;
+import wangdaye.com.geometricweather.common.basic.models.options._utils.Utils;
 
 @RunWith(PowerMockRunner.class)
 public class UtilsTest {

@@ -17,7 +17,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import wangdaye.com.geometricweather.basic.GeoDialog;
+import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
 

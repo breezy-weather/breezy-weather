@@ -8,11 +8,11 @@ import android.widget.Toast;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -36,10 +36,13 @@ public class PollingUpdateHelper {
         void onPollingCompleted();
     }
 
-    public PollingUpdateHelper(Context context, List<Location> locationList) {
+    public PollingUpdateHelper(Context context,
+                               LocationHelper locationHelper,
+                               WeatherHelper weatherHelper,
+                               List<Location> locationList) {
         mContext = context;
-        mLocationHelper = new LocationHelper(context);
-        mWeatherHelper = new WeatherHelper();
+        mLocationHelper = locationHelper;
+        mWeatherHelper = weatherHelper;
         mLocationList = locationList;
     }
 

@@ -11,8 +11,8 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.main.FirstCardHeaderController;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 

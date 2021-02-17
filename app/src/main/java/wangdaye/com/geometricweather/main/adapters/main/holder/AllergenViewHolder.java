@@ -14,13 +14,13 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Daily;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.ui.adapters.DailyPollenAdapter;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 
 public class AllergenViewHolder extends AbstractMainCardViewHolder {
 

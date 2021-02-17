@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.db.generators;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.db.entities.LocationEntity;
 
 public class LocationEntityGenerator {

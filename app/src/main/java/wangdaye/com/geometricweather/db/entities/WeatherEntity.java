@@ -12,8 +12,9 @@ import org.greenrobot.greendao.annotation.JoinProperty;
 import org.greenrobot.greendao.annotation.OrderBy;
 import org.greenrobot.greendao.annotation.ToMany;
 
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.basic.models.weather.WindDegree;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.converters.WeatherCodeConverter;
 import wangdaye.com.geometricweather.db.converters.WindDegreeConverter;
 
@@ -23,7 +24,7 @@ import org.greenrobot.greendao.DaoException;
 /**
  * Weather entity.
  *
- * {@link wangdaye.com.geometricweather.basic.models.weather.Weather}.
+ * {@link Weather}.
  * */
 @Entity
 public class WeatherEntity {

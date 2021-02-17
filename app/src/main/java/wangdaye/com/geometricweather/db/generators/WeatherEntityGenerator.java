@@ -2,16 +2,16 @@ package wangdaye.com.geometricweather.db.generators;
 
 import androidx.annotation.Nullable;
 
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.AirQuality;
-import wangdaye.com.geometricweather.basic.models.weather.Base;
-import wangdaye.com.geometricweather.basic.models.weather.Current;
-import wangdaye.com.geometricweather.basic.models.weather.Precipitation;
-import wangdaye.com.geometricweather.basic.models.weather.PrecipitationProbability;
-import wangdaye.com.geometricweather.basic.models.weather.Temperature;
-import wangdaye.com.geometricweather.basic.models.weather.UV;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.basic.models.weather.Wind;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
+import wangdaye.com.geometricweather.common.basic.models.weather.Base;
+import wangdaye.com.geometricweather.common.basic.models.weather.Current;
+import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation;
+import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationProbability;
+import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
+import wangdaye.com.geometricweather.common.basic.models.weather.UV;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.db.entities.HistoryEntity;
 import wangdaye.com.geometricweather.db.entities.WeatherEntity;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;

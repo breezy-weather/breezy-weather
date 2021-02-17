@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.unit.PrecipitationUnit;
-import wangdaye.com.geometricweather.basic.models.weather.Daily;
-import wangdaye.com.geometricweather.basic.models.weather.Precipitation;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
+import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.ui.widgets.trend.TrendRecyclerView;
-import wangdaye.com.geometricweather.ui.widgets.trend.chart.DoubleHistogramView;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Daily precipitation adapter.

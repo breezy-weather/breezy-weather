@@ -16,15 +16,15 @@ import java.util.List;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetMultiCityProvider;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.models.weather.Temperature;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.managers.TimeManager;
+import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
 

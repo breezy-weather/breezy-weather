@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.hilt.Assisted;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 
@@ -15,15 +17,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.GeoViewModel;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.resources.Resource;
+import wangdaye.com.geometricweather.common.basic.GeoViewModel;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.resources.Resource;
 import wangdaye.com.geometricweather.main.models.Indicator;
 import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
 import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
-import wangdaye.com.geometricweather.utils.managers.TimeManager;
+import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class MainActivityViewModel extends GeoViewModel
         implements MainActivityRepository.WeatherRequestCallback {
@@ -48,11 +50,9 @@ public class MainActivityViewModel extends GeoViewModel
 
     private static final String KEY_FORMATTED_ID = "formatted_id";
 
-    public MainActivityViewModel(@NonNull Application application, SavedStateHandle handle) {
-        this(application, handle, new MainActivityRepository(application));
-    }
-
-    public MainActivityViewModel(@NonNull Application application, SavedStateHandle handle,
+    @ViewModelInject
+    public MainActivityViewModel(Application application,
+                                 @Assisted SavedStateHandle handle,
                                  MainActivityRepository repository) {
         super(application);
 

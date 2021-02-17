@@ -2,7 +2,7 @@ package wangdaye.com.geometricweather.db.converters;
 
 import org.greenrobot.greendao.converter.PropertyConverter;
 
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 
 public class WeatherSourceConverter implements PropertyConverter<WeatherSource, String> {
 

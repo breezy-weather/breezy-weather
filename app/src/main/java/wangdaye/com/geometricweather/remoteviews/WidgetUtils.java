@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayDetailsWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.DailyTrendWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.HourlyTrendWidgetIMP;

@@ -110,12 +110,12 @@
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activities.AlertActivity"
+            android:name=".common.ui.activities.AlertActivity"
             android:label="@string/action_alert"
             android:theme="@style/GeometricWeatherTheme" />
 
         <activity
-            android:name=".ui.activities.AllergenActivity"
+            android:name=".common.ui.activities.AllergenActivity"
             android:label="@string/allergen"
             android:theme="@style/GeometricWeatherTheme" />
 
@@ -159,7 +159,7 @@
             android:screenOrientation="user" />
 
         <activity
-            android:name=".ui.activities.AwakeUpdateActivity"
+            android:name=".common.ui.activities.AwakeUpdateActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="com.wangdaye.geometricweather.UPDATE" />
@@ -468,6 +468,12 @@
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            tools:node="remove"
+            tools:ignore="ExportedContentProvider" />
 
     </application>
 

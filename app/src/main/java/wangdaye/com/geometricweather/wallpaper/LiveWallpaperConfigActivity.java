@@ -16,7 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import java.util.Arrays;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
 
 public class LiveWallpaperConfigActivity extends GeoActivity {
 

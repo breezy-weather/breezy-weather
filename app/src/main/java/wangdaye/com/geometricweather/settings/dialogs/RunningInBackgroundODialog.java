@@ -14,8 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialog;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.basic.GeoDialog;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 
 /**
  * Running in background O dialog.

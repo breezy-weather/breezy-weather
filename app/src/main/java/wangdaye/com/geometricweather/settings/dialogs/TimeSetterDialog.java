@@ -18,7 +18,7 @@ import androidx.preference.PreferenceManager;
 import java.util.Calendar;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialog;
+import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**

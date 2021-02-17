@@ -11,13 +11,17 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import wangdaye.com.geometricweather.background.polling.PollingUpdateHelper;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.managers.ShortcutsManager;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
  * Update service.
@@ -26,7 +30,9 @@ import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
 public abstract class UpdateService extends Service
         implements PollingUpdateHelper.OnPollingUpdateListener {
 
-    private PollingUpdateHelper mHelper;
+    private PollingUpdateHelper mPollingHelper;
+    @Inject LocationHelper mLocationHelper;
+    @Inject WeatherHelper mWeatherHelper;
     private List<Location> mLocationList;
     private AsyncHelper.Controller mDelayController;
     private boolean mFailed;
@@ -39,9 +45,10 @@ public abstract class UpdateService extends Service
 
         mLocationList = DatabaseHelper.getInstance(this).readLocationList();
 
-        mHelper = new PollingUpdateHelper(this, mLocationList);
-        mHelper.setOnPollingUpdateListener(this);
-        mHelper.pollingUpdate();
+        mPollingHelper = new PollingUpdateHelper(
+                this, mLocationHelper, mWeatherHelper, mLocationList);
+        mPollingHelper.setOnPollingUpdateListener(this);
+        mPollingHelper.pollingUpdate();
 
         mDelayController = AsyncHelper.delayRunOnIO(() -> stopService(true), 30 * 1000);
     }
@@ -53,10 +60,10 @@ public abstract class UpdateService extends Service
             mDelayController.cancel();
             mDelayController = null;
         }
-        if (mHelper != null) {
-            mHelper.setOnPollingUpdateListener(null);
-            mHelper.cancel();
-            mHelper = null;
+        if (mPollingHelper != null) {
+            mPollingHelper.setOnPollingUpdateListener(null);
+            mPollingHelper.cancel();
+            mPollingHelper = null;
         }
     }
 

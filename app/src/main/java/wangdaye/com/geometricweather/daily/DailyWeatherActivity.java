@@ -16,18 +16,18 @@ import java.util.List;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Daily;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarRecyclerView;
-import wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarViewPager;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarViewPager;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Daily weather activity.

@@ -7,10 +7,12 @@ import org.greenrobot.greendao.annotation.Id;
 import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
 
+import wangdaye.com.geometricweather.common.basic.models.weather.History;
+
 /**
  * History entity.
  *
- * {@link wangdaye.com.geometricweather.basic.models.weather.History}.
+ * {@link History}.
  * */
 
 @Entity

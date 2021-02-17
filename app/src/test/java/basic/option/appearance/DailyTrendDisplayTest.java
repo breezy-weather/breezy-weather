@@ -14,7 +14,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.options.appearance.DailyTrendDisplay;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay;
 
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyInt;

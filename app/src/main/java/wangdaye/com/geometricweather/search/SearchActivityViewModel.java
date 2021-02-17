@@ -3,14 +3,15 @@ package wangdaye.com.geometricweather.search;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.GeoViewModel;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.GeoViewModel;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 
 public class SearchActivityViewModel extends GeoViewModel {
 
@@ -19,10 +20,7 @@ public class SearchActivityViewModel extends GeoViewModel {
     private final MutableLiveData<Boolean> mMultiSourceEnabled;
     private final SearchActivityRepository mRepository;
 
-    public SearchActivityViewModel(Application application) {
-        this(application, new SearchActivityRepository(application));
-    }
-
+    @ViewModelInject
     public SearchActivityViewModel(Application application, SearchActivityRepository repository) {
         super(application);
 

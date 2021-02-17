@@ -17,14 +17,14 @@ import java.text.DateFormat;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Base;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Base;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class FirstCardHeaderController
         implements View.OnClickListener {

@@ -14,7 +14,7 @@
     </changeBounds>
 
     <transition
-        class="wangdaye.com.geometricweather.ui.transitions.RoundCornerTransition"
+        class="wangdaye.com.geometricweather.common.ui.transitions.RoundCornerTransition"
         android:interpolator="@android:interpolator/fast_out_slow_in"
         app:radius_from="0dp"
         app:radius_to="8dp"

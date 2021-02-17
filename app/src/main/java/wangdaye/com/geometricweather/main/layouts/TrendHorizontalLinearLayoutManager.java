@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import wangdaye.com.geometricweather.ui.widgets.trend.TrendLayoutManager;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendLayoutManager;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class TrendHorizontalLinearLayoutManager extends TrendLayoutManager {
 

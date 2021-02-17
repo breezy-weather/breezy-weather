@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.main;
 
-import wangdaye.com.geometricweather.ui.adapters.TagAdapter;
+import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 
 public class MainTag implements TagAdapter.Tag {
 

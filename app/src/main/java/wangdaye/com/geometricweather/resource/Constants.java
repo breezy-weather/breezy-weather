@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.resource;
 
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 
 public class Constants {
 

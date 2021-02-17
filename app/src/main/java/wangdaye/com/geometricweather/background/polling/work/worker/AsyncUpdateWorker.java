@@ -12,11 +12,13 @@ import androidx.work.impl.utils.futures.SettableFuture;
 import java.util.List;
 
 import wangdaye.com.geometricweather.background.polling.PollingUpdateHelper;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
+import wangdaye.com.geometricweather.common.utils.managers.ShortcutsManager;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public abstract class AsyncUpdateWorker extends AsyncWorker
         implements PollingUpdateHelper.OnPollingUpdateListener {
@@ -27,12 +29,16 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
     private SettableFuture<Result> mFuture;
     private boolean mFailed;
 
-    public AsyncUpdateWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+    public AsyncUpdateWorker(@NonNull Context context,
+                             @NonNull WorkerParameters workerParams,
+                             LocationHelper locationHelper,
+                             WeatherHelper weatherHelper) {
         super(context, workerParams);
 
         mLocationList = DatabaseHelper.getInstance(context).readLocationList();
 
-        mPollingUpdateHelper = new PollingUpdateHelper(context, mLocationList);
+        mPollingUpdateHelper = new PollingUpdateHelper(
+                context, locationHelper, weatherHelper, mLocationList);
         mPollingUpdateHelper.setOnPollingUpdateListener(this);
     }
 

@@ -27,22 +27,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.WidgetWeekIconMode;
-import wangdaye.com.geometricweather.basic.models.options.unit.DistanceUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.PrecipitationUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.PressureUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.ProbabilityUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.RelativeHumidityUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.models.weather.Base;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PressureUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.ProbabilityUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.Base;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.utils.helpters.LunarHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.LunarHelper;
 
 public abstract class AbstractRemoteViewsPresenter {
 

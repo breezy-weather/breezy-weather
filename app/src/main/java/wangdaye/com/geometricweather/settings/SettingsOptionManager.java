@@ -11,22 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options.DarkMode;
-import wangdaye.com.geometricweather.basic.models.options.NotificationStyle;
-import wangdaye.com.geometricweather.basic.models.options.NotificationTextColor;
-import wangdaye.com.geometricweather.basic.models.options.UpdateInterval;
-import wangdaye.com.geometricweather.basic.models.options.WidgetWeekIconMode;
-import wangdaye.com.geometricweather.basic.models.options.appearance.CardDisplay;
-import wangdaye.com.geometricweather.basic.models.options.appearance.DailyTrendDisplay;
-import wangdaye.com.geometricweather.basic.models.options.appearance.Language;
-import wangdaye.com.geometricweather.basic.models.options.appearance.UIStyle;
-import wangdaye.com.geometricweather.basic.models.options.provider.LocationProvider;
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.models.options.unit.DistanceUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.PrecipitationUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.PressureUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.SpeedUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationStyle;
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor;
+import wangdaye.com.geometricweather.common.basic.models.options.UpdateInterval;
+import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.UIStyle;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PressureUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 
 public class SettingsOptionManager {
 

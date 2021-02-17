@@ -9,8 +9,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.weather.AirQuality;
-import wangdaye.com.geometricweather.basic.models.weather.Wind;
+import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
+import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 
 public class CommonConverter {
 

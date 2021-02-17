@@ -25,11 +25,14 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.DarkMode;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
@@ -43,23 +46,26 @@ import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
-import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
-import wangdaye.com.geometricweather.utils.managers.TimeManager;
+import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.managers.ShortcutsManager;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * Main activity.
  * */
 
+@AndroidEntryPoint
 public class MainActivity extends GeoActivity
         implements MainFragment.Callback, ManagementFragment.Callback,
         LocationPermissionStatementDialog.Callback, BackgroundLocationDialog.Callback {
 
     private ActivityMainBinding mBinding;
     private MainActivityViewModel mViewModel;
+
+    @Inject StatementManager mStatementManager;
 
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int CARD_MANAGE_ACTIVITY = 3;
@@ -253,8 +259,7 @@ public class MainActivity extends GeoActivity
                     break;
                 }
             }
-            if (needShowDialog
-                    && !StatementManager.getInstance(this).isLocationPermissionDeclared()) {
+            if (needShowDialog && !mStatementManager.isLocationPermissionDeclared()) {
                 // only show dialog once.
                 LocationPermissionStatementDialog dialog = new LocationPermissionStatementDialog();
                 dialog.setCancelable(false);
@@ -291,7 +296,7 @@ public class MainActivity extends GeoActivity
 
         // check background location permissions.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                && !StatementManager.getInstance(this).isBackgroundLocationDeclared()
+                && !mStatementManager.isBackgroundLocationDeclared()
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             new BackgroundLocationDialog().show(getSupportFragmentManager(), null);
@@ -456,7 +461,7 @@ public class MainActivity extends GeoActivity
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void requestLocationPermissions() {
-        StatementManager.getInstance(this).setLocationPermissionDeclared(this);
+        mStatementManager.setLocationPermissionDeclared(this);
 
         PermissionsRequest request = mViewModel.getPermissionsRequestValue();
         if (request.permissionList.size() != 0 && request.target != null) {
@@ -469,7 +474,7 @@ public class MainActivity extends GeoActivity
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public void requestBackgroundLocationPermission() {
-        StatementManager.getInstance(this).setBackgroundLocationDeclared(this);
+        mStatementManager.setBackgroundLocationDeclared(this);
 
         List<String> permissionList = new ArrayList<>();
         permissionList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);

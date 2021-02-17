@@ -6,7 +6,8 @@ import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.models.weather.Minutely;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.db.converters.WeatherCodeConverter;
 
 import org.greenrobot.greendao.annotation.Generated;
@@ -14,7 +15,7 @@ import org.greenrobot.greendao.annotation.Generated;
 /**
  * Minutely entity.
  *
- * {@link wangdaye.com.geometricweather.basic.models.weather.Minutely}.
+ * {@link Minutely}.
  * */
 @Entity
 public class MinutelyEntity {

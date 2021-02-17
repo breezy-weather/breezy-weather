@@ -5,14 +5,17 @@ import android.widget.RemoteViews;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
 
 /**
  * Multi city widget config activity.
  * */
+
+@AndroidEntryPoint
 public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity {
 
     private List<Location> locationList;

@@ -10,11 +10,13 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import javax.inject.Inject;
+
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class MainActivityRepository {
@@ -28,9 +30,10 @@ public class MainActivityRepository {
         void onGetWeatherCompleted(Location location, boolean succeed, boolean done);
     }
 
-    public MainActivityRepository(Context context) {
-        mLocationHelper = new LocationHelper(context);
-        mWeatherHelper = new WeatherHelper();
+    @Inject
+    public MainActivityRepository(LocationHelper locationHelper, WeatherHelper weatherHelper) {
+        mLocationHelper = locationHelper;
+        mWeatherHelper = weatherHelper;
         mSingleThreadExecutor = Executors.newSingleThreadExecutor();
     }
 
@@ -67,17 +70,6 @@ public class MainActivityRepository {
         AsyncHelper.runOnExecutor(emitter -> emitter.send(
                 DatabaseHelper.getInstance(context).readWeather(location), true
         ), callback, mSingleThreadExecutor);
-    }
-
-    public void ensureWeatherCache(Context context, List<Location> list,
-                                   AsyncHelper.Callback<List<Location>> callback) {
-        AsyncHelper.runOnExecutor(emitter -> {
-            // read weather cache and callback.
-            for (Location location : list) {
-                location.setWeather(DatabaseHelper.getInstance(context).readWeather(location));
-            }
-            emitter.send(list, true);
-        }, callback, mSingleThreadExecutor);
     }
 
     public void writeLocation(Context context, Location location) {

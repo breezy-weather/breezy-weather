@@ -3,11 +3,11 @@ package wangdaye.com.geometricweather.db.generators;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.models.weather.Hourly;
-import wangdaye.com.geometricweather.basic.models.weather.Precipitation;
-import wangdaye.com.geometricweather.basic.models.weather.PrecipitationProbability;
-import wangdaye.com.geometricweather.basic.models.weather.Temperature;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
+import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation;
+import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationProbability;
+import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.db.entities.HourlyEntity;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 

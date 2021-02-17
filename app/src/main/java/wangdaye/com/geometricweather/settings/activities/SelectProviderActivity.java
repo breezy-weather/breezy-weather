@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import org.jetbrains.annotations.NotNull;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.fragments.ServiceProviderSettingsFragment;
 
 /**

@@ -3,8 +3,8 @@ package wangdaye.com.geometricweather.db.generators;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.models.weather.Minutely;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.weather.Minutely;
 import wangdaye.com.geometricweather.db.entities.MinutelyEntity;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 

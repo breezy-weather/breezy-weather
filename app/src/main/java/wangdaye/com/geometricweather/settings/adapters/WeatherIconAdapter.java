@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
 
 public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

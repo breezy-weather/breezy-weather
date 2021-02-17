@@ -6,16 +6,18 @@ import androidx.core.app.NotificationCompat;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.basic.ForegroundUpdateService;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.ForecastNotificationIMP;
 
 /**
  * Foreground Today forecast update service.
  * */
 
+@AndroidEntryPoint
 public class ForegroundTomorrowForecastUpdateService extends ForegroundUpdateService {
 
     @Override

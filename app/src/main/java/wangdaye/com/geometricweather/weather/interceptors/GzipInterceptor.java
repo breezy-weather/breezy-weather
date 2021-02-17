@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+import javax.inject.Inject;
+
 import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Request;
@@ -18,6 +20,10 @@ import okio.GzipSource;
 public class GzipInterceptor extends ReportExceptionInterceptor {
 
     private static final Charset UTF8 = StandardCharsets.UTF_8;
+
+    @Inject
+    public GzipInterceptor() {
+    }
 
     @NotNull
     @Override

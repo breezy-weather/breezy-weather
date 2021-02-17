@@ -15,10 +15,10 @@ import androidx.preference.Preference;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.basic.models.options.DarkMode;
-import wangdaye.com.geometricweather.basic.models.options.NotificationStyle;
-import wangdaye.com.geometricweather.basic.models.options.UpdateInterval;
-import wangdaye.com.geometricweather.basic.models.options.WidgetWeekIconMode;
+import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationStyle;
+import wangdaye.com.geometricweather.common.basic.models.options.UpdateInterval;
+import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity;
 import wangdaye.com.geometricweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity;
 import wangdaye.com.geometricweather.remoteviews.config.ClockDayVerticalWidgetConfigActivity;
@@ -45,7 +45,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalN
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.settings.dialogs.TimeSetterDialog;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 
 /**
  * Settings fragment.

@@ -2,9 +2,9 @@ package wangdaye.com.geometricweather.main.utils;
 
 import android.content.Context;
 
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class MainModuleUtils {
 

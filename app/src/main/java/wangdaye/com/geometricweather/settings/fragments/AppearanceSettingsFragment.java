@@ -12,16 +12,16 @@ import androidx.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options.appearance.CardDisplay;
-import wangdaye.com.geometricweather.basic.models.options.appearance.DailyTrendDisplay;
-import wangdaye.com.geometricweather.basic.models.options.appearance.Language;
-import wangdaye.com.geometricweather.basic.models.options.appearance.UIStyle;
-import wangdaye.com.geometricweather.basic.models.weather.Temperature;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.UIStyle;
+import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 
 /**
  * Appearance settings fragment.

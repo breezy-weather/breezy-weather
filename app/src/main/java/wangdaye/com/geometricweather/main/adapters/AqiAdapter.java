@@ -23,12 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options.unit.AirQualityCOUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.AirQualityUnit;
-import wangdaye.com.geometricweather.basic.models.weather.AirQuality;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.ui.widgets.RoundProgress;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityCOUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Aqi adapter.

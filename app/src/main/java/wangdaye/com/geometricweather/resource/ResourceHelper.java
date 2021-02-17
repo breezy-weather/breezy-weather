@@ -13,8 +13,8 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options.NotificationTextColor;
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 

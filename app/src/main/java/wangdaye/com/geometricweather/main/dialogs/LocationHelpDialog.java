@@ -12,10 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialog;
+import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class LocationHelpDialog extends GeoDialog {
 

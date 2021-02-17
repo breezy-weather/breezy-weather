@@ -10,11 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.Constants;
 import wangdaye.com.geometricweather.resource.ResourceUtils;
-import wangdaye.com.geometricweather.ui.images.pixel.PixelMoonDrawable;
-import wangdaye.com.geometricweather.ui.images.pixel.PixelSunDrawable;
+import wangdaye.com.geometricweather.common.ui.images.pixel.PixelMoonDrawable;
+import wangdaye.com.geometricweather.common.ui.images.pixel.PixelSunDrawable;
 
 public class PixelResourcesProvider extends IconPackResourcesProvider {
 

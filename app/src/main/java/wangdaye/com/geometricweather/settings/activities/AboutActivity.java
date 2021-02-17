@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.adapters.AboutAdapter;
 
 /**

@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 

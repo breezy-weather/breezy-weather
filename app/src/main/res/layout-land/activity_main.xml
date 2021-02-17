@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.ui.widgets.DrawerLayout
+    <wangdaye.com.geometricweather.common.ui.widgets.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,6 +29,6 @@
             android:background="@color/colorRoot"
             tools:ignore="UnusedAttribute" />
 
-    </wangdaye.com.geometricweather.ui.widgets.DrawerLayout>
+    </wangdaye.com.geometricweather.common.ui.widgets.DrawerLayout>
 
 </FrameLayout>

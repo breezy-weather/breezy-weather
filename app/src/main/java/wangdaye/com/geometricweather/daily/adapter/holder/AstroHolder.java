@@ -11,12 +11,12 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.weather.Astro;
-import wangdaye.com.geometricweather.basic.models.weather.MoonPhase;
+import wangdaye.com.geometricweather.common.basic.models.weather.Astro;
+import wangdaye.com.geometricweather.common.basic.models.weather.MoonPhase;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyAstro;
-import wangdaye.com.geometricweather.ui.widgets.astro.MoonPhaseView;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
 

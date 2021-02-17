@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.daily.adapter.model;
 
-import wangdaye.com.geometricweather.basic.models.weather.UV;
+import wangdaye.com.geometricweather.common.basic.models.weather.UV;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 
 public class DailyUV implements DailyWeatherAdapter.ViewModel {

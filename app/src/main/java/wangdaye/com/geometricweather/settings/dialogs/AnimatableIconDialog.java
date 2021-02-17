@@ -12,13 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialog;
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.GeoDialog;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.ui.widgets.AnimatableIconView;
+import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
 
 /**
  * Animatable icon dialog.

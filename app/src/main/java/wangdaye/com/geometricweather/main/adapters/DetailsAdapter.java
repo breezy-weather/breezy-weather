@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options.unit.CloudCoverUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.RelativeHumidityUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.SpeedUnit;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.CloudCoverUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Details adapter.

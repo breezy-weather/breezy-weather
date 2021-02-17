@@ -19,10 +19,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.models.resources.Resource;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.resources.Resource;
 import wangdaye.com.geometricweather.databinding.FragmentMainBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
@@ -32,16 +32,16 @@ import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout;
-import wangdaye.com.geometricweather.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherViewController;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
-import wangdaye.com.geometricweather.utils.managers.TimeManager;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
+import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
+import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
+import wangdaye.com.geometricweather.common.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;
+import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class MainFragment extends Fragment {
 

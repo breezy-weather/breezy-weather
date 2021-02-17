@@ -2,32 +2,32 @@ package wangdaye.com.geometricweather.weather.services;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
-import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.apis.AccuWeatherApi;
-import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.weather.converters.AccuResultConverter;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAqiResult;
+import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuMinuteResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
-import wangdaye.com.geometricweather.weather.interceptors.GzipInterceptor;
 import wangdaye.com.geometricweather.weather.observers.BaseObserver;
 import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
 
@@ -86,20 +86,10 @@ public class AccuWeatherService extends WeatherService {
     private static class EmptyAqiResult extends AccuAqiResult {
     }
 
-    public AccuWeatherService() {
-        mApi = new Retrofit.Builder()
-                .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
-                .client(
-                        GeometricWeather.getInstance()
-                                .getOkHttpClient()
-                                .newBuilder()
-                                .addInterceptor(new GzipInterceptor())
-                                .build()
-                ).addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
-                .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
-                .build()
-                .create((AccuWeatherApi.class));
-        mCompositeDisposable = new CompositeDisposable();
+    @Inject
+    public AccuWeatherService(AccuWeatherApi api, CompositeDisposable disposable) {
+        mApi = api;
+        mCompositeDisposable = disposable;
     }
 
     @Override

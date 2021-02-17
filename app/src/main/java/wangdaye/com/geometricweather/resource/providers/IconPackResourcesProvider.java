@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.Config;
 import wangdaye.com.geometricweather.resource.Constants;
 import wangdaye.com.geometricweather.resource.ResourceUtils;

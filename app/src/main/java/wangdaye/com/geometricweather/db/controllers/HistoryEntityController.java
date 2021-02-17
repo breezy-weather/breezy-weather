@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.entities.DaoSession;
 import wangdaye.com.geometricweather.db.entities.HistoryEntity;
 import wangdaye.com.geometricweather.db.entities.HistoryEntityDao;

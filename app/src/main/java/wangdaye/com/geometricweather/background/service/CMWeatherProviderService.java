@@ -7,31 +7,35 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import cyanogenmod.providers.WeatherContract;
 import cyanogenmod.weather.RequestInfo;
 import cyanogenmod.weather.WeatherInfo;
 import cyanogenmod.weatherservice.ServiceRequest;
 import cyanogenmod.weatherservice.ServiceRequestResult;
 import cyanogenmod.weatherservice.WeatherProviderService;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import dagger.hilt.android.AndroidEntryPoint;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
-import wangdaye.com.geometricweather.utils.managers.TimeManager;
+import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * CM weather provider service.
  * */
 
+@AndroidEntryPoint
 public class CMWeatherProviderService extends WeatherProviderService
         implements WeatherHelper.OnRequestWeatherListener {
 
     @Nullable
     private ServiceRequest mRequest;
 
-    private LocationHelper mLocationHelper;
-    private WeatherHelper mWeatherHelper;
+    @Inject LocationHelper mLocationHelper;
+    @Inject WeatherHelper mWeatherHelper;
 
     private final LocationHelper.OnRequestLocationListener locationListener
             = new LocationHelper.OnRequestLocationListener() {
@@ -82,8 +86,6 @@ public class CMWeatherProviderService extends WeatherProviderService
     public void onCreate() {
         super.onCreate();
         mRequest = null;
-        mLocationHelper = new LocationHelper(this);
-        mWeatherHelper = new WeatherHelper();
     }
 
     @Override

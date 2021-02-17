@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <wangdaye.com.geometricweather.ui.widgets.DonateImageView
+    <wangdaye.com.geometricweather.common.ui.widgets.DonateImageView
         android:id="@+id/dialog_donate_wechat_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

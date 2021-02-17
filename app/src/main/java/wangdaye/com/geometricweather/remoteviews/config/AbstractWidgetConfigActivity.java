@@ -41,16 +41,18 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.xw.repo.BubbleSeekBar;
 
+import javax.inject.Inject;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarNestedScrollView;
-import wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -83,7 +85,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     protected Location locationNow;
 
-    protected WeatherHelper weatherHelper;
+    @Inject WeatherHelper weatherHelper;
     protected boolean destroyed;
 
     protected String viewTypeValueNow;
@@ -194,7 +196,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
         locationNow.setWeather(DatabaseHelper.getInstance(this).readWeather(locationNow));
 
-        weatherHelper = new WeatherHelper();
         destroyed = false;
 
         Resources res = getResources();

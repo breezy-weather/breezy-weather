@@ -14,7 +14,7 @@ import com.amap.api.location.CoordinateConverter;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.location.LocationException;
-import wangdaye.com.geometricweather.utils.helpters.BuglyHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.BuglyHelper;
 
 /**
  * A map location service.

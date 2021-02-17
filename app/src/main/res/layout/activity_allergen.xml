@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout
+    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -23,9 +23,9 @@
             app:navigationContentDescription="@string/content_desc_back"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-    </wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout>
+    </wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout>
 
-    <wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarRecyclerView
+    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarRecyclerView
         android:id="@+id/activity_allergen_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

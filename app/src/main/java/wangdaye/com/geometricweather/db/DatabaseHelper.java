@@ -7,10 +7,10 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.ChineseCity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.History;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.ChineseCity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.History;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.controllers.AlertEntityController;
 import wangdaye.com.geometricweather.db.controllers.ChineseCityEntityController;
 import wangdaye.com.geometricweather.db.controllers.DailyEntityController;
@@ -33,7 +33,7 @@ import wangdaye.com.geometricweather.db.entities.DaoSession;
 import wangdaye.com.geometricweather.db.entities.HistoryEntity;
 import wangdaye.com.geometricweather.db.entities.LocationEntity;
 import wangdaye.com.geometricweather.db.entities.WeatherEntity;
-import wangdaye.com.geometricweather.utils.FileUtils;
+import wangdaye.com.geometricweather.common.utils.FileUtils;
 
 /**
  * Database helper

@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options.unit.SpeedUnit;
-import wangdaye.com.geometricweather.basic.models.weather.Wind;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyWind;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;

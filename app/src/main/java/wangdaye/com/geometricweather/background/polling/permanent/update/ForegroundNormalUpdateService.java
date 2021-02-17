@@ -4,9 +4,10 @@ import android.content.Context;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.background.polling.basic.ForegroundUpdateService;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.background.polling.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
@@ -14,6 +15,8 @@ import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 /**
  * Foreground normal update service.
  * */
+
+@AndroidEntryPoint
 public class ForegroundNormalUpdateService extends ForegroundUpdateService {
 
     @Override

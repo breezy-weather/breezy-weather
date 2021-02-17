@@ -6,9 +6,9 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.hilt.work.HiltWorkerFactory;
 import androidx.multidex.MultiDexApplication;
-
-import com.google.gson.GsonBuilder;
+import androidx.work.Configuration;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,21 +16,21 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
-import okhttp3.OkHttpClient;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import javax.inject.Inject;
+
+import dagger.hilt.android.HiltAndroidApp;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.utils.LanguageUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.BuglyHelper;
+import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.helpters.BuglyHelper;
-import wangdaye.com.geometricweather.weather.TLSCompactHelper;
-import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 /**
  * Geometric weather application class.
  * */
 
-public class GeometricWeather extends MultiDexApplication {
+@HiltAndroidApp
+public class GeometricWeather extends MultiDexApplication implements Configuration.Provider {
 
     private static GeometricWeather sInstance;
     public static GeometricWeather getInstance() {
@@ -40,9 +40,7 @@ public class GeometricWeather extends MultiDexApplication {
     private @Nullable Set<GeoActivity> mActivitySet;
     private @Nullable GeoActivity mTopActivity;
 
-    private OkHttpClient mOkHttpClient;
-    private GsonConverterFactory mGsonConverterFactory;
-    private RxJava2CallAdapterFactory mRxJava2CallAdapterFactory;
+    @Inject HiltWorkerFactory mWorkerFactory;
 
     public static final String NOTIFICATION_CHANNEL_ID_NORMALLY = "normally";
     public static final String NOTIFICATION_CHANNEL_ID_ALERT = "alert";
@@ -145,27 +143,18 @@ public class GeometricWeather extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        initialize();
 
-        String processName = getProcessName();
-        if (processName != null && processName.equals(getPackageName())) {
-            resetDayNightMode();
-        }
-    }
-
-    private void initialize() {
         sInstance = this;
-
-        mOkHttpClient = TLSCompactHelper.getClientBuilder().build();
-        mGsonConverterFactory = GsonConverterFactory.create(
-                new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create());
-                // new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").create());
-        mRxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create();
 
         LanguageUtils.setLanguage(
                 this, SettingsOptionManager.getInstance(this).getLanguage().getLocale());
 
         BuglyHelper.init(this);
+
+        String processName = getProcessName();
+        if (processName != null && processName.equals(getPackageName())) {
+            resetDayNightMode();
+        }
     }
 
     public void addActivity(GeoActivity a) {
@@ -195,18 +184,6 @@ public class GeometricWeather extends MultiDexApplication {
         if (mTopActivity == a) {
             mTopActivity = null;
         }
-    }
-
-    public OkHttpClient getOkHttpClient() {
-        return mOkHttpClient;
-    }
-
-    public GsonConverterFactory getGsonConverterFactory() {
-        return mGsonConverterFactory;
-    }
-
-    public RxJava2CallAdapterFactory getRxJava2CallAdapterFactory() {
-        return mRxJava2CallAdapterFactory;
     }
 
     public static String getProcessName() {
@@ -271,5 +248,13 @@ public class GeometricWeather extends MultiDexApplication {
         for (Activity a : mActivitySet) {
             a.recreate();
         }
+    }
+
+    @NonNull
+    @Override
+    public Configuration getWorkManagerConfiguration() {
+        return new Configuration.Builder()
+                .setWorkerFactory(mWorkerFactory)
+                .build();
     }
 }

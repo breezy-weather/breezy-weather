@@ -2,8 +2,8 @@ package wangdaye.com.geometricweather.main.models;
 
 import androidx.annotation.NonNull;
 
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.resources.Resource;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.resources.Resource;
 
 public class LocationResource extends Resource<Location> {
 

@@ -4,20 +4,19 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Retrofit;
-import wangdaye.com.geometricweather.BuildConfig;
-import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.basic.models.ChineseCity;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.ChineseCity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
+import wangdaye.com.geometricweather.weather.apis.CNWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
-import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.weather.converters.CaiyunResultConverter;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunForecastResult;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunMainlyResult;
-import wangdaye.com.geometricweather.weather.interceptors.GzipInterceptor;
 import wangdaye.com.geometricweather.weather.observers.BaseObserver;
 import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
 
@@ -30,20 +29,11 @@ public class CaiYunWeatherService extends CNWeatherService {
     private final CaiYunApi mApi;
     private final CompositeDisposable mCompositeDisposable;
 
-    public CaiYunWeatherService() {
-        mApi = new Retrofit.Builder()
-                .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
-                .client(
-                        GeometricWeather.getInstance()
-                                .getOkHttpClient()
-                                .newBuilder()
-                                .addInterceptor(new GzipInterceptor())
-                                .build()
-                ).addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
-                .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
-                .build()
-                .create((CaiYunApi.class));
-        mCompositeDisposable = new CompositeDisposable();
+    @Inject
+    public CaiYunWeatherService(CaiYunApi cyApi, CNWeatherApi cnApi, CompositeDisposable disposable) {
+        super(cnApi, disposable);
+        mApi = cyApi;
+        mCompositeDisposable = disposable;
     }
 
     @Override

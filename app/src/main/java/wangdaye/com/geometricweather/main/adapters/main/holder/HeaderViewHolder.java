@@ -19,12 +19,12 @@ import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widgets.NumberAnimTextView;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
+import wangdaye.com.geometricweather.common.ui.widgets.NumberAnimTextView;
+import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 
 public class HeaderViewHolder extends AbstractMainViewHolder {
 

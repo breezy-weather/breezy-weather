@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.entities.DaoSession;
 import wangdaye.com.geometricweather.db.entities.HourlyEntity;
 import wangdaye.com.geometricweather.db.entities.HourlyEntityDao;

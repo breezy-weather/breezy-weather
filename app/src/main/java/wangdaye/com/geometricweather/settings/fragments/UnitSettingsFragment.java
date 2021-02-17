@@ -5,12 +5,12 @@ import android.os.Bundle;
 import androidx.preference.ListPreference;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options.unit.DistanceUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.PrecipitationUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.PressureUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.SpeedUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PressureUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
 
 /**
  * Unit settings fragment.

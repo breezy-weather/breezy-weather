@@ -24,8 +24,8 @@ import com.google.android.gms.location.LocationServices;
 import java.io.IOException;
 import java.util.List;
 
-import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.LanguageUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
 
 public class GMSLocationService extends LocationService {
 

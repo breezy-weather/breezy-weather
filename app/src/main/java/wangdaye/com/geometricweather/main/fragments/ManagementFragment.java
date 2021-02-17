@@ -25,17 +25,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper;
 import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
 import wangdaye.com.geometricweather.main.ui.LocationItemTouchCallback;
-import wangdaye.com.geometricweather.ui.adapters.location.LocationAdapter;
-import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
+import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class ManagementFragment extends Fragment
         implements LocationItemTouchCallback.OnSelectProviderActivityStartedCallback {

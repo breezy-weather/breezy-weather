@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialog;
-import wangdaye.com.geometricweather.utils.helpters.ImageHelper;
+import wangdaye.com.geometricweather.common.basic.GeoDialog;
+import wangdaye.com.geometricweather.common.utils.helpters.ImageHelper;
 
 public class WechatDonateDialog extends GeoDialog {
 

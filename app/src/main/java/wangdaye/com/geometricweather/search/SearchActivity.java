@@ -31,20 +31,22 @@ import com.turingtechnologies.materialscrollbar.CustomIndicator;
 import java.util.ArrayList;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.ui.adapters.location.LocationAdapter;
-import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
+import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
 
 /**
  * Search activity.
  * */
 
+@AndroidEntryPoint
 public class SearchActivity extends GeoActivity
         implements EditText.OnEditorActionListener {
 

@@ -24,15 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.options.appearance.CardDisplay;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
-import wangdaye.com.geometricweather.ui.adapters.TagAdapter;
-import wangdaye.com.geometricweather.ui.decotarions.GridMarginsDecoration;
-import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
+import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
+import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class CardDisplayManageActivity extends GeoActivity {
 

@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.PixelResourcesProvider;
@@ -24,8 +24,8 @@ import wangdaye.com.geometricweather.settings.adapters.WeatherIconAdapter;
 import wangdaye.com.geometricweather.settings.dialogs.AdaptiveIconDialog;
 import wangdaye.com.geometricweather.settings.dialogs.AnimatableIconDialog;
 import wangdaye.com.geometricweather.settings.dialogs.MinimalIconDialog;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 
 public class PreviewIconActivity extends GeoActivity {
 

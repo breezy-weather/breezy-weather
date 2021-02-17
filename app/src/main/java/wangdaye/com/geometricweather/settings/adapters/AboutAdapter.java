@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.models.AboutAppLibrary;
 import wangdaye.com.geometricweather.settings.models.AboutAppLink;
 import wangdaye.com.geometricweather.settings.models.AboutAppTranslator;
-import wangdaye.com.geometricweather.utils.helpters.DonateHelper;
-import wangdaye.com.geometricweather.utils.helpters.ImageHelper;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.DonateHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.ImageHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 
 /**
  * About adapter.

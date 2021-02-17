@@ -4,6 +4,7 @@ import android.os.Build;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.remoteviews.presenters.DayWidgetIMP;
 
@@ -11,6 +12,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.DayWidgetIMP;
  * Day widget config activity.
  * */
 
+@AndroidEntryPoint
 public class DayWidgetConfigActivity extends AbstractWidgetConfigActivity {
 
     @Override

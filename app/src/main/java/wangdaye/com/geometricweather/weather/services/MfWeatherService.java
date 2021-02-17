@@ -3,28 +3,35 @@ package wangdaye.com.geometricweather.weather.services;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
-import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.MfResultConverter;
-import wangdaye.com.geometricweather.weather.interceptors.GzipInterceptor;
 import wangdaye.com.geometricweather.weather.json.atmoaura.AtmoAuraQAResult;
-import wangdaye.com.geometricweather.weather.json.mf.*;
+import wangdaye.com.geometricweather.weather.json.mf.MfCurrentResult;
+import wangdaye.com.geometricweather.weather.json.mf.MfEphemerisResult;
+import wangdaye.com.geometricweather.weather.json.mf.MfForecastResult;
+import wangdaye.com.geometricweather.weather.json.mf.MfForecastV2Result;
+import wangdaye.com.geometricweather.weather.json.mf.MfLocationResult;
+import wangdaye.com.geometricweather.weather.json.mf.MfRainResult;
+import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult;
 import wangdaye.com.geometricweather.weather.observers.BaseObserver;
 import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Mf weather service.
@@ -32,7 +39,7 @@ import java.util.List;
 
 public class MfWeatherService extends WeatherService {
 
-    private final MfWeatherApi mApi;
+    private final MfWeatherApi mMfApi;
     private final AtmoAuraIqaApi mAtmoAuraApi;
     private final CompositeDisposable mCompositeDisposable;
 
@@ -82,56 +89,36 @@ public class MfWeatherService extends WeatherService {
     private static class EmptyWarningsResult extends MfWarningsResult {
     }
 
-    public MfWeatherService() {
-        mApi = new Retrofit.Builder()
-                .baseUrl(BuildConfig.MF_WSFT_BASE_URL)
-                .client(
-                        GeometricWeather.getInstance()
-                                .getOkHttpClient()
-                                .newBuilder()
-                                .addInterceptor(new GzipInterceptor())
-                                .build()
-                ).addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
-                .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
-                .build()
-                .create((MfWeatherApi.class));
-        mAtmoAuraApi = new Retrofit.Builder()
-                .baseUrl(BuildConfig.IQA_ATMO_AURA_URL)
-                .client(
-                        GeometricWeather.getInstance()
-                                .getOkHttpClient()
-                                .newBuilder()
-                                .addInterceptor(new GzipInterceptor())
-                                .build()
-                ).addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
-                .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
-                .build()
-                .create((AtmoAuraIqaApi.class));
-        mCompositeDisposable = new CompositeDisposable();
+    @Inject
+    public MfWeatherService(MfWeatherApi mfApi, AtmoAuraIqaApi atmoApi,
+                            CompositeDisposable disposable) {
+        mMfApi = mfApi;
+        mAtmoAuraApi = atmoApi;
+        mCompositeDisposable = disposable;
     }
 
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
         String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
 
-        Observable<MfCurrentResult> current = mApi.getCurrent(
+        Observable<MfCurrentResult> current = mMfApi.getCurrent(
                 location.getLatitude(), location.getLongitude(), languageCode, BuildConfig.MF_WSFT_KEY);
 
-        Observable<MfForecastResult> forecast = mApi.getForecast(
+        Observable<MfForecastResult> forecast = mMfApi.getForecast(
                 location.getLatitude(), location.getLongitude(), languageCode, BuildConfig.MF_WSFT_KEY);
 
         // TODO: Will allow us to display forecast for day and night in daily
         //Observable<MfForecastResult> dayNightForecast = api.getForecastInstants(
         //        location.getLatitude(), location.getLongitude(), languageCode, "afternoon,night", BuildConfig.MF_WSFT_KEY);
 
-        Observable<MfEphemerisResult> ephemeris = mApi.getEphemeris(
+        Observable<MfEphemerisResult> ephemeris = mMfApi.getEphemeris(
                 location.getLatitude(), location.getLongitude(), "en", BuildConfig.MF_WSFT_KEY);
         // English required to convert moon phase
 
-        Observable<MfRainResult> rain = mApi.getRain(
+        Observable<MfRainResult> rain = mMfApi.getRain(
                 location.getLatitude(), location.getLongitude(), languageCode, BuildConfig.MF_WSFT_KEY);
 
-        Observable<MfWarningsResult> warnings = mApi.getWarnings(
+        Observable<MfWarningsResult> warnings = mMfApi.getWarnings(
                 location.getProvince(), null, BuildConfig.MF_WSFT_KEY
         ).onExceptionResumeNext(
                 // FIXME: Will not report warnings if current location was searched through AccuWeather search because "province" is not the department
@@ -192,7 +179,7 @@ public class MfWeatherService extends WeatherService {
     public List<Location> requestLocation(Context context, String query) {
         List<MfLocationResult> resultList = null;
         try {
-            resultList = mApi.callWeatherLocation(query, 48.86d, 2.34d, BuildConfig.MF_WSFT_KEY).execute().body();
+            resultList = mMfApi.callWeatherLocation(query, 48.86d, 2.34d, BuildConfig.MF_WSFT_KEY).execute().body();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -243,7 +230,7 @@ public class MfWeatherService extends WeatherService {
         String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
         final CacheLocationRequestCallback finalCallback = new CacheLocationRequestCallback(context, callback);
 
-        mApi.getForecastV2(
+        mMfApi.getForecastV2(
                 location.getLatitude(),
                 location.getLongitude(),
                 languageCode,
@@ -276,7 +263,7 @@ public class MfWeatherService extends WeatherService {
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
-        mApi.getWeatherLocation(query, 48.86d, 2.34d, BuildConfig.MF_WSFT_KEY)
+        mMfApi.getWeatherLocation(query, 48.86d, 2.34d, BuildConfig.MF_WSFT_KEY)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<MfLocationResult>>() {
                     @Override

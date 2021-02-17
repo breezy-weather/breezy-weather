@@ -9,10 +9,10 @@ import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.Nullable;
 
-import wangdaye.com.geometricweather.ui.adapters.AnimationAdapterWrapper;
-import wangdaye.com.geometricweather.ui.adapters.location.LocationAdapter;
-import wangdaye.com.geometricweather.ui.adapters.location.LocationHolder;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.ui.adapters.AnimationAdapterWrapper;
+import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
+import wangdaye.com.geometricweather.common.ui.adapters.location.LocationHolder;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class LocationAdapterAnimWrapper
         extends AnimationAdapterWrapper<LocationAdapter, LocationHolder> {

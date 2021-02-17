@@ -4,19 +4,27 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.hilt.Assisted;
+import androidx.hilt.work.WorkerInject;
 import androidx.work.WorkerParameters;
 import androidx.work.impl.utils.futures.SettableFuture;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
 import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class NormalUpdateWorker extends AsyncUpdateWorker {
 
-    public NormalUpdateWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
-        super(context, workerParams);
+    @WorkerInject
+    public NormalUpdateWorker(@Assisted @NonNull Context context,
+                              @Assisted @NonNull WorkerParameters workerParams,
+                              LocationHelper locationHelper,
+                              WeatherHelper weatherHelper) {
+        super(context, workerParams, locationHelper, weatherHelper);
     }
 
     @Override

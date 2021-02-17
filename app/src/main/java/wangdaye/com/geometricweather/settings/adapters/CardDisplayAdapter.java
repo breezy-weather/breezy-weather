@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.models.options.appearance.CardDisplay;
-import wangdaye.com.geometricweather.ui.widgets.slidingItem.SlidingItemContainerLayout;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
+import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout;
 
 public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.ViewHolder> {
 

@@ -2,7 +2,7 @@ package wangdaye.com.geometricweather.db.converters;
 
 import org.greenrobot.greendao.converter.PropertyConverter;
 
-import wangdaye.com.geometricweather.basic.models.weather.WindDegree;
+import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
 
 public class WindDegreeConverter implements PropertyConverter<WindDegree, Float> {
 

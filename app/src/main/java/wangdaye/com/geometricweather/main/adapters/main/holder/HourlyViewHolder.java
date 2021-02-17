@@ -15,24 +15,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.models.weather.Base;
-import wangdaye.com.geometricweather.basic.models.weather.Hourly;
-import wangdaye.com.geometricweather.basic.models.weather.Minutely;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.weather.Base;
+import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
+import wangdaye.com.geometricweather.common.basic.models.weather.Minutely;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.adapters.main.MainTag;
 import wangdaye.com.geometricweather.main.adapters.trend.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.adapters.TagAdapter;
-import wangdaye.com.geometricweather.ui.decotarions.GridMarginsDecoration;
-import wangdaye.com.geometricweather.ui.widgets.PrecipitationBar;
-import wangdaye.com.geometricweather.ui.widgets.trend.TrendRecyclerView;
-import wangdaye.com.geometricweather.ui.widgets.trend.TrendRecyclerViewScrollBar;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
+import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
+import wangdaye.com.geometricweather.common.ui.widgets.PrecipitationBar;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewScrollBar;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class HourlyViewHolder extends AbstractMainCardViewHolder {
 

@@ -9,9 +9,9 @@ import androidx.preference.PreferenceFragmentCompat;
 import org.jetbrains.annotations.NotNull;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.fragments.SettingsFragment;
-import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 
 /**
  * Settings activity.

@@ -24,14 +24,14 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Daily;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.ui.widgets.astro.MoonPhaseView;
-import wangdaye.com.geometricweather.ui.widgets.astro.SunMoonView;
+import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
+import wangdaye.com.geometricweather.common.ui.widgets.astro.SunMoonView;
 
 public class AstroViewHolder extends AbstractMainCardViewHolder {
 

@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
+import javax.inject.Inject;
+
+import dagger.hilt.android.qualifiers.ApplicationContext;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class SearchActivityRepository {
@@ -17,8 +20,9 @@ public class SearchActivityRepository {
     private static final String PREFERENCE_SEARCH_CONFIG = "SEARCH_CONFIG";
     private static final String KEY_MULTI_SOURCE_ENABLED = "MULTI_SOURCE_ENABLED";
 
-    SearchActivityRepository(Context context) {
-        mWeatherHelper = new WeatherHelper();
+    @Inject
+    SearchActivityRepository(@ApplicationContext Context context, WeatherHelper weatherHelper) {
+        mWeatherHelper = weatherHelper;
         mSharedPreferences = context.getSharedPreferences(
                 PREFERENCE_SEARCH_CONFIG, Context.MODE_PRIVATE);
     }

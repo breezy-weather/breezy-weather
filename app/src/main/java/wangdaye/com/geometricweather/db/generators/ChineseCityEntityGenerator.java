@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.db.generators;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.models.ChineseCity;
+import wangdaye.com.geometricweather.common.basic.models.ChineseCity;
 import wangdaye.com.geometricweather.db.entities.ChineseCityEntity;
 
 public class ChineseCityEntityGenerator {

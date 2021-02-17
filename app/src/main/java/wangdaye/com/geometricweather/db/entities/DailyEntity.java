@@ -6,8 +6,9 @@ import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.basic.models.weather.WindDegree;
+import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
 import wangdaye.com.geometricweather.db.converters.WeatherCodeConverter;
 import wangdaye.com.geometricweather.db.converters.WindDegreeConverter;
 
@@ -16,7 +17,7 @@ import org.greenrobot.greendao.annotation.Generated;
 /**
  * Daily entity.
  *
- * {@link wangdaye.com.geometricweather.basic.models.weather.Daily}.
+ * {@link Daily}.
  * */
 @Entity
 public class DailyEntity {

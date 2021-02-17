@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.appearance.CardDisplay;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AbstractMainCardViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AbstractMainViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AirQualityViewHolder;
@@ -26,7 +26,7 @@ import wangdaye.com.geometricweather.main.adapters.main.holder.HeaderViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.HourlyViewHolder;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
+import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 
 public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 

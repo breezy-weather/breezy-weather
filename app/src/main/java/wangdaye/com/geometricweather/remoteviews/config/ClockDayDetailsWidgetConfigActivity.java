@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.remoteviews.config;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayDetailsWidgetIMP;
 
@@ -10,6 +11,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayDetailsWidge
  * Clock day details widget config activity.
  * */
 
+@AndroidEntryPoint
 public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigActivity {
 
     @Override

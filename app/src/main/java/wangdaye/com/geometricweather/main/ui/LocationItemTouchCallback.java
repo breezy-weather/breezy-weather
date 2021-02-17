@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
-import wangdaye.com.geometricweather.ui.dialogs.LearnMoreAboutResidentLocationDialog;
-import wangdaye.com.geometricweather.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.ui.dialogs.LearnMoreAboutResidentLocationDialog;
+import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
 
 public class LocationItemTouchCallback extends SlidingItemTouchCallback {
 

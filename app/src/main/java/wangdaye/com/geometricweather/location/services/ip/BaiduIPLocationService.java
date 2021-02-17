@@ -1,12 +1,13 @@
 package wangdaye.com.geometricweather.location.services.ip;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
+import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Retrofit;
 import wangdaye.com.geometricweather.BuildConfig;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.location.services.LocationService;
 import wangdaye.com.geometricweather.weather.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.observers.BaseObserver;
@@ -14,27 +15,19 @@ import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
 
 public class BaiduIPLocationService extends LocationService {
 
-    private BaiduIPLocationApi api;
-    private CompositeDisposable compositeDisposable;
+    private final BaiduIPLocationApi mApi;
+    private final CompositeDisposable compositeDisposable;
 
-    public BaiduIPLocationService() {
-        api = new Retrofit.Builder()
-                .baseUrl(BuildConfig.BAIDU_IP_LOCATION_BASE_URL)
-                .client(
-                        GeometricWeather.getInstance()
-                                .getOkHttpClient()
-                                .newBuilder()
-                                .build()
-                ).addConverterFactory(GeometricWeather.getInstance().getGsonConverterFactory())
-                .addCallAdapterFactory(GeometricWeather.getInstance().getRxJava2CallAdapterFactory())
-                .build()
-                .create((BaiduIPLocationApi.class));
-        compositeDisposable = new CompositeDisposable();
+    @Inject
+    public BaiduIPLocationService(BaiduIPLocationApi api,
+                                  CompositeDisposable disposable) {
+        mApi = api;
+        compositeDisposable = disposable;
     }
 
     @Override
     public void requestLocation(Context context, @NonNull LocationCallback callback) {
-        api.getLocation(BuildConfig.BAIDU_IP_LOCATION_AK, "gcj02")
+        mApi.getLocation(BuildConfig.BAIDU_IP_LOCATION_AK, "gcj02")
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<BaiduIPLocationResult>() {
                     @Override

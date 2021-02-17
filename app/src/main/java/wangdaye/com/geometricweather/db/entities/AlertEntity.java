@@ -6,10 +6,12 @@ import org.greenrobot.greendao.annotation.Id;
 import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
 
+import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
+
 /**
  * Alert entity.
  *
- * {@link wangdaye.com.geometricweather.basic.models.weather.Alert}
+ * {@link Alert}
  * */
 @Entity
 public class AlertEntity {

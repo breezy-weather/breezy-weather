@@ -2,16 +2,17 @@ package wangdaye.com.geometricweather.weather;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.observers.BaseObserver;
@@ -28,9 +29,8 @@ import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class WeatherHelper {
 
-    private @Nullable WeatherService weatherService;
-    private @Nullable WeatherService[] searchServices;
-    private final CompositeDisposable compositeDisposable;
+    private final WeatherService[] mWeatherServices;
+    private final CompositeDisposable mCompositeDisposable;
 
     public interface OnRequestWeatherListener {
         void requestWeatherSuccess(@NonNull Location requestLocation);
@@ -42,32 +42,62 @@ public class WeatherHelper {
         void requestLocationFailed(String query);
     }
 
-    public WeatherHelper() {
-        weatherService = null;
-        searchServices = null;
-        compositeDisposable = new CompositeDisposable();
+    @Inject
+    public WeatherHelper(AccuWeatherService accuWeatherService,
+                         CNWeatherService cnWeatherService,
+                         CaiYunWeatherService caiYunWeatherService,
+                         MfWeatherService mfWeatherService,
+                         CompositeDisposable compositeDisposable) {
+        mWeatherServices = new WeatherService[] {
+                accuWeatherService,
+                cnWeatherService,
+                caiYunWeatherService,
+                mfWeatherService
+        };
+        mCompositeDisposable = compositeDisposable;
     }
 
     @NonNull
-    public static WeatherService getWeatherService(WeatherSource source) {
+    public static WeatherService getWeatherService(WeatherService[] services, WeatherSource source) {
         switch (source) {
             case MF:
-                return new MfWeatherService();
-
-            case CN:
-                return new CNWeatherService();
+                for (WeatherService service : services) {
+                    if (service instanceof MfWeatherService) {
+                        return service;
+                    }
+                }
+                break;
 
             case CAIYUN:
-                return new CaiYunWeatherService();
+                for (WeatherService service : services) {
+                    if (service instanceof CaiYunWeatherService) {
+                        return service;
+                    }
+                }
+                break;
+
+            case CN:
+                for (WeatherService service : services) {
+                    if (service instanceof CNWeatherService) {
+                        return service;
+                    }
+                }
+                break;
 
             default: // ACCU.
-                return new AccuWeatherService();
+                for (WeatherService service : services) {
+                    if (service instanceof AccuWeatherService) {
+                        return service;
+                    }
+                }
+                break;
         }
+        throw new RuntimeException("Cannot find a valid weather service object.");
     }
 
     public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
-        weatherService = getWeatherService(location.getWeatherSource());
-        weatherService.requestWeather(c, location, new WeatherService.RequestWeatherCallback() {
+        final WeatherService service = getWeatherService(mWeatherServices, location.getWeatherSource());
+        service.requestWeather(c, location, new WeatherService.RequestWeatherCallback() {
 
             @Override
             public void requestWeatherSuccess(@NonNull Location requestLocation) {
@@ -108,18 +138,18 @@ public class WeatherHelper {
         }
 
         // generate weather services.
-        searchServices = new WeatherService[sourceList.size()];
-        for (int i = 0; i < searchServices.length; i ++) {
-            searchServices[i] = getWeatherService(sourceList.get(i));
+        final WeatherService[] services = new WeatherService[sourceList.size()];
+        for (int i = 0; i < services.length; i ++) {
+            services[i] = getWeatherService(mWeatherServices, sourceList.get(i));
         }
 
         // generate observable list.
         List<Observable<List<Location>>> observableList = new ArrayList<>();
-        for (int i = 0; i < searchServices.length; i ++) {
+        for (int i = 0; i < services.length; i ++) {
             int finalI = i;
             observableList.add(
                     Observable.create(emitter ->
-                            emitter.onNext(searchServices[finalI].requestLocation(context, query)))
+                            emitter.onNext(services[finalI].requestLocation(context, query)))
             );
         }
 
@@ -130,7 +160,7 @@ public class WeatherHelper {
             }
             return locationList;
         }).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<Location>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<Location>>() {
                     @Override
                     public void onSucceed(List<Location> locationList) {
                         if (locationList != null && locationList.size() != 0) {
@@ -148,16 +178,9 @@ public class WeatherHelper {
     }
 
     public void cancel() {
-        if (weatherService != null) {
-            weatherService.cancel();
+        for (WeatherService s : mWeatherServices) {
+            s.cancel();
         }
-        if (searchServices != null) {
-            for (WeatherService s : searchServices) {
-                if (s != null) {
-                    s.cancel();
-                }
-            }
-        }
-        compositeDisposable.clear();
+        mCompositeDisposable.clear();
     }
 }

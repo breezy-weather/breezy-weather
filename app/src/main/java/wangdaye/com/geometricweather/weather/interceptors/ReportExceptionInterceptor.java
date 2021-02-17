@@ -4,7 +4,7 @@ import okhttp3.Interceptor;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.Response;
-import wangdaye.com.geometricweather.utils.helpters.BuglyHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.BuglyHelper;
 
 abstract class ReportExceptionInterceptor implements Interceptor {
 

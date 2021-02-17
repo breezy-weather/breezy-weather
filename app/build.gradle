@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 30
@@ -120,7 +123,6 @@ dependencies {
 
     implementation 'androidx.preference:preference:1.1.1'
 
-
     implementation "androidx.work:work-runtime:2.4.0"
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
@@ -133,6 +135,18 @@ dependencies {
 
     // multi dex.
     implementation 'com.android.support:multidex:1.0.3'
+
+    // hilt.
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
+    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
+
+    implementation 'androidx.hilt:hilt-work:1.0.0-alpha01'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
+    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
 
     // a map.
     implementation 'com.amap.api:location:4.7.2'
@@ -172,7 +186,7 @@ dependencies {
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle:2.0'
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0'
 
-    // UI.
+    // ui.
     implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     implementation 'com.jaredrummler:colorpicker:1.1.0'
     implementation 'com.xw.repo:bubbleseekbar:3.20-lite'

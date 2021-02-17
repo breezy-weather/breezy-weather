@@ -16,19 +16,19 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import java.text.SimpleDateFormat;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoDialog;
-import wangdaye.com.geometricweather.basic.models.options.unit.PrecipitationUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.ProbabilityUnit;
-import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.models.weather.Hourly;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.GeoDialog;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.ProbabilityUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widgets.AnimatableIconView;
-import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
+import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Hourly weather dialog.
